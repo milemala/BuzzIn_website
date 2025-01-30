@@ -1,0 +1,91 @@
+/* 淡入动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 地图背景动画 */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+/* 按钮悬停动画 */
+@keyframes buttonHover {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-2px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* 应用动画的类 */
+.fade-in {
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.pulse {
+    animation: pulse 2s infinite ease-in-out;
+}
+
+/* 交互动画 */
+.hover-effect {
+    transition: all 0.3s ease;
+}
+
+.hover-effect:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* 滚动显示动画 */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 为不同元素设置不同的延迟 */
+.testimonial-card:nth-child(1) { transition-delay: 0.1s; }
+.testimonial-card:nth-child(2) { transition-delay: 0.3s; }
+.testimonial-card:nth-child(3) { transition-delay: 0.5s; }
+
+.faq-item:nth-child(1) { transition-delay: 0.1s; }
+.faq-item:nth-child(2) { transition-delay: 0.3s; }
+.faq-item:nth-child(3) { transition-delay: 0.5s; }
+.faq-item:nth-child(4) { transition-delay: 0.7s; }
+
+/* 导航栏滚动效果 */
+.navbar-scroll {
+    transition: background-color 0.3s ease;
+}
+
+.navbar-scroll.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+} 
