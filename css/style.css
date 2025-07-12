@@ -76,15 +76,33 @@
 }
 
 /* 社交媒体图标 */
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
 .social-links a {
-    font-size: 24px;
-    color: var(--primary-color);
-    margin: 0 15px;
-    transition: color 0.3s ease;
+    font-size: 1.5rem;
+    color: var(--white);
+    transition: all 0.3s ease;
 }
 
 .social-links a:hover {
-    color: var(--accent-color);
+    transform: translateY(-3px);
+    opacity: 0.8;
+}
+
+/* 为不同平台设置不同的悬停颜色 */
+.social-links a[aria-label="抖音"]:hover {
+    color: #000000;
+}
+
+.social-links a[aria-label="微信"]:hover {
+    color: #07C160;
+}
+
+.social-links a[aria-label="微博"]:hover {
+    color: #E6162D;
 }
 
 :root {
@@ -479,15 +497,6 @@ footer {
 
 .footer-section a:hover {
     opacity: 0.8;
-}
-
-.social-links {
-    display: flex;
-    gap: 20px;
-}
-
-.social-links a {
-    font-size: 1.5rem;
 }
 
 .footer-bottom {
