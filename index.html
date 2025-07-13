@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>门外App - 发现附近的实时聚会与邀约</title>
-    <meta name="description" content="门外App - 即时查看，不错过任何相遇。发现附近的实时聚会与邀约，让社交变得更简单。">
+    <title>门外 - 发现城市此刻正在发生的事</title>
+    <meta name="description" content="门外 - 基于地图的本地生活实时信息聚合平台。连接人与人与场所，激活城市夜生活，让临时的社交冲动变成真实的连接。">
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
@@ -13,16 +14,15 @@
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="container">
-            <a href="#" class="logo">门外App</a>
+            <a href="#" class="logo">
+                <img src="images/logo.png" alt="门外" class="logo-img">
+            </a>
             <button class="menu-toggle" aria-label="菜单">
                 <i class="fas fa-bars"></i>
             </button>
             <div class="nav-links">
-                <a href="#features" class="nav-link">功能</a>
-                <a href="#testimonials" class="nav-link">评价</a>
-                <a href="#faq" class="nav-link">常见问题</a>
-                <button class="language-btn">EN</button>
-                <a href="#download" class="download-btn">立即下载</a>
+                <a href="#scenarios" class="nav-link">场景</a>
+                <a href="#merchant" class="nav-link">商户</a>
             </div>
         </div>
     </nav>
@@ -31,105 +31,194 @@
     <header class="hero" id="home">
         <div class="map-background"></div>
         <div class="container">
-            <h1 class="fade-in">门外App —— 发现附近的实时聚会与邀约</h1>
-            <p class="subtitle fade-in">即时互动 · 不错过任何相遇</p>
+            <h1 class="fade-in">
+                <span class="brand-name">门外</span>
+                <span class="subtitle-text">—— 线下即时社交娱乐的可视化网络</span>
+            </h1>
+            <p class="subtitle fade-in">基于地图的本地生活实时信息聚合平台<br>通过地图实时信息实现"人与人与场所"的连接</p>
             <div class="download-group fade-in">
                 <a href="#" class="app-store-btn"><i class="fab fa-apple"></i> App Store</a>
-                <a href="#" class="android-btn"><i class="fab fa-android"></i> Android</a>
+                <a href="#" class="android-btn"><i class="fab fa-android"></i> Android<span class="coming-soon">即将上线</span></a>
                 <a href="#" class="wechat-btn"><i class="fab fa-weixin"></i> 微信小程序</a>
             </div>
         </div>
     </header>
 
-    <!-- 功能特点部分 -->
-    <section id="features" class="features">
+    <!-- 用户痛点场景 -->
+    <section class="user-scenarios" id="scenarios">
         <div class="container">
-            <h2 class="section-title">核心功能</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h3>实时地图</h3>
-                        <p>随时查看附近的活动和聚会，让社交变得更加便捷。</p>
+            <h2 class="section-title">我们理解都市青年的孤独</h2>
+            <p class="scenarios-intro">以下是一个叫Spike的都市青年的真实故事</p>
+            
+            <div class="scenarios-timeline">
+                <div class="scenario-item left scroll-reveal">
+                    <div class="scenario-card">
+                        <div class="scenario-number">01</div>
+                        <h3>临时社交冲动，好友时间窗错位</h3>
+                        <div class="scenario-story">
+                            <p>周六夜里，Spike 在基友群里发了个消息："整点🙂？"</p>
+                            <p>半小时后才蹦出几句"有事儿，下次吧"。</p>
+                            <p>他拉开冰箱拿出啤酒，想起大学时，凌晨两点还能翻墙出去吃烧烤的日子，不知何时他们这么难约。</p>
+                        </div>
+                        <div class="pain-point">
+                            <strong>痛点：</strong>临时社交冲动高频出现，但好友时间窗错位 → 难以快速成局
+                        </div>
+                        <div class="solution">
+                            <strong>门外解决方案：</strong>即时撮合，让临时的冲动找到同频的人
+                        </div>
                     </div>
                 </div>
                 
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h3>即时参与</h3>
-                        <p>有感兴趣的附近活动，立即出门参与，不错过身边的精彩生活</p>
+                <div class="scenario-item right scroll-reveal">
+                    <div class="scenario-card">
+                        <div class="scenario-number">02</div>
+                        <h3>碎片化时间，预订式社交常爽约</h3>
+                        <div class="scenario-story">
+                            <p>Spike 报名了豆瓣周五晚八点的夜骑小组活动。</p>
+                            <p>六点客户项目爆雷，他被拉进紧急会议，结束已是九点半。</p>
+                            <p>"靠谱员工"的代价是行程永远让位于随时而来的工作。面对不属于自己的日程表，他后面也没再敢轻易报名什么活动。</p>
+                        </div>
+                        <div class="pain-point">
+                            <strong>痛点：</strong>碎片化时间 + 不确定加班 → 预订式社交常因突发事件爽约，参与度低
+                        </div>
+                        <div class="solution">
+                            <strong>门外解决方案：</strong>无需预约，随时参与，适应都市人的不确定性
+                        </div>
                     </div>
                 </div>
                 
-                <div class="feature-item">
-                    <div class="feature-icon">
+                <div class="scenario-item left scroll-reveal">
+                    <div class="scenario-card">
+                        <div class="scenario-number">03</div>
+                        <h3>店内实时气氛不透明，单人进店是场赌博</h3>
+                        <div class="scenario-story">
+                            <p>Spike 第一次走进住处附近那家小酒馆 —— 大众点评上写着"氛围超棒"</p>
+                            <p>推门却只见两位客人和刷短视频的酒保，抖音神曲回荡在空屋里</p>
+                            <p>十分钟后那两人也走了，整间酒吧只剩他和一杯常温啤酒</p>
+                        </div>
+                        <div class="pain-point">
+                            <strong>痛点：</strong>美团点评静态图 + 过期评论 → 店内实时气氛不透明，单人进店就是一场赌
+                        </div>
+                        <div class="solution">
+                            <strong>门外解决方案：</strong>实时展示店内氛围，让热闹被看见
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scenario-item right scroll-reveal">
+                    <div class="scenario-card">
+                        <div class="scenario-number">04</div>
+                        <h3>线下缺乏社交信号，陌生社交门槛高</h3>
+                        <div class="scenario-story">
+                            <p>难得早下班，Spike走进公司楼下那间人声鼎沸的跳海酒馆</p>
+                            <p>他故意挑了个靠窗位，慢慢喝酒，等待一次眼神、搭话、破冰</p>
+                            <p>有人擦肩而过，有人碰到他的椅背，却没人停下</p>
+                            <p>晚上唯一的对话，是结账时调酒师问的一句"一个人啊？"</p>
+                        </div>
+                        <div class="pain-point">
+                            <strong>痛点：</strong>线下缺乏"我可聊 / 我想认识人"信号 → 陌生社交门槛高，建立沟通难度大
+                        </div>
+                        <div class="solution">
+                            <strong>门外解决方案：</strong>信号机制降低社交门槛，让连接自然发生
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scenarios-summary scroll-reveal">
+                <ul>
+                    <li>都市青年相比小镇青年的社会关系链更弱</li>
+                    <li>周围朋友因为距离和时间上的错位，能给到的情绪价值不够</li>
+                    <li>经常会有情绪悬空和生活断联感 → 社交需求普遍被压抑</li>
+                </ul>
+                <p class="summary-conclusion">
+                    我们需要一个平台，扮演实时撮合的角色，提供"线下人群即时活跃状态"这个目前稀缺的垂类内容。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 商户价值 -->
+    <section class="merchant-value" id="merchant">
+        <div class="container">
+            <h2 class="section-title">为商户创造价值</h2>
+            <p class="merchant-intro">帮助酒吧、游戏厅、娱乐场所等商户降低获客成本，提升经营效率</p>
+            
+            <div class="merchant-grid">
+                <div class="merchant-card scroll-reveal">
+                    <div class="merchant-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>降低获客成本</h3>
+                    <p>告别美团点评20%+高额抽佣，免费入驻门外平台。用社交场景而非价格竞争获客，让好的氛围成为你的竞争优势。</p>
+                    <div class="merchant-benefit">
+                        <span class="benefit-tag">零抽佣</span>
+                        <span class="benefit-tag">免费入驻</span>
+                    </div>
+                </div>
+                
+                <div class="merchant-card scroll-reveal">
+                    <div class="merchant-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>展示实时氛围</h3>
+                    <p>让顾客提前看到"今晚热不热"、"此刻氛围如何"。店铺明明很热闹，现在终于有人知道了。透明的氛围展示，吸引更多客人。</p>
+                    <div class="merchant-benefit">
+                        <span class="benefit-tag">实时可见</span>
+                        <span class="benefit-tag">氛围透明</span>
+                    </div>
+                </div>
+                
+                <div class="merchant-card scroll-reveal">
+                    <div class="merchant-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <div class="feature-content">
-                        <h3>活动创建</h3>
-                        <p>入驻商户可以发布活动，不仅提供服务，也提供情绪价值。</p>
+                    <h3>连接目标客群</h3>
+                    <p>精准触达20-40岁都市青年，这些正是你的核心消费群体。他们有消费能力，有社交需求，正在寻找合适的聚会场所。</p>
+                    <div class="merchant-benefit">
+                        <span class="benefit-tag">精准客群</span>
+                        <span class="benefit-tag">高消费力</span>
+                    </div>
+                </div>
+                
+                <div class="merchant-card scroll-reveal">
+                    <div class="merchant-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>轻松运营</h3>
+                    <p>替代微信群运营，低负担高效果。不需要持续输出内容，用户自然产生互动。简单设置，自动吸引客流。</p>
+                    <div class="merchant-benefit">
+                        <span class="benefit-tag">零负担</span>
+                        <span class="benefit-tag">自动化</span>
+                    </div>
+                </div>
+                
+                <div class="merchant-card scroll-reveal">
+                    <div class="merchant-icon">
+                        <i class="fas fa-signal"></i>
+                    </div>
+                    <h3>NOW动态发布</h3>
+                    <p>发布即时活动邀约，出现在地图上。酒馆特色活动、主题派对、优惠活动，让周边用户实时看到你的精彩。</p>
+                    <div class="merchant-benefit">
+                        <span class="benefit-tag">即时发布</span>
+                        <span class="benefit-tag">地图展示</span>
+                    </div>
+                </div>
+                
+                <div class="merchant-card scroll-reveal">
+                    <div class="merchant-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>促进客户互动</h3>
+                    <p>为客户提供社交场景，增加停留时间和消费频次。陌生人破冰、朋友聚会、商务社交，让你的场所成为社交中心。</p>
+                    <div class="merchant-benefit">
+                        <span class="benefit-tag">延长停留</span>
+                        <span class="benefit-tag">增加消费</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+            
 
-    <!-- 用户反馈 -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <h2 class="section-title">用户真实体验</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial-card scroll-reveal">
-                    <div class="quote"><i class="fas fa-map-marked-alt"></i></div>
-                    <p>"门外App让我在新城市快速找到玩伴！刚来上海时用它参加了好几次周末徒步，认识了很多朋友。"</p>
-                    <div class="author">- 小王, 上海</div>
-                </div>
-                
-                <div class="testimonial-card scroll-reveal">
-                    <div class="quote"><i class="fas fa-coffee"></i></div>
-                    <p>"下班后想找人聊聊天都很方便，打开APP就能看到附近有什么有趣的活动，再也不会孤单了！"</p>
-                    <div class="author">- 小李, 北京</div>
-                </div>
-                
-                <div class="testimonial-card scroll-reveal">
-                    <div class="quote"><i class="fas fa-basketball-ball"></i></div>
-                    <p>"作为篮球爱好者，经常用门外App找球友。现在已经有了固定的球友群，这要感谢门外App！"</p>
-                    <div class="author">- 小张, 深圳</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="faq" id="faq">
-        <div class="container">
-            <h2 class="section-title">常见问题</h2>
-            <div class="faq-grid">
-                <div class="faq-item scroll-reveal">
-                    <h3><i class="fas fa-user-shield"></i> 如何保证活动安全？</h3>
-                    <p>我们采用实名认证系统，所有用户需要进行身份验证。同时设有举报机制和信用评分体系，确保社交环境的安全性。</p>
-                </div>
-                
-                <div class="faq-item scroll-reveal">
-                    <h3><i class="fas fa-mobile-alt"></i> 支持哪些设备使用？</h3>
-                    <p>目前支持iOS和Android系统，同时提供微信小程序版本。您可以在App Store、安卓应用商店或微信小程序中搜索"门外App"下载使用。</p>
-                </div>
-                
-                <div class="faq-item scroll-reveal">
-                    <h3><i class="fas fa-coins"></i> 使用需要付费吗？</h3>
-                    <p>完全免费。</p>
-                </div>
-                
-                <div class="faq-item scroll-reveal">
-                    <h3><i class="fas fa-user-friends"></i> 商户如何入驻？</h3>
-                    <p>在应用内有入驻申请入口，按照要求填写即可。或者给我们发邮件</p>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -138,28 +227,24 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>下载 门外App</h3>
+                    <h3>下载 门外</h3>
                     <div class="download-group">
                         <a href="#" class="app-store-btn"><i class="fab fa-apple"></i> App Store</a>
-                        <a href="#" class="android-btn"><i class="fab fa-android"></i> Android</a>
+                        <a href="#" class="android-btn"><i class="fab fa-android"></i> Android<span class="coming-soon">即将上线</span></a>
                         <a href="#" class="wechat-btn"><i class="fab fa-weixin"></i> 微信小程序</a>
                     </div>
                 </div>
                 <div class="footer-section">
-                    <h3>关注我们</h3>
-                    <div class="social-links">
-                        <a href="#" aria-label="抖音"><i class="fab fa-tiktok"></i></a>
-                        <a href="#" aria-label="微信"><i class="fab fa-weixin"></i></a>
-                        <a href="#" aria-label="微博"><i class="fab fa-weibo"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>联系我们</h3>
-                    <p><a href="mailto:support@门外App.com">support@buzzin.com</a></p>
+                    <h3>商户入驻/问题反馈，欢迎联系我们</h3>
+                    <p><a href="mailto:service@nowmap.cn">service@nowmap.cn</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 北京万盏街灯科技有限公司</p>
+                <div class="footer-info">
+                    <p>网站ICP备案：京ICP备2025124152号</p>
+                    <p>公安备案：京公网安备11010502056951号</p>
+                    <p>Copyright 2025 北京万盏街灯科技有限公司</p>
+                </div>
             </div>
         </div>
     </footer>
