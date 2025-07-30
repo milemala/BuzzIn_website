@@ -1,11 +1,4 @@
-/* 追光体字体声明 */
-@font-face {
-    font-family: 'ZhuiguangTi';
-    src: url('../douyuzhuiguangti.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
+
 
 /* 添加地图背景样式 */
 .map-background {
@@ -187,7 +180,7 @@
 }
 
 :root {
-    /* 门外App主题色彩 */
+    /* Zup!App主题色彩 */
     --primary-color: #FFFFFF;
     --secondary-color: #8B949E;
     --text-color: #F0F6FC;
@@ -200,7 +193,7 @@
     --card-bg: #21262D;
     --nav-bg: #0D1117;
     
-    /* 门外主题色 - NOW气泡色 */
+    /* Zup!主题色 - NOW气泡色 */
     --orange-bubble: #FC9A2E;  /* 橙色气泡 */
     --green-bubble: #33CD97;   /* 绿色气泡 */
     --accent-color: var(--orange-bubble);
@@ -272,10 +265,10 @@ body {
 }
 
 .logo-img {
-    height: 35px;
-    width: 35px;
+    height: 40px;
+    width: 40px;
     border-radius: 8px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .nav-links {
@@ -343,9 +336,9 @@ body {
 .hero {
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
-    padding-top: 70px;
+    padding-top: 100px;
 }
 
 .hero .container {
@@ -355,33 +348,55 @@ body {
 .hero h1 {
     font-size: var(--h1-size);
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
     color: var(--hero-title-color);
     line-height: 1.2;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0;
+    align-items: flex-start;
 }
 
 .hero h1 .brand-name {
-    font-family: 'ZhuiguangTi', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', sans-serif !important;
+    font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', sans-serif !important;
     font-weight: normal;
     letter-spacing: 0.05em;
     font-size: var(--h1-size);
-    line-height: 1.1;
+    line-height: 1;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    margin-bottom: -35px;
+}
+
+.hero-logo {
+    height: 240px;
+    width: auto;
+    max-width: 800px;
+    object-fit: contain;
+    filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.5));
+    margin-bottom: 0;
+    margin-left: -25px;
+    display: block;
+    align-self: flex-start;
 }
 
 .hero h1 .subtitle-text {
-    font-size: 2.2rem;
+    font-size: 2.8rem;
     font-weight: 400;
     line-height: 1.3;
     opacity: 0.9;
     color: var(--text-color);
 }
 
+/* 橙色高亮样式 */
+.highlight-orange {
+    color: var(--orange-bubble);
+    font-weight: 600;
+}
+
 .hero .subtitle {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     margin-bottom: 40px;
     color: var(--text-color);
     opacity: 0.9;
@@ -399,10 +414,11 @@ body {
 .download-group a {
     display: inline-flex;
     align-items: center;
-    padding: 14px 28px;
+    padding: 16px 32px;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
+    font-size: 1.1rem;
     transition: all 0.3s ease;
     position: relative;
 }
@@ -462,6 +478,13 @@ body {
     
     .hero h1 .brand-name {
         font-size: 2.5rem;
+        text-align: center;
+        align-self: center;
+    }
+    
+    .hero-logo {
+        height: 160px;
+        max-width: 500px;
     }
     
     .hero h1 .subtitle-text {
@@ -516,34 +539,41 @@ body {
 .scenarios-timeline::before {
     content: '';
     position: absolute;
-    left: 50%;
+    left: 33.33%;
     top: 0;
     bottom: 0;
     width: 2px;
     background: var(--orange-bubble);
     transform: translateX(-50%);
+    z-index: 1;
 }
 
 .scenario-item {
     position: relative;
     margin-bottom: 35px;
     width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+    align-items: center;
 }
 
 .scenario-item.left {
-    padding-right: 52%;
+    padding: 0;
 }
 
 .scenario-item.right {
-    padding-left: 52%;
+    padding: 0;
 }
 
 .scenario-item.left .scenario-card {
-    margin-right: 25px;
+    margin: 0;
+    width: 100%;
 }
 
 .scenario-item.right .scenario-card {
-    margin-left: 25px;
+    margin: 0;
+    width: 100%;
 }
 
 .scenario-item::before {
@@ -554,16 +584,11 @@ body {
     height: 12px;
     background: var(--orange-bubble);
     border-radius: 50%;
-    z-index: 2;
+    z-index: 3;
 }
 
-.scenario-item.left::before {
-    right: calc(48% - 6px);
-}
-
-.scenario-item.right::before {
-    left: calc(48% - 6px);
-    background: var(--green-bubble);
+.scenario-item::before {
+    left: calc(33.33% - 6px);
 }
 
 .scenario-card {
@@ -604,6 +629,21 @@ body {
     color: var(--primary-color);
     margin-top: 12px;
 }
+
+.scenario-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+}
+
+.scenario-item.left .scenario-image {
+    justify-self: end;
+}
+
+
 
 .scenario-story {
     margin-bottom: 16px;
@@ -866,6 +906,7 @@ footer {
 }
 
 @media (max-width: 768px) {
+    /* 导航栏 */
     .menu-toggle {
         display: none;
     }
@@ -886,44 +927,127 @@ footer {
         font-size: 0.9rem;
     }
     
+    /* 全局容器 */
+    .container {
+        padding: 0 20px;
+        text-align: center;
+    }
+    
+    /* 标题统一居中对齐 */
+    .section-title {
+        text-align: center;
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    
+    /* 第一屏 */
+    .hero {
+        text-align: center;
+        padding-top: 100px;
+    }
+    
+    .hero h1 {
+        text-align: center;
+        align-items: center;
+    }
+    
+    .hero-logo {
+        height: 180px;
+        margin: 0 auto 30px auto;
+        display: block;
+        align-self: center;
+        margin-left: 0 !important;
+    }
+    
+    .hero .subtitle {
+        text-align: center;
+        font-size: 1.1rem;
+    }
+    
+    /* 第二屏场景 - 统一居中对齐 */
+    .scenarios-intro {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
     .scenarios-timeline::before {
-        left: 30px;
-        transform: none;
+        display: none;
     }
     
-    .scenario-item.left,
-    .scenario-item.right {
-        padding-left: 60px;
-        padding-right: 0;
-    }
-    
-    .scenario-item.left .scenario-card,
-    .scenario-item.right .scenario-card {
-        margin-left: 0;
-        margin-right: 0;
+    .scenario-item {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        text-align: center;
+        padding: 0;
+        margin-bottom: 40px;
     }
     
     .scenario-item::before {
-        left: 24px;
-        top: 30px;
+        display: none;
     }
     
-    .scenario-item.left::before,
-    .scenario-item.right::before {
-        left: 24px;
-        background: var(--orange-bubble);
+    .scenario-item.left .scenario-image {
+        justify-self: center;
+        order: -1;
+        margin-bottom: 15px;
+    }
+    
+    .scenario-image {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
     }
     
     .scenario-card {
-        margin-bottom: 20px;
+        margin: 0;
+        width: 100%;
+        text-align: center;
     }
     
-    .scenarios-summary {
-        padding: 30px 20px;
+    .scenario-card h3 {
+        text-align: center;
+        margin-top: 0;
+    }
+    
+    /* 第三屏商户价值 - 统一居中对齐 */
+    .merchant-intro {
+        text-align: center;
+        margin-bottom: 30px;
     }
     
     .merchant-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .merchant-card {
+        text-align: center;
+    }
+    
+    .merchant-card h3 {
+        text-align: center;
+    }
+    
+    /* 场景总结 */
+    .scenarios-summary {
+        padding: 30px 20px;
+        text-align: center;
+    }
+    
+    .scenarios-summary ul {
+        text-align: left;
+        margin-left: auto;
+        margin-right: auto;
+        display: inline-block;
+    }
+    
+    .summary-conclusion {
+        text-align: center;
+    }
+    
+    /* 下载按钮组 */
+    .download-group {
+        justify-content: center;
     }
 }
 
