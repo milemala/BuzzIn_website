@@ -68,17 +68,17 @@
 .now-bubble.orange {
     background: var(--orange-bubble);
     box-shadow: 
-        0 0 20px rgba(252, 154, 46, 0.6),
-        0 0 40px rgba(252, 154, 46, 0.4),
-        0 0 60px rgba(252, 154, 46, 0.2);
+        0 0 20px rgba(244, 180, 0, 0.6),
+        0 0 40px rgba(244, 180, 0, 0.4),
+        0 0 60px rgba(244, 180, 0, 0.2);
 }
 
 .now-bubble.green {
     background: var(--green-bubble);
     box-shadow: 
-        0 0 20px rgba(51, 205, 151, 0.6),
-        0 0 40px rgba(51, 205, 151, 0.4),
-        0 0 60px rgba(51, 205, 151, 0.2);
+        0 0 20px rgba(46, 232, 194, 0.6),
+        0 0 40px rgba(46, 232, 194, 0.4),
+        0 0 60px rgba(46, 232, 194, 0.2);
 }
 
 .now-bubble.small {
@@ -174,7 +174,7 @@
     pointer-events: none;
     border-radius: 50%;
     z-index: 9999;
-    box-shadow: 0 0 16px 4px rgba(252,154,46,0.18), 0 0 24px 8px rgba(51,205,151,0.12);
+    box-shadow: 0 0 16px 4px rgba(244,180,0,0.18), 0 0 24px 8px rgba(46,232,194,0.12);
     transition: transform 0.7s cubic-bezier(0.4,0.2,0.2,1), opacity 0.7s cubic-bezier(0.4,0.2,0.2,1);
     will-change: transform, opacity;
 }
@@ -194,8 +194,8 @@
     --nav-bg: #0D1117;
     
     /* Zup!主题色 - NOW气泡色 */
-    --orange-bubble: #FC9A2E;  /* 橙色气泡 */
-    --green-bubble: #33CD97;   /* 绿色气泡 */
+    --orange-bubble: #F4B400;  /* 黄色气泡 */
+    --green-bubble: #2EE8C2;   /* 青色气泡 */
     --accent-color: var(--orange-bubble);
     
     /* 其他 */
@@ -328,7 +328,7 @@ body {
 }
 
 .nav-links .download-btn:hover {
-    background: #e8881a;
+    background: #d4a000;
     transform: translateY(-2px);
 }
 
@@ -430,7 +430,7 @@ body {
 
 .android-btn {
     background: var(--green-bubble);
-    color: var(--white);
+    color: #000000;
 }
 
 .android-btn .coming-soon {
@@ -447,7 +447,7 @@ body {
 
 .wechat-btn {
     background: var(--green-bubble);
-    color: var(--white);
+    color: #000000;
 }
 
 .download-group a:hover {
@@ -620,7 +620,7 @@ body {
     justify-content: center;
     font-weight: bold;
     font-size: 1.2rem;
-    box-shadow: 0 4px 12px rgba(252, 154, 46, 0.3);
+    box-shadow: 0 4px 12px rgba(244, 180, 0, 0.3);
 }
 
 .scenario-card h3 {
@@ -656,7 +656,7 @@ body {
 }
 
 .pain-point {
-    background: rgba(252, 154, 46, 0.1);
+    background: rgba(244, 180, 0, 0.1);
     border-left: 4px solid var(--orange-bubble);
     padding: 12px;
     margin-bottom: 12px;
@@ -668,7 +668,7 @@ body {
 }
 
 .solution {
-    background: rgba(51, 205, 151, 0.1);
+    background: rgba(46, 232, 194, 0.1);
     border-left: 4px solid var(--green-bubble);
     padding: 12px;
     border-radius: 0 8px 8px 0;
@@ -719,11 +719,11 @@ body {
     line-height: 1.5;
     padding: 25px;
     border-radius: 12px;
-    background: linear-gradient(135deg, rgba(252, 154, 46, 0.1), rgba(51, 205, 151, 0.1));
-    border: 2px solid rgba(252, 154, 46, 0.2);
+    background: linear-gradient(135deg, rgba(244, 180, 0, 0.1), rgba(46, 232, 194, 0.1));
+    border: 2px solid rgba(244, 180, 0, 0.2);
     margin: 0 auto;
     max-width: 600px;
-    box-shadow: 0 4px 15px rgba(252, 154, 46, 0.1);
+    box-shadow: 0 4px 15px rgba(244, 180, 0, 0.1);
 }
 
 /* 商户价值部分 - 更深邃的背景 */
@@ -796,13 +796,13 @@ body {
 }
 
 .benefit-tag {
-    background: rgba(51, 205, 151, 0.1);
+    background: rgba(46, 232, 194, 0.1);
     color: var(--green-bubble);
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 500;
-    border: 1px solid rgba(51, 205, 151, 0.3);
+    border: 1px solid rgba(46, 232, 194, 0.3);
 }
 
 
@@ -836,6 +836,14 @@ footer {
     color: #000000 !important;
 }
 
+.footer-section .android-btn {
+    color: #000000 !important;
+}
+
+.footer-section .wechat-btn {
+    color: #000000 !important;
+}
+
 .footer-section a:hover {
     color: var(--green-bubble);
 }
@@ -845,11 +853,11 @@ footer {
 }
 
 .footer-section .android-btn:hover {
-    color: var(--white) !important;
+    color: #000000 !important;
 }
 
 .footer-section .wechat-btn:hover {
-    color: var(--white) !important;
+    color: #000000 !important;
 }
 
 .footer-bottom {
@@ -1026,6 +1034,16 @@ footer {
     
     .merchant-card h3 {
         text-align: center;
+    }
+    
+    /* 移动端商户图标和标签居中优化 */
+    .merchant-icon {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .merchant-benefit {
+        justify-content: center;
     }
     
     /* 场景总结 */

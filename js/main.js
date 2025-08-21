@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 鼠标气泡动画
 (function() {
-    const colors = ['#FC9A2E', '#33CD97'];
+    const colors = ['#F4B400', '#2EE8C2'];
     const sizes = [12, 18, 24, 32];
     document.addEventListener('mousemove', function(e) {
         const bubble = document.createElement('div');

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商户入驻 - Zup!</title>
+    <meta name="description" content="Zup! 商户入驻说明与流程，支持三方认证、资料提交与App内自助认证。">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+        /* 页面内少量样式，复用现有配色与卡片风格 */
+        .onboard-hero { padding-top: 100px; padding-bottom: 40px; position: relative; }
+        .onboard-hero .title { font-size: 2.2rem; margin-bottom: 10px; }
+        .onboard-hero .subtitle { color: var(--text-muted); font-size: 1.1rem; }
+        .section { padding: 40px 0; }
+        .step-list { list-style: decimal; padding-left: 20px; line-height: 1.9; }
+        .method-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .method-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; text-align: center; }
+        .method-card h4 { margin-bottom: 12px; font-size: 1.2rem; }
+        .method-icon { font-size: 2.5rem; color: var(--orange-bubble); margin-bottom: 16px; }
+        .materials-list { margin-top: 16px; text-align: left; }
+        .material-item { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; padding: 8px 12px; background: rgba(244, 180, 0, 0.05); border-radius: 8px; }
+        .material-item i { color: var(--orange-bubble); font-size: 1.1rem; width: 20px; }
+        .material-item span { color: var(--text-color); font-size: 0.95rem; }
+        .hint { color: var(--text-muted); font-size: 0.95rem; margin-top: 8px; }
+        .gallery { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+        .gallery img { max-width: 320px; width: 100%; border-radius: 8px; border: 1px solid var(--border-color); }
+        .section-subtitle { text-align: center; color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px; }
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+        .benefit-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; text-align: center; transition: all 0.3s ease; }
+        .benefit-card:hover { transform: translateY(-5px); border-color: var(--orange-bubble); box-shadow: 0 8px 25px rgba(244, 180, 0, 0.15); }
+        .benefit-icon { font-size: 2.5rem; color: var(--orange-bubble); margin-bottom: 16px; }
+        .benefit-card h4 { font-size: 1.2rem; margin-bottom: 12px; color: var(--text-color); }
+        .benefit-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+        .contact-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; margin-top: 20px; }
+        .back-links { margin-top: 20px; display: flex; gap: 12px; }
+        .back-links a { text-decoration: none; color: var(--text-color); border: 1px solid var(--border-color); padding: 8px 12px; border-radius: 8px; }
+    </style>
+    <script>
+        // 如果从首页滚动过来，保持顶部导航样式一致
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.add('loaded');
+        });
+    </script>
+    <script defer src="js/main.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+</head>
+<body>
+    <!-- 导航栏（与首页一致） -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/nav-logo.png" alt="Zup!" class="logo-img">
+            </a>
+            <button class="menu-toggle" aria-label="菜单">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="merchant.html" class="nav-link">商户入驻</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 顶部标题 -->
+    <header class="onboard-hero">
+        <div class="map-background"></div>
+        <div class="container">
+            <h1 class="title">欢迎商户入驻Zup!</h1>
+            <p class="subtitle">入驻后得到的不只是一个商户介绍页，而是实时氛围和活动的聚合窗口，让你的店始终鲜活在线</p>
+            <div class="back-links">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> 返回首页</a>
+                <a href="#join" class="nav-link"><i class="fas fa-play"></i> 立刻入驻</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 入驻方式 -->
+    <section class="section" id="join">
+        <div class="container">
+            <h2 class="section-title">一、入驻方式</h2>
+            <div class="step-list">
+                <p>第一步：注册「Zup!」App 账号</p>
+                <p>第二步：选择以下任一方式完成认证</p>
+            </div>
+
+            <div class="method-grid" style="margin-top: 16px;">
+                                <div class="method-card scroll-reveal">
+                    <div class="method-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4>方式1 — 三方认证（最快捷）</h4>
+                    <p>使用已在大众点评/美团中认证过的商户联系方式，或腾讯、百度、高德任一地图中预留的商户手机号，给 <strong>18501217603</strong> 发送短信：</p>
+                    <p>“认证 + 商户名 + 「Zup!」用户ID”</p>
+ 
+                    <div class="gallery">
+                        <img src="大众点评商户页.png" alt="大众点评商户页参考图">
+                        <img src="地图App商户页.png" alt="地图App商户页参考图">
+                    </div>
+                </div>
+                <div class="method-card scroll-reveal">
+                    <div class="method-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h4>方式2 — 提交商户资料</h4>
+                    <p>将如下材料发送至 <a>service@nowmap.cn</a>：</p>
+                    <div class="materials-list">
+                        <div class="material-item">
+                            <i class="fas fa-store"></i>
+                            <span>店名</span>
+                        </div>
+                        <div class="material-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>详细地址</span>
+                        </div>
+                        <div class="material-item">
+                            <i class="fas fa-file-contract"></i>
+                            <span>营业执照照片</span>
+                        </div>
+                        <div class="material-item">
+                            <i class="fas fa-id-card"></i>
+                            <span>经营者/法人身份证照片</span>
+                        </div>
+                        <div class="material-item">
+                            <i class="fas fa-user-check"></i>
+                            <span>认证为店主的「Zup!」用户ID</span>
+                        </div>
+                    </div>
+                </div>
+                                <div class="method-card scroll-reveal">
+                    <div class="method-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h4>方式3 — App 内自助认证</h4>
+                    <p>路径：App 首页左上角头像进入“我的”页面 → 右上角“设置” → “申请认证商户”</p>
+ 
+                    <div class="gallery">
+                        <img src="App内申请认证商户.png" alt="App内申请认证商户参考图">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- 入驻后权益/能力 -->
+    <section class="section" id="after">
+        <div class="container">
+            <h2 class="section-title">入驻Zup!您将获得</h2>
+            <p class="section-subtitle">从曝光、口碑到销售，让您的门店更容易被发现、被选择、提升销量</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card scroll-reveal">
+                    <div class="benefit-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h4>持续曝光</h4>
+                    <p>在地图上长期占位，随时被附近用户发现</p>
+                </div>
+                
+                <div class="benefit-card scroll-reveal">
+                    <div class="benefit-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <h4>互动型详情页</h4>
+                    <p>不同于传统静态信息，这里能挂载实时邀约、展示顾客内容、直连商品购买，把浏览直接转化为行动</p>
+                </div>
+                
+                <div class="benefit-card scroll-reveal">
+                    <div class="benefit-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h4>声量积累</h4>
+                    <p>顾客发布的NOW长期记录在商户详情页，形成实时氛围与真实口碑，帮新客更快产生兴趣</p>
+                </div>
+                
+                <div class="benefit-card scroll-reveal">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h4>认证店员</h4>
+                    <p>店长有认证标识，同时店长可以添加多个同样有认证标识的店员，在发布NOW的时候带标识的用户有更强的信任背书</p>
+                </div>
+                
+                <div class="benefit-card scroll-reveal">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h4>顾客分销</h4>
+                    <p>上架商品即可售卖，同时顾客还能自发帮您带货，形成自然的分销与传播</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>下载 Zup!</h3>
+                    <div class="download-group">
+                        <a href="#" class="app-store-btn"><i class="fab fa-apple"></i> App Store</a>
+                        <a href="#" class="android-btn"><i class="fab fa-android"></i> Android<span class="coming-soon">即将上线</span></a>
+                        <a href="#" class="wechat-btn"><i class="fab fa-weixin"></i> 微信小程序</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>商户入驻/问题反馈，欢迎联系我们</h3>
+                    <p><a href="mailto:service@nowmap.cn">service@nowmap.cn</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-info">
+                    <p>网站ICP备案：京ICP备2025124152号</p>
+                    <p>公安备案：京公网安备11010502056951号</p>
+                    <p>Copyright 2025 北京万盏街灯科技有限公司</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
