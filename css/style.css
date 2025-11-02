@@ -14,6 +14,11 @@
     z-index: -1;
 }
 
+/* 商户入驻页的背景不使用 fixed，降低滚动重绘成本 */
+.onboard-hero .map-background {
+    background-attachment: scroll;
+}
+
 /* App 截图样式 */
 .app-screenshot {
     width: 280px;

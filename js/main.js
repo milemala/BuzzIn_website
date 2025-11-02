@@ -34,9 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 动态NOW气泡效果 - 增强版
+    // 动态NOW气泡效果 - 增强版（仅首页 hero 区启用）
+    const heroMapBackground = document.querySelector('.hero .map-background');
     const createNowBubble = () => {
-        const mapBackground = document.querySelector('.map-background');
+        const mapBackground = heroMapBackground;
         if (!mapBackground) return;
         
         const bubble = document.createElement('div');
@@ -82,12 +83,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5200);
     };
 
-    // 每隔1.2秒创建新的NOW气泡
-    setInterval(createNowBubble, 1200);
-    
-    // 页面加载时立即创建一些气泡
-    for (let i = 0; i < 8; i++) {
-        setTimeout(createNowBubble, i * 200);
+    // 仅当首页 hero 存在时，才启动气泡动画
+    if (heroMapBackground) {
+        // 每隔1.2秒创建新的NOW气泡
+        setInterval(createNowBubble, 1200);
+        // 页面加载时立即创建一些气泡
+        for (let i = 0; i < 8; i++) {
+            setTimeout(createNowBubble, i * 200);
+        }
     }
 });
 
@@ -116,21 +119,39 @@ if (menuToggle && navLinks) {
 // 滚动显示动画
 function initScrollReveal() {
     const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
-    
-    const observer = new IntersectionObserver((entries) => {
+
+    if (!('IntersectionObserver' in window)) {
+        scrollRevealElements.forEach(el => el.classList.add('revealed'));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('revealed');
-                observer.unobserve(entry.target);
+                obs.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.1
+        threshold: 0,
+        rootMargin: '100px 0px -10% 0px'
     });
 
-    scrollRevealElements.forEach(element => {
-        observer.observe(element);
-    });
+    scrollRevealElements.forEach(element => observer.observe(element));
+
+    // Fallback：初始化时立即检查已在视口内的元素，且在滚动/加载时二次检测
+    const revealInView = () => {
+        scrollRevealElements.forEach(el => {
+            if (el.classList.contains('revealed')) return;
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                el.classList.add('revealed');
+            }
+        });
+    };
+    revealInView();
+    window.addEventListener('scroll', revealInView, { passive: true });
+    window.addEventListener('load', revealInView);
 }
 
 // 页面加载完成后初始化
@@ -140,6 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 鼠标气泡动画
 (function() {
+    // 仅在首页存在 hero 时启用鼠标气泡，避免商户页额外的主线程负担
+    if (!document.querySelector('.hero')) return;
     const colors = ['#F4B400', '#2EE8C2'];
     const sizes = [12, 18, 24, 32];
     document.addEventListener('mousemove', function(e) {
