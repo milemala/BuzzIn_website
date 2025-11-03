@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户手册 - Zup!</title>
+    <meta name="description" content="Zup! 用户手册，快速了解如何使用 Zup! 发现和发布即时社交活动。">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+        /* 用户手册页面专用样式 - 移动端优先 */
+        .guide-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .guide-hero-content {
+            width: 100%;
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 30px;
+        }
+
+        .guide-hero-text {
+            z-index: 2;
+            width: 100%;
+        }
+
+        .guide-hero h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            margin-top: 0;
+            color: var(--hero-title-color);
+            line-height: 1.3;
+        }
+
+        .guide-hero .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 0;
+            margin-top: 0;
+            padding: 0 10px;
+        }
+
+        .guide-video-container {
+            position: relative;
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            background: var(--card-bg);
+            padding: 8px;
+        }
+
+        .guide-video {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+            aspect-ratio: 1080 / 1440;
+            object-fit: cover;
+        }
+
+        /* 快速入门 - 横滑卡片 */
+        .quick-start-section {
+            padding: 50px 0;
+            background: var(--bg-secondary);
+        }
+
+        .quick-start-intro {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .quick-start-intro h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+        }
+
+        .quick-start-intro p {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .cards-slider {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .cards-wrapper {
+            display: grid;
+            grid-template-columns: 1fr; /* 默认1列 */
+            gap: 16px;
+        }
+
+        .quick-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 20px 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quick-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(244, 180, 0, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .quick-card:active {
+            transform: scale(0.98);
+        }
+
+        .quick-card-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 25px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .animated-icon {
+            font-size: 3rem;
+            color: var(--orange-bubble);
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        .animated-icon.map {
+            animation-delay: 0s;
+        }
+
+        .animated-icon.bubble {
+            animation-delay: 0.5s;
+        }
+
+        .animated-icon.join {
+            animation-delay: 1s;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-12px) scale(1.1);
+            }
+        }
+
+        .quick-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .quick-card p {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* 控件默认隐藏，仅在特定区块启用 */
+        .slider-controls { display: none; }
+        .scenarios-section .slider-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .scenarios-section .slider-btn {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border-color);
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: all 0.2s ease;
+        }
+        .scenarios-section .slider-btn.active {
+            background: var(--orange-bubble);
+            width: 28px;
+            height: 10px;
+            border-radius: 6px;
+        }
+        /* 快速入门保持不显示缩略控件 */
+        .quick-start-section .slider-controls { display: none; }
+
+        /* 玩法与场景 */
+        .scenarios-section {
+            padding: 50px 0;
+            background: var(--bg-tertiary);
+        }
+
+        .scenarios-intro {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .scenarios-intro h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+        }
+
+        .scenarios-intro p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-style: normal;
+        }
+
+        .scenarios-slider {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .scenarios-wrapper {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            padding: 10px 0 20px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .scenarios-wrapper::-webkit-scrollbar { display: none; }
+
+        .scenario-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            scroll-snap-align: start;
+            flex: 0 0 calc(100% - 80px);
+            min-width: calc(100vw - 80px);
+        }
+
+        .scenario-card:active {
+            transform: scale(0.98);
+        }
+
+        .scenario-media {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(244, 180, 0, 0.2), rgba(46, 232, 194, 0.2));
+            position: relative;
+            overflow: hidden;
+            perspective: 600px;
+        }
+
+        .scenario-media::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(244, 180, 0, 0.3), transparent);
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        .scenario-emoji {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3.5rem;
+            z-index: 2;
+            display: inline-block;
+            animation: spinY 3s linear infinite;
+            transform-style: preserve-3d;
+            backface-visibility: visible;
+            -webkit-backface-visibility: visible;
+            transform-origin: center center;
+            will-change: transform;
+        }
+
+        @keyframes spinY {
+            0% { transform: translate(-50%, -50%) rotateY(0deg); }
+            100% { transform: translate(-50%, -50%) rotateY(360deg); }
+        }
+
+        .scenario-content {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .scenario-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .scenario-desc {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* 常见问题 */
+        .faq-section {
+            padding: 50px 0;
+            background: var(--bg-secondary);
+        }
+
+        .faq-intro {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .faq-intro h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+        }
+
+        .faq-intro p {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .faq-list {
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:active {
+            transform: scale(0.98);
+        }
+
+        .faq-question {
+            padding: 18px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            text-align: left;
+        }
+
+        .faq-question span {
+            text-align: left;
+            flex: 1;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--green-bubble);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 15px;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 18px;
+            max-height: 300px;
+        }
+
+        /* 桌面端适配（如果需要） */
+        @media (min-width: 700px) { /* 平板：2列，每列至少320px */
+            .cards-wrapper {
+                grid-template-columns: repeat(2, minmax(320px, 1fr));
+                gap: 18px;
+            }
+        }
+
+        /* 取消4列布局，最大不超过2列，避免超出容器宽度 */
+
+        @media (min-width: 769px) {
+            .guide-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .guide-hero .subtitle {
+                font-size: 1.3rem;
+            }
+
+            .guide-video-container {
+                max-width: 350px;
+            }
+
+            /* 保留上面 600/1024 的规则，不再强制为3列 */
+
+            .scenarios-wrapper { gap: 24px; }
+            .scenario-card { flex: 0 0 360px; min-width: 360px; }
+        }
+
+        /* 文字主题色标记 */
+        .text-orange { color: var(--orange-bubble); }
+        .text-green { color: var(--green-bubble); }
+    </style>
+</head>
+<body>
+    <!-- 第一屏：视频和标题 -->
+    <section class="guide-hero">
+        <div class="map-background"></div>
+        <div class="guide-hero-content">
+            <div class="guide-video-container">
+                <video class="guide-video" autoplay muted loop playsinline>
+                    <source src="images/brand-logo.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放
+                </video>
+            </div>
+            <div class="guide-hero-text">
+                <h1>欢迎来到 Zup!</h1>
+                <p class="subtitle">发现你身边的实时活动<br>大家都有空，立刻就动身! </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 快速入门 -->
+    <section class="quick-start-section">
+        <div class="container">
+            <div class="quick-start-intro">
+                <h2>快速入门</h2>
+                <p>Zup! 的玩法与规则</p>
+            </div>
+            
+            <div class="cards-slider">
+                <div class="cards-wrapper" id="quickCards">
+                    <div class="quick-card scroll-reveal">
+                        <div class="quick-card-icon">
+                            <i class="fas fa-map-marked-alt animated-icon map"></i>
+                        </div>
+                        <h3>打开地图，发现你身边的"NOW"</h3>
+                        <p>地图上的每个气泡都代表一个正在发生的"NOW"
+                        <br>点击展开查看详情，可以线下赴约前先互动一下</p>
+                    </div>
+                    
+                    <div class="quick-card scroll-reveal">
+                        <div class="quick-card-icon">
+                            <i class="fas fa-bullhorn animated-icon bubble"></i>
+                        </div>
+                        <h3>发布自己的"NOW"，邀请身边人</h3>
+                        <p>NOW的类型有“<span class="text-orange">邀约（橙色）</span>”和“<span class="text-green">动态（绿色）</span>”
+                            <br>简单理解橙色是“我邀请”，绿色是“我有空”</p>
+                    </div>
+                    
+                    <div class="quick-card scroll-reveal">
+                        <div class="quick-card-icon">
+                            <i class="fas fa-clock animated-icon join"></i>
+                        </div>
+                        <h3>每天凌晨4点地图清空</h3>
+                        <p>NOW的时效最多只有24小时，地图会在凌晨4点被清空
+                            <br>确保信息时效性，你所看见的都是正在发生的
+                        </p>
+
+                    </div>
+                    <div class="quick-card scroll-reveal">
+                        <div class="quick-card-icon">
+                            <i class="fas fa-user-check animated-icon join"></i>
+                        </div>
+                        <h3>“认证商户”与“认证店员”</h3>
+                        <p>提交认证并通过的商户，详情页里有在这里发布过的所有NOW
+                            <br>经审核认证的店员，发布邀约的活动质量更有保障
+                        </p>
+                    </div>
+
+                </div>
+                <div class="slider-controls" id="quickControls"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 玩法与场景示例 -->
+    <section class="scenarios-section">
+        <div class="container">
+            <div class="quick-start-intro">
+                <h2>玩法与场景</h2>
+                <p>看看大家都在 Zup! 上做什么</p>
+            </div>
+            
+            <div class="scenarios-slider">
+                <div class="scenarios-wrapper" id="scenariosCards">
+                    <div class="scenario-card scroll-reveal">
+                        <div class="scenario-media">
+                            <div class="scenario-emoji">🍻</div>
+                        </div>
+                        <div class="scenario-content">
+                            <h3 class="scenario-title">下班喝一杯</h3>
+                            <p class="scenario-desc">Zup! 入驻了多家优质酒馆，每天都有不同主题活动。<br>线上实时感受现场氛围，线下体验再也不用赌运气。</p>
+                        </div>
+                    </div>
+
+                    <div class="scenario-card scroll-reveal">
+                        <div class="scenario-media">
+                            <div class="scenario-emoji">⚽️</div>
+                        </div>
+                        <div class="scenario-content">
+                            <h3 class="scenario-title">打球摇人</h3>
+                            <p class="scenario-desc">在软件园上班，下班想踢球却“8缺2”？<br>发一个邀约，附近同园区的小伙伴下班来凑个场。</p>
+                        </div>
+                    </div>
+
+                    <div class="scenario-card scroll-reveal">
+                        <div class="scenario-media">
+                            <div class="scenario-emoji">🚴‍♀️</div>
+                        </div>
+                        <div class="scenario-content">
+                            <h3 class="scenario-title">夜跑夜骑</h3>
+                            <p class="scenario-desc">城市夜色正好，夜骑探寻大街小巷。<br>发个邀约，线上讨论路线和集合点，说走就走。</p>
+                        </div>
+                    </div>
+
+                    <div class="scenario-card scroll-reveal">
+                        <div class="scenario-media">
+                            <div class="scenario-emoji">💬</div>
+                        </div>
+                        <div class="scenario-content">
+                            <h3 class="scenario-title">无聊找人玩</h3>
+                            <p class="scenario-desc">打开 Zup! 看看周围的人此刻都在做什么。<br>或者发布一个动态NOW，告诉周围人们你刚好有空。</p>
+                        </div>
+                    </div>
+
+                    <div class="scenario-card scroll-reveal">
+                        <div class="scenario-media">
+                            <div class="scenario-emoji">☕️</div>
+                        </div>
+                        <div class="scenario-content">
+                            <h3 class="scenario-title">解决我烦恼</h3>
+                            <p class="scenario-desc">工作压力、生活困扰，想找人聊聊？<br>发个邀约请对方喝杯咖啡，也许刚好有人能给你建议。</p>
+                        </div>
+                    </div>
+
+                    <div class="scenario-card scroll-reveal">
+                        <div class="scenario-media">
+                            <div class="scenario-emoji">🏪</div>
+                        </div>
+                        <div class="scenario-content">
+                            <h3 class="scenario-title">商户活动运营工具</h3>
+                            <p class="scenario-desc">餐饮、娱乐等商户可发起限时优惠、即时活动与现场实况，<br>结合店内人流与货品情况，实时施展运营策略。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-controls" id="scenariosControls"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="faq-intro">
+                <h2>常见问题</h2>
+                <p>遇到问题？看看这里有没有答案</p>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>地图上没有内容怎么回事？</span>
+                    </div>
+                    <div class="faq-answer">
+                        App商户入驻数量还不够多，目前仅在北京地区拓展商户合作中，请给我们一些时间，我们会尽快合作更多商户与社群入驻。
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>我能在任意地点发布NOW吗？</span>
+                    </div>
+                    <div class="faq-answer">
+                        普通用户仅可以在自己附近200米范围内选择一个地点发布NOW，目的是尽量避免虚假信息，确保发布者是真实在场的。但认证店员可以无视距离，发布NOW在他所属的商户内，方便帮助店内发布“官方”活动。                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>我就是想在目的地发布一个邀约，但我现在还没到那里，该怎么办？
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        严格来讲，这个属于预约活动，并不是“NOW”的即时信息。后续版本Zup! 有计划支持预约信息发布，目前版本可以暂时现在自己附近的位置发一个邀约，然后在NOW的描述里将邀约地点时间说清楚，看有没有希望一同前往的伙伴。
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>商户怎么入驻？</span>
+                    </div>
+                    <div class="faq-answer">
+                        官网有具体的入驻指引，<a href="https://nowmap.cn/merchant.html" style="color:#00D396; text-decoration:none;">点击此处跳转</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+    <script>
+        // 横滑卡片控制逻辑
+        function initSlider(wrapperId, controlsId) {
+            const wrapper = document.getElementById(wrapperId);
+            const controls = document.getElementById(controlsId);
+            if (!wrapper || !controls) return;
+
+            const cards = wrapper.querySelectorAll('.quick-card, .scenario-card');
+            const cardCount = cards.length;
+
+            // 创建控制按钮
+            for (let i = 0; i < cardCount; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'slider-btn';
+                // 场景区使用圆点控制条，不设置文字
+                if (i === 0) btn.classList.add('active');
+                btn.addEventListener('click', () => {
+                    // 手动计算目标滚动距离，避免当最后几张卡片时被滚动上限截断
+                    const targetLeft = cards[i].offsetLeft;
+                    const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
+                    const nextLeft = Math.min(Math.max(targetLeft, 0), Math.max(maxScroll, 0));
+                    wrapper.scrollTo({ left: nextLeft, behavior: 'smooth' });
+                });
+                controls.appendChild(btn);
+            }
+
+            // 监听滚动更新按钮状态（选中最接近当前滚动位置的卡片）
+            let scrollTimeout;
+            wrapper.addEventListener('scroll', () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    const viewportCenter = wrapper.scrollLeft + wrapper.clientWidth / 2;
+                    let activeIndex = 0;
+                    let minDelta = Infinity;
+                    for (let j = 0; j < cards.length; j++) {
+                        const cardCenter = cards[j].offsetLeft + cards[j].offsetWidth / 2;
+                        const delta = Math.abs(cardCenter - viewportCenter);
+                        if (delta < minDelta) { minDelta = delta; activeIndex = j; }
+                    }
+                    controls.querySelectorAll('.slider-btn').forEach((btn, index) => {
+                        btn.classList.toggle('active', index === activeIndex);
+                    });
+                }, 100);
+            });
+        }
+
+        // 常见问题展开/收起
+        document.querySelectorAll('.faq-item').forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // 初始化滑块
+        document.addEventListener('DOMContentLoaded', () => {
+            initSlider('quickCards', 'quickControls');
+            initSlider('scenariosCards', 'scenariosControls');
+        });
+    </script>
+</body>
+</html>
+
