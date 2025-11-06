@@ -46,6 +46,51 @@
         </div>
     </header>
 
+    <!-- App 功能预览 -->
+    <section class="app-preview" id="preview">
+        <div class="container">
+            <h2 class="section-title">Zup! App预览</h2>
+            <p class="preview-intro">集社交、本地生活一体的城市即时体验平台</p>
+            
+            <div class="screenshots-slider">
+                <div class="screenshots-wrapper">
+                    <div class="screenshot-item">
+                        <div class="screenshot-frame">
+                            <img src="images/screenshots/app-home.png" alt="Zup! 首页地图" loading="lazy">
+                        </div>
+                        <h3 class="screenshot-title">首页地图</h3>
+                        <p class="screenshot-desc">实时查看附近的“NOW”</p>
+                    </div>
+                    
+                    <div class="screenshot-item">
+                        <div class="screenshot-frame">
+                            <img src="images/screenshots/app-now-detail.png" alt="NOW详情页" loading="lazy">
+                        </div>
+                        <h3 class="screenshot-title">“NOW”详情</h3>
+                        <p class="screenshot-desc">线上互动，线下赴约</p>
+                    </div>
+                    
+                    <div class="screenshot-item">
+                        <div class="screenshot-frame">
+                            <img src="images/screenshots/app-merchant.png" alt="商户页面" loading="lazy">
+                        </div>
+                        <h3 class="screenshot-title">商户主页</h3>
+                        <p class="screenshot-desc">店铺活动与氛围，一目了然</p>
+                    </div>
+                    
+                    <div class="screenshot-item">
+                        <div class="screenshot-frame">
+                            <img src="images/screenshots/app-profile.png" alt="个人页面" loading="lazy">
+                        </div>
+                        <h3 class="screenshot-title">个人中心</h3>
+                        <p class="screenshot-desc">管理动态、管理商户</p>
+                    </div>
+                </div>
+                <div class="screenshot-controls" id="screenshotControls"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- 用户痛点场景 -->
     <section class="user-scenarios" id="scenarios">
         <div class="container">
@@ -234,5 +279,67 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+        // App截图控制条逻辑（仅移动端）
+        function initScreenshotControls() {
+            const wrapper = document.querySelector('.screenshots-wrapper');
+            const controls = document.getElementById('screenshotControls');
+            const items = document.querySelectorAll('.screenshot-item');
+            
+            if (!wrapper || !controls || !items.length) return;
+            
+            // 仅移动端显示控制条
+            const isMobile = window.innerWidth <= 768;
+            if (!isMobile) return;
+            
+            const itemCount = items.length;
+            
+            // 创建控制按钮
+            for (let i = 0; i < itemCount; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'screenshot-btn';
+                if (i === 0) btn.classList.add('active');
+                btn.addEventListener('click', () => {
+                    items[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+                });
+                controls.appendChild(btn);
+            }
+            
+            // 监听滚动更新按钮状态
+            let scrollTimeout;
+            wrapper.addEventListener('scroll', () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    const scrollLeft = wrapper.scrollLeft;
+                    let activeIndex = 0;
+                    let minDelta = Infinity;
+                    
+                    for (let j = 0; j < items.length; j++) {
+                        const itemCenter = items[j].offsetLeft + items[j].offsetWidth / 2;
+                        const viewportCenter = scrollLeft + wrapper.clientWidth / 2;
+                        const delta = Math.abs(itemCenter - viewportCenter);
+                        if (delta < minDelta) {
+                            minDelta = delta;
+                            activeIndex = j;
+                        }
+                    }
+                    
+                    controls.querySelectorAll('.screenshot-btn').forEach((btn, index) => {
+                        btn.classList.toggle('active', index === activeIndex);
+                    });
+                }, 100);
+            });
+        }
+        
+        // 页面加载和窗口调整时初始化
+        document.addEventListener('DOMContentLoaded', initScreenshotControls);
+        window.addEventListener('resize', () => {
+            const controls = document.getElementById('screenshotControls');
+            if (controls) {
+                controls.innerHTML = '';
+                initScreenshotControls();
+            }
+        });
+    </script>
 </body>
 </html> 

@@ -12,11 +12,11 @@
     <style>
         /* 用户手册页面专用样式 - 移动端优先 */
         .guide-hero {
-            min-height: 100vh;
+            min-height: 85vh;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
-            padding: 60px 20px 40px;
+            padding: 30px 20px 60px;
             position: relative;
             overflow: hidden;
         }
@@ -29,6 +29,7 @@
             align-items: center;
             text-align: center;
             gap: 30px;
+            margin-top: 20px;
         }
 
         .guide-hero-text {
@@ -76,6 +77,50 @@
             object-fit: cover;
         }
 
+        /* 向下滚动指示动画 */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            animation: bounceDown 2s ease-in-out infinite;
+        }
+
+        .scroll-indicator span {
+            color: var(--text-color);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .scroll-indicator i {
+            font-size: 1.5rem;
+            color: var(--orange-bubble);
+            animation: arrowBounce 1.5s ease-in-out infinite;
+        }
+
+        @keyframes bounceDown {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+
+        @keyframes arrowBounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(5px);
+            }
+        }
+
         /* 快速入门 - 横滑卡片 */
         .quick-start-section {
             padding: 50px 0;
@@ -85,7 +130,7 @@
         .quick-start-intro {
             text-align: center;
             margin-bottom: 40px;
-            padding: 0 20px;
+            padding: 0 10px;
         }
 
         .quick-start-intro h2 {
@@ -103,7 +148,7 @@
             position: relative;
             width: 100%;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 10px;
         }
 
         .cards-wrapper {
@@ -225,7 +270,7 @@
         .scenarios-intro {
             text-align: center;
             margin-bottom: 40px;
-            padding: 0 20px;
+            padding: 0 10px;
         }
 
         .scenarios-intro h2 {
@@ -244,7 +289,7 @@
             position: relative;
             width: 100%;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 10px;
         }
 
         .scenarios-wrapper {
@@ -253,7 +298,7 @@
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
-            padding: 10px 0 20px;
+            padding: 10px 10px 20px;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
         }
@@ -268,8 +313,8 @@
             transition: all 0.3s ease;
             position: relative;
             scroll-snap-align: start;
-            flex: 0 0 calc(100% - 80px);
-            min-width: calc(100vw - 80px);
+            flex: 0 0 calc(100% - 40px);
+            min-width: calc(100% - 40px);
         }
 
         .scenario-card:active {
@@ -327,7 +372,7 @@
         }
 
         .scenario-content {
-            padding: 25px;
+            padding: 20px 0px;
             text-align: center;
         }
 
@@ -353,7 +398,7 @@
         .faq-intro {
             text-align: center;
             margin-bottom: 40px;
-            padding: 0 20px;
+            padding: 0 10px;
         }
 
         .faq-intro h2 {
@@ -370,7 +415,7 @@
         .faq-list {
             width: 100%;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 10px;
         }
 
         .faq-item {
@@ -429,6 +474,16 @@
             text-align: left;
         }
 
+        .faq-answer a {
+            color: var(--green-bubble);
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .faq-answer a:hover {
+            color: var(--orange-bubble);
+        }
+
         .faq-item.active .faq-answer {
             padding: 0 20px 18px;
             max-height: 300px;
@@ -483,6 +538,10 @@
                 <h1>欢迎来到 Zup!</h1>
                 <p class="subtitle">发现你身边的实时活动<br>大家都有空，立刻就动身! </p>
             </div>
+            <div class="scroll-indicator">
+                <span>向下滚动</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
         </div>
     </section>
 
@@ -501,8 +560,8 @@
                             <i class="fas fa-map-marked-alt animated-icon map"></i>
                         </div>
                         <h3>打开地图，发现你身边的"NOW"</h3>
-                        <p>地图上的每个气泡都代表一个正在发生的"NOW"
-                        <br>点击展开查看详情，可以线下赴约前先互动一下</p>
+                        <p>地图上每个气泡都是正在发生的"NOW"
+                        <br>点击进入，可以线下赴约前先互动一下</p>
                     </div>
                     
                     <div class="quick-card scroll-reveal">
@@ -510,8 +569,8 @@
                             <i class="fas fa-bullhorn animated-icon bubble"></i>
                         </div>
                         <h3>发布自己的"NOW"，邀请身边人</h3>
-                        <p>NOW的类型有“<span class="text-orange">邀约（橙色）</span>”和“<span class="text-green">动态（绿色）</span>”
-                            <br>简单理解橙色是“我邀请”，绿色是“我有空”</p>
+                        <p>NOW的类型有“<span class="text-orange">邀约</span>”和“<span class="text-green">动态</span>”
+                            <br>橙色是“我邀请”，绿色是“我有空”</p>
                     </div>
                     
                     <div class="quick-card scroll-reveal">
@@ -519,8 +578,9 @@
                             <i class="fas fa-clock animated-icon join"></i>
                         </div>
                         <h3>每天凌晨4点地图清空</h3>
-                        <p>NOW的时效最多只有24小时，地图会在凌晨4点被清空
-                            <br>确保信息时效性，你所看见的都是正在发生的
+                        <p>NOW的时效最多只有24小时
+                            <br>为确保时效性，地图会在凌晨4点被清空
+                            <br>你所看见的都是正在发生的
                         </p>
 
                     </div>
@@ -529,8 +589,9 @@
                             <i class="fas fa-user-check animated-icon join"></i>
                         </div>
                         <h3>“认证商户”与“认证店员”</h3>
-                        <p>提交认证并通过的商户，详情页里有在这里发布过的所有NOW
-                            <br>经审核认证的店员，发布邀约的活动质量更有保障
+                        <p>提交商户认证并通过后，可添加认证店员
+                            <br>商户页可查看这里发布过的所有NOW
+                            <br>认证店员发布的邀约质量更有保障
                         </p>
                     </div>
 
@@ -566,7 +627,7 @@
                         </div>
                         <div class="scenario-content">
                             <h3 class="scenario-title">打球摇人</h3>
-                            <p class="scenario-desc">在软件园上班，下班想踢球却“8缺2”？<br>发一个邀约，附近同园区的小伙伴下班来凑个场。</p>
+                            <p class="scenario-desc">在软件园上班，想下班后组织球赛却人手不足？<br>发一个邀约，附近同园区的小伙伴下班来凑个场。</p>
                         </div>
                     </div>
 
@@ -576,7 +637,7 @@
                         </div>
                         <div class="scenario-content">
                             <h3 class="scenario-title">夜跑夜骑</h3>
-                            <p class="scenario-desc">城市夜色正好，夜骑探寻大街小巷。<br>发个邀约，线上讨论路线和集合点，说走就走。</p>
+                            <p class="scenario-desc">城市夜色微风正好，适合夜骑探寻大街小巷。<br>发个邀约，线上讨论路线，线下集合说走就走。</p>
                         </div>
                     </div>
 
@@ -596,7 +657,7 @@
                         </div>
                         <div class="scenario-content">
                             <h3 class="scenario-title">解决我烦恼</h3>
-                            <p class="scenario-desc">工作压力、生活困扰，想找人聊聊？<br>发个邀约请对方喝杯咖啡，也许刚好有人能给你建议。</p>
+                            <p class="scenario-desc">工作的压力、生活的困扰，想找人聊聊？<br>发个邀约请对方喝杯咖啡，也许刚好有人能给你建议。</p>
                         </div>
                     </div>
 
@@ -606,7 +667,7 @@
                         </div>
                         <div class="scenario-content">
                             <h3 class="scenario-title">商户活动运营工具</h3>
-                            <p class="scenario-desc">餐饮、娱乐等商户可发起限时优惠、即时活动与现场实况，<br>结合店内人流与货品情况，实时施展运营策略。</p>
+                            <p class="scenario-desc">餐饮娱乐商户可发起限时优惠、即时活动与现场实况，<br>结合店内人流与货品情况，实时施展运营策略。</p>
                         </div>
                     </div>
                 </div>

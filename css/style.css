@@ -1078,4 +1078,144 @@ section {
     scroll-margin-top: 80px;
 }
 
+/* App 功能预览区块 */
+.app-preview {
+    padding: var(--section-spacing) 0;
+    background: var(--background-color);
+    position: relative;
+}
+
+.preview-intro {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 60px;
+    font-style: italic;
+}
+
+.screenshots-slider {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.screenshots-wrapper {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 20px 10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.screenshots-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.screenshot-item {
+    flex: 0 0 calc(65vw);
+    min-width: calc(65vw);
+    text-align: center;
+    scroll-snap-align: start;
+}
+
+.screenshot-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.screenshot-btn {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border-color);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.2s ease;
+}
+
+.screenshot-btn.active {
+    background: var(--orange-bubble);
+    width: 28px;
+    height: 10px;
+    border-radius: 6px;
+}
+
+.screenshot-frame {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.screenshot-frame:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(244, 180, 0, 0.2);
+    border-color: var(--orange-bubble);
+}
+
+.screenshot-frame img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+}
+
+.screenshot-title {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.screenshot-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+@media (min-width: 769px) {
+    .screenshots-wrapper {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        padding: 20px 0;
+        overflow-x: visible;
+        scroll-snap-type: none;
+    }
+    
+    .screenshot-item {
+        flex: none;
+        min-width: auto;
+    }
+    
+    .screenshot-controls {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .app-preview {
+        padding: 60px 0;
+    }
+    
+    .preview-intro {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+    
+    .screenshots-slider {
+        padding: 0 10px;
+    }
+}
+
 /* 移除原有的 features 和 testimonials 相关样式，因为已经不需要了 */ 
