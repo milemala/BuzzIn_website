@@ -39,13 +39,13 @@
 
         h1 {
             font-size: clamp(2rem, 4vw, 2.4rem);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .subtitle {
             color: rgba(240, 246, 252, 0.75);
-            line-height: 1.7;
-            margin-bottom: 32px;
+            line-height: 1.6;
+            margin-bottom: 24px;
         }
 
         .steps {
@@ -58,13 +58,14 @@
         .steps li {
             display: flex;
             gap: 16px;
-            padding: 18px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            align-items: flex-start;
         }
 
         .steps-number {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             background: rgba(244, 180, 0, 0.18);
             color: #F4B400;
@@ -77,12 +78,12 @@
 
         .steps-content h3 {
             font-size: 1.05rem;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .steps-content p {
             color: rgba(240, 246, 252, 0.75);
-            line-height: 1.6;
+            line-height: 1.4;
             font-size: 0.95rem;
         }
 
@@ -99,11 +100,16 @@
             font-size: 1.05rem;
             margin-top: 12px;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
+            display: none;
         }
 
         .download-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 15px 40px rgba(34, 216, 178, 0.25);
+        }
+
+        .download-btn.visible {
+            display: inline-flex;
         }
 
         .tip {
@@ -124,50 +130,56 @@
             }
 
             .steps li {
-                flex-direction: column;
-            }
-
-            .steps-number {
-                width: 36px;
-                height: 36px;
-                font-size: 0.95rem;
+                flex-direction: row;
+                align-items: center;
             }
         }
     </style>
 </head>
 <body>
     <main class="guide-card">
-        <h1>Android 安装指引</h1>
-        <p class="subtitle">你当前正在微信内打开此页面。为保证安装顺利，请按以下步骤在系统浏览器中完成下载。</p>
+        <h1>安卓下载提示</h1>
+        <p class="subtitle">微信内无法直接下载，请切换到其他浏览器</p>
 
         <ol class="steps">
             <li>
                 <div class="steps-number">1</div>
                 <div class="steps-content">
-                    <h3>点击右上角 “⋯⋯” 按钮</h3>
-                    <p>位于微信右上角的菜单按钮。点击后会展开一个功能列表。</p>
+                    <h3>点击右上角“⋯”</h3>
+                    <p>先打开微信右上角的更多菜单。</p>
                 </div>
             </li>
             <li>
                 <div class="steps-number">2</div>
                 <div class="steps-content">
-                    <h3>选择 “在浏览器中打开”</h3>
-                    <p>在弹出的菜单中找到“在浏览器中打开”或“使用 Safari/Chrome 打开”，系统会切换到默认浏览器。</p>
+                    <h3>选择“在浏览器中打开”</h3>
+                    <p>系统会自动跳到默认浏览器。</p>
                 </div>
             </li>
             <li>
                 <div class="steps-number">3</div>
                 <div class="steps-content">
-                    <h3>返回此页面并开始下载</h3>
-                    <p>当页面在浏览器中重新加载后，点击下方按钮即可直接下载 APK 安装包。</p>
+                    <h3>点击下载按钮</h3>
+                    <p>此时下方按钮会出现，直接下载APP。</p>
                 </div>
             </li>
         </ol>
 
-        <a href="小红书.apk" class="download-btn">下载 Zup! APK</a>
+        <a href="小红书.apk" class="download-btn" id="androidDownloadBtn" aria-hidden="true">下载 Zup!</a>
 
         <p class="tip">如仍无法下载，可复制链接在其他浏览器中打开，或联系 service@nowmap.cn 获取协助。</p>
     </main>
+    <script>
+        (function() {
+            const downloadBtn = document.getElementById('androidDownloadBtn');
+            if (!downloadBtn) return;
+            const isWeChat = /MicroMessenger/i.test(navigator.userAgent || '');
+            if (!isWeChat) {
+                downloadBtn.classList.add('visible');
+                downloadBtn.removeAttribute('aria-hidden');
+            }
+        })();
+    </script>
 </body>
 </html>
 
