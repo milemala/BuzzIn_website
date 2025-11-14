@@ -517,11 +517,9 @@ body {
 }
 
 .scenarios-intro {
-    text-align: center;
-    font-size: 1.2rem;
-    color: var(--text-muted);
-    margin-bottom: 60px;
-    font-style: italic;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .scenarios-timeline {
@@ -726,10 +724,6 @@ body {
 }
 
 .merchant-intro {
-    text-align: center;
-    font-size: 1.2rem;
-    color: var(--text-muted);
-    margin-bottom: 60px;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -875,6 +869,14 @@ footer {
         --section-spacing: 60px;
     }
     
+    .section-intro,
+    .preview-intro,
+    .scenarios-intro,
+    .merchant-intro {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+    
     .hero {
         text-align: center;
     }
@@ -895,6 +897,19 @@ footer {
     margin-bottom: 60px;
     color: var(--primary-color);
     font-weight: 700;
+}
+
+.section-intro,
+.preview-intro,
+.scenarios-intro,
+.merchant-intro {
+    text-align: center;
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin: 0 auto 50px;
+    font-weight: 500;
+    font-style: normal;
 }
 
 .menu-toggle {
@@ -1074,11 +1089,9 @@ section {
 }
 
 .preview-intro {
-    text-align: center;
-    font-size: 1.2rem;
-    color: var(--text-muted);
-    margin-bottom: 60px;
-    font-style: italic;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .screenshots-slider {
@@ -1194,11 +1207,6 @@ section {
 @media (max-width: 768px) {
     .app-preview {
         padding: 60px 0;
-    }
-    
-    .preview-intro {
-        font-size: 1rem;
-        margin-bottom: 30px;
     }
     
     .screenshots-slider {
