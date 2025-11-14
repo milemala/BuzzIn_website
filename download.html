@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zup! 官方下载与体验入口</title>
-    <meta name="description" content="根据你的设备选择最合适的方式体验 Zup! —— App Store、微信小程序或 Android 安装包。">
+    <title>Zup! 客户端下载入口</title>
+    <meta name="description" content="根据您的设备获取 Zup! iOS 或 Android 客户端。">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
@@ -97,6 +97,11 @@
             box-shadow: 0 15px 30px rgba(244, 180, 0, 0.15);
         }
 
+        .action-button,
+        .action-button:visited {
+            text-decoration: none;
+        }
+
         .action-button.primary {
             background: linear-gradient(90deg, #F4B400, #f7c546);
             color: #1b1400;
@@ -125,45 +130,12 @@
             font-size: 1.5rem;
         }
 
-        .wechat-option .qr-popover {
-            position: absolute;
-            left: 50%;
-            top: calc(100% + 16px);
-            transform: translate(-50%, 10px);
-            width: 240px;
-            padding: 16px;
-            background: rgba(21, 26, 43, 0.95);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 18px;
-            text-align: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.25s ease, transform 0.25s ease;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+        .android-action {
+            color: #ffffff;
         }
 
-        .wechat-option .qr-popover img {
-            width: 180px;
-            height: 180px;
-            display: block;
-            margin: 0 auto 12px;
-            border-radius: 12px;
-            background: white;
-            padding: 12px;
-        }
-
-        .wechat-option .qr-popover p {
-            font-size: 0.9rem;
-            color: var(--muted);
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            .wechat-option:hover .qr-popover,
-            .wechat-option:focus-within .qr-popover {
-                opacity: 1;
-                transform: translate(-50%, 0);
-                pointer-events: auto;
-            }
+        .android-action i {
+            color: #ffffff;
         }
 
         .helper-text {
@@ -258,102 +230,94 @@
             <p class="lead">选择适合你设备的方式，随时加入身边正在发生的 NOW。</p>
         </div>
 
-        <div class="download-actions">
-            <a href="https://apps.apple.com/cn/app/id741292507" target="_blank" rel="noopener noreferrer" class="action-button primary" id="appStoreBtn">
+        <div class="download-actions" id="downloadActions">
+            <a href="https://apps.apple.com/cn/app/id741292507" class="action-button primary device-btn" data-device="ios" id="iosBtn">
                 <span class="action-content">
                     <i class="fab fa-apple"></i>
-                    <span>App Store 下载</span>
+                    <span>iOS 版本（App Store）</span>
                 </span>
             </a>
 
-            <div class="action-button wechat-option" id="wechatOption">
-                <button type="button" class="action-content" id="wechatBtn">
-                    <i class="fab fa-weixin"></i>
-                    <span>微信小程序</span>
-                </button>
-                <div class="qr-popover" aria-hidden="true">
-                    <img src="images/wechat-miniprogram-qr.jpg?v=20251114" alt="Zup! 微信小程序二维码">
-                    <p>微信扫码或搜索“Zup即刻欢聚”</p>
-                </div>
-            </div>
-
-            <button type="button" class="action-button secondary" id="androidBtn">
-                <span class="action-content">
+            <button type="button" class="action-button secondary device-btn" data-device="android" id="androidBtn">
+                <span class="action-content android-action">
                     <i class="fab fa-android"></i>
-                    <span>Android 安装包</span>
+                    <span>Android 版本（APK）</span>
                 </span>
             </button>
         </div>
 
-        <div class="helper-text">
-            <p>小提示：在微信中遇到限制，可先保存此页面链接，再使用系统浏览器打开完成下载。</p>
-        </div>
-    </div>
-
-    <div class="modal" id="wechatModal" aria-hidden="true">
-        <div class="modal-content">
-            <button class="modal-close" id="wechatModalClose" aria-label="关闭二维码弹窗">&times;</button>
-            <img src="images/wechat-miniprogram-qr.jpg?v=20251114" alt="Zup! 微信小程序二维码">
-            <h3>微信内长按识别</h3>
-            <p>请使用微信浏览器打开此页面后，长按上方二维码识别跳转，或搜索“Zup即刻欢聚”进入小程序。</p>
+        <div class="helper-text" id="helperText" style="display: none;">
+            <p id="helperParagraph">提示：如在微信内打开，请先使用右上角“⋯”选择 “在浏览器中打开” 再完成下载。</p>
         </div>
     </div>
 
     <script>
-        const wechatBtn = document.getElementById('wechatBtn');
-        const wechatModal = document.getElementById('wechatModal');
-        const wechatModalClose = document.getElementById('wechatModalClose');
+        const downloadActions = document.getElementById('downloadActions');
+        const iosBtn = document.getElementById('iosBtn');
         const androidBtn = document.getElementById('androidBtn');
+        const helperText = document.getElementById('helperText');
+        const helperParagraph = document.getElementById('helperParagraph');
 
         const APK_URL = '小红书.apk';
         const ANDROID_GUIDE_URL = 'android-guide.html';
-
-        const supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)');
-        const mobileQuery = window.matchMedia('(max-width: 768px)');
-
-        function openWechatModal() {
-            wechatModal.classList.add('visible');
-            document.body.classList.add('modal-open');
-            wechatModal.setAttribute('aria-hidden', 'false');
-        }
-
-        function closeWechatModal() {
-            wechatModal.classList.remove('visible');
-            document.body.classList.remove('modal-open');
-            wechatModal.setAttribute('aria-hidden', 'true');
-        }
-
-        if (wechatBtn) {
-            wechatBtn.addEventListener('click', (event) => {
-                const hasHover = supportsHover.matches && !mobileQuery.matches;
-                if (hasHover) {
-                    return; // 桌面端交互依赖悬停展示二维码
-                }
-                event.preventDefault();
-                openWechatModal();
-            });
-        }
-
-        if (wechatModalClose) {
-            wechatModalClose.addEventListener('click', closeWechatModal);
-        }
-
-        if (wechatModal) {
-            wechatModal.addEventListener('click', (event) => {
-                if (event.target === wechatModal) {
-                    closeWechatModal();
-                }
-            });
-        }
-
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && wechatModal.classList.contains('visible')) {
-                closeWechatModal();
-            }
-        });
+        const APP_STORE_URL = 'https://apps.apple.com/cn/app/id741292507';
+        const IOS_GUIDE_URL = 'ios-appstore-guide.html';
 
         function isWeChatBrowser() {
             return /MicroMessenger/i.test(navigator.userAgent);
+        }
+
+        function detectDevice() {
+            const ua = navigator.userAgent || navigator.vendor || window.opera;
+            if (/android/i.test(ua)) return 'android';
+            if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) return 'ios';
+            return 'desktop';
+        }
+
+        function setButtonVisibility(device) {
+            if (device === 'ios') {
+                iosBtn.style.display = 'block';
+                androidBtn.style.display = 'none';
+                helperParagraph.textContent = '正在跳转至 App Store，如在微信内会先打开指引页面。';
+            } else if (device === 'android') {
+                iosBtn.style.display = 'none';
+                androidBtn.style.display = 'block';
+                helperParagraph.textContent = 'Android 用户可直接下载 APK，如在微信内请先在浏览器中打开。';
+            } else {
+                iosBtn.style.display = 'block';
+                androidBtn.style.display = 'block';
+                helperParagraph.textContent = '请根据设备选择下载方式，并在系统浏览器中完成安装。';
+            }
+        }
+
+        function autoRedirectIfNeeded(device) {
+            if (device !== 'ios') return;
+            setTimeout(() => {
+                if (isWeChatBrowser()) {
+                    window.location.href = IOS_GUIDE_URL;
+                } else {
+                    window.location.href = APP_STORE_URL;
+                }
+            }, 600);
+        }
+
+        function initPage() {
+            const device = detectDevice();
+            setButtonVisibility(device);
+            helperText.style.display = 'block';
+            downloadActions.style.display = 'flex';
+            autoRedirectIfNeeded(device);
+        }
+
+        if (iosBtn) {
+            iosBtn.addEventListener('click', (event) => {
+                event.preventDefault();
+                if (isWeChatBrowser()) {
+                    window.location.href = IOS_GUIDE_URL;
+                } else {
+                    window.location.href = APP_STORE_URL;
+                }
+            });
         }
 
         if (androidBtn) {
@@ -365,6 +329,8 @@
                 }
             });
         }
+
+        document.addEventListener('DOMContentLoaded', initPage);
     </script>
 </body>
 </html>

@@ -147,16 +147,16 @@
             <li>
                 <div class="steps-number">3</div>
                 <div class="steps-content">
-                    <h3>系统会直接跳转至 App Store</h3>
+                    <h3>点击按钮安装IOS版Zup!</h3>
                 </div>
             </li>
         </ol>
 
         <a href="https://apps.apple.com/cn/app/id741292507" class="copy-link" id="openAppStoreBtn">
-            直接打开 App Store
+            安装IOS版Zup!
         </a>
 
-        <p class="tip">若自动跳转仍无反应，可复制上方链接并在 Safari 中粘贴访问。</p>
+        <p class="tip">若自动跳转仍无反应，可复制上方链接并在其他浏览器中粘贴访问。</p>
     </main>
     <script>
         (function() {
@@ -165,7 +165,7 @@
             btn.addEventListener('click', (event) => {
                 if (/MicroMessenger/i.test(navigator.userAgent || '')) {
                     event.preventDefault();
-                    alert('请先点击右上角“⋯”并选择“在 Safari 中打开”，再点击按钮跳转 App Store。');
+                    alert('请先点击右上角“⋯”并选择“在默认浏览器中打开”，再点击按钮跳转 App Store。');
                 }
             });
         })();
