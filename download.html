@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下载 Zup! - 正在跳转...</title>
+    <meta name="description" content="Zup! App 下载页面，自动识别设备类型并跳转到对应下载方式。">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #0D1117 0%, #1a1f2e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #F0F6FC;
+        }
+
+        .loading-container {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(244, 180, 0, 0.2);
+            border-top-color: #F4B400;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 30px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            color: #F0F6FC;
+            margin-bottom: 20px;
+        }
+
+        .manual-download {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .manual-download h3 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #F0F6FC;
+        }
+
+        .download-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .download-link {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #F4B400;
+            color: #1a1a1a;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .download-link:hover {
+            background: #d4a000;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-container">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">正在检测设备类型...</p>
+        <div class="manual-download" id="manualDownload" style="display: none;">
+            <h3>自动跳转失败？请手动选择：</h3>
+            <div class="download-links">
+                <a href="https://apps.apple.com/cn/app/id741292507" class="download-link" id="iosLink">iOS 版本（App Store）</a>
+                <a href="小红书.apk" class="download-link" id="androidLink" download>Android 版本（APK）</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 设备检测函数
+        function detectDevice() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            
+            // 检测 iOS
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                return 'ios';
+            }
+            
+            // 检测 Android
+            if (/android/i.test(userAgent)) {
+                return 'android';
+            }
+            
+            // 默认返回未知
+            return 'unknown';
+        }
+
+        // 执行跳转
+        function redirectToDownload() {
+            const device = detectDevice();
+            
+            if (device === 'ios') {
+                // iOS 跳转到 App Store 的小红书下载页
+                window.location.href = 'https://apps.apple.com/cn/app/id741292507';
+            } else if (device === 'android') {
+                // Android 直接下载 APK
+                window.location.href = '小红书.apk';
+            } else {
+                // 未知设备，显示手动下载选项
+                document.getElementById('manualDownload').style.display = 'block';
+                document.querySelector('.loading-text').textContent = '无法自动识别设备类型';
+            }
+        }
+
+        // 页面加载后立即执行
+        window.addEventListener('DOMContentLoaded', function() {
+            // 延迟一下显示加载效果
+            setTimeout(redirectToDownload, 500);
+        });
+    </script>
+</body>
+</html>
+

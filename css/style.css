@@ -1218,4 +1218,72 @@ section {
     }
 }
 
+/* 右下角下载二维码 */
+.download-qr-fixed {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+}
+
+.qr-tooltip {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.qr-tooltip:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(244, 180, 0, 0.2);
+    border-color: var(--orange-bubble);
+}
+
+.qr-tooltip p {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.qr-code-box {
+    width: 120px;
+    height: 120px;
+    background: white;
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-code-box img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .download-qr-fixed {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .qr-tooltip {
+        padding: 12px;
+    }
+
+    .qr-code-box {
+        width: 100px;
+        height: 100px;
+    }
+
+    .qr-tooltip p {
+        font-size: 0.85rem;
+    }
+}
+
 /* 移除原有的 features 和 testimonials 相关样式，因为已经不需要了 */ 
