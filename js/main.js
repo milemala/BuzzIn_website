@@ -1,8 +1,9 @@
 // 导航栏滚动效果
+const ASSET_VERSION = '20251114';
 const APP_STORE_URL = 'https://apps.apple.com/cn/app/id741292507';
 const APK_DOWNLOAD_URL = '小红书.apk';
 const ANDROID_GUIDE_URL = 'android-guide.html';
-const WECHAT_QR_IMAGE = 'images/wechat-miniprogram-qr.jpg';
+const WECHAT_QR_IMAGE = `images/wechat-miniprogram-qr.jpg?v=${ASSET_VERSION}`;
 const hoverMediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
 const mobileMediaQuery = window.matchMedia('(max-width: 768px)');
 

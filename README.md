@@ -87,4 +87,5 @@ BuzzInMap_website/
   - Android 按钮根据是否在微信内打开分别跳转 `android-guide.html` 或直接下载 `小红书.apk`。
   - 小程序按钮在桌面端悬停展示二维码、移动端点击弹出指引。
   - 全新 `download.html` 提供多入口说明，同时新增 `android-guide.html` 指导微信环境的安卓下载。
-- **文件修改**: `index.html`, `merchant.html`, `download.html`, `android-guide.html`, `css/style.css`, `js/main.js`, `images/wechat-miniprogram-qr.jpg`
+  - 针对微信浏览器缓存，所有页面新增 no-cache 元标签，并为 CSS/JS/二维码资源追加版本号 `?v=20251114`（`js/main.js` 内以 `ASSET_VERSION` 常量统一管理）。
+- **文件修改**: `index.html`, `merchant.html`, `guide.html`, `download.html`, `android-guide.html`, `css/style.css`, `js/main.js`, `images/wechat-miniprogram-qr.jpg`
