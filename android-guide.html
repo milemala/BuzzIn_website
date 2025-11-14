@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android 安装指引 - Zup!</title>
+    <meta name="description" content="帮助微信内打开的 Android 用户完成 Zup! APK 下载。">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #0D1117 0%, #141a2c 100%);
+            color: #F0F6FC;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .guide-card {
+            width: min(720px, 100%);
+            background: rgba(18, 24, 40, 0.92);
+            border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 48px 40px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 4vw, 2.4rem);
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            color: rgba(240, 246, 252, 0.75);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .steps {
+            text-align: left;
+            margin: 0 auto 32px;
+            max-width: 520px;
+            list-style: none;
+        }
+
+        .steps li {
+            display: flex;
+            gap: 16px;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .steps-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(244, 180, 0, 0.18);
+            color: #F4B400;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .steps-content h3 {
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+        }
+
+        .steps-content p {
+            color: rgba(240, 246, 252, 0.75);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #2EE8C2, #19c7a4);
+            color: #052222;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.05rem;
+            margin-top: 12px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(34, 216, 178, 0.25);
+        }
+
+        .tip {
+            margin-top: 24px;
+            font-size: 0.95rem;
+            color: rgba(240, 246, 252, 0.7);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px;
+            }
+
+            .guide-card {
+                padding: 32px 20px;
+                border-radius: 24px;
+            }
+
+            .steps li {
+                flex-direction: column;
+            }
+
+            .steps-number {
+                width: 36px;
+                height: 36px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="guide-card">
+        <h1>Android 安装指引</h1>
+        <p class="subtitle">你当前正在微信内打开此页面。为保证安装顺利，请按以下步骤在系统浏览器中完成下载。</p>
+
+        <ol class="steps">
+            <li>
+                <div class="steps-number">1</div>
+                <div class="steps-content">
+                    <h3>点击右上角 “⋯⋯” 按钮</h3>
+                    <p>位于微信右上角的菜单按钮。点击后会展开一个功能列表。</p>
+                </div>
+            </li>
+            <li>
+                <div class="steps-number">2</div>
+                <div class="steps-content">
+                    <h3>选择 “在浏览器中打开”</h3>
+                    <p>在弹出的菜单中找到“在浏览器中打开”或“使用 Safari/Chrome 打开”，系统会切换到默认浏览器。</p>
+                </div>
+            </li>
+            <li>
+                <div class="steps-number">3</div>
+                <div class="steps-content">
+                    <h3>返回此页面并开始下载</h3>
+                    <p>当页面在浏览器中重新加载后，点击下方按钮即可直接下载 APK 安装包。</p>
+                </div>
+            </li>
+        </ol>
+
+        <a href="小红书.apk" class="download-btn">下载 Zup! APK</a>
+
+        <p class="tip">如仍无法下载，可复制链接在其他浏览器中打开，或联系 service@nowmap.cn 获取协助。</p>
+    </main>
+</body>
+</html>
+

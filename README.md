@@ -79,3 +79,12 @@ BuzzInMap_website/
   - 为 `.merchant-benefit` 添加 `justify-content: center;` 实现标签居中
 - **影响范围**: 仅影响移动端显示，桌面端不受影响
 - **文件修改**: `css/style.css` 第1020-1026行
+
+### 2025年11月 - 下载入口与分发逻辑升级
+- **变更**: 
+  - 移除首页右下角浮动二维码入口，下载引导集中到导航按钮与专用页面。
+  - 首页、页脚与商户页的 App Store 按钮直连 `https://apps.apple.com/cn/app/id741292507`。
+  - Android 按钮根据是否在微信内打开分别跳转 `android-guide.html` 或直接下载 `小红书.apk`。
+  - 小程序按钮在桌面端悬停展示二维码、移动端点击弹出指引。
+  - 全新 `download.html` 提供多入口说明，同时新增 `android-guide.html` 指导微信环境的安卓下载。
+- **文件修改**: `index.html`, `merchant.html`, `download.html`, `android-guide.html`, `css/style.css`, `js/main.js`, `images/wechat-miniprogram-qr.jpg`

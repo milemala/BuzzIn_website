@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>下载 Zup! - 正在跳转...</title>
-    <meta name="description" content="Zup! App 下载页面，自动识别设备类型并跳转到对应下载方式。">
+    <title>Zup! 官方下载与体验入口</title>
+    <meta name="description" content="根据你的设备选择最合适的方式体验 Zup! —— App Store、微信小程序或 Android 安装包。">
     <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -13,131 +14,354 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-start: #0D1117;
+            --bg-end: #151a2b;
+            --card-bg: rgba(23, 30, 46, 0.85);
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #F0F6FC;
+            --muted: rgba(240, 246, 252, 0.7);
+            --primary: #F4B400;
+            --secondary: #2EE8C2;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-            background: linear-gradient(135deg, #0D1117 0%, #1a1f2e 100%);
+            background: radial-gradient(circle at top, #1f2740 0%, var(--bg-end) 45%), linear-gradient(135deg, var(--bg-start), var(--bg-end));
+            color: var(--text);
             min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            color: #F0F6FC;
+            justify-content: center;
+            padding: 40px 20px;
         }
 
-        .loading-container {
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        .download-wrapper {
+            width: min(720px, 100%);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 48px 40px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(16px);
+        }
+
+        .download-header {
             text-align: center;
-            padding: 40px;
         }
 
-        .loading-spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid rgba(244, 180, 0, 0.2);
-            border-top-color: #F4B400;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 30px;
+        .download-logo {
+            width: 140px;
+            margin: 0 auto 24px;
+            display: block;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        h1 {
+            font-size: clamp(1.9rem, 3vw, 2.4rem);
+            margin-bottom: 18px;
         }
 
-        .loading-text {
-            font-size: 1.2rem;
-            color: #F0F6FC;
-            margin-bottom: 20px;
+        .lead {
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.7;
         }
 
-        .manual-download {
-            margin-top: 40px;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .manual-download h3 {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            color: #F0F6FC;
-        }
-
-        .download-links {
+        .download-actions {
+            margin-top: 36px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            align-items: center;
+            gap: 18px;
         }
 
-        .download-link {
-            display: inline-block;
-            padding: 12px 30px;
-            background: #F4B400;
-            color: #1a1a1a;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+        .action-button {
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 18px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(6px);
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
         }
 
-        .download-link:hover {
-            background: #d4a000;
+        .action-button:hover {
             transform: translateY(-2px);
+            border-color: rgba(244, 180, 0, 0.5);
+            box-shadow: 0 15px 30px rgba(244, 180, 0, 0.15);
+        }
+
+        .action-button.primary {
+            background: linear-gradient(90deg, #F4B400, #f7c546);
+            color: #1b1400;
+            border: none;
+        }
+
+        .action-button.secondary {
+            background: rgba(46, 232, 194, 0.12);
+            border-color: rgba(46, 232, 194, 0.5);
+        }
+
+        .action-content {
+            width: 100%;
+            padding: 20px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .action-content i {
+            font-size: 1.5rem;
+        }
+
+        .wechat-option .qr-popover {
+            position: absolute;
+            left: 50%;
+            top: calc(100% + 16px);
+            transform: translate(-50%, 10px);
+            width: 240px;
+            padding: 16px;
+            background: rgba(21, 26, 43, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 18px;
+            text-align: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+        }
+
+        .wechat-option .qr-popover img {
+            width: 180px;
+            height: 180px;
+            display: block;
+            margin: 0 auto 12px;
+            border-radius: 12px;
+            background: white;
+            padding: 12px;
+        }
+
+        .wechat-option .qr-popover p {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .wechat-option:hover .qr-popover,
+            .wechat-option:focus-within .qr-popover {
+                opacity: 1;
+                transform: translate(-50%, 0);
+                pointer-events: auto;
+            }
+        }
+
+        .helper-text {
+            margin-top: 32px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .modal.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            width: min(360px, 100%);
+            background: #101426;
+            border-radius: 24px;
+            padding: 32px 24px 28px;
+            text-align: center;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: transparent;
+            border: none;
+            color: var(--text);
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        .modal-content img {
+            width: 220px;
+            height: 220px;
+            display: block;
+            margin: 0 auto 16px;
+            background: white;
+            padding: 12px;
+            border-radius: 16px;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .modal-content p {
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .download-wrapper {
+                padding: 32px 22px;
+                border-radius: 24px;
+            }
+
+            .action-content {
+                flex-direction: column;
+                font-size: 1rem;
+            }
+
+            .wechat-option .qr-popover {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="loading-container">
-        <div class="loading-spinner"></div>
-        <p class="loading-text">正在检测设备类型...</p>
-        <div class="manual-download" id="manualDownload" style="display: none;">
-            <h3>自动跳转失败？请手动选择：</h3>
-            <div class="download-links">
-                <a href="https://apps.apple.com/cn/app/id741292507" class="download-link" id="iosLink">iOS 版本（App Store）</a>
-                <a href="小红书.apk" class="download-link" id="androidLink" download>Android 版本（APK）</a>
+    <div class="download-wrapper">
+        <div class="download-header">
+            <img src="images/hero-logo.png" alt="Zup! Logo" class="download-logo">
+            <h1>下载 / 立即体验 Zup!</h1>
+            <p class="lead">选择适合你设备的方式，随时加入身边正在发生的 NOW。</p>
+        </div>
+
+        <div class="download-actions">
+            <a href="https://apps.apple.com/cn/app/id741292507" target="_blank" rel="noopener noreferrer" class="action-button primary" id="appStoreBtn">
+                <span class="action-content">
+                    <i class="fab fa-apple"></i>
+                    <span>App Store 下载</span>
+                </span>
+            </a>
+
+            <div class="action-button wechat-option" id="wechatOption">
+                <button type="button" class="action-content" id="wechatBtn">
+                    <i class="fab fa-weixin"></i>
+                    <span>微信小程序</span>
+                </button>
+                <div class="qr-popover" aria-hidden="true">
+                    <img src="images/wechat-miniprogram-qr.jpg" alt="Zup! 微信小程序二维码">
+                    <p>微信扫码或搜索“Zup即刻欢聚”</p>
+                </div>
             </div>
+
+            <button type="button" class="action-button secondary" id="androidBtn">
+                <span class="action-content">
+                    <i class="fab fa-android"></i>
+                    <span>Android 安装包</span>
+                </span>
+            </button>
+        </div>
+
+        <div class="helper-text">
+            <p>小提示：在微信中遇到限制，可先保存此页面链接，再使用系统浏览器打开完成下载。</p>
+        </div>
+    </div>
+
+    <div class="modal" id="wechatModal" aria-hidden="true">
+        <div class="modal-content">
+            <button class="modal-close" id="wechatModalClose" aria-label="关闭二维码弹窗">&times;</button>
+            <img src="images/wechat-miniprogram-qr.jpg" alt="Zup! 微信小程序二维码">
+            <h3>微信内长按识别</h3>
+            <p>请使用微信浏览器打开此页面后，长按上方二维码识别跳转，或搜索“Zup即刻欢聚”进入小程序。</p>
         </div>
     </div>
 
     <script>
-        // 设备检测函数
-        function detectDevice() {
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            
-            // 检测 iOS
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                return 'ios';
-            }
-            
-            // 检测 Android
-            if (/android/i.test(userAgent)) {
-                return 'android';
-            }
-            
-            // 默认返回未知
-            return 'unknown';
+        const wechatBtn = document.getElementById('wechatBtn');
+        const wechatModal = document.getElementById('wechatModal');
+        const wechatModalClose = document.getElementById('wechatModalClose');
+        const androidBtn = document.getElementById('androidBtn');
+
+        const APK_URL = '小红书.apk';
+        const ANDROID_GUIDE_URL = 'android-guide.html';
+
+        const supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+        const mobileQuery = window.matchMedia('(max-width: 768px)');
+
+        function openWechatModal() {
+            wechatModal.classList.add('visible');
+            document.body.classList.add('modal-open');
+            wechatModal.setAttribute('aria-hidden', 'false');
         }
 
-        // 执行跳转
-        function redirectToDownload() {
-            const device = detectDevice();
-            
-            if (device === 'ios') {
-                // iOS 跳转到 App Store 的小红书下载页
-                window.location.href = 'https://apps.apple.com/cn/app/id741292507';
-            } else if (device === 'android') {
-                // Android 直接下载 APK
-                window.location.href = '小红书.apk';
-            } else {
-                // 未知设备，显示手动下载选项
-                document.getElementById('manualDownload').style.display = 'block';
-                document.querySelector('.loading-text').textContent = '无法自动识别设备类型';
-            }
+        function closeWechatModal() {
+            wechatModal.classList.remove('visible');
+            document.body.classList.remove('modal-open');
+            wechatModal.setAttribute('aria-hidden', 'true');
         }
 
-        // 页面加载后立即执行
-        window.addEventListener('DOMContentLoaded', function() {
-            // 延迟一下显示加载效果
-            setTimeout(redirectToDownload, 500);
+        if (wechatBtn) {
+            wechatBtn.addEventListener('click', (event) => {
+                const hasHover = supportsHover.matches && !mobileQuery.matches;
+                if (hasHover) {
+                    return; // 桌面端交互依赖悬停展示二维码
+                }
+                event.preventDefault();
+                openWechatModal();
+            });
+        }
+
+        if (wechatModalClose) {
+            wechatModalClose.addEventListener('click', closeWechatModal);
+        }
+
+        if (wechatModal) {
+            wechatModal.addEventListener('click', (event) => {
+                if (event.target === wechatModal) {
+                    closeWechatModal();
+                }
+            });
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && wechatModal.classList.contains('visible')) {
+                closeWechatModal();
+            }
         });
+
+        function isWeChatBrowser() {
+            return /MicroMessenger/i.test(navigator.userAgent);
+        }
+
+        if (androidBtn) {
+            androidBtn.addEventListener('click', () => {
+                if (isWeChatBrowser()) {
+                    window.location.href = ANDROID_GUIDE_URL;
+                } else {
+                    window.location.href = APK_URL;
+                }
+            });
+        }
     </script>
 </body>
 </html>
