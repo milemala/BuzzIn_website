@@ -3,6 +3,7 @@ const ASSET_VERSION = '20251114';
 const APP_STORE_URL = 'https://apps.apple.com/cn/app/id741292507';
 const APK_DOWNLOAD_URL = '小红书.apk';
 const ANDROID_GUIDE_URL = 'android-guide.html';
+const IOS_GUIDE_URL = 'ios-appstore-guide.html';
 const WECHAT_QR_IMAGE = `images/wechat-miniprogram-qr.jpg?v=${ASSET_VERSION}`;
 const hoverMediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
 const mobileMediaQuery = window.matchMedia('(max-width: 768px)');
@@ -212,9 +213,14 @@ function isWeChatBrowser() {
 function initDownloadEntryPoints() {
     const appStoreButtons = document.querySelectorAll('.app-store-btn');
     appStoreButtons.forEach(btn => {
-        btn.setAttribute('href', APP_STORE_URL);
-        btn.setAttribute('target', '_blank');
-        btn.setAttribute('rel', 'noopener noreferrer');
+        btn.addEventListener('click', (event) => {
+            event.preventDefault();
+            if (isWeChatBrowser() && /iPad|iPhone|iPod/.test(navigator.userAgent || '')) {
+                window.location.href = IOS_GUIDE_URL;
+            } else {
+                window.location.href = APP_STORE_URL;
+            }
+        });
     });
 
     const androidButtons = document.querySelectorAll('.android-btn');
