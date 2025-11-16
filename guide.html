@@ -462,6 +462,90 @@
             margin-left: 15px;
         }
 
+        /* Zup! 社区公约 */
+        .community-section {
+            padding: 50px 0;
+            background: var(--bg-tertiary);
+        }
+
+        .community-intro {
+            text-align: center;
+            margin-bottom: 32px;
+            padding: 0 10px;
+        }
+
+        .community-intro h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .community-intro p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .community-content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 10px;
+            text-align: left;
+        }
+
+        .community-lead {
+            font-size: 1rem;
+            color: var(--text-color);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .community-rules {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .community-rule {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 16px 18px 18px;
+        }
+
+        .community-rule-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .community-rule-emoji {
+            font-size: 1.4rem;
+        }
+
+        .community-rule-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.05rem;
+        }
+
+        .community-rule-text {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            line-height: 1.7;
+            margin-left: 2.1rem;
+        }
+
+        .community-rule-text ul {
+            margin: 6px 0 0 1rem;
+            padding-left: 0;
+        }
+
+        .community-rule-text li {
+            list-style: disc;
+            margin-bottom: 4px;
+        }
+
         .faq-item.active .faq-question::after {
             transform: rotate(45deg);
         }
@@ -581,7 +665,6 @@
                 <p class="subtitle">发现你身边的实时活动<br>大家都有空，立刻就动身! </p>
             </div>
             <div class="scroll-indicator">
-                <span>向下滚动</span>
                 <i class="fas fa-chevron-down"></i>
             </div>
         </div>
@@ -714,6 +797,63 @@
                     </div>
                 </div>
                 <div class="slider-controls" id="scenariosControls"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zup! 社区公约 -->
+    <section class="community-section">
+        <div class="container">
+            <div class="community-intro">
+                <h2>Zup! 社区公约</h2>
+                <p>🌃 Zup! 社区共识</p>
+            </div>
+            <div class="community-content">
+                <p class="community-leader community-lead">
+                    这里的每一个气泡，都是此刻城市的脉搏。<br>
+                    Zup! 是一张活的地图。<br>
+                    每一条 NOW、每一个回应、每一次线下相遇，都让这张地图更鲜活、更有温度。<br><br>
+                    为了让这种活力能长久延续，我们来做几个约定 👇
+                </p>
+
+                <div class="community-rules">
+                    <div class="community-rule">
+                        <div class="community-rule-header">
+                            <div class="community-rule-emoji">💬</div>
+                            <div class="community-rule-title">一、保持真实</div>
+                        </div>
+                        <div class="community-rule-text">
+                            <p>Zup! 是实时的，更是真实的。你发布的动态或者邀约，请保持真实、不虚假、不伪装、不忽悠。<br>
+                            真实的表达，才会有真诚的问候与互动。</p>
+                        </div>
+                    </div>
+
+                    <div class="community-rule">
+                        <div class="community-rule-header">
+                            <div class="community-rule-emoji">🚫</div>
+                            <div class="community-rule-title">二、避免无效信息</div>
+                        </div>
+                        <div class="community-rule-text">
+                            <p>这里是一个开放空间，请不要重复刷屏，也不欢迎低质广告和不友好发言。<br>
+                            如果你看到上述内容并觉得不适，请点一下举报，帮助一起维护舒适的开放空间。</p>
+                        </div>
+                    </div>
+
+                    <div class="community-rule">
+                        <div class="community-rule-header">
+                            <div class="community-rule-emoji">🧭</div>
+                            <div class="community-rule-title">三、线下欢聚礼仪</div>
+                        </div>
+                        <div class="community-rule-text">
+                            <p>线下相聚时，请彼此尊重、保持边界感：</p>
+                            <ul>
+                                <li>不强迫、不纠缠、不侵犯他人隐私</li>
+                                <li>优先选择安全的公共场所见面</li>
+                            </ul>
+                            <p>若遇到不适或骚扰，请及时使用举报功能，我们会第一时间跟进处理。</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
