@@ -211,6 +211,8 @@ function isWeChatBrowser() {
 }
 
 function initDownloadEntryPoints() {
+    // 暂时注释掉下载按钮点击事件，App未上线
+    /*
     const appStoreButtons = document.querySelectorAll('.app-store-btn');
     appStoreButtons.forEach(btn => {
         btn.addEventListener('click', (event) => {
@@ -234,8 +236,10 @@ function initDownloadEntryPoints() {
             }
         });
     });
+    */
 
-    initWechatButtonInteractions();
+    // 暂时注释掉微信小程序按钮交互，App未上线
+    // initWechatButtonInteractions();
 }
 
 function initWechatButtonInteractions() {

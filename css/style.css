@@ -416,6 +416,12 @@ body {
     flex-wrap: wrap;
 }
 
+/* 下载按钮包装器 */
+.download-btn-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
 .download-group a {
     display: inline-flex;
     align-items: center;
@@ -426,6 +432,8 @@ body {
     font-size: 1.1rem;
     transition: all 0.3s ease;
     position: relative;
+    pointer-events: none;
+    cursor: default;
 }
 
 .app-store-btn {
@@ -451,6 +459,24 @@ body {
 .download-group a i {
     margin-right: 8px;
     font-size: 1.1rem;
+}
+
+/* 即将上线徽章样式 - 定位在按钮右上角 */
+.coming-soon-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    padding: 3px 8px;
+    background: rgba(244, 180, 0, 0.95);
+    color: #000000;
+    border: 1px solid var(--orange-bubble);
+    border-radius: 12px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    line-height: 1.4;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(244, 180, 0, 0.4);
 }
 
 .download-hint {
@@ -507,6 +533,20 @@ body {
     .download-group a i {
         font-size: 0.9rem;
         margin-right: 4px;
+    }
+    
+    /* 移动端即将上线徽章样式 */
+    .coming-soon-badge {
+        font-size: 0.55rem;
+        padding: 2px 6px;
+        top: -6px;
+        right: -6px;
+    }
+    
+    /* 移动端按钮包装器 */
+    .download-btn-wrapper {
+        flex: 1;
+        min-width: 0;
     }
 }
 
