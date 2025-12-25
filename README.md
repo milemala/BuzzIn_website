@@ -7,7 +7,9 @@
 ```
 BuzzInMap_website/
 ├─ index.html                 # 首页
-├─ merchant.html              # 新增：商户入驻说明页
+├─ merchant.html              # 商户入驻说明页
+├─ user.html                  # 用户服务协议页
+├─ user-delete.html           # 用户注销协议页
 ├─ css/
 │  ├─ style.css               # 全站样式
 │  └─ animations.css          # 动画样式
@@ -31,12 +33,20 @@ BuzzInMap_website/
 - 商户入驻（`merchant.html`）
   - 依据《商户入驻页设计参考.md》整理的入驻流程与权益说明：
     - 入驻方式：
-      1. 三方认证（短信至 18501217603，内容含“认证+商户名+Zup! 用户ID”）
+      1. 三方认证（短信至 18501217603，内容含"认证+商户名+Zup! 用户ID"）
       2. 提交商户资料（发送至 service@nowmap.cn）
       3. App 内自助认证（我的 → 设置 → 申请认证商户）
     - 联系方式与人工协助：18501217603 / service@nowmap.cn
     - 入驻后能力：常驻标识、可编辑详情页、NOW 长期记忆、管理员认证、发布与分销商品等。
   - 复用站点现有配色/卡片风格与动效，顶部含返回首页与锚点跳转。
+
+- 用户服务协议（`user.html`）
+  - Zup 平台的用户服务协议页面，包含账号使用、个人信息保护、用户行为规范、知识产权等条款。
+  - 采用统一的协议页面样式，包含重要提示高亮、联系方式等元素。
+
+- 用户注销协议（`user-delete.html`）
+  - 用户账号注销相关的协议说明页面，详细说明注销的含义、不可逆性、权益处理、数据删除等内容。
+  - 与 `user.html` 采用相同的样式风格，保持视觉一致性。
 
 ## 资源引用
 
@@ -105,3 +115,26 @@ BuzzInMap_website/
   - 针对微信浏览器缓存，所有页面新增 no-cache 元标签，并为 CSS/JS/二维码资源追加版本号 `?v=20251114`（`js/main.js` 内以 `ASSET_VERSION` 常量统一管理）。
   - 新增 `ios-appstore-guide.html`，并在 `js/main.js` 中对 iOS + 微信环境下的 App Store 按钮进行引导跳转（与 Android APK 引导逻辑一致）。
 - **文件修改**: `index.html`, `merchant.html`, `guide.html`, `download.html`, `android-guide.html`, `ios-appstore-guide.html`, `css/style.css`, `js/main.js`, `images/wechat-miniprogram-qr.jpg`
+
+### 2025年1月 - iOS下载页面自动跳转优化
+- **变更**: 优化 iOS 下载流程，当用户在第三方浏览器（非微信浏览器）中打开 `ios-appstore-guide.html` 时，自动跳转到 App Store
+- **问题描述**: 用户在微信中打开下载页面后，根据指引在第三方浏览器中打开，但页面没有自动跳转到 App Store，需要用户手动点击按钮
+- **解决方案**: 在 `ios-appstore-guide.html` 中添加自动检测逻辑
+  - 检测当前浏览器环境（是否为微信浏览器）
+  - 检测设备类型（是否为 iOS 设备）
+  - 如果不在微信浏览器中且是 iOS 设备，页面加载后自动跳转到 App Store（延迟 500ms 确保页面加载完成）
+  - 如果仍在微信浏览器中，则显示指引内容，提示用户在第三方浏览器中打开
+- **影响范围**: iOS 用户在第三方浏览器中打开 `ios-appstore-guide.html` 时会自动跳转到 App Store，提升用户体验
+- **文件修改**: `ios-appstore-guide.html`（添加自动跳转逻辑）
+
+### 2025年1月 - 新增用户注销协议页面
+- **变更**: 新增 `user-delete.html` 用户注销协议页面
+- **实现方式**: 
+  - 参考 `user.html` 的样式和结构，保持视觉一致性
+  - 将 `用户注销协议.md` 中的内容转换为 HTML 格式
+  - 使用相同的 CSS 样式类（highlight、intro、contact 等）突出重要信息
+  - 包含账号注销的含义、不可逆性、权益处理、数据删除、责任说明等七个章节
+- **影响范围**: 新增独立页面，不影响现有功能
+- **文件修改**: 
+  - 新增 `user-delete.html`
+  - 更新 `README.md` 项目结构和页面说明

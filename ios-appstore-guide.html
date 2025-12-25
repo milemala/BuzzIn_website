@@ -160,14 +160,44 @@
     </main>
     <script>
         (function() {
-            const btn = document.getElementById('openAppStoreBtn');
-            if (!btn) return;
-            btn.addEventListener('click', (event) => {
-                if (/MicroMessenger/i.test(navigator.userAgent || '')) {
-                    event.preventDefault();
-                    alert('请先点击右上角“⋯”并选择“在默认浏览器中打开”，再点击按钮跳转 App Store。');
+            const APP_STORE_URL = 'https://apps.apple.com/cn/app/id741292507';
+            
+            function isWeChatBrowser() {
+                return /MicroMessenger/i.test(navigator.userAgent || '');
+            }
+            
+            function isIOSDevice() {
+                const ua = navigator.userAgent || navigator.vendor || window.opera;
+                return /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+            }
+            
+            // 如果不在微信浏览器中，且是iOS设备，则自动跳转到App Store
+            function autoRedirectIfNeeded() {
+                if (!isWeChatBrowser() && isIOSDevice()) {
+                    // 延迟一小段时间确保页面已加载，然后自动跳转
+                    setTimeout(() => {
+                        window.location.href = APP_STORE_URL;
+                    }, 500);
                 }
-            });
+            }
+            
+            // 页面加载后立即检测并自动跳转
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', autoRedirectIfNeeded);
+            } else {
+                autoRedirectIfNeeded();
+            }
+            
+            // 按钮点击事件处理
+            const btn = document.getElementById('openAppStoreBtn');
+            if (btn) {
+                btn.addEventListener('click', (event) => {
+                    if (isWeChatBrowser()) {
+                        event.preventDefault();
+                        alert('请先点击右上角"⋯"并选择"在默认浏览器中打开"，再点击按钮跳转 App Store。');
+                    }
+                });
+            }
         })();
     </script>
 </body>
