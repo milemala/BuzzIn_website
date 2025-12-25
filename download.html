@@ -231,7 +231,7 @@
         </div>
 
         <div class="download-actions" id="downloadActions">
-            <a href="https://apps.apple.com/cn/app/id741292507" class="action-button primary device-btn" data-device="ios" id="iosBtn">
+            <a href="https://apps.apple.com/cn/app/id6747610081" class="action-button primary device-btn" data-device="ios" id="iosBtn">
                 <span class="action-content">
                     <i class="fab fa-apple"></i>
                     <span>iOS 版本（App Store）</span>
@@ -258,9 +258,9 @@
         const helperText = document.getElementById('helperText');
         const helperParagraph = document.getElementById('helperParagraph');
 
-        const APK_URL = '小红书.apk';
+        const APK_URL = 'Zup.apk';
         const ANDROID_GUIDE_URL = 'android-guide.html';
-        const APP_STORE_URL = 'https://apps.apple.com/cn/app/id741292507';
+        const APP_STORE_URL = 'https://apps.apple.com/cn/app/id6747610081';
         const IOS_GUIDE_URL = 'ios-appstore-guide.html';
 
         function isWeChatBrowser() {
@@ -282,11 +282,11 @@
             } else if (device === 'android') {
                 iosBtn.style.display = 'none';
                 androidBtn.style.display = 'block';
-                helperParagraph.textContent = 'Android 用户可直接下载 APK，如在微信内请先在浏览器中打开。';
+                helperParagraph.textContent = 'Android 版本正在准备中，敬请期待。';
             } else {
                 iosBtn.style.display = 'block';
                 androidBtn.style.display = 'block';
-                helperParagraph.textContent = '请根据设备选择下载方式，并在系统浏览器中完成安装。';
+                helperParagraph.textContent = 'iOS 版本已上线，Android 版本正在准备中。';
             }
         }
 
@@ -322,11 +322,8 @@
 
         if (androidBtn) {
             androidBtn.addEventListener('click', () => {
-                if (isWeChatBrowser()) {
-                    window.location.href = ANDROID_GUIDE_URL;
-                } else {
-                    window.location.href = APK_URL;
-                }
+                // Android 版本尚未上线，统一跳转到提示页面
+                window.location.href = ANDROID_GUIDE_URL;
             });
         }
 

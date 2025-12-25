@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Android 安装指引 - Zup!</title>
-    <meta name="description" content="帮助微信内打开的 Android 用户完成 Zup! APK 下载。">
+    <title>Android 版本即将上线 - Zup!</title>
+    <meta name="description" content="Android 版本正在准备中，敬请期待。">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -87,29 +88,30 @@
             font-size: 0.95rem;
         }
 
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 32px;
-            border-radius: 999px;
-            background: linear-gradient(90deg, #2EE8C2, #19c7a4);
-            color: #052222;
-            font-weight: 700;
-            text-decoration: none;
-            font-size: 1.05rem;
-            margin-top: 12px;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            display: none;
+        .coming-soon-box {
+            background: rgba(244, 180, 0, 0.1);
+            border: 1px solid rgba(244, 180, 0, 0.3);
+            border-radius: 20px;
+            padding: 36px 32px;
+            margin: 32px 0;
+            text-align: center;
         }
 
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(34, 216, 178, 0.25);
+        .coming-soon-icon {
+            font-size: 3.5rem;
+            color: #F4B400;
+            margin-bottom: 20px;
         }
 
-        .download-btn.visible {
-            display: inline-flex;
+        .coming-soon-text {
+            color: rgba(240, 246, 252, 0.85);
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        .coming-soon-text:last-of-type {
+            margin-bottom: 0;
         }
 
         .tip {
@@ -138,47 +140,22 @@
 </head>
 <body>
     <main class="guide-card">
-        <h1>安卓下载提示</h1>
-        <p class="subtitle">微信内无法直接下载，请切换到其他浏览器</p>
+        <h1>Android 版本即将上线</h1>
+        <p class="subtitle">感谢您的关注！Android 版本正在紧锣密鼓地准备中，敬请期待。</p>
 
-        <ol class="steps">
-            <li>
-                <div class="steps-number">1</div>
-                <div class="steps-content">
-                    <h3>点击右上角“⋯”</h3>
-                    <p>先打开微信右上角的更多菜单。</p>
-                </div>
-            </li>
-            <li>
-                <div class="steps-number">2</div>
-                <div class="steps-content">
-                    <h3>选择“在浏览器中打开”</h3>
-                    <p>系统会自动跳到默认浏览器。</p>
-                </div>
-            </li>
-            <li>
-                <div class="steps-number">3</div>
-                <div class="steps-content">
-                    <h3>点击下载按钮</h3>
-                    <p>此时下方按钮会出现，直接下载APP。</p>
-                </div>
-            </li>
-        </ol>
+        <div class="coming-soon-box">
+            <div class="coming-soon-icon">
+                <i class="fas fa-hourglass-half"></i>
+            </div>
+            <p class="coming-soon-text">Android 客户端目前尚未上线，我们正在努力完善中。</p>
+            <p class="coming-soon-text">您可以先使用 iOS 版本体验 Zup!，或关注我们获取最新动态。</p>
+        </div>
 
-        <a href="小红书.apk" class="download-btn" id="androidDownloadBtn" aria-hidden="true">下载 Zup!</a>
-
-        <p class="tip">如仍无法下载，可复制链接在其他浏览器中打开，或联系 service@nowmap.cn 获取协助。</p>
+        <p class="tip">如需了解更多信息，请联系 service@nowmap.cn</p>
     </main>
     <script>
-        (function() {
-            const downloadBtn = document.getElementById('androidDownloadBtn');
-            if (!downloadBtn) return;
-            const isWeChat = /MicroMessenger/i.test(navigator.userAgent || '');
-            if (!isWeChat) {
-                downloadBtn.classList.add('visible');
-                downloadBtn.removeAttribute('aria-hidden');
-            }
-        })();
+        // Android 版本尚未上线，此页面仅显示提示信息
+        // 所有下载相关功能已暂时禁用
     </script>
 </body>
 </html>

@@ -116,16 +116,47 @@ BuzzInMap_website/
   - 新增 `ios-appstore-guide.html`，并在 `js/main.js` 中对 iOS + 微信环境下的 App Store 按钮进行引导跳转（与 Android APK 引导逻辑一致）。
 - **文件修改**: `index.html`, `merchant.html`, `guide.html`, `download.html`, `android-guide.html`, `ios-appstore-guide.html`, `css/style.css`, `js/main.js`, `images/wechat-miniprogram-qr.jpg`
 
-### 2025年1月 - iOS下载页面自动跳转优化
-- **变更**: 优化 iOS 下载流程，当用户在第三方浏览器（非微信浏览器）中打开 `ios-appstore-guide.html` 时，自动跳转到 App Store
-- **问题描述**: 用户在微信中打开下载页面后，根据指引在第三方浏览器中打开，但页面没有自动跳转到 App Store，需要用户手动点击按钮
-- **解决方案**: 在 `ios-appstore-guide.html` 中添加自动检测逻辑
-  - 检测当前浏览器环境（是否为微信浏览器）
-  - 检测设备类型（是否为 iOS 设备）
-  - 如果不在微信浏览器中且是 iOS 设备，页面加载后自动跳转到 App Store（延迟 500ms 确保页面加载完成）
-  - 如果仍在微信浏览器中，则显示指引内容，提示用户在第三方浏览器中打开
-- **影响范围**: iOS 用户在第三方浏览器中打开 `ios-appstore-guide.html` 时会自动跳转到 App Store，提升用户体验
-- **文件修改**: `ios-appstore-guide.html`（添加自动跳转逻辑）
+### 2025年1月 - Android下载功能暂时禁用
+- **变更**: 暂时禁用 Android 下载功能，因为 Android 客户端尚未上线
+- **问题描述**: Android 客户端还在开发中，需要暂时禁用下载功能，给用户显示"尚未上线"的提示
+- **解决方案**: 
+  - 修改 `android-guide.html`，将页面内容改为显示"Android 版本即将上线"的提示
+    - 移除所有下载相关的步骤和下载按钮
+    - 添加"即将上线"提示框，使用主题黄色样式
+    - 添加 Font Awesome 图标库引用以显示沙漏图标
+    - 移除所有下载相关的 JavaScript 代码
+  - 修改 `download.html`：
+    - 更新 Android 设备检测时的提示文字为"Android 版本正在准备中，敬请期待"
+    - 更新桌面端的提示文字为"iOS 版本已上线，Android 版本正在准备中"
+    - Android 按钮点击后统一跳转到 `android-guide.html`（不再区分微信和普通浏览器）
+- **影响范围**: 
+  - Android 用户点击下载按钮后会看到"即将上线"的提示页面
+  - 所有 Android 下载功能已暂时禁用
+  - iOS 下载功能不受影响
+- **文件修改**: `android-guide.html`（完全重构为提示页面）、`download.html`（更新提示文字和按钮行为）
+
+### 2025年1月 - iOS和Android下载页面自动跳转/下载优化
+- **变更**: 优化 iOS 和 Android 下载流程，当用户在第三方浏览器（非微信浏览器）中打开引导页面时，自动跳转到 App Store 或自动下载 APK
+- **问题描述**: 
+  - iOS: 用户在微信中打开下载页面后，根据指引在第三方浏览器中打开，但页面没有自动跳转到 App Store，需要用户手动点击按钮
+  - Android: 用户在微信中打开下载页面后，根据指引在第三方浏览器中打开，但页面没有自动下载 APK，需要用户手动点击按钮
+- **解决方案**: 
+  - **iOS (`ios-appstore-guide.html`)**: 添加自动检测逻辑
+    - 检测当前浏览器环境（是否为微信浏览器）
+    - 检测设备类型（是否为 iOS 设备）
+    - 如果不在微信浏览器中且是 iOS 设备，页面加载后自动跳转到 App Store（延迟 500ms 确保页面加载完成）
+    - 如果仍在微信浏览器中，则显示指引内容，提示用户在第三方浏览器中打开
+  - **Android (`android-guide.html`)**: 添加自动检测和下载逻辑
+    - 检测当前浏览器环境（是否为微信浏览器）
+    - 检测设备类型（是否为 Android 设备）
+    - 如果不在微信浏览器中且是 Android 设备，页面加载后自动触发 APK 下载（延迟 500ms 确保页面加载完成）
+    - 如果仍在微信浏览器中，则显示指引内容，提示用户在第三方浏览器中打开
+    - 更新步骤说明，将"点击下载按钮"改为"自动开始下载"
+- **影响范围**: 
+  - iOS 用户在第三方浏览器中打开 `ios-appstore-guide.html` 时会自动跳转到 App Store
+  - Android 用户在第三方浏览器中打开 `android-guide.html` 时会自动开始下载 APK
+  - 提升用户体验，减少用户操作步骤
+- **文件修改**: `ios-appstore-guide.html`（添加自动跳转逻辑）、`android-guide.html`（添加自动下载逻辑和更新文案）
 
 ### 2025年1月 - 新增用户注销协议页面
 - **变更**: 新增 `user-delete.html` 用户注销协议页面
