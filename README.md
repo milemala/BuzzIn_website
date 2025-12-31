@@ -117,23 +117,25 @@ BuzzInMap_website/
 - **文件修改**: `index.html`, `merchant.html`, `guide.html`, `download.html`, `android-guide.html`, `ios-appstore-guide.html`, `css/style.css`, `js/main.js`, `images/wechat-miniprogram-qr.jpg`
 
 ### 2025年1月 - Android下载功能暂时禁用
-- **变更**: 暂时禁用 Android 下载功能，因为 Android 客户端尚未上线
-- **问题描述**: Android 客户端还在开发中，需要暂时禁用下载功能，给用户显示"尚未上线"的提示
+- **变更**: 暂时禁用 Android 下载功能，因为 Android 客户端尚未上线，直接从下载页面移除 Android 按钮并显示"即将上线"提示
+- **问题描述**: Android 客户端还在开发中，需要暂时禁用下载功能，直接在下载页面告诉用户尚未上线
 - **解决方案**: 
-  - 修改 `android-guide.html`，将页面内容改为显示"Android 版本即将上线"的提示
+  - 修改 `download.html`：
+    - 从 HTML 中完全移除 Android 下载按钮
+    - 添加"即将上线"提示框（使用主题黄色样式，包含沙漏图标）
+    - 当检测到 Android 设备时，隐藏 iOS 按钮，显示"Android 版本即将上线"的提示框
+    - 当检测到桌面设备时，显示 iOS 按钮和"即将上线"提示框
+    - 移除所有 Android 相关的下载逻辑和常量
+  - 修改 `android-guide.html`，将页面内容改为显示"Android 版本即将上线"的提示（作为备用页面保留）
     - 移除所有下载相关的步骤和下载按钮
     - 添加"即将上线"提示框，使用主题黄色样式
     - 添加 Font Awesome 图标库引用以显示沙漏图标
     - 移除所有下载相关的 JavaScript 代码
-  - 修改 `download.html`：
-    - 更新 Android 设备检测时的提示文字为"Android 版本正在准备中，敬请期待"
-    - 更新桌面端的提示文字为"iOS 版本已上线，Android 版本正在准备中"
-    - Android 按钮点击后统一跳转到 `android-guide.html`（不再区分微信和普通浏览器）
 - **影响范围**: 
-  - Android 用户点击下载按钮后会看到"即将上线"的提示页面
+  - Android 用户在下载页面会直接看到"即将上线"的提示，不再显示下载按钮
   - 所有 Android 下载功能已暂时禁用
   - iOS 下载功能不受影响
-- **文件修改**: `android-guide.html`（完全重构为提示页面）、`download.html`（更新提示文字和按钮行为）
+- **文件修改**: `download.html`（移除 Android 按钮，添加"即将上线"提示框）、`android-guide.html`（完全重构为提示页面）
 
 ### 2025年1月 - iOS和Android下载页面自动跳转/下载优化
 - **变更**: 优化 iOS 和 Android 下载流程，当用户在第三方浏览器（非微信浏览器）中打开引导页面时，自动跳转到 App Store 或自动下载 APK
