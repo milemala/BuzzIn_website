@@ -116,6 +116,34 @@ BuzzInMap_website/
   - 新增 `ios-appstore-guide.html`，并在 `js/main.js` 中对 iOS + 微信环境下的 App Store 按钮进行引导跳转（与 Android APK 引导逻辑一致）。
 - **文件修改**: `index.html`, `merchant.html`, `guide.html`, `download.html`, `android-guide.html`, `ios-appstore-guide.html`, `css/style.css`, `js/main.js`, `images/wechat-miniprogram-qr.jpg`
 
+### 2025年1月 - 新增微信小程序专用iOS下载引导页面
+- **变更**: 新增 `ios-appstore-guide-miniprogram.html`，专门用于微信小程序环境引导用户下载 iOS 版本
+- **问题描述**: 微信小程序内无法通过右上角"⋯"菜单选择在外部浏览器打开，需要引导用户复制链接后到外部浏览器打开
+- **解决方案**: 
+  - 创建专门的小程序引导页面 `ios-appstore-guide-miniprogram.html`
+  - 修改步骤说明，改为三步操作：
+    1. 复制当前页面链接（提供一键复制按钮）
+    2. 打开外部浏览器（Safari 或其他浏览器）
+    3. 粘贴并打开链接（在外部浏览器中会自动跳转到 App Store）
+  - 添加链接复制功能：
+    - 使用现代 Clipboard API（优先）或降级方案（兼容性处理）
+    - 复制成功后显示提示信息
+    - 复制按钮状态反馈
+  - 添加小程序环境检测：
+    - 检测 `window.__wxjs_environment`
+    - 检测 UserAgent 中的小程序标识
+    - 如果不在小程序环境中且是 iOS 设备，自动跳转到 App Store
+  - 页面设计：
+    - 复用 `ios-appstore-guide.html` 的视觉风格
+    - 添加链接复制框和复制按钮
+    - 响应式设计，适配移动端
+- **影响范围**: 
+  - 小程序用户可以通过新页面引导完成 iOS 应用下载
+  - 如果在外部浏览器中打开该页面，会自动跳转到 App Store
+  - 不影响现有的 `ios-appstore-guide.html` 页面
+- **文件修改**: 
+  - 新增 `ios-appstore-guide-miniprogram.html`
+
 ### 2025年1月 - Android下载功能暂时禁用
 - **变更**: 暂时禁用 Android 下载功能，因为 Android 客户端尚未上线，直接从下载页面移除 Android 按钮并显示"即将上线"提示
 - **问题描述**: Android 客户端还在开发中，需要暂时禁用下载功能，直接在下载页面告诉用户尚未上线

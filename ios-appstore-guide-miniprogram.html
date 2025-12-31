@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小程序内打开 App Store - Zup!</title>
+    <meta name="description" content="指导微信小程序内用户如何跳转至外部浏览器并前往 App Store 下载 Zup!。">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #090d1a 0%, #111a33 100%);
+            color: #F0F6FC;
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 20px 16px;
+        }
+
+        .guide-card {
+            width: min(640px, 100%);
+            background: rgba(17, 24, 48, 0.9);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 28px 20px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: clamp(1.5rem, 5vw, 1.75rem);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .subtitle {
+            color: rgba(240, 246, 252, 0.75);
+            margin-bottom: 20px;
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        .steps {
+            list-style: none;
+            text-align: left;
+            margin: 0 auto 24px;
+            max-width: 100%;
+        }
+
+        .steps li {
+            display: flex;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .steps li:last-child {
+            border-bottom: none;
+        }
+
+        .steps-number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(46, 232, 194, 0.2);
+            color: #2EE8C2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .steps-content h3 {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+            line-height: 1.4;
+        }
+
+        .link-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 14px;
+            margin: 20px 0 24px;
+            text-align: left;
+            position: relative;
+        }
+
+        .link-text {
+            color: rgba(240, 246, 252, 0.9);
+            font-size: 0.85rem;
+            word-break: break-all;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            padding-right: 0;
+        }
+
+        .copy-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(46, 232, 194, 0.5);
+            background: rgba(46, 232, 194, 0.1);
+            color: #2EE8C2;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(46, 232, 194, 0.2);
+            border-color: rgba(46, 232, 194, 0.8);
+        }
+
+        .copy-btn.copied {
+            background: rgba(46, 232, 194, 0.3);
+            border-color: #2EE8C2;
+            color: #2EE8C2;
+        }
+
+        .copy-link {
+            display: inline-flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 20px;
+            padding: 12px 24px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #F0F6FC;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease, border 0.2s ease;
+        }
+
+        .copy-link:hover {
+            transform: translateY(-2px);
+            border-color: rgba(46, 232, 194, 0.8);
+        }
+
+        .tip {
+            margin-top: 20px;
+            color: rgba(240, 246, 252, 0.7);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .success-message {
+            margin-top: 16px;
+            padding: 12px;
+            background: rgba(46, 232, 194, 0.1);
+            border: 1px solid rgba(46, 232, 194, 0.3);
+            border-radius: 8px;
+            color: #2EE8C2;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .success-message.visible {
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 16px 12px;
+                align-items: flex-start;
+                padding-top: 20px;
+            }
+
+            .guide-card {
+                padding: 24px 16px;
+                border-radius: 16px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 8px;
+            }
+
+            .subtitle {
+                font-size: 0.85rem;
+                margin-bottom: 18px;
+            }
+
+            .link-box {
+                padding: 12px;
+                margin: 18px 0 20px;
+            }
+
+            .link-text {
+                font-size: 0.8rem;
+                margin-bottom: 10px;
+            }
+
+            .copy-btn {
+                font-size: 0.9rem;
+                padding: 11px;
+            }
+
+            .steps {
+                margin-bottom: 20px;
+            }
+
+            .steps li {
+                padding: 10px 0;
+                gap: 10px;
+            }
+
+            .steps-number {
+                width: 26px;
+                height: 26px;
+                font-size: 0.85rem;
+            }
+
+            .steps-content h3 {
+                font-size: 0.9rem;
+            }
+
+            .tip {
+                font-size: 0.8rem;
+                margin-top: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="guide-card">
+        <h1>通过浏览器打开下面链接👇</h1>
+        <p class="subtitle">小程序内无法直接跳转，请复制链接到外部浏览器打开。</p>
+
+        <div class="link-box">
+            <div class="link-text" id="linkText">https://apps.apple.com/cn/app/id6747610081</div>
+            <button class="copy-btn" id="copyBtn">复制链接</button>
+            <div class="success-message" id="successMessage">✓ 链接已复制到剪贴板</div>
+        </div>
+
+        <ol class="steps">
+            <li>
+                <div class="steps-number">1</div>
+                <div class="steps-content">
+                    <h3>复制当前页面链接</h3>
+                </div>
+            </li>
+            <li>
+                <div class="steps-number">2</div>
+                <div class="steps-content">
+                    <h3>打开外部浏览器</h3>
+                </div>
+            </li>
+            <li>
+                <div class="steps-number">3</div>
+                <div class="steps-content">
+                    <h3>粘贴并打开链接</h3>
+                </div>
+            </li>
+        </ol>
+
+        <a href="https://apps.apple.com/cn/app/id6747610081" class="copy-link" id="openAppStoreBtn" style="display: none;">
+            直接打开 App Store
+        </a>
+
+        <p class="tip">提示：如果在外部浏览器中打开本页，页面会自动跳转到 App Store，无需手动操作。</p>
+    </main>
+    <script>
+        (function() {
+            const APP_STORE_URL = 'https://apps.apple.com/cn/app/id6747610081';
+            const CURRENT_PAGE_URL = window.location.href;
+            
+            function isWeChatBrowser() {
+                return /MicroMessenger/i.test(navigator.userAgent || '');
+            }
+            
+            function isMiniprogram() {
+                // 检测是否在微信小程序中
+                // 方法1: 检查 window.__wxjs_environment
+                if (typeof window.__wxjs_environment !== 'undefined' && window.__wxjs_environment === 'miniprogram') {
+                    return true;
+                }
+                // 方法2: 检查 UserAgent
+                const ua = navigator.userAgent || '';
+                if (/miniprogram/i.test(ua) || /MiniProgram/i.test(ua)) {
+                    return true;
+                }
+                // 方法3: 检查是否在小程序 webview 中（某些情况下可能有特殊标识）
+                if (ua.includes('miniProgram')) {
+                    return true;
+                }
+                return false;
+            }
+            
+            function isIOSDevice() {
+                const ua = navigator.userAgent || navigator.vendor || window.opera;
+                return /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+            }
+            
+            // 如果不在小程序中，且是iOS设备，则自动跳转到App Store
+            function autoRedirectIfNeeded() {
+                if (!isMiniprogram() && isIOSDevice()) {
+                    // 延迟一小段时间确保页面已加载，然后自动跳转
+                    setTimeout(() => {
+                        window.location.href = APP_STORE_URL;
+                    }, 500);
+                }
+            }
+            
+            // 复制链接功能
+            function setupCopyLink() {
+                const copyBtn = document.getElementById('copyBtn');
+                const linkText = document.getElementById('linkText');
+                const successMessage = document.getElementById('successMessage');
+                
+                if (!copyBtn || !linkText) return;
+                
+                // 显示 App Store 链接
+                linkText.textContent = APP_STORE_URL;
+                
+                copyBtn.addEventListener('click', async () => {
+                    const textToCopy = APP_STORE_URL;
+                    
+                    try {
+                        // 使用现代 Clipboard API
+                        if (navigator.clipboard && window.isSecureContext) {
+                            await navigator.clipboard.writeText(textToCopy);
+                            showSuccessMessage();
+                        } else {
+                            // 降级方案：使用传统方法
+                            const textArea = document.createElement('textarea');
+                            textArea.value = textToCopy;
+                            textArea.style.position = 'fixed';
+                            textArea.style.left = '-999999px';
+                            document.body.appendChild(textArea);
+                            textArea.select();
+                            
+                            try {
+                                document.execCommand('copy');
+                                showSuccessMessage();
+                            } catch (err) {
+                                alert('复制失败，请手动复制链接：' + textToCopy);
+                            }
+                            
+                            document.body.removeChild(textArea);
+                        }
+                    } catch (err) {
+                        // 如果复制失败，提示用户手动复制
+                        prompt('请手动复制以下链接：', textToCopy);
+                    }
+                });
+            }
+            
+            function showSuccessMessage() {
+                const copyBtn = document.getElementById('copyBtn');
+                const successMessage = document.getElementById('successMessage');
+                
+                if (copyBtn) {
+                    copyBtn.textContent = '已复制';
+                    copyBtn.classList.add('copied');
+                }
+                
+                if (successMessage) {
+                    successMessage.classList.add('visible');
+                    setTimeout(() => {
+                        successMessage.classList.remove('visible');
+                        if (copyBtn) {
+                            copyBtn.textContent = '复制链接';
+                            copyBtn.classList.remove('copied');
+                        }
+                    }, 2000);
+                }
+            }
+            
+            // 初始化
+            setupCopyLink();
+            
+            // 页面加载后立即检测并自动跳转（如果不在小程序中）
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', autoRedirectIfNeeded);
+            } else {
+                autoRedirectIfNeeded();
+            }
+        })();
+    </script>
+</body>
+</html>
+
