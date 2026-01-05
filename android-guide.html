@@ -170,13 +170,15 @@
             </li>
         </ol>
 
-        <a href="Zup.apk" class="download-btn" id="androidDownloadBtn" aria-hidden="true">下载 Zup!</a>
+        <a href="#" class="download-btn" id="androidDownloadBtn" aria-hidden="true">下载 Zup!</a>
 
         <p class="tip">如自动下载未开始，可点击上方按钮手动下载。或联系 service@nowmap.cn 获取协助。</p>
     </main>
+    <script src="js/main.js"></script>
     <script>
         (function() {
-            const APK_URL = 'Zup.apk';
+            // 使用 main.js 中定义的全局 APK_DOWNLOAD_URL
+            const APK_URL = typeof APK_DOWNLOAD_URL !== 'undefined' ? APK_DOWNLOAD_URL : 'https://cdn.nowmap.cn/apk/app-release-1.0.0.02-2.apk';
             
             function isWeChatBrowser() {
                 return /MicroMessenger/i.test(navigator.userAgent || '');
@@ -189,6 +191,9 @@
             
             const downloadBtn = document.getElementById('androidDownloadBtn');
             if (!downloadBtn) return;
+            
+            // 动态设置下载按钮的 href
+            downloadBtn.href = APK_URL;
             
             // 如果不在微信浏览器中，显示下载按钮
             if (!isWeChatBrowser()) {
