@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Android 版本即将上线 - Zup!</title>
-    <meta name="description" content="Android 版本正在准备中，敬请期待。">
+    <title>Android 安装指引 - Zup!</title>
+    <meta name="description" content="帮助微信内打开的 Android 用户完成 Zup! APK 下载。">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
@@ -61,7 +61,7 @@
             gap: 16px;
             padding: 14px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            align-items: flex-start;
+            align-items: center;
         }
 
         .steps-number {
@@ -77,9 +77,17 @@
             flex-shrink: 0;
         }
 
+        .steps-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
         .steps-content h3 {
             font-size: 1.05rem;
             margin-bottom: 4px;
+            line-height: 1.4;
         }
 
         .steps-content p {
@@ -88,30 +96,28 @@
             font-size: 0.95rem;
         }
 
-        .coming-soon-box {
-            background: rgba(244, 180, 0, 0.1);
-            border: 1px solid rgba(244, 180, 0, 0.3);
-            border-radius: 20px;
-            padding: 36px 32px;
-            margin: 32px 0;
-            text-align: center;
+        .download-btn {
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #F4B400, #f7c546);
+            color: #1b1400;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.05rem;
+            margin-top: 12px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            display: none;
         }
 
-        .coming-soon-icon {
-            font-size: 3.5rem;
-            color: #F4B400;
-            margin-bottom: 20px;
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(244, 180, 0, 0.25);
         }
 
-        .coming-soon-text {
-            color: rgba(240, 246, 252, 0.85);
-            line-height: 1.8;
-            font-size: 1rem;
-            margin-bottom: 12px;
-        }
-
-        .coming-soon-text:last-of-type {
-            margin-bottom: 0;
+        .download-btn.visible {
+            display: inline-flex;
         }
 
         .tip {
@@ -140,22 +146,73 @@
 </head>
 <body>
     <main class="guide-card">
-        <h1>Android 版本即将上线</h1>
-        <p class="subtitle">感谢您的关注！Android 版本正在紧锣密鼓地准备中，敬请期待。</p>
+        <h1>安卓下载提示</h1>
+        <p class="subtitle">微信内无法直接下载，请切换到其他浏览器</p>
 
-        <div class="coming-soon-box">
-            <div class="coming-soon-icon">
-                <i class="fas fa-hourglass-half"></i>
-            </div>
-            <p class="coming-soon-text">Android 客户端目前尚未上线，我们正在努力完善中。</p>
-            <p class="coming-soon-text">您可以先使用 iOS 版本体验 Zup!，或关注我们获取最新动态。</p>
-        </div>
+        <ol class="steps">
+            <li>
+                <div class="steps-number">1</div>
+                <div class="steps-content">
+                    <h3>点击右上角"⋯"</h3>
+                </div>
+            </li>
+            <li>
+                <div class="steps-number">2</div>
+                <div class="steps-content">
+                    <h3>选择"在浏览器中打开"</h3>
+                </div>
+            </li>
+            <li>
+                <div class="steps-number">3</div>
+                <div class="steps-content">
+                    <h3>自动开始下载</h3>
+                </div>
+            </li>
+        </ol>
 
-        <p class="tip">如需了解更多信息，请联系 service@nowmap.cn</p>
+        <a href="Zup.apk" class="download-btn" id="androidDownloadBtn" aria-hidden="true">下载 Zup!</a>
+
+        <p class="tip">如自动下载未开始，可点击上方按钮手动下载。或联系 service@nowmap.cn 获取协助。</p>
     </main>
     <script>
-        // Android 版本尚未上线，此页面仅显示提示信息
-        // 所有下载相关功能已暂时禁用
+        (function() {
+            const APK_URL = 'Zup.apk';
+            
+            function isWeChatBrowser() {
+                return /MicroMessenger/i.test(navigator.userAgent || '');
+            }
+            
+            function isAndroidDevice() {
+                const ua = navigator.userAgent || navigator.vendor || window.opera;
+                return /android/i.test(ua);
+            }
+            
+            const downloadBtn = document.getElementById('androidDownloadBtn');
+            if (!downloadBtn) return;
+            
+            // 如果不在微信浏览器中，显示下载按钮
+            if (!isWeChatBrowser()) {
+                downloadBtn.classList.add('visible');
+                downloadBtn.removeAttribute('aria-hidden');
+            }
+            
+            // 如果不在微信浏览器中，且是Android设备，则自动触发下载
+            function autoDownloadIfNeeded() {
+                if (!isWeChatBrowser() && isAndroidDevice()) {
+                    // 延迟一小段时间确保页面已加载，然后自动下载
+                    setTimeout(() => {
+                        window.location.href = APK_URL;
+                    }, 500);
+                }
+            }
+            
+            // 页面加载后立即检测并自动下载
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', autoDownloadIfNeeded);
+            } else {
+                autoDownloadIfNeeded();
+            }
+        })();
     </script>
 </body>
 </html>

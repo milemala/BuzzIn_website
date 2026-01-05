@@ -432,8 +432,8 @@ body {
     font-size: 1.1rem;
     transition: all 0.3s ease;
     position: relative;
-    pointer-events: none;
-    cursor: default;
+    pointer-events: auto;
+    cursor: pointer;
 }
 
 .app-store-btn {

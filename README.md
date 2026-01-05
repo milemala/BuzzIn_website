@@ -116,6 +116,22 @@ BuzzInMap_website/
   - 新增 `ios-appstore-guide.html`，并在 `js/main.js` 中对 iOS + 微信环境下的 App Store 按钮进行引导跳转（与 Android APK 引导逻辑一致）。
 - **文件修改**: `index.html`, `merchant.html`, `guide.html`, `download.html`, `android-guide.html`, `ios-appstore-guide.html`, `css/style.css`, `js/main.js`, `images/wechat-miniprogram-qr.jpg`
 
+### 2025年1月 - 小程序通用下载引导页面优化
+- **变更**: 将 `android-guide-miniprogram.html` 重构为通用的 `download-guide-miniprogram.html`，适用于 iOS 和 Android 小程序环境
+- **问题描述**: 原页面仅适用于 Android，需要统一成一个通用页面，引导所有小程序用户下载应用
+- **解决方案**: 
+  - 重构页面为通用下载引导页面 `download-guide-miniprogram.html`
+  - 修改链接为统一的下载页面 `https://nowmap.cn/download.html`
+  - 用户复制链接后在外部浏览器打开，`download.html` 会根据设备类型（iOS/Android）自动处理下载
+  - 移除了平台特定的逻辑（不再直接下载 APK 或跳转 App Store）
+  - 修改文案，使其适用于 iOS 和 Android 用户
+  - 在外部浏览器中打开时，自动跳转到 `download.html`
+- **影响范围**: 
+  - iOS 和 Android 小程序用户都可以使用同一个页面
+  - 简化了页面逻辑，统一跳转到下载页面处理
+- **文件修改**: 
+  - 重构 `android-guide-miniprogram.html` 为 `download-guide-miniprogram.html`（通用版本）
+
 ### 2025年1月 - 新增微信小程序专用iOS下载引导页面
 - **变更**: 新增 `ios-appstore-guide-miniprogram.html`，专门用于微信小程序环境引导用户下载 iOS 版本
 - **问题描述**: 微信小程序内无法通过右上角"⋯"菜单选择在外部浏览器打开，需要引导用户复制链接后到外部浏览器打开
@@ -144,7 +160,27 @@ BuzzInMap_website/
 - **文件修改**: 
   - 新增 `ios-appstore-guide-miniprogram.html`
 
-### 2025年1月 - Android下载功能暂时禁用
+### 2025年1月 - Android下载功能恢复
+- **变更**: Android 客户端已上线，恢复 Android 下载功能
+- **解决方案**: 
+  - 修改 `download.html`：
+    - 恢复 Android 下载按钮的 HTML
+    - 添加 Android 设备检测逻辑，Android 设备显示 Android 下载按钮
+    - 添加 Android 按钮点击事件处理
+    - 添加 Android 自动下载逻辑：在微信内跳转到 `android-guide.html`，在外部浏览器直接下载 APK
+    - 移除"即将上线"提示框的显示逻辑
+    - 桌面端显示 iOS 和 Android 两个下载按钮
+  - 修改 `android-guide.html`，恢复下载功能：
+    - 恢复下载步骤说明和下载按钮
+    - 添加自动下载逻辑：在第三方浏览器中打开时自动下载 APK
+    - 移除"即将上线"提示内容
+- **影响范围**: 
+  - Android 用户可以正常下载 APK
+  - 在微信内会引导用户到外部浏览器下载
+  - 在外部浏览器中会自动开始下载
+- **文件修改**: `download.html`（恢复 Android 下载功能）、`android-guide.html`（恢复下载功能）
+
+### 2025年1月 - Android下载功能暂时禁用（已废弃）
 - **变更**: 暂时禁用 Android 下载功能，因为 Android 客户端尚未上线，直接从下载页面移除 Android 按钮并显示"即将上线"提示
 - **问题描述**: Android 客户端还在开发中，需要暂时禁用下载功能，直接在下载页面告诉用户尚未上线
 - **解决方案**: 

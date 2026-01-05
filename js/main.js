@@ -1,7 +1,7 @@
 // 导航栏滚动效果
 const ASSET_VERSION = '20251114';
-const APP_STORE_URL = 'https://apps.apple.com/cn/app/id741292507';
-const APK_DOWNLOAD_URL = '小红书.apk';
+const APP_STORE_URL = 'https://apps.apple.com/cn/app/id6747610081';
+const APK_DOWNLOAD_URL = 'Zup.apk';
 const ANDROID_GUIDE_URL = 'android-guide.html';
 const IOS_GUIDE_URL = 'ios-appstore-guide.html';
 const WECHAT_QR_IMAGE = `images/wechat-miniprogram-qr.jpg?v=${ASSET_VERSION}`;
@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
         navbar.classList.add('scrolled');
     }
 
-    // 平滑滚动
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    // 平滑滚动（排除下载按钮）
+    document.querySelectorAll('a[href^="#"]:not(.app-store-btn):not(.android-btn):not(.wechat-btn)').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
@@ -211,32 +211,49 @@ function isWeChatBrowser() {
 }
 
 function initDownloadEntryPoints() {
-    // 暂时注释掉下载按钮点击事件，App未上线
-    /*
     const appStoreButtons = document.querySelectorAll('.app-store-btn');
-    appStoreButtons.forEach(btn => {
-        btn.addEventListener('click', (event) => {
-            event.preventDefault();
-            if (isWeChatBrowser() && /iPad|iPhone|iPod/.test(navigator.userAgent || '')) {
-                window.location.href = IOS_GUIDE_URL;
-            } else {
-                window.location.href = APP_STORE_URL;
-            }
+    console.log('Found app store buttons:', appStoreButtons.length);
+    if (appStoreButtons.length > 0) {
+        appStoreButtons.forEach((btn, index) => {
+            console.log('Binding app store button', index);
+            btn.addEventListener('click', (event) => {
+                console.log('App Store button clicked!');
+                event.preventDefault();
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+                if (isWeChatBrowser() && /iPad|iPhone|iPod/.test(navigator.userAgent || '')) {
+                    console.log('Redirecting to iOS guide');
+                    window.location.href = IOS_GUIDE_URL;
+                } else {
+                    console.log('Redirecting to App Store:', APP_STORE_URL);
+                    window.location.href = APP_STORE_URL;
+                }
+                return false;
+            }, true); // 使用捕获阶段，确保优先级更高
         });
-    });
+    }
 
     const androidButtons = document.querySelectorAll('.android-btn');
-    androidButtons.forEach(btn => {
-        btn.addEventListener('click', (event) => {
-            event.preventDefault();
-            if (isWeChatBrowser()) {
-                window.location.href = ANDROID_GUIDE_URL;
-            } else {
-                window.location.href = APK_DOWNLOAD_URL;
-            }
+    console.log('Found android buttons:', androidButtons.length);
+    if (androidButtons.length > 0) {
+        androidButtons.forEach((btn, index) => {
+            console.log('Binding android button', index);
+            btn.addEventListener('click', (event) => {
+                console.log('Android button clicked!');
+                event.preventDefault();
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+                if (isWeChatBrowser()) {
+                    console.log('Redirecting to Android guide');
+                    window.location.href = ANDROID_GUIDE_URL;
+                } else {
+                    console.log('Redirecting to APK:', APK_DOWNLOAD_URL);
+                    window.location.href = APK_DOWNLOAD_URL;
+                }
+                return false;
+            }, true); // 使用捕获阶段，确保优先级更高
         });
-    });
-    */
+    }
 
     // 暂时注释掉微信小程序按钮交互，App未上线
     // initWechatButtonInteractions();
