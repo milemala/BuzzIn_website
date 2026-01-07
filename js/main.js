@@ -1,6 +1,6 @@
 // 导航栏滚动效果
 // 注意：APP_STORE_URL, APK_DOWNLOAD_URL, ANDROID_GUIDE_URL, IOS_GUIDE_URL 已在 config.js 中定义
-const ASSET_VERSION = '20251114';
+const ASSET_VERSION = '20250107';
 const WECHAT_QR_IMAGE = `images/wechat-miniprogram-qr.jpg?v=${ASSET_VERSION}`;
 const hoverMediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
 const mobileMediaQuery = window.matchMedia('(max-width: 768px)');
