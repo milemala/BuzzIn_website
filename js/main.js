@@ -1,9 +1,6 @@
 // 导航栏滚动效果
+// 注意：APP_STORE_URL, APK_DOWNLOAD_URL, ANDROID_GUIDE_URL, IOS_GUIDE_URL 已在 config.js 中定义
 const ASSET_VERSION = '20251114';
-const APP_STORE_URL = 'https://apps.apple.com/cn/app/id6747610081';
-const APK_DOWNLOAD_URL = 'https://cdn.nowmap.cn/apk/app-release-1.0.0.02-2.apk';
-const ANDROID_GUIDE_URL = 'android-guide.html';
-const IOS_GUIDE_URL = 'ios-appstore-guide.html';
 const WECHAT_QR_IMAGE = `images/wechat-miniprogram-qr.jpg?v=${ASSET_VERSION}`;
 const hoverMediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
 const mobileMediaQuery = window.matchMedia('(max-width: 768px)');

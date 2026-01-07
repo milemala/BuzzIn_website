@@ -174,11 +174,11 @@
 
         <p class="tip">如自动下载未开始，可点击上方按钮手动下载。或联系 service@nowmap.cn 获取协助。</p>
     </main>
-    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
     <script>
         (function() {
-            // 使用 main.js 中定义的全局 APK_DOWNLOAD_URL
-            const APK_URL = typeof APK_DOWNLOAD_URL !== 'undefined' ? APK_DOWNLOAD_URL : 'https://cdn.nowmap.cn/apk/app-release-1.0.0.02-2.apk';
+            // 使用 config.js 中定义的全局常量
+            const APK_URL = APK_DOWNLOAD_URL;
             
             function isWeChatBrowser() {
                 return /MicroMessenger/i.test(navigator.userAgent || '');

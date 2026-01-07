@@ -275,7 +275,7 @@
                 </span>
             </a>
 
-            <button type="button" class="action-button secondary device-btn android-btn" data-device="android" id="androidBtn">
+            <button type="button" class="action-button secondary device-btn" data-device="android" id="androidBtn">
                 <span class="action-content android-action">
                     <i class="fab fa-android"></i>
                     <span>Android 版本（APK）</span>
@@ -297,7 +297,7 @@
         </div>
     </div>
 
-    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
     <script>
         const downloadActions = document.getElementById('downloadActions');
         const iosBtn = document.getElementById('iosBtn');
@@ -306,11 +306,8 @@
         const helperParagraph = document.getElementById('helperParagraph');
         const comingSoonBox = document.getElementById('comingSoonBox');
 
-        // 使用 main.js 中定义的全局 APK_DOWNLOAD_URL
-        const APK_URL = typeof APK_DOWNLOAD_URL !== 'undefined' ? APK_DOWNLOAD_URL : 'https://cdn.nowmap.cn/apk/app-release-1.0.0.02-2.apk';
-        const ANDROID_GUIDE_URL = 'android-guide.html';
-        const APP_STORE_URL = 'https://apps.apple.com/cn/app/id6747610081';
-        const IOS_GUIDE_URL = 'ios-appstore-guide.html';
+        // 使用 config.js 中定义的全局常量
+        const APK_URL = APK_DOWNLOAD_URL;
 
         function isWeChatBrowser() {
             return /MicroMessenger/i.test(navigator.userAgent);
@@ -318,8 +315,33 @@
 
         function detectDevice() {
             const ua = navigator.userAgent || navigator.vendor || window.opera;
-            if (/android/i.test(ua)) return 'android';
-            if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) return 'ios';
+            console.log('Detecting device, UA:', ua); // 调试日志
+            
+            // 检测 Android（多种方式）
+            if (/android/i.test(ua)) {
+                console.log('Device detected: android (from UA)');
+                return 'android';
+            }
+            
+            // 额外的 Android 检测：通过平台信息
+            if (navigator.platform && /linux/i.test(navigator.platform) && 'ontouchstart' in window) {
+                console.log('Device detected: android (from platform + touch)');
+                return 'android';
+            }
+            
+            // 检测 iOS
+            if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
+                console.log('Device detected: ios');
+                return 'ios';
+            }
+            
+            // 对于桌面模式的移动设备，尝试通过触摸屏和屏幕尺寸判断
+            if ('ontouchstart' in window && window.innerWidth <= 1024) {
+                console.log('Device detected: android (fallback - touch + small screen)');
+                return 'android';
+            }
+            
+            console.log('Device detected: desktop');
             return 'desktop';
         }
 
@@ -345,24 +367,34 @@
         }
 
         function autoRedirectIfNeeded(device) {
+            console.log('autoRedirectIfNeeded called, device:', device, 'isWeChat:', isWeChatBrowser()); // 调试日志
             setTimeout(() => {
                 if (device === 'ios') {
+                    console.log('Redirecting iOS...');
                     if (isWeChatBrowser()) {
+                        console.log('To iOS guide:', IOS_GUIDE_URL);
                         window.location.href = IOS_GUIDE_URL;
                     } else {
+                        console.log('To App Store:', APP_STORE_URL);
                         window.location.href = APP_STORE_URL;
                     }
                 } else if (device === 'android') {
+                    console.log('Redirecting Android...');
                     if (isWeChatBrowser()) {
+                        console.log('To Android guide:', ANDROID_GUIDE_URL);
                         window.location.href = ANDROID_GUIDE_URL;
                     } else {
+                        console.log('To APK download:', APK_URL);
                         window.location.href = APK_URL;
                     }
+                } else {
+                    console.log('Desktop device, no auto redirect');
                 }
             }, 600);
         }
 
         function initPage() {
+            console.log('initPage called'); // 调试日志
             const device = detectDevice();
             setButtonVisibility(device);
             helperText.style.display = 'block';
@@ -381,19 +413,26 @@
             });
         }
 
-        // Android 按钮的点击事件已在 main.js 中通过 .android-btn class 绑定，这里不需要重复绑定
-        // 注释掉本地的事件监听器，避免重复
-        // if (androidBtn) {
-        //     androidBtn.addEventListener('click', () => {
-        //         if (isWeChatBrowser()) {
-        //             window.location.href = ANDROID_GUIDE_URL;
-        //         } else {
-        //             window.location.href = APK_URL;
-        //         }
-        //     });
-        // }
+        if (androidBtn) {
+            androidBtn.addEventListener('click', () => {
+                if (isWeChatBrowser()) {
+                    window.location.href = ANDROID_GUIDE_URL;
+                } else {
+                    window.location.href = APK_URL;
+                }
+            });
+        }
 
-        document.addEventListener('DOMContentLoaded', initPage);
+        console.log('Script loaded, readyState:', document.readyState); // 调试日志
+        
+        // 确保页面初始化
+        if (document.readyState === 'loading') {
+            console.log('Waiting for DOMContentLoaded...');
+            document.addEventListener('DOMContentLoaded', initPage);
+        } else {
+            console.log('DOM already loaded, calling initPage directly');
+            initPage();
+        }
     </script>
 </body>
 </html>
