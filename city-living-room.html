@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>城市客厅联盟 - Zup!</title>
+    <meta name="description" content="Zup 城市客厅联盟 - 连接优质空间与优质人群，共建城市社交活力基站">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css?v=20250107">
+    <link rel="stylesheet" href="css/animations.css?v=20250107">
+    <style>
+        /* 城市客厅联盟专属样式 */
+        :root {
+            --alliance-primary: #F4B400;
+            --alliance-secondary: #2EE8C2;
+            --alliance-dark: #0D1117;
+        }
+
+        /* 英雄区 */
+        .alliance-hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(13, 17, 23, 0.75), rgba(31, 39, 64, 0.85)), 
+                        url('images/alliance/hero-bg-rooftop.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .alliance-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(244, 180, 0, 0.1), transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(46, 232, 194, 0.08), transparent 50%);
+            animation: pulseGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-logo-wrapper {
+            margin-bottom: 20px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .hero-title-image {
+            max-width: 400px;
+            width: 85%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3));
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        .hero-title {
+            font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.3;
+            background: linear-gradient(135deg, #fff, var(--alliance-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: rgba(240, 246, 252, 0.9);
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .hero-description {
+            font-size: 0.95rem;
+            color: rgba(240, 246, 252, 0.75);
+            line-height: 1.6;
+            margin-bottom: 28px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--alliance-primary), #f7c546);
+            color: #1b1400;
+            padding: 15px 36px;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(244, 180, 0, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(244, 180, 0, 0.5);
+        }
+
+        .cta-button i {
+            margin-left: 8px;
+        }
+
+        /* 内容区块通用样式 */
+        .alliance-section {
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .alliance-section:nth-child(even) {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            color: var(--alliance-primary);
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: rgba(240, 246, 252, 0.7);
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* 简介区 */
+        .intro-content {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 48px;
+            line-height: 2;
+            font-size: 1.1rem;
+            color: rgba(240, 246, 252, 0.85);
+        }
+
+        .intro-content strong {
+            color: var(--alliance-primary);
+            font-weight: 600;
+        }
+
+
+        /* 合作对象卡片 */
+        .partner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .partner-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px 32px;
+            transition: all 0.3s ease;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--alliance-primary);
+            box-shadow: 0 15px 40px rgba(244, 180, 0, 0.15);
+        }
+
+        .partner-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--alliance-primary), #f7c546);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 24px;
+            color: #1b1400;
+        }
+
+        .partner-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--text-color);
+        }
+
+        .partner-card p {
+            color: rgba(240, 246, 252, 0.7);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .partner-examples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .example-tag {
+            background: rgba(244, 180, 0, 0.1);
+            border: 1px solid rgba(244, 180, 0, 0.3);
+            color: var(--alliance-primary);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* 活动示例 */
+        .activity-inspiration-section {
+            background: linear-gradient(135deg, rgba(13, 17, 23, 0.6), rgba(31, 39, 64, 0.7));
+            position: relative;
+        }
+
+        .activity-inspiration-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(244, 180, 0, 0.08), transparent 70%);
+            pointer-events: none;
+        }
+
+        .activity-categories {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .activity-category {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .activity-category:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 不同分类的配色 - 更轻快明亮 */
+        .activity-category:nth-child(1) {
+            background: linear-gradient(135deg, rgba(135, 206, 250, 0.12), rgba(135, 206, 250, 0.06));
+            border-color: rgba(135, 206, 250, 0.25);
+        }
+
+        .activity-category:nth-child(2) {
+            background: linear-gradient(135deg, rgba(255, 215, 100, 0.12), rgba(255, 215, 100, 0.06));
+            border-color: rgba(255, 215, 100, 0.25);
+        }
+
+        .activity-category:nth-child(3) {
+            background: linear-gradient(135deg, rgba(144, 238, 144, 0.12), rgba(144, 238, 144, 0.06));
+            border-color: rgba(144, 238, 144, 0.25);
+        }
+
+        .activity-category:nth-child(4) {
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.12), rgba(255, 182, 193, 0.06));
+            border-color: rgba(255, 182, 193, 0.25);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .category-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(46, 232, 194, 0.15);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--alliance-secondary);
+            flex-shrink: 0;
+        }
+
+        .category-header h3 {
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .activity-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 10px;
+        }
+
+        .activity-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 16px;
+            border-radius: 10px;
+            border-left: 3px solid;
+            color: rgba(240, 246, 252, 0.85);
+            line-height: 1.5;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .activity-category:nth-child(1) .activity-item {
+            border-left-color: rgba(135, 206, 250, 0.7);
+            background: rgba(135, 206, 250, 0.08);
+        }
+
+        .activity-category:nth-child(1) .activity-item:hover {
+            background: rgba(135, 206, 250, 0.16);
+            transform: translateX(5px);
+        }
+
+        .activity-category:nth-child(2) .activity-item {
+            border-left-color: rgba(255, 215, 100, 0.7);
+            background: rgba(255, 215, 100, 0.08);
+        }
+
+        .activity-category:nth-child(2) .activity-item:hover {
+            background: rgba(255, 215, 100, 0.16);
+            transform: translateX(5px);
+        }
+
+        .activity-category:nth-child(3) .activity-item {
+            border-left-color: rgba(144, 238, 144, 0.7);
+            background: rgba(144, 238, 144, 0.08);
+        }
+
+        .activity-category:nth-child(3) .activity-item:hover {
+            background: rgba(144, 238, 144, 0.16);
+            transform: translateX(5px);
+        }
+
+        .activity-category:nth-child(4) .activity-item {
+            border-left-color: rgba(255, 182, 193, 0.7);
+            background: rgba(255, 182, 193, 0.08);
+        }
+
+        .activity-category:nth-child(4) .activity-item:hover {
+            background: rgba(255, 182, 193, 0.16);
+            transform: translateX(5px);
+        }
+
+        /* 核心价值 */
+        .value-tabs {
+            max-width: 900px;
+            margin: 0 auto 32px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .value-tab {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            color: var(--text-color);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .value-tab.active {
+            background: linear-gradient(90deg, var(--alliance-primary), #f7c546);
+            color: #1b1400;
+            border-color: var(--alliance-primary);
+            box-shadow: 0 4px 15px rgba(244, 180, 0, 0.3);
+        }
+
+        .value-content {
+            display: none;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .value-content.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .value-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .value-grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .value-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .value-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 24px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            border-color: var(--alliance-primary);
+            background: rgba(244, 180, 0, 0.03);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(244, 180, 0, 0.15);
+        }
+
+        .value-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(244, 180, 0, 0.2), rgba(244, 180, 0, 0.1));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--alliance-primary);
+            flex-shrink: 0;
+        }
+
+        .value-text h4 {
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .value-text p {
+            color: rgba(240, 246, 252, 0.75);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* 联系区域 */
+        .contact-section {
+            background: linear-gradient(135deg, rgba(13, 17, 23, 0.85), rgba(31, 39, 64, 0.9)), 
+                        url('images/alliance/hero-bg-map.png') center/cover;
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(244, 180, 0, 0.08), transparent 60%);
+            pointer-events: none;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--alliance-primary);
+            box-shadow: 0 15px 40px rgba(244, 180, 0, 0.15);
+        }
+
+        .contact-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            color: var(--text-color);
+        }
+
+        .qr-code-wrapper {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 16px;
+            background: white;
+            padding: 12px;
+            border-radius: 12px;
+        }
+
+        .qr-code-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .contact-info {
+            color: rgba(240, 246, 252, 0.85);
+            font-size: 1rem;
+        }
+
+        .contact-info a {
+            color: var(--alliance-primary);
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* 信任背书 */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            margin-top: 48px;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(240, 246, 252, 0.6);
+            font-size: 0.95rem;
+        }
+
+        .trust-badge i {
+            color: var(--alliance-secondary);
+            font-size: 1.2rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .alliance-hero {
+                min-height: 100vh;
+                padding: 90px 20px 30px;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+                margin-bottom: 12px;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 10px;
+            }
+
+            .hero-description {
+                font-size: 0.95rem;
+                margin-bottom: 24px;
+                line-height: 1.5;
+            }
+
+            .cta-button {
+                padding: 14px 32px;
+                font-size: 1rem;
+            }
+
+            .alliance-section {
+                padding: 60px 20px;
+            }
+
+            .intro-content {
+                padding: 32px 24px;
+                font-size: 1rem;
+            }
+
+            .partner-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .value-grid,
+            .value-grid-2,
+            .value-grid-3 {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .value-card {
+                padding: 20px;
+                gap: 16px;
+            }
+
+            .value-icon {
+                width: 46px;
+                height: 46px;
+                font-size: 1.3rem;
+            }
+
+            .value-text h4 {
+                font-size: 1.1rem;
+                margin-bottom: 6px;
+            }
+
+            .value-text p {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+
+            .value-tabs {
+                gap: 10px;
+            }
+
+            .value-tab {
+                padding: 10px 24px;
+                font-size: 0.95rem;
+            }
+
+            .activity-list {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .activity-category {
+                padding: 20px;
+            }
+
+            .category-header {
+                margin-bottom: 14px;
+            }
+
+            .activity-item {
+                padding: 10px 14px;
+                font-size: 0.9rem;
+            }
+
+            .hero-logo-wrapper {
+                margin-bottom: 16px;
+            }
+
+            .hero-title-image {
+                max-width: 280px;
+                width: 90%;
+            }
+
+            .hero-title {
+                font-size: 1.6rem;
+            }
+
+            .hero-description {
+                font-size: 0.9rem;
+                margin-bottom: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/nav-logo.png" alt="Zup!" class="logo-img">
+            </a>
+            <button class="menu-toggle" aria-label="菜单">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="guide.html" class="nav-link">用户手册</a>
+                <a href="merchant.html" class="nav-link">商户入驻</a>
+                <a href="city-living-room.html" class="nav-link active">城市客厅联盟</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区 -->
+    <section class="alliance-hero">
+        <div class="hero-content fade-in">
+            <div class="hero-logo-wrapper">
+                <img src="images/alliance/title-simple.png" alt="城市客厅联盟" class="hero-title-image">
+            </div>
+            <h1 class="hero-title">活跃城市空间，开启线下生活新方式</h1>
+            <p class="hero-subtitle">联合商户与线下活动策办人<br>
+                将城市线下空间升级为青年人的社交枢纽</p>
+                <br>
+            <a href="#join" class="cta-button">
+                立即申请加入 <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- 联盟简介 -->
+    <section class="alliance-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">About Alliance</span>
+                <h2 class="section-title">什么是城市客厅联盟？</h2>
+            </div>
+            <div class="intro-content">
+                <p>
+                    <strong>「城市客厅联盟」</strong> 是由 Zup! 发起的城市线下空间合作计划。
+                </p>
+                <p style="margin-top: 24px;">
+                    我们联合城市中的酒馆、咖啡馆、复合空间等公共场所，与内容创作者、主理人、社群发起者一起，
+                    将城市线下空间升级为青年人的 <strong>"精神家园与社交枢纽"</strong>。
+                </p>
+                <p style="margin-top: 24px;">
+                    旨在构建一个 <strong>优质空间与优质活动主理人的双向链接</strong>：
+                    通过 Zup! 平台，我们将对线下社交与活动感兴趣的用户，精准引向联盟成员的空间，
+                    助力每个空间成为地理与精神上的 <strong>"城市客厅"</strong>。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 合作对象 -->
+    <section class="alliance-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Partners</span>
+                <h2 class="section-title">合作伙伴计划</h2>
+                <p class="section-description">
+                    面向商户端 / 活动组织端，诚邀入驻合作
+                </p>
+            </div>
+            <div class="partner-grid">
+                <div class="partner-card scroll-reveal">
+                    <div class="partner-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div>
+                        <h3>线下餐饮 / 娱乐商户</h3>
+                        <p>拥有独特调性，鼓励交流的空间</p>
+                        <div class="partner-examples">
+                            <span class="example-tag">清吧 / 小酒馆</span>
+                            <span class="example-tag">精酿吧</span>
+                            <span class="example-tag">咖啡馆</span>
+                            <span class="example-tag">复合空间</span>
+                            <span class="example-tag">展览空间</span>
+                            <span class="example-tag">社区空间</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="partner-card scroll-reveal">
+                    <div class="partner-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div>
+                        <h3>线下活动主理人</h3>
+                        <p>热爱线下交流、愿意为城市注入活力的空间主理人与活动组织者</p>
+                        <div class="partner-examples">
+                            <span class="example-tag">主题沙龙发起者</span>
+                            <span class="example-tag">游戏组织者</span>
+                            <span class="example-tag">读书会带领人</span>
+                            <span class="example-tag">城市探索向导</span>
+                            <span class="example-tag">运动推广者</span>
+                            <span class="example-tag">内容创作者</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 活动灵感 -->
+    <section class="alliance-section activity-inspiration-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Inspiration</span>
+                <h2 class="section-title">线下活动灵感</h2>
+                <p class="section-description">
+                    各种话题活动、达人分享、主题聚会、同好交流，吸引人们走进城市客厅
+                </p>
+            </div>
+            <div class="activity-categories">
+                <!-- 话题交流 -->
+                <div class="activity-category scroll-reveal">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>话题交流</h3>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">"AI 在生活中是帮了你，还是夺舍了你？"</div>
+                        <div class="activity-item">"跨行业交流，行业秘辛有问必答"</div>
+                        <div class="activity-item">"交换城市秘密，一个你知道但不常说的小众去处"</div>
+                        <div class="activity-item">"方言教学，每人教会对方一句自己家的方言"</div>
+                    </div>
+                </div>
+
+                <!-- 达人分享 -->
+                <div class="activity-category scroll-reveal">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <h3>达人分享</h3>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">"前经纪人分享娱乐圈八卦"</div>
+                        <div class="activity-item">"文艺历史主题讲座"</div>
+                        <div class="activity-item">"畅销书作者分享写作经验"</div>
+                        <div class="activity-item">"清华学长夜话五道口当年往事"</div>
+                    </div>
+                </div>
+
+                <!-- 互动型活动 -->
+                <div class="activity-category scroll-reveal">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3>互动型活动</h3>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">互换书籍：一本书的旅行</div>
+                        <div class="activity-item">互换明信片：我来消解你的遗憾</div>
+                        <div class="activity-item">卡牌桌游：狼人局、海龟汤、剧本杀</div>
+                        <div class="activity-item">旧物交易：互为"时光代理人"</div>
+                    </div>
+                </div>
+
+                <!-- 氛围型聚会 -->
+                <div class="activity-category scroll-reveal">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h3>氛围型聚会</h3>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">主题歌单之夜，童年动漫歌曲大联播</div>
+                        <div class="activity-item">英超/世界杯/NBA 球迷观赛</div>
+                        <div class="activity-item">各类节庆主题日，一起来联欢</div>
+                        <div class="activity-item">一起刷综艺《日落时分说爱你》</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心价值 -->
+    <section class="alliance-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Benefits</span>
+                <h2 class="section-title">加入城市客厅联盟能获得什么？</h2>
+                <p class="section-description">
+                    拓展新客源，同时积累高粘性社群
+                </p>
+            </div>
+
+            <!-- 切换标签 -->
+            <div class="value-tabs">
+                <button class="value-tab active" data-target="merchant">
+                    <i class="fas fa-store"></i> 商户价值
+                </button>
+                <button class="value-tab" data-target="organizer">
+                    <i class="fas fa-user-friends"></i> 主理人价值
+                </button>
+            </div>
+
+            <!-- 商户价值 -->
+            <div class="value-content active" id="merchant">
+                <div class="value-grid value-grid-2">
+                    <div class="value-card scroll-reveal">
+                        <div class="value-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="value-text">
+                            <h4>精准客流增量</h4>
+                            <p>作为"认证城市客厅"在 Zup! App 内获得专属标识与额外曝光，获得新客源，用户带着明确的社交或活动目的而来，转化与留存率更高。</p>
+                        </div>
+                    </div>
+
+                    <div class="value-card scroll-reveal">
+                        <div class="value-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <div class="value-text">
+                            <h4>提升复购/客单价</h4>
+                            <p>因为在店内建立的本地社群关系，部分顾客会习惯性以这个地方为据点而提升复购率，同时也因为"有的聊/有的玩"拉长了在店时长与客单价。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 主理人价值 -->
+            <div class="value-content" id="organizer">
+                <div class="value-grid value-grid-3">
+                    <div class="value-card scroll-reveal">
+                        <div class="value-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <div class="value-text">
+                            <h4>稳定场地支持</h4>
+                            <p>获得稳定、友好的线下空间支持，不用为场地发愁。与联盟空间建立长期合作，专注于内容与体验的打磨。</p>
+                        </div>
+                    </div>
+
+                    <div class="value-card scroll-reveal">
+                        <div class="value-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="value-text">
+                            <h4>商业化</h4>
+                            <p>与空间方以多种共创模式合作，将优质流量直接转化为你的号召力与可持续的商业模式。</p>
+                        </div>
+                    </div>
+
+                    <div class="value-card scroll-reveal">
+                        <div class="value-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="value-text">
+                            <h4>活动组织工具</h4>
+                            <p>使用 Zup! 提供的活动发布、在线报名、签到核销等工具，轻松管理线下活动全流程，降低运营精力与成本。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 / 立即加入 -->
+    <section class="contact-section" id="join">
+        <div class="contact-container">
+            <div class="section-header">
+                <span class="section-tag">Join Us</span>
+                <h2 class="section-title">欢迎入驻城市客厅联盟</h2>
+                <p class="section-description">
+                    欢迎所有热爱线下交流的商户与活动组织者<br>
+                    通过以下方式联系我们，我们将与您一对一沟通，定制专属合作方案
+                </p>
+            </div>
+
+            <div class="contact-methods">
+                <div class="contact-card">
+                    <h4><i class="fab fa-weixin"></i> 企业微信</h4>
+                    <div class="qr-code-wrapper">
+                        <img src="images/wechat-service-qr.png" alt="企业微信二维码">
+                    </div>
+                    <p class="contact-info">扫码添加客服</p>
+                </div>
+
+                <div class="contact-card">
+                    <h4><i class="fas fa-envelope"></i> 邮箱联系</h4>
+                    <div style="padding: 60px 0;">
+                        <p class="contact-info" style="font-size: 1.2rem; margin-bottom: 12px;">
+                            <a href="mailto:service@nowmap.cn">service@nowmap.cn</a>
+                        </p>
+                        <p style="color: rgba(240, 246, 252, 0.6); font-size: 0.95rem;">
+                            我们将在 24 小时内回复您
+                        </p>
+                    </div>
+                    <p class="contact-info" style="margin-top: 40px;">工作时间：周一至周日 10:00-22:00</p>
+                </div>
+            </div>
+
+            <!-- 信任背书 -->
+             <!--
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>正规企业认证</span> 
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-users"></i>
+                    <span>已有 100+ 空间加入</span> 
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-calendar-check"></i>
+                   <span>累计举办 500+ 场活动</span> 
+                </div>
+            </div>
+            -->
+        </div>
+    </section>
+
+    <!-- 底部 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于 Zup!</h3>
+                    <p>基于地图的社交娱乐即时互动平台</p>
+                    <div style="margin-top: 20px;">
+                        <a href="index.html" style="color: var(--alliance-primary); text-decoration: none;">← 返回首页</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p><a href="mailto:service@nowmap.cn">service@nowmap.cn</a></p>
+                    <div class="wechat-service-qr" style="margin-top: 20px;">
+                        <img src="images/wechat-service-qr.png" alt="微信客服二维码" class="qr-image">
+                        <p class="qr-label">微信客服</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-info">
+                    <p>网站ICP备案：京ICP备2025124152号</p>
+                    <p>公安备案：京公网安备11010502056951号</p>
+                    <p>Copyright 2025 北京万盏街灯科技有限公司</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/config.js?v=20250107"></script>
+    <script src="js/main.js?v=20250107"></script>
+    <script>
+        // 价值标签切换
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.value-tab');
+            const contents = document.querySelectorAll('.value-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.dataset.target;
+
+                    // 移除所有活动状态
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+
+                    // 添加当前活动状态
+                    tab.classList.add('active');
+                    document.getElementById(target).classList.add('active');
+                });
+            });
+
+            // 平滑滚动到加入区域
+            const ctaButtons = document.querySelectorAll('a[href="#join"]');
+            ctaButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.getElementById('join').scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
