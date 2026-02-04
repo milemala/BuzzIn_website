@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>活动详情 - Zup!</title>
+    <!-- 预连接到CDN和API服务器 -->
+    <link rel="preconnect" href="https://cdn.nowmap.cn">
+    <link rel="preconnect" href="https://test-go-api.nowmap.cn">
+    <link rel="dns-prefetch" href="https://cdn.nowmap.cn">
+    <link rel="dns-prefetch" href="https://test-go-api.nowmap.cn">
+    <!-- 提前发起API请求，与页面解析并行 -->
+    <script>
+        window.__START_TIME__ = Date.now();
+        console.log('[性能] 页面开始加载');
+        
+        window.__DATA_PROMISE__ = (function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const nowId = urlParams.get('now_id') || '457911451';
+            console.log('[性能] API请求发起', Date.now() - window.__START_TIME__, 'ms');
+            
+            return fetch('https://test-go-api.nowmap.cn/api/v1/now/detail', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ now_id: nowId })
+            }).then(r => r.json()).then(result => {
+                console.log('[性能] API返回', Date.now() - window.__START_TIME__, 'ms');
+                if (result.code === 0 && result.data) return result.data;
+                throw new Error(result.message || '获取数据失败');
+            });
+        })();
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #FFD93D;
+            --bg-color: #0a0a0f;
+            --card-bg: #16161f;
+            --text-color: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        /* 加载状态 */
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            gap: 20px;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        /* 错误状态 */
+        .error {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .error-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        .error-message {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+        
+        /* 主内容 */
+        .content {
+            display: none;
+            padding-bottom: 40px;
+        }
+        
+        /* 头图区域 - 动态适配比例 */
+        .hero-gallery {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background: var(--card-bg);
+            aspect-ratio: 16 / 9;
+        }
+        
+        .gallery-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .gallery-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* 单个视频时禁用滚动 */
+        .gallery-container.no-scroll {
+            overflow: hidden;
+        }
+        
+        .gallery-item {
+            flex: 0 0 100%;
+            scroll-snap-align: start;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gallery-item img,
+        .gallery-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        /* 视频播放控制 */
+        .video-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 3;
+            transition: opacity 0.3s ease, transform 0.2s ease;
+            backdrop-filter: blur(10px);
+            opacity: 1;
+        }
+        
+        .video-play-btn:active {
+            transform: translate(-50%, -50%) scale(0.9);
+        }
+        
+        .video-play-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+            margin-left: 3px;
+        }
+        
+        .video-play-btn.playing svg {
+            margin-left: 0;
+        }
+        
+        /* 播放时隐藏按钮 */
+        .video-play-btn.playing {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        /* 点击时短暂显示 */
+        .video-play-btn.playing.show-briefly {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        /* 视频加载中状态 */
+        .video-loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 4;
+            pointer-events: none;
+        }
+        
+        .video-loading::after {
+            content: '';
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        .gallery-item.loading .video-play-btn {
+            display: none;
+        }
+        
+        .gallery-item:not(.loading) .video-loading {
+            display: none;
+        }
+        
+        /* 暂停状态始终显示 */
+        .gallery-item[data-paused="true"] .video-play-btn {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        /* 图片计数器 */
+        .gallery-counter {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            backdrop-filter: blur(10px);
+            z-index: 5;
+        }
+        
+        /* 渐变遮罩 */
+        .hero-gradient {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(to top, var(--bg-color), transparent);
+            pointer-events: none;
+        }
+        
+        /* 内容区域 */
+        .activity-info {
+            padding: 0 20px;
+            margin-top: -30px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* 标题 */
+        .activity-title {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+        
+        /* 发布者信息 */
+        .publisher-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .publisher-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+            background: var(--card-bg);
+        }
+        
+        .publisher-details {
+            flex: 1;
+        }
+        
+        .publisher-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        .publisher-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+        
+        /* 正文内容 */
+        .activity-content {
+            margin-bottom: 24px;
+        }
+        
+        .section-title {
+            font-size: 14px;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 3px;
+            height: 14px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        .content-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-color);
+            white-space: pre-wrap;
+        }
+        
+        /* 活动时间 */
+        .activity-time {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            margin-bottom: 12px;
+        }
+        
+        .time-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 217, 61, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .time-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary-color);
+        }
+        
+        .time-text {
+            font-size: 15px;
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+        
+        /* 活动地点 */
+        .activity-location {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .location-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 217, 61, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .location-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary-color);
+        }
+        
+        .location-text {
+            font-size: 15px;
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+        
+        /* 下载引导板块 */
+        .download-banner {
+            margin: 32px 16px;
+            padding: 32px 24px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+            background: linear-gradient(165deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .download-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 217, 61, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .download-banner::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -20%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(0, 200, 150, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .download-banner-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .download-banner-icon {
+            width: 80px;
+            height: 80px;
+            flex-shrink: 0;
+        }
+        
+        .download-banner-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 20px rgba(255, 217, 61, 0.3));
+        }
+        
+        .download-banner-text {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .download-banner-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+        
+        .download-banner-desc {
+            font-size: 13px;
+            color: rgba(255, 217, 61, 0.9);
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .download-banner-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #f5c518 100%);
+            color: #000;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 4px 15px rgba(255, 217, 61, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+        
+        .download-banner-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 8px rgba(255, 217, 61, 0.3);
+        }
+        
+        /* 底部安全区域 */
+        .safe-area-bottom {
+            height: env(safe-area-inset-bottom, 20px);
+        }
+    </style>
+</head>
+<body>
+    <!-- 加载状态 -->
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">加载中...</div>
+    </div>
+    
+    <!-- 错误状态 -->
+    <div class="error" id="error">
+        <div class="error-icon">😔</div>
+        <div class="error-message">加载失败，请稍后重试</div>
+    </div>
+    
+    <!-- 主内容 -->
+    <div class="content" id="content">
+        <!-- 头图轮播 -->
+        <div class="hero-gallery" id="heroGallery">
+            <div class="gallery-container" id="galleryContainer"></div>
+            <div class="gallery-counter" id="galleryCounter">1/1</div>
+            <div class="hero-gradient"></div>
+        </div>
+        
+        <!-- 活动信息 -->
+        <div class="activity-info">
+            <!-- 标题 -->
+            <h1 class="activity-title" id="activityTitle"></h1>
+            
+            <!-- 发布者信息 -->
+            <div class="publisher-info">
+                <img class="publisher-avatar" id="publisherAvatar" src="" alt="发布者头像" loading="lazy">
+                <div class="publisher-details">
+                    <div class="publisher-name" id="publisherName"></div>
+                    <div class="publisher-label">活动发起人</div>
+                </div>
+            </div>
+            
+            <!-- 正文 -->
+            <div class="activity-content">
+                <div class="section-title">活动介绍</div>
+                <div class="content-text" id="activityContent"></div>
+            </div>
+            
+            <!-- 活动时间（如果有） -->
+            <div class="activity-time" id="activityTimeWrapper" style="display: none;">
+                <div class="time-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                    </svg>
+                </div>
+                <div class="time-text" id="activityTime"></div>
+            </div>
+            
+            <!-- 活动地点 -->
+            <div class="activity-location">
+                <div class="location-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                </div>
+                <div class="location-text" id="activityLocation"></div>
+            </div>
+        </div>
+        
+        <!-- 下载引导板块 -->
+        <div class="download-banner">
+            <div class="download-banner-content">
+                <div class="download-banner-icon">
+                    <img src="images/hero-logo.png" alt="Zup!" loading="lazy">
+                </div>
+                <div class="download-banner-text">
+                    <div class="download-banner-title">下载 Zup! App 立即参加活动</div>
+                    <div class="download-banner-desc">线下实时活动地图</div>
+                </div>
+                <a href="download.html" class="download-banner-btn">
+                    下载
+                </a>
+            </div>
+        </div>
+        
+        <div class="safe-area-bottom"></div>
+    </div>
+    
+    <script>
+        // 获取URL参数中的now_id
+        function getNowId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('now_id') || '435604947';
+        }
+        
+        // 获取活动详情
+        async function fetchActivityDetail(nowId) {
+            try {
+                const response = await fetch('https://test-go-api.nowmap.cn/api/v1/now/detail', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ now_id: nowId })
+                });
+                
+                const result = await response.json();
+                
+                if (result.code === 0 && result.data) {
+                    return result.data;
+                } else {
+                    throw new Error(result.message || '获取数据失败');
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+                throw error;
+            }
+        }
+        
+        // 图片URL添加OSS压缩参数
+        const OSS_IMAGE_SUFFIX = '?x-oss-process=image/quality,q_60/resize,w_1440';
+        const OSS_AVATAR_SUFFIX = '?x-oss-process=image/quality,q_60/resize,w_300';
+        
+        function addOssSuffix(url, suffix) {
+            if (!url) return url;
+            if (url.includes('.mp4') || url.includes('.mov') || url.includes('.webm')) {
+                return url;
+            }
+            return url + suffix;
+        }
+        
+        // 格式化时间戳
+        function formatTimestamp(timestamp) {
+            if (!timestamp || timestamp <= 0) return null;
+            const date = new Date(timestamp * 1000);
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            return `${year}年${month}月${day}日 ${hours}:${minutes}`;
+        }
+        
+        // 渲染文字内容（立即执行，不等待图片）
+        function renderTextContent(data) {
+            // 标题
+            document.getElementById('activityTitle').textContent = data.now_title;
+            document.title = `${data.now_title} - Zup!`;
+            
+            // 发布者昵称（头像稍后加载）
+            document.getElementById('publisherName').textContent = data.now_user.nickname;
+            
+            // 异步加载头像
+            const avatarImg = document.getElementById('publisherAvatar');
+            avatarImg.src = addOssSuffix(data.now_user.avatar, OSS_AVATAR_SUFFIX);
+            
+            // 正文
+            document.getElementById('activityContent').textContent = data.now_content || '暂无介绍';
+            
+            // 活动时间（如果有start_at）
+            if (data.start_at && data.start_at > 0) {
+                const timeText = formatTimestamp(data.start_at);
+                if (timeText) {
+                    document.getElementById('activityTime').textContent = timeText;
+                    document.getElementById('activityTimeWrapper').style.display = 'flex';
+                }
+            }
+            
+            // 地点
+            document.getElementById('activityLocation').textContent = data.now_address_name;
+        }
+        
+        // 渲染头图轮播
+        function renderGallery(medias) {
+            const heroGallery = document.getElementById('heroGallery');
+            const container = document.getElementById('galleryContainer');
+            const counter = document.getElementById('galleryCounter');
+            
+            if (!medias || medias.length === 0) {
+                container.innerHTML = '<div class="gallery-item"><div style="width:100%;height:100%;min-height:200px;background:var(--card-bg);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);">暂无图片</div></div>';
+                counter.style.display = 'none';
+                return;
+            }
+            
+            // 用第一个媒体的比例决定区域大小
+            const firstMedia = medias[0];
+            const imgWidth = firstMedia.width || 16;
+            const imgHeight = firstMedia.height || 9;
+            
+            let aspectRatio = imgWidth / imgHeight;
+            
+            // 限制宽高比: 最大16:9, 最小3:4
+            const maxRatio = 16 / 9;
+            const minRatio = 3 / 4;
+            
+            if (aspectRatio > maxRatio) {
+                aspectRatio = maxRatio;
+            } else if (aspectRatio < minRatio) {
+                aspectRatio = minRatio;
+            }
+            
+            heroGallery.style.aspectRatio = aspectRatio;
+            
+            const isVideo = firstMedia.media_type === 2;
+            
+            if (isVideo) {
+                // 单个视频
+                const playIcon = `<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>`;
+                const pauseIcon = `<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
+                
+                container.classList.add('no-scroll');
+                
+                container.innerHTML = `
+                    <div class="gallery-item loading" data-type="video" data-paused="true">
+                        <video 
+                            src="${firstMedia.media_url}" 
+                            muted 
+                            loop 
+                            playsinline 
+                            preload="none"
+                        ></video>
+                        <div class="video-loading"></div>
+                        <button class="video-play-btn">
+                            ${playIcon}
+                        </button>
+                    </div>
+                `;
+                
+                counter.style.display = 'none';
+                
+                const item = container.querySelector('.gallery-item');
+                const video = item.querySelector('video');
+                const btn = item.querySelector('.video-play-btn');
+                
+                // 视频可以播放时移除loading
+                video.addEventListener('canplay', () => {
+                    item.classList.remove('loading');
+                });
+                
+                // 视频数据加载中
+                video.addEventListener('loadeddata', () => {
+                    item.classList.remove('loading');
+                });
+                
+                // 视频等待缓冲时显示loading（仅播放状态）
+                video.addEventListener('waiting', () => {
+                    if (!video.paused) {
+                        item.classList.add('loading');
+                    }
+                });
+                
+                // 视频开始播放时
+                video.addEventListener('playing', () => {
+                    item.classList.remove('loading');
+                    btn.innerHTML = pauseIcon;
+                    btn.classList.add('playing');
+                    item.dataset.paused = 'false';
+                });
+                
+                // 视频播放结束时循环
+                video.addEventListener('ended', () => {
+                    video.currentTime = 0;
+                    video.play().catch(() => {});
+                });
+                
+                // 视频暂停时
+                video.addEventListener('pause', () => {
+                    item.classList.remove('loading');
+                });
+                
+                // 视频加载错误时
+                video.addEventListener('error', () => {
+                    console.error('视频加载失败');
+                    item.classList.remove('loading');
+                    btn.innerHTML = playIcon;
+                    btn.classList.remove('playing');
+                    item.dataset.paused = 'true';
+                });
+                
+                // 超时保护：10秒后如果还在loading就移除
+                setTimeout(() => {
+                    if (item.classList.contains('loading')) {
+                        item.classList.remove('loading');
+                        if (video.paused) {
+                            item.dataset.paused = 'true';
+                        }
+                    }
+                }, 10000);
+                
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    toggleVideoPlay(video, btn, item, playIcon, pauseIcon);
+                });
+                
+                item.addEventListener('click', (e) => {
+                    if (e.target === btn || btn.contains(e.target)) return;
+                    if (item.classList.contains('loading')) return;
+                    btn.classList.add('show-briefly');
+                    toggleVideoPlay(video, btn, item, playIcon, pauseIcon);
+                    if (!video.paused) {
+                        setTimeout(() => btn.classList.remove('show-briefly'), 1500);
+                    }
+                });
+                
+                video.play().catch(() => {
+                    item.classList.remove('loading');
+                    btn.innerHTML = playIcon;
+                    btn.classList.remove('playing');
+                    item.dataset.paused = 'true';
+                });
+                
+            } else {
+                // 图集
+                container.classList.remove('no-scroll');
+                
+                container.innerHTML = medias.map((media, index) => {
+                    const compressedUrl = addOssSuffix(media.media_url, OSS_IMAGE_SUFFIX);
+                    return `
+                        <div class="gallery-item" data-type="image" data-index="${index}">
+                            <img src="${compressedUrl}" alt="活动图片 ${index + 1}" loading="${index === 0 ? 'eager' : 'lazy'}">
+                        </div>
+                    `;
+                }).join('');
+                
+                if (medias.length > 1) {
+                    counter.textContent = `1/${medias.length}`;
+                    counter.style.display = 'block';
+                    
+                    container.addEventListener('scroll', () => {
+                        const scrollLeft = container.scrollLeft;
+                        const itemWidth = container.offsetWidth;
+                        const currentIndex = Math.round(scrollLeft / itemWidth) + 1;
+                        counter.textContent = `${currentIndex}/${medias.length}`;
+                    });
+                } else {
+                    counter.style.display = 'none';
+                }
+            }
+        }
+        
+        // 切换视频播放状态
+        function toggleVideoPlay(video, btn, item, playIcon, pauseIcon) {
+            if (video.paused) {
+                video.play();
+                btn.innerHTML = pauseIcon;
+                btn.classList.add('playing');
+                item.dataset.paused = 'false';
+            } else {
+                video.pause();
+                btn.innerHTML = playIcon;
+                btn.classList.remove('playing');
+                btn.classList.remove('show-briefly');
+                item.dataset.paused = 'true';
+            }
+        }
+        
+        // 初始化
+        async function init() {
+            console.log('[性能] init开始', Date.now() - window.__START_TIME__, 'ms');
+            
+            const loading = document.getElementById('loading');
+            const error = document.getElementById('error');
+            const content = document.getElementById('content');
+            
+            try {
+                // 使用在head中提前发起的请求
+                const data = await window.__DATA_PROMISE__;
+                console.log('[性能] 数据ready', Date.now() - window.__START_TIME__, 'ms');
+                
+                // 立即隐藏loading并显示内容
+                loading.style.display = 'none';
+                content.style.display = 'block';
+                
+                // 立即渲染文字内容
+                renderTextContent(data);
+                console.log('[性能] 文字渲染完成', Date.now() - window.__START_TIME__, 'ms');
+                
+                // 异步渲染媒体内容（不阻塞）
+                setTimeout(() => {
+                    renderGallery(data.now_medias);
+                    console.log('[性能] 媒体渲染完成', Date.now() - window.__START_TIME__, 'ms');
+                }, 0);
+                
+            } catch (err) {
+                loading.style.display = 'none';
+                error.style.display = 'flex';
+            }
+        }
+        
+        // DOM准备好后立即初始化
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>
