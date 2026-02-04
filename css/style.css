@@ -43,6 +43,14 @@
     border-bottom-right-radius: 10px;
 }
 
+/* 通用SVG图标样式 */
+.icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
+    fill: currentColor;
+}
+
 /* 图标样式 */
 .download-btn {
     display: inline-flex;
