@@ -466,6 +466,7 @@
             width: 80px;
             height: 80px;
             flex-shrink: 0;
+            margin-left: -15px;
         }
         
         .download-banner-icon img {
@@ -477,12 +478,13 @@
         
         .download-banner-text {
             flex: 1;
-            text-align: left;
+            text-align: center;
+            margin-left: -15px;
         }
         
         .download-banner-title {
             font-size: 17px;
-            font-weight: 700;
+            font-weight: 900;
             color: #fff;
             margin-bottom: 6px;
             letter-spacing: 0.3px;
@@ -491,7 +493,7 @@
         .download-banner-desc {
             font-size: 13px;
             color: rgba(255, 217, 61, 0.9);
-            font-weight: 500;
+            font-weight: 700;
             letter-spacing: 1px;
         }
         
@@ -500,24 +502,77 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
-            padding: 12px 20px;
+            padding: 10px 10px;
             background: linear-gradient(135deg, var(--primary-color) 0%, #f5c518 100%);
             color: #000;
             font-size: 14px;
             font-weight: 700;
             text-decoration: none;
-            border-radius: 25px;
+            border-radius: 15px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 
                 0 4px 15px rgba(255, 217, 61, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.3);
             flex-shrink: 0;
             white-space: nowrap;
+            margin-right: -15px;
         }
         
         .download-banner-btn:active {
             transform: scale(0.95);
             box-shadow: 0 2px 8px rgba(255, 217, 61, 0.3);
+        }
+        
+        /* 微信引导蒙层 */
+        .wechat-guide-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            justify-content: flex-end;
+            padding: 20px;
+        }
+        
+        .wechat-guide-overlay.show {
+            display: flex;
+        }
+        
+        .wechat-guide-content {
+            text-align: right;
+            color: #fff;
+        }
+        
+        .wechat-guide-arrow {
+            width: 60px;
+            height: 60px;
+            margin-left: auto;
+            animation: bounce 1s infinite;
+        }
+        
+        .wechat-guide-arrow svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .wechat-guide-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+        
+        .wechat-guide-text strong {
+            font-size: 24px;
+            letter-spacing: 2px;
         }
         
         /* 底部安全区域 */
@@ -596,11 +651,11 @@
                     <img src="images/hero-logo.png" alt="Zup!" loading="lazy">
                 </div>
                 <div class="download-banner-text">
-                    <div class="download-banner-title">下载 Zup! App 立即参加活动</div>
+                    <div class="download-banner-title">下载 Zup! App<br>立即参加活动</div>
                     <div class="download-banner-desc">线下实时活动地图</div>
                 </div>
-                <a href="download.html" class="download-banner-btn">
-                    下载
+                <a href="javascript:void(0);" class="download-banner-btn" id="openAppBtn">
+                    打开App
                 </a>
             </div>
         </div>
@@ -608,7 +663,83 @@
         <div class="safe-area-bottom"></div>
     </div>
     
+    <!-- 微信引导蒙层 -->
+    <div class="wechat-guide-overlay" id="wechatGuide">
+        <div class="wechat-guide-content">
+            <div class="wechat-guide-arrow">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+            </div>
+            <div class="wechat-guide-text">
+                点击右上角 <strong>···</strong><br>
+                选择「在浏览器中打开」
+            </div>
+        </div>
+    </div>
+    
     <script>
+        // 检测是否在微信浏览器内
+        function isWechat() {
+            const ua = navigator.userAgent.toLowerCase();
+            return ua.indexOf('micromessenger') !== -1;
+        }
+        
+        // 打开App或跳转下载页
+        function openApp() {
+            const nowId = getNowId();
+            
+            // 微信内浏览器，显示引导蒙层
+            if (isWechat()) {
+                const wechatGuide = document.getElementById('wechatGuide');
+                wechatGuide.classList.add('show');
+                // 点击蒙层关闭
+                wechatGuide.addEventListener('click', function() {
+                    wechatGuide.classList.remove('show');
+                });
+                return;
+            }
+            
+            // 尝试打开App
+            const deepLink = 'nowmap://open?now_id=' + encodeURIComponent(nowId);
+            let appOpened = false;
+            let timer = null;
+            
+            // 监听页面可见性变化，如果页面进入后台说明App打开成功
+            function handleVisibilityChange() {
+                if (document.hidden) {
+                    appOpened = true;
+                    // App已打开，取消跳转
+                    if (timer) {
+                        clearTimeout(timer);
+                        timer = null;
+                    }
+                }
+            }
+            
+            document.addEventListener('visibilitychange', handleVisibilityChange);
+            
+            // 尝试直接跳转打开App
+            window.location.href = deepLink;
+            
+            // 延迟检测，如果App未安装则跳转到下载页
+            timer = setTimeout(function() {
+                // 移除监听
+                document.removeEventListener('visibilitychange', handleVisibilityChange);
+                
+                // 只有在App没有被打开的情况下才跳转到下载页
+                if (!appOpened && !document.hidden) {
+                    window.location.href = 'download.html';
+                }
+            }, 1500);
+        }
+        
+        // 绑定打开App按钮事件
+        document.addEventListener('DOMContentLoaded', function() {
+            const openAppBtn = document.getElementById('openAppBtn');
+            if (openAppBtn) {
+                openAppBtn.addEventListener('click', openApp);
+            }
+        });
+        
         // 获取URL参数中的now_id
         function getNowId() {
             const urlParams = new URLSearchParams(window.location.search);
