@@ -810,8 +810,8 @@
             // 正文
             document.getElementById('activityContent').textContent = data.now_content || '暂无介绍';
             
-            // 活动时间（如果有start_at）
-            if (data.start_at && data.start_at > 0) {
+            // 活动时间（仅 now_type === 3 时显示）
+            if (data.now_type === 3 && data.start_at && data.start_at > 0) {
                 const timeText = formatTimestamp(data.start_at);
                 if (timeText) {
                     document.getElementById('activityTime').textContent = timeText;
@@ -994,6 +994,11 @@
         
         // 切换视频播放状态
         function toggleVideoPlay(video, btn, item, playIcon, pauseIcon) {
+            // 用户交互后取消静音
+            if (video.muted) {
+                video.muted = false;
+            }
+            
             if (video.paused) {
                 video.play();
                 btn.innerHTML = pauseIcon;
