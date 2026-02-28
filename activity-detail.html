@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>活动详情 - Zup!</title>
     <!-- 预连接到CDN和API服务器 -->
-    <link rel="preconnect" href="https://cdn.nowmap.cn">
+    <link rel="preconnect" href="https://zup.nowmap.cn">
     <link rel="preconnect" href="https://test-go-api.nowmap.cn">
-    <link rel="dns-prefetch" href="https://cdn.nowmap.cn">
+    <link rel="dns-prefetch" href="https://zup.nowmap.cn">
     <link rel="dns-prefetch" href="https://test-go-api.nowmap.cn">
     <!-- 提前发起API请求，与页面解析并行 -->
     <script>
@@ -20,7 +20,7 @@
             const nowId = urlParams.get('now_id') || '457911451';
             console.log('[性能] API请求发起', Date.now() - window.__START_TIME__, 'ms');
             
-            return fetch('https://test-go-api.nowmap.cn/api/v1/now/detail', {
+            return fetch('https://zup.nowmap.cn/api/v1/now/detail', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ now_id: nowId })
@@ -699,7 +699,8 @@
             }
             
             // 尝试打开App
-            const deepLink = 'nowmap://open?now_id=' + encodeURIComponent(nowId);
+            const mediaType = window.__MEDIA_TYPE__ || 1;
+            const deepLink = 'nowmap://open?now_id=' + encodeURIComponent(nowId) + '&media_type=' + mediaType;
             let appOpened = false;
             let timer = null;
             
@@ -855,6 +856,9 @@
             heroGallery.style.aspectRatio = aspectRatio;
             
             const isVideo = firstMedia.media_type === 2;
+            
+            // 保存media_type供打开App时使用
+            window.__MEDIA_TYPE__ = firstMedia.media_type;
             
             if (isVideo) {
                 // 单个视频
