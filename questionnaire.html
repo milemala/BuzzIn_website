@@ -1,0 +1,1873 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Zup! 匹配问卷</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        :root {
+            --primary: #FFD93D;
+            --primary-dim: rgba(255, 217, 61, 0.15);
+            --primary-glow: rgba(255, 217, 61, 0.3);
+            --bg: #0a0a0f;
+            --card: #16161f;
+            --card-hover: #1e1e2a;
+            --surface: #1c1c28;
+            --text: #ffffff;
+            --text-sec: rgba(255,255,255,0.6);
+            --text-hint: rgba(255,255,255,0.35);
+            --border: rgba(255,255,255,0.08);
+            --danger: #ff6b6b;
+            --success: #51cf66;
+            --radius: 12px;
+            --radius-sm: 8px;
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ============ Progress Bar ============ */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--border);
+            z-index: 100;
+        }
+        .progress-bar .fill {
+            height: 100%;
+            background: var(--primary);
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 0 2px 2px 0;
+            box-shadow: 0 0 8px var(--primary-glow);
+        }
+
+        /* ============ Header ============ */
+        .header {
+            position: fixed;
+            top: 3px;
+            left: 0;
+            right: 0;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 99;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .header.visible { opacity: 1; }
+        .header .back-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            background: var(--card);
+            border-radius: 50%;
+            color: var(--text);
+            cursor: pointer;
+        }
+        .header .back-btn svg { width: 18px; height: 18px; }
+        .header .step-label {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-sec);
+        }
+        .header .step-count {
+            font-size: 13px;
+            color: var(--text-hint);
+            min-width: 36px;
+            text-align: right;
+        }
+
+        /* ============ Steps Container ============ */
+        .steps-wrapper {
+            padding-top: 55px;
+            padding-bottom: calc(80px + var(--safe-bottom));
+            min-height: 100vh;
+        }
+
+        .step {
+            display: none;
+            padding: 20px 20px 40px;
+            animation: fadeInUp 0.35s ease-out;
+        }
+        .step.active { display: block; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============ Welcome Screen ============ */
+        .welcome {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 160px);
+            text-align: center;
+            padding: 40px 24px;
+        }
+        .welcome .logo-circle {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), #ff9f43);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 28px;
+            box-shadow: 0 8px 32px rgba(255, 217, 61, 0.25);
+        }
+        .welcome .logo-circle svg {
+            width: 44px;
+            height: 44px;
+            fill: var(--bg);
+        }
+        .welcome h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .welcome .subtitle {
+            font-size: 15px;
+            color: var(--text-sec);
+            line-height: 1.7;
+            margin-bottom: 36px;
+            max-width: 300px;
+        }
+        .welcome .features {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        .welcome .feat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .welcome .feat-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        .welcome .feat-label {
+            font-size: 12px;
+            color: var(--text-sec);
+        }
+        .welcome .time-note {
+            font-size: 12px;
+            color: var(--text-hint);
+            margin-top: 12px;
+        }
+
+        /* ============ Section Title ============ */
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .section-desc {
+            font-size: 13px;
+            color: var(--text-hint);
+            margin-bottom: 28px;
+        }
+
+        /* ============ Question Block ============ */
+        .q-block {
+            margin-bottom: 28px;
+        }
+        .q-label {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .q-label .required {
+            color: var(--primary);
+            font-size: 13px;
+        }
+
+        /* ============ Native Select ============ */
+        .native-select {
+            width: 100%;
+            height: 48px;
+            background: var(--card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 0 36px 0 16px;
+            font-size: 15px;
+            color: var(--text);
+            font-family: inherit;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.35)' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 12px;
+        }
+        .native-select:focus { border-color: var(--primary); }
+        .native-select option {
+            background: #1a1a2e;
+            color: #fff;
+        }
+        .native-select.placeholder-active { color: var(--text-hint); }
+
+        /* ============ Date Picker Row ============ */
+        .date-row {
+            display: flex;
+            gap: 10px;
+        }
+        .date-row .native-select {
+            flex: 1;
+            text-align: center;
+            text-align-last: center;
+            padding: 0 8px;
+            background-image: none;
+        }
+        .date-row .native-select.year { flex: 1.3; }
+
+        /* ============ Inline Selects Row ============ */
+        .select-row {
+            display: flex;
+            gap: 10px;
+        }
+        .select-row .native-select { flex: 1; }
+
+        /* ============ Option Cards (single select) ============ */
+        .option-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .option-card {
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            font-size: 14px;
+            color: var(--text-sec);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        .option-card .radio {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--text-hint);
+            flex-shrink: 0;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .option-card .radio::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+            transform: scale(0);
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .option-card.selected {
+            border-color: var(--primary);
+            background: var(--primary-dim);
+            color: var(--text);
+        }
+        .option-card.selected .radio {
+            border-color: var(--primary);
+        }
+        .option-card.selected .radio::after {
+            transform: scale(1);
+        }
+
+        /* ============ Grid Option Cards (2-col) ============ */
+        .option-cards.grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .option-cards.grid .option-card {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 16px 12px;
+            gap: 8px;
+        }
+
+        /* ============ Tag Chips ============ */
+        .tag-group { margin-bottom: 20px; }
+        .tag-group-label {
+            font-size: 13px;
+            color: var(--text-hint);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .tag-group-label .emoji { font-size: 15px; }
+        .tags-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--text-sec);
+            cursor: pointer;
+            transition: all 0.2s;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        .tag:active { transform: scale(0.95); }
+        .tag.selected {
+            background: var(--primary-dim);
+            border-color: var(--primary);
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        /* ============ Text Input ============ */
+        .text-input {
+            width: 100%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            font-size: 15px;
+            color: var(--text);
+            resize: none;
+            outline: none;
+            font-family: inherit;
+            line-height: 1.5;
+            transition: border-color 0.2s;
+        }
+        .text-input::placeholder { color: var(--text-hint); }
+        .text-input:focus { border-color: var(--primary); }
+        .text-hint {
+            font-size: 12px;
+            color: var(--text-hint);
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+
+        /* ============ Number Input ============ */
+        .num-range {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .num-input-wrap {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+        .num-btn {
+            width: 44px;
+            height: 48px;
+            border: none;
+            background: transparent;
+            color: var(--primary);
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .num-btn:active { background: var(--primary-dim); }
+        .num-val {
+            flex: 1;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .num-range .sep {
+            font-size: 14px;
+            color: var(--text-hint);
+        }
+
+        /* ============ Time Range ============ */
+        .time-option {
+            margin-bottom: 16px;
+        }
+        .time-option-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .time-toggle {
+            position: relative;
+            width: 44px;
+            height: 26px;
+            border-radius: 13px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .time-toggle::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--text-hint);
+            transition: all 0.2s;
+        }
+        .time-toggle.on {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+        .time-toggle.on::after {
+            left: 21px;
+            background: var(--bg);
+        }
+        .time-option-label {
+            font-size: 14px;
+            color: var(--text-sec);
+        }
+        .time-range-row {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            padding-left: 54px;
+        }
+        .time-range-row.visible { display: flex; }
+        .time-input {
+            flex: 1;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 10px 12px;
+            font-size: 15px;
+            color: var(--text);
+            text-align: center;
+            outline: none;
+            font-family: inherit;
+            color-scheme: dark;
+        }
+        .time-input:focus { border-color: var(--primary); }
+        .time-sep { color: var(--text-hint); font-size: 14px; }
+
+        /* ============ Specific Times List ============ */
+        .specific-times { padding-left: 54px; }
+        .specific-time-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .specific-time-item input {
+            flex: 1;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 10px 12px;
+            font-size: 14px;
+            color: var(--text);
+            outline: none;
+            font-family: inherit;
+            color-scheme: dark;
+        }
+        .specific-time-item input:focus { border-color: var(--primary); }
+        .add-time-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 14px;
+            background: transparent;
+            border: 1px dashed var(--text-hint);
+            border-radius: var(--radius-sm);
+            color: var(--text-hint);
+            font-size: 13px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .add-time-btn:active { border-color: var(--primary); color: var(--primary); }
+        .del-time-btn {
+            width: 28px;
+            height: 28px;
+            border: none;
+            background: transparent;
+            color: var(--danger);
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* ============ Bottom Action Bar ============ */
+        .action-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px 20px calc(12px + var(--safe-bottom));
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border);
+            z-index: 98;
+            display: flex;
+            gap: 12px;
+        }
+        .btn {
+            flex: 1;
+            height: 48px;
+            border-radius: var(--radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: var(--bg);
+        }
+        .btn-primary:active { transform: scale(0.98); filter: brightness(0.9); }
+        .btn-secondary {
+            background: var(--card);
+            color: var(--text-sec);
+            flex: 0 0 auto;
+            width: 48px;
+        }
+        .btn-secondary svg { width: 18px; height: 18px; }
+        .btn:disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        .btn-start {
+            background: linear-gradient(135deg, var(--primary), #ff9f43);
+            color: var(--bg);
+            font-size: 17px;
+            height: 52px;
+            border-radius: 26px;
+            width: 100%;
+            max-width: 280px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            box-shadow: 0 4px 20px rgba(255, 217, 61, 0.3);
+            transition: all 0.2s;
+        }
+        .btn-start:active { transform: scale(0.97); }
+
+        /* ============ Completion Screen ============ */
+        .completion {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 160px);
+            text-align: center;
+            padding: 40px 24px;
+        }
+        .completion .check-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--success), #20c997);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .completion .check-circle svg { width: 40px; height: 40px; stroke: #fff; fill: none; }
+        @keyframes popIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+        .completion h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .completion .comp-desc {
+            font-size: 14px;
+            color: var(--text-sec);
+            line-height: 1.7;
+            margin-bottom: 32px;
+            max-width: 300px;
+        }
+
+        /* ============ Height Slider ============ */
+        .height-display {
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        .height-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .height-value span { font-size: 16px; color: var(--text-sec); font-weight: 400; }
+        .height-slider {
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--card);
+            outline: none;
+        }
+        .height-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(255, 217, 61, 0.4);
+        }
+
+        /* ============ Photo Upload ============ */
+        .photo-upload-area {
+            display: flex;
+            gap: 12px;
+        }
+        .photo-slot {
+            width: 100px;
+            height: 130px;
+            border-radius: var(--radius);
+            border: 1.5px dashed var(--text-hint);
+            background: var(--card);
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+            transition: border-color 0.2s;
+        }
+        .photo-slot:active { border-color: var(--primary); }
+        .photo-slot.has-photo { border-style: solid; border-color: var(--border); }
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .photo-placeholder svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--text-hint);
+        }
+        .photo-placeholder span {
+            font-size: 11px;
+            color: var(--text-hint);
+        }
+        .photo-slot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .photo-del {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        /* ============ Divider ============ */
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 8px 0 24px;
+        }
+
+        /* ============ Error Toast ============ */
+        .toast {
+            position: fixed;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            background: var(--danger);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 200;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ============ Responsive ============ */
+        @media (min-width: 500px) {
+            .steps-wrapper { max-width: 480px; margin: 0 auto; }
+            .action-bar .inner { max-width: 480px; margin: 0 auto; display: flex; gap: 12px; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div class="progress-bar"><div class="fill" id="progressFill" style="width:0%"></div></div>
+
+<!-- Header -->
+<div class="header" id="header">
+    <button class="back-btn" id="backBtn" onclick="prevStep()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <span class="step-label" id="stepLabel"></span>
+    <span class="step-count" id="stepCount"></span>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<div class="steps-wrapper">
+
+<!-- ==================== Step 0: Welcome ==================== -->
+<div class="step active" data-step="0">
+    <div class="welcome">
+        <div class="logo-circle">
+            <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </div>
+        <h1>找到你的同频伙伴</h1>
+        <p class="subtitle">花几分钟完成问卷，让我们通过 AI 为你匹配志趣相投的人，开启一场真实的线下相遇</p>
+        <div class="features">
+            <div class="feat-item">
+                <div class="feat-icon">🎯</div>
+                <span class="feat-label">精准匹配</span>
+            </div>
+            <div class="feat-item">
+                <div class="feat-icon">🤝</div>
+                <span class="feat-label">线下见面</span>
+            </div>
+            <div class="feat-item">
+                <div class="feat-icon">🔒</div>
+                <span class="feat-label">隐私保护</span>
+            </div>
+        </div>
+        <button class="btn-start" onclick="nextStep()">开始填写</button>
+        <p class="time-note">预计需要 3-5 分钟</p>
+    </div>
+</div>
+
+<!-- ==================== Step 1: Basic Info ==================== -->
+<div class="step" data-step="1">
+    <div class="section-title">基本信息</div>
+    <div class="section-desc">这些信息帮助我们为你做基础匹配</div>
+
+    <!-- Birthday -->
+    <div class="q-block">
+        <div class="q-label"><span class="required">*</span> 出生日期</div>
+        <div class="date-row">
+            <select class="native-select year placeholder-active" id="birthYear" onchange="onSelectChange(this)"></select>
+            <select class="native-select placeholder-active" id="birthMonth" onchange="onSelectChange(this); updateDays()"></select>
+            <select class="native-select placeholder-active" id="birthDay" onchange="onSelectChange(this)"></select>
+        </div>
+    </div>
+
+    <!-- Location -->
+    <div class="q-block">
+        <div class="q-label"><span class="required">*</span> 常驻地</div>
+        <div class="select-row">
+            <select class="native-select placeholder-active" id="citySelect" onchange="onCityChange()"></select>
+            <select class="native-select placeholder-active" id="districtSelect" onchange="onSelectChange(this)"></select>
+        </div>
+    </div>
+
+    <!-- Height -->
+    <div class="q-block">
+        <div class="q-label"><span class="required">*</span> 身高</div>
+        <div class="height-display">
+            <div class="height-value" id="heightValue">170<span> cm</span></div>
+        </div>
+        <input type="range" class="height-slider" id="heightSlider" min="140" max="210" value="170" step="1" oninput="onHeightChange(this.value)">
+    </div>
+
+    <!-- Education -->
+    <div class="q-block">
+        <div class="q-label"><span class="required">*</span> 学历</div>
+        <div class="option-cards grid" data-field="education">
+            <div class="option-card" data-val="高中"><div class="radio"></div>高中</div>
+            <div class="option-card" data-val="专科"><div class="radio"></div>专科</div>
+            <div class="option-card" data-val="本科"><div class="radio"></div>本科</div>
+            <div class="option-card" data-val="研究生"><div class="radio"></div>研究生</div>
+            <div class="option-card" data-val="博士"><div class="radio"></div>博士</div>
+        </div>
+    </div>
+
+    <!-- Occupation -->
+    <div class="q-block">
+        <div class="q-label"><span class="required">*</span> 职业类型</div>
+        <select class="native-select placeholder-active" id="occupationSelect" onchange="onSelectChange(this)">
+            <option value="" disabled selected>选择职业类型</option>
+            <option value="学生在读">学生在读</option>
+            <option value="互联网/科技">互联网/科技</option>
+            <option value="金融/投资">金融/投资</option>
+            <option value="教育/培训">教育/培训</option>
+            <option value="医疗/健康">医疗/健康</option>
+            <option value="法律/咨询">法律/咨询</option>
+            <option value="设计/创意">设计/创意</option>
+            <option value="媒体/传播">媒体/传播</option>
+            <option value="建筑/工程">建筑/工程</option>
+            <option value="政府/事业单位">政府/事业单位</option>
+            <option value="餐饮/酒店">餐饮/酒店</option>
+            <option value="制造/贸易">制造/贸易</option>
+            <option value="房地产">房地产</option>
+            <option value="文体/艺术">文体/艺术</option>
+            <option value="物流/运输">物流/运输</option>
+            <option value="电商/零售">电商/零售</option>
+            <option value="自由职业">自由职业</option>
+            <option value="创业者">创业者</option>
+            <option value="其他">其他</option>
+        </select>
+    </div>
+
+    <!-- Photos -->
+    <div class="q-block">
+        <div class="q-label"><span class="required">*</span> 个人照片 <span style="font-weight:400;color:var(--text-hint);font-size:12px;">至少上传1张，最多3张</span></div>
+        <div class="photo-upload-area" id="photoArea">
+            <div class="photo-slot" id="photoSlot0" onclick="triggerPhotoUpload(0)">
+                <div class="photo-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    <span>添加照片</span>
+                </div>
+            </div>
+            <div class="photo-slot" id="photoSlot1" onclick="triggerPhotoUpload(1)" style="display:none;">
+                <div class="photo-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+                </div>
+            </div>
+            <div class="photo-slot" id="photoSlot2" onclick="triggerPhotoUpload(2)" style="display:none;">
+                <div class="photo-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+                </div>
+            </div>
+        </div>
+        <input type="file" id="photoInput" accept="image/*" style="display:none;" onchange="handlePhotoSelect(event)">
+        <div class="text-hint">建议上传清晰的正面照或生活照，匹配成功后对方可见</div>
+    </div>
+
+    <!-- Intent -->
+    <div class="q-block">
+        <div class="q-label"><span class="required">*</span> 你目前更希望</div>
+        <div class="option-cards" data-field="intent">
+            <div class="option-card" data-val="谈个恋爱"><div class="radio"></div>💕 谈个恋爱</div>
+            <div class="option-card" data-val="认识新朋友"><div class="radio"></div>🤝 认识新朋友</div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== Step 2: Interests ==================== -->
+<div class="step" data-step="2">
+    <div class="section-title">兴趣爱好</div>
+    <div class="section-desc">选择你感兴趣的标签，不限数量</div>
+
+    <div class="q-block">
+        <div class="q-label"><span class="required">*</span> 个人爱好</div>
+
+        <div class="tag-group">
+            <div class="tag-group-label"><span class="emoji">🎬</span> 影视娱乐</div>
+            <div class="tags-wrap" data-field="hobbies">
+                <span class="tag" data-val="电影">电影</span>
+                <span class="tag" data-val="追剧">追剧</span>
+                <span class="tag" data-val="动漫">动漫</span>
+                <span class="tag" data-val="综艺">综艺</span>
+                <span class="tag" data-val="纪录片">纪录片</span>
+                <span class="tag" data-val="脱口秀">脱口秀</span>
+            </div>
+        </div>
+        <div class="tag-group">
+            <div class="tag-group-label"><span class="emoji">🎵</span> 音乐</div>
+            <div class="tags-wrap" data-field="hobbies">
+                <span class="tag" data-val="听歌">听歌</span>
+                <span class="tag" data-val="乐器">乐器</span>
+                <span class="tag" data-val="唱歌">唱歌</span>
+                <span class="tag" data-val="演唱会">演唱会</span>
+                <span class="tag" data-val="音乐节">音乐节</span>
+            </div>
+        </div>
+        <div class="tag-group">
+            <div class="tag-group-label"><span class="emoji">📚</span> 阅读学习</div>
+            <div class="tags-wrap" data-field="hobbies">
+                <span class="tag" data-val="小说">小说</span>
+                <span class="tag" data-val="诗歌">诗歌</span>
+                <span class="tag" data-val="历史">历史</span>
+                <span class="tag" data-val="心理学">心理学</span>
+                <span class="tag" data-val="哲学">哲学</span>
+                <span class="tag" data-val="写作">写作</span>
+            </div>
+        </div>
+        <div class="tag-group">
+            <div class="tag-group-label"><span class="emoji">🏃</span> 运动健身</div>
+            <div class="tags-wrap" data-field="hobbies">
+                <span class="tag" data-val="跑步">跑步</span>
+                <span class="tag" data-val="健身">健身</span>
+                <span class="tag" data-val="游泳">游泳</span>
+                <span class="tag" data-val="瑜伽">瑜伽</span>
+                <span class="tag" data-val="篮球">篮球</span>
+                <span class="tag" data-val="羽毛球">羽毛球</span>
+                <span class="tag" data-val="网球">网球</span>
+                <span class="tag" data-val="滑雪">滑雪</span>
+                <span class="tag" data-val="滑板">滑板</span>
+                <span class="tag" data-val="骑行">骑行</span>
+                <span class="tag" data-val="登山">登山</span>
+                <span class="tag" data-val="徒步">徒步</span>
+            </div>
+        </div>
+        <div class="tag-group">
+            <div class="tag-group-label"><span class="emoji">✈️</span> 旅行探索</div>
+            <div class="tags-wrap" data-field="hobbies">
+                <span class="tag" data-val="旅行">旅行</span>
+                <span class="tag" data-val="City Walk">City Walk</span>
+                <span class="tag" data-val="露营">露营</span>
+                <span class="tag" data-val="自驾">自驾</span>
+                <span class="tag" data-val="探店">探店</span>
+            </div>
+        </div>
+        <div class="tag-group">
+            <div class="tag-group-label"><span class="emoji">🎮</span> 游戏社交</div>
+            <div class="tags-wrap" data-field="hobbies">
+                <span class="tag" data-val="手游">手游</span>
+                <span class="tag" data-val="PC游戏">PC游戏</span>
+                <span class="tag" data-val="主机游戏">主机游戏</span>
+                <span class="tag" data-val="桌游">桌游</span>
+                <span class="tag" data-val="剧本杀">剧本杀</span>
+            </div>
+        </div>
+        <div class="tag-group">
+            <div class="tag-group-label"><span class="emoji">🎨</span> 文艺创作</div>
+            <div class="tags-wrap" data-field="hobbies">
+                <span class="tag" data-val="摄影">摄影</span>
+                <span class="tag" data-val="绘画">绘画</span>
+                <span class="tag" data-val="手作">手作</span>
+                <span class="tag" data-val="逛展">逛展</span>
+                <span class="tag" data-val="书法">书法</span>
+                <span class="tag" data-val="插花">插花</span>
+            </div>
+        </div>
+        <div class="tag-group">
+            <div class="tag-group-label"><span class="emoji">🍳</span> 美食</div>
+            <div class="tags-wrap" data-field="hobbies">
+                <span class="tag" data-val="烹饪">烹饪</span>
+                <span class="tag" data-val="烘焙">烘焙</span>
+                <span class="tag" data-val="美食探店">美食探店</span>
+                <span class="tag" data-val="咖啡">咖啡</span>
+                <span class="tag" data-val="品酒">品酒</span>
+                <span class="tag" data-val="品茶">品茶</span>
+            </div>
+        </div>
+        <div class="tag-group">
+            <div class="tag-group-label"><span class="emoji">🐾</span> 萌宠</div>
+            <div class="tags-wrap" data-field="hobbies">
+                <span class="tag" data-val="猫">猫</span>
+                <span class="tag" data-val="狗">狗</span>
+                <span class="tag" data-val="异宠">异宠</span>
+            </div>
+        </div>
+        <div class="tag-group">
+            <div class="tag-group-label"><span class="emoji">💻</span> 科技</div>
+            <div class="tags-wrap" data-field="hobbies">
+                <span class="tag" data-val="AI">AI</span>
+                <span class="tag" data-val="编程">编程</span>
+                <span class="tag" data-val="数码">数码</span>
+                <span class="tag" data-val="科技资讯">科技资讯</span>
+            </div>
+        </div>
+        <div class="tag-group">
+            <div class="tag-group-label"><span class="emoji">🌿</span> 生活方式</div>
+            <div class="tags-wrap" data-field="hobbies">
+                <span class="tag" data-val="植物">植物</span>
+                <span class="tag" data-val="家居">家居</span>
+                <span class="tag" data-val="冥想">冥想</span>
+                <span class="tag" data-val="穿搭">穿搭</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Aesthetic Preferences -->
+    <div class="q-block">
+        <div class="q-label">审美偏好 <span style="font-weight:400;color:var(--text-hint);font-size:12px;">可多选</span></div>
+
+        <div class="tag-group">
+            <div class="tag-group-label"><span class="emoji">🎶</span> 音乐流派</div>
+            <div class="tags-wrap" data-field="music">
+                <span class="tag" data-val="流行">流行</span>
+                <span class="tag" data-val="摇滚">摇滚</span>
+                <span class="tag" data-val="民谣">民谣</span>
+                <span class="tag" data-val="电子">电子</span>
+                <span class="tag" data-val="嘻哈/说唱">嘻哈/说唱</span>
+                <span class="tag" data-val="R&B">R&B</span>
+                <span class="tag" data-val="爵士">爵士</span>
+                <span class="tag" data-val="古典">古典</span>
+                <span class="tag" data-val="独立音乐">独立音乐</span>
+                <span class="tag" data-val="金属">金属</span>
+                <span class="tag" data-val="蓝调">蓝调</span>
+                <span class="tag" data-val="拉丁">拉丁</span>
+                <span class="tag" data-val="日韩流行">日韩流行</span>
+                <span class="tag" data-val="粤语歌">粤语歌</span>
+                <span class="tag" data-val="后摇">后摇</span>
+            </div>
+        </div>
+
+        <div class="tag-group">
+            <div class="tag-group-label"><span class="emoji">🎬</span> 喜欢的影视</div>
+            <div class="tags-wrap" data-field="movies">
+                <span class="tag" data-val="肖申克的救赎">肖申克的救赎</span>
+                <span class="tag" data-val="花样年华">花样年华</span>
+                <span class="tag" data-val="千与千寻">千与千寻</span>
+                <span class="tag" data-val="星际穿越">星际穿越</span>
+                <span class="tag" data-val="爱乐之城">爱乐之城</span>
+                <span class="tag" data-val="盗梦空间">盗梦空间</span>
+                <span class="tag" data-val="霸王别姬">霸王别姬</span>
+                <span class="tag" data-val="泰坦尼克号">泰坦尼克号</span>
+                <span class="tag" data-val="请以你的名字呼唤我">请以你的名字呼唤我</span>
+                <span class="tag" data-val="布达佩斯大饭店">布达佩斯大饭店</span>
+                <span class="tag" data-val="寄生虫">寄生虫</span>
+                <span class="tag" data-val="重庆森林">重庆森林</span>
+                <span class="tag" data-val="楚门的世界">楚门的世界</span>
+                <span class="tag" data-val="海上钢琴师">海上钢琴师</span>
+                <span class="tag" data-val="你的名字">你的名字</span>
+                <span class="tag" data-val="怦然心动">怦然心动</span>
+                <span class="tag" data-val="Before Sunrise">Before Sunrise</span>
+                <span class="tag" data-val="Her">Her</span>
+                <span class="tag" data-val="老友记">老友记</span>
+                <span class="tag" data-val="请回答1988">请回答1988</span>
+            </div>
+        </div>
+
+        <div class="tag-group">
+            <div class="tag-group-label"><span class="emoji">📖</span> 喜欢的书</div>
+            <div class="tags-wrap" data-field="books">
+                <span class="tag" data-val="小王子">小王子</span>
+                <span class="tag" data-val="百年孤独">百年孤独</span>
+                <span class="tag" data-val="挪威的森林">挪威的森林</span>
+                <span class="tag" data-val="三体">三体</span>
+                <span class="tag" data-val="活着">活着</span>
+                <span class="tag" data-val="追风筝的人">追风筝的人</span>
+                <span class="tag" data-val="月亮与六便士">月亮与六便士</span>
+                <span class="tag" data-val="解忧杂货店">解忧杂货店</span>
+                <span class="tag" data-val="人类简史">人类简史</span>
+                <span class="tag" data-val="瓦尔登湖">瓦尔登湖</span>
+                <span class="tag" data-val="杀死一只知更鸟">杀死一只知更鸟</span>
+                <span class="tag" data-val="1984">1984</span>
+                <span class="tag" data-val="围城">围城</span>
+                <span class="tag" data-val="情人">情人</span>
+                <span class="tag" data-val="被讨厌的勇气">被讨厌的勇气</span>
+                <span class="tag" data-val="明朝那些事儿">明朝那些事儿</span>
+                <span class="tag" data-val="苏菲的世界">苏菲的世界</span>
+                <span class="tag" data-val="牧羊少年奇幻之旅">牧羊少年奇幻之旅</span>
+                <span class="tag" data-val="人间失格">人间失格</span>
+                <span class="tag" data-val="了不起的盖茨比">了不起的盖茨比</span>
+            </div>
+        </div>
+
+        <div class="tag-group">
+            <div class="tag-group-label"><span class="emoji">⭐</span> 喜欢的明星</div>
+            <div class="tags-wrap" data-field="celebrities">
+                <span class="tag" data-val="周杰伦">周杰伦</span>
+                <span class="tag" data-val="Taylor Swift">Taylor Swift</span>
+                <span class="tag" data-val="新垣结衣">新垣结衣</span>
+                <span class="tag" data-val="张国荣">张国荣</span>
+                <span class="tag" data-val="IU">IU</span>
+                <span class="tag" data-val="王菲">王菲</span>
+                <span class="tag" data-val="陈奕迅">陈奕迅</span>
+                <span class="tag" data-val="五月天">五月天</span>
+                <span class="tag" data-val="BLACKPINK">BLACKPINK</span>
+                <span class="tag" data-val="刘亦菲">刘亦菲</span>
+                <span class="tag" data-val="易烊千玺">易烊千玺</span>
+                <span class="tag" data-val="赵露思">赵露思</span>
+                <span class="tag" data-val="Billie Eilish">Billie Eilish</span>
+                <span class="tag" data-val="The Weeknd">The Weeknd</span>
+                <span class="tag" data-val="藤井风">藤井风</span>
+                <span class="tag" data-val="朴树">朴树</span>
+                <span class="tag" data-val="梁朝伟">梁朝伟</span>
+                <span class="tag" data-val="汤唯">汤唯</span>
+                <span class="tag" data-val="高圆圆">高圆圆</span>
+                <span class="tag" data-val="坂本龙一">坂本龙一</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== Step 3: Personality ==================== -->
+<div class="step" data-step="3">
+    <div class="section-title">性格画像</div>
+    <div class="section-desc">了解你的性格偏好，匹配同频的人</div>
+
+    <div class="q-block">
+        <div class="q-label">社交能量倾向</div>
+        <div class="option-cards" data-field="socialEnergy">
+            <div class="option-card" data-val="内向型"><div class="radio"></div>🌙 内向型 — 慢热，需要时间熟悉，偏爱安静小局</div>
+            <div class="option-card" data-val="外向型"><div class="radio"></div>☀️ 外向型 — 活泼，快速破冰，偏爱互动性强的约会</div>
+            <div class="option-card" data-val="中间型"><div class="radio"></div>🌤 中间型 — 可静可动，根据对方节奏调整</div>
+        </div>
+    </div>
+
+    <div class="q-block">
+        <div class="q-label">周末不用上班，你更偏向？</div>
+        <div class="option-cards" data-field="weekend">
+            <div class="option-card" data-val="出门探店"><div class="radio"></div>出门探店 / 散步 / 见人</div>
+            <div class="option-card" data-val="宅家休息"><div class="radio"></div>宅家休息，只偶尔出门</div>
+            <div class="option-card" data-val="小群朋友"><div class="radio"></div>跟一小群朋友轻松聚</div>
+            <div class="option-card" data-val="安排活动"><div class="radio"></div>安排小活动，不浪费时间</div>
+        </div>
+    </div>
+
+    <div class="q-block">
+        <div class="q-label">你对「计划 vs 随性」的态度更接近？</div>
+        <div class="option-cards" data-field="planStyle">
+            <div class="option-card" data-val="提前安排"><div class="radio"></div>喜欢提前安排好，心里踏实</div>
+            <div class="option-card" data-val="灵活调整"><div class="radio"></div>大概有方向，临场灵活调</div>
+            <div class="option-card" data-val="完全随性"><div class="radio"></div>完全随性，走到哪算哪</div>
+            <div class="option-card" data-val="不喜束缚"><div class="radio"></div>太计划会觉得束缚</div>
+        </div>
+    </div>
+
+    <div class="q-block">
+        <div class="q-label">日常休闲优先级</div>
+        <div class="option-cards" data-field="leisureStyle">
+            <div class="option-card" data-val="宅家型"><div class="radio"></div>🏠 宅家型 — 看剧、看书、做饭，偶尔出门</div>
+            <div class="option-card" data-val="户外型"><div class="radio"></div>🌿 户外型 — City Walk、骑行、徒步，喜欢自然</div>
+            <div class="option-card" data-val="社交型"><div class="radio"></div>🎉 社交型 — 和朋友小聚、探店、桌游，喜欢热闹</div>
+            <div class="option-card" data-val="文艺型"><div class="radio"></div>🎨 文艺型 — 看展、听音乐会、手作，偏爱小众体验</div>
+        </div>
+    </div>
+
+    <div class="q-block">
+        <div class="q-label">初次见面你更像哪种？</div>
+        <div class="option-cards" data-field="firstMeet">
+            <div class="option-card" data-val="主动带话题"><div class="radio"></div>主动带话题</div>
+            <div class="option-card" data-val="有话说没话安静"><div class="radio"></div>有话就说，没话安静也舒服</div>
+            <div class="option-card" data-val="偏安静"><div class="radio"></div>偏安静</div>
+            <div class="option-card" data-val="看对方"><div class="radio"></div>看对方情况</div>
+        </div>
+    </div>
+
+    <div class="q-block">
+        <div class="q-label">作息</div>
+        <div class="option-cards grid" data-field="sleepSchedule">
+            <div class="option-card" data-val="早睡早起"><div class="radio"></div>🌅 早睡早起</div>
+            <div class="option-card" data-val="正常"><div class="radio"></div>⏰ 正常</div>
+            <div class="option-card" data-val="夜猫子"><div class="radio"></div>🌙 夜猫子</div>
+        </div>
+    </div>
+
+    <div class="q-block">
+        <div class="q-label">饮酒态度</div>
+        <div class="option-cards grid" data-field="drinkAttitude">
+            <div class="option-card" data-val="滴酒不沾"><div class="radio"></div>🚫 滴酒不沾</div>
+            <div class="option-card" data-val="偶尔"><div class="radio"></div>🍷 偶尔</div>
+            <div class="option-card" data-val="经常"><div class="radio"></div>🍻 经常</div>
+            <div class="option-card" data-val="看兴致"><div class="radio"></div>🤷 看兴致</div>
+        </div>
+    </div>
+
+    <div class="q-block">
+        <div class="q-label">你希望两个人的日常节奏？</div>
+        <div class="option-cards" data-field="dailyRhythm">
+            <div class="option-card" data-val="各自有空间"><div class="radio"></div>各自有空间，也有陪伴</div>
+            <div class="option-card" data-val="经常聊天"><div class="radio"></div>经常聊天，分享日常</div>
+            <div class="option-card" data-val="见面质量优先"><div class="radio"></div>见面质量 > 聊天频率</div>
+            <div class="option-card" data-val="稳定规律"><div class="radio"></div>稳定规律，让人安心</div>
+        </div>
+    </div>
+
+    <div class="q-block">
+        <div class="q-label"><span class="required">*</span> 一句话自我画像</div>
+        <textarea class="text-input" id="selfDesc" rows="3" maxlength="50" placeholder="用一句话描述自己，匹配成功后对方可以看到"></textarea>
+        <div class="text-hint">
+            示例：朝九晚五职员，性格温柔，周末爱泡小众咖啡馆，慢热但真诚<br>
+            示例：自由职业者，喜欢户外和探店，幽默不尬聊，期待同频陪伴
+        </div>
+    </div>
+</div>
+
+<!-- ==================== Step 4: Partner Preferences ==================== -->
+<div class="step" data-step="4">
+    <div class="section-title">对方期望</div>
+    <div class="section-desc">告诉我们你理想中的 TA 是什么样的</div>
+
+    <div class="q-block">
+        <div class="q-label"><span class="required">*</span> 期望对方性别</div>
+        <div class="option-cards grid" data-field="partnerGender">
+            <div class="option-card" data-val="男"><div class="radio"></div>👨 男</div>
+            <div class="option-card" data-val="女"><div class="radio"></div>👩 女</div>
+            <div class="option-card" data-val="不限"><div class="radio"></div>🌈 不限</div>
+        </div>
+    </div>
+
+    <div class="q-block">
+        <div class="q-label"><span class="required">*</span> 期望对方学历</div>
+        <div class="option-cards" data-field="partnerEdu">
+            <div class="option-card" data-val="不限"><div class="radio"></div>不限</div>
+            <div class="option-card" data-val="专科以上"><div class="radio"></div>专科以上</div>
+            <div class="option-card" data-val="本科以上"><div class="radio"></div>本科以上</div>
+            <div class="option-card" data-val="研究生以上"><div class="radio"></div>研究生以上</div>
+            <div class="option-card" data-val="博士以上"><div class="radio"></div>博士以上</div>
+        </div>
+    </div>
+
+    <div class="q-block">
+        <div class="q-label"><span class="required">*</span> 期望对方年龄范围</div>
+        <div class="num-range">
+            <div class="num-input-wrap">
+                <button class="num-btn" onclick="adjustAge('min',-1)">−</button>
+                <div class="num-val" id="ageMinVal">22</div>
+                <button class="num-btn" onclick="adjustAge('min',1)">+</button>
+            </div>
+            <span class="sep">至</span>
+            <div class="num-input-wrap">
+                <button class="num-btn" onclick="adjustAge('max',-1)">−</button>
+                <div class="num-val" id="ageMaxVal">30</div>
+                <button class="num-btn" onclick="adjustAge('max',1)">+</button>
+            </div>
+            <span class="sep">岁</span>
+        </div>
+    </div>
+
+    <div class="q-block">
+        <div class="q-label">最在意对方的哪几点 <span style="font-weight:400;color:var(--text-hint);font-size:12px;">最多选3项</span></div>
+        <div class="tags-wrap" data-field="partnerTraits" data-max="3">
+            <span class="tag" data-val="性格合拍">性格合拍（温柔、幽默、好沟通）</span>
+            <span class="tag" data-val="颜值气质">颜值气质（看着舒服，干净整洁）</span>
+            <span class="tag" data-val="三观一致">三观一致（消费观、恋爱观相近）</span>
+            <span class="tag" data-val="生活习惯">生活习惯（作息、爱好，适配约会）</span>
+            <span class="tag" data-val="爱好一致">爱好一致</span>
+            <span class="tag" data-val="真诚度">真诚度（不敷衍、不套路）</span>
+        </div>
+    </div>
+
+    <div class="q-block">
+        <div class="q-label">具体补充描述</div>
+        <textarea class="text-input" id="partnerDesc" rows="3" maxlength="200" placeholder="对 TA 有什么具体要求？例如：身高 175+、不抽烟、喜欢小动物"></textarea>
+    </div>
+</div>
+
+<!-- ==================== Step 5: Dating Preferences ==================== -->
+<div class="step" data-step="5">
+    <div class="section-title">约会偏好</div>
+    <div class="section-desc">帮你安排最合适的线下见面</div>
+
+    <div class="q-block">
+        <div class="q-label"><span class="required">*</span> 地点范围</div>
+        <div class="option-cards" data-field="locationRange">
+            <div class="option-card" data-val="10km以内"><div class="radio"></div>📍 10km 以内</div>
+            <div class="option-card" data-val="同城可跨区"><div class="radio"></div>🏙 同城，可跨区</div>
+        </div>
+    </div>
+
+    <div class="q-block">
+        <div class="q-label">通常可约会时间</div>
+        <div class="time-option">
+            <div class="time-option-header">
+                <div class="time-toggle" id="toggleWeekday" onclick="toggleTime('weekday')"></div>
+                <span class="time-option-label">工作日晚上</span>
+            </div>
+            <div class="time-range-row" id="weekdayRange">
+                <input type="time" class="time-input" id="weekdayStart" value="19:00">
+                <span class="time-sep">至</span>
+                <input type="time" class="time-input" id="weekdayEnd" value="21:30">
+            </div>
+        </div>
+        <div class="time-option">
+            <div class="time-option-header">
+                <div class="time-toggle" id="toggleWeekend" onclick="toggleTime('weekend')"></div>
+                <span class="time-option-label">周末</span>
+            </div>
+            <div class="time-range-row" id="weekendRange">
+                <input type="time" class="time-input" id="weekendStart" value="14:00">
+                <span class="time-sep">至</span>
+                <input type="time" class="time-input" id="weekendEnd" value="20:00">
+            </div>
+        </div>
+        <div class="time-option">
+            <div class="time-option-header">
+                <div class="time-toggle" id="toggleSpecific" onclick="toggleTime('specific')"></div>
+                <span class="time-option-label">具体时间</span>
+            </div>
+            <div class="specific-times" id="specificTimes" style="display:none;">
+                <div id="specificTimeList"></div>
+                <button class="add-time-btn" onclick="addSpecificTime()">+ 添加时间</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="q-block">
+        <div class="q-label">偏好的场地类型 <span style="font-weight:400;color:var(--text-hint);font-size:12px;">可多选</span></div>
+        <div class="tags-wrap" data-field="venueTypes">
+            <span class="tag" data-val="轻食咖啡">☕ 轻食咖啡（小众咖啡馆、简餐、brunch）</span>
+            <span class="tag" data-val="休闲娱乐">🎮 休闲娱乐（桌游、密室、电影、KTV）</span>
+            <span class="tag" data-val="户外轻运动">🚶 户外轻运动（City Walk、公园、骑行）</span>
+            <span class="tag" data-val="文艺体验">🎨 文艺体验（书店、画展、手作、市集）</span>
+            <span class="tag" data-val="小聚小酌">🍷 小聚小酌（清吧、小酒馆，放松聊天）</span>
+        </div>
+    </div>
+
+    <div class="q-block">
+        <div class="q-label">预算态度</div>
+        <div class="option-cards grid" data-field="budgetAttitude">
+            <div class="option-card" data-val="AA"><div class="radio"></div>AA</div>
+            <div class="option-card" data-val="轮流请客"><div class="radio"></div>轮流请客</div>
+            <div class="option-card" data-val="对方付"><div class="radio"></div><span id="budgetGenderText">男/女生付</span></div>
+            <div class="option-card" data-val="不在意"><div class="radio"></div>不在意</div>
+        </div>
+    </div>
+
+    <div class="q-block">
+        <div class="q-label">描述一下约会场景需求或禁忌</div>
+        <textarea class="text-input" id="dateDesc" rows="3" maxlength="300" placeholder="例如：很想去户外露营约会、不太喜欢太吵的环境、希望能带宠物一起"></textarea>
+    </div>
+</div>
+
+<!-- ==================== Step 6: Completion ==================== -->
+<div class="step" data-step="6">
+    <div class="completion">
+        <div class="check-circle">
+            <svg viewBox="0 0 24 24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h2>提交成功！</h2>
+        <p class="comp-desc">感谢你的认真填写 ✨<br>我们的 AI 正在为你寻找最合适的伙伴，匹配结果将通过 App 推送通知你</p>
+        <button class="btn-start" onclick="window.location.reload()">重新填写</button>
+    </div>
+</div>
+
+</div>
+
+<!-- Bottom Action Bar -->
+<div class="action-bar" id="actionBar" style="display:none;">
+    <button class="btn btn-secondary" id="prevBtn" onclick="prevStep()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="btn btn-primary" id="nextBtn" onclick="nextStep()">下一步</button>
+</div>
+
+<script>
+/* ============ Config ============ */
+var TOTAL_STEPS = 5;
+var currentStep = 0;
+var formData = {};
+var ageMin = 22;
+var ageMax = 30;
+var timeToggles = { weekday: false, weekend: false, specific: false };
+
+/* ============ City Data ============ */
+var CITY_DATA = {
+    '北京': ['东城区','西城区','朝阳区','海淀区','丰台区','石景山区','通州区','大兴区','昌平区','顺义区','房山区','门头沟区','怀柔区','密云区','平谷区','延庆区','经济技术开发区'],
+    '上海': ['黄浦区','徐汇区','长宁区','静安区','普陀区','虹口区','杨浦区','浦东新区','闵行区','宝山区','嘉定区','松江区','青浦区','奉贤区','金山区','崇明区'],
+    '广州': ['天河区','越秀区','海珠区','荔湾区','白云区','番禺区','黄埔区','花都区','南沙区','增城区','从化区'],
+    '深圳': ['福田区','罗湖区','南山区','宝安区','龙岗区','龙华区','光明区','坪山区','盐田区','大鹏新区'],
+    '杭州': ['上城区','拱墅区','西湖区','滨江区','萧山区','余杭区','临平区','钱塘区','富阳区','临安区'],
+    '成都': ['锦江区','青羊区','金牛区','武侯区','成华区','龙泉驿区','青白江区','新都区','温江区','双流区','郫都区','新津区','高新区','天府新区'],
+    '南京': ['玄武区','秦淮区','建邺区','鼓楼区','栖霞区','雨花台区','江宁区','浦口区','六合区','溧水区','高淳区'],
+    '武汉': ['江岸区','江汉区','硚口区','汉阳区','武昌区','青山区','洪山区','蔡甸区','江夏区','黄陂区','新洲区','东西湖区','东湖高新区','经济技术开发区'],
+    '重庆': ['渝中区','江北区','南岸区','渝北区','沙坪坝区','九龙坡区','大渡口区','巴南区','北碚区','万州区','涪陵区','江津区','合川区','永川区','璧山区','铜梁区','长寿区','两江新区','高新区'],
+    '西安': ['新城区','碑林区','莲湖区','雁塔区','灞桥区','未央区','阎良区','临潼区','长安区','高陵区','鄠邑区','高新区','经开区','曲江新区'],
+    '苏州': ['姑苏区','虎丘区','吴中区','相城区','吴江区','工业园区','高新区','昆山市','常熟市','张家港市','太仓市'],
+    '天津': ['和平区','河东区','河西区','南开区','河北区','红桥区','东丽区','西青区','津南区','北辰区','武清区','宝坻区','宁河区','静海区','蓟州区','滨海新区'],
+    '长沙': ['芙蓉区','天心区','岳麓区','开福区','雨花区','望城区','长沙县','浏阳市','宁乡市'],
+    '郑州': ['金水区','中原区','二七区','管城区','惠济区','上街区','郑东新区','高新区','经开区','航空港区','巩义市','新郑市','新密市','登封市','荥阳市','中牟县'],
+    '青岛': ['市南区','市北区','崂山区','李沧区','城阳区','黄岛区','即墨区','胶州市','平度市','莱西市'],
+    '昆明': ['五华区','盘龙区','官渡区','西山区','呈贡区','东川区','晋宁区','安宁市','富民县','嵩明县'],
+    '合肥': ['蜀山区','庐阳区','包河区','瑶海区','高新区','经开区','新站区','滨湖新区','肥东县','肥西县','长丰县','庐江县','巢湖市'],
+    '厦门': ['思明区','湖里区','集美区','海沧区','同安区','翔安区'],
+    '大连': ['中山区','西岗区','沙河口区','甘井子区','旅顺口区','金普新区','高新园区','普兰店区','瓦房店市','庄河市'],
+    '福州': ['鼓楼区','台江区','仓山区','晋安区','马尾区','长乐区','闽侯县','连江县','福清市','平潭县'],
+    '宁波': ['海曙区','鄞州区','江北区','镇海区','北仑区','奉化区','余姚市','慈溪市','象山县','宁海县'],
+    '东莞': ['莞城街道','南城街道','东城街道','万江街道','松山湖','虎门镇','长安镇','厚街镇','塘厦镇','常平镇','大朗镇','凤岗镇','清溪镇','樟木头镇','大岭山镇','寮步镇','石龙镇','茶山镇','石碣镇','横沥镇'],
+    '佛山': ['禅城区','南海区','顺德区','三水区','高明区'],
+    '济南': ['历下区','市中区','槐荫区','天桥区','历城区','长清区','章丘区','济阳区','莱芜区','钢城区','高新区','平阴县','商河县'],
+    '沈阳': ['和平区','沈河区','大东区','皇姑区','铁西区','苏家屯区','浑南区','沈北新区','于洪区','辽中区','新民市','法库县','康平县'],
+    '哈尔滨': ['道里区','南岗区','道外区','香坊区','平房区','松北区','呼兰区','阿城区','双城区'],
+    '珠海': ['香洲区','金湾区','斗门区','横琴新区'],
+    '无锡': ['梁溪区','锡山区','惠山区','滨湖区','新吴区','江阴市','宜兴市'],
+    '贵阳': ['南明区','云岩区','花溪区','乌当区','白云区','观山湖区','清镇市','开阳县','息烽县','修文县'],
+    '南宁': ['青秀区','兴宁区','西乡塘区','江南区','良庆区','邕宁区','武鸣区','高新区','经开区'],
+    '石家庄': ['长安区','桥西区','新华区','裕华区','藁城区','鹿泉区','栾城区','正定县','高新区'],
+    '太原': ['小店区','迎泽区','杏花岭区','尖草坪区','万柏林区','晋源区','清徐县','阳曲县'],
+    '南昌': ['东湖区','西湖区','青山湖区','青云谱区','新建区','红谷滩区','南昌县','高新区','经开区'],
+    '温州': ['鹿城区','龙湾区','瓯海区','洞头区','瑞安市','乐清市','永嘉县','平阳县','苍南县'],
+    '常州': ['天宁区','钟楼区','新北区','武进区','金坛区','溧阳市','经开区'],
+    '烟台': ['芝罘区','福山区','牟平区','莱山区','蓬莱区','龙口市','莱阳市','招远市'],
+    '惠州': ['惠城区','惠阳区','惠东县','博罗县','龙门县','大亚湾区','仲恺高新区'],
+    '中山': ['石岐街道','东区街道','南区街道','西区街道','五桂山街道','火炬开发区','小榄镇','古镇镇','沙溪镇','三乡镇','坦洲镇'],
+    '兰州': ['城关区','七里河区','西固区','安宁区','红古区','榆中县','皋兰县','永登县','新区'],
+    '海口': ['龙华区','秀英区','琼山区','美兰区'],
+    '呼和浩特': ['新城区','赛罕区','回民区','玉泉区','土默特左旗','托克托县','和林格尔县','武川县','清水河县'],
+    '拉萨': ['城关区','堆龙德庆区','达孜区','林周县','当雄县','墨竹工卡县','曲水县','尼木县'],
+    '西宁': ['城东区','城中区','城西区','城北区','湟中区','湟源县','大通县'],
+    '银川': ['兴庆区','金凤区','西夏区','灵武市','永宁县','贺兰县'],
+    '乌鲁木齐': ['天山区','沙依巴克区','新市区','水磨沟区','头屯河区','达坂城区','米东区','高新区','经开区']
+};
+
+/* ============ Init ============ */
+(function init() {
+    initBirthdaySelects();
+    initCitySelects();
+    initTagListeners();
+    initOptionCardListeners();
+})();
+
+function buildOptions(items, placeholder) {
+    var html = '<option value="" disabled selected>' + placeholder + '</option>';
+    for (var i = 0; i < items.length; i++) {
+        html += '<option value="' + items[i].v + '">' + items[i].t + '</option>';
+    }
+    return html;
+}
+
+function initBirthdaySelects() {
+    var years = [], months = [], days = [];
+    for (var y = 2008; y >= 1970; y--) years.push({v: y, t: y + '年'});
+    for (var m = 1; m <= 12; m++) months.push({v: m, t: m + '月'});
+    for (var d = 1; d <= 31; d++) days.push({v: d, t: d + '日'});
+    document.getElementById('birthYear').innerHTML = buildOptions(years, '选择年');
+    document.getElementById('birthMonth').innerHTML = buildOptions(months, '选择月');
+    document.getElementById('birthDay').innerHTML = buildOptions(days, '选择日');
+}
+
+function updateDays() {
+    var y = parseInt(document.getElementById('birthYear').value) || 2000;
+    var m = parseInt(document.getElementById('birthMonth').value) || 1;
+    var maxDay = new Date(y, m, 0).getDate();
+    var ds = document.getElementById('birthDay');
+    var curVal = parseInt(ds.value) || 0;
+    var days = [];
+    for (var d = 1; d <= maxDay; d++) days.push({v: d, t: d + '日'});
+    ds.innerHTML = buildOptions(days, '选择日');
+    if (curVal > 0 && curVal <= maxDay) ds.value = curVal;
+}
+
+function initCitySelects() {
+    var cities = [];
+    var keys = Object.keys(CITY_DATA);
+    for (var i = 0; i < keys.length; i++) cities.push({v: keys[i], t: keys[i]});
+    document.getElementById('citySelect').innerHTML = buildOptions(cities, '选择城市');
+    document.getElementById('districtSelect').innerHTML = '<option value="" disabled selected>选择区</option>';
+}
+
+function onCityChange() {
+    var cs = document.getElementById('citySelect');
+    cs.classList.remove('placeholder-active');
+    var ds = document.getElementById('districtSelect');
+    var districts = CITY_DATA[cs.value] || [];
+    var items = [];
+    for (var i = 0; i < districts.length; i++) items.push({v: districts[i], t: districts[i]});
+    ds.innerHTML = buildOptions(items, '选择区');
+    ds.classList.add('placeholder-active');
+}
+
+function onSelectChange(el) {
+    if (el.value) el.classList.remove('placeholder-active');
+}
+
+/* ============ Photo Upload ============ */
+var photos = [null, null, null];
+var currentPhotoIndex = 0;
+
+function triggerPhotoUpload(index) {
+    if (photos[index]) return;
+    currentPhotoIndex = index;
+    document.getElementById('photoInput').click();
+}
+
+function handlePhotoSelect(e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    if (!file.type.startsWith('image/')) {
+        showToast('请选择图片文件');
+        e.target.value = '';
+        return;
+    }
+    if (file.size > 10 * 1024 * 1024) {
+        showToast('图片大小不能超过 10MB');
+        e.target.value = '';
+        return;
+    }
+    var idx = currentPhotoIndex;
+    photos[idx] = file;
+
+    var reader = new FileReader();
+    reader.onload = function(ev) {
+        renderPhotoSlot(idx, ev.target.result);
+        refreshPhotoSlots();
+    };
+    reader.readAsDataURL(file);
+    e.target.value = '';
+}
+
+function renderPhotoSlot(idx, src) {
+    var slot = document.getElementById('photoSlot' + idx);
+    slot.classList.add('has-photo');
+    slot.onclick = null;
+    slot.innerHTML = '<img src="' + src + '">' +
+        '<button class="photo-del" onclick="event.stopPropagation();removePhoto(' + idx + ')">×</button>';
+}
+
+function removePhoto(idx) {
+    photos[idx] = null;
+    var slot = document.getElementById('photoSlot' + idx);
+    slot.classList.remove('has-photo');
+    slot.onclick = function() { triggerPhotoUpload(idx); };
+
+    if (idx === 0) {
+        slot.innerHTML = '<div class="photo-placeholder">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>' +
+            '<span>添加照片</span></div>';
+    } else {
+        slot.innerHTML = '<div class="photo-placeholder">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg></div>';
+    }
+    refreshPhotoSlots();
+}
+
+function refreshPhotoSlots() {
+    var count = photos.filter(function(p) { return p !== null; }).length;
+    for (var i = 0; i < 3; i++) {
+        var slot = document.getElementById('photoSlot' + i);
+        if (photos[i]) {
+            slot.style.display = 'block';
+        } else if (i <= count && count < 3) {
+            slot.style.display = 'block';
+        } else {
+            slot.style.display = 'none';
+        }
+    }
+}
+
+function onHeightChange(v) {
+    document.getElementById('heightValue').innerHTML = v + '<span> cm</span>';
+}
+
+/* ============ Tag Selection ============ */
+function initTagListeners() {
+    document.querySelectorAll('.tags-wrap').forEach(function(wrap) {
+        wrap.querySelectorAll('.tag').forEach(function(tag) {
+            tag.addEventListener('click', function() {
+                var maxSel = parseInt(wrap.getAttribute('data-max') || '0');
+                if (!tag.classList.contains('selected') && maxSel > 0) {
+                    var count = wrap.querySelectorAll('.tag.selected').length;
+                    if (count >= maxSel) {
+                        showToast('最多选择 ' + maxSel + ' 项');
+                        return;
+                    }
+                }
+                tag.classList.toggle('selected');
+            });
+        });
+    });
+}
+
+/* ============ Option Card Selection (single) ============ */
+function initOptionCardListeners() {
+    document.querySelectorAll('.option-cards[data-field]').forEach(function(group) {
+        group.querySelectorAll('.option-card').forEach(function(card) {
+            card.addEventListener('click', function() {
+                group.querySelectorAll('.option-card').forEach(function(c) { c.classList.remove('selected'); });
+                card.classList.add('selected');
+            });
+        });
+    });
+}
+
+/* ============ Age Range ============ */
+function adjustAge(type, delta) {
+    if (type === 'min') {
+        ageMin = Math.max(18, Math.min(ageMax, ageMin + delta));
+        document.getElementById('ageMinVal').textContent = ageMin;
+    } else {
+        ageMax = Math.max(ageMin, Math.min(60, ageMax + delta));
+        document.getElementById('ageMaxVal').textContent = ageMax;
+    }
+}
+
+/* ============ Time Toggles ============ */
+function toggleTime(type) {
+    timeToggles[type] = !timeToggles[type];
+    var btn = document.getElementById('toggle' + type.charAt(0).toUpperCase() + type.slice(1));
+    btn.classList.toggle('on', timeToggles[type]);
+    if (type === 'specific') {
+        document.getElementById('specificTimes').style.display = timeToggles[type] ? 'block' : 'none';
+        if (timeToggles[type] && document.getElementById('specificTimeList').children.length === 0) {
+            addSpecificTime();
+        }
+    } else {
+        var row = document.getElementById(type + 'Range');
+        row.classList.toggle('visible', timeToggles[type]);
+    }
+}
+
+function addSpecificTime() {
+    var list = document.getElementById('specificTimeList');
+    var item = document.createElement('div');
+    item.className = 'specific-time-item';
+    item.innerHTML = '<input type="datetime-local" placeholder="选择时间">' +
+        '<button class="del-time-btn" onclick="this.parentElement.remove()">×</button>';
+    list.appendChild(item);
+}
+
+/* ============ Step Navigation ============ */
+function nextStep() {
+    if (currentStep < TOTAL_STEPS && !validateStep(currentStep)) return;
+    if (currentStep >= TOTAL_STEPS + 1) return;
+
+    if (currentStep === TOTAL_STEPS) {
+        submitForm();
+        return;
+    }
+
+    currentStep++;
+    renderStep();
+}
+
+function prevStep() {
+    if (currentStep <= 0) return;
+    currentStep--;
+    renderStep();
+}
+
+function renderStep() {
+    document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+    var target = document.querySelector('.step[data-step="' + currentStep + '"]');
+    if (target) target.classList.add('active');
+
+    var pct = currentStep === 0 ? 0 : Math.round((currentStep / TOTAL_STEPS) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+
+    var header = document.getElementById('header');
+    var actionBar = document.getElementById('actionBar');
+    var isComplete = currentStep > TOTAL_STEPS;
+    header.classList.toggle('visible', currentStep > 0 && !isComplete);
+    actionBar.style.display = (currentStep > 0 && !isComplete) ? 'flex' : 'none';
+
+    var labels = ['', '基本信息', '兴趣爱好', '性格画像', '对方期望', '约会偏好'];
+    document.getElementById('stepLabel').textContent = labels[currentStep] || '';
+    document.getElementById('stepCount').textContent = currentStep > 0 ? currentStep + '/' + TOTAL_STEPS : '';
+    document.getElementById('prevBtn').style.display = currentStep > 1 ? 'flex' : 'none';
+
+    var nextBtn = document.getElementById('nextBtn');
+    nextBtn.textContent = currentStep === TOTAL_STEPS ? '提交问卷' : '下一步';
+
+    window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+/* ============ Validation ============ */
+function validateStep(step) {
+    if (step === 0) return true;
+    if (step === 1) {
+        if (!document.getElementById('birthYear').value || !document.getElementById('birthMonth').value || !document.getElementById('birthDay').value) {
+            showToast('请选择出生日期'); return false;
+        }
+        if (!document.getElementById('citySelect').value || !document.getElementById('districtSelect').value) {
+            showToast('请选择常驻地'); return false;
+        }
+        if (!getSelectedOption('education')) { showToast('请选择学历'); return false; }
+        if (!document.getElementById('occupationSelect').value) { showToast('请选择职业类型'); return false; }
+        var photoCount = photos.filter(function(p) { return p !== null; }).length;
+        if (photoCount === 0) { showToast('请至少上传1张照片'); return false; }
+        if (!getSelectedOption('intent')) { showToast('请选择你的期望'); return false; }
+        return true;
+    }
+    if (step === 2) {
+        var hobbies = getSelectedTags('hobbies');
+        if (hobbies.length === 0) { showToast('请至少选择一个兴趣爱好'); return false; }
+        return true;
+    }
+    if (step === 3) {
+        var desc = document.getElementById('selfDesc').value.trim();
+        if (!desc) { showToast('请填写一句话自我画像'); return false; }
+        return true;
+    }
+    if (step === 4) {
+        if (!getSelectedOption('partnerGender')) { showToast('请选择期望性别'); return false; }
+        if (!getSelectedOption('partnerEdu')) { showToast('请选择期望学历'); return false; }
+        return true;
+    }
+    if (step === 5) {
+        if (!getSelectedOption('locationRange')) { showToast('请选择地点范围'); return false; }
+        return true;
+    }
+    return true;
+}
+
+function getSelectedOption(field) {
+    var sel = document.querySelector('.option-cards[data-field="' + field + '"] .option-card.selected');
+    return sel ? sel.getAttribute('data-val') : null;
+}
+
+function getSelectedTags(field) {
+    var tags = [];
+    document.querySelectorAll('.tags-wrap[data-field="' + field + '"] .tag.selected').forEach(function(t) {
+        tags.push(t.getAttribute('data-val'));
+    });
+    return tags;
+}
+
+/* ============ Collect & Submit ============ */
+function collectFormData() {
+    var data = {};
+    data.birthday = {
+        year: document.getElementById('birthYear').value,
+        month: document.getElementById('birthMonth').value,
+        day: document.getElementById('birthDay').value
+    };
+    data.city = document.getElementById('citySelect').value;
+    data.district = document.getElementById('districtSelect').value;
+    data.height = parseInt(document.getElementById('heightSlider').value);
+    data.education = getSelectedOption('education');
+    data.occupation = document.getElementById('occupationSelect').value;
+    data.photos = photos.filter(function(p) { return p !== null; });
+    data.intent = getSelectedOption('intent');
+
+    data.hobbies = getSelectedTags('hobbies');
+    data.music = getSelectedTags('music');
+    data.movies = getSelectedTags('movies');
+    data.books = getSelectedTags('books');
+    data.celebrities = getSelectedTags('celebrities');
+
+    data.socialEnergy = getSelectedOption('socialEnergy');
+    data.weekend = getSelectedOption('weekend');
+    data.planStyle = getSelectedOption('planStyle');
+    data.leisureStyle = getSelectedOption('leisureStyle');
+    data.firstMeet = getSelectedOption('firstMeet');
+    data.sleepSchedule = getSelectedOption('sleepSchedule');
+    data.drinkAttitude = getSelectedOption('drinkAttitude');
+    data.dailyRhythm = getSelectedOption('dailyRhythm');
+    data.selfDescription = document.getElementById('selfDesc').value.trim();
+
+    data.partnerGender = getSelectedOption('partnerGender');
+    data.partnerEducation = getSelectedOption('partnerEdu');
+    data.partnerAgeRange = { min: ageMin, max: ageMax };
+    data.partnerTraits = getSelectedTags('partnerTraits');
+    data.partnerDescription = document.getElementById('partnerDesc').value.trim();
+
+    data.locationRange = getSelectedOption('locationRange');
+    data.availableTime = {};
+    if (timeToggles.weekday) {
+        data.availableTime.weekday = {
+            start: document.getElementById('weekdayStart').value,
+            end: document.getElementById('weekdayEnd').value
+        };
+    }
+    if (timeToggles.weekend) {
+        data.availableTime.weekend = {
+            start: document.getElementById('weekendStart').value,
+            end: document.getElementById('weekendEnd').value
+        };
+    }
+    if (timeToggles.specific) {
+        data.availableTime.specific = [];
+        document.querySelectorAll('#specificTimeList input').forEach(function(inp) {
+            if (inp.value) data.availableTime.specific.push(inp.value);
+        });
+    }
+    data.venueTypes = getSelectedTags('venueTypes');
+    data.budgetAttitude = getSelectedOption('budgetAttitude');
+    data.dateDescription = document.getElementById('dateDesc').value.trim();
+
+    return data;
+}
+
+function submitForm() {
+    formData = collectFormData();
+    console.log('问卷数据:', JSON.stringify(formData, null, 2));
+
+    currentStep = TOTAL_STEPS + 1;
+    renderStep();
+}
+
+/* ============ Toast ============ */
+function showToast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(function() { t.classList.remove('show'); }, 2200);
+}
+</script>
+</body>
+</html>
