@@ -4,6 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>北京春醒交友季 - Zup! 官方专题</title>
+    <meta name="description" content="北京春醒交友季正式开启！覆盖望京、国贸、南锣等核心商圈，打开 Zup! 查看附近春日派对，单人赴约也友好。">
+    <meta name="keywords" content="Zup,北京春醒交友季,线下活动,社交派对,同城交友">
+
+    <!-- 微信/社交分享卡片 -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Zup!">
+    <meta property="og:title" content="北京春醒交友季｜Zup! 官方线下活动">
+    <meta property="og:description" content="北京春天的第一场全城活动开始啦！在 Zup! 地图查看附近春日派对，认识一起同行的新朋友。">
+    <meta property="og:url" content="https://www.nowmap.cn/event/beijing-spring-awakening.html">
+    <meta property="og:image" content="https://cdn.nowmap.cn/h5_event/share-cover.jpg?v=20260303">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="北京春醒交友季｜Zup! 官方线下活动">
+    <meta name="twitter:description" content="覆盖望京、国贸、南锣多个核心商圈，此刻想出门，此刻就有局。">
+    <meta name="twitter:image" content="https://cdn.nowmap.cn/h5_event/share-cover.jpg?v=20260303">
+
+    <meta itemprop="name" content="北京春醒交友季｜Zup! 官方线下活动">
+    <meta itemprop="description" content="打开 Zup! App，首页地图就能看到各地点实时的春醒局。">
+    <meta itemprop="image" content="https://cdn.nowmap.cn/h5_event/share-cover.jpg?v=20260303">
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
         :root{
@@ -123,6 +146,57 @@
     </div>
 
     <script>
+        var WECHAT_APP_ID = "wx4856a663c86fc338";
+        var WECHAT_SIGN_URL = "https://zup.nowmap.cn/api/v1/wechat/js-sdk-signature";
+        var SHARE_DATA = {
+            title: "北京春醒交友季｜Zup! 官方线下活动",
+            desc: "北京春天的第一场全城活动开始啦！在 Zup! 地图查看附近春日派对，认识一起同行的新朋友。",
+            imgUrl: "https://cdn.nowmap.cn/h5_event/share-cover.jpg?v=20260303"
+        };
+
+        function isWechatBrowser() {
+            return /micromessenger/i.test(navigator.userAgent);
+        }
+
+        async function initWechatShare() {
+            if (!isWechatBrowser() || !window.wx) return;
+            try {
+                var pageUrl = window.location.href.split("#")[0];
+                var reqUrl = WECHAT_SIGN_URL + "?url=" + encodeURIComponent(pageUrl) + "&appId=" + encodeURIComponent(WECHAT_APP_ID);
+                var res = await fetch(reqUrl);
+                if (!res.ok) return;
+                var json = await res.json();
+                var data = json && (json.data || json.result || json);
+                if (!data || !data.signature) return;
+
+                wx.config({
+                    debug: false,
+                    appId: data.appId || WECHAT_APP_ID,
+                    timestamp: String(data.timestamp),
+                    nonceStr: data.nonceStr || data.noncestr,
+                    signature: data.signature,
+                    jsApiList: [
+                        "updateAppMessageShareData",
+                        "updateTimelineShareData",
+                        "onMenuShareAppMessage",
+                        "onMenuShareTimeline"
+                    ]
+                });
+
+                wx.ready(function() {
+                    var shareLink = window.location.href.split("#")[0];
+                    var msgParams = { title: SHARE_DATA.title, desc: SHARE_DATA.desc, link: shareLink, imgUrl: SHARE_DATA.imgUrl };
+                    var timeParams = { title: SHARE_DATA.title, link: shareLink, imgUrl: SHARE_DATA.imgUrl };
+                    wx.updateAppMessageShareData(msgParams);
+                    wx.updateTimelineShareData(timeParams);
+                    wx.onMenuShareAppMessage(msgParams);
+                    wx.onMenuShareTimeline(timeParams);
+                });
+            } catch (e) { /* silent */ }
+        }
+
+        initWechatShare();
+
         function openApp() {
             var deepLink = "nowmap://open";
             var start = Date.now();
