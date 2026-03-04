@@ -3,213 +3,417 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>北京春醒交友季 - Zup! 官方专题</title>
+    <title>北京春醒交友季 - Zup!官方线下活动</title>
     <meta name="description" content="北京春醒交友季正式开启！覆盖望京、国贸、南锣等核心商圈，打开 Zup! 查看附近春日派对，单人赴约也友好。">
     <meta name="keywords" content="Zup,北京春醒交友季,线下活动,社交派对,同城交友">
-
-    <!-- 微信/社交分享卡片 -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Zup!">
-    <meta property="og:title" content="北京春醒交友季｜Zup! 官方线下活动">
-    <meta property="og:description" content="北京春天的第一场全城活动开始啦！在 Zup! 地图查看附近春日派对，认识一起同行的新朋友。">
+    <meta property="og:title" content="北京春醒交友季｜Zup!官方线下活动">
+    <meta property="og:description" content="北京春天的第一场全城活动开始啦！在Zup!地图查看附近春日派对，认识一起同行的新朋友。">
     <meta property="og:url" content="https://www.nowmap.cn/event/beijing-spring-awakening.html">
     <meta property="og:image" content="https://cdn.nowmap.cn/h5_event/share-cover.jpg?v=20260303">
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="北京春醒交友季｜Zup! 官方线下活动">
+    <meta name="twitter:title" content="北京春醒交友季｜Zup!官方线下活动">
     <meta name="twitter:description" content="覆盖望京、国贸、南锣多个核心商圈，此刻想出门，此刻就有局。">
     <meta name="twitter:image" content="https://cdn.nowmap.cn/h5_event/share-cover.jpg?v=20260303">
-
-    <meta itemprop="name" content="北京春醒交友季｜Zup! 官方线下活动">
+    <meta itemprop="name" content="北京春醒交友季｜Zup!官方线下活动">
     <meta itemprop="description" content="打开 Zup! App，首页地图就能看到各地点实时的春醒局。">
     <meta itemprop="image" content="https://cdn.nowmap.cn/h5_event/share-cover.jpg?v=20260303">
     <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-        :root{
-            --bg:#090911;--text:#fff;--soft:rgba(255,255,255,.78);--faint:rgba(255,255,255,.55);
-            --card:rgba(255,255,255,.08);--line:rgba(255,255,255,.14);
-            --accent:#ff9f43;--accent2:#ffd93d;--safe:env(safe-area-inset-bottom,0px)
-        }
-        body{
-            font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Microsoft YaHei",sans-serif;
-            color:var(--text);min-height:100vh;line-height:1.6;overflow-x:hidden;
-            background:radial-gradient(1200px 500px at 10% -10%,rgba(255,156,102,.22),transparent 65%),
-                       radial-gradient(900px 420px at 100% 0,rgba(255,77,157,.2),transparent 70%),var(--bg)
-        }
-        .wrap{max-width:560px;margin:0 auto;padding:0 16px calc(90px + var(--safe))}
-        .hero{
-            position:relative;border-radius:24px;overflow:hidden;margin:14px 0 18px;min-height:68vh;
-            box-shadow:0 16px 48px rgba(0,0,0,.45)
-        }
-        .hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3}
-        .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,8,23,.22),rgba(12,8,23,.74) 66%,rgba(8,7,14,.94));z-index:-2}
-        .hero-inner{min-height:68vh;display:flex;flex-direction:column;justify-content:flex-end;padding:20px 18px 18px}
-        .tag{align-self:flex-start;padding:6px 12px;border-radius:999px;font-size:12px;color:#ffe9c2;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);margin-bottom:12px}
-        .title{width:min(76%,280px);margin-bottom:10px;filter:drop-shadow(0 8px 24px rgba(255,103,66,.28))}
-        .sub{font-size:15px;color:#fff4dc;text-shadow:0 2px 8px rgba(0,0,0,.34);margin-bottom:14px}
-        .districts{display:flex;flex-wrap:wrap;gap:8px}
-        .districts span{padding:6px 12px;font-size:12px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#ffe6bc}
-        .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-top:14px;backdrop-filter:blur(10px)}
-        .card h2{font-size:18px;margin-bottom:10px}
-        .card p{font-size:14px;color:var(--soft)}
-        .items{display:grid;gap:10px}
-        .item{background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:12px;font-size:14px;color:var(--soft)}
-        .meta{display:grid;gap:10px}
-        .meta-box{border-radius:14px;padding:12px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.1)}
-        .meta-box b{display:block;font-size:12px;color:var(--faint);margin-bottom:4px}
-        .meta-box span{font-size:15px;color:#ffeac5;font-weight:600}
-        .steps{display:grid;gap:10px}
-        .step{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:12px}
-        .no{width:24px;height:24px;flex:0 0 24px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;color:#271a08;background:linear-gradient(135deg,var(--accent2),var(--accent))}
-        .step h3{font-size:14px;margin-bottom:2px}
-        .step p{font-size:13px;color:var(--soft)}
-        .benefit{display:flex;gap:10px;align-items:center;padding:12px;border-radius:14px;background:linear-gradient(135deg,rgba(89,216,143,.14),rgba(255,217,61,.1));border:1px solid rgba(89,216,143,.34);margin-top:8px}
-        .benefit .icon{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:rgba(255,255,255,.2);font-size:18px}
-        .benefit p{font-size:14px;color:#e9ffe8}
-        .video{margin-top:10px;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.14)}
-        .video video{width:100%;display:block;background:#000}
-        .slogan{text-align:center;color:#ffdcb3;font-size:14px;margin-top:18px;line-height:1.8}
-        .bar{position:fixed;left:0;right:0;bottom:0;z-index:10;padding:10px 14px calc(10px + var(--safe));background:rgba(7,7,14,.82);backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,.12)}
-        .bar-in{max-width:560px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:10px}
-        .btn{height:44px;border-radius:12px;border:1px solid transparent;font-size:15px;font-weight:700;font-family:inherit}
-        .btn.primary{background:linear-gradient(135deg,var(--accent2),var(--accent));color:#261a08;box-shadow:0 8px 18px rgba(255,159,67,.28)}
-        .btn.secondary{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#ffe8c3}
-        .tip{text-align:center;color:var(--faint);font-size:12px;margin-top:8px}
-        @media (min-width:420px){.meta{grid-template-columns:1fr 1fr}}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+    --bg:#1c1915;--bg2:#232019;--text:#f0ebe2;--sub:#a8a090;--dim:#6e6860;
+    --amber:#f0b24a;--honey:#f7ce5c;--tawny:#e09535;--caramel:#c98a2e;
+    --blush:#d88090;--sage:#7ab89a;
+    --card:rgba(255,255,255,.04);--border:rgba(240,178,74,.06);
+    --glass:rgba(255,250,240,.05);--glass-b:rgba(255,250,240,.06);
+    --night:#252220;--charcoal:#2a2622;
+    --safe:env(safe-area-inset-bottom,0px);
+    --w:min(100%,520px);
+    --r:20px
+}
+body{font-family:"SF Pro Display",-apple-system,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;color:var(--text);background:var(--bg);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;position:relative}
+body::after{content:"";position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+img{display:block;max-width:100%}
+.page{max-width:var(--w);margin:0 auto;padding-bottom:calc(110px + var(--safe));position:relative;z-index:1}
+
+/* ═══ 浮动光晕 ═══ */
+.orb{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;will-change:transform}
+.orb-1{width:300px;height:300px;background:radial-gradient(circle,rgba(240,178,74,.16),transparent 70%);top:-80px;right:-100px;animation:oF 14s ease-in-out infinite alternate}
+.orb-2{width:240px;height:240px;background:radial-gradient(circle,rgba(216,128,144,.1),transparent 70%);bottom:35%;left:-80px;animation:oF 18s ease-in-out infinite alternate-reverse}
+.orb-3{width:200px;height:200px;background:radial-gradient(circle,rgba(122,184,154,.08),transparent 70%);bottom:8%;right:-50px;animation:oF 20s ease-in-out infinite alternate}
+@keyframes oF{0%{transform:translateY(0) scale(1)}100%{transform:translateY(-30px) scale(1.08)}}
+
+/* ═══════ HERO ═══════ */
+.hero{position:relative;padding:48px 24px 40px;padding-bottom:60px;display:flex;flex-direction:column}
+
+/* 流光溢彩背景 */
+.hero-aurora{position:absolute;inset:-50%;z-index:0;filter:blur(40px);opacity:1;animation:auroraSpin 20s linear infinite;will-change:transform}
+.hero-aurora::before,.hero-aurora::after{content:"";position:absolute;border-radius:45%}
+.hero-aurora::before{width:55%;height:45%;top:15%;left:5%;background:radial-gradient(ellipse,rgba(240,178,74,.55),rgba(224,149,53,.15) 60%,transparent 80%)}
+.hero-aurora::after{width:50%;height:40%;bottom:15%;right:8%;background:radial-gradient(ellipse,rgba(216,128,144,.4),rgba(180,90,120,.1) 55%,transparent 78%)}
+.hero-aurora2{position:absolute;inset:-50%;z-index:0;filter:blur(45px);opacity:1;animation:auroraSpin 28s linear infinite reverse;will-change:transform}
+.hero-aurora2::before,.hero-aurora2::after{content:"";position:absolute;border-radius:45%}
+.hero-aurora2::before{width:45%;height:50%;top:20%;right:12%;background:radial-gradient(ellipse,rgba(122,184,154,.4),rgba(80,150,120,.1) 55%,transparent 78%)}
+.hero-aurora2::after{width:50%;height:42%;bottom:18%;left:10%;background:radial-gradient(ellipse,rgba(247,206,92,.45),rgba(240,178,74,.1) 55%,transparent 78%)}
+.hero-aurora3{position:absolute;inset:-30%;z-index:0;filter:blur(35px);opacity:1;animation:auroraPulse 8s ease-in-out infinite alternate;will-change:transform}
+.hero-aurora3::before,.hero-aurora3::after{content:"";position:absolute;border-radius:50%}
+.hero-aurora3::before{width:35%;height:30%;top:35%;left:30%;background:radial-gradient(ellipse,rgba(240,178,74,.4),transparent 68%)}
+.hero-aurora3::after{width:30%;height:25%;top:15%;right:20%;background:radial-gradient(ellipse,rgba(200,130,170,.3),transparent 65%)}
+@keyframes auroraSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+@keyframes auroraPulse{0%{transform:scale(.95) rotate(0deg)}100%{transform:scale(1.2) rotate(25deg)}}
+
+.hero-mesh{position:absolute;inset:0;z-index:0;background:
+    radial-gradient(ellipse 70% 50% at 15% 75%,rgba(240,178,74,.12),transparent),
+    radial-gradient(ellipse 50% 40% at 85% 25%,rgba(216,128,144,.1),transparent),
+    radial-gradient(ellipse 60% 50% at 50% 50%,rgba(28,25,21,.3),transparent);pointer-events:none}
+
+.hero-top{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;margin-bottom:36px}
+.hero-logo{height:36px;opacity:.7}
+.hero-s1{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(240,235,226,.4);padding:5px 14px;border-radius:999px;background:rgba(255,250,240,.06);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(240,178,74,.1);font-weight:500}
+.hero-body{position:relative;z-index:2}
+.hero-sub{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--amber);opacity:.6;margin-bottom:14px;font-weight:500}
+.hero-title{font-size:clamp(40px,11vw,52px);font-weight:800;line-height:1.15;letter-spacing:-.02em;margin-bottom:16px}
+.hero-title .t-line{display:block}
+.hero-title .t-amber{background:linear-gradient(90deg,var(--honey),var(--amber),var(--tawny),var(--amber),var(--honey));background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:textShimmer 6s ease-in-out infinite}
+@keyframes textShimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.hero-title .t-thin{font-weight:300;color:var(--sub);font-size:.5em;letter-spacing:.02em;display:block;margin-top:6px;-webkit-text-fill-color:var(--sub)}
+.hero-lead{font-size:14px;color:var(--sub);line-height:1.85;margin-bottom:18px;max-width:92%;letter-spacing:.2px}
+.hero-meta{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;color:var(--amber);letter-spacing:.5px;font-weight:600;padding:7px 16px;background:rgba(240,178,74,.06);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:999px;border:1px solid rgba(240,178,74,.12)}
+.hero-meta svg{width:13px;height:13px;opacity:.5}
+
+/* ═══ 花枝点缀 ═══ */
+.flora{position:absolute;pointer-events:none;z-index:0}
+.flora img{display:block;width:100%;height:100%;object-fit:contain}
+.flora-1{width:clamp(140px,40vw,200px);top:-10px;right:-30px;opacity:.35;animation:flora1Sway 5s ease-in-out infinite alternate}
+@keyframes flora1Sway{0%{transform:rotate(-3deg) translateY(0)}100%{transform:rotate(5deg) translateY(-10px)}}
+.flora-2{width:clamp(140px,38vw,190px);left:-30px;opacity:.4;transform:scaleX(-1) rotate(10deg);animation:flora2Sway 4s ease-in-out infinite alternate}
+@keyframes flora2Sway{0%{transform:scaleX(-1) rotate(8deg) translateY(0)}100%{transform:scaleX(-1) rotate(18deg) translateY(-14px)}}
+
+/* ═══════ 内容 ═══════ */
+.content{padding:0 20px;position:relative}
+
+/* ═══════ 标题 ═══════ */
+.sec{margin-top:56px}
+.sec-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--amber);opacity:.7;margin-bottom:8px;font-weight:500}
+.sec-h{font-size:23px;font-weight:700;letter-spacing:-.3px;margin-bottom:22px;color:var(--text);position:relative;display:inline-block}
+.sec-h::after{content:"";position:absolute;left:0;bottom:-5px;width:24px;height:2.5px;border-radius:2px;background:linear-gradient(90deg,var(--amber),var(--honey))}
+
+/* ═══════ 分隔 ═══════ */
+.divider{height:1px;margin:52px 0;background:linear-gradient(90deg,transparent,rgba(240,178,74,.1),transparent);position:relative}
+.divider::after{content:"·";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--bg);padding:0 16px;font-size:14px;color:rgba(240,178,74,.2);letter-spacing:6px}
+
+/* ═══════ 活动介绍 ═══════ */
+.about-text{font-size:15px;color:var(--sub);line-height:2;margin-bottom:20px;letter-spacing:.2px}
+.about-text em{font-style:normal;color:var(--text);font-weight:600;background:linear-gradient(180deg,transparent 58%,rgba(240,178,74,.18) 58%);padding:0 2px}
+.about-people{display:grid;gap:10px;margin-top:18px}
+.about-person{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:16px;background:rgba(255,250,240,.04);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(240,178,74,.06);box-shadow:0 2px 12px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.03)}
+.about-avatar{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-size:20px;flex-shrink:0}
+.av-1{background:linear-gradient(140deg,rgba(240,178,74,.2),rgba(240,178,74,.08));box-shadow:0 2px 8px rgba(240,178,74,.08)}
+.av-2{background:linear-gradient(140deg,rgba(216,128,144,.2),rgba(216,128,144,.08));box-shadow:0 2px 8px rgba(216,128,144,.06)}
+.av-3{background:linear-gradient(140deg,rgba(122,184,154,.2),rgba(122,184,154,.08));box-shadow:0 2px 8px rgba(122,184,154,.06)}
+.av-4{background:linear-gradient(140deg,rgba(247,206,92,.2),rgba(247,206,92,.08));box-shadow:0 2px 8px rgba(247,206,92,.06)}
+.about-person p{font-size:13.5px;color:var(--sub);line-height:1.6}
+
+/* ═══════ 亮点 ═══════ */
+.hl-grid{display:grid;gap:14px}
+.hl{position:relative;border-radius:var(--r);overflow:hidden;min-height:210px;box-shadow:0 8px 36px rgba(0,0,0,.2),0 2px 6px rgba(0,0,0,.1)}
+.hl-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.hl-mask{position:absolute;inset:0}
+.hl-inner{position:relative;z-index:1;padding:22px;display:flex;flex-direction:column;justify-content:flex-end;min-height:210px}
+.hl-num{font-size:10px;letter-spacing:3px;color:rgba(255,255,255,.4);margin-bottom:auto;font-weight:500}
+.hl-h{font-size:18px;font-weight:700;margin-bottom:8px;line-height:1.4;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.2)}
+.hl-p{font-size:13px;color:rgba(255,255,255,.78);line-height:1.75;letter-spacing:.2px}
+.hl-1 .hl-mask{background:linear-gradient(155deg,rgba(224,149,53,.9),rgba(200,106,50,.8))}
+.hl-2 .hl-mask{background:linear-gradient(155deg,rgba(110,90,155,.88),rgba(140,105,175,.78))}
+.hl-3 .hl-mask{background:linear-gradient(155deg,rgba(80,158,120,.88),rgba(55,130,115,.78))}
+.hl-4 .hl-mask{background:linear-gradient(155deg,rgba(210,165,55,.88),rgba(185,130,40,.78))}
+@media(min-width:400px){.hl-grid{grid-template-columns:1fr 1fr}.hl:first-child{grid-column:1/-1;min-height:190px}}
+
+/* ═══════ 怎么参加 ═══════ */
+.steps{position:relative;display:grid;gap:0}
+.steps::before{content:"";position:absolute;left:19px;top:32px;bottom:32px;width:1px;background:linear-gradient(180deg,var(--amber),var(--blush),var(--sage));opacity:.15}
+.stp{display:flex;gap:18px;padding:18px 0}
+.stp-dot{width:40px;height:40px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;color:#fff;z-index:1;position:relative}
+.stp-dot::after{content:"";position:absolute;inset:-3px;border-radius:50%;opacity:.15}
+.stp-1 .stp-dot{background:linear-gradient(140deg,var(--amber),var(--tawny));box-shadow:0 4px 18px rgba(240,178,74,.2)}
+.stp-1 .stp-dot::after{box-shadow:0 0 0 1.5px var(--amber)}
+.stp-2 .stp-dot{background:linear-gradient(140deg,var(--blush),#c0687a);box-shadow:0 4px 18px rgba(216,128,144,.16)}
+.stp-2 .stp-dot::after{box-shadow:0 0 0 1.5px var(--blush)}
+.stp-3 .stp-dot{background:linear-gradient(140deg,var(--sage),#5aaa8a);box-shadow:0 4px 18px rgba(122,184,154,.16)}
+.stp-3 .stp-dot::after{box-shadow:0 0 0 1.5px var(--sage)}
+.stp-4 .stp-dot{background:linear-gradient(140deg,var(--honey),var(--caramel));box-shadow:0 4px 18px rgba(247,206,92,.18)}
+.stp-4 .stp-dot::after{box-shadow:0 0 0 1.5px var(--honey)}
+.stp-body h3{font-size:16px;font-weight:600;margin-bottom:4px;letter-spacing:.1px}
+.stp-body p{font-size:13px;color:var(--sub);line-height:1.7}
+
+.reward{margin-top:12px;padding:20px;border-radius:var(--r);display:flex;gap:14px;position:relative;overflow:hidden;background:rgba(240,178,74,.04);border:1px solid rgba(240,178,74,.1);box-shadow:0 2px 16px rgba(0,0,0,.1)}
+.reward::before{content:"";position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(247,206,92,.08),transparent 70%);pointer-events:none}
+.reward-icon{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;font-size:24px;background:linear-gradient(140deg,rgba(240,178,74,.15),rgba(247,206,92,.08));flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.reward-text{font-size:13px;color:var(--sub);line-height:1.85}
+.reward-text b{color:var(--text);font-weight:600}
+
+/* ═══════ 春醒据点 ═══════ */
+.venues{display:grid;gap:14px}
+.venue{border-radius:var(--r);overflow:hidden;background:var(--glass-b);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(240,178,74,.06);box-shadow:0 4px 24px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.03)}
+.venue-photo{width:100%;height:180px;object-fit:cover;background:var(--night)}
+.venue-photo-placeholder{width:100%;height:180px;background:linear-gradient(135deg,var(--night),var(--charcoal));display:grid;place-items:center;color:var(--dim);font-size:13px}
+.venue-body{padding:16px}
+.venue-name{font-size:16px;font-weight:600;margin-bottom:4px}
+.venue-loc{font-size:12px;color:var(--dim);display:flex;align-items:center;gap:4px;margin-bottom:10px}
+.venue-loc svg{width:12px;height:12px;flex-shrink:0;opacity:.5}
+.venue-tags{display:flex;gap:6px;flex-wrap:wrap}
+.vtag{padding:4px 10px;border-radius:8px;font-size:11px;background:rgba(240,178,74,.06);color:var(--amber);border:1px solid rgba(240,178,74,.1);font-weight:500}
+.venue-soon{border-radius:var(--r);padding:36px 20px;text-align:center;border:1px dashed rgba(240,178,74,.12);background:rgba(255,250,240,.03)}
+.venue-soon p{font-size:15px;color:var(--sub);margin-bottom:4px}
+.venue-soon span{font-size:12px;color:var(--dim)}
+
+/* ═══════ 视频 ═══════ */
+.vid{margin-top:56px}
+.vid-box{border-radius:var(--r);overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,.2),0 2px 6px rgba(0,0,0,.1);border:1px solid rgba(240,178,74,.06)}
+.vid-box video{width:100%;display:block;background:#000}
+
+/* ═══════ 结尾 ═══════ */
+.outro{text-align:center;margin:64px 0 24px;padding:0 28px}
+.outro-quote{font-size:17px;color:var(--sub);line-height:2.3;font-weight:300;letter-spacing:.3px}
+.outro-quote strong{color:var(--amber);font-weight:500}
+.outro-logo{height:32px;margin:32px auto 8px;opacity:.25}
+.outro-brand{font-size:11px;color:var(--dim);letter-spacing:1.5px;font-weight:400}
+
+/* ═══════ 底部栏 ═══════ */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:10;background:rgba(28,25,21,.88);backdrop-filter:blur(24px) saturate(1.3);-webkit-backdrop-filter:blur(24px) saturate(1.3);border-top:1px solid rgba(240,178,74,.06);padding:12px 16px calc(12px + var(--safe))}
+.bar-inner{max-width:var(--w);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{height:48px;border-radius:14px;border:none;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;letter-spacing:.2px;transition:transform .15s,box-shadow .15s}
+.btn:active{transform:scale(.97)}
+.btn-dl{background:rgba(255,250,240,.06);border:1px solid rgba(240,178,74,.1);color:var(--text);box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.btn-open{background:linear-gradient(135deg,var(--amber),var(--tawny));color:#1c1915;box-shadow:0 4px 20px rgba(240,178,74,.2),0 1px 3px rgba(240,178,74,.1);position:relative;overflow:hidden}
+.btn-open::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.2) 50%,transparent 62%);animation:bS 3.5s ease-in-out infinite}
+@keyframes bS{0%,100%{transform:translateX(-150%)}55%{transform:translateX(150%)}}
+.bar-tip{text-align:center;font-size:10px;color:var(--dim);margin-top:6px;letter-spacing:.3px}
+
+/* ═══════ 动画 ═══════ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.22,.9,.36,1),transform .8s cubic-bezier(.22,.9,.36,1)}
+.reveal.show{opacity:1;transform:none}
+.reveal:nth-child(2){transition-delay:.06s}
+.reveal:nth-child(3){transition-delay:.12s}
     </style>
 </head>
 <body>
-    <div class="wrap">
-        <section class="hero">
-            <img class="poster" src="../images/event/活动海报.jpg" alt="北京春醒交友季海报">
-            <div class="hero-inner">
-                <div class="tag">Zup! 官方线下活动</div>
-                <img class="title" src="../images/event/透明背景大标题.png" alt="北京春醒交友季">
-                <p class="sub">北京春天的第一场全城活动开始啦！在春风里，和这座城市一起春醒。</p>
-                <div class="districts">
-                   <span>更多城市活动也将陆续上线</span>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+    <div class="hero-aurora"></div>
+    <div class="hero-aurora2"></div>
+    <div class="hero-aurora3"></div>
+    <div class="hero-mesh"></div>
+    <div class="flora flora-1"><img src="../images/event/flower.png" alt=""></div>
+    <div class="hero-top">
+        <img class="hero-logo" src="../images/hero-logo.png" alt="Zup!">
+        <span class="hero-s1">Season 1</span>
+    </div>
+    <div class="hero-body">
+        <div class="hero-sub">Zup! 官方线下活动·北京</div>
+        <h1 class="hero-title">
+            <span class="t-line">北京</span>
+            <span class="t-line"><span class="t-amber">春醒</span>交友季</span>
+            <span class="t-thin">Spring Awakening Social Season</span>
+        </h1>
+        <p class="hero-lead">北京春天的第一场全城联动社交派对。<br>两周时光，多商圈覆盖，轻松无压力的线下交友据点。</p>
+        <div class="hero-meta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            3.13 — 3.27 · 为期两周
+        </div>
+    </div>
+</section>
+
+<div class="content">
+
+    <!-- ═══ 活动介绍 ═══ -->
+    <section class="sec reveal">
+        <div class="sec-label">About</div>
+        <h2 class="sec-h">这是什么活动</h2>
+        <p class="about-text">「北京春醒交友季」是 <em>Zup!</em> 官方发起的线下社交活动。我们联合北京不同区域的酒馆、咖啡馆和线下空间，一起打造可以<em>轻松认识新朋友</em>的社交据点。</p>
+        <p class="about-text">不是 Party，不是相亲角。更像是一群人刚好在同一个地方，<em>自然地聊起了天</em>。</p>
+        <p class="about-text" style="margin-bottom:12px;color:var(--dim);font-size:13px">在这些空间里，你可能会遇见——</p>
+        <div class="about-people">
+            <div class="about-person"><div class="about-avatar av-1">🌆</div><p>下班出来坐坐，想找人随便聊聊的人</p></div>
+            <div class="about-person"><div class="about-avatar av-2">🧳</div><p>刚来北京不久，想认识本地朋友的人</p></div>
+            <div class="about-person"><div class="about-avatar av-3">☀️</div><p>周末闲着没事，只是想出门走走的人</p></div>
+            <div class="about-person"><div class="about-avatar av-4">💬</div><p>和你一样，觉得在大城市交朋友挺难的人</p></div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══ 活动亮点 ═══ -->
+    <section class="sec reveal">
+        <div class="sec-label">Highlights</div>
+        <h2 class="sec-h">活动亮点</h2>
+        <div class="hl-grid">
+            <div class="hl hl-1">
+                <div class="hl-bg" style="background-image:url('');"></div>
+                <div class="hl-mask"></div>
+                <div class="hl-inner">
+                    <span class="hl-num">01</span>
+                    <h3 class="hl-h">活动多样<br>总有你喜欢的</h3>
+                    <p class="hl-p">每个据点风格不同——安静的咖啡馆、热闹的酒馆、有主题的社交空间，找到你的舒适区。</p>
                 </div>
             </div>
-        </section>
-
-        <section class="card">
-            <h2>活动信息</h2>
-            <div class="meta">
-                <div class="meta-box"><b>活动形式</b><span>全城同步 · 春日社交派对<br>同城多地活动，线下形式多样</span></div>
-                <div class="meta-box"><b>活动时间</b><span>3月13日 ～ 3月27日（为期两周）</span></div>
-                <div class="meta-box"><b>活动内容</b><span>前往Zup! App，各入驻商户已将线下活动信息发布在地图上，可查看详情并参与</span></div>
+            <div class="hl hl-2">
+                <div class="hl-bg" style="background-image:url('');"></div>
+                <div class="hl-mask"></div>
+                <div class="hl-inner">
+                    <span class="hl-num">02</span>
+                    <h3 class="hl-h">实时查看<br>现场热度</h3>
+                    <p class="hl-p">每个邀约气泡都是一扇窗，出发前先看看那边有什么正在发生。</p>
+                </div>
             </div>
-        </section>
-
-        <section class="card">
-            <h2>活动亮点</h2>
-            <div class="items">
-                <div class="item">🎉 在 Zup! 地图查看附近春日派对，实时结识一起同行的伙伴</div>
-                <div class="item">👤 单人赴约也不尴尬，官方活动点位主打单人友好氛围</div>
-                <div class="item">📍 覆盖多商圈，就近出发，此刻想出门此刻就有局</div>
+            <div class="hl hl-3">
+                <div class="hl-bg" style="background-image:url('');"></div>
+                <div class="hl-mask"></div>
+                <div class="hl-inner">
+                    <span class="hl-num">03</span>
+                    <h3 class="hl-h">单人赴约<br>绝不尴尬</h3>
+                    <p class="hl-p">全程主打单人友好，自然地遇见和聊天，北京交朋友没那么难。</p>
+                </div>
             </div>
-        </section>
-
-        <section class="card">
-            <h2>参与方式</h2>
-            <div class="steps">
-                <div class="step"><div class="no">1</div><div><h3>打开Zup! App</h3><p>首页地图上就能看到各地点实时的「春醒局」。</p></div></div>
-                <div class="step"><div class="no">2</div><div><h3>选择就近或你喜欢的活动地点</h3><p>先线上互动了解现场情况，或直接线下赴约。</p></div></div>
-                <div class="step"><div class="no">3</div><div><h3>到店签到领福利</h3><p>前往官方活动地点，在 Zup! 完成签到可找店员领取专属福利。</p></div></div>
+            <div class="hl hl-4">
+                <div class="hl-bg" style="background-image:url('');"></div>
+                <div class="hl-mask"></div>
+                <div class="hl-inner">
+                    <span class="hl-num">04</span>
+                    <h3 class="hl-h">此刻想出门<br>此刻就有局</h3>
+                    <p class="hl-p">覆盖多个核心商圈，打开 Zup! 看一眼地图就行，不用提前凑局。</p>
+                </div>
             </div>
-            <div class="benefit">
-                <div class="icon">🎁</div>
-                <p>春醒福利：可领取「春醒赠饮」或「春醒小食」一份（具体以店内实际供应为准）</p>
-            </div>
-        </section>
-
-        <section class="card">
-            <h2>Zup! 官方线下活动Season 1</h2>
-            <div class="video">
-                <video src="https://cdn.nowmap.cn/h5_event/beijing_s1.mp4" controls playsinline webkit-playsinline preload="metadata" poster="../images/event/视频封面.jpg"></video>
-            </div>
-        </section>
-
-        <p class="slogan">来和这座城市一起“春醒”<br>各应用商店搜索“Zup”——线下活动实时地图</p>
-    </div>
-
-    <div class="bar">
-        <div class="bar-in">
-            <button class="btn secondary" onclick="location.href='../download.html'">下载 Zup</button>
-            <button class="btn primary" onclick="openApp()">打开 App 参加</button>
         </div>
-        <div class="tip">若未安装 App，将跳转下载页</div>
+    </section>
+
+    <div class="divider"></div>
+
+    <div class="flora flora-2"><img src="../images/event/flower.png" alt=""></div>
+
+    <!-- ═══ 怎么参加 ═══ -->
+    <section class="sec reveal">
+        <div class="sec-label">How to Join</div>
+        <h2 class="sec-h">怎么参加</h2>
+        <div class="steps">
+            <div class="stp stp-1">
+                <div class="stp-dot">1</div>
+                <div class="stp-body"><h3>打开 Zup!</h3><p>首页地图上就能看到各据点实时的「春醒局」，活动气泡一目了然。</p></div>
+            </div>
+            <div class="stp stp-2">
+                <div class="stp-dot">2</div>
+                <div class="stp-body"><h3>找一个想去的地方</h3><p>酒馆、咖啡馆、社交空间——先线上看看现场动态，或直接出发。</p></div>
+            </div>
+            <div class="stp stp-3">
+                <div class="stp-dot">3</div>
+                <div class="stp-body"><h3>到店签到领福利</h3><p>到达活动据点后在 Zup! 完成签到，找店员领取你的春醒礼物。</p></div>
+            </div>
+            <div class="stp stp-4">
+                <div class="stp-dot">4</div>
+                <div class="stp-body"><h3>自然认识新朋友</h3><p>不用强行社交，不用拼酒，坐下来聊聊天就好。</p></div>
+            </div>
+        </div>
+        <div class="reward">
+            <div class="reward-icon">🎁</div>
+            <div class="reward-text"><b>春醒福利</b><br>到店签到即可领取「春醒赠饮」或「春醒小食」一份。一份春日甜意，很高兴你能来。<br><span style="opacity:.6;font-size:12px">具体品类以店内实际供应为准</span></div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══ 春醒据点 ═══ -->
+    <section class="sec reveal">
+        <div class="sec-label">Venues</div>
+        <h2 class="sec-h">春醒据点</h2>
+        <div class="venues">
+            <!-- 据点模板 — 有具体商户信息后替换
+            <div class="venue">
+                <img class="venue-photo" src="" alt="">
+                <div class="venue-body">
+                    <div class="venue-name">店名</div>
+                    <div class="venue-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>地址</div>
+                    <div class="venue-tags"><span class="vtag">标签</span></div>
+                </div>
+            </div>
+            -->
+            <div class="venue-soon">
+                <p>据点名单正在筹备中，即将公布</p>
+                <span>活动据点将陆续上线至 Zup! App 地图</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══ 视频 ═══ -->
+    <section class="vid reveal">
+        <div class="sec-label">Preview</div>
+        <h2 class="sec-h">活动预告</h2>
+        <div class="vid-box">
+            <video src="https://cdn.nowmap.cn/h5_event/beijing_s1.mp4" controls playsinline webkit-playsinline preload="metadata" poster="../images/event/视频封面.jpg"></video>
+        </div>
+    </section>
+
+</div><!-- .content -->
+
+<!-- ═══ 结尾 ═══ -->
+<section class="outro reveal">
+    <p class="outro-quote">
+        如果你刚好也在北京<br>
+        如果你最近也想出来走走<br><br>
+        那就<strong>来看看</strong>吧。<br><br>
+        在春风里，自然地遇见一些人<br>
+        不需要理由，也不需要准备<br>
+        来就好了。
+    </p>
+    <img class="outro-logo" src="../images/hero-logo.png" alt="Zup!">
+    <p class="outro-brand">Zup! · 线下活动实时地图</p>
+</section>
+
+<!-- ═══ 底部栏 ═══ -->
+<div class="bar">
+    <div class="bar-inner">
+        <button class="btn btn-dl" onclick="location.href='../download.html'">下载 Zup!</button>
+        <button class="btn btn-open" onclick="openApp()">打开 App 参加</button>
     </div>
+    <div class="bar-tip">若未安装 App，将跳转下载页</div>
+</div>
 
-    <script>
-        var WECHAT_APP_ID = "wx4856a663c86fc338";
-        var WECHAT_SIGN_URL = "https://zup.nowmap.cn/api/v1/wechat/js-sdk-signature";
-        var SHARE_DATA = {
-            title: "北京春醒交友季｜Zup! 官方线下活动",
-            desc: "北京春天的第一场全城活动开始啦！在 Zup! 地图查看附近春日派对，认识一起同行的新朋友。",
-            imgUrl: "https://cdn.nowmap.cn/h5_event/share-cover.jpg?v=20260303"
-        };
+<script>
+// 入场动画
+var io = new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("show");io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll(".reveal").forEach(function(el){io.observe(el)});
 
-        function isWechatBrowser() {
-            return /micromessenger/i.test(navigator.userAgent);
-        }
+// 微信分享
+var WX_ID="wx4856a663c86fc338",WX_SIGN="https://zup.nowmap.cn/api/v1/wechat/js-sdk-signature";
+var SD={title:"北京春醒交友季｜Zup! 官方线下活动",desc:"北京春天的第一场全城活动开始啦！在 Zup! 地图查看附近春日派对，认识一起同行的新朋友。",img:"https://cdn.nowmap.cn/h5_event/share-cover.jpg?v=20260303"};
+(async function(){
+    if(!/micromessenger/i.test(navigator.userAgent)||!window.wx)return;
+    try{
+        var u=location.href.split("#")[0],r=await fetch(WX_SIGN+"?url="+encodeURIComponent(u)+"&appId="+encodeURIComponent(WX_ID));
+        if(!r.ok)return;var d=(await r.json()).data;if(!d||!d.signature)return;
+        wx.config({debug:false,appId:d.appId||WX_ID,timestamp:String(d.timestamp),nonceStr:d.nonceStr||d.noncestr,signature:d.signature,jsApiList:["updateAppMessageShareData","updateTimelineShareData","onMenuShareAppMessage","onMenuShareTimeline"]});
+        wx.ready(function(){var l=location.href.split("#")[0],m={title:SD.title,desc:SD.desc,link:l,imgUrl:SD.img},t={title:SD.title,link:l,imgUrl:SD.img};wx.updateAppMessageShareData(m);wx.updateTimelineShareData(t);wx.onMenuShareAppMessage(m);wx.onMenuShareTimeline(t)});
+    }catch(e){}
+})();
 
-        async function initWechatShare() {
-            if (!isWechatBrowser() || !window.wx) return;
-            try {
-                var pageUrl = window.location.href.split("#")[0];
-                var reqUrl = WECHAT_SIGN_URL + "?url=" + encodeURIComponent(pageUrl) + "&appId=" + encodeURIComponent(WECHAT_APP_ID);
-                var res = await fetch(reqUrl);
-                if (!res.ok) return;
-                var json = await res.json();
-                var data = json && (json.data || json.result || json);
-                if (!data || !data.signature) return;
-
-                wx.config({
-                    debug: false,
-                    appId: data.appId || WECHAT_APP_ID,
-                    timestamp: String(data.timestamp),
-                    nonceStr: data.nonceStr || data.noncestr,
-                    signature: data.signature,
-                    jsApiList: [
-                        "updateAppMessageShareData",
-                        "updateTimelineShareData",
-                        "onMenuShareAppMessage",
-                        "onMenuShareTimeline"
-                    ]
-                });
-
-                wx.ready(function() {
-                    var shareLink = window.location.href.split("#")[0];
-                    var msgParams = { title: SHARE_DATA.title, desc: SHARE_DATA.desc, link: shareLink, imgUrl: SHARE_DATA.imgUrl };
-                    var timeParams = { title: SHARE_DATA.title, link: shareLink, imgUrl: SHARE_DATA.imgUrl };
-                    wx.updateAppMessageShareData(msgParams);
-                    wx.updateTimelineShareData(timeParams);
-                    wx.onMenuShareAppMessage(msgParams);
-                    wx.onMenuShareTimeline(timeParams);
-                });
-            } catch (e) { /* silent */ }
-        }
-
-        initWechatShare();
-
-        function openApp() {
-            var deepLink = "nowmap://open";
-            var start = Date.now();
-            var hidden = false;
-            function onHide() { hidden = true; }
-            document.addEventListener("visibilitychange", onHide, { once: true });
-            window.location.href = deepLink;
-            setTimeout(function() {
-                if (!hidden && Date.now() - start < 2600) {
-                    window.location.href = "../download.html";
-                }
-            }, 1800);
-        }
-    </script>
+// 打开 App
+function openApp(){
+    var s=Date.now(),h=false;
+    function onH(){h=true}
+    document.addEventListener("visibilitychange",onH,{once:true});
+    location.href="nowmap://open";
+    setTimeout(function(){if(!h&&Date.now()-s<2600)location.href="../download.html"},1800);
+}
+</script>
 </body>
 </html>
