@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- ★ 商户定制：替换标题和描述 -->
+    <title>微醺九号·炭火料理 · 北京春醒交友季</title>
+    <meta name="description" content="微醺九号·炭火料理是「北京春醒交友季」官方据点，活动期间到店签到有春醒福利。">
+    <meta name="keywords" content="Zup,北京春醒交友季,微醺九号·炭火料理,线下活动,社交派对">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Zup!">
+    <!-- ★ 商户定制：替换 og 标题/描述/图片 -->
+    <meta property="og:title" content="微醺九号·炭火料理 · 北京春醒交友季">
+    <meta property="og:description" content="Zup！春醒交友季合作商家，活动期间到店签到有春醒小礼，欢迎来玩！">
+    <meta property="og:url" content="https://www.nowmap.cn/event/beijing-spring-awakening-venue.html">
+    <meta property="og:image" content="https://cdn.nowmap.cn/h5_event/share-cover.jpg?v=20260303">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="微醺九号·炭火料理 · 春醒交友季官方">
+    <meta name="twitter:description" content="Zup！春醒交友季合作商家，活动期间到店签到即享春醒小礼，欢迎来玩！">
+    <meta name="twitter:image" content="https://cdn.nowmap.cn/h5_event/share-cover.jpg?v=20260303">
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+    <style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{overflow-x:hidden}
+:root{
+    --bg:#1c1915;--bg2:#232019;--text:#f0ebe2;--sub:#a8a090;--dim:#6e6860;
+    --amber:#f0b24a;--honey:#f7ce5c;--tawny:#e09535;--caramel:#c98a2e;
+    --blush:#d88090;--sage:#7ab89a;
+    --card:rgba(255,255,255,.04);--border:rgba(240,178,74,.06);
+    --glass:rgba(255,250,240,.05);--glass-b:rgba(255,250,240,.06);
+    --night:#252220;--charcoal:#2a2622;
+    --safe:env(safe-area-inset-bottom,0px);
+    --w:min(100%,520px);
+    --r:20px
+}
+body{font-family:"SF Pro Display",-apple-system,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;color:var(--text);background:var(--bg);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;position:relative}
+body::after{content:"";position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+img{display:block;max-width:100%}
+.page{max-width:var(--w);margin:0 auto;padding-bottom:calc(110px + var(--safe));position:relative;z-index:1}
+
+/* ═══ 浮动光晕 ═══ */
+.orb{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;will-change:transform}
+.orb-1{width:300px;height:300px;background:radial-gradient(circle,rgba(240,178,74,.16),transparent 70%);top:-80px;right:-100px;animation:oF 14s ease-in-out infinite alternate}
+.orb-2{width:240px;height:240px;background:radial-gradient(circle,rgba(216,128,144,.1),transparent 70%);bottom:35%;left:-80px;animation:oF 18s ease-in-out infinite alternate-reverse}
+@keyframes oF{0%{transform:translateY(0) scale(1)}100%{transform:translateY(-30px) scale(1.08)}}
+
+/* ═══════ HERO ═══════ */
+.hero{position:relative;overflow:hidden}
+.hero-logo{position:absolute;top:16px;left:20px;height:60px;z-index:3;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4))}
+.hero-cover{width:100%;height:380px;object-fit:cover;display:block;background:var(--night)}
+.hero-cover-placeholder{width:100%;height:380px;background:linear-gradient(135deg,var(--night) 0%,var(--charcoal) 50%,var(--night) 100%);display:grid;place-items:center;color:var(--dim);font-size:13px;letter-spacing:1px}
+.hero-gradient{position:absolute;left:0;right:0;bottom:0;height:220px;background:linear-gradient(180deg,transparent 0%,rgba(28,25,21,.25) 40%,rgba(28,25,21,.7) 75%,var(--bg) 100%);pointer-events:none}
+.hero-body{position:absolute;left:0;right:0;bottom:0;padding:0 24px 28px;z-index:2}
+.hero-collab{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.hero-collab-name{font-size:13px;font-weight:700;color:var(--text);letter-spacing:.5px;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.hero-collab-x{font-size:20px;color:var(--amber);font-weight:500;opacity:.7}
+.hero-collab-brand{font-size:13px;font-weight:700;color:var(--amber);letter-spacing:.5px;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.hero-collab-tag{padding:3px 10px;border-radius:999px;background:rgba(240,178,74,.15);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(240,178,74,.18);font-size:9px;letter-spacing:1.5px;color:var(--amber);font-weight:600;margin-left:4px}
+.hero-venue-name{font-size:clamp(32px,9vw,44px);font-weight:800;line-height:1.15;letter-spacing:-.02em;margin-bottom:10px;text-shadow:0 2px 20px rgba(0,0,0,.4)}
+.hero-venue-tagline{font-size:14px;color:rgba(240,235,226,.75);line-height:1.7;max-width:90%;letter-spacing:.2px;text-shadow:0 1px 8px rgba(0,0,0,.3)}
+
+/* ═══ 花枝 ═══ */
+.flora{position:absolute;pointer-events:none;z-index:1}
+.flora img{display:block;width:100%;height:100%;object-fit:contain}
+.flora-hero{width:clamp(100px,28vw,150px);top:10px;right:-15px;opacity:.3;animation:floraS 5s ease-in-out infinite alternate}
+@keyframes floraS{0%{transform:rotate(-3deg) translateY(0)}100%{transform:rotate(5deg) translateY(-8px)}}
+
+/* ═══════ 内容 ═══════ */
+.content{padding:0 20px;position:relative}
+
+/* ═══════ 标题 ═══════ */
+.sec{margin-top:48px}
+.sec-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--amber);opacity:.7;margin-bottom:8px;font-weight:500}
+.sec-h{font-size:23px;font-weight:700;letter-spacing:-.3px;margin-bottom:22px;color:var(--text);position:relative;display:inline-block}
+.sec-h::after{content:"";position:absolute;left:0;bottom:-5px;width:24px;height:2.5px;border-radius:2px;background:linear-gradient(90deg,var(--amber),var(--honey))}
+
+/* ═══════ 分隔 ═══════ */
+.divider{height:1px;margin:48px 0;background:linear-gradient(90deg,transparent,rgba(240,178,74,.1),transparent);position:relative}
+.divider::after{content:"·";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--bg);padding:0 16px;font-size:14px;color:rgba(240,178,74,.2);letter-spacing:6px}
+
+/* ═══════ 地址栏 ═══════ */
+.addr-bar{display:flex;align-items:center;gap:10px;padding:14px 18px;border-radius:14px;background:rgba(255,250,240,.04);border:1px solid rgba(240,178,74,.06);margin-top:4px}
+.addr-bar svg{width:16px;height:16px;color:var(--amber);flex-shrink:0;opacity:.7}
+.addr-bar p{font-size:13px;color:var(--sub);line-height:1.5;letter-spacing:.2px}
+
+/* ═══════ 视频 ═══════ */
+.vid{margin-top:24px}
+.vid-box{border-radius:var(--r);overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,.2),0 2px 6px rgba(0,0,0,.1);border:1px solid rgba(240,178,74,.06)}
+.vid-box video{width:100%;display:block;background:#000}
+
+/* ═══════ 商户介绍 ═══════ */
+.about-text{font-size:15px;color:var(--sub);line-height:2;margin-bottom:16px;letter-spacing:.2px}
+.about-text em{font-style:normal;color:var(--text);font-weight:600;background:linear-gradient(180deg,transparent 58%,rgba(240,178,74,.18) 58%);padding:0 2px}
+
+/* ═══════ 商户图集 ═══════ */
+.gallery-wrap{margin:0 -20px;padding:0 20px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.gallery-wrap::-webkit-scrollbar{display:none}
+.gallery{display:flex;gap:10px;padding-bottom:4px}
+.gallery::after{content:"";flex-shrink:0;width:8px}
+.gallery-item{flex-shrink:0;width:260px;height:195px;border-radius:var(--r);overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.15);border:1px solid rgba(240,178,74,.06)}
+.gallery-item img{width:100%;height:100%;object-fit:cover;background:var(--night)}
+.gallery-placeholder{width:100%;height:100%;background:linear-gradient(135deg,var(--night),var(--charcoal));display:grid;place-items:center;color:var(--dim);font-size:12px}
+
+/* ═══════ 活动内容 ═══════ */
+.acts{display:grid;gap:12px}
+.act{padding:20px;border-radius:var(--r);background:rgba(255,250,240,.04);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(240,178,74,.06);box-shadow:0 2px 12px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.03);position:relative;overflow:hidden}
+.act::before{content:"";position:absolute;top:-20px;right:-20px;width:80px;height:80px;border-radius:50%;pointer-events:none}
+.act-1::before{background:radial-gradient(circle,rgba(240,178,74,.06),transparent 70%)}
+.act-2::before{background:radial-gradient(circle,rgba(216,128,144,.06),transparent 70%)}
+.act-3::before{background:radial-gradient(circle,rgba(122,184,154,.06),transparent 70%)}
+.act-tag{display:inline-block;padding:3px 10px;border-radius:8px;font-size:10px;font-weight:600;letter-spacing:.5px;margin-bottom:10px}
+.act-1 .act-tag{background:rgba(240,178,74,.1);color:var(--amber);border:1px solid rgba(240,178,74,.12)}
+.act-2 .act-tag{background:rgba(216,128,144,.1);color:var(--blush);border:1px solid rgba(216,128,144,.12)}
+.act-3 .act-tag{background:rgba(122,184,154,.1);color:var(--sage);border:1px solid rgba(122,184,154,.12)}
+.act h3{font-size:17px;font-weight:700;margin-bottom:6px;line-height:1.4}
+.act p{font-size:13px;color:var(--sub);line-height:1.75}
+.act-time{display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:11px;color:var(--dim);letter-spacing:.3px}
+.act-time svg{width:12px;height:12px;opacity:.5}
+
+/* ═══════ 到店福利 ═══════ */
+.benefit{margin-top:8px;padding:24px;border-radius:var(--r);position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(240,178,74,.06),rgba(247,206,92,.03));border:1px solid rgba(240,178,74,.12);box-shadow:0 4px 24px rgba(0,0,0,.1)}
+.benefit::before{content:"";position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(247,206,92,.08),transparent 70%);pointer-events:none}
+.benefit-head{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.benefit-icon{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:26px;background:linear-gradient(140deg,rgba(240,178,74,.18),rgba(247,206,92,.08));flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.benefit-title{font-size:18px;font-weight:700;color:var(--text)}
+.benefit-title span{display:block;font-size:11px;font-weight:500;color:var(--amber);letter-spacing:2px;margin-bottom:2px}
+.benefit-desc{font-size:14px;color:var(--sub);line-height:1.9;letter-spacing:.2px}
+.benefit-desc b{color:var(--text);font-weight:600}
+.benefit-note{margin-top:12px;font-size:11px;color:var(--dim);line-height:1.6}
+
+/* ═══════ 活动背景 ═══════ */
+.event-ctx{padding:22px;border-radius:var(--r);background:rgba(255,250,240,.03);border:1px solid rgba(240,178,74,.05)}
+.event-ctx-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:rgba(240,178,74,.08);border:1px solid rgba(240,178,74,.1);margin-bottom:14px}
+.event-ctx-badge span{font-size:10px;letter-spacing:1.5px;color:var(--amber);font-weight:600}
+.event-ctx h3{font-size:17px;font-weight:700;margin-bottom:8px}
+.event-ctx p{font-size:13px;color:var(--sub);line-height:1.85}
+.event-ctx-meta{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:11px;color:var(--amber);letter-spacing:.3px;font-weight:600;opacity:.7}
+.event-ctx-meta svg{width:12px;height:12px;opacity:.5}
+
+/* ═══════ 怎么参加 ═══════ */
+.steps{position:relative;display:grid;gap:0}
+.steps::before{content:"";position:absolute;left:19px;top:32px;bottom:32px;width:1px;background:linear-gradient(180deg,var(--amber),var(--blush),var(--sage));opacity:.15}
+.stp{display:flex;gap:18px;padding:18px 0}
+.stp-dot{width:40px;height:40px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;color:#fff;z-index:1;position:relative}
+.stp-dot::after{content:"";position:absolute;inset:-3px;border-radius:50%;opacity:.15}
+.stp-1 .stp-dot{background:linear-gradient(140deg,var(--amber),var(--tawny));box-shadow:0 4px 18px rgba(240,178,74,.2)}
+.stp-1 .stp-dot::after{box-shadow:0 0 0 1.5px var(--amber)}
+.stp-2 .stp-dot{background:linear-gradient(140deg,var(--blush),#c0687a);box-shadow:0 4px 18px rgba(216,128,144,.16)}
+.stp-2 .stp-dot::after{box-shadow:0 0 0 1.5px var(--blush)}
+.stp-3 .stp-dot{background:linear-gradient(140deg,var(--sage),#5aaa8a);box-shadow:0 4px 18px rgba(122,184,154,.16)}
+.stp-3 .stp-dot::after{box-shadow:0 0 0 1.5px var(--sage)}
+.stp-body h3{font-size:16px;font-weight:600;margin-bottom:4px;letter-spacing:.1px}
+.stp-body p{font-size:13px;color:var(--sub);line-height:1.7}
+
+/* ═══════ 结尾 ═══════ */
+.outro{text-align:center;margin:56px 0 24px;padding:0 28px}
+.outro-venue{font-size:22px;font-weight:700;margin-bottom:6px;background:linear-gradient(90deg,var(--honey),var(--amber),var(--tawny));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.outro-msg{font-size:14px;color:var(--sub);line-height:1.9;margin-bottom:28px}
+.outro-logo{height:24px;margin:0 auto 6px;opacity:.2}
+.outro-brand{font-size:10px;color:var(--dim);letter-spacing:1.5px;font-weight:400}
+
+/* ═══════ 底部栏 ═══════ */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:10;background:rgba(28,25,21,.88);backdrop-filter:blur(24px) saturate(1.3);-webkit-backdrop-filter:blur(24px) saturate(1.3);border-top:1px solid rgba(240,178,74,.06);padding:12px 16px calc(12px + var(--safe))}
+.bar-inner{max-width:var(--w);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{height:48px;border-radius:14px;border:none;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;letter-spacing:.2px;transition:transform .15s,box-shadow .15s}
+.btn:active{transform:scale(.97)}
+.btn-dl{background:rgba(255,250,240,.06);border:1px solid rgba(240,178,74,.1);color:var(--text);box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.btn-open{background:linear-gradient(135deg,var(--amber),var(--tawny));color:#1c1915;box-shadow:0 4px 20px rgba(240,178,74,.2),0 1px 3px rgba(240,178,74,.1);position:relative;overflow:hidden}
+.btn-open::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.2) 50%,transparent 62%);animation:bS 3.5s ease-in-out infinite}
+@keyframes bS{0%,100%{transform:translateX(-150%)}55%{transform:translateX(150%)}}
+.bar-tip{text-align:center;font-size:10px;color:var(--dim);margin-top:6px;letter-spacing:.3px}
+
+/* ═══════ 动画 ═══════ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.22,.9,.36,1),transform .8s cubic-bezier(.22,.9,.36,1)}
+.reveal.show{opacity:1;transform:none}
+.reveal:nth-child(2){transition-delay:.06s}
+.reveal:nth-child(3){transition-delay:.12s}
+    </style>
+</head>
+<body>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- ═══ HERO：商户封面 ═══ -->
+<section class="hero">
+    <img class="hero-logo" src="../images/hero-logo.png" alt="Zup!">
+    <div class="flora flora-hero"><img src="../images/event/flower.png" alt=""></div>
+    <!-- ★ 商户定制：替换封面图 -->
+    <img class="hero-cover" src="https://cdn.nowmap.cn/h5_event/merchant/weixun9hao/3.png?x-oss-process=image/resize,m_lfit,w_800,limit_1/format,webp/quality,q_80" alt="店铺封面">
+    <div class="hero-gradient"></div>
+    <div class="hero-body">
+        <!-- ★ 商户定制：替换联名信息 -->
+        <div class="hero-collab">
+            <span class="hero-collab-name">微醺九号·炭火料理</span>
+            <span class="hero-collab-x">×</span>
+            <span class="hero-collab-brand">Zup!</span>
+            <span class="hero-collab-tag">春醒交友季</span>
+        </div>
+        <!-- ★ 商户定制：替换商户名 -->
+        <h1 class="hero-venue-name">微醺九号·炭火料理</h1>
+    </div>
+</section>
+
+<div class="content">
+
+    <!-- ═══ 商户介绍（与 Hero 整合） ═══ -->
+    <section class="reveal" style="margin-top:24px">
+        <!-- ★ 商户定制：替换介绍文案 -->
+        <p class="about-text">我们是一家<em>西餐吧+酒馆</em>，开在建国门核心商圈，有个很chill的小院，闹中取静。老板对菜品和酒品很挑剔，出品都很用心。</p>
+        <p class="about-text">这次<em>「春醒交友季」</em>期间，我们准备了特别的活动和专属福利，欢迎朋友们来坐坐聊聊天。</p>
+    </section>
+
+    <!-- ═══ 商户图集 ═══ -->
+    <section class="reveal" style="margin-top:20px">
+        <div class="gallery-wrap">
+        <div class="gallery">
+            <!-- ★ 商户定制：替换图片 -->
+            <div class="gallery-item"><img src="https://cdn.nowmap.cn/h5_event/merchant/weixun9hao/6.png?x-oss-process=image/resize,m_lfit,w_800,limit_1/format,webp/quality,q_80" alt="店内环境"></div>
+            <div class="gallery-item"><img src="https://cdn.nowmap.cn/h5_event/merchant/weixun9hao/5.jpg?x-oss-process=image/resize,m_lfit,w_800,limit_1/format,webp/quality,q_80" alt="店内环境"></div>
+            <div class="gallery-item"><img src="https://cdn.nowmap.cn/h5_event/merchant/weixun9hao/4.jpg?x-oss-process=image/resize,m_lfit,w_800,limit_1/format,webp/quality,q_80" alt="店内环境"></div>
+            <div class="gallery-item"><img src="https://cdn.nowmap.cn/h5_event/merchant/weixun9hao/2.png?x-oss-process=image/resize,m_lfit,w_800,limit_1/format,webp/quality,q_80" alt="店内环境"></div>
+            <div class="gallery-item"><img src="https://cdn.nowmap.cn/h5_event/merchant/weixun9hao/1.png?x-oss-process=image/resize,m_lfit,w_800,limit_1/format,webp/quality,q_80" alt="店内环境"></div>
+        </div>
+        </div>
+    </section>
+
+    <!-- ═══ 地址 ═══ -->
+    <section class="reveal" style="margin-top:20px">
+        <!-- ★ 商户定制：替换地址 -->
+        <div class="addr-bar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <p>北京市朝阳区光华路44号A2（法国里昂餐厅东侧）</p>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══ 春醒交友季介绍 ═══ -->
+    <section class="sec reveal">
+        <div class="sec-label">About the Event</div>
+        <h2 class="sec-h">北京春醒交友季 🌸</h2>
+        <div class="event-ctx">
+            <div class="event-ctx-badge"><span>Zup! 官方活动·北京</span></div>
+            <p class="about-text">「北京春醒交友季」是 Zup! 官方发起的线下社交活动，联合北京多家优质线下空间，为都市青年打造覆盖全城的春日交友派对。<em>微醺九号·炭火料理</em>是本次活动的官方据点之一。</p>
+            <div class="event-ctx-meta">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                3.13 — 3.27 · 为期两周
+            </div>
+        </div>
+        <div class="vid">
+            <div class="vid-box">
+                <video src="https://cdn.nowmap.cn/h5_event/beijing_s1.mp4" controls playsinline webkit-playsinline preload="metadata" poster="../images/event/视频封面.jpg"></video>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══ 春醒期间活动 ═══ -->
+    <section class="sec reveal">
+        <div class="sec-label">Events</div>
+        <h2 class="sec-h">期间店内活动</h2>
+        <!-- ★ 商户定制：替换活动内容 -->
+        <div class="acts">
+            <div class="act act-1">
+                <div class="act-tag">每天晚上</div>
+                <h3>春醒社交酒局</h3>
+                <p>精酿品牌创始人精选当季精酿，边品边聊。一个人来也完全ok，吧台自然破冰，聊聊天、碰个杯，轻松认识新朋友。</p>
+                <div class="act-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>活动期间每晚 19:00 — 23:00</div>
+            </div>
+           <div class="act act-3">
+                <div class="act-tag">限定</div>
+                <h3>春醒周末派对夜</h3>
+                <p>3月22日（周六）特别企划，现场音乐 + 春日特调 + 互动游戏，一起来吧。</p>
+                <div class="act-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>3月22日 20:00 — 凌晨</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══ 到店福利 ═══ -->
+    <section class="sec reveal">
+        <div class="sec-label">Benefit</div>
+        <h2 class="sec-h">到店福利</h2>
+        <div class="benefit">
+            <div class="benefit-head">
+                <div class="benefit-icon">🎁</div>
+                <div class="benefit-title">
+                    <span>Spring Awakening</span>
+                    春醒赠饮
+                </div>
+            </div>
+            <!-- ★ 商户定制：替换福利内容 -->
+            <div class="benefit-desc">活动期间到店，在 Zup! 完成签到即可领取<b>「春醒特调」一杯</b>。<br>一杯春天的味道，很高兴见到你。</div>
+            <div class="benefit-note">* 每人限领一次，具体品类以店内实际供应为准</div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══ 怎么参与 ═══ -->
+    <section class="sec reveal">
+        <div class="sec-label">How to Join</div>
+        <h2 class="sec-h">怎么参与</h2>
+        <div class="steps">
+            <div class="stp stp-1">
+                <div class="stp-dot">1</div>
+                <div class="stp-body"><h3>下载 Zup! App</h3><p>在 App Store 或应用市场搜索「Zup」下载安装</p></div>
+            </div>
+            <div class="stp stp-2">
+                <div class="stp-dot">2</div>
+                <div class="stp-body"><h3>在地图上找到我们</h3><p>首页地图上就能看到我们的「春醒局」活动气泡，或搜索「微醺九号」</p></div>
+            </div>
+            <div class="stp stp-3">
+                <div class="stp-dot">3</div>
+                <div class="stp-body"><h3>到店签到领福利</h3><p>到达后在 Zup! 完成签到，即可领取春醒赠饮</p></div>
+            </div>
+        </div>
+    </section>
+
+
+</div><!-- .content -->
+
+<!-- ═══ 结尾 ═══ -->
+<section class="outro reveal">
+    <!-- ★ 商户定制：替换商户名 -->
+    <p class="outro-venue">微醺九号·炭火料理</p>
+    <p class="outro-msg">春天来了，出来坐坐吧。<br>我们在这里等你。</p>
+    <img class="outro-logo" src="../images/hero-logo.png" alt="Zup!">
+    <p class="outro-brand">Zup! · 北京春醒交友季</p>
+</section>
+
+<!-- ═══ 底部栏 ═══ -->
+<div class="bar">
+    <div class="bar-inner">
+        <button class="btn btn-dl" onclick="location.href='../download.html'">下载 Zup!</button>
+        <button class="btn btn-open" onclick="openApp()">打开 App 查看</button>
+    </div>
+    <div class="bar-tip">在 Zup! 地图上找到我们，到店签到领福利</div>
+</div>
+
+<script>
+// 入场动画
+var io = new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("show");io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll(".reveal").forEach(function(el){io.observe(el)});
+
+// ★ 商户定制：替换微信分享标题/描述/图片
+var WX_ID="wx4856a663c86fc338",WX_SIGN="https://zup.nowmap.cn/api/v1/wechat/js-sdk-signature";
+var SD={title:"微醺九号·炭火料理 · 北京春醒交友季",desc:"Zup！春醒交友季合作商家，活动期间到店签到有春醒小礼，欢迎来玩！",img:"https://cdn.nowmap.cn/h5_event/share-cover.jpg?v=20260303"};
+(async function(){
+    if(!/micromessenger/i.test(navigator.userAgent)||!window.wx)return;
+    try{
+        var u=location.href.split("#")[0],r=await fetch(WX_SIGN+"?url="+encodeURIComponent(u)+"&appId="+encodeURIComponent(WX_ID));
+        if(!r.ok)return;var d=(await r.json()).data;if(!d||!d.signature)return;
+        wx.config({debug:false,appId:d.appId||WX_ID,timestamp:String(d.timestamp),nonceStr:d.nonceStr||d.noncestr,signature:d.signature,jsApiList:["updateAppMessageShareData","updateTimelineShareData","onMenuShareAppMessage","onMenuShareTimeline"]});
+        wx.ready(function(){var l=location.href.split("#")[0],m={title:SD.title,desc:SD.desc,link:l,imgUrl:SD.img},t={title:SD.title,link:l,imgUrl:SD.img};wx.updateAppMessageShareData(m);wx.updateTimelineShareData(t);wx.onMenuShareAppMessage(m);wx.onMenuShareTimeline(t)});
+    }catch(e){}
+})();
+
+// 打开 App
+function openApp(){
+    var s=Date.now(),h=false;
+    function onH(){h=true}
+    document.addEventListener("visibilitychange",onH,{once:true});
+    location.href="nowmap://open";
+    setTimeout(function(){if(!h&&Date.now()-s<2600)location.href="../download.html"},1800);
+}
+</script>
+</body>
+</html>
