@@ -109,6 +109,14 @@
             display: none;
             padding-bottom: 40px;
         }
+
+        /* 桌面端适配 */
+        @media(min-width:600px){
+            body{background:#050508}
+            .content{max-width:520px !important;margin:32px auto !important;border-radius:24px;overflow:hidden;box-shadow:0 8px 60px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08);background:var(--bg-color)}
+            .loading,.error{max-width:520px;margin:0 auto}
+            .download-banner{margin-left:16px;margin-right:16px}
+        }
         
         /* 头图区域 - 动态适配比例 */
         .hero-gallery {

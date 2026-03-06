@@ -25,8 +25,8 @@
     <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{overflow-x:hidden}
-body.loading .hero,body.loading .content,body.loading .outro{opacity:0}
-body.ready .hero,body.ready .content,body.ready .outro{opacity:1;transition:opacity .4s ease}
+body.loading .page{opacity:0}
+body.ready .page{opacity:1;transition:opacity .4s ease}
 @keyframes shimmer{0%{background-position:-400px 0}100%{background-position:400px 0}}
 .img-skeleton{background:linear-gradient(90deg,var(--night) 0%,var(--charcoal) 40%,var(--night) 80%);background-size:800px 100%;animation:shimmer 1.5s infinite linear}
 :root{
@@ -207,6 +207,12 @@ img{display:block;max-width:100%}
 .toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.8);z-index:300;background:rgba(0,0,0,.8);color:#fff;padding:12px 24px;border-radius:12px;font-size:14px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none}
 .toast.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
 
+/* ═══════ 桌面端适配 ═══════ */
+@media(min-width:600px){
+    .page{margin-top:32px;margin-bottom:32px;border-radius:24px;overflow:hidden;box-shadow:0 8px 60px rgba(0,0,0,.4),0 1px 3px rgba(0,0,0,.2)}
+    .bar{left:50%;transform:translateX(-50%);max-width:var(--w);border-radius:16px 16px 0 0;border-left:1px solid rgba(240,178,74,.06);border-right:1px solid rgba(240,178,74,.06)}
+}
+
 /* ═══════ 动画 ═══════ */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.22,.9,.36,1),transform .8s cubic-bezier(.22,.9,.36,1)}
 .reveal.show{opacity:1;transform:none}
@@ -217,6 +223,8 @@ img{display:block;max-width:100%}
 <body class="loading">
 <div class="orb orb-1"></div>
 <div class="orb orb-2"></div>
+
+<div class="page">
 
 <!-- ═══ HERO：商户封面 ═══ -->
 <section class="hero">
@@ -340,6 +348,8 @@ img{display:block;max-width:100%}
     <img class="outro-logo" src="../images/hero-logo.png" alt="Zup!">
     <p class="outro-brand">Zup! · 北京春醒交友季</p>
 </section>
+
+</div><!-- .page -->
 
 <!-- ═══ 底部栏 ═══ -->
 <div class="bar">

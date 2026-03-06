@@ -207,6 +207,12 @@ img{display:block;max-width:100%}
 @keyframes bS{0%,100%{transform:translateX(-150%)}55%{transform:translateX(150%)}}
 .bar-tip{text-align:center;font-size:10px;color:var(--dim);margin-top:6px;letter-spacing:.3px}
 
+/* ═══════ 桌面端适配 ═══════ */
+@media(min-width:600px){
+    .page{margin-top:32px;margin-bottom:32px;border-radius:24px;overflow:hidden;box-shadow:0 8px 60px rgba(0,0,0,.4),0 1px 3px rgba(0,0,0,.2)}
+    .bar{left:50%;transform:translateX(-50%);max-width:var(--w);border-radius:16px 16px 0 0;border-left:1px solid rgba(240,178,74,.06);border-right:1px solid rgba(240,178,74,.06)}
+}
+
 /* ═══════ 动画 ═══════ */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.22,.9,.36,1),transform .8s cubic-bezier(.22,.9,.36,1)}
 .reveal.show{opacity:1;transform:none}
@@ -218,6 +224,8 @@ img{display:block;max-width:100%}
 <div class="orb orb-1"></div>
 <div class="orb orb-2"></div>
 <div class="orb orb-3"></div>
+
+<div class="page">
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
@@ -429,6 +437,8 @@ img{display:block;max-width:100%}
     <img class="outro-logo" src="../images/hero-logo.png" alt="Zup!">
     <p class="outro-brand">Zup! · 线下活动实时地图</p>
 </section>
+
+</div><!-- .page -->
 
 <!-- ═══ 底部栏 ═══ -->
 <div class="bar">
