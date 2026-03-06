@@ -187,8 +187,28 @@ var VENUES = {
     events: [
       { tag: "每天晚上", title: "春醒社交酒局", desc: "精酿品牌创始人精选当季精酿，边品边聊。一个人来也完全ok，吧台自然破冰，聊聊天、碰个杯，轻松认识新朋友。", time: "活动期间每晚 19:00 — 23:00" },
       { tag: "限定", title: "春醒周末派对夜", desc: "3月22日（周六）特别企划，现场音乐 + 春日特调 + 互动游戏，一起来吧。", time: "3月22日 20:00 — 凌晨" }
-    ],
-  }
+    ]
+  },
 
+ /* ── 奇点·宇宙客厅 ── */
+ oldhouse: {
+  name: "老房子酒吧THE OLD HOUSE BAR",
+  collabName: "老房子酒吧",
+  intro: '以美式复古宅邸风格打造沉浸式优雅空间，主打高品质威士忌与平衡感十足的<em>创意鸡尾酒</em>，氛围安静高级、私密松弛，是约会、小聚、品酒放松的质感之选。',
+  address: "北京市朝阳区酒仙桥街道酒仙桥路甲13号零秒社区151号楼1层1-118号底商",
+  heroImage: "https://cdn.nowmap.cn/bz/media/2026/03/06/1d/69/55acc001-370c-4794-8ee4-1c3aa2a56ff1.jpg?x-oss-process=image/quality,q_80/resize,w_1080",
+  gallery: [
+    "https://cdn.nowmap.cn/bz/media/2026/03/06/8b/a6/13e77e53-b2f7-495c-bc99-60cca3bd33cb.jpg?x-oss-process=image/quality,q_80/resize,w_720",
+    "https://cdn.nowmap.cn/bz/media/2026/03/06/0e/ff/943688fc-bd82-46ef-b12f-fd5f52e57c98.jpg?x-oss-process=image/quality,q_80/resize,w_720",
+    "https://cdn.nowmap.cn/bz/media/2026/03/06/b5/ae/2c4afc53-7585-436f-b30c-639a4d19a183.jpg?x-oss-process=image/quality,q_80/resize,w_720",
+    "https://cdn.nowmap.cn/bz/media/2026/03/06/f4/f9/cee15567-39fd-47b3-b387-7dda824ca571.jpg?x-oss-process=image/quality,q_80/resize,w_720"
+  ],
+  searchTip: "老房子酒吧",
+  events: [
+    { tag: "每天晚上", title: "春醒社交酒局", desc: "精酿品牌创始人精选当季精酿，边品边聊。一个人来也完全ok，吧台自然破冰，聊聊天、碰个杯，轻松认识新朋友。", time: "活动期间每晚 19:00 — 23:00" },
+    { tag: "限定", title: "春醒周末派对夜", desc: "3月22日（周六）特别企划，现场音乐 + 春日特调 + 互动游戏，一起来吧。", time: "3月22日 20:00 — 凌晨" }
+  ],
+  benefit: { icon: "🎁", title: "春醒赠饮", desc: '活动期间到店，在 Zup! 完成签到即可领取<b>「春醒特调」一杯</b>。<br>一杯春天的味道，很高兴见到你。', note: "* 每人限领一次，具体品类以店内实际供应为准" }
+}
 
 };

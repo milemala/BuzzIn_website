@@ -11,18 +11,24 @@
     <meta property="og:title" content="春醒交友季 · 商户据点">
     <meta property="og:description" content="Zup！春醒交友季合作商家，活动期间到店签到有春醒小礼，欢迎来玩！">
     <meta property="og:url" content="">
-    <meta property="og:image" content="https://cdn.nowmap.cn/h5_event/share-cover.jpg?v=20260303">
+    <meta property="og:image" content="https://cdn.nowmap.cn/h5_event/share-cover.jpg?x-oss-process=image/resize,m_fill,w_300,h_300/quality,q_80">
     <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image:width" content="300">
+    <meta property="og:image:height" content="300">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="春醒交友季 · 商户据点">
     <meta name="twitter:description" content="Zup！春醒交友季合作商家，活动期间到店签到即享春醒小礼，欢迎来玩！">
-    <meta name="twitter:image" content="https://cdn.nowmap.cn/h5_event/share-cover.jpg?v=20260303">
+    <meta name="twitter:image" content="https://cdn.nowmap.cn/h5_event/share-cover.jpg?x-oss-process=image/resize,m_fill,w_300,h_300/quality,q_80">
+    <link rel="preconnect" href="https://cdn.nowmap.cn" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.nowmap.cn">
     <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
     <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{overflow-x:hidden}
+body.loading .hero,body.loading .content,body.loading .outro{opacity:0}
+body.ready .hero,body.ready .content,body.ready .outro{opacity:1;transition:opacity .4s ease}
+@keyframes shimmer{0%{background-position:-400px 0}100%{background-position:400px 0}}
+.img-skeleton{background:linear-gradient(90deg,var(--night) 0%,var(--charcoal) 40%,var(--night) 80%);background-size:800px 100%;animation:shimmer 1.5s infinite linear}
 :root{
     --bg:#1c1915;--bg2:#232019;--text:#f0ebe2;--sub:#a8a090;--dim:#6e6860;
     --amber:#f0b24a;--honey:#f7ce5c;--tawny:#e09535;--caramel:#c98a2e;
@@ -48,7 +54,8 @@ img{display:block;max-width:100%}
 /* ═══════ HERO ═══════ */
 .hero{position:relative;overflow:hidden}
 .hero-logo{position:absolute;top:16px;left:20px;height:60px;z-index:3;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4))}
-.hero-cover{width:100%;height:380px;object-fit:cover;display:block;background:var(--night)}
+#v-hero-wrap{width:100%;height:380px;overflow:hidden}
+#v-hero-wrap .hero-cover{width:100%;height:100%;object-fit:cover;display:block}
 .hero-cover-placeholder{width:100%;height:380px;background:linear-gradient(135deg,var(--night) 0%,var(--charcoal) 50%,var(--night) 100%);display:grid;place-items:center;color:var(--dim);font-size:13px;letter-spacing:1px}
 .hero-gradient{position:absolute;left:0;right:0;bottom:0;height:220px;background:linear-gradient(180deg,transparent 0%,rgba(28,25,21,.25) 40%,rgba(28,25,21,.7) 75%,var(--bg) 100%);pointer-events:none}
 .hero-body{position:absolute;left:0;right:0;bottom:0;padding:0 24px 28px;z-index:2}
@@ -171,6 +178,35 @@ img{display:block;max-width:100%}
 @keyframes bS{0%,100%{transform:translateX(-150%)}55%{transform:translateX(150%)}}
 .bar-tip{text-align:center;font-size:10px;color:var(--dim);margin-top:6px;letter-spacing:.3px}
 
+/* ═══════ 分享按钮 ═══════ */
+.share-btn{position:absolute;top:26px;right:20px;z-index:3;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.35);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);display:grid;place-items:center;cursor:pointer;transition:transform .15s,background .2s}
+.share-btn:active{transform:scale(.9)}
+.share-btn svg{width:18px;height:18px;color:#fff;opacity:.9}
+.share-mask{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.5);opacity:0;visibility:hidden;transition:opacity .25s}
+.share-mask.show{opacity:1;visibility:visible}
+.share-sheet{position:fixed;left:0;right:0;bottom:0;z-index:101;background:var(--bg2);border-radius:20px 20px 0 0;padding:24px 20px calc(20px + var(--safe));transform:translateY(100%);transition:transform .3s cubic-bezier(.22,.9,.36,1)}
+.share-sheet.show{transform:none}
+.share-sheet-title{font-size:15px;font-weight:600;color:var(--text);text-align:center;margin-bottom:20px}
+.share-opts{display:flex;justify-content:center;gap:32px;margin-bottom:20px}
+.share-opt{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.share-opt:active .share-opt-icon{transform:scale(.9)}
+.share-opt-icon{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;transition:transform .15s;overflow:hidden}
+.share-opt-icon.wechat,.share-opt-icon.moments{background:transparent}
+.share-opt-icon.copy{background:rgba(255,250,240,.08);border:1px solid rgba(240,178,74,.1)}
+.share-opt-icon img{width:100%;height:100%;object-fit:contain;display:block}
+.share-opt-icon.moments img{transform:scale(.75)}
+.share-opt-icon svg{width:24px;height:24px;color:#fff}
+.share-opt span{font-size:11px;color:var(--sub);letter-spacing:.2px}
+.share-cancel{width:100%;height:44px;border-radius:12px;border:none;background:rgba(255,250,240,.06);color:var(--sub);font-size:14px;font-family:inherit;cursor:pointer;letter-spacing:.3px}
+.share-cancel:active{background:rgba(255,250,240,.1)}
+.share-wxtip{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.8);display:none;flex-direction:column;align-items:flex-end;padding:16px 24px;cursor:pointer}
+.share-wxtip.show{display:flex}
+.share-wxtip-arrow{width:40px;height:40px;margin-right:8px;margin-bottom:12px;animation:tipBounce 1s ease-in-out infinite}
+.share-wxtip-text{text-align:right;font-size:15px;color:#fff;line-height:2;font-weight:500}
+@keyframes tipBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.8);z-index:300;background:rgba(0,0,0,.8);color:#fff;padding:12px 24px;border-radius:12px;font-size:14px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+
 /* ═══════ 动画 ═══════ */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.22,.9,.36,1),transform .8s cubic-bezier(.22,.9,.36,1)}
 .reveal.show{opacity:1;transform:none}
@@ -178,15 +214,16 @@ img{display:block;max-width:100%}
 .reveal:nth-child(3){transition-delay:.12s}
     </style>
 </head>
-<body>
+<body class="loading">
 <div class="orb orb-1"></div>
 <div class="orb orb-2"></div>
 
 <!-- ═══ HERO：商户封面 ═══ -->
 <section class="hero">
     <img class="hero-logo" src="../images/hero-logo.png" alt="Zup!">
+    <div class="share-btn" id="shareBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div>
     <div class="flora flora-hero"><img src="../images/event/flower.png" alt=""></div>
-    <img class="hero-cover" id="v-hero" src="" alt="店铺封面">
+    <div class="hero-cover img-skeleton" id="v-hero-wrap"></div>
     <div class="hero-gradient"></div>
     <div class="hero-body">
         <div class="hero-collab">
@@ -313,6 +350,33 @@ img{display:block;max-width:100%}
     <div class="bar-tip" id="v-bar-tip">在 Zup! 地图上找到我们，到店签到领福利</div>
 </div>
 
+<!-- ═══ 分享面板 ═══ -->
+<div class="share-mask" id="shareMask"></div>
+<div class="share-sheet" id="shareSheet">
+    <div class="share-sheet-title">分享给朋友</div>
+    <div class="share-opts">
+        <div class="share-opt" id="shareWechat">
+            <div class="share-opt-icon wechat"><img src="../images/event/wx.png" alt="微信"></div>
+            <span>微信好友</span>
+        </div>
+        <div class="share-opt" id="shareMoments">
+            <div class="share-opt-icon moments"><img src="../images/event/pyq.png" alt="朋友圈"></div>
+            <span>朋友圈</span>
+        </div>
+        <div class="share-opt" id="shareCopy">
+            <div class="share-opt-icon copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></div>
+            <span>复制链接</span>
+        </div>
+    </div>
+    <button class="share-cancel" id="shareCancel">取消</button>
+</div>
+<!-- ═══ 微信引导蒙层 ═══ -->
+<div class="share-wxtip" id="shareWxTip">
+    <svg class="share-wxtip-arrow" viewBox="0 0 40 40" fill="none"><path d="M20 36V8M20 8l-10 10M20 8l10 10" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="share-wxtip-text">点击右上角「···」<br>选择「发送给朋友」<br>或「分享到朋友圈」</div>
+</div>
+<div class="toast" id="toast"></div>
+
 <script src="venue-config.js"></script>
 <script>
 (function(){
@@ -320,7 +384,9 @@ img{display:block;max-width:100%}
     var id = new URLSearchParams(location.search).get("id");
     var v = id && VENUES[id];
     if(!v){
-        document.querySelector(".page").innerHTML =
+        document.body.classList.remove("loading");
+        document.body.classList.add("ready");
+        document.querySelector(".content").innerHTML =
             '<div style="text-align:center;padding:120px 24px;color:#a8a090">' +
             '<p style="font-size:40px;margin-bottom:12px">🔍</p>' +
             '<p style="font-size:16px;font-weight:600;margin-bottom:6px">未找到商户信息</p>' +
@@ -330,9 +396,15 @@ img{display:block;max-width:100%}
     var $ = function(sel){return document.querySelector(sel)};
     var name = v.name;
 
-    // Hero
-    $("#v-hero").src = v.heroImage;
-    $("#v-hero").alt = name;
+    // Hero — 用 JS 创建 img，避免空 src 裂图
+    var heroWrap = $("#v-hero-wrap");
+    var heroImg = new Image();
+    heroImg.className = "hero-cover";
+    heroImg.alt = name;
+    heroImg.onload = function(){ heroWrap.classList.remove("img-skeleton"); };
+    heroImg.src = v.heroImage;
+    heroWrap.innerHTML = "";
+    heroWrap.appendChild(heroImg);
     $("#v-collab-name").textContent = v.collabName || name;
     $("#v-name").textContent = name;
 
@@ -343,8 +415,12 @@ img{display:block;max-width:100%}
     var gal = $("#v-gallery");
     v.gallery.forEach(function(url){
         var d = document.createElement("div");
-        d.className = "gallery-item";
-        d.innerHTML = '<img src="' + url + '" alt="店内环境">';
+        d.className = "gallery-item img-skeleton";
+        var img = new Image();
+        img.alt = "店内环境";
+        img.onload = function(){ d.classList.remove("img-skeleton"); };
+        img.src = url;
+        d.appendChild(img);
         gal.appendChild(d);
     });
 
@@ -400,6 +476,10 @@ img{display:block;max-width:100%}
     // 结尾
     $("#v-outro-name").textContent = name;
 
+    // 内容填充完毕，显示页面
+    document.body.classList.remove("loading");
+    document.body.classList.add("ready");
+
     // 更新 meta 标签
     var t = name + " · 北京春醒交友季";
     var desc = "Zup！春醒交友季合作商家，活动期间到店签到有春醒小礼，欢迎来玩！";
@@ -424,7 +504,7 @@ img{display:block;max-width:100%}
 
     // 微信分享
     var WX_ID="wx4856a663c86fc338",WX_SIGN="https://zup.nowmap.cn/api/v1/wechat/js-sdk-signature";
-    var SD={title:t,desc:desc,img:"https://cdn.nowmap.cn/h5_event/share-cover.jpg?v=20260303"};
+    var SD={title:t,desc:desc,img:"https://cdn.nowmap.cn/h5_event/share-cover.jpg?x-oss-process=image/resize,m_fill,w_300,h_300/quality,q_80"};
     (async function(){
         if(!/micromessenger/i.test(navigator.userAgent)||!window.wx)return;
         try{
@@ -444,6 +524,77 @@ function openApp(){
     location.href="nowmap://open";
     setTimeout(function(){if(!h&&Date.now()-s<2600)location.href="../download.html"},1800);
 }
+
+// ═══ 分享功能 ═══
+(function(){
+    var isWx = /micromessenger/i.test(navigator.userAgent);
+    var btn = document.getElementById("shareBtn");
+    var mask = document.getElementById("shareMask");
+    var sheet = document.getElementById("shareSheet");
+    var wxTip = document.getElementById("shareWxTip");
+    var toastEl = document.getElementById("toast");
+
+    function showSheet(){ mask.classList.add("show"); sheet.classList.add("show"); }
+    function hideSheet(){ mask.classList.remove("show"); sheet.classList.remove("show"); }
+    function showToast(msg){
+        toastEl.textContent = msg;
+        toastEl.classList.add("show");
+        setTimeout(function(){ toastEl.classList.remove("show"); }, 1800);
+    }
+
+    btn.addEventListener("click", function(){ showSheet(); });
+    mask.addEventListener("click", function(){ hideSheet(); });
+    document.getElementById("shareCancel").addEventListener("click", function(){ hideSheet(); });
+
+    // 微信好友
+    document.getElementById("shareWechat").addEventListener("click", function(){
+        hideSheet();
+        if(isWx){
+            wxTip.classList.add("show");
+        } else {
+            if(navigator.share){
+                navigator.share({ title: document.title, url: location.href }).catch(function(){});
+            } else {
+                copyLink();
+            }
+        }
+    });
+
+    // 朋友圈
+    document.getElementById("shareMoments").addEventListener("click", function(){
+        hideSheet();
+        if(isWx){
+            wxTip.classList.add("show");
+        } else {
+            copyLink();
+        }
+    });
+
+    // 复制链接
+    document.getElementById("shareCopy").addEventListener("click", function(){
+        hideSheet();
+        copyLink();
+    });
+
+    // 关闭微信引导
+    wxTip.addEventListener("click", function(){ wxTip.classList.remove("show"); });
+
+    function copyLink(){
+        var url = location.href;
+        if(navigator.clipboard && navigator.clipboard.writeText){
+            navigator.clipboard.writeText(url).then(function(){ showToast("链接已复制"); }).catch(function(){ fallbackCopy(url); });
+        } else {
+            fallbackCopy(url);
+        }
+    }
+    function fallbackCopy(text){
+        var ta = document.createElement("textarea");
+        ta.value = text; ta.style.cssText = "position:fixed;opacity:0";
+        document.body.appendChild(ta); ta.select();
+        try{ document.execCommand("copy"); showToast("链接已复制"); } catch(e){ showToast("复制失败，请手动复制"); }
+        document.body.removeChild(ta);
+    }
+})();
 </script>
 </body>
 </html>
