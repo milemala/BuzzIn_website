@@ -153,7 +153,7 @@ var VENUES = {
     name: "weplay兴趣社交客厅",
     collabName: "weplay",
     intro: '年轻人专属线下社交空间，主打轻松无压力、<em>沉浸式兴趣社交</em>；日常举办蒙眼漫谈、桌游派对、治愈夜聊、主题分享等多元活动，环境温馨像家一样自在，帮你快速打破陌生感，是都市人下班解压、周末找搭子、真实交友的宝藏客厅。',
-    address: "北京市昌平区龙泽园街道回龙观西大街9号院17-14号",
+    address: "北京市朝阳区双井街道广渠门外大街优士阁A座2512室",
     heroImage: "https://cdn.nowmap.cn/bz/media/2026/02/10/4b/2b/49a8242b-3de2-4077-a397-0c90e1ee4883.jpg?x-oss-process=image/quality,q_80/resize,w_1080",
     gallery: [
       "https://cdn.nowmap.cn/bz/media/2026/02/10/7e/c8/754bf112-0dd7-4f70-86dc-e941daa704ba.jpg?x-oss-process=image/quality,q_80/resize,w_720",
@@ -206,6 +206,110 @@ var VENUES = {
   searchTip: "老房子酒吧",
   events: [
     { tag: "每天晚上", title: "春醒社交酒局", desc: "精酿品牌创始人精选当季精酿，边品边聊。一个人来也完全ok，吧台自然破冰，聊聊天、碰个杯，轻松认识新朋友。", time: "活动期间每晚 19:00 — 23:00" },
+    { tag: "限定", title: "春醒周末派对夜", desc: "3月22日（周六）特别企划，现场音乐 + 春日特调 + 互动游戏，一起来吧。", time: "3月22日 20:00 — 凌晨" }
+  ],
+  benefit: { icon: "🎁", title: "春醒赠饮", desc: '活动期间到店，在 Zup! 完成签到即可领取<b>「春醒特调」一杯</b>。<br>一杯春天的味道，很高兴见到你。', note: "* 每人限领一次，具体品类以店内实际供应为准" }
+},
+
+ /* ── Azusa#2 Girl`s Bar ── */
+ azusa: {
+  name: "Azusa#2 Girl`s Bar",
+  collabName: "Azusa",
+  intro: '超治愈的<em>日式whisky bar</em>，主打日式威士忌与清酒，店员亲切健谈有魅力，老板和店长更是精通日英，整体氛围松弛，是单人小酌、朋友闲聊的暖心小馆。',
+  address: "北京市朝阳区华远九都汇提灯街B1",
+  heroImage: "https://cdn.nowmap.cn/bz/media/2026/03/07/52/65/21905610-c42e-4234-81ad-9b505ae4bb09.jpg?x-oss-process=image/quality,q_80/resize,w_1080",
+  gallery: [
+    "https://cdn.nowmap.cn/bz/media/2026/03/07/c7/19/b4d6fabf-1182-4e45-a93a-df21e2c75c73.jpg?x-oss-process=image/quality,q_80/resize,w_720",
+    "https://cdn.nowmap.cn/bz/media/2026/03/07/d1/bc/f00dcbb2-8426-489c-9de1-50e38c212b4c.jpg?x-oss-process=image/quality,q_80/resize,w_720",
+    "https://cdn.nowmap.cn/bz/media/2026/03/07/e2/6a/621c7e89-5610-4e1b-98cb-80f2f06e466b.jpg?x-oss-process=image/quality,q_80/resize,w_720",
+    "https://cdn.nowmap.cn/bz/media/2026/03/07/01/8e/ba5a8214-c86c-463d-9ca1-700de20a4dd2.jpg?x-oss-process=image/quality,q_80/resize,w_720"
+  ],
+  searchTip: "azusa",
+  events: [
+    { tag: "每天晚上", title: "春醒社交酒局", desc: "边喝边聊，一个人来也完全ok，氛围轻松愉快，还可以唱唱歌，认识几个新朋友。", time: "活动期间每晚 19:00 — 23:00" },
+    { tag: "限定", title: "春醒周末派对夜", desc: "3月22日（周六）特别企划，现场音乐 + 春日特调 + 互动游戏，一起来吧。", time: "3月22日 20:00 — 凌晨" }
+  ],
+  benefit: { icon: "🎁", title: "春醒赠饮", desc: '活动期间到店，在 Zup! 完成签到即可领取<b>「春醒特调」一杯</b>。<br>一杯春天的味道，很高兴见到你。', note: "* 每人限领一次，具体品类以店内实际供应为准" }
+},
+
+ /* ── 中華酒場燈籠 ── */
+ denglong: {
+  name: "中華酒場燈籠",
+  collabName: "中華酒場燈籠",
+  intro: '中华酒场・灯笼，满室暖光灯笼环绕，国风与和风交融超出片。主打<em>日式中华料理</em>，也有各类新颖创新菜品，口感平衡细腻；佐酒清酒威士忌齐备，是好友小聚、微醺干饭的宝藏酒场。',
+  address: "北京市朝阳区华远九都汇提灯街B1",
+  heroImage: "https://cdn.nowmap.cn/bz/media/2026/03/07/09/55/a3acacb3-efe2-47c0-92c2-35b2c402018f.jpg?x-oss-process=image/quality,q_80/resize,w_1080",
+  gallery: [
+    "https://cdn.nowmap.cn/bz/media/2026/03/07/4d/31/37d06e3c-20b1-450f-b746-eec491cc5430.jpg?x-oss-process=image/quality,q_80/resize,w_720",
+    "https://cdn.nowmap.cn/bz/media/2026/03/07/64/c9/ea9281b9-eaa8-484d-8680-26e7888b8eda.jpg?x-oss-process=image/quality,q_80/resize,w_720",
+    "https://cdn.nowmap.cn/bz/media/2026/03/07/71/ab/85fcd1a0-1b54-4cf1-b203-995f01433a8e.jpg?x-oss-process=image/quality,q_80/resize,w_720",
+    "https://cdn.nowmap.cn/bz/media/2026/03/07/78/19/b8dda8f1-663e-48c2-ac7f-dfc1b995a3cf.jpg?x-oss-process=image/quality,q_80/resize,w_720"
+  ],
+  searchTip: "灯笼",
+  events: [
+    { tag: "每天晚上", title: "春醒酒场", desc: "精选当季佳酿，边品边聊，轻松认识新朋友。", time: "活动期间每晚 19:00 — 23:00" },
+    { tag: "限定", title: "春醒周末派对夜", desc: "3月22日（周六）特别企划，现场音乐 + 春日特调 + 互动游戏，一起来吧。", time: "3月22日 20:00 — 凌晨" }
+  ],
+  benefit: { icon: "🎁", title: "春醒赠饮", desc: '活动期间到店，在 Zup! 完成签到即可领取<b>「春醒特调」一杯</b>。<br>一杯春天的味道，很高兴见到你。', note: "* 每人限领一次，具体品类以店内实际供应为准" }
+},
+
+/* ── 奇点·宇宙客厅 ── */
+fenxiang: {
+  name: "北京分享读书会",
+  collabName: "北京分享读书会",
+  intro: '专注打造轻松、真诚的线下阅读交流空间。在这里，你可以与不同行业的书友<em>共读好书、分享感悟、交流观点</em>，在文字与思想的碰撞中结识同频伙伴。只为热爱阅读、渴望表达与倾听的你，提供一处温暖治愈的精神栖息地。',
+  address: "北京市朝阳区酒仙桥街道酒仙桥路甲13号零秒社区151号楼1层1-118号底商",
+  heroImage: "https://cdn.nowmap.cn/bz/media/2026/02/10/58/17/be5bbfdc-290b-40f9-af5f-b5bda8e49f82.jpg?x-oss-process=image/quality,q_80/resize,w_1080",
+  gallery: [
+    "https://cdn.nowmap.cn/bz/media/2026/02/10/78/51/4edd79c2-ace8-42f8-9a20-954b81ccbaa2.jpg?x-oss-process=image/quality,q_80/resize,w_720",
+    "https://cdn.nowmap.cn/bz/media/2026/02/10/98/40/44b68413-8ad2-400c-895f-91dbbf70d064.jpg?x-oss-process=image/quality,q_80/resize,w_720",
+    "https://cdn.nowmap.cn/bz/media/2026/02/10/58/17/be5bbfdc-290b-40f9-af5f-b5bda8e49f82.jpg?x-oss-process=image/quality,q_80/resize,w_720"
+  ],
+  searchTip: "北京分享读书会",
+  events: [
+    { tag: "每天晚上", title: "春醒社交酒局", desc: "精酿品牌创始人精选当季精酿，边品边聊。一个人来也完全ok，吧台自然破冰，聊聊天、碰个杯，轻松认识新朋友。", time: "活动期间每晚 19:00 — 23:00" },
+    { tag: "限定", title: "春醒周末派对夜", desc: "3月22日（周六）特别企划，现场音乐 + 春日特调 + 互动游戏，一起来吧。", time: "3月22日 20:00 — 凌晨" }
+  ],
+  benefit: { icon: "🎁", title: "春醒赠饮", desc: '活动期间到店，在 Zup! 完成签到即可领取<b>「春醒特调」一杯</b>。<br>一杯春天的味道，很高兴见到你。', note: "* 每人限领一次，具体品类以店内实际供应为准" }
+},
+
+/* ── 小老虎社团── */
+ xiaolaohu: {
+  name: "小老虎社团",
+  collabName: "小老虎社团",
+  intro: '本社团创立于2017年9月，于北京各地长期组织线下活动，共有3000人次来过我们社团。我们希望给拒绝喧嚣浮躁、饱受社会污浊之扰、抵制消费主义、反对快餐文化的朋友，提供一个文化氛围和文艺气息浓厚的乌托邦和桃花源。',
+  address: "北京市朝阳区酒仙桥街道酒仙桥路甲13号零秒社区151号楼1层1-118号底商",
+  heroImage: "https://cdn.nowmap.cn/bz/media/2026/02/10/2c/04/5c6e6050-2176-4c4d-9467-178a01cc9df6.jpg?x-oss-process=image/quality,q_80/resize,w_1080",
+  gallery: [
+    "https://cdn.nowmap.cn/bz/media/2026/02/10/e3/00/9f90d175-2dfd-4b0e-b98e-255101731510.jpg?x-oss-process=image/quality,q_80/resize,w_720",
+    "https://cdn.nowmap.cn/bz/media/2026/02/10/09/1c/8af0fded-33bf-4b8d-bcb2-d934b65a0dd4.jpg?x-oss-process=image/quality,q_80/resize,w_720",
+    "https://cdn.nowmap.cn/bz/media/2026/02/10/b7/fb/b66351e6-85cd-4800-b5eb-4db505a97950.jpg?x-oss-process=image/quality,q_80/resize,w_720",
+    "https://cdn.nowmap.cn/bz/media/2026/02/10/86/73/2a184352-faaa-4685-8df5-5a29b6e4ddbd.jpg?x-oss-process=image/quality,q_80/resize,w_720"
+  ],
+  searchTip: "北京分享读书会",
+  events: [
+    { tag: "每天晚上", title: "春醒社交酒局", desc: "精酿品牌创始人精选当季精酿，边品边聊。一个人来也完全ok，吧台自然破冰，聊聊天、碰个杯，轻松认识新朋友。", time: "活动期间每晚 19:00 — 23:00" },
+    { tag: "限定", title: "春醒周末派对夜", desc: "3月22日（周六）特别企划，现场音乐 + 春日特调 + 互动游戏，一起来吧。", time: "3月22日 20:00 — 凌晨" }
+  ],
+  benefit: { icon: "🎁", title: "春醒赠饮", desc: '活动期间到店，在 Zup! 完成签到即可领取<b>「春醒特调」一杯</b>。<br>一杯春天的味道，很高兴见到你。', note: "* 每人限领一次，具体品类以店内实际供应为准" }
+},
+
+/* ── Hye! ── */
+ hye: {
+  name: "Hye! Bar",
+  collabName: "Hye!",
+  intro: '藏在北京东城人民美术文化园的<em>复古 Disco 风酒吧 Hye!</em>。标志性灯球 + 复古霓虹氛围感拉满，12 款创意特调鸡尾酒搭配液氮冰球等巧思，还有美味小食简餐。氛围轻松不吵，是下班微醺、好友小聚的宝藏去处。',
+  address: "北京市东城区人民美术文创园内",
+  heroImage: "https://cdn.nowmap.cn/bz/media/2026/03/09/17/8e/2355e011-0164-4d68-bc8f-eebee203c719.jpg?x-oss-process=image/quality,q_80/resize,w_1080",
+  gallery: [
+    "https://cdn.nowmap.cn/bz/media/2026/03/09/ae/73/92d9923b-769a-4576-baaf-81f47fed8038.jpg?x-oss-process=image/quality,q_80/resize,w_720",
+    "https://cdn.nowmap.cn/bz/media/2026/03/09/5c/43/6932eee0-fb6c-4c0a-a4ae-4a3f96fecfab.jpg?x-oss-process=image/quality,q_80/resize,w_720",
+    "https://cdn.nowmap.cn/bz/media/2026/03/09/85/0f/852251af-1899-46f4-8107-0cd028cb6b05.jpg?x-oss-process=image/quality,q_80/resize,w_720",
+    "https://cdn.nowmap.cn/bz/media/2026/03/09/2e/be/1dbbcca6-eb9f-4f99-96ba-08e1db5135c5.jpg?x-oss-process=image/quality,q_80/resize,w_720"
+  ],
+  searchTip: "北京分享读书会",
+  events: [
+    { tag: "每天晚上", title: "春醒社交酒局", desc: "创始人精选当季创意鸡尾酒，边品边聊。一个人来也完全ok，吧台陪我们聊聊天、碰个杯，轻松认识新朋友。", time: "活动期间每晚 19:00 — 23:00" },
     { tag: "限定", title: "春醒周末派对夜", desc: "3月22日（周六）特别企划，现场音乐 + 春日特调 + 互动游戏，一起来吧。", time: "3月22日 20:00 — 凌晨" }
   ],
   benefit: { icon: "🎁", title: "春醒赠饮", desc: '活动期间到店，在 Zup! 完成签到即可领取<b>「春醒特调」一杯</b>。<br>一杯春天的味道，很高兴见到你。', note: "* 每人限领一次，具体品类以店内实际供应为准" }

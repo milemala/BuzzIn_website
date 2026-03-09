@@ -344,7 +344,7 @@ img{display:block;max-width:100%}
 <!-- ═══ 结尾 ═══ -->
 <section class="outro reveal">
     <p class="outro-venue" id="v-outro-name"></p>
-    <p class="outro-msg">春天来了，出来坐坐吧。<br>我们在这里等你。</p>
+    <p class="outro-msg">春天来了，出来坐坐吧。</p>
     <img class="outro-logo" src="../images/hero-logo.png" alt="Zup!">
     <p class="outro-brand">Zup! · 北京春醒交友季</p>
 </section>
@@ -387,7 +387,7 @@ img{display:block;max-width:100%}
 </div>
 <div class="toast" id="toast"></div>
 
-<script src="venue-config.js"></script>
+<script>document.write('<script src="venue-config.js?v='+Math.floor(Date.now()/60000)+'"><\/script>')</script>
 <script>
 (function(){
     // 从 URL 获取商户 id
