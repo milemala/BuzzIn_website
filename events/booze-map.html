@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>酒鬼地图 · Zup! × CityDrink</title>
+    <meta name="description" content="酒鬼地图 — 66元畅饮3家酒馆，每家兑换1杯特调，10条北京微醺线路任你挑。">
+    <meta name="keywords" content="Zup,酒鬼地图,北京酒馆,鸡尾酒,特调,兑换券">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Zup!">
+    <meta property="og:title" content="酒鬼地图 · Zup!">
+    <meta property="og:description" content="66元畅饮3家酒馆，每家兑换1杯特调，10条北京微醺线路任你挑。">
+    <meta property="og:image" content="https://cdn.nowmap.cn/h5_event/share-cover.jpg?x-oss-process=image/resize,m_fill,w_300,h_300/quality,q_80">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="300">
+    <meta property="og:image:height" content="300">
+    <link rel="preconnect" href="https://cdn.nowmap.cn" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.nowmap.cn">
+    <style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{overflow-x:hidden}
+:root{
+    --bg:#0c0a14;--bg2:#13111d;--bg3:#1a1726;
+    --text:#eae6f5;--sub:#9a94ad;--dim:#5e586e;
+    --neon:#8b5cf6;--neon2:#a78bfa;--neon3:#c4b5fd;--neon-glow:rgba(139,92,246,.15);
+    --electric:#60a5fa;--cyan:#22d3ee;--rose:#f472b6;
+    --card:rgba(255,255,255,.03);--border:rgba(139,92,246,.1);
+    --glass:rgba(255,255,255,.04);--glass-b:rgba(255,255,255,.06);
+    --safe:env(safe-area-inset-bottom,0px);
+    --w:min(100%,520px);
+    --r:20px
+}
+body{font-family:"SF Pro Display",-apple-system,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;color:var(--text);background:var(--bg);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::after{content:"";position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+img{display:block;max-width:100%}
+.page{max-width:var(--w);margin:0 auto;position:relative;z-index:1}
+
+/* ═══ 浮动光晕 ═══ */
+.orb{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0;will-change:transform}
+.orb-1{width:320px;height:320px;background:radial-gradient(circle,rgba(139,92,246,.18),transparent 70%);top:-100px;right:-120px;animation:oF 14s ease-in-out infinite alternate}
+.orb-2{width:260px;height:260px;background:radial-gradient(circle,rgba(96,165,250,.1),transparent 70%);bottom:30%;left:-100px;animation:oF 18s ease-in-out infinite alternate-reverse}
+.orb-3{width:200px;height:200px;background:radial-gradient(circle,rgba(244,114,182,.08),transparent 70%);top:50%;right:-60px;animation:oF 16s ease-in-out infinite alternate}
+@keyframes oF{0%{transform:translateY(0) scale(1)}100%{transform:translateY(-30px) scale(1.08)}}
+
+/* ═══════ HERO ═══════ */
+.hero{position:relative;padding:48px 24px 40px;text-align:center;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(240,178,74,.1) 0%,rgba(139,92,246,.06) 40%,transparent 70%);pointer-events:none}
+.hero-collab{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:24px}
+.hero-collab-logo{height:22px;opacity:.6}
+.hero-collab-x{font-size:14px;color:var(--neon2);font-weight:500;opacity:.5}
+.hero-collab-name{font-size:13px;font-weight:700;color:var(--neon2);letter-spacing:.5px;opacity:.7}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:999px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.15);margin-bottom:20px}
+.hero-badge span{font-size:10px;letter-spacing:2px;color:var(--neon2);font-weight:600}
+.hero-img{width:clamp(260px,75vw,340px);margin:0 auto 20px;filter:drop-shadow(0 8px 32px rgba(240,178,74,.2)) drop-shadow(0 2px 8px rgba(0,0,0,.3));animation:heroFloat 4s ease-in-out infinite alternate}
+@keyframes heroFloat{0%{transform:translateY(0)}100%{transform:translateY(-8px)}}
+.hero-subtitle{font-size:16px;color:var(--sub);line-height:1.8;margin-bottom:28px;letter-spacing:.3px}
+.hero-subtitle em{font-style:normal;color:var(--text);font-weight:600}
+.hero-price{display:inline-flex;align-items:baseline;gap:4px;padding:10px 28px;border-radius:999px;background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(96,165,250,.1));border:1px solid rgba(139,92,246,.2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.hero-price-yen{font-size:18px;color:var(--neon2);font-weight:700}
+.hero-price-num{font-size:36px;font-weight:900;color:#fff;line-height:1}
+.hero-price-unit{font-size:13px;color:var(--sub);margin-left:2px}
+.hero-tags{display:flex;justify-content:center;gap:20px;margin-top:24px;font-size:13px;color:var(--sub)}
+.hero-tags span{display:flex;align-items:center;gap:5px}
+.hero-tags svg{width:14px;height:14px;color:var(--neon2);opacity:.7}
+
+/* ═══════ 通用 ═══════ */
+.content{padding:0 20px}
+.sec{margin-top:48px}
+.sec-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--neon2);opacity:.7;margin-bottom:8px;font-weight:500}
+.sec-h{font-size:23px;font-weight:700;letter-spacing:-.3px;margin-bottom:22px;color:var(--text);position:relative;display:inline-block}
+.sec-h::after{content:"";position:absolute;left:0;bottom:-5px;width:24px;height:2.5px;border-radius:2px;background:linear-gradient(90deg,var(--neon),var(--electric))}
+.divider{height:1px;margin:48px 0;background:linear-gradient(90deg,transparent,rgba(139,92,246,.1),transparent);position:relative}
+.divider::after{content:"·";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--bg);padding:0 16px;font-size:14px;color:rgba(139,92,246,.2);letter-spacing:6px}
+
+/* ═══════ 流程卡片 ═══════ */
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.flow-item{text-align:center;padding:20px 12px;border-radius:var(--r);background:var(--card);border:1px solid var(--border);position:relative;overflow:hidden}
+.flow-item::before{content:"";position:absolute;top:-20px;left:50%;transform:translateX(-50%);width:60px;height:60px;border-radius:50%;pointer-events:none}
+.flow-i1::before{background:radial-gradient(circle,rgba(139,92,246,.1),transparent 70%)}
+.flow-i2::before{background:radial-gradient(circle,rgba(96,165,250,.1),transparent 70%)}
+.flow-i3::before{background:radial-gradient(circle,rgba(34,211,238,.1),transparent 70%)}
+.flow-num{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;color:#fff;margin:0 auto 10px}
+.flow-i1 .flow-num{background:linear-gradient(140deg,var(--neon),#7c3aed)}
+.flow-i2 .flow-num{background:linear-gradient(140deg,var(--electric),#3b82f6)}
+.flow-i3 .flow-num{background:linear-gradient(140deg,var(--cyan),#06b6d4)}
+.flow-icon{font-size:28px;margin-bottom:8px}
+.flow-title{font-size:13px;font-weight:600;margin-bottom:4px}
+.flow-desc{font-size:11px;color:var(--sub);line-height:1.5}
+
+/* ═══════ 线路卡片 ═══════ */
+.routes{display:grid;gap:16px}
+.route{border-radius:var(--r);background:var(--card);border:1px solid var(--border);overflow:hidden;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:transform .2s,box-shadow .2s}
+.route:active{transform:scale(.985)}
+.route-head{padding:16px 18px 12px;display:flex;align-items:center;justify-content:space-between}
+.route-name{font-size:16px;font-weight:700;letter-spacing:-.2px}
+.route-tag{padding:3px 10px;border-radius:999px;font-size:10px;font-weight:600;letter-spacing:.5px;background:rgba(139,92,246,.1);color:var(--neon2);border:1px solid rgba(139,92,246,.12)}
+.route-bars{padding:0 18px 4px}
+.route-bar{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid rgba(255,255,255,.04)}
+.route-bar:first-child{border-top:none}
+.route-bar-img{width:52px;height:52px;border-radius:12px;overflow:hidden;flex-shrink:0;background:var(--bg3);border:1px solid rgba(255,255,255,.05)}
+.route-bar-img img{width:100%;height:100%;object-fit:cover}
+.route-bar-info{flex:1;min-width:0}
+.route-bar-name{font-size:14px;font-weight:600;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.route-bar-drink{font-size:12px;color:var(--neon2);margin-top:2px;display:flex;align-items:center;gap:4px}
+.route-bar-drink::before{content:"";display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--neon);opacity:.6;flex-shrink:0}
+.route-bar-idx{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:9px;font-weight:700;color:var(--dim);background:rgba(255,255,255,.04);flex-shrink:0}
+.route-foot{padding:12px 18px 16px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.04)}
+.route-price{display:flex;align-items:baseline;gap:2px}
+.route-price-yen{font-size:13px;color:var(--neon2);font-weight:600}
+.route-price-num{font-size:24px;font-weight:900;color:#fff;line-height:1}
+.route-buy{padding:10px 24px;border-radius:12px;border:none;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--neon),#7c3aed);box-shadow:0 4px 16px rgba(139,92,246,.25);transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden;letter-spacing:.3px}
+.route-buy:active{transform:scale(.95)}
+.route-buy::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.15) 50%,transparent 62%);animation:bS 3.5s ease-in-out infinite}
+@keyframes bS{0%,100%{transform:translateX(-150%)}55%{transform:translateX(150%)}}
+
+/* ═══════ 使用说明 ═══════ */
+.steps{position:relative;display:grid;gap:0}
+.steps::before{content:"";position:absolute;left:19px;top:32px;bottom:32px;width:1px;background:linear-gradient(180deg,var(--neon),var(--electric),var(--cyan));opacity:.15}
+.stp{display:flex;gap:18px;padding:18px 0}
+.stp-dot{width:40px;height:40px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;color:#fff;z-index:1;position:relative}
+.stp-dot::after{content:"";position:absolute;inset:-3px;border-radius:50%;opacity:.15}
+.stp-1 .stp-dot{background:linear-gradient(140deg,var(--neon),#7c3aed);box-shadow:0 4px 18px rgba(139,92,246,.2)}
+.stp-1 .stp-dot::after{box-shadow:0 0 0 1.5px var(--neon)}
+.stp-2 .stp-dot{background:linear-gradient(140deg,var(--electric),#3b82f6);box-shadow:0 4px 18px rgba(96,165,250,.16)}
+.stp-2 .stp-dot::after{box-shadow:0 0 0 1.5px var(--electric)}
+.stp-3 .stp-dot{background:linear-gradient(140deg,var(--cyan),#06b6d4);box-shadow:0 4px 18px rgba(34,211,238,.16)}
+.stp-3 .stp-dot::after{box-shadow:0 0 0 1.5px var(--cyan)}
+.stp-body h3{font-size:16px;font-weight:600;margin-bottom:4px;letter-spacing:.1px}
+.stp-body p{font-size:13px;color:var(--sub);line-height:1.7}
+
+/* ═══════ FAQ ═══════ */
+.faq{display:grid;gap:8px}
+.faq-item{border-radius:14px;background:var(--card);border:1px solid var(--border);overflow:hidden}
+.faq-q{width:100%;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;border:none;background:none;color:var(--text);font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;text-align:left;letter-spacing:.1px}
+.faq-q svg{width:16px;height:16px;color:var(--dim);flex-shrink:0;transition:transform .25s}
+.faq-item.open .faq-q svg{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-item.open .faq-a{max-height:200px}
+.faq-a-inner{padding:0 18px 16px;font-size:13px;color:var(--sub);line-height:1.8}
+
+/* ═══════ 结尾 ═══════ */
+.outro{text-align:center;margin:56px 0 40px;padding:0 28px}
+.outro-title{font-size:22px;font-weight:700;margin-bottom:6px;background:linear-gradient(90deg,var(--neon3),var(--electric),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.outro-msg{font-size:14px;color:var(--sub);line-height:1.9;margin-bottom:28px}
+.outro-logo{height:24px;margin:0 auto 6px;opacity:.2;filter:brightness(1.5)}
+.outro-brand{font-size:10px;color:var(--dim);letter-spacing:1.5px;font-weight:400}
+
+/* ═══════ Toast ═══════ */
+.toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.8);z-index:300;background:rgba(0,0,0,.85);color:#fff;padding:14px 28px;border-radius:14px;font-size:14px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;text-align:center;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.06)}
+.toast.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+
+/* ═══════ 桌面端适配 ═══════ */
+@media(min-width:600px){
+    .page{margin-top:32px;margin-bottom:32px;border-radius:24px;overflow:hidden;box-shadow:0 8px 60px rgba(0,0,0,.5),0 1px 3px rgba(0,0,0,.3);border:1px solid rgba(139,92,246,.06)}
+}
+
+/* ═══════ 入场动画 ═══════ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.22,.9,.36,1),transform .8s cubic-bezier(.22,.9,.36,1)}
+.reveal.show{opacity:1;transform:none}
+.reveal:nth-child(2){transition-delay:.06s}
+.reveal:nth-child(3){transition-delay:.12s}
+    </style>
+</head>
+<body>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<div class="page">
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+    <div class="hero-collab">
+        <img class="hero-collab-logo" src="../images/hero-logo.png" alt="Zup!">
+        <span class="hero-collab-x">×</span>
+        <span class="hero-collab-name">CityDrink</span>
+    </div>
+    <div class="hero-badge"><span>联合出品</span></div>
+    <img class="hero-img" src="../images/event/booze_hero.png" alt="酒鬼地图">
+    <p class="hero-subtitle"><em>3家酒馆 · 3杯特调 · 1张卡搞定</em><br>选一条线路，开启你的北京微醺之旅</p>
+    <div class="hero-price">
+        <span class="hero-price-yen">¥</span>
+        <span class="hero-price-num">66</span>
+        <span class="hero-price-unit">/ 张</span>
+    </div>
+    <div class="hero-tags">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>北京 10 条线路</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>到店扫码兑换</span>
+    </div>
+</section>
+
+<div class="content">
+
+    <div class="divider"></div>
+
+    <!-- ═══ 怎么玩 ═══ -->
+    <section class="sec reveal">
+        <div class="sec-label">How It Works</div>
+        <h2 class="sec-h">怎么玩</h2>
+        <div class="flow">
+            <div class="flow-item flow-i1">
+                <div class="flow-icon">🗺️</div>
+                <div class="flow-title">选线路</div>
+                <div class="flow-desc">挑一条你喜欢的酒馆线路</div>
+            </div>
+            <div class="flow-item flow-i2">
+                <div class="flow-icon">💳</div>
+                <div class="flow-title">买卡</div>
+                <div class="flow-desc">66元 get 一张酒鬼地图卡</div>
+            </div>
+            <div class="flow-item flow-i3">
+                <div class="flow-icon">🍸</div>
+                <div class="flow-title">兑酒</div>
+                <div class="flow-desc">到店出示二维码，畅饮特调</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══ 线路列表 ═══ -->
+    <section class="sec reveal">
+        <div class="sec-label">Routes</div>
+        <h2 class="sec-h">选择你的线路</h2>
+        <div class="routes" id="routeList"></div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══ 使用说明 ═══ -->
+    <section class="sec reveal">
+        <div class="sec-label">How to Use</div>
+        <h2 class="sec-h">使用说明</h2>
+        <div class="steps">
+            <div class="stp stp-1">
+                <div class="stp-dot">1</div>
+                <div class="stp-body"><h3>购买酒鬼地图卡</h3><p>选择心仪的线路，完成支付后获得专属兑换二维码</p></div>
+            </div>
+            <div class="stp stp-2">
+                <div class="stp-dot">2</div>
+                <div class="stp-body"><h3>到店出示二维码</h3><p>前往线路中的任意一家酒馆，向店员出示你的兑换码</p></div>
+            </div>
+            <div class="stp stp-3">
+                <div class="stp-dot">3</div>
+                <div class="stp-body"><h3>店员核销，畅饮特调</h3><p>店员扫码核销后，即可免费领取该店指定的一杯特调酒</p></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══ 常见问题 ═══ -->
+    <section class="sec reveal">
+        <div class="sec-label">FAQ</div>
+        <h2 class="sec-h">常见问题</h2>
+        <div class="faq" id="faqList">
+            <div class="faq-item">
+                <button class="faq-q">酒鬼地图卡有效期多久？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+                <div class="faq-a"><div class="faq-a-inner">购买后 30 天内有效，请在有效期内前往对应酒馆完成兑换。</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">可以转赠给朋友吗？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+                <div class="faq-a"><div class="faq-a-inner">可以！你可以将兑换二维码分享给朋友，由朋友到店出示即可。每个兑换码仅限使用一次。</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">3家酒馆需要一次性去完吗？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+                <div class="faq-a"><div class="faq-a-inner">不需要。每家酒馆独立核销，你可以分多次前往，在有效期内完成即可。</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">购买后可以退款吗？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+                <div class="faq-a"><div class="faq-a-inner">购买后未使用的情况下，可在 24 小时内申请退款。一旦有任意一家酒馆完成核销，则不支持退款。</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">能换同线路里的其他酒吗？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+                <div class="faq-a"><div class="faq-a-inner">每家酒馆兑换的酒品为线路指定款，不支持更换其他酒品。具体酒品以到店实际供应为准。</div></div>
+            </div>
+        </div>
+    </section>
+
+</div><!-- .content -->
+
+<!-- ═══ 结尾 ═══ -->
+<section class="outro reveal">
+    <p class="outro-title">酒鬼地图</p>
+    <p class="outro-msg">选一条线路，约上朋友<br>开启一场北京微醺冒险吧。</p>
+    <img class="outro-logo" src="../images/hero-logo.png" alt="Zup!">
+    <p class="outro-brand">Zup! × CityDrink · 酒鬼地图</p>
+</section>
+
+</div><!-- .page -->
+
+<!-- ═══ Toast ═══ -->
+<div class="toast" id="toast"></div>
+
+<script>document.write('<script src="booze-map-config.js?v='+Math.floor(Date.now()/60000)+'"><\/script>')</script>
+<script>
+(function(){
+    var $ = function(sel){return document.querySelector(sel)};
+    var list = $("#routeList");
+    if(!window.ROUTES || !ROUTES.length){ return; }
+
+    var toastEl = $("#toast");
+    function showToast(msg){
+        toastEl.textContent = msg;
+        toastEl.classList.add("show");
+        setTimeout(function(){ toastEl.classList.remove("show"); }, 2000);
+    }
+
+    ROUTES.forEach(function(route, ri){
+        var card = document.createElement("div");
+        card.className = "route";
+
+        var headHtml = '<div class="route-head">' +
+            '<span class="route-name">' + route.name + '</span>' +
+            '<span class="route-tag">' + (route.tag || '') + '</span>' +
+            '</div>';
+
+        var barsHtml = '<div class="route-bars">';
+        route.bars.forEach(function(bar, bi){
+            barsHtml += '<div class="route-bar">' +
+                '<div class="route-bar-idx">' + (bi + 1) + '</div>' +
+                '<div class="route-bar-img"><img src="' + bar.image + '" alt="' + bar.name + '" loading="lazy"></div>' +
+                '<div class="route-bar-info">' +
+                    '<div class="route-bar-name">' + bar.name + '</div>' +
+                    '<div class="route-bar-drink">' + bar.drink + '</div>' +
+                '</div>' +
+            '</div>';
+        });
+        barsHtml += '</div>';
+
+        var footHtml = '<div class="route-foot">' +
+            '<div class="route-price">' +
+                '<span class="route-price-yen">¥</span>' +
+                '<span class="route-price-num">66</span>' +
+            '</div>' +
+            '<button class="route-buy" data-id="' + route.id + '">立即购买</button>' +
+            '</div>';
+
+        card.innerHTML = headHtml + barsHtml + footHtml;
+        list.appendChild(card);
+    });
+
+    list.addEventListener("click", function(e){
+        var btn = e.target.closest(".route-buy");
+        if(!btn) return;
+        showToast("支付功能即将开放，敬请期待");
+    });
+
+    // FAQ 折叠
+    document.querySelectorAll(".faq-q").forEach(function(q){
+        q.addEventListener("click", function(){
+            var item = q.closest(".faq-item");
+            var wasOpen = item.classList.contains("open");
+            document.querySelectorAll(".faq-item.open").forEach(function(el){ el.classList.remove("open"); });
+            if(!wasOpen) item.classList.add("open");
+        });
+    });
+
+    // 入场动画
+    var io = new IntersectionObserver(function(es){
+        es.forEach(function(e){
+            if(e.isIntersecting){ e.target.classList.add("show"); io.unobserve(e.target); }
+        });
+    },{threshold:.12});
+    document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
