@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>酒鬼地图 · 收入看板</title>
+    <style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+    --bg:#f0f2f5;--white:#fff;
+    --text:#1a1a2e;--sub:#6b7280;--dim:#9ca3af;--placeholder:#d1d5db;
+    --primary:#6366f1;--primary-light:#818cf8;--primary-bg:rgba(99,102,241,.06);--primary-hover:rgba(99,102,241,.08);
+    --green:#10b981;--green-bg:rgba(16,185,129,.08);
+    --orange:#f59e0b;--orange-bg:rgba(245,158,11,.08);
+    --red:#ef4444;--red-bg:rgba(239,68,68,.06);
+    --blue:#3b82f6;--blue-bg:rgba(59,130,246,.06);
+    --border:#e5e7eb;--border-light:#f3f4f6;
+    --r:12px;--shadow:0 1px 3px rgba(0,0,0,.04),0 0 0 1px rgba(0,0,0,.04)
+}
+html{background:var(--bg);scroll-behavior:smooth}
+body{font-family:-apple-system,"SF Pro Display","PingFang SC","Noto Sans SC","Segoe UI",sans-serif;color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* ═══ 顶栏 ═══ */
+.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+.topbar-left{display:flex;align-items:center;gap:12px}
+.topbar-logo{font-size:18px;font-weight:800;color:var(--primary);letter-spacing:-.02em}
+.topbar-sep{width:1px;height:20px;background:var(--border)}
+.topbar-title{font-size:14px;color:var(--sub);font-weight:500}
+.topbar-right{display:flex;align-items:center;gap:16px}
+.topbar-time{font-size:12px;color:var(--dim)}
+
+/* ═══ 页面容器 ═══ */
+.container{max-width:1280px;margin:0 auto;padding:24px 32px 48px}
+
+/* ═══ 板块 ═══ */
+.section{margin-bottom:28px}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.section-title{font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px}
+.section-title::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--primary)}
+.section-actions{display:flex;gap:8px}
+
+/* ═══ 指标卡片 ═══ */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.metric{background:var(--white);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:box-shadow .2s}
+.metric:hover{box-shadow:0 4px 12px rgba(0,0,0,.06),0 0 0 1px rgba(0,0,0,.04)}
+.metric-label{font-size:12px;color:var(--sub);margin-bottom:8px;display:flex;align-items:center;gap:5px;letter-spacing:.2px}
+.metric-label svg{width:14px;height:14px;opacity:.5}
+.metric-value{font-size:26px;font-weight:800;line-height:1.2;letter-spacing:-.02em}
+.metric-sub{font-size:11px;color:var(--dim);margin-top:4px}
+.metric.highlight{border-left:3px solid var(--primary)}
+.metric.highlight .metric-value{color:var(--primary)}
+.metric.green .metric-value{color:var(--green)}
+.metric.green{border-left:3px solid var(--green)}
+.metric.orange .metric-value{color:var(--orange)}
+.metric.orange{border-left:3px solid var(--orange)}
+.metric.red .metric-value{color:var(--red)}
+.metric.red{border-left:3px solid var(--red)}
+
+/* ═══ 按钮 ═══ */
+.btn{height:34px;padding:0 16px;border-radius:8px;border:1px solid var(--border);background:var(--white);font-size:13px;font-weight:500;font-family:inherit;cursor:pointer;color:var(--text);display:inline-flex;align-items:center;gap:5px;transition:all .15s;letter-spacing:.1px}
+.btn:hover{background:var(--border-light);border-color:#d1d5db}
+.btn svg{width:14px;height:14px}
+.btn-primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn-primary:hover{background:var(--primary-light);border-color:var(--primary-light)}
+.btn-sm{height:28px;padding:0 10px;font-size:12px;border-radius:6px}
+.btn-danger{color:var(--red);border-color:rgba(239,68,68,.2)}
+.btn-danger:hover{background:var(--red-bg);border-color:rgba(239,68,68,.3)}
+
+/* ═══ 表格 ═══ */
+.table-wrap{background:var(--white);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+.table-toolbar{padding:14px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-light)}
+.table-search{height:34px;padding:0 12px;border-radius:8px;border:1px solid var(--border);font-size:13px;font-family:inherit;width:240px;outline:none;transition:border-color .15s;color:var(--text)}
+.table-search:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(99,102,241,.08)}
+.table-search::placeholder{color:var(--placeholder)}
+.table-filters{display:flex;gap:8px;align-items:center}
+table{width:100%;border-collapse:collapse}
+thead{background:var(--border-light)}
+th{padding:10px 16px;font-size:12px;font-weight:600;color:var(--sub);text-align:left;letter-spacing:.3px;white-space:nowrap;border-bottom:1px solid var(--border)}
+td{padding:12px 16px;font-size:13px;border-bottom:1px solid var(--border-light);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:rgba(99,102,241,.02)}
+.table-empty{padding:48px;text-align:center;color:var(--dim);font-size:13px}
+.table-footer{padding:12px 18px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border-light);font-size:12px;color:var(--dim)}
+.table-page{display:flex;align-items:center;gap:4px}
+.table-page button{width:28px;height:28px;border-radius:6px;border:1px solid var(--border);background:var(--white);font-size:12px;cursor:pointer;display:grid;place-items:center;color:var(--sub);transition:all .15s}
+.table-page button:hover{border-color:#d1d5db;background:var(--border-light)}
+.table-page button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.table-page button:disabled{opacity:.4;cursor:not-allowed}
+
+/* ═══ 标签 ═══ */
+.tag{display:inline-flex;align-items:center;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:600;letter-spacing:.2px}
+.tag-green{background:var(--green-bg);color:var(--green)}
+.tag-red{background:var(--red-bg);color:var(--red)}
+.tag-orange{background:var(--orange-bg);color:var(--orange)}
+.tag-blue{background:var(--blue-bg);color:var(--blue)}
+.tag-gray{background:var(--border-light);color:var(--sub)}
+
+/* ═══ Tab ═══ */
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:20px}
+.tab-btn{padding:10px 20px;font-size:14px;font-weight:500;color:var(--sub);border:none;background:none;cursor:pointer;font-family:inherit;position:relative;transition:color .2s}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--primary);font-weight:600}
+.tab-btn.active::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--primary);border-radius:1px}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* ═══ 商户标签组 ═══ */
+.merchant-tags{display:flex;flex-wrap:wrap;gap:4px}
+.merchant-tag{font-size:11px;padding:2px 6px;border-radius:4px;background:var(--primary-bg);color:var(--primary);white-space:nowrap}
+
+/* ═══ 操作链接 ═══ */
+.op{font-size:12px;color:var(--primary);cursor:pointer;text-decoration:none;font-weight:500}
+.op:hover{text-decoration:underline}
+.op+.op{margin-left:10px}
+.op.op-danger{color:var(--red)}
+
+/* ═══ 开关 ═══ */
+.switch{position:relative;display:inline-block;width:38px;height:22px;flex-shrink:0}
+.switch input{opacity:0;width:0;height:0}
+.switch-slider{position:absolute;cursor:pointer;inset:0;background:var(--border);border-radius:22px;transition:.2s}
+.switch-slider::before{content:"";position:absolute;height:16px;width:16px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.switch input:checked+.switch-slider{background:var(--green)}
+.switch input:checked+.switch-slider::before{transform:translateX(16px)}
+
+/* ═══ 筛选下拉 ═══ */
+.filter-select{height:34px;padding:0 28px 0 10px;border-radius:8px;border:1px solid var(--border);font-size:12px;font-family:inherit;color:var(--text);background:var(--white) url("data:image/svg+xml,%3Csvg viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239ca3af' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right 10px center/10px no-repeat;appearance:none;-webkit-appearance:none;cursor:pointer;outline:none;transition:border-color .15s}
+.filter-select:focus{border-color:var(--primary)}
+
+/* ═══ 模态 ═══ */
+.modal-mask{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.3);display:none;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
+.modal-mask.show{display:flex}
+.modal{background:var(--white);border-radius:16px;width:560px;max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.15)}
+.modal-head{padding:20px 24px 16px;border-bottom:1px solid var(--border-light);display:flex;align-items:center;justify-content:space-between}
+.modal-head h3{font-size:16px;font-weight:700}
+.modal-close{width:32px;height:32px;border-radius:8px;border:none;background:none;cursor:pointer;display:grid;place-items:center;color:var(--sub);transition:background .15s}
+.modal-close:hover{background:var(--border-light)}
+.modal-close svg{width:18px;height:18px}
+.modal-body{padding:20px 24px}
+.modal-foot{padding:16px 24px;border-top:1px solid var(--border-light);display:flex;justify-content:flex-end;gap:8px}
+.form-row{margin-bottom:16px}
+.form-label{display:block;font-size:12px;font-weight:600;color:var(--sub);margin-bottom:6px;letter-spacing:.2px}
+.form-input{width:100%;height:38px;padding:0 12px;border-radius:8px;border:1px solid var(--border);font-size:13px;font-family:inherit;color:var(--text);outline:none;transition:border-color .15s}
+.form-input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(99,102,241,.08)}
+.form-input::placeholder{color:var(--placeholder)}
+textarea.form-input{height:auto;padding:10px 12px;resize:vertical;min-height:60px}
+.form-row-inline{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* ═══ 筛选工具栏 ═══ */
+.filter-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;padding:14px 18px;background:var(--white);border-radius:var(--r);box-shadow:var(--shadow)}
+.filter-left{display:flex;align-items:center;gap:10px}
+.filter-label{font-size:12px;color:var(--sub);font-weight:600;white-space:nowrap;letter-spacing:.2px}
+.filter-date{height:34px;padding:0 12px;border-radius:8px;border:1px solid var(--border);font-size:13px;font-family:inherit;color:var(--text);outline:none;cursor:pointer}
+.filter-date:focus{border-color:var(--primary)}
+.filter-sep{color:var(--dim);font-size:13px}
+.granularity{display:flex;border-radius:8px;overflow:hidden;border:1px solid var(--border)}
+.gran-btn{height:32px;padding:0 16px;border:none;font-size:12px;font-weight:600;font-family:inherit;cursor:pointer;color:var(--sub);background:var(--white);transition:all .15s;letter-spacing:.3px}
+.gran-btn+.gran-btn{border-left:1px solid var(--border)}
+.gran-btn:hover{background:var(--border-light)}
+.gran-btn.active{background:var(--primary);color:#fff}
+
+/* ═══ 趋势图表 ═══ */
+.chart-section{background:var(--white);border-radius:var(--r);box-shadow:var(--shadow);padding:20px;margin-bottom:28px}
+.chart-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.chart-title{font-size:14px;font-weight:700;color:var(--text)}
+.chart-legend{display:flex;flex-wrap:wrap;gap:6px}
+.chart-legend-item{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:500;cursor:pointer;border:1px solid var(--border);transition:all .15s;user-select:none;color:var(--text)}
+.chart-legend-item:hover{background:var(--border-light)}
+.chart-legend-item.active{border-color:var(--c);background:var(--c);color:#fff}
+.chart-legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--c)}
+.chart-legend-item.active .chart-legend-dot{background:#fff}
+.chart-canvas-wrap{position:relative;height:320px}
+    </style>
+</head>
+<body>
+
+<!-- ═══ 顶栏 ═══ -->
+<div class="topbar">
+    <div class="topbar-left">
+        <span class="topbar-logo">Zup!</span>
+        <div class="topbar-sep"></div>
+        <span class="topbar-title">酒鬼地图 · 收入看板</span>
+    </div>
+    <div class="topbar-right">
+        <span class="topbar-time" id="clock"></span>
+    </div>
+</div>
+
+<div class="container">
+
+<!-- ═══ 时间筛选 ═══ -->
+<div class="filter-bar">
+    <div class="filter-left">
+        <span class="filter-label">时间范围</span>
+        <input class="filter-date" type="date" id="dateFrom" value="2026-03-01">
+        <span class="filter-sep">至</span>
+        <input class="filter-date" type="date" id="dateTo" value="2026-03-15">
+    </div>
+    <div class="granularity">
+        <button class="gran-btn active" data-gran="day" onclick="setGranularity('day',this)">按天</button>
+        <button class="gran-btn" data-gran="week" onclick="setGranularity('week',this)">按周</button>
+        <button class="gran-btn" data-gran="month" onclick="setGranularity('month',this)">按月</button>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════ 收入总览 ═══════════════════════════════ -->
+<div class="section">
+    <div class="section-head">
+        <div class="section-title">收入总览</div>
+        <div class="section-actions">
+            <button class="btn" onclick="refreshData()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>刷新</button>
+        </div>
+    </div>
+    <div class="metrics">
+        <div class="metric highlight">
+            <div class="metric-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>已购买用户数</div>
+            <div class="metric-value">328</div>
+            <div class="metric-sub">累计独立用户</div>
+        </div>
+        <div class="metric highlight">
+            <div class="metric-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>已售出订单数</div>
+            <div class="metric-value">412</div>
+            <div class="metric-sub">含重复购买用户</div>
+        </div>
+        <div class="metric red">
+            <div class="metric-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>退款数</div>
+            <div class="metric-value">15</div>
+            <div class="metric-sub">退款率 3.6%</div>
+        </div>
+        <div class="metric highlight">
+            <div class="metric-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>总销售额</div>
+            <div class="metric-value">¥27,192</div>
+            <div class="metric-sub">412 单 × ¥66</div>
+        </div>
+        <div class="metric green">
+            <div class="metric-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>已核销订单数</div>
+            <div class="metric-value">267</div>
+            <div class="metric-sub">核销率 64.8%</div>
+        </div>
+        <div class="metric orange">
+            <div class="metric-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>未核销订单数</div>
+            <div class="metric-value">130</div>
+            <div class="metric-sub">待用户到店兑换</div>
+        </div>
+        <div class="metric green">
+            <div class="metric-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>计收金额</div>
+            <div class="metric-value">¥17,622</div>
+            <div class="metric-sub">已核销订单累计金额</div>
+        </div>
+        <div class="metric orange">
+            <div class="metric-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>未核销金额</div>
+            <div class="metric-value">¥8,580</div>
+            <div class="metric-sub">未核销订单总金额</div>
+        </div>
+        <div class="metric red">
+            <div class="metric-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>核销支出</div>
+            <div class="metric-value">¥8,010</div>
+            <div class="metric-sub">267 笔 × ¥30 采购成本</div>
+        </div>
+        <div class="metric highlight">
+            <div class="metric-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>可分账金额</div>
+            <div class="metric-value">¥9,612</div>
+            <div class="metric-sub">计收 - 核销支出</div>
+        </div>
+        <div class="metric green">
+            <div class="metric-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>已分账金额</div>
+            <div class="metric-value">¥6,200</div>
+            <div class="metric-sub">已打款至合作方</div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════ 趋势图表 ═══════════════════════════════ -->
+<div class="chart-section">
+    <div class="chart-head">
+        <div class="chart-title">趋势变化</div>
+        <div class="chart-legend" id="chartLegend"></div>
+    </div>
+    <div class="chart-canvas-wrap">
+        <canvas id="trendChart"></canvas>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════ Tab 区域 ═══════════════════════════════ -->
+<div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('sku',this)">产品管理</button>
+    <button class="tab-btn" onclick="switchTab('orders',this)">订单明细</button>
+    <button class="tab-btn" onclick="switchTab('verify',this)">核销明细</button>
+</div>
+
+<!-- ═══ 产品管理 ═══ -->
+<div class="tab-panel active" id="tab-sku">
+<div class="section">
+    <div class="table-wrap">
+        <div class="table-toolbar">
+            <input class="table-search" placeholder="搜索产品名 / 兑换码...">
+            <button class="btn btn-primary" onclick="openModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>新增产品</button>
+        </div>
+        <div style="overflow-x:auto">
+        <table>
+            <thead>
+                <tr>
+                    <th>状态</th>
+                    <th>产品名</th>
+                    <th>备注</th>
+                    <th>有效期间</th>
+                    <th>价格</th>
+                    <th>兑换码</th>
+                    <th>可核销次数</th>
+                    <th>可核销商户</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><label class="switch"><input type="checkbox" checked><span class="switch-slider"></span></label></td>
+                    <td style="font-weight:600">三里屯微醺之旅</td>
+                    <td><span style="color:var(--dim)">线路一</span></td>
+                    <td>2026.03.01 — 2026.06.30</td>
+                    <td>¥66</td>
+                    <td><code style="background:var(--border-light);padding:2px 6px;border-radius:4px;font-size:12px">BM-R1-0001</code></td>
+                    <td>3 次</td>
+                    <td>
+                        <div class="merchant-tags">
+                            <span class="merchant-tag">八荒·MIDBAR ×1</span>
+                            <span class="merchant-tag">Hye! Bar ×1</span>
+                            <span class="merchant-tag">蓝境酒馆 ×1</span>
+                        </div>
+                    </td>
+                    <td><a class="op">编辑</a><a class="op op-danger">删除</a></td>
+                </tr>
+                <tr>
+                    <td><label class="switch"><input type="checkbox" checked><span class="switch-slider"></span></label></td>
+                    <td style="font-weight:600">胡同探秘夜行</td>
+                    <td><span style="color:var(--dim)">线路二</span></td>
+                    <td>2026.03.01 — 2026.06.30</td>
+                    <td>¥66</td>
+                    <td><code style="background:var(--border-light);padding:2px 6px;border-radius:4px;font-size:12px">BM-R2-0001</code></td>
+                    <td>3 次</td>
+                    <td>
+                        <div class="merchant-tags">
+                            <span class="merchant-tag">八荒·Hutong Lab ×1</span>
+                            <span class="merchant-tag">中華酒場燈籠 ×1</span>
+                            <span class="merchant-tag">Azusa#2 ×1</span>
+                        </div>
+                    </td>
+                    <td><a class="op">编辑</a><a class="op op-danger">删除</a></td>
+                </tr>
+                <tr>
+                    <td><label class="switch"><input type="checkbox" checked><span class="switch-slider"></span></label></td>
+                    <td style="font-weight:600">建国门小酌之夜</td>
+                    <td><span style="color:var(--dim)">线路三</span></td>
+                    <td>2026.03.01 — 2026.06.30</td>
+                    <td>¥66</td>
+                    <td><code style="background:var(--border-light);padding:2px 6px;border-radius:4px;font-size:12px">BM-R3-0001</code></td>
+                    <td>3 次</td>
+                    <td>
+                        <div class="merchant-tags">
+                            <span class="merchant-tag">微醺九号 ×1</span>
+                            <span class="merchant-tag">老房子酒吧 ×1</span>
+                            <span class="merchant-tag">哈哈酒馆 ×1</span>
+                        </div>
+                    </td>
+                    <td><a class="op">编辑</a><a class="op op-danger">删除</a></td>
+                </tr>
+                <tr>
+                    <td><label class="switch"><input type="checkbox" checked><span class="switch-slider"></span></label></td>
+                    <td style="font-weight:600">五道口学术酒局</td>
+                    <td><span style="color:var(--dim)">线路四</span></td>
+                    <td>2026.03.01 — 2026.06.30</td>
+                    <td>¥66</td>
+                    <td><code style="background:var(--border-light);padding:2px 6px;border-radius:4px;font-size:12px">BM-R4-0001</code></td>
+                    <td>3 次</td>
+                    <td>
+                        <div class="merchant-tags">
+                            <span class="merchant-tag">奇点·宇宙客厅 ×1</span>
+                            <span class="merchant-tag">蓝境酒馆 ×1</span>
+                            <span class="merchant-tag">破斧酒吧 ×1</span>
+                        </div>
+                    </td>
+                    <td><a class="op">编辑</a><a class="op op-danger">删除</a></td>
+                </tr>
+                <tr style="opacity:.6">
+                    <td><label class="switch"><input type="checkbox"><span class="switch-slider"></span></label></td>
+                    <td style="font-weight:600;opacity:.5">望京深夜食堂</td>
+                    <td><span style="color:var(--dim)">线路五（已关停）</span></td>
+                    <td>2026.03.01 — 2026.06.30</td>
+                    <td>¥66</td>
+                    <td><code style="background:var(--border-light);padding:2px 6px;border-radius:4px;font-size:12px">BM-R5-0001</code></td>
+                    <td>3 次</td>
+                    <td>
+                        <div class="merchant-tags">
+                            <span class="merchant-tag">蓝境酒馆 ×1</span>
+                            <span class="merchant-tag">八荒·MIDBAR ×1</span>
+                            <span class="merchant-tag">中華酒場燈籠 ×1</span>
+                        </div>
+                    </td>
+                    <td><a class="op">编辑</a><a class="op op-danger">删除</a></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <div class="table-footer">
+            <span>共 10 条产品</span>
+            <div class="table-page">
+                <button disabled>&lt;</button>
+                <button class="active">1</button>
+                <button>2</button>
+                <button>&gt;</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- ═══ 订单明细 ═══ -->
+<div class="tab-panel" id="tab-orders">
+<div class="section">
+    <div class="table-wrap">
+        <div class="table-toolbar">
+            <input class="table-search" placeholder="搜索订单号 / 用户昵称 / 手机号 / 商品名...">
+            <div class="table-filters">
+                <select class="filter-select" id="orderTypeFilter">
+                    <option value="">全部类型</option>
+                    <option value="buy">购买</option>
+                    <option value="refund">退款</option>
+                </select>
+                <select class="filter-select" id="orderStatusFilter">
+                    <option value="">全部核销状态</option>
+                    <option value="verified">已核销</option>
+                    <option value="unverified">未核销</option>
+                    <option value="partial">部分核销</option>
+                </select>
+                <button class="btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>导出</button>
+            </div>
+        </div>
+        <div style="overflow-x:auto">
+        <table>
+            <thead>
+                <tr>
+                    <th>订单类型</th>
+                    <th>订单号</th>
+                    <th>下单时间</th>
+                    <th>商品名</th>
+                    <th>用户昵称</th>
+                    <th>手机号</th>
+                    <th>金额</th>
+                    <th>核销状态</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="tag tag-green">购买</span></td>
+                    <td style="font-family:monospace;font-size:12px">BM20260314001</td>
+                    <td>2026-03-14 18:32:15</td>
+                    <td>三里屯微醺之旅</td>
+                    <td>酒鬼小A</td>
+                    <td style="font-family:monospace;font-size:12px">138****8821</td>
+                    <td style="font-weight:600">¥66.00</td>
+                    <td><span class="tag tag-green">已核销</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-green">购买</span></td>
+                    <td style="font-family:monospace;font-size:12px">BM20260314002</td>
+                    <td>2026-03-14 19:05:43</td>
+                    <td>胡同探秘夜行</td>
+                    <td>微醺达人B</td>
+                    <td style="font-family:monospace;font-size:12px">139****3356</td>
+                    <td style="font-weight:600">¥66.00</td>
+                    <td><span class="tag tag-orange">未核销</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-green">购买</span></td>
+                    <td style="font-family:monospace;font-size:12px">BM20260313001</td>
+                    <td>2026-03-13 21:12:08</td>
+                    <td>五道口学术酒局</td>
+                    <td>学霸酒友C</td>
+                    <td style="font-family:monospace;font-size:12px">136****5510</td>
+                    <td style="font-weight:600">¥66.00</td>
+                    <td><span class="tag tag-green">已核销</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-red">退款</span></td>
+                    <td style="font-family:monospace;font-size:12px">BM20260313002</td>
+                    <td>2026-03-13 14:28:33</td>
+                    <td>望京深夜食堂</td>
+                    <td>夜猫子D</td>
+                    <td style="font-family:monospace;font-size:12px">155****1024</td>
+                    <td style="font-weight:600;color:var(--red)">-¥66.00</td>
+                    <td><span class="tag tag-gray">—</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-green">购买</span></td>
+                    <td style="font-family:monospace;font-size:12px">BM20260312001</td>
+                    <td>2026-03-12 20:45:19</td>
+                    <td>建国门小酌之夜</td>
+                    <td>老饕E</td>
+                    <td style="font-family:monospace;font-size:12px">188****7743</td>
+                    <td style="font-weight:600">¥66.00</td>
+                    <td><span class="tag tag-green">已核销</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-green">购买</span></td>
+                    <td style="font-family:monospace;font-size:12px">BM20260312002</td>
+                    <td>2026-03-12 18:33:07</td>
+                    <td>魔法主题之夜</td>
+                    <td>霍格沃茨F</td>
+                    <td style="font-family:monospace;font-size:12px">137****2290</td>
+                    <td style="font-weight:600">¥66.00</td>
+                    <td><span class="tag tag-orange">未核销</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-green">购买</span></td>
+                    <td style="font-family:monospace;font-size:12px">BM20260311001</td>
+                    <td>2026-03-11 22:10:55</td>
+                    <td>文艺青年漫游</td>
+                    <td>文艺酒鬼G</td>
+                    <td style="font-family:monospace;font-size:12px">158****9918</td>
+                    <td style="font-weight:600">¥66.00</td>
+                    <td><span class="tag tag-blue">部分核销</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-green">购买</span></td>
+                    <td style="font-family:monospace;font-size:12px">BM20260310001</td>
+                    <td>2026-03-10 16:55:42</td>
+                    <td>日式清酒巡礼</td>
+                    <td>清酒控H</td>
+                    <td style="font-family:monospace;font-size:12px">186****4467</td>
+                    <td style="font-weight:600">¥66.00</td>
+                    <td><span class="tag tag-green">已核销</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-red">退款</span></td>
+                    <td style="font-family:monospace;font-size:12px">BM20260309001</td>
+                    <td>2026-03-09 10:20:18</td>
+                    <td>回龙观夜归人</td>
+                    <td>回龙观居民I</td>
+                    <td style="font-family:monospace;font-size:12px">135****6601</td>
+                    <td style="font-weight:600;color:var(--red)">-¥66.00</td>
+                    <td><span class="tag tag-gray">—</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-green">购买</span></td>
+                    <td style="font-family:monospace;font-size:12px">BM20260308001</td>
+                    <td>2026-03-08 19:47:33</td>
+                    <td>酒仙桥复古之夜</td>
+                    <td>复古boy_J</td>
+                    <td style="font-family:monospace;font-size:12px">159****0053</td>
+                    <td style="font-weight:600">¥66.00</td>
+                    <td><span class="tag tag-green">已核销</span></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <div class="table-footer">
+            <span>共 412 条订单，当前显示 1-10</span>
+            <div class="table-page">
+                <button disabled>&lt;</button>
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>...</button>
+                <button>42</button>
+                <button>&gt;</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- ═══ 核销明细 ═══ -->
+<div class="tab-panel" id="tab-verify">
+<div class="section">
+    <div class="table-wrap">
+        <div class="table-toolbar">
+            <input class="table-search" placeholder="搜索订单号 / 商品名...">
+            <div class="table-filters">
+                <select class="filter-select" id="verifyMerchantFilter">
+                    <option value="">全部核销商户</option>
+                    <option value="八荒·MIDBAR">八荒·MIDBAR</option>
+                    <option value="八荒·Hutong Lab">八荒·Hutong Lab</option>
+                    <option value="蓝境酒馆">蓝境酒馆</option>
+                    <option value="微醺九号">微醺九号</option>
+                    <option value="Hye! Bar">Hye! Bar</option>
+                    <option value="奇点·宇宙客厅">奇点·宇宙客厅</option>
+                    <option value="破斧酒吧">破斧酒吧</option>
+                    <option value="哈哈酒馆">哈哈酒馆</option>
+                    <option value="中華酒場燈籠">中華酒場燈籠</option>
+                    <option value="Azusa#2">Azusa#2</option>
+                    <option value="老房子酒吧">老房子酒吧</option>
+                </select>
+                <select class="filter-select" id="verifyUserFilter">
+                    <option value="">全部核销用户</option>
+                    <option value="用户A****8">酒鬼小A</option>
+                    <option value="用户C****5">学霸酒友C</option>
+                    <option value="用户E****7">老饕E</option>
+                    <option value="用户H****4">清酒控H</option>
+                    <option value="用户J****0">复古boy_J</option>
+                </select>
+                <button class="btn btn-primary" onclick="openVerifyModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>手动核销</button>
+                <button class="btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>导出</button>
+            </div>
+        </div>
+        <div style="overflow-x:auto">
+        <table>
+            <thead>
+                <tr>
+                    <th>核销时间</th>
+                    <th>订单号</th>
+                    <th>商品名</th>
+                    <th>核销商户</th>
+                    <th>核销数量</th>
+                    <th>核销用户</th>
+                    <th>支出金额</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2026-03-14 20:15:08</td>
+                    <td style="font-family:monospace;font-size:12px">BM20260314001</td>
+                    <td>三里屯微醺之旅</td>
+                    <td><span class="tag tag-blue">八荒·MIDBAR</span></td>
+                    <td>1 次</td>
+                    <td>用户A****8</td>
+                    <td style="font-weight:600;color:var(--red)">¥30.00</td>
+                    <td><a class="op op-danger" onclick="revokeVerify(this)">撤销核销</a></td>
+                </tr>
+                <tr>
+                    <td>2026-03-14 21:40:22</td>
+                    <td style="font-family:monospace;font-size:12px">BM20260314001</td>
+                    <td>三里屯微醺之旅</td>
+                    <td><span class="tag tag-blue">Hye! Bar</span></td>
+                    <td>1 次</td>
+                    <td>用户A****8</td>
+                    <td style="font-weight:600;color:var(--red)">¥30.00</td>
+                    <td><a class="op op-danger" onclick="revokeVerify(this)">撤销核销</a></td>
+                </tr>
+                <tr>
+                    <td>2026-03-14 23:05:11</td>
+                    <td style="font-family:monospace;font-size:12px">BM20260314001</td>
+                    <td>三里屯微醺之旅</td>
+                    <td><span class="tag tag-blue">蓝境酒馆</span></td>
+                    <td>1 次</td>
+                    <td>用户A****8</td>
+                    <td style="font-weight:600;color:var(--red)">¥30.00</td>
+                    <td><a class="op op-danger" onclick="revokeVerify(this)">撤销核销</a></td>
+                </tr>
+                <tr>
+                    <td>2026-03-13 22:30:45</td>
+                    <td style="font-family:monospace;font-size:12px">BM20260313001</td>
+                    <td>五道口学术酒局</td>
+                    <td><span class="tag tag-blue">奇点·宇宙客厅</span></td>
+                    <td>1 次</td>
+                    <td>用户C****5</td>
+                    <td style="font-weight:600;color:var(--red)">¥30.00</td>
+                    <td><a class="op op-danger" onclick="revokeVerify(this)">撤销核销</a></td>
+                </tr>
+                <tr>
+                    <td>2026-03-12 21:18:37</td>
+                    <td style="font-family:monospace;font-size:12px">BM20260312001</td>
+                    <td>建国门小酌之夜</td>
+                    <td><span class="tag tag-blue">微醺九号</span></td>
+                    <td>1 次</td>
+                    <td>用户E****7</td>
+                    <td style="font-weight:600;color:var(--red)">¥30.00</td>
+                    <td><a class="op op-danger" onclick="revokeVerify(this)">撤销核销</a></td>
+                </tr>
+                <tr>
+                    <td>2026-03-12 22:50:03</td>
+                    <td style="font-family:monospace;font-size:12px">BM20260312001</td>
+                    <td>建国门小酌之夜</td>
+                    <td><span class="tag tag-blue">老房子酒吧</span></td>
+                    <td>1 次</td>
+                    <td>用户E****7</td>
+                    <td style="font-weight:600;color:var(--red)">¥30.00</td>
+                    <td><a class="op op-danger" onclick="revokeVerify(this)">撤销核销</a></td>
+                </tr>
+                <tr>
+                    <td>2026-03-10 18:22:19</td>
+                    <td style="font-family:monospace;font-size:12px">BM20260310001</td>
+                    <td>日式清酒巡礼</td>
+                    <td><span class="tag tag-blue">Azusa#2</span></td>
+                    <td>1 次</td>
+                    <td>用户H****4</td>
+                    <td style="font-weight:600;color:var(--red)">¥30.00</td>
+                    <td><a class="op op-danger" onclick="revokeVerify(this)">撤销核销</a></td>
+                </tr>
+                <tr>
+                    <td>2026-03-10 19:45:55</td>
+                    <td style="font-family:monospace;font-size:12px">BM20260310001</td>
+                    <td>日式清酒巡礼</td>
+                    <td><span class="tag tag-blue">中華酒場燈籠</span></td>
+                    <td>1 次</td>
+                    <td>用户H****4</td>
+                    <td style="font-weight:600;color:var(--red)">¥30.00</td>
+                    <td><a class="op op-danger" onclick="revokeVerify(this)">撤销核销</a></td>
+                </tr>
+                <tr>
+                    <td>2026-03-08 20:33:41</td>
+                    <td style="font-family:monospace;font-size:12px">BM20260308001</td>
+                    <td>酒仙桥复古之夜</td>
+                    <td><span class="tag tag-blue">老房子酒吧</span></td>
+                    <td>1 次</td>
+                    <td>用户J****0</td>
+                    <td style="font-weight:600;color:var(--red)">¥30.00</td>
+                    <td><a class="op op-danger" onclick="revokeVerify(this)">撤销核销</a></td>
+                </tr>
+                <tr>
+                    <td>2026-03-08 21:55:28</td>
+                    <td style="font-family:monospace;font-size:12px">BM20260308001</td>
+                    <td>酒仙桥复古之夜</td>
+                    <td><span class="tag tag-blue">Azusa#2</span></td>
+                    <td>1 次</td>
+                    <td>用户J****0</td>
+                    <td style="font-weight:600;color:var(--red)">¥30.00</td>
+                    <td><a class="op op-danger" onclick="revokeVerify(this)">撤销核销</a></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <div class="table-footer">
+            <span>共 267 条核销记录，当前显示 1-10</span>
+            <div class="table-page">
+                <button disabled>&lt;</button>
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>...</button>
+                <button>27</button>
+                <button>&gt;</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</div><!-- .container -->
+
+<!-- ═══ 新增产品弹窗 ═══ -->
+<div class="modal-mask" id="modalMask">
+    <div class="modal">
+        <div class="modal-head">
+            <h3>新增产品</h3>
+            <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+        </div>
+        <div class="modal-body">
+            <div class="form-row">
+                <label class="form-label">产品名称</label>
+                <input class="form-input" placeholder="例：三里屯微醺之旅">
+            </div>
+            <div class="form-row">
+                <label class="form-label">备注</label>
+                <input class="form-input" placeholder="例：线路一">
+            </div>
+            <div class="form-row-inline">
+                <div class="form-row">
+                    <label class="form-label">有效期起始</label>
+                    <input class="form-input" type="date" value="2026-03-01">
+                </div>
+                <div class="form-row">
+                    <label class="form-label">有效期结束</label>
+                    <input class="form-input" type="date" value="2026-06-30">
+                </div>
+            </div>
+            <div class="form-row-inline">
+                <div class="form-row">
+                    <label class="form-label">价格 (元)</label>
+                    <input class="form-input" type="number" value="66">
+                </div>
+                <div class="form-row">
+                    <label class="form-label">总计可核销次数</label>
+                    <input class="form-input" type="number" value="3">
+                </div>
+            </div>
+            <div class="form-row">
+                <label class="form-label">兑换码</label>
+                <input class="form-input" placeholder="例：BM-R1-0001（可自动生成）">
+            </div>
+            <div class="form-row">
+                <label class="form-label">可核销商户及每家数量</label>
+                <textarea class="form-input" rows="3" placeholder="每行一个，格式：商户名 x数量&#10;例：&#10;八荒·MIDBAR x1&#10;Hye! Bar x1&#10;蓝境酒馆 x1"></textarea>
+            </div>
+        </div>
+        <div class="modal-foot">
+            <button class="btn" onclick="closeModal()">取消</button>
+            <button class="btn btn-primary" onclick="closeModal();alert('产品已添加（演示）')">确认添加</button>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ 手动核销弹窗 ═══ -->
+<div class="modal-mask" id="verifyModalMask">
+    <div class="modal">
+        <div class="modal-head">
+            <h3>手动添加核销</h3>
+            <button class="modal-close" onclick="closeVerifyModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+        </div>
+        <div class="modal-body">
+            <div class="form-row">
+                <label class="form-label">选择商品</label>
+                <select class="form-input" id="verifyProductSelect" onchange="onVerifyProductChange()">
+                    <option value="">请选择商品</option>
+                    <option value="三里屯微醺之旅" data-merchants="八荒·MIDBAR,Hye! Bar,蓝境酒馆">三里屯微醺之旅</option>
+                    <option value="胡同探秘夜行" data-merchants="八荒·Hutong Lab,中華酒場燈籠,Azusa#2">胡同探秘夜行</option>
+                    <option value="建国门小酌之夜" data-merchants="微醺九号,老房子酒吧,哈哈酒馆">建国门小酌之夜</option>
+                    <option value="五道口学术酒局" data-merchants="奇点·宇宙客厅,蓝境酒馆,破斧酒吧">五道口学术酒局</option>
+                    <option value="望京深夜食堂" data-merchants="蓝境酒馆,八荒·MIDBAR,中華酒場燈籠">望京深夜食堂</option>
+                    <option value="魔法主题之夜" data-merchants="破斧酒吧,哈哈酒馆,微醺九号">魔法主题之夜</option>
+                    <option value="文艺青年漫游" data-merchants="八荒·Hutong Lab,奇点·宇宙客厅,老房子酒吧">文艺青年漫游</option>
+                    <option value="日式清酒巡礼" data-merchants="Azusa#2,中華酒場燈籠,蓝境酒馆">日式清酒巡礼</option>
+                    <option value="回龙观夜归人" data-merchants="哈哈酒馆,微醺九号,老房子酒吧">回龙观夜归人</option>
+                    <option value="酒仙桥复古之夜" data-merchants="老房子酒吧,Azusa#2,Hye! Bar">酒仙桥复古之夜</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label class="form-label">核销商户</label>
+                <select class="form-input" id="verifyMerchantSelect" disabled>
+                    <option value="">请先选择商品</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label class="form-label">用户 ID 或手机号</label>
+                <input class="form-input" id="verifyUserInput" placeholder="输入用户 ID 或手机号">
+            </div>
+            <div class="form-row">
+                <label class="form-label">核销数量</label>
+                <select class="form-input" id="verifyQtySelect">
+                    <option value="1">1 次</option>
+                    <option value="2">2 次</option>
+                    <option value="3">3 次</option>
+                </select>
+            </div>
+        </div>
+        <div class="modal-foot">
+            <button class="btn" onclick="closeVerifyModal()">取消</button>
+            <button class="btn btn-primary" onclick="submitManualVerify()">确认核销</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script>
+function switchTab(id, el){
+    document.querySelectorAll(".tab-btn").forEach(function(t){ t.classList.remove("active"); });
+    el.classList.add("active");
+    document.querySelectorAll(".tab-panel").forEach(function(p){ p.classList.remove("active"); });
+    document.getElementById("tab-" + id).classList.add("active");
+}
+function openModal(){ document.getElementById("modalMask").classList.add("show"); }
+function closeModal(){ document.getElementById("modalMask").classList.remove("show"); }
+document.getElementById("modalMask").addEventListener("click", function(e){ if(e.target === this) closeModal(); });
+
+function openVerifyModal(){
+    var m = document.getElementById("verifyModalMask");
+    document.getElementById("verifyProductSelect").value = "";
+    var ms = document.getElementById("verifyMerchantSelect");
+    ms.innerHTML = '<option value="">请先选择商品</option>';
+    ms.disabled = true;
+    document.getElementById("verifyUserInput").value = "";
+    document.getElementById("verifyQtySelect").value = "1";
+    m.classList.add("show");
+}
+function closeVerifyModal(){ document.getElementById("verifyModalMask").classList.remove("show"); }
+document.getElementById("verifyModalMask").addEventListener("click", function(e){ if(e.target === this) closeVerifyModal(); });
+
+function onVerifyProductChange(){
+    var sel = document.getElementById("verifyProductSelect");
+    var ms = document.getElementById("verifyMerchantSelect");
+    var opt = sel.options[sel.selectedIndex];
+    var merchants = opt.getAttribute("data-merchants");
+    if(!merchants){
+        ms.innerHTML = '<option value="">请先选择商品</option>';
+        ms.disabled = true;
+        return;
+    }
+    var list = merchants.split(",");
+    ms.innerHTML = '<option value="">请选择核销商户</option>';
+    list.forEach(function(m){
+        var o = document.createElement("option");
+        o.value = m;
+        o.textContent = m;
+        ms.appendChild(o);
+    });
+    ms.disabled = false;
+}
+
+function submitManualVerify(){
+    var product = document.getElementById("verifyProductSelect").value;
+    var merchant = document.getElementById("verifyMerchantSelect").value;
+    var user = document.getElementById("verifyUserInput").value.trim();
+    var qty = document.getElementById("verifyQtySelect").value;
+    if(!product){ alert("请选择商品"); return; }
+    if(!merchant){ alert("请选择核销商户"); return; }
+    if(!user){ alert("请填写用户 ID 或手机号"); return; }
+    closeVerifyModal();
+    alert("核销成功（演示）\n商品：" + product + "\n商户：" + merchant + "\n用户：" + user + "\n数量：" + qty + " 次");
+}
+
+function revokeVerify(el){
+    if(!confirm("确定要撤销这条核销记录吗？此操作不可恢复。")) return;
+    var row = el.closest("tr");
+    row.style.transition = "opacity .3s";
+    row.style.opacity = "0";
+    setTimeout(function(){ row.style.display = "none"; }, 300);
+}
+
+(function tick(){
+    var now = new Date();
+    document.getElementById("clock").textContent = now.getFullYear() + "-" +
+        String(now.getMonth()+1).padStart(2,"0") + "-" +
+        String(now.getDate()).padStart(2,"0") + " " +
+        String(now.getHours()).padStart(2,"0") + ":" +
+        String(now.getMinutes()).padStart(2,"0") + ":" +
+        String(now.getSeconds()).padStart(2,"0");
+    setTimeout(tick, 1000);
+})();
+
+/* ═══════ 趋势图表 ═══════ */
+(function(){
+    var SERIES = [
+        { key:"orders",    label:"售出订单",  color:"#6366f1", active:true },
+        { key:"sales",     label:"销售额",    color:"#3b82f6", active:true },
+        { key:"refunds",   label:"退款数",    color:"#ef4444", active:false },
+        { key:"verified",  label:"已核销",    color:"#10b981", active:true },
+        { key:"unverified",label:"未核销",    color:"#f59e0b", active:false },
+        { key:"revenue",   label:"计收金额",  color:"#8b5cf6", active:false },
+        { key:"cost",      label:"核销支出",  color:"#ec4899", active:false }
+    ];
+
+    var currentGran = "day";
+    var chart = null;
+
+    function genLabels(gran){
+        if(gran === "day"){
+            return ["3/1","3/2","3/3","3/4","3/5","3/6","3/7","3/8","3/9","3/10","3/11","3/12","3/13","3/14","3/15"];
+        } else if(gran === "week"){
+            return ["第1周(3/1-3/7)","第2周(3/8-3/14)","第3周(3/15-3/21)"];
+        } else {
+            return ["1月","2月","3月"];
+        }
+    }
+
+    function rand(min, max){ return Math.floor(Math.random()*(max-min+1))+min; }
+
+    function genData(gran){
+        var n = gran==="day"?15:gran==="week"?3:3;
+        var d = {};
+        SERIES.forEach(function(s){
+            var arr = [];
+            for(var i=0;i<n;i++){
+                if(s.key==="orders")       arr.push(rand(18,45));
+                else if(s.key==="sales")   arr.push(rand(1100,3000));
+                else if(s.key==="refunds") arr.push(rand(0,4));
+                else if(s.key==="verified")arr.push(rand(10,30));
+                else if(s.key==="unverified")arr.push(rand(5,18));
+                else if(s.key==="revenue") arr.push(rand(600,2000));
+                else if(s.key==="cost")    arr.push(rand(300,1000));
+            }
+            d[s.key] = arr;
+        });
+        return d;
+    }
+
+    function buildLegend(){
+        var container = document.getElementById("chartLegend");
+        container.innerHTML = "";
+        SERIES.forEach(function(s){
+            var el = document.createElement("div");
+            el.className = "chart-legend-item" + (s.active?" active":"");
+            el.style.setProperty("--c", s.color);
+            el.innerHTML = '<span class="chart-legend-dot"></span>'+s.label;
+            el.addEventListener("click", function(){
+                s.active = !s.active;
+                el.classList.toggle("active", s.active);
+                renderChart();
+            });
+            container.appendChild(el);
+        });
+    }
+
+    function renderChart(){
+        var labels = genLabels(currentGran);
+        var data = genData(currentGran);
+
+        var datasets = [];
+        SERIES.forEach(function(s){
+            if(!s.active) return;
+            datasets.push({
+                label: s.label,
+                data: data[s.key],
+                borderColor: s.color,
+                backgroundColor: s.color+"18",
+                borderWidth: 2.5,
+                pointRadius: currentGran==="day"?3:5,
+                pointHoverRadius: 6,
+                pointBackgroundColor: "#fff",
+                pointBorderColor: s.color,
+                pointBorderWidth: 2,
+                tension: 0.35,
+                fill: datasets.length === 0
+            });
+        });
+
+        if(chart){ chart.destroy(); }
+
+        var ctx = document.getElementById("trendChart").getContext("2d");
+        chart = new Chart(ctx, {
+            type: "line",
+            data: { labels:labels, datasets:datasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: { mode:"index", intersect:false },
+                plugins: {
+                    legend: { display:false },
+                    tooltip: {
+                        backgroundColor:"rgba(26,26,46,.9)",
+                        titleFont:{size:12,weight:"600"},
+                        bodyFont:{size:12},
+                        padding:10,
+                        cornerRadius:8,
+                        boxPadding:4
+                    }
+                },
+                scales: {
+                    x: {
+                        grid:{ color:"rgba(0,0,0,.04)", drawBorder:false },
+                        ticks:{ font:{size:11}, color:"#9ca3af" }
+                    },
+                    y: {
+                        beginAtZero:true,
+                        grid:{ color:"rgba(0,0,0,.04)", drawBorder:false },
+                        ticks:{ font:{size:11}, color:"#9ca3af" }
+                    }
+                }
+            }
+        });
+    }
+
+    window.setGranularity = function(gran, el){
+        currentGran = gran;
+        document.querySelectorAll(".gran-btn").forEach(function(b){ b.classList.remove("active"); });
+        el.classList.add("active");
+        renderChart();
+    };
+
+    window.refreshData = function(){
+        renderChart();
+    };
+
+    document.getElementById("dateFrom").addEventListener("change", renderChart);
+    document.getElementById("dateTo").addEventListener("change", renderChart);
+
+    buildLegend();
+    renderChart();
+})();
+
+/* ═══════ 产品启停开关 ═══════ */
+document.querySelectorAll("#tab-sku .switch input").forEach(function(sw){
+    sw.addEventListener("change", function(){
+        var row = sw.closest("tr");
+        var nameCell = row.querySelector("td:nth-child(2)");
+        if(sw.checked){
+            nameCell.style.opacity = "";
+            row.style.opacity = "";
+        } else {
+            nameCell.style.opacity = ".5";
+            row.style.opacity = ".6";
+        }
+    });
+});
+
+/* ═══════ 订单明细筛选 ═══════ */
+(function(){
+    var rows = document.querySelectorAll("#tab-orders tbody tr");
+    var typeFilter = document.getElementById("orderTypeFilter");
+    var statusFilter = document.getElementById("orderStatusFilter");
+
+    function filterOrders(){
+        var t = typeFilter.value;
+        var s = statusFilter.value;
+        rows.forEach(function(r){
+            var typeTag = r.querySelector("td:nth-child(1) .tag");
+            var statusTag = r.querySelector("td:nth-child(8) .tag");
+            var typeText = typeTag ? typeTag.textContent.trim() : "";
+            var statusText = statusTag ? statusTag.textContent.trim() : "";
+
+            var showType = !t ||
+                (t === "buy" && typeText === "购买") ||
+                (t === "refund" && typeText === "退款");
+
+            var showStatus = !s ||
+                (s === "verified" && statusText === "已核销") ||
+                (s === "unverified" && statusText === "未核销") ||
+                (s === "partial" && statusText === "部分核销");
+
+            r.style.display = (showType && showStatus) ? "" : "none";
+        });
+    }
+
+    typeFilter.addEventListener("change", filterOrders);
+    statusFilter.addEventListener("change", filterOrders);
+})();
+
+/* ═══════ 核销明细筛选 ═══════ */
+(function(){
+    var rows = document.querySelectorAll("#tab-verify tbody tr");
+    var merchantFilter = document.getElementById("verifyMerchantFilter");
+    var userFilter = document.getElementById("verifyUserFilter");
+
+    function filterVerify(){
+        var m = merchantFilter.value;
+        var u = userFilter.value;
+        rows.forEach(function(r){
+            var merchantTag = r.querySelector("td:nth-child(4) .tag");
+            var merchantText = merchantTag ? merchantTag.textContent.trim() : "";
+            var userCell = r.querySelector("td:nth-child(6)");
+            var userText = userCell ? userCell.textContent.trim() : "";
+
+            var showMerchant = !m || merchantText === m;
+            var showUser = !u || userText === u;
+
+            r.style.display = (showMerchant && showUser) ? "" : "none";
+        });
+    }
+
+    merchantFilter.addEventListener("change", filterVerify);
+    userFilter.addEventListener("change", filterVerify);
+})();
+</script>
+</body>
+</html>

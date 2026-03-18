@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>我的钱包</title>
+    <style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+    --bg:#f5f6fa;--white:#fff;
+    --text:#1a1a2e;--sub:#6b7280;--dim:#9ca3af;
+    --primary:#6366f1;--primary-light:#818cf8;--primary-bg:rgba(99,102,241,.06);
+    --green:#10b981;--green-bg:rgba(16,185,129,.08);
+    --orange:#f59e0b;--orange-bg:rgba(245,158,11,.08);
+    --red:#ef4444;--red-bg:rgba(239,68,68,.06);
+    --border:rgba(0,0,0,.06);
+    --safe-b:env(safe-area-inset-bottom,0px);
+    --r:16px
+}
+html{background:var(--bg)}
+body{font-family:-apple-system,"SF Pro Display","PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;color:var(--text);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;max-width:520px;margin:0 auto;min-height:100vh;position:relative}
+
+/* ═══ 导航栏 ═══ */
+.nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:center;height:52px;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-back{position:absolute;left:8px;top:50%;transform:translateY(-50%);width:40px;height:40px;display:grid;place-items:center;border:none;background:none;cursor:pointer}
+.nav-back svg{width:20px;height:20px;color:var(--text)}
+.nav-title{font-size:16px;font-weight:600;letter-spacing:.2px}
+
+/* ═══ 资产卡片 ═══ */
+.balance-card{margin:16px;border-radius:20px;padding:28px 24px 18px;background:url("../images/wallet-card-bg.png") center/cover no-repeat;position:relative;overflow:hidden;color:#fff;box-shadow:0 8px 32px rgba(99,102,241,.25),0 2px 8px rgba(99,102,241,.1)}
+.balance-main{position:relative;z-index:1;margin-bottom:20px}
+.balance-main-label{font-size:12px;opacity:.7;letter-spacing:.5px;margin-bottom:10px}
+.balance-main-num{font-size:42px;font-weight:800;line-height:1.1;letter-spacing:-.02em}
+.balance-main-num .yen{font-size:22px;font-weight:600;margin-right:2px}
+.balance-sub{display:flex;gap:10px;position:relative;z-index:1}
+.balance-sub-item{flex:1;display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.balance-sub-icon{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:rgba(255,255,255,.12);flex-shrink:0}
+.balance-sub-icon svg{width:15px;height:15px;opacity:.85}
+.balance-sub-info{}
+.balance-sub-label{font-size:10px;opacity:.6;letter-spacing:.3px;margin-bottom:2px}
+.balance-sub-num{font-size:16px;font-weight:700;line-height:1.2}
+.balance-sub-num .yen{font-size:11px;font-weight:500;margin-right:1px}
+
+/* ═══ 提现按钮 ═══ */
+.withdraw-wrap{padding:0 16px;margin-top:12px;margin-bottom:20px}
+.withdraw-btn{width:100%;height:48px;border-radius:14px;border:none;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;color:var(--primary);background:var(--white);box-shadow:0 1px 4px rgba(0,0,0,.06),0 0 0 1px var(--border);letter-spacing:.3px;transition:transform .15s,box-shadow .15s;display:flex;align-items:center;justify-content:center;gap:6px}
+.withdraw-btn:active{transform:scale(.98);box-shadow:0 0 0 1px var(--border)}
+.withdraw-btn svg{width:18px;height:18px}
+
+/* ═══ Tab 切换 ═══ */
+.tabs{display:flex;margin:0 16px;background:var(--white);border-radius:12px;padding:4px;box-shadow:0 1px 4px rgba(0,0,0,.04),0 0 0 1px var(--border)}
+.tab{flex:1;height:40px;border-radius:10px;border:none;font-size:14px;font-weight:500;font-family:inherit;cursor:pointer;color:var(--sub);background:none;transition:all .25s;letter-spacing:.2px}
+.tab.active{color:var(--primary);background:var(--primary-bg);font-weight:600;box-shadow:0 1px 3px rgba(99,102,241,.08)}
+
+/* ═══ 列表 ═══ */
+.list-wrap{padding:12px 16px calc(16px + var(--safe-b))}
+.list-group{margin-bottom:12px}
+.list-date{font-size:12px;color:var(--dim);font-weight:500;padding:8px 4px 4px;letter-spacing:.3px}
+.list-card{background:var(--white);border-radius:var(--r);overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.04),0 0 0 1px var(--border)}
+.list-item{display:flex;align-items:center;gap:12px;padding:14px 16px;position:relative}
+.list-item+.list-item{border-top:1px solid var(--border)}
+.list-icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex-shrink:0}
+.list-icon svg{width:18px;height:18px}
+.list-icon.income{background:var(--green-bg);color:var(--green)}
+.list-icon.expense{background:var(--red-bg);color:var(--red)}
+.list-icon.freeze{background:var(--orange-bg);color:var(--orange)}
+.list-icon.withdraw{background:var(--primary-bg);color:var(--primary)}
+.list-info{flex:1;min-width:0}
+.list-title{font-size:14px;font-weight:600;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.list-desc{font-size:12px;color:var(--dim);margin-top:1px}
+.list-right{text-align:right;flex-shrink:0}
+.list-amount{font-size:15px;font-weight:700;line-height:1.3}
+.list-amount.plus{color:var(--green)}
+.list-amount.minus{color:var(--text)}
+.list-status{font-size:11px;margin-top:1px}
+.list-status.success{color:var(--green)}
+.list-status.pending{color:var(--orange)}
+.list-status.failed{color:var(--red)}
+
+/* ═══ 空状态 ═══ */
+.empty{text-align:center;padding:60px 24px;color:var(--dim)}
+.empty-icon{font-size:40px;margin-bottom:12px}
+.empty-text{font-size:14px}
+
+/* ═══ 隐藏 ═══ */
+.hidden{display:none}
+    </style>
+</head>
+<body>
+
+<!-- ═══ 导航栏 ═══ -->
+<div class="nav">
+    <button class="nav-back" onclick="history.back()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <span class="nav-title">我的钱包</span>
+</div>
+
+<!-- ═══ 资产卡片 ═══ -->
+<div class="balance-card">
+    <div class="balance-main">
+        <div class="balance-main-label">总余额 (元)</div>
+        <div class="balance-main-num"><span class="yen">¥</span>1,286.50</div>
+    </div>
+    <div class="balance-sub">
+        <div class="balance-sub-item">
+            <div class="balance-sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+            <div class="balance-sub-info">
+                <div class="balance-sub-label">冻结中</div>
+                <div class="balance-sub-num"><span class="yen">¥</span>320.00</div>
+            </div>
+        </div>
+        <div class="balance-sub-item">
+            <div class="balance-sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+            <div class="balance-sub-info">
+                <div class="balance-sub-label">可提现</div>
+                <div class="balance-sub-num"><span class="yen">¥</span>966.50</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ 提现按钮 ═══ -->
+<div class="withdraw-wrap">
+    <button class="withdraw-btn" onclick="alert('提现功能开发中')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        提现到微信
+    </button>
+</div>
+
+<!-- ═══ Tab ═══ -->
+<div class="tabs">
+    <button class="tab active" data-tab="wallet" onclick="switchTab('wallet',this)">钱包明细</button>
+    <button class="tab" data-tab="withdraw" onclick="switchTab('withdraw',this)">提现记录</button>
+</div>
+
+<!-- ═══ 钱包明细 ═══ -->
+<div class="list-wrap" id="tab-wallet">
+
+    <div class="list-group">
+        <div class="list-date">2026年3月</div>
+        <div class="list-card">
+            <div class="list-item">
+                <div class="list-icon income"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></div>
+                <div class="list-info">
+                    <div class="list-title">酒鬼地图卡·佣金收入</div>
+                    <div class="list-desc">线路一：三里屯微醺之旅</div>
+                </div>
+                <div class="list-right">
+                    <div class="list-amount plus">+6.60</div>
+                    <div class="list-desc">03-14 18:32</div>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-icon income"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></div>
+                <div class="list-info">
+                    <div class="list-title">酒鬼地图卡·佣金收入</div>
+                    <div class="list-desc">线路三：建国门小酌之夜</div>
+                </div>
+                <div class="list-right">
+                    <div class="list-amount plus">+6.60</div>
+                    <div class="list-desc">03-12 21:05</div>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-icon freeze"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+                <div class="list-info">
+                    <div class="list-title">佣金冻结</div>
+                    <div class="list-desc">待用户核销后解冻</div>
+                </div>
+                <div class="list-right">
+                    <div class="list-amount minus">-320.00</div>
+                    <div class="list-desc">03-10 12:00</div>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-icon income"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></div>
+                <div class="list-info">
+                    <div class="list-title">酒鬼地图卡·佣金收入</div>
+                    <div class="list-desc">线路五：望京深夜食堂</div>
+                </div>
+                <div class="list-right">
+                    <div class="list-amount plus">+6.60</div>
+                    <div class="list-desc">03-08 19:47</div>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-icon income"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></div>
+                <div class="list-info">
+                    <div class="list-title">酒鬼地图卡·佣金收入</div>
+                    <div class="list-desc">线路二：胡同探秘夜行</div>
+                </div>
+                <div class="list-right">
+                    <div class="list-amount plus">+6.60</div>
+                    <div class="list-desc">03-05 14:20</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-group">
+        <div class="list-date">2026年2月</div>
+        <div class="list-card">
+            <div class="list-item">
+                <div class="list-icon income"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></div>
+                <div class="list-info">
+                    <div class="list-title">酒鬼地图卡·佣金收入</div>
+                    <div class="list-desc">线路七：文艺青年漫游</div>
+                </div>
+                <div class="list-right">
+                    <div class="list-amount plus">+6.60</div>
+                    <div class="list-desc">02-28 22:10</div>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-icon income"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></div>
+                <div class="list-info">
+                    <div class="list-title">春醒活动·推广奖励</div>
+                    <div class="list-desc">邀请新用户注册</div>
+                </div>
+                <div class="list-right">
+                    <div class="list-amount plus">+50.00</div>
+                    <div class="list-desc">02-22 10:35</div>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-icon expense"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></div>
+                <div class="list-info">
+                    <div class="list-title">提现到微信</div>
+                    <div class="list-desc">提现成功</div>
+                </div>
+                <div class="list-right">
+                    <div class="list-amount minus">-200.00</div>
+                    <div class="list-desc">02-15 09:00</div>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-icon income"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></div>
+                <div class="list-info">
+                    <div class="list-title">酒鬼地图卡·佣金收入</div>
+                    <div class="list-desc">线路十：酒仙桥复古之夜 × 3单</div>
+                </div>
+                <div class="list-right">
+                    <div class="list-amount plus">+19.80</div>
+                    <div class="list-desc">02-10 16:55</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-group">
+        <div class="list-date">2026年1月</div>
+        <div class="list-card">
+            <div class="list-item">
+                <div class="list-icon income"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></div>
+                <div class="list-info">
+                    <div class="list-title">春醒活动·推广奖励</div>
+                    <div class="list-desc">邀请新用户注册 × 5</div>
+                </div>
+                <div class="list-right">
+                    <div class="list-amount plus">+250.00</div>
+                    <div class="list-desc">01-28 11:20</div>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-icon income"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></div>
+                <div class="list-info">
+                    <div class="list-title">酒鬼地图卡·佣金收入</div>
+                    <div class="list-desc">线路四：五道口学术酒局 × 8单</div>
+                </div>
+                <div class="list-right">
+                    <div class="list-amount plus">+52.80</div>
+                    <div class="list-desc">01-20 20:30</div>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-icon expense"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></div>
+                <div class="list-info">
+                    <div class="list-title">提现到微信</div>
+                    <div class="list-desc">提现成功</div>
+                </div>
+                <div class="list-right">
+                    <div class="list-amount minus">-500.00</div>
+                    <div class="list-desc">01-10 08:45</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ═══ 提现记录 ═══ -->
+<div class="list-wrap hidden" id="tab-withdraw">
+
+    <div class="list-group">
+        <div class="list-date">2026年3月</div>
+        <div class="list-card">
+            <div class="list-item">
+                <div class="list-icon withdraw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+                <div class="list-info">
+                    <div class="list-title">提现到微信</div>
+                    <div class="list-desc">申请时间 03-14 18:50</div>
+                </div>
+                <div class="list-right">
+                    <div class="list-amount minus">-100.00</div>
+                    <div class="list-status pending">处理中</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-group">
+        <div class="list-date">2026年2月</div>
+        <div class="list-card">
+            <div class="list-item">
+                <div class="list-icon withdraw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+                <div class="list-info">
+                    <div class="list-title">提现到微信</div>
+                    <div class="list-desc">申请时间 02-15 08:55</div>
+                </div>
+                <div class="list-right">
+                    <div class="list-amount minus">-200.00</div>
+                    <div class="list-status success">已到账</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-group">
+        <div class="list-date">2026年1月</div>
+        <div class="list-card">
+            <div class="list-item">
+                <div class="list-icon withdraw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+                <div class="list-info">
+                    <div class="list-title">提现到微信</div>
+                    <div class="list-desc">申请时间 01-10 08:40</div>
+                </div>
+                <div class="list-right">
+                    <div class="list-amount minus">-500.00</div>
+                    <div class="list-status success">已到账</div>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-icon withdraw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+                <div class="list-info">
+                    <div class="list-title">提现到微信</div>
+                    <div class="list-desc">申请时间 01-03 14:20</div>
+                </div>
+                <div class="list-right">
+                    <div class="list-amount minus">-80.00</div>
+                    <div class="list-status failed">提现失败</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function switchTab(tab, el){
+    document.querySelectorAll(".tab").forEach(function(t){ t.classList.remove("active"); });
+    el.classList.add("active");
+    document.getElementById("tab-wallet").classList.toggle("hidden", tab !== "wallet");
+    document.getElementById("tab-withdraw").classList.toggle("hidden", tab !== "withdraw");
+}
+</script>
+</body>
+</html>

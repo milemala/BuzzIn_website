@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>扫码核销</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+    --primary:#6366f1;
+    --primary-light:#818cf8;
+    --green:#10b981;
+    --red:#ef4444;
+    --orange:#f59e0b;
+    --bg:#0f0f1a;
+    --card:rgba(255,255,255,.06);
+    --card-solid:#1a1a2e;
+    --text:#fff;
+    --sub:rgba(255,255,255,.55);
+    --border:rgba(255,255,255,.08);
+    --radius:16px;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ═══ 顶部导航 ═══ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;padding-top:max(env(safe-area-inset-top),12px);background:rgba(15,15,26,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.nav-back{width:36px;height:36px;border-radius:10px;border:none;background:rgba(255,255,255,.08);display:grid;place-items:center;cursor:pointer;color:#fff;transition:background .15s}
+.nav-back:active{background:rgba(255,255,255,.15)}
+.nav-back svg{width:20px;height:20px}
+.nav-title{font-size:17px;font-weight:600;letter-spacing:.3px}
+.nav-right{width:36px;height:36px;border-radius:10px;border:none;background:rgba(255,255,255,.08);display:grid;place-items:center;cursor:pointer;color:#fff;transition:background .15s}
+.nav-right:active{background:rgba(255,255,255,.15)}
+.nav-right svg{width:18px;height:18px}
+
+/* ═══ 扫码区域 ═══ */
+.scan-area{position:relative;width:100%;aspect-ratio:1/1;max-width:100%;background:#000;overflow:hidden;margin-top:60px}
+.scan-area video{width:100%;height:100%;object-fit:cover}
+.scan-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.scan-frame{position:relative;width:240px;height:240px}
+.scan-corner{position:absolute;width:28px;height:28px;border-color:var(--primary-light);border-style:solid;border-width:0}
+.scan-corner.tl{top:0;left:0;border-top-width:3px;border-left-width:3px;border-top-left-radius:6px}
+.scan-corner.tr{top:0;right:0;border-top-width:3px;border-right-width:3px;border-top-right-radius:6px}
+.scan-corner.bl{bottom:0;left:0;border-bottom-width:3px;border-left-width:3px;border-bottom-left-radius:6px}
+.scan-corner.br{bottom:0;right:0;border-bottom-width:3px;border-right-width:3px;border-bottom-right-radius:6px}
+.scan-line{position:absolute;top:0;left:8px;right:8px;height:2px;background:linear-gradient(90deg,transparent,var(--primary-light),transparent);border-radius:1px;animation:scanMove 2.2s ease-in-out infinite}
+@keyframes scanMove{0%,100%{top:0;opacity:0}10%{opacity:1}90%{opacity:1}50%{top:calc(100% - 2px)}100%{opacity:0}}
+
+.scan-mask-top,.scan-mask-bottom{position:absolute;left:0;right:0;background:rgba(0,0,0,.55)}
+.scan-mask-top{top:0;height:calc(50% - 120px)}
+.scan-mask-bottom{bottom:0;height:calc(50% - 120px)}
+.scan-mask-left,.scan-mask-right{position:absolute;top:calc(50% - 120px);height:240px;background:rgba(0,0,0,.55)}
+.scan-mask-left{left:0;width:calc(50% - 120px)}
+.scan-mask-right{right:0;width:calc(50% - 120px)}
+
+.scan-hint{position:absolute;bottom:calc(50% - 120px - 36px);left:0;right:0;text-align:center;font-size:13px;color:rgba(255,255,255,.7);letter-spacing:.5px}
+
+/* ═══ 底部操作区 ═══ */
+.actions{padding:24px 20px;padding-bottom:max(env(safe-area-inset-bottom),24px)}
+.action-row{display:flex;gap:12px;margin-bottom:16px}
+.action-btn{flex:1;height:48px;border-radius:12px;border:none;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .15s}
+.action-btn svg{width:18px;height:18px;flex-shrink:0}
+.action-btn.primary{background:var(--primary);color:#fff}
+.action-btn.primary:active{background:var(--primary-light);transform:scale(.97)}
+.action-btn.secondary{background:var(--card);color:var(--text);border:1px solid var(--border)}
+.action-btn.secondary:active{background:rgba(255,255,255,.1);transform:scale(.97)}
+
+.input-row{display:flex;gap:10px;margin-bottom:16px}
+.manual-input{flex:1;height:44px;padding:0 14px;border-radius:12px;border:1px solid var(--border);background:var(--card);font-size:14px;font-family:inherit;color:var(--text);outline:none;transition:border-color .15s}
+.manual-input:focus{border-color:var(--primary)}
+.manual-input::placeholder{color:var(--sub)}
+.manual-submit{height:44px;padding:0 20px;border-radius:12px;border:none;background:var(--primary);color:#fff;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap;transition:all .15s}
+.manual-submit:active{background:var(--primary-light);transform:scale(.97)}
+
+/* ═══ 核销结果弹层 ═══ */
+.result-mask{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:24px}
+.result-mask.show{display:flex}
+.result-card{background:var(--card-solid);border-radius:20px;width:100%;max-width:340px;padding:32px 24px;text-align:center;animation:resultIn .3s ease}
+@keyframes resultIn{from{opacity:0;transform:scale(.9)translateY(10px)}to{opacity:1;transform:none}}
+.result-icon{width:64px;height:64px;border-radius:50%;margin:0 auto 16px;display:grid;place-items:center}
+.result-icon.success{background:rgba(16,185,129,.15)}
+.result-icon.success svg{color:var(--green)}
+.result-icon.fail{background:rgba(239,68,68,.15)}
+.result-icon.fail svg{color:var(--red)}
+.result-icon svg{width:32px;height:32px}
+.result-title{font-size:20px;font-weight:700;margin-bottom:8px}
+.result-desc{font-size:13px;color:var(--sub);line-height:1.6;margin-bottom:20px}
+.result-info{background:rgba(255,255,255,.04);border-radius:12px;padding:14px 16px;margin-bottom:24px;text-align:left}
+.result-info-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:13px}
+.result-info-row+.result-info-row{border-top:1px solid var(--border)}
+.result-info-label{color:var(--sub)}
+.result-info-value{font-weight:600}
+.result-close{width:100%;height:48px;border-radius:12px;border:none;background:var(--primary);color:#fff;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;transition:all .15s}
+.result-close:active{background:var(--primary-light);transform:scale(.97)}
+
+/* ═══ 历史记录 ═══ */
+.history{padding:0 20px 20px}
+.history-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.history-title{font-size:15px;font-weight:600}
+.history-count{font-size:12px;color:var(--sub);background:var(--card);padding:2px 10px;border-radius:20px}
+.history-list{display:flex;flex-direction:column;gap:10px}
+.history-item{background:var(--card);border-radius:var(--radius);padding:14px 16px;display:flex;align-items:center;gap:14px;border:1px solid var(--border);transition:background .15s}
+.history-item:active{background:rgba(255,255,255,.08)}
+.history-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.history-dot.success{background:var(--green)}
+.history-dot.revoked{background:var(--orange)}
+.history-content{flex:1;min-width:0}
+.history-name{font-size:14px;font-weight:600;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.history-meta{font-size:12px;color:var(--sub)}
+.history-status{font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;white-space:nowrap}
+.history-status.success{background:rgba(16,185,129,.12);color:var(--green)}
+.history-status.revoked{background:rgba(245,158,11,.12);color:var(--orange)}
+
+/* ═══ 空状态 ═══ */
+.empty{text-align:center;padding:40px 20px;color:var(--sub)}
+.empty svg{width:48px;height:48px;margin-bottom:12px;opacity:.3}
+.empty p{font-size:13px}
+</style>
+</head>
+<body>
+
+<!-- ═══ 顶部导航 ═══ -->
+<div class="nav">
+    <button class="nav-back" onclick="history.back()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <span class="nav-title">扫码核销</span>
+    <button class="nav-right" onclick="toggleFlash()" id="flashBtn" title="闪光灯">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+    </button>
+</div>
+
+<!-- ═══ 摄像头扫码区 ═══ -->
+<div class="scan-area" id="scanArea">
+    <video id="scanVideo" autoplay playsinline muted></video>
+    <div class="scan-overlay">
+        <div class="scan-mask-top"></div>
+        <div class="scan-mask-bottom"></div>
+        <div class="scan-mask-left"></div>
+        <div class="scan-mask-right"></div>
+        <div class="scan-frame">
+            <span class="scan-corner tl"></span>
+            <span class="scan-corner tr"></span>
+            <span class="scan-corner bl"></span>
+            <span class="scan-corner br"></span>
+            <div class="scan-line"></div>
+        </div>
+        <p class="scan-hint">将兑换码二维码放入框内，自动识别</p>
+    </div>
+</div>
+
+<!-- ═══ 底部操作区 ═══ -->
+<div class="actions">
+    <div class="input-row">
+        <input class="manual-input" id="manualCode" placeholder="手动输入兑换码 / 订单号">
+        <button class="manual-submit" onclick="manualVerify()">核销</button>
+    </div>
+    <div class="action-row">
+        <button class="action-btn secondary" onclick="showResult('success')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+            模拟成功
+        </button>
+        <button class="action-btn secondary" onclick="showResult('fail')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            模拟失败
+        </button>
+    </div>
+</div>
+
+<!-- ═══ 今日核销记录 ═══ -->
+<div class="history">
+    <div class="history-head">
+        <span class="history-title">今日核销记录</span>
+        <span class="history-count">3 条</span>
+    </div>
+    <div class="history-list" id="historyList">
+        <div class="history-item">
+            <span class="history-dot success"></span>
+            <div class="history-content">
+                <div class="history-name">三里屯微醺之旅 · 酒鬼小A</div>
+                <div class="history-meta">BM20260314001 · 20:15</div>
+            </div>
+            <span class="history-status success">已核销</span>
+        </div>
+        <div class="history-item">
+            <span class="history-dot success"></span>
+            <div class="history-content">
+                <div class="history-name">五道口学术酒局 · 学霸酒友C</div>
+                <div class="history-meta">BM20260314003 · 21:08</div>
+            </div>
+            <span class="history-status success">已核销</span>
+        </div>
+        <div class="history-item">
+            <span class="history-dot revoked"></span>
+            <div class="history-content">
+                <div class="history-name">胡同探秘夜行 · 微醺达人B</div>
+                <div class="history-meta">BM20260314002 · 19:42</div>
+            </div>
+            <span class="history-status revoked">已撤销</span>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ 核销结果弹层 ═══ -->
+<div class="result-mask" id="resultMask">
+    <div class="result-card" id="resultCard"></div>
+</div>
+
+<script>
+/* ═══ 摄像头 ═══ */
+(function(){
+    var video = document.getElementById("scanVideo");
+    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
+        navigator.mediaDevices.getUserMedia({
+            video:{ facingMode:"environment", width:{ideal:1280}, height:{ideal:1280} }
+        }).then(function(stream){
+            video.srcObject = stream;
+            window._camStream = stream;
+        }).catch(function(){
+            console.log("摄像头未授权或不可用（原型演示不影响）");
+        });
+    }
+})();
+
+var flashOn = false;
+function toggleFlash(){
+    flashOn = !flashOn;
+    var btn = document.getElementById("flashBtn");
+    btn.style.background = flashOn ? "var(--primary)" : "";
+    if(window._camStream){
+        var track = window._camStream.getVideoTracks()[0];
+        if(track.getCapabilities && track.getCapabilities().torch){
+            track.applyConstraints({ advanced:[{torch:flashOn}] });
+        }
+    }
+}
+
+/* ═══ 手动核销 ═══ */
+function manualVerify(){
+    var code = document.getElementById("manualCode").value.trim();
+    if(!code){ alert("请输入兑换码或订单号"); return; }
+    showResult("success", code);
+    document.getElementById("manualCode").value = "";
+}
+
+/* ═══ 核销结果展示 ═══ */
+function showResult(type, code){
+    var mask = document.getElementById("resultMask");
+    var card = document.getElementById("resultCard");
+    var now = new Date();
+    var time = now.getHours()+":"+String(now.getMinutes()).padStart(2,"0")+":"+String(now.getSeconds()).padStart(2,"0");
+
+    if(type === "success"){
+        card.innerHTML =
+            '<div class="result-icon success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>'+
+            '<div class="result-title">核销成功</div>'+
+            '<div class="result-desc">用户凭证已核销，请为顾客提供对应饮品</div>'+
+            '<div class="result-info">'+
+                '<div class="result-info-row"><span class="result-info-label">商品名</span><span class="result-info-value">三里屯微醺之旅</span></div>'+
+                '<div class="result-info-row"><span class="result-info-label">用户</span><span class="result-info-value">酒鬼小A (138****8821)</span></div>'+
+                '<div class="result-info-row"><span class="result-info-label">核销商户</span><span class="result-info-value">八荒·MIDBAR</span></div>'+
+                '<div class="result-info-row"><span class="result-info-label">兑换饮品</span><span class="result-info-value">经典 Old Fashioned</span></div>'+
+                '<div class="result-info-row"><span class="result-info-label">核销时间</span><span class="result-info-value">'+time+'</span></div>'+
+                (code ? '<div class="result-info-row"><span class="result-info-label">兑换码</span><span class="result-info-value" style="font-family:monospace;font-size:12px">'+code+'</span></div>' : '')+
+            '</div>'+
+            '<button class="result-close" onclick="closeResult()">继续扫码</button>';
+    } else {
+        card.innerHTML =
+            '<div class="result-icon fail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>'+
+            '<div class="result-title">核销失败</div>'+
+            '<div class="result-desc">该凭证无法核销，请确认后重试</div>'+
+            '<div class="result-info">'+
+                '<div class="result-info-row"><span class="result-info-label">失败原因</span><span class="result-info-value" style="color:var(--red)">兑换码已使用或已过期</span></div>'+
+                '<div class="result-info-row"><span class="result-info-label">建议</span><span class="result-info-value">请用户出示有效凭证</span></div>'+
+            '</div>'+
+            '<button class="result-close" onclick="closeResult()">返回扫码</button>';
+    }
+    mask.classList.add("show");
+}
+
+function closeResult(){
+    document.getElementById("resultMask").classList.remove("show");
+}
+document.getElementById("resultMask").addEventListener("click",function(e){
+    if(e.target === this) closeResult();
+});
+</script>
+</body>
+</html>
