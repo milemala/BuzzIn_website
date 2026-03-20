@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>NOW 列表</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+    --yellow:#f5c542;
+    --yellow-bg:rgba(245,197,66,.15);
+    --green:#10b981;
+    --green-bg:rgba(16,185,129,.2);
+    --bg:#000;
+    --card:#111;
+    --text:#fff;
+    --sub:rgba(255,255,255,.5);
+    --dim:rgba(255,255,255,.3);
+    --border:rgba(255,255,255,.08);
+    --r:12px;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;padding-bottom:80px}
+
+/* ═══ 筛选栏（与瀑布流边距解耦：此处用常规左右留白，列表区单独更贴边） ═══ */
+.filter-bar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:10px;padding:12px 16px;padding-top:max(env(safe-area-inset-top),12px);padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right));background:var(--bg);border-bottom:1px solid var(--border)}
+.filter-drop{flex:1;min-width:0;position:relative}
+.filter-btn{width:100%;height:40px;padding:0 14px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:14px;font-weight:500;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.filter-btn svg{width:16px;height:16px;color:var(--sub);flex-shrink:0}
+.filter-btn.active{border-color:var(--yellow);color:var(--yellow)}
+.filter-panel{display:none;position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:8px;max-height:240px;overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:30}
+.filter-panel.show{display:block}
+.filter-opt{padding:10px 12px;border-radius:8px;font-size:14px;color:var(--sub);cursor:pointer;transition:background .1s}
+.filter-opt:hover,.filter-opt.on{background:rgba(255,255,255,.06);color:var(--yellow)}
+
+/* ═══ 瀑布流：双列独立纵向排列，列内 gap 固定，避免 Grid 同行拉高造成假空白 ═══ */
+.feed{padding:8px 6px;padding-left:max(6px,env(safe-area-inset-left));padding-right:max(6px,env(safe-area-inset-right))}
+.feed-masonry{display:flex;gap:6px;align-items:flex-start}
+.feed-col{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+
+.card{border-radius:var(--r);overflow:hidden;background:var(--card);cursor:pointer;width:100%}
+.card:active{opacity:.92}
+
+.card-img-wrap{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;background:#1a1a1a}
+.card-img-wrap .card-img-ph{position:absolute;inset:0;background:linear-gradient(145deg,hsl(var(--ph,210),28%,24%),hsl(calc(var(--ph) + 50),18%,12%))}
+.card-img-wrap .card-img-ph::after{content:"";position:absolute;inset:0;opacity:.12;background:radial-gradient(circle at 28% 18%,#fff,transparent 42%)}
+.card-img-ph-1{--ph:38}.card-img-ph-2{--ph:200}.card-img-ph-3{--ph:280}.card-img-ph-4{--ph:150}.card-img-ph-5{--ph:320}
+.card-avatar-ph{display:flex;width:100%;height:100%;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:rgba(255,255,255,.9);background:linear-gradient(135deg,#4a4a4a,#2a2a2a)}
+
+.card-badge{position:absolute;top:8px;left:8px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;background:var(--green-bg);color:var(--green)}
+.card-dist{position:absolute;bottom:8px;right:8px;left:auto;padding:4px 8px;border-radius:6px;font-size:11px;font-weight:500;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);display:flex;align-items:center;gap:4px}
+.card-dist svg{width:12px;height:12px;color:rgba(255,255,255,.8)}
+
+/* 左下角：已报贴底，费用在其正上方（纵向一组，不挡右上角与右下角距离） */
+.card-rmeta{position:absolute;bottom:8px;left:8px;right:auto;top:auto;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:6px;z-index:2;max-width:calc(100% - 80px)}
+.pill-fee{padding:4px 10px;border-radius:8px;font-size:13px;font-weight:800;color:#111;background:var(--yellow);box-shadow:0 2px 8px rgba(0,0,0,.35);letter-spacing:.3px;flex-shrink:0}
+.pill-apply{padding:4px 9px;border-radius:8px;font-size:11px;font-weight:700;color:#fff;background:rgba(0,0,0,.62);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.12);white-space:nowrap;flex-shrink:0}
+
+.card-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);display:grid;place-items:center}
+.card-play svg{width:16px;height:16px;color:#fff;margin-left:2px}
+
+.card-body{padding:8px 10px 10px}
+.card-title{font-size:13px;font-weight:700;line-height:1.35;color:var(--text);overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;word-break:break-word;margin-bottom:6px}
+
+.card-meta{display:flex;align-items:center;gap:8px}
+.card-avatar{width:22px;height:22px;border-radius:50%;background:#333;overflow:hidden;flex-shrink:0}
+.card-avatar img{width:100%;height:100%;object-fit:cover}
+.card-user{font-size:12px;color:var(--sub);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-stat{display:flex;align-items:center;gap:3px;font-size:11px;color:var(--sub);flex-shrink:0}
+.card-stat svg{width:14px;height:14px}
+</style>
+</head>
+<body>
+
+<!-- ═══ 筛选栏 ═══ -->
+<div class="filter-bar">
+    <div class="filter-drop">
+        <button class="filter-btn active" id="sortBtn" onclick="togglePanel('sort')">
+            <span>智能排序</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="filter-panel" id="sortPanel">
+            <div class="filter-opt on" onclick="setSort(this)">智能排序</div>
+            <div class="filter-opt" onclick="setSort(this)">距离优先</div>
+            <div class="filter-opt" onclick="setSort(this)">最新发布</div>
+        </div>
+    </div>
+    <div class="filter-drop">
+        <button class="filter-btn" id="filterBtn" onclick="togglePanel('filter')">
+            <span>筛选</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="filter-panel" id="filterPanel">
+            <div class="filter-opt on" onclick="setFilter(this)">显示全部</div>
+            <div class="filter-opt" onclick="setFilter(this)">附近 10km</div>
+            <div class="filter-opt" onclick="setFilter(this)">附近 20km</div>
+            <div class="filter-opt" onclick="setFilter(this)">附近 50km</div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ 列表 ═══ -->
+<div class="feed">
+    <div class="feed-masonry">
+        <div class="feed-col" id="feedColL"></div>
+        <div class="feed-col" id="feedColR"></div>
+    </div>
+</div>
+
+<script>
+var LIST = [
+    { title:"下班不喝酒，人生路白走成年人的微醺快乐", user:"维尼酱", time:"2小时前", dist:"2.4km", type:"now", fee:66, applyCur:3, applyMax:8, comments:8, video:true },
+    { title:"无论落日在哪、晚霞绕过火车、这里都有最配心情", user:"一二三四五六七八九十", time:"5小时前", dist:"2.4km", type:"now", fee:0, applyCur:0, applyMax:0, comments:37, video:false },
+    { title:"藏在胡同里的秘密花园酒吧，太治愈了", user:"小酒鬼daily", time:"昨天", dist:"5.1km", type:"moment", fee:0, applyCur:0, applyMax:0, comments:12, video:false },
+    { title:"周五的晚上就应该这样度过", user:"酒香不怕巷子深", time:"3小时前", dist:"1.8km", type:"now", fee:30, applyCur:5, applyMax:6, comments:5, video:false },
+    { title:"周末微醺局，有人一起吗", user:"跳海-阿杰", time:"1小时前", dist:"3.2km", type:"now", fee:0, applyCur:2, applyMax:10, comments:0, video:false },
+    { title:"胡同里的日咖夜酒，适合发呆一整天", user:"宇宙客厅", time:"6小时前", dist:"4.0km", type:"moment", fee:0, applyCur:0, applyMax:0, comments:24, video:false },
+    { title:"约酒！今晚八荒见，已有两人", user:"微醺九号", time:"4小时前", dist:"2.0km", type:"now", fee:88, applyCur:2, applyMax:4, comments:3, video:true },
+    { title:"一个人喝酒也可以很浪漫", user:"独酌客", time:"昨天 20:32", dist:"6.2km", type:"moment", fee:0, applyCur:0, applyMax:0, comments:869, video:false },
+];
+
+function buildCardHtml(item, idx){
+    var phIdx = (typeof idx === "number" ? idx : 0) % 5 + 1;
+    var phClass = "card-img-ph card-img-ph-" + phIdx;
+    var avLetter = (item.user && item.user.charAt(0)) || "?";
+    var isInvite = item.type === "now" && (item.applyMax > 0);
+    var rmetaParts = [];
+    /* 邀约：有费用显示 ¥；免费邀约显示「免费」。非邀约仅在有费用时显示 ¥ */
+    if(isInvite){
+        if(item.fee > 0) rmetaParts.push('<span class="pill-fee">¥'+item.fee+'</span>');
+        else rmetaParts.push('<span class="pill-fee">免费</span>');
+    } else if(item.fee > 0){
+        rmetaParts.push('<span class="pill-fee">¥'+item.fee+'</span>');
+    }
+    if(isInvite) rmetaParts.push('<span class="pill-apply">已报 '+item.applyCur+'/'+item.applyMax+'</span>');
+    var rmetaHtml = rmetaParts.length ? '<div class="card-rmeta">'+rmetaParts.join('')+'</div>' : '';
+    return '<div class="card">'+
+        '<div class="card-img-wrap">'+
+            '<div class="'+phClass+'" aria-hidden="true"></div>'+
+            (item.type === "now" ? '<span class="card-badge">NOW</span>' : '')+
+            rmetaHtml+
+            '<span class="card-dist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>'+item.dist+'</span>'+
+            (item.video ? '<div class="card-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>' : '')+
+        '</div>'+
+        '<div class="card-body">'+
+            '<div class="card-title">'+item.title+'</div>'+
+            '<div class="card-meta">'+
+                '<div class="card-avatar"><span class="card-avatar-ph">'+avLetter+'</span></div>'+
+                '<span class="card-user">'+item.user+'</span>'+
+                '<span class="card-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>'+item.comments+'</span>'+
+            '</div>'+
+        '</div>'+
+    '</div>';
+}
+
+function render(){
+    var colL = document.getElementById("feedColL");
+    var colR = document.getElementById("feedColR");
+    colL.innerHTML = "";
+    colR.innerHTML = "";
+    LIST.forEach(function(item, idx){
+        var html = buildCardHtml(item, idx);
+        var wrap = document.createElement("div");
+        wrap.innerHTML = html;
+        var card = wrap.firstElementChild;
+        var hL = colL.offsetHeight;
+        var hR = colR.offsetHeight;
+        if(hL <= hR) colL.appendChild(card);
+        else colR.appendChild(card);
+    });
+}
+
+function togglePanel(id){
+    var sort = document.getElementById("sortPanel");
+    var filter = document.getElementById("filterPanel");
+    if(id === "sort"){ sort.classList.toggle("show"); filter.classList.remove("show"); }
+    else{ filter.classList.toggle("show"); sort.classList.remove("show"); }
+}
+
+function setSort(el){
+    document.querySelectorAll("#sortPanel .filter-opt").forEach(function(o){o.classList.remove("on");});
+    el.classList.add("on");
+    document.getElementById("sortBtn").querySelector("span").textContent = el.textContent;
+    document.getElementById("sortPanel").classList.remove("show");
+}
+
+function setFilter(el){
+    document.querySelectorAll("#filterPanel .filter-opt").forEach(function(o){o.classList.remove("on");});
+    el.classList.add("on");
+    document.getElementById("filterBtn").querySelector("span").textContent = el.textContent;
+    document.getElementById("filterPanel").classList.remove("show");
+}
+
+document.addEventListener("click",function(e){
+    if(!e.target.closest(".filter-drop")){
+        document.querySelectorAll(".filter-panel").forEach(function(p){p.classList.remove("show");});
+    }
+});
+
+render();
+</script>
+</body>
+</html>

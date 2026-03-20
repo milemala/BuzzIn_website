@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>邀约详情</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+    --yellow:#f5c542;
+    --yellow-bg:rgba(245,197,66,.12);
+    --green:#07c160;
+    --green-bg:rgba(7,193,96,.1);
+    --bg:#111;
+    --card:#1a1a1a;
+    --card2:#222;
+    --text:#fff;
+    --sub:rgba(255,255,255,.5);
+    --dim:rgba(255,255,255,.3);
+    --border:rgba(255,255,255,.08);
+}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;padding-bottom:60px}
+
+/* ═══ 1. 顶部地图占位 ═══ */
+.map{height:120px;background:linear-gradient(180deg,#2a3040 0%,#1e2230 100%);position:relative}
+.map-overlay{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:space-between;padding:max(env(safe-area-inset-top),10px) 12px 0}
+.map-left{display:flex;align-items:center;gap:8px}
+.map-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#555,#333);border:2px solid var(--bg)}
+.map-avatar-small{width:22px;height:22px;border-radius:50%;background:var(--yellow);display:grid;place-items:center;margin-top:-4px;margin-left:-6px}
+.map-avatar-small svg{width:12px;height:12px;color:#111}
+.map-right{display:flex;gap:10px}
+.map-btn{width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.45);border:none;color:#fff;display:grid;place-items:center}
+.map-btn svg{width:18px;height:18px}
+
+/* ═══ 2. 用户信息条 ═══ */
+.user-bar{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--border)}
+.user-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#555,#333);flex-shrink:0}
+.user-name{font-size:15px;font-weight:700;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.user-venue{display:flex;align-items:center;gap:4px;font-size:12px;color:#34d399;flex-shrink:0}
+.user-venue svg{width:14px;height:14px}
+.user-more{width:28px;height:28px;border:none;background:none;color:var(--sub);display:grid;place-items:center;flex-shrink:0}
+.user-more svg{width:20px;height:20px}
+
+/* ═══ 3. 封面图 ═══ */
+.cover{position:relative;aspect-ratio:4/3;background:linear-gradient(135deg,#555 0%,#333 100%);overflow:hidden}
+.cover-ph{width:100%;height:100%;display:block}
+
+.cover-top{position:absolute;top:10px;left:10px;right:10px;display:flex;align-items:center;gap:8px}
+.pill{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:999px;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);font-size:12px;font-weight:500}
+.pill svg{width:14px;height:14px}
+.pill-green svg{color:#34d399}
+
+.cover-actions{position:absolute;left:10px;right:10px;bottom:10px;display:grid;gap:6px}
+.act-row{height:34px;border-radius:17px;background:rgba(0,0,0,.38);backdrop-filter:blur(8px);display:flex;align-items:center;gap:6px;padding:0 6px 0 4px}
+.act-btn{padding:3px 14px;border-radius:14px;font-size:13px;font-weight:700;flex-shrink:0}
+.act-btn.signup{background:var(--yellow);color:#111}
+.act-btn.checkin{background:#9ca3af;color:#111}
+.act-play{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center;flex-shrink:0}
+.act-play svg{width:10px;height:10px;color:#fff;margin-left:1px}
+.act-avatars{display:flex;flex-shrink:0}
+.act-avatars i{display:block;width:22px;height:22px;border-radius:50%;margin-left:-5px;border:1.5px solid rgba(0,0,0,.4);background-size:cover;background-color:#444}
+.act-avatars i:first-child{margin-left:0}
+.act-stat{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;flex-shrink:0}
+.act-stat svg{width:13px;height:13px}
+.female{color:#f9a8d4}
+.male{color:#93c5fd}
+
+/* ═══ 4. 正文区 ═══ */
+.body{padding:14px 16px;border-bottom:1px solid var(--border)}
+.loc-row{display:flex;align-items:center;gap:4px}
+.loc-icon{color:var(--sub);flex-shrink:0;display:flex}
+.loc-icon svg{width:16px;height:16px}
+.loc-name{font-size:15px;font-weight:700;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.loc-verified{width:16px;height:16px;border-radius:50%;background:var(--green);display:grid;place-items:center;flex-shrink:0}
+.loc-verified svg{width:10px;height:10px;color:#fff}
+.loc-arrow{color:var(--dim);flex-shrink:0;display:flex}
+.loc-arrow svg{width:16px;height:16px}
+.loc-dist{font-size:13px;color:var(--sub);flex-shrink:0;margin-left:4px}
+
+.body-text{margin-top:10px;font-size:15px;line-height:1.7;color:rgba(255,255,255,.88)}
+.body-group{margin-top:10px;display:inline-flex;align-items:center;gap:5px;padding:6px 10px;border-radius:999px;background:var(--card2);font-size:13px;color:var(--sub)}
+.body-group svg{width:14px;height:14px;color:var(--sub)}
+.body-time{margin-top:8px;font-size:13px;color:var(--sub)}
+
+/* ═══ 4b. 报名费卡片（新增） ═══ */
+.fee-card{margin-top:14px;padding:12px 14px;border-radius:12px;border:1px solid rgba(245,197,66,.28);background:linear-gradient(135deg,rgba(245,197,66,.14),rgba(245,197,66,.05))}
+.fee-row{display:flex;align-items:baseline;gap:8px}
+.fee-label{font-size:12px;color:rgba(255,255,255,.7)}
+.fee-price{font-size:22px;font-weight:800;color:var(--yellow);line-height:1}
+.fee-unit{font-size:13px;font-weight:600;color:var(--yellow)}
+.fee-note{margin-top:6px;font-size:12px;color:rgba(255,255,255,.5);line-height:1.5}
+
+/* ═══ 5. 评论区 ═══ */
+.comments{padding:14px 16px}
+.c-header{font-size:13px;color:var(--sub);margin-bottom:14px}
+.c-item{display:flex;gap:10px}
+.c-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#555,#333);flex-shrink:0}
+.c-main{flex:1;min-width:0}
+.c-name-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.c-name{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px}
+.c-badge{display:flex;align-items:center;gap:2px;font-size:11px;color:#34d399;white-space:nowrap}
+.c-badge svg{width:12px;height:12px}
+.c-name2{font-size:13px;color:var(--yellow);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px}
+.c-text{margin-top:6px;font-size:14px;line-height:1.7;color:rgba(255,255,255,.85)}
+.c-meta-row{margin-top:6px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--sub)}
+.c-meta-row .bubble{margin-left:auto}
+.c-meta-row .bubble svg{width:16px;height:16px;color:var(--dim)}
+.c-expand{margin-top:10px;font-size:13px;color:#93c5fd;display:flex;align-items:center;gap:4px}
+.c-expand svg{width:12px;height:12px}
+
+/* ═══ 6. 底部回复栏 ═══ */
+.composer{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:8px 12px;padding-bottom:max(8px,env(safe-area-inset-bottom));display:flex;align-items:center;gap:10px;background:rgba(17,17,17,.96);backdrop-filter:blur(12px);border-top:1px solid var(--border)}
+.comp-av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#666,#333);flex-shrink:0}
+.comp-input{flex:1;height:34px;border-radius:17px;border:none;background:var(--card2);padding:0 14px;font-size:14px;color:var(--dim);display:flex;align-items:center}
+.comp-icon{border:none;background:none;color:var(--sub);display:grid;place-items:center;flex-shrink:0;padding:4px}
+.comp-icon svg{width:22px;height:22px}
+.comp-like{border:none;background:none;display:flex;align-items:center;gap:4px;color:var(--text);font-size:14px;font-weight:600;flex-shrink:0;padding:4px}
+.comp-like svg{width:22px;height:22px}
+</style>
+</head>
+<body>
+
+<!-- ═══ 1. 顶部地图区 ═══ -->
+<div class="map">
+    <svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block" aria-hidden="true">
+        <rect width="400" height="120" fill="#252d3a"/>
+        <rect x="50" y="20" width="80" height="12" rx="3" fill="rgba(255,255,255,.06)"/>
+        <rect x="200" y="30" width="60" height="8" rx="2" fill="rgba(255,255,255,.04)"/>
+        <circle cx="300" cy="60" r="4" fill="rgba(245,197,66,.5)"/>
+        <circle cx="160" cy="45" r="3" fill="rgba(245,197,66,.35)"/>
+        <text x="330" y="30" fill="rgba(255,255,255,.15)" font-size="10" font-family="sans-serif">九龙商厦</text>
+    </svg>
+    <div class="map-overlay">
+        <div class="map-left">
+            <div class="map-avatar"></div>
+        </div>
+        <div class="map-right">
+            <button class="map-btn"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+            <button class="map-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg></button>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ 2. 用户信息条 ═══ -->
+<div class="user-bar">
+    <div class="user-av"></div>
+    <span class="user-name">一二三四五六七八九十一...</span>
+    <span class="user-venue">
+        <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="4" fill="#34d399"/><path d="M8 12l3 3 5-6" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        跳海酒馆-三...
+    </span>
+    <button class="user-more"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+</div>
+
+<!-- ═══ 3. 封面图 + 叠加层 ═══ -->
+<div class="cover">
+    <svg class="cover-ph" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs><linearGradient id="covGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5a5a5a"/><stop offset="1" stop-color="#2a2a2a"/></linearGradient></defs>
+        <rect width="400" height="300" fill="url(#covGrad)"/>
+        <circle cx="130" cy="140" r="60" fill="rgba(255,255,255,.08)"/>
+        <circle cx="280" cy="110" r="45" fill="rgba(255,255,255,.06)"/>
+        <ellipse cx="200" cy="200" rx="100" ry="40" fill="rgba(255,255,255,.04)"/>
+    </svg>
+
+    <!-- 顶部：时间 + 导航 + 查看位置 -->
+    <div class="cover-top">
+        <span class="pill pill-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>今天18:32</span>
+        <span class="pill">▶ 导航</span>
+        <span class="pill pill-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>查看位置</span>
+    </div>
+
+    <!-- 底部：报名 / 签到 -->
+    <div class="cover-actions">
+        <div class="act-row">
+            <div class="act-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="8 5 19 12 8 19"/></svg></div>
+            <span class="act-btn signup">报名</span>
+            <span class="act-avatars"><i></i><i></i><i></i></span>
+            <span class="act-stat">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="female"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg><span class="female">1人</span>
+                <svg viewBox="0 0 24 24" fill="currentColor" class="male"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg><span class="male">1人</span>
+            </span>
+        </div>
+        <div class="act-row">
+            <span class="act-btn checkin">签到</span>
+            <span class="act-avatars"><i></i><i></i><i></i></span>
+            <span class="act-stat">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="female"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg><span class="female">1人</span>
+                <svg viewBox="0 0 24 24" fill="currentColor" class="male"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg><span class="male">1人</span>
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ 4. 正文 ═══ -->
+<div class="body">
+    <!-- 地点行 -->
+    <div class="loc-row">
+        <span class="loc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <span class="loc-name">沁·叁拾壹书院(香山清琴店)ssdfsss...</span>
+        <span class="loc-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span class="loc-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span>
+        <span class="loc-dist">距我21.2km</span>
+    </div>
+
+    <!-- 正文 -->
+    <p class="body-text">遥想公瑾当年，小乔初嫁了第三方似懂非懂顺雄姿英发。羽扇纶巾谈笑间，樯橹灰飞烟灭。放松放松的方式发送方式的方式发送方式发送地方</p>
+
+    <!-- 群聊 -->
+    <span class="body-group">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        群聊 · 北京A群（33）
+    </span>
+
+    <!-- 时间 -->
+    <div class="body-time">18:23</div>
+
+    <!-- ★ 报名费（新增） -->
+    <div class="fee-card">
+        <div class="fee-row">
+            <span class="fee-label">报名费</span>
+            <span class="fee-price">¥66</span>
+            <span class="fee-unit">/ 人</span>
+        </div>
+        <p class="fee-note">女士优惠 减¥10 · 实际支付 ¥56/人 · 到场后按活动规则结算</p>
+    </div>
+</div>
+
+<!-- ═══ 5. 评论区 ═══ -->
+<div class="comments">
+    <div class="c-header">共 25 条评论</div>
+
+    <div class="c-item">
+        <div class="c-av"></div>
+        <div class="c-main">
+            <div class="c-name-row">
+                <span class="c-name">一二三四五六七八九十一二</span>
+                <span class="c-badge"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="4" fill="#34d399"/><path d="M8 12l3 3 5-6" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="c-name2">一二三四五六七...</span>
+            </div>
+            <p class="c-text">遥想公瑾当年，小乔初嫁了，雄姿英发。羽扇纶巾谈笑间，樯橹灰飞烟灭。</p>
+            <div class="c-meta-row">
+                <span>18:23</span>
+                <span>距发布点 800m</span>
+                <span class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></span>
+            </div>
+            <div class="c-expand">
+                —— 展开 132 条评论
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ 6. 底部回复栏 ═══ -->
+<div class="composer">
+    <div class="comp-av"></div>
+    <div class="comp-input">回复</div>
+    <button class="comp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></button>
+    <button class="comp-like">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06A5.5 5.5 0 003.16 12.4L12 21.23l8.84-8.83a5.5 5.5 0 000-7.79z"/></svg>
+        23
+    </button>
+</div>
+
+</body>
+</html>

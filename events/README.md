@@ -2,7 +2,16 @@
 
 该目录用于统一存放 Zup 活动专题 H5 页面。
 
+### 图片与占位说明
+
+- **本目录 HTML 不引用仓库内 `../images/` 等本地图片文件**：Logo、装饰花、分享图标、钱包卡背景等改为 **页面内 SVG / CSS 渐变** 占位。
+- **原型页**（如 `publish-now.html`、`now-list.html`、`user-profile.html`）封面与头像等使用 **渐变块、首字头像、内联 SVG**，不依赖本地图与外链图床。**`publish-now.html`** 封面仅为 **内联 SVG**，无任何 `<img>` / `images/` 引用；**`user-profile.html` 底部 Feed 与 `now-list.html` 同款双列瀑布流与卡片样式**。
+- **春醒 / 商户页** 中商户封面、图集等仍为 **可配置的远程 URL**（`https://cdn...`），上线前替换为正式素材即可。
+- **`booze-map.html`** 线路酒馆缩略图为 **首字色块占位**；`booze-map-config.js` 已去掉 `image` 字段，若产品需要真实图可在配置中恢复并由列表渲染改为 `<img>`。
+
 当前页面：
+- `invite-detail.html`（用户发布邀约详情页原型：头图 + 报名/签到状态条 + 正文 + 评论 + 底部回复，含新增 **报名费** 展示模块）
+- `now-list.html`（NOW/邀约列表原型：双列瀑布流；封面左上 NOW 角标，**左下**纵向为 **费用**（上：收费显示 `¥金额`，**免费邀约显示「免费」**）+ **已报 x/y**（下），右下为距离）
 - `beijing-spring-awakening.html`（北京春醒交友季 - 外部 H5 分享页，含下载/打开 App 引导）
 - `beijing-spring-awakening-inapp.html`（北京春醒交友季 - App 内嵌专题页，无下载/打开入口）
 - `beijing-spring-awakening-venue.html`（商户专属据点页 - 模板，供商户转发朋友圈，只展示单个商户）

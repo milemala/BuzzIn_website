@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>个人主页</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+    --yellow:#f5c542;
+    --yellow-bg:rgba(245,197,66,.12);
+    --green:#07c160;
+    --green-bg:rgba(7,193,96,.08);
+    --blue:#3b82f6;
+    --red:#ef4444;
+    --orange:#f59e0b;
+    --bg:#111;
+    --card:#1a1a1a;
+    --card2:#222;
+    --text:#fff;
+    --sub:rgba(255,255,255,.45);
+    --dim:rgba(255,255,255,.25);
+    --border:rgba(255,255,255,.06);
+    --r:14px;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;padding-bottom:24px}
+
+/* ═══ 个人信息 ═══ */
+.profile{padding:max(env(safe-area-inset-top),16px) 16px 0}
+.profile-header{display:flex;align-items:flex-end;gap:14px;margin-bottom:12px}
+.avatar{width:64px;height:64px;border-radius:50%;background:#444;border:3px solid var(--bg);overflow:hidden;flex-shrink:0}
+.avatar .ph-user{display:flex;width:100%;height:100%;align-items:center;justify-content:center;font-size:22px;font-weight:800;background:linear-gradient(135deg,#4d4d4d,#2d2d2d);color:#fafafa}
+.profile-name-row{flex:1;min-width:0;padding-bottom:4px}
+.profile-name{font-size:18px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px;display:flex;align-items:center;gap:6px}
+.profile-name .vip{width:20px;height:20px;border-radius:50%;background:var(--blue);display:inline-grid;place-items:center;flex-shrink:0}
+.profile-name .vip svg{width:12px;height:12px;color:#fff}
+.profile-id{font-size:11px;color:var(--sub);font-family:monospace}
+
+.profile-bio{font-size:13px;color:rgba(255,255,255,.65);line-height:1.6;margin-bottom:14px}
+
+/* 数据行 */
+.stats-row{display:flex;align-items:center;gap:0;margin-bottom:16px}
+.stat{text-align:center;padding-right:24px}
+.stat-num{font-size:18px;font-weight:800}
+.stat-label{font-size:11px;color:var(--sub);margin-top:1px}
+.stats-actions{margin-left:auto;display:flex;align-items:center;gap:8px}
+.btn-edit{height:34px;padding:0 18px;border-radius:17px;border:1px solid rgba(255,255,255,.2);background:none;color:var(--text);font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;transition:background .15s}
+.btn-edit:active{background:rgba(255,255,255,.08)}
+.btn-settings{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:none;display:grid;place-items:center;cursor:pointer;color:var(--text)}
+.btn-settings:active{background:rgba(255,255,255,.08)}
+.btn-settings svg{width:18px;height:18px}
+
+/* ═══ 功能入口 ═══ */
+.entries{display:flex;gap:10px;padding:0 16px;margin-bottom:16px}
+.entry{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:background .15s;white-space:nowrap}
+.entry:active{background:var(--card2)}
+.entry-icon{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;flex-shrink:0}
+.entry-icon svg{width:18px;height:18px;color:#fff}
+.entry-icon.wallet{background:rgba(180,150,100,.35)}
+.entry-icon.purchase{background:rgba(120,130,160,.35)}
+.entry-icon.coupon{background:linear-gradient(135deg,#10b981,#14b8a6)}
+.entry-text{font-size:13px;font-weight:600}
+.entry-badge{font-size:11px;font-weight:700;color:var(--yellow);background:var(--yellow-bg);padding:1px 6px;border-radius:8px;margin-left:2px}
+
+/* ═══ 我的店 / 我的组织 ═══ */
+.block{padding:0 16px;margin-bottom:16px}
+.block-title{font-size:15px;font-weight:700;margin-bottom:10px}
+.block-scroll{display:flex;gap:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+.block-scroll::-webkit-scrollbar{display:none}
+
+/* 我的店 / 我的组织 统一卡片 */
+.block-card{flex:0 0 160px;height:100px;border-radius:12px;overflow:hidden;position:relative;cursor:pointer;background:var(--card)}
+.block-card-ph{position:absolute;inset:0;background:linear-gradient(145deg,hsl(var(--bc,210),24%,26%),hsl(calc(var(--bc) + 45),14%,12%))}
+.block-card-ph.a{--bc:200}.block-card-ph.b{--bc:42}.block-card-ph.c{--bc:285}
+.block-card-overlay{position:absolute;inset:0;background:linear-gradient(transparent 25%,rgba(0,0,0,.75));display:flex;flex-direction:column;justify-content:flex-end;padding:10px 12px}
+.block-card-name{font-size:13px;font-weight:600;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.block-card-tag{font-size:10px;font-weight:600;color:var(--orange);margin-top:4px}
+.block-card-tag.ok{color:var(--green)}
+
+/* ═══ Tab 栏（等分 + 粗体白字 + 选中为短粗黄线下划线） ═══ */
+.tab-bar{display:flex;align-items:center;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;background:var(--bg)}
+.tab{flex:1;min-width:0;padding:14px 8px;font-size:15px;font-weight:700;color:var(--sub);cursor:pointer;position:relative;transition:color .15s;text-align:center}
+.tab.active{color:var(--text)}
+.tab.active::after{content:"";position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:24px;height:3px;background:var(--yellow);border-radius:2px}
+
+/* ═══ 瀑布流（结构与样式与 now-list.html 一致：双列 flex + 卡片层） ═══ */
+.feed.feed-masonry-wrap{background:#000;padding:8px 6px;padding-left:max(6px,env(safe-area-inset-left));padding-right:max(6px,env(safe-area-inset-right))}
+.feed-masonry{display:flex;gap:6px;align-items:flex-start}
+.feed-col{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+
+.card{border-radius:12px;overflow:hidden;background:#111;cursor:pointer;width:100%}
+.card:active{opacity:.92}
+
+.card-img-wrap{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;background:#1a1a1a}
+.card-img-wrap .card-img-ph{position:absolute;inset:0;background:linear-gradient(145deg,hsl(var(--ph,210),28%,24%),hsl(calc(var(--ph) + 50),18%,12%))}
+.card-img-wrap .card-img-ph::after{content:"";position:absolute;inset:0;opacity:.12;background:radial-gradient(circle at 28% 18%,#fff,transparent 42%)}
+.card-img-ph-1{--ph:38}.card-img-ph-2{--ph:200}.card-img-ph-3{--ph:280}.card-img-ph-4{--ph:150}.card-img-ph-5{--ph:320}
+.card-avatar-ph{display:flex;width:100%;height:100%;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:rgba(255,255,255,.9);background:linear-gradient(135deg,#4a4a4a,#2a2a2a)}
+
+.card-badge{position:absolute;top:8px;left:8px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(16,185,129,.2);color:#10b981}
+.card-dist{position:absolute;bottom:8px;right:8px;left:auto;padding:4px 8px;border-radius:6px;font-size:11px;font-weight:500;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);display:flex;align-items:center;gap:4px}
+.card-dist svg{width:12px;height:12px;color:rgba(255,255,255,.8)}
+
+.card-rmeta{position:absolute;bottom:8px;left:8px;right:auto;top:auto;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:6px;z-index:2;max-width:calc(100% - 80px)}
+.pill-fee{padding:4px 10px;border-radius:8px;font-size:13px;font-weight:800;color:#111;background:var(--yellow);box-shadow:0 2px 8px rgba(0,0,0,.35);letter-spacing:.3px;flex-shrink:0}
+.pill-apply{padding:4px 9px;border-radius:8px;font-size:11px;font-weight:700;color:#fff;background:rgba(0,0,0,.62);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.12);white-space:nowrap;flex-shrink:0}
+
+.card-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);display:grid;place-items:center}
+.card-play svg{width:16px;height:16px;color:#fff;margin-left:2px}
+
+.card-body{padding:8px 10px 10px}
+.card-title{font-size:13px;font-weight:700;line-height:1.35;color:var(--text);overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;word-break:break-word;margin-bottom:6px}
+
+.card-meta{display:flex;align-items:center;gap:8px}
+.card-avatar{width:22px;height:22px;border-radius:50%;background:#333;overflow:hidden;flex-shrink:0}
+.card-user{font-size:12px;color:var(--sub);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-stat{display:flex;align-items:center;gap:3px;font-size:11px;color:var(--sub);flex-shrink:0}
+.card-stat svg{width:14px;height:14px}
+</style>
+</head>
+<body>
+
+<!-- ═══ 个人信息 ═══ -->
+<div class="profile">
+    <div class="profile-header">
+        <div class="avatar"><span class="ph-user" aria-hidden="true">跳</span></div>
+        <div class="profile-name-row">
+            <div class="profile-name">跳海-阿杰是的发多少放松放松 <span class="vip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+            <div class="profile-id">ID:JEIWO392039</div>
+        </div>
+    </div>
+    <div class="profile-bio">君子食无求饱,居无求安,敏于事而慎于言,就有道而正焉,可谓好学也已。</div>
+    <div class="stats-row">
+        <div class="stat"><div class="stat-num">4</div><div class="stat-label">关注</div></div>
+        <div class="stat"><div class="stat-num">453</div><div class="stat-label">收藏地点</div></div>
+        <div class="stat"><div class="stat-num">4</div><div class="stat-label">被关注</div></div>
+        <div class="stats-actions">
+            <button class="btn-edit">编辑资料</button>
+            <button class="btn-settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></button>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ 功能入口（含我的钱包） ═══ -->
+<div class="entries">
+    <a class="entry" href="my-wallet.html">
+        <div class="entry-icon wallet">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><path d="M1 10h22"/></svg>
+        </div>
+        <span class="entry-text">我的钱包</span>
+    </a>
+    <a class="entry" href="#">
+        <div class="entry-icon purchase">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        </div>
+        <span class="entry-text">已购买的</span>
+    </a>
+</div>
+
+<!-- ═══ 我的店 ═══ -->
+<div class="block">
+    <div class="block-title">我的店</div>
+    <div class="block-scroll">
+        <div class="block-card">
+            <div class="block-card-ph a" aria-hidden="true"></div>
+            <div class="block-card-overlay">
+                <div class="block-card-name">跳海酒馆（三元桥）</div>
+                <div class="block-card-tag">审核未通过</div>
+            </div>
+        </div>
+        <div class="block-card">
+            <div class="block-card-ph b" aria-hidden="true"></div>
+            <div class="block-card-overlay">
+                <div class="block-card-name">壹宴·和牛海鲜姿造火锅（五棵松万达店）</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ 我的组织 ═══ -->
+<div class="block">
+    <div class="block-title">我的组织</div>
+    <div class="block-scroll">
+        <div class="block-card">
+            <div class="block-card-ph c" aria-hidden="true"></div>
+            <div class="block-card-overlay">
+                <div class="block-card-name">小老虎社团</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ Tab 栏 ═══ -->
+<div class="tab-bar">
+    <span class="tab active" onclick="switchFeedTab(this)">NOW</span>
+    <span class="tab" onclick="switchFeedTab(this)">我报名的</span>
+    <span class="tab" onclick="switchFeedTab(this)">我签到的</span>
+</div>
+
+<!-- ═══ 内容 Feed（瀑布流与 now-list 一致） ═══ -->
+<div class="feed feed-masonry-wrap">
+    <div class="feed-masonry">
+        <div class="feed-col" id="feedColL"></div>
+        <div class="feed-col" id="feedColR"></div>
+    </div>
+</div>
+
+<script>
+function switchFeedTab(el){
+    document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active");});
+    el.classList.add("active");
+    /* 切换 Tab 时可替换 PROFILE_FEED 再 renderProfileFeed() */
+}
+
+document.querySelectorAll(".entry").forEach(function(a){
+    a.style.textDecoration = "none";
+    a.style.color = "inherit";
+});
+
+/** 个人主页 Feed 数据（无图片 URL，封面为 CSS 渐变占位） */
+var PROFILE_FEED = [
+    { title:"下班不喝酒，人生路白走成年人的微醺快乐", user:"维尼酱", dist:"2.4km", type:"now", fee:66, applyCur:3, applyMax:8, comments:8, video:true },
+    { title:"无论落日在哪、晚霞绕过火车、这里都有最配心情", user:"一二三四五六七八九十", dist:"2.4km", type:"now", fee:0, applyCur:0, applyMax:0, comments:37, video:false },
+    { title:"藏在胡同里的秘密花园酒吧，太治愈了", user:"小酒鬼daily", dist:"5.1km", type:"moment", fee:0, applyCur:0, applyMax:0, comments:12, video:false },
+    { title:"周五的晚上就应该这样度过", user:"酒香不怕巷子深", dist:"1.8km", type:"now", fee:30, applyCur:5, applyMax:6, comments:5, video:false },
+];
+
+function buildProfileCardHtml(item, idx){
+    var phIdx = (typeof idx === "number" ? idx : 0) % 5 + 1;
+    var phClass = "card-img-ph card-img-ph-" + phIdx;
+    var avLetter = (item.user && item.user.charAt(0)) || "?";
+    var isInvite = item.type === "now" && (item.applyMax > 0);
+    var rmetaParts = [];
+    if(isInvite){
+        if(item.fee > 0) rmetaParts.push('<span class="pill-fee">¥'+item.fee+'</span>');
+        else rmetaParts.push('<span class="pill-fee">免费</span>');
+    } else if(item.fee > 0){
+        rmetaParts.push('<span class="pill-fee">¥'+item.fee+'</span>');
+    }
+    if(isInvite) rmetaParts.push('<span class="pill-apply">已报 '+item.applyCur+'/'+item.applyMax+'</span>');
+    var rmetaHtml = rmetaParts.length ? '<div class="card-rmeta">'+rmetaParts.join('')+'</div>' : '';
+    return '<div class="card">'+
+        '<div class="card-img-wrap">'+
+            '<div class="'+phClass+'" aria-hidden="true"></div>'+
+            (item.type === "now" ? '<span class="card-badge">NOW</span>' : '')+
+            rmetaHtml+
+            '<span class="card-dist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>'+item.dist+'</span>'+
+            (item.video ? '<div class="card-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>' : '')+
+        '</div>'+
+        '<div class="card-body">'+
+            '<div class="card-title">'+item.title+'</div>'+
+            '<div class="card-meta">'+
+                '<div class="card-avatar"><span class="card-avatar-ph">'+avLetter+'</span></div>'+
+                '<span class="card-user">'+item.user+'</span>'+
+                '<span class="card-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>'+item.comments+'</span>'+
+            '</div>'+
+        '</div>'+
+    '</div>';
+}
+
+function renderProfileFeed(){
+    var colL = document.getElementById("feedColL");
+    var colR = document.getElementById("feedColR");
+    if(!colL || !colR) return;
+    colL.innerHTML = "";
+    colR.innerHTML = "";
+    PROFILE_FEED.forEach(function(item, idx){
+        var wrap = document.createElement("div");
+        wrap.innerHTML = buildProfileCardHtml(item, idx);
+        var card = wrap.firstElementChild;
+        var hL = colL.offsetHeight;
+        var hR = colR.offsetHeight;
+        if(hL <= hR) colL.appendChild(card);
+        else colR.appendChild(card);
+    });
+}
+
+renderProfileFeed();
+</script>
+</body>
+</html>

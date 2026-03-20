@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>发布 NOW</title>
+<!-- 本页不引用任何本地或远程图片文件；封面为内联 SVG/CSS 占位 -->
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+    --yellow:#f5c542;
+    --yellow-bg:rgba(245,197,66,.12);
+    --green:#07c160;
+    --green-bg:rgba(7,193,96,.1);
+    --red:#ef4444;
+    --blue:#3b82f6;
+    --bg:#111;
+    --card:#1a1a1a;
+    --card2:#222;
+    --text:#fff;
+    --sub:rgba(255,255,255,.45);
+    --dim:rgba(255,255,255,.25);
+    --border:rgba(255,255,255,.08);
+    --r:14px;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;padding-bottom:120px}
+
+/* ═══ 导航 ═══ */
+.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;padding:12px 16px;padding-top:max(env(safe-area-inset-top),12px);background:rgba(17,17,17,.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.nav-back{width:36px;height:36px;border-radius:50%;border:none;background:rgba(255,255,255,.08);display:grid;place-items:center;cursor:pointer;color:#fff;flex-shrink:0}
+.nav-back:active{background:rgba(255,255,255,.15)}
+.nav-back svg{width:20px;height:20px}
+.nav-title{flex:1;text-align:center;font-size:17px;font-weight:600;margin-right:36px}
+
+/* ═══ 封面 ═══ */
+.cover{margin:12px 16px;aspect-ratio:16/9;border-radius:var(--r);background:var(--card);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;cursor:pointer;overflow:hidden;position:relative;border:1px dashed var(--dim)}
+.cover-ph{position:absolute;inset:0}
+.cover-ph svg{width:100%;height:100%;display:block;object-fit:cover}
+.cover-overlay{position:absolute;inset:0;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px}
+.cover-icon{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.15);display:grid;place-items:center}
+.cover-icon svg{width:22px;height:22px;color:#fff}
+.cover-text{font-size:13px;color:rgba(255,255,255,.7)}
+
+/* ═══ 通用区块 ═══ */
+.section{margin:0 16px 12px;background:var(--card);border-radius:var(--r);overflow:hidden}
+.section-pad{padding:16px}
+.section-title{font-size:13px;font-weight:700;color:var(--sub);letter-spacing:.5px;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.section-title svg{width:15px;height:15px}
+
+/* ═══ 输入 ═══ */
+.input-title{width:100%;border:none;background:none;font-size:18px;font-weight:700;color:var(--text);font-family:inherit;outline:none;padding:16px 16px 0}
+.input-title::placeholder{color:var(--dim)}
+.input-counter{text-align:right;padding:4px 16px 0;font-size:12px;color:var(--dim)}
+.input-desc{width:100%;border:none;background:none;font-size:14px;color:var(--text);font-family:inherit;outline:none;resize:none;padding:12px 16px 16px;min-height:60px;line-height:1.6}
+.input-desc::placeholder{color:var(--dim)}
+
+/* ═══ 标签行 ═══ */
+.tags{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 16px}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;font-size:13px;font-weight:500;border:1px solid var(--border);color:var(--sub);cursor:pointer}
+.tag:active{background:rgba(255,255,255,.05)}
+.tag svg{width:14px;height:14px}
+.tag.filled{background:var(--card2);color:var(--text);border-color:transparent}
+.tag.filled .tag-x{width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.15);display:grid;place-items:center;margin-left:2px;cursor:pointer}
+.tag.filled .tag-x svg{width:10px;height:10px;color:var(--sub)}
+.tag-counter{margin-left:auto;font-size:12px;color:var(--dim);padding:0 16px 16px}
+
+/* ═══ 设置行 ═══ */
+.row{display:flex;align-items:center;padding:14px 16px;border-top:1px solid var(--border)}
+.row:first-child{border-top:none}
+.row-icon{width:20px;height:20px;margin-right:10px;color:var(--sub);flex-shrink:0}
+.row-label{font-size:14px;font-weight:600;flex-shrink:0}
+.row-sub{font-size:11px;color:var(--sub);margin-top:2px}
+.row-body{flex:1;min-width:0}
+.row-right{margin-left:auto;display:flex;align-items:center;gap:6px;color:var(--sub);font-size:13px;flex-shrink:0}
+.row-right svg{width:16px;height:16px;color:var(--dim)}
+.row-right .val{color:var(--text);font-weight:600}
+
+/* ═══ NOW类型选择 ═══ */
+.type-tabs{display:flex;align-items:center;gap:8px;padding:2px 0}
+.type-tab{padding:6px 18px;border-radius:20px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;border:1px solid transparent;transition:all .15s}
+.type-tab:active{transform:scale(.96)}
+.type-tab.active{background:var(--yellow);color:#111;border-color:var(--yellow)}
+.type-tab.active[data-type="moment"]{background:#2EE8C2;color:#111;border-color:#2EE8C2}
+.type-badge{font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;margin-left:6px;transition:all .2s}
+.type-badge.invite{color:var(--yellow);background:var(--yellow-bg)}
+.type-badge.moment{color:#2EE8C2;background:rgba(46,232,194,.1)}
+
+/* ═══ 报名方式 ═══ */
+.radio-group{display:flex;gap:16px}
+.radio{display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer;font-weight:500}
+.radio-dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--dim);position:relative;flex-shrink:0;transition:border-color .15s}
+.radio.on .radio-dot{border-color:var(--yellow)}
+.radio.on .radio-dot::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--yellow)}
+
+/* ═══ 报名费模块 ═══ */
+.fee-section{padding:16px}
+
+.fee-toggle{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.fee-toggle-label{font-size:14px;font-weight:600}
+.switch{position:relative;display:inline-block;width:44px;height:26px}
+.switch input{opacity:0;width:0;height:0}
+.switch-slider{position:absolute;cursor:pointer;inset:0;background:rgba(255,255,255,.15);border-radius:26px;transition:.2s}
+.switch-slider::before{content:"";position:absolute;height:20px;width:20px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.switch input:checked+.switch-slider{background:var(--yellow)}
+.switch input:checked+.switch-slider::before{transform:translateX(18px)}
+
+.fee-body{display:none}
+.fee-body.show{display:block}
+
+.fee-row{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.fee-row:last-child{margin-bottom:0}
+.fee-label{font-size:13px;color:var(--sub);width:90px;flex-shrink:0}
+.fee-input-wrap{flex:1;position:relative}
+.fee-input{width:100%;height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--border);background:var(--card2);font-size:14px;font-weight:600;font-family:inherit;color:var(--text);outline:none;transition:border-color .15s}
+.fee-input:focus{border-color:var(--yellow)}
+.fee-input::placeholder{color:var(--dim);font-weight:400}
+.fee-suffix{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--sub);pointer-events:none}
+.fee-input.has-suffix{padding-right:36px}
+
+.fee-lady{display:flex;align-items:center;gap:10px}
+.fee-lady-switch{display:flex;align-items:center;gap:8px}
+.fee-lady-discount{display:none;align-items:center;gap:6px}
+.fee-lady-discount.show{display:flex}
+.fee-lady-input{width:80px;height:36px;padding:0 28px 0 10px;border-radius:8px;border:1px solid var(--border);background:var(--card2);font-size:14px;font-weight:600;font-family:inherit;color:var(--text);outline:none;text-align:center;transition:border-color .15s}
+.fee-lady-input:focus{border-color:var(--yellow)}
+.fee-lady-suffix{font-size:12px;color:var(--sub)}
+.fee-lady-final{font-size:12px;color:var(--yellow);font-weight:600;margin-left:4px;white-space:nowrap}
+
+.fee-hint{font-size:11px;color:var(--dim);margin-top:10px;line-height:1.5;padding-left:100px}
+
+/* ═══ 联系方式 ═══ */
+.contact-tags{display:flex;gap:8px;flex-wrap:wrap}
+.contact-tag{padding:6px 12px;border-radius:8px;border:1px solid var(--border);font-size:12px;color:var(--sub);cursor:pointer;transition:all .15s}
+.contact-tag.on{border-color:var(--yellow);background:var(--yellow-bg);color:var(--yellow)}
+.contact-input{margin-top:10px;display:none}
+.contact-input.show{display:block}
+.contact-input input{width:100%;height:38px;padding:0 12px;border-radius:8px;border:1px solid var(--border);background:var(--card2);font-size:13px;font-family:inherit;color:var(--text);outline:none}
+.contact-input input:focus{border-color:var(--yellow)}
+.contact-input input::placeholder{color:var(--dim)}
+
+/* ═══ 发布按钮 ═══ */
+.publish-wrap{position:fixed;bottom:0;left:0;right:0;padding:12px 16px;padding-bottom:max(env(safe-area-inset-bottom),12px);background:linear-gradient(transparent,var(--bg) 30%);z-index:30}
+.publish-btn{width:100%;height:52px;border-radius:26px;border:none;background:var(--yellow);color:#111;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer;transition:all .15s;box-shadow:0 4px 16px rgba(245,197,66,.3)}
+.publish-btn:active{transform:scale(.98)}
+.publish-sub{text-align:center;font-size:11px;color:var(--dim);margin-top:6px}
+</style>
+</head>
+<body>
+
+<!-- ═══ 导航 ═══ -->
+<div class="nav">
+    <button class="nav-back" onclick="history.back()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <span class="nav-title">发布 NOW</span>
+</div>
+
+<!-- ═══ 封面 ═══ -->
+<div class="cover">
+    <div class="cover-ph" aria-hidden="true"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="publishNowCoverGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#3d3d42"/><stop offset="100%" stop-color="#1a1a1c"/></linearGradient></defs><rect width="320" height="180" fill="url(#publishNowCoverGrad)"/><circle cx="260" cy="40" r="50" fill="rgba(245,197,66,.08)"/><rect x="110" y="70" width="100" height="44" rx="8" fill="rgba(245,197,66,.2)"/></svg></div>
+    <div class="cover-overlay">
+        <div class="cover-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <span class="cover-text">编辑封面</span>
+    </div>
+</div>
+
+<!-- ═══ 标题 & 描述 ═══ -->
+<div class="section">
+    <input class="input-title" placeholder="添加标题" maxlength="20" id="titleInput">
+    <div class="input-counter"><span id="titleCount">0</span>/20</div>
+    <textarea class="input-desc" placeholder="关于这条 NOW，说点什么吧..." maxlength="500" id="descInput"></textarea>
+    <div class="tags">
+        <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4V3"/><path d="M22 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>关联群聊</span>
+        <span class="tag filled"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4V3"/></svg>群聊 · 北京A群（33）<span class="tag-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></span>
+    </div>
+    <div class="tag-counter"><span id="descCount">0</span>/500</div>
+</div>
+
+<!-- ═══ NOW 类型 & 基本设置 ═══ -->
+<div class="section">
+    <div class="row">
+        <svg class="row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+        <div class="row-body">
+            <div class="row-label">NOW 类型 <span class="type-badge invite" id="typeBadge">邀请他人来这里</span></div>
+        </div>
+    </div>
+    <div style="padding:0 16px 14px">
+        <div class="type-tabs" id="typeTabs">
+            <span class="type-tab active" data-type="reserve">预约</span>
+            <span class="type-tab" data-type="instant">即刻邀约</span>
+            <span class="type-tab" data-type="moment">动态</span>
+        </div>
+    </div>
+
+    <div class="row" id="rowLocation">
+        <svg class="row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div class="row-body">
+            <div class="row-label">京 A 啤酒（丽都店）</div>
+            <div class="row-sub">可在附近50km范围内选择地点</div>
+        </div>
+        <div class="row-right"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+    </div>
+
+    <div class="row" id="rowTime">
+        <svg class="row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <div class="row-body">
+            <div class="row-label">预约时间</div>
+        </div>
+        <div class="row-right"><span class="val">今天 18:23</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+    </div>
+
+    <div class="row" id="rowSignup">
+        <svg class="row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4V3"/><path d="M22 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        <div class="row-body">
+            <div class="row-label">报名方式</div>
+        </div>
+        <div class="row-right">
+            <div class="radio-group">
+                <label class="radio on" onclick="setRadio(this)"><span class="radio-dot"></span>直接加入</label>
+                <label class="radio" onclick="setRadio(this)"><span class="radio-dot"></span>需要确认</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ 报名设置（新增） ═══ -->
+<div class="section" id="sectionFee">
+    <div class="section-pad">
+        <div class="section-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            报名设置
+        </div>
+
+        <!-- 报名费开关 -->
+        <div class="fee-toggle">
+            <span class="fee-toggle-label">收取报名费</span>
+            <label class="switch"><input type="checkbox" id="feeSwitch"><span class="switch-slider"></span></label>
+        </div>
+
+        <div class="fee-body" id="feeBody">
+            <div class="fee-row">
+                <span class="fee-label">报名费</span>
+                <div class="fee-input-wrap">
+                    <input class="fee-input has-suffix" id="feeInput" type="number" inputmode="decimal" placeholder="输入金额" max="499" step="1">
+                    <span class="fee-suffix">元/人</span>
+                </div>
+            </div>
+
+            <div class="fee-row">
+                <span class="fee-label">女士优惠</span>
+                <div class="fee-lady">
+                    <div class="fee-lady-switch">
+                        <label class="switch"><input type="checkbox" id="ladySwitch"><span class="switch-slider"></span></label>
+                    </div>
+                    <div class="fee-lady-discount" id="ladyDiscount">
+                        <span class="fee-lady-suffix">优惠</span>
+                        <input class="fee-lady-input" id="ladyInput" type="number" inputmode="decimal" placeholder="0" step="1">
+                        <span class="fee-lady-suffix">元</span>
+                        <span class="fee-lady-final" id="ladyFinal"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fee-hint">报名费不超过 499 元，女士优惠金额不得超过报名费</div>
+        </div>
+    </div>
+
+    <!-- 最大报名人数 -->
+    <div class="row">
+        <svg class="row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4V3"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        <div class="row-body">
+            <div class="row-label">最大报名人数</div>
+        </div>
+        <div class="row-right">
+            <div style="display:flex;align-items:center;gap:8px">
+                <button class="step-btn" onclick="stepPeople(-1)">−</button>
+                <span class="val" id="peopleNum" style="min-width:24px;text-align:center">10</span>
+                <button class="step-btn" onclick="stepPeople(1)">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 联系方式 -->
+    <div class="row" style="flex-direction:column;align-items:stretch;gap:10px">
+        <div style="display:flex;align-items:center;gap:10px">
+            <svg class="row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            <div class="row-label">联系方式</div>
+        </div>
+        <div class="contact-tags" id="contactTags">
+            <span class="contact-tag" data-type="wechat" onclick="toggleContact(this)">微信号</span>
+            <span class="contact-tag" data-type="phone" onclick="toggleContact(this)">手机号</span>
+            <span class="contact-tag" data-type="none" onclick="toggleContact(this)">不公开</span>
+        </div>
+        <div class="contact-input" id="contactInput">
+            <input placeholder="输入微信号或手机号" id="contactVal">
+        </div>
+    </div>
+
+    <!-- 取消报名截止 -->
+    <div class="row">
+        <svg class="row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div class="row-body">
+            <div class="row-label">取消报名截止</div>
+            <div class="row-sub">超过此时间后不可取消报名</div>
+        </div>
+        <div class="row-right"><span class="val" id="cancelTime">活动前 2 小时</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+    </div>
+</div>
+
+<!-- ═══ 发布按钮 ═══ -->
+<div class="publish-wrap">
+    <button class="publish-btn" onclick="alert('发布成功（演示）')">发布</button>
+    <div class="publish-sub">02-23 04:00 过期</div>
+</div>
+
+<style>
+.step-btn{width:30px;height:30px;border-radius:8px;border:1px solid var(--border);background:var(--card2);color:var(--text);font-size:16px;font-weight:700;cursor:pointer;display:grid;place-items:center;font-family:inherit;transition:all .1s}
+.step-btn:active{background:rgba(255,255,255,.1);transform:scale(.92)}
+</style>
+
+<script>
+/* 标题计数 */
+document.getElementById("titleInput").addEventListener("input",function(){
+    document.getElementById("titleCount").textContent = this.value.length;
+});
+document.getElementById("descInput").addEventListener("input",function(){
+    document.getElementById("descCount").textContent = this.value.length;
+});
+
+/* 报名方式 radio */
+function setRadio(el){
+    el.parentElement.querySelectorAll(".radio").forEach(function(r){r.classList.remove("on");});
+    el.classList.add("on");
+}
+
+/* NOW 类型 tab */
+document.querySelectorAll(".type-tab").forEach(function(t){
+    t.addEventListener("click",function(){
+        document.querySelectorAll(".type-tab").forEach(function(x){x.classList.remove("active");});
+        t.classList.add("active");
+        switchNowType(t.getAttribute("data-type"));
+    });
+});
+
+function switchNowType(type){
+    var badge = document.getElementById("typeBadge");
+    var rowTime = document.getElementById("rowTime");
+    var rowSignup = document.getElementById("rowSignup");
+    var sectionFee = document.getElementById("sectionFee");
+
+    if(type === "moment"){
+        badge.textContent = "分享此刻动态";
+        badge.className = "type-badge moment";
+        rowTime.style.display = "none";
+        rowSignup.style.display = "none";
+        sectionFee.style.display = "none";
+    } else if(type === "instant"){
+        badge.textContent = "邀请他人来这里";
+        badge.className = "type-badge invite";
+        rowTime.style.display = "none";
+        rowSignup.style.display = "";
+        sectionFee.style.display = "";
+    } else {
+        badge.textContent = "邀请他人来这里";
+        badge.className = "type-badge invite";
+        rowTime.style.display = "";
+        rowSignup.style.display = "";
+        sectionFee.style.display = "";
+    }
+}
+
+/* 报名费开关 */
+document.getElementById("feeSwitch").addEventListener("change",function(){
+    document.getElementById("feeBody").classList.toggle("show",this.checked);
+});
+
+/* 女士优惠开关 */
+document.getElementById("ladySwitch").addEventListener("change",function(){
+    document.getElementById("ladyDiscount").classList.toggle("show",this.checked);
+    calcLady();
+});
+
+/* 女士优惠计算 */
+function calcLady(){
+    var fee = parseFloat(document.getElementById("feeInput").value) || 0;
+    var discount = parseFloat(document.getElementById("ladyInput").value) || 0;
+    var el = document.getElementById("ladyFinal");
+    if(fee > 0 && discount > 0){
+        var final = Math.max(0, fee - discount);
+        el.textContent = "= 女士 ¥" + final + "/人";
+    } else {
+        el.textContent = "";
+    }
+}
+document.getElementById("feeInput").addEventListener("input",function(){
+    if(parseFloat(this.value) > 499) this.value = 499;
+    calcLady();
+});
+document.getElementById("ladyInput").addEventListener("input",function(){
+    var fee = parseFloat(document.getElementById("feeInput").value) || 0;
+    if(parseFloat(this.value) > fee) this.value = fee;
+    calcLady();
+});
+
+/* 人数加减 */
+var people = 10;
+function stepPeople(d){
+    people = Math.max(2, Math.min(200, people + d));
+    document.getElementById("peopleNum").textContent = people;
+}
+
+/* 联系方式 */
+function toggleContact(el){
+    document.querySelectorAll(".contact-tag").forEach(function(t){t.classList.remove("on");});
+    el.classList.add("on");
+    var type = el.getAttribute("data-type");
+    var ci = document.getElementById("contactInput");
+    if(type === "none"){
+        ci.classList.remove("show");
+    } else {
+        ci.classList.add("show");
+        document.getElementById("contactVal").placeholder = type === "wechat" ? "输入微信号" : "输入手机号";
+    }
+}
+</script>
+</body>
+</html>

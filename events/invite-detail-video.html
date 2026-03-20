@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>视频邀约详情</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --yellow:#f5c542;
+  --yellow-bg:rgba(245,197,66,.12);
+  --green:#07c160;
+  --bg:#111;
+  --card:#1a1a1a;
+  --card2:#222;
+  --text:#fff;
+  --sub:rgba(255,255,255,.5);
+  --dim:rgba(255,255,255,.3);
+  --border:rgba(255,255,255,.08);
+}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;padding-bottom:56px}
+
+/* ═══ 1. 顶部地图区 ═══ */
+.map{height:100px;background:linear-gradient(180deg,#2a3040,#1e2230);position:relative}
+.map-ph{width:100%;height:100%;display:block}
+.map-ov{position:absolute;inset:0;display:flex;justify-content:space-between;align-items:flex-start;padding:max(env(safe-area-inset-top),10px) 12px 0}
+.map-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#c55,#933);border:2px solid var(--bg);position:relative}
+.map-av-badge{position:absolute;bottom:-2px;right:-4px;width:18px;height:18px;border-radius:50%;background:var(--yellow);display:grid;place-items:center}
+.map-av-badge svg{width:10px;height:10px;color:#111}
+.map-right{display:flex;gap:8px}
+.map-btn{width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.45);border:none;color:#fff;display:grid;place-items:center}
+.map-btn svg{width:18px;height:18px}
+
+/* ═══ 2. 封面（视频型，高宽比更大） ═══ */
+.cover{position:relative;aspect-ratio:3/4;background:#222;overflow:hidden}
+.cover-ph{width:100%;height:100%;display:block;object-fit:cover}
+
+/* 封面顶栏 */
+.cover-top{position:absolute;top:10px;left:10px;right:10px;display:flex;align-items:center;gap:6px}
+.pill{display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border-radius:999px;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);font-size:12px;font-weight:500;white-space:nowrap}
+.pill svg{width:14px;height:14px;flex-shrink:0}
+.pill-green svg{color:#34d399}
+.pill-more{margin-left:auto;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);display:grid;place-items:center;border:none;color:#fff}
+.pill-more svg{width:16px;height:16px}
+
+/* 封面右侧签到侧标签 */
+.side-tab{position:absolute;right:0;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:3px;padding:6px 10px 6px 8px;border-radius:14px 0 0 14px;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);font-size:12px;font-weight:600}
+.side-tab svg{width:12px;height:12px}
+
+/* 封面底部报名/签到条 */
+.cover-actions{position:absolute;right:8px;bottom:10px;left:8px;display:grid;gap:6px}
+.act-row{height:34px;border-radius:17px;background:rgba(0,0,0,.35);backdrop-filter:blur(10px);display:flex;align-items:center;gap:6px;padding:0 10px 0 4px}
+.act-play{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center;flex-shrink:0}
+.act-play svg{width:10px;height:10px;color:#fff;margin-left:1px}
+.act-btn{padding:4px 16px;border-radius:14px;font-size:13px;font-weight:700;flex-shrink:0}
+.act-btn.signup{background:var(--yellow);color:#111}
+.act-btn.checkin{background:var(--yellow);color:#111}
+.act-avatars{display:flex;flex-shrink:0}
+.act-avatars i{display:block;width:22px;height:22px;border-radius:50%;margin-left:-5px;border:1.5px solid rgba(0,0,0,.4);background:#555}
+.act-avatars i:first-child{margin-left:0}
+.act-text{margin-left:auto;font-size:12px;color:rgba(255,255,255,.75);flex-shrink:0}
+
+/* ═══ 3. 用户信息条（在封面下方） ═══ */
+.user-bar{display:flex;align-items:center;gap:10px;padding:12px 14px 10px}
+.user-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#c55,#933);flex-shrink:0}
+.user-name{font-size:16px;font-weight:700;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.user-venue{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:999px;background:rgba(7,193,96,.12);font-size:12px;color:#34d399;flex-shrink:0;max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.user-venue svg{width:14px;height:14px;flex-shrink:0}
+
+/* ═══ 4. 正文区 ═══ */
+.body-section{padding:0 14px 14px}
+
+.loc-row{display:flex;align-items:center;gap:4px}
+.loc-icon{color:var(--sub);flex-shrink:0;display:flex}
+.loc-icon svg{width:16px;height:16px}
+.loc-name{font-size:14px;font-weight:600;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.loc-verified{width:16px;height:16px;border-radius:50%;background:var(--green);display:grid;place-items:center;flex-shrink:0}
+.loc-verified svg{width:10px;height:10px;color:#fff}
+.loc-arrow{color:var(--dim);flex-shrink:0;display:flex}
+.loc-arrow svg{width:14px;height:14px}
+.loc-dist{font-size:12px;color:var(--sub);flex-shrink:0;margin-left:auto}
+
+.body-text{margin-top:8px;font-size:15px;line-height:1.65;color:rgba(255,255,255,.85)}
+
+.body-group{margin-top:8px;display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:999px;background:var(--card2);font-size:13px;color:var(--sub)}
+.body-group svg{width:14px;height:14px;color:var(--sub)}
+
+/* ═══ 4b. 报名费卡片 ═══ */
+.fee-card{margin-top:12px;padding:12px 14px;border-radius:12px;border:1px solid rgba(245,197,66,.25);background:linear-gradient(135deg,rgba(245,197,66,.12),rgba(245,197,66,.04))}
+.fee-row{display:flex;align-items:baseline;gap:8px}
+.fee-label{font-size:12px;color:rgba(255,255,255,.65)}
+.fee-price{font-size:22px;font-weight:800;color:var(--yellow);line-height:1}
+.fee-unit{font-size:13px;font-weight:600;color:var(--yellow)}
+.fee-note{margin-top:5px;font-size:12px;color:rgba(255,255,255,.45);line-height:1.5}
+
+/* ═══ 5. 底部操作栏 ═══ */
+.composer{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:8px 12px;padding-bottom:max(8px,env(safe-area-inset-bottom));display:flex;align-items:center;gap:8px;background:rgba(17,17,17,.96);backdrop-filter:blur(12px);border-top:1px solid var(--border)}
+.comp-av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#c55,#933);flex-shrink:0}
+.comp-input{flex:1;height:34px;border-radius:17px;border:none;background:var(--card2);padding:0 14px;font-size:14px;color:var(--dim);display:flex;align-items:center}
+.comp-btn{border:none;background:none;display:flex;align-items:center;gap:4px;color:var(--sub);font-size:13px;font-weight:600;flex-shrink:0;padding:4px}
+.comp-btn svg{width:22px;height:22px}
+.comp-heart{color:#ef4444}
+.comp-heart svg{fill:#ef4444;stroke:none}
+.comp-share svg{width:20px;height:20px}
+
+/* 浮动大爱心动画 */
+.float-heart{position:fixed;left:50%;bottom:60px;transform:translateX(-50%);pointer-events:none;animation:heartPop .8s ease-out forwards}
+.float-heart svg{width:40px;height:40px;fill:#ef4444}
+@keyframes heartPop{0%{opacity:1;transform:translateX(-50%) scale(.6)}40%{opacity:1;transform:translateX(-50%) scale(1.15)}100%{opacity:0;transform:translateX(-50%) scale(1.3) translateY(-30px)}}
+</style>
+</head>
+<body>
+
+<!-- ═══ 1. 顶部地图区 ═══ -->
+<div class="map">
+  <svg class="map-ph" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect width="400" height="100" fill="#252d3a"/>
+    <rect x="30" y="15" width="60" height="10" rx="2" fill="rgba(255,255,255,.06)"/>
+    <rect x="120" y="22" width="40" height="6" rx="1.5" fill="rgba(255,255,255,.04)"/>
+    <circle cx="280" cy="50" r="4" fill="rgba(245,197,66,.5)"/>
+    <circle cx="150" cy="38" r="3" fill="rgba(245,197,66,.3)"/>
+    <text x="310" y="24" fill="rgba(255,255,255,.12)" font-size="9" font-family="sans-serif">九龙商厦</text>
+    <text x="50" y="60" fill="rgba(255,255,255,.08)" font-size="9" font-family="sans-serif">7号楼</text>
+  </svg>
+  <div class="map-ov">
+    <div class="map-av">
+      <span class="map-av-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+    </div>
+    <div class="map-right">
+      <button class="map-btn"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+      <button class="map-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 2. 封面（视频类型 3:4 竖版） ═══ -->
+<div class="cover">
+  <svg class="cover-ph" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="vGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5a5a5a"/><stop offset="1" stop-color="#2a2a2a"/></linearGradient>
+    </defs>
+    <rect width="300" height="400" fill="url(#vGrad)"/>
+    <circle cx="100" cy="160" r="50" fill="rgba(255,255,255,.07)"/>
+    <circle cx="220" cy="120" r="35" fill="rgba(255,255,255,.05)"/>
+    <ellipse cx="150" cy="280" rx="80" ry="30" fill="rgba(255,255,255,.04)"/>
+    <rect x="90" y="175" width="120" height="50" rx="8" fill="rgba(255,255,255,.04)"/>
+    <!-- 播放三角暗示这是视频 -->
+    <polygon points="135,190 135,220 165,205" fill="rgba(255,255,255,.1)"/>
+  </svg>
+
+  <!-- 顶栏：时间 + 导航 + 位置 + 更多 -->
+  <div class="cover-top">
+    <span class="pill pill-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>今天18:32</span>
+    <span class="pill">▶ 导航</span>
+    <span class="pill pill-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>查看位置</span>
+    <button class="pill-more"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+  </div>
+
+  <!-- 右侧签到侧标签 -->
+  <div class="side-tab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+    签到
+  </div>
+
+  <!-- 底部报名/签到条 -->
+  <div class="cover-actions">
+    <div class="act-row">
+      <div class="act-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="8 5 19 12 8 19"/></svg></div>
+      <span class="act-btn signup">报名</span>
+      <span class="act-avatars"><i></i><i></i><i></i></span>
+      <span class="act-text">2人已报名</span>
+    </div>
+    <div class="act-row">
+      <span class="act-btn checkin">签到</span>
+      <span class="act-avatars"><i></i><i></i><i></i></span>
+      <span class="act-text">9人已签到</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3. 用户信息条（封面下方） ═══ -->
+<div class="user-bar">
+  <div class="user-av"></div>
+  <span class="user-name">一二三四五六七八九十</span>
+  <span class="user-venue">
+    <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="4" fill="#34d399"/><path d="M8 12l3 3 5-6" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    跳海酒馆一二三...
+  </span>
+</div>
+
+<!-- ═══ 4. 正文区 ═══ -->
+<div class="body-section">
+  <!-- 地点行 -->
+  <div class="loc-row">
+    <span class="loc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+    <span class="loc-name">沁·叁拾壹书院(香山清琴店)</span>
+    <span class="loc-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+    <span class="loc-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span>
+    <span class="loc-dist">距我 800m</span>
+  </div>
+
+  <!-- 正文 -->
+  <p class="body-text">遥想公瑾当年，小乔初嫁了但是房山窑店沙发</p>
+
+  <!-- 群聊 -->
+  <span class="body-group">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+    群聊 · 北京A群（33）
+  </span>
+
+  <!-- 报名费卡片（新增） -->
+  <div class="fee-card">
+    <div class="fee-row">
+      <span class="fee-label">报名费</span>
+      <span class="fee-price">¥66</span>
+      <span class="fee-unit">/ 人</span>
+    </div>
+    <p class="fee-note">女士优惠 减¥10 · 实际支付 ¥56/人 · 到场后按活动规则结算</p>
+  </div>
+</div>
+
+<!-- ═══ 5. 底部操作栏 ═══ -->
+<div class="composer">
+  <div class="comp-av"></div>
+  <div class="comp-input">回复</div>
+  <button class="comp-btn" aria-label="赞">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06A5.5 5.5 0 003.16 12.4L12 21.23l8.84-8.83a5.5 5.5 0 000-7.79z"/></svg>
+    23
+  </button>
+  <button class="comp-btn" aria-label="评论">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+    23
+  </button>
+  <button class="comp-btn comp-share" aria-label="分享">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+  </button>
+</div>
+
+<!-- 浮动大爱心（模拟动画效果） -->
+<div class="float-heart" aria-hidden="true">
+  <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06A5.5 5.5 0 003.16 12.4L12 21.23l8.84-8.83a5.5 5.5 0 000-7.79z"/></svg>
+</div>
+
+</body>
+</html>

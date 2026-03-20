@@ -27,7 +27,8 @@ body{font-family:-apple-system,"SF Pro Display","PingFang SC","Noto Sans SC","Mi
 .nav-title{font-size:16px;font-weight:600;letter-spacing:.2px}
 
 /* ═══ 资产卡片 ═══ */
-.balance-card{margin:16px;border-radius:20px;padding:28px 24px 18px;background:url("../images/wallet-card-bg.png") center/cover no-repeat;position:relative;overflow:hidden;color:#fff;box-shadow:0 8px 32px rgba(99,102,241,.25),0 2px 8px rgba(99,102,241,.1)}
+.balance-card{margin:16px;border-radius:20px;padding:28px 24px 18px;background:linear-gradient(135deg,#3730a3 0%,#6366f1 38%,#818cf8 100%);position:relative;overflow:hidden;color:#fff;box-shadow:0 8px 32px rgba(99,102,241,.25),0 2px 8px rgba(99,102,241,.1)}
+.balance-card::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 100% 0%,rgba(255,255,255,.18),transparent 55%);pointer-events:none}
 .balance-main{position:relative;z-index:1;margin-bottom:20px}
 .balance-main-label{font-size:12px;opacity:.7;letter-spacing:.5px;margin-bottom:10px}
 .balance-main-num{font-size:42px;font-weight:800;line-height:1.1;letter-spacing:-.02em}

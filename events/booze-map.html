@@ -52,6 +52,7 @@ img{display:block;max-width:100%}
 .hero-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:999px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.15);margin-bottom:20px}
 .hero-badge span{font-size:10px;letter-spacing:2px;color:var(--neon2);font-weight:600}
 .hero-img{width:clamp(260px,75vw,340px);margin:0 auto 20px;filter:drop-shadow(0 8px 32px rgba(240,178,74,.2)) drop-shadow(0 2px 8px rgba(0,0,0,.3));animation:heroFloat 4s ease-in-out infinite alternate}
+.hero-img svg{display:block;width:100%;height:auto;border-radius:18px}
 @keyframes heroFloat{0%{transform:translateY(0)}100%{transform:translateY(-8px)}}
 .hero-subtitle{font-size:16px;color:var(--sub);line-height:1.8;margin-bottom:28px;letter-spacing:.3px}
 .hero-subtitle em{font-style:normal;color:var(--text);font-weight:600}
@@ -99,6 +100,7 @@ img{display:block;max-width:100%}
 .route-bar:first-child{border-top:none}
 .route-bar-img{width:52px;height:52px;border-radius:12px;overflow:hidden;flex-shrink:0;background:var(--bg3);border:1px solid rgba(255,255,255,.05)}
 .route-bar-img img{width:100%;height:100%;object-fit:cover}
+.route-bar-ph{display:grid;place-items:center;font-size:15px;font-weight:800;color:var(--neon2);background:linear-gradient(145deg,var(--bg3),rgba(139,92,246,.2));width:100%;height:100%}
 .route-bar-info{flex:1;min-width:0}
 .route-bar-name{font-size:14px;font-weight:600;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .route-bar-drink{font-size:12px;color:var(--neon2);margin-top:2px;display:flex;align-items:center;gap:4px}
@@ -171,12 +173,12 @@ img{display:block;max-width:100%}
 <!-- ═══ HERO ═══ -->
 <section class="hero">
     <div class="hero-collab">
-        <img class="hero-collab-logo" src="../images/hero-logo.png" alt="Zup!">
+        <svg class="hero-collab-logo" viewBox="0 0 72 18" xmlns="http://www.w3.org/2000/svg" aria-label="Zup!" role="img"><text x="0" y="15" fill="currentColor" font-size="14" font-weight="800" font-family="system-ui,sans-serif">Zup!</text></svg>
         <span class="hero-collab-x">×</span>
         <span class="hero-collab-name">CityDrink</span>
     </div>
     <div class="hero-badge"><span>联合出品</span></div>
-    <img class="hero-img" src="../images/event/booze_hero.png" alt="酒鬼地图">
+    <div class="hero-img" role="img" aria-label="酒鬼地图主视觉（占位）"><svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="bh" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="rgba(139,92,246,.45)"/><stop offset="55%" stop-color="rgba(96,165,250,.3)"/><stop offset="100%" stop-color="rgba(244,114,182,.25)"/></linearGradient></defs><rect width="200" height="120" rx="16" fill="url(#bh)"/><path d="M88 28h24l18 36-30 48-30-48 18-36z" fill="rgba(255,255,255,.2)"/><ellipse cx="145" cy="38" rx="14" ry="12" fill="rgba(255,255,255,.15)"/></svg></div>
     <p class="hero-subtitle"><em>3家酒馆 · 3杯特调 · 1张卡搞定</em><br>选一条线路，开启你的北京微醺之旅</p>
     <div class="hero-price">
         <span class="hero-price-yen">¥</span>
@@ -283,7 +285,7 @@ img{display:block;max-width:100%}
 <section class="outro reveal">
     <p class="outro-title">酒鬼地图</p>
     <p class="outro-msg">选一条线路，约上朋友<br>开启一场北京微醺冒险吧。</p>
-    <img class="outro-logo" src="../images/hero-logo.png" alt="Zup!">
+    <svg class="outro-logo" viewBox="0 0 72 22" xmlns="http://www.w3.org/2000/svg" aria-label="Zup!" role="img"><text x="0" y="17" fill="currentColor" font-size="15" font-weight="800" font-family="system-ui,sans-serif">Zup!</text></svg>
     <p class="outro-brand">Zup! × CityDrink · 酒鬼地图</p>
 </section>
 
@@ -292,12 +294,125 @@ img{display:block;max-width:100%}
 <!-- ═══ Toast ═══ -->
 <div class="toast" id="toast"></div>
 
-<script>document.write('<script src="booze-map-config.js?v='+Math.floor(Date.now()/60000)+'"><\/script>')</script>
 <script>
+/* 线路数据（原 booze-map-config.js，已内联；修改线路请编辑本数组） */
+var ROUTES = [
+
+  {
+    id: "route-1",
+    name: "三里屯微醺之旅",
+    tag: "三里屯",
+    bars: [
+      { name: "八荒·MIDBAR", drink: "克林索尔的夏天", address: "朝阳区三里屯工体北路21号楼" },
+      { name: "Hye! Bar", drink: "霓虹日落", address: "东城区人民美术文创园内" },
+      { name: "蓝境酒馆", drink: "蓝调特调", address: "朝阳区望京街9号万科时代中心" }
+    ]
+  },
+
+  {
+    id: "route-2",
+    name: "胡同探秘夜行",
+    tag: "东城",
+    bars: [
+      { name: "八荒·Hutong Lab", drink: "冈仁波齐", address: "东城区安定门西大街5号" },
+      { name: "中華酒場燈籠", drink: "灯笼特调", address: "朝阳区华远九都汇提灯街B1" },
+      { name: "Azusa#2", drink: "樱花威士忌", address: "朝阳区华远九都汇提灯街B1" }
+    ]
+  },
+
+  {
+    id: "route-3",
+    name: "建国门小酌之夜",
+    tag: "建国门",
+    bars: [
+      { name: "微醺九号·炭火料理", drink: "春醒特调", address: "朝阳区光华路44号A2" },
+      { name: "老房子酒吧", drink: "Old Fashioned", address: "朝阳区酒仙桥路甲13号" },
+      { name: "哈哈酒馆", drink: "快乐水", address: "昌平区回龙观西大街9号院" }
+    ]
+  },
+
+  {
+    id: "route-4",
+    name: "五道口学术酒局",
+    tag: "海淀",
+    bars: [
+      { name: "奇点·宇宙客厅", drink: "宇宙拿铁鸡尾酒", address: "海淀区五道口华清商务会馆" },
+      { name: "蓝境酒馆", drink: "蓝调特调", address: "朝阳区望京街9号万科时代中心" },
+      { name: "破斧酒吧", drink: "福灵剂", address: "通州区台湖镇唐大庄村135号" }
+    ]
+  },
+
+  {
+    id: "route-5",
+    name: "望京深夜食堂",
+    tag: "望京",
+    bars: [
+      { name: "蓝境酒馆", drink: "望京之夜", address: "朝阳区望京街9号万科时代中心" },
+      { name: "八荒·MIDBAR", drink: "山音", address: "朝阳区三里屯工体北路21号楼" },
+      { name: "中華酒場燈籠", drink: "提灯特调", address: "朝阳区华远九都汇提灯街B1" }
+    ]
+  },
+
+  {
+    id: "route-6",
+    name: "魔法主题之夜",
+    tag: "通州",
+    bars: [
+      { name: "破斧酒吧", drink: "吐真剂", address: "通州区台湖镇唐大庄村135号" },
+      { name: "哈哈酒馆", drink: "精酿IPA", address: "昌平区回龙观西大街9号院" },
+      { name: "Hye! Bar", drink: "液氮冰球", address: "东城区人民美术文创园内" }
+    ]
+  },
+
+  {
+    id: "route-7",
+    name: "文艺青年漫游",
+    tag: "文艺",
+    bars: [
+      { name: "八荒·Hutong Lab", drink: "一一", address: "东城区安定门西大街5号" },
+      { name: "奇点·宇宙客厅", drink: "星空特调", address: "海淀区五道口华清商务会馆" },
+      { name: "老房子酒吧", drink: "经典曼哈顿", address: "朝阳区酒仙桥路甲13号" }
+    ]
+  },
+
+  {
+    id: "route-8",
+    name: "日式清酒巡礼",
+    tag: "日式",
+    bars: [
+      { name: "Azusa#2", drink: "十四代清酒", address: "朝阳区华远九都汇提灯街B1" },
+      { name: "中華酒場燈籠", drink: "梅酒特调", address: "朝阳区华远九都汇提灯街B1" },
+      { name: "微醺九号·炭火料理", drink: "柚子酒", address: "朝阳区光华路44号A2" }
+    ]
+  },
+
+  {
+    id: "route-9",
+    name: "回龙观夜归人",
+    tag: "昌平",
+    bars: [
+      { name: "哈哈酒馆", drink: "驻唱特调", address: "昌平区回龙观西大街9号院" },
+      { name: "破斧酒吧", drink: "黄油啤酒", address: "通州区台湖镇唐大庄村135号" },
+      { name: "蓝境酒馆", drink: "极光特调", address: "朝阳区望京街9号万科时代中心" }
+    ]
+  },
+
+  {
+    id: "route-10",
+    name: "酒仙桥复古之夜",
+    tag: "酒仙桥",
+    bars: [
+      { name: "老房子酒吧", drink: "威士忌酸", address: "朝阳区酒仙桥路甲13号" },
+      { name: "Azusa#2", drink: "响威士忌", address: "朝阳区华远九都汇提灯街B1" },
+      { name: "八荒·MIDBAR", drink: "诗意晚风", address: "朝阳区三里屯工体北路21号楼" }
+    ]
+  }
+
+];
 (function(){
     var $ = function(sel){return document.querySelector(sel)};
     var list = $("#routeList");
-    if(!window.ROUTES || !ROUTES.length){ return; }
+    if(!ROUTES || !ROUTES.length){ return; }
 
     var toastEl = $("#toast");
     function showToast(msg){
@@ -319,7 +434,11 @@ img{display:block;max-width:100%}
         route.bars.forEach(function(bar, bi){
             barsHtml += '<div class="route-bar">' +
                 '<div class="route-bar-idx">' + (bi + 1) + '</div>' +
-                '<div class="route-bar-img"><img src="' + bar.image + '" alt="' + bar.name + '" loading="lazy"></div>' +
+                '<div class="route-bar-img" title="' + bar.name.replace(/"/g,'&quot;') + '">' +
+                (bar.image
+                    ? '<img src="' + String(bar.image).replace(/"/g,'&quot;') + '" alt="" loading="lazy">'
+                    : '<div class="route-bar-ph" aria-hidden="true">' + (bar.name.charAt(0) || '酒') + '</div>') +
+                '</div>' +
                 '<div class="route-bar-info">' +
                     '<div class="route-bar-name">' + bar.name + '</div>' +
                     '<div class="route-bar-drink">' + bar.drink + '</div>' +
