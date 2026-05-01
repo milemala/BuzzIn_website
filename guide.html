@@ -13,6 +13,12 @@
     <link rel="stylesheet" href="css/animations.css?v=20250107">
     <style>
         /* 用户手册页面专用样式 - 移动端优先 */
+        :root {
+            --orange-bubble: #FED93D;
+            --green-bubble: #2EE8C2;
+            --accent-color: var(--orange-bubble);
+        }
+
         .guide-hero {
             min-height: 85vh;
             display: flex;
@@ -177,7 +183,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(244, 180, 0, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(254, 217, 61, 0.1) 0%, transparent 70%);
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -326,7 +332,7 @@
         .scenario-media {
             width: 100%;
             height: 200px;
-            background: linear-gradient(135deg, rgba(244, 180, 0, 0.2), rgba(46, 232, 194, 0.2));
+            background: linear-gradient(135deg, rgba(254, 217, 61, 0.2), rgba(46, 232, 194, 0.2));
             position: relative;
             overflow: hidden;
             perspective: 600px;
@@ -339,7 +345,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at center, rgba(244, 180, 0, 0.3), transparent);
+            background: radial-gradient(circle at center, rgba(254, 217, 61, 0.3), transparent);
             animation: pulseGlow 3s ease-in-out infinite;
         }
 
@@ -868,37 +874,19 @@
             <div class="faq-list">
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>地图上没有内容怎么回事？</span>
+                        <span>可以发布付费邀约吗？</span>
                     </div>
                     <div class="faq-answer">
-                        App商户入驻数量还不够多，目前仅在北京地区拓展商户合作中，请给我们一些时间，我们会尽快合作更多商户与社群入驻。
+                        可以。发布邀约时可设置报名费，参与者通过 Zup! 完成支付报名。活动收入会记录在你的账户中，后续可在 Zup! 内申请提现。
                     </div>
                 </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>我能在任意地点发布NOW吗？</span>
-                    </div>
-                    <div class="faq-answer">
-                        普通用户仅可以在自己附近200米范围内选择一个地点发布NOW，目的是尽量避免虚假信息，确保发布者是真实在场的。但认证店员可以无视距离，发布NOW在他所属的商户内，方便帮助店内发布“官方”活动。                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>我就是想在目的地发布一个邀约，但我现在还没到那里，该怎么办？
-                        </span>
-                    </div>
-                    <div class="faq-answer">
-                        严格来讲，这个属于预约活动，并不是“NOW”的即时信息。后续版本Zup! 有计划支持预约信息发布，目前版本可以暂时现在自己附近的位置发一个邀约，然后在NOW的描述里将邀约地点时间说清楚，看有没有希望一同前往的伙伴。
-                    </div>
-                </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <span>商户怎么入驻？</span>
                     </div>
                     <div class="faq-answer">
-                        官网有具体的入驻指引，<a href="https://nowmap.cn/merchant.html" style="color:#00D396; text-decoration:none;">点击此处跳转</a>
+                        官网有具体的入驻指引，<a href="https://nowmap.cn/merchant.html">点击此处跳转</a>
                     </div>
                 </div>
             </div>
@@ -972,4 +960,3 @@
     </script>
 </body>
 </html>
-
