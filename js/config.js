@@ -4,5 +4,10 @@ const APK_DOWNLOAD_URL = 'https://cdn.nowmap.cn/apk/app-release-1.0.0.02-3.apk';
 const ANDROID_GUIDE_URL = 'android-guide.html';
 const IOS_GUIDE_URL = 'ios-appstore-guide.html';
 
+// CDN 静态资源
+const CDN_BASE = 'https://cdn.nowmap.cn';
+const CDN_INTRO = CDN_BASE + '/h5_event/event/intro';
+const OSS_Q60 = '?x-oss-process=image/quality,q_60';
+
 
 

@@ -12,6 +12,9 @@
 当前页面：
 - `invite-detail.html`（用户发布邀约详情页原型：头图 + 报名/签到状态条 + 正文 + 评论 + 底部回复，含新增 **报名费** 展示模块）
 - `now-list.html`（NOW/邀约列表原型：双列瀑布流；封面左上 NOW 角标，**左下**纵向为 **费用**（上：收费显示 `¥金额`，**免费邀约显示「免费」**）+ **已报 x/y**（下），右下为距离）
+- `nearby-friends.html`（附近好友列表原型：紧凑用户卡片，包含头像、昵称、简介、动态数量、在线状态与距离）
+- `publish-quick.html`（快捷发布原型：单页先选“我组局/我有空”，再动态展示对应字段；我组局需地点+时间，我有空仅需地点）
+- `chat-list-recommend.html`（聊天列表推荐位原型：在聊天 Tab 下方、会话列表上方放置“当前城市大群”推荐卡，支持一键加入并置顶）
 - `beijing-spring-awakening.html`（北京春醒交友季 - 外部 H5 分享页，含下载/打开 App 引导）
 - `beijing-spring-awakening-inapp.html`（北京春醒交友季 - App 内嵌专题页，无下载/打开入口）
 - `beijing-spring-awakening-venue.html`（商户专属据点页 - 模板，供商户转发朋友圈，只展示单个商户）

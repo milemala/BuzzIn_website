@@ -50,20 +50,33 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Ne
 .pill svg{width:14px;height:14px}
 .pill-green svg{color:#34d399}
 
-.cover-actions{position:absolute;left:10px;right:10px;bottom:10px;display:grid;gap:6px}
-.act-row{height:34px;border-radius:17px;background:rgba(0,0,0,.38);backdrop-filter:blur(8px);display:flex;align-items:center;gap:6px;padding:0 6px 0 4px}
-.act-btn{padding:3px 14px;border-radius:14px;font-size:13px;font-weight:700;flex-shrink:0}
-.act-btn.signup{background:var(--yellow);color:#111}
-.act-btn.checkin{background:#9ca3af;color:#111}
-.act-play{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center;flex-shrink:0}
-.act-play svg{width:10px;height:10px;color:#fff;margin-left:1px}
-.act-avatars{display:flex;flex-shrink:0}
-.act-avatars i{display:block;width:22px;height:22px;border-radius:50%;margin-left:-5px;border:1.5px solid rgba(0,0,0,.4);background-size:cover;background-color:#444}
-.act-avatars i:first-child{margin-left:0}
-.act-stat{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;flex-shrink:0}
-.act-stat svg{width:13px;height:13px}
 .female{color:#f9a8d4}
 .male{color:#93c5fd}
+
+/* ═══ 3b. 报名 / 签到左右结构方案 ═══ */
+.state-showcase{margin:8px 10px 0;display:grid;gap:7px}
+.status-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.status-box{min-width:0;min-height:72px;padding:9px;border-radius:13px;background:linear-gradient(145deg,rgba(34,34,34,.98),rgba(18,20,20,.98));border:1px solid rgba(255,255,255,.08);box-shadow:0 8px 18px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.05)}
+.status-box.signup{border-color:rgba(245,197,66,.18);background:linear-gradient(145deg,rgba(49,42,20,.98),rgba(20,20,18,.98))}
+.status-box.checkin{border-color:rgba(45,212,191,.18);background:linear-gradient(145deg,rgba(15,45,42,.98),rgba(17,22,22,.98))}
+.status-box.done{background:linear-gradient(145deg,rgba(12,58,51,.98),rgba(17,24,23,.98));border-color:rgba(45,212,191,.24)}
+.status-head{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.status-label{display:flex;align-items:center;gap:4px;font-size:11px;font-weight:900;color:rgba(255,255,255,.58);white-space:nowrap}
+.status-label svg{width:12px;height:12px;flex-shrink:0}
+.status-badge{padding:2px 5px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);font-size:10px;font-weight:900;color:rgba(255,255,255,.68);white-space:nowrap}
+.status-badge.price{background:rgba(245,197,66,.14);border-color:rgba(245,197,66,.2);color:var(--yellow)}
+.status-badge.free{background:rgba(45,212,191,.14);border-color:rgba(45,212,191,.18);color:#49f0d1}
+.status-main{margin-top:7px;font-size:15px;font-weight:900;line-height:1.1;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.status-meta{margin-top:4px;font-size:10px;color:rgba(255,255,255,.48);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.status-bottom{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:8px}
+.status-action{height:24px;border:0;border-radius:9px;padding:0 9px;font:inherit;font-size:11px;font-weight:900;white-space:nowrap}
+.status-action.signup{background:var(--yellow);color:#111}
+.status-action.checkin{background:rgba(45,212,191,.2);border:1px solid rgba(45,212,191,.16);color:#60f4d6}
+.status-action.done{background:rgba(45,212,191,.26);color:#b6fff2}
+.status-action.disabled{background:rgba(255,255,255,.08);color:rgba(255,255,255,.45)}
+.status-avatars{display:flex;align-items:center;min-width:28px}
+.status-avatars i{display:block;width:16px;height:16px;border-radius:50%;margin-left:-6px;border:1.5px solid rgba(17,17,17,.9);background:linear-gradient(135deg,#777,#333)}
+.status-avatars i:first-child{margin-left:0}
 
 /* ═══ 4. 正文区 ═══ */
 .body{padding:14px 16px;border-bottom:1px solid var(--border)}
@@ -81,14 +94,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Ne
 .body-group{margin-top:10px;display:inline-flex;align-items:center;gap:5px;padding:6px 10px;border-radius:999px;background:var(--card2);font-size:13px;color:var(--sub)}
 .body-group svg{width:14px;height:14px;color:var(--sub)}
 .body-time{margin-top:8px;font-size:13px;color:var(--sub)}
-
-/* ═══ 4b. 报名费卡片（新增） ═══ */
-.fee-card{margin-top:14px;padding:12px 14px;border-radius:12px;border:1px solid rgba(245,197,66,.28);background:linear-gradient(135deg,rgba(245,197,66,.14),rgba(245,197,66,.05))}
-.fee-row{display:flex;align-items:baseline;gap:8px}
-.fee-label{font-size:12px;color:rgba(255,255,255,.7)}
-.fee-price{font-size:22px;font-weight:800;color:var(--yellow);line-height:1}
-.fee-unit{font-size:13px;font-weight:600;color:var(--yellow)}
-.fee-note{margin-top:6px;font-size:12px;color:rgba(255,255,255,.5);line-height:1.5}
 
 /* ═══ 5. 评论区 ═══ */
 .comments{padding:14px 16px}
@@ -169,27 +174,124 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Ne
         <span class="pill pill-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>查看位置</span>
     </div>
 
-    <!-- 底部：报名 / 签到 -->
-    <div class="cover-actions">
-        <div class="act-row">
-            <div class="act-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="8 5 19 12 8 19"/></svg></div>
-            <span class="act-btn signup">报名</span>
-            <span class="act-avatars"><i></i><i></i><i></i></span>
-            <span class="act-stat">
-                <svg viewBox="0 0 24 24" fill="currentColor" class="female"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg><span class="female">1人</span>
-                <svg viewBox="0 0 24 24" fill="currentColor" class="male"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg><span class="male">1人</span>
-            </span>
-        </div>
-        <div class="act-row">
-            <span class="act-btn checkin">签到</span>
-            <span class="act-avatars"><i></i><i></i><i></i></span>
-            <span class="act-stat">
-                <svg viewBox="0 0 24 24" fill="currentColor" class="female"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg><span class="female">1人</span>
-                <svg viewBox="0 0 24 24" fill="currentColor" class="male"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg><span class="male">1人</span>
-            </span>
-        </div>
-    </div>
 </div>
+
+<!-- ═══ 3b. 报名 / 签到状态方案 ═══ -->
+<section class="state-showcase" aria-label="报名与签到状态方案">
+    <div class="status-pair">
+        <article class="status-box signup">
+            <div class="status-head">
+                <span class="status-label">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                    报名
+                </span>
+                <span class="status-badge price">¥66</span>
+            </div>
+            <div class="status-main">22/99+ 已报名</div>
+            <div class="status-meta">男 22 · 女 22</div>
+            <div class="status-bottom">
+                <span></span>
+                <button class="status-action signup">立即报名</button>
+            </div>
+        </article>
+        <article class="status-box checkin">
+            <div class="status-head">
+                <span class="status-label">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/><circle cx="12" cy="12" r="10"/></svg>
+                    签到
+                </span>
+                <span class="status-badge">未开始</span>
+            </div>
+            <div class="status-main">还没人签到</div>
+            <div class="status-meta">到店后可签到</div>
+            <div class="status-bottom">
+                <span></span>
+                <button class="status-action disabled">未到店</button>
+            </div>
+        </article>
+    </div>
+
+    <div class="status-pair">
+        <article class="status-box signup">
+            <div class="status-head">
+                <span class="status-label">报名</span>
+                <span class="status-badge free">免费</span>
+            </div>
+            <div class="status-main">8 人想去</div>
+            <div class="status-meta">不收报名费</div>
+            <div class="status-bottom">
+                <span></span>
+                <button class="status-action signup">立即报名</button>
+            </div>
+        </article>
+        <article class="status-box checkin">
+            <div class="status-head">
+                <span class="status-label">签到</span>
+                <span class="status-badge">未签到</span>
+            </div>
+            <div class="status-main">已报名，待到店</div>
+            <div class="status-meta">还没人签到</div>
+            <div class="status-bottom">
+                <span></span>
+                <button class="status-action checkin">到店签到</button>
+            </div>
+        </article>
+    </div>
+
+    <div class="status-pair">
+        <article class="status-box signup">
+            <div class="status-head">
+                <span class="status-label">报名</span>
+                <span class="status-badge">已报名</span>
+            </div>
+            <div class="status-main">22 人已报名</div>
+            <div class="status-meta">你已占位</div>
+            <div class="status-bottom">
+                <span></span>
+                <button class="status-action disabled">已报名</button>
+            </div>
+        </article>
+        <article class="status-box done">
+            <div class="status-head">
+                <span class="status-label">签到</span>
+                <span class="status-badge free">已到场</span>
+            </div>
+            <div class="status-main">你已在现场</div>
+            <div class="status-meta">18:32 签到成功</div>
+            <div class="status-bottom">
+                <span></span>
+                <button class="status-action done">已签到</button>
+            </div>
+        </article>
+    </div>
+
+    <div class="status-pair">
+        <article class="status-box signup">
+            <div class="status-head">
+                <span class="status-label">报名</span>
+                <span class="status-badge price">¥66</span>
+            </div>
+            <div class="status-main">22 人已报名</div>
+            <div class="status-meta">99+ 名额</div>
+            <div class="status-bottom">
+                <span></span>
+                <button class="status-action signup">立即报名</button>
+            </div>
+        </article>
+        <article class="status-box done">
+            <div class="status-head">
+                <span class="status-label">签到</span>
+                <span class="status-badge free">3 人</span>
+            </div>
+            <div class="status-main">现场有人</div>
+            <div class="status-meta">有人已经到店</div>
+            <div class="status-bottom">
+                <span class="status-avatars"><i></i><i></i><i></i></span>
+                <button class="status-action checkin">我也签到</button>
+            </div>
+        </article>
+    </div>
+</section>
 
 <!-- ═══ 4. 正文 ═══ -->
 <div class="body">
@@ -214,15 +316,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Ne
     <!-- 时间 -->
     <div class="body-time">18:23</div>
 
-    <!-- ★ 报名费（新增） -->
-    <div class="fee-card">
-        <div class="fee-row">
-            <span class="fee-label">报名费</span>
-            <span class="fee-price">¥66</span>
-            <span class="fee-unit">/ 人</span>
-        </div>
-        <p class="fee-note">女士优惠 减¥10 · 实际支付 ¥56/人 · 到场后按活动规则结算</p>
-    </div>
 </div>
 
 <!-- ═══ 5. 评论区 ═══ -->

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>附近好友</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+    --bg:#0b0d12;--bg2:#121620;--card:#171c27;--line:#2b3445;
+    --text:#f5f7ff;--sub:#aeb9cf;--dim:#7f8ca7;
+    --pri:#fed93d;--pri2:#ffe984;--ok:#26d0a2;
+    --safe:env(safe-area-inset-bottom,0px)
+}
+body{
+    font-family:-apple-system,"SF Pro Display","PingFang SC","Noto Sans SC",sans-serif;
+    background:
+      radial-gradient(120% 70% at 100% -20%,rgba(254,217,61,.2),transparent 45%),
+      radial-gradient(120% 80% at -20% 120%,rgba(124,140,255,.18),transparent 45%),
+      var(--bg);
+    color:var(--text);min-height:100vh;line-height:1.5
+}
+.page{max-width:430px;margin:0 auto;min-height:100vh;padding:20px 14px calc(18px + var(--safe))}
+.top{margin-bottom:14px}
+.kicker{
+    display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:999px;
+    font-size:11px;font-weight:700;letter-spacing:.75px;color:#1a1405;
+    background:linear-gradient(90deg,var(--pri),var(--pri2));
+}
+.kicker i{width:5px;height:5px;border-radius:50%;background:#1a1405}
+.title{font-size:28px;font-weight:900;letter-spacing:-.45px;line-height:1.2;margin-top:10px}
+.sub{font-size:13px;color:var(--sub);margin-top:7px}
+
+.filters{
+    margin-top:14px;display:flex;align-items:center;gap:8px;overflow:auto;padding-bottom:2px;
+    scrollbar-width:none
+}
+.filters::-webkit-scrollbar{display:none}
+.pill{
+    white-space:nowrap;border:none;height:34px;padding:0 12px;border-radius:999px;font-size:12px;font-weight:700;
+    color:#cad3e8;background:#182031;border:1px solid #303b4f
+}
+.pill.active{
+    color:#fff3bc;background:rgba(254,217,61,.12);border-color:rgba(254,217,61,.7);
+    box-shadow:0 0 0 2px rgba(254,217,61,.1) inset
+}
+
+.list{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+.card{
+    display:flex;gap:10px;align-items:flex-start;padding:11px;border-radius:14px;
+    background:linear-gradient(180deg,rgba(255,255,255,.03),transparent),var(--card);
+    border:1px solid var(--line);box-shadow:0 10px 24px rgba(0,0,0,.28)
+}
+.avatar{
+    width:52px;height:52px;border-radius:14px;flex-shrink:0;display:grid;place-items:center;
+    background:linear-gradient(140deg,#374867,#283653);color:#edf3ff;font-size:18px;font-weight:800
+}
+.main{min-width:0;flex:1}
+.line1{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.name{font-size:15px;font-weight:800;letter-spacing:-.15px;display:flex;align-items:center;gap:6px;min-width:0}
+.name span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.online{
+    display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:999px;
+    font-size:11px;font-weight:700;border:1px solid rgba(38,208,162,.4);color:#91efd3;background:rgba(38,208,162,.12)
+}
+.online i{width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px rgba(38,208,162,.85)}
+.offline{
+    font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;border:1px solid #3b455a;color:#9eacc8;background:#1a2130
+}
+.bio{
+    margin-top:5px;color:var(--sub);font-size:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden
+}
+.meta{margin-top:7px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.distance{font-size:11px;color:var(--dim)}
+.auto{margin-top:6px;font-size:12px;color:#d4def4;display:flex;align-items:center;gap:6px}
+.auto b{color:#fff}
+.signals{margin-top:7px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.signal{
+    display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:999px;
+    font-size:11px;font-weight:700;color:#dbe6ff;background:#1b2436;border:1px solid #35435c
+}
+.actions{margin-top:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.hi-btn{
+    border:none;height:30px;padding:0 12px;border-radius:999px;cursor:pointer;
+    font-size:12px;font-weight:800;color:#1a1405;background:linear-gradient(90deg,var(--pri),var(--pri2))
+}
+</style>
+</head>
+<body>
+<div class="page">
+    <section class="top">
+        <div class="kicker"><i></i>NEARBY FRIENDS</div>
+        <h1 class="title">附近好友</h1>
+        <p class="sub">看看谁和你在同一个街区，马上发起聊天吧</p>
+        <div class="filters">
+            <button class="pill active">全部</button>
+            <button class="pill">在线优先</button>
+            <button class="pill">500m内</button>
+            <button class="pill">动态多</button>
+        </div>
+    </section>
+
+    <section class="list">
+        <article class="card">
+            <div class="avatar" style="background:linear-gradient(145deg,#5d85ff,#374e94)">L</div>
+            <div class="main">
+                <div class="line1">
+                    <div class="name"><span>林夏</span></div>
+                    <div class="online"><i></i>在线</div>
+                </div>
+                <p class="bio">咖啡成瘾患者，周末常在朝阳公园跑步，喜欢随缘但真诚的聊天。</p>
+                <div class="auto">最近活跃：<b>3 分钟前</b></div>
+                <div class="signals">
+                    <span class="signal">回复快</span>
+                    <span class="signal">最近常在国贸</span>
+                    <span class="signal">真人认证</span>
+                </div>
+                <div class="actions">
+                    <div class="distance">320m</div>
+                    <button class="hi-btn">打招呼</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="avatar" style="background:linear-gradient(145deg,#fe8a5c,#bd4e31)">M</div>
+            <div class="main">
+                <div class="line1">
+                    <div class="name"><span>木可</span></div>
+                    <div class="offline">1 小时前在线</div>
+                </div>
+                <p class="bio">下班会去拍城市夜景，也会约人探店，目标是把北京小众酒吧都踩完。</p>
+                <div class="auto">最近动态：<b>本周参加了 2 场同城活动</b></div>
+                <div class="signals">
+                    <span class="signal">夜间活跃</span>
+                    <span class="signal">回复率 89%</span>
+                    <span class="signal">资料完整度 90%</span>
+                </div>
+                <div class="actions">
+                    <div class="distance">780m</div>
+                    <button class="hi-btn">打招呼</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="avatar" style="background:linear-gradient(145deg,#7b7dff,#4a4ecf)">R</div>
+            <div class="main">
+                <div class="line1">
+                    <div class="name"><span>Rita周</span></div>
+                    <div class="online"><i></i>在线</div>
+                </div>
+                <p class="bio">自由插画师，喜欢即兴聊天和展览，有好玩的市集可以叫我。</p>
+                <div class="auto">最近足迹：<b>常出现在三里屯和团结湖</b></div>
+                <div class="signals">
+                    <span class="signal">共同好友 2 个</span>
+                    <span class="signal">今天来过</span>
+                    <span class="signal">新手友好</span>
+                </div>
+                <div class="actions">
+                    <div class="distance">1.1km</div>
+                    <button class="hi-btn">打招呼</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="avatar" style="background:linear-gradient(145deg,#69d2b7,#2f8f7e)">J</div>
+            <div class="main">
+                <div class="line1">
+                    <div class="name"><span>Jin</span></div>
+                    <div class="offline">昨天在线</div>
+                </div>
+                <p class="bio">这个用户还没写简介，先看看他的近期活跃表现吧。</p>
+                <div class="auto">系统摘要：<b>最近 7 天活跃 4 天</b></div>
+                <div class="signals">
+                    <span class="signal">本月参与 3 次活动</span>
+                    <span class="signal">回复平均 18 分钟</span>
+                    <span class="signal">已完成实名认证</span>
+                </div>
+                <div class="actions">
+                    <div class="distance">1.8km</div>
+                    <button class="hi-btn">打招呼</button>
+                </div>
+            </div>
+        </article>
+    </section>
+</div>
+</body>
+</html>

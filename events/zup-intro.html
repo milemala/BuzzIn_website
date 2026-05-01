@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Zup!｜线下实时活动地图</title>
+<meta name="description" content="打开地图，看看附近有什么热闹。不刷信息流，Walk-in 式线下社交，让店内的气氛透明，让想约与被约的人彼此看到。">
+<meta name="keywords" content="Zup,实时活动地图,线下社交,同城活动,Walk-in">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Zup!">
+<meta property="og:title" content="Zup!｜线下实时活动地图">
+<meta property="og:description" content="打开地图，看看附近有什么热闹。不刷信息流，Walk-in 式线下社交，让店内的气氛透明，让想约与被约的人彼此看到。">
+<meta property="og:url" content="">
+<meta property="og:image" content="https://cdn.nowmap.cn/bz/media/2026/04/02/3d/14/612503e3-9b6c-4a1a-8331-d9f7504be88f.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Zup!｜线下实时活动地图">
+<meta name="twitter:description" content="打开地图，看看附近有什么热闹。不刷信息流，Walk-in 式线下社交。">
+<meta name="twitter:image" content="https://cdn.nowmap.cn/bz/media/2026/04/02/3d/14/612503e3-9b6c-4a1a-8331-d9f7504be88f.png">
+<meta itemprop="name" content="Zup!｜线下实时活动地图">
+<meta itemprop="description" content="打开地图，看看附近有什么热闹。不刷信息流，Walk-in 式线下社交。">
+<meta itemprop="image" content="https://cdn.nowmap.cn/bz/media/2026/04/02/3d/14/612503e3-9b6c-4a1a-8331-d9f7504be88f.png">
+<link rel="preconnect" href="https://cdn.nowmap.cn" crossorigin>
+<link rel="dns-prefetch" href="https://cdn.nowmap.cn">
+<script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+    --bg:#0e0d0b;--bg2:#161412;--bg3:#1e1b18;
+    --text:#f0ebe2;--sub:#b0a898;--dim:#706860;
+    --amber:#FED93D;--honey:#ffe566;--tawny:#e8b820;
+    --green:#2EE8C2;--mint:#44f0d0;
+    --pink:#ff6b8a;--blue:#5a9cf5;--purple:#b07aff;--coral:#ff7a5c;
+    --card:rgba(255,250,240,.04);--border:rgba(255,255,255,.06);
+    --safe-b:env(safe-area-inset-bottom,0px)
+}
+html{overflow-x:hidden;scrollbar-width:none;overflow-anchor:none}
+html::-webkit-scrollbar{display:none}
+body{font-family:-apple-system,"SF Pro Display","PingFang SC","Noto Sans SC",sans-serif;color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;position:relative;scrollbar-width:none}
+body::-webkit-scrollbar{display:none}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E")}
+
+/* ═══════ 浮动装饰球 ═══════ */
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(60px)}
+.orb-1{width:260px;height:260px;top:-80px;right:-60px;background:radial-gradient(circle,rgba(254,217,61,.15),transparent 70%);animation:orbFloat1 12s ease-in-out infinite alternate}
+.orb-2{width:200px;height:200px;bottom:20%;left:-50px;background:radial-gradient(circle,rgba(46,232,194,.1),transparent 70%);animation:orbFloat2 15s ease-in-out infinite alternate}
+.orb-3{width:180px;height:180px;top:40%;right:-40px;background:radial-gradient(circle,rgba(255,107,138,.08),transparent 70%);animation:orbFloat3 18s ease-in-out infinite alternate}
+@keyframes orbFloat1{0%{transform:translate(0,0)}100%{transform:translate(-30px,40px)}}
+@keyframes orbFloat2{0%{transform:translate(0,0)}100%{transform:translate(20px,-30px)}}
+@keyframes orbFloat3{0%{transform:translate(0,0)}100%{transform:translate(-20px,25px)}}
+
+/* ═══════ 通用 ═══════ */
+.content{position:relative;z-index:1;max-width:430px;margin:0 auto}
+section{padding:0 20px}
+.sec-tag{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;padding:4px 12px;border-radius:999px;margin-bottom:14px}
+.sec-title{font-size:24px;font-weight:800;line-height:1.35;margin-bottom:10px;letter-spacing:-.3px}
+.sec-desc{font-size:16px;color:var(--sub);line-height:1.8}
+.gradient-text{background:linear-gradient(135deg,var(--amber),var(--honey),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ═══════ HERO ═══════ */
+.hero{position:relative;padding:0!important;background:#0e0d0b}
+
+.hero-visual{width:100%;position:relative;padding:50px 28px 32px;display:flex;flex-direction:column;align-items:center}
+
+/* 极光底（inset:0 避免超大合成层拖慢首滑；动效层 pointer-events:none） */
+.hero-aurora{position:absolute;inset:0;z-index:0;filter:blur(50px);animation:auroraSpin 22s linear infinite}
+.hero-aurora::before,.hero-aurora::after{content:"";position:absolute;border-radius:45%}
+.hero-aurora::before{width:50%;height:45%;top:18%;left:8%;background:radial-gradient(ellipse,rgba(254,217,61,.5),rgba(254,217,61,.1) 55%,transparent 78%)}
+.hero-aurora::after{width:45%;height:40%;bottom:16%;right:10%;background:radial-gradient(ellipse,rgba(255,107,138,.35),rgba(255,107,138,.08) 55%,transparent 78%)}
+.hero-aurora2{position:absolute;inset:0;z-index:0;filter:blur(55px);animation:auroraSpin 30s linear infinite reverse}
+.hero-aurora2::before,.hero-aurora2::after{content:"";position:absolute;border-radius:45%}
+.hero-aurora2::before{width:48%;height:42%;top:22%;right:12%;background:radial-gradient(ellipse,rgba(46,232,194,.4),rgba(46,232,194,.08) 55%,transparent 78%)}
+.hero-aurora2::after{width:44%;height:38%;bottom:20%;left:14%;background:radial-gradient(ellipse,rgba(176,122,255,.3),rgba(176,122,255,.06) 55%,transparent 78%)}
+.hero-aurora3{position:absolute;inset:0;z-index:0;filter:blur(40px);animation:auroraPulse 9s ease-in-out infinite alternate}
+.hero-aurora3::before,.hero-aurora3::after{content:"";position:absolute;border-radius:50%}
+.hero-aurora3::before{width:32%;height:28%;top:38%;left:32%;background:radial-gradient(ellipse,rgba(254,217,61,.35),transparent 65%)}
+.hero-aurora3::after{width:28%;height:24%;top:18%;right:22%;background:radial-gradient(ellipse,rgba(90,156,245,.25),transparent 65%)}
+@keyframes auroraSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+@keyframes auroraPulse{0%{transform:scale(.95) rotate(0deg)}100%{transform:scale(1.2) rotate(25deg)}}
+
+/* 网格纹理 */
+.hero-grid{position:absolute;inset:0;z-index:0;opacity:.035;background-image:
+    linear-gradient(rgba(255,255,255,.3) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.3) 1px,transparent 1px);
+    background-size:50px 50px;mask-image:radial-gradient(ellipse 80% 70% at 50% 45%,#000 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 45%,#000 20%,transparent 70%)}
+
+/* 闪点 */
+.hero-sparkle{position:absolute;width:3px;height:3px;border-radius:50%;z-index:1;animation:sparkle 3s ease-in-out infinite}
+.hs-1{top:12%;left:18%;background:var(--amber);animation-duration:2.8s}
+.hs-2{top:8%;right:22%;background:var(--green);animation-delay:.6s;animation-duration:3.5s}
+.hs-3{top:45%;left:10%;background:var(--pink);animation-delay:1.2s;animation-duration:3s}
+.hs-4{top:20%;right:14%;background:var(--blue);animation-delay:1.8s;animation-duration:3.2s}
+.hs-5{top:55%;right:16%;background:var(--purple);animation-delay:.4s;animation-duration:2.6s}
+.hs-6{top:35%;left:8%;background:var(--amber);animation-delay:2s;animation-duration:3.4s}
+@keyframes sparkle{0%,100%{opacity:0;transform:scale(.5)}50%{opacity:1;transform:scale(1.2)}}
+
+/* 内容层 */
+.hero-text{position:relative;z-index:3;text-align:center;width:100%}
+.hero-logo-img{height:96px;margin-bottom:-16px;opacity:.9}
+.hero-tagline{font-size:12px;color:var(--sub);letter-spacing:2px;font-weight:500;margin-bottom:16px}
+.hero-headline{font-size:28px;font-weight:800;line-height:1.35;margin-bottom:10px;letter-spacing:-.3px}
+.hero-headline em{font-style:normal;position:relative;display:inline}
+.hero-headline em::after{content:"";position:absolute;bottom:2px;left:0;right:0;height:8px;background:rgba(254,217,61,.2);border-radius:4px;z-index:-1}
+.hero-lead{font-size:16px;color:var(--sub);line-height:1.75;max-width:340px;margin:0 auto 20px}
+
+/* Hero 底部分割线 */
+.hero-divider{width:40px;height:2px;background:linear-gradient(90deg,var(--amber),var(--green));margin:0 auto;opacity:.5;position:relative;z-index:3}
+
+/* Hero 到下面的过渡 */
+.hero::after{content:"";position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(180deg,transparent,var(--bg));z-index:3;pointer-events:none}
+
+/* 首屏动效层不接管触摸，避免 iOS WebView 首次滑动被吞 */
+.hero-aurora,.hero-aurora2,.hero-aurora3,.hero-grid,.hero-sparkle{pointer-events:none}
+
+/* ═══════ 核心卖点 ═══════ */
+.features{padding:44px 20px 0}
+.feat-grid{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+.feat{padding:18px;border-radius:16px;background:var(--card);border:1px solid var(--border);display:flex;gap:14px;align-items:flex-start}
+.feat-icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;flex-shrink:0}
+.feat-icon svg{width:22px;height:22px}
+.fi-map{background:rgba(254,217,61,.08)}.fi-map svg{color:var(--amber)}
+.fi-live{background:rgba(46,232,194,.08)}.fi-live svg{color:var(--green)}
+.fi-social{background:rgba(255,107,138,.08)}.fi-social svg{color:var(--pink)}
+.feat-text h3{font-size:15px;font-weight:700;margin-bottom:3px}
+.feat-text p{font-size:15px;color:var(--sub);line-height:1.65}
+
+/* ═══════ 活动类型 ═══════ */
+.categories{padding:48px 20px 0}
+.cat-scroll{margin-top:20px;margin-left:-20px;margin-right:-20px;padding:0 20px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain;overscroll-behavior-y:none;touch-action:pan-x}
+.cat-scroll::-webkit-scrollbar{display:none}
+.cat-list{display:flex;gap:12px;padding-bottom:4px}
+.cat{flex-shrink:0;width:150px;border-radius:16px;overflow:hidden;position:relative;border:1px solid var(--border);background:var(--bg2)}
+.cat-img{width:100%;aspect-ratio:3/4;display:flex;align-items:flex-end;justify-content:center;padding-bottom:14px;position:relative}
+.cat-img-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-color:var(--bg2)}
+.cat-mask{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(14,13,11,.85) 100%)}
+.cat-name{position:relative;z-index:1;font-size:15px;font-weight:700;text-align:center}
+.cat-emoji{display:block;font-size:28px;margin-bottom:4px}
+.cat-dot{position:absolute;top:10px;right:10px;width:8px;height:8px;border-radius:50%;z-index:1}
+.cd-1{background:var(--amber);box-shadow:0 0 8px rgba(254,217,61,.4)}
+.cd-2{background:var(--green);box-shadow:0 0 8px rgba(46,232,194,.4)}
+.cd-3{background:var(--pink);box-shadow:0 0 8px rgba(255,107,138,.4)}
+.cd-4{background:var(--blue);box-shadow:0 0 8px rgba(90,156,245,.4)}
+.cd-5{background:var(--coral);box-shadow:0 0 8px rgba(255,122,92,.4)}
+.cd-6{background:var(--purple);box-shadow:0 0 8px rgba(176,122,255,.4)}
+.cd-7{background:#66bb6a;box-shadow:0 0 8px rgba(102,187,106,.4)}
+.cd-8{background:#42a5f5;box-shadow:0 0 8px rgba(66,165,245,.4)}
+.cat-scroll.dragging{cursor:grabbing;user-select:none}
+.cat-scroll{cursor:grab}
+
+/* ═══════ 地图预览 ═══════ */
+.map-section{padding:48px 20px 0}
+.map-preview{margin-top:20px;border-radius:16px;overflow:hidden;border:1px solid var(--border);position:relative}
+.map-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+
+/* ═══════ 发布流程 ═══════ */
+.publish{padding:48px 20px 0}
+.pub-steps{margin-top:20px;display:flex;flex-direction:column;gap:14px}
+.pub-step{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;border-radius:16px;background:var(--card);border:1px solid var(--border)}
+.pub-num{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-size:14px;font-weight:800;flex-shrink:0}
+.pn-1{background:rgba(254,217,61,.1);color:var(--amber)}
+.pn-2{background:rgba(46,232,194,.1);color:var(--green)}
+.pn-3{background:rgba(255,107,138,.1);color:var(--pink)}
+.pn-4{background:rgba(176,122,255,.1);color:var(--purple)}
+.pub-text h4{font-size:16px;font-weight:700;margin-bottom:2px}
+.pub-text p{font-size:15px;color:var(--sub);line-height:1.65}
+
+/* ═══════ Walk-in ═══════ */
+.walkin{padding:48px 20px 0}
+.walkin-body{margin-top:20px;padding:24px;border-radius:20px;background:var(--card);border:1px solid var(--border);position:relative;overflow:hidden}
+.walkin-body::before{content:"";position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(254,217,61,.06),transparent 70%);pointer-events:none}
+.walkin-quote{font-size:17px;font-weight:600;line-height:1.75;margin-bottom:16px;position:relative}
+.walkin-quote em{font-style:normal;color:var(--amber)}
+.walkin-points{display:flex;flex-direction:column;gap:10px}
+.walkin-pt{display:flex;gap:10px;align-items:flex-start}
+.walkin-pt-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:8px}
+.walkin-pt p{font-size:15px;color:var(--sub);line-height:1.7}
+
+/* ═══════ 入驻 CTA ═══════ */
+.join{padding:48px 20px 0}
+.join-cards{margin-top:20px;display:flex;flex-direction:column;gap:12px}
+.join-card{padding:24px 20px;border-radius:20px;position:relative;overflow:hidden}
+.jc-host{background:linear-gradient(135deg,rgba(254,217,61,.06),rgba(254,217,61,.02));border:1px solid rgba(254,217,61,.1)}
+.jc-biz{background:linear-gradient(135deg,rgba(46,232,194,.06),rgba(46,232,194,.02));border:1px solid rgba(46,232,194,.1)}
+.join-card-glow{position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;pointer-events:none}
+.jcg-host{background:radial-gradient(circle,rgba(254,217,61,.08),transparent 70%)}
+.jcg-biz{background:radial-gradient(circle,rgba(46,232,194,.08),transparent 70%)}
+.jc-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;margin-bottom:14px}
+.jci-host{background:rgba(254,217,61,.08)}.jci-host svg{width:24px;height:24px;color:var(--amber)}
+.jci-biz{background:rgba(46,232,194,.08)}.jci-biz svg{width:24px;height:24px;color:var(--green)}
+.jc-title{font-size:18px;font-weight:800;margin-bottom:6px}
+.jc-host .jc-title{color:var(--amber)}
+.jc-biz .jc-title{color:var(--green)}
+.jc-desc{font-size:15px;color:var(--sub);line-height:1.7;margin-bottom:16px}
+.jc-perks{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.jc-perk{font-size:11px;padding:4px 10px;border-radius:8px;font-weight:500}
+.jc-host .jc-perk{background:rgba(254,217,61,.06);color:var(--amber);border:1px solid rgba(254,217,61,.08)}
+.jc-biz .jc-perk{background:rgba(46,232,194,.06);color:var(--green);border:1px solid rgba(46,232,194,.08)}
+.jc-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;border-radius:12px;font-size:13px;font-weight:700;text-decoration:none;border:none;cursor:pointer}
+.jc-host .jc-btn{background:var(--amber);color:#1a1408}
+.jc-biz .jc-btn{background:var(--green);color:#0a1a10}
+.jc-btn svg{width:14px;height:14px}
+
+/* ═══════ Toast ═══════ */
+.toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);max-width:300px;padding:16px 24px;border-radius:14px;background:rgba(30,27,24,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--border);color:var(--text);font-size:14px;line-height:1.7;text-align:center;z-index:999;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+.toast.show{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:auto}
+.toast em{font-style:normal;color:var(--amber);font-weight:600}
+
+/* ═══════ 底部结尾 ═══════ */
+.footer{padding:48px 20px 60px;text-align:center}
+.footer-logo-img{height:72px;margin-bottom:8px;opacity:.85}
+.footer-text{font-size:16px;color:var(--sub);line-height:1.75;max-width:300px;margin:0 auto 24px}
+.footer-sub{margin-top:8px;font-size:12px;color:var(--dim)}
+
+/* ═══════ 入场动画（仅淡入，避免 transform 干扰滚动锚定） ═══════ */
+.reveal{opacity:0;transition:opacity .45s ease}
+.reveal.visible{opacity:1}
+</style>
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<div class="content">
+
+<!-- ═══ HERO（大图 + 文字叠底） ═══ -->
+<section class="hero">
+    <div class="hero-visual">
+        <div class="hero-aurora"></div>
+        <div class="hero-aurora2"></div>
+        <div class="hero-aurora3"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-sparkle hs-1"></div>
+        <div class="hero-sparkle hs-2"></div>
+        <div class="hero-sparkle hs-3"></div>
+        <div class="hero-sparkle hs-4"></div>
+        <div class="hero-sparkle hs-5"></div>
+        <div class="hero-sparkle hs-6"></div>
+        <div class="hero-text">
+            <img class="hero-logo-img" src="https://cdn.nowmap.cn/h5_event/event/intro/hero-logo.png?x-oss-process=image/quality,q_60/resize,w_320" alt="Zup!">
+            <div class="hero-tagline">YOUR REAL-TIME EVENT MAP</div>
+            <h1 class="hero-headline">打开地图<br>看看<em>附近有什么热闹</em></h1>
+            <p class="hero-lead">周围的酒局、coffee chat、羽毛球、骑行……<br>打开就能看到，随时加入。</p>
+            <div class="hero-divider"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ 核心卖点 ═══ -->
+<section class="features reveal">
+    <div class="sec-tag" style="color:var(--amber);background:rgba(254,217,61,.06);border:1px solid rgba(254,217,61,.08)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        WHY ZUP!
+    </div>
+    <h2 class="sec-title">不刷信息流<br>直接看<span class="gradient-text">身边的热闹</span></h2>
+    <p class="sec-desc">所有内容都在地图上，打开地图就是你附近正在发生的事。</p>
+    <div class="feat-grid">
+        <div class="feat">
+            <div class="feat-icon fi-map"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div class="feat-text"><h3>地图即首页</h3><p>可以看到入驻的商户，以及用户发布的各类邀约和动态气泡，点击气泡查看邀约详情</p></div>
+        </div>
+        <div class="feat">
+            <div class="feat-icon fi-live"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+            <div class="feat-text"><h3>实时 · 正在发生</h3><p>邀约过期后会自动从地图上清除，只有正在进行和即将开始的活动，看到即可参加</p></div>
+        </div>
+        <div class="feat">
+            <div class="feat-icon fi-social"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+            <div class="feat-text"><h3>报名 · 签到 · 群聊</h3><p>看到感兴趣的活动，可以看看讨论区热度、报名参加、前往现场签到</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ 活动类型 ═══ -->
+<section class="categories reveal">
+    <div class="sec-tag" style="color:var(--green);background:rgba(46,232,194,.06);border:1px solid rgba(46,232,194,.08)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        CATEGORIES
+    </div>
+    <h2 class="sec-title">你能碰到<br><span class="gradient-text">什么样的活动？</span></h2>
+    <p class="sec-desc">从微醺到coffee chat，从周末郊游到运动搭子，这里什么都有。</p>
+    <div class="cat-scroll">
+        <div class="cat-list">
+            <div class="cat"><div class="cat-img"><div class="cat-img-bg" style="background-image:url('https://cdn.nowmap.cn/h5_event/event/intro/bar.jpg?x-oss-process=image/quality,q_60')"></div><div class="cat-mask"></div><div class="cat-dot cd-1"></div><div class="cat-name"><span class="cat-emoji">🍻</span>酒局拼桌</div></div></div>
+            <div class="cat"><div class="cat-img"><div class="cat-img-bg" style="background-image:url('https://cdn.nowmap.cn/h5_event/event/intro/coffee.jpg?x-oss-process=image/quality,q_60')"></div><div class="cat-mask"></div><div class="cat-dot cd-2"></div><div class="cat-name"><span class="cat-emoji">☕</span>Coffee Chat</div></div></div>
+            <div class="cat"><div class="cat-img"><div class="cat-img-bg" style="background-image:url('https://cdn.nowmap.cn/h5_event/event/intro/badminton.jpg?x-oss-process=image/quality,q_60')"></div><div class="cat-mask"></div><div class="cat-dot cd-3"></div><div class="cat-name"><span class="cat-emoji">🏸</span>运动趴</div></div></div>
+            <div class="cat"><div class="cat-img"><div class="cat-img-bg" style="background-image:url('https://cdn.nowmap.cn/h5_event/event/intro/picnic.jpg?x-oss-process=image/quality,q_60')"></div><div class="cat-mask"></div><div class="cat-dot cd-4"></div><div class="cat-name"><span class="cat-emoji">🧺</span>周末游</div></div></div>
+            <div class="cat"><div class="cat-img"><div class="cat-img-bg" style="background-image:url('https://cdn.nowmap.cn/h5_event/event/intro/meet.jpg?x-oss-process=image/quality,q_60')"></div><div class="cat-mask"></div><div class="cat-dot cd-5"></div><div class="cat-name"><span class="cat-emoji">💡</span>创业 Meetup</div></div></div>
+            <div class="cat"><div class="cat-img"><div class="cat-img-bg" style="background-image:url('https://cdn.nowmap.cn/h5_event/event/intro/live.jpg?x-oss-process=image/quality,q_60')"></div><div class="cat-mask"></div><div class="cat-dot cd-6"></div><div class="cat-name"><span class="cat-emoji">🎵</span>Live 现场</div></div></div>
+            <div class="cat"><div class="cat-img"><div class="cat-img-bg" style="background-image:url('https://cdn.nowmap.cn/h5_event/event/intro/camp.jpg?x-oss-process=image/quality,q_60')"></div><div class="cat-mask"></div><div class="cat-dot cd-7"></div><div class="cat-name"><span class="cat-emoji">⛺</span>露营</div></div></div>
+            <div class="cat"><div class="cat-img"><div class="cat-img-bg" style="background-image:url('https://cdn.nowmap.cn/h5_event/event/intro/ride.jpg?x-oss-process=image/quality,q_60')"></div><div class="cat-mask"></div><div class="cat-dot cd-8"></div><div class="cat-name"><span class="cat-emoji">🚴</span>骑行</div></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ 地图预览 ═══ -->
+<section class="map-section reveal">
+    <div class="sec-tag" style="color:var(--amber);background:rgba(254,217,61,.06);border:1px solid rgba(254,217,61,.08)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><path d="M8 2v16M16 6v16"/></svg>
+        LIVE MAP
+    </div>
+    <h2 class="sec-title">一张地图<br>看清<span class="gradient-text">附近所有热闹</span></h2>
+    <p class="sec-desc">活动、据点、群聊，全都标注在地图上，缩放拖动就能发现身边精彩。</p>
+    <div class="map-preview">
+        <img class="map-img" src="https://cdn.nowmap.cn/h5_event/event/intro/map.jpg?x-oss-process=image/quality,q_60" alt="地图预览">
+    </div>
+</section>
+
+<!-- ═══ 发布流程 ═══ -->
+<section class="publish reveal">
+    <div class="sec-tag" style="color:var(--pink);background:rgba(255,107,138,.06);border:1px solid rgba(255,107,138,.08)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        PUBLISH
+    </div>
+    <h2 class="sec-title">发起活动<br>只需要<span class="gradient-text"> 30 秒</span></h2>
+    <p class="sec-desc">拍张照、选个地点、写几个字，你的活动就出现在所有人的地图上了。</p>
+    <div class="pub-steps">
+        <div class="pub-step"><div class="pub-num pn-1">1</div><div class="pub-text"><h4>拍一张或录一段</h4><p>直接拍照/录视频，或从相册选取，展示你的活动现场</p></div></div>
+        <div class="pub-step"><div class="pub-num pn-2">2</div><div class="pub-text"><h4>选一个地点</h4><p>选择你当前所在位置，或搜索任意商户/地标</p></div></div>
+        <div class="pub-step"><div class="pub-num pn-3">3</div><div class="pub-text"><h4>设置报名 & 价格</h4><p>开启报名入口，设定人数上限、价格或免费，还可以挂个群聊</p></div></div>
+        <div class="pub-step"><div class="pub-num pn-4">4</div><div class="pub-text"><h4>发布！出现在地图上</h4><p>附近的人会在地图上看到你的活动，感兴趣就报名加入</p></div></div>
+    </div>
+</section>
+
+<!-- ═══ Walk-in 式社交 ═══ -->
+<section class="walkin reveal">
+    <div class="sec-tag" style="color:var(--amber);background:rgba(254,217,61,.06);border:1px solid rgba(254,217,61,.08)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4M10 17l5-5-5-5M13.8 12H3"/></svg>
+        WALK IN
+    </div>
+    <h2 class="sec-title">线下空间<br><span class="gradient-text">这次真的变透明了</span></h2>
+    <p class="sec-desc">Zup! 做的是 Walk-in 式的线下社交——不用提前预约，看到就能去。</p>
+    <div class="walkin-body">
+        <p class="walkin-quote">每家店里正在发生什么、气氛怎么样、有没有人在等新朋友——<em>打开地图全都看得到。</em></p>
+        <div class="walkin-points">
+            <div class="walkin-pt"><div class="walkin-pt-dot" style="background:var(--amber)"></div><p>店内的气氛不再是个谜，到店前就知道里面热不热闹</p></div>
+            <div class="walkin-pt"><div class="walkin-pt-dot" style="background:var(--green)"></div><p>想约的人和想被约的人，在地图上彼此可见，随时接上</p></div>
+            <div class="walkin-pt"><div class="walkin-pt-dot" style="background:var(--pink)"></div><p>不用抢名额、不用等开团，看到有意思的商户邀约，立刻前往</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ 入驻 CTA ═══ -->
+<section class="join reveal">
+    <div class="sec-tag" style="color:var(--coral);background:rgba(255,122,92,.06);border:1px solid rgba(255,122,92,.08)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+        JOIN US
+    </div>
+    <h2 class="sec-title">和我们一起<br><span class="gradient-text">让城市热闹起来</span></h2>
+    <div class="join-cards">
+        <div class="join-card jc-host">
+            <div class="join-card-glow jcg-host"></div>
+            <div class="jc-icon jci-host"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 15a7 7 0 100-14 7 7 0 000 14z"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12"/></svg></div>
+            <div class="jc-title">活动发起人入驻</div>
+            <p class="jc-desc">你是社群主理人、活动达人或兴趣组织者？在 Zup! 上发布活动，让更多同频的人发现你。</p>
+            <div class="jc-perks"><span class="jc-perk">免抽佣</span><span class="jc-perk">报名管理</span><span class="jc-perk">自助结算</span><span class="jc-perk">私域沉淀</span></div>
+            <button class="jc-btn" onclick="showToast('host')">申请发起人认证 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+        <div class="join-card jc-biz">
+            <div class="join-card-glow jcg-biz"></div>
+            <div class="jc-icon jci-biz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
+            <div class="jc-title">商户入驻</div>
+            <p class="jc-desc">酒馆、咖啡厅、运动场馆、Livehouse……成为 Zup! 据点，获取精准线下客流。</p>
+            <div class="jc-perks"><span class="jc-perk">据点认证</span><span class="jc-perk">社群沉淀</span><span class="jc-perk">客流引导</span><span class="jc-perk">品牌曝光</span></div>
+            <button class="jc-btn" onclick="showToast('biz')">申请商户认证 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ 底部结尾 ═══ -->
+<section class="footer reveal">
+    <img class="footer-logo-img" src="https://cdn.nowmap.cn/h5_event/event/intro/hero-logo.png?x-oss-process=image/quality,q_60/resize,w_320" alt="Zup!">
+    <p class="footer-text">好玩的人和事都在附近<br>回到地图，去发现你身边的热闹吧</p>
+    <div class="footer-sub">Zup! · 线下实时活动地图</div>
+</section>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+document.title='Zup!｜线下实时活动地图';
+var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})
+},{threshold:.01,rootMargin:'0px 0px 80px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
+
+var toastTimer;
+function showToast(type){
+    var el=document.getElementById('toast');
+    if(type==='host'){
+        el.innerHTML='在线认证尚未开通，可添加微信 <em>hunterwm</em> 人工认证';
+    }else{
+        el.innerHTML='请前往 App「我的」页面 → 设置 → 申请认证商户，自助认证';
+    }
+    clearTimeout(toastTimer);
+    el.classList.add('show');
+    toastTimer=setTimeout(function(){el.classList.remove('show')},3000);
+}
+
+(function(){
+    var pageUrl=location.href.split('#')[0];
+    var og=document.querySelector('meta[property="og:url"]');
+    if(og)og.setAttribute('content',pageUrl);
+    var WX_ID='wx4856a663c86fc338',WX_SIGN='https://zup.nowmap.cn/api/v1/wechat/js-sdk-signature';
+    var SD={title:'Zup!｜线下实时活动地图',desc:'打开地图，看看附近有什么热闹。不刷信息流，Walk-in 式线下社交，让店内的气氛透明，让想约与被约的人彼此看到。',img:'https://cdn.nowmap.cn/bz/media/2026/04/02/3d/14/612503e3-9b6c-4a1a-8331-d9f7504be88f.png'};
+    (async function(){
+        if(!/micromessenger/i.test(navigator.userAgent)||!window.wx)return;
+        try{
+            var u=location.href.split('#')[0],r=await fetch(WX_SIGN+'?url='+encodeURIComponent(u)+'&appId='+encodeURIComponent(WX_ID));
+            if(!r.ok)return;var d=(await r.json()).data;if(!d||!d.signature)return;
+            wx.config({debug:false,appId:d.appId||WX_ID,timestamp:String(d.timestamp),nonceStr:d.nonceStr||d.noncestr,signature:d.signature,jsApiList:['updateAppMessageShareData','updateTimelineShareData','onMenuShareAppMessage','onMenuShareTimeline']});
+            wx.ready(function(){var l=location.href.split('#')[0],m={title:SD.title,desc:SD.desc,link:l,imgUrl:SD.img},t={title:SD.title,link:l,imgUrl:SD.img};wx.updateAppMessageShareData(m);wx.updateTimelineShareData(t);wx.onMenuShareAppMessage(m);wx.onMenuShareTimeline(t)});
+        }catch(e){}
+    })();
+})();
+
+</script>
+</body>
+</html>

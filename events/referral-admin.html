@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>拉新激励管理后台</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+    --bg:#f5f6fa;--card:#fff;--border:#e8eaef;--border2:#d0d4dc;
+    --text:#1a1d26;--sub:#6b7280;--dim:#9ca3af;
+    --primary:#4f6ef7;--primary-bg:rgba(79,110,247,.08);--primary-border:rgba(79,110,247,.18);
+    --green:#10b981;--green-bg:rgba(16,185,129,.08);--green-border:rgba(16,185,129,.18);
+    --amber:#f59e0b;--amber-bg:rgba(245,158,11,.08);--amber-border:rgba(245,158,11,.18);
+    --red:#ef4444;--red-bg:rgba(239,68,68,.08);--red-border:rgba(239,68,68,.18);
+    --purple:#8b5cf6;--purple-bg:rgba(139,92,246,.08);
+    --shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+    --shadow2:0 4px 12px rgba(0,0,0,.08),0 1px 3px rgba(0,0,0,.04);
+}
+body{font-family:-apple-system,"SF Pro Display","PingFang SC","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh}
+
+/* ═══ Header ═══ */
+.header{background:var(--card);border-bottom:1px solid var(--border);padding:0 32px;display:flex;align-items:center;height:56px;position:sticky;top:0;z-index:50}
+.header-logo{font-size:16px;font-weight:700;color:var(--primary);margin-right:12px;display:flex;align-items:center;gap:8px}
+.header-logo svg{width:20px;height:20px}
+.header-title{font-size:15px;color:var(--sub);font-weight:400}
+.header-right{margin-left:auto;font-size:13px;color:var(--dim)}
+
+/* ═══ Container ═══ */
+.container{max-width:1200px;margin:0 auto;padding:24px 32px}
+
+/* ═══ Stats ═══ */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:var(--shadow)}
+.stat-label{font-size:13px;color:var(--sub);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.stat-label svg{width:14px;height:14px;opacity:.5}
+.stat-num{font-size:28px;font-weight:800;letter-spacing:-.5px}
+.stat-sub{font-size:12px;color:var(--dim);margin-top:4px}
+.sn-blue{color:var(--primary)}.sn-green{color:var(--green)}.sn-amber{color:var(--amber)}.sn-purple{color:var(--purple)}
+
+/* ═══ Tabs ═══ */
+.tabs{display:flex;gap:4px;margin-bottom:20px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:4px;box-shadow:var(--shadow);width:fit-content}
+.tab{padding:8px 20px;border-radius:8px;font-size:14px;font-weight:500;color:var(--sub);cursor:pointer;transition:all .2s;border:none;background:none;white-space:nowrap}
+.tab:hover{color:var(--text);background:var(--bg)}
+.tab.active{background:var(--primary);color:#fff;box-shadow:0 2px 6px rgba(79,110,247,.25)}
+
+/* ═══ Panel ═══ */
+.panel{display:none}
+.panel.active{display:block}
+
+/* ═══ Toolbar ═══ */
+.toolbar{display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.search-box{display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:8px;border:1px solid var(--border);background:var(--card);min-width:260px}
+.search-box svg{width:16px;height:16px;color:var(--dim);flex-shrink:0}
+.search-box input{border:none;outline:none;font-size:14px;color:var(--text);background:transparent;width:100%}
+.search-box input::placeholder{color:var(--dim)}
+.btn{padding:8px 18px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .15s;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.btn svg{width:15px;height:15px}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:0 2px 6px rgba(79,110,247,.2)}
+.btn-primary:hover{background:#3b5de7;box-shadow:0 4px 10px rgba(79,110,247,.3)}
+.btn-outline{background:var(--card);color:var(--sub);border:1px solid var(--border)}
+.btn-outline:hover{border-color:var(--border2);color:var(--text)}
+.btn-danger{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
+.btn-danger:hover{background:var(--red);color:#fff}
+.btn-sm{padding:5px 12px;font-size:12px;border-radius:6px}
+.toolbar-right{margin-left:auto;display:flex;gap:8px}
+
+/* ═══ Table ═══ */
+.table-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+table{width:100%;border-collapse:collapse}
+thead{background:#f8f9fc}
+th{padding:12px 16px;font-size:12px;font-weight:600;color:var(--sub);text-align:left;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);white-space:nowrap}
+td{padding:12px 16px;font-size:14px;border-bottom:1px solid var(--border);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafbfd}
+
+/* ═══ Badges ═══ */
+.badge{display:inline-flex;align-items:center;padding:2px 10px;border-radius:6px;font-size:12px;font-weight:600;white-space:nowrap}
+.badge-green{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
+.badge-amber{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border)}
+.badge-blue{background:var(--primary-bg);color:var(--primary);border:1px solid var(--primary-border)}
+.badge-red{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
+.badge-gray{background:#f3f4f6;color:var(--sub);border:1px solid var(--border)}
+
+/* ═══ Avatar ═══ */
+.avatar{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--primary-bg),var(--purple-bg));display:inline-grid;place-items:center;font-size:13px;font-weight:700;color:var(--primary);flex-shrink:0}
+.user-cell{display:flex;align-items:center;gap:10px}
+.user-name{font-weight:600;font-size:14px}
+.user-id{font-size:12px;color:var(--dim);font-family:"SF Mono","Menlo",monospace}
+
+/* ═══ Expand Row ═══ */
+.expand-toggle{cursor:pointer;color:var(--primary);font-weight:600;display:inline-flex;align-items:center;gap:4px;font-size:13px}
+.expand-toggle svg{width:14px;height:14px;transition:transform .2s}
+.expand-toggle.open svg{transform:rotate(90deg)}
+.expand-row{display:none}
+.expand-row.open{display:table-row}
+.expand-content{padding:16px 16px 16px 60px;background:#fafbfd}
+.sub-table{width:100%;border-collapse:collapse;margin-top:8px}
+.sub-table th{padding:8px 12px;font-size:11px;background:#f0f2f8;border-bottom:1px solid var(--border)}
+.sub-table td{padding:8px 12px;font-size:13px;border-bottom:1px solid var(--border)}
+.sub-table tr:last-child td{border-bottom:none}
+
+/* ═══ Signup List ═══ */
+.signup-list{display:flex;flex-wrap:wrap;gap:4px}
+.signup-tag{padding:2px 8px;border-radius:4px;font-size:11px;font-weight:500;background:#f3f4f6;color:var(--sub)}
+.signup-tag.rewarded{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
+
+/* ═══ Modal ═══ */
+.modal-mask{position:fixed;inset:0;background:rgba(0,0,0,.3);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:100;display:none;align-items:center;justify-content:center}
+.modal-mask.show{display:flex}
+.modal{background:var(--card);border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.15);width:440px;max-width:90vw;padding:28px}
+.modal-title{font-size:18px;font-weight:700;margin-bottom:6px}
+.modal-desc{font-size:14px;color:var(--sub);margin-bottom:20px}
+.modal-field{margin-bottom:16px}
+.modal-field label{display:block;font-size:13px;font-weight:600;color:var(--sub);margin-bottom:6px}
+.modal-field input,.modal-field textarea{width:100%;padding:10px 14px;border-radius:8px;border:1px solid var(--border);font-size:14px;color:var(--text);outline:none;transition:border-color .15s;font-family:inherit}
+.modal-field input:focus,.modal-field textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-bg)}
+.modal-field textarea{resize:vertical;min-height:80px}
+.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:24px}
+
+/* ═══ Empty ═══ */
+.empty{padding:60px 20px;text-align:center;color:var(--dim);font-size:14px}
+.empty svg{width:40px;height:40px;margin-bottom:12px;opacity:.3}
+
+/* ═══ Pagination ═══ */
+.pagination{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;font-size:13px;color:var(--sub)}
+.page-btns{display:flex;gap:4px}
+.page-btn{width:32px;height:32px;display:grid;place-items:center;border-radius:6px;border:1px solid var(--border);background:var(--card);cursor:pointer;font-size:13px;color:var(--sub)}
+.page-btn:hover{border-color:var(--primary);color:var(--primary)}
+.page-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+/* ═══ Responsive ═══ */
+@media(max-width:768px){
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .container{padding:16px}
+    .header{padding:0 16px}
+    th,td{padding:10px 12px;font-size:13px}
+    .toolbar{flex-direction:column;align-items:stretch}
+    .toolbar-right{margin-left:0}
+    .search-box{min-width:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+        Zup! Admin
+    </div>
+    <div class="header-title">拉新激励管理</div>
+    <div class="header-right">管理员</div>
+</div>
+
+<div class="container">
+
+<!-- ═══ Stats ═══ -->
+<div class="stats">
+    <div class="stat">
+        <div class="stat-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>白名单用户</div>
+        <div class="stat-num sn-blue">12</div>
+        <div class="stat-sub">可参与拉新激励</div>
+    </div>
+    <div class="stat">
+        <div class="stat-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>总报名人次</div>
+        <div class="stat-num sn-purple">186</div>
+        <div class="stat-sub">来自白名单用户的活动</div>
+    </div>
+    <div class="stat">
+        <div class="stat-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>有效新用户</div>
+        <div class="stat-num sn-green">47</div>
+        <div class="stat-sub">首次报名，计入奖励</div>
+    </div>
+    <div class="stat">
+        <div class="stat-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>应发奖励</div>
+        <div class="stat-num sn-amber">¥2,350</div>
+        <div class="stat-sub">47 人 × ¥50/人</div>
+    </div>
+</div>
+
+<!-- ═══ Tabs ═══ -->
+<div class="tabs">
+    <button class="tab active" onclick="switchTab('whitelist')">白名单管理</button>
+    <button class="tab" onclick="switchTab('overview')">拉新数据</button>
+    <button class="tab" onclick="switchTab('detail')">邀约明细</button>
+</div>
+
+<!-- ════════════════ Tab 1: 白名单管理 ════════════════ -->
+<div class="panel active" id="panel-whitelist">
+    <div class="toolbar">
+        <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            <input type="text" placeholder="搜索用户名或 UID…">
+        </div>
+        <div class="toolbar-right">
+            <button class="btn btn-primary" onclick="openModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>添加白名单</button>
+        </div>
+    </div>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>用户</th><th>UID</th><th>添加时间</th><th>邀约数</th><th>有效拉新</th><th>状态</th><th>操作</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td><div class="user-cell"><div class="avatar">陈</div><div><div class="user-name">陈小酒</div></div></div></td>
+                    <td><span class="user-id">UID_100238</span></td>
+                    <td>2026-01-10</td>
+                    <td>8</td>
+                    <td><span class="badge badge-green">12 人</span></td>
+                    <td><span class="badge badge-green">生效中</span></td>
+                    <td><button class="btn btn-sm btn-danger" onclick="removeWhitelist(this)">移除</button></td>
+                </tr>
+                <tr>
+                    <td><div class="user-cell"><div class="avatar">林</div><div><div class="user-name">林主理人</div></div></div></td>
+                    <td><span class="user-id">UID_100455</span></td>
+                    <td>2026-01-12</td>
+                    <td>5</td>
+                    <td><span class="badge badge-green">8 人</span></td>
+                    <td><span class="badge badge-green">生效中</span></td>
+                    <td><button class="btn btn-sm btn-danger" onclick="removeWhitelist(this)">移除</button></td>
+                </tr>
+                <tr>
+                    <td><div class="user-cell"><div class="avatar">王</div><div><div class="user-name">王大壮</div></div></div></td>
+                    <td><span class="user-id">UID_100612</span></td>
+                    <td>2026-01-14</td>
+                    <td>12</td>
+                    <td><span class="badge badge-green">15 人</span></td>
+                    <td><span class="badge badge-green">生效中</span></td>
+                    <td><button class="btn btn-sm btn-danger" onclick="removeWhitelist(this)">移除</button></td>
+                </tr>
+                <tr>
+                    <td><div class="user-cell"><div class="avatar">张</div><div><div class="user-name">张二狗</div></div></div></td>
+                    <td><span class="user-id">UID_100789</span></td>
+                    <td>2026-01-15</td>
+                    <td>3</td>
+                    <td><span class="badge badge-green">5 人</span></td>
+                    <td><span class="badge badge-green">生效中</span></td>
+                    <td><button class="btn btn-sm btn-danger" onclick="removeWhitelist(this)">移除</button></td>
+                </tr>
+                <tr>
+                    <td><div class="user-cell"><div class="avatar">李</div><div><div class="user-name">李咖啡</div></div></div></td>
+                    <td><span class="user-id">UID_101002</span></td>
+                    <td>2026-01-18</td>
+                    <td>6</td>
+                    <td><span class="badge badge-green">7 人</span></td>
+                    <td><span class="badge badge-green">生效中</span></td>
+                    <td><button class="btn btn-sm btn-danger" onclick="removeWhitelist(this)">移除</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagination">
+            <span>共 12 条记录</span>
+            <div class="page-btns">
+                <div class="page-btn">‹</div>
+                <div class="page-btn active">1</div>
+                <div class="page-btn">2</div>
+                <div class="page-btn">3</div>
+                <div class="page-btn">›</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════ Tab 2: 拉新数据总览 ════════════════ -->
+<div class="panel" id="panel-overview">
+    <div class="toolbar">
+        <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            <input type="text" placeholder="搜索白名单用户…">
+        </div>
+        <div class="toolbar-right">
+            <button class="btn btn-outline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>导出 CSV</button>
+        </div>
+    </div>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>白名单用户</th><th>发布活动数</th><th>总报名人次</th><th>有效新用户</th><th>重复用户</th><th>奖励金额</th><th>操作</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td><div class="user-cell"><div class="avatar">陈</div><div><div class="user-name">陈小酒</div><div class="user-id">UID_100238</div></div></div></td>
+                    <td>8</td>
+                    <td>45</td>
+                    <td><span class="badge badge-green">12 人</span></td>
+                    <td><span class="badge badge-gray">6 人</span></td>
+                    <td><strong style="color:var(--amber)">¥600</strong></td>
+                    <td><span class="expand-toggle" onclick="toggleExpand('ov-1')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>查看明细</span></td>
+                </tr>
+                <tr class="expand-row" id="ov-1">
+                    <td colspan="7">
+                        <div class="expand-content">
+                            <p style="font-size:13px;color:var(--sub);margin-bottom:10px">该用户活动报名中，共 12 名有效新用户首次报名（计入奖励），6 名用户已在其他白名单用户活动中计入过（不重复计算）。</p>
+                            <table class="sub-table">
+                                <thead><tr><th>报名用户</th><th>报名时间</th><th>来源气泡</th><th>是否新用户</th><th>奖励状态</th></tr></thead>
+                                <tbody>
+                                    <tr><td>用户A (UID_200101)</td><td>2026-01-20 14:32</td><td>气泡 #B0012</td><td><span class="badge badge-green">新用户</span></td><td><span class="badge badge-green">计入 ✓</span></td></tr>
+                                    <tr><td>用户B (UID_200205)</td><td>2026-01-20 15:10</td><td>气泡 #B0012</td><td><span class="badge badge-green">新用户</span></td><td><span class="badge badge-green">计入 ✓</span></td></tr>
+                                    <tr><td>用户C (UID_200088)</td><td>2026-01-21 10:05</td><td>气泡 #B0015</td><td><span class="badge badge-gray">老用户</span></td><td><span class="badge badge-gray">不计入</span></td></tr>
+                                    <tr><td>用户D (UID_200310)</td><td>2026-01-21 11:22</td><td>气泡 #B0015</td><td><span class="badge badge-green">新用户</span></td><td><span class="badge badge-amber">已计入他人</span></td></tr>
+                                    <tr><td>用户E (UID_200415)</td><td>2026-01-22 09:40</td><td>气泡 #B0018</td><td><span class="badge badge-green">新用户</span></td><td><span class="badge badge-green">计入 ✓</span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><div class="user-cell"><div class="avatar">王</div><div><div class="user-name">王大壮</div><div class="user-id">UID_100612</div></div></div></td>
+                    <td>12</td>
+                    <td>68</td>
+                    <td><span class="badge badge-green">15 人</span></td>
+                    <td><span class="badge badge-gray">10 人</span></td>
+                    <td><strong style="color:var(--amber)">¥750</strong></td>
+                    <td><span class="expand-toggle" onclick="toggleExpand('ov-2')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>查看明细</span></td>
+                </tr>
+                <tr class="expand-row" id="ov-2"><td colspan="7"><div class="expand-content"><p style="font-size:13px;color:var(--sub)">展开后显示该用户所有报名人明细…</p></div></td></tr>
+                <tr>
+                    <td><div class="user-cell"><div class="avatar">林</div><div><div class="user-name">林主理人</div><div class="user-id">UID_100455</div></div></div></td>
+                    <td>5</td>
+                    <td>32</td>
+                    <td><span class="badge badge-green">8 人</span></td>
+                    <td><span class="badge badge-gray">3 人</span></td>
+                    <td><strong style="color:var(--amber)">¥400</strong></td>
+                    <td><span class="expand-toggle" onclick="toggleExpand('ov-3')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>查看明细</span></td>
+                </tr>
+                <tr class="expand-row" id="ov-3"><td colspan="7"><div class="expand-content"><p style="font-size:13px;color:var(--sub)">展开后显示该用户所有报名人明细…</p></div></td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ════════════════ Tab 3: 邀约明细 ════════════════ -->
+<div class="panel" id="panel-detail">
+    <div class="toolbar">
+        <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            <input type="text" placeholder="搜索气泡ID 或用户名…">
+        </div>
+        <div class="toolbar-right">
+            <button class="btn btn-outline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>导出 CSV</button>
+        </div>
+    </div>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>白名单用户</th><th>气泡 ID</th><th>发布时间</th><th>活动时间</th><th>报名费</th><th>报名人数</th><th>有效拉新</th><th>报名列表</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td><div class="user-cell"><div class="avatar">陈</div><div class="user-name">陈小酒</div></div></td>
+                    <td><span class="user-id">#B0012</span></td>
+                    <td>01-20 12:00</td>
+                    <td>01-20 19:00</td>
+                    <td>¥68</td>
+                    <td>8</td>
+                    <td><span class="badge badge-green">3 人</span></td>
+                    <td>
+                        <div class="signup-list">
+                            <span class="signup-tag rewarded">用户A ✓</span>
+                            <span class="signup-tag rewarded">用户B ✓</span>
+                            <span class="signup-tag">用户F</span>
+                            <span class="signup-tag">用户G</span>
+                            <span class="signup-tag rewarded">用户H ✓</span>
+                            <span class="signup-tag">用户J</span>
+                            <span class="signup-tag">用户K</span>
+                            <span class="signup-tag">用户L</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><div class="user-cell"><div class="avatar">陈</div><div class="user-name">陈小酒</div></div></td>
+                    <td><span class="user-id">#B0015</span></td>
+                    <td>01-21 08:30</td>
+                    <td>01-21 14:00</td>
+                    <td>免费</td>
+                    <td>12</td>
+                    <td><span class="badge badge-green">4 人</span></td>
+                    <td>
+                        <div class="signup-list">
+                            <span class="signup-tag rewarded">用户M ✓</span>
+                            <span class="signup-tag">用户C</span>
+                            <span class="signup-tag rewarded">用户N ✓</span>
+                            <span class="signup-tag rewarded">用户P ✓</span>
+                            <span class="signup-tag">用户D (已计他人)</span>
+                            <span class="signup-tag rewarded">用户Q ✓</span>
+                            <span class="signup-tag">+6</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><div class="user-cell"><div class="avatar">陈</div><div class="user-name">陈小酒</div></div></td>
+                    <td><span class="user-id">#B0018</span></td>
+                    <td>01-22 09:00</td>
+                    <td>01-22 20:00</td>
+                    <td>¥88</td>
+                    <td>6</td>
+                    <td><span class="badge badge-green">2 人</span></td>
+                    <td>
+                        <div class="signup-list">
+                            <span class="signup-tag rewarded">用户E ✓</span>
+                            <span class="signup-tag">用户R</span>
+                            <span class="signup-tag rewarded">用户S ✓</span>
+                            <span class="signup-tag">用户A (已计)</span>
+                            <span class="signup-tag">用户T</span>
+                            <span class="signup-tag">用户U</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><div class="user-cell"><div class="avatar">王</div><div class="user-name">王大壮</div></div></td>
+                    <td><span class="user-id">#B0021</span></td>
+                    <td>01-20 10:00</td>
+                    <td>01-20 15:00</td>
+                    <td>¥50</td>
+                    <td>10</td>
+                    <td><span class="badge badge-green">5 人</span></td>
+                    <td>
+                        <div class="signup-list">
+                            <span class="signup-tag rewarded">用户V ✓</span>
+                            <span class="signup-tag rewarded">用户W ✓</span>
+                            <span class="signup-tag rewarded">用户X ✓</span>
+                            <span class="signup-tag">用户Y</span>
+                            <span class="signup-tag rewarded">用户Z ✓</span>
+                            <span class="signup-tag rewarded">用户AA ✓</span>
+                            <span class="signup-tag">+4</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><div class="user-cell"><div class="avatar">王</div><div class="user-name">王大壮</div></div></td>
+                    <td><span class="user-id">#B0025</span></td>
+                    <td>01-22 11:00</td>
+                    <td>01-22 18:30</td>
+                    <td>¥35</td>
+                    <td>5</td>
+                    <td><span class="badge badge-amber">0 人</span></td>
+                    <td>
+                        <div class="signup-list">
+                            <span class="signup-tag">用户B (已计)</span>
+                            <span class="signup-tag">用户D (已计)</span>
+                            <span class="signup-tag">用户BB</span>
+                            <span class="signup-tag">用户CC</span>
+                            <span class="signup-tag">用户DD</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><div class="user-cell"><div class="avatar">林</div><div class="user-name">林主理人</div></div></td>
+                    <td><span class="user-id">#B0030</span></td>
+                    <td>01-23 09:15</td>
+                    <td>01-23 14:00</td>
+                    <td>免费</td>
+                    <td>15</td>
+                    <td><span class="badge badge-green">6 人</span></td>
+                    <td>
+                        <div class="signup-list">
+                            <span class="signup-tag rewarded">用户EE ✓</span>
+                            <span class="signup-tag rewarded">用户FF ✓</span>
+                            <span class="signup-tag rewarded">用户GG ✓</span>
+                            <span class="signup-tag rewarded">用户HH ✓</span>
+                            <span class="signup-tag rewarded">用户II ✓</span>
+                            <span class="signup-tag rewarded">用户JJ ✓</span>
+                            <span class="signup-tag">+9</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagination">
+            <span>共 34 条记录</span>
+            <div class="page-btns">
+                <div class="page-btn">‹</div>
+                <div class="page-btn active">1</div>
+                <div class="page-btn">2</div>
+                <div class="page-btn">3</div>
+                <div class="page-btn">4</div>
+                <div class="page-btn">›</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<!-- ═══ Modal: 添加白名单 ═══ -->
+<div class="modal-mask" id="modal">
+    <div class="modal">
+        <div class="modal-title">添加白名单用户</div>
+        <div class="modal-desc">添加后该用户的活动报名将纳入拉新激励统计</div>
+        <div class="modal-field">
+            <label>用户 UID</label>
+            <input type="text" id="inputUid" placeholder="输入用户 UID，例如 UID_100238">
+        </div>
+        <div class="modal-field">
+            <label>备注（选填）</label>
+            <input type="text" id="inputNote" placeholder="例如：酒吧主理人 / 社群达人">
+        </div>
+        <div class="modal-actions">
+            <button class="btn btn-outline" onclick="closeModal()">取消</button>
+            <button class="btn btn-primary" onclick="addWhitelist()">确认添加</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function switchTab(name){
+    document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active')});
+    event.target.classList.add('active');
+    document.getElementById('panel-'+name).classList.add('active');
+}
+
+function toggleExpand(id){
+    var row=document.getElementById(id);
+    var toggle=event.currentTarget;
+    row.classList.toggle('open');
+    toggle.classList.toggle('open');
+}
+
+function openModal(){
+    document.getElementById('modal').classList.add('show');
+}
+function closeModal(){
+    document.getElementById('modal').classList.remove('show');
+    document.getElementById('inputUid').value='';
+    document.getElementById('inputNote').value='';
+}
+function addWhitelist(){
+    var uid=document.getElementById('inputUid').value.trim();
+    if(!uid){alert('请输入用户 UID');return}
+    alert('已添加 '+uid+' 到白名单（Demo）');
+    closeModal();
+}
+function removeWhitelist(btn){
+    if(!confirm('确认将该用户移出白名单？移出后其后续活动报名将不再计入激励统计。'))return;
+    btn.closest('tr').style.opacity='.3';
+    btn.disabled=true;
+    btn.textContent='已移除';
+}
+
+document.getElementById('modal').addEventListener('click',function(e){
+    if(e.target===this)closeModal();
+});
+</script>
+</body>
+</html>

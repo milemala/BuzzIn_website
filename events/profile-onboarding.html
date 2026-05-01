@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>完善资料</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+    --bg:#0b0d12;--bg2:#121620;--card:#171c27;--line:#2c3445;
+    --text:#f5f7ff;--sub:#abb6cc;--dim:#74809a;
+    --pri:#FED93D;--pri2:#ffe984;--ok:#26d0a2;--warn:#ffbf57;
+    --safe:env(safe-area-inset-bottom,0px)
+}
+html,body{overflow-x:hidden}
+body{
+    font-family:-apple-system,"SF Pro Display","PingFang SC","Noto Sans SC",sans-serif;
+    background:
+      radial-gradient(120% 70% at 100% -20%,rgba(254,217,61,.22),transparent 45%),
+      radial-gradient(120% 80% at -20% 120%,rgba(124,140,255,.2),transparent 45%),
+      var(--bg);
+    color:var(--text);min-height:100vh;line-height:1.6
+}
+.page{max-width:430px;margin:0 auto;min-height:100vh;padding:22px 16px calc(18px + var(--safe));display:flex;flex-direction:column}
+.top{margin-bottom:16px}
+.top-kicker{display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.8px;color:#1a1405;background:linear-gradient(90deg,var(--pri),var(--pri2));margin-bottom:10px}
+.top-kicker i{width:5px;height:5px;border-radius:50%;background:#1a1405}
+.top-title{font-size:29px;font-weight:900;letter-spacing:-.55px;line-height:1.2}
+.top-sub{color:var(--sub);font-size:14px;margin-top:8px}
+.progress{margin-top:15px;display:flex;gap:9px}
+.progress span{height:7px;flex:1;background:#252d3c;border-radius:999px;overflow:hidden}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--pri),var(--pri2));border-radius:999px;box-shadow:0 0 10px rgba(254,217,61,.45);transition:width .28s ease}
+
+.card{background:linear-gradient(180deg,rgba(255,255,255,.03),transparent),var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 14px 38px rgba(0,0,0,.33)}
+.step{display:none}
+.step.active{display:block}
+.step h2{font-size:21px;font-weight:800;margin-bottom:5px;letter-spacing:-.2px}
+.step p{font-size:13px;color:var(--sub);margin-bottom:16px}
+.step-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.sh-icon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,rgba(254,217,61,.28),rgba(254,217,61,.08));border:1px solid rgba(254,217,61,.35);box-shadow:0 8px 20px rgba(254,217,61,.2)}
+.sh-icon svg{width:22px;height:22px;color:#ffe88b}
+
+.field{margin-bottom:15px}
+.label{display:flex;align-items:center;justify-content:space-between;font-size:13px;color:#cfd8ee;margin-bottom:8px}
+.hint{font-size:12px;color:var(--dim)}
+.input,.textarea,.date{
+    width:100%;background:#0f131b;border:1px solid #343d50;border-radius:13px;color:var(--text);
+    font-size:15px;padding:13px 13px;outline:none;transition:border-color .2s,box-shadow .2s
+}
+.input:focus,.textarea:focus,.date:focus{border-color:rgba(254,217,61,.66);box-shadow:0 0 0 3px rgba(254,217,61,.14)}
+.textarea{min-height:96px;resize:none}
+
+.avatar-wrap{display:flex;align-items:center;gap:14px}
+.avatar{
+    width:88px;height:88px;border-radius:24px;overflow:hidden;background:#0f131b;border:1px dashed #4a566f;
+    display:grid;place-items:center;flex-shrink:0
+}
+.avatar img{width:100%;height:100%;object-fit:cover;display:none}
+.avatar svg{width:28px;height:28px;color:#8a98b5}
+.avatar-tip{font-size:12px;color:var(--sub)}
+
+.chip-row{display:flex;gap:10px}
+.chip{
+    flex:1;height:47px;border-radius:13px;border:1px solid #3a4357;background:#0f131b;color:#c9d2e8;
+    font-size:15px;font-weight:700;cursor:pointer;transition:all .2s
+}
+.chip.active{border-color:rgba(254,217,61,.75);background:rgba(254,217,61,.14);color:#fff3bc;box-shadow:0 0 0 2px rgba(254,217,61,.1) inset}
+
+.album-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.album-item{
+    position:relative;aspect-ratio:1/1;border-radius:13px;overflow:hidden;background:#0f131b;border:1px dashed #455069
+}
+.album-item img{width:100%;height:100%;object-fit:cover;display:block}
+.album-add{display:grid;place-items:center;cursor:pointer}
+.album-add svg{width:24px;height:24px;color:#93a2c2}
+.album-del{
+    position:absolute;top:6px;right:6px;width:22px;height:22px;border:none;border-radius:999px;background:rgba(0,0,0,.58);
+    color:#fff;font-size:15px;cursor:pointer;line-height:1
+}
+
+.bottom{margin-top:auto;display:flex;gap:10px;padding-top:16px}
+.btn{
+    height:50px;border:none;border-radius:15px;font-size:15px;font-weight:800;cursor:pointer;flex:1
+}
+.btn-ghost{background:#171c28;color:#d2daee;border:1px solid #313a4f}
+.btn-main{background:linear-gradient(90deg,var(--pri),var(--pri2));color:#1b1608;box-shadow:0 12px 26px rgba(254,217,61,.32)}
+.btn-main:disabled{opacity:.45;box-shadow:none;cursor:not-allowed}
+.toast{
+    position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:rgba(9,12,20,.94);
+    color:#fff;padding:10px 14px;border-radius:12px;font-size:13px;border:1px solid #3a4358;opacity:0;pointer-events:none;transition:.25s;z-index:99
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.step.active{animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="page">
+    <div class="top">
+        <div class="top-kicker"><i></i>ZUP PROFILE</div>
+        <div class="top-title">欢迎加入 Zup!</div>
+        <div class="top-sub">用 3 步完善资料，匹配更适合你的线下局</div>
+        <div class="progress" id="progress">
+            <span><i style="width:100%"></i></span>
+            <span><i style="width:0"></i></span>
+            <span><i style="width:0"></i></span>
+        </div>
+    </div>
+
+    <div class="card">
+        <!-- Step 1 -->
+        <section class="step active" data-step="1">
+            <div class="step-head">
+                <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M4 21c1.8-3.5 4.8-5 8-5s6.2 1.5 8 5"/></svg></div>
+                <div>
+                    <h2>你是谁？</h2>
+                    <p>先用基础信息，建立你的第一张名片</p>
+                </div>
+            </div>
+            <div class="field">
+                <div class="label"><span>展示昵称</span><span class="hint">2-16 个字</span></div>
+                <input class="input" id="nickname" maxlength="16" placeholder="例如：晚风与酒">
+            </div>
+            <div class="field">
+                <div class="label"><span>性别</span></div>
+                <div class="chip-row" id="genderBox">
+                    <button class="chip" data-gender="男">男</button>
+                    <button class="chip" data-gender="女">女</button>
+                </div>
+            </div>
+            <div class="field">
+                <div class="label"><span>出生日期</span><span class="hint">仅用于推荐，不公开完整生日</span></div>
+                <input type="date" class="date" id="birthday">
+            </div>
+        </section>
+
+        <!-- Step 2 -->
+        <section class="step" data-step="2">
+            <div class="step-head">
+                <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="9" cy="9" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                <div>
+                    <h2>展示你的氛围</h2>
+                    <p>一张头像 + 几张生活感照片，更容易被同频的人看见</p>
+                </div>
+            </div>
+            <div class="field">
+                <div class="label"><span>头像</span><span class="hint">建议真人清晰照</span></div>
+                <div class="avatar-wrap">
+                    <label class="avatar" for="avatarInput">
+                        <img id="avatarPreview" alt="avatar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    </label>
+                    <div class="avatar-tip">未单独上传头像时<br>默认使用相册第一张</div>
+                </div>
+                <input type="file" id="avatarInput" accept="image/*" hidden>
+            </div>
+            <div class="field">
+                <div class="label"><span>相册</span><span class="hint">可上传 1-9 张</span></div>
+                <div class="album-grid" id="albumGrid">
+                    <label class="album-item album-add" id="albumAdd" for="albumInput">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </label>
+                </div>
+                <input type="file" id="albumInput" accept="image/*" multiple hidden>
+            </div>
+        </section>
+
+        <!-- Step 3 -->
+        <section class="step" data-step="3">
+            <div class="step-head">
+                <div class="sh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                <div>
+                    <h2>说点什么吧</h2>
+                    <p>一句有温度的介绍，会让别人更想认识你</p>
+                </div>
+            </div>
+            <div class="field">
+                <div class="label"><span>个人简介</span><span class="hint"><span id="bioCount">0</span>/120</span></div>
+                <textarea class="textarea" id="bio" maxlength="120" placeholder="例如：周末常在国贸和望京跑步、喝咖啡，喜欢轻松不尬聊的局。"></textarea>
+            </div>
+        </section>
+    </div>
+
+    <div class="bottom">
+        <button class="btn btn-ghost" id="prevBtn" style="display:none">上一步</button>
+        <button class="btn btn-main" id="nextBtn">下一步</button>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var state={step:1,avatar:'',nickname:'',gender:'',birthday:'',bio:'',album:[]};
+var steps=document.querySelectorAll('.step');
+var bars=document.querySelectorAll('#progress i');
+var prevBtn=document.getElementById('prevBtn');
+var nextBtn=document.getElementById('nextBtn');
+var toast=document.getElementById('toast');
+
+function showToast(msg){
+    toast.textContent=msg;
+    toast.classList.add('show');
+    clearTimeout(showToast.t);
+    showToast.t=setTimeout(function(){toast.classList.remove('show')},1800);
+}
+
+function updateStep(){
+    steps.forEach(function(s){s.classList.toggle('active',Number(s.dataset.step)===state.step)});
+    bars.forEach(function(b,i){b.style.width=i<state.step?'100%':'0'});
+    prevBtn.style.display=state.step===1?'none':'block';
+    nextBtn.textContent=state.step===3?'完成提交':'下一步';
+}
+
+function validateStep(){
+    if(state.step===1){
+        if(!state.nickname||state.nickname.length<2){showToast('昵称至少 2 个字');return false}
+        if(!state.gender){showToast('请选择性别');return false}
+        if(!state.birthday){showToast('请选择出生日期');return false}
+    }
+    if(state.step===2){
+        if(state.album.length===0){showToast('请至少上传 1 张相册');return false}
+    }
+    if(state.step===3){
+        if(!state.bio||state.bio.length<6){showToast('简介至少 6 个字');return false}
+    }
+    return true;
+}
+
+prevBtn.addEventListener('click',function(){
+    if(state.step>1){state.step--;updateStep()}
+});
+
+nextBtn.addEventListener('click',function(){
+    if(!validateStep())return;
+    if(state.step<3){state.step++;updateStep();return}
+    if(!state.avatar&&state.album.length>0){
+        state.avatar=state.album[0];
+        var img=document.getElementById('avatarPreview');
+        img.src=state.avatar;
+        img.style.display='block';
+    }
+    showToast('资料已提交（示例）');
+});
+
+// Avatar
+document.getElementById('avatarInput').addEventListener('change',function(e){
+    var f=e.target.files&&e.target.files[0];
+    if(!f)return;
+    var u=URL.createObjectURL(f);
+    state.avatar=u;
+    var img=document.getElementById('avatarPreview');
+    img.src=u;
+    img.style.display='block';
+});
+
+// Nickname
+document.getElementById('nickname').addEventListener('input',function(e){
+    state.nickname=e.target.value.trim();
+});
+
+// Gender
+document.getElementById('genderBox').addEventListener('click',function(e){
+    var btn=e.target.closest('.chip');
+    if(!btn)return;
+    state.gender=btn.dataset.gender;
+    document.querySelectorAll('#genderBox .chip').forEach(function(c){c.classList.remove('active')});
+    btn.classList.add('active');
+});
+
+// Birthday
+document.getElementById('birthday').addEventListener('change',function(e){
+    state.birthday=e.target.value;
+});
+
+// Bio
+document.getElementById('bio').addEventListener('input',function(e){
+    state.bio=e.target.value.trim();
+    document.getElementById('bioCount').textContent=state.bio.length;
+});
+
+// Album
+var albumInput=document.getElementById('albumInput');
+var albumGrid=document.getElementById('albumGrid');
+albumInput.addEventListener('change',function(e){
+    var fs=[].slice.call(e.target.files||[]);
+    fs.forEach(function(f){
+        if(state.album.length>=9)return;
+        state.album.push(URL.createObjectURL(f));
+    });
+    if(!state.avatar&&state.album.length>0){
+        state.avatar=state.album[0];
+        var img=document.getElementById('avatarPreview');
+        img.src=state.avatar;
+        img.style.display='block';
+    }
+    renderAlbum();
+    albumInput.value='';
+});
+
+function renderAlbum(){
+    var add=document.getElementById('albumAdd');
+    albumGrid.querySelectorAll('.album-item:not(.album-add)').forEach(function(n){n.remove()});
+    state.album.forEach(function(src,idx){
+        var d=document.createElement('div');
+        d.className='album-item';
+        d.innerHTML='<img src="'+src+'" alt="album"><button class="album-del" data-i="'+idx+'">×</button>';
+        albumGrid.insertBefore(d,add);
+    });
+    add.style.display=state.album.length>=9?'none':'grid';
+}
+
+albumGrid.addEventListener('click',function(e){
+    var del=e.target.closest('.album-del');
+    if(!del)return;
+    state.album.splice(Number(del.dataset.i),1);
+    renderAlbum();
+});
+
+updateStep();
+</script>
+</body>
+</html>
