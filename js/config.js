@@ -1,6 +1,6 @@
 // 全局配置文件 - 统一管理所有 URL
 const APP_STORE_URL = 'https://apps.apple.com/cn/app/id6747610081';
-const APK_DOWNLOAD_URL = 'https://cdn.nowmap.cn/apk/app-release-1.0.0.02-3.apk';
+const APK_DOWNLOAD_URL = 'https://cdn.nowmap.cn/apk/app-release-1.0.0.072.apk';
 const ANDROID_GUIDE_URL = 'android-guide.html';
 const IOS_GUIDE_URL = 'ios-appstore-guide.html';
 
@@ -8,6 +8,5 @@ const IOS_GUIDE_URL = 'ios-appstore-guide.html';
 const CDN_BASE = 'https://cdn.nowmap.cn';
 const CDN_INTRO = CDN_BASE + '/h5_event/event/intro';
 const OSS_Q60 = '?x-oss-process=image/quality,q_60';
-
 
 
