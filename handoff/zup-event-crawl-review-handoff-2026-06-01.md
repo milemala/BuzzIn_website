@@ -41,6 +41,11 @@ node scripts/review-server.js 8787
   - 负责静态页面、审核状态 API、图片代理 API。
   - 图片通过 `/api/image?src=...` 代理并缓存，避免第三方图床热链问题。
 
+- `scripts/scrape-douban-week-events.js`
+  - 当前保留的豆瓣抓取脚本。
+  - 负责豆瓣列表/详情解析、字段清洗、`body` 生成和多城市合并写入。
+  - 默认按城市合并数据，不应再覆盖其他城市。
+
 - `data/crawled-events.json`
   - 当前抓取活动数据，纯 JSON。
 
