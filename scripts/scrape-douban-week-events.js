@@ -2,6 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const { importPayload, openDatabase } = require("./lib/review-db");
 
 const args = process.argv.slice(2);
 const cityAliases = {
@@ -19,7 +20,7 @@ const citySlugMap = {
 const optionArgs = args.filter((arg) => arg.startsWith("--"));
 const positionalArgs = args.filter((arg) => !arg.startsWith("--"));
 const limit = Number(positionalArgs[0] || 20);
-const output = positionalArgs[1] || path.join(process.cwd(), "data", "crawled-events.js");
+const output = positionalArgs[1] || path.join(process.cwd(), "data", "review.db");
 const cityOption = optionArgs.find((arg) => arg.startsWith("--city="))?.split("=")[1];
 const mode = optionArgs.find((arg) => arg.startsWith("--mode="))?.split("=")[1] || "merge-city";
 const sortMode = optionArgs.find((arg) => arg.startsWith("--sort="))?.split("=")[1] || "source";
@@ -246,6 +247,10 @@ function makeZupSummary(event) {
   return summary.slice(0, 400);
 }
 
+function isLegacyFileTarget(filePath) {
+  return filePath.endsWith(".js") || filePath.endsWith(".json");
+}
+
 function readExistingPayload(filePath) {
   if (!fs.existsSync(filePath)) return null;
   const raw = fs.readFileSync(filePath, "utf8").trim();
@@ -437,10 +442,18 @@ async function main() {
     : [...detailed].sort((a, b) => Number(a.sourcePosition) - Number(b.sourcePosition));
   const events = ordered.slice(0, limit);
   const cityPayload = buildOutputPayload(events);
-  const existingPayload = readExistingPayload(output);
-  const finalPayload = mergePayload(existingPayload, cityPayload);
-
-  writePayload(output, finalPayload);
+  if (isLegacyFileTarget(output)) {
+    const existingPayload = readExistingPayload(output);
+    const finalPayload = mergePayload(existingPayload, cityPayload);
+    writePayload(output, finalPayload);
+  } else {
+    const db = openDatabase(output);
+    try {
+      importPayload(db, cityPayload, { mode });
+    } finally {
+      db.close();
+    }
+  }
   console.log(`Wrote ${events.length} ${city} events to ${output} (${mode})`);
   console.log(events.map((event) => `${event.sourcePosition}. ${event.score} ${event.category} ${event.title}`).join("\n"));
 }

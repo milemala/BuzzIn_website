@@ -38,7 +38,7 @@ node scripts/review-server.js 8787
 
 - `scripts/review-server.js`
   - 本地审核服务。
-  - 负责静态页面、审核状态 API、图片代理 API。
+  - 负责静态页面、数据库 API、图片代理 API。
   - 图片通过 `/api/image?src=...` 代理并缓存，避免第三方图床热链问题。
 
 - `scripts/scrape-douban-week-events.js`
@@ -46,25 +46,30 @@ node scripts/review-server.js 8787
   - 负责豆瓣列表/详情解析、字段清洗、`body` 生成和多城市合并写入。
   - 默认按城市合并数据，不应再覆盖其他城市。
 
-- `data/crawled-events.json`
-  - 当前抓取活动数据，纯 JSON。
+- `data/review.db`
+  - 当前本地审核台的主存储数据库。
+  - 活动数据、城市导入信息、审核状态都以它为准。
 
-- `data/crawled-events.js`
-  - 审核页面读取用的数据包装文件。
+- `scripts/lib/review-db.js`
+  - SQLite 数据访问层。
+  - 负责建表、导入、活动查询、审核状态查询与写入。
+
+- `scripts/migrate-json-to-db.js`
+  - 一次性迁移脚本。
+  - 负责把历史 `crawled-events.json` / `review-decisions.json` 导入 `review.db`。
+
+- `data/crawled-events.json`
+  - 旧的 JSON 快照，当前主要作为迁移来源和历史备份，不再是主存储。
 
 - `data/review-decisions.json`
-  - 人工审核选择，持久化保存。
-  - `approved / pending / rejected`。
-
-- `data/approved-events.json`
-  - 当前已通过活动列表，供后续发布接口使用。
+  - 旧的审核状态 JSON，当前主要作为迁移来源和历史备份，不再是主存储。
 
 - `data/image-cache/`
   - 本地图片代理缓存。
 
 ## 当前数据状态
 
-当前审核台已切回多城市模式，`data/crawled-events.json` / `data/crawled-events.js` 里是合并数据：
+当前审核台已切回多城市模式，数据库 `data/review.db` 里是合并数据：
 
 - 北京：10 条
 - 上海：30 条
@@ -75,6 +80,7 @@ node scripts/review-server.js 8787
 - 这 10 条北京数据是从本机临时快照里恢复回来的“已找回样本”，不是之前那份更完整的北京 20 条集。
 - 上海 30 条是 2026-06-03 新抓的数据，按豆瓣分页原始顺序读取第 1-30 条，没有因为结束状态、低质判断或主观筛选补位。
 - 当前页面已经支持城市筛选，默认可在“全部城市 / 北京 / 上海”之间切换。
+- 审核台前端现在通过 `/api/events` 和 `/api/review-state` 读取数据库，不再直接读取 `crawled-events.js`。
 - 豆瓣不是 Zup 活动库的唯一数据源，也不是长期唯一来源。它只是当前这轮本地验证流程里最先跑通的小样本来源，用来验证“抓取 -> 清洗 -> 摘要 -> 审核 -> 导出”的链路。审核台和数据结构已经按多来源、多城市预留，后续会继续接活动行、小红书、公众号、人工录入或其他授权/合作来源。
 
 当前来源信息：
@@ -105,6 +111,7 @@ node scripts/review-server.js 8787
 - `cities`：当前数据包里包含的城市列表，例如 `["北京", "上海"]`。
 - `cityMeta`：每个城市自己的抓取时间、来源页和条数。
 - `sourcePages`：按城市记录来源页 URL。
+- `eventUid`：数据库中的稳定事件主键，格式类似 `douban:37879969`。审核状态现在以它为主键保存。
 
 重要：`body` 和 `reviewReason` 要分开。活动简介里不能混入审核判断。
 
@@ -173,6 +180,8 @@ node scripts/review-server.js 8787
 - `cityMeta`
 - `sourcePages`
 - `events`
+
+当前如果通过脚本抓取并入库，应该直接写 `review.db`，而不是再把 JSON 文件当主存储。
 
 遇到以下情况需要让用户接管内置浏览器：
 

@@ -5,13 +5,23 @@ const http = require("http");
 const crypto = require("crypto");
 const path = require("path");
 const url = require("url");
+const {
+  getApprovedEvents,
+  getEventsPayload,
+  getReviewState,
+  importPayload,
+  importReviewState,
+  openDatabase,
+  replaceReviewState,
+} = require("./lib/review-db");
 
 const root = process.cwd();
 const port = Number(process.env.PORT || process.argv[2] || 8787);
+const dbPath = path.join(root, "data", "review.db");
 const decisionsPath = path.join(root, "data", "review-decisions.json");
-const approvedPath = path.join(root, "data", "approved-events.json");
 const eventsPath = path.join(root, "data", "crawled-events.json");
 const imageCacheDir = path.join(root, "data", "image-cache");
+const db = openDatabase(dbPath);
 
 const mimeTypes = {
   ".html": "text/html; charset=utf-8",
@@ -24,16 +34,6 @@ const mimeTypes = {
   ".webp": "image/webp",
   ".svg": "image/svg+xml",
 };
-
-function ensureDataFiles() {
-  fs.mkdirSync(path.dirname(decisionsPath), { recursive: true });
-  if (!fs.existsSync(decisionsPath)) {
-    fs.writeFileSync(decisionsPath, `${JSON.stringify({ updatedAt: null, decisions: {} }, null, 2)}\n`);
-  }
-  if (!fs.existsSync(approvedPath)) {
-    fs.writeFileSync(approvedPath, `${JSON.stringify({ updatedAt: null, events: [] }, null, 2)}\n`);
-  }
-}
 
 function readJson(filePath, fallback) {
   try {
@@ -149,39 +149,38 @@ function readBody(req) {
   });
 }
 
-function buildApprovedEvents(decisions) {
-  const crawled = readJson(eventsPath, { events: [] });
-  return crawled.events
-    .filter((event) => decisions[event.id] === "approved")
-    .map((event) => ({
-      title: event.title,
-      city: event.city,
-      district: event.district,
-      startDate: event.startDate,
-      endDate: event.endDate,
-      timeText: event.timeText,
-      location: event.location,
-      latitude: event.latitude,
-      longitude: event.longitude,
-      image: event.image,
-      body: event.body,
-      originalLink: event.originalLink,
-      source: event.source,
-      category: event.category,
-    }));
+function ensureDatabaseSeeded() {
+  const payload = getEventsPayload(db);
+  if (payload.events.length) return;
+
+  if (fs.existsSync(eventsPath)) {
+    importPayload(db, readJson(eventsPath, { events: [] }), { mode: "replace-all" });
+  }
+  if (fs.existsSync(decisionsPath)) {
+    importReviewState(db, readJson(decisionsPath, { decisions: {} }));
+  }
 }
 
 async function handleApi(req, res, pathname) {
-  ensureDataFiles();
+  ensureDatabaseSeeded();
 
   if (req.method === "GET" && pathname === "/api/image") {
     handleImageProxy(req, res, url.parse(req.url, true));
     return;
   }
 
+  if (req.method === "GET" && pathname === "/api/events") {
+    sendJson(res, 200, getEventsPayload(db));
+    return;
+  }
+
   if (req.method === "GET" && pathname === "/api/review-state") {
-    const state = readJson(decisionsPath, { updatedAt: null, decisions: {} });
-    sendJson(res, 200, state);
+    sendJson(res, 200, getReviewState(db));
+    return;
+  }
+
+  if (req.method === "GET" && pathname === "/api/approved-events") {
+    sendJson(res, 200, { updatedAt: getReviewState(db).updatedAt, events: getApprovedEvents(db) });
     return;
   }
 
@@ -189,12 +188,10 @@ async function handleApi(req, res, pathname) {
     try {
       const body = JSON.parse(await readBody(req) || "{}");
       const decisions = body.decisions && typeof body.decisions === "object" ? body.decisions : {};
-      const updatedAt = new Date().toISOString();
-      const state = { updatedAt, decisions };
-      const approved = { updatedAt, events: buildApprovedEvents(decisions) };
-      fs.writeFileSync(decisionsPath, `${JSON.stringify(state, null, 2)}\n`);
-      fs.writeFileSync(approvedPath, `${JSON.stringify(approved, null, 2)}\n`);
-      sendJson(res, 200, { ok: true, updatedAt, approvedCount: approved.events.length });
+      replaceReviewState(db, decisions);
+      const state = getReviewState(db);
+      const approved = getApprovedEvents(db);
+      sendJson(res, 200, { ok: true, updatedAt: state.updatedAt, approvedCount: approved.length });
     } catch (error) {
       sendJson(res, 400, { ok: false, error: error.message });
     }
@@ -227,7 +224,7 @@ function serveStatic(req, res, pathname) {
   });
 }
 
-ensureDataFiles();
+ensureDatabaseSeeded();
 
 http.createServer((req, res) => {
   const parsed = url.parse(req.url);
@@ -238,6 +235,5 @@ http.createServer((req, res) => {
   serveStatic(req, res, parsed.pathname);
 }).listen(port, "127.0.0.1", () => {
   console.log(`Zup review server running at http://127.0.0.1:${port}/events/crawl-review.html`);
-  console.log(`Review decisions: ${decisionsPath}`);
-  console.log(`Approved events: ${approvedPath}`);
+  console.log(`Review database: ${dbPath}`);
 });

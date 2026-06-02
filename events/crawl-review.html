@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Zup 抓取活动审核台</title>
-  <script src="../data/crawled-events.js"></script>
   <style>
     :root{
       --bg:#f7f4ed;
@@ -97,8 +96,8 @@
     <div class="top-inner">
       <div class="brand">
         <h1>Zup 抓取活动审核台</h1>
-        <div class="meta" id="sourceMeta">读取本地抓取数据中...</div>
-        <div class="save-state warn" id="saveState">正在连接本地保存</div>
+        <div class="meta" id="sourceMeta">读取本地活动数据中...</div>
+        <div class="save-state warn" id="saveState">正在连接本地数据库</div>
       </div>
       <div class="actions">
         <button class="btn" id="resetBtn">重置审核</button>
@@ -149,7 +148,7 @@
   </dialog>
 
   <script>
-    const payload = window.CRAWLED_EVENTS || { events: [] };
+    let payload = { events: [], cities: [], cityMeta: {}, sourcePages: {}, dateWindow: [] };
     const stateKey = "zup-crawl-review-v1";
     let reviewState = JSON.parse(localStorage.getItem(stateKey) || "{}");
     let serverSaveEnabled = false;
@@ -175,7 +174,7 @@
     const saveStateEl = document.getElementById("saveState");
 
     function getStatus(event) {
-      return reviewState[event.id] || (event.suggested ? "pending" : "rejected");
+      return reviewState[event.eventUid || event.id] || (event.suggested ? "pending" : "rejected");
     }
 
     function getApprovedEvents() {
@@ -212,10 +211,19 @@
         reviewState = data.decisions && typeof data.decisions === "object" ? data.decisions : {};
         localStorage.setItem(stateKey, JSON.stringify(reviewState));
         serverSaveEnabled = true;
-        setSaveState("已连接本地文件保存", "ok");
+        setSaveState("已连接本地数据库", "ok");
       } catch (error) {
         serverSaveEnabled = false;
-        setSaveState("未连接保存服务，仅临时保存在当前浏览器", "error");
+        setSaveState("未连接数据库，仅临时保存在当前浏览器", "error");
+      }
+    }
+
+    async function loadEvents() {
+      const response = await fetch("/api/events", { cache: "no-store" });
+      if (!response.ok) throw new Error("events unavailable");
+      payload = await response.json();
+      if (!payload || typeof payload !== "object") {
+        payload = { events: [], cities: [], cityMeta: {}, sourcePages: {}, dateWindow: [] };
       }
     }
 
@@ -229,16 +237,16 @@
         });
         if (!response.ok) throw new Error("save failed");
         const data = await response.json();
-        setSaveState(`已保存到本地文件，通过 ${data.approvedCount} 条`, "ok");
+        setSaveState(`已保存到本地数据库，通过 ${data.approvedCount} 条`, "ok");
       } catch (error) {
-        setSaveState("保存到本地文件失败，请确认本地审核服务还在运行", "error");
+        setSaveState("保存到本地数据库失败，请确认本地审核服务还在运行", "error");
       }
     }
 
     function saveState() {
       localStorage.setItem(stateKey, JSON.stringify(reviewState));
       if (saveTimer) clearTimeout(saveTimer);
-      setSaveState(serverSaveEnabled ? "正在保存到本地文件" : "未连接保存服务，仅临时保存在当前浏览器", serverSaveEnabled ? "warn" : "error");
+      setSaveState(serverSaveEnabled ? "正在保存到本地数据库" : "未连接数据库，仅临时保存在当前浏览器", serverSaveEnabled ? "warn" : "error");
       saveTimer = setTimeout(persistToServer, 120);
     }
 
@@ -448,9 +456,9 @@
               <div class="summary">${escapeHtml(event.body || "")}</div>
               <div class="reason">${escapeHtml(event.reviewReason)}</div>
               <div class="card-actions">
-                <button class="mini approve ${status === "approved" ? "active" : ""}" data-id="${event.id}" data-next="approved">通过</button>
-                <button class="mini pending ${status === "pending" ? "active" : ""}" data-id="${event.id}" data-next="pending">待定</button>
-                <button class="mini reject ${status === "rejected" ? "active" : ""}" data-id="${event.id}" data-next="rejected">拒绝</button>
+                <button class="mini approve ${status === "approved" ? "active" : ""}" data-id="${escapeHtml(event.eventUid || event.id)}" data-next="approved">通过</button>
+                <button class="mini pending ${status === "pending" ? "active" : ""}" data-id="${escapeHtml(event.eventUid || event.id)}" data-next="pending">待定</button>
+                <button class="mini reject ${status === "rejected" ? "active" : ""}" data-id="${escapeHtml(event.eventUid || event.id)}" data-next="rejected">拒绝</button>
                 <a class="link" href="${escapeHtml(event.originalLink)}" target="_blank" rel="noreferrer">原始链接</a>
               </div>
             </div>
@@ -543,7 +551,14 @@
       document.getElementById("exportDialog").showModal();
     });
 
-    loadServerState().then(render);
+    Promise.all([loadEvents(), loadServerState()])
+      .then(render)
+      .catch((error) => {
+        sourceMeta.textContent = "读取活动数据失败，请确认本地审核服务正在运行";
+        setSaveState("未连接数据库，仅临时保存在当前浏览器", "error");
+        listEl.innerHTML = `<div class="empty">活动数据加载失败</div>`;
+        console.error(error);
+      });
   </script>
 </body>
 </html>
