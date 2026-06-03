@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const { DatabaseSync } = require("node:sqlite");
 
-const DEFAULT_NOTE = "本文件用于本地人工审核。正文为 Zup 风格摘要，不保存豆瓣详情页原文。图片发布前需再次确认来源授权与平台规则。";
+const DEFAULT_NOTE = "本文件用于本地人工审核。保留原始抓取详情文本，body 为基于原文提炼的 Zup 活动简介。图片发布前需再次确认来源授权与平台规则。";
 const VALID_REVIEW_STATUSES = new Set(["approved", "pending", "rejected"]);
 
 function openDatabase(dbPath) {
@@ -41,6 +41,8 @@ function ensureSchema(db) {
       fee TEXT,
       owner TEXT,
       counts TEXT,
+      raw_detail_text TEXT,
+      raw_detail_html TEXT,
       body TEXT,
       original_link TEXT,
       score INTEGER,
@@ -83,6 +85,14 @@ function ensureSchema(db) {
       value TEXT NOT NULL
     );
   `);
+
+  const columns = new Set(db.prepare("PRAGMA table_info(events)").all().map((column) => column.name));
+  if (!columns.has("raw_detail_text")) {
+    db.exec("ALTER TABLE events ADD COLUMN raw_detail_text TEXT");
+  }
+  if (!columns.has("raw_detail_html")) {
+    db.exec("ALTER TABLE events ADD COLUMN raw_detail_html TEXT");
+  }
 }
 
 function ensureDefaultMeta(db) {
@@ -149,12 +159,12 @@ function importPayload(db, payload, options = {}) {
     INSERT INTO events (
       event_uid, source_id, source, source_name, source_position, source_url, source_list_page,
       city, district, title, category, start_date, end_date, time_text, location,
-      latitude, longitude, image, fee, owner, counts, body, original_link,
+      latitude, longitude, image, fee, owner, counts, raw_detail_text, raw_detail_html, body, original_link,
       score, suggested, review_reason, updated_at
     ) VALUES (
       ?, ?, ?, ?, ?, ?, ?,
       ?, ?, ?, ?, ?, ?, ?, ?,
-      ?, ?, ?, ?, ?, ?, ?, ?,
+      ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
       ?, ?, ?, ?
     )
     ON CONFLICT(event_uid) DO UPDATE SET
@@ -178,6 +188,8 @@ function importPayload(db, payload, options = {}) {
       fee = excluded.fee,
       owner = excluded.owner,
       counts = excluded.counts,
+      raw_detail_text = excluded.raw_detail_text,
+      raw_detail_html = excluded.raw_detail_html,
       body = excluded.body,
       original_link = excluded.original_link,
       score = excluded.score,
@@ -237,6 +249,8 @@ function importPayload(db, payload, options = {}) {
           event.fee || null,
           event.owner || null,
           event.counts || null,
+          event.rawDetailText || null,
+          event.rawDetailHtml || null,
           event.body || null,
           event.originalLink || null,
           Number.isFinite(Number(event.score)) ? Number(event.score) : null,
@@ -370,6 +384,8 @@ function getEventsPayload(db) {
       fee,
       owner,
       counts,
+      raw_detail_text AS rawDetailText,
+      raw_detail_html AS rawDetailHtml,
       body,
       original_link AS originalLink,
       score,

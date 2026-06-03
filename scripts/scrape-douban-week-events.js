@@ -9,12 +9,16 @@ const cityAliases = {
   beijing: "北京",
   bj: "北京",
   北京: "北京",
+  guangzhou: "广州",
+  gz: "广州",
+  广州: "广州",
   shanghai: "上海",
   sh: "上海",
   上海: "上海",
 };
 const citySlugMap = {
   北京: "beijing",
+  广州: "guangzhou",
   上海: "shanghai",
 };
 const optionArgs = args.filter((arg) => arg.startsWith("--"));
@@ -76,7 +80,7 @@ function formatDate(date) {
 }
 
 function parseArgsError(message) {
-  throw new Error(`${message}\nUsage: node scripts/scrape-douban-week-events.js [limit] [output] [--city=shanghai|beijing] [--mode=merge-city|replace-city|replace-all] [--sort=source|score]`);
+  throw new Error(`${message}\nUsage: node scripts/scrape-douban-week-events.js [limit] [output] [--city=shanghai|beijing|guangzhou] [--mode=merge-city|replace-city|replace-all] [--sort=source|score]`);
 }
 
 if (!Number.isFinite(limit) || limit <= 0) {
@@ -207,18 +211,69 @@ function cleanDetailText(html) {
   return text;
 }
 
+function trimSummary(value, maxLength = 110) {
+  let text = normalizeSpace(value || "");
+  if (!text) return "";
+  if (text.length > maxLength) text = text.slice(0, maxLength).replace(/[，、；：,\s]+$/g, "");
+  if (!/[。！？]$/.test(text)) text += "。";
+  return text;
+}
+
+function buildFallbackSummary(event) {
+  return "";
+}
+
+function normalizeDetailSentence(sentence) {
+  return normalizeSpace(String(sentence || "")
+    .replace(/[“”]/g, "\"")
+    .replace(/[ \t]+/g, " ")
+    .replace(/^\d+[\.、]\s*/g, "")
+    .replace(/^[-*•]\s*/g, "")
+    .replace(/^【[^】]{1,20}】/g, "")
+    .replace(/^[（(][^)）]{1,20}[)）]/g, "")
+    .replace(/^(活动介绍|演出介绍|展览介绍|课程介绍|详情介绍|活动内容|演出内容|展览内容|活动亮点|活动信息)[:：]\s*/g, ""));
+}
+
+function extractDetailSentences(detailText) {
+  const introHeader = /^(展会介绍|活动介绍|演出介绍|展览介绍|课程介绍|项目介绍|内容介绍)[:：]?$/;
+  const stopMarkers = /^(展示范围|核心零部件与材料|AI大模型与软件生态|场景解决方案|整机本体|演出曲目|课程安排|购票须知|活动须知|票务须知|注意事项)$/;
+  const banned = /限购|退票|换票|儿童购票|儿童说明|发票说明|购票证件说明|异常排单|异常购票|付款时效|温馨提示|禁止携带|预约说明|一人一票|无需实名制购票|电子发票|票品|订单|观演|须持票|请勿|客服|报名方式|添加微信|微信|扫码|联系电话|联系方式|组委会|手机号|合作伙伴|最终解释权|入场方式说明|入场时间|演出\/活动时长|最低演出曲目|最低演出\/活动时长|主要演员|以现场为准|无需预约|未成年人|儿童谢绝入场|指定区域入座|家庭票至多携|停止检票|名单公布|免费名额|观影时间|观影地点|取票时间|取票方式|报名规则|场次信息|限定福利|活动要求|关于破浪|特殊提示|参观须知|限一次入场|周一闭馆|请确认好所购时间及场次|退场后禁止再次入场|不可更换|不可延期|不可退款|注意：本链接售票|中奖|黑名单|转票|学生票|先到先得|换纸质门票|路线指引|禁止入内|不可携带|购票时请确认|官方公众号/;
+  const lines = String(detailText || "").split(/\n+/).map((line) => normalizeDetailSentence(line)).filter(Boolean);
+  if (!lines.length) return [];
+
+  const hasIntro = lines.some((line) => introHeader.test(line));
+  const firstMeaningful = lines[0] || "";
+  if (!hasIntro && /^(【场次信息】|【报名规则】|💡注意|Note:|限购说明|退票\/换票政策|入场方式说明|演出\/活动时长|入场时间|观影时间|免费名额|取票时间|名单公布)/.test(firstMeaningful)) {
+    return [];
+  }
+
+  const kept = [];
+  let started = !hasIntro;
+  for (let line of lines) {
+    if (introHeader.test(line)) {
+      started = true;
+      continue;
+    }
+    if (!started) continue;
+    if (stopMarkers.test(line) && kept.length > 0) break;
+    if (/^(时间|地点|费用|票价|发起|主办|报名方式|活动时间|活动地点|活动费用)[:：]/.test(line)) continue;
+    if (/^[A-Z0-9\s\-:()&/.]{8,}$/.test(line)) continue;
+    if (banned.test(line)) continue;
+    kept.push(line);
+    if (kept.length >= 8) break;
+  }
+
+  return kept
+    .join(" ")
+    .split(/(?<=[。！？])/)
+    .map((line) => normalizeSpace(line))
+    .filter(Boolean)
+    .filter((line) => line.length >= 12)
+    .filter((line) => !banned.test(line));
+}
+
 function makeFallbackSummary(event) {
-  const title = normalizeSpace(event.title).replace(/【[^】]*】/g, "");
-  const byCategory = {
-    "户外": "这是一场适合离开室内、把时间交给城市或自然的户外活动。",
-    "演出": "这是一场适合约朋友一起去看的现场演出，重点在舞台和观演氛围。",
-    "展览": "这是一场适合慢慢逛、慢慢看的观展体验，也适合边看边聊。",
-    "手作": "这是一场偏重亲手参与和过程感的手作体验，适合想从屏幕里抽离一下的人。",
-    "社交": "这是一场偏面对面交流和互动参与的活动，适合想认识同好或换个频道度过空闲时间的人。",
-    "亲子": "这是一场适合带孩子一起参与、把互动和陪伴放进周末的活动。",
-    "其他": "这是一场适合对这个主题有兴趣、想去现场感受一下真实氛围的活动。",
-  };
-  return `围绕“${title}”展开的线下活动。${byCategory[event.category] || byCategory["其他"]}`.slice(0, 180);
+  return buildFallbackSummary(event);
 }
 
 function makeZupSummary(event) {
@@ -229,22 +284,16 @@ function makeZupSummary(event) {
     .replace(/费用[:：][^。；\n]+/g, "")
     .replace(/具体[^。]*以现场为准/g, "")
     .replace(/详情[^。]*以原始链接为准/g, ""));
-
-  const sentences = clean
-    .split(/(?<=[。！？])/)
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .filter((line) => !/购票|门票|票务|订单|退票|改签|实名|入场规则|限购|一人一票|馆方有权|付款时效|预约说明|儿童须持票|异常排单|市场规模|亿元|产业集聚|使用须知/.test(line));
+  const sentences = extractDetailSentences(clean);
+  if (!sentences.length) return makeFallbackSummary(event);
 
   let summary = "";
   for (const sentence of sentences) {
-    if ((summary + sentence).length > 280) break;
+    if ((summary + sentence).length > 220) break;
     summary += sentence;
   }
-  summary = normalizeSpace(summary);
-  if (!summary || summary.length < 40) return makeFallbackSummary(event);
-  if (!/[。！？]$/.test(summary)) summary += "。";
-  return summary.slice(0, 400);
+  summary = trimSummary(summary, 220);
+  return summary || makeFallbackSummary(event);
 }
 
 function isLegacyFileTarget(filePath) {
@@ -269,7 +318,7 @@ function buildOutputPayload(events) {
     sourcePage,
     city,
     dateWindow: buildDateWindow(),
-    note: "本文件用于本地人工审核。正文为 Zup 风格摘要，不保存豆瓣详情页原文。图片发布前需再次确认来源授权与平台规则。",
+    note: "本文件用于本地人工审核。保留原始抓取详情文本，body 为基于原文提炼的 Zup 活动简介。图片发布前需再次确认来源授权与平台规则。",
     events,
   };
 }
@@ -420,11 +469,15 @@ async function main() {
   for (const event of candidates) {
     try {
       const detailHtml = await fetchText(event.originalLink);
-      event.detailText = cleanDetailText(detailHtml);
+      event.rawDetailHtml = detailHtml;
+      event.rawDetailText = cleanDetailText(detailHtml);
+      event.detailText = event.rawDetailText;
       const largeImage = matchOne(detailHtml, /<img id="poster_img" itemprop="image" src="([^"]+)"/);
       if (largeImage) event.image = largeImage;
     } catch (error) {
       event.detailText = "";
+      event.rawDetailText = "";
+      event.rawDetailHtml = "";
       event.detailError = error.message;
     }
     event.category = classify(event.title, event.location, event.owner, event.detailText);

@@ -33,7 +33,7 @@
     .btn.primary{border-color:#111;background:#111;color:#fff}
     .btn:hover{transform:translateY(-1px)}
     .wrap{max-width:1180px;margin:0 auto;padding:18px 20px 44px}
-    .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}
+    .stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:14px}
     .stat{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px}
     .stat b{display:block;font-size:22px;line-height:1.1}
     .stat span{display:block;margin-top:5px;color:var(--muted);font-size:12px}
@@ -174,7 +174,7 @@
     const saveStateEl = document.getElementById("saveState");
 
     function getStatus(event) {
-      return reviewState[event.eventUid || event.id] || (event.suggested ? "pending" : "rejected");
+      return reviewState[event.eventUid || event.id] || "pending";
     }
 
     function getApprovedEvents() {
@@ -346,11 +346,13 @@
       const activeEvents = getActiveEvents();
       const total = activeEvents.length;
       const suggested = activeEvents.filter((event) => event.suggested).length;
+      const ruleBlocked = activeEvents.filter((event) => !event.suggested).length;
       const approved = activeEvents.filter((event) => getStatus(event) === "approved").length;
       const rejected = activeEvents.filter((event) => getStatus(event) === "rejected").length;
       statsEl.innerHTML = [
         ["未过期总数", total],
         ["规则推荐", suggested],
+        ["规则挡下", ruleBlocked],
         ["人工通过", approved],
         ["人工拒绝", rejected],
       ].map(([label, value]) => `<div class="stat"><b>${value}</b><span>${label}</span></div>`).join("");
