@@ -13,9 +13,10 @@ const {
   importReviewState,
   openDatabase,
   replaceReviewState,
-} = require("./lib/review-db");
+} = require("../lib/review-db");
 
-const root = process.cwd();
+const root = path.join(__dirname, "..");
+const publicDir = path.join(root, "public");
 const port = Number(process.env.PORT || process.argv[2] || 8787);
 const dbPath = path.join(root, "data", "review.db");
 const decisionsPath = path.join(root, "data", "review-decisions.json");
@@ -35,6 +36,13 @@ const mimeTypes = {
   ".svg": "image/svg+xml",
 };
 
+const legacyReviewPaths = new Set([
+  "/",
+  "/index.html",
+  "/review.html",
+  "/events/crawl-review.html",
+]);
+
 function readJson(filePath, fallback) {
   try {
     return JSON.parse(fs.readFileSync(filePath, "utf8"));
@@ -51,15 +59,15 @@ function sendJson(res, statusCode, payload) {
   res.end(`${JSON.stringify(payload, null, 2)}\n`);
 }
 
-function sendFile(res, filePath, contentType) {
+function sendFile(res, filePath, contentType, cacheControl = "no-store") {
   fs.readFile(filePath, (error, data) => {
     if (error) {
-      sendJson(res, 404, { ok: false, error: "Image not found" });
+      sendJson(res, 404, { ok: false, error: "File not found" });
       return;
     }
     res.writeHead(200, {
       "Content-Type": contentType || mimeTypes[path.extname(filePath)] || "application/octet-stream",
-      "Cache-Control": "public, max-age=86400",
+      "Cache-Control": cacheControl,
     });
     res.end(data);
   });
@@ -99,12 +107,12 @@ async function handleImageProxy(req, res, parsed) {
   }
 
   fs.mkdirSync(imageCacheDir, { recursive: true });
+  const hashPrefix = crypto.createHash("sha1").update(src).digest("hex");
   const existingCandidates = fs.existsSync(imageCacheDir)
-    ? fs.readdirSync(imageCacheDir).filter((name) => name.startsWith(crypto.createHash("sha1").update(src).digest("hex")))
+    ? fs.readdirSync(imageCacheDir).filter((name) => name.startsWith(hashPrefix))
     : [];
   if (existingCandidates.length) {
-    const cachedPath = path.join(imageCacheDir, existingCandidates[0]);
-    sendFile(res, cachedPath);
+    sendFile(res, path.join(imageCacheDir, existingCandidates[0]), null, "public, max-age=86400");
     return;
   }
 
@@ -112,8 +120,8 @@ async function handleImageProxy(req, res, parsed) {
     const response = await fetch(src, {
       headers: {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-        "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
-        "Referer": "https://www.douban.com/",
+        Accept: "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+        Referer: "https://www.douban.com/",
       },
     });
     if (!response.ok) {
@@ -186,7 +194,7 @@ async function handleApi(req, res, pathname) {
 
   if (req.method === "POST" && pathname === "/api/review-state") {
     try {
-      const body = JSON.parse(await readBody(req) || "{}");
+      const body = JSON.parse((await readBody(req)) || "{}");
       const decisions = body.decisions && typeof body.decisions === "object" ? body.decisions : {};
       replaceReviewState(db, decisions);
       const state = getReviewState(db);
@@ -201,39 +209,50 @@ async function handleApi(req, res, pathname) {
   sendJson(res, 404, { ok: false, error: "Not found" });
 }
 
+function resolvePublicFile(pathname) {
+  if (legacyReviewPaths.has(pathname)) {
+    return path.join(publicDir, "index.html");
+  }
+  const relative = pathname.replace(/^\/+/, "");
+  return path.normalize(path.join(publicDir, relative));
+}
+
 function serveStatic(req, res, pathname) {
-  const safePath = pathname === "/" ? "/events/crawl-review.html" : pathname;
-  const filePath = path.normalize(path.join(root, decodeURIComponent(safePath)));
-  if (!filePath.startsWith(root)) {
+  const filePath = resolvePublicFile(pathname);
+  if (!filePath.startsWith(publicDir)) {
     res.writeHead(403);
     res.end("Forbidden");
     return;
   }
 
-  fs.readFile(filePath, (error, data) => {
-    if (error) {
-      res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-      res.end("Not found");
-      return;
-    }
-    res.writeHead(200, {
-      "Content-Type": mimeTypes[path.extname(filePath)] || "application/octet-stream",
-      "Cache-Control": "no-store",
-    });
-    res.end(data);
-  });
+  sendFile(res, filePath);
 }
 
 ensureDatabaseSeeded();
 
-http.createServer((req, res) => {
+const server = http.createServer((req, res) => {
   const parsed = url.parse(req.url);
   if (parsed.pathname.startsWith("/api/")) {
     handleApi(req, res, parsed.pathname);
     return;
   }
   serveStatic(req, res, parsed.pathname);
-}).listen(port, "127.0.0.1", () => {
-  console.log(`Zup review server running at http://127.0.0.1:${port}/events/crawl-review.html`);
-  console.log(`Review database: ${dbPath}`);
+});
+
+server.on("error", (error) => {
+  if (error.code === "EADDRINUSE") {
+    console.error(`\n端口 ${port} 已被占用（EADDRINUSE）。常见原因：已有一个审核服务在跑。`);
+    console.error("\n处理方式任选其一：");
+    console.error(`  1) 关掉旧进程：lsof -ti :${port} | xargs kill`);
+    console.error(`  2) 换端口启动：PORT=8788 npm start`);
+    console.error(`  3) 指定端口：node scripts/server.js 8788\n`);
+    process.exit(1);
+  }
+  throw error;
+});
+
+server.listen(port, "127.0.0.1", () => {
+  console.log(`Zup event crawl service: http://127.0.0.1:${port}/`);
+  console.log(`Review UI (legacy path): http://127.0.0.1:${port}/events/crawl-review.html`);
+  console.log(`Database: ${dbPath}`);
 });

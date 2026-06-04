@@ -16,9 +16,12 @@ BuzzInMap_website/
 ├─ js/
 │  └─ main.js                 # 导航、滚动与交互动效
 ├─ images/                    # 图片资源
-├─ events/                    # 活动 H5 / 产品原型页（详见 events/README.md；该目录内页面已尽量用 SVG/CSS 占位，不依赖本地图）
+├─ events/                    # 活动 H5 / 产品原型页（详见 events/README.md）
+├─ zup-event-crawl/           # 活动抓取与本地审核台（豆瓣等，与官网 H5 分目录维护）
 └─ 商户入驻页设计参考.md        # 商户入驻内容参考文档
 ```
+
+活动抓取说明见 [`zup-event-crawl/README.md`](zup-event-crawl/README.md) 或 [`events/CRAWL-SERVICE.md`](events/CRAWL-SERVICE.md)。
 
 ## 本地预览
 

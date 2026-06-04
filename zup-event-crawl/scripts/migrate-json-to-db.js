@@ -10,7 +10,7 @@ const {
   importPayload,
   importReviewState,
   openDatabase,
-} = require("./lib/review-db");
+} = require("../lib/review-db");
 
 const root = process.cwd();
 const dbPath = process.argv[2] || path.join(root, "data", "review.db");

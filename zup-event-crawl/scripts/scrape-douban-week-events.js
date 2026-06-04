@@ -2,7 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const { importPayload, openDatabase } = require("./lib/review-db");
+const { importPayload, openDatabase } = require("../lib/review-db");
 
 const args = process.argv.slice(2);
 const cityAliases = {
@@ -15,12 +15,29 @@ const cityAliases = {
   shanghai: "上海",
   sh: "上海",
   上海: "上海",
+  chengdu: "成都",
+  cd: "成都",
+  成都: "成都",
 };
 const citySlugMap = {
   北京: "beijing",
   广州: "guangzhou",
   上海: "shanghai",
+  成都: "chengdu",
 };
+const cityListUrlKind = {
+  北京: "subdomain",
+  广州: "subdomain",
+  上海: "subdomain",
+  成都: "location",
+};
+
+function buildListSourcePage(slug, kind) {
+  if (kind === "location") {
+    return `https://www.douban.com/location/${slug}/events/week-all`;
+  }
+  return `https://${slug}.douban.com/events/week-all`;
+}
 const optionArgs = args.filter((arg) => arg.startsWith("--"));
 const positionalArgs = args.filter((arg) => !arg.startsWith("--"));
 const limit = Number(positionalArgs[0] || 20);
@@ -28,9 +45,15 @@ const output = positionalArgs[1] || path.join(process.cwd(), "data", "review.db"
 const cityOption = optionArgs.find((arg) => arg.startsWith("--city="))?.split("=")[1];
 const mode = optionArgs.find((arg) => arg.startsWith("--mode="))?.split("=")[1] || "merge-city";
 const sortMode = optionArgs.find((arg) => arg.startsWith("--sort="))?.split("=")[1] || "source";
+const listFiles = optionArgs
+  .filter((arg) => arg.startsWith("--list-file="))
+  .map((arg) => arg.slice("--list-file=".length));
+const listDirOption = optionArgs.find((arg) => arg.startsWith("--list-dir="))?.split("=")[1];
+const detailDirOption = optionArgs.find((arg) => arg.startsWith("--detail-dir="))?.split("=")[1];
 const city = cityAliases[cityOption] || "上海";
 const citySlug = citySlugMap[city] || "shanghai";
-const sourcePage = `https://${citySlug}.douban.com/events/week-all`;
+const listUrlKind = cityListUrlKind[city] || "subdomain";
+const sourcePage = buildListSourcePage(citySlug, listUrlKind);
 const sourcePages = Array.from({ length: 8 }, (_, index) => (
   index === 0 ? sourcePage : `${sourcePage}?start=${index * 10}`
 ));
@@ -80,7 +103,7 @@ function formatDate(date) {
 }
 
 function parseArgsError(message) {
-  throw new Error(`${message}\nUsage: node scripts/scrape-douban-week-events.js [limit] [output] [--city=shanghai|beijing|guangzhou] [--mode=merge-city|replace-city|replace-all] [--sort=source|score]`);
+  throw new Error(`${message}\nUsage: node scripts/scrape-douban-week-events.js [limit] [output] [--city=shanghai|beijing|guangzhou|chengdu] [--mode=merge-city|replace-city|replace-all] [--sort=source|score] [--list-file=path] [--list-dir=path] [--detail-dir=path]`);
 }
 
 if (!Number.isFinite(limit) || limit <= 0) {
@@ -435,40 +458,88 @@ function parseListEvents(html) {
   return [...byUrl.values()];
 }
 
+function resolvePath(filePath) {
+  return path.isAbsolute(filePath) ? filePath : path.join(process.cwd(), filePath);
+}
+
+function readListHtmlFiles() {
+  const files = [];
+  if (listDirOption) {
+    const dir = resolvePath(listDirOption);
+    if (!fs.existsSync(dir)) throw new Error(`List dir not found: ${dir}`);
+    files.push(...fs.readdirSync(dir)
+      .filter((name) => /\.html?$/i.test(name))
+      .sort()
+      .map((name) => path.join(dir, name)));
+  }
+  files.push(...listFiles.map(resolvePath));
+  return files;
+}
+
+function readDetailHtmlFromCache(event) {
+  if (!detailDirOption) return null;
+  const detailPath = path.join(resolvePath(detailDirOption), `${event.id}.html`);
+  if (!fs.existsSync(detailPath)) return null;
+  return fs.readFileSync(detailPath, "utf8");
+}
+
+function ingestListHtml(candidateMap, listHtml, pageUrl) {
+  parseListEvents(listHtml).forEach((event) => {
+    if (!candidateMap.has(event.id)) {
+      event.sourcePosition = candidateMap.size + 1;
+      event.sourceListPage = pageUrl;
+      candidateMap.set(event.id, event);
+    }
+  });
+}
+
 async function fetchText(fetchUrl) {
   const response = await fetch(fetchUrl, {
     headers: {
       "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
       "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-      "Referer": `https://${citySlug}.douban.com/`,
+      "Referer": listUrlKind === "location"
+        ? `https://www.douban.com/location/${citySlug}/`
+        : `https://${citySlug}.douban.com/`,
     },
   });
   if (!response.ok) throw new Error(`${response.status} ${fetchUrl}`);
   return response.text();
 }
 
-async function main() {
+async function loadListCandidates() {
   const candidateMap = new Map();
+  const savedListFiles = readListHtmlFiles();
+  if (savedListFiles.length) {
+    savedListFiles.forEach((filePath, index) => {
+      const listHtml = fs.readFileSync(filePath, "utf8");
+      const pageUrl = sourcePages[Math.min(index, sourcePages.length - 1)] || sourcePage;
+      ingestListHtml(candidateMap, listHtml, pageUrl);
+      console.log(`Loaded list HTML: ${filePath} (${candidateMap.size} candidates so far)`);
+    });
+    return candidateMap;
+  }
+
   for (const pageUrl of sourcePages) {
     try {
       const listHtml = await fetchText(pageUrl);
-      parseListEvents(listHtml).forEach((event) => {
-        if (!candidateMap.has(event.id)) {
-          event.sourcePosition = candidateMap.size + 1;
-          event.sourceListPage = pageUrl;
-          candidateMap.set(event.id, event);
-        }
-      });
+      ingestListHtml(candidateMap, listHtml, pageUrl);
     } catch (error) {
       console.warn(`Skip list page ${pageUrl}: ${error.message}`);
     }
   }
+  return candidateMap;
+}
+
+async function main() {
+  const candidateMap = await loadListCandidates();
   const candidates = [...candidateMap.values()];
   const detailed = [];
 
   for (const event of candidates) {
     try {
-      const detailHtml = await fetchText(event.originalLink);
+      let detailHtml = readDetailHtmlFromCache(event);
+      if (!detailHtml) detailHtml = await fetchText(event.originalLink);
       event.rawDetailHtml = detailHtml;
       event.rawDetailText = cleanDetailText(detailHtml);
       event.detailText = event.rawDetailText;

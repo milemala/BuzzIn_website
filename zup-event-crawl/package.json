@@ -1,0 +1,15 @@
+{
+  "name": "zup-event-crawl",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Zup 第三方活动抓取、清洗与本地人工审核服务",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node scripts/server.js",
+    "scrape": "node scripts/scrape-douban-week-events.js",
+    "migrate": "node scripts/migrate-json-to-db.js",
+    "save-html": "node scripts/save-chrome-douban-html.js"
+  }
+}

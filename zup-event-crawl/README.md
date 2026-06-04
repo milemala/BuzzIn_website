@@ -1,0 +1,92 @@
+# Zup Event Crawl
+
+从第三方平台（当前以豆瓣同城为主）抓取城市活动、清洗结构化数据，并在本地审核台进行人工「通过 / 待定 / 拒绝」。
+
+本目录位于官网仓库 `BuzzInMap_website/zup-event-crawl/` 内，与根目录静态页、`events/` H5 原型**分文件夹**维护，便于单独扩展抓取能力；与官网共用同一 git 仓库，在 Cursor 侧边栏可直接展开本目录。
+
+## 目录结构
+
+```
+zup-event-crawl/
+├── README.md
+├── package.json
+├── scripts/
+│   ├── server.js                 # 本地审核 HTTP 服务（API + 静态页）
+│   ├── scrape-douban-week-events.js
+│   ├── save-chrome-douban-html.js
+│   └── migrate-json-to-db.js
+├── lib/
+│   └── review-db.js              # SQLite 读写
+├── public/
+│   └── index.html                # 审核台 UI（原 crawl-review.html）
+├── data/
+│   ├── review.db                 # 主存储（默认 gitignore）
+│   ├── image-cache/              # 图片代理缓存
+│   ├── scrape-cache/             # 浏览器备路 HTML
+│   ├── crawled-events.json       # 历史 JSON 备份 / 迁移源
+│   └── review-decisions.json
+└── docs/
+    └── HANDOFF.md                # 完整交接文档（唯一维护副本，AI 新会话优先读）
+```
+
+## 环境要求
+
+- Node.js **18+**（使用内置 `node:sqlite`）
+- 无额外 npm 依赖
+
+## 快速开始
+
+```bash
+cd zup-event-crawl
+npm start
+# 或: node scripts/server.js 8787
+```
+
+浏览器打开：
+
+- http://127.0.0.1:8787/ （审核台）
+
+## 抓取豆瓣活动
+
+```bash
+# 成都 30 条，合并入库（不覆盖其他城市）
+node scripts/scrape-douban-week-events.js 30 data/review.db --city=chengdu --mode=merge-city
+
+# 北京 / 上海 / 广州
+node scripts/scrape-douban-week-events.js 30 data/review.db --city=beijing --mode=merge-city
+```
+
+城市列表 URL 说明（成都为 `www.douban.com/location/...`，见 `docs/HANDOFF.md`）。
+
+### 备路：Chrome 保存 HTML
+
+```bash
+node scripts/save-chrome-douban-html.js --match=douban.com --out=data/scrape-cache/成都/list/01.html
+
+node scripts/scrape-douban-week-events.js 30 data/review.db \
+  --city=chengdu --mode=merge-city \
+  --list-dir=data/scrape-cache/成都/list \
+  --detail-dir=data/scrape-cache/成都/detail
+```
+
+## API（本地）
+
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| GET | `/api/events` | 活动列表与元数据 |
+| GET | `/api/review-state` | 审核状态 |
+| POST | `/api/review-state` | 保存审核状态 |
+| GET | `/api/approved-events` | 已通过活动 |
+| GET | `/api/image?src=...` | 图片代理与缓存 |
+
+## 与官网其他目录的关系
+
+- **官网根目录 / `events/`**：对外 H5、产品原型页。
+- **本目录 `zup-event-crawl/`**：抓取、清洗、SQLite、`review.db`、本地审核 UI。
+- **业务规则、抓取禁忌、事故记录、body 写作规范**：见 [`docs/HANDOFF.md`](docs/HANDOFF.md)。
+
+## 后续扩展建议
+
+- `sources/`：按来源拆分适配器（豆瓣 / 活动行 / 小红书…）
+- `jobs/`：定时抓取或导出任务
+- `exports/`：审核通过结果导出给 App 或运营

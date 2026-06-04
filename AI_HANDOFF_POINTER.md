@@ -17,3 +17,9 @@ Important:
 - Do not scan parent directories or unrelated Obsidian / iCloud / Documents content.
 - The external handoff space is the only Obsidian area intended for Codex by default.
 - For this website project, work inside the current repository unless the user explicitly provides another path and purpose.
+
+## 活动抓取（同仓库子目录）
+
+- 路径：`zup-event-crawl/`（抓取脚本、`data/review.db`、审核台 UI）
+- **活动抓取交接（只维护仓库内）**：`zup-event-crawl/docs/HANDOFF.md`（勿改 Obsidian 同名笔记）
+- 速查：`zup-event-crawl/README.md`、`events/CRAWL-SERVICE.md`

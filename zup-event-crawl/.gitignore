@@ -1,0 +1,13 @@
+.DS_Store
+node_modules/
+
+# Runtime data (keep structure via data/.gitkeep if needed)
+data/review.db
+data/review.db-*
+data/image-cache/
+data/scrape-cache/
+
+# Optional local backups — uncomment to ignore
+# data/crawled-events.json
+# data/crawled-events.js
+# data/review-decisions.json
