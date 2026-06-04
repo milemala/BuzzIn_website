@@ -339,14 +339,20 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 
 ## 商户抓取（大众点评，与活动分离）
 
-用途：按用户口头任务（如「上海跳海酒馆所有分店」）从大众点评找**真实在营**门店，提取店名、封面图、街道地址，供 Zup 批量建商户。与豆瓣活动抓取**不要混在同一列表/脚本默认输出里**。
+用途：按用户口头任务（如「上海跳海酒馆所有分店」）从大众点评找**真实在营**门店，供 Zup 批量建商户。与豆瓣活动抓取**不要混在同一列表/脚本默认输出里**。
+
+### 抓取策略（2026-06 起，务必遵守）
+
+- **只抓搜索列表页**，**禁止**默认打开商户详情页（连续访问详情易触发 403 / 反爬，且用户换 IP 仍无效）。
+- 从列表提取：**店名**、**列表缩略图**（`img` 的 `data-src` / `src`）、**品类**、**商圈**（`shop_tag_region_click`）、**点评链接**。
+- **不抓街道地址**；`address` 字段留空，位置信息用 `district`（商圈）即可。
+- 详情页逻辑保留在代码中，仅当显式传 `--with-details` 时使用（一般不推荐）。
 
 ### 技术结论（2026-06-03 试抓「上海 + 跳海」）
 
 - 命令行 `fetch` / `curl` 会落到**登录页**，不能无头直抓。
-- **一站式默认**：`scrape-dianping-merchants.js` 通过 `lib/chrome-fetch.js` 用 **AppleScript 驱动本机已登录的 Chrome** 自动打开搜索页（含翻页）和各店详情，解析后入库；**不需要**人工逐页「另存 HTML」。
-- 前提：Chrome 已登录大众点评；与豆瓣备路相同，需开启「查看 → 开发者 → 允许 AppleScript 中的 JavaScript」。
-- 列表页只有商圈；**封面图与街道地址均在详情页**（`defaultPic` / `"address":"..."`），不用列表缩略图。
+- **默认流程**：`scrape-dianping-merchants.js` + `lib/chrome-fetch.js` 用 **AppleScript 驱动本机已登录 Chrome** 只打开搜索列表（含翻页），后台专用窗口、不 `activate` 抢焦点。
+- 前提：Chrome 已登录大众点评；需开启「查看 → 开发者 → 允许 AppleScript 中的 JavaScript」。
 - 入选规则在 `lib/merchant-social-filter.js`：社交饮酒类门店（酒馆/Taproom/精酿等），不按品牌维护配置表；批量任务只写搜索词与城市。
 - 闭店 / 未开业：解析时跳过含「歇业关闭」「尚未开业」等标记的条目。
 
@@ -367,7 +373,7 @@ npm start
 # 浏览器打开 http://127.0.0.1:8787/merchants.html
 ```
 
-抓取过程中请保持 Chrome 可用（脚本会依次打开标签页，使用你已登录的会话）。
+抓取过程中请保持 Chrome 已登录；脚本在后台专用窗口翻列表，不抢焦点。
 
 离线备路（仅当 Chrome 自动化不可用时）：`--offline --html-dir=...` + 历史 `save-chrome-douban-html.js`。
 

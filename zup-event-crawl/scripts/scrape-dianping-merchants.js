@@ -31,7 +31,7 @@ function parseArgs(argv) {
     allowEmpty: false,
     jsonOut: "",
     offline: false,
-    skipDetails: false,
+    skipDetails: true,
     chromeWaitMs: 4500,
     detailWaitMs: 3500,
     maxPages: 20,
@@ -49,6 +49,8 @@ function parseArgs(argv) {
       options.offline = true;
     } else if (arg === "--skip-details") {
       options.skipDetails = true;
+    } else if (arg === "--with-details") {
+      options.skipDetails = false;
     } else if (arg.startsWith("--city=")) {
       options.city = arg.slice("--city=".length);
     } else if (arg.startsWith("--city-id=")) {
@@ -97,15 +99,17 @@ function parseArgs(argv) {
 }
 
 function printHelp() {
-  console.log(`一站式抓取（默认自动用本机 Chrome，无需手存 HTML）:
+  console.log(`大众点评商户抓取（默认仅列表页，不打开详情，避免反爬）:
 
   node scripts/scrape-dianping-merchants.js \\
     --city=上海 --keyword=跳海
 
-前提：Google Chrome 已登录大众点评。入选规则为社交饮酒类门店（见 merchant-social-filter.js），非按品牌配置表。
+从列表取：店名、列表封面图、品类、商圈、点评链接。不抓街道地址。
+
+前提：Google Chrome 已登录大众点评。入选规则见 merchant-social-filter.js。
 
 可选：
-  --skip-details        只抓列表，不打开详情页（地址可能只有商圈）
+  --with-details        打开详情页（易触发 403，一般不推荐）
   --offline --html-file=...   离线解析已保存 HTML
   --dry-run             不入库
   --mode=merge|replace-keyword
@@ -169,8 +173,8 @@ async function fetchSearchResultsViaChrome(options) {
   let lastShopCount = 0;
   let lastHtml = "";
 
-  console.log("\n[1/3] Chrome 自动搜索列表…");
-  console.log("      后台专用窗口抓取，不抢焦点；请保持 Chrome 已登录大众点评。");
+  console.log("\n[1/2] Chrome 自动搜索列表（仅列表页，不抓详情）…");
+  console.log("      后台专用窗口，不抢焦点；请保持 Chrome 已登录大众点评。");
 
   while (queue.length && visited.size < options.maxPages) {
     const pageUrl = queue.shift();
@@ -349,14 +353,14 @@ async function main() {
   let enriched;
   if (options.skipDetails) {
     enriched = items;
-    console.log("\n[2/3] 已跳过详情抓取（--skip-details）");
   } else if (options.offline) {
     enriched = enrichDetailsFromCache(items, options);
   } else {
     enriched = await enrichDetailsViaChrome(items, options);
   }
 
-  const withAddress = enriched.filter((row) => row.address).length;
+  const withImage = enriched.filter((row) => row.image).length;
+  const withDistrict = enriched.filter((row) => row.district).length;
   const importBatchId = `${options.city}-${options.keyword}-${new Date().toISOString().slice(0, 10)}`;
   const merchantRows = enriched.map((item) => toMerchantRecord(item, {
     city: options.city,
@@ -369,7 +373,8 @@ async function main() {
     keyword: options.keyword,
     searchUrl: buildSearchUrl(options.cityId, options.keyword),
     imported: merchantRows.length,
-    withAddress,
+    withImage,
+    withDistrict,
     merchants: merchantRows.map((row) => ({
       name: row.name,
       address: row.address,
@@ -380,12 +385,12 @@ async function main() {
     })),
   };
 
-  console.log("\n[3/3] 结果汇总");
+  console.log("\n[2/2] 结果汇总");
   console.log(`搜索词: ${options.keyword} | 城市: ${options.city}`);
-  console.log(`入库 ${merchantRows.length} 家 | 有街道地址 ${withAddress}`);
+  console.log(`入库 ${merchantRows.length} 家 | 有列表图 ${withImage} | 有商圈 ${withDistrict}`);
   for (const row of summary.merchants) {
-    const addr = row.address || `(商圈: ${row.district || "未知"})`;
-    console.log(`- ${row.name} — ${addr}`);
+    const region = row.district || row.category || "未知";
+    console.log(`- ${row.name} — 商圈: ${region}`);
   }
 
   if (options.jsonOut) {

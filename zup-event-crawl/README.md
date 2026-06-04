@@ -59,7 +59,7 @@ npm start
 npm run scrape-merchants -- --city=上海 --keyword=跳海
 ```
 
-脚本会自动：Chrome 打开搜索页（含翻页）→ 打开各店详情取街道地址 → 写入 `data/review.db`。然后 `npm start` 打开商户审核页。
+默认**仅列表页**：店名、列表封面图、商圈、点评链接（不打开详情，避免反爬）。结果写入 `data/review.db`，在商户审核页查看。
 
 离线备路（手存 HTML）仍可用 `--offline --html-dir=...`。
 

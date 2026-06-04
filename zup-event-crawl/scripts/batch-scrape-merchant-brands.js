@@ -45,7 +45,6 @@ function runTask(task, index, total) {
     "--mode=replace-keyword",
     "--allow-empty",
     "--chrome-wait=8000",
-    "--detail-wait=4000",
   ];
 
   const result = spawnSync(process.execPath, args, {

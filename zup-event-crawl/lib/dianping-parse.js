@@ -81,6 +81,13 @@ function normalizeImageUrl(raw) {
   return url;
 }
 
+function parseListItemImage(listItemHtml) {
+  const raw = firstMatch(listItemHtml, /data-src="([^"]+)"/i)
+    || firstMatch(listItemHtml, /\bsrc="(https?:\/\/[^"]+)"/i)
+    || firstMatch(listItemHtml, /\bsrc="(\/\/[^"]+)"/i);
+  return normalizeImageUrl(raw);
+}
+
 function parseShopDetailImage(html) {
   const raw = firstMatch(html, /"defaultPic":"([^"]+)"/)
     || firstMatch(html, /<meta property="og:image" content="([^"]+)"/i)
@@ -164,7 +171,7 @@ function parseSearchListHtml(html, options = {}) {
     const item = {
       shopId,
       name,
-      image: "",
+      image: parseListItemImage(block),
       category,
       district,
       listRegionText: [category, district].filter(Boolean).join(" | "),
@@ -324,6 +331,7 @@ module.exports = {
   normalizeImageUrl,
   parseSearchListHtml,
   parseShopDetailHtml,
+  parseListItemImage,
   parseShopDetailImage,
   toMerchantRecord,
 };
