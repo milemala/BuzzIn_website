@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zup 抓取商户审核台</title>
+  <link rel="stylesheet" href="/workspace-nav.css">
+  <style>
+    :root{
+      --bg:#f3f6f4;
+      --panel:#fcfffd;
+      --text:#142018;
+      --muted:#5f6d64;
+      --line:#d8e3dc;
+      --yellow:#ffd84d;
+      --green:#2a9d68;
+      --red:#d95040;
+      --ink:#101814;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+    button,input{font:inherit}
+    .top{position:sticky;top:0;z-index:20;background:rgba(243,246,244,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .top-inner{max-width:1180px;margin:0 auto;padding:18px 20px;display:flex;gap:16px;align-items:center;justify-content:space-between}
+    h1{margin:0;font-size:22px;font-weight:800}
+    .meta{margin-top:5px;color:var(--muted);font-size:13px}
+    .save-state{display:inline-flex;align-items:center;height:24px;border-radius:999px;margin-top:8px;padding:0 9px;background:#e8efe9;color:#476054;font-size:12px;font-weight:700}
+    .save-state.ok{background:#e7f5ec;color:#197549}
+    .save-state.warn{background:#fff3c4;color:#806200}
+    .save-state.error{background:#fde8e4;color:#ad382c}
+    .btn{height:36px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:0 12px;cursor:pointer;color:var(--ink)}
+    .btn.primary{border-color:#111;background:#111;color:#fff}
+    .wrap{max-width:1180px;margin:0 auto;padding:18px 20px 44px}
+    .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:14px}
+    .stat{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px}
+    .stat b{display:block;font-size:22px}
+    .stat span{display:block;margin-top:5px;color:var(--muted);font-size:12px}
+    .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+    .seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}
+    .seg button{height:34px;border:0;border-right:1px solid var(--line);background:transparent;padding:0 12px;cursor:pointer;color:var(--muted)}
+    .seg button:last-child{border-right:0}
+    .seg button.active{background:#111;color:#fff}
+    .search{height:36px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:0 12px;min-width:260px}
+    .grid{display:grid;gap:12px}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:8px;display:grid;grid-template-columns:auto minmax(0,1fr);overflow:hidden}
+    .cover-wrap{align-self:start;background:#e6eee8;border-right:1px solid var(--line);padding:8px}
+    .cover{display:block;width:auto;max-width:220px;height:auto;object-fit:contain;object-position:top left;background:#e6eee8}
+    .body{padding:13px 14px}
+    .title{margin:0;font-size:17px;font-weight:800}
+    .chips{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+    .chip{font-size:12px;padding:4px 8px;border-radius:999px;background:#edf3ef;color:#4d6256}
+    .chip.warn{background:#fff3c4;color:#806200}
+    .info{display:grid;gap:5px;font-size:13px;color:#314036}
+    .source-url{display:grid;gap:3px;font-size:12px;color:var(--muted);word-break:break-all}
+    .source-url a{color:#2f6d4d}
+    .source-url .label{font-weight:700;color:#4d6256}
+    .card-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+    .mini{height:31px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:0 10px;cursor:pointer}
+    .mini.approve.active{background:var(--green);border-color:var(--green);color:#fff}
+    .mini.reject.active{background:var(--red);border-color:var(--red);color:#fff}
+    .mini.pending.active{background:var(--yellow);border-color:var(--yellow);color:#211b10}
+    .link{margin-left:auto;color:#2f6d4d;text-decoration:none;font-size:13px}
+    .empty{padding:44px;text-align:center;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:8px}
+    @media (max-width:820px){
+      .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .cover{max-width:min(160px,36vw)}
+      .search{width:100%;min-width:0}
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <div>
+        <nav class="workspace-nav" aria-label="工作区">
+          <a href="/">活动审核</a>
+          <a href="/merchants.html" class="active">商户审核</a>
+        </nav>
+        <h1>Zup 抓取商户审核台</h1>
+        <div class="meta" id="sourceMeta">读取本地商户数据中...</div>
+        <div class="save-state warn" id="saveState">正在连接本地数据库</div>
+      </div>
+      <div>
+        <button class="btn primary" id="exportBtn">导出通过列表</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="stats" id="stats"></section>
+    <section class="filters">
+      <div class="seg" id="cityFilter"><button data-city="all" class="active">全部城市</button></div>
+      <div class="seg" id="statusFilter">
+        <button data-status="all" class="active">全部</button>
+        <button data-status="approved">已通过</button>
+        <button data-status="rejected">已拒绝</button>
+        <button data-status="pending">待定</button>
+      </div>
+      <input class="search" id="searchInput" placeholder="搜索店名、商圈、关键词">
+    </section>
+    <section class="grid" id="merchantGrid"></section>
+  </main>
+
+  <script>
+    const state = {
+      merchants: [],
+      decisions: {},
+      filters: { city: "all", status: "all", search: "" },
+    };
+
+    const els = {
+      sourceMeta: document.getElementById("sourceMeta"),
+      saveState: document.getElementById("saveState"),
+      stats: document.getElementById("stats"),
+      grid: document.getElementById("merchantGrid"),
+      cityFilter: document.getElementById("cityFilter"),
+      statusFilter: document.getElementById("statusFilter"),
+      searchInput: document.getElementById("searchInput"),
+      exportBtn: document.getElementById("exportBtn"),
+    };
+
+    function setSaveState(text, kind = "warn") {
+      els.saveState.textContent = text;
+      els.saveState.className = `save-state ${kind}`;
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function merchantDetailUrl(item) {
+      return item.originalLink || item.original_link || "";
+    }
+
+    function proxyImage(src) {
+      return src ? `/api/image?src=${encodeURIComponent(src)}&referer=${encodeURIComponent("https://www.dianping.com/")}` : "";
+    }
+
+    function reviewStatus(uid) {
+      return state.decisions[uid] || "pending";
+    }
+
+    async function loadReviewState() {
+      const response = await fetch("/api/merchant-review-state", { cache: "no-store" });
+      const payload = await response.json();
+      state.decisions = payload.decisions || {};
+    }
+
+    async function loadMerchants() {
+      const response = await fetch("/api/merchants", { cache: "no-store" });
+      const payload = await response.json();
+      state.merchants = payload.merchants || [];
+      els.sourceMeta.textContent = payload.note || "大众点评商户";
+      render();
+      setSaveState("已连接本地数据库", "ok");
+    }
+
+    async function saveReviewState() {
+      setSaveState("保存中...", "warn");
+      const response = await fetch("/api/merchant-review-state", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ decisions: state.decisions }),
+      });
+      if (!response.ok) {
+        setSaveState("保存失败", "error");
+        return;
+      }
+      setSaveState("已保存", "ok");
+      render();
+    }
+
+    function setDecision(uid, status) {
+      state.decisions[uid] = status;
+      saveReviewState();
+    }
+
+    function filteredMerchants() {
+      const q = state.filters.search.trim().toLowerCase();
+      return state.merchants.filter((item) => {
+        const status = reviewStatus(item.merchant_uid);
+        if (state.filters.city !== "all" && item.city !== state.filters.city) return false;
+        if (state.filters.status !== "all" && status !== state.filters.status) return false;
+        if (!q) return true;
+        const haystack = `${item.name} ${item.address} ${item.district} ${item.category} ${item.search_keyword}`.toLowerCase();
+        return haystack.includes(q);
+      });
+    }
+
+    function renderStats(list) {
+      const approved = list.filter((item) => reviewStatus(item.merchant_uid) === "approved").length;
+      els.stats.innerHTML = `
+        <div class="stat"><b>${state.merchants.length}</b><span>商户总数</span></div>
+        <div class="stat"><b>${list.length}</b><span>当前筛选</span></div>
+        <div class="stat"><b>${approved}</b><span>已通过</span></div>
+      `;
+    }
+
+    function renderCards(list) {
+      if (!list.length) {
+        els.grid.innerHTML = `<div class="empty">没有符合条件的商户。请先用 scrape-dianping-merchants 导入，或调整筛选。</div>`;
+        return;
+      }
+      els.grid.innerHTML = list.map((item) => {
+        const status = reviewStatus(item.merchant_uid);
+        const addressLine = item.address || `商圈：${item.district || item.list_region_text || "未知"}`;
+        const detailUrl = merchantDetailUrl(item);
+        const chips = [
+          item.city ? `<span class="chip">${escapeHtml(item.city)}</span>` : "",
+          item.category ? `<span class="chip">${escapeHtml(item.category)}</span>` : "",
+          item.search_keyword ? `<span class="chip">关键词 ${escapeHtml(item.search_keyword)}</span>` : "",
+        ].join("");
+        return `
+          <article class="card" data-uid="${item.merchant_uid}">
+            <div class="cover-wrap">
+              <img class="cover" src="${proxyImage(item.image)}" alt="${escapeHtml(item.name)}" loading="lazy">
+            </div>
+            <div class="body">
+              <h2 class="title">${escapeHtml(item.name)}</h2>
+              <div class="chips">${chips}</div>
+              <div class="info">
+                <div>${escapeHtml(addressLine)}</div>
+                <div>${escapeHtml(item.avg_price || "")} ${item.review_count ? `${item.review_count} 条评价` : ""}</div>
+                ${detailUrl ? `
+                <div class="source-url">
+                  <span class="label">大众点评详情页</span>
+                  <a href="${escapeHtml(detailUrl)}" target="_blank" rel="noopener">${escapeHtml(detailUrl)}</a>
+                </div>` : ""}
+              </div>
+              <div class="card-actions">
+                <button class="mini approve ${status === "approved" ? "active" : ""}" data-action="approved">通过</button>
+                <button class="mini pending ${status === "pending" ? "active" : ""}" data-action="pending">待定</button>
+                <button class="mini reject ${status === "rejected" ? "active" : ""}" data-action="rejected">拒绝</button>
+                ${detailUrl ? `<a class="link" href="${escapeHtml(detailUrl)}" target="_blank" rel="noopener">打开详情页</a>` : ""}
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function renderCityFilter() {
+      const cities = [...new Set(state.merchants.map((item) => item.city).filter(Boolean))].sort();
+      els.cityFilter.innerHTML = `<button data-city="all" class="${state.filters.city === "all" ? "active" : ""}">全部城市</button>`
+        + cities.map((city) => `<button data-city="${city}" class="${state.filters.city === city ? "active" : ""}">${city}</button>`).join("");
+    }
+
+    function render() {
+      const list = filteredMerchants();
+      renderStats(list);
+      renderCityFilter();
+      renderCards(list);
+    }
+
+    els.cityFilter.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-city]");
+      if (!button) return;
+      state.filters.city = button.dataset.city;
+      render();
+    });
+
+    els.statusFilter.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-status]");
+      if (!button) return;
+      state.filters.status = button.dataset.status;
+      [...els.statusFilter.querySelectorAll("button")].forEach((node) => node.classList.toggle("active", node === button));
+      render();
+    });
+
+    els.searchInput.addEventListener("input", (event) => {
+      state.filters.search = event.target.value;
+      render();
+    });
+
+    els.grid.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-action]");
+      if (!button) return;
+      const card = button.closest("[data-uid]");
+      if (!card) return;
+      setDecision(card.dataset.uid, button.dataset.action);
+    });
+
+    els.exportBtn.addEventListener("click", async () => {
+      const response = await fetch("/api/approved-merchants", { cache: "no-store" });
+      const payload = await response.json();
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.download = "approved-merchants.json";
+      anchor.click();
+      URL.revokeObjectURL(url);
+    });
+
+    async function boot() {
+      try {
+        await loadReviewState();
+        await loadMerchants();
+      } catch (error) {
+        setSaveState(`连接失败: ${error.message}`, "error");
+      }
+    }
+
+    boot();
+  </script>
+</body>
+</html>

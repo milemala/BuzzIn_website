@@ -1,0 +1,21 @@
+.workspace-nav{
+  display:inline-flex;
+  border:1px solid var(--line,#e6ded0);
+  border-radius:8px;
+  overflow:hidden;
+  background:#fff;
+  margin-bottom:10px;
+}
+.workspace-nav a{
+  display:inline-flex;
+  align-items:center;
+  height:34px;
+  padding:0 14px;
+  text-decoration:none;
+  color:#65594b;
+  font-size:13px;
+  font-weight:700;
+  border-right:1px solid var(--line,#e6ded0);
+}
+.workspace-nav a:last-child{border-right:0}
+.workspace-nav a.active{background:#111;color:#fff}

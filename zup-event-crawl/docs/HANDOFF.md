@@ -1,10 +1,7 @@
-# Zup 活动抓取审核台交接
+# Zup 抓取审核台交接（活动 + 商户）
 
-更新时间：2026-06-04 CST（目录位于 `BuzzInMap_website/zup-event-crawl/`）
+更新时间：2026-06-03 CST（目录位于 `BuzzInMap_website/zup-event-crawl/`）
 
-> **维护约定（给 Cursor / 协作者）**  
-> 抓取审核相关交接**只改本文件**（`zup-event-crawl/docs/HANDOFF.md`），不同步 Obsidian。  
-> 若与代码或库内数据不一致，以 **本目录实现 + `data/review.db` 查询结果** 为准。
 
 ## 交接目的
 
@@ -32,9 +29,12 @@ npm start
 # 或: node scripts/server.js 8787
 ```
 
-审核台地址：
+审核台地址（**活动与商户分两个一级页面，数据表也分开**）：
 
-`http://127.0.0.1:8787/`（旧路径 `/events/crawl-review.html` 仍兼容）
+- 活动：`http://127.0.0.1:8787/`
+- 商户：`http://127.0.0.1:8787/merchants.html`
+
+旧路径 `/events/crawl-review.html` 仍指向活动页。
 
 如果 8787 服务失效，重新运行上面的命令即可。端口占用时可 `PORT=8788 npm start` 或 `lsof -ti :8787 | xargs kill`。
 
@@ -337,9 +337,52 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 
 审核判断应写在 `reviewReason`，不要写进 `body`。
 
+## 商户抓取（大众点评，与活动分离）
+
+用途：按用户口头任务（如「上海跳海酒馆所有分店」）从大众点评找**真实在营**门店，提取店名、封面图、街道地址，供 Zup 批量建商户。与豆瓣活动抓取**不要混在同一列表/脚本默认输出里**。
+
+### 技术结论（2026-06-03 试抓「上海 + 跳海」）
+
+- 命令行 `fetch` / `curl` 会落到**登录页**，不能无头直抓。
+- **一站式默认**：`scrape-dianping-merchants.js` 通过 `lib/chrome-fetch.js` 用 **AppleScript 驱动本机已登录的 Chrome** 自动打开搜索页（含翻页）和各店详情，解析后入库；**不需要**人工逐页「另存 HTML」。
+- 前提：Chrome 已登录大众点评；与豆瓣备路相同，需开启「查看 → 开发者 → 允许 AppleScript 中的 JavaScript」。
+- 列表页只有商圈；**封面图与街道地址均在详情页**（`defaultPic` / `"address":"..."`），不用列表缩略图。
+- `--name-pattern=跳海酒馆` 过滤无关 POI。
+- 闭店 / 未开业：解析时跳过含「歇业关闭」「尚未开业」等标记的条目。
+
+### 关键文件
+
+- `public/merchants.html` — 商户审核台。
+- `lib/chrome-fetch.js` — Chrome 自动导航并取 HTML。
+- `lib/dianping-parse.js` — 列表/详情解析。
+- `lib/merchant-db.js` — 商户表。
+- `scripts/scrape-dianping-merchants.js` — **一条命令：搜索 → 抓取 → 入库**。
+
+### 推荐流程（一条命令）
+
+```bash
+cd zup-event-crawl
+npm run scrape-merchants -- --city=上海 --keyword=跳海 --name-pattern=跳海酒馆
+npm start
+# 浏览器打开 http://127.0.0.1:8787/merchants.html
+```
+
+抓取过程中请保持 Chrome 可用（脚本会依次打开标签页，使用你已登录的会话）。
+
+离线备路（仅当 Chrome 自动化不可用时）：`--offline --html-dir=...` + 历史 `save-chrome-douban-html.js`。
+
+### 商户 API
+
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| GET | `/api/merchants` | 商户列表 |
+| GET | `/api/merchant-review-state` | 审核状态 |
+| POST | `/api/merchant-review-state` | 保存审核 |
+| GET | `/api/approved-merchants` | 已通过商户 |
+
 ## 当前 UI 状态摘要
 
-审核台当前已经具备：
+**活动页**（`public/index.html`）已经具备：
 
 - 单列活动列表。
 - 城市筛选。
@@ -352,6 +395,12 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 - 豆瓣原始顺序 / 活动时间排序。
 - 本地持久化审核状态。
 - 已通过列表导出。
+
+**商户页**（`public/merchants.html`）已经具备：
+
+- 与活动分离的商户卡片列表（店名、图、地址/商圈、大众点评链接）。
+- 城市 / 状态筛选、搜索。
+- 通过 / 待定 / 拒绝与导出已通过 JSON。
 
 
 ## 注意事项

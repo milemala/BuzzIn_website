@@ -1,6 +1,6 @@
 # Zup Event Crawl
 
-从第三方平台（当前以豆瓣同城为主）抓取城市活动、清洗结构化数据，并在本地审核台进行人工「通过 / 待定 / 拒绝」。
+从第三方平台抓取数据并在本地审核：**活动**（豆瓣同城）与 **商户**（大众点评）分开展示，互不混表。
 
 本目录位于官网仓库 `BuzzInMap_website/zup-event-crawl/` 内，与根目录静态页、`events/` H5 原型**分文件夹**维护，便于单独扩展抓取能力；与官网共用同一 git 仓库，在 Cursor 侧边栏可直接展开本目录。
 
@@ -13,12 +13,16 @@ zup-event-crawl/
 ├── scripts/
 │   ├── server.js                 # 本地审核 HTTP 服务（API + 静态页）
 │   ├── scrape-douban-week-events.js
+│   ├── scrape-dianping-merchants.js
 │   ├── save-chrome-douban-html.js
 │   └── migrate-json-to-db.js
 ├── lib/
-│   └── review-db.js              # SQLite 读写
+│   ├── review-db.js              # 活动 SQLite
+│   ├── merchant-db.js            # 商户 SQLite
+│   └── dianping-parse.js
 ├── public/
-│   └── index.html                # 审核台 UI（原 crawl-review.html）
+│   ├── index.html                # 活动审核
+│   └── merchants.html            # 商户审核
 ├── data/
 │   ├── review.db                 # 主存储（默认 gitignore）
 │   ├── image-cache/              # 图片代理缓存
@@ -44,7 +48,20 @@ npm start
 
 浏览器打开：
 
-- http://127.0.0.1:8787/ （审核台）
+- http://127.0.0.1:8787/ （活动审核）
+- http://127.0.0.1:8787/merchants.html （商户审核）
+
+## 抓取大众点评商户（一站式）
+
+前提：本机 **Google Chrome 已登录大众点评**（只需一次）；若曾用豆瓣备路，需已开启「允许 AppleScript 中的 JavaScript」。
+
+```bash
+npm run scrape-merchants -- --city=上海 --keyword=跳海 --name-pattern=跳海酒馆
+```
+
+脚本会自动：Chrome 打开搜索页（含翻页）→ 打开各店详情取街道地址 → 写入 `data/review.db`。然后 `npm start` 打开商户审核页。
+
+离线备路（手存 HTML）仍可用 `--offline --html-dir=...`。
 
 ## 抓取豆瓣活动
 
@@ -77,6 +94,10 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 | GET | `/api/review-state` | 审核状态 |
 | POST | `/api/review-state` | 保存审核状态 |
 | GET | `/api/approved-events` | 已通过活动 |
+| GET | `/api/merchants` | 商户列表 |
+| GET | `/api/merchant-review-state` | 商户审核状态 |
+| POST | `/api/merchant-review-state` | 保存商户审核 |
+| GET | `/api/approved-merchants` | 已通过商户 |
 | GET | `/api/image?src=...` | 图片代理与缓存 |
 
 ## 与官网其他目录的关系

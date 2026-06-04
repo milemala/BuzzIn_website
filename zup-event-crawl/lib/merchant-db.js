@@ -1,0 +1,240 @@
+"use strict";
+
+const { openDatabase } = require("./review-db");
+
+const VALID_REVIEW_STATUSES = new Set(["approved", "pending", "rejected"]);
+
+function ensureMerchantSchema(db) {
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS merchants (
+      merchant_uid TEXT PRIMARY KEY,
+      source_id TEXT NOT NULL,
+      source TEXT NOT NULL DEFAULT 'dianping',
+      city TEXT,
+      search_keyword TEXT,
+      source_position INTEGER,
+      name TEXT NOT NULL,
+      address TEXT,
+      district TEXT,
+      category TEXT,
+      image TEXT,
+      original_link TEXT,
+      list_region_text TEXT,
+      phone TEXT,
+      latitude REAL,
+      longitude REAL,
+      review_count INTEGER,
+      avg_price TEXT,
+      business_status TEXT NOT NULL DEFAULT 'open',
+      needs_detail INTEGER NOT NULL DEFAULT 1,
+      import_batch_id TEXT,
+      updated_at TEXT NOT NULL
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_merchants_city ON merchants(city);
+    CREATE INDEX IF NOT EXISTS idx_merchants_keyword ON merchants(search_keyword);
+    CREATE INDEX IF NOT EXISTS idx_merchants_needs_detail ON merchants(needs_detail);
+
+    CREATE TABLE IF NOT EXISTS merchant_review_decisions (
+      merchant_uid TEXT PRIMARY KEY,
+      status TEXT NOT NULL CHECK (status IN ('approved', 'pending', 'rejected')),
+      updated_at TEXT NOT NULL,
+      FOREIGN KEY (merchant_uid) REFERENCES merchants(merchant_uid) ON DELETE CASCADE
+    );
+
+    CREATE TABLE IF NOT EXISTS merchant_imports (
+      import_key TEXT PRIMARY KEY,
+      city TEXT,
+      search_keyword TEXT,
+      source_page TEXT,
+      merchant_count INTEGER NOT NULL DEFAULT 0,
+      updated_at TEXT NOT NULL
+    );
+  `);
+}
+
+function rowToMerchant(row) {
+  return {
+    merchant_uid: row.merchant_uid,
+    source_id: row.source_id,
+    source: row.source,
+    city: row.city,
+    search_keyword: row.search_keyword,
+    source_position: row.source_position,
+    name: row.name,
+    address: row.address || "",
+    district: row.district || "",
+    category: row.category || "",
+    image: row.image || "",
+    original_link: row.original_link || "",
+    originalLink: row.original_link || "",
+    list_region_text: row.list_region_text || "",
+    phone: row.phone || "",
+    latitude: row.latitude,
+    longitude: row.longitude,
+    review_count: row.review_count,
+    avg_price: row.avg_price || "",
+    business_status: row.business_status,
+    needs_detail: Boolean(row.needs_detail),
+    import_batch_id: row.import_batch_id || "",
+    updated_at: row.updated_at,
+  };
+}
+
+function getMerchantReviewState(db) {
+  ensureMerchantSchema(db);
+  const decisions = {};
+  const rows = db.prepare(`
+    SELECT merchant_uid, status, updated_at
+    FROM merchant_review_decisions
+    ORDER BY updated_at DESC
+  `).all();
+
+  for (const row of rows) {
+    decisions[row.merchant_uid] = row.status;
+  }
+
+  const updatedAt = rows[0] ? rows[0].updated_at : null;
+  return { updatedAt, decisions };
+}
+
+function replaceMerchantReviewState(db, decisions) {
+  ensureMerchantSchema(db);
+  const now = new Date().toISOString();
+  const upsert = db.prepare(`
+    INSERT INTO merchant_review_decisions (merchant_uid, status, updated_at)
+    VALUES (?, ?, ?)
+    ON CONFLICT(merchant_uid) DO UPDATE SET
+      status = excluded.status,
+      updated_at = excluded.updated_at
+  `);
+
+  for (const [merchantUid, status] of Object.entries(decisions || {})) {
+    if (!VALID_REVIEW_STATUSES.has(status)) {
+      throw new Error(`Invalid review status for ${merchantUid}: ${status}`);
+    }
+    upsert.run(merchantUid, status, now);
+  }
+  return getMerchantReviewState(db);
+}
+
+function getMerchantsPayload(db) {
+  ensureMerchantSchema(db);
+  const rows = db.prepare(`
+    SELECT m.*, COALESCE(d.status, 'pending') AS review_status
+    FROM merchants m
+    LEFT JOIN merchant_review_decisions d ON d.merchant_uid = m.merchant_uid
+    ORDER BY m.city, m.search_keyword, m.source_position
+  `).all();
+
+  const merchants = rows.map((row) => ({
+    ...rowToMerchant(row),
+    review_status: row.review_status,
+  }));
+
+  const metaRow = db.prepare(`
+    SELECT value FROM app_meta WHERE key = 'merchant_review_note'
+  `).get();
+
+  return {
+    updatedAt: merchants.length ? merchants[merchants.length - 1].updated_at : null,
+    note: metaRow ? metaRow.value : "商户数据来自大众点评，发布前请核对店名、地址与图片。",
+    merchants,
+  };
+}
+
+function getApprovedMerchants(db) {
+  ensureMerchantSchema(db);
+  const rows = db.prepare(`
+    SELECT m.*
+    FROM merchants m
+    INNER JOIN merchant_review_decisions d ON d.merchant_uid = m.merchant_uid
+    WHERE d.status = 'approved'
+    ORDER BY m.city, m.source_position
+  `).all();
+  return rows.map(rowToMerchant);
+}
+
+function importMerchants(db, merchants, options = {}) {
+  ensureMerchantSchema(db);
+  const mode = options.mode || "merge";
+  const now = new Date().toISOString();
+  const importKey = `${options.city || ""}:${options.keyword || ""}`;
+
+  if (mode === "replace-keyword" && options.city && options.keyword) {
+    const uids = db.prepare(`
+      SELECT merchant_uid FROM merchants WHERE city = ? AND search_keyword = ?
+    `).all(options.city, options.keyword).map((row) => row.merchant_uid);
+    if (uids.length) {
+      const placeholders = uids.map(() => "?").join(",");
+      db.prepare(`DELETE FROM merchants WHERE merchant_uid IN (${placeholders})`).run(...uids);
+    }
+  }
+
+  const upsert = db.prepare(`
+    INSERT INTO merchants (
+      merchant_uid, source_id, source, city, search_keyword, source_position,
+      name, address, district, category, image, original_link, list_region_text,
+      phone, latitude, longitude, review_count, avg_price, business_status,
+      needs_detail, import_batch_id, updated_at
+    ) VALUES (
+      @merchant_uid, @source_id, @source, @city, @search_keyword, @source_position,
+      @name, @address, @district, @category, @image, @original_link, @list_region_text,
+      @phone, @latitude, @longitude, @review_count, @avg_price, @business_status,
+      @needs_detail, @import_batch_id, @updated_at
+    )
+    ON CONFLICT(merchant_uid) DO UPDATE SET
+      city = excluded.city,
+      search_keyword = excluded.search_keyword,
+      source_position = excluded.source_position,
+      name = excluded.name,
+      address = CASE WHEN excluded.address != '' THEN excluded.address ELSE merchants.address END,
+      district = excluded.district,
+      category = excluded.category,
+      image = CASE WHEN excluded.image != '' THEN excluded.image ELSE merchants.image END,
+      original_link = excluded.original_link,
+      list_region_text = excluded.list_region_text,
+      phone = CASE WHEN excluded.phone != '' THEN excluded.phone ELSE merchants.phone END,
+      latitude = COALESCE(excluded.latitude, merchants.latitude),
+      longitude = COALESCE(excluded.longitude, merchants.longitude),
+      review_count = COALESCE(excluded.review_count, merchants.review_count),
+      avg_price = excluded.avg_price,
+      business_status = excluded.business_status,
+      needs_detail = excluded.needs_detail,
+      import_batch_id = excluded.import_batch_id,
+      updated_at = excluded.updated_at
+  `);
+
+  for (const record of merchants) {
+    upsert.run(record);
+  }
+
+  db.prepare(`
+    INSERT INTO merchant_imports (import_key, city, search_keyword, source_page, merchant_count, updated_at)
+    VALUES (?, ?, ?, ?, ?, ?)
+    ON CONFLICT(import_key) DO UPDATE SET
+      merchant_count = excluded.merchant_count,
+      source_page = excluded.source_page,
+      updated_at = excluded.updated_at
+  `).run(
+    importKey,
+    options.city || "",
+    options.keyword || "",
+    options.sourcePage || "",
+    merchants.length,
+    now,
+  );
+
+  return { imported: merchants.length, importKey };
+}
+
+module.exports = {
+  ensureMerchantSchema,
+  getApprovedMerchants,
+  getMerchantReviewState,
+  getMerchantsPayload,
+  importMerchants,
+  openDatabase,
+  replaceMerchantReviewState,
+  rowToMerchant,
+};

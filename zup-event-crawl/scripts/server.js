@@ -14,6 +14,12 @@ const {
   openDatabase,
   replaceReviewState,
 } = require("../lib/review-db");
+const {
+  getApprovedMerchants,
+  getMerchantReviewState,
+  getMerchantsPayload,
+  replaceMerchantReviewState,
+} = require("../lib/merchant-db");
 
 const root = path.join(__dirname, "..");
 const publicDir = path.join(root, "public");
@@ -88,6 +94,7 @@ function getCachedImagePath(src, contentType) {
 
 async function handleImageProxy(req, res, parsed) {
   const src = parsed.query && parsed.query.src;
+  const refererParam = parsed.query && parsed.query.referer;
   if (!src) {
     sendJson(res, 400, { ok: false, error: "Missing image src" });
     return;
@@ -100,6 +107,11 @@ async function handleImageProxy(req, res, parsed) {
     sendJson(res, 400, { ok: false, error: "Invalid image src" });
     return;
   }
+
+  const defaultReferer = /meituan\.net|dianping\.com/i.test(src)
+    ? "https://www.dianping.com/"
+    : "https://www.douban.com/";
+  const referer = refererParam || defaultReferer;
 
   if (!["https:", "http:"].includes(imageUrl.protocol)) {
     sendJson(res, 400, { ok: false, error: "Unsupported image protocol" });
@@ -121,7 +133,7 @@ async function handleImageProxy(req, res, parsed) {
       headers: {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
         Accept: "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
-        Referer: "https://www.douban.com/",
+        Referer: referer,
       },
     });
     if (!response.ok) {
@@ -206,6 +218,38 @@ async function handleApi(req, res, pathname) {
     return;
   }
 
+  if (req.method === "GET" && pathname === "/api/merchants") {
+    sendJson(res, 200, getMerchantsPayload(db));
+    return;
+  }
+
+  if (req.method === "GET" && pathname === "/api/merchant-review-state") {
+    sendJson(res, 200, getMerchantReviewState(db));
+    return;
+  }
+
+  if (req.method === "GET" && pathname === "/api/approved-merchants") {
+    sendJson(res, 200, {
+      updatedAt: getMerchantReviewState(db).updatedAt,
+      merchants: getApprovedMerchants(db),
+    });
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/merchant-review-state") {
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const decisions = body.decisions && typeof body.decisions === "object" ? body.decisions : {};
+      replaceMerchantReviewState(db, decisions);
+      const state = getMerchantReviewState(db);
+      const approved = getApprovedMerchants(db);
+      sendJson(res, 200, { ok: true, updatedAt: state.updatedAt, approvedCount: approved.length });
+    } catch (error) {
+      sendJson(res, 400, { ok: false, error: error.message });
+    }
+    return;
+  }
+
   sendJson(res, 404, { ok: false, error: "Not found" });
 }
 
@@ -252,7 +296,8 @@ server.on("error", (error) => {
 });
 
 server.listen(port, "127.0.0.1", () => {
-  console.log(`Zup event crawl service: http://127.0.0.1:${port}/`);
-  console.log(`Review UI (legacy path): http://127.0.0.1:${port}/events/crawl-review.html`);
+  console.log(`Zup crawl review service: http://127.0.0.1:${port}/`);
+  console.log(`  活动审核: http://127.0.0.1:${port}/`);
+  console.log(`  商户审核: http://127.0.0.1:${port}/merchants.html`);
   console.log(`Database: ${dbPath}`);
 });
