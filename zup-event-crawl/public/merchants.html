@@ -31,9 +31,9 @@
     .btn{height:36px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:0 12px;cursor:pointer;color:var(--ink)}
     .btn.primary{border-color:#111;background:#111;color:#fff}
     .wrap{max-width:1180px;margin:0 auto;padding:18px 20px 44px}
-    .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:14px}
+    .stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:14px}
     .stat{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px}
-    .stat b{display:block;font-size:22px}
+    .stat b{display:block;font-size:22px;line-height:1.1}
     .stat span{display:block;margin-top:5px;color:var(--muted);font-size:12px}
     .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
     .seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}
@@ -154,7 +154,6 @@
       const response = await fetch("/api/merchants", { cache: "no-store" });
       const payload = await response.json();
       state.merchants = payload.merchants || [];
-      els.sourceMeta.textContent = payload.note || "大众点评商户";
       render();
       setSaveState("已连接本地数据库", "ok");
     }
@@ -179,11 +178,21 @@
       saveReviewState();
     }
 
+    function getCityKey(item) {
+      return item.city || "未知城市";
+    }
+
+    function merchantsInCity() {
+      return state.merchants.filter((item) => {
+        if (state.filters.city !== "all" && getCityKey(item) !== state.filters.city) return false;
+        return true;
+      });
+    }
+
     function filteredMerchants() {
       const q = state.filters.search.trim().toLowerCase();
-      return state.merchants.filter((item) => {
+      return merchantsInCity().filter((item) => {
         const status = reviewStatus(item.merchant_uid);
-        if (state.filters.city !== "all" && item.city !== state.filters.city) return false;
         if (state.filters.status !== "all" && status !== state.filters.status) return false;
         if (!q) return true;
         const haystack = `${item.name} ${item.address} ${item.district} ${item.category} ${item.search_keyword}`.toLowerCase();
@@ -191,13 +200,37 @@
       });
     }
 
-    function renderStats(list) {
-      const approved = list.filter((item) => reviewStatus(item.merchant_uid) === "approved").length;
-      els.stats.innerHTML = `
-        <div class="stat"><b>${state.merchants.length}</b><span>商户总数</span></div>
-        <div class="stat"><b>${list.length}</b><span>当前筛选</span></div>
-        <div class="stat"><b>${approved}</b><span>已通过</span></div>
-      `;
+    function renderStats() {
+      const scoped = merchantsInCity();
+      const total = scoped.length;
+      const approved = scoped.filter((item) => reviewStatus(item.merchant_uid) === "approved").length;
+      const pending = scoped.filter((item) => reviewStatus(item.merchant_uid) === "pending").length;
+      const rejected = scoped.filter((item) => reviewStatus(item.merchant_uid) === "rejected").length;
+      const filtered = filteredMerchants().length;
+      const cityLabel = state.filters.city === "all" ? "全部城市" : state.filters.city;
+
+      els.stats.innerHTML = [
+        ["商户总数", total],
+        ["已通过", approved],
+        ["待定", pending],
+        ["已拒绝", rejected],
+        ["当前筛选", filtered],
+      ].map(([label, value]) => `<div class="stat"><b>${value}</b><span>${label}</span></div>`).join("");
+
+      const cityNames = [...new Set(state.merchants.map((item) => getCityKey(item)))].sort((a, b) => a.localeCompare(b, "zh-CN"));
+      els.sourceMeta.textContent = cityLabel === "全部城市"
+        ? `共 ${cityNames.length} 个城市 · ${state.merchants.length} 家商户`
+        : `${cityLabel} · ${total} 家商户`;
+    }
+
+    function renderCityFilter() {
+      const cities = [...new Set(state.merchants.map((item) => getCityKey(item)))].sort((a, b) => a.localeCompare(b, "zh-CN"));
+      const allCount = state.merchants.length;
+      els.cityFilter.innerHTML = `<button data-city="all" class="${state.filters.city === "all" ? "active" : ""}">全部城市 ${allCount}</button>`
+        + cities.map((city) => {
+          const count = state.merchants.filter((item) => getCityKey(item) === city).length;
+          return `<button data-city="${escapeHtml(city)}" class="${state.filters.city === city ? "active" : ""}">${escapeHtml(city)} ${count}</button>`;
+        }).join("");
     }
 
     function renderCards(list) {
@@ -243,15 +276,9 @@
       }).join("");
     }
 
-    function renderCityFilter() {
-      const cities = [...new Set(state.merchants.map((item) => item.city).filter(Boolean))].sort();
-      els.cityFilter.innerHTML = `<button data-city="all" class="${state.filters.city === "all" ? "active" : ""}">全部城市</button>`
-        + cities.map((city) => `<button data-city="${city}" class="${state.filters.city === city ? "active" : ""}">${city}</button>`).join("");
-    }
-
     function render() {
       const list = filteredMerchants();
-      renderStats(list);
+      renderStats();
       renderCityFilter();
       renderCards(list);
     }

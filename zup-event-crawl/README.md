@@ -56,7 +56,7 @@ npm start
 前提：本机 **Google Chrome 已登录大众点评**（只需一次）；若曾用豆瓣备路，需已开启「允许 AppleScript 中的 JavaScript」。
 
 ```bash
-npm run scrape-merchants -- --city=上海 --keyword=跳海 --name-pattern=跳海酒馆
+npm run scrape-merchants -- --city=上海 --keyword=跳海
 ```
 
 脚本会自动：Chrome 打开搜索页（含翻页）→ 打开各店详情取街道地址 → 写入 `data/review.db`。然后 `npm start` 打开商户审核页。

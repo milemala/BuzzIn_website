@@ -13,10 +13,6 @@ const {
 } = require("../lib/dianping-parse");
 const { fetchViaChrome, sleep } = require("../lib/chrome-fetch");
 const { importMerchants, openDatabase } = require("../lib/merchant-db");
-const {
-  buildParseOptionsFromProfile,
-  getBrandProfile,
-} = require("../lib/merchant-brand-profiles");
 
 const root = path.join(__dirname, "..");
 const defaultDbPath = path.join(root, "data", "review.db");
@@ -26,7 +22,6 @@ function parseArgs(argv) {
     city: "上海",
     cityId: null,
     keyword: "",
-    brand: "",
     namePattern: "",
     htmlFiles: [],
     detailDir: "",
@@ -60,8 +55,6 @@ function parseArgs(argv) {
       options.cityId = Number(arg.slice("--city-id=".length));
     } else if (arg.startsWith("--keyword=")) {
       options.keyword = arg.slice("--keyword=".length);
-    } else if (arg.startsWith("--brand=")) {
-      options.brand = arg.slice("--brand=".length);
     } else if (arg.startsWith("--name-pattern=")) {
       options.namePattern = arg.slice("--name-pattern=".length);
     } else if (arg.startsWith("--html-file=")) {
@@ -107,9 +100,9 @@ function printHelp() {
   console.log(`一站式抓取（默认自动用本机 Chrome，无需手存 HTML）:
 
   node scripts/scrape-dianping-merchants.js \\
-    --city=上海 --keyword=跳海 --name-pattern=跳海酒馆
+    --city=上海 --keyword=跳海
 
-前提：Google Chrome 已登录大众点评（只需登录一次）。
+前提：Google Chrome 已登录大众点评。入选规则为社交饮酒类门店（见 merchant-social-filter.js），非按品牌配置表。
 
 可选：
   --skip-details        只抓列表，不打开详情页（地址可能只有商圈）
@@ -135,11 +128,7 @@ function loadDetailHtml(detailDir, shopId) {
 }
 
 function buildParseOptions(options) {
-  const profile = options.brand ? getBrandProfile(options.brand) : null;
-  if (profile) {
-    return buildParseOptionsFromProfile(profile);
-  }
-  const parseOptions = {};
+  const parseOptions = { searchKeyword: options.keyword || "" };
   if (options.namePattern) {
     parseOptions.namePattern = options.namePattern;
   }
@@ -157,7 +146,7 @@ function saveDebugHtml(city, keyword, html) {
 function explainListFailure(parsed, shopCount) {
   if (parsed.parsedCount > 0 && parsed.filteredCount === 0) {
     const s = parsed.filterStats || {};
-    return `列表已解析 ${parsed.parsedCount} 家，但店名/品类规则全部筛掉（店名 ${s.byName || 0}，品类 ${s.byCategory || 0}，品牌 ${s.byMustName || 0}）`;
+    return `列表已解析 ${parsed.parsedCount} 家，但社交门店规则全部筛掉（店名 ${s.byName || 0}，关键词 ${s.byKeyword || 0}，非饮酒类 ${s.byCategory || 0}，无关 ${s.byJunk || 0}）`;
   }
   if ((parsed.totalReported > 0 || shopCount > 0) && parsed.parsedCount === 0) {
     return `浏览器约有 ${parsed.totalReported || shopCount} 条结果，但抓取时列表 HTML 未就绪（与你在 Chrome 里看到的不一致，属抓取时机问题）`;
@@ -219,7 +208,7 @@ async function fetchSearchResultsViaChrome(options) {
     console.log(
       `     页面约 ${parsed.totalReported ?? "?"} 条 | DOM ${pageShopCount} 家 | 解析 ${parsed.parsedCount} | 入选 ${parsed.filteredCount}`
       + (stats.byCategory ? ` | 品类筛掉 ${stats.byCategory}` : "")
-      + (stats.byMustName ? ` | 非目标品牌 ${stats.byMustName}` : ""),
+      + (stats.byJunk ? ` | 无关店名 ${stats.byJunk}` : ""),
     );
 
     for (const item of parsed.items) {
@@ -332,11 +321,6 @@ async function main() {
   if (!options.cityId) {
     console.error(`Unknown city id for ${options.city}. Pass --city-id= manually.`);
     process.exit(1);
-  }
-
-  if (options.brand && !options.keyword) {
-    const profile = getBrandProfile(options.brand);
-    if (profile) options.keyword = profile.keyword;
   }
 
   let items;

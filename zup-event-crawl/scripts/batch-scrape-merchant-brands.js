@@ -1,28 +1,33 @@
 #!/usr/bin/env node
 "use strict";
 
+/**
+ * 批量抓取任务表：只记录「搜什么 + 哪些城市」，不维护品牌过滤配置。
+ * 入选规则见 lib/merchant-social-filter.js（社交饮酒类门店通用判断）。
+ */
 const { spawnSync } = require("child_process");
 const path = require("path");
 
 const root = path.join(__dirname, "..");
 
-const BRAND_JOBS = [
+const SEARCH_JOBS = [
   {
     label: "跳海酒馆",
+    keyword: "跳海",
     cities: ["北京", "上海", "广州", "深圳", "杭州", "南京", "西安", "厦门", "长沙", "天津", "武汉", "成都", "重庆"],
   },
-  { label: "京A", cities: ["北京", "郑州"] },
-  { label: "悠航", cities: ["北京"] },
-  { label: "鹅岛", cities: ["北京"] },
-  { label: "幻师", cities: ["北京", "上海", "广州", "深圳"] },
-  { label: "大跃", cities: ["北京"] },
+  { label: "京A", keyword: "京A", cities: ["北京", "郑州"] },
+  { label: "悠航", keyword: "悠航", cities: ["北京"] },
+  { label: "鹅岛", keyword: "鹅岛", cities: ["北京"] },
+  { label: "幻师", keyword: "幻师", cities: ["北京", "上海", "广州", "深圳"] },
+  { label: "大跃", keyword: "大跃", cities: ["北京"] },
 ];
 
 function buildTasks() {
   const tasks = [];
-  for (const brand of BRAND_JOBS) {
-    for (const city of brand.cities) {
-      tasks.push({ city, label: brand.label });
+  for (const job of SEARCH_JOBS) {
+    for (const city of job.cities) {
+      tasks.push({ city, label: job.label, keyword: job.keyword });
     }
   }
   return tasks;
@@ -30,13 +35,13 @@ function buildTasks() {
 
 function runTask(task, index, total) {
   console.log(`\n${"=".repeat(60)}`);
-  console.log(`[${index}/${total}] ${task.label} · ${task.city}`);
+  console.log(`[${index}/${total}] ${task.label} · ${task.city}（搜索：${task.keyword}）`);
   console.log(`${"=".repeat(60)}`);
 
   const args = [
     path.join(__dirname, "scrape-dianping-merchants.js"),
     `--city=${task.city}`,
-    `--brand=${task.label}`,
+    `--keyword=${task.keyword}`,
     "--mode=replace-keyword",
     "--allow-empty",
     "--chrome-wait=8000",
@@ -49,18 +54,14 @@ function runTask(task, index, total) {
     env: process.env,
   });
 
-  return {
-    ...task,
-    ok: result.status === 0,
-    status: result.status,
-  };
+  return { ...task, ok: result.status === 0, status: result.status };
 }
 
 function main() {
   const tasks = buildTasks();
   const report = { ok: [], fail: [] };
 
-  console.log(`批量抓取 ${tasks.length} 项（每项最多重试列表 1 次，失败即跳过并说明原因）`);
+  console.log(`批量抓取 ${tasks.length} 项；入选规则：社交饮酒类门店（非品牌配置表）`);
   console.log("请保持 Chrome 已登录大众点评。\n");
 
   for (let i = 0; i < tasks.length; i += 1) {
@@ -81,8 +82,6 @@ function main() {
       console.log(`  - ${item.label} · ${item.city}`);
     }
   }
-  console.log("\n请在本机执行查看入库汇总：");
-  console.log("  sqlite3 data/review.db \"SELECT search_keyword,city,COUNT(*) FROM merchants GROUP BY 1,2\"");
 }
 
 main();

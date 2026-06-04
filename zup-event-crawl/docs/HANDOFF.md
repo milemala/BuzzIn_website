@@ -347,7 +347,7 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 - **一站式默认**：`scrape-dianping-merchants.js` 通过 `lib/chrome-fetch.js` 用 **AppleScript 驱动本机已登录的 Chrome** 自动打开搜索页（含翻页）和各店详情，解析后入库；**不需要**人工逐页「另存 HTML」。
 - 前提：Chrome 已登录大众点评；与豆瓣备路相同，需开启「查看 → 开发者 → 允许 AppleScript 中的 JavaScript」。
 - 列表页只有商圈；**封面图与街道地址均在详情页**（`defaultPic` / `"address":"..."`），不用列表缩略图。
-- `--name-pattern=跳海酒馆` 过滤无关 POI。
+- 入选规则在 `lib/merchant-social-filter.js`：社交饮酒类门店（酒馆/Taproom/精酿等），不按品牌维护配置表；批量任务只写搜索词与城市。
 - 闭店 / 未开业：解析时跳过含「歇业关闭」「尚未开业」等标记的条目。
 
 ### 关键文件
@@ -362,7 +362,7 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 
 ```bash
 cd zup-event-crawl
-npm run scrape-merchants -- --city=上海 --keyword=跳海 --name-pattern=跳海酒馆
+npm run scrape-merchants -- --city=上海 --keyword=跳海
 npm start
 # 浏览器打开 http://127.0.0.1:8787/merchants.html
 ```

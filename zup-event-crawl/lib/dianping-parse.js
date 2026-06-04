@@ -1,6 +1,6 @@
 "use strict";
 
-const { matchesBrandIntent } = require("./merchant-brand-profiles");
+const { matchesSocialVenueIntent } = require("./merchant-social-filter");
 
 const CLOSED_MARKERS = [
   "歇业关闭",
@@ -179,23 +179,25 @@ function parseSearchListHtml(html, options = {}) {
   const totalMatch = html.match(/共为您找到(\d+)个/);
   const nextPages = collectNextPagePaths(html, options.searchUrl);
 
-  const filterStats = { byName: 0, byCategory: 0, byMustName: 0 };
+  const filterStats = { byName: 0, byKeyword: 0, byCategory: 0, byJunk: 0 };
   const filtered = [];
-  const profile = options.brandProfile || null;
   const namePattern = options.namePattern
     ? (options.namePattern instanceof RegExp ? options.namePattern : new RegExp(options.namePattern))
     : null;
+  const searchKeyword = options.searchKeyword || "";
 
   for (const item of items) {
     if (namePattern && !namePattern.test(item.name)) {
       filterStats.byName += 1;
       continue;
     }
-    const intent = matchesBrandIntent(item, profile);
+    const intent = matchesSocialVenueIntent(item, { searchKeyword });
     if (!intent.ok) {
-      if (intent.reason === "name_must") filterStats.byMustName += 1;
-      else if (intent.reason === "name_pattern") filterStats.byName += 1;
-      else filterStats.byCategory += 1;
+      if (intent.reason === "keyword") filterStats.byKeyword += 1;
+      else if (intent.reason === "junk_name") filterStats.byJunk += 1;
+      else if (intent.reason === "category_blocked" || intent.reason === "not_social_venue") {
+        filterStats.byCategory += 1;
+      }
       continue;
     }
     filtered.push(item);
