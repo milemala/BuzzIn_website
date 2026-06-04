@@ -170,7 +170,7 @@ async function fetchSearchResultsViaChrome(options) {
   let lastHtml = "";
 
   console.log("\n[1/3] Chrome 自动搜索列表…");
-  console.log("      请保持 Chrome 在前台，脚本会依次打开搜索页（已登录会话）。");
+  console.log("      后台专用窗口抓取，不抢焦点；请保持 Chrome 已登录大众点评。");
 
   while (queue.length && visited.size < options.maxPages) {
     const pageUrl = queue.shift();

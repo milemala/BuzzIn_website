@@ -62,7 +62,7 @@ function main() {
   const report = { ok: [], fail: [] };
 
   console.log(`批量抓取 ${tasks.length} 项；入选规则：社交饮酒类门店（非品牌配置表）`);
-  console.log("请保持 Chrome 已登录大众点评。\n");
+  console.log("请保持 Chrome 已登录大众点评（后台抓取，不抢焦点）。\n");
 
   for (let i = 0; i < tasks.length; i += 1) {
     const result = runTask(tasks[i], i + 1, tasks.length);

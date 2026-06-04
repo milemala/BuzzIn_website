@@ -99,6 +99,19 @@ function extractSearchBasePath(searchUrl) {
   }
 }
 
+function extractShopListBlock(html) {
+  const marker = html.search(/id=["']shop-all-list["']/i);
+  if (marker < 0) return html;
+
+  const ulOpen = html.indexOf("<ul", marker);
+  const ulClose = ulOpen >= 0 ? html.indexOf("</ul>", ulOpen) : -1;
+  if (ulOpen >= 0 && ulClose > ulOpen) {
+    return html.slice(ulOpen, ulClose + 5);
+  }
+
+  return html.slice(marker);
+}
+
 function collectNextPagePaths(html, searchUrl) {
   const basePath = extractSearchBasePath(searchUrl);
   if (!basePath) return [];
@@ -126,9 +139,7 @@ function parseSearchListHtml(html, options = {}) {
     throw new Error("大众点评返回登录页，请先在 Chrome 登录大众点评后重试抓取命令");
   }
 
-  const listBlock = firstMatch(html, /<div[^>]*id="shop-all-list"[^>]*>([\s\S]*?)<\/div>\s*<div class="page">/i)
-    || firstMatch(html, /<div[^>]*id="shop-all-list"[^>]*>([\s\S]*?)<\/div>/i)
-    || html;
+  const listBlock = extractShopListBlock(html);
 
   const items = [];
   const liPattern = /<li\b[^>]*>([\s\S]*?)<\/li>/gi;
@@ -307,6 +318,7 @@ module.exports = {
   decodeHtml,
   enrichWithDetail,
   extractSearchBasePath,
+  extractShopListBlock,
   isClosedShop,
   isLoginWall,
   normalizeImageUrl,

@@ -5,6 +5,9 @@ const { execFileSync } = require("child_process");
 const DEFAULT_WAIT_MS = 4500;
 const MAX_HTML_BYTES = 45 * 1024 * 1024;
 
+/** 专用抓取窗口序号（1-based），避免占用用户前台标签、且不 activate Chrome */
+let scrapeWindowIndex = null;
+
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -36,28 +39,55 @@ function runAppleScript(script) {
   }
 }
 
+function ensureScrapeWindowScript() {
+  if (scrapeWindowIndex === null) {
+    return `
+  if (count of windows) = 0 then
+    make new window
+  else
+    make new window
+  end if
+  set winIdx to count of windows`;
+  }
+  return `set winIdx to ${scrapeWindowIndex}
+  if winIdx > (count of windows) then
+    make new window
+    set winIdx to count of windows
+  end if`;
+}
+
 function navigateChrome(url) {
   const escapedUrl = escapeAppleScriptString(url);
   const script = `
 tell application "Google Chrome"
-  activate
-  if (count of windows) = 0 then
-    make new window
-  end if
-  tell active tab of front window
-    set URL to "${escapedUrl}"
+  ${ensureScrapeWindowScript()}
+  tell window winIdx
+    tell active tab
+      set URL to "${escapedUrl}"
+    end tell
   end tell
-end tell`;
-  runAppleScript(script);
+end tell
+return winIdx`;
+  const winIdx = Number(runAppleScript(script));
+  if (winIdx > 0) {
+    scrapeWindowIndex = winIdx;
+  }
 }
 
 function readActiveTab() {
+  const winIdx = scrapeWindowIndex || 1;
   const script = `
 tell application "Google Chrome"
-  set pageUrl to URL of active tab of front window
-  tell active tab of front window
-    set shopCount to execute javascript "(function(){return document.querySelectorAll('[data-click-name=shop_title_click]').length})()"
-    set htmlText to execute javascript "document.documentElement.outerHTML"
+  set winIdx to ${winIdx}
+  if winIdx > (count of windows) then
+    error "抓取专用 Chrome 窗口已关闭，请重新运行抓取命令"
+  end if
+  tell window winIdx
+    set pageUrl to URL of active tab
+    tell active tab
+      set shopCount to execute javascript "(function(){return document.querySelectorAll('[data-click-name=shop_title_click]').length})()"
+      set htmlText to execute javascript "document.documentElement.outerHTML"
+    end tell
   end tell
 end tell
 return pageUrl & "\\n<<<SHOPS>>>" & shopCount & "\\n<<<HTML>>>" & htmlText`;
@@ -106,7 +136,7 @@ async function waitForPage(url, options = {}) {
 }
 
 /**
- * 用本机已登录的 Google Chrome 前台标签打开 URL 并取回 HTML。
+ * 用本机已登录的 Google Chrome 在后台专用窗口打开 URL 并取回 HTML（不 activate，不抢焦点）。
  * 需一次性开启：Chrome → 查看 → 开发者 → 允许 AppleScript 中的 JavaScript。
  */
 async function fetchViaChrome(url, options = {}) {
