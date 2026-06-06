@@ -1,359 +1,606 @@
 <!DOCTYPE html>
+<!-- 图片邀约详情 · Editorial Noir v3 · Cursor 维护 | 备份 invite-detail-v2.html -->
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>邀约详情</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-    --yellow:#f5c542;
-    --yellow-bg:rgba(245,197,66,.12);
-    --green:#07c160;
-    --green-bg:rgba(7,193,96,.1);
-    --bg:#111;
-    --card:#1a1a1a;
-    --card2:#222;
-    --text:#fff;
-    --sub:rgba(255,255,255,.5);
-    --dim:rgba(255,255,255,.3);
-    --border:rgba(255,255,255,.08);
+    --ink:#030304;
+    --ink-2:#0c0c0f;
+    --ink-3:#141418;
+    --frost:rgba(255,255,255,.055);
+    --frost-2:rgba(255,255,255,.09);
+    --line:rgba(255,255,255,.07);
+    --line-2:rgba(255,255,255,.12);
+    --cream:#f2ebe0;
+    --cream-dim:rgba(242,235,224,.62);
+    --cream-muted:rgba(242,235,224,.38);
+    --gold:#dcc07a;
+    --gold-bright:#f0e6c8;
+    --gold-glow:rgba(220,192,122,.22);
+    --ember:#e8a090;
+    --sage:#8ec9b8;
+    --verified:#7dcda8;
+    --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+    --serif:"Noto Serif SC","Songti SC",serif;
+    --ease-out:cubic-bezier(.22,1,.36,1);
+    --r-sheet:28px;
+    --safe-t:max(14px,env(safe-area-inset-top));
+    --safe-b:max(16px,env(safe-area-inset-bottom));
 }
-body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;padding-bottom:60px}
+html{background:var(--ink);scroll-behavior:smooth}
+body{
+    font-family:var(--sans);background:var(--ink);color:var(--cream);
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    padding-bottom:calc(88px + var(--safe-b));
+}
 
-/* ═══ 1. 顶部地图占位 ═══ */
-.map{height:120px;background:linear-gradient(180deg,#2a3040 0%,#1e2230 100%);position:relative}
-.map-overlay{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:space-between;padding:max(env(safe-area-inset-top),10px) 12px 0}
-.map-left{display:flex;align-items:center;gap:8px}
-.map-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#555,#333);border:2px solid var(--bg)}
-.map-avatar-small{width:22px;height:22px;border-radius:50%;background:var(--yellow);display:grid;place-items:center;margin-top:-4px;margin-left:-6px}
-.map-avatar-small svg{width:12px;height:12px;color:#111}
-.map-right{display:flex;gap:10px}
-.map-btn{width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.45);border:none;color:#fff;display:grid;place-items:center}
-.map-btn svg{width:18px;height:18px}
+/* 胶片颗粒 */
+.grain{
+    pointer-events:none;position:fixed;inset:0;z-index:9999;opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 
-/* ═══ 2. 用户信息条 ═══ */
-.user-bar{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--border)}
-.user-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#555,#333);flex-shrink:0}
-.user-name{font-size:15px;font-weight:700;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.user-venue{display:flex;align-items:center;gap:4px;font-size:12px;color:#34d399;flex-shrink:0}
-.user-venue svg{width:14px;height:14px}
-.user-more{width:28px;height:28px;border:none;background:none;color:var(--sub);display:grid;place-items:center;flex-shrink:0}
-.user-more svg{width:20px;height:20px}
+/* ═══ 固定顶栏 ═══ */
+.nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:var(--safe-t) 18px 12px;
+    display:flex;align-items:center;justify-content:space-between;
+    transition:background .4s var(--ease-out),backdrop-filter .4s,box-shadow .4s;
+}
+.nav.solid{
+    background:rgba(3,3,4,.72);backdrop-filter:blur(20px) saturate(1.4);
+    -webkit-backdrop-filter:blur(20px) saturate(1.4);
+    box-shadow:0 1px 0 var(--line);
+}
+.nav-btn{
+    width:40px;height:40px;border-radius:50%;border:1px solid var(--line-2);
+    background:rgba(0,0,0,.28);backdrop-filter:blur(12px);
+    color:var(--cream);display:grid;place-items:center;cursor:pointer;
+    transition:transform .2s var(--ease-out),background .2s;
+}
+.nav-btn:active{transform:scale(.94)}
+.nav-btn svg{width:20px;height:20px}
+.nav-cluster{display:flex;gap:8px}
 
-/* ═══ 3. 封面图 ═══ */
-.cover{position:relative;aspect-ratio:4/3;background:linear-gradient(135deg,#555 0%,#333 100%);overflow:hidden}
-.cover-ph{width:100%;height:100%;display:block}
+/* ═══ 沉浸式 Hero ═══ */
+.hero{
+    position:relative;height:min(72vh,560px);min-height:420px;
+    overflow:hidden;background:var(--ink-2);
+}
+.hero-media{position:absolute;inset:0}
+.hero-media svg{width:100%;height:100%;object-fit:cover;display:block}
+.hero-media::after{
+    content:"";position:absolute;inset:0;
+    background:
+        linear-gradient(180deg,rgba(3,3,4,.35) 0%,transparent 28%),
+        linear-gradient(0deg,rgba(3,3,4,1) 0%,rgba(3,3,4,.75) 22%,transparent 52%),
+        radial-gradient(ellipse 80% 50% at 50% 100%,rgba(220,192,122,.08),transparent 70%);
+}
+.hero-chrome{
+    position:absolute;inset:0;z-index:2;
+    padding:calc(var(--safe-t) + 56px) 20px 24px;
+    display:flex;flex-direction:column;justify-content:flex-end;
+}
+.hero-eyebrow{
+    font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:10px;
+    animation:rise .7s var(--ease-out) both;
+}
+.hero-quote{
+    font-family:var(--serif);font-size:clamp(22px,5.5vw,28px);font-weight:600;
+    line-height:1.45;letter-spacing:.02em;color:var(--gold-bright);
+    max-width:18em;text-shadow:0 2px 24px rgba(0,0,0,.5);
+    animation:rise .7s var(--ease-out) .06s both;
+}
+.hero-meta-row{
+    display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;
+    animation:rise .7s var(--ease-out) .12s both;
+}
+.hero-tag{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:7px 12px;border-radius:999px;
+    font-size:12px;font-weight:600;color:var(--cream-dim);
+    background:rgba(0,0,0,.38);border:1px solid var(--line);
+    backdrop-filter:blur(16px);
+}
+.hero-tag svg{width:14px;height:14px;color:var(--gold)}
+.hero-map{
+    position:absolute;top:calc(var(--safe-t) + 58px);right:18px;z-index:3;
+    width:88px;padding:8px 10px;border-radius:14px;
+    background:rgba(0,0,0,.45);border:1px solid var(--line);
+    backdrop-filter:blur(14px);
+    animation:rise .7s var(--ease-out) .18s both;
+}
+.hero-map-label{font-size:9px;font-weight:600;letter-spacing:.12em;color:var(--cream-muted);text-transform:uppercase}
+.hero-map-name{font-size:11px;font-weight:600;margin-top:3px;color:var(--cream-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hero-map-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:6px;box-shadow:0 0 12px var(--gold-glow)}
 
-.cover-top{position:absolute;top:10px;left:10px;right:10px;display:flex;align-items:center;gap:8px}
-.pill{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:999px;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);font-size:12px;font-weight:500}
-.pill svg{width:14px;height:14px}
-.pill-green svg{color:#34d399}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
-.female{color:#f9a8d4}
-.male{color:#93c5fd}
+/* ═══ 上浮主面板 ═══ */
+.sheet{
+    position:relative;margin-top:-var(--r-sheet);z-index:10;
+    background:var(--ink-2);
+    border-radius:var(--r-sheet) var(--r-sheet) 0 0;
+    border-top:1px solid var(--line-2);
+    box-shadow:0 -24px 80px rgba(0,0,0,.55);
+}
+.sheet::before{
+    content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+    width:36px;height:3px;border-radius:2px;
+    background:var(--line-2);margin-top:10px;
+}
+.sheet-inner{padding:28px 20px 0}
 
-/* ═══ 3b. 报名 / 签到左右结构方案 ═══ */
-.state-showcase{margin:8px 10px 0;display:grid;gap:7px}
-.status-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.status-box{min-width:0;min-height:72px;padding:9px;border-radius:13px;background:linear-gradient(145deg,rgba(34,34,34,.98),rgba(18,20,20,.98));border:1px solid rgba(255,255,255,.08);box-shadow:0 8px 18px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.05)}
-.status-box.signup{border-color:rgba(245,197,66,.18);background:linear-gradient(145deg,rgba(49,42,20,.98),rgba(20,20,18,.98))}
-.status-box.checkin{border-color:rgba(45,212,191,.18);background:linear-gradient(145deg,rgba(15,45,42,.98),rgba(17,22,22,.98))}
-.status-box.done{background:linear-gradient(145deg,rgba(12,58,51,.98),rgba(17,24,23,.98));border-color:rgba(45,212,191,.24)}
-.status-head{display:flex;align-items:center;justify-content:space-between;gap:6px}
-.status-label{display:flex;align-items:center;gap:4px;font-size:11px;font-weight:900;color:rgba(255,255,255,.58);white-space:nowrap}
-.status-label svg{width:12px;height:12px;flex-shrink:0}
-.status-badge{padding:2px 5px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);font-size:10px;font-weight:900;color:rgba(255,255,255,.68);white-space:nowrap}
-.status-badge.price{background:rgba(245,197,66,.14);border-color:rgba(245,197,66,.2);color:var(--yellow)}
-.status-badge.free{background:rgba(45,212,191,.14);border-color:rgba(45,212,191,.18);color:#49f0d1}
-.status-main{margin-top:7px;font-size:15px;font-weight:900;line-height:1.1;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.status-meta{margin-top:4px;font-size:10px;color:rgba(255,255,255,.48);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.status-bottom{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:8px}
-.status-action{height:24px;border:0;border-radius:9px;padding:0 9px;font:inherit;font-size:11px;font-weight:900;white-space:nowrap}
-.status-action.signup{background:var(--yellow);color:#111}
-.status-action.checkin{background:rgba(45,212,191,.2);border:1px solid rgba(45,212,191,.16);color:#60f4d6}
-.status-action.done{background:rgba(45,212,191,.26);color:#b6fff2}
-.status-action.disabled{background:rgba(255,255,255,.08);color:rgba(255,255,255,.45)}
-.status-avatars{display:flex;align-items:center;min-width:28px}
-.status-avatars i{display:block;width:16px;height:16px;border-radius:50%;margin-left:-6px;border:1.5px solid rgba(17,17,17,.9);background:linear-gradient(135deg,#777,#333)}
-.status-avatars i:first-child{margin-left:0}
+/* 发布者 */
+.host{
+    display:flex;align-items:center;gap:14px;
+    padding-bottom:22px;border-bottom:1px solid var(--line);
+    animation:rise .65s var(--ease-out) .08s both;
+}
+.host-av{
+    width:48px;height:48px;border-radius:50%;
+    background:linear-gradient(145deg,#3a3530,#1a1816);
+    border:1px solid var(--line-2);
+    box-shadow:0 4px 20px rgba(0,0,0,.4);
+    flex-shrink:0;
+}
+.host-body{flex:1;min-width:0}
+.host-name{font-size:17px;font-weight:700;letter-spacing:-.02em}
+.host-venue{
+    display:inline-flex;align-items:center;gap:5px;margin-top:4px;
+    font-size:12px;font-weight:600;color:var(--verified);
+}
+.host-venue svg{width:13px;height:13px}
+.host-follow{
+    padding:8px 16px;border-radius:999px;border:1px solid var(--line-2);
+    background:transparent;color:var(--cream);font:inherit;
+    font-size:12px;font-weight:700;letter-spacing:.04em;cursor:pointer;
+    transition:background .2s,border-color .2s;
+}
+.host-follow:hover{background:var(--frost)}
 
-/* ═══ 4. 正文区 ═══ */
-.body{padding:14px 16px;border-bottom:1px solid var(--border)}
-.loc-row{display:flex;align-items:center;gap:4px}
-.loc-icon{color:var(--sub);flex-shrink:0;display:flex}
-.loc-icon svg{width:16px;height:16px}
-.loc-name{font-size:15px;font-weight:700;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.loc-verified{width:16px;height:16px;border-radius:50%;background:var(--green);display:grid;place-items:center;flex-shrink:0}
-.loc-verified svg{width:10px;height:10px;color:#fff}
-.loc-arrow{color:var(--dim);flex-shrink:0;display:flex}
-.loc-arrow svg{width:16px;height:16px}
-.loc-dist{font-size:13px;color:var(--sub);flex-shrink:0;margin-left:4px}
+/* 价格 — 编辑式排版 */
+.price-block{
+    padding:24px 0;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;
+    animation:rise .65s var(--ease-out) .12s both;
+}
+.price-left{}
+.price-label{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-muted)}
+.price-num{
+    font-size:42px;font-weight:700;letter-spacing:-.04em;line-height:1;
+    color:var(--gold-bright);margin-top:6px;
+}
+.price-num span{font-size:22px;font-weight:600;vertical-align:super;margin-right:2px}
+.price-promo{
+    text-align:right;font-size:12px;font-weight:600;color:var(--ember);
+    padding:8px 12px;border-radius:12px;
+    background:rgba(232,160,144,.1);border:1px solid rgba(232,160,144,.18);
+    line-height:1.45;
+}
 
-.body-text{margin-top:10px;font-size:15px;line-height:1.7;color:rgba(255,255,255,.88)}
-.body-group{margin-top:10px;display:inline-flex;align-items:center;gap:5px;padding:6px 10px;border-radius:999px;background:var(--card2);font-size:13px;color:var(--sub)}
-.body-group svg{width:14px;height:14px;color:var(--sub)}
-.body-time{margin-top:8px;font-size:13px;color:var(--sub)}
+/* 参与 — 环形进度 + 极简签到 */
+.participate{
+    display:grid;grid-template-columns:1.15fr 1fr;gap:12px;
+    margin-bottom:24px;
+    animation:rise .65s var(--ease-out) .16s both;
+}
+.part-card{
+    padding:18px 16px;border-radius:20px;
+    background:var(--frost);border:1px solid var(--line);
+    position:relative;overflow:hidden;
+}
+.part-card::after{
+    content:"";position:absolute;top:-40%;right:-30%;width:80%;height:80%;
+    background:radial-gradient(circle,var(--gold-glow),transparent 70%);
+    pointer-events:none;opacity:.5;
+}
+.part-card.checkin::after{background:radial-gradient(circle,rgba(142,201,184,.12),transparent 70%)}
+.part-kicker{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-muted);margin-bottom:12px}
+.part-main{display:flex;align-items:center;gap:14px}
+.ring{
+    width:52px;height:52px;flex-shrink:0;position:relative;
+}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring-track{fill:none;stroke:var(--line);stroke-width:3}
+.ring-fill{fill:none;stroke:var(--gold);stroke-width:3;stroke-linecap:round;stroke-dasharray:126;stroke-dashoffset:98}
+.part-stat-num{font-size:20px;font-weight:700;letter-spacing:-.03em}
+.part-stat-sub{font-size:11px;color:var(--cream-muted);margin-top:3px;line-height:1.4}
+.part-gender{display:flex;gap:10px;margin-top:10px;font-size:11px;font-weight:600;color:var(--cream-dim)}
+.part-gender .m::before,.part-gender .f::before{
+    content:"";display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:5px;vertical-align:middle;
+}
+.part-gender .m::before{background:#8eb5e8}
+.part-gender .f::before{background:var(--ember)}
+.part-card.checkin .part-main{align-items:flex-start}
+.part-empty{font-size:13px;font-weight:600;color:var(--cream-dim);line-height:1.5}
+.part-cta{
+    width:100%;margin-top:14px;height:40px;border:none;border-radius:12px;
+    font:inherit;font-size:13px;font-weight:700;letter-spacing:.02em;cursor:pointer;
+    transition:transform .15s var(--ease-out),box-shadow .2s;
+}
+.part-cta:active{transform:scale(.98)}
+.part-cta.gold{
+    background:linear-gradient(135deg,var(--gold-bright) 0%,var(--gold) 100%);
+    color:var(--ink);box-shadow:0 8px 28px var(--gold-glow);
+}
+.part-cta.ghost{
+    background:transparent;border:1px solid var(--line-2);color:var(--cream-muted);
+}
 
-/* ═══ 5. 评论区 ═══ */
-.comments{padding:14px 16px}
-.c-header{font-size:13px;color:var(--sub);margin-bottom:14px}
-.c-item{display:flex;gap:10px}
-.c-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#555,#333);flex-shrink:0}
-.c-main{flex:1;min-width:0}
-.c-name-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.c-name{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px}
-.c-badge{display:flex;align-items:center;gap:2px;font-size:11px;color:#34d399;white-space:nowrap}
-.c-badge svg{width:12px;height:12px}
-.c-name2{font-size:13px;color:var(--yellow);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px}
-.c-text{margin-top:6px;font-size:14px;line-height:1.7;color:rgba(255,255,255,.85)}
-.c-meta-row{margin-top:6px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--sub)}
-.c-meta-row .bubble{margin-left:auto}
-.c-meta-row .bubble svg{width:16px;height:16px;color:var(--dim)}
-.c-expand{margin-top:10px;font-size:13px;color:#93c5fd;display:flex;align-items:center;gap:4px}
-.c-expand svg{width:12px;height:12px}
+/* 地点 — 横向磁贴 */
+.venue{
+    display:block;text-decoration:none;color:inherit;
+    padding:16px 18px;border-radius:18px;margin-bottom:20px;
+    background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+    border:1px solid var(--line);
+    transition:border-color .25s,transform .25s var(--ease-out);
+    animation:rise .65s var(--ease-out) .2s both;
+}
+.venue:active{transform:scale(.99);border-color:var(--line-2)}
+.venue-top{display:flex;align-items:flex-start;gap:12px}
+.venue-icon{
+    width:44px;height:44px;border-radius:14px;flex-shrink:0;
+    background:rgba(220,192,122,.12);border:1px solid rgba(220,192,122,.2);
+    display:grid;place-items:center;color:var(--gold);
+}
+.venue-icon svg{width:20px;height:20px}
+.venue-info{flex:1;min-width:0}
+.venue-name{font-size:15px;font-weight:700;line-height:1.35;letter-spacing:-.01em}
+.venue-row{display:flex;align-items:center;gap:6px;margin-top:5px;font-size:12px;color:var(--cream-muted)}
+.venue-badge{
+    width:15px;height:15px;border-radius:50%;background:var(--verified);
+    display:inline-grid;place-items:center;
+}
+.venue-badge svg{width:9px;height:9px;color:var(--ink)}
+.venue-dist{
+    font-size:13px;font-weight:700;color:var(--gold);
+    white-space:nowrap;padding-top:2px;
+}
+.venue-chevron{color:var(--cream-muted);margin-left:4px}
+.venue-chevron svg{width:18px;height:18px}
 
-/* ═══ 6. 底部回复栏 ═══ */
-.composer{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:8px 12px;padding-bottom:max(8px,env(safe-area-inset-bottom));display:flex;align-items:center;gap:10px;background:rgba(17,17,17,.96);backdrop-filter:blur(12px);border-top:1px solid var(--border)}
-.comp-av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#666,#333);flex-shrink:0}
-.comp-input{flex:1;height:34px;border-radius:17px;border:none;background:var(--card2);padding:0 14px;font-size:14px;color:var(--dim);display:flex;align-items:center}
-.comp-icon{border:none;background:none;color:var(--sub);display:grid;place-items:center;flex-shrink:0;padding:4px}
-.comp-icon svg{width:22px;height:22px}
-.comp-like{border:none;background:none;display:flex;align-items:center;gap:4px;color:var(--text);font-size:14px;font-weight:600;flex-shrink:0;padding:4px}
-.comp-like svg{width:22px;height:22px}
+/* 正文 */
+.prose{
+    font-family:var(--serif);font-size:16px;line-height:1.85;color:var(--cream-dim);
+    margin-bottom:8px;
+    animation:rise .65s var(--ease-out) .24s both;
+}
+.prose.collapsed{
+    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.prose-toggle{
+    border:none;background:none;font:inherit;font-size:12px;font-weight:700;
+    color:var(--gold);letter-spacing:.06em;padding:0 0 22px;cursor:pointer;
+}
+
+/* 群聊 */
+.conv{
+    display:flex;align-items:center;gap:14px;padding:14px 16px;
+    border-radius:16px;background:var(--ink-3);border:1px solid var(--line);
+    margin-bottom:28px;cursor:pointer;
+    animation:rise .65s var(--ease-out) .28s both;
+}
+.conv-avatars{display:flex}
+.conv-avatars i{
+    width:28px;height:28px;border-radius:50%;margin-left:-10px;
+    border:2px solid var(--ink-3);background:linear-gradient(135deg,#4a4540,#2a2826);
+}
+.conv-avatars i:first-child{margin-left:0}
+.conv-text{flex:1;min-width:0}
+.conv-title{font-size:14px;font-weight:700}
+.conv-sub{font-size:12px;color:var(--cream-muted);margin-top:2px}
+.conv-arrow{color:var(--cream-muted)}
+.conv-arrow svg{width:18px;height:18px}
+
+/* 评论 */
+.comments{padding:0 20px 24px;border-top:1px solid var(--line)}
+.comments-head{
+    display:flex;align-items:baseline;justify-content:space-between;
+    padding:22px 0 18px;
+}
+.comments-head h2{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-muted)}
+.comments-head span{font-size:12px;color:var(--cream-muted)}
+.comment{display:flex;gap:14px;padding-bottom:22px}
+.comment-av{
+    width:36px;height:36px;border-radius:50%;flex-shrink:0;
+    background:linear-gradient(145deg,#3a3530,#222);
+    border:1px solid var(--line);
+}
+.comment-body{flex:1;min-width:0;padding-top:2px}
+.comment-author{font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.comment-merchant{color:var(--verified);display:inline-flex}
+.comment-merchant svg{width:12px;height:12px}
+.comment-at{font-size:12px;font-weight:600;color:var(--gold);opacity:.85}
+.comment-text{
+    font-family:var(--serif);font-size:15px;line-height:1.7;color:var(--cream-dim);
+    margin-top:8px;
+}
+.comment-foot{
+    margin-top:10px;display:flex;align-items:center;gap:14px;
+    font-size:11px;font-weight:600;color:var(--cream-muted);letter-spacing:.02em;
+}
+.comment-reply{
+    margin-left:auto;border:none;background:none;font:inherit;
+    font-size:11px;font-weight:700;color:var(--cream-dim);letter-spacing:.08em;
+    text-transform:uppercase;cursor:pointer;
+}
+.thread-link{
+    display:flex;align-items:center;gap:6px;padding:12px 0 8px;
+    font-size:12px;font-weight:700;color:var(--sage);letter-spacing:.04em;
+    border:none;background:none;font-family:var(--sans);cursor:pointer;width:100%;
+}
+.thread-link svg{width:14px;height:14px}
+
+/* 固定底栏 */
+.dock{
+    position:fixed;left:0;right:0;bottom:0;z-index:200;
+    padding:12px 18px calc(12px + var(--safe-b));
+    background:linear-gradient(0deg,var(--ink) 60%,transparent);
+    pointer-events:none;
+}
+.dock-bar{
+    pointer-events:auto;
+    display:flex;align-items:center;gap:12px;
+    padding:10px 10px 10px 16px;border-radius:20px;
+    background:rgba(12,12,15,.88);backdrop-filter:blur(24px) saturate(1.3);
+    -webkit-backdrop-filter:blur(24px) saturate(1.3);
+    border:1px solid var(--line-2);
+    box-shadow:0 12px 48px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.06);
+}
+.dock-price{font-size:13px;font-weight:600;color:var(--cream-muted);flex-shrink:0}
+.dock-price strong{display:block;font-size:20px;font-weight:700;color:var(--gold-bright);letter-spacing:-.03em;line-height:1.1}
+.dock-input{
+    flex:1;height:40px;border-radius:12px;border:1px solid var(--line);
+    background:var(--frost);padding:0 14px;
+    font:inherit;font-size:14px;color:var(--cream-muted);
+    display:flex;align-items:center;
+}
+.dock-actions{display:flex;gap:4px}
+.dock-icon{
+    width:40px;height:40px;border-radius:12px;border:none;
+    background:transparent;color:var(--cream-dim);cursor:pointer;
+    display:grid;place-items:center;
+}
+.dock-icon svg{width:22px;height:22px}
+.dock-icon.heart svg{color:#e87878;fill:#e87878;stroke:none}
+
+/* 状态附录 */
+.states-wrap{margin:0 20px 32px}
+.states-wrap summary{
+    font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--cream-muted);cursor:pointer;list-style:none;padding:12px 0;
+}
+.states-wrap summary::-webkit-details-marker{display:none}
+.state-grid{display:grid;gap:10px;padding-top:8px}
+.state-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.state-note{font-size:10px;color:var(--cream-muted);text-align:center;grid-column:1/-1;letter-spacing:.06em}
+.mini-card{padding:12px;border-radius:14px;background:var(--frost);border:1px solid var(--line);font-size:11px}
+.mini-card b{display:block;font-size:14px;margin:4px 0}
 </style>
 </head>
 <body>
+<div class="grain" aria-hidden="true"></div>
 
-<!-- ═══ 1. 顶部地图区 ═══ -->
-<div class="map">
-    <svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block" aria-hidden="true">
-        <rect width="400" height="120" fill="#252d3a"/>
-        <rect x="50" y="20" width="80" height="12" rx="3" fill="rgba(255,255,255,.06)"/>
-        <rect x="200" y="30" width="60" height="8" rx="2" fill="rgba(255,255,255,.04)"/>
-        <circle cx="300" cy="60" r="4" fill="rgba(245,197,66,.5)"/>
-        <circle cx="160" cy="45" r="3" fill="rgba(245,197,66,.35)"/>
-        <text x="330" y="30" fill="rgba(255,255,255,.15)" font-size="10" font-family="sans-serif">九龙商厦</text>
-    </svg>
-    <div class="map-overlay">
-        <div class="map-left">
-            <div class="map-avatar"></div>
-        </div>
-        <div class="map-right">
-            <button class="map-btn"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
-            <button class="map-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg></button>
-        </div>
-    </div>
-</div>
-
-<!-- ═══ 2. 用户信息条 ═══ -->
-<div class="user-bar">
-    <div class="user-av"></div>
-    <span class="user-name">一二三四五六七八九十一...</span>
-    <span class="user-venue">
-        <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="4" fill="#34d399"/><path d="M8 12l3 3 5-6" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        跳海酒馆-三...
-    </span>
-    <button class="user-more"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
-</div>
-
-<!-- ═══ 3. 封面图 + 叠加层 ═══ -->
-<div class="cover">
-    <svg class="cover-ph" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs><linearGradient id="covGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5a5a5a"/><stop offset="1" stop-color="#2a2a2a"/></linearGradient></defs>
-        <rect width="400" height="300" fill="url(#covGrad)"/>
-        <circle cx="130" cy="140" r="60" fill="rgba(255,255,255,.08)"/>
-        <circle cx="280" cy="110" r="45" fill="rgba(255,255,255,.06)"/>
-        <ellipse cx="200" cy="200" rx="100" ry="40" fill="rgba(255,255,255,.04)"/>
-    </svg>
-
-    <!-- 顶部：时间 + 导航 + 查看位置 -->
-    <div class="cover-top">
-        <span class="pill pill-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>今天18:32</span>
-        <span class="pill">▶ 导航</span>
-        <span class="pill pill-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>查看位置</span>
-    </div>
-
-</div>
-
-<!-- ═══ 3b. 报名 / 签到状态方案 ═══ -->
-<section class="state-showcase" aria-label="报名与签到状态方案">
-    <div class="status-pair">
-        <article class="status-box signup">
-            <div class="status-head">
-                <span class="status-label">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-                    报名
-                </span>
-                <span class="status-badge price">¥66</span>
-            </div>
-            <div class="status-main">22/99+ 已报名</div>
-            <div class="status-meta">男 22 · 女 22</div>
-            <div class="status-bottom">
-                <span></span>
-                <button class="status-action signup">立即报名</button>
-            </div>
-        </article>
-        <article class="status-box checkin">
-            <div class="status-head">
-                <span class="status-label">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/><circle cx="12" cy="12" r="10"/></svg>
-                    签到
-                </span>
-                <span class="status-badge">未开始</span>
-            </div>
-            <div class="status-main">还没人签到</div>
-            <div class="status-meta">到店后可签到</div>
-            <div class="status-bottom">
-                <span></span>
-                <button class="status-action disabled">未到店</button>
-            </div>
-        </article>
-    </div>
-
-    <div class="status-pair">
-        <article class="status-box signup">
-            <div class="status-head">
-                <span class="status-label">报名</span>
-                <span class="status-badge free">免费</span>
-            </div>
-            <div class="status-main">8 人想去</div>
-            <div class="status-meta">不收报名费</div>
-            <div class="status-bottom">
-                <span></span>
-                <button class="status-action signup">立即报名</button>
-            </div>
-        </article>
-        <article class="status-box checkin">
-            <div class="status-head">
-                <span class="status-label">签到</span>
-                <span class="status-badge">未签到</span>
-            </div>
-            <div class="status-main">已报名，待到店</div>
-            <div class="status-meta">还没人签到</div>
-            <div class="status-bottom">
-                <span></span>
-                <button class="status-action checkin">到店签到</button>
-            </div>
-        </article>
-    </div>
-
-    <div class="status-pair">
-        <article class="status-box signup">
-            <div class="status-head">
-                <span class="status-label">报名</span>
-                <span class="status-badge">已报名</span>
-            </div>
-            <div class="status-main">22 人已报名</div>
-            <div class="status-meta">你已占位</div>
-            <div class="status-bottom">
-                <span></span>
-                <button class="status-action disabled">已报名</button>
-            </div>
-        </article>
-        <article class="status-box done">
-            <div class="status-head">
-                <span class="status-label">签到</span>
-                <span class="status-badge free">已到场</span>
-            </div>
-            <div class="status-main">你已在现场</div>
-            <div class="status-meta">18:32 签到成功</div>
-            <div class="status-bottom">
-                <span></span>
-                <button class="status-action done">已签到</button>
-            </div>
-        </article>
-    </div>
-
-    <div class="status-pair">
-        <article class="status-box signup">
-            <div class="status-head">
-                <span class="status-label">报名</span>
-                <span class="status-badge price">¥66</span>
-            </div>
-            <div class="status-main">22 人已报名</div>
-            <div class="status-meta">99+ 名额</div>
-            <div class="status-bottom">
-                <span></span>
-                <button class="status-action signup">立即报名</button>
-            </div>
-        </article>
-        <article class="status-box done">
-            <div class="status-head">
-                <span class="status-label">签到</span>
-                <span class="status-badge free">3 人</span>
-            </div>
-            <div class="status-main">现场有人</div>
-            <div class="status-meta">有人已经到店</div>
-            <div class="status-bottom">
-                <span class="status-avatars"><i></i><i></i><i></i></span>
-                <button class="status-action checkin">我也签到</button>
-            </div>
-        </article>
-    </div>
-</section>
-
-<!-- ═══ 4. 正文 ═══ -->
-<div class="body">
-    <!-- 地点行 -->
-    <div class="loc-row">
-        <span class="loc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-        <span class="loc-name">沁·叁拾壹书院(香山清琴店)ssdfsss...</span>
-        <span class="loc-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
-        <span class="loc-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span>
-        <span class="loc-dist">距我21.2km</span>
-    </div>
-
-    <!-- 正文 -->
-    <p class="body-text">遥想公瑾当年，小乔初嫁了第三方似懂非懂顺雄姿英发。羽扇纶巾谈笑间，樯橹灰飞烟灭。放松放松的方式发送方式的方式发送方式发送地方</p>
-
-    <!-- 群聊 -->
-    <span class="body-group">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-        群聊 · 北京A群（33）
-    </span>
-
-    <!-- 时间 -->
-    <div class="body-time">18:23</div>
-
-</div>
-
-<!-- ═══ 5. 评论区 ═══ -->
-<div class="comments">
-    <div class="c-header">共 25 条评论</div>
-
-    <div class="c-item">
-        <div class="c-av"></div>
-        <div class="c-main">
-            <div class="c-name-row">
-                <span class="c-name">一二三四五六七八九十一二</span>
-                <span class="c-badge"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="4" fill="#34d399"/><path d="M8 12l3 3 5-6" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span class="c-name2">一二三四五六七...</span>
-            </div>
-            <p class="c-text">遥想公瑾当年，小乔初嫁了，雄姿英发。羽扇纶巾谈笑间，樯橹灰飞烟灭。</p>
-            <div class="c-meta-row">
-                <span>18:23</span>
-                <span>距发布点 800m</span>
-                <span class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></span>
-            </div>
-            <div class="c-expand">
-                —— 展开 132 条评论
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ═══ 6. 底部回复栏 ═══ -->
-<div class="composer">
-    <div class="comp-av"></div>
-    <div class="comp-input">回复</div>
-    <button class="comp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></button>
-    <button class="comp-like">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06A5.5 5.5 0 003.16 12.4L12 21.23l8.84-8.83a5.5 5.5 0 000-7.79z"/></svg>
-        23
+<nav class="nav" id="nav">
+    <button type="button" class="nav-btn" aria-label="返回">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
     </button>
-</div>
+    <div class="nav-cluster">
+        <button type="button" class="nav-btn" aria-label="分享">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        </button>
+        <button type="button" class="nav-btn" aria-label="更多">
+            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg>
+        </button>
+    </div>
+</nav>
 
+<!-- Hero -->
+<header class="hero">
+    <div class="hero-media">
+        <svg viewBox="0 0 390 560" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+                <linearGradient id="sky" x1="0" y1="0" x2="0.3" y2="1">
+                    <stop offset="0" stop-color="#1a2838"/>
+                    <stop offset=".5" stop-color="#0f1419"/>
+                    <stop offset="1" stop-color="#030304"/>
+                </linearGradient>
+                <radialGradient id="glow" cx=".3" cy=".55" r=".55">
+                    <stop offset="0" stop-color="rgba(220,192,122,.35)"/>
+                    <stop offset=".6" stop-color="rgba(180,120,80,.08)"/>
+                    <stop offset="1" stop-color="transparent"/>
+                </radialGradient>
+            </defs>
+            <rect width="390" height="560" fill="url(#sky)"/>
+            <rect width="390" height="560" fill="url(#glow)"/>
+            <path d="M0 420 Q80 380 160 400 T320 390 T390 410 L390 560 L0 560Z" fill="rgba(0,0,0,.4)"/>
+        </svg>
+    </div>
+    <aside class="hero-map" aria-label="地图位置">
+        <div class="hero-map-label">附近</div>
+        <div class="hero-map-name">九龙商厦</div>
+        <div class="hero-map-dot"></div>
+    </aside>
+    <div class="hero-chrome">
+        <p class="hero-eyebrow">Tonight · 邀约</p>
+        <h1 class="hero-quote">遥想公瑾当年，小乔初嫁了，雄姿英发。</h1>
+        <div class="hero-meta-row">
+            <span class="hero-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                今天 18:32
+            </span>
+            <span class="hero-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                导航
+            </span>
+            <span class="hero-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                查看位置
+            </span>
+        </div>
+    </div>
+</header>
+
+<!-- 主面板 -->
+<main class="sheet">
+    <div class="sheet-inner">
+
+        <div class="host">
+            <div class="host-av" role="img" aria-label="发布者"></div>
+            <div class="host-body">
+                <div class="host-name">一二三四五六七八九十一二</div>
+                <span class="host-venue">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M7 12l3 3 7-7" fill="none" stroke="#030304" stroke-width="2.2" stroke-linecap="round"/></svg>
+                    跳海酒馆 · 三元桥店
+                </span>
+            </div>
+            <button type="button" class="host-follow">关注</button>
+        </div>
+
+        <div class="price-block">
+            <div class="price-left">
+                <div class="price-label">报名费</div>
+                <div class="price-num"><span>¥</span>19.9</div>
+            </div>
+            <div class="price-promo">女士优惠<br>减 ¥10</div>
+        </div>
+
+        <section class="participate" aria-label="报名与签到">
+            <div class="part-card">
+                <div class="part-kicker">Enrollment</div>
+                <div class="part-main">
+                    <div class="ring" aria-hidden="true">
+                        <svg viewBox="0 0 44 44"><circle class="ring-track" cx="22" cy="22" r="20"/><circle class="ring-fill" cx="22" cy="22" r="20"/></svg>
+                    </div>
+                    <div>
+                        <div class="part-stat-num">22 / 99+</div>
+                        <div class="part-stat-sub">已报名</div>
+                    </div>
+                </div>
+                <div class="part-gender"><span class="m">22</span><span class="f">22</span></div>
+                <button type="button" class="part-cta gold">立即报名</button>
+            </div>
+            <div class="part-card checkin">
+                <div class="part-kicker">Check-in</div>
+                <div class="part-main">
+                    <div>
+                        <div class="part-empty">还没有人<br>签到</div>
+                        <div class="part-stat-sub" style="margin-top:8px">到店后可签</div>
+                    </div>
+                </div>
+                <button type="button" class="part-cta ghost" disabled>未开始</button>
+            </div>
+        </section>
+
+        <a href="#" class="venue">
+            <div class="venue-top">
+                <div class="venue-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div class="venue-info">
+                    <div class="venue-name">沁·叁拾壹书院（香山清琴店）</div>
+                    <div class="venue-row">
+                        <span class="venue-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        认证商户
+                    </div>
+                </div>
+                <div>
+                    <div class="venue-dist">21.2 km</div>
+                    <span class="venue-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></span>
+                </div>
+            </div>
+        </a>
+
+        <p class="prose collapsed" id="prose">遥想公瑾当年，小乔初嫁了，雄姿英发。羽扇纶巾，谈笑间，樯橹灰飞烟灭。欢迎一起来聊聊，现场氛围很轻松，适合第一次来的朋友。</p>
+        <button type="button" class="prose-toggle" id="proseToggle">阅读全文</button>
+
+        <div class="conv">
+            <div class="conv-avatars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <div class="conv-text">
+                <div class="conv-title">加入群聊</div>
+                <div class="conv-sub">32 位成员 · 北京夜聊</div>
+            </div>
+            <span class="conv-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </div>
+    </div>
+
+    <section class="comments">
+        <div class="comments-head">
+            <h2>Comments</h2>
+            <span>25</span>
+        </div>
+        <article class="comment">
+            <div class="comment-av" role="img" aria-label="头像"></div>
+            <div class="comment-body">
+                <div class="comment-author">
+                    一二三四五六七八九十一二
+                    <span class="comment-merchant"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5"/></svg></span>
+                    <span class="comment-at">@跳海酒馆</span>
+                </div>
+                <p class="comment-text">羽扇纶巾，谈笑间，樯橹灰飞烟灭。</p>
+                <div class="comment-foot">
+                    <span>18:23</span>
+                    <span>距发布点 800m</span>
+                    <button type="button" class="comment-reply">Reply</button>
+                </div>
+                <button type="button" class="thread-link">
+                    132 条回复
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <details class="states-wrap">
+        <summary>状态方案附录</summary>
+        <div class="state-grid">
+            <p class="state-note">免费 · 可签到</p>
+            <div class="state-row">
+                <div class="mini-card"><span>报名</span><b>8 人想去</b><button type="button" class="part-cta gold" style="margin-top:8px;height:32px">报名</button></div>
+                <div class="mini-card"><span>签到</span><b>待到店</b><button type="button" class="part-cta ghost" style="margin-top:8px;height:32px">签到</button></div>
+            </div>
+            <p class="state-note">已报名 · 已到场</p>
+            <div class="state-row">
+                <div class="mini-card"><span>报名</span><b>已占位</b><button type="button" class="part-cta ghost" style="margin-top:8px;height:32px" disabled>已报名</button></div>
+                <div class="mini-card"><span>签到</span><b>18:32</b><button type="button" class="part-cta ghost" style="margin-top:8px;height:32px">已签到</button></div>
+            </div>
+        </div>
+    </details>
+</main>
+
+<footer class="dock">
+    <div class="dock-bar">
+        <div class="dock-price">合计<strong>¥19.9</strong></div>
+        <div class="dock-input">写评论…</div>
+        <div class="dock-actions">
+            <button type="button" class="dock-icon" aria-label="图片"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></button>
+            <button type="button" class="dock-icon heart" aria-label="赞 23"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06A5.5 5.5 0 003.16 12.4L12 21.23l8.84-8.83a5.5 5.5 0 000-7.79z"/></svg></button>
+        </div>
+    </div>
+</footer>
+
+<script>
+(function(){
+    var nav=document.getElementById('nav');
+    window.addEventListener('scroll',function(){
+        nav.classList.toggle('solid',window.scrollY>80);
+    },{passive:true});
+
+    var prose=document.getElementById('prose');
+    var toggle=document.getElementById('proseToggle');
+    toggle.addEventListener('click',function(){
+        var c=prose.classList.toggle('collapsed');
+        toggle.textContent=c?'阅读全文':'收起';
+    });
+})();
+</script>
 </body>
 </html>

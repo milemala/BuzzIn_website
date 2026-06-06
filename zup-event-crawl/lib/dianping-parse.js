@@ -11,6 +11,10 @@ const CLOSED_MARKERS = [
   "即将开业",
   "未开业",
   "永久关门",
+  "已停业",
+  "停止营业",
+  "已停止营业",
+  "停业",
 ];
 
 const DIANPING_CITY_IDS = {
@@ -27,8 +31,12 @@ const DIANPING_CITY_IDS = {
   厦门: 15,
   武汉: 16,
   西安: 17,
-  长沙: 24,
+  长沙: 344,
   郑州: 160,
+  秦皇岛: 26,
+  宁波: 11,
+  青岛: 21,
+  无锡: 13,
 };
 
 function decodeHtml(text) {
@@ -39,6 +47,10 @@ function decodeHtml(text) {
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
     .trim();
+}
+
+function stripHtmlTags(text) {
+  return decodeHtml(String(text || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " "));
 }
 
 function firstMatch(text, pattern) {
@@ -55,9 +67,16 @@ function isLoginWall(html) {
   );
 }
 
-function isClosedShop({ name, listHtml, detailHtml }) {
-  const haystack = `${name}\n${listHtml || ""}\n${detailHtml || ""}`;
-  if (/<li[^>]*class="[^"]*\bclose\b/i.test(listHtml || "")) {
+function isClosedShop({ name, listHtml, liAttrs, detailHtml }) {
+  const attrs = String(liAttrs || "");
+  const block = String(listHtml || "");
+  const haystack = `${name}\n${attrs}\n${block}\n${detailHtml || ""}`;
+
+  // 列表项 <li class="close"> 表示歇业关闭（class 在 li 开标签上，不在 innerHTML 里）
+  if (/\bclass="[^"]*\bclose\b/i.test(attrs) || /\bclass='[^']*\bclose\b/i.test(attrs)) {
+    return true;
+  }
+  if (/shop[_-]?closed|icon[_-]?closed|tag[_-]?closed/i.test(block)) {
     return true;
   }
   return CLOSED_MARKERS.some((marker) => haystack.includes(marker));
@@ -141,26 +160,52 @@ function collectNextPagePaths(html, searchUrl) {
   });
 }
 
+function isSearchNotFound(html) {
+  const sample = String(html || "");
+  return sample.includes("not-found-words")
+    || /没有找到与[\s\S]{0,80}相关的商户/.test(sample);
+}
+
 function parseSearchListHtml(html, options = {}) {
   if (isLoginWall(html)) {
     throw new Error("大众点评返回登录页，请先在 Chrome 登录大众点评后重试抓取命令");
   }
 
+  if (isSearchNotFound(html)) {
+    return {
+      totalReported: 0,
+      parsedCount: 0,
+      filteredCount: 0,
+      filterStats: { byName: 0, byKeyword: 0, byCategory: 0, byJunk: 0 },
+      nextPagePaths: [],
+      items: [],
+      skippedClosed: 0,
+      listHtmlReady: false,
+      searchNotFound: true,
+    };
+  }
+
   const listBlock = extractShopListBlock(html);
 
   const items = [];
-  const liPattern = /<li\b[^>]*>([\s\S]*?)<\/li>/gi;
+  const liPattern = /<li\b([^>]*)>([\s\S]*?)<\/li>/gi;
   let match;
   let position = 0;
+  let skippedClosed = 0;
 
   while ((match = liPattern.exec(listBlock))) {
-    const block = match[1];
+    const liAttrs = match[1];
+    const block = match[2];
     if (!block.includes("shop_title_click")) continue;
 
     position += 1;
-    const shopId = firstMatch(block, /data-shopid="([^"]+)"/i);
-    const name = firstMatch(block, /data-click-name="shop_title_click"[^>]*title="([^"]+)"/i)
+    const shopId = firstMatch(block, /data-shopid="([^"]+)"/i)
+      || firstMatch(block, /href="https?:\/\/www\.dianping\.com\/shop\/([^"/?#]+)/i);
+    const rawName = firstMatch(block, /data-click-name="shop_title_click"[^>]*title="([^"]+)"/i)
+      || firstMatch(block, /data-click-name="shop_title_click"[^>]*>([\s\S]*?)<\/a>/i)
+      || firstMatch(block, /<a[^>]*data-click-name="shop_title_click"[^>]*>([\s\S]*?)<\/a>/i)
       || firstMatch(block, /<h4[^>]*>([\s\S]*?)<\/h4>/i);
+    const name = stripHtmlTags(rawName);
     if (!shopId || !name) continue;
 
     const category = firstMatch(block, /data-click-name="shop_tag_cate_click"[^>]*><span class="tag">([^<]+)<\/span>/i);
@@ -180,14 +225,14 @@ function parseSearchListHtml(html, options = {}) {
       originalLink: `https://www.dianping.com/shop/${shopId}`,
       sourcePosition: position,
       listHtml: block,
+      liAttrs,
       address: "",
       needsDetail: false,
       businessStatus: "open",
     };
 
     if (isClosedShop(item)) {
-      item.businessStatus = "closed";
-      item.skipReason = "closed_or_not_open";
+      skippedClosed += 1;
       continue;
     }
 
@@ -197,7 +242,9 @@ function parseSearchListHtml(html, options = {}) {
   const totalMatch = html.match(/共为您找到(\d+)个/);
   const nextPages = collectNextPagePaths(html, options.searchUrl);
 
-  const filterStats = { byName: 0, byKeyword: 0, byCategory: 0, byJunk: 0 };
+  const filterStats = {
+    byName: 0, byKeyword: 0, byCategory: 0, byJunk: 0, byBrand: 0,
+  };
   const filtered = [];
   const namePattern = options.namePattern
     ? (options.namePattern instanceof RegExp ? options.namePattern : new RegExp(options.namePattern))
@@ -213,7 +260,13 @@ function parseSearchListHtml(html, options = {}) {
     if (!intent.ok) {
       if (intent.reason === "keyword") filterStats.byKeyword += 1;
       else if (intent.reason === "junk_name") filterStats.byJunk += 1;
-      else if (intent.reason === "category_blocked" || intent.reason === "not_social_venue") {
+      else if (
+        intent.reason === "brand_reject_name"
+        || intent.reason === "brand_reject_category"
+        || intent.reason === "not_brand_store"
+      ) {
+        filterStats.byBrand += 1;
+      } else if (intent.reason === "category_blocked" || intent.reason === "not_social_venue") {
         filterStats.byCategory += 1;
       }
       continue;
@@ -228,7 +281,7 @@ function parseSearchListHtml(html, options = {}) {
     filterStats,
     nextPagePaths: nextPages,
     items: filtered,
-    skippedClosed: position - items.length,
+    skippedClosed,
     listHtmlReady: items.length > 0,
   };
 }

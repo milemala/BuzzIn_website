@@ -34,7 +34,7 @@ function parseArgs(argv) {
     skipDetails: true,
     chromeWaitMs: 4500,
     detailWaitMs: 3500,
-    maxPages: 20,
+    maxPages: 1,
     pageDelayMs: 1200,
     detailDelayMs: 900,
   };
@@ -99,7 +99,7 @@ function parseArgs(argv) {
 }
 
 function printHelp() {
-  console.log(`大众点评商户抓取（默认仅列表页，不打开详情，避免反爬）:
+  console.log(`大众点评商户抓取（默认仅列表第一页，不翻页、不进详情）:
 
   node scripts/scrape-dianping-merchants.js \\
     --city=上海 --keyword=跳海
@@ -147,7 +147,10 @@ function saveDebugHtml(city, keyword, html) {
   return file;
 }
 
-function explainListFailure(parsed, shopCount) {
+function explainListFailure(parsed, shopCount, keyword) {
+  if (parsed.searchNotFound) {
+    return `该城市大众点评第一页无「${keyword || ""}」相关商户（可能确实没有）`;
+  }
   if (parsed.parsedCount > 0 && parsed.filteredCount === 0) {
     const s = parsed.filterStats || {};
     return `列表已解析 ${parsed.parsedCount} 家，但社交门店规则全部筛掉（店名 ${s.byName || 0}，关键词 ${s.byKeyword || 0}，非饮酒类 ${s.byCategory || 0}，无关 ${s.byJunk || 0}）`;
@@ -190,10 +193,16 @@ async function fetchSearchResultsViaChrome(options) {
         console.log(`     列表未就绪，重试 1 次…`);
         await sleep(2000);
       }
+      const expectedPath = `/search/keyword/${options.cityId}/`;
       const fetched = await fetchViaChrome(pageUrl, {
         waitMs: options.chromeWaitMs + (attempt - 1) * 2500,
         expectShopList: true,
+        minShopCount: 5,
       });
+      if (!fetched.url.includes(expectedPath)) {
+        console.warn(`     ⚠ 当前标签 URL 与目标城市不一致: ${fetched.url}`);
+        if (attempt < 2) continue;
+      }
       html = fetched.html;
       pageShopCount = fetched.shopCount || 0;
       lastShopCount = pageShopCount;
@@ -211,7 +220,9 @@ async function fetchSearchResultsViaChrome(options) {
     const stats = parsed.filterStats || {};
     console.log(
       `     页面约 ${parsed.totalReported ?? "?"} 条 | DOM ${pageShopCount} 家 | 解析 ${parsed.parsedCount} | 入选 ${parsed.filteredCount}`
+      + (parsed.skippedClosed ? ` | 闭店/未开业 ${parsed.skippedClosed}` : "")
       + (stats.byCategory ? ` | 品类筛掉 ${stats.byCategory}` : "")
+      + (stats.byBrand ? ` | 非品牌/蹭词 ${stats.byBrand}` : "")
       + (stats.byJunk ? ` | 无关店名 ${stats.byJunk}` : ""),
     );
 
@@ -219,23 +230,14 @@ async function fetchSearchResultsViaChrome(options) {
       merged.set(item.shopId, item);
     }
 
-    for (const href of parsed.nextPagePaths) {
-      const nextUrl = toAbsoluteDianpingUrl(href);
-      if (!visited.has(nextUrl) && !queue.includes(nextUrl)) {
-        queue.push(nextUrl);
-      }
-    }
-
-    if (queue.length) {
-      await sleep(options.pageDelayMs);
-    }
+    // 只抓第一页：无合适结果则视为搜索词不对或该城无店，不翻页
   }
 
   console.log(`  合计 ${merged.size} 家（搜索共约 ${totalReported ?? "?"} 条）`);
   const items = [...merged.values()].sort((a, b) => a.sourcePosition - b.sourcePosition);
   if (!items.length && lastParsed) {
     const debugFile = lastHtml ? saveDebugHtml(options.city, options.keyword, lastHtml) : "";
-    const hint = explainListFailure(lastParsed, lastShopCount);
+    const hint = explainListFailure(lastParsed, lastShopCount, options.keyword);
     return { items, skipReason: hint, debugFile };
   }
   return { items };

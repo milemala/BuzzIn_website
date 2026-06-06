@@ -12,7 +12,10 @@
 活动抓取与本地审核台见仓库内 [`../zup-event-crawl`](../zup-event-crawl)（[`CRAWL-SERVICE.md`](CRAWL-SERVICE.md)）。
 
 当前页面：
-- `invite-detail.html`（用户发布邀约详情页原型：头图 + 报名/签到状态条 + 正文 + 评论 + 底部回复，含新增 **报名费** 展示模块）
+- `invite-detail.html`（图片邀约详情 **v3 Editorial Noir**：香槟金/奶油色编辑风、衬线正文、环形报名进度、上浮面板；**Cursor 维护**，备份 `invite-detail-v2.html`）
+- `invite-detail-v2.html`（与 `invite-detail.html` 同内容；被 Xcode 覆盖时 `cp invite-detail-v2.html invite-detail.html` 恢复）
+- `invite-detail-video.html`（**视频**邀约详情 v2：全屏沉浸 + 右侧互动轨 + 左下信息叠层；报名改为 **底部 Sheet**，非居中挡屏弹窗；备份见 `invite-detail-video-v2.html`）
+- `invite-detail-video-v2.html`（视频详情 v2 备份，与上同内容）
 - `now-list.html`（NOW/邀约列表原型：双列瀑布流；封面左上 NOW 角标，**左下**纵向为 **费用**（上：收费显示 `¥金额`，**免费邀约显示「免费」**）+ **已报 x/y**（下），右下为距离）
 - `nearby-friends.html`（附近好友列表原型：紧凑用户卡片，包含头像、昵称、简介、动态数量、在线状态与距离）
 - `publish-quick.html`（快捷发布原型：单页先选“我组局/我有空”，再动态展示对应字段；我组局需地点+时间，我有空仅需地点）

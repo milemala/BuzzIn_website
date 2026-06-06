@@ -1,11 +1,14 @@
 "use strict";
 
+const fs = require("fs");
+const path = require("path");
 const { execFileSync } = require("child_process");
 
 const DEFAULT_WAIT_MS = 4500;
 const MAX_HTML_BYTES = 45 * 1024 * 1024;
+const STATE_FILE = path.join(__dirname, "..", "data", "chrome-scrape-window.json");
 
-/** 专用抓取窗口序号（1-based），避免占用用户前台标签、且不 activate Chrome */
+/** 进程内缓存，与 STATE_FILE 同步，供同一 Node 进程多次导航复用 */
 let scrapeWindowIndex = null;
 
 function sleep(ms) {
@@ -14,6 +17,28 @@ function sleep(ms) {
 
 function escapeAppleScriptString(value) {
   return String(value).replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+}
+
+function readWindowState() {
+  try {
+    const raw = fs.readFileSync(STATE_FILE, "utf8");
+    const data = JSON.parse(raw);
+    if (Number.isFinite(Number(data.windowIndex)) && Number(data.windowIndex) > 0) {
+      return Number(data.windowIndex);
+    }
+  } catch (error) {
+    // no state yet
+  }
+  return 1;
+}
+
+function writeWindowState(windowIndex) {
+  fs.mkdirSync(path.dirname(STATE_FILE), { recursive: true });
+  fs.writeFileSync(
+    STATE_FILE,
+    `${JSON.stringify({ windowIndex, updatedAt: new Date().toISOString() }, null, 2)}\n`,
+  );
+  scrapeWindowIndex = windowIndex;
 }
 
 function runAppleScript(script) {
@@ -39,20 +64,19 @@ function runAppleScript(script) {
   }
 }
 
+/**
+ * 复用单一「抓取专用」窗口：子进程通过 data/chrome-scrape-window.json 共享窗口序号。
+ * 禁止每次抓取都 make new window（批量任务会 spawn 多个 Node 进程）。
+ */
 function ensureScrapeWindowScript() {
-  if (scrapeWindowIndex === null) {
-    return `
+  const pinned = scrapeWindowIndex || readWindowState();
+  return `
+  set winIdx to ${pinned}
   if (count of windows) = 0 then
     make new window
-  else
-    make new window
-  end if
-  set winIdx to count of windows`;
-  }
-  return `set winIdx to ${scrapeWindowIndex}
-  if winIdx > (count of windows) then
-    make new window
-    set winIdx to count of windows
+    set winIdx to 1
+  else if winIdx > (count of windows) then
+    set winIdx to 1
   end if`;
 }
 
@@ -70,12 +94,12 @@ end tell
 return winIdx`;
   const winIdx = Number(runAppleScript(script));
   if (winIdx > 0) {
-    scrapeWindowIndex = winIdx;
+    writeWindowState(winIdx);
   }
 }
 
 function readActiveTab() {
-  const winIdx = scrapeWindowIndex || 1;
+  const winIdx = scrapeWindowIndex || readWindowState();
   const script = `
 tell application "Google Chrome"
   set winIdx to ${winIdx}
@@ -106,11 +130,15 @@ return pageUrl & "\\n<<<SHOPS>>>" & shopCount & "\\n<<<HTML>>>" & htmlText`;
 
 async function waitForPage(url, options = {}) {
   const waitMs = options.waitMs ?? DEFAULT_WAIT_MS;
+  const minShopCount = options.minShopCount ?? 8;
   const deadline = Date.now() + waitMs;
   let last = null;
   let expectedHost;
+  let expectedPath = "";
   try {
-    expectedHost = new URL(url).hostname;
+    const parsed = new URL(url);
+    expectedHost = parsed.hostname;
+    expectedPath = parsed.pathname;
   } catch (error) {
     expectedHost = "dianping.com";
   }
@@ -121,13 +149,23 @@ async function waitForPage(url, options = {}) {
     if (!last.url.includes(expectedHost)) {
       continue;
     }
+    if (expectedPath && !last.url.includes(expectedPath.split("/p")[0])) {
+      continue;
+    }
     const ready = last.html.length > 8000;
     const hasList = last.html.includes("shop-all-list") || last.html.includes("/shop/");
     const isLoginOnly = last.html.includes("扫码登录") && !hasList;
     const listReady = options.expectShopList
-      ? last.shopCount > 0 && last.html.includes("shop_title_click")
+      ? last.shopCount >= minShopCount && last.html.includes("shop_title_click")
       : hasList;
+    const listPartial = options.expectShopList
+      && last.shopCount > 0
+      && last.shopCount < minShopCount
+      && last.html.includes("shop_title_click");
     if (ready && listReady && !isLoginOnly) {
+      return last;
+    }
+    if (ready && listPartial && Date.now() + 1500 >= deadline) {
       return last;
     }
   }
@@ -136,14 +174,15 @@ async function waitForPage(url, options = {}) {
 }
 
 /**
- * 用本机已登录的 Google Chrome 在后台专用窗口打开 URL 并取回 HTML（不 activate，不抢焦点）。
- * 需一次性开启：Chrome → 查看 → 开发者 → 允许 AppleScript 中的 JavaScript。
+ * 用本机已登录的 Google Chrome 在**同一后台专用窗口**打开 URL 并取回 HTML。
+ * 不 activate Chrome，不每次新建窗口；窗口序号持久化在 data/chrome-scrape-window.json。
  */
 async function fetchViaChrome(url, options = {}) {
   navigateChrome(url);
   const result = await waitForPage(url, {
     waitMs: options.waitMs,
     expectShopList: options.expectShopList,
+    minShopCount: options.minShopCount,
   });
   if (!result || !result.html) {
     throw new Error(`未能从 Chrome 读取页面: ${url}`);
@@ -155,5 +194,7 @@ module.exports = {
   fetchViaChrome,
   navigateChrome,
   readActiveTab,
+  readWindowState,
+  writeWindowState,
   sleep,
 };

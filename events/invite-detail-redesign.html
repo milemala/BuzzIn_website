@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>图片 NOW 详情页设计稿</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#060707;
+  --paper:#f7f1df;
+  --paper2:#e8dcc1;
+  --text:#fff9e8;
+  --muted:rgba(255,249,232,.68);
+  --dim:rgba(255,249,232,.42);
+  --line:rgba(255,255,255,.13);
+  --smoke:rgba(8,10,10,.58);
+  --smoke2:rgba(8,10,10,.78);
+  --gold:#f7cf4a;
+  --gold2:#ffe481;
+  --mint:#34e3c4;
+  --blue:#86b5ff;
+  --rose:#ff91b9;
+  --olive:#8e8a3c;
+}
+html,body{min-height:100%;background:#141414;color:var(--text)}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","SF Pro Display","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:86px}
+button{font:inherit;color:inherit}
+.phone{position:relative;max-width:430px;min-height:100vh;margin:0 auto;overflow:hidden;background:
+  linear-gradient(180deg,#18212b 0,#070808 25%,#060707 100%)}
+
+.map{height:172px;position:relative;overflow:hidden;background:#222b39}
+.map svg{width:100%;height:100%;display:block}
+.map::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,15,22,.16),rgba(6,7,7,.74) 72%,#060707 100%)}
+.status{position:absolute;left:0;right:0;top:0;z-index:4;height:44px;padding:10px 22px 0;display:flex;align-items:center;justify-content:space-between;font-size:16px;font-weight:900;text-shadow:0 1px 12px rgba(0,0,0,.48)}
+.sys{display:flex;align-items:center;gap:7px}.bars{display:flex;gap:3px;align-items:flex-end}.bars i{width:3px;border-radius:2px;background:#fff}.bars i:nth-child(1){height:6px}.bars i:nth-child(2){height:9px}.bars i:nth-child(3){height:12px}.bars i:nth-child(4){height:15px}.wifi{width:18px;height:13px;border:3px solid #fff;border-color:#fff transparent transparent;border-radius:50%;transform:translateY(4px)}.battery{width:25px;height:13px;border:2px solid #fff;border-radius:4px;position:relative}.battery::after{content:"";position:absolute;right:-5px;top:3px;width:3px;height:5px;border-radius:2px;background:#fff}.battery i{display:block;width:17px;height:100%;border-radius:2px;background:#fff}
+.map-ui{position:absolute;left:20px;right:18px;top:64px;z-index:4;display:flex;align-items:flex-start;justify-content:space-between}
+.map-pin{display:flex;align-items:flex-end}.pin-av{width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,.82);background:url("../images/event/flower.png") center/cover;box-shadow:0 12px 30px rgba(0,0,0,.34)}.pin-mark{width:30px;height:30px;margin-left:-9px;border-radius:50%;display:grid;place-items:center;background:#88afd0;border:2px solid rgba(255,255,255,.62);box-shadow:0 9px 22px rgba(0,0,0,.22)}.pin-mark svg{width:16px;height:16px}
+.mini{height:40px;border-radius:999px;padding:0 13px;display:flex;align-items:center;gap:13px;background:rgba(255,255,255,.66);backdrop-filter:blur(14px);color:#0a0a0a;box-shadow:0 11px 26px rgba(0,0,0,.22)}.mini span{display:flex;gap:5px}.mini i{width:6px;height:6px;border-radius:50%;background:#111}.mini em{width:1px;height:23px;background:rgba(0,0,0,.18);font-style:normal}.mini svg{width:20px;height:20px}
+
+.hero{position:relative;margin:-54px 12px 0;border-radius:34px;overflow:hidden;min-height:500px;background:#1b1d16;box-shadow:0 24px 62px rgba(0,0,0,.48);isolation:isolate}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.96) contrast(1.03) brightness(.78)}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:
+  linear-gradient(180deg,rgba(0,0,0,.18) 0,rgba(0,0,0,.04) 28%,rgba(0,0,0,.22) 57%,rgba(0,0,0,.86) 100%),
+  linear-gradient(90deg,rgba(0,0,0,.24),transparent 34%,transparent 72%,rgba(0,0,0,.18))}
+.hero-top{position:relative;z-index:3;padding:17px 16px;display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center}
+.pill{height:40px;border:1px solid rgba(255,255,255,.14);border-radius:999px;background:rgba(10,12,12,.46);backdrop-filter:blur(16px);display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:0 13px;font-size:15px;font-weight:950;white-space:nowrap;box-shadow:0 9px 22px rgba(0,0,0,.16)}
+.pill svg{width:18px;height:18px;flex-shrink:0}.pill.time svg{color:var(--gold)}.pill.nav{justify-self:end}.more{width:40px;height:40px;border:1px solid rgba(255,255,255,.14);border-radius:50%;background:rgba(10,12,12,.5);backdrop-filter:blur(16px);display:grid;place-items:center}.more svg{width:21px;height:21px}
+.poster-label{position:absolute;left:17px;top:92px;z-index:3;writing-mode:vertical-rl;letter-spacing:.18em;font-size:11px;font-weight:950;color:rgba(255,249,232,.72)}
+.photo-count{position:absolute;right:17px;top:88px;z-index:3;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:rgba(10,12,12,.34);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(12px);font-size:13px;font-weight:950}
+.hero-copy{position:absolute;left:20px;right:20px;bottom:25px;z-index:3}
+.host{display:flex;align-items:center;gap:10px;min-width:0}.host-av{width:58px;height:58px;border-radius:50%;background:url("../images/event/视频封面.jpg") center 32%/cover;border:2px solid rgba(255,249,232,.86);box-shadow:0 10px 24px rgba(0,0,0,.36);flex-shrink:0}.host-main{min-width:0;flex:1}.host-name{font-size:22px;font-weight:950;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 2px 18px rgba(0,0,0,.78)}.venue-chip{margin-top:5px;height:29px;max-width:100%;border-radius:999px;padding:0 9px;display:inline-flex;align-items:center;gap:5px;background:rgba(10,12,12,.44);border:1px solid rgba(52,227,196,.18);backdrop-filter:blur(16px);color:var(--mint);font-size:14px;font-weight:950}.venue-chip svg{width:16px;height:16px;flex-shrink:0}.venue-chip span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.headline{margin-top:18px;font-size:31px;line-height:1.14;font-weight:950;letter-spacing:0;text-shadow:0 2px 20px rgba(0,0,0,.78)}
+.lead{margin-top:10px;width:88%;font-size:15px;line-height:1.5;color:rgba(255,249,232,.78);font-weight:700}
+
+.ticket{position:relative;margin:-18px 18px 0;z-index:6;border-radius:24px;background:linear-gradient(135deg,#f7f1df,#d9c795);color:#111;box-shadow:0 20px 46px rgba(0,0,0,.34);overflow:hidden}
+.ticket::before,.ticket::after{content:"";position:absolute;top:62px;width:22px;height:22px;border-radius:50%;background:#060707}.ticket::before{left:-11px}.ticket::after{right:-11px}
+.ticket-top{display:flex;align-items:center;gap:10px;padding:16px 18px 13px;border-bottom:1px dashed rgba(0,0,0,.22)}
+.price{font-size:36px;line-height:1;font-weight:950;letter-spacing:0;color:#17120a}.discount{height:28px;border-radius:999px;padding:0 10px;display:flex;align-items:center;background:rgba(255,145,185,.22);color:#8d2146;font-size:13px;font-weight:950}.capacity{margin-left:auto;text-align:right;font-size:13px;font-weight:850;color:rgba(0,0,0,.56)}.capacity strong{display:block;color:#111;font-size:18px}
+.ticket-actions{display:grid;grid-template-columns:1.06fr .94fr;gap:10px;padding:14px}
+.ticket-btn{height:52px;border:0;border-radius:16px;font-size:18px;font-weight:950}.ticket-btn.primary{background:#111;color:#fff9e8}.ticket-btn.secondary{background:#20d4b7;color:#06110f}.ticket-meta{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:10px;color:rgba(0,0,0,.56);font-size:13px;font-weight:900}.gender b:nth-child(1){color:#2b75d6}.gender b:nth-child(2){color:#c64276}
+
+.body{padding:18px 18px 0}
+.place{display:flex;align-items:center;gap:10px;min-height:56px;border-radius:20px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.09);padding:11px 13px}.place svg{width:20px;height:20px;color:var(--gold);flex-shrink:0}.place-name{flex:1;min-width:0;font-size:16px;font-weight:950;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.cert{width:19px;height:19px;border-radius:50%;display:grid;place-items:center;background:var(--gold);flex-shrink:0}.cert svg{width:12px;height:12px;color:#111}.distance{font-size:13px;color:rgba(255,249,232,.62);font-weight:900;white-space:nowrap}
+.story{margin:18px 4px 0;font-size:19px;line-height:1.72;color:rgba(255,249,232,.92);font-weight:650}
+.smart-row{margin-top:16px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}.group{height:46px;border-radius:999px;background:#202323;border:1px solid rgba(255,255,255,.08);display:inline-flex;align-items:center;gap:10px;padding:0 10px 0 15px;font-size:15px;font-weight:950}.group svg{width:18px;height:18px;color:var(--gold)}.avatars{display:flex}.avatars i{width:28px;height:28px;border-radius:50%;margin-left:-7px;border:2px solid #202323;background:#555 center/cover}.avatars i:first-child{margin-left:0}.avatars i:nth-child(1){background-image:url("../images/event/1.jpg")}.avatars i:nth-child(2){background-image:url("../images/event/2.jpg")}.avatars i:nth-child(3){background-image:url("../images/event/3.jpg")}.round{width:48px;height:48px;border:0;border-radius:50%;display:grid;place-items:center;background:rgba(52,227,196,.18);color:var(--mint);border:1px solid rgba(52,227,196,.18)}.round svg{width:24px;height:24px}
+.stamp{margin:16px 4px 0;color:var(--dim);font-size:15px;font-weight:800}
+
+.comments{margin-top:18px;border-top:1px solid rgba(255,255,255,.08);padding:17px 18px 22px}.comments-title{display:flex;align-items:center;justify-content:space-between;color:rgba(255,249,232,.72);font-size:17px;font-weight:950}.comments-title button{border:0;background:none;color:var(--gold);font-weight:950}
+.comment{display:flex;gap:12px;margin-top:19px}.comment + .comment{margin-top:23px}.comment-av{width:43px;height:43px;border-radius:50%;background:#333 center/cover;flex-shrink:0}.comment-av.one{background-image:url("../images/event/4.jpg")}.comment-av.two{background-image:url("../images/event/2.jpg")}.comment-main{min-width:0;flex:1}.comment-name{display:flex;align-items:center;gap:8px;min-width:0;color:rgba(255,249,232,.68);font-size:15px;font-weight:950;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.comment-name b{color:rgba(255,249,232,.86)}.merchant{display:inline-flex;align-items:center;gap:4px;color:var(--mint);min-width:0}.merchant svg{width:15px;height:15px;flex-shrink:0}.merchant span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.comment-text{margin-top:8px;font-size:17px;line-height:1.62;color:rgba(255,249,232,.9)}.comment-meta{margin-top:8px;display:flex;align-items:center;gap:10px;color:var(--dim);font-size:14px;font-weight:800}.reply{color:var(--gold)}.bubble{margin-left:auto;color:var(--dim)}.bubble svg{width:18px;height:18px}.expand{margin-top:10px;color:var(--blue);font-size:15px;font-weight:850}
+
+.composer{position:fixed;left:50%;bottom:0;z-index:20;transform:translateX(-50%);width:100%;max-width:430px;padding:10px 16px max(10px,env(safe-area-inset-bottom));display:flex;align-items:center;gap:10px;background:rgba(6,7,7,.9);backdrop-filter:blur(22px);border-top:1px solid rgba(255,255,255,.08)}.me{width:39px;height:39px;border-radius:50%;background:url("../images/event/flower.png") center/cover;flex-shrink:0}.input{height:43px;flex:1;border-radius:999px;background:#1d2020;color:rgba(255,249,232,.4);display:flex;align-items:center;padding:0 16px;font-size:16px}.composer button{border:0;background:none;color:rgba(255,249,232,.76);display:flex;align-items:center;gap:5px;font-size:16px;font-weight:950}.composer svg{width:28px;height:28px}
+
+@media (max-width:370px){
+  .hero{min-height:470px;margin-left:8px;margin-right:8px}.hero-top{padding-left:13px;padding-right:13px;gap:6px}.pill{font-size:13px;padding:0 10px}.headline{font-size:27px}.lead{width:100%;font-size:14px}.ticket{margin-left:12px;margin-right:12px}.price{font-size:32px}.story{font-size:17px}.composer{padding-left:12px;padding-right:12px;gap:8px}
+}
+</style>
+</head>
+<body>
+<main class="phone">
+  <section class="map" aria-label="地图">
+    <svg viewBox="0 0 430 172" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect width="430" height="172" fill="#202938"/>
+      <g stroke="#0f1722" stroke-width="5" fill="none" opacity=".92">
+        <path d="M0 96h118V8M145 0v70h76v110M262 0v65h130M20 34h78M30 132h166M280 108h150"/>
+        <path d="M318 0v172M378 0v172M112 76h108M236 36h70"/>
+      </g>
+      <g fill="rgba(255,255,255,.12)" font-family="sans-serif" font-weight="800">
+        <text x="250" y="64" font-size="18">九龙商厦</text>
+        <text x="18" y="88" font-size="16">7号楼</text>
+      </g>
+      <circle cx="286" cy="90" r="5" fill="#f7cf4a"/>
+      <circle cx="100" cy="106" r="4" fill="#34e3c4"/>
+    </svg>
+    <div class="status">
+      <span>9:41</span>
+      <div class="sys">
+        <span class="bars"><i></i><i></i><i></i><i></i></span>
+        <span class="wifi"></span>
+        <span class="battery"><i></i></span>
+      </div>
+    </div>
+    <div class="map-ui">
+      <div class="map-pin">
+        <div class="pin-av"></div>
+        <div class="pin-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+      </div>
+      <div class="mini"><span><i></i><i></i><i></i></span><em></em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></div>
+    </div>
+  </section>
+
+  <section class="hero" aria-label="邀约图片">
+    <img src="../images/event/booze_hero.png" alt="">
+    <div class="hero-top">
+      <span class="pill time"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" fill="none" stroke="#111" stroke-width="2.4" stroke-linecap="round"/></svg>今天18:32</span>
+      <span class="pill nav"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4l17 8-17 8 4-8-4-8z"/></svg>导航</span>
+      <button class="more" aria-label="更多"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+    </div>
+    <div class="poster-label">NOW INVITE</div>
+    <div class="photo-count">1/4</div>
+    <div class="hero-copy">
+      <div class="host">
+        <div class="host-av"></div>
+        <div class="host-main">
+          <div class="host-name">一二三四五六七八九十一二</div>
+          <div class="venue-chip">
+            <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12l3 3 5-6" fill="none" stroke="#07110f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>跳海酒馆-三元桥店</span>
+          </div>
+        </div>
+      </div>
+      <h1 class="headline">遥想公瑾当年，小乔初嫁了第三方似懂非懂顺</h1>
+      <p class="lead">今晚有人局，报名后进群；到店附近可签到，现场状态会实时更新。</p>
+    </div>
+  </section>
+
+  <section class="ticket" aria-label="报名票券">
+    <div class="ticket-top">
+      <div class="price">¥19.9</div>
+      <div class="discount">女士优惠 减 ¥10</div>
+      <div class="capacity"><strong>22/99+</strong>已报名</div>
+    </div>
+    <div class="ticket-actions">
+      <button class="ticket-btn primary">立即报名</button>
+      <button class="ticket-btn secondary">签到</button>
+      <div class="ticket-meta">
+        <span class="gender"><b>男 22</b> · <b>女 22</b></span>
+        <span>还没有人签到</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="body">
+    <div class="place">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <div class="place-name">沁·叁拾壹书院(香山清琴店)</div>
+      <span class="cert"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 12l4 4 8-8"/></svg></span>
+      <div class="distance">21.2km</div>
+    </div>
+
+    <p class="story">遥想公瑾当年，小乔初嫁了第三方似懂非懂顺，雄姿英发。羽扇纶巾谈笑间，樯橹灰飞烟灭。放松放松的方式，来这里喝一杯。</p>
+
+    <div class="smart-row">
+      <div class="group">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        加入群聊 (32)
+        <span class="avatars"><i></i><i></i><i></i></span>
+      </div>
+      <button class="round" aria-label="发消息"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 5.8A3.8 3.8 0 017.8 2h8.4A3.8 3.8 0 0120 5.8v6.9a3.8 3.8 0 01-3.8 3.8H10l-4.7 3.2A1 1 0 014 18.9V5.8z"/><circle cx="9" cy="9.2" r="1.2"/><circle cx="14.8" cy="9.2" r="1.2"/></svg></button>
+      <button class="round" aria-label="打电话"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 3.4l2.2-.8a1.8 1.8 0 012.2.9l1.2 2.4a1.8 1.8 0 01-.4 2.1l-1.1 1.1a12.2 12.2 0 005.2 5.2l1.1-1.1a1.8 1.8 0 012.1-.4l2.4 1.2a1.8 1.8 0 01.9 2.2l-.8 2.2a3 3 0 01-3.1 2A18.5 18.5 0 014.6 6.5a3 3 0 012-3.1z"/></svg></button>
+    </div>
+    <div class="stamp">18:23</div>
+  </section>
+
+  <section class="comments">
+    <div class="comments-title"><span>共 25 条评论</span><button>展开</button></div>
+    <article class="comment">
+      <div class="comment-av one"></div>
+      <div class="comment-main">
+        <div class="comment-name"><b>一二三四五六七八九十一二</b><span class="merchant"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12l3 3 5-6" fill="none" stroke="#07110f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>一二三四五六七八...</span></span></div>
+        <p class="comment-text">遥想公瑾当年，小乔初嫁了，雄姿英发。羽扇纶巾谈笑间，樯橹灰飞烟灭。</p>
+        <div class="comment-meta"><span>18:23</span><span>距发布点 800m</span><span class="reply">回复</span><span class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 01-8.5 8.5 8.4 8.4 0 01-3.8-.9L3 21l1.9-5.7A8.5 8.5 0 1112.5 20z"/></svg></span></div>
+        <div class="expand">展开 132 条评论</div>
+      </div>
+    </article>
+    <article class="comment">
+      <div class="comment-av two"></div>
+      <div class="comment-main">
+        <div class="comment-name"><b>尤晨茜</b></div>
+        <p class="comment-text">转朱阁，低绮户，照无眠。不应有恨，何事长向别时圆？</p>
+        <div class="comment-meta"><span>18:25</span><span class="reply">回复</span></div>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer class="composer">
+  <div class="me"></div>
+  <div class="input">回复</div>
+  <button aria-label="发图片"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></button>
+  <button aria-label="喜欢"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06A5.5 5.5 0 003.16 12.4L12 21.23l8.84-8.83a5.5 5.5 0 000-7.79z"/></svg>23</button>
+</footer>
+</body>
+</html>

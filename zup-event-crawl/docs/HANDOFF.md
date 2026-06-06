@@ -344,6 +344,8 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 ### 抓取策略（2026-06 起，务必遵守）
 
 - **只抓搜索列表页**，**禁止**默认打开商户详情页（连续访问详情易触发 403 / 反爬，且用户换 IP 仍无效）。
+- **只抓第一页**搜索结果，**不翻页**；第一页没有合适门店 → 视为搜索词不对或该城市确实没有，不要自动翻页补抓。
+- **城市 id** 必须用大众点评 `search/keyword/{id}` 中的真实 id（如 **长沙=344**，勿用旧表里的 24——那是石家庄）。
 - 从列表提取：**店名**、**列表缩略图**（`img` 的 `data-src` / `src`）、**品类**、**商圈**（`shop_tag_region_click`）、**点评链接**。
 - **不抓街道地址**；`address` 字段留空，位置信息用 `district`（商圈）即可。
 - 详情页逻辑保留在代码中，仅当显式传 `--with-details` 时使用（一般不推荐）。
@@ -351,9 +353,9 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 ### 技术结论（2026-06-03 试抓「上海 + 跳海」）
 
 - 命令行 `fetch` / `curl` 会落到**登录页**，不能无头直抓。
-- **默认流程**：`scrape-dianping-merchants.js` + `lib/chrome-fetch.js` 用 **AppleScript 驱动本机已登录 Chrome** 只打开搜索列表（含翻页），后台专用窗口、不 `activate` 抢焦点。
+- **默认流程**：`scrape-dianping-merchants.js` + `lib/chrome-fetch.js` 用 **AppleScript 驱动本机已登录 Chrome** 只打开搜索**第一页**列表，**始终复用同一个后台专用窗口**（序号写在 `data/chrome-scrape-window.json`），**禁止**每个子任务 `make new window`；不 `activate` 抢焦点。
 - 前提：Chrome 已登录大众点评；需开启「查看 → 开发者 → 允许 AppleScript 中的 JavaScript」。
-- 入选规则在 `lib/merchant-social-filter.js`：社交饮酒类门店（酒馆/Taproom/精酿等），不按品牌维护配置表；批量任务只写搜索词与城市。
+- 列表入选：`lib/merchant-social-filter.js`（社交饮酒类 + 关键词）；跳海/京A 曾有人工拒绝样本见 `data/merchant-reject-samples.json`。商户抓取按任务一次性执行，**不必**为每个品牌维护规则文档。
 - 闭店 / 未开业：解析时跳过含「歇业关闭」「尚未开业」等标记的条目。
 
 ### 关键文件

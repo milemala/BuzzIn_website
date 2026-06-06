@@ -31,16 +31,36 @@
     .btn{height:36px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:0 12px;cursor:pointer;color:var(--ink)}
     .btn.primary{border-color:#111;background:#111;color:#fff}
     .wrap{max-width:1180px;margin:0 auto;padding:18px 20px 44px}
-    .stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:14px}
+    .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}
     .stat{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px}
     .stat b{display:block;font-size:22px;line-height:1.1}
     .stat span{display:block;margin-top:5px;color:var(--muted);font-size:12px}
-    .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
-    .seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}
+    .filters{display:grid;gap:14px;margin-bottom:18px}
+    .filter-row{display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px 12px;align-items:start}
+    .filter-label{padding-top:9px;font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.02em}
+    .filter-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+    .city-filter{display:flex;flex-wrap:wrap;gap:8px}
+    .city-chip{
+      display:inline-flex;flex-direction:column;align-items:flex-start;gap:5px;
+      min-width:78px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;
+      background:#fff;cursor:pointer;color:var(--text);text-align:left;transition:border-color .15s,box-shadow .15s
+    }
+    .city-chip:hover{border-color:#b8c9be;box-shadow:0 2px 8px rgba(20,32,24,.05)}
+    .city-chip.active{background:#111;border-color:#111;color:#fff;box-shadow:none}
+    .city-chip.has-pending:not(.active){border-color:#e6cf66;background:#fffdf4}
+    .city-chip-name{font-size:14px;font-weight:800;line-height:1.1}
+    .city-chip-counts{display:flex;flex-wrap:wrap;gap:6px;font-size:11px;line-height:1.2;color:var(--muted)}
+    .city-chip.active .city-chip-counts{color:rgba(255,255,255,.78)}
+    .city-chip-count{font-weight:600}
+    .city-chip-pending{font-weight:800;color:#9a7200}
+    .city-chip.active .city-chip-pending{color:#ffd84d}
+    .city-chip-pending.is-zero{opacity:.55;font-weight:600}
+    .city-chip.active .city-chip-pending.is-zero{opacity:.45}
+    .seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}
     .seg button{height:34px;border:0;border-right:1px solid var(--line);background:transparent;padding:0 12px;cursor:pointer;color:var(--muted)}
     .seg button:last-child{border-right:0}
     .seg button.active{background:#111;color:#fff}
-    .search{height:36px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:0 12px;min-width:260px}
+    .search{height:36px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:0 12px;min-width:220px;flex:1 1 220px}
     .grid{display:grid;gap:12px}
     .card{background:var(--panel);border:1px solid var(--line);border-radius:8px;display:grid;grid-template-columns:auto minmax(0,1fr);overflow:hidden}
     .cover-wrap{align-self:start;background:#e6eee8;border-right:1px solid var(--line);padding:8px}
@@ -63,8 +83,10 @@
     .empty{padding:44px;text-align:center;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:8px}
     @media (max-width:820px){
       .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .filter-row{grid-template-columns:1fr}
+      .filter-label{padding-top:0}
       .cover{max-width:min(160px,36vw)}
-      .search{width:100%;min-width:0}
+      .search{width:100%;min-width:0;flex-basis:100%}
     }
   </style>
 </head>
@@ -89,14 +111,22 @@
   <main class="wrap">
     <section class="stats" id="stats"></section>
     <section class="filters">
-      <div class="seg" id="cityFilter"><button data-city="all" class="active">全部城市</button></div>
-      <div class="seg" id="statusFilter">
-        <button data-status="all" class="active">全部</button>
-        <button data-status="approved">已通过</button>
-        <button data-status="rejected">已拒绝</button>
-        <button data-status="pending">待定</button>
+      <div class="filter-row">
+        <div class="filter-label">城市</div>
+        <div class="city-filter" id="cityFilter"></div>
       </div>
-      <input class="search" id="searchInput" placeholder="搜索店名、商圈、关键词">
+      <div class="filter-row">
+        <div class="filter-label">筛选</div>
+        <div class="filter-tools">
+          <div class="seg" id="statusFilter">
+            <button data-status="all" class="active">全部</button>
+            <button data-status="approved">已通过</button>
+            <button data-status="rejected">已拒绝</button>
+            <button data-status="pending">待定</button>
+          </div>
+          <input class="search" id="searchInput" placeholder="搜索店名、商圈、关键词">
+        </div>
+      </div>
     </section>
     <section class="grid" id="merchantGrid"></section>
   </main>
@@ -189,6 +219,34 @@
       });
     }
 
+    function cityStats(cityKey) {
+      const list = cityKey === "all"
+        ? state.merchants
+        : state.merchants.filter((item) => getCityKey(item) === cityKey);
+      const total = list.length;
+      const pending = list.filter((item) => reviewStatus(item.merchant_uid) === "pending").length;
+      return { total, pending };
+    }
+
+    function renderCityChip(cityKey, label) {
+      const { total, pending } = cityStats(cityKey);
+      const active = state.filters.city === cityKey;
+      const pendingClass = pending > 0 ? "" : " is-zero";
+      return `
+        <button
+          type="button"
+          data-city="${escapeHtml(cityKey)}"
+          class="city-chip ${active ? "active" : ""} ${pending > 0 ? "has-pending" : ""}"
+        >
+          <span class="city-chip-name">${escapeHtml(label)}</span>
+          <span class="city-chip-counts">
+            <span class="city-chip-count">共 ${total}</span>
+            <span class="city-chip-pending${pendingClass}">待定 ${pending}</span>
+          </span>
+        </button>
+      `;
+    }
+
     function filteredMerchants() {
       const q = state.filters.search.trim().toLowerCase();
       return merchantsInCity().filter((item) => {
@@ -206,7 +264,6 @@
       const approved = scoped.filter((item) => reviewStatus(item.merchant_uid) === "approved").length;
       const pending = scoped.filter((item) => reviewStatus(item.merchant_uid) === "pending").length;
       const rejected = scoped.filter((item) => reviewStatus(item.merchant_uid) === "rejected").length;
-      const filtered = filteredMerchants().length;
       const cityLabel = state.filters.city === "all" ? "全部城市" : state.filters.city;
 
       els.stats.innerHTML = [
@@ -214,7 +271,6 @@
         ["已通过", approved],
         ["待定", pending],
         ["已拒绝", rejected],
-        ["当前筛选", filtered],
       ].map(([label, value]) => `<div class="stat"><b>${value}</b><span>${label}</span></div>`).join("");
 
       const cityNames = [...new Set(state.merchants.map((item) => getCityKey(item)))].sort((a, b) => a.localeCompare(b, "zh-CN"));
@@ -224,13 +280,13 @@
     }
 
     function renderCityFilter() {
-      const cities = [...new Set(state.merchants.map((item) => getCityKey(item)))].sort((a, b) => a.localeCompare(b, "zh-CN"));
-      const allCount = state.merchants.length;
-      els.cityFilter.innerHTML = `<button data-city="all" class="${state.filters.city === "all" ? "active" : ""}">全部城市 ${allCount}</button>`
-        + cities.map((city) => {
-          const count = state.merchants.filter((item) => getCityKey(item) === city).length;
-          return `<button data-city="${escapeHtml(city)}" class="${state.filters.city === city ? "active" : ""}">${escapeHtml(city)} ${count}</button>`;
-        }).join("");
+      const cities = [...new Set(state.merchants.map((item) => getCityKey(item)))].sort((a, b) => {
+        const pendingDiff = cityStats(b).pending - cityStats(a).pending;
+        if (pendingDiff !== 0) return pendingDiff;
+        return a.localeCompare(b, "zh-CN");
+      });
+      els.cityFilter.innerHTML = renderCityChip("all", "全部城市")
+        + cities.map((city) => renderCityChip(city, city)).join("");
     }
 
     function renderCards(list) {

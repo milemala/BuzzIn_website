@@ -21,16 +21,28 @@ const SEARCH_JOBS = [
   { label: "鹅岛", keyword: "鹅岛", cities: ["北京"] },
   { label: "幻师", keyword: "幻师", cities: ["北京", "上海", "广州", "深圳"] },
   { label: "大跃", keyword: "大跃", cities: ["北京"] },
+  { label: "十三邀", keyword: "十三邀", cities: ["北京", "秦皇岛", "广州"] },
+  { label: "单向空间", keyword: "单向空间", cities: ["广州", "宁波", "苏州", "北京", "秦皇岛", "杭州"] },
+  { label: "PAGEONE", keyword: "pageone", cities: ["北京"] },
+  { label: "茑屋", keyword: "茑屋", cities: ["杭州", "上海", "青岛", "深圳", "重庆", "武汉", "北京", "无锡", "宁波"] },
 ];
 
-function buildTasks() {
+function buildTasks(onlyKeywords = null) {
+  const allow = onlyKeywords ? new Set(onlyKeywords) : null;
   const tasks = [];
   for (const job of SEARCH_JOBS) {
+    if (allow && !allow.has(job.keyword)) continue;
     for (const city of job.cities) {
       tasks.push({ city, label: job.label, keyword: job.keyword });
     }
   }
   return tasks;
+}
+
+function parseOnlyKeywords(argv) {
+  const arg = argv.find((a) => a.startsWith("--only="));
+  if (!arg) return null;
+  return arg.slice("--only=".length).split(",").map((s) => s.trim()).filter(Boolean);
 }
 
 function runTask(task, index, total) {
@@ -43,8 +55,9 @@ function runTask(task, index, total) {
     `--city=${task.city}`,
     `--keyword=${task.keyword}`,
     "--mode=replace-keyword",
+    "--skip-details",
     "--allow-empty",
-    "--chrome-wait=8000",
+    "--chrome-wait=10000",
   ];
 
   const result = spawnSync(process.execPath, args, {
@@ -57,10 +70,12 @@ function runTask(task, index, total) {
 }
 
 function main() {
-  const tasks = buildTasks();
+  const only = parseOnlyKeywords(process.argv.slice(2));
+  const tasks = buildTasks(only);
   const report = { ok: [], fail: [] };
 
-  console.log(`批量抓取 ${tasks.length} 项；入选规则：社交饮酒类门店（非品牌配置表）`);
+  console.log(`批量抓取 ${tasks.length} 项；入选规则：merchant-social-filter.js`);
+  if (only) console.log(`仅抓取关键词：${only.join("、")}`);
   console.log("请保持 Chrome 已登录大众点评（后台抓取，不抢焦点）。\n");
 
   for (let i = 0; i < tasks.length; i += 1) {
