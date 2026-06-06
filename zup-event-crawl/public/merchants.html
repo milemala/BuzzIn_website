@@ -80,6 +80,26 @@
     .mini.reject.active{background:var(--red);border-color:var(--red);color:#fff}
     .mini.pending.active{background:var(--yellow);border-color:var(--yellow);color:#211b10}
     .link{margin-left:auto;color:#2f6d4d;text-decoration:none;font-size:13px}
+    .top-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .import-block{margin-top:12px;padding:12px;border:1px solid var(--line);border-radius:8px;background:#f7faf8}
+    .import-block h3{margin:0 0 8px;font-size:13px;font-weight:800;color:#314036}
+    .import-row{display:grid;gap:8px;font-size:13px}
+    .import-meta{color:var(--muted);font-size:12px;line-height:1.45;word-break:break-all}
+    .import-field{display:grid;gap:4px}
+    .import-field label{font-size:11px;font-weight:700;color:var(--muted)}
+    .import-field select,.import-field input{height:32px;border:1px solid var(--line);border-radius:6px;padding:0 8px;background:#fff}
+    .chip.ready{background:#e7f5ec;color:#197549}
+    .chip.miss{background:#fde8e4;color:#ad382c}
+    .poi-hint{margin:6px 0 0;font-size:11px;line-height:1.45;color:var(--muted)}
+    .poi-search-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .poi-search-row input{flex:1 1 180px;height:32px;border:1px solid var(--line);border-radius:6px;padding:0 8px;background:#fff}
+    .poi-cands-label{margin-top:10px;font-size:11px;font-weight:700;color:var(--muted)}
+    .poi-cands{display:grid;gap:6px;margin-top:6px}
+    .poi-cand{display:flex;gap:8px;align-items:flex-start;padding:8px;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:pointer;text-align:left}
+    .poi-cand:hover{border-color:#9ab5a4}
+    .poi-cand.active{border-color:#2a9d68;background:#f2fbf6}
+    .poi-cand b{display:block;font-size:13px}
+    .poi-cand span{display:block;font-size:11px;color:var(--muted);margin-top:2px}
     .empty{padding:44px;text-align:center;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:8px}
     @media (max-width:820px){
       .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -102,8 +122,9 @@
         <div class="meta" id="sourceMeta">读取本地商户数据中...</div>
         <div class="save-state warn" id="saveState">正在连接本地数据库</div>
       </div>
-      <div>
-        <button class="btn primary" id="exportBtn">导出通过列表</button>
+      <div class="top-actions">
+        <button class="btn" id="batchPoiBtn" type="button">批量补全 POI</button>
+        <button class="btn primary" id="exportImportBtn" type="button">导出入库 JSON</button>
       </div>
     </div>
   </header>
@@ -123,6 +144,8 @@
             <button data-status="approved">已通过</button>
             <button data-status="rejected">已拒绝</button>
             <button data-status="pending">待定</button>
+            <button data-status="import_ready">可入库</button>
+            <button data-status="needs_poi">缺 POI</button>
           </div>
           <input class="search" id="searchInput" placeholder="搜索店名、商圈、关键词">
         </div>
@@ -135,7 +158,11 @@
     const state = {
       merchants: [],
       decisions: {},
+      merchantTypes: [],
       filters: { city: "all", status: "all", search: "" },
+      poiBusy: false,
+      poiKeywords: {},
+      poiPreviews: {},
     };
 
     const els = {
@@ -146,8 +173,32 @@
       cityFilter: document.getElementById("cityFilter"),
       statusFilter: document.getElementById("statusFilter"),
       searchInput: document.getElementById("searchInput"),
-      exportBtn: document.getElementById("exportBtn"),
+      batchPoiBtn: document.getElementById("batchPoiBtn"),
+      exportImportBtn: document.getElementById("exportImportBtn"),
     };
+
+    function suggestMerchantType(category, name) {
+      const text = `${category || ""} ${name || ""}`;
+      if (/啤酒|精酿|啤酒屋|啤酒吧/i.test(text)) return 1;
+      if (/酒馆|酒吧|清吧|Taproom|COMMUNE|跳海|京A|餐吧/i.test(text)) return 2;
+      if (/咖啡/i.test(text)) return 16;
+      if (/茶(?!馆)|茶饮/i.test(text)) return 3;
+      if (/餐|饭|食/i.test(text)) return 4;
+      if (/书店|图书/i.test(text)) return 13;
+      return 2;
+    }
+
+    function effectiveMerchantType(item) {
+      return item.merchant_type || suggestMerchantType(item.category, item.name);
+    }
+
+    function isImportReady(item) {
+      if (!item.name || !String(item.name).trim()) return false;
+      if (!effectiveMerchantType(item)) return false;
+      if (!item.address_poi_id) return false;
+      if (!item.longitude || !item.latitude) return false;
+      return true;
+    }
 
     function setSaveState(text, kind = "warn") {
       els.saveState.textContent = text;
@@ -180,12 +231,135 @@
       state.decisions = payload.decisions || {};
     }
 
+    async function loadMerchantTypes() {
+      const response = await fetch("/api/merchant-types", { cache: "no-store" });
+      const payload = await response.json();
+      state.merchantTypes = payload.types || [];
+    }
+
     async function loadMerchants() {
       const response = await fetch("/api/merchants", { cache: "no-store" });
       const payload = await response.json();
       state.merchants = payload.merchants || [];
       render();
       setSaveState("已连接本地数据库", "ok");
+    }
+
+    function upsertMerchant(updated) {
+      const idx = state.merchants.findIndex((m) => m.merchant_uid === updated.merchant_uid);
+      if (idx >= 0) state.merchants[idx] = updated;
+    }
+
+    async function saveImportPrep(uid, patch) {
+      setSaveState("保存入库字段...", "warn");
+      const response = await fetch(`/api/merchants/${encodeURIComponent(uid)}/import-prep`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(patch),
+      });
+      const payload = await response.json();
+      if (!response.ok || !payload.ok) {
+        setSaveState(payload.error || "保存失败", "error");
+        return null;
+      }
+      upsertMerchant(payload.merchant);
+      setSaveState("已保存", "ok");
+      render();
+      return payload.merchant;
+    }
+
+    function stripBranchSuffix(name) {
+      return String(name || "").replace(/[（(][^）)]*[）)]\s*$/u, "").trim();
+    }
+
+    function suggestPoiKeyword(item) {
+      const name = stripBranchSuffix(item.name).trim();
+      const city = String(item.city || "").trim();
+      if (!name) return city;
+      if (!city || city === "全国") return name;
+      if (name.includes(city)) return name;
+      return `${city} ${name}`;
+    }
+
+    function poiKeywordValue(item) {
+      const saved = state.poiKeywords[item.merchant_uid];
+      return saved !== undefined ? saved : suggestPoiKeyword(item);
+    }
+
+    async function applyPoi(uid, body) {
+      const isRefresh = Boolean(body.refresh || body.candidates_only);
+      setSaveState(isRefresh ? "刷新候选 POI..." : "查询 POI...", "warn");
+      const response = await fetch(`/api/merchants/${encodeURIComponent(uid)}/poi`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const payload = await response.json();
+      if (!response.ok || !payload.ok) {
+        setSaveState(payload.error || "POI 失败", "error");
+        return null;
+      }
+      upsertMerchant(payload.merchant);
+      if (isRefresh) {
+        delete state.poiPreviews[uid];
+        setSaveState(`已刷新 ${(payload.candidates || []).length} 条候选`, "ok");
+      } else {
+        delete state.poiPreviews[uid];
+        setSaveState("POI 已更新", "ok");
+      }
+      render();
+      return payload.merchant;
+    }
+
+    async function searchPoiCustom(uid, card) {
+      const input = card.querySelector("[data-poi-keyword]");
+      const keyword = String(input?.value || "").trim();
+      const merchant = state.merchants.find((m) => m.merchant_uid === uid);
+      if (!keyword) {
+        setSaveState("请输入搜索关键词", "warn");
+        return;
+      }
+      state.poiKeywords[uid] = keyword;
+      setSaveState("自由搜索 POI...", "warn");
+      const response = await fetch("/api/merchants/poi-search", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ keyword, city: merchant?.city || "全国" }),
+      });
+      const payload = await response.json();
+      if (!response.ok || !payload.ok) {
+        setSaveState(payload.error || "搜索失败", "error");
+        return;
+      }
+      state.poiPreviews[uid] = payload.items || [];
+      setSaveState(`找到 ${state.poiPreviews[uid].length} 条，点选后保存`, "ok");
+      render();
+    }
+
+    async function runBatchPoi() {
+      if (state.poiBusy) return;
+      const city = state.filters.city === "all" ? "" : state.filters.city;
+      const label = city || "全部城市";
+      if (!window.confirm(`对「${label}」下尚未匹配 POI 的待定商户，按 Top1 自动补全？\n（会调用腾讯地图，略慢）`)) return;
+
+      state.poiBusy = true;
+      els.batchPoiBtn.disabled = true;
+      setSaveState("批量补全 POI 中...", "warn");
+      try {
+        const response = await fetch("/api/merchants/poi-auto-batch", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ city, only_pending: true, limit: 100 }),
+        });
+        const payload = await response.json();
+        await loadMerchants();
+        setSaveState(`POI 批量完成：成功 ${payload.ok}，失败 ${payload.fail}`, payload.fail ? "warn" : "ok");
+      } catch (error) {
+        setSaveState(`批量失败: ${error.message}`, "error");
+      } finally {
+        state.poiBusy = false;
+        els.batchPoiBtn.disabled = false;
+      }
     }
 
     async function saveReviewState() {
@@ -251,9 +425,12 @@
       const q = state.filters.search.trim().toLowerCase();
       return merchantsInCity().filter((item) => {
         const status = reviewStatus(item.merchant_uid);
-        if (state.filters.status !== "all" && status !== state.filters.status) return false;
+        const filter = state.filters.status;
+        if (filter === "import_ready" && !isImportReady(item)) return false;
+        if (filter === "needs_poi" && item.address_poi_id) return false;
+        if (["approved", "rejected", "pending"].includes(filter) && status !== filter) return false;
         if (!q) return true;
-        const haystack = `${item.name} ${item.address} ${item.district} ${item.category} ${item.search_keyword}`.toLowerCase();
+        const haystack = `${item.name} ${item.address} ${item.poi_title} ${item.district} ${item.category} ${item.search_keyword} ${item.address_poi_id}`.toLowerCase();
         return haystack.includes(q);
       });
     }
@@ -264,13 +441,14 @@
       const approved = scoped.filter((item) => reviewStatus(item.merchant_uid) === "approved").length;
       const pending = scoped.filter((item) => reviewStatus(item.merchant_uid) === "pending").length;
       const rejected = scoped.filter((item) => reviewStatus(item.merchant_uid) === "rejected").length;
+      const importReady = scoped.filter((item) => isImportReady(item)).length;
       const cityLabel = state.filters.city === "all" ? "全部城市" : state.filters.city;
 
       els.stats.innerHTML = [
         ["商户总数", total],
         ["已通过", approved],
+        ["可入库", importReady],
         ["待定", pending],
-        ["已拒绝", rejected],
       ].map(([label, value]) => `<div class="stat"><b>${value}</b><span>${label}</span></div>`).join("");
 
       const cityNames = [...new Set(state.merchants.map((item) => getCityKey(item)))].sort((a, b) => a.localeCompare(b, "zh-CN"));
@@ -289,6 +467,43 @@
         + cities.map((city) => renderCityChip(city, city)).join("");
     }
 
+    function renderTypeOptions(item) {
+      const current = effectiveMerchantType(item);
+      const types = state.merchantTypes.length
+        ? state.merchantTypes
+        : [{ id: 1, name: "啤酒吧" }, { id: 2, name: "酒馆" }, { id: 16, name: "咖啡厅" }, { id: 13, name: "其他" }];
+      return types.map((t) => `<option value="${t.id}" ${Number(current) === Number(t.id) ? "selected" : ""}>${escapeHtml(t.name)} (${t.id})</option>`).join("");
+    }
+
+    function renderPoiCandButtons(list, item, indexAttr) {
+      if (!list.length) return "";
+      return list.map((p, idx) => `
+        <button type="button" class="poi-cand ${item.address_poi_id === p.poi_id ? "active" : ""}" ${indexAttr}="${idx}">
+          <div>
+            <b>${escapeHtml(p.title)}</b>
+            <span>${escapeHtml(p.address)}</span>
+            <span>POI ${escapeHtml(p.poi_id)}</span>
+          </div>
+        </button>
+      `).join("");
+    }
+
+    function renderPoiCandidates(item) {
+      const preview = state.poiPreviews[item.merchant_uid] || [];
+      const saved = item.poi_candidates || [];
+      if (!preview.length && !saved.length) return "";
+      let html = "";
+      if (preview.length) {
+        html += `<div class="poi-cands-label">自定义搜索结果（点选后保存）</div>
+          <div class="poi-cands">${renderPoiCandButtons(preview, item, "data-poi-preview-index")}</div>`;
+      }
+      if (saved.length) {
+        html += `<div class="poi-cands-label">${preview.length ? "已保存候选" : "候选 POI"}</div>
+          <div class="poi-cands">${renderPoiCandButtons(saved, item, "data-poi-index")}</div>`;
+      }
+      return html;
+    }
+
     function renderCards(list) {
       if (!list.length) {
         els.grid.innerHTML = `<div class="empty">没有符合条件的商户。请先用 scrape-dianping-merchants 导入，或调整筛选。</div>`;
@@ -296,12 +511,14 @@
       }
       els.grid.innerHTML = list.map((item) => {
         const status = reviewStatus(item.merchant_uid);
-        const addressLine = item.address || `商圈：${item.district || item.list_region_text || "未知"}`;
+        const ready = isImportReady(item);
+        const addressLine = item.address || item.poi_address || `商圈：${item.district || item.list_region_text || "未知"}`;
         const detailUrl = merchantDetailUrl(item);
         const chips = [
           item.city ? `<span class="chip">${escapeHtml(item.city)}</span>` : "",
           item.category ? `<span class="chip">${escapeHtml(item.category)}</span>` : "",
           item.search_keyword ? `<span class="chip">关键词 ${escapeHtml(item.search_keyword)}</span>` : "",
+          ready ? `<span class="chip ready">可入库</span>` : `<span class="chip miss">待补全</span>`,
         ].join("");
         return `
           <article class="card" data-uid="${item.merchant_uid}">
@@ -319,6 +536,30 @@
                   <span class="label">大众点评详情页</span>
                   <a href="${escapeHtml(detailUrl)}" target="_blank" rel="noopener">${escapeHtml(detailUrl)}</a>
                 </div>` : ""}
+              </div>
+              <div class="import-block">
+                <h3>入库准备（腾讯 POI）</h3>
+                <div class="import-row">
+                  <div class="import-field">
+                    <label>商户类型</label>
+                    <select data-field="merchant_type">${renderTypeOptions(item)}</select>
+                  </div>
+                  <div class="import-meta">
+                    ${item.address_poi_id
+    ? `POI：<strong>${escapeHtml(item.poi_title || item.name)}</strong><br>地址：${escapeHtml(item.poi_address || item.address)}<br>ID：${escapeHtml(item.address_poi_id)}<br>坐标：${item.longitude}, ${item.latitude}`
+    : "尚未匹配 POI，可点「自动 Top1」或从候选里改选"}
+                  </div>
+                  <div class="card-actions" style="margin-top:0">
+                    <button class="mini" type="button" data-poi-action="auto">自动 Top1</button>
+                    <button class="mini" type="button" data-poi-action="refresh">重新查询</button>
+                  </div>
+                  <p class="poi-hint">自动 Top1：按店名智能匹配并直接采用第一条。重新查询：只刷新下方候选列表，不改动当前已选 POI。</p>
+                  <div class="poi-search-row">
+                    <input type="text" data-poi-keyword value="${escapeHtml(poiKeywordValue(item))}" placeholder="自定义关键词，如 长沙 黑犬酒吧">
+                    <button class="mini" type="button" data-poi-action="custom-search">自由搜索</button>
+                  </div>
+                  ${renderPoiCandidates(item)}
+                </div>
               </div>
               <div class="card-actions">
                 <button class="mini approve ${status === "approved" ? "active" : ""}" data-action="approved">通过</button>
@@ -360,27 +601,98 @@
     });
 
     els.grid.addEventListener("click", (event) => {
-      const button = event.target.closest("button[data-action]");
-      if (!button) return;
-      const card = button.closest("[data-uid]");
+      const card = event.target.closest("[data-uid]");
       if (!card) return;
-      setDecision(card.dataset.uid, button.dataset.action);
+      const uid = card.dataset.uid;
+
+      const reviewBtn = event.target.closest("button[data-action]");
+      if (reviewBtn) {
+        setDecision(uid, reviewBtn.dataset.action);
+        return;
+      }
+
+      const poiBtn = event.target.closest("button[data-poi-action]");
+      if (poiBtn) {
+        const merchant = state.merchants.find((m) => m.merchant_uid === uid);
+        const type = Number(card.querySelector('[data-field="merchant_type"]')?.value) || effectiveMerchantType(merchant);
+        if (poiBtn.dataset.poiAction === "auto") {
+          applyPoi(uid, { merchant_type: type });
+        } else if (poiBtn.dataset.poiAction === "refresh") {
+          applyPoi(uid, { merchant_type: type, refresh: true });
+        } else if (poiBtn.dataset.poiAction === "custom-search") {
+          searchPoiCustom(uid, card);
+        }
+        return;
+      }
+
+      const previewBtn = event.target.closest("button[data-poi-preview-index]");
+      if (previewBtn) {
+        const merchant = state.merchants.find((m) => m.merchant_uid === uid);
+        const type = Number(card.querySelector('[data-field="merchant_type"]')?.value) || effectiveMerchantType(merchant);
+        const list = state.poiPreviews[uid] || [];
+        const poi = list[Number(previewBtn.dataset.poiPreviewIndex)];
+        if (!poi) return;
+        applyPoi(uid, {
+          merchant_type: type,
+          poi_id: poi.poi_id,
+          title: poi.title,
+          address: poi.address,
+          latitude: poi.latitude,
+          longitude: poi.longitude,
+          candidates: list,
+        });
+        return;
+      }
+
+      const candBtn = event.target.closest("button[data-poi-index]");
+      if (candBtn) {
+        const merchant = state.merchants.find((m) => m.merchant_uid === uid);
+        const type = Number(card.querySelector('[data-field="merchant_type"]')?.value) || effectiveMerchantType(merchant);
+        applyPoi(uid, {
+          merchant_type: type,
+          candidate_index: Number(candBtn.dataset.poiIndex),
+        });
+      }
     });
 
-    els.exportBtn.addEventListener("click", async () => {
-      const response = await fetch("/api/approved-merchants", { cache: "no-store" });
+    els.grid.addEventListener("input", (event) => {
+      const input = event.target.closest("[data-poi-keyword]");
+      if (!input) return;
+      const card = input.closest("[data-uid]");
+      if (!card) return;
+      state.poiKeywords[card.dataset.uid] = input.value;
+    });
+
+    els.grid.addEventListener("change", (event) => {
+      const select = event.target.closest('select[data-field="merchant_type"]');
+      if (!select) return;
+      const card = select.closest("[data-uid]");
+      if (!card) return;
+      saveImportPrep(card.dataset.uid, { merchant_type: Number(select.value) });
+    });
+
+    els.batchPoiBtn.addEventListener("click", runBatchPoi);
+
+    els.exportImportBtn.addEventListener("click", async () => {
+      const response = await fetch("/api/export-import-merchants?approved_only=1&ready_only=1", { cache: "no-store" });
       const payload = await response.json();
-      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      if (!payload.count) {
+        setSaveState("没有「已通过且可入库」的商户", "warn");
+        return;
+      }
+      const blob = new Blob([JSON.stringify(payload.merchants, null, 2)], { type: "application/json" });
       const url = URL.createObjectURL(blob);
       const anchor = document.createElement("a");
       anchor.href = url;
-      anchor.download = "approved-merchants.json";
+      anchor.download = "merchants-import.json";
       anchor.click();
       URL.revokeObjectURL(url);
+      setSaveState(`已导出 ${payload.count} 条入库 JSON`, "ok");
     });
 
     async function boot() {
       try {
+        await loadMerchantTypes();
         await loadReviewState();
         await loadMerchants();
       } catch (error) {

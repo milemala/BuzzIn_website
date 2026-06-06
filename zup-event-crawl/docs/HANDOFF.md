@@ -387,6 +387,14 @@ npm start
 | GET | `/api/merchant-review-state` | 审核状态 |
 | POST | `/api/merchant-review-state` | 保存审核 |
 | GET | `/api/approved-merchants` | 已通过商户 |
+| GET | `/api/merchant-types` | 入库用商户类型列表 |
+| GET | `/api/export-import-merchants` | 导出已通过且可入库 JSON（对齐 `import/merchant/sample.json`） |
+| POST | `/api/merchants/poi-search` | 腾讯 POI 关键词搜索（服务端代理） |
+| POST | `/api/merchants/poi-auto-batch` | 批量 Top1 补全 POI |
+| POST | `/api/merchants/:uid/poi` | 单条 POI 匹配/改选 |
+| POST | `/api/merchants/:uid/import-prep` | 保存商户类型等入库字段 |
+
+商户审核台支持：POI Top1 自动 + 候选改选、商户类型、**可入库**筛选、**导出入库 JSON**。POI 搜索词与 Zup 后台一致：**城市 + 店名**（不用点评商圈，避免商场名带偏）。可用 `BUZZ_TENCENT_MAP_KEY` 覆盖内置腾讯 key。
 
 ## 当前 UI 状态摘要
 

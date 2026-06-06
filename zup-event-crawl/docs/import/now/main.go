@@ -80,17 +80,28 @@ var (
 	flagPass  = flag.String("pass", env("BUZZ_ADMIN_PASS", ""), "后台密码（token 为空时用于登录）")
 	flagFile  = flag.String("f", "nows.json", "输入数据 JSON 文件路径")
 	flagOut   = flag.String("out", "nows.result.json", "结果输出 JSON 文件路径")
+	flagDedup = flag.Bool("dedup", true, "建之前按 user_id+标题 查重，命中则跳过（避免重复气泡）")
 )
 
 const apiPrefix = "/internal"
+
+// httpTimeout 给所有请求加超时，避免后端无响应时整批卡死
+const httpTimeout = 60 * time.Second
+
+// maxContentLen：now_content 的 binding 上限（max=2000），超出会 400，脚本侧先截断
+const maxContentLen = 2000
 
 // defaultExpireDays：输入未提供 expired_at 时，自动把过期时间设为「现在 + N 天」。
 // 原因：后端默认过期是“次日凌晨 4:00”，导入的气泡第二天早上就会被 cron 置为已过期、
 // 从地图消失。这里兜底成远期，避免静默失效。数据方最好仍自行给准确值。
 const defaultExpireDays = 30
 
-// timeLayout：后端接受的本地时间格式（Asia/Shanghai）。
+// timeLayout：后端接受的时间格式（按服务器进程本地时区解析，见 README 时区说明）。
 const timeLayout = "2006-01-02 15:04:05"
+
+// maxTitleLen：now_title 的 DB 列上限（bi_user_now.now_title size:128）。
+// 接口 binding 写的是 max=255，会放过去但入库静默截断到 128，所以脚本侧先截断。
+const maxTitleLen = 128
 
 // ============================================================
 // 输入 / 输出数据结构
@@ -125,9 +136,10 @@ type NowInput struct {
 
 // nowResult 单条导入结果
 type nowResult struct {
-	Title string `json:"title"`
-	NowID string `json:"now_id,omitempty"`
-	Error string `json:"error,omitempty"`
+	Title   string `json:"title"`
+	NowID   string `json:"now_id,omitempty"`
+	Skipped bool   `json:"skipped,omitempty"` // 已存在被跳过
+	Error   string `json:"error,omitempty"`
 }
 
 // mediaItem 创建接口需要的媒体结构（与后端 MediaItemDTO 对齐）
@@ -141,7 +153,7 @@ type mediaItem struct {
 
 func main() {
 	flag.Parse()
-	c := &client{base: strings.TrimRight(*flagBase, "/"), token: *flagToken}
+	c := &client{base: strings.TrimRight(*flagBase, "/"), token: *flagToken, hc: http.Client{Timeout: httpTimeout}}
 
 	// 1) 准备 token
 	if c.token == "" {
@@ -184,6 +196,32 @@ func main() {
 			results = append(results, res)
 			fmt.Println("  ✗", res.Error)
 			continue
+		}
+		// now_title 的 DB 列上限是 128 字符（注意：接口 binding 写的是 255，会放过去再静默截断）
+		if n := len([]rune(in.NowTitle)); n > maxTitleLen {
+			fmt.Printf("  ! now_title %d 字超过 DB 上限 %d，自动截断\n", n, maxTitleLen)
+			in.NowTitle = string([]rune(in.NowTitle)[:maxTitleLen])
+		}
+		// now_content 的 binding 上限 2000（超出会 400），rune 安全截断
+		if n := len([]rune(in.NowContent)); n > maxContentLen {
+			fmt.Printf("  ! now_content %d 字超过上限 %d，自动截断\n", n, maxContentLen)
+			in.NowContent = string([]rune(in.NowContent)[:maxContentLen])
+		}
+
+		// 查重（按 发布者+标题）
+		if *flagDedup && in.NowTitle != "" {
+			if nid, err := c.findNow(in.UserID, in.NowTitle); err != nil {
+				res.Error = fmt.Sprintf("查重失败: %v", err)
+				results = append(results, res)
+				fmt.Println("  ✗", res.Error)
+				continue
+			} else if nid != "" {
+				res.NowID = nid
+				res.Skipped = true
+				results = append(results, res)
+				fmt.Printf("  ↷ 已存在，跳过 now_id=%s\n", nid)
+				continue
+			}
 		}
 
 		// 3.1 上传媒体（图片在前、视频在后，保持顺序；封面取第一张图片）
@@ -266,13 +304,15 @@ func main() {
 	// 4) 输出结果
 	out, _ := json.MarshalIndent(results, "", "  ")
 	_ = os.WriteFile(*flagOut, out, 0o644)
-	ok := 0
+	created, skipped := 0, 0
 	for _, r := range results {
-		if r.NowID != "" {
-			ok++
+		if r.Skipped {
+			skipped++
+		} else if r.NowID != "" {
+			created++
 		}
 	}
-	fmt.Printf("\n完成：成功 %d / 共 %d，结果已写入 %s\n", ok, len(results), *flagOut)
+	fmt.Printf("\n完成：新建 %d | 跳过(已存在) %d | 共 %d，结果已写入 %s\n", created, skipped, len(results), *flagOut)
 }
 
 // ============================================================
@@ -305,6 +345,30 @@ func (c *client) login(user, pass string) (string, error) {
 		return "", fmt.Errorf("登录响应未返回 token")
 	}
 	return out.Token, nil
+}
+
+// findNow 按 发布者+标题 查重：POST /internal/nows/list keyword=title & user_identifier=userID，
+// 再精确比对 (user_id, now_title)。命中返回 now_id。
+func (c *client) findNow(userID, title string) (string, error) {
+	var out struct {
+		List []struct {
+			NowID    string `json:"now_id"`
+			NowTitle string `json:"now_title"`
+			User     *struct {
+				UserID string `json:"user_id"`
+			} `json:"user"`
+		} `json:"list"`
+	}
+	body := map[string]any{"page": 1, "size": 100, "keyword": title, "user_identifier": userID}
+	if err := c.postJSON("/nows/list", body, &out); err != nil {
+		return "", err
+	}
+	for _, n := range out.List {
+		if n.NowTitle == title && n.User != nil && n.User.UserID == userID {
+			return n.NowID, nil
+		}
+	}
+	return "", nil
 }
 
 // postJSON 发送 JSON 请求并把 data 解析到 out

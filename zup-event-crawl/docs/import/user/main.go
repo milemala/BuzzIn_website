@@ -1,50 +1,38 @@
-// 后台批量导入【商户】脚本
+// 后台批量导入【用户】脚本（气泡的发布者）
 //
 // 运行方式：
 //
-//	go run ./scripts/import/merchant -f scripts/import/merchant/sample.json
+//	go run ./scripts/import/user -f scripts/import/user/sample.json
 //
 // 或编译后运行：
 //
-//	go build -o bin/import-merchant ./scripts/import/merchant
-//	./bin/import-merchant -base http://localhost:80 -f merchants.json
+//	go build -o bin/import-user ./scripts/import/user
+//	./bin/import-user -base http://localhost:80 -f users.json
 //
 // 认证：
 //   - 直接传 token：-token 'xxxx'（或填下面的 defaultToken 变量）
 //   - 留空 token 时，用 -user / -pass 自动登录 /internal/auth/login 换取 token
 //
-// 只依赖 Go 标准库，可在任意机器上 go run。
-//
 // ============================================================
 // 导入须知（重要，务必先读）
 // ============================================================
 //
-//  1. 宽高必须发：upload 返回的 width/height 必须随 medias 一起回传。
-//     后台创建接口只把 medias 数组【原样存库】，App 端读取也只信存库的 JSON，
-//     不会按 media_id 回补宽高；不发就永久存成 0×0，导致图片比例渲染错乱。
-//     本脚本已自动带上 upload 返回的宽高（见 uploadMedia / mediaItem）。
-//     注意：视频宽高由 OSS 截帧识别，偶发为 0，必要时在输入数据里手填覆盖。
+//  1. phone 必填，且【全局唯一】：手机号写进 bi_auth(auth_type,auth_id) 唯一索引，
+//     重复手机号再建会直接撞唯一键报错。所以本脚本默认开启【按手机号查重】(-dedup=true)：
+//     建之前先查 /internal/users/list，命中同号则跳过并复用已存在的 user_id。
 //
-//  2. POI（address_poi_id）—— 关键概念：
-//     - 它是【外部地图(高德/腾讯等)的 POI 标识】，后端不会生成，需要数据方提供。
-//     - 对“创建商户”本身是【可选】的，留空也能建成功。
-//     - 但它是【气泡 ↔ 商户 唯一的关联键】：气泡用 location_poi_id 精确匹配
-//       商户的 address_poi_id（SQL: WHERE address_poi_id = ?）来挂到商户名下。
-//       创建气泡的接口里【没有 merchant_id 字段】，所以想让抓来的气泡显示在
-//       对应商户下，必须让【同一商户和它的所有气泡使用同一个 poi 值】。
-//     - 没有真实 POI 时，可自造一个“稳定且每个商户唯一”的字符串
-//       （如 crawl_<来源>_<商户key>），只要商户和其气泡保持一致即可。
-//     - 切勿用空字符串去匹配：GetByPoiID("") 会命中第一条 poi 为空的商户造成误挂；
-//       本脚本只在 poi 非空时才发送，已规避此坑。
-//     - 经纬度 longitude/latitude 与 POI 是两回事：用于 geohash/距离/地图，
-//       建议商户和气泡都提供真实经纬度。
+//  2. 用户是气泡的发布者：建好用户拿到 user_id 后，再用它去发气泡（now/main.go 的 user_id）。
+//     一条龙顺序：查重 → 建用户(本脚本) → 建商户 → 建气泡。
 //
-//  3. 图片安审：upload 对图片会同步过内容安审，不过会直接报“文件未通过安审”。
+//  3. avatar / 相册：avatar_image 与 images 支持 http(s) 链接或本地路径，会先推到 /internal/upload，
+//     拿到 media 信息后填入（avatar 用返回的 URL；images 作为 medias，带宽高）。
+//     图片要过内容安审，过不了会整条失败。
 //
-//  4. 商户 type 必填，且必须是合法的商户类型 id（取自 /internal/merchant-types/list）。
+//  4. birthday 是【Unix 秒】（不是毫秒）；gender：0未知/1男/2女；status：0 默认正常、-1 禁用。
 //
-//  5. 鉴权：-token 直接给 Bearer token；或留空用 -user/-pass 登录换取；
-//     后端也支持 USER: <admin_id> 头免登录（本脚本用 Bearer 方式）。
+//  5. 鉴权：-token 直接给 Bearer token；或留空用 -user/-pass 登录换取。
+//
+// 只依赖 Go 标准库，可在任意机器上 go run。
 package main
 
 import (
@@ -73,9 +61,9 @@ var (
 	flagToken = flag.String("token", defaultToken, "后台 Bearer token（留空则用 -user/-pass 登录）")
 	flagUser  = flag.String("user", env("BUZZ_ADMIN_USER", ""), "后台用户名（token 为空时用于登录）")
 	flagPass  = flag.String("pass", env("BUZZ_ADMIN_PASS", ""), "后台密码（token 为空时用于登录）")
-	flagFile  = flag.String("f", "merchants.json", "输入数据 JSON 文件路径")
-	flagOut   = flag.String("out", "merchants.result.json", "结果输出 JSON 文件路径")
-	flagDedup = flag.Bool("dedup", true, "建之前按 名称(+poi) 查重，命中则跳过（避免重复商户）")
+	flagFile  = flag.String("f", "users.json", "输入数据 JSON 文件路径")
+	flagOut   = flag.String("out", "users.result.json", "结果输出 JSON 文件路径")
+	flagDedup = flag.Bool("dedup", true, "建之前按手机号查重，命中则跳过（避免唯一键冲突）")
 )
 
 const apiPrefix = "/internal"
@@ -83,51 +71,33 @@ const apiPrefix = "/internal"
 // httpTimeout 给所有请求加超时，避免后端无响应时整批卡死
 const httpTimeout = 60 * time.Second
 
+const (
+	maxPhoneLen    = 32 // bi_users.phone size:32
+	maxNicknameLen = 64 // bi_users.nickname size:64
+)
+
 // ============================================================
 // 输入 / 输出数据结构
 // ============================================================
 
-// MerchantInput 一条爬虫抓取的商户数据
-type MerchantInput struct {
-	Name         string  `json:"name"`           // 商户名
-	NameNew      string  `json:"name_new"`       // 新商户名（可选）
-	Type         int     `json:"type"`           // 商户类型 id（必填，来自 /internal/merchant-types/list）
-	Description  string  `json:"description"`    // 简介
-	Longitude    float64 `json:"longitude"`      // 经度（必填）
-	Latitude     float64 `json:"latitude"`       // 纬度（必填）
-	Address      string  `json:"address"`        // 地址（DB 上限 128 字符）
-	AddressPoiID string  `json:"address_poi_id"` // 外部地图 POI id，需数据方提供；想让气泡关联本商户，须与气泡用同一值（见文件头“导入须知”第2条）
-	Status       *int    `json:"status"`         // 0待审 1正常 2正常 -1禁用；【留空默认 1】，否则商户在 C 端地图/附近不可见
-	Score        float64 `json:"score"`          // 评分
-	IsVerified   *int    `json:"is_verified"`    // 是否认证 0/1；【留空默认 1】，否则商户在 C 端地图/附近不可见
-
-	LogoImage      string   `json:"logo_image"`       // 商户 logo 图片：http(s) 链接或本地路径，可空
-	Images         []string `json:"images"`           // 商户相册：http(s) 链接或本地路径，按顺序
-	OperatorUserID string   `json:"operator_user_id"` // 负责人用户 id（可选）
-	AdminIDs       []string `json:"admin_ids"`        // 管理员用户 id 列表（可选）
-	Extra          string   `json:"extra"`            // 可选：JSON 字符串，可塞 source_id 做溯源/查重（商户是唯一带 extra 的实体）
+// UserInput 一条爬虫抓取的用户数据
+type UserInput struct {
+	Phone       string   `json:"phone"`        // 必填，全局唯一
+	Nickname    string   `json:"nickname"`     // 昵称
+	AvatarImage string   `json:"avatar_image"` // 头像图：http(s) 链接或本地路径，可空
+	Gender      int      `json:"gender"`       // 0未知 / 1男 / 2女
+	Description string   `json:"description"`  // 个人简介
+	Birthday    *int64   `json:"birthday"`     // 生日 Unix 秒，可空
+	Status      int      `json:"status"`       // 0默认正常 / -1禁用
+	Images      []string `json:"images"`       // 用户相册：http(s) 链接或本地路径，可空
 }
 
-// intOr 取指针值，nil 时用默认值
-func intOr(p *int, def int) int {
-	if p == nil {
-		return def
-	}
-	return *p
-}
-
-// merchantResult 单条导入结果
-type merchantResult struct {
-	Name       string `json:"name"`
-	MerchantID string `json:"merchant_id,omitempty"`
-	Skipped    bool   `json:"skipped,omitempty"` // 已存在被跳过
-	Error      string `json:"error,omitempty"`
-}
-
-// appendErr 打印错误并把结果记入列表
-func appendErr(results []merchantResult, res merchantResult) []merchantResult {
-	fmt.Println("  ✗", res.Error)
-	return append(results, res)
+// userResult 单条导入结果
+type userResult struct {
+	Phone   string `json:"phone"`
+	UserID  string `json:"user_id,omitempty"`
+	Skipped bool   `json:"skipped,omitempty"` // 已存在被跳过
+	Error   string `json:"error,omitempty"`
 }
 
 // mediaItem 创建接口需要的媒体结构（与后端 MediaItemDTO 对齐）
@@ -143,7 +113,7 @@ func main() {
 	flag.Parse()
 	c := &client{base: strings.TrimRight(*flagBase, "/"), token: *flagToken, hc: http.Client{Timeout: httpTimeout}}
 
-	// 1) 准备 token：没有就登录换取
+	// 1) 准备 token
 	if c.token == "" {
 		if *flagUser == "" || *flagPass == "" {
 			fatal("token 为空，且未提供 -user/-pass 用于登录")
@@ -161,82 +131,67 @@ func main() {
 	if err != nil {
 		fatal("读取输入文件失败: %v", err)
 	}
-	var inputs []MerchantInput
+	var inputs []UserInput
 	if err := json.Unmarshal(raw, &inputs); err != nil {
 		fatal("解析输入 JSON 失败: %v", err)
 	}
-	fmt.Printf("[input] 共 %d 条商户待导入\n", len(inputs))
+	fmt.Printf("[input] 共 %d 条用户待导入（dedup=%v）\n", len(inputs), *flagDedup)
 
-	// 3) 逐条：先上传图片拿到媒体信息 → 再创建商户
-	results := make([]merchantResult, 0, len(inputs))
+	// 3) 逐条：查重 → 上传头像/相册 → 建用户
+	results := make([]userResult, 0, len(inputs))
 	for i, in := range inputs {
-		fmt.Printf("\n[%d/%d] %s\n", i+1, len(inputs), in.Name)
-		res := merchantResult{Name: in.Name}
+		fmt.Printf("\n[%d/%d] %s %s\n", i+1, len(inputs), in.Phone, in.Nickname)
+		res := userResult{Phone: in.Phone}
 
-		// 3.0 入参校验（先于上传，避免白传图后才被后端 400）
-		// name 是按名称查重的主键，必须非空且 ≤64；后端对 type/lng/lat 是 binding:"required"
-		// （对 int/float 而言 0 等于“缺失”→ 直接 400），所以这里也要求非零。
-		if strings.TrimSpace(in.Name) == "" {
-			res.Error = "缺少 name（商户名，按名称查重用，必填）"
-			results = appendErr(results, res)
+		if in.Phone == "" {
+			res.Error = "缺少 phone（必填且唯一）"
+			results = append(results, res)
+			fmt.Println("  ✗", res.Error)
 			continue
 		}
-		if len([]rune(in.Name)) > 64 {
-			res.Error = fmt.Sprintf("name 超过 DB 上限 64 字符（当前 %d）", len([]rune(in.Name)))
-			results = appendErr(results, res)
+		if len(in.Phone) > maxPhoneLen {
+			res.Error = fmt.Sprintf("phone 超过 DB 上限 %d 字节（当前 %d）", maxPhoneLen, len(in.Phone))
+			results = append(results, res)
+			fmt.Println("  ✗", res.Error)
 			continue
 		}
-		if in.Type <= 0 {
-			res.Error = "type 必填且必须是正整数商户类型 id（用 query merchant-types 查；0 会被后端 400）"
-			results = appendErr(results, res)
-			continue
-		}
-		if in.Longitude == 0 || in.Latitude == 0 {
-			res.Error = "longitude/latitude 必填且必须非零（真实 GCJ-02 经纬度；0 会被后端 400）"
-			results = appendErr(results, res)
-			continue
-		}
-		if len([]rune(in.Address)) > 128 {
-			res.Error = fmt.Sprintf("address 超过 DB 上限 128 字符（当前 %d）", len([]rune(in.Address)))
-			results = appendErr(results, res)
-			continue
-		}
-		if in.Extra != "" && !json.Valid([]byte(in.Extra)) {
-			res.Error = "extra 必须是合法 JSON 字符串（否则会被后端静默丢弃）"
-			results = appendErr(results, res)
-			continue
+		// nickname 超过 DB 上限会被静默截断，这里 rune 安全截断并告警
+		if n := len([]rune(in.Nickname)); n > maxNicknameLen {
+			fmt.Printf("  ! nickname %d 字超过 DB 上限 %d，自动截断\n", n, maxNicknameLen)
+			in.Nickname = string([]rune(in.Nickname)[:maxNicknameLen])
 		}
 
-		// 3.0.1 查重（按名称，poi 非空时再校验 poi 一致）
+		// 3.1 查重（按手机号）
 		if *flagDedup {
-			if mid, err := c.findMerchant(in.Name, in.AddressPoiID); err != nil {
+			if uid, err := c.findUserByPhone(in.Phone); err != nil {
 				res.Error = fmt.Sprintf("查重失败: %v", err)
-				results = appendErr(results, res)
+				results = append(results, res)
+				fmt.Println("  ✗", res.Error)
 				continue
-			} else if mid != "" {
-				res.MerchantID = mid
+			} else if uid != "" {
+				res.UserID = uid
 				res.Skipped = true
 				results = append(results, res)
-				fmt.Printf("  ↷ 已存在，跳过 merchant_id=%s\n", mid)
+				fmt.Printf("  ↷ 已存在，跳过 user_id=%s\n", uid)
 				continue
 			}
 		}
 
-		// 3.1 上传 logo（如果有）
-		logoURL := "-" // 后端默认 "-"
-		if in.LogoImage != "" {
-			m, err := c.uploadMedia(in.LogoImage)
+		// 3.2 上传头像
+		avatarURL := ""
+		if in.AvatarImage != "" {
+			m, err := c.uploadMedia(in.AvatarImage)
 			if err != nil {
-				res.Error = fmt.Sprintf("上传 logo 失败: %v", err)
+				res.Error = fmt.Sprintf("上传头像失败: %v", err)
 				results = append(results, res)
 				fmt.Println("  ✗", res.Error)
 				continue
 			}
-			logoURL = m.MediaURL
-			fmt.Printf("  ✓ logo -> %s\n", m.MediaURL)
+			avatarURL = m.MediaURL
+			fmt.Printf("  ✓ avatar -> %s\n", m.MediaURL)
 		}
 
-		// 3.2 上传相册图片
+		// 3.3 上传相册
 		medias := make([]mediaItem, 0, len(in.Images))
 		uploadErr := ""
 		for _, src := range in.Images {
@@ -255,48 +210,36 @@ func main() {
 			continue
 		}
 
-		// 3.3 创建商户
-		// status / is_verified 留空默认 1：否则商户在 C 端地图/附近不可见
-		// （后端 nearby 查询要求 status=1 AND is_verified=1）
+		// 3.4 建用户
 		payload := map[string]any{
-			"name":           in.Name,
-			"name_new":       in.NameNew,
-			"type":           in.Type,
-			"description":    in.Description,
-			"logo":           logoURL,
-			"longitude":      in.Longitude,
-			"latitude":       in.Latitude,
-			"address":        in.Address,
-			"address_poi_id": in.AddressPoiID,
-			"status":         intOr(in.Status, 1),
-			"score":          in.Score,
-			"is_verified":    intOr(in.IsVerified, 1),
+			"phone":       in.Phone,
+			"nickname":    in.Nickname,
+			"gender":      in.Gender,
+			"description": in.Description,
+			"status":      in.Status,
+		}
+		if avatarURL != "" {
+			payload["avatar"] = avatarURL
 		}
 		if len(medias) > 0 {
 			payload["medias"] = medias
 		}
-		if in.OperatorUserID != "" {
-			payload["operator_user_id"] = in.OperatorUserID
-		}
-		if len(in.AdminIDs) > 0 {
-			payload["admin_ids"] = in.AdminIDs
-		}
-		if in.Extra != "" {
-			payload["extra"] = in.Extra // 溯源/查重，可塞 source_id
+		if in.Birthday != nil {
+			payload["birthday"] = *in.Birthday
 		}
 
 		var created struct {
-			MerchantID string `json:"merchant_id"`
+			UserID string `json:"user_id"`
 		}
-		if err := c.postJSON("/merchants", payload, &created); err != nil {
-			res.Error = fmt.Sprintf("创建商户失败: %v", err)
+		if err := c.postJSON("/users", payload, &created); err != nil {
+			res.Error = fmt.Sprintf("创建用户失败: %v", err)
 			results = append(results, res)
 			fmt.Println("  ✗", res.Error)
 			continue
 		}
-		res.MerchantID = created.MerchantID
+		res.UserID = created.UserID
 		results = append(results, res)
-		fmt.Printf("  ★ 商户创建成功 merchant_id=%s\n", created.MerchantID)
+		fmt.Printf("  ★ 用户创建成功 user_id=%s\n", created.UserID)
 	}
 
 	// 4) 输出结果
@@ -306,7 +249,7 @@ func main() {
 	for _, r := range results {
 		if r.Skipped {
 			skipped++
-		} else if r.MerchantID != "" {
+		} else if r.UserID != "" {
 			created++
 		}
 	}
@@ -345,28 +288,23 @@ func (c *client) login(user, pass string) (string, error) {
 	return out.Token, nil
 }
 
-// findMerchant 按名称查重：POST /internal/merchants/list keyword=name，再精确比对名称
-// （poi 非空时还要求 address_poi_id 一致，避免同名不同店误判）。命中返回 merchant_id。
-func (c *client) findMerchant(name, poi string) (string, error) {
+// findUserByPhone 按手机号查重：POST /internal/users/list，keyword=phone，再精确比对
+// 返回已存在用户的 user_id；不存在返回空字符串。
+func (c *client) findUserByPhone(phone string) (string, error) {
 	var out struct {
 		List []struct {
-			MerchantID   string `json:"merchant_id"`
-			Name         string `json:"name"`
-			AddressPoiID string `json:"address_poi_id"`
+			UserID string `json:"user_id"`
+			Phone  string `json:"phone"`
 		} `json:"list"`
 	}
-	body := map[string]any{"page": 1, "size": 100, "keyword": name}
-	if err := c.postJSON("/merchants/list", body, &out); err != nil {
+	body := map[string]any{"page": 1, "size": 200, "keyword": phone}
+	if err := c.postJSON("/users/list", body, &out); err != nil {
 		return "", err
 	}
-	for _, m := range out.List {
-		if m.Name != name { // keyword 是模糊匹配，这里精确比对
-			continue
+	for _, u := range out.List {
+		if u.Phone == phone { // keyword 是模糊匹配，这里做精确比对
+			return u.UserID, nil
 		}
-		if poi != "" && m.AddressPoiID != poi { // 同名但 poi 不同，视为不同店
-			continue
-		}
-		return m.MerchantID, nil
 	}
 	return "", nil
 }
@@ -390,13 +328,11 @@ func (c *client) postJSON(path string, body any, out any) error {
 func (c *client) uploadMedia(src string) (mediaItem, error) {
 	var zero mediaItem
 
-	// 取得文件内容 + 文件名
 	data, name, err := readSource(src)
 	if err != nil {
 		return zero, err
 	}
 
-	// 组 multipart
 	var body bytes.Buffer
 	mw := multipart.NewWriter(&body)
 	h := make(textproto.MIMEHeader)
@@ -430,7 +366,7 @@ func (c *client) uploadMedia(src string) (mediaItem, error) {
 		return zero, err
 	}
 	if out.MediaType == 0 {
-		out.MediaType = 1 // 兜底为图片
+		out.MediaType = 1
 	}
 	return mediaItem{
 		MediaID:   out.MediaID,

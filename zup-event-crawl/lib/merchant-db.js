@@ -1,8 +1,43 @@
 "use strict";
 
 const { openDatabase } = require("./review-db");
+const {
+  buildImportRecord,
+  isImportReady,
+  suggestMerchantType,
+} = require("./merchant-import-ready");
 
 const VALID_REVIEW_STATUSES = new Set(["approved", "pending", "rejected"]);
+
+const IMPORT_PREP_COLUMNS = [
+  ["merchant_type", "INTEGER"],
+  ["address_poi_id", "TEXT NOT NULL DEFAULT ''"],
+  ["poi_title", "TEXT NOT NULL DEFAULT ''"],
+  ["poi_address", "TEXT NOT NULL DEFAULT ''"],
+  ["poi_candidates", "TEXT NOT NULL DEFAULT '[]'"],
+  ["poi_updated_at", "TEXT"],
+];
+
+function migrateMerchantImportColumns(db) {
+  const existing = new Set(
+    db.prepare("PRAGMA table_info(merchants)").all().map((row) => row.name),
+  );
+  for (const [name, ddl] of IMPORT_PREP_COLUMNS) {
+    if (!existing.has(name)) {
+      db.exec(`ALTER TABLE merchants ADD COLUMN ${name} ${ddl}`);
+    }
+  }
+}
+
+function parsePoiCandidates(raw) {
+  if (!raw) return [];
+  try {
+    const list = JSON.parse(raw);
+    return Array.isArray(list) ? list : [];
+  } catch {
+    return [];
+  }
+}
 
 function ensureMerchantSchema(db) {
   db.exec(`
@@ -51,6 +86,7 @@ function ensureMerchantSchema(db) {
       updated_at TEXT NOT NULL
     );
   `);
+  migrateMerchantImportColumns(db);
 }
 
 function rowToMerchant(row) {
@@ -78,7 +114,172 @@ function rowToMerchant(row) {
     needs_detail: Boolean(row.needs_detail),
     import_batch_id: row.import_batch_id || "",
     updated_at: row.updated_at,
+    merchant_type: row.merchant_type ?? null,
+    address_poi_id: row.address_poi_id || "",
+    poi_title: row.poi_title || "",
+    poi_address: row.poi_address || "",
+    poi_candidates: parsePoiCandidates(row.poi_candidates),
+    poi_updated_at: row.poi_updated_at || null,
+    import_ready: isImportReady(row),
   };
+}
+
+function getMerchantByUid(db, merchantUid) {
+  ensureMerchantSchema(db);
+  const row = db.prepare("SELECT * FROM merchants WHERE merchant_uid = ?").get(merchantUid);
+  return row ? rowToMerchant(row) : null;
+}
+
+function applyPoiSelection(db, merchantUid, poi, options = {}) {
+  ensureMerchantSchema(db);
+  const now = new Date().toISOString();
+  const merchant = getMerchantByUid(db, merchantUid);
+  if (!merchant) {
+    throw new Error(`商户不存在: ${merchantUid}`);
+  }
+
+  const merchantType = options.merchant_type
+    ?? merchant.merchant_type
+    ?? suggestMerchantType(merchant.category, merchant.name);
+
+  db.prepare(`
+    UPDATE merchants SET
+      address_poi_id = @address_poi_id,
+      poi_title = @poi_title,
+      poi_address = @poi_address,
+      address = @address,
+      latitude = @latitude,
+      longitude = @longitude,
+      merchant_type = @merchant_type,
+      poi_candidates = @poi_candidates,
+      poi_updated_at = @poi_updated_at,
+      updated_at = @updated_at
+    WHERE merchant_uid = @merchant_uid
+  `).run({
+    merchant_uid: merchantUid,
+    address_poi_id: poi.poi_id || "",
+    poi_title: poi.title || "",
+    poi_address: poi.address || "",
+    address: String(poi.address || "").slice(0, 128),
+    latitude: poi.latitude ?? null,
+    longitude: poi.longitude ?? null,
+    merchant_type: merchantType,
+    poi_candidates: JSON.stringify(options.candidates || []),
+    poi_updated_at: now,
+    updated_at: now,
+  });
+
+  return getMerchantByUid(db, merchantUid);
+}
+
+function updatePoiCandidatesOnly(db, merchantUid, candidates, options = {}) {
+  ensureMerchantSchema(db);
+  const merchant = getMerchantByUid(db, merchantUid);
+  if (!merchant) {
+    throw new Error(`商户不存在: ${merchantUid}`);
+  }
+
+  const now = new Date().toISOString();
+  const merchantType = options.merchant_type !== undefined
+    ? options.merchant_type
+    : merchant.merchant_type;
+
+  db.prepare(`
+    UPDATE merchants SET
+      poi_candidates = @poi_candidates,
+      poi_updated_at = @poi_updated_at,
+      updated_at = @updated_at,
+      merchant_type = @merchant_type
+    WHERE merchant_uid = @merchant_uid
+  `).run({
+    merchant_uid: merchantUid,
+    poi_candidates: JSON.stringify(candidates || []),
+    poi_updated_at: now,
+    updated_at: now,
+    merchant_type: merchantType,
+  });
+
+  return getMerchantByUid(db, merchantUid);
+}
+
+function updateMerchantImportPrep(db, merchantUid, patch) {
+  ensureMerchantSchema(db);
+  const merchant = getMerchantByUid(db, merchantUid);
+  if (!merchant) {
+    throw new Error(`商户不存在: ${merchantUid}`);
+  }
+
+  const now = new Date().toISOString();
+  const next = {
+    merchant_type: patch.merchant_type !== undefined
+      ? patch.merchant_type
+      : merchant.merchant_type,
+    name: patch.name !== undefined ? patch.name : merchant.name,
+  };
+
+  db.prepare(`
+    UPDATE merchants SET
+      merchant_type = @merchant_type,
+      name = @name,
+      updated_at = @updated_at
+    WHERE merchant_uid = @merchant_uid
+  `).run({
+    merchant_uid: merchantUid,
+    merchant_type: next.merchant_type,
+    name: next.name,
+    updated_at: now,
+  });
+
+  return getMerchantByUid(db, merchantUid);
+}
+
+function listMerchantsNeedingPoi(db, options = {}) {
+  ensureMerchantSchema(db);
+  const limit = Math.min(Math.max(Number(options.limit) || 100, 1), 500);
+  let sql = `
+    SELECT m.*, COALESCE(d.status, 'pending') AS review_status
+    FROM merchants m
+    LEFT JOIN merchant_review_decisions d ON d.merchant_uid = m.merchant_uid
+    WHERE (m.address_poi_id IS NULL OR m.address_poi_id = '')
+  `;
+  const params = [];
+  if (options.city) {
+    sql += " AND m.city = ?";
+    params.push(options.city);
+  }
+  if (options.only_approved) {
+    sql += " AND d.status = 'approved'";
+  } else if (options.only_pending) {
+    sql += " AND COALESCE(d.status, 'pending') = 'pending'";
+  }
+  sql += " ORDER BY m.city, m.search_keyword, m.source_position LIMIT ?";
+  params.push(limit);
+
+  return db.prepare(sql).all(...params).map((row) => ({
+    ...rowToMerchant(row),
+    review_status: row.review_status,
+  }));
+}
+
+function getExportImportMerchants(db, options = {}) {
+  ensureMerchantSchema(db);
+  const approvedOnly = options.approvedOnly !== false;
+  const readyOnly = options.readyOnly !== false;
+
+  let sql = `
+    SELECT m.*, COALESCE(d.status, 'pending') AS review_status
+    FROM merchants m
+    LEFT JOIN merchant_review_decisions d ON d.merchant_uid = m.merchant_uid
+    WHERE 1=1
+  `;
+  if (approvedOnly) {
+    sql += " AND d.status = 'approved'";
+  }
+  sql += " ORDER BY m.city, m.search_keyword, m.source_position";
+
+  const rows = db.prepare(sql).all().map((row) => rowToMerchant(row));
+  const merchants = readyOnly ? rows.filter(isImportReady) : rows;
+  return merchants.map(buildImportRecord);
 }
 
 function getMerchantReviewState(db) {
@@ -229,12 +430,18 @@ function importMerchants(db, merchants, options = {}) {
 }
 
 module.exports = {
+  applyPoiSelection,
   ensureMerchantSchema,
   getApprovedMerchants,
+  getExportImportMerchants,
+  getMerchantByUid,
   getMerchantReviewState,
   getMerchantsPayload,
   importMerchants,
+  listMerchantsNeedingPoi,
   openDatabase,
   replaceMerchantReviewState,
   rowToMerchant,
+  updateMerchantImportPrep,
+  updatePoiCandidatesOnly,
 };

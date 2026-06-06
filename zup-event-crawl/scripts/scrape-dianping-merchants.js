@@ -13,6 +13,7 @@ const {
 } = require("../lib/dianping-parse");
 const { fetchViaChrome, sleep } = require("../lib/chrome-fetch");
 const { importMerchants, openDatabase } = require("../lib/merchant-db");
+const { batchAutoPoi } = require("../lib/merchant-poi-batch");
 
 const root = path.join(__dirname, "..");
 const defaultDbPath = path.join(root, "data", "review.db");
@@ -32,6 +33,7 @@ function parseArgs(argv) {
     jsonOut: "",
     offline: false,
     skipDetails: true,
+    skipPoi: false,
     chromeWaitMs: 4500,
     detailWaitMs: 3500,
     maxPages: 1,
@@ -49,6 +51,8 @@ function parseArgs(argv) {
       options.offline = true;
     } else if (arg === "--skip-details") {
       options.skipDetails = true;
+    } else if (arg === "--skip-poi") {
+      options.skipPoi = true;
     } else if (arg === "--with-details") {
       options.skipDetails = false;
     } else if (arg.startsWith("--city=")) {
@@ -112,6 +116,7 @@ function printHelp() {
   --with-details        打开详情页（易触发 403，一般不推荐）
   --offline --html-file=...   离线解析已保存 HTML
   --dry-run             不入库
+  --skip-poi            入库后不查腾讯 POI
   --mode=merge|replace-keyword
 `);
 }
@@ -417,6 +422,20 @@ async function main() {
     sourcePage: buildSearchUrl(options.cityId, options.keyword),
   });
   console.log(`\n已写入 ${result.imported} 条 → ${dbPath}`);
+
+  if (!options.skipPoi && merchantRows.length) {
+    console.log("\n[3/3] 补全腾讯 POI（Top1）…");
+    const poiReport = await batchAutoPoi(db, {
+      merchant_uids: merchantRows.map((row) => row.merchant_uid),
+    });
+    console.log(`POI: ${poiReport.ok} 成功 / ${poiReport.fail} 失败`);
+    for (const row of poiReport.results) {
+      if (!row.ok) {
+        console.log(`  ✗ ${row.name} — ${row.error}`);
+      }
+    }
+  }
+
   console.log(`打开审核台: npm start → http://127.0.0.1:8787/merchants.html`);
 }
 

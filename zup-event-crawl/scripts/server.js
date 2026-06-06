@@ -15,11 +15,19 @@ const {
   replaceReviewState,
 } = require("../lib/review-db");
 const {
+  applyPoiSelection,
   getApprovedMerchants,
+  getExportImportMerchants,
+  getMerchantByUid,
   getMerchantReviewState,
   getMerchantsPayload,
   replaceMerchantReviewState,
+  updateMerchantImportPrep,
+  updatePoiCandidatesOnly,
 } = require("../lib/merchant-db");
+const { MERCHANT_TYPES } = require("../lib/merchant-import-ready");
+const { batchAutoPoi } = require("../lib/merchant-poi-batch");
+const { buildPoiKeyword, searchPoi, searchPoiForMerchant } = require("../lib/tencent-poi");
 
 const root = path.join(__dirname, "..");
 const publicDir = path.join(root, "public");
@@ -233,6 +241,148 @@ async function handleApi(req, res, pathname) {
       updatedAt: getMerchantReviewState(db).updatedAt,
       merchants: getApprovedMerchants(db),
     });
+    return;
+  }
+
+  if (req.method === "GET" && pathname === "/api/merchant-types") {
+    sendJson(res, 200, { types: MERCHANT_TYPES });
+    return;
+  }
+
+  if (req.method === "GET" && pathname === "/api/export-import-merchants") {
+    const parsed = url.parse(req.url, true);
+    const approvedOnly = parsed.query.approved_only !== "0";
+    const readyOnly = parsed.query.ready_only !== "0";
+    const records = getExportImportMerchants(db, { approvedOnly, readyOnly });
+    sendJson(res, 200, {
+      count: records.length,
+      merchants: records,
+    });
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/merchants/poi-search") {
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const keyword = String(body.keyword || "").trim();
+      const city = String(body.city || "全国").trim() || "全国";
+      if (!keyword) {
+        sendJson(res, 400, { ok: false, error: "缺少 keyword" });
+        return;
+      }
+      const result = await searchPoi({ keyword, city, pageSize: body.page_size || 10 });
+      sendJson(res, 200, { ok: true, ...result });
+    } catch (error) {
+      sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/merchants/poi-auto-batch") {
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const onlyApproved = body.only_approved === true;
+      const report = await batchAutoPoi(db, {
+        city: body.city || "",
+        only_pending: !onlyApproved && body.only_pending !== false,
+        only_approved: onlyApproved,
+        refresh: body.refresh === true,
+        limit: body.limit || 80,
+      });
+      sendJson(res, 200, report);
+    } catch (error) {
+      sendJson(res, 400, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  const merchantPoiMatch = pathname.match(/^\/api\/merchants\/([^/]+)\/poi$/);
+  if (req.method === "POST" && merchantPoiMatch) {
+    try {
+      const merchantUid = decodeURIComponent(merchantPoiMatch[1]);
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const merchant = getMerchantByUid(db, merchantUid);
+      if (!merchant) {
+        sendJson(res, 404, { ok: false, error: "商户不存在" });
+        return;
+      }
+
+      let poi = null;
+      let candidates = merchant.poi_candidates || [];
+
+      if (body.poi_id) {
+        poi = {
+          poi_id: body.poi_id,
+          title: body.title || "",
+          address: body.address || "",
+          latitude: body.latitude ?? null,
+          longitude: body.longitude ?? null,
+        };
+        if (Array.isArray(body.candidates)) {
+          candidates = body.candidates;
+        }
+      } else if (Number.isInteger(body.candidate_index) || Number.isFinite(body.candidate_index)) {
+        const idx = Number(body.candidate_index);
+        if (!candidates.length) {
+          const search = await searchPoiForMerchant(merchant.name, merchant.city || "全国");
+          candidates = search.items;
+        }
+        poi = candidates[idx];
+        if (!poi) {
+          sendJson(res, 400, { ok: false, error: "候选 POI 不存在" });
+          return;
+        }
+      } else {
+        const search = body.keyword
+          ? await searchPoi({
+            keyword: String(body.keyword).trim(),
+            city: body.city || merchant.city || "全国",
+          })
+          : await searchPoiForMerchant(merchant.name, body.city || merchant.city || "全国");
+        candidates = search.items;
+        if (body.candidates_only || body.refresh) {
+          const updated = updatePoiCandidatesOnly(db, merchantUid, candidates, {
+            merchant_type: body.merchant_type,
+          });
+          sendJson(res, 200, {
+            ok: true,
+            merchant: updated,
+            candidates,
+            keyword: search.keyword || body.keyword || "",
+          });
+          return;
+        }
+        poi = candidates[0];
+        if (!poi) {
+          sendJson(res, 404, { ok: false, error: "无 POI 结果", candidates: [] });
+          return;
+        }
+      }
+
+      const updated = applyPoiSelection(db, merchantUid, poi, {
+        candidates,
+        merchant_type: body.merchant_type,
+      });
+      sendJson(res, 200, { ok: true, merchant: updated, candidates });
+    } catch (error) {
+      sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  const merchantPrepMatch = pathname.match(/^\/api\/merchants\/([^/]+)\/import-prep$/);
+  if (req.method === "POST" && merchantPrepMatch) {
+    try {
+      const merchantUid = decodeURIComponent(merchantPrepMatch[1]);
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const updated = updateMerchantImportPrep(db, merchantUid, {
+        merchant_type: body.merchant_type,
+        name: body.name,
+      });
+      sendJson(res, 200, { ok: true, merchant: updated });
+    } catch (error) {
+      sendJson(res, 400, { ok: false, error: error.message });
+    }
     return;
   }
 
