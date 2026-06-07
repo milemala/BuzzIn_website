@@ -362,7 +362,7 @@
       if (state.poiBusy) return;
       const city = state.filters.city === "all" ? "" : state.filters.city;
       const label = city || "全部城市";
-      if (!window.confirm(`对「${label}」下尚未匹配 POI 的待定商户，按 Top1 自动补全？\n（会调用腾讯地图，略慢）`)) return;
+      if (!window.confirm(`对「${label}」下尚未匹配 POI 的待定商户，智能匹配 POI？\n（会调用腾讯地图，略慢）`)) return;
 
       state.poiBusy = true;
       els.batchPoiBtn.disabled = true;
@@ -625,13 +625,13 @@
                   <div class="import-meta">
                     ${item.address_poi_id
     ? `POI：<strong>${escapeHtml(item.poi_title || item.name)}</strong><br>地址：${escapeHtml(item.poi_address || item.address)}<br>ID：${escapeHtml(item.address_poi_id)}<br>坐标：${item.longitude}, ${item.latitude}`
-    : "尚未匹配 POI，可点「自动 Top1」或从候选里改选"}
+    : "尚未匹配 POI，可点「智能匹配」或从候选里改选"}
                   </div>
                   <div class="card-actions" style="margin-top:0">
-                    <button class="mini" type="button" data-poi-action="auto">自动 Top1</button>
+                    <button class="mini" type="button" data-poi-action="auto">智能匹配</button>
                     <button class="mini" type="button" data-poi-action="refresh">重新查询</button>
                   </div>
-                  <p class="poi-hint">自动 Top1：按店名智能匹配并直接采用第一条。重新查询：只刷新下方候选列表，不改动当前已选 POI。</p>
+                  <p class="poi-hint">智能匹配：在搜索结果里按店名相似度自动选最佳 POI。重新查询：只刷新候选列表，不改动当前已选。</p>
                   <div class="poi-search-row">
                     <input type="text" data-poi-keyword value="${escapeHtml(poiKeywordValue(item))}" placeholder="自定义关键词，如 长沙 黑犬酒吧">
                     <button class="mini" type="button" data-poi-action="custom-search">自由搜索</button>

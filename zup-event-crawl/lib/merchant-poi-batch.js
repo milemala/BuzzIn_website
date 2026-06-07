@@ -1,6 +1,6 @@
 "use strict";
 
-const { searchPoiForMerchant } = require("./tencent-poi");
+const { pickBestPoiForMerchant, searchPoiForMerchant } = require("./tencent-poi");
 const {
   applyPoiSelection,
   getMerchantByUid,
@@ -12,7 +12,7 @@ function sleep(ms) {
 }
 
 /**
- * 为商户列表批量取腾讯 POI Top1 并写入 review.db。
+ * 为商户列表批量搜索腾讯 POI，按店名相似度选最佳候选并写入 review.db。
  * @param {import('node:sqlite').DatabaseSync} db
  * @param {{
  *   merchants?: object[],
@@ -66,16 +66,16 @@ async function batchAutoPoi(db, options = {}) {
           error: "无 POI 结果",
         });
       } else {
-        const top = items[0];
-        applyPoiSelection(db, merchant.merchant_uid, top, { candidates: items });
+        const { poi: best } = pickBestPoiForMerchant(merchant.name, items);
+        applyPoiSelection(db, merchant.merchant_uid, best, { candidates: items });
         report.ok += 1;
         report.results.push({
           merchant_uid: merchant.merchant_uid,
           name: merchant.name,
           city: merchant.city,
           ok: true,
-          poi_id: top.poi_id,
-          poi_title: top.title,
+          poi_id: best.poi_id,
+          poi_title: best.title,
         });
       }
     } catch (error) {

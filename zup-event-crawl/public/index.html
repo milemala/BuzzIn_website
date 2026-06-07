@@ -34,11 +34,29 @@
     .btn.primary{border-color:#111;background:#111;color:#fff}
     .btn:hover{transform:translateY(-1px)}
     .wrap{max-width:1180px;margin:0 auto;padding:18px 20px 44px}
-    .stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:14px}
+    .stats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-bottom:14px}
     .stat{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px}
+    .stat.filterable{cursor:pointer;transition:border-color .15s,box-shadow .15s}
+    .stat.filterable:hover{border-color:#c8b89f}
+    .stat.filterable.active{border-color:#9a7200;background:#fffdf4;box-shadow:0 0 0 1px #e6cf66}
     .stat b{display:block;font-size:22px;line-height:1.1}
-    .stat span{display:block;margin-top:5px;color:var(--muted);font-size:12px}
+    .stat-label{display:block;margin-top:5px;color:var(--muted);font-size:12px;font-weight:700}
+    .stat-sub{display:block;margin-top:2px;color:#9a7200;font-size:11px;line-height:1.3}
+    .stat.filterable.active .stat-sub{color:#7a5a00}
     .filters{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+    #cityFilter{display:flex;flex-wrap:wrap;gap:8px;border:0;background:transparent;overflow:visible}
+    #cityFilter button{
+      height:auto;min-width:88px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;
+      background:#fff;color:var(--text);display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left
+    }
+    #cityFilter button.active{background:#111;border-color:#111;color:#fff}
+    #cityFilter button.has-pending:not(.active){border-color:#e6cf66;background:#fffdf4}
+    .city-main{font-size:14px;font-weight:800;line-height:1.1}
+    .city-sub{display:flex;flex-wrap:wrap;gap:6px;font-size:11px;line-height:1.2;opacity:.78}
+    #cityFilter button.active .city-sub{opacity:.85}
+    .city-pending{font-weight:800;color:#9a7200}
+    #cityFilter button.active .city-pending{color:#ffd84d}
+    .city-pending.is-zero{opacity:.55;font-weight:600}
     .date-filters{margin:-2px 0 16px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;padding-bottom:4px}
     .date-filters .seg{display:flex;width:max-content;min-width:100%}
     .date-filters .seg button{height:46px;min-width:74px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;line-height:1.1;white-space:nowrap}
@@ -76,6 +94,40 @@
     .mini.pending.active{background:var(--yellow);border-color:var(--yellow);color:#211b10}
     .link{margin-left:auto;color:#6b5b00;text-decoration:none;font-size:13px}
     .empty{padding:44px;text-align:center;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:8px}
+    .pager{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:16px;padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+    .pager-info{font-size:13px;color:var(--muted)}
+    .pager-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+    .pager-actions .mini{min-width:36px}
+    .pager-actions .mini.active{background:#111;border-color:#111;color:#fff}
+    .pager-actions .mini:disabled{opacity:.45;cursor:not-allowed}
+    .back-top{
+      position:fixed;right:20px;bottom:20px;z-index:30;
+      width:44px;height:44px;border:1px solid var(--line);border-radius:999px;
+      background:#fff;color:var(--ink);cursor:pointer;box-shadow:0 4px 16px rgba(20,16,8,.12);
+      opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .2s,transform .2s,visibility .2s
+    }
+    .back-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
+    .back-top:hover{border-color:#c8b89f}
+    .import-block{margin-top:12px;padding:12px;border:1px solid var(--line);border-radius:8px;background:#f7f6f2}
+    .import-block h3{margin:0 0 8px;font-size:13px;font-weight:800;color:#3a342c}
+    .import-row{display:grid;gap:8px;font-size:13px}
+    .import-meta{color:var(--muted);font-size:12px;line-height:1.45;word-break:break-all}
+    .import-field{display:grid;gap:4px}
+    .import-field label{font-size:11px;font-weight:700;color:var(--muted)}
+    .import-field select,.import-field input{height:32px;border:1px solid var(--line);border-radius:6px;padding:0 8px;background:#fff}
+    .import-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+    .import-ready-tag{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px;background:#e7f5ec;color:#197549}
+    .import-ready-tag.no{background:#fde8e4;color:#ad382c}
+    .poi-hint{margin:6px 0 0;font-size:11px;line-height:1.45;color:var(--muted)}
+    .poi-search-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .poi-search-row input{flex:1 1 180px;height:32px;border:1px solid var(--line);border-radius:6px;padding:0 8px;background:#fff}
+    .poi-cands-label{margin-top:10px;font-size:11px;font-weight:700;color:var(--muted)}
+    .poi-cands{display:grid;gap:6px;margin-top:6px}
+    .poi-cand{display:flex;gap:8px;align-items:flex-start;padding:8px;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:pointer;text-align:left}
+    .poi-cand:hover{border-color:#c8b89f}
+    .poi-cand.active{border-color:#2a9d68;background:#f2fbf6}
+    .poi-cand b{display:block;font-size:13px}
+    .poi-cand span{display:block;font-size:11px;color:var(--muted);margin-top:2px}
     dialog{border:1px solid var(--line);border-radius:8px;padding:0;max-width:min(840px,92vw);width:840px;background:#fffdf8;color:var(--text)}
     dialog::backdrop{background:rgba(0,0,0,.28)}
     .modal-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--line)}
@@ -106,7 +158,8 @@
       </div>
       <div class="actions">
         <button class="btn" id="resetBtn">重置审核</button>
-        <button class="btn primary" id="exportBtn">导出通过列表</button>
+        <button class="btn" id="batchPrepBtn">批量补全入库</button>
+        <button class="btn primary" id="exportBtn">导出入库 JSON</button>
       </div>
     </div>
   </header>
@@ -120,6 +173,7 @@
       <div class="seg" id="statusFilter">
         <button data-status="all" class="active">全部</button>
         <button data-status="suggested">推荐</button>
+        <button data-status="rule-blocked">挡下待处理</button>
         <button data-status="approved">已通过</button>
         <button data-status="rejected">已拒绝</button>
         <button data-status="pending">待定</button>
@@ -142,11 +196,14 @@
       </div>
     </section>
     <section class="grid" id="list"></section>
+    <nav class="pager" id="pager" hidden aria-label="分页"></nav>
   </main>
+
+  <button class="back-top" id="backTopBtn" type="button" title="回到顶部" aria-label="回到顶部">↑</button>
 
   <dialog id="exportDialog">
     <div class="modal-head">
-      <h2>通过列表 JSON</h2>
+      <h2>入库 JSON（now/sample 格式）</h2>
       <button class="btn" onclick="document.getElementById('exportDialog').close()">关闭</button>
     </div>
     <textarea id="exportText" readonly></textarea>
@@ -165,10 +222,22 @@
     let dateFilter = "all";
     let sortMode = "source";
     let searchTerm = "";
+    let page = 1;
+    const PAGE_SIZE = 20;
+    const DEFAULT_PUBLISH_USER_ID = "579362104";
+    const DEFAULT_NOW_TYPE = 3;
+    let prepBusy = false;
+    const poiKeywords = {};
+    const poiPreviews = {};
+    const poiAutoTried = new Set();
+    const poiAutoQueue = [];
+    let poiAutoRunning = false;
 
     const sourceMeta = document.getElementById("sourceMeta");
     const statsEl = document.getElementById("stats");
     const listEl = document.getElementById("list");
+    const pagerEl = document.getElementById("pager");
+    const backTopBtn = document.getElementById("backTopBtn");
     const cityFilterEl = document.getElementById("cityFilter");
     const statusFilterEl = document.getElementById("statusFilter");
     const sourceFilterEl = document.getElementById("sourceFilter");
@@ -182,25 +251,252 @@
       return reviewState[event.eventUid || event.id] || "pending";
     }
 
+    function isRuleBlockedUnprocessed(event) {
+      return !event.suggested && getStatus(event) === "pending";
+    }
+
+    function setStatusFilter(next) {
+      statusFilter = next;
+      statusFilterEl.querySelectorAll("button").forEach((item) => {
+        item.classList.toggle("active", item.dataset.status === next);
+      });
+      resetPage();
+      render();
+    }
+
+    function effectivePublishUserId(event) {
+      return String(event.publish_user_id || DEFAULT_PUBLISH_USER_ID).trim() || DEFAULT_PUBLISH_USER_ID;
+    }
+
+    function effectiveNowType(event) {
+      const n = Number(event.now_type);
+      return n === 1 || n === 3 ? n : DEFAULT_NOW_TYPE;
+    }
+
+    function resolvePoiCoordinates(event) {
+      const poiId = String(event.location_poi_id || "").trim();
+      if (!poiId) return { latitude: null, longitude: null };
+      if (event.poi_latitude != null && event.poi_longitude != null) {
+        return { latitude: event.poi_latitude, longitude: event.poi_longitude };
+      }
+      const match = (event.poi_candidates || []).find((item) => item.poi_id === poiId);
+      if (match && match.latitude != null && match.longitude != null) {
+        return { latitude: match.latitude, longitude: match.longitude };
+      }
+      return { latitude: null, longitude: null };
+    }
+
+    function isImportReady(event) {
+      if (!effectivePublishUserId(event)) return false;
+      if (![1, 3].includes(effectiveNowType(event))) return false;
+      if (!String(event.title || "").trim()) return false;
+      if (!String(event.location_poi_id || "").trim()) return false;
+      const poiCoords = resolvePoiCoordinates(event);
+      if (poiCoords.latitude == null || poiCoords.longitude == null) return false;
+      if (!event.start_at) return false;
+      if (!event.expired_at) return false;
+      return true;
+    }
+
+    function buildImportRecord(event) {
+      const images = event.image ? [event.image] : [];
+      const loc = String(event.location || "").trim();
+      const poiCoords = resolvePoiCoordinates(event);
+      return {
+        user_id: effectivePublishUserId(event),
+        now_title: String(event.title || "").slice(0, 128),
+        now_content: String(event.body || event.title || "").slice(0, 2000),
+        now_type: effectiveNowType(event),
+        images,
+        group_id: "",
+        location_poi_id: event.location_poi_id || "",
+        location_name: event.poi_title || loc.split(/\s+/)[0] || "",
+        location_address: event.poi_address || loc,
+        location_latitude: poiCoords.latitude,
+        location_longitude: poiCoords.longitude,
+        start_at: event.start_at || "",
+        expired_at: event.expired_at || "",
+      };
+    }
+
     function getApprovedEvents() {
       return getActiveEvents()
         .filter((event) => getStatus(event) === "approved")
-        .map((event) => ({
-          title: event.title,
-          city: event.city,
-          district: event.district,
-          startDate: event.startDate,
-          endDate: event.endDate,
-          timeText: event.timeText,
-          location: event.location,
-          latitude: event.latitude,
-          longitude: event.longitude,
-          image: event.image,
-          body: event.body,
-          originalLink: event.originalLink,
-          source: event.source,
-          category: event.category,
-        }));
+        .map((event) => buildImportRecord(event));
+    }
+
+    function upsertEvent(updated) {
+      const idx = payload.events.findIndex((item) => (item.eventUid || item.event_uid) === (updated.eventUid || updated.event_uid));
+      if (idx >= 0) payload.events[idx] = { ...payload.events[idx], ...updated };
+    }
+
+    function suggestPoiKeyword(event) {
+      const location = String(event.location || "").trim();
+      const city = String(event.city || "").trim();
+      if (!location) return city;
+      if (!city || city === "全国" || location.includes(city)) return location;
+      return `${city} ${location}`;
+    }
+
+    function poiKeywordValue(event) {
+      const uid = event.eventUid || event.event_uid;
+      return poiKeywords[uid] !== undefined ? poiKeywords[uid] : suggestPoiKeyword(event);
+    }
+
+    async function saveImportPrep(uid, patch) {
+      setSaveState("保存入库字段...", "warn");
+      const response = await fetch(`/api/events/${encodeURIComponent(uid)}/import-prep`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(patch),
+      });
+      const data = await response.json();
+      if (!response.ok || !data.ok) {
+        setSaveState(data.error || "保存失败", "error");
+        return null;
+      }
+      upsertEvent(data.event);
+      setSaveState("已保存", "ok");
+      render();
+      return data.event;
+    }
+
+    async function applyPoi(uid, body) {
+      const isRefresh = Boolean(body.refresh || body.candidates_only);
+      setSaveState(isRefresh ? "刷新候选 POI..." : "查询 POI...", "warn");
+      const response = await fetch(`/api/events/${encodeURIComponent(uid)}/poi`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const data = await response.json();
+      if (data.rejected) {
+        reviewState[uid] = "rejected";
+        saveState();
+        if (data.event) upsertEvent(data.event);
+        setSaveState(data.error || "无 POI，已自动拒绝", "warn");
+        render();
+        return null;
+      }
+      if (!response.ok || !data.ok) {
+        setSaveState(data.error || "POI 失败", "error");
+        return null;
+      }
+      upsertEvent(data.event);
+      delete poiPreviews[uid];
+      setSaveState(isRefresh ? `已刷新 ${(data.candidates || []).length} 条候选` : "POI 已更新", "ok");
+      render();
+      return data.event;
+    }
+
+    async function searchPoiCustom(uid, card) {
+      const input = card.querySelector("[data-poi-keyword]");
+      const keyword = String(input?.value || "").trim();
+      const event = payload.events.find((item) => (item.eventUid || item.event_uid) === uid);
+      if (!keyword) {
+        setSaveState("请输入搜索关键词", "warn");
+        return;
+      }
+      poiKeywords[uid] = keyword;
+      setSaveState("自由搜索 POI...", "warn");
+      const response = await fetch("/api/merchants/poi-search", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ keyword, city: event?.city || "全国" }),
+      });
+      const data = await response.json();
+      if (!response.ok || !data.ok) {
+        setSaveState(data.error || "搜索失败", "error");
+        return;
+      }
+      poiPreviews[uid] = data.items || [];
+      setSaveState(`找到 ${poiPreviews[uid].length} 条，点选后保存`, "ok");
+      render();
+    }
+
+    async function autoPoiForEvent(event) {
+      const uid = event.eventUid || event.event_uid;
+      if (!uid || poiAutoTried.has(uid)) return;
+      if (event.location_poi_id) return;
+      if ((event.poi_candidates || []).length) return;
+      poiAutoTried.add(uid);
+      await applyPoi(uid, { refresh: true, candidates_only: true });
+    }
+
+    async function drainPoiAutoQueue() {
+      if (poiAutoRunning) return;
+      poiAutoRunning = true;
+      while (poiAutoQueue.length) {
+        const event = poiAutoQueue.shift();
+        await autoPoiForEvent(event);
+        await new Promise((resolve) => setTimeout(resolve, 360));
+      }
+      poiAutoRunning = false;
+    }
+
+    function queueAutoPoiForVisible(events) {
+      for (const event of events) {
+        const uid = event.eventUid || event.event_uid;
+        if (!event.location_poi_id && !poiAutoTried.has(uid) && !(event.poi_candidates || []).length) {
+          poiAutoQueue.push(event);
+        }
+      }
+      drainPoiAutoQueue();
+    }
+
+    async function runBatchPrep() {
+      if (prepBusy) return;
+      if (!window.confirm("为全部未过期活动写入默认发布者/now_type，并对缺 POI 的条目智能匹配 POI？\n（会调用腾讯地图，略慢）")) return;
+      prepBusy = true;
+      document.getElementById("batchPrepBtn").disabled = true;
+      setSaveState("批量补全入库中...", "warn");
+      try {
+        const response = await fetch("/api/events/import-prep-batch", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({}),
+        });
+        const data = await response.json();
+        if (!response.ok || !data.ok) throw new Error(data.error || "批量失败");
+        await loadServerState();
+        await loadEvents();
+        const rejected = data.poi?.rejected || 0;
+        setSaveState(`默认字段 ${data.defaults.updated} 条 · POI ${data.poi.ok} 成功 / ${data.poi.fail} 失败${rejected ? ` / 自动拒绝 ${rejected}` : ""}`, "ok");
+        render();
+      } catch (error) {
+        setSaveState(error.message || "批量失败", "error");
+      } finally {
+        prepBusy = false;
+        document.getElementById("batchPrepBtn").disabled = false;
+      }
+    }
+
+    function renderPoiCandButtons(candidates, event, indexAttr) {
+      return candidates.map((p, idx) => `
+        <button type="button" class="poi-cand ${event.location_poi_id === p.poi_id ? "active" : ""}" ${indexAttr}="${idx}">
+          <div>
+            <b>${escapeHtml(p.title)}</b>
+            <span>${escapeHtml(p.address)}</span>
+            <span>POI ${escapeHtml(p.poi_id)}</span>
+          </div>
+        </button>
+      `).join("");
+    }
+
+    function renderPoiBlock(event) {
+      const uid = event.eventUid || event.event_uid;
+      const preview = poiPreviews[uid] || [];
+      const saved = event.poi_candidates || [];
+      let html = "";
+      if (preview.length) {
+        html += `<div class="poi-cands-label">自定义搜索结果（点选后保存）</div>
+          <div class="poi-cands">${renderPoiCandButtons(preview, event, "data-poi-preview-index")}</div>`;
+      }
+      if (saved.length) {
+        html += `<div class="poi-cands-label">${preview.length ? "已保存候选" : "候选 POI"}</div>
+          <div class="poi-cands">${renderPoiCandButtons(saved, event, "data-poi-index")}</div>`;
+      }
+      return html;
     }
 
     function setSaveState(message, type) {
@@ -304,6 +600,41 @@
       });
     }
 
+    function getExpiredEvents() {
+      return payload.events.filter((event) => isExpired(event));
+    }
+
+    function cityStats(cityKey) {
+      const list = cityKey === "all"
+        ? payload.events.filter((event) => !isExpired(event))
+        : payload.events.filter((event) => !isExpired(event) && getCityKey(event) === cityKey);
+      return {
+        approved: list.filter((event) => getStatus(event) === "approved").length,
+        pending: list.filter((event) => getStatus(event) === "pending").length,
+      };
+    }
+
+    function resetPage() {
+      page = 1;
+    }
+
+    function clampPage(totalItems) {
+      const totalPages = Math.max(1, Math.ceil(totalItems / PAGE_SIZE));
+      if (page > totalPages) page = totalPages;
+      if (page < 1) page = 1;
+      return totalPages;
+    }
+
+    function paginateEvents(events) {
+      const totalPages = clampPage(events.length);
+      const start = (page - 1) * PAGE_SIZE;
+      return {
+        list: events.slice(start, start + PAGE_SIZE),
+        total: events.length,
+        totalPages,
+      };
+    }
+
     function getSourcePosition(event, index) {
       return Number.isFinite(Number(event.sourcePosition)) ? Number(event.sourcePosition) : index + 1;
     }
@@ -335,6 +666,7 @@
         const status = getStatus(event);
         const searchText = `${event.title} ${event.location} ${event.owner} ${event.category}`.toLowerCase();
         if (statusFilter === "suggested" && !event.suggested) return false;
+        if (statusFilter === "rule-blocked" && !isRuleBlockedUnprocessed(event)) return false;
         if (["approved", "rejected", "pending"].includes(statusFilter) && status !== statusFilter) return false;
         if (sourceFilter !== "all" && getSourceKey(event) !== sourceFilter) return false;
         if (categoryFilter !== "all" && event.category !== categoryFilter) return false;
@@ -350,27 +682,62 @@
     function renderStats() {
       const activeEvents = getActiveEvents();
       const total = activeEvents.length;
+      const expired = getExpiredEvents().length;
       const suggested = activeEvents.filter((event) => event.suggested).length;
-      const ruleBlocked = activeEvents.filter((event) => !event.suggested).length;
+      const ruleBlockedPending = activeEvents.filter((event) => isRuleBlockedUnprocessed(event)).length;
       const approved = activeEvents.filter((event) => getStatus(event) === "approved").length;
       const rejected = activeEvents.filter((event) => getStatus(event) === "rejected").length;
-      statsEl.innerHTML = [
-        ["未过期总数", total],
-        ["规则推荐", suggested],
-        ["规则挡下", ruleBlocked],
-        ["人工通过", approved],
-        ["人工拒绝", rejected],
-      ].map(([label, value]) => `<div class="stat"><b>${value}</b><span>${label}</span></div>`).join("");
+      const statCards = [
+        { label: "未过期总数", value: total },
+        { label: "已过期", value: expired },
+        { label: "规则推荐", value: suggested },
+        {
+          label: "规则挡下",
+          value: ruleBlockedPending,
+          sub: "待处理",
+          filter: "rule-blocked",
+          active: statusFilter === "rule-blocked",
+        },
+        { label: "人工通过", value: approved },
+        { label: "人工拒绝", value: rejected },
+      ];
+      statsEl.innerHTML = statCards.map((card) => {
+        const classes = ["stat"];
+        if (card.filter) classes.push("filterable");
+        if (card.active) classes.push("active");
+        const filterAttr = card.filter ? ` data-status-filter="${card.filter}"` : "";
+        const subHtml = card.sub ? `<span class="stat-sub">${escapeHtml(card.sub)}</span>` : "";
+        return `<div class="${classes.join(" ")}"${filterAttr}><b>${card.value}</b><span class="stat-label">${escapeHtml(card.label)}</span>${subHtml}</div>`;
+      }).join("");
+    }
+
+    function renderCityChip(cityKey, label) {
+      const { approved, pending } = cityStats(cityKey);
+      const isActive = cityFilter === cityKey;
+      const pendingClass = pending > 0 ? "" : " is-zero";
+      return `
+        <button
+          type="button"
+          data-city="${escapeHtml(cityKey)}"
+          class="${isActive ? "active" : ""} ${pending > 0 ? "has-pending" : ""}"
+        >
+          <span class="city-main">${escapeHtml(label)}</span>
+          <span class="city-sub">
+            <span>已通过 ${approved}</span>
+            <span class="city-pending${pendingClass}">待定 ${pending}</span>
+          </span>
+        </button>
+      `;
     }
 
     function renderCityFilter() {
-      const cities = [...new Set(payload.events.map((event) => getCityKey(event)))];
-      const activeCount = payload.events.filter((event) => !isExpired(event)).length;
-      cityFilterEl.innerHTML = `<button data-city="all" class="${cityFilter === "all" ? "active" : ""}">全部城市 ${activeCount}</button>` +
-        cities.map((city) => {
-          const count = payload.events.filter((event) => !isExpired(event) && getCityKey(event) === city).length;
-          return `<button data-city="${escapeHtml(city)}" class="${cityFilter === city ? "active" : ""}">${escapeHtml(city)} ${count}</button>`;
-        }).join("");
+      const cities = [...new Set(payload.events.map((event) => getCityKey(event)))].sort((a, b) => {
+        const pendingDiff = cityStats(b).pending - cityStats(a).pending;
+        if (pendingDiff !== 0) return pendingDiff;
+        return a.localeCompare(b, "zh-CN");
+      });
+      cityFilterEl.innerHTML = renderCityChip("all", "全部城市")
+        + cities.map((city) => renderCityChip(city, city)).join("");
     }
 
     function renderCategoryFilter() {
@@ -427,17 +794,60 @@
         }).join("");
     }
 
+    function renderPager(meta) {
+      if (!meta.total) {
+        pagerEl.hidden = true;
+        pagerEl.innerHTML = "";
+        return;
+      }
+
+      const { total, totalPages } = meta;
+      const from = (page - 1) * PAGE_SIZE + 1;
+      const to = Math.min(page * PAGE_SIZE, total);
+
+      let pageButtons = "";
+      const windowSize = 5;
+      let startPage = Math.max(1, page - Math.floor(windowSize / 2));
+      let endPage = Math.min(totalPages, startPage + windowSize - 1);
+      startPage = Math.max(1, endPage - windowSize + 1);
+      for (let p = startPage; p <= endPage; p += 1) {
+        pageButtons += `<button type="button" class="mini ${p === page ? "active" : ""}" data-page="${p}">${p}</button>`;
+      }
+
+      pagerEl.hidden = false;
+      pagerEl.innerHTML = `
+        <div class="pager-info">第 ${from}–${to} 条，共 ${total} 条 · 第 ${page} / ${totalPages} 页</div>
+        <div class="pager-actions">
+          <button type="button" class="mini" data-page="prev" ${page <= 1 ? "disabled" : ""}>上一页</button>
+          ${pageButtons}
+          <button type="button" class="mini" data-page="next" ${page >= totalPages ? "disabled" : ""}>下一页</button>
+        </div>
+      `;
+    }
+
+    function scrollToListTop() {
+      listEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
     function renderList() {
-      const events = getFilteredEvents();
+      const filtered = getFilteredEvents();
+      const { list: events, total, totalPages } = paginateEvents(filtered);
+      renderPager({ total, totalPages });
+
       if (!events.length) {
-        listEl.innerHTML = `<div class="empty">当前筛选下没有活动</div>`;
+        const emptyHint = statusFilter === "rule-blocked"
+          ? "规则挡下的待处理项已清空，或当前筛选下没有未处理的挡下活动"
+          : "当前筛选下没有活动";
+        listEl.innerHTML = `<div class="empty">${emptyHint}</div>`;
         return;
       }
       listEl.innerHTML = events.map((event) => {
         const status = getStatus(event);
+        const uid = event.eventUid || event.event_uid || event.id;
         const scoreClass = event.score >= 70 ? "good" : event.score < 60 ? "bad" : "";
+        const ready = isImportReady(event);
         return `
-          <article class="card">
+          <article class="card" data-uid="${escapeHtml(uid)}">
             <div class="cover-wrap">
               <img class="cover" src="${escapeHtml(imageSrc(event.image))}" alt="${escapeHtml(event.title)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('broken')">
               <div class="cover-fallback">图片加载失败<br>可点原始链接查看</div>
@@ -453,6 +863,7 @@
                 <span class="chip">${escapeHtml(event.district || event.city)}</span>
                 <span class="chip">${event.suggested ? "规则推荐" : "规则挡下"}</span>
                 <span class="chip">来源#${escapeHtml(event.sourcePosition || "-")}</span>
+                <span class="import-ready-tag ${ready ? "" : "no"}">${ready ? "可入库" : "未齐"}</span>
               </div>
               <div class="info">
                 <div>时间：${escapeHtml(event.timeText)}</div>
@@ -462,16 +873,59 @@
               </div>
               <div class="summary">${escapeHtml(event.body || "")}</div>
               <div class="reason">${escapeHtml(event.reviewReason)}</div>
+              <div class="import-block">
+                <h3>入库准备</h3>
+                <div class="import-row">
+                  <div class="import-field">
+                    <label for="user-${escapeHtml(uid)}">发布者 user_id</label>
+                    <input id="user-${escapeHtml(uid)}" type="text" data-import-field="publish_user_id" value="${escapeHtml(effectivePublishUserId(event))}" placeholder="579362104">
+                  </div>
+                  <div class="import-field">
+                    <label for="type-${escapeHtml(uid)}">now_type（1 动态 / 3 预约）</label>
+                    <select id="type-${escapeHtml(uid)}" data-import-field="now_type">
+                      <option value="1" ${effectiveNowType(event) === 1 ? "selected" : ""}>1 动态</option>
+                      <option value="3" ${effectiveNowType(event) === 3 ? "selected" : ""}>3 预约</option>
+                    </select>
+                  </div>
+                  <div class="import-meta">
+                    入库时间：<strong>start_at</strong> ${escapeHtml(event.start_at || "—")}<br>
+                    <strong>expired_at</strong> ${escapeHtml(event.expired_at || "—")}
+                  </div>
+                  <div class="import-meta">
+                    ${event.location_poi_id
+    ? (() => {
+      const c = resolvePoiCoordinates(event);
+      const coordText = c.latitude != null && c.longitude != null
+        ? `${c.longitude}, ${c.latitude}（腾讯 POI）`
+        : "<span style=\"color:#ad382c\">POI 坐标缺失，请重新点选</span>";
+      return `POI：<strong>${escapeHtml(event.poi_title || event.location)}</strong><br>地址：${escapeHtml(event.poi_address || event.location)}<br>ID：${escapeHtml(event.location_poi_id)}<br>坐标：${coordText}`;
+    })()
+    : "<span style=\"color:#ad382c\">尚未匹配 POI</span>"}
+                  </div>
+                  <div class="import-actions">
+                    <button class="mini" type="button" data-poi-action="auto">智能匹配</button>
+                    <button class="mini" type="button" data-poi-action="refresh">重新查询</button>
+                  </div>
+                  <p class="poi-hint">按活动地点搜索腾讯 POI，并在候选里自动选最相似的一条。重新查询只刷新候选列表，不改当前已选。</p>
+                  <div class="poi-search-row">
+                    <input type="text" data-poi-keyword value="${escapeHtml(poiKeywordValue(event))}" placeholder="自定义关键词，如 长沙 谢子龙艺术馆">
+                    <button class="mini" type="button" data-poi-action="custom-search">自由搜索</button>
+                  </div>
+                  ${renderPoiBlock(event)}
+                </div>
+              </div>
               <div class="card-actions">
-                <button class="mini approve ${status === "approved" ? "active" : ""}" data-id="${escapeHtml(event.eventUid || event.id)}" data-next="approved">通过</button>
-                <button class="mini pending ${status === "pending" ? "active" : ""}" data-id="${escapeHtml(event.eventUid || event.id)}" data-next="pending">待定</button>
-                <button class="mini reject ${status === "rejected" ? "active" : ""}" data-id="${escapeHtml(event.eventUid || event.id)}" data-next="rejected">拒绝</button>
+                <button class="mini approve ${status === "approved" ? "active" : ""}" data-id="${escapeHtml(uid)}" data-next="approved">通过</button>
+                <button class="mini pending ${status === "pending" ? "active" : ""}" data-id="${escapeHtml(uid)}" data-next="pending">待定</button>
+                <button class="mini reject ${status === "rejected" ? "active" : ""}" data-id="${escapeHtml(uid)}" data-next="rejected">拒绝</button>
                 <a class="link" href="${escapeHtml(event.originalLink)}" target="_blank" rel="noreferrer">原始链接</a>
               </div>
             </div>
           </article>
         `;
       }).join("");
+
+      queueAutoPoiForVisible(events);
     }
 
     function render() {
@@ -496,21 +950,28 @@
       sourceFilter = "all";
       categoryFilter = "all";
       dateFilter = "all";
+      resetPage();
       render();
+    });
+
+    statsEl.addEventListener("click", (event) => {
+      const card = event.target.closest("[data-status-filter]");
+      if (!card) return;
+      const next = card.dataset.statusFilter;
+      setStatusFilter(statusFilter === next ? "all" : next);
     });
 
     statusFilterEl.addEventListener("click", (event) => {
       const button = event.target.closest("button[data-status]");
       if (!button) return;
-      statusFilter = button.dataset.status;
-      statusFilterEl.querySelectorAll("button").forEach((item) => item.classList.toggle("active", item === button));
-      renderList();
+      setStatusFilter(button.dataset.status);
     });
 
     sourceFilterEl.addEventListener("click", (event) => {
       const button = event.target.closest("button[data-source]");
       if (!button || button.disabled) return;
       sourceFilter = button.dataset.source;
+      resetPage();
       render();
     });
 
@@ -518,6 +979,7 @@
       const button = event.target.closest("button[data-category]");
       if (!button) return;
       categoryFilter = button.dataset.category;
+      resetPage();
       render();
     });
 
@@ -525,6 +987,7 @@
       const button = event.target.closest("button[data-date]");
       if (!button) return;
       dateFilter = button.dataset.date;
+      resetPage();
       render();
     });
 
@@ -533,18 +996,113 @@
       if (!button) return;
       sortMode = button.dataset.sort;
       sortModeEl.querySelectorAll("button").forEach((item) => item.classList.toggle("active", item === button));
-      renderList();
+      resetPage();
+      render();
     });
+
+    pagerEl.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-page]");
+      if (!button || button.disabled) return;
+      const filtered = getFilteredEvents();
+      const { totalPages } = paginateEvents(filtered);
+      const raw = button.dataset.page;
+      if (raw === "prev") {
+        page -= 1;
+        render();
+        scrollToListTop();
+        return;
+      }
+      if (raw === "next") {
+        page += 1;
+        render();
+        scrollToListTop();
+        return;
+      }
+      const nextPage = Number(raw);
+      if (!Number.isFinite(nextPage) || nextPage < 1 || nextPage > totalPages) return;
+      page = nextPage;
+      render();
+      scrollToListTop();
+    });
+
+    backTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    window.addEventListener("scroll", () => {
+      backTopBtn.classList.toggle("visible", window.scrollY > 320);
+    }, { passive: true });
 
     listEl.addEventListener("click", (event) => {
       const button = event.target.closest("button[data-next]");
-      if (!button) return;
-      setStatus(button.dataset.id, button.dataset.next);
+      if (button) {
+        setStatus(button.dataset.id, button.dataset.next);
+        return;
+      }
+
+      const card = event.target.closest("article.card[data-uid]");
+      if (!card) return;
+      const uid = card.dataset.uid;
+
+      const poiBtn = event.target.closest("button[data-poi-action]");
+      if (poiBtn) {
+        const action = poiBtn.dataset.poiAction;
+        if (action === "auto") applyPoi(uid, {});
+        else if (action === "refresh") applyPoi(uid, { refresh: true, candidates_only: true });
+        else if (action === "custom-search") searchPoiCustom(uid, card);
+        return;
+      }
+
+      const previewBtn = event.target.closest("button[data-poi-preview-index]");
+      if (previewBtn) {
+        const list = poiPreviews[uid] || [];
+        const poi = list[Number(previewBtn.dataset.poiPreviewIndex)];
+        if (!poi) return;
+        applyPoi(uid, {
+          poi_id: poi.poi_id,
+          title: poi.title,
+          address: poi.address,
+          latitude: poi.latitude,
+          longitude: poi.longitude,
+          candidates: list,
+        });
+        return;
+      }
+
+      const candBtn = event.target.closest("button[data-poi-index]");
+      if (candBtn) {
+        applyPoi(uid, { candidate_index: Number(candBtn.dataset.poiIndex) });
+      }
+    });
+
+    listEl.addEventListener("change", (event) => {
+      const field = event.target.closest("[data-import-field]");
+      if (!field) return;
+      const card = field.closest("article.card[data-uid]");
+      if (!card) return;
+      if (field.dataset.importField !== "now_type") return;
+      saveImportPrep(card.dataset.uid, { now_type: Number(field.value) });
+    });
+
+    listEl.addEventListener("blur", (event) => {
+      const field = event.target.closest("[data-import-field='publish_user_id']");
+      if (!field) return;
+      const card = field.closest("article.card[data-uid]");
+      if (!card) return;
+      saveImportPrep(card.dataset.uid, { publish_user_id: field.value.trim() });
+    }, true);
+
+    listEl.addEventListener("input", (event) => {
+      const input = event.target.closest("[data-poi-keyword]");
+      if (!input) return;
+      const card = input.closest("article.card[data-uid]");
+      if (card) poiKeywords[card.dataset.uid] = input.value;
     });
 
     searchInput.addEventListener("input", (event) => {
       searchTerm = event.target.value.trim();
-      renderList();
+      resetPage();
+      render();
     });
 
     document.getElementById("resetBtn").addEventListener("click", () => {
@@ -553,8 +1111,17 @@
       render();
     });
 
-    document.getElementById("exportBtn").addEventListener("click", () => {
-      document.getElementById("exportText").value = JSON.stringify(getApprovedEvents(), null, 2);
+    document.getElementById("batchPrepBtn").addEventListener("click", runBatchPrep);
+
+    document.getElementById("exportBtn").addEventListener("click", async () => {
+      try {
+        const response = await fetch("/api/export-import-nows?approved_only=1&ready_only=0", { cache: "no-store" });
+        const data = await response.json();
+        const records = data.nows || getApprovedEvents();
+        document.getElementById("exportText").value = JSON.stringify(records, null, 2);
+      } catch (error) {
+        document.getElementById("exportText").value = JSON.stringify(getApprovedEvents(), null, 2);
+      }
       document.getElementById("exportDialog").showModal();
     });
 

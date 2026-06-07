@@ -6,13 +6,20 @@ const crypto = require("crypto");
 const path = require("path");
 const url = require("url");
 const {
+  applyDefaultImportPrepToActiveEvents,
+  applyEventPoiSelection,
   getApprovedEvents,
+  getEventByUid,
   getEventsPayload,
+  getExportImportNows,
   getReviewState,
   importPayload,
   importReviewState,
   openDatabase,
+  rejectEventForMissingPoi,
   replaceReviewState,
+  updateEventImportPrep,
+  updateEventPoiCandidatesOnly,
 } = require("../lib/review-db");
 const {
   applyPoiSelection,
@@ -26,8 +33,17 @@ const {
   updatePoiCandidatesOnly,
 } = require("../lib/merchant-db");
 const { MERCHANT_TYPES } = require("../lib/merchant-import-ready");
+const { batchEventAutoPoi } = require("../lib/event-poi-batch");
 const { batchAutoPoi } = require("../lib/merchant-poi-batch");
-const { buildPoiKeyword, searchPoi, searchPoiForMerchant } = require("../lib/tencent-poi");
+const {
+  buildPoiKeyword,
+  pickBestPoiForEvent,
+  pickBestPoiForMerchant,
+  reorderPoiByBestMatch,
+  searchPoi,
+  searchPoiForEvent,
+  searchPoiForMerchant,
+} = require("../lib/tencent-poi");
 
 const root = path.join(__dirname, "..");
 const publicDir = path.join(root, "public");
@@ -212,6 +228,164 @@ async function handleApi(req, res, pathname) {
     return;
   }
 
+  if (req.method === "GET" && pathname === "/api/export-import-nows") {
+    const parsed = url.parse(req.url, true);
+    const approvedOnly = parsed.query.approved_only !== "0";
+    const readyOnly = parsed.query.ready_only !== "0";
+    const records = getExportImportNows(db, { approvedOnly, readyOnly });
+    sendJson(res, 200, {
+      count: records.length,
+      nows: records,
+    });
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/events/import-prep-batch") {
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const defaults = applyDefaultImportPrepToActiveEvents(db);
+      const poiReport = body.skip_poi
+        ? { total: 0, ok: 0, fail: 0, results: [] }
+        : await batchEventAutoPoi(db, {
+          city: body.city || "",
+          only_approved: body.only_approved === true,
+          refresh: body.refresh === true,
+          limit: body.limit || 500,
+        });
+      sendJson(res, 200, { ok: true, defaults, poi: poiReport });
+    } catch (error) {
+      sendJson(res, 400, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/events/poi-auto-batch") {
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const report = await batchEventAutoPoi(db, {
+        city: body.city || "",
+        only_approved: body.only_approved === true,
+        refresh: body.refresh === true,
+        limit: body.limit || 80,
+      });
+      sendJson(res, 200, report);
+    } catch (error) {
+      sendJson(res, 400, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  const eventPoiMatch = pathname.match(/^\/api\/events\/([^/]+)\/poi$/);
+  if (req.method === "POST" && eventPoiMatch) {
+    try {
+      const eventUid = decodeURIComponent(eventPoiMatch[1]);
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const event = getEventByUid(db, eventUid);
+      if (!event) {
+        sendJson(res, 404, { ok: false, error: "活动不存在" });
+        return;
+      }
+
+      let poi = null;
+      let candidates = event.poi_candidates || [];
+
+      if (body.poi_id) {
+        poi = {
+          poi_id: body.poi_id,
+          title: body.title || "",
+          address: body.address || "",
+          latitude: body.latitude ?? null,
+          longitude: body.longitude ?? null,
+        };
+        if (Array.isArray(body.candidates)) {
+          candidates = body.candidates;
+        }
+      } else if (Number.isInteger(body.candidate_index) || Number.isFinite(body.candidate_index)) {
+        const idx = Number(body.candidate_index);
+        if (!candidates.length) {
+          const search = await searchPoiForEvent(event.location, event.city || "全国");
+          candidates = search.items;
+        }
+        poi = candidates[idx];
+        if (!poi) {
+          sendJson(res, 400, { ok: false, error: "候选 POI 不存在" });
+          return;
+        }
+      } else {
+        const search = body.keyword
+          ? await searchPoi({
+            keyword: String(body.keyword).trim(),
+            city: body.city || event.city || "全国",
+          })
+          : await searchPoiForEvent(event.location, body.city || event.city || "全国", {
+            title: event.title,
+          });
+        candidates = body.keyword
+          ? reorderPoiByBestMatch(String(body.keyword).trim(), search.items, [
+            event.location,
+            event.title,
+          ].filter(Boolean))
+          : search.items;
+        if (!candidates.length) {
+          rejectEventForMissingPoi(db, eventUid);
+          sendJson(res, 200, {
+            ok: false,
+            rejected: true,
+            error: "无 POI 结果，已自动拒绝",
+            event: getEventByUid(db, eventUid),
+            candidates: [],
+            keyword: search.keyword || body.keyword || "",
+          });
+          return;
+        }
+        if (body.candidates_only || body.refresh) {
+          const updated = updateEventPoiCandidatesOnly(db, eventUid, candidates);
+          sendJson(res, 200, {
+            ok: true,
+            event: updated,
+            candidates,
+            keyword: search.keyword || body.keyword || "",
+          });
+          return;
+        }
+        poi = pickBestPoiForEvent(event, candidates).poi;
+        if (!poi) {
+          rejectEventForMissingPoi(db, eventUid);
+          sendJson(res, 200, {
+            ok: false,
+            rejected: true,
+            error: "无 POI 结果，已自动拒绝",
+            event: getEventByUid(db, eventUid),
+            candidates: [],
+          });
+          return;
+        }
+      }
+
+      const updated = applyEventPoiSelection(db, eventUid, poi, { candidates });
+      sendJson(res, 200, { ok: true, event: updated, candidates });
+    } catch (error) {
+      sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  const eventPrepMatch = pathname.match(/^\/api\/events\/([^/]+)\/import-prep$/);
+  if (req.method === "POST" && eventPrepMatch) {
+    try {
+      const eventUid = decodeURIComponent(eventPrepMatch[1]);
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const updated = updateEventImportPrep(db, eventUid, {
+        publish_user_id: body.publish_user_id,
+        now_type: body.now_type,
+      });
+      sendJson(res, 200, { ok: true, event: updated });
+    } catch (error) {
+      sendJson(res, 400, { ok: false, error: error.message });
+    }
+    return;
+  }
+
   if (req.method === "POST" && pathname === "/api/review-state") {
     try {
       const body = JSON.parse((await readBody(req)) || "{}");
@@ -339,7 +513,9 @@ async function handleApi(req, res, pathname) {
             city: body.city || merchant.city || "全国",
           })
           : await searchPoiForMerchant(merchant.name, body.city || merchant.city || "全国");
-        candidates = search.items;
+        candidates = body.keyword
+          ? reorderPoiByBestMatch(String(body.keyword).trim(), search.items, [merchant.name])
+          : search.items;
         if (body.candidates_only || body.refresh) {
           const updated = updatePoiCandidatesOnly(db, merchantUid, candidates, {
             merchant_type: body.merchant_type,
@@ -352,7 +528,7 @@ async function handleApi(req, res, pathname) {
           });
           return;
         }
-        poi = candidates[0];
+        poi = pickBestPoiForMerchant(merchant.name, candidates).poi;
         if (!poi) {
           sendJson(res, 404, { ok: false, error: "无 POI 结果", candidates: [] });
           return;

@@ -3,9 +3,53 @@
 const fs = require("fs");
 const path = require("path");
 const { DatabaseSync } = require("node:sqlite");
+const {
+  DEFAULT_NOW_TYPE,
+  DEFAULT_PUBLISH_USER_ID,
+  buildImportRecord,
+  isExpired,
+  isImportReady,
+  normalizeNowType,
+  resolveExpiredAt,
+  resolvePoiCoordinates,
+  resolveStartAt,
+} = require("./event-import-ready");
 
 const DEFAULT_NOTE = "本文件用于本地人工审核。保留原始抓取详情文本，body 为基于原文提炼的 Zup 活动简介。图片发布前需再次确认来源授权与平台规则。";
 const VALID_REVIEW_STATUSES = new Set(["approved", "pending", "rejected"]);
+
+const EVENT_IMPORT_COLUMNS = [
+  ["publish_user_id", `TEXT NOT NULL DEFAULT '${DEFAULT_PUBLISH_USER_ID}'`],
+  ["now_type", `INTEGER NOT NULL DEFAULT ${DEFAULT_NOW_TYPE}`],
+  ["location_poi_id", "TEXT NOT NULL DEFAULT ''"],
+  ["poi_title", "TEXT NOT NULL DEFAULT ''"],
+  ["poi_address", "TEXT NOT NULL DEFAULT ''"],
+  ["poi_candidates", "TEXT NOT NULL DEFAULT '[]'"],
+  ["poi_updated_at", "TEXT"],
+  ["poi_latitude", "REAL"],
+  ["poi_longitude", "REAL"],
+];
+
+function parsePoiCandidates(raw) {
+  if (!raw) return [];
+  try {
+    const list = JSON.parse(raw);
+    return Array.isArray(list) ? list : [];
+  } catch {
+    return [];
+  }
+}
+
+function migrateEventImportColumns(db) {
+  const existing = new Set(
+    db.prepare("PRAGMA table_info(events)").all().map((row) => row.name),
+  );
+  for (const [name, ddl] of EVENT_IMPORT_COLUMNS) {
+    if (!existing.has(name)) {
+      db.exec(`ALTER TABLE events ADD COLUMN ${name} ${ddl}`);
+    }
+  }
+}
 
 function openDatabase(dbPath) {
   fs.mkdirSync(path.dirname(dbPath), { recursive: true });
@@ -93,6 +137,262 @@ function ensureSchema(db) {
   if (!columns.has("raw_detail_html")) {
     db.exec("ALTER TABLE events ADD COLUMN raw_detail_html TEXT");
   }
+  migrateEventImportColumns(db);
+}
+
+function rowToEvent(row) {
+  return {
+    eventUid: row.event_uid,
+    event_uid: row.event_uid,
+    id: row.source_id,
+    source: row.source,
+    sourceName: row.source_name,
+    sourcePosition: row.source_position,
+    sourceUrl: row.source_url,
+    sourceListPage: row.source_list_page,
+    city: row.city,
+    district: row.district,
+    title: row.title,
+    category: row.category,
+    startDate: row.start_date,
+    endDate: row.end_date,
+    timeText: row.time_text,
+    location: row.location,
+    latitude: row.latitude,
+    longitude: row.longitude,
+    poi_latitude: row.poi_latitude ?? null,
+    poi_longitude: row.poi_longitude ?? null,
+    image: row.image,
+    fee: row.fee,
+    owner: row.owner,
+    counts: row.counts,
+    rawDetailText: row.raw_detail_text,
+    rawDetailHtml: row.raw_detail_html,
+    body: row.body,
+    originalLink: row.original_link,
+    score: row.score,
+    suggested: Boolean(row.suggested),
+    reviewReason: row.review_reason,
+    publish_user_id: row.publish_user_id || DEFAULT_PUBLISH_USER_ID,
+    now_type: normalizeNowType(row.now_type),
+    location_poi_id: row.location_poi_id || "",
+    poi_title: row.poi_title || "",
+    poi_address: row.poi_address || "",
+    poi_candidates: parsePoiCandidates(row.poi_candidates),
+    poi_updated_at: row.poi_updated_at || null,
+    start_at: resolveStartAt(row),
+    expired_at: resolveExpiredAt(row),
+    import_ready: isImportReady(row),
+    ...(() => {
+      const coords = resolvePoiCoordinates(row);
+      return {
+        location_latitude: coords.latitude,
+        location_longitude: coords.longitude,
+      };
+    })(),
+  };
+}
+
+function getEventByUid(db, eventUid) {
+  const row = db.prepare("SELECT * FROM events WHERE event_uid = ?").get(eventUid);
+  return row ? rowToEvent(row) : null;
+}
+
+function applyEventPoiSelection(db, eventUid, poi, options = {}) {
+  const now = new Date().toISOString();
+  const event = getEventByUid(db, eventUid);
+  if (!event) {
+    throw new Error(`活动不存在: ${eventUid}`);
+  }
+
+  db.prepare(`
+    UPDATE events SET
+      location_poi_id = @location_poi_id,
+      poi_title = @poi_title,
+      poi_address = @poi_address,
+      poi_latitude = @poi_latitude,
+      poi_longitude = @poi_longitude,
+      poi_candidates = @poi_candidates,
+      poi_updated_at = @poi_updated_at,
+      updated_at = @updated_at
+    WHERE event_uid = @event_uid
+  `).run({
+    event_uid: eventUid,
+    location_poi_id: poi.poi_id || "",
+    poi_title: poi.title || "",
+    poi_address: poi.address || "",
+    poi_latitude: poi.latitude ?? null,
+    poi_longitude: poi.longitude ?? null,
+    poi_candidates: JSON.stringify(options.candidates || []),
+    poi_updated_at: now,
+    updated_at: now,
+  });
+
+  return getEventByUid(db, eventUid);
+}
+
+function updateEventPoiCandidatesOnly(db, eventUid, candidates) {
+  const event = getEventByUid(db, eventUid);
+  if (!event) {
+    throw new Error(`活动不存在: ${eventUid}`);
+  }
+
+  const now = new Date().toISOString();
+  db.prepare(`
+    UPDATE events SET
+      poi_candidates = @poi_candidates,
+      poi_updated_at = @poi_updated_at,
+      updated_at = @updated_at
+    WHERE event_uid = @event_uid
+  `).run({
+    event_uid: eventUid,
+    poi_candidates: JSON.stringify(candidates || []),
+    poi_updated_at: now,
+    updated_at: now,
+  });
+
+  return getEventByUid(db, eventUid);
+}
+
+function updateEventImportPrep(db, eventUid, patch) {
+  const event = getEventByUid(db, eventUid);
+  if (!event) {
+    throw new Error(`活动不存在: ${eventUid}`);
+  }
+
+  const now = new Date().toISOString();
+  const next = {
+    publish_user_id: patch.publish_user_id !== undefined
+      ? String(patch.publish_user_id || "").trim()
+      : event.publish_user_id,
+    now_type: patch.now_type !== undefined
+      ? normalizeNowType(patch.now_type)
+      : event.now_type,
+  };
+
+  db.prepare(`
+    UPDATE events SET
+      publish_user_id = @publish_user_id,
+      now_type = @now_type,
+      updated_at = @updated_at
+    WHERE event_uid = @event_uid
+  `).run({
+    event_uid: eventUid,
+    publish_user_id: next.publish_user_id || DEFAULT_PUBLISH_USER_ID,
+    now_type: next.now_type,
+    updated_at: now,
+  });
+
+  return getEventByUid(db, eventUid);
+}
+
+function listActiveEventsNeedingPoi(db, options = {}) {
+  const limit = Math.min(Math.max(Number(options.limit) || 100, 1), 500);
+  const rows = db.prepare(`
+    SELECT e.*, COALESCE(r.status, 'pending') AS review_status
+    FROM events e
+    LEFT JOIN review_decisions r ON r.event_uid = e.event_uid
+    ORDER BY e.city, e.source_position, e.title
+  `).all();
+
+  let events = rows
+    .map((row) => ({ ...rowToEvent(row), review_status: row.review_status }))
+    .filter((event) => !isExpired(event));
+
+  if (options.city) {
+    events = events.filter((event) => event.city === options.city);
+  }
+  if (options.only_approved) {
+    events = events.filter((event) => event.review_status === "approved");
+  }
+  if (!options.include_with_poi) {
+    events = events.filter((event) => !event.location_poi_id);
+  }
+
+  return events.slice(0, limit);
+}
+
+function syncEventPoiCoordinates(db) {
+  const rows = db.prepare(`
+    SELECT event_uid, location_poi_id, poi_candidates, poi_latitude, poi_longitude
+    FROM events
+    WHERE location_poi_id IS NOT NULL AND location_poi_id != ''
+  `).all();
+  const update = db.prepare(`
+    UPDATE events SET
+      poi_latitude = @poi_latitude,
+      poi_longitude = @poi_longitude,
+      updated_at = @updated_at
+    WHERE event_uid = @event_uid
+  `);
+  const now = new Date().toISOString();
+  let updated = 0;
+
+  runInTransaction(db, () => {
+    for (const row of rows) {
+      const coords = resolvePoiCoordinates(row);
+      if (coords.latitude == null || coords.longitude == null) continue;
+      if (row.poi_latitude === coords.latitude && row.poi_longitude === coords.longitude) continue;
+      update.run({
+        event_uid: row.event_uid,
+        poi_latitude: coords.latitude,
+        poi_longitude: coords.longitude,
+        updated_at: now,
+      });
+      updated += 1;
+    }
+  });
+
+  return { updated, total: rows.length };
+}
+
+function applyDefaultImportPrepToActiveEvents(db) {
+  const rows = db.prepare("SELECT event_uid, start_date, end_date FROM events").all();
+  const now = new Date().toISOString();
+  const update = db.prepare(`
+    UPDATE events SET
+      publish_user_id = @publish_user_id,
+      now_type = @now_type,
+      updated_at = @updated_at
+    WHERE event_uid = @event_uid
+  `);
+
+  let updated = 0;
+  runInTransaction(db, () => {
+    for (const row of rows) {
+      if (isExpired(row)) continue;
+      update.run({
+        event_uid: row.event_uid,
+        publish_user_id: DEFAULT_PUBLISH_USER_ID,
+        now_type: DEFAULT_NOW_TYPE,
+        updated_at: now,
+      });
+      updated += 1;
+    }
+  });
+
+  return { updated };
+}
+
+function getExportImportNows(db, options = {}) {
+  const approvedOnly = options.approvedOnly !== false;
+  const readyOnly = options.readyOnly !== false;
+  const rows = db.prepare(`
+    SELECT e.*, COALESCE(r.status, 'pending') AS review_status
+    FROM events e
+    LEFT JOIN review_decisions r ON r.event_uid = e.event_uid
+    ORDER BY e.city, e.source_position, e.title
+  `).all();
+
+  const records = [];
+  for (const row of rows) {
+    if (isExpired(row)) continue;
+    if (approvedOnly && row.review_status !== "approved") continue;
+    const event = rowToEvent(row);
+    if (readyOnly && !isImportReady(event)) continue;
+    records.push(buildImportRecord(event));
+  }
+  return records;
 }
 
 function ensureDefaultMeta(db) {
@@ -300,6 +600,30 @@ function buildDecisionLookup(db) {
   return lookup;
 }
 
+function upsertReviewDecision(db, eventUid, status) {
+  if (!VALID_REVIEW_STATUSES.has(status)) {
+    throw new Error(`无效审核状态: ${status}`);
+  }
+  const event = getEventByUid(db, eventUid);
+  if (!event) {
+    throw new Error(`活动不存在: ${eventUid}`);
+  }
+  const now = new Date().toISOString();
+  db.prepare(`
+    INSERT INTO review_decisions (event_uid, status, updated_at)
+    VALUES (?, ?, ?)
+    ON CONFLICT(event_uid) DO UPDATE SET
+      status = excluded.status,
+      updated_at = excluded.updated_at
+  `).run(eventUid, status, now);
+  return status;
+}
+
+function rejectEventForMissingPoi(db, eventUid) {
+  upsertReviewDecision(db, eventUid, "rejected");
+  return getEventByUid(db, eventUid);
+}
+
 function replaceReviewState(db, decisions) {
   const lookup = buildDecisionLookup(db);
   const insertDecision = db.prepare(`
@@ -332,27 +656,18 @@ function getReviewState(db) {
 }
 
 function getApprovedEvents(db) {
-  return db.prepare(`
-    SELECT
-      e.title,
-      e.city,
-      e.district,
-      e.start_date AS startDate,
-      e.end_date AS endDate,
-      e.time_text AS timeText,
-      e.location,
-      e.latitude,
-      e.longitude,
-      e.image,
-      e.body,
-      e.original_link AS originalLink,
-      e.source,
-      e.category
+  const rows = db.prepare(`
+    SELECT e.*
     FROM events e
     INNER JOIN review_decisions r ON r.event_uid = e.event_uid
     WHERE r.status = 'approved'
     ORDER BY e.city, e.source_position, e.title
   `).all();
+
+  return rows
+    .map((row) => rowToEvent(row))
+    .filter((event) => !isExpired(event))
+    .map((event) => buildImportRecord(event));
 }
 
 function getEventsPayload(db) {
@@ -362,53 +677,24 @@ function getEventsPayload(db) {
     ORDER BY rowid
   `).all();
   const eventRows = db.prepare(`
-    SELECT
-      event_uid AS eventUid,
-      source_id AS id,
-      source,
-      source_name AS sourceName,
-      source_position AS sourcePosition,
-      source_url AS sourceUrl,
-      source_list_page AS sourceListPage,
-      city,
-      district,
-      title,
-      category,
-      start_date AS startDate,
-      end_date AS endDate,
-      time_text AS timeText,
-      location,
-      latitude,
-      longitude,
-      image,
-      fee,
-      owner,
-      counts,
-      raw_detail_text AS rawDetailText,
-      raw_detail_html AS rawDetailHtml,
-      body,
-      original_link AS originalLink,
-      score,
-      suggested,
-      review_reason AS reviewReason
+    SELECT *
     FROM events
     ORDER BY city, source_position, title
   `).all();
-  const dateRows = db.prepare("SELECT event_uid AS eventUid, event_date AS eventDate FROM event_dates ORDER BY event_date").all();
+  const dateRows = db.prepare("SELECT event_uid, event_date FROM event_dates ORDER BY event_date").all();
 
   const eventDatesByUid = new Map();
   for (const row of dateRows) {
-    if (!eventDatesByUid.has(row.eventUid)) eventDatesByUid.set(row.eventUid, []);
-    eventDatesByUid.get(row.eventUid).push(row.eventDate);
+    if (!eventDatesByUid.has(row.event_uid)) eventDatesByUid.set(row.event_uid, []);
+    eventDatesByUid.get(row.event_uid).push(row.event_date);
   }
 
   const cityOrder = cityImportRows.length ? cityImportRows.map((row) => row.city) : [...new Set(eventRows.map((row) => row.city))];
   const cityOrderMap = new Map(cityOrder.map((city, index) => [city, index]));
   const events = eventRows
     .map((row) => ({
-      ...row,
-      suggested: Boolean(row.suggested),
-      eventDates: eventDatesByUid.get(row.eventUid) || [],
+      ...rowToEvent(row),
+      eventDates: eventDatesByUid.get(row.event_uid) || [],
     }))
     .sort((a, b) => {
       const cityDiff = (cityOrderMap.get(a.city) ?? Number.MAX_SAFE_INTEGER) - (cityOrderMap.get(b.city) ?? Number.MAX_SAFE_INTEGER);
@@ -428,7 +714,7 @@ function getEventsPayload(db) {
     };
   }
 
-  const dateWindow = [...new Set(dateRows.map((row) => row.eventDate))].sort();
+  const dateWindow = [...new Set(dateRows.map((row) => row.event_date))].sort();
   const note = getMetaValue(db, "note", DEFAULT_NOTE);
   const generatedAt = cityImportRows.reduce((latest, row) => {
     if (!latest) return row.generatedAt || null;
@@ -450,12 +736,23 @@ function getEventsPayload(db) {
 
 module.exports = {
   DEFAULT_NOTE,
+  applyDefaultImportPrepToActiveEvents,
+  applyEventPoiSelection,
+  syncEventPoiCoordinates,
   eventUidFor,
   getApprovedEvents,
+  getEventByUid,
   getEventsPayload,
+  getExportImportNows,
   getReviewState,
   importPayload,
   importReviewState,
+  listActiveEventsNeedingPoi,
   openDatabase,
+  rejectEventForMissingPoi,
   replaceReviewState,
+  rowToEvent,
+  upsertReviewDecision,
+  updateEventImportPrep,
+  updateEventPoiCandidatesOnly,
 };

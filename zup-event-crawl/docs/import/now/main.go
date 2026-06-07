@@ -115,6 +115,7 @@ type NowInput struct {
 	NowType    int     `json:"now_type"`    // 必填：1 动态 / 2 即刻邀约 / 3 预约
 	NowStatus  int     `json:"now_status"`  // 1 正常（默认）/ -1 屏蔽
 	NowWeight  float64 `json:"now_weight"`  // 权重（默认 100）
+	GroupID    string  `json:"group_id"`    // 关联的 IM 群聊 id（可选，先用 group 工具建群拿到）
 
 	// 媒体：http(s) 链接或本地路径，按顺序。第一张图片会被后端自动取为封面。
 	Images []string `json:"images"`
@@ -258,6 +259,9 @@ func main() {
 		}
 		if len(medias) > 0 {
 			payload["now_medias"] = medias
+		}
+		if in.GroupID != "" {
+			payload["group_id"] = in.GroupID // 后端已支持，建群后把 group_id 填这里即可一步挂上
 		}
 		if in.LocationPoiID != "" {
 			payload["location_poi_id"] = in.LocationPoiID
