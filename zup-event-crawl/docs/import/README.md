@@ -395,8 +395,8 @@ GET https://apis.map.qq.com/ws/place/v1/search
 go run ./scripts/import/query poi -keyword=星巴克 -city=北京
 ```
 
-> **key 已内置**在 `query` 工具里（`KRABZ-...`，与前端 ant-buzzin 同源）。**服务端调用只需 key、不需要 SK 签名**（后端 `tencentmap.go` 也只传 key）。
-> 量大或要独立配额时用 `-map-key`（或 `BUZZ_TENCENT_MAP_KEY`）换成你自己的（lbs.qq.com 申请，注意把 key 的「WebServiceAPI」打开、按需关掉域名白名单）。
+> **key 已内置两条**：个人号 `ROMBZ-...`（优先）+ 公司号 `KRABZ-...`（个人日配额用尽后自动切换，与前端 ant-buzzin 同源）。**服务端调用只需 key、不需要 SK 签名**。
+> 要强制指定单一 key 时用 `-map-key` 或 `BUZZ_TENCENT_MAP_KEY`（lbs.qq.com 申请时注意打开「WebServiceAPI」、按需配置 IP 白名单）。
 > 拿到的坐标天然是 GCJ-02，正好对应坑 1，无需转换。
 
 ### 6) 地址查经纬度（腾讯 Geocoder，**只有文本地址、没有 POI 时用**）

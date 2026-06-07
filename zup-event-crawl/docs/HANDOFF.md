@@ -394,7 +394,7 @@ npm start
 | POST | `/api/merchants/:uid/poi` | 单条 POI 匹配/改选 |
 | POST | `/api/merchants/:uid/import-prep` | 保存商户类型等入库字段 |
 
-商户审核台支持：POI Top1 自动 + 候选改选、商户类型、**可入库**筛选、**导出入库 JSON**。POI 搜索词与 Zup 后台一致：**城市 + 店名**（不用点评商圈，避免商场名带偏）。可用 `BUZZ_TENCENT_MAP_KEY` 覆盖内置腾讯 key。
+商户审核台支持：POI Top1 自动 + 候选改选、商户类型、**可入库**筛选、**导出入库 JSON**。POI 搜索词与 Zup 后台一致：**城市 + 店名**（不用点评商圈，避免商场名带偏）。腾讯 key：**个人号优先**，日配额用尽自动切**公司号**；可用 `BUZZ_TENCENT_MAP_KEY` 强制指定单一 key。
 
 ## 当前 UI 状态摘要
 

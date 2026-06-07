@@ -101,6 +101,20 @@
     .poi-cand b{display:block;font-size:13px}
     .poi-cand span{display:block;font-size:11px;color:var(--muted);margin-top:2px}
     .empty{padding:44px;text-align:center;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:8px}
+    .pager{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:16px;padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+    .pager-info{font-size:13px;color:var(--muted)}
+    .pager-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+    .pager-actions .mini{min-width:36px}
+    .pager-actions .mini.active{background:#111;border-color:#111;color:#fff}
+    .pager-actions .mini:disabled{opacity:.45;cursor:not-allowed}
+    .back-top{
+      position:fixed;right:20px;bottom:20px;z-index:30;
+      width:44px;height:44px;border:1px solid var(--line);border-radius:999px;
+      background:#fff;color:var(--ink);cursor:pointer;box-shadow:0 4px 16px rgba(20,32,24,.12);
+      opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .2s,transform .2s,visibility .2s
+    }
+    .back-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
+    .back-top:hover{border-color:#9ab5a4}
     @media (max-width:820px){
       .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
       .filter-row{grid-template-columns:1fr}
@@ -152,14 +166,20 @@
       </div>
     </section>
     <section class="grid" id="merchantGrid"></section>
+    <nav class="pager" id="pager" hidden aria-label="分页"></nav>
   </main>
 
+  <button class="back-top" id="backTopBtn" type="button" title="回到顶部" aria-label="回到顶部">↑</button>
+
   <script>
+    const PAGE_SIZE = 20;
+
     const state = {
       merchants: [],
       decisions: {},
       merchantTypes: [],
       filters: { city: "all", status: "all", search: "" },
+      page: 1,
       poiBusy: false,
       poiKeywords: {},
       poiPreviews: {},
@@ -170,11 +190,13 @@
       saveState: document.getElementById("saveState"),
       stats: document.getElementById("stats"),
       grid: document.getElementById("merchantGrid"),
+      pager: document.getElementById("pager"),
       cityFilter: document.getElementById("cityFilter"),
       statusFilter: document.getElementById("statusFilter"),
       searchInput: document.getElementById("searchInput"),
       batchPoiBtn: document.getElementById("batchPoiBtn"),
       exportImportBtn: document.getElementById("exportImportBtn"),
+      backTopBtn: document.getElementById("backTopBtn"),
     };
 
     function suggestMerchantType(category, name) {
@@ -421,6 +443,27 @@
       `;
     }
 
+    function resetPage() {
+      state.page = 1;
+    }
+
+    function clampPage(totalItems) {
+      const totalPages = Math.max(1, Math.ceil(totalItems / PAGE_SIZE));
+      if (state.page > totalPages) state.page = totalPages;
+      if (state.page < 1) state.page = 1;
+      return totalPages;
+    }
+
+    function paginatedMerchants(list) {
+      const totalPages = clampPage(list.length);
+      const start = (state.page - 1) * PAGE_SIZE;
+      return {
+        list: list.slice(start, start + PAGE_SIZE),
+        total: list.length,
+        totalPages,
+      };
+    }
+
     function filteredMerchants() {
       const q = state.filters.search.trim().toLowerCase();
       return merchantsInCity().filter((item) => {
@@ -504,6 +547,41 @@
       return html;
     }
 
+    function renderPager(meta) {
+      if (!meta.total) {
+        els.pager.hidden = true;
+        els.pager.innerHTML = "";
+        return;
+      }
+
+      const { total, totalPages, page } = meta;
+      const from = (page - 1) * PAGE_SIZE + 1;
+      const to = Math.min(page * PAGE_SIZE, total);
+
+      let pageButtons = "";
+      const windowSize = 5;
+      let startPage = Math.max(1, page - Math.floor(windowSize / 2));
+      let endPage = Math.min(totalPages, startPage + windowSize - 1);
+      startPage = Math.max(1, endPage - windowSize + 1);
+      for (let p = startPage; p <= endPage; p += 1) {
+        pageButtons += `<button type="button" class="mini ${p === page ? "active" : ""}" data-page="${p}">${p}</button>`;
+      }
+
+      els.pager.hidden = false;
+      els.pager.innerHTML = `
+        <div class="pager-info">第 ${from}–${to} 条，共 ${total} 条 · 第 ${page} / ${totalPages} 页</div>
+        <div class="pager-actions">
+          <button type="button" class="mini" data-page="prev" ${page <= 1 ? "disabled" : ""}>上一页</button>
+          ${pageButtons}
+          <button type="button" class="mini" data-page="next" ${page >= totalPages ? "disabled" : ""}>下一页</button>
+        </div>
+      `;
+    }
+
+    function scrollToListTop() {
+      els.grid.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
     function renderCards(list) {
       if (!list.length) {
         els.grid.innerHTML = `<div class="empty">没有符合条件的商户。请先用 scrape-dianping-merchants 导入，或调整筛选。</div>`;
@@ -574,16 +652,25 @@
     }
 
     function render() {
-      const list = filteredMerchants();
+      const filtered = filteredMerchants();
+      const { list, total, totalPages } = paginatedMerchants(filtered);
       renderStats();
       renderCityFilter();
       renderCards(list);
+      renderPager({ total, totalPages, page: state.page });
+    }
+
+    function goToPage(nextPage, scroll = true) {
+      state.page = nextPage;
+      render();
+      if (scroll) scrollToListTop();
     }
 
     els.cityFilter.addEventListener("click", (event) => {
       const button = event.target.closest("button[data-city]");
       if (!button) return;
       state.filters.city = button.dataset.city;
+      resetPage();
       render();
     });
 
@@ -592,13 +679,42 @@
       if (!button) return;
       state.filters.status = button.dataset.status;
       [...els.statusFilter.querySelectorAll("button")].forEach((node) => node.classList.toggle("active", node === button));
+      resetPage();
       render();
     });
 
     els.searchInput.addEventListener("input", (event) => {
       state.filters.search = event.target.value;
+      resetPage();
       render();
     });
+
+    els.pager.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-page]");
+      if (!button || button.disabled) return;
+      const filtered = filteredMerchants();
+      const { totalPages } = paginatedMerchants(filtered);
+      const raw = button.dataset.page;
+      if (raw === "prev") {
+        goToPage(state.page - 1);
+        return;
+      }
+      if (raw === "next") {
+        goToPage(state.page + 1);
+        return;
+      }
+      const page = Number(raw);
+      if (!Number.isFinite(page) || page < 1 || page > totalPages) return;
+      goToPage(page);
+    });
+
+    els.backTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    window.addEventListener("scroll", () => {
+      els.backTopBtn.classList.toggle("visible", window.scrollY > 320);
+    }, { passive: true });
 
     els.grid.addEventListener("click", (event) => {
       const card = event.target.closest("[data-uid]");

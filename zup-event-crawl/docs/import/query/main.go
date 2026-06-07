@@ -37,22 +37,93 @@ import (
 
 const apiPrefix = "/internal"
 
-// defaultTencentMapKey 腾讯位置服务 key（与前端 ant-buzzin 同源 KEY，服务端 WebService 调用
-// 只需 key、无需 SK 签名）。可用 -map-key 或 BUZZ_TENCENT_MAP_KEY 覆盖成你自己的（注意配额）。
-const defaultTencentMapKey = "KRABZ-SFJCW-YTZRK-YP25X-2EFC6-ZBFCY"
+// 腾讯 POI / 地理编码 key：个人号优先，日配额用尽后切公司号（与 Zup 前端同源）。
+// 只需 key、无需 SK。可用 -map-key 或 BUZZ_TENCENT_MAP_KEY 强制指定单一 key。
+const (
+	personalTencentMapKey = "ROMBZ-NP6RA-UD2K3-CVWY6-7CF6Q-J7BOX"
+	companyTencentMapKey  = "KRABZ-SFJCW-YTZRK-YP25X-2EFC6-ZBFCY"
+)
+
+var personalMapKeySkipped bool
 
 // httpTimeout 给后台请求加超时
 const httpTimeout = 60 * time.Second
 
-// resolveMapKey 取腾讯地图 key：-map-key > 环境变量 > 内置默认
-func resolveMapKey(rest map[string]string) string {
+func resolveMapKeyChain(rest map[string]string) []string {
 	if k := rest["map-key"]; k != "" {
-		return k
+		return []string{k}
 	}
 	if k := env("BUZZ_TENCENT_MAP_KEY", ""); k != "" {
-		return k
+		return []string{k}
 	}
-	return defaultTencentMapKey
+	if personalMapKeySkipped {
+		return []string{companyTencentMapKey}
+	}
+	return []string{personalTencentMapKey, companyTencentMapKey}
+}
+
+// resolveMapKey 取当前首选腾讯 key（兼容旧调用）
+func resolveMapKey(rest map[string]string) string {
+	chain := resolveMapKeyChain(rest)
+	return chain[0]
+}
+
+func shouldFallbackFromPersonal(status int, message string) string {
+	if status == 120 || status == 121 {
+		return "quota"
+	}
+	if strings.Contains(message, "调用量") || strings.Contains(message, "上限") || strings.Contains(message, "配额") {
+		return "quota"
+	}
+	if status == 110 || status == 111 {
+		return "auth"
+	}
+	return ""
+}
+
+// tencentGet 带 key 轮换的腾讯 WebService GET（个人号 → 公司号）
+func tencentGet(reqURL string, rest map[string]string) ([]byte, error) {
+	u, err := url.Parse(reqURL)
+	if err != nil {
+		return nil, err
+	}
+	q := u.Query()
+	keys := resolveMapKeyChain(rest)
+	var lastErr error
+
+	for i, key := range keys {
+		q.Set("key", key)
+		u.RawQuery = q.Encode()
+		resp, err := http.Get(u.String())
+		if err != nil {
+			return nil, err
+		}
+		raw, _ := io.ReadAll(resp.Body)
+		resp.Body.Close()
+
+		var head struct {
+			Status  int    `json:"status"`
+			Message string `json:"message"`
+		}
+		if err := json.Unmarshal(raw, &head); err != nil {
+			return nil, fmt.Errorf("解析腾讯地图响应失败: %s", truncate(string(raw), 300))
+		}
+		if head.Status == 0 {
+			return raw, nil
+		}
+		lastErr = fmt.Errorf("腾讯地图返回错误 status=%d msg=%s", head.Status, head.Message)
+		if reason := shouldFallbackFromPersonal(head.Status, head.Message); reason != "" && key == personalTencentMapKey && i+1 < len(keys) {
+			personalMapKeySkipped = true
+			hint := "日配额已满"
+			if reason == "auth" {
+				hint = "不可用（可能需在腾讯控制台关闭 SK 签名校验或配置 WebService 白名单）"
+			}
+			fmt.Fprintf(os.Stderr, "[query] 个人 key %s，切换公司 key: %s\n", hint, head.Message)
+			continue
+		}
+		return nil, lastErr
+	}
+	return nil, lastErr
 }
 
 func main() {
@@ -98,7 +169,7 @@ func usage() {
 
 通用(admin 命令): -base <url>  -token <bearer>  -admin-user <u>  -admin-pass <p>（支持 -flag=value）
 环境变量: BUZZ_API_BASE  BUZZ_TOKEN  BUZZ_ADMIN_USER  BUZZ_ADMIN_PASS  BUZZ_TENCENT_MAP_KEY
-说明: poi/geocode 的腾讯 key 已内置默认（服务端只需 key、无需 SK），可用 -map-key 覆盖成你自己的。
+说明: poi/geocode 内置个人号+公司号 key 链（个人优先，日配额用尽自动切公司号；只需 key、无需 SK），可用 -map-key 强制指定。
 `)
 }
 
@@ -243,27 +314,23 @@ func cmdNows(args []string) {
 // 文档：https://lbs.qq.com/service/webService/webServiceGuide/webServiceSearch
 func cmdPoi(args []string) {
 	cf := parseFlags(args)
-	mapKey := resolveMapKey(cf.rest)
 	keyword := cf.rest["keyword"]
 	city := strOrDefault(cf.rest["city"], "全国") // 不给城市就全国范围搜
 	if keyword == "" {
-		fatal("poi 需要 -keyword（-city 默认 全国；-map-key 已内置默认，可覆盖）")
+		fatal("poi 需要 -keyword（-city 默认 全国；-map-key 可覆盖内置 key 链）")
 	}
 
 	q := url.Values{}
-	q.Set("key", mapKey)
 	q.Set("keyword", keyword)
 	q.Set("boundary", fmt.Sprintf("region(%s,1)", city)) // region(城市,是否自动扩大范围)
 	q.Set("page_size", strOrDefault(cf.rest["page-size"], "10"))
 	q.Set("page_index", strOrDefault(cf.rest["page-index"], "1"))
 	reqURL := "https://apis.map.qq.com/ws/place/v1/search?" + q.Encode()
 
-	resp, err := http.Get(reqURL)
+	raw, err := tencentGet(reqURL, cf.rest)
 	if err != nil {
-		fatal("请求腾讯地图失败: %v", err)
+		fatal("%v", err)
 	}
-	defer resp.Body.Close()
-	raw, _ := io.ReadAll(resp.Body)
 
 	var out struct {
 		Status  int    `json:"status"`
@@ -309,10 +376,9 @@ func cmdPoi(args []string) {
 // 只有文本地址、没有 POI 时用它拿坐标。文档：lbs.qq.com/service/webService/webServiceGuide/webServiceGeocoder
 func cmdGeocode(args []string) {
 	cf := parseFlags(args)
-	mapKey := resolveMapKey(cf.rest)
 	address := cf.rest["address"]
 	if address == "" {
-		fatal("geocode 需要 -address（可选 -city 提高命中；-map-key 已内置默认）")
+		fatal("geocode 需要 -address（可选 -city 提高命中；-map-key 可覆盖内置 key 链）")
 	}
 	addr := address
 	if city := cf.rest["city"]; city != "" {
@@ -320,17 +386,14 @@ func cmdGeocode(args []string) {
 	}
 
 	q := url.Values{}
-	q.Set("key", mapKey)
 	q.Set("address", addr)
 	q.Set("output", "json")
 	reqURL := "https://apis.map.qq.com/ws/geocoder/v1/?" + q.Encode()
 
-	resp, err := http.Get(reqURL)
+	raw, err := tencentGet(reqURL, cf.rest)
 	if err != nil {
-		fatal("请求腾讯地图失败: %v", err)
+		fatal("%v", err)
 	}
-	defer resp.Body.Close()
-	raw, _ := io.ReadAll(resp.Body)
 
 	var out struct {
 		Status  int    `json:"status"`

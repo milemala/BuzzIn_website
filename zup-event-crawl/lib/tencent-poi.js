@@ -3,12 +3,41 @@
 /**
  * 腾讯位置服务 WebService — 关键词 POI 搜索（GCJ-02）
  * 文档：https://lbs.qq.com/service/webService/webServiceGuide/webServiceSearch
- * Key：环境变量 BUZZ_TENCENT_MAP_KEY，未设置时用与 import/query 同源的内置 key（消耗共用配额）。
+ *
+ * Key 策略（可用 BUZZ_TENCENT_MAP_KEY 强制指定单一 key）：
+ * 1. 个人号 ROMBZ-...（优先，省公司配额）
+ * 2. 个人号日限额用尽 → 自动切公司号 KRABZ-...（与 Zup 前端同源）
  */
-const DEFAULT_MAP_KEY = "KRABZ-SFJCW-YTZRK-YP25X-2EFC6-ZBFCY";
+const PERSONAL_MAP_KEY = "ROMBZ-NP6RA-UD2K3-CVWY6-7CF6Q-J7BOX";
+const COMPANY_MAP_KEY = "KRABZ-SFJCW-YTZRK-YP25X-2EFC6-ZBFCY";
+
+const QUOTA_STATUS_CODES = new Set([120, 121]);
+
+/** @type {boolean} 本进程内个人 key 已不可用（配额用尽或鉴权失败），后续直接用公司 key */
+let personalKeySkipped = false;
+
+function isQuotaExceeded(status, message) {
+  if (QUOTA_STATUS_CODES.has(status)) return true;
+  const msg = String(message || "");
+  return /调用量|上限|配额|quota/i.test(msg);
+}
+
+/** 个人 key 失败时是否应切换公司 key（日配额 / 签名或鉴权失败等） */
+function shouldFallbackFromPersonal(status, message) {
+  if (isQuotaExceeded(status, message)) return "quota";
+  if (status === 110 || status === 111) return "auth";
+  return null;
+}
+
+function resolveMapKeyChain() {
+  const override = process.env.BUZZ_TENCENT_MAP_KEY;
+  if (override) return [override];
+  if (personalKeySkipped) return [COMPANY_MAP_KEY];
+  return [PERSONAL_MAP_KEY, COMPANY_MAP_KEY];
+}
 
 function resolveMapKey() {
-  return process.env.BUZZ_TENCENT_MAP_KEY || DEFAULT_MAP_KEY;
+  return resolveMapKeyChain()[0];
 }
 
 /**
@@ -79,6 +108,39 @@ async function searchPoiForMerchant(name, city, opts = {}) {
   return { keyword: fullKeyword, ...primary };
 }
 
+async function requestTencentPlaceSearch(params) {
+  const keys = resolveMapKeyChain();
+  let lastError = null;
+
+  for (let i = 0; i < keys.length; i += 1) {
+    const key = keys[i];
+    params.set("key", key);
+    const response = await fetch(`https://apis.map.qq.com/ws/place/v1/search?${params}`);
+    const raw = await response.json();
+
+    if (raw.status === 0) {
+      return { raw, mapKey: key };
+    }
+
+    const fallbackReason = shouldFallbackFromPersonal(raw.status, raw.message);
+    if (fallbackReason && key === PERSONAL_MAP_KEY && i + 1 < keys.length) {
+      personalKeySkipped = true;
+      const hint = fallbackReason === "quota"
+        ? "日配额已满"
+        : "不可用（可能需在腾讯控制台关闭 SK 签名校验或配置 WebService 白名单）";
+      console.warn(`[tencent-poi] 个人 key ${hint}，切换公司 key: ${raw.message}`);
+      continue;
+    }
+
+    const err = new Error(raw.message || `腾讯地图 status=${raw.status}`);
+    err.tencentStatus = raw.status;
+    lastError = err;
+    break;
+  }
+
+  throw lastError || new Error("腾讯地图请求失败");
+}
+
 /**
  * @param {{ keyword: string, city?: string, pageSize?: number, pageIndex?: number }} opts
  */
@@ -92,20 +154,13 @@ async function searchPoi(opts) {
   const pageIndex = Math.max(Number(opts.pageIndex) || 1, 1);
 
   const params = new URLSearchParams({
-    key: resolveMapKey(),
     keyword,
     boundary: `region(${city},1)`,
     page_size: String(pageSize),
     page_index: String(pageIndex),
   });
 
-  const response = await fetch(`https://apis.map.qq.com/ws/place/v1/search?${params}`);
-  const raw = await response.json();
-  if (raw.status !== 0) {
-    const err = new Error(raw.message || `腾讯地图 status=${raw.status}`);
-    err.tencentStatus = raw.status;
-    throw err;
-  }
+  const { raw } = await requestTencentPlaceSearch(params);
 
   const items = (raw.data || []).map((p) => ({
     poi_id: p.id,
@@ -122,8 +177,11 @@ async function searchPoi(opts) {
 
 module.exports = {
   buildPoiKeyword,
+  COMPANY_MAP_KEY,
+  PERSONAL_MAP_KEY,
   poiTitleMatchesMerchant,
   resolveMapKey,
+  resolveMapKeyChain,
   searchPoi,
   searchPoiForMerchant,
   stripBranchSuffix,
