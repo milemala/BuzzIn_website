@@ -316,6 +316,14 @@ function markEventImportResult(db, eventUid, result = {}) {
   return getEventByUid(db, eventUid);
 }
 
+function clearEventBuzzNow(db, eventUid) {
+  return markEventImportResult(db, eventUid, {
+    buzz_now_id: "",
+    import_status: "",
+    import_error: "",
+  });
+}
+
 function listEventsEligibleForImport(db, options = {}) {
   const limit = Number(options.limit) > 0 ? Number(options.limit) : 500;
   const rows = db.prepare(`
@@ -870,6 +878,7 @@ module.exports = {
   applyEventPoiSelection,
   syncEventPoiCoordinates,
   eventUidFor,
+  clearEventBuzzNow,
   countApprovedActiveEvents,
   getApprovedEvents,
   getEventByUid,

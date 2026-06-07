@@ -127,6 +127,8 @@
     .mini.import-now{border-color:#111}
     .mini.import-now:disabled{opacity:.45;cursor:not-allowed}
     .mini.import-now.done{background:#e7f5ec;border-color:#2a9d68;color:#197549}
+    .mini.delete-buzz{border-color:#d95040;color:#ad382c}
+    .mini.delete-buzz:hover{background:#fde8e4}
     .poi-hint{margin:6px 0 0;font-size:11px;line-height:1.45;color:var(--muted)}
     .poi-search-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
     .poi-search-row input{flex:1 1 180px;height:32px;border:1px solid var(--line);border-radius:6px;padding:0 8px;background:#fff}
@@ -486,6 +488,28 @@
         }
       }
       drainPoiAutoQueue();
+    }
+
+    async function deleteBuzzNow(uid, nowId) {
+      const message = `确定从 Buzz 后台删除此气泡？\n\nnow_id: ${nowId}\n\n审核台里的活动记录会保留，仅清除入库状态。`;
+      if (!window.confirm(message)) return;
+      setSaveState("正在删除后台气泡...", "warn");
+      try {
+        const response = await fetch(`/api/events/${encodeURIComponent(uid)}/buzz-now`, {
+          method: "DELETE",
+        });
+        const data = await response.json();
+        if (data.event) upsertEvent(data.event);
+        if (!response.ok || !data.ok) {
+          setSaveState(data.error || "删除失败", "error");
+          render();
+          return;
+        }
+        setSaveState(`已删除后台气泡 ${data.now_id}`, "ok");
+        render();
+      } catch (error) {
+        setSaveState(error.message || "删除失败", "error");
+      }
     }
 
     async function importSingleEvent(uid) {
@@ -1015,6 +1039,7 @@
                 <button class="mini pending ${status === "pending" ? "active" : ""}" data-id="${escapeHtml(uid)}" data-next="pending">待定</button>
                 <button class="mini reject ${status === "rejected" ? "active" : ""}" data-id="${escapeHtml(uid)}" data-next="rejected">拒绝</button>
                 <button class="mini import-now ${imported ? "done" : ""}" type="button" data-import-uid="${escapeHtml(uid)}" ${importable ? "" : "disabled"}>${escapeHtml(importButtonLabel(event))}</button>
+                ${imported ? `<button class="mini delete-buzz" type="button" data-delete-buzz-uid="${escapeHtml(uid)}" data-delete-buzz-now-id="${escapeHtml(event.buzz_now_id)}">删后台</button>` : ""}
                 <a class="link" href="${escapeHtml(event.originalLink)}" target="_blank" rel="noreferrer">原始链接</a>
               </div>
             </div>
@@ -1175,6 +1200,12 @@
       const importBtn = event.target.closest("button[data-import-uid]");
       if (importBtn && !importBtn.disabled) {
         importSingleEvent(importBtn.dataset.importUid);
+        return;
+      }
+
+      const deleteBtn = event.target.closest("button[data-delete-buzz-uid]");
+      if (deleteBtn) {
+        deleteBuzzNow(deleteBtn.dataset.deleteBuzzUid, deleteBtn.dataset.deleteBuzzNowId);
       }
     });
 

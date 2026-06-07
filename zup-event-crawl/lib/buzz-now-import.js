@@ -1,11 +1,18 @@
 "use strict";
 
+const path = require("path");
 const {
   buildImportRecord,
   importReadyIssues,
   isImportReady,
 } = require("./event-import-ready");
-const { getEventByUid, syncEventMerchantByPoi, markEventImportResult } = require("./review-db");
+const { readImageForImport } = require("./image-fetch");
+const {
+  clearEventBuzzNow,
+  getEventByUid,
+  syncEventMerchantByPoi,
+  markEventImportResult,
+} = require("./review-db");
 
 const API_PREFIX = "/internal";
 const HTTP_TIMEOUT_MS = 60000;
@@ -38,35 +45,13 @@ function defaultExpiredAt() {
   return formatDateTime(date);
 }
 
-function contentTypeFor(filename) {
-  const ext = String(filename || "").toLowerCase().split(".").pop();
-  switch (ext) {
-    case "png": return "image/png";
-    case "gif": return "image/gif";
-    case "webp": return "image/webp";
-    case "mp4": return "video/mp4";
-    default: return "image/jpeg";
-  }
-}
+const IMAGE_CACHE_DIR = path.join(__dirname, "..", "data", "image-cache");
 
 async function readSource(src) {
   const url = String(src || "").trim();
   if (!url) throw new Error("媒体地址为空");
-  if (url.startsWith("http://") || url.startsWith("https://")) {
-    const response = await fetch(url, {
-      headers: { "User-Agent": "ZupEventCrawl/1.0" },
-      signal: AbortSignal.timeout(HTTP_TIMEOUT_MS),
-    });
-    if (!response.ok) {
-      throw new Error(`下载媒体失败 HTTP ${response.status}`);
-    }
-    const buffer = Buffer.from(await response.arrayBuffer());
-    const pathname = new URL(url).pathname;
-    let filename = pathname.split("/").pop() || "image.jpg";
-    if (!filename.includes(".")) filename = "image.jpg";
-    return { buffer, filename, contentType: contentTypeFor(filename) };
-  }
-  throw new Error(`不支持的媒体路径: ${url}`);
+  const { buffer, filename, contentType } = await readImageForImport(url, IMAGE_CACHE_DIR);
+  return { buffer, filename, contentType };
 }
 
 class BuzzAdminClient {
@@ -93,18 +78,7 @@ class BuzzAdminClient {
     return this.token;
   }
 
-  async requestJSON(path, body, options = {}) {
-    const headers = { "Content-Type": "application/json" };
-    if (!options.skipAuth) {
-      await this.ensureToken();
-      headers.Authorization = `Bearer ${this.token}`;
-    }
-    const response = await fetch(`${this.base}${API_PREFIX}${path}`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify(body),
-      signal: AbortSignal.timeout(HTTP_TIMEOUT_MS),
-    });
+  async parseEnvelope(response) {
     const raw = await response.text();
     let envelope;
     try {
@@ -119,6 +93,31 @@ class BuzzAdminClient {
       throw new Error(envelope.message || `业务错误 code=${envelope.code}`);
     }
     return envelope.data ?? null;
+  }
+
+  async requestJSON(path, body, options = {}) {
+    const headers = { "Content-Type": "application/json" };
+    if (!options.skipAuth) {
+      await this.ensureToken();
+      headers.Authorization = `Bearer ${this.token}`;
+    }
+    const response = await fetch(`${this.base}${API_PREFIX}${path}`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify(body),
+      signal: AbortSignal.timeout(HTTP_TIMEOUT_MS),
+    });
+    return this.parseEnvelope(response);
+  }
+
+  async deleteJSON(path) {
+    await this.ensureToken();
+    const response = await fetch(`${this.base}${API_PREFIX}${path}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${this.token}` },
+      signal: AbortSignal.timeout(HTTP_TIMEOUT_MS),
+    });
+    return this.parseEnvelope(response);
   }
 
   async postJSON(path, body) {
@@ -175,6 +174,12 @@ class BuzzAdminClient {
   async createNow(payload) {
     const data = await this.postJSON("/nows", payload);
     return data?.now_id || "";
+  }
+
+  async deleteNow(nowId) {
+    const id = String(nowId || "").trim();
+    if (!id) throw new Error("缺少 now_id");
+    await this.deleteJSON(`/nows/${encodeURIComponent(id)}`);
   }
 }
 
@@ -269,6 +274,7 @@ async function importEventToBuzz(db, eventUid, options = {}) {
       }
     }
 
+    // 封面只从本地 image-cache 读取，再 POST /internal/upload 传到 Buzz OSS（不用第三方 URL 建气泡）
     const medias = [];
     for (const src of record.images || []) {
       const media = await client.uploadMedia(src);
@@ -336,8 +342,48 @@ async function batchImportApprovedEvents(db, options = {}) {
   return { total: events.length, ok, fail, skipped, results };
 }
 
+async function deleteEventFromBuzz(db, eventUid, options = {}) {
+  const event = getEventByUid(db, eventUid);
+  if (!event) {
+    return { ok: false, event_uid: eventUid, error: "活动不存在" };
+  }
+  const nowId = String(event.buzz_now_id || "").trim();
+  if (!nowId) {
+    return {
+      ok: false,
+      event_uid: eventUid,
+      title: event.title,
+      error: "本地未记录 now_id，无法删除后台气泡",
+      event,
+    };
+  }
+
+  const client = options.client || new BuzzAdminClient(options);
+  try {
+    await client.deleteNow(nowId);
+    const updated = clearEventBuzzNow(db, eventUid);
+    return {
+      ok: true,
+      event_uid: eventUid,
+      title: event.title,
+      now_id: nowId,
+      event: updated,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      event_uid: eventUid,
+      title: event.title,
+      now_id: nowId,
+      error: error.message,
+      event,
+    };
+  }
+}
+
 module.exports = {
   BuzzAdminClient,
   batchImportApprovedEvents,
+  deleteEventFromBuzz,
   importEventToBuzz,
 };

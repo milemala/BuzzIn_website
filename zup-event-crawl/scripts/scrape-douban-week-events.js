@@ -2,7 +2,10 @@
 
 const fs = require("fs");
 const path = require("path");
+const { ensureImageCached } = require("../lib/image-fetch");
 const { importPayload, openDatabase } = require("../lib/review-db");
+
+const imageCacheDir = path.join(__dirname, "..", "data", "image-cache");
 
 const args = process.argv.slice(2);
 const cityAliases = {
@@ -545,6 +548,13 @@ async function main() {
       event.detailText = event.rawDetailText;
       const largeImage = matchOne(detailHtml, /<img id="poster_img" itemprop="image" src="([^"]+)"/);
       if (largeImage) event.image = largeImage;
+      if (event.image) {
+        try {
+          await ensureImageCached(event.image, imageCacheDir);
+        } catch (cacheError) {
+          event.imageCacheError = cacheError.message;
+        }
+      }
     } catch (error) {
       event.detailText = "";
       event.rawDetailText = "";

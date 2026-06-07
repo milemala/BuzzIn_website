@@ -24,7 +24,11 @@ const {
   updateEventImportPrep,
   updateEventPoiCandidatesOnly,
 } = require("../lib/review-db");
-const { batchImportApprovedEvents, importEventToBuzz } = require("../lib/buzz-now-import");
+const {
+  batchImportApprovedEvents,
+  deleteEventFromBuzz,
+  importEventToBuzz,
+} = require("../lib/buzz-now-import");
 const {
   applyPoiSelection,
   getApprovedMerchants,
@@ -381,6 +385,18 @@ async function handleApi(req, res, pathname) {
     try {
       const eventUid = decodeURIComponent(eventImportMatch[1]);
       const result = await importEventToBuzz(db, eventUid);
+      sendJson(res, result.ok ? 200 : 400, result);
+    } catch (error) {
+      sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  const eventBuzzDeleteMatch = pathname.match(/^\/api\/events\/([^/]+)\/buzz-now$/);
+  if (req.method === "DELETE" && eventBuzzDeleteMatch) {
+    try {
+      const eventUid = decodeURIComponent(eventBuzzDeleteMatch[1]);
+      const result = await deleteEventFromBuzz(db, eventUid);
       sendJson(res, result.ok ? 200 : 400, result);
     } catch (error) {
       sendJson(res, 502, { ok: false, error: error.message });
