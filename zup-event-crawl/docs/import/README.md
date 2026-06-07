@@ -27,16 +27,15 @@
 
 ## 二、核心关系（一句话）
 
-> **气泡都是用户发的。用户可以没有商户，也可以带商户。气泡通过 POI 决定挂不挂商户。**
+> **气泡都是用户发的。用户可以没有商户，也可以带商户。挂商户见 [changeLog2.md](changeLog2.md)。**
 
 ```
-            bi_merchant_staffs                       POI 精确匹配
-            (店长/管理员，多对多)        location_poi_id == address_poi_id
-   用户 User ───────────────┐         ┌────────────────────────────── 商户 Merchant
-      │                     │         │                                   (bi_merchants)
-      │ user_id (必填,发布者) │         │ now_merchant_id (可选,自动算出)
-      ▼                     ▼         ▼
-                       气泡 Bubble (bi_user_now)
+   用户 User ──user_id(必填)──► 气泡 Bubble (bi_user_now)
+                                    │
+                    now_merchant_id │ ① 直挂（导入/C端均可填，优先）
+                    或 POI 匹配   │ ② location_poi_id == 商户.address_poi_id
+                                    ▼
+                              商户 Merchant
 ```
 
 两条**完全独立**的关联线，别搞混：
@@ -45,21 +44,21 @@
    建商户时由 `operator_user_id`（店长）和 `admin_ids`（管理员）写入。
    用户表 `bi_users` 里**没有**商户字段——是否“带商户”取决于这张关联表里有没有他的记录。
 
-2. **气泡 ↔ 商户**：**只**通过 POI 精确匹配（`WHERE address_poi_id = location_poi_id`，见 [`bi_merchants.go:23`](../../app/dao/bi_merchants.go#L23)）。
-   命中则把商户 id 写进气泡的 `now_merchant_id`；**接口里没有 merchant_id 字段**，POI 是唯一挂靠方式。
-   - **谁发的 ≠ 挂哪个商户**：即使发布者是某商户的店长，气泡也**不会**自动挂到该商户；
-     必须让气泡的 `location_poi_id` 等于该商户的 `address_poi_id` 才会挂上。
+2. **气泡 ↔ 商户**（二选一，**① 优先**）：
+   - **① `now_merchant_id`**：导入/C 端直接指定后台 `merchant_id`（`POST /internal/nows` 已支持，见 changeLog2）。
+   - **② `location_poi_id`**：与商户 `address_poi_id` 字符串相等时自动挂商户（原 POI 方式）。
+   - **谁发的 ≠ 挂哪个商户**：发布者是店长也不会自动挂店，必须显式填 ① 或 POI 命中 ②。
 
 ---
 
 ## 三、四种组合（按这个判断每条数据怎么填）
 
-| 场景 | 发布者 user_id | location_poi_id | 结果 |
-|---|---|---|---|
-| 个人用户发个人气泡 | 该用户 | **留空** | 不挂商户（`now_merchant_id` 为空） |
-| 个人用户发的气泡恰在某商户位置 | 该用户 | = 该商户 POI | 自动挂到该商户 |
-| 商户的气泡 | 该商户的店长/某用户 | = 该商户 POI | 挂到该商户 |
-| 商户的气泡但临时不想挂 | 任意用户 | 留空 | 不挂商户 |
+| 场景 | 发布者 user_id | now_merchant_id | location_poi_id | 结果 |
+|---|---|---|---|---|
+| 个人气泡 | 该用户 | 留空 | 留空 | 不挂商户 |
+| 直挂商户（推荐） | 该用户 | = merchant_id | 任意/可留空 | 挂指定商户 |
+| POI 挂商户 | 该用户 | 留空 | = 商户 POI | 自动挂到该商户 |
+| 两者都填 | 该用户 | = M1 | = 某 POI | **now_merchant_id 优先** |
 
 > **POI 留空是合法选择**：表示“这条气泡不挂任何商户”，由导入方/后台自行决定。
 
@@ -69,8 +68,8 @@
 
 - POI（`address_poi_id` / `location_poi_id`）是**外部地图（高德/腾讯等）的 POI 标识**，**后端不生成，需数据方提供**。
 - 它对“建商户/建气泡”本身**可选**，留空也能建成功。
-- 但它是**气泡挂商户的唯一键**：想让一个商户和它的多条气泡关联起来，
-  就让它们**用同一个 poi 值**（建商户填的 `address_poi_id` == 建气泡填的 `location_poi_id`）。
+- POI 仍是**方式②**的关联键：无 `now_merchant_id` 时，让 `address_poi_id` == `location_poi_id`。
+- 有后台 `merchant_id` 时更推荐**方式①**填 `now_merchant_id`，不依赖 POI 一致。
 - 没有真实 POI 时，可自造“稳定且每商户唯一”的字符串（如 `crawl_<来源>_<商户key>`），只要商户与其气泡一致即可。
   仅当需要和 App 真实地图/附近功能对齐时，才必须用真实 POI id。
 - ⚠️ **切勿用空串去匹配**：`GetByPoiID("")` 会命中第一条 poi 为空的商户造成误挂；脚本已规避（仅在非空时发送）。
@@ -82,8 +81,8 @@
 
 ```
 1) 用户 User    —— 先确保有可用的 user_id（已有用户，或先批量建）
-2) 商户 Merchant —— 需要挂商户的，先建好，记下其 poi 值
-3) 气泡 Bubble   —— 用 user_id 发布；要挂商户就把 location_poi_id 填成对应商户的 poi
+2) 商户 Merchant —— 需要挂商户的，先建好，记下 merchant_id（及 poi）
+3) 气泡 Bubble   —— 用 user_id 发布；挂商户优先填 now_merchant_id，或填 location_poi_id=商户 poi
 ```
 
 抓取数据建议的最小约定：
@@ -143,7 +142,8 @@
 | `now_type` | ✅ | 1动态 / 2即刻邀约 / 3预约 |
 | `now_medias` | 否 | 媒体数组（同上，含宽高）；首图自动作封面 |
 | `group_id` | 否 | 关联的 IM 群聊 id（先用 `group` 工具建群拿到，见第十五节）。**后端已支持** |
-| `location_poi_id` | 否 | 命中商户 `address_poi_id` 则挂该商户 |
+| `now_merchant_id` | 否 | **直接挂商户**（优先）；须为已存在且 `status=1` 的 merchant_id |
+| `location_poi_id` | 否 | 无 `now_merchant_id` 时，命中商户 `address_poi_id` 则挂该商户 |
 | `location_name` / `location_address` | 否 | 地点名 / 详细地址 |
 | `location_latitude` / `location_longitude` | 否 | 经纬度，用于距离/地图 |
 | `now_status` | 否 | 1正常（默认） / -1屏蔽 |
@@ -358,7 +358,7 @@ go run ./scripts/import/query users -token "$BUZZ_TOKEN" -keyword 13800138000
 go run ./scripts/import/query merchants -token "$BUZZ_TOKEN" -keyword 星巴克
 ```
 
-> ⚠️ `merchants/list` 的 keyword **不匹配 address_poi_id**。要按 poi 对比，先拉列表再在本地按 `address_poi_id` 过滤，或维护自己的 `poi→merchant_id` 台账。
+> ⚠️ `merchants/list` 的 keyword **不匹配 address_poi_id**。要按 poi 对比，优先用下面 3.6 的 C 端 POI 接口，或拉列表本地按 `address_poi_id` 过滤。
 
 ### 3.5) 商户类型列表 `POST /internal/merchant-types/list`
 
@@ -369,6 +369,19 @@ go run ./scripts/import/query merchants -token "$BUZZ_TOKEN" -keyword 星巴克
 go run ./scripts/import/query merchant-types -token "$BUZZ_TOKEN"
 # 打印 id / type / name，建商户时 type 填某个 id
 ```
+
+### 3.6) 按 POI 查已认证商户 `POST /api/v1/merchant/poi/info`（C 端，**无需后台 token**）
+
+请求：`{ "poi_id_list": ["poi_id_1", "poi_id_2"] }`（腾讯 POI id，即 `address_poi_id` / `location_poi_id`）。
+响应：`{ "code": 0, "data": { "list": [ ... ] } }`，`list` 中每条含对应 POI 的已认证商户信息（含 `merchant_id`）。
+
+```bash
+curl -sS -X POST "$BUZZ_API_BASE/api/v1/merchant/poi/info" \
+  -H "Content-Type: application/json" \
+  -d '{"poi_id_list":["B000A0EXAMPLE"]}'
+```
+
+爬虫侧导出气泡 JSON 时，会批量调此接口：若 POI 在系统里已有认证商户，自动写入 `now_merchant_id`（优先于仅靠 POI 间接挂商户）。环境变量 `BUZZ_API_BASE` 默认 `https://test-go-api.nowmap.cn`。
 
 ### 4) 后台气泡列表 `POST /internal/nows/list`
 

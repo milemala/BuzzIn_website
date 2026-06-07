@@ -28,6 +28,12 @@ const EVENT_IMPORT_COLUMNS = [
   ["poi_updated_at", "TEXT"],
   ["poi_latitude", "REAL"],
   ["poi_longitude", "REAL"],
+  ["now_merchant_id", "TEXT NOT NULL DEFAULT ''"],
+  ["now_merchant_name", "TEXT NOT NULL DEFAULT ''"],
+  ["buzz_now_id", "TEXT NOT NULL DEFAULT ''"],
+  ["import_status", "TEXT NOT NULL DEFAULT ''"],
+  ["import_error", "TEXT NOT NULL DEFAULT ''"],
+  ["imported_at", "TEXT"],
 ];
 
 function parsePoiCandidates(raw) {
@@ -180,6 +186,12 @@ function rowToEvent(row) {
     poi_address: row.poi_address || "",
     poi_candidates: parsePoiCandidates(row.poi_candidates),
     poi_updated_at: row.poi_updated_at || null,
+    now_merchant_id: row.now_merchant_id || "",
+    now_merchant_name: row.now_merchant_name || "",
+    buzz_now_id: row.buzz_now_id || "",
+    import_status: row.import_status || "",
+    import_error: row.import_error || "",
+    imported_at: row.imported_at || null,
     start_at: resolveStartAt(row),
     expired_at: resolveExpiredAt(row),
     import_ready: isImportReady(row),
@@ -214,6 +226,8 @@ function applyEventPoiSelection(db, eventUid, poi, options = {}) {
       poi_longitude = @poi_longitude,
       poi_candidates = @poi_candidates,
       poi_updated_at = @poi_updated_at,
+      now_merchant_id = '',
+      now_merchant_name = '',
       updated_at = @updated_at
     WHERE event_uid = @event_uid
   `).run({
@@ -229,6 +243,94 @@ function applyEventPoiSelection(db, eventUid, poi, options = {}) {
   });
 
   return getEventByUid(db, eventUid);
+}
+
+function updateEventMerchantInfo(db, eventUid, info = {}) {
+  const now = new Date().toISOString();
+  db.prepare(`
+    UPDATE events SET
+      now_merchant_id = @now_merchant_id,
+      now_merchant_name = @now_merchant_name,
+      updated_at = @updated_at
+    WHERE event_uid = @event_uid
+  `).run({
+    event_uid: eventUid,
+    now_merchant_id: String(info.now_merchant_id || "").trim(),
+    now_merchant_name: String(info.now_merchant_name || "").trim(),
+    updated_at: now,
+  });
+  return getEventByUid(db, eventUid);
+}
+
+async function syncEventMerchantByPoi(db, eventUid) {
+  const event = getEventByUid(db, eventUid);
+  if (!event) {
+    throw new Error(`活动不存在: ${eventUid}`);
+  }
+  const poiId = String(event.location_poi_id || "").trim();
+  if (!poiId) {
+    return updateEventMerchantInfo(db, eventUid, { now_merchant_id: "", now_merchant_name: "" });
+  }
+  const { lookupMerchantByPoiId } = require("./buzz-merchant-poi");
+  const found = await lookupMerchantByPoiId(poiId);
+  return updateEventMerchantInfo(db, eventUid, {
+    now_merchant_id: found?.merchant_id || "",
+    now_merchant_name: found?.merchant_name || "",
+  });
+}
+
+async function syncMerchantsForPoiEvents(db, options = {}) {
+  const rows = db.prepare(`
+    SELECT event_uid, location_poi_id, now_merchant_id
+    FROM events
+    WHERE location_poi_id IS NOT NULL AND location_poi_id != ''
+  `).all();
+  let updated = 0;
+  for (const row of rows) {
+    if (options.only_missing && row.now_merchant_id) continue;
+    await syncEventMerchantByPoi(db, row.event_uid);
+    updated += 1;
+  }
+  return { updated };
+}
+
+function markEventImportResult(db, eventUid, result = {}) {
+  const now = new Date().toISOString();
+  const imported = result.import_status === "imported";
+  db.prepare(`
+    UPDATE events SET
+      buzz_now_id = @buzz_now_id,
+      import_status = @import_status,
+      import_error = @import_error,
+      imported_at = @imported_at,
+      updated_at = @updated_at
+    WHERE event_uid = @event_uid
+  `).run({
+    event_uid: eventUid,
+    buzz_now_id: String(result.buzz_now_id || "").trim(),
+    import_status: String(result.import_status || "").trim(),
+    import_error: String(result.import_error || "").trim(),
+    imported_at: imported ? now : null,
+    updated_at: now,
+  });
+  return getEventByUid(db, eventUid);
+}
+
+function listEventsEligibleForImport(db, options = {}) {
+  const limit = Number(options.limit) > 0 ? Number(options.limit) : 500;
+  const rows = db.prepare(`
+    SELECT e.*
+    FROM events e
+    INNER JOIN review_decisions r ON r.event_uid = e.event_uid
+    WHERE r.status = 'approved'
+      AND (e.import_status IS NULL OR e.import_status = '' OR e.import_status = 'failed')
+    ORDER BY e.city, e.source_position, e.title
+    LIMIT ?
+  `).all(limit);
+  return rows
+    .map((row) => rowToEvent(row))
+    .filter((event) => !isExpired(event))
+    .filter((event) => isImportReady(event));
 }
 
 function updateEventPoiCandidatesOnly(db, eventUid, candidates) {
@@ -374,7 +476,22 @@ function applyDefaultImportPrepToActiveEvents(db) {
   return { updated };
 }
 
-function getExportImportNows(db, options = {}) {
+async function resolveMerchantLookupForEvents(db, events, options = {}) {
+  const { buildPoiMerchantIdMap, createMerchantIdResolver } = require("./buzz-merchant-poi");
+  const poiIds = events.map((event) => event.location_poi_id);
+  let poiMap = new Map();
+  if (options.skipMerchantLookup !== true) {
+    try {
+      poiMap = await buildPoiMerchantIdMap(poiIds, options.merchantPoiOptions);
+    } catch (error) {
+      if (options.merchantPoiOptions?.strict) throw error;
+      console.warn("[export] merchant/poi/info:", error.message);
+    }
+  }
+  return createMerchantIdResolver(db, poiMap);
+}
+
+async function getExportImportNows(db, options = {}) {
   const approvedOnly = options.approvedOnly !== false;
   const readyOnly = options.readyOnly !== false;
   const rows = db.prepare(`
@@ -384,15 +501,17 @@ function getExportImportNows(db, options = {}) {
     ORDER BY e.city, e.source_position, e.title
   `).all();
 
-  const records = [];
+  const events = [];
   for (const row of rows) {
     if (isExpired(row)) continue;
     if (approvedOnly && row.review_status !== "approved") continue;
     const event = rowToEvent(row);
     if (readyOnly && !isImportReady(event)) continue;
-    records.push(buildImportRecord(event));
+    events.push(event);
   }
-  return records;
+
+  const merchantLookup = await resolveMerchantLookupForEvents(db, events, options);
+  return events.map((event) => buildImportRecord(event, { findMerchantIdByPoi: merchantLookup }));
 }
 
 function ensureDefaultMeta(db) {
@@ -655,7 +774,7 @@ function getReviewState(db) {
   return { updatedAt, decisions };
 }
 
-function getApprovedEvents(db) {
+async function getApprovedEvents(db, options = {}) {
   const rows = db.prepare(`
     SELECT e.*
     FROM events e
@@ -664,10 +783,21 @@ function getApprovedEvents(db) {
     ORDER BY e.city, e.source_position, e.title
   `).all();
 
-  return rows
+  const events = rows
     .map((row) => rowToEvent(row))
-    .filter((event) => !isExpired(event))
-    .map((event) => buildImportRecord(event));
+    .filter((event) => !isExpired(event));
+  const merchantLookup = await resolveMerchantLookupForEvents(db, events, options);
+  return events.map((event) => buildImportRecord(event, { findMerchantIdByPoi: merchantLookup }));
+}
+
+function countApprovedActiveEvents(db) {
+  const rows = db.prepare(`
+    SELECT e.end_date, e.endDate, e.start_date, e.startDate
+    FROM events e
+    INNER JOIN review_decisions r ON r.event_uid = e.event_uid
+    WHERE r.status = 'approved'
+  `).all();
+  return rows.filter((item) => !isExpired(item)).length;
 }
 
 function getEventsPayload(db) {
@@ -740,6 +870,7 @@ module.exports = {
   applyEventPoiSelection,
   syncEventPoiCoordinates,
   eventUidFor,
+  countApprovedActiveEvents,
   getApprovedEvents,
   getEventByUid,
   getEventsPayload,
@@ -748,10 +879,15 @@ module.exports = {
   importPayload,
   importReviewState,
   listActiveEventsNeedingPoi,
+  listEventsEligibleForImport,
+  markEventImportResult,
   openDatabase,
   rejectEventForMissingPoi,
   replaceReviewState,
   rowToEvent,
+  syncEventMerchantByPoi,
+  syncMerchantsForPoiEvents,
+  updateEventMerchantInfo,
   upsertReviewDecision,
   updateEventImportPrep,
   updateEventPoiCandidatesOnly,

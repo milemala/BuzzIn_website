@@ -11,6 +11,7 @@ const VALID_REVIEW_STATUSES = new Set(["approved", "pending", "rejected"]);
 
 const IMPORT_PREP_COLUMNS = [
   ["merchant_type", "INTEGER"],
+  ["buzz_merchant_id", "TEXT NOT NULL DEFAULT ''"],
   ["address_poi_id", "TEXT NOT NULL DEFAULT ''"],
   ["poi_title", "TEXT NOT NULL DEFAULT ''"],
   ["poi_address", "TEXT NOT NULL DEFAULT ''"],
@@ -115,6 +116,7 @@ function rowToMerchant(row) {
     import_batch_id: row.import_batch_id || "",
     updated_at: row.updated_at,
     merchant_type: row.merchant_type ?? null,
+    buzz_merchant_id: row.buzz_merchant_id || "",
     address_poi_id: row.address_poi_id || "",
     poi_title: row.poi_title || "",
     poi_address: row.poi_address || "",
@@ -122,6 +124,43 @@ function rowToMerchant(row) {
     poi_updated_at: row.poi_updated_at || null,
     import_ready: isImportReady(row),
   };
+}
+
+function findBuzzMerchantIdByPoi(db, poiId) {
+  ensureMerchantSchema(db);
+  const id = String(poiId || "").trim();
+  if (!id) return "";
+  const row = db.prepare(`
+    SELECT m.buzz_merchant_id
+    FROM merchants m
+    INNER JOIN merchant_review_decisions d ON d.merchant_uid = m.merchant_uid
+    WHERE d.status = 'approved'
+      AND m.address_poi_id = ?
+      AND m.buzz_merchant_id IS NOT NULL
+      AND m.buzz_merchant_id != ''
+    LIMIT 1
+  `).get(id);
+  return row?.buzz_merchant_id || "";
+}
+
+function updateMerchantBuzzId(db, merchantUid, buzzMerchantId) {
+  ensureMerchantSchema(db);
+  const merchant = getMerchantByUid(db, merchantUid);
+  if (!merchant) {
+    throw new Error(`商户不存在: ${merchantUid}`);
+  }
+  const now = new Date().toISOString();
+  db.prepare(`
+    UPDATE merchants SET
+      buzz_merchant_id = @buzz_merchant_id,
+      updated_at = @updated_at
+    WHERE merchant_uid = @merchant_uid
+  `).run({
+    merchant_uid: merchantUid,
+    buzz_merchant_id: String(buzzMerchantId || "").trim(),
+    updated_at: now,
+  });
+  return getMerchantByUid(db, merchantUid);
 }
 
 function getMerchantByUid(db, merchantUid) {
@@ -432,6 +471,7 @@ function importMerchants(db, merchants, options = {}) {
 module.exports = {
   applyPoiSelection,
   ensureMerchantSchema,
+  findBuzzMerchantIdByPoi,
   getApprovedMerchants,
   getExportImportMerchants,
   getMerchantByUid,
@@ -442,6 +482,7 @@ module.exports = {
   openDatabase,
   replaceMerchantReviewState,
   rowToMerchant,
+  updateMerchantBuzzId,
   updateMerchantImportPrep,
   updatePoiCandidatesOnly,
 };

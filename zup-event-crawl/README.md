@@ -99,6 +99,25 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 | POST | `/api/merchant-review-state` | 保存商户审核 |
 | GET | `/api/approved-merchants` | 已通过商户 |
 | GET | `/api/image?src=...` | 图片代理与缓存 |
+| GET | `/api/export-import-nows` | 导出可入库气泡 JSON |
+| POST | `/api/events/:uid/import` | 单条活动写入 Buzz 后台 |
+| POST | `/api/events/import-batch` | 批量入库（已通过且未入库） |
+| POST | `/api/events/sync-merchants` | 按 POI 补全关联商户信息 |
+
+### 审核台入库
+
+- 选中 POI 后立即查询关联商户，显示在卡片「入库准备」区域。
+- 每条已通过活动可点 **入库**；页头 **批量入库** 可一次处理全部待入库项。
+- 入库成功后在卡片显示 `now_id`；无需再手动执行 Go 脚本（仍保留「导出 JSON」作备份）。
+
+环境变量（可选，本地已内置测试环境默认值）：
+
+| 变量 | 默认 | 说明 |
+|------|------|------|
+| `BUZZ_API_BASE` | `https://test-go-api.nowmap.cn` | Buzz 后端地址 |
+| `BUZZ_ADMIN_USER` | `admin` | 测试环境后台账号 |
+| `BUZZ_ADMIN_PASS` | `Test1234` | 测试环境后台密码 |
+| `BUZZ_TOKEN` | — | 有 token 时优先用，跳过登录 |
 
 ## 与官网其他目录的关系
 

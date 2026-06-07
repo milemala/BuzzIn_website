@@ -119,13 +119,22 @@ function isImportReady(event) {
   return importReadyIssues(event).length === 0;
 }
 
-function buildImportRecord(event) {
+function resolveNowMerchantId(event, options = {}) {
+  const explicit = String(event.now_merchant_id || "").trim();
+  if (explicit) return explicit;
+  const poiId = String(event.location_poi_id || "").trim();
+  if (!poiId || typeof options.findMerchantIdByPoi !== "function") return "";
+  return String(options.findMerchantIdByPoi(poiId) || "").trim();
+}
+
+function buildImportRecord(event, options = {}) {
   const loc = splitLocation(event.location);
   const images = [];
   if (event.image) images.push(event.image);
   const poiCoords = resolvePoiCoordinates(event);
+  const nowMerchantId = resolveNowMerchantId(event, options);
 
-  return {
+  const record = {
     user_id: String(event.publish_user_id || DEFAULT_PUBLISH_USER_ID).trim(),
     now_title: String(event.title || "").slice(0, 128),
     now_content: String(event.body || event.title || "").slice(0, 2000),
@@ -140,6 +149,10 @@ function buildImportRecord(event) {
     start_at: resolveStartAt(event),
     expired_at: resolveExpiredAt(event),
   };
+  if (nowMerchantId) {
+    record.now_merchant_id = nowMerchantId;
+  }
+  return record;
 }
 
 function buildPoiKeywordForEvent(event) {
@@ -162,6 +175,7 @@ module.exports = {
   isImportReady,
   normalizeNowType,
   resolveExpiredAt,
+  resolveNowMerchantId,
   resolvePoiCoordinates,
   resolveStartAt,
   splitLocation,

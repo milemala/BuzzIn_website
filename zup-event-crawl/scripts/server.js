@@ -8,6 +8,7 @@ const url = require("url");
 const {
   applyDefaultImportPrepToActiveEvents,
   applyEventPoiSelection,
+  countApprovedActiveEvents,
   getApprovedEvents,
   getEventByUid,
   getEventsPayload,
@@ -18,9 +19,12 @@ const {
   openDatabase,
   rejectEventForMissingPoi,
   replaceReviewState,
+  syncEventMerchantByPoi,
+  syncMerchantsForPoiEvents,
   updateEventImportPrep,
   updateEventPoiCandidatesOnly,
 } = require("../lib/review-db");
+const { batchImportApprovedEvents, importEventToBuzz } = require("../lib/buzz-now-import");
 const {
   applyPoiSelection,
   getApprovedMerchants,
@@ -224,7 +228,8 @@ async function handleApi(req, res, pathname) {
   }
 
   if (req.method === "GET" && pathname === "/api/approved-events") {
-    sendJson(res, 200, { updatedAt: getReviewState(db).updatedAt, events: getApprovedEvents(db) });
+    const events = await getApprovedEvents(db);
+    sendJson(res, 200, { updatedAt: getReviewState(db).updatedAt, events });
     return;
   }
 
@@ -232,7 +237,7 @@ async function handleApi(req, res, pathname) {
     const parsed = url.parse(req.url, true);
     const approvedOnly = parsed.query.approved_only !== "0";
     const readyOnly = parsed.query.ready_only !== "0";
-    const records = getExportImportNows(db, { approvedOnly, readyOnly });
+    const records = await getExportImportNows(db, { approvedOnly, readyOnly });
     sendJson(res, 200, {
       count: records.length,
       nows: records,
@@ -362,8 +367,49 @@ async function handleApi(req, res, pathname) {
         }
       }
 
-      const updated = applyEventPoiSelection(db, eventUid, poi, { candidates });
+      applyEventPoiSelection(db, eventUid, poi, { candidates });
+      const updated = await syncEventMerchantByPoi(db, eventUid);
       sendJson(res, 200, { ok: true, event: updated, candidates });
+    } catch (error) {
+      sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  const eventImportMatch = pathname.match(/^\/api\/events\/([^/]+)\/import$/);
+  if (req.method === "POST" && eventImportMatch) {
+    try {
+      const eventUid = decodeURIComponent(eventImportMatch[1]);
+      const result = await importEventToBuzz(db, eventUid);
+      sendJson(res, result.ok ? 200 : 400, result);
+    } catch (error) {
+      sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/events/import-batch") {
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const report = await batchImportApprovedEvents(db, {
+        limit: body.limit || 200,
+        delayMs: body.delay_ms ?? 1200,
+        dedup: body.dedup !== false,
+      });
+      sendJson(res, 200, { ok: true, ...report });
+    } catch (error) {
+      sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/events/sync-merchants") {
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const report = await syncMerchantsForPoiEvents(db, {
+        only_missing: body.only_missing !== false,
+      });
+      sendJson(res, 200, { ok: true, ...report });
     } catch (error) {
       sendJson(res, 502, { ok: false, error: error.message });
     }
@@ -392,8 +438,11 @@ async function handleApi(req, res, pathname) {
       const decisions = body.decisions && typeof body.decisions === "object" ? body.decisions : {};
       replaceReviewState(db, decisions);
       const state = getReviewState(db);
-      const approved = getApprovedEvents(db);
-      sendJson(res, 200, { ok: true, updatedAt: state.updatedAt, approvedCount: approved.length });
+      sendJson(res, 200, {
+        ok: true,
+        updatedAt: state.updatedAt,
+        approvedCount: countApprovedActiveEvents(db),
+      });
     } catch (error) {
       sendJson(res, 400, { ok: false, error: error.message });
     }

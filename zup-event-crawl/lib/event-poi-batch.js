@@ -6,6 +6,7 @@ const {
   getEventByUid,
   listActiveEventsNeedingPoi,
   rejectEventForMissingPoi,
+  syncEventMerchantByPoi,
 } = require("./review-db");
 
 function sleep(ms) {
@@ -63,6 +64,7 @@ async function batchEventAutoPoi(db, options = {}) {
       } else {
         const { poi: best } = pickBestPoiForEvent(event, items);
         applyEventPoiSelection(db, event.event_uid, best, { candidates: items });
+        await syncEventMerchantByPoi(db, event.event_uid);
         report.ok += 1;
         report.results.push({
           event_uid: event.event_uid,

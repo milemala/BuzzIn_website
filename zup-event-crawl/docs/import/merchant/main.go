@@ -30,8 +30,8 @@
 //     - 对“创建商户”本身是【可选】的，留空也能建成功。
 //     - 但它是【气泡 ↔ 商户 唯一的关联键】：气泡用 location_poi_id 精确匹配
 //       商户的 address_poi_id（SQL: WHERE address_poi_id = ?）来挂到商户名下。
-//       创建气泡的接口里【没有 merchant_id 字段】，所以想让抓来的气泡显示在
-//       对应商户下，必须让【同一商户和它的所有气泡使用同一个 poi 值】。
+//       建气泡可填 now_merchant_id 直挂（推荐），或让气泡 location_poi_id 与该商户
+//       address_poi_id 相同（POI 间接挂，见 changeLog2.md）。
 //     - 没有真实 POI 时，可自造一个“稳定且每个商户唯一”的字符串
 //       （如 crawl_<来源>_<商户key>），只要商户和其气泡保持一致即可。
 //     - 切勿用空字符串去匹配：GetByPoiID("") 会命中第一条 poi 为空的商户造成误挂；

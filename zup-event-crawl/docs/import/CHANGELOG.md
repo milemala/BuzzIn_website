@@ -127,3 +127,14 @@ go run ./scripts/import/query nows -token "$BUZZ_TOKEN" -keyword=周末桌游 | 
 - 新增 `geocode` 子命令：地址 → 经纬度(GCJ-02)。
 - POI/geocode 的**腾讯地图 key 已内置默认**（服务端只需 key、无需 SK），`-map-key` 可覆盖；`poi` 的 `-city` 默认全国。
 - 支持 `-flag=value` 写法。
+
+---
+
+## 增量 7 · 气泡直挂商户 `now_merchant_id` 🆕
+
+> 详情见 [changeLog2.md](changeLog2.md)。后台 `POST /internal/nows` 与 C 端 publish 对齐，支持可选字段 **`now_merchant_id`**。
+
+- [`now/main.go`](now/main.go) / [`main.go`](main.go)：`NowInput` 增 `now_merchant_id`，非空即透传；**优先于** `location_poi_id`。
+- [`now/sample.json`](now/sample.json)：含 POI 挂商户、直挂商户两条示例。
+- 挂商户：**① 填 `now_merchant_id`（推荐）** 或 **② POI 与商户 `address_poi_id` 一致**；两者都填时 ① 优先。
+- C 端 **`POST /api/v1/merchant/poi/info`**：按 `poi_id_list` 批量查已认证商户，爬虫导出可自动填 `now_merchant_id`（见 README 3.6）。

@@ -118,6 +118,15 @@
     .import-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
     .import-ready-tag{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px;background:#e7f5ec;color:#197549}
     .import-ready-tag.no{background:#fde8e4;color:#ad382c}
+    .import-merchant-hit{color:#197549}
+    .import-merchant-miss{color:#9a7200}
+    .import-status{margin-top:6px;font-size:12px;line-height:1.45}
+    .import-status.imported{color:#197549;font-weight:800}
+    .import-status.failed{color:#ad382c}
+    .import-status.pending{color:var(--muted)}
+    .mini.import-now{border-color:#111}
+    .mini.import-now:disabled{opacity:.45;cursor:not-allowed}
+    .mini.import-now.done{background:#e7f5ec;border-color:#2a9d68;color:#197549}
     .poi-hint{margin:6px 0 0;font-size:11px;line-height:1.45;color:var(--muted)}
     .poi-search-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
     .poi-search-row input{flex:1 1 180px;height:32px;border:1px solid var(--line);border-radius:6px;padding:0 8px;background:#fff}
@@ -159,7 +168,8 @@
       <div class="actions">
         <button class="btn" id="resetBtn">重置审核</button>
         <button class="btn" id="batchPrepBtn">批量补全入库</button>
-        <button class="btn primary" id="exportBtn">导出入库 JSON</button>
+        <button class="btn primary" id="batchImportBtn">批量入库</button>
+        <button class="btn" id="exportBtn">导出 JSON</button>
       </div>
     </div>
   </header>
@@ -227,6 +237,7 @@
     const DEFAULT_PUBLISH_USER_ID = "579362104";
     const DEFAULT_NOW_TYPE = 3;
     let prepBusy = false;
+    let importBusy = false;
     const poiKeywords = {};
     const poiPreviews = {};
     const poiAutoTried = new Set();
@@ -302,7 +313,7 @@
       const images = event.image ? [event.image] : [];
       const loc = String(event.location || "").trim();
       const poiCoords = resolvePoiCoordinates(event);
-      return {
+      const record = {
         user_id: effectivePublishUserId(event),
         now_title: String(event.title || "").slice(0, 128),
         now_content: String(event.body || event.title || "").slice(0, 2000),
@@ -317,6 +328,39 @@
         start_at: event.start_at || "",
         expired_at: event.expired_at || "",
       };
+      if (event.now_merchant_id) record.now_merchant_id = event.now_merchant_id;
+      return record;
+    }
+
+    function renderMerchantInfo(event) {
+      if (!event.location_poi_id) return "";
+      if (event.now_merchant_id) {
+        const name = event.now_merchant_name || "已认证商户";
+        return `<div class="import-meta import-merchant-hit">关联商户：<strong>${escapeHtml(name)}</strong> · merchant_id ${escapeHtml(event.now_merchant_id)}</div>`;
+      }
+      return `<div class="import-meta import-merchant-miss">关联商户：该 POI 在后台暂无认证商户</div>`;
+    }
+
+    function renderImportStatus(event) {
+      if (event.import_status === "imported" && event.buzz_now_id) {
+        return `<div class="import-status imported">已入库 · now_id <strong>${escapeHtml(event.buzz_now_id)}</strong></div>`;
+      }
+      if (event.import_status === "failed") {
+        return `<div class="import-status failed">入库失败：${escapeHtml(event.import_error || "未知错误")}</div>`;
+      }
+      return `<div class="import-status pending">尚未入库</div>`;
+    }
+
+    function canImportEvent(event) {
+      return getStatus(event) === "approved"
+        && isImportReady(event)
+        && event.import_status !== "imported";
+    }
+
+    function importButtonLabel(event) {
+      if (event.import_status === "imported" && event.buzz_now_id) return "已入库";
+      if (event.import_status === "failed") return "重试入库";
+      return "入库";
     }
 
     function getApprovedEvents() {
@@ -442,6 +486,54 @@
         }
       }
       drainPoiAutoQueue();
+    }
+
+    async function importSingleEvent(uid) {
+      setSaveState("正在入库...", "warn");
+      try {
+        const response = await fetch(`/api/events/${encodeURIComponent(uid)}/import`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: "{}",
+        });
+        const data = await response.json();
+        if (data.event) upsertEvent(data.event);
+        if (!response.ok || !data.ok) {
+          setSaveState(data.error || "入库失败", "error");
+          render();
+          return;
+        }
+        const suffix = data.skipped ? "（后台已存在，已记录 now_id）" : "";
+        setSaveState(`入库成功 now_id=${data.now_id}${suffix}`, "ok");
+        render();
+      } catch (error) {
+        setSaveState(error.message || "入库失败", "error");
+      }
+    }
+
+    async function runBatchImport() {
+      if (importBusy) return;
+      if (!window.confirm("将已通过、字段齐全且尚未入库的活动批量写入 Buzz 后台？\n（含图片上传，会较慢）")) return;
+      importBusy = true;
+      document.getElementById("batchImportBtn").disabled = true;
+      setSaveState("批量入库中...", "warn");
+      try {
+        const response = await fetch("/api/events/import-batch", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({}),
+        });
+        const data = await response.json();
+        if (!response.ok || !data.ok) throw new Error(data.error || "批量入库失败");
+        await loadEvents();
+        setSaveState(`批量入库完成：成功 ${data.ok} · 跳过 ${data.skipped} · 失败 ${data.fail}`, data.fail ? "warn" : "ok");
+        render();
+      } catch (error) {
+        setSaveState(error.message || "批量入库失败", "error");
+      } finally {
+        importBusy = false;
+        document.getElementById("batchImportBtn").disabled = false;
+      }
     }
 
     async function runBatchPrep() {
@@ -846,6 +938,8 @@
         const uid = event.eventUid || event.event_uid || event.id;
         const scoreClass = event.score >= 70 ? "good" : event.score < 60 ? "bad" : "";
         const ready = isImportReady(event);
+        const importable = canImportEvent(event);
+        const imported = event.import_status === "imported" && event.buzz_now_id;
         return `
           <article class="card" data-uid="${escapeHtml(uid)}">
             <div class="cover-wrap">
@@ -902,6 +996,8 @@
     })()
     : "<span style=\"color:#ad382c\">尚未匹配 POI</span>"}
                   </div>
+                  ${renderMerchantInfo(event)}
+                  ${renderImportStatus(event)}
                   <div class="import-actions">
                     <button class="mini" type="button" data-poi-action="auto">智能匹配</button>
                     <button class="mini" type="button" data-poi-action="refresh">重新查询</button>
@@ -918,6 +1014,7 @@
                 <button class="mini approve ${status === "approved" ? "active" : ""}" data-id="${escapeHtml(uid)}" data-next="approved">通过</button>
                 <button class="mini pending ${status === "pending" ? "active" : ""}" data-id="${escapeHtml(uid)}" data-next="pending">待定</button>
                 <button class="mini reject ${status === "rejected" ? "active" : ""}" data-id="${escapeHtml(uid)}" data-next="rejected">拒绝</button>
+                <button class="mini import-now ${imported ? "done" : ""}" type="button" data-import-uid="${escapeHtml(uid)}" ${importable ? "" : "disabled"}>${escapeHtml(importButtonLabel(event))}</button>
                 <a class="link" href="${escapeHtml(event.originalLink)}" target="_blank" rel="noreferrer">原始链接</a>
               </div>
             </div>
@@ -1072,6 +1169,12 @@
       const candBtn = event.target.closest("button[data-poi-index]");
       if (candBtn) {
         applyPoi(uid, { candidate_index: Number(candBtn.dataset.poiIndex) });
+        return;
+      }
+
+      const importBtn = event.target.closest("button[data-import-uid]");
+      if (importBtn && !importBtn.disabled) {
+        importSingleEvent(importBtn.dataset.importUid);
       }
     });
 
@@ -1112,6 +1215,7 @@
     });
 
     document.getElementById("batchPrepBtn").addEventListener("click", runBatchPrep);
+    document.getElementById("batchImportBtn").addEventListener("click", runBatchImport);
 
     document.getElementById("exportBtn").addEventListener("click", async () => {
       try {
