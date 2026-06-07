@@ -18,6 +18,9 @@ const {
   importReviewState,
   openDatabase,
   rejectEventForMissingPoi,
+  clearReviewDecisions,
+  patchReviewDecision,
+  patchReviewDecisions,
   replaceReviewState,
   syncEventMerchantByPoi,
   syncMerchantsForPoiEvents,
@@ -451,8 +454,19 @@ async function handleApi(req, res, pathname) {
   if (req.method === "POST" && pathname === "/api/review-state") {
     try {
       const body = JSON.parse((await readBody(req)) || "{}");
-      const decisions = body.decisions && typeof body.decisions === "object" ? body.decisions : {};
-      replaceReviewState(db, decisions);
+      if (body.clear === true) {
+        clearReviewDecisions(db);
+      } else if (body.replace === true) {
+        const decisions = body.decisions && typeof body.decisions === "object" ? body.decisions : {};
+        replaceReviewState(db, decisions);
+      } else if (body.eventUid || body.event_uid || body.key) {
+        const key = body.eventUid || body.event_uid || body.key;
+        patchReviewDecision(db, key, body.status);
+      } else if (body.decisions && typeof body.decisions === "object") {
+        patchReviewDecisions(db, body.decisions);
+      } else {
+        throw new Error("缺少审核参数：需要 eventUid+status、decisions 或 clear/replace");
+      }
       const state = getReviewState(db);
       sendJson(res, 200, {
         ok: true,

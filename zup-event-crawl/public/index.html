@@ -226,7 +226,6 @@
     const stateKey = "zup-crawl-review-v1";
     let reviewState = JSON.parse(localStorage.getItem(stateKey) || "{}");
     let serverSaveEnabled = false;
-    let saveTimer = null;
     let cityFilter = "all";
     let statusFilter = "all";
     let sourceFilter = "all";
@@ -345,7 +344,10 @@
 
     function renderImportStatus(event) {
       if (event.import_status === "imported" && event.buzz_now_id) {
-        return `<div class="import-status imported">已入库 · now_id <strong>${escapeHtml(event.buzz_now_id)}</strong></div>`;
+        const groupLine = event.buzz_group_id
+          ? `<br>群聊 group_id <strong>${escapeHtml(event.buzz_group_id)}</strong>`
+          : "";
+        return `<div class="import-status imported">已入库 · now_id <strong>${escapeHtml(event.buzz_now_id)}</strong>${groupLine}</div>`;
       }
       if (event.import_status === "failed") {
         return `<div class="import-status failed">入库失败：${escapeHtml(event.import_error || "未知错误")}</div>`;
@@ -417,8 +419,7 @@
       });
       const data = await response.json();
       if (data.rejected) {
-        reviewState[uid] = "rejected";
-        saveState();
+        setReviewDecision(uid, "rejected", { skipRender: true });
         if (data.event) upsertEvent(data.event);
         setSaveState(data.error || "无 POI，已自动拒绝", "warn");
         render();
@@ -528,7 +529,8 @@
           return;
         }
         const suffix = data.skipped ? "（后台已存在，已记录 now_id）" : "";
-        setSaveState(`入库成功 now_id=${data.now_id}${suffix}`, "ok");
+        const groupText = data.group_id ? ` · group_id=${data.group_id}` : "";
+        setSaveState(`入库成功 now_id=${data.now_id}${groupText}${suffix}`, "ok");
         render();
       } catch (error) {
         setSaveState(error.message || "入库失败", "error");
@@ -644,32 +646,61 @@
       }
     }
 
-    async function persistToServer() {
+    function persistLocalReviewState() {
+      localStorage.setItem(stateKey, JSON.stringify(reviewState));
+    }
+
+    async function persistReviewDecision(uid, status) {
       if (!serverSaveEnabled) return;
       try {
         const response = await fetch("/api/review-state", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ decisions: reviewState }),
+          body: JSON.stringify({ eventUid: uid, status }),
         });
-        if (!response.ok) throw new Error("save failed");
         const data = await response.json();
+        if (!response.ok || !data.ok) throw new Error(data.error || "save failed");
         setSaveState(`已保存到本地数据库，通过 ${data.approvedCount} 条`, "ok");
       } catch (error) {
         setSaveState("保存到本地数据库失败，请确认本地审核服务还在运行", "error");
       }
     }
 
-    function saveState() {
-      localStorage.setItem(stateKey, JSON.stringify(reviewState));
-      if (saveTimer) clearTimeout(saveTimer);
-      setSaveState(serverSaveEnabled ? "正在保存到本地数据库" : "未连接数据库，仅临时保存在当前浏览器", serverSaveEnabled ? "warn" : "error");
-      saveTimer = setTimeout(persistToServer, 120);
+    function setReviewDecision(uid, status, options = {}) {
+      reviewState[uid] = status;
+      persistLocalReviewState();
+      setSaveState(
+        serverSaveEnabled ? "正在保存到本地数据库" : "未连接数据库，仅临时保存在当前浏览器",
+        serverSaveEnabled ? "warn" : "error"
+      );
+      void persistReviewDecision(uid, status);
+      if (!options.skipRender) render();
     }
 
     function setStatus(id, status) {
-      reviewState[id] = status;
-      saveState();
+      setReviewDecision(id, status);
+    }
+
+    async function clearReviewDecisions() {
+      reviewState = {};
+      persistLocalReviewState();
+      if (!serverSaveEnabled) {
+        render();
+        return;
+      }
+      setSaveState("正在清空审核记录...", "warn");
+      try {
+        const response = await fetch("/api/review-state", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ clear: true }),
+        });
+        const data = await response.json();
+        if (!response.ok || !data.ok) throw new Error(data.error || "clear failed");
+        setSaveState("已清空审核记录", "ok");
+      } catch (error) {
+        setSaveState("清空审核记录失败，请确认本地审核服务还在运行", "error");
+      }
       render();
     }
 
@@ -1240,9 +1271,7 @@
     });
 
     document.getElementById("resetBtn").addEventListener("click", () => {
-      reviewState = {};
-      saveState();
-      render();
+      void clearReviewDecisions();
     });
 
     document.getElementById("batchPrepBtn").addEventListener("click", runBatchPrep);

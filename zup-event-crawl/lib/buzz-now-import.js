@@ -7,6 +7,7 @@ const {
   isImportReady,
 } = require("./event-import-ready");
 const { readImageForImport } = require("./image-fetch");
+const { createGroupForNow } = require("./tencent-im-group");
 const {
   clearEventBuzzNow,
   getEventByUid,
@@ -274,6 +275,9 @@ async function importEventToBuzz(db, eventUid, options = {}) {
       }
     }
 
+    const groupId = await createGroupForNow(record, options);
+    record.group_id = groupId;
+
     // 封面只从本地 image-cache 读取，再 POST /internal/upload 传到 Buzz OSS（不用第三方 URL 建气泡）
     const medias = [];
     for (const src of record.images || []) {
@@ -291,6 +295,7 @@ async function importEventToBuzz(db, eventUid, options = {}) {
 
     const updated = markEventImportResult(db, eventUid, {
       buzz_now_id: nowId,
+      buzz_group_id: groupId,
       import_status: "imported",
       import_error: "",
     });
@@ -299,6 +304,7 @@ async function importEventToBuzz(db, eventUid, options = {}) {
       event_uid: eventUid,
       title: event.title,
       now_id: nowId,
+      group_id: groupId,
       event: updated,
     };
   } catch (error) {

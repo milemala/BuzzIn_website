@@ -13,5 +13,8 @@
     "scrape-merchants-batch": "node scripts/batch-scrape-merchant-brands.js",
     "migrate": "node scripts/migrate-json-to-db.js",
     "save-html": "node scripts/save-chrome-douban-html.js"
+  },
+  "dependencies": {
+    "tls-sig-api-v2": "^1.0.2"
   }
 }
