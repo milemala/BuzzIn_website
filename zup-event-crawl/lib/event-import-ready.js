@@ -2,7 +2,7 @@
 
 const DEFAULT_PUBLISH_USER_ID = "579362104";
 const DEFAULT_NOW_TYPE = 3;
-const VALID_NOW_TYPES = new Set([1, 3]);
+const VALID_NOW_TYPES = new Set([1, 2, 3]);
 
 function pad2(n) {
   return String(n).padStart(2, "0");
@@ -53,9 +53,22 @@ function resolveExpiredAt(event) {
   return "";
 }
 
-function normalizeNowType(value) {
+function hasEventStarted(event) {
+  const raw = event?.startDate || event?.start_date || "";
+  const start = new Date(raw);
+  if (Number.isNaN(start.getTime())) return false;
+  return start.getTime() <= Date.now();
+}
+
+/** 未开始 → 3 预约；已开始 → 2 即刻邀约 */
+function suggestNowType(event) {
+  return hasEventStarted(event) ? 2 : 3;
+}
+
+function normalizeNowType(value, event = null) {
   const n = Number(value);
   if (VALID_NOW_TYPES.has(n)) return n;
+  if (event) return suggestNowType(event);
   return DEFAULT_NOW_TYPE;
 }
 
@@ -105,7 +118,6 @@ function importReadyIssues(event) {
   if (!String(event.publish_user_id || "").trim()) issues.push("未设置发布者 user_id");
   if (!VALID_NOW_TYPES.has(Number(event.now_type))) issues.push("now_type 无效");
   if (!String(event.title || "").trim()) issues.push("缺少标题");
-  if (!String(event.body || "").trim() && !String(event.title || "").trim()) issues.push("缺少正文");
   if (!String(event.location_poi_id || "").trim()) issues.push("未匹配 POI");
   const poiCoords = resolvePoiCoordinates(event);
   if (poiCoords.latitude == null || poiCoords.longitude == null) issues.push("缺少 POI 坐标");
@@ -117,6 +129,19 @@ function importReadyIssues(event) {
 
 function isImportReady(event) {
   return importReadyIssues(event).length === 0;
+}
+
+function buildImportContent(event, maxLen = 2000) {
+  const timeText = String(event.timeText || event.time_text || "").trim();
+  const body = String(event.body || "").trim();
+  const parts = [];
+
+  if (timeText) parts.push(timeText);
+  if (body && (!timeText || !body.startsWith(timeText))) {
+    parts.push(body);
+  }
+
+  return parts.join("\n\n").slice(0, maxLen);
 }
 
 function resolveNowMerchantId(event, options = {}) {
@@ -134,11 +159,13 @@ function buildImportRecord(event, options = {}) {
   const poiCoords = resolvePoiCoordinates(event);
   const nowMerchantId = resolveNowMerchantId(event, options);
 
+  const publishUserId = String(event.publish_user_id || DEFAULT_PUBLISH_USER_ID).trim();
   const record = {
-    user_id: String(event.publish_user_id || DEFAULT_PUBLISH_USER_ID).trim(),
+    publish_user_id: publishUserId,
+    user_id: publishUserId,
     now_title: String(event.title || "").slice(0, 128),
-    now_content: String(event.body || event.title || "").slice(0, 2000),
-    now_type: normalizeNowType(event.now_type),
+    now_content: buildImportContent(event),
+    now_type: normalizeNowType(event.now_type, event),
     images,
     group_id: "",
     location_poi_id: event.location_poi_id || "",
@@ -167,6 +194,9 @@ module.exports = {
   DEFAULT_NOW_TYPE,
   DEFAULT_PUBLISH_USER_ID,
   VALID_NOW_TYPES,
+  hasEventStarted,
+  suggestNowType,
+  buildImportContent,
   buildImportRecord,
   buildPoiKeywordForEvent,
   formatImportDateTime,

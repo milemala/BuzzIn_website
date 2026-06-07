@@ -280,9 +280,20 @@
       return String(event.publish_user_id || DEFAULT_PUBLISH_USER_ID).trim() || DEFAULT_PUBLISH_USER_ID;
     }
 
+    function hasEventStarted(event) {
+      const raw = event.startDate || event.start_date || "";
+      const start = new Date(raw);
+      return !Number.isNaN(start.getTime()) && start.getTime() <= Date.now();
+    }
+
+    function suggestNowType(event) {
+      return hasEventStarted(event) ? 2 : 3;
+    }
+
     function effectiveNowType(event) {
       const n = Number(event.now_type);
-      return n === 1 || n === 3 ? n : DEFAULT_NOW_TYPE;
+      if (n === 1 || n === 2 || n === 3) return n;
+      return suggestNowType(event);
     }
 
     function resolvePoiCoordinates(event) {
@@ -300,7 +311,7 @@
 
     function isImportReady(event) {
       if (!effectivePublishUserId(event)) return false;
-      if (![1, 3].includes(effectiveNowType(event))) return false;
+      if (![1, 2, 3].includes(effectiveNowType(event))) return false;
       if (!String(event.title || "").trim()) return false;
       if (!String(event.location_poi_id || "").trim()) return false;
       const poiCoords = resolvePoiCoordinates(event);
@@ -310,6 +321,15 @@
       return true;
     }
 
+    function buildImportContent(event) {
+      const timeText = String(event.timeText || event.time_text || "").trim();
+      const body = String(event.body || "").trim();
+      const parts = [];
+      if (timeText) parts.push(timeText);
+      if (body && (!timeText || !body.startsWith(timeText))) parts.push(body);
+      return parts.join("\n\n").slice(0, 2000);
+    }
+
     function buildImportRecord(event) {
       const images = event.image ? [event.image] : [];
       const loc = String(event.location || "").trim();
@@ -317,7 +337,7 @@
       const record = {
         user_id: effectivePublishUserId(event),
         now_title: String(event.title || "").slice(0, 128),
-        now_content: String(event.body || event.title || "").slice(0, 2000),
+        now_content: buildImportContent(event),
         now_type: effectiveNowType(event),
         images,
         group_id: "",
@@ -513,13 +533,23 @@
       }
     }
 
+    function publishUserIdFromCard(uid) {
+      const card = listEl.querySelector(`article.card[data-uid="${uid}"]`);
+      const field = card?.querySelector("[data-import-field='publish_user_id']");
+      return String(field?.value || "").trim();
+    }
+
     async function importSingleEvent(uid) {
       setSaveState("正在入库...", "warn");
+      const publishUserId = publishUserIdFromCard(uid);
+      if (publishUserId) {
+        await saveImportPrep(uid, { publish_user_id: publishUserId });
+      }
       try {
         const response = await fetch(`/api/events/${encodeURIComponent(uid)}/import`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: "{}",
+          body: JSON.stringify({ publish_user_id: publishUserId }),
         });
         const data = await response.json();
         if (data.event) upsertEvent(data.event);
@@ -564,7 +594,7 @@
 
     async function runBatchPrep() {
       if (prepBusy) return;
-      if (!window.confirm("为全部未过期活动写入默认发布者/now_type，并对缺 POI 的条目智能匹配 POI？\n（会调用腾讯地图，略慢）")) return;
+      if (!window.confirm("为全部未过期活动写入默认发布者/now_type？\n（不会改动 POI）")) return;
       prepBusy = true;
       document.getElementById("batchPrepBtn").disabled = true;
       setSaveState("批量补全入库中...", "warn");
@@ -572,14 +602,13 @@
         const response = await fetch("/api/events/import-prep-batch", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({}),
+          body: JSON.stringify({ skip_poi: true }),
         });
         const data = await response.json();
         if (!response.ok || !data.ok) throw new Error(data.error || "批量失败");
         await loadServerState();
         await loadEvents();
-        const rejected = data.poi?.rejected || 0;
-        setSaveState(`默认字段 ${data.defaults.updated} 条 · POI ${data.poi.ok} 成功 / ${data.poi.fail} 失败${rejected ? ` / 自动拒绝 ${rejected}` : ""}`, "ok");
+        setSaveState(`默认字段已写入 ${data.defaults.updated} 条未过期活动`, "ok");
         render();
       } catch (error) {
         setSaveState(error.message || "批量失败", "error");
@@ -1030,9 +1059,10 @@
                     <input id="user-${escapeHtml(uid)}" type="text" data-import-field="publish_user_id" value="${escapeHtml(effectivePublishUserId(event))}" placeholder="579362104">
                   </div>
                   <div class="import-field">
-                    <label for="type-${escapeHtml(uid)}">now_type（1 动态 / 3 预约）</label>
+                    <label for="type-${escapeHtml(uid)}">now_type（1 动态 / 2 即刻邀约 / 3 预约）</label>
                     <select id="type-${escapeHtml(uid)}" data-import-field="now_type">
                       <option value="1" ${effectiveNowType(event) === 1 ? "selected" : ""}>1 动态</option>
+                      <option value="2" ${effectiveNowType(event) === 2 ? "selected" : ""}>2 即刻邀约</option>
                       <option value="3" ${effectiveNowType(event) === 3 ? "selected" : ""}>3 预约</option>
                     </select>
                   </div>

@@ -8,7 +8,7 @@ const DEFAULT_IM_KEY = "34b157159d5b5f21c5b6b02e43d3fb4e904b1a3c68092585e9cd36b6
 const ADMIN_ID = "administrator";
 const ADMIN_SIG_EXPIRE = 86400 * 180;
 const HTTP_TIMEOUT_MS = 30000;
-const MAX_GROUP_NAME_LEN = 30;
+const MAX_GROUP_NAME_LEN = 20;
 
 const VALID_GROUP_TYPES = new Set(["Public", "Private", "ChatRoom", "AVChatRoom", "Community"]);
 
@@ -25,6 +25,34 @@ function truncateRunes(value, max) {
   const chars = [...String(value || "")];
   if (chars.length <= max) return chars.join("");
   return chars.slice(0, max).join("");
+}
+
+/** 从活动标题提炼短群名（语义截断，不超过 maxLen 个字） */
+function summarizeGroupName(title, maxLen = MAX_GROUP_NAME_LEN) {
+  let text = String(title || "").trim();
+  if (!text) return "活动群";
+
+  const stripPatterns = [
+    /[|｜/／·•].*$/,
+    /[@＠].*$/,
+    /[—–－\-]+[^—–－\-]*(?:剧场|Live|LIVE|店|厅|馆|酒吧|club|Club|空间|中心|广场|路\d|大厦|万达|商场).*$/i,
+    /[—–－\-]+.*$/,
+    /\s*[（(][^）)]{0,40}(?:店|站|路|街|区|市)[^）)]*[）)].*$/,
+  ];
+  for (const pattern of stripPatterns) {
+    const next = text.replace(pattern, "").trim();
+    if (next.length >= 2) text = next;
+  }
+
+  if ([...text].length > maxLen) {
+    const beforeBook = text.split(/[《「『]/)[0].trim();
+    if (beforeBook.length >= 4) text = beforeBook;
+  }
+
+  text = text.replace(/[（(【\[《「『].*$/, "").trim();
+  text = text.replace(/[—–－\-|｜/／·•@＠]+$/, "").trim();
+  text = truncateRunes(text, maxLen);
+  return text || "活动群";
 }
 
 function genAdminSig() {
@@ -95,12 +123,22 @@ async function createGroup(options = {}) {
   return groupId;
 }
 
+function resolveGroupOwner(record, options = {}) {
+  const owner = String(
+    options.owner || options.groupOwner || record.publish_user_id || record.user_id || ""
+  ).trim();
+  if (!owner) {
+    throw new Error("建群缺少 owner（须与活动发布者 user_id 一致）");
+  }
+  return owner;
+}
+
 async function createGroupForNow(record, options = {}) {
   if (options.createGroup === false) return "";
   return createGroup({
-    owner: record.user_id,
-    name: record.now_title || "活动群",
-    introduction: record.now_content || record.now_title || "",
+    owner: resolveGroupOwner(record, options),
+    name: summarizeGroupName(record.now_title),
+    introduction: record.now_content || "",
     type: options.groupType || "Public",
     applyJoinOption: options.applyJoinOption || "FreeAccess",
   });
@@ -110,4 +148,5 @@ module.exports = {
   createGroup,
   createGroupForNow,
   importAccount,
+  summarizeGroupName,
 };

@@ -30,7 +30,7 @@ function parseArgs(argv) {
       console.log(`用法:
   node scripts/batch-event-import-prep.js [选项]
 
-为所有未过期活动写入默认入库字段（发布者 579362104、now_type=3），并批量搜索 POI Top1。
+为所有未过期活动写入默认入库字段（发布者 579362104、now_type 按是否已开始默认 2/3），并批量搜索 POI Top1。
 
 选项:
   --skip-poi      只写默认字段，不查 POI

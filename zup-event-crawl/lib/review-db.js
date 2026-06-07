@@ -10,6 +10,7 @@ const {
   isExpired,
   isImportReady,
   normalizeNowType,
+  suggestNowType,
   resolveExpiredAt,
   resolvePoiCoordinates,
   resolveStartAt,
@@ -181,7 +182,7 @@ function rowToEvent(row) {
     suggested: Boolean(row.suggested),
     reviewReason: row.review_reason,
     publish_user_id: row.publish_user_id || DEFAULT_PUBLISH_USER_ID,
-    now_type: normalizeNowType(row.now_type),
+    now_type: normalizeNowType(row.now_type, row),
     location_poi_id: row.location_poi_id || "",
     poi_title: row.poi_title || "",
     poi_address: row.poi_address || "",
@@ -387,7 +388,7 @@ function updateEventImportPrep(db, eventUid, patch) {
       ? String(patch.publish_user_id || "").trim()
       : event.publish_user_id,
     now_type: patch.now_type !== undefined
-      ? normalizeNowType(patch.now_type)
+      ? normalizeNowType(patch.now_type, event)
       : event.now_type,
   };
 
@@ -485,7 +486,7 @@ function applyDefaultImportPrepToActiveEvents(db) {
       update.run({
         event_uid: row.event_uid,
         publish_user_id: DEFAULT_PUBLISH_USER_ID,
-        now_type: DEFAULT_NOW_TYPE,
+        now_type: suggestNowType(row),
         updated_at: now,
       });
       updated += 1;

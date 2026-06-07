@@ -392,7 +392,10 @@ async function handleApi(req, res, pathname) {
   if (req.method === "POST" && eventImportMatch) {
     try {
       const eventUid = decodeURIComponent(eventImportMatch[1]);
-      const result = await importEventToBuzz(db, eventUid);
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const result = await importEventToBuzz(db, eventUid, {
+        publish_user_id: body.publish_user_id,
+      });
       sendJson(res, result.ok ? 200 : 400, result);
     } catch (error) {
       sendJson(res, 502, { ok: false, error: error.message });

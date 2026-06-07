@@ -188,9 +188,10 @@ function buildBuzzPayload(record) {
   const payload = {
     user_id: record.user_id,
     now_title: truncateRunes(record.now_title, MAX_TITLE_LEN),
-    now_content: truncateRunes(record.now_content, MAX_CONTENT_LEN),
     now_type: record.now_type,
   };
+  const nowContent = truncateRunes(record.now_content, MAX_CONTENT_LEN);
+  if (nowContent) payload.now_content = nowContent;
   if (record.now_merchant_id) payload.now_merchant_id = record.now_merchant_id;
   if (record.location_poi_id) payload.location_poi_id = record.location_poi_id;
   if (record.location_name) payload.location_name = record.location_name;
@@ -250,7 +251,11 @@ async function importEventToBuzz(db, eventUid, options = {}) {
     };
   }
 
-  const record = buildImportRecord(event);
+  const publishUserId = String(options.publish_user_id || event.publish_user_id || "").trim();
+  const record = buildImportRecord({
+    ...event,
+    publish_user_id: publishUserId || event.publish_user_id,
+  });
   if (!record.user_id) {
     return { ok: false, event_uid: eventUid, title: event.title, error: "缺少发布者 user_id", event };
   }
@@ -275,7 +280,10 @@ async function importEventToBuzz(db, eventUid, options = {}) {
       }
     }
 
-    const groupId = await createGroupForNow(record, options);
+    const groupId = await createGroupForNow(record, {
+      ...options,
+      owner: record.publish_user_id || record.user_id,
+    });
     record.group_id = groupId;
 
     // 封面只从本地 image-cache 读取，再 POST /internal/upload 传到 Buzz OSS（不用第三方 URL 建气泡）
