@@ -398,6 +398,8 @@ async function deleteEventFromBuzz(db, eventUid, options = {}) {
 module.exports = {
   BuzzAdminClient,
   batchImportApprovedEvents,
+  buildBuzzPayload,
+  defaultExpiredAt,
   deleteEventFromBuzz,
   importEventToBuzz,
 };

@@ -49,6 +49,12 @@ const {
   updatePoiCandidatesOnly,
 } = require("../lib/merchant-db");
 const { MERCHANT_TYPES } = require("../lib/merchant-import-ready");
+const {
+  batchCreateMerchantGroups,
+  batchPublishMerchantBubbles,
+  getMerchantBubbleState,
+  rebuildRotationBuckets,
+} = require("../lib/merchant-bubble");
 const { batchEventAutoPoi } = require("../lib/event-poi-batch");
 const { batchAutoPoi } = require("../lib/merchant-poi-batch");
 const {
@@ -688,6 +694,66 @@ async function handleApi(req, res, pathname) {
     return;
   }
 
+  if (req.method === "GET" && pathname === "/api/merchant-bubbles/state") {
+    try {
+      const query = url.parse(req.url, true).query || {};
+      const state = getMerchantBubbleState(db, { city: query.city || "" });
+      sendJson(res, 200, { ok: true, ...state });
+    } catch (error) {
+      sendJson(res, 400, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/merchant-bubbles/rebuild-buckets") {
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const state = rebuildRotationBuckets(db, { city: body.city || "" });
+      sendJson(res, 200, { ok: true, ...state });
+    } catch (error) {
+      sendJson(res, 400, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/merchant-bubbles/groups-batch") {
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const report = await batchCreateMerchantGroups(db, {
+        city: body.city || "",
+        publish_user_id: body.publish_user_id,
+        only_missing: body.only_missing === true,
+        limit: body.limit || 0,
+        delayMs: body.delay_ms ?? 400,
+      });
+      sendJson(res, 200, { ok: true, ...report });
+    } catch (error) {
+      sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/merchant-bubbles/publish-batch") {
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const report = await batchPublishMerchantBubbles(db, {
+        city: body.city || "",
+        publish_user_id: body.publish_user_id,
+        title_mode: body.title_mode || "unified",
+        unified_title: body.unified_title || "",
+        unified_content: body.unified_content || "",
+        group_mode: body.group_mode || "use_merchant",
+        now_type: body.now_type,
+        advance_rotation: body.advance_rotation !== false,
+        delayMs: body.delay_ms ?? 1200,
+      });
+      sendJson(res, 200, { ok: true, ...report });
+    } catch (error) {
+      sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
   if (req.method === "POST" && pathname === "/api/merchant-review-state") {
     try {
       const body = JSON.parse((await readBody(req)) || "{}");
@@ -751,5 +817,6 @@ server.listen(port, "127.0.0.1", () => {
   console.log(`Zup crawl review service: http://127.0.0.1:${port}/`);
   console.log(`  活动审核: http://127.0.0.1:${port}/`);
   console.log(`  商户审核: http://127.0.0.1:${port}/merchants.html`);
+  console.log(`  商户气泡: http://127.0.0.1:${port}/merchant-bubbles.html`);
   console.log(`Database: ${dbPath}`);
 });

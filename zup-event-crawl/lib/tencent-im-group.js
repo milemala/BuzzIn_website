@@ -9,6 +9,7 @@ const ADMIN_ID = "administrator";
 const ADMIN_SIG_EXPIRE = 86400 * 180;
 const HTTP_TIMEOUT_MS = 30000;
 const MAX_GROUP_NAME_LEN = 20;
+const MAX_MERCHANT_GROUP_NAME_LEN = 30;
 
 const VALID_GROUP_TYPES = new Set(["Public", "Private", "ChatRoom", "AVChatRoom", "Community"]);
 
@@ -25,6 +26,10 @@ function truncateRunes(value, max) {
   const chars = [...String(value || "")];
   if (chars.length <= max) return chars.join("");
   return chars.slice(0, max).join("");
+}
+
+function merchantGroupDisplayName(merchant) {
+  return truncateRunes(String(merchant?.name || "").trim() || "商户群", MAX_MERCHANT_GROUP_NAME_LEN);
 }
 
 /** 从活动标题提炼短群名（语义截断，不超过 maxLen 个字） */
@@ -110,7 +115,10 @@ async function createGroup(options = {}) {
     Type: type,
     Owner_Account: owner,
   };
-  if (options.name) body.Name = truncateRunes(options.name, MAX_GROUP_NAME_LEN);
+  if (options.name) {
+    const maxLen = Number(options.maxNameLen) > 0 ? Number(options.maxNameLen) : MAX_GROUP_NAME_LEN;
+    body.Name = truncateRunes(options.name, maxLen);
+  }
   if (options.introduction) body.Introduction = truncateRunes(options.introduction, 240);
   if (options.notification) body.Notification = truncateRunes(options.notification, 300);
   if (options.faceUrl) body.FaceUrl = options.faceUrl;
@@ -121,6 +129,18 @@ async function createGroup(options = {}) {
   const groupId = result.GroupId || result.GroupID || "";
   if (!groupId) throw new Error("建群成功但未返回 group_id");
   return groupId;
+}
+
+async function modifyGroupBaseInfo(groupId, patch = {}) {
+  const id = String(groupId || "").trim();
+  if (!id) throw new Error("缺少 group_id");
+  const body = { GroupId: id };
+  if (patch.name) {
+    const maxLen = Number(patch.maxNameLen) > 0 ? Number(patch.maxNameLen) : MAX_MERCHANT_GROUP_NAME_LEN;
+    body.Name = truncateRunes(patch.name, maxLen);
+  }
+  if (patch.introduction) body.Introduction = truncateRunes(patch.introduction, 240);
+  await imPost("group_open_http_svc/modify_group_base_info", body);
 }
 
 function resolveGroupOwner(record, options = {}) {
@@ -144,9 +164,27 @@ async function createGroupForNow(record, options = {}) {
   });
 }
 
+async function createGroupForMerchant(merchant, options = {}) {
+  if (options.createGroup === false) return "";
+  const owner = String(options.owner || options.publish_user_id || "").trim();
+  if (!owner) throw new Error("建群缺少 owner（发布者 user_id）");
+  const intro = String(merchant.description || merchant.category || merchant.name || "").trim();
+  return createGroup({
+    owner,
+    name: merchantGroupDisplayName(merchant),
+    maxNameLen: MAX_MERCHANT_GROUP_NAME_LEN,
+    introduction: intro,
+    type: options.groupType || "Public",
+    applyJoinOption: options.applyJoinOption || "FreeAccess",
+  });
+}
+
 module.exports = {
   createGroup,
+  createGroupForMerchant,
   createGroupForNow,
   importAccount,
+  merchantGroupDisplayName,
+  modifyGroupBaseInfo,
   summarizeGroupName,
 };

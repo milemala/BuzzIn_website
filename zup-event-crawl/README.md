@@ -19,10 +19,16 @@ zup-event-crawl/
 ├── lib/
 │   ├── review-db.js              # 活动 SQLite
 │   ├── merchant-db.js            # 商户 SQLite
+│   ├── event-import-ready.js     # 活动入库字段 / now_type 默认
+│   ├── buzz-now-import.js        # Buzz 活动气泡客户端
+│   ├── buzz-merchant-import.js   # Buzz 商户入库
+│   ├── merchant-bubble.js        # 商户气泡三分组轮转发布
+│   ├── tencent-im-group.js       # 腾讯 IM 建群 / 改名
 │   └── dianping-parse.js
 ├── public/
 │   ├── index.html                # 活动审核
-│   └── merchants.html            # 商户审核
+│   ├── merchants.html            # 商户审核
+│   └── merchant-bubbles.html     # 已入库商户批量建群 + 发气泡
 ├── data/
 │   ├── review.db                 # 主存储（默认 gitignore）
 │   ├── image-cache/              # 图片代理缓存
@@ -50,6 +56,9 @@ npm start
 
 - http://127.0.0.1:8787/ （活动审核）
 - http://127.0.0.1:8787/merchants.html （商户审核）
+- http://127.0.0.1:8787/merchant-bubbles.html （商户气泡批量发布）
+
+**改 `lib/` 或 `scripts/server.js` 后请重启 `npm start`**，否则 API 仍跑旧代码。
 
 ## 抓取大众点评商户（一站式）
 
@@ -104,13 +113,34 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 | DELETE | `/api/events/:uid/buzz-now` | 从 Buzz 后台软删已入库气泡 |
 | POST | `/api/events/import-batch` | 批量入库（已通过且未入库） |
 | POST | `/api/events/sync-merchants` | 按 POI 补全关联商户信息 |
+| POST | `/api/events/import-prep-batch` | 批量写入默认发布者 / now_type（默认 `skip_poi: true`） |
+| POST | `/api/merchants/:uid/import` | 单条商户写入 Buzz |
+| POST | `/api/merchants/import-batch` | 批量商户入库 |
+| GET | `/api/merchant-bubbles/state` | 商户气泡轮转状态 |
+| POST | `/api/merchant-bubbles/groups-batch` | 批量建群或同步群名 |
+| POST | `/api/merchant-bubbles/publish-batch` | 发布当前轮次 1/3 商户气泡 |
 
-### 审核台入库
+### 活动审核台入库
 
-- 选中 POI 后立即查询关联商户，显示在卡片「入库准备」区域。
-- 每条已通过活动可点 **入库**；页头 **批量入库** 可一次处理全部待入库项。入库时会以发布者 `user_id` 为群主自动建腾讯 IM 群，并把 `group_id` 挂到气泡上。
-- 封面图从本地 `data/image-cache/` 读取，经 `POST /internal/upload` 上传到 Buzz OSS 后再建气泡（**不把豆瓣/点评 URL 写入后台**）。抓取详情时会自动缓存封面；入库时若本地无缓存会补拉一次。
-- 入库成功后在卡片显示 `now_id`；无需再手动执行 Go 脚本（仍保留「导出 JSON」作备份）。
+- 选中 POI 后查询关联商户；**入库 / 批量入库** 写入 Buzz 测试环境。
+- `now_type`：1 动态 / 2 即刻邀约 / 3 预约；未开始默认 3，已开始默认 2。
+- **批量补全入库**只改发布者与 `now_type`，不自动搜 POI。
+- 入库时以卡片 `publish_user_id` 为 IM 群主；活动群名语义截断 ≤20 字。
+- 封面从 `data/image-cache/` 上传 Buzz，不用第三方 URL 直链。
+
+### 商户审核台入库
+
+- **入库 / 批量入库**；`name_new` 与 `medias` 已按 Zup 后台要求处理。
+
+### 商户气泡（`merchant-bubbles.html`）
+
+前提：商户已在商户审核页 **入库 Buzz**。
+
+1. **批量创建商户群聊**：无群新建，有群则 IM 接口改名（群名 = 完整店名）
+2. 配置文案（统一 or 按店名）、群聊模式、发布者、`now_type`
+3. **发布本批气泡**：每城市随机三分组，每次只发 1/3，过期 **3 天**
+
+详见 [`docs/HANDOFF.md`](docs/HANDOFF.md) 顶部「2026-06-08 更新摘要」。
 
 环境变量（可选，本地已内置测试环境默认值）：
 

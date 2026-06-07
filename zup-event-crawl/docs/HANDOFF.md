@@ -1,6 +1,83 @@
 # Zup 抓取审核台交接（活动 + 商户）
 
-更新时间：2026-06-03 CST（目录位于 `BuzzInMap_website/zup-event-crawl/`）
+更新时间：2026-06-08 CST（目录位于 `BuzzInMap_website/zup-event-crawl/`）
+
+## 2026-06-08 更新摘要（接手必读）
+
+本节记录近期在**测试环境 Buzz API**（`https://test-go-api.nowmap.cn`）上的入库能力与商户气泡批量发布。改代码后需 **重启 `npm start`**，否则仍跑旧进程逻辑。
+
+### 审核台入口（三个一级页面）
+
+| 页面 | URL | 用途 |
+|------|-----|------|
+| 活动审核 | http://127.0.0.1:8787/ | 豆瓣活动抓取结果、POI、活动气泡入库 |
+| 商户审核 | http://127.0.0.1:8787/merchants.html | 大众点评商户、POI、商户入库 |
+| 商户气泡 | http://127.0.0.1:8787/merchant-bubbles.html | 已入库商户批量建群 + 轮转发布气泡 |
+
+### Git 近期提交（截至 2026-06-08）
+
+- `7fad474` — 活动 IM 群 + 增量保存审核
+- `6d433e8` — 商户页内入库
+- `f03c13b` — 活动 now_type 默认、群名截断、批量补全不动 POI
+- 其后一次提交 — 商户气泡三分组发布、IM 群改名、交接文档更新（见 `git log`）
+
+### 活动入库（`public/index.html`）
+
+- **单条/批量入库** → Buzz `POST /internal/nows`，无需再跑 Go 脚本
+- **now_type**：1 动态 / 2 即刻邀约 / 3 预约；**默认**未开始 → 3，已开始 → 2（见 `lib/event-import-ready.js` 的 `suggestNowType`）
+- **批量补全入库**：只写默认 `publish_user_id`（579362104）和 `now_type`，**不再自动搜 POI**（`skip_poi: true`）
+- **正文**：`now_content` = 活动时间文案（`timeText`）+ 正文（`body`），正文不再必填，不用标题兜底
+- **发布者**：单条入库读取卡片上的 `publish_user_id`，并以此作为 IM **群主**
+- **IM 群**：入库时自动建群；群名用 `summarizeGroupName` 语义截断，≤20 字（活动标题往往很长）
+- **删后台**：卡片「删后台」→ `DELETE /internal/nows/:id`，并清空本地 `buzz_now_id`
+- **审核保存**：`POST /api/review-state` 为**增量** upsert（`{ eventUid, status }`），不再整表覆盖
+
+### 商户入库（`public/merchants.html`）
+
+- **单条/批量入库** → Buzz `POST /internal/merchants`
+- 展示修复：`name_new = name`，logo 进 `medias` 数组（否则 Zup 后台缺名缺图）
+- 删后台：`DELETE /api/merchants/:uid/buzz-merchant`
+
+### 商户气泡批量发布（`public/merchant-bubbles.html`）— 新功能
+
+基于**已入库**商户（`import_status=imported` 且有 `buzz_merchant_id`）：
+
+1. **三分组轮转**：每个城市把商户随机分成 3 份，每次发布只发当前轮次那 1/3，发完自动轮到下一组（状态存 `app_meta.merchant_bubble_rotation`）
+2. **发布者**：默认 `579362104`，页面可改
+3. **标题文案**：统一标题/正文，或按店名生成（标题=店名，正文固定：「欢迎进群组局邀约，看看谁有空一起。」）
+4. **过期时间**：发布后 **3 天**（`lib/merchant-bubble.js` 的 `BUBBLE_EXPIRE_DAYS`）
+5. **群聊**：
+   - **批量创建商户群聊**：无群 → 新建；已有群 → 调腾讯 IM `modify_group_base_info` **改名**（不重建）
+   - 群名 = **完整店名**（含括号分店名），最长 30 字（`MAX_MERCHANT_GROUP_NAME_LEN`）
+   - 发布气泡可选「挂商户群聊」或「每次新建群聊」
+
+核心文件：`lib/merchant-bubble.js`、`lib/tencent-im-group.js`（`createGroupForMerchant`、`modifyGroupBaseInfo`）
+
+商户表新增字段（迁移在 `merchant-db.js`）：`buzz_group_id`、`bubble_now_id`、`bubble_published_at`
+
+### 腾讯 IM 约定
+
+| 场景 | 群名规则 | 群主 |
+|------|----------|------|
+| 活动气泡 | `summarizeGroupName(标题)` ≤20 字 | 活动 `publish_user_id` |
+| 商户群 | 完整 `merchant.name` ≤30 字 | 批量建群时的 `publish_user_id` |
+
+SDKAppID / Key 见 `lib/tencent-im-group.js` 或 `docs/import/README.md`（勿进前端、勿提交公网仓库）。
+
+### 环境变量（Buzz 入库）
+
+| 变量 | 默认 | 说明 |
+|------|------|------|
+| `BUZZ_API_BASE` | `https://test-go-api.nowmap.cn` | 测试 API |
+| `BUZZ_ADMIN_USER` / `BUZZ_ADMIN_PASS` | `admin` / `Test1234` | 无 `BUZZ_TOKEN` 时登录换 token |
+| `DEFAULT_PUBLISH_USER_ID` | `579362104`（代码内） | 活动/商户气泡默认发布者 |
+
+### 已知注意点
+
+- 改 `lib/*.js` 后必须重启 `npm start`，否则批量补全等仍用旧逻辑（例如 now_type 一直写 3）
+- 活动**已过期**（`end_date` 已过）在审核台默认隐藏，与「已通过」无关
+- 商户气泡「统一标题」模式下多条气泡标题相同，属预期；按店名生成则标题各异
+- 详细 Buzz 字段说明仍以 `docs/import/README.md` 为准
 
 
 ## 交接目的
@@ -33,6 +110,7 @@ npm start
 
 - 活动：`http://127.0.0.1:8787/`
 - 商户：`http://127.0.0.1:8787/merchants.html`
+- 商户气泡：`http://127.0.0.1:8787/merchant-bubbles.html`
 
 旧路径 `/events/crawl-review.html` 仍指向活动页。
 
@@ -393,30 +471,38 @@ npm start
 | POST | `/api/merchants/poi-auto-batch` | 批量 Top1 补全 POI |
 | POST | `/api/merchants/:uid/poi` | 单条 POI 匹配/改选 |
 | POST | `/api/merchants/:uid/import-prep` | 保存商户类型等入库字段 |
+| POST | `/api/merchants/:uid/import` | 单条商户写入 Buzz |
+| DELETE | `/api/merchants/:uid/buzz-merchant` | 删除后台商户并清空本地 buzz id |
+| POST | `/api/merchants/import-batch` | 批量商户入库 |
 
-商户审核台支持：POI Top1 自动 + 候选改选、商户类型、**可入库**筛选、**导出入库 JSON**。POI 搜索词与 Zup 后台一致：**城市 + 店名**（不用点评商圈，避免商场名带偏）。腾讯 key：**个人号优先**，日配额用尽自动切**公司号**；可用 `BUZZ_TENCENT_MAP_KEY` 强制指定单一 key。
+### 商户气泡 API（`merchant-bubbles.html`）
+
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| GET | `/api/merchant-bubbles/state` | 已入库数、各城市三分组与当前轮次 |
+| POST | `/api/merchant-bubbles/rebuild-buckets` | 重新随机三分组 |
+| POST | `/api/merchant-bubbles/groups-batch` | 无群新建 / 有群改名同步店名 |
+| POST | `/api/merchant-bubbles/publish-batch` | 发布当前轮次 1/3 商户气泡 |
+
+商户审核台支持：POI Top1 自动 + 候选改选、商户类型、**可入库**筛选、**导出入库 JSON**、**页内入库/删后台**。POI 搜索词与 Zup 后台一致：**城市 + 店名**（不用点评商圈，避免商场名带偏）。腾讯 key：**个人号优先**，日配额用尽自动切**公司号**；可用 `BUZZ_TENCENT_MAP_KEY` 强制指定单一 key。
 
 ## 当前 UI 状态摘要
 
 **活动页**（`public/index.html`）已经具备：
 
-- 单列活动列表。
-- 城市筛选。
-- 完整封面图显示。
-- 来源字段和来源筛选。
-- 状态筛选：全部、推荐、已通过、已拒绝、待定。
-- 类型筛选。
-- 日期筛选，显示每天总数和已通过数。
-- 搜索。
-- 豆瓣原始顺序 / 活动时间排序。
-- 本地持久化审核状态。
-- 已通过列表导出。
+- 单列活动列表；城市 / 状态 / 来源 / 类型 / 日期筛选、搜索、排序。
+- 入库准备：`publish_user_id`、`now_type`（1/2/3）、POI 匹配与关联商户展示。
+- **入库 / 批量入库 / 删后台**；**批量补全入库**（仅默认发布者与 now_type，不动 POI）。
+- 审核状态增量保存；图片经本地缓存上传 Buzz。
 
 **商户页**（`public/merchants.html`）已经具备：
 
-- 与活动分离的商户卡片列表（店名、图、地址/商圈、大众点评链接）。
-- 城市 / 状态筛选、搜索。
-- 通过 / 待定 / 拒绝与导出已通过 JSON。
+- 商户卡片、城市 / 状态筛选、POI、商户类型、**入库 / 批量入库 / 删后台**、导出入库 JSON。
+
+**商户气泡页**（`public/merchant-bubbles.html`）已经具备：
+
+- 已入库商户统计；各城市三分组轮转预览。
+- 批量建群（新建或改名）、批量发布气泡（文案模式、群聊模式、now_type、限定城市）。
 
 
 ## 注意事项

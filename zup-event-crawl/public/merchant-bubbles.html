@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>商户气泡批量发布</title>
+  <link rel="stylesheet" href="/workspace-nav.css">
+  <style>
+    :root{
+      --bg:#f3f6f4;--panel:#fcfffd;--text:#142018;--muted:#5f6d64;--line:#d8e3dc;
+      --green:#2a9d68;--red:#d95040;--ink:#101814;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+    button,input,textarea,select{font:inherit}
+    .top{position:sticky;top:0;z-index:20;background:rgba(243,246,244,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .top-inner{max-width:980px;margin:0 auto;padding:18px 20px}
+    h1{margin:0;font-size:22px;font-weight:800}
+    .meta{margin-top:5px;color:var(--muted);font-size:13px;line-height:1.5}
+    .save-state{display:inline-flex;align-items:center;height:24px;border-radius:999px;margin-top:8px;padding:0 9px;background:#e8efe9;color:#476054;font-size:12px;font-weight:700}
+    .save-state.ok{background:#e7f5ec;color:#197549}
+    .save-state.warn{background:#fff3c4;color:#806200}
+    .save-state.error{background:#fde8e4;color:#ad382c}
+    .wrap{max-width:980px;margin:0 auto;padding:18px 20px 44px;display:grid;gap:14px}
+    .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+    .panel h2{margin:0 0 10px;font-size:15px;font-weight:800}
+    .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .stat{background:#f7faf8;border:1px solid var(--line);border-radius:8px;padding:12px}
+    .stat b{display:block;font-size:22px}
+    .stat span{display:block;margin-top:4px;color:var(--muted);font-size:12px}
+    .field{display:grid;gap:5px;margin-top:12px}
+    .field>label{font-size:12px;font-weight:700;color:var(--muted)}
+    .field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:8px;background:#fff;padding:8px 10px}
+    .field textarea{min-height:88px;resize:vertical}
+    .option-block{margin-top:14px;padding:12px;border:1px solid var(--line);border-radius:8px;background:#f7faf8}
+    .option-head{display:grid;gap:4px;margin-bottom:10px}
+    .option-title{font-size:13px;font-weight:800;color:var(--text)}
+    .option-desc{margin:0;font-size:12px;line-height:1.5;color:var(--muted)}
+    .seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}
+    .seg button{height:34px;border:0;border-right:1px solid var(--line);background:transparent;padding:0 14px;cursor:pointer;color:var(--muted);font-size:13px;font-weight:700}
+    .seg button:last-child{border-right:0}
+    .seg button.active{background:#111;color:#fff}
+    .option-note{margin:10px 0 0;padding:10px 12px;border-radius:8px;background:#fff;border:1px solid var(--line);font-size:12px;line-height:1.55;color:#314036}
+    .option-note strong{color:var(--text)}
+    .sub-fields{margin-top:10px;display:grid;gap:10px}
+    .sub-fields[hidden]{display:none !important}
+    .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+    .btn{height:36px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:0 12px;cursor:pointer;color:var(--ink)}
+    .btn.primary{border-color:#111;background:#111;color:#fff}
+    .btn:disabled{opacity:.45;cursor:not-allowed}
+    .city-grid{display:grid;gap:10px}
+    .city-card{border:1px solid var(--line);border-radius:8px;padding:12px;background:#fff}
+    .city-card h3{margin:0 0 8px;font-size:14px}
+    .buckets{display:flex;gap:8px;flex-wrap:wrap}
+    .bucket{font-size:12px;padding:6px 10px;border-radius:999px;background:#edf3ef;color:#476054}
+    .bucket.current{background:#111;color:#fff;font-weight:800}
+    .hint{margin:0;color:var(--muted);font-size:12px;line-height:1.55}
+    .result{margin-top:10px;font-size:13px;line-height:1.55;white-space:pre-wrap}
+    @media (max-width:720px){.stats{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <nav class="workspace-nav" aria-label="工作区">
+        <a href="/">活动审核</a>
+        <a href="/merchants.html">商户审核</a>
+        <a href="/merchant-bubbles.html" class="active">商户气泡</a>
+      </nav>
+      <h1>商户气泡批量发布</h1>
+      <div class="meta">基于已入库商户，按城市随机三分组轮转发布。气泡默认 <strong>3 天后过期</strong>；商户群聊名称 = 完整店名（含分店括号）。</div>
+      <div class="save-state warn" id="saveState">加载中...</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="panel">
+      <h2>概览</h2>
+      <div class="stats" id="stats"></div>
+    </section>
+
+    <section class="panel">
+      <h2>发布设置</h2>
+      <p class="hint">每次发布仅选中各城市当前轮次的那 1/3 商户。发布完成后自动轮到下一组。</p>
+
+      <div class="field">
+        <label for="publishUserId">发布者 user_id</label>
+        <input id="publishUserId" type="text" value="579362104">
+      </div>
+
+      <div class="option-block">
+        <div class="option-head">
+          <div class="option-title">标题文案</div>
+          <p class="option-desc">选择所有气泡共用一套文案，或每家店按商户名单独生成。</p>
+        </div>
+        <div class="seg" id="titleModeSeg" role="tablist" aria-label="标题文案模式">
+          <button type="button" data-mode="unified" class="active">统一文案</button>
+          <button type="button" data-mode="per_merchant">按店名生成</button>
+        </div>
+        <div class="sub-fields" id="unifiedFields">
+          <div class="field" style="margin-top:0">
+            <label for="unifiedTitle">统一标题</label>
+            <input id="unifiedTitle" type="text" placeholder="例如：本周好店推荐">
+          </div>
+          <div class="field">
+            <label for="unifiedContent">统一正文（可选）</label>
+            <textarea id="unifiedContent" placeholder="例如：发现身边宝藏小店，一起来坐坐。"></textarea>
+          </div>
+        </div>
+        <p class="option-note" id="perMerchantNote" hidden>
+          <strong>按店名生成：</strong>标题 = 商户名；正文统一为「欢迎进群组局邀约，看看谁有空一起。」
+        </p>
+      </div>
+
+      <div class="option-block">
+        <div class="option-head">
+          <div class="option-title">群聊</div>
+          <p class="option-desc">气泡必须带群聊。建议先批量创建商户群聊，再选择挂已有群。</p>
+        </div>
+        <div class="seg" id="groupModeSeg" role="tablist" aria-label="群聊模式">
+          <button type="button" data-mode="use_merchant" class="active">挂商户群聊</button>
+          <button type="button" data-mode="create_new">每次新建群聊</button>
+        </div>
+        <p class="option-note" id="groupModeNote">
+          <strong>挂商户群聊：</strong>使用已为该商户创建的 IM 群（群名 = 完整店名）。若尚未建群，请先点下方「批量创建商户群聊」。
+        </p>
+      </div>
+
+      <div class="field">
+        <label for="nowType">now_type</label>
+        <select id="nowType">
+          <option value="1">1 动态</option>
+          <option value="2">2 即刻邀约</option>
+          <option value="3">3 预约</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="cityFilter">限定城市（留空 = 全部城市）</label>
+        <input id="cityFilter" type="text" placeholder="例如：北京">
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="rebuildBtn" type="button">重新随机三分组</button>
+        <button class="btn" id="createGroupsBtn" type="button">批量创建商户群聊</button>
+        <button class="btn primary" id="publishBtn" type="button">发布本批气泡</button>
+      </div>
+      <div class="result" id="result"></div>
+    </section>
+
+    <section class="panel">
+      <h2>各城市轮转分组</h2>
+      <div class="city-grid" id="cityGrid"></div>
+    </section>
+  </main>
+
+  <script>
+    const saveStateEl = document.getElementById("saveState");
+    const statsEl = document.getElementById("stats");
+    const cityGridEl = document.getElementById("cityGrid");
+    const resultEl = document.getElementById("result");
+    const titleModeSeg = document.getElementById("titleModeSeg");
+    const groupModeSeg = document.getElementById("groupModeSeg");
+    const unifiedFields = document.getElementById("unifiedFields");
+    const perMerchantNote = document.getElementById("perMerchantNote");
+    const groupModeNote = document.getElementById("groupModeNote");
+    let busy = false;
+    let titleMode = "unified";
+    let groupMode = "use_merchant";
+
+    function setSaveState(text, tone = "warn") {
+      saveStateEl.textContent = text;
+      saveStateEl.className = `save-state ${tone}`;
+    }
+
+    function syncTitleModeUI() {
+      const unified = titleMode === "unified";
+      unifiedFields.hidden = !unified;
+      perMerchantNote.hidden = unified;
+      titleModeSeg.querySelectorAll("button").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.mode === titleMode);
+      });
+    }
+
+    function syncGroupModeUI() {
+      groupModeSeg.querySelectorAll("button").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.mode === groupMode);
+      });
+      groupModeNote.innerHTML = groupMode === "use_merchant"
+        ? "<strong>挂商户群聊：</strong>使用已为该商户创建的 IM 群（群名 = 完整店名）。若尚未建群，请先点「批量创建商户群聊」。"
+        : "<strong>每次新建群聊：</strong>发布时为每家店临时新建一个群聊，不会复用商户已有群。";
+    }
+
+    titleModeSeg.addEventListener("click", (event) => {
+      const btn = event.target.closest("button[data-mode]");
+      if (!btn) return;
+      titleMode = btn.dataset.mode;
+      syncTitleModeUI();
+    });
+
+    groupModeSeg.addEventListener("click", (event) => {
+      const btn = event.target.closest("button[data-mode]");
+      if (!btn) return;
+      groupMode = btn.dataset.mode;
+      syncGroupModeUI();
+    });
+
+    function currentOptions() {
+      return {
+        publish_user_id: document.getElementById("publishUserId").value.trim(),
+        title_mode: titleMode,
+        unified_title: document.getElementById("unifiedTitle").value.trim(),
+        unified_content: document.getElementById("unifiedContent").value.trim(),
+        group_mode: groupMode,
+        now_type: Number(document.getElementById("nowType").value),
+        city: document.getElementById("cityFilter").value.trim(),
+      };
+    }
+
+    function renderState(data) {
+      statsEl.innerHTML = `
+        <div class="stat"><b>${data.imported_total || 0}</b><span>已入库商户</span></div>
+        <div class="stat"><b>${data.with_group || 0}</b><span>已有群聊</span></div>
+        <div class="stat"><b>${data.with_bubble || 0}</b><span>已发布气泡</span></div>
+      `;
+
+      const cities = data.cities || [];
+      if (!cities.length) {
+        cityGridEl.innerHTML = '<p class="hint">暂无已入库商户。请先在商户审核页完成入库。</p>';
+        return;
+      }
+
+      cityGridEl.innerHTML = cities.map((city) => `
+        <article class="city-card">
+          <h3>${escapeHtml(city.city)} · 共 ${city.total} 家 · 本批第 ${city.current_slot + 1} 组</h3>
+          <div class="buckets">
+            ${(city.buckets || []).map((bucket) => `
+              <span class="bucket ${bucket.is_current ? "current" : ""}">第 ${bucket.index + 1} 组 ${bucket.count} 家</span>
+            `).join("")}
+          </div>
+          <p class="hint" style="margin-top:8px">已有群聊 ${city.with_group} · 已发气泡 ${city.with_bubble}</p>
+        </article>
+      `).join("");
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    async function loadState() {
+      const city = document.getElementById("cityFilter").value.trim();
+      const query = city ? `?city=${encodeURIComponent(city)}` : "";
+      const response = await fetch(`/api/merchant-bubbles/state${query}`, { cache: "no-store" });
+      const data = await response.json();
+      if (!response.ok || !data.ok) throw new Error(data.error || "加载失败");
+      renderState(data);
+      setSaveState("就绪", "ok");
+      return data;
+    }
+
+    async function runAction(label, url, body) {
+      if (busy) return;
+      busy = true;
+      setSaveState(`${label}中...`, "warn");
+      resultEl.textContent = "";
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body || {}),
+        });
+        const data = await response.json();
+        if (!response.ok || !data.ok) throw new Error(data.error || `${label}失败`);
+        renderState(data.state || data);
+        const summary = data.plan?.length
+          ? data.plan.map((item) => `${item.city} 第${item.slot + 1}组 ${item.count}家`).join(" · ")
+          : "";
+        const extra = data.created != null
+          ? `（新建 ${data.created} · 改名 ${data.renamed || 0}）`
+          : "";
+        resultEl.textContent = [
+          `${label}完成：成功 ${data.ok} / 失败 ${data.fail}${extra}`,
+          summary,
+        ].filter(Boolean).join("\n");
+        setSaveState(`${label}完成`, data.fail ? "warn" : "ok");
+      } catch (error) {
+        setSaveState(error.message || `${label}失败`, "error");
+      } finally {
+        busy = false;
+      }
+    }
+
+    document.getElementById("rebuildBtn").addEventListener("click", () => {
+      if (!window.confirm("重新随机三分组？各城市商户会重新洗牌分组。")) return;
+      runAction("重新分组", "/api/merchant-bubbles/rebuild-buckets", { city: currentOptions().city });
+    });
+
+    document.getElementById("createGroupsBtn").addEventListener("click", () => {
+      const opts = currentOptions();
+      if (!window.confirm(`为${opts.city || "全部城市"}已入库商户处理 IM 群？\n无群聊的会新建；已有群聊的会同步群名为完整店名。`)) return;
+      runAction("批量建群", "/api/merchant-bubbles/groups-batch", opts);
+    });
+
+    document.getElementById("publishBtn").addEventListener("click", () => {
+      const opts = currentOptions();
+      if (opts.title_mode === "unified" && !opts.unified_title) {
+        setSaveState("请填写统一标题", "error");
+        return;
+      }
+      if (opts.group_mode === "use_merchant") {
+        const withGroup = Number(statsEl.querySelectorAll(".stat")[1]?.querySelector("b")?.textContent || 0);
+        const total = Number(statsEl.querySelectorAll(".stat")[0]?.querySelector("b")?.textContent || 0);
+        if (withGroup < total) {
+          if (!window.confirm("部分商户还没有群聊。建议先点「批量创建商户群聊」。仍要继续发布吗？")) return;
+        }
+      }
+      if (!window.confirm("发布本批气泡？将按各城市当前轮次的 1/3 商户发布，过期时间为 3 天后。")) return;
+      runAction("批量发布", "/api/merchant-bubbles/publish-batch", opts);
+    });
+
+    syncTitleModeUI();
+    syncGroupModeUI();
+    loadState().catch((error) => setSaveState(error.message || "加载失败", "error"));
+  </script>
+</body>
+</html>

@@ -20,6 +20,9 @@ const IMPORT_PREP_COLUMNS = [
   ["poi_address", "TEXT NOT NULL DEFAULT ''"],
   ["poi_candidates", "TEXT NOT NULL DEFAULT '[]'"],
   ["poi_updated_at", "TEXT"],
+  ["buzz_group_id", "TEXT NOT NULL DEFAULT ''"],
+  ["bubble_now_id", "TEXT NOT NULL DEFAULT ''"],
+  ["bubble_published_at", "TEXT"],
 ];
 
 function migrateMerchantImportColumns(db) {
@@ -128,6 +131,9 @@ function rowToMerchant(row) {
     poi_address: row.poi_address || "",
     poi_candidates: parsePoiCandidates(row.poi_candidates),
     poi_updated_at: row.poi_updated_at || null,
+    buzz_group_id: row.buzz_group_id || "",
+    bubble_now_id: row.bubble_now_id || "",
+    bubble_published_at: row.bubble_published_at || null,
     import_ready: isImportReady(row),
   };
 }
@@ -437,6 +443,83 @@ function getMerchantsPayload(db) {
   };
 }
 
+function listImportedMerchants(db, options = {}) {
+  ensureMerchantSchema(db);
+  let sql = `
+    SELECT m.*
+    FROM merchants m
+    INNER JOIN merchant_review_decisions d ON d.merchant_uid = m.merchant_uid
+    WHERE d.status = 'approved'
+      AND m.import_status = 'imported'
+      AND m.buzz_merchant_id IS NOT NULL
+      AND m.buzz_merchant_id != ''
+  `;
+  const params = [];
+  if (options.city) {
+    sql += " AND m.city = ?";
+    params.push(options.city);
+  }
+  if (options.merchant_uids?.length) {
+    const placeholders = options.merchant_uids.map(() => "?").join(",");
+    sql += ` AND m.merchant_uid IN (${placeholders})`;
+    params.push(...options.merchant_uids);
+  }
+  sql += " ORDER BY m.city, m.search_keyword, m.source_position";
+  const limit = Number(options.limit);
+  if (limit > 0) {
+    sql += " LIMIT ?";
+    params.push(limit);
+  }
+  return db.prepare(sql).all(...params).map((row) => rowToMerchant(row));
+}
+
+function updateMerchantGroupId(db, merchantUid, groupId) {
+  ensureMerchantSchema(db);
+  const now = new Date().toISOString();
+  db.prepare(`
+    UPDATE merchants SET
+      buzz_group_id = @buzz_group_id,
+      updated_at = @updated_at
+    WHERE merchant_uid = @merchant_uid
+  `).run({
+    merchant_uid: merchantUid,
+    buzz_group_id: String(groupId || "").trim(),
+    updated_at: now,
+  });
+  return getMerchantByUid(db, merchantUid);
+}
+
+function markMerchantBubbleResult(db, merchantUid, result = {}) {
+  ensureMerchantSchema(db);
+  const current = getMerchantByUid(db, merchantUid);
+  if (!current) {
+    throw new Error(`商户不存在: ${merchantUid}`);
+  }
+  const now = new Date().toISOString();
+  const pick = (key, fallback = "") => (
+    Object.prototype.hasOwnProperty.call(result, key)
+      ? String(result[key] || "").trim()
+      : String(current?.[key] || fallback).trim()
+  );
+  db.prepare(`
+    UPDATE merchants SET
+      bubble_now_id = @bubble_now_id,
+      buzz_group_id = @buzz_group_id,
+      bubble_published_at = @bubble_published_at,
+      updated_at = @updated_at
+    WHERE merchant_uid = @merchant_uid
+  `).run({
+    merchant_uid: merchantUid,
+    bubble_now_id: pick("bubble_now_id"),
+    buzz_group_id: pick("buzz_group_id", current.buzz_group_id),
+    bubble_published_at: Object.prototype.hasOwnProperty.call(result, "bubble_published_at")
+      ? result.bubble_published_at
+      : (pick("bubble_now_id") ? now : current.bubble_published_at),
+    updated_at: now,
+  });
+  return getMerchantByUid(db, merchantUid);
+}
+
 function getApprovedMerchants(db) {
   ensureMerchantSchema(db);
   const rows = db.prepare(`
@@ -533,9 +616,12 @@ module.exports = {
   getMerchantReviewState,
   getMerchantsPayload,
   importMerchants,
+  listImportedMerchants,
   listMerchantsEligibleForImport,
   listMerchantsNeedingPoi,
+  markMerchantBubbleResult,
   markMerchantImportResult,
+  updateMerchantGroupId,
   openDatabase,
   replaceMerchantReviewState,
   rowToMerchant,
