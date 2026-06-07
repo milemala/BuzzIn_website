@@ -61,7 +61,8 @@ function buildImportRecord(merchant) {
 
   return {
     name,
-    name_new: "",
+    // 后台列表/C 端常优先展示 name_new；留空会导致「有 name 但界面无店名」
+    name_new: name,
     type: Number(merchant.merchant_type),
     description: merchant.category ? `${merchant.category}${merchant.district ? ` · ${merchant.district}` : ""}` : "",
     longitude: Number(merchant.longitude),

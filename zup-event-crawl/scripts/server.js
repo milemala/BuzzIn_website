@@ -33,6 +33,11 @@ const {
   importEventToBuzz,
 } = require("../lib/buzz-now-import");
 const {
+  batchImportApprovedMerchants,
+  deleteMerchantFromBuzz,
+  importMerchantToBuzz,
+} = require("../lib/buzz-merchant-import");
+const {
   applyPoiSelection,
   getApprovedMerchants,
   getExportImportMerchants,
@@ -619,6 +624,45 @@ async function handleApi(req, res, pathname) {
         merchant_type: body.merchant_type,
       });
       sendJson(res, 200, { ok: true, merchant: updated, candidates });
+    } catch (error) {
+      sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  const merchantImportMatch = pathname.match(/^\/api\/merchants\/([^/]+)\/import$/);
+  if (req.method === "POST" && merchantImportMatch) {
+    try {
+      const merchantUid = decodeURIComponent(merchantImportMatch[1]);
+      const result = await importMerchantToBuzz(db, merchantUid);
+      sendJson(res, result.ok ? 200 : 400, result);
+    } catch (error) {
+      sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  const merchantBuzzDeleteMatch = pathname.match(/^\/api\/merchants\/([^/]+)\/buzz-merchant$/);
+  if (req.method === "DELETE" && merchantBuzzDeleteMatch) {
+    try {
+      const merchantUid = decodeURIComponent(merchantBuzzDeleteMatch[1]);
+      const result = await deleteMerchantFromBuzz(db, merchantUid);
+      sendJson(res, result.ok ? 200 : 400, result);
+    } catch (error) {
+      sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/merchants/import-batch") {
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const report = await batchImportApprovedMerchants(db, {
+        limit: body.limit || 200,
+        delayMs: body.delay_ms ?? 1200,
+        dedup: body.dedup !== false,
+      });
+      sendJson(res, 200, { ok: true, ...report });
     } catch (error) {
       sendJson(res, 502, { ok: false, error: error.message });
     }

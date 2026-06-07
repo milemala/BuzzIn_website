@@ -115,6 +115,15 @@
     }
     .back-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
     .back-top:hover{border-color:#9ab5a4}
+    .import-status{margin-top:8px;font-size:12px;line-height:1.45}
+    .import-status.imported{color:#197549;font-weight:800}
+    .import-status.failed{color:#ad382c}
+    .import-status.pending{color:var(--muted)}
+    .mini.import-merchant{border-color:#111}
+    .mini.import-merchant:disabled{opacity:.45;cursor:not-allowed}
+    .mini.import-merchant.done{background:#e7f5ec;border-color:#2a9d68;color:#197549}
+    .mini.delete-buzz{border-color:#d95040;color:#ad382c}
+    .mini.delete-buzz:hover{background:#fde8e4}
     @media (max-width:820px){
       .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
       .filter-row{grid-template-columns:1fr}
@@ -138,7 +147,8 @@
       </div>
       <div class="top-actions">
         <button class="btn" id="batchPoiBtn" type="button">批量补全 POI</button>
-        <button class="btn primary" id="exportImportBtn" type="button">导出入库 JSON</button>
+        <button class="btn primary" id="batchImportBtn" type="button">批量入库</button>
+        <button class="btn" id="exportImportBtn" type="button">导出入库 JSON</button>
       </div>
     </div>
   </header>
@@ -181,6 +191,7 @@
       filters: { city: "all", status: "all", search: "" },
       page: 1,
       poiBusy: false,
+      importBusy: false,
       poiKeywords: {},
       poiPreviews: {},
     };
@@ -195,6 +206,7 @@
       statusFilter: document.getElementById("statusFilter"),
       searchInput: document.getElementById("searchInput"),
       batchPoiBtn: document.getElementById("batchPoiBtn"),
+      batchImportBtn: document.getElementById("batchImportBtn"),
       exportImportBtn: document.getElementById("exportImportBtn"),
       backTopBtn: document.getElementById("backTopBtn"),
     };
@@ -220,6 +232,98 @@
       if (!item.address_poi_id) return false;
       if (!item.longitude || !item.latitude) return false;
       return true;
+    }
+
+    function canImportMerchant(item) {
+      return reviewStatus(item.merchant_uid) === "approved"
+        && isImportReady(item)
+        && item.import_status !== "imported";
+    }
+
+    function importButtonLabel(item) {
+      if (item.import_status === "imported" && item.buzz_merchant_id) return "已入库";
+      if (item.import_status === "failed") return "重试入库";
+      return "入库";
+    }
+
+    function renderImportStatus(item) {
+      if (item.import_status === "imported" && item.buzz_merchant_id) {
+        return `<div class="import-status imported">已入库 · merchant_id <strong>${escapeHtml(item.buzz_merchant_id)}</strong></div>`;
+      }
+      if (item.import_status === "failed") {
+        return `<div class="import-status failed">入库失败：${escapeHtml(item.import_error || "未知错误")}</div>`;
+      }
+      return `<div class="import-status pending">尚未入库</div>`;
+    }
+
+    async function importSingleMerchant(uid) {
+      setSaveState("正在入库...", "warn");
+      try {
+        const response = await fetch(`/api/merchants/${encodeURIComponent(uid)}/import`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: "{}",
+        });
+        const data = await response.json();
+        if (data.merchant) upsertMerchant(data.merchant);
+        if (!response.ok || !data.ok) {
+          setSaveState(data.error || "入库失败", "error");
+          render();
+          return;
+        }
+        const suffix = data.skipped ? "（后台已存在，已记录 merchant_id）" : "";
+        setSaveState(`入库成功 merchant_id=${data.merchant_id}${suffix}`, "ok");
+        render();
+      } catch (error) {
+        setSaveState(error.message || "入库失败", "error");
+      }
+    }
+
+    async function deleteBuzzMerchant(uid, merchantId) {
+      const message = `确定从 Buzz 后台删除此商户？\n\nmerchant_id: ${merchantId}\n\n审核台里的抓取记录会保留，仅清除入库状态。`;
+      if (!window.confirm(message)) return;
+      setSaveState("正在删除后台商户...", "warn");
+      try {
+        const response = await fetch(`/api/merchants/${encodeURIComponent(uid)}/buzz-merchant`, {
+          method: "DELETE",
+        });
+        const data = await response.json();
+        if (data.merchant) upsertMerchant(data.merchant);
+        if (!response.ok || !data.ok) {
+          setSaveState(data.error || "删除失败", "error");
+          render();
+          return;
+        }
+        setSaveState(`已删除后台商户 ${data.merchant_id}`, "ok");
+        render();
+      } catch (error) {
+        setSaveState(error.message || "删除失败", "error");
+      }
+    }
+
+    async function runBatchImport() {
+      if (state.importBusy) return;
+      if (!window.confirm("将已通过、字段齐全且尚未入库的商户批量写入 Buzz 后台？\n（含图片上传，会较慢）")) return;
+      state.importBusy = true;
+      els.batchImportBtn.disabled = true;
+      setSaveState("批量入库中...", "warn");
+      try {
+        const response = await fetch("/api/merchants/import-batch", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({}),
+        });
+        const data = await response.json();
+        if (!response.ok || !data.ok) throw new Error(data.error || "批量入库失败");
+        await loadMerchants();
+        setSaveState(`批量入库完成：成功 ${data.ok} · 跳过 ${data.skipped} · 失败 ${data.fail}`, data.fail ? "warn" : "ok");
+        render();
+      } catch (error) {
+        setSaveState(error.message || "批量入库失败", "error");
+      } finally {
+        state.importBusy = false;
+        els.batchImportBtn.disabled = false;
+      }
     }
 
     function setSaveState(text, kind = "warn") {
@@ -590,6 +694,8 @@
       els.grid.innerHTML = list.map((item) => {
         const status = reviewStatus(item.merchant_uid);
         const ready = isImportReady(item);
+        const importable = canImportMerchant(item);
+        const imported = item.import_status === "imported" && item.buzz_merchant_id;
         const addressLine = item.address || item.poi_address || `商圈：${item.district || item.list_region_text || "未知"}`;
         const detailUrl = merchantDetailUrl(item);
         const chips = [
@@ -637,12 +743,15 @@
                     <button class="mini" type="button" data-poi-action="custom-search">自由搜索</button>
                   </div>
                   ${renderPoiCandidates(item)}
+                  ${renderImportStatus(item)}
                 </div>
               </div>
               <div class="card-actions">
                 <button class="mini approve ${status === "approved" ? "active" : ""}" data-action="approved">通过</button>
                 <button class="mini pending ${status === "pending" ? "active" : ""}" data-action="pending">待定</button>
                 <button class="mini reject ${status === "rejected" ? "active" : ""}" data-action="rejected">拒绝</button>
+                <button class="mini import-merchant ${imported ? "done" : ""}" type="button" data-import-uid="${escapeHtml(item.merchant_uid)}" ${importable ? "" : "disabled"}>${escapeHtml(importButtonLabel(item))}</button>
+                ${imported ? `<button class="mini delete-buzz" type="button" data-delete-buzz-uid="${escapeHtml(item.merchant_uid)}" data-delete-buzz-merchant-id="${escapeHtml(item.buzz_merchant_id)}">删后台</button>` : ""}
                 ${detailUrl ? `<a class="link" href="${escapeHtml(detailUrl)}" target="_blank" rel="noopener">打开详情页</a>` : ""}
               </div>
             </div>
@@ -768,6 +877,18 @@
           merchant_type: type,
           candidate_index: Number(candBtn.dataset.poiIndex),
         });
+        return;
+      }
+
+      const importBtn = event.target.closest("button[data-import-uid]");
+      if (importBtn && !importBtn.disabled) {
+        importSingleMerchant(importBtn.dataset.importUid);
+        return;
+      }
+
+      const deleteBtn = event.target.closest("button[data-delete-buzz-uid]");
+      if (deleteBtn) {
+        deleteBuzzMerchant(deleteBtn.dataset.deleteBuzzUid, deleteBtn.dataset.deleteBuzzMerchantId);
       }
     });
 
@@ -788,6 +909,7 @@
     });
 
     els.batchPoiBtn.addEventListener("click", runBatchPoi);
+    els.batchImportBtn.addEventListener("click", runBatchImport);
 
     els.exportImportBtn.addEventListener("click", async () => {
       const response = await fetch("/api/export-import-merchants?approved_only=1&ready_only=1", { cache: "no-store" });
