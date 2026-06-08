@@ -15,6 +15,7 @@ const {
   resolvePoiCoordinates,
   resolveStartAt,
 } = require("./event-import-ready");
+const { enrichEventBody } = require("./event-participation");
 const { assessEventPoiConfidence, suggestEventPoiKeyword } = require("./tencent-poi");
 
 const DEFAULT_NOTE = "本文件用于本地人工审核。保留原始抓取详情文本，body 为基于原文提炼的 Zup 活动简介。图片发布前需再次确认来源授权与平台规则。";
@@ -214,6 +215,7 @@ function enrichEventPoiFlags(event) {
   const poiCheck = assessEventPoiConfidence(event);
   return {
     ...event,
+    body: isExpired(event) ? event.body : enrichEventBody(event),
     poi_doubtful: poiCheck.doubtful,
     poi_match_score: poiCheck.score,
     poi_doubt_reasons: poiCheck.reasons,

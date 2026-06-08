@@ -14,12 +14,18 @@ zup-event-crawl/
 │   ├── server.js                 # 本地审核 HTTP 服务（API + 静态页）
 │   ├── scrape-douban-week-events.js
 │   ├── scrape-dianping-merchants.js
+│   ├── rebuild-event-bodies.js   # 未过期活动：从 HTML 重算 body / raw_detail_text
+│   ├── enrich-event-participation.js  # 未过期活动：刷新文末参加方式
 │   ├── save-chrome-douban-html.js
 │   └── migrate-json-to-db.js
 ├── lib/
 │   ├── review-db.js              # 活动 SQLite
 │   ├── merchant-db.js            # 商户 SQLite
+│   ├── douban-html.js            # 豆瓣详情 HTML 解析（edesc / 活动须知）
+│   ├── douban-detail.js          # 正文提炼、makeZupSummary
+│   ├── event-participation.js    # 参加方式段落（公众号 / 票务 / 发起人）
 │   ├── event-import-ready.js     # 活动入库字段 / now_type 默认
+│   ├── tencent-poi.js            # 腾讯 POI 搜索与存疑判断
 │   ├── buzz-now-import.js        # Buzz 活动气泡客户端
 │   ├── buzz-merchant-import.js   # Buzz 商户入库
 │   ├── merchant-bubble.js        # 商户气泡三分组轮转发布
@@ -83,6 +89,21 @@ node scripts/scrape-douban-week-events.js 30 data/review.db --city=beijing --mod
 ```
 
 城市列表 URL 说明（成都为 `www.douban.com/location/...`，见 `docs/HANDOFF.md`）。
+
+### 正文与参加方式（批量回填）
+
+抓取时会生成 `body`（活动介绍 + 文末参加方式）。规则调整后，对**未过期**活动可批量重算：
+
+```bash
+# 从 raw_detail_html 重算 raw_detail_text + body（推荐）
+node scripts/rebuild-event-bodies.js
+node scripts/rebuild-event-bodies.js --dry-run
+
+# 仅刷新文末参加方式段落
+node scripts/enrich-event-participation.js
+```
+
+写作规则、公众号/发起人/票务优先级见 [`docs/HANDOFF.md`](docs/HANDOFF.md)「2026-06-08 活动正文与报名方式提炼」。
 
 ### 备路：Chrome 保存 HTML
 

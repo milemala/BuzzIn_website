@@ -2,6 +2,100 @@
 
 更新时间：2026-06-08 CST（目录位于 `BuzzInMap_website/zup-event-crawl/`）
 
+## 2026-06-08 活动正文与报名方式提炼（项目记录）
+
+本节记录活动 `body` 生成、参加方式段落、批量回填脚本的改动。**不向用户展示豆瓣原始链接**；报名方式须从已抓 HTML / 原文提炼，写清楚去哪报名或购票。
+
+### 背景与问题
+
+| 现象 | 原因 |
+|------|------|
+| 部分活动 `body` / `raw_detail_text` 为空（如成都「主动社交的力量」） | 旧版 `cleanDetailText` 用非贪婪 `</div>` 截断，`edesc_s` 内嵌套 `<div class="middle">` 时只解析到第一张图 |
+| 正文缺少【活动形式】等结构化内容 | 摘要函数把换行压成一行，且未优先读取 `【活动形式】` 等小节 |
+| 文末出现「报名购票方式请查看活动原始链接」 | 无猫眼/大麦等外链时的兜底文案不当 |
+| 批量脚本改了已过期活动 | 未过滤 `isExpired()` |
+
+### 新增 / 调整的文件
+
+| 文件 | 职责 |
+|------|------|
+| `lib/douban-html.js` | 豆瓣详情 HTML 解析：`extractEdescHtml`（读到下一个 `mod` 区块）、`extractEventNotices`（活动须知）、`htmlFragmentToLines` |
+| `lib/douban-detail.js` | `cleanDetailText`、`extractSectionSummary`（优先 `【活动形式】` 等标题下正文）、`makeZupSummary`、`rebuildDetailFields` |
+| `lib/event-participation.js` | 参加方式段落：`buildParticipationParagraph`、公众号 / 发起人 / 活动须知提炼 |
+| `scripts/rebuild-event-bodies.js` | 从未过期活动中，按 HTML 重算 `raw_detail_text` + `body`（跳过已过期） |
+| `scripts/enrich-event-participation.js` | 仅更新未过期活动的参加方式尾段（跳过已过期） |
+
+`scripts/scrape-douban-week-events.js` 已改为引用 `lib/douban-detail.js`，新抓取走同一套解析逻辑。
+
+`lib/review-db.js`：`enrichEventPoiFlags` 对**已过期**活动不再改写 `body`（避免审核页加载时动历史数据）。
+
+### `body` 结构
+
+```
+[活动介绍正文，≤约 220 字]
+
+[参加方式段落，单独一段]
+```
+
+- 介绍正文：来自 `edesc_s` 提炼，有 `【活动形式】` / `【为什么成立…】` 等小节时**优先用小节内容**，避免只留开头故事。
+- 参加方式：由 `appendParticipationToBody` 追加；若末段已是旧版参加方式，会先剥掉再写入新版。
+
+### 参加方式写作规则（`lib/event-participation.js`）
+
+**禁止出现在用户可见文案中：**
+
+- 豆瓣原始链接、「请查看活动原始链接」
+- 扫码、添加客服、添加微信、请咨询管理员（原文有二维码图但未入库时也不写扫码）
+
+**按优先级生成：**
+
+1. **第三方票务**（owner 或正文命中）：猫眼 / 大麦 / 秀动 / 票星球 / 摩天轮 / 活动行 → `可于{平台}购票/报名，票价{fee}。`
+2. **微信公众号**（全文检索 `公众号：XXX`）→ `可关注「XXX」公众号报名。`（免费时可前置 `免费参加，`；有不定期说明则保留，如 `本活动长期不定期举行`）
+3. **豆瓣同城 + 发起人**（无公众号、无第三方票务，且发起人为可读昵称如「栗子」，非纯数字 ID）→ `可在豆瓣同城搜索本活动并联系发起人「栗子」购票报名。`（免费活动用「报名」）
+4. **活动须知**（HTML `活动须知` 区块）：预约、开放时间、退票等 → 与票价合并，如 `需提前预约后入场；周末 10:00—17:30…；购票后支持退票。`
+5. **兜底**：仅有票价、无任何入口时 → `票价{fee}，请提前预约或购票后入场。`（不再提豆瓣链接）
+
+### 已验证样例（2026-06-08）
+
+**主动社交的力量（成都）**
+
+- 介绍：主题式聊天、下午茶、话题范围等（来自【活动形式】等小节）。
+- 参加方式：`免费参加，本活动长期不定期举行，可关注「一线青年社交站」公众号报名。`
+
+**通往无穷的锚点——自拓本论及书法**
+
+- 介绍：展览内容与策展理念。
+- 参加方式：`票价25元(单人)，可在豆瓣同城搜索本活动并联系发起人「栗子」购票报名，需提前预约后入场，周末开展时间10:00——17:30，周四周五开展时间16:00——18:00，购票后支持退票。`
+
+### 批量脚本用法
+
+```bash
+cd zup-event-crawl
+
+# 仅未过期活动：从 raw_detail_html 重算正文 + 参加方式
+node scripts/rebuild-event-bodies.js
+node scripts/rebuild-event-bodies.js --dry-run    # 预览，不写库
+node scripts/rebuild-event-bodies.js --force      # 强制全部未过期活动重算
+
+# 仅未过期活动：只刷新文末参加方式段落
+node scripts/enrich-event-participation.js
+node scripts/enrich-event-participation.js --dry-run
+```
+
+可选第一个参数指定库路径：`node scripts/rebuild-event-bodies.js data/review.db`
+
+**2026-06-08 执行结果：** `rebuild-event-bodies` 更新 33 条未过期活动；后续调整参加方式规则后 `enrich-event-participation` 又更新 17 条。已过期 32 条均跳过。
+
+改 `lib/` 后请 **重启 `npm start`**。
+
+### 与入库字段的关系
+
+- Buzz `now_content` = 活动时间文案 + `body`（含参加方式尾段）。
+- `body` 仍须只写用户向内容；审核话术只在 `reviewReason`。
+- 参加方式段落属于**可发布的实用信息**，不算审核备注。
+
+---
+
 ## 2026-06-08 更新摘要（接手必读）
 
 本节记录近期在**测试环境 Buzz API**（`https://test-go-api.nowmap.cn`）上的入库能力与商户气泡批量发布。改代码后需 **重启 `npm start`**，否则仍跑旧进程逻辑。
@@ -131,9 +225,17 @@ npm start
 - `scripts/scrape-douban-week-events.js`
   - 当前保留的豆瓣抓取脚本。
   - 负责豆瓣列表/详情解析、字段清洗、`body` 生成和多城市合并写入。
+  - 正文与参加方式逻辑在 `lib/douban-detail.js`、`lib/event-participation.js`。
   - 默认按城市合并数据，不应再覆盖其他城市。
   - 支持 `--city=beijing|shanghai|guangzhou|chengdu`，`--mode=merge-city` 增城市不覆盖他城。
   - 支持 `--list-file` / `--list-dir` / `--detail-dir`：豆瓣拦命令行时，用浏览器保存的 HTML 离线解析（与线上下游同一套逻辑）。
+
+- `scripts/rebuild-event-bodies.js` / `scripts/enrich-event-participation.js`
+  - 批量回填未过期活动的 `body` 或参加方式尾段；**跳过已过期活动**。
+  - 详见本文「2026-06-08 活动正文与报名方式提炼」。
+
+- `lib/douban-html.js` / `lib/douban-detail.js` / `lib/event-participation.js`
+  - 豆瓣详情 HTML 解析、活动介绍提炼、参加方式段落生成。
 
 - `scripts/save-chrome-douban-html.js`
   - 备路辅助：从 **当前 Chrome 前台标签** 把整页 HTML 存到本地（依赖 macOS AppleScript）。
@@ -391,6 +493,7 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 - 不超过 400 字，但不要为了短而短；信息丰富的活动可以写到 150-300 字。
 - 摘要必须基于活动本身：主题、内容、形式、氛围、亮点、现场体验和参与感。
 - 如果详情页里主要是票务/报名/退款/核销/入场说明，要过滤掉这些内容，只保留能帮助用户理解活动本身的信息。
+- **参加方式**（报名、购票、公众号、豆瓣同城联系发起人、预约与开放时间）写在 `body` **末尾单独一段**，由 `lib/event-participation.js` 自动生成；规则见上文「2026-06-08 活动正文与报名方式提炼」。
 - 如果原始详情很短或很像票务入口，可以用标题、分类、主办方和场地信息生成发布型简介，但不能编造不存在的演出阵容、嘉宾、权益或活动流程。
 
 可以写：
