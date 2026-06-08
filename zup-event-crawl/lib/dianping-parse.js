@@ -37,6 +37,13 @@ const DIANPING_CITY_IDS = {
   宁波: 11,
   青岛: 21,
   无锡: 13,
+  佛山: 208,
+  沈阳: 18,
+  哈尔滨: 79,
+  长春: 116,
+  石家庄: 24,
+  温州: 178,
+  苏州: 6,
 };
 
 function decodeHtml(text) {
@@ -281,6 +288,7 @@ function parseSearchListHtml(html, options = {}) {
     filterStats,
     nextPagePaths: nextPages,
     items: filtered,
+    allItems: items,
     skippedClosed,
     listHtmlReady: items.length > 0,
   };

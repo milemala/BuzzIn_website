@@ -73,13 +73,45 @@ function tokenizeForMatch(text) {
   return [...tokens];
 }
 
+/** 是否为门牌级地址（可用于结果比对）；仅城市/区划则返回 false */
+function isStreetLevelAddress(text) {
+  const sample = String(text || "").trim();
+  if (!sample) return false;
+  return /(路|街|道|巷|弄|大道|\d+号|号铺|号楼|层|座|栋|大厦|工业区|广场.{0,6}\d|铺位|铺)/.test(sample);
+}
+
+/** 从清单门牌地址提取可用于 POI 结果比对的片段（不参与搜索关键词） */
+function extractAddressHints(referenceAddress) {
+  const text = String(referenceAddress || "").trim();
+  if (!isStreetLevelAddress(text)) return [];
+
+  const hints = [];
+  const seen = new Set();
+  const add = (value) => {
+    const v = String(value || "").trim();
+    if (!v || v.length < 2 || seen.has(v)) return;
+    seen.add(v);
+    hints.push(v);
+  };
+
+  for (const match of text.matchAll(/([\u4e00-\u9fa5A-Za-z0-9]{2,}(?:路|街|道|巷|弄|大道|工业区|大厦|广场))/gu)) {
+    add(match[1]);
+  }
+  for (const match of text.matchAll(/(\d+号[^，,；;]*)/gu)) add(match[1]);
+  for (const match of text.matchAll(/([\u4e00-\u9fa5A-Za-z0-9]{2,}铺)/gu)) add(match[1]);
+
+  return hints.slice(0, 8);
+}
+
 /**
- * 对单个 POI 候选打分：查询词与 title/address 越像分越高。
+ * 对单个 POI 候选打分：店名越像分越高；可选 referenceAddressHints 仅用于和 POI 地址比对。
  * @param {string} query
  * @param {object} poi
- * @param {string[]} [extraQueries]
+ * @param {{ extraQueries?: string[], addressHints?: string[] }} [options]
  */
-function scorePoiCandidate(query, poi, extraQueries = []) {
+function scorePoiCandidate(query, poi, options = {}) {
+  const extraQueries = options.extraQueries || [];
+  const addressHints = options.addressHints || [];
   const queries = [query, ...extraQueries]
     .map((q) => String(q || "").trim())
     .filter(Boolean);
@@ -112,6 +144,17 @@ function scorePoiCandidate(query, poi, extraQueries = []) {
     }
   }
 
+  for (const hint of addressHints) {
+    const nh = normalizeMatchText(hint);
+    if (!nh) continue;
+    if (normalizeMatchText(address).includes(nh)) score += 28;
+    for (const token of tokenizeForMatch(hint)) {
+      const nt = normalizeMatchText(token);
+      if (nt.length < 2) continue;
+      if (normalizeMatchText(address).includes(nt)) score += 10;
+    }
+  }
+
   if (POI_NOISE_TITLE.test(title) && !POI_NOISE_TITLE.test(queryText)) score -= 55;
   if (/剧|酒吧|咖啡|餐|店|馆|厅|中心|书院|艺术|脱口秀|剧场/i.test(queryText)
     && /剧|酒吧|咖啡|餐|店|馆|厅|中心|艺术|脱口秀|剧场/i.test(`${category} ${title}`)) {
@@ -122,12 +165,14 @@ function scorePoiCandidate(query, poi, extraQueries = []) {
   return score;
 }
 
-function pickBestPoiCandidate(query, items, extraQueries = []) {
+function pickBestPoiCandidate(query, items, options = {}) {
+  const extraQueries = Array.isArray(options) ? options : (options.extraQueries || []);
+  const addressHints = Array.isArray(options) ? [] : (options.addressHints || []);
   if (!items?.length) return { poi: null, score: 0 };
   let best = items[0];
   let bestScore = -Infinity;
   for (let i = 0; i < items.length; i += 1) {
-    const score = scorePoiCandidate(query, { ...items[i], _rank: i }, extraQueries);
+    const score = scorePoiCandidate(query, { ...items[i], _rank: i }, { extraQueries, addressHints });
     if (score > bestScore) {
       bestScore = score;
       best = items[i];
@@ -136,12 +181,14 @@ function pickBestPoiCandidate(query, items, extraQueries = []) {
   return { poi: best, score: bestScore };
 }
 
-function reorderPoiByBestMatch(query, items, extraQueries = []) {
+function reorderPoiByBestMatch(query, items, options = {}) {
+  const extraQueries = Array.isArray(options) ? options : (options.extraQueries || []);
+  const addressHints = Array.isArray(options) ? [] : (options.addressHints || []);
   if (!items?.length) return [];
   return [...items]
     .map((item, i) => ({
       item,
-      score: scorePoiCandidate(query, { ...item, _rank: i }, extraQueries),
+      score: scorePoiCandidate(query, { ...item, _rank: i }, { extraQueries, addressHints }),
     }))
     .sort((a, b) => b.score - a.score)
     .map((row) => row.item);
@@ -176,15 +223,16 @@ function pickBestPoiForEvent(event, items) {
   const location = String(event?.location || "").trim();
   const title = String(event?.title || "").trim();
   const primary = location || title;
-  const extras = extractVenueHints(location, title).filter((hint) => hint !== primary);
-  return pickBestPoiCandidate(primary, items, extras);
+  const extraQueries = extractVenueHints(location, title).filter((hint) => hint !== primary);
+  return pickBestPoiCandidate(primary, items, { extraQueries });
 }
 
-function pickBestPoiForMerchant(name, items) {
+function pickBestPoiForMerchant(name, items, options = {}) {
   const full = String(name || "").trim();
   const short = stripBranchSuffix(full);
-  const extras = short && short !== full ? [short] : [];
-  return pickBestPoiCandidate(full, items, extras);
+  const extraQueries = short && short !== full ? [short] : [];
+  const addressHints = extractAddressHints(options.referenceAddress || "");
+  return pickBestPoiCandidate(full, items, { extraQueries, addressHints });
 }
 
 /** Top1 标题是否与店名同一商户（避免「黑犬酒吧(白沙古井店)」搜成地标「白沙古井」） */
@@ -215,8 +263,8 @@ async function searchPoiForEvent(location, city, opts = {}) {
   }
   const keyword = buildPoiKeyword(loc || title, cityName);
   const result = await searchPoi({ ...opts, keyword, city: cityName });
-  const extras = extractVenueHints(loc, title).filter((hint) => hint !== (loc || title));
-  const items = reorderPoiByBestMatch(loc || title, result.items, extras);
+  const extraQueries = extractVenueHints(loc, title).filter((hint) => hint !== (loc || title));
+  const items = reorderPoiByBestMatch(loc || title, result.items, { extraQueries });
   return { keyword, count: result.count, items };
 }
 
@@ -249,8 +297,8 @@ async function searchPoiForMerchant(name, city, opts = {}) {
     };
   }
 
-  const extras = shortName && shortName !== String(name || "").trim() ? [shortName] : [];
-  const items = reorderPoiByBestMatch(name, primary.items, extras);
+  const extraQueries = shortName && shortName !== String(name || "").trim() ? [shortName] : [];
+  const items = reorderPoiByBestMatch(name, primary.items, { extraQueries });
   return { keyword: fullKeyword, count: primary.count, items };
 }
 
@@ -324,6 +372,8 @@ async function searchPoi(opts) {
 module.exports = {
   buildPoiKeyword,
   COMPANY_MAP_KEY,
+  extractAddressHints,
+  isStreetLevelAddress,
   PERSONAL_MAP_KEY,
   pickBestPoiCandidate,
   pickBestPoiForEvent,

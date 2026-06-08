@@ -1,6 +1,10 @@
 "use strict";
 
-const { pickBestPoiForMerchant, searchPoiForMerchant } = require("./tencent-poi");
+const {
+  isStreetLevelAddress,
+  pickBestPoiForMerchant,
+  searchPoiForMerchant,
+} = require("./tencent-poi");
 const {
   applyPoiSelection,
   getMerchantByUid,
@@ -11,8 +15,18 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function resolveListReferenceAddress(merchant, listAddressByUid = {}) {
+  const fromList = listAddressByUid[merchant.merchant_uid]
+    || merchant.list_address
+    || "";
+  if (isStreetLevelAddress(fromList)) return fromList;
+  const fromMerchant = merchant.address || "";
+  if (isStreetLevelAddress(fromMerchant)) return fromMerchant;
+  return "";
+}
+
 /**
- * 为商户列表批量搜索腾讯 POI，按店名相似度选最佳候选并写入 review.db。
+ * 为商户列表批量搜索腾讯 POI：搜索仅用店名；若清单含门牌级地址，仅在候选结果中比对加分。
  * @param {import('node:sqlite').DatabaseSync} db
  * @param {{
  *   merchants?: object[],
@@ -52,7 +66,11 @@ async function batchAutoPoi(db, options = {}) {
 
   for (const merchant of targets) {
     try {
-      const { items, keyword } = await searchPoiForMerchant(
+      const referenceAddress = resolveListReferenceAddress(
+        merchant,
+        options.listAddressByUid || {},
+      );
+      const { items } = await searchPoiForMerchant(
         merchant.name,
         merchant.city || "全国",
       );
@@ -66,7 +84,7 @@ async function batchAutoPoi(db, options = {}) {
           error: "无 POI 结果",
         });
       } else {
-        const { poi: best } = pickBestPoiForMerchant(merchant.name, items);
+        const { poi: best } = pickBestPoiForMerchant(merchant.name, items, { referenceAddress });
         applyPoiSelection(db, merchant.merchant_uid, best, { candidates: items });
         report.ok += 1;
         report.results.push({
