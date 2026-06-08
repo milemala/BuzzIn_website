@@ -74,6 +74,21 @@ function isLoginWall(html) {
   );
 }
 
+function detectDianpingBlock(html, fetchedUrl = "") {
+  if (isLoginWall(html)) {
+    return { blocked: true, reason: "login", detail: "页面要求登录" };
+  }
+  const sample = String(html || "");
+  if (/验证码|安全验证|captcha|滑块验证|访问过于频繁|异常访问|请稍后再试|操作过于频繁|进行验证|robot/i.test(sample)) {
+    return { blocked: true, reason: "captcha_or_rate_limit", detail: "验证码或访问频繁" };
+  }
+  if ((/403|forbidden|拒绝访问/i.test(sample) || /forbidden/i.test(fetchedUrl))
+    && !sample.includes("shop_title_click")) {
+    return { blocked: true, reason: "forbidden", detail: "403/拒绝访问" };
+  }
+  return { blocked: false };
+}
+
 function isClosedShop({ name, listHtml, liAttrs, detailHtml }) {
   const attrs = String(liAttrs || "");
   const block = String(listHtml || "");
@@ -170,7 +185,17 @@ function collectNextPagePaths(html, searchUrl) {
 function isSearchNotFound(html) {
   const sample = String(html || "");
   return sample.includes("not-found-words")
-    || /没有找到与[\s\S]{0,80}相关的商户/.test(sample);
+    || /没有找到与[\s\S]{0,80}相关的商户/.test(sample)
+    || /没有找到相关商户|暂未找到相关|无相关商户|未找到相关商户/.test(sample);
+}
+
+/** 列表抓取是否应停止重试（有结果 / 明确无结果），区别于「页面还在加载」 */
+function shouldStopListFetchRetry(parsed) {
+  if (!parsed) return false;
+  if (parsed.parsedCount > 0) return true;
+  if (parsed.searchNotFound) return true;
+  if (parsed.hasTotalReported && parsed.totalReported === 0) return true;
+  return false;
 }
 
 function parseSearchListHtml(html, options = {}) {
@@ -181,11 +206,13 @@ function parseSearchListHtml(html, options = {}) {
   if (isSearchNotFound(html)) {
     return {
       totalReported: 0,
+      hasTotalReported: true,
       parsedCount: 0,
       filteredCount: 0,
       filterStats: { byName: 0, byKeyword: 0, byCategory: 0, byJunk: 0 },
       nextPagePaths: [],
       items: [],
+      allItems: [],
       skippedClosed: 0,
       listHtmlReady: false,
       searchNotFound: true,
@@ -247,6 +274,7 @@ function parseSearchListHtml(html, options = {}) {
   }
 
   const totalMatch = html.match(/共为您找到(\d+)个/);
+  const hasTotalReported = Boolean(totalMatch);
   const nextPages = collectNextPagePaths(html, options.searchUrl);
 
   const filterStats = {
@@ -283,6 +311,7 @@ function parseSearchListHtml(html, options = {}) {
 
   return {
     totalReported: totalMatch ? Number(totalMatch[1]) : items.length,
+    hasTotalReported,
     parsedCount: items.length,
     filteredCount: filtered.length,
     filterStats,
@@ -291,6 +320,7 @@ function parseSearchListHtml(html, options = {}) {
     allItems: items,
     skippedClosed,
     listHtmlReady: items.length > 0,
+    searchNotFound: hasTotalReported && Number(totalMatch[1]) === 0,
   };
 }
 
@@ -388,7 +418,10 @@ module.exports = {
   extractSearchBasePath,
   extractShopListBlock,
   isClosedShop,
+  detectDianpingBlock,
   isLoginWall,
+  isSearchNotFound,
+  shouldStopListFetchRetry,
   normalizeImageUrl,
   parseSearchListHtml,
   parseShopDetailHtml,

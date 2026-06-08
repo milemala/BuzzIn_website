@@ -4,6 +4,31 @@ const fs = require("fs");
 const path = require("path");
 
 const STATUS_PREFIX = /^(已抓取|未找到|搜不到)/;
+const LIST_FILENAME_RE = /^(.+?)(\d+)(?:_已抓(\d+))?$/;
+
+function normalizeListAddress(line) {
+  const text = String(line || "").trim();
+  if (!text) return "";
+  return text.replace(/^地址[:：]\s*/, "").trim();
+}
+
+function parseListFilename(filePath) {
+  const base = path.basename(filePath, ".md");
+  const match = base.match(LIST_FILENAME_RE);
+  if (!match) {
+    return { baseName: base, cityPrefix: base, total: null, scraped: null };
+  }
+  return {
+    baseName: base,
+    cityPrefix: match[1],
+    total: Number(match[2]),
+    scraped: match[3] ? Number(match[3]) : null,
+  };
+}
+
+function buildListFilename(cityPrefix, total, scrapedCount) {
+  return `${cityPrefix}${total}_已抓${scrapedCount}.md`;
+}
 
 function parseCityMerchantList(filePath) {
   const text = fs.readFileSync(filePath, "utf8");
@@ -34,11 +59,14 @@ function parseCityMerchantList(filePath) {
         continue;
       }
       if (!listAddress) {
-        listAddress = next;
+        listAddress = normalizeListAddress(next);
         continue;
       }
     }
-    entries.push({ index, listName, listAddress, statusLine, lineIndex: i });
+    const scrapeStatus = STATUS_PREFIX.test(statusLine)
+      ? (statusLine.startsWith("已抓取") ? "scraped" : "not_found")
+      : "";
+    entries.push({ index, listName, listAddress, statusLine, scrapeStatus, lineIndex: i });
   }
 
   return { text, lines, entries };
@@ -62,11 +90,32 @@ function buildStatusLine(status, detail = "") {
  *   notFound?: Array<{ listName: string, reason?: string }>,
  * }} report
  */
+function countExistingScrapeStatus(entries) {
+  let scraped = 0;
+  let notFound = 0;
+  for (const entry of entries) {
+    if (entry.scrapeStatus === "scraped") scraped += 1;
+    else if (entry.scrapeStatus === "not_found") notFound += 1;
+  }
+  return { scraped, notFound };
+}
+
 function updateCityMerchantListScrapeStatus(filePath, report = {}) {
   const absPath = path.isAbsolute(filePath) ? filePath : path.resolve(filePath);
   const { lines, entries } = parseCityMerchantList(absPath);
   const scrapedMap = new Map((report.scraped || []).map((row) => [row.listName, row]));
   const notFoundMap = new Map((report.notFound || []).map((row) => [row.listName, row]));
+
+  for (const entry of entries) {
+    if (entry.scrapeStatus === "scraped" && !scrapedMap.has(entry.listName)) {
+      const detail = entry.statusLine.replace(/^已抓取[｜|]\s*/, "") || "大众点评已入库";
+      scrapedMap.set(entry.listName, { listName: entry.listName, matchedName: detail.replace(/^大众点评：/, "") });
+    }
+    if (entry.scrapeStatus === "not_found" && !notFoundMap.has(entry.listName) && !scrapedMap.has(entry.listName)) {
+      const reason = entry.statusLine.replace(/^(未找到|搜不到)[｜|]\s*/, "") || "列表页无匹配结果";
+      notFoundMap.set(entry.listName, { listName: entry.listName, reason });
+    }
+  }
 
   const rebuilt = [];
   let inList = false;
@@ -121,7 +170,7 @@ function updateCityMerchantListScrapeStatus(filePath, report = {}) {
 
     const scraped = scrapedMap.get(entry.listName);
     const missing = notFoundMap.get(entry.listName);
-    if (scraped) {
+    if (scraped && !missing) {
       const detail = scraped.matchedName
         ? `大众点评：${scraped.matchedName}`
         : "大众点评已入库";
@@ -133,14 +182,17 @@ function updateCityMerchantListScrapeStatus(filePath, report = {}) {
     i = j - 1;
   }
 
-  const scrapedCount = (report.scraped || []).length;
-  const notFoundCount = (report.notFound || []).length;
+  const scrapedCount = scrapedMap.size;
+  const notFoundCount = [...notFoundMap.keys()].filter((name) => !scrapedMap.has(name)).length;
+  const blockedNote = report.blocked ? `- 抓取中断：${report.blocked}` : "";
   const progress = [
     "",
     "## 大众点评抓取进度",
     "",
     `- 已抓取：${scrapedCount} 家`,
     `- 未找到：${notFoundCount} 家`,
+    `- 清单总数：${entries.length} 家`,
+    ...(blockedNote ? [blockedNote] : []),
     `- 最后更新：${new Date().toISOString().slice(0, 10)}`,
     "",
   ];
@@ -153,11 +205,46 @@ function updateCityMerchantListScrapeStatus(filePath, report = {}) {
   }
 
   fs.writeFileSync(absPath, `${rebuilt.join("\n").replace(/\n{3,}/g, "\n\n")}\n`, "utf8");
-  return { scrapedCount, notFoundCount, total: entries.length };
+  return {
+    scrapedCount,
+    notFoundCount,
+    total: entries.length,
+    path: absPath,
+    scraped: [...scrapedMap.values()],
+    notFound: [...notFoundMap.values()].filter((row) => !scrapedMap.has(row.listName)),
+  };
+}
+
+function renameCityMerchantListFile(filePath, scrapedCount, totalCount) {
+  const absPath = path.isAbsolute(filePath) ? filePath : path.resolve(filePath);
+  const meta = parseListFilename(absPath);
+  const total = totalCount || meta.total || scrapedCount;
+  const nextName = buildListFilename(meta.cityPrefix, total, scrapedCount);
+  const nextPath = path.join(path.dirname(absPath), nextName);
+  if (path.resolve(absPath) === path.resolve(nextPath)) {
+    return nextPath;
+  }
+  if (fs.existsSync(nextPath)) {
+    fs.unlinkSync(nextPath);
+  }
+  fs.renameSync(absPath, nextPath);
+  return nextPath;
+}
+
+function finalizeCityMerchantList(filePath, report = {}) {
+  const update = updateCityMerchantListScrapeStatus(filePath, report);
+  const nextPath = renameCityMerchantListFile(update.path, update.scrapedCount, update.total);
+  return { ...update, path: nextPath };
 }
 
 module.exports = {
+  buildListFilename,
   buildStatusLine,
+  countExistingScrapeStatus,
+  finalizeCityMerchantList,
+  normalizeListAddress,
   parseCityMerchantList,
+  parseListFilename,
+  renameCityMerchantListFile,
   updateCityMerchantListScrapeStatus,
 };

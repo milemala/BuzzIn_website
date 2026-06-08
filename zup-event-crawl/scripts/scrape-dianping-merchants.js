@@ -9,6 +9,7 @@ const {
   enrichWithDetail,
   isLoginWall,
   parseSearchListHtml,
+  shouldStopListFetchRetry,
   toMerchantRecord,
 } = require("../lib/dianping-parse");
 const { fetchViaChrome, sleep } = require("../lib/chrome-fetch");
@@ -219,7 +220,12 @@ async function fetchSearchResultsViaChrome(options) {
       }
       parsed = parseSearchListHtml(html, { ...parseOptions, searchUrl: pageUrl });
       lastParsed = parsed;
-      if (parsed.parsedCount > 0) break;
+      if (shouldStopListFetchRetry(parsed)) {
+        if (parsed.searchNotFound || (parsed.hasTotalReported && parsed.totalReported === 0)) {
+          console.log("     大众点评：没有找到相关商户");
+        }
+        break;
+      }
     }
     if (totalReported == null) totalReported = parsed.totalReported;
     const stats = parsed.filterStats || {};
