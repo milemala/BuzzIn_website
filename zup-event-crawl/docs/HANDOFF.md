@@ -96,6 +96,61 @@ node scripts/enrich-event-participation.js --dry-run
 
 ---
 
+## 2026-06-08 活动封面合成（项目记录）
+
+豆瓣活动海报多为**竖图、分辨率低**，入库前统一合成 **4:3 横版封面**，供审核台展示与 Buzz 上传。
+
+### 定稿版式（勿随意改）
+
+| 要素 | 规则 |
+|------|------|
+| 画布 | **4:3**，默认 1200×900 |
+| 底图 | 原海报放大铺满 + 高斯模糊 |
+| 左侧 | 豆瓣原竖图**贴左、高度撑满**（不缩小、不偏移） |
+| 右侧 | 半透明渐变遮罩 + 白色文案两行：**加入群聊** / **一起组局**（无逗号） |
+
+曾试验「缩小 80%」「全屏遮罩」等方案，**已回滚**；以本节定稿为准。
+
+### 新增 / 调整的文件
+
+| 文件 | 职责 |
+|------|------|
+| `lib/event-image-compose.js` | `composeEventPosterImage` / `composeEventPosterFromUrl`（依赖 `sharp`） |
+| `lib/composed-image.js` | 合成图 URL、`data/image-composed/` 路径、写入 image-cache |
+| `lib/image-fetch.js` | 识别 `https://zup-event-crawl.local/composed/{event_uid}.jpg`，入库可读本地文件 |
+| `scripts/compose-event-images.js` | 批量合成**未过期**活动封面并更新 DB |
+| `scripts/preview-event-image-compose.js` | 单条预览（不写库） |
+| `scripts/server.js` | `/api/image` 代理合成图本地文件 |
+| `lib/review-db.js` | 新增字段 `image_original`（豆瓣原图 URL 备份） |
+
+### 数据库字段
+
+- `image`：当前展示/入库用封面，合成后为 `https://zup-event-crawl.local/composed/{event_uid}.jpg`
+- `image_original`：豆瓣原图 URL，重新合成或预览时从此读取
+
+### 批量脚本用法
+
+```bash
+cd zup-event-crawl
+npm install   # 首次需安装 sharp
+
+# 预览单条（输出到 data/image-composed-preview/）
+node scripts/preview-event-image-compose.js --title=主动社交的力量 --city=成都
+
+# 批量：仅未过期、尚未合成的活动
+node scripts/compose-event-images.js
+node scripts/compose-event-images.js --dry-run
+node scripts/compose-event-images.js --force   # 强制全部未过期重算
+```
+
+合成文件落在 `data/image-composed/{event_uid}.jpg`，并同步写入 `data/image-cache/`（Buzz 入库走本地缓存上传）。
+
+**2026-06-08 执行结果：** 58 条未过期活动已合成；32 条已过期跳过。
+
+改 `lib/event-image-compose.js` 或 `server.js` 后请 **重启 `npm start`**，审核页封面才正确。
+
+---
+
 ## 2026-06-08 更新摘要（接手必读）
 
 本节记录近期在**测试环境 Buzz API**（`https://test-go-api.nowmap.cn`）上的入库能力与商户气泡批量发布。改代码后需 **重启 `npm start`**，否则仍跑旧进程逻辑。
@@ -236,6 +291,10 @@ npm start
 
 - `lib/douban-html.js` / `lib/douban-detail.js` / `lib/event-participation.js`
   - 豆瓣详情 HTML 解析、活动介绍提炼、参加方式段落生成。
+
+- `lib/event-image-compose.js` / `lib/composed-image.js` / `scripts/compose-event-images.js`
+  - 豆瓣竖图低清海报 → 4:3 横版封面（模糊底图 + 左原图 + 右文案）。
+  - 详见本文「2026-06-08 活动封面合成」。
 
 - `scripts/save-chrome-douban-html.js`
   - 备路辅助：从 **当前 Chrome 前台标签** 把整页 HTML 存到本地（依赖 macOS AppleScript）。

@@ -16,6 +16,8 @@ zup-event-crawl/
 │   ├── scrape-dianping-merchants.js
 │   ├── rebuild-event-bodies.js   # 未过期活动：从 HTML 重算 body / raw_detail_text
 │   ├── enrich-event-participation.js  # 未过期活动：刷新文末参加方式
+│   ├── compose-event-images.js   # 未过期活动：合成 4:3 横版封面
+│   ├── preview-event-image-compose.js  # 单条封面预览
 │   ├── save-chrome-douban-html.js
 │   └── migrate-json-to-db.js
 ├── lib/
@@ -24,6 +26,8 @@ zup-event-crawl/
 │   ├── douban-html.js            # 豆瓣详情 HTML 解析（edesc / 活动须知）
 │   ├── douban-detail.js          # 正文提炼、makeZupSummary
 │   ├── event-participation.js    # 参加方式段落（公众号 / 票务 / 发起人）
+│   ├── event-image-compose.js    # 4:3 封面合成（sharp）
+│   ├── composed-image.js         # 合成图路径与 URL 约定
 │   ├── event-import-ready.js     # 活动入库字段 / now_type 默认
 │   ├── tencent-poi.js            # 腾讯 POI 搜索与存疑判断
 │   ├── buzz-now-import.js        # Buzz 活动气泡客户端
@@ -38,6 +42,7 @@ zup-event-crawl/
 ├── data/
 │   ├── review.db                 # 主存储（默认 gitignore）
 │   ├── image-cache/              # 图片代理缓存
+│   ├── image-composed/           # 活动合成封面（gitignore）
 │   ├── scrape-cache/             # 浏览器备路 HTML
 │   ├── crawled-events.json       # 历史 JSON 备份 / 迁移源
 │   └── review-decisions.json
@@ -48,7 +53,7 @@ zup-event-crawl/
 ## 环境要求
 
 - Node.js **18+**（使用内置 `node:sqlite`）
-- 无额外 npm 依赖
+- npm 依赖：`sharp`（活动封面合成）
 
 ## 快速开始
 
@@ -104,6 +109,21 @@ node scripts/enrich-event-participation.js
 ```
 
 写作规则、公众号/发起人/票务优先级见 [`docs/HANDOFF.md`](docs/HANDOFF.md)「2026-06-08 活动正文与报名方式提炼」。
+
+### 活动封面合成（4:3 横版）
+
+豆瓣竖图低清海报会合成：**模糊底图 + 左侧原图 + 右侧「加入群聊 / 一起组局」**。原图 URL 备份在 `image_original`。
+
+```bash
+# 预览单条
+node scripts/preview-event-image-compose.js --title=主动社交的力量 --city=成都
+
+# 批量（仅未过期活动）
+node scripts/compose-event-images.js
+node scripts/compose-event-images.js --dry-run
+```
+
+版式与字段说明见 [`docs/HANDOFF.md`](docs/HANDOFF.md)「2026-06-08 活动封面合成」。
 
 ### 备路：Chrome 保存 HTML
 

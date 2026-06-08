@@ -3,6 +3,7 @@
 const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
+const { getComposedImagePath, parseComposedEventUid } = require("./composed-image");
 
 function defaultReferer(src) {
   if (/meituan\.net|dianping\.com/i.test(src)) return "https://www.dianping.com/";
@@ -40,6 +41,16 @@ function findCachedImage(cacheDir, src) {
   return match ? path.join(cacheDir, match) : null;
 }
 
+function readComposedImage(src, options = {}) {
+  const eventUid = parseComposedEventUid(src);
+  if (!eventUid) return null;
+  const filePath = getComposedImagePath(eventUid, options.rootDir);
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`合成封面不存在: ${eventUid}`);
+  }
+  return readImageFile(filePath);
+}
+
 async function fetchRemoteImage(src, options = {}) {
   const referer = options.referer || defaultReferer(src) || undefined;
   const response = await fetch(src, {
@@ -63,6 +74,9 @@ async function fetchRemoteImage(src, options = {}) {
 
 async function readImageSource(src, options = {}) {
   const url = String(src || "").trim();
+  const composed = readComposedImage(url, options);
+  if (composed) return composed;
+
   if (!url.startsWith("http://") && !url.startsWith("https://")) {
     throw new Error(`不支持的媒体路径: ${url}`);
   }
@@ -98,6 +112,17 @@ function readImageFile(filePath) {
 /** 抓取/入库前：本地无缓存则从图床拉一次并写入 image-cache */
 async function ensureImageCached(originalUrl, cacheDir, options = {}) {
   const url = String(originalUrl || "").trim();
+  const composed = readComposedImage(url, options);
+  if (composed) {
+    const existing = findCachedImage(cacheDir, url);
+    if (existing) return existing;
+    if (!cacheDir) return getComposedImagePath(parseComposedEventUid(url), options.rootDir);
+    fs.mkdirSync(cacheDir, { recursive: true });
+    const savePath = getCachedImagePath(cacheDir, url, composed.contentType);
+    fs.writeFileSync(savePath, composed.buffer);
+    return savePath;
+  }
+
   if (!url.startsWith("http://") && !url.startsWith("https://")) {
     throw new Error(`无效图片地址: ${url}`);
   }
@@ -116,6 +141,8 @@ async function ensureImageCached(originalUrl, cacheDir, options = {}) {
 async function readImageForImport(originalUrl, cacheDir, options = {}) {
   const url = String(originalUrl || "").trim();
   if (!url) throw new Error("媒体地址为空");
+  const composed = readComposedImage(url, options);
+  if (composed) return composed;
   const cachedPath = await ensureImageCached(url, cacheDir, options);
   if (!cachedPath) {
     throw new Error("封面缓存失败");
@@ -128,6 +155,7 @@ module.exports = {
   ensureImageCached,
   fetchRemoteImage,
   findCachedImage,
+  readComposedImage,
   readImageFile,
   readImageForImport,
   readImageSource,

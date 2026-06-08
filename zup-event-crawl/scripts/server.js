@@ -146,6 +146,18 @@ async function handleImageProxy(req, res, parsed) {
     return;
   }
 
+  const { getComposedImagePath, parseComposedEventUid } = require("../lib/composed-image");
+  const composedUid = parseComposedEventUid(src);
+  if (composedUid) {
+    const composedPath = getComposedImagePath(composedUid, root);
+    if (!fs.existsSync(composedPath)) {
+      sendJson(res, 404, { ok: false, error: "Composed image not found" });
+      return;
+    }
+    sendFile(res, composedPath, null, "public, max-age=86400");
+    return;
+  }
+
   let imageUrl;
   try {
     imageUrl = new URL(src);

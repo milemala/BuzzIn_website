@@ -15,6 +15,7 @@
     "save-html": "node scripts/save-chrome-douban-html.js"
   },
   "dependencies": {
+    "sharp": "^0.34.5",
     "tls-sig-api-v2": "^1.0.2"
   }
 }

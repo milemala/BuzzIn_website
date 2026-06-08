@@ -38,6 +38,7 @@ const EVENT_IMPORT_COLUMNS = [
   ["import_status", "TEXT NOT NULL DEFAULT ''"],
   ["import_error", "TEXT NOT NULL DEFAULT ''"],
   ["imported_at", "TEXT"],
+  ["image_original", "TEXT NOT NULL DEFAULT ''"],
 ];
 
 function parsePoiCandidates(raw) {
@@ -173,6 +174,8 @@ function rowToEvent(row) {
     poi_latitude: row.poi_latitude ?? null,
     poi_longitude: row.poi_longitude ?? null,
     image: row.image,
+    imageOriginal: row.image_original || "",
+    image_original: row.image_original || "",
     fee: row.fee,
     owner: row.owner,
     counts: row.counts,
