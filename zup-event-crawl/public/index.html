@@ -63,10 +63,17 @@
     .date-filters .seg button[data-date="all"]{min-width:92px}
     .date-main{font-size:13px;font-weight:700}
     .date-sub{font-size:11px;color:inherit;opacity:.68}
-    .seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}
-    .seg button{height:34px;border:0;border-right:1px solid var(--line);background:transparent;padding:0 12px;cursor:pointer;color:var(--muted)}
+    .seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}
+    .seg button{
+      min-height:44px;border:0;border-right:1px solid var(--line);background:transparent;padding:5px 10px;cursor:pointer;color:var(--muted);
+      display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;line-height:1.15
+    }
     .seg button:last-child{border-right:0}
     .seg button.active{background:#111;color:#fff}
+    .seg button:disabled{opacity:.45;cursor:not-allowed}
+    .seg-btn-label{font-size:13px}
+    .seg-btn-count{font-size:11px;font-weight:700;opacity:.72}
+    .seg button.active .seg-btn-count{opacity:.88}
     .search{height:36px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:0 12px;min-width:260px}
     .grid{display:grid;grid-template-columns:1fr;gap:12px}
     .card{background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;display:grid;grid-template-columns:156px minmax(0,1fr)}
@@ -83,6 +90,9 @@
     .score.bad{background:#fde8e4;color:#ad382c}
     .chips{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
     .chip{font-size:12px;padding:4px 8px;border-radius:999px;background:#f0eadf;color:#6d6254}
+    .chip.poi-doubt{background:#fff3c4;color:#806200}
+    .poi-warn{margin-top:8px;padding:8px 10px;border-radius:8px;background:#fff8e6;border:1px solid #f0d98a;color:#7a5b00;font-size:12px;line-height:1.45}
+    .poi-warn b{display:block;margin-bottom:4px}
     .info{display:grid;gap:5px;color:#494036;font-size:13px;line-height:1.45}
     .info div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .summary{margin-top:10px;color:#2f281f;font-size:13px;line-height:1.7;white-space:pre-wrap}
@@ -183,20 +193,9 @@
       <div class="seg" id="cityFilter">
         <button data-city="all" class="active">全部城市</button>
       </div>
-      <div class="seg" id="statusFilter">
-        <button data-status="all" class="active">全部</button>
-        <button data-status="suggested">推荐</button>
-        <button data-status="rule-blocked">挡下待处理</button>
-        <button data-status="approved">已通过</button>
-        <button data-status="rejected">已拒绝</button>
-        <button data-status="pending">待定</button>
-      </div>
-      <div class="seg" id="sourceFilter">
-        <button data-source="all" class="active">全部来源</button>
-      </div>
-      <div class="seg" id="categoryFilter">
-        <button data-category="all" class="active">全部类型</button>
-      </div>
+      <div class="seg" id="statusFilter"></div>
+      <div class="seg" id="sourceFilter"></div>
+      <div class="seg" id="categoryFilter"></div>
       <div class="seg" id="sortMode">
         <button data-sort="source" class="active">来源原始顺序</button>
         <button data-sort="time">活动时间</button>
@@ -400,9 +399,19 @@
     }
 
     function suggestPoiKeyword(event) {
+      if (event.poi_suggest_keyword) return event.poi_suggest_keyword;
       const location = String(event.location || "").trim();
       const city = String(event.city || "").trim();
       if (!location) return city;
+      const parts = location.split(/\s+/).filter(Boolean);
+      let idx = 0;
+      if (parts[idx] && city && parts[idx].replace(/市$/, "") === city.replace(/市$/, "")) idx += 1;
+      if (parts[idx] && /(区|县|旗|新区)$/.test(parts[idx])) idx += 1;
+      const venue = parts[idx] || "";
+      if (venue) {
+        if (!city || city === "全国" || venue.includes(city)) return venue;
+        return `${city} ${venue}`;
+      }
       if (!city || city === "全国" || location.includes(city)) return location;
       return `${city} ${location}`;
     }
@@ -631,6 +640,15 @@
       `).join("");
     }
 
+    function renderPoiDoubt(event) {
+      if (!event.location_poi_id || !event.poi_doubtful) return "";
+      const reasons = Array.isArray(event.poi_doubt_reasons) ? event.poi_doubt_reasons : [];
+      const detail = reasons.length
+        ? reasons.map((reason) => `<div>· ${escapeHtml(reason)}</div>`).join("")
+        : "<div>· 请人工核对 POI 是否对应正确场所</div>";
+      return `<div class="poi-warn"><b>POI 存疑${event.poi_match_score ? `（得分 ${event.poi_match_score}）` : ""}</b>${detail}</div>`;
+    }
+
     function renderPoiBlock(event) {
       const uid = event.eventUid || event.event_uid;
       const preview = poiPreviews[uid] || [];
@@ -786,9 +804,36 @@
         ? payload.events.filter((event) => !isExpired(event))
         : payload.events.filter((event) => !isExpired(event) && getCityKey(event) === cityKey);
       return {
+        total: list.length,
         approved: list.filter((event) => getStatus(event) === "approved").length,
         pending: list.filter((event) => getStatus(event) === "pending").length,
       };
+    }
+
+    function renderSegButton({ attr, value, label, count, active, disabled }) {
+      return `
+        <button
+          type="button"
+          data-${attr}="${escapeHtml(value)}"
+          class="${active ? "active" : ""}"
+          ${disabled ? "disabled" : ""}
+        >
+          <span class="seg-btn-label">${escapeHtml(label)}</span>
+          <span class="seg-btn-count">${count}</span>
+        </button>
+      `;
+    }
+
+    function matchesStatusFilter(event, filter) {
+      if (filter === "all") return true;
+      const status = getStatus(event);
+      if (filter === "suggested") return event.suggested;
+      if (filter === "rule-blocked") return isRuleBlockedUnprocessed(event);
+      if (filter === "poi_doubtful") {
+        return status === "pending" && event.poi_doubtful;
+      }
+      if (["approved", "rejected", "pending"].includes(filter)) return status === filter;
+      return true;
     }
 
     function resetPage() {
@@ -840,15 +885,14 @@
       return payload.events.map((event, index) => ({ event, index })).filter(({ event }) => {
         if (isExpired(event)) return false;
         if (cityFilter !== "all" && getCityKey(event) !== cityFilter) return false;
-        const status = getStatus(event);
-        const searchText = `${event.title} ${event.location} ${event.owner} ${event.category}`.toLowerCase();
-        if (statusFilter === "suggested" && !event.suggested) return false;
-        if (statusFilter === "rule-blocked" && !isRuleBlockedUnprocessed(event)) return false;
-        if (["approved", "rejected", "pending"].includes(statusFilter) && status !== statusFilter) return false;
+        if (!matchesStatusFilter(event, statusFilter)) return false;
         if (sourceFilter !== "all" && getSourceKey(event) !== sourceFilter) return false;
         if (categoryFilter !== "all" && event.category !== categoryFilter) return false;
         if (dateFilter !== "all" && !(event.eventDates || []).includes(dateFilter)) return false;
-        if (searchTerm && !searchText.includes(searchTerm.toLowerCase())) return false;
+        if (searchTerm) {
+          const searchText = `${event.title} ${event.location} ${event.owner} ${event.category}`.toLowerCase();
+          if (!searchText.includes(searchTerm.toLowerCase())) return false;
+        }
         return true;
       }).sort((a, b) => {
         if (sortMode === "time") return getTimeValue(a.event) - getTimeValue(b.event);
@@ -889,7 +933,7 @@
     }
 
     function renderCityChip(cityKey, label) {
-      const { approved, pending } = cityStats(cityKey);
+      const { total, approved, pending } = cityStats(cityKey);
       const isActive = cityFilter === cityKey;
       const pendingClass = pending > 0 ? "" : " is-zero";
       return `
@@ -900,11 +944,37 @@
         >
           <span class="city-main">${escapeHtml(label)}</span>
           <span class="city-sub">
+            <span>共 ${total}</span>
             <span>已通过 ${approved}</span>
             <span class="city-pending${pendingClass}">待定 ${pending}</span>
           </span>
         </button>
       `;
+    }
+
+    function renderStatusFilter() {
+      const scoped = getActiveEvents();
+      const filters = [
+        { key: "all", label: "全部" },
+        { key: "suggested", label: "推荐" },
+        { key: "rule-blocked", label: "挡下待处理" },
+        { key: "approved", label: "已通过" },
+        { key: "rejected", label: "已拒绝" },
+        { key: "pending", label: "待定" },
+        { key: "poi_doubtful", label: "POI 存疑" },
+      ];
+      statusFilterEl.innerHTML = filters.map(({ key, label }) => {
+        const count = key === "all"
+          ? scoped.length
+          : scoped.filter((event) => matchesStatusFilter(event, key)).length;
+        return renderSegButton({
+          attr: "status",
+          value: key,
+          label,
+          count,
+          active: statusFilter === key,
+        });
+      }).join("");
     }
 
     function renderCityFilter() {
@@ -918,10 +988,21 @@
     }
 
     function renderCategoryFilter() {
-      const activeEvents = getActiveEvents();
-      const categories = [...new Set(activeEvents.map((event) => event.category))];
-      categoryFilterEl.innerHTML = `<button data-category="all" class="${categoryFilter === "all" ? "active" : ""}">全部类型</button>` +
-        categories.map((category) => `<button data-category="${escapeHtml(category)}" class="${categoryFilter === category ? "active" : ""}">${escapeHtml(category)}</button>`).join("");
+      const scoped = getActiveEvents();
+      const categories = [...new Set(scoped.map((event) => event.category))];
+      categoryFilterEl.innerHTML = renderSegButton({
+        attr: "category",
+        value: "all",
+        label: "全部类型",
+        count: scoped.length,
+        active: categoryFilter === "all",
+      }) + categories.map((category) => renderSegButton({
+        attr: "category",
+        value: category,
+        label: category,
+        count: scoped.filter((event) => event.category === category).length,
+        active: categoryFilter === category,
+      })).join("");
     }
 
     function renderSourceFilter() {
@@ -931,19 +1012,29 @@
         ["xiaohongshu", "小红书"],
         ["wechat", "公众号"],
       ];
-      const activeEvents = getActiveEvents();
-      const present = new Map(activeEvents.map((event) => [getSourceKey(event), getSourceLabel(event)]));
+      const scoped = getActiveEvents();
+      const present = new Map(scoped.map((event) => [getSourceKey(event), getSourceLabel(event)]));
       const sources = baseSources.map(([key, label]) => [key, present.get(key) || label]);
       present.forEach((label, key) => {
         if (!sources.some(([sourceKey]) => sourceKey === key)) sources.push([key, label]);
       });
-      sourceFilterEl.innerHTML = `<button data-source="all" class="${sourceFilter === "all" ? "active" : ""}">全部来源</button>` +
-        sources.map(([key, label]) => {
-          const count = activeEvents.filter((event) => getSourceKey(event) === key).length;
-          const disabled = count ? "" : "disabled";
-          const text = count ? `${label} ${count}` : label;
-          return `<button data-source="${escapeHtml(key)}" class="${sourceFilter === key ? "active" : ""}" ${disabled}>${escapeHtml(text)}</button>`;
-        }).join("");
+      sourceFilterEl.innerHTML = renderSegButton({
+        attr: "source",
+        value: "all",
+        label: "全部来源",
+        count: scoped.length,
+        active: sourceFilter === "all",
+      }) + sources.map(([key, label]) => {
+        const count = scoped.filter((event) => getSourceKey(event) === key).length;
+        return renderSegButton({
+          attr: "source",
+          value: key,
+          label,
+          count,
+          active: sourceFilter === key,
+          disabled: !count,
+        });
+      }).join("");
     }
 
     function formatDateLabel(dateValue) {
@@ -1043,6 +1134,7 @@
                 <span class="chip">${event.suggested ? "规则推荐" : "规则挡下"}</span>
                 <span class="chip">来源#${escapeHtml(event.sourcePosition || "-")}</span>
                 <span class="import-ready-tag ${ready ? "" : "no"}">${ready ? "可入库" : "未齐"}</span>
+                ${event.poi_doubtful ? `<span class="chip poi-doubt">POI 存疑</span>` : ""}
               </div>
               <div class="info">
                 <div>时间：${escapeHtml(event.timeText)}</div>
@@ -1082,6 +1174,7 @@
     })()
     : "<span style=\"color:#ad382c\">尚未匹配 POI</span>"}
                   </div>
+                  ${renderPoiDoubt(event)}
                   ${renderMerchantInfo(event)}
                   ${renderImportStatus(event)}
                   <div class="import-actions">
@@ -1121,6 +1214,7 @@
       sourceMeta.textContent = `${cityLabel} · ${sources} · 生成于 ${generatedAt}`;
       renderCityFilter();
       renderStats();
+      renderStatusFilter();
       renderSourceFilter();
       renderCategoryFilter();
       renderDateFilter();

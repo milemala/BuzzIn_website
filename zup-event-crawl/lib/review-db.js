@@ -15,6 +15,7 @@ const {
   resolvePoiCoordinates,
   resolveStartAt,
 } = require("./event-import-ready");
+const { assessEventPoiConfidence, suggestEventPoiKeyword } = require("./tencent-poi");
 
 const DEFAULT_NOTE = "本文件用于本地人工审核。保留原始抓取详情文本，body 为基于原文提炼的 Zup 活动简介。图片发布前需再次确认来源授权与平台规则。";
 const VALID_REVIEW_STATUSES = new Set(["approved", "pending", "rejected"]);
@@ -208,9 +209,22 @@ function rowToEvent(row) {
   };
 }
 
+function enrichEventPoiFlags(event) {
+  if (!event) return event;
+  const poiCheck = assessEventPoiConfidence(event);
+  return {
+    ...event,
+    poi_doubtful: poiCheck.doubtful,
+    poi_match_score: poiCheck.score,
+    poi_doubt_reasons: poiCheck.reasons,
+    poi_suggest_keyword: event.poi_suggest_keyword
+      || suggestEventPoiKeyword(event.location, event.city, event.title),
+  };
+}
+
 function getEventByUid(db, eventUid) {
   const row = db.prepare("SELECT * FROM events WHERE event_uid = ?").get(eventUid);
-  return row ? rowToEvent(row) : null;
+  return row ? enrichEventPoiFlags(rowToEvent(row)) : null;
 }
 
 function applyEventPoiSelection(db, eventUid, poi, options = {}) {
@@ -872,9 +886,10 @@ function getEventsPayload(db) {
   const cityOrder = cityImportRows.length ? cityImportRows.map((row) => row.city) : [...new Set(eventRows.map((row) => row.city))];
   const cityOrderMap = new Map(cityOrder.map((city, index) => [city, index]));
   const events = eventRows
-    .map((row) => ({
+    .map((row) => enrichEventPoiFlags({
       ...rowToEvent(row),
       eventDates: eventDatesByUid.get(row.event_uid) || [],
+      poi_suggest_keyword: suggestEventPoiKeyword(row.location, row.city, row.title),
     }))
     .sort((a, b) => {
       const cityDiff = (cityOrderMap.get(a.city) ?? Number.MAX_SAFE_INTEGER) - (cityOrderMap.get(b.city) ?? Number.MAX_SAFE_INTEGER);

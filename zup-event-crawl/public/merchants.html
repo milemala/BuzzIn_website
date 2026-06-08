@@ -57,9 +57,15 @@
     .city-chip-pending.is-zero{opacity:.55;font-weight:600}
     .city-chip.active .city-chip-pending.is-zero{opacity:.45}
     .seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}
-    .seg button{height:34px;border:0;border-right:1px solid var(--line);background:transparent;padding:0 12px;cursor:pointer;color:var(--muted)}
+    .seg button{
+      min-height:44px;border:0;border-right:1px solid var(--line);background:transparent;padding:5px 10px;cursor:pointer;color:var(--muted);
+      display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;line-height:1.15
+    }
     .seg button:last-child{border-right:0}
     .seg button.active{background:#111;color:#fff}
+    .seg-btn-label{font-size:13px}
+    .seg-btn-count{font-size:11px;font-weight:700;opacity:.72}
+    .seg button.active .seg-btn-count{opacity:.88}
     .search{height:36px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:0 12px;min-width:220px;flex:1 1 220px}
     .grid{display:grid;gap:12px}
     .card{background:var(--panel);border:1px solid var(--line);border-radius:8px;display:grid;grid-template-columns:auto minmax(0,1fr);overflow:hidden}
@@ -90,6 +96,9 @@
     .import-field select,.import-field input{height:32px;border:1px solid var(--line);border-radius:6px;padding:0 8px;background:#fff}
     .chip.ready{background:#e7f5ec;color:#197549}
     .chip.miss{background:#fde8e4;color:#ad382c}
+    .chip.poi-doubt{background:#fff3c4;color:#806200}
+    .poi-warn{margin-top:8px;padding:8px 10px;border-radius:8px;background:#fff8e6;border:1px solid #f0d98a;color:#7a5b00;font-size:12px;line-height:1.45}
+    .poi-warn b{display:block;margin-bottom:4px}
     .poi-hint{margin:6px 0 0;font-size:11px;line-height:1.45;color:var(--muted)}
     .poi-search-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
     .poi-search-row input{flex:1 1 180px;height:32px;border:1px solid var(--line);border-radius:6px;padding:0 8px;background:#fff}
@@ -164,14 +173,7 @@
       <div class="filter-row">
         <div class="filter-label">筛选</div>
         <div class="filter-tools">
-          <div class="seg" id="statusFilter">
-            <button data-status="all" class="active">全部</button>
-            <button data-status="approved">已通过</button>
-            <button data-status="rejected">已拒绝</button>
-            <button data-status="pending">待定</button>
-            <button data-status="import_ready">可入库</button>
-            <button data-status="needs_poi">缺 POI</button>
-          </div>
+          <div class="seg" id="statusFilter"></div>
           <input class="search" id="searchInput" placeholder="搜索店名、商圈、关键词">
         </div>
       </div>
@@ -569,18 +571,56 @@
       };
     }
 
+    function matchesStatusFilter(item, filter) {
+      const status = reviewStatus(item.merchant_uid);
+      if (filter === "all") return true;
+      if (filter === "import_ready") return isImportReady(item);
+      if (filter === "needs_poi") {
+        if (status === "rejected") return false;
+        return !item.address_poi_id;
+      }
+      if (filter === "poi_doubtful") {
+        return status === "pending" && item.poi_doubtful;
+      }
+      if (["approved", "rejected", "pending"].includes(filter)) {
+        return status === filter;
+      }
+      return true;
+    }
+
     function filteredMerchants() {
       const q = state.filters.search.trim().toLowerCase();
       return merchantsInCity().filter((item) => {
-        const status = reviewStatus(item.merchant_uid);
-        const filter = state.filters.status;
-        if (filter === "import_ready" && !isImportReady(item)) return false;
-        if (filter === "needs_poi" && item.address_poi_id) return false;
-        if (["approved", "rejected", "pending"].includes(filter) && status !== filter) return false;
+        if (!matchesStatusFilter(item, state.filters.status)) return false;
         if (!q) return true;
         const haystack = `${item.name} ${item.address} ${item.poi_title} ${item.district} ${item.category} ${item.search_keyword} ${item.address_poi_id}`.toLowerCase();
         return haystack.includes(q);
       });
+    }
+
+    function renderStatusFilter() {
+      const scoped = merchantsInCity();
+      const filters = [
+        { key: "all", label: "全部" },
+        { key: "approved", label: "已通过" },
+        { key: "rejected", label: "已拒绝" },
+        { key: "pending", label: "待定" },
+        { key: "import_ready", label: "可入库" },
+        { key: "needs_poi", label: "缺 POI" },
+        { key: "poi_doubtful", label: "POI 存疑" },
+      ];
+      els.statusFilter.innerHTML = filters.map(({ key, label }) => {
+        const count = key === "all"
+          ? scoped.length
+          : scoped.filter((item) => matchesStatusFilter(item, key)).length;
+        const active = state.filters.status === key;
+        return `
+          <button type="button" data-status="${key}" class="${active ? "active" : ""}">
+            <span class="seg-btn-label">${label}</span>
+            <span class="seg-btn-count">${count}</span>
+          </button>
+        `;
+      }).join("");
     }
 
     function renderStats() {
@@ -634,6 +674,15 @@
           </div>
         </button>
       `).join("");
+    }
+
+    function renderPoiDoubt(item) {
+      if (!item.address_poi_id || !item.poi_doubtful) return "";
+      const reasons = Array.isArray(item.poi_doubt_reasons) ? item.poi_doubt_reasons : [];
+      const detail = reasons.length
+        ? reasons.map((reason) => `<div>· ${escapeHtml(reason)}</div>`).join("")
+        : "<div>· 请人工核对 POI 是否对应正确门店</div>";
+      return `<div class="poi-warn"><b>POI 存疑${item.poi_match_score ? `（得分 ${item.poi_match_score}）` : ""}</b>${detail}</div>`;
     }
 
     function renderPoiCandidates(item) {
@@ -704,6 +753,7 @@
           item.category ? `<span class="chip">${escapeHtml(item.category)}</span>` : "",
           item.search_keyword ? `<span class="chip">关键词 ${escapeHtml(item.search_keyword)}</span>` : "",
           ready ? `<span class="chip ready">可入库</span>` : `<span class="chip miss">待补全</span>`,
+          item.poi_doubtful ? `<span class="chip poi-doubt">POI 存疑</span>` : "",
         ].join("");
         return `
           <article class="card" data-uid="${item.merchant_uid}">
@@ -733,6 +783,7 @@
                     ${item.address_poi_id
     ? `POI：<strong>${escapeHtml(item.poi_title || item.name)}</strong><br>地址：${escapeHtml(item.poi_address || item.address)}<br>ID：${escapeHtml(item.address_poi_id)}<br>坐标：${item.longitude}, ${item.latitude}`
     : "尚未匹配 POI，可点「智能匹配」或从候选里改选"}
+                    ${renderPoiDoubt(item)}
                   </div>
                   <div class="card-actions" style="margin-top:0">
                     <button class="mini" type="button" data-poi-action="auto">智能匹配</button>
@@ -766,6 +817,7 @@
       const { list, total, totalPages } = paginatedMerchants(filtered);
       renderStats();
       renderCityFilter();
+      renderStatusFilter();
       renderCards(list);
       renderPager({ total, totalPages, page: state.page });
     }

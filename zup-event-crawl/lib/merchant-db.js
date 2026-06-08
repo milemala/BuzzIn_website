@@ -6,6 +6,7 @@ const {
   isImportReady,
   suggestMerchantType,
 } = require("./merchant-import-ready");
+const { assessMerchantPoiConfidence } = require("./tencent-poi");
 
 const VALID_REVIEW_STATUSES = new Set(["approved", "pending", "rejected"]);
 
@@ -223,6 +224,17 @@ function listMerchantsEligibleForImport(db, options = {}) {
   return rows.map((row) => rowToMerchant(row)).filter((merchant) => isImportReady(merchant));
 }
 
+function enrichMerchantPoiFlags(merchant) {
+  if (!merchant) return merchant;
+  const poiCheck = assessMerchantPoiConfidence(merchant);
+  return {
+    ...merchant,
+    poi_doubtful: poiCheck.doubtful,
+    poi_match_score: poiCheck.score,
+    poi_doubt_reasons: poiCheck.reasons,
+  };
+}
+
 function getMerchantByUid(db, merchantUid) {
   ensureMerchantSchema(db);
   const row = db.prepare("SELECT * FROM merchants WHERE merchant_uid = ?").get(merchantUid);
@@ -268,7 +280,7 @@ function applyPoiSelection(db, merchantUid, poi, options = {}) {
     updated_at: now,
   });
 
-  return getMerchantByUid(db, merchantUid);
+  return enrichMerchantPoiFlags(getMerchantByUid(db, merchantUid));
 }
 
 function updatePoiCandidatesOnly(db, merchantUid, candidates, options = {}) {
@@ -427,7 +439,7 @@ function getMerchantsPayload(db) {
     ORDER BY m.city, m.search_keyword, m.source_position
   `).all();
 
-  const merchants = rows.map((row) => ({
+  const merchants = rows.map((row) => enrichMerchantPoiFlags({
     ...rowToMerchant(row),
     review_status: row.review_status,
   }));

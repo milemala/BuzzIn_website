@@ -183,11 +183,8 @@ function buildImportRecord(event, options = {}) {
 }
 
 function buildPoiKeywordForEvent(event) {
-  const city = String(event.city || "").trim();
-  const location = String(event.location || "").trim();
-  if (!location) return city || "";
-  if (!city || city === "全国" || location.includes(city)) return location;
-  return `${city} ${location}`;
+  const { suggestEventPoiKeyword } = require("./tencent-poi");
+  return suggestEventPoiKeyword(event.location, event.city, event.title);
 }
 
 module.exports = {

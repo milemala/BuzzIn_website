@@ -131,7 +131,7 @@ function normalizeName(name) {
   return String(name || "")
     .toLowerCase()
     .replace(/[·・\s　（）()&\-—:：.]/g, "")
-    .replace(/bar|cocktail|whisky|whiskey|homebar/gi, "");
+    .replace(/bar|bae|cocktail|whisky|whiskey|homebar|homebae|home\s*bar/gi, "");
 }
 
 const GENERIC_BAR_TAIL_RE =
@@ -192,6 +192,11 @@ function buildSearchKeywords(listName) {
     add(cnOnly.slice(0, 6));
   }
 
+  const cnBeforeLatin = base.match(/^([\u4e00-\u9fa5]{2,8})(?=[A-Za-z])/u);
+  if (cnBeforeLatin) add(cnBeforeLatin[1]);
+
+  add(stripBranchName(listName).replace(/[·・\s]/g, ""));
+
   add(base);
   return keywords;
 }
@@ -217,6 +222,14 @@ function scoreMatch(listName, listAddress, item) {
   }
 
   if (item.sourcePosition === 1) score += 4;
+
+  const listCn = (listName.match(/^[\u4e00-\u9fa5·・]+/) || [])[0]?.replace(/[·・]/g, "") || "";
+  const itemCn = (item.name.match(/^[\u4e00-\u9fa5·・]+/) || [])[0]?.replace(/[·・]/g, "") || "";
+  if (listCn && itemCn) {
+    if (listCn === itemCn) score += 50;
+    else if (itemCn.startsWith(listCn) || listCn.startsWith(itemCn)) score += 35;
+  }
+
   return score;
 }
 
