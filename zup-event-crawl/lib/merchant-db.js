@@ -69,7 +69,7 @@ function backfillMerchantSourceAddresses(db) {
   `).get().count;
   if (!pendingCount) return;
 
-  const listDir = path.join(__dirname, "..", "data", "各城市酒鬼地图", "拆分结果");
+  const listDir = path.join(__dirname, "..", "data", "城市商户清单", "酒鬼地图统计");
   if (!fs.existsSync(listDir)) return;
 
   const addressByListName = new Map();

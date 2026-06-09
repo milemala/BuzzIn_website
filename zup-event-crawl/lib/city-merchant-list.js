@@ -38,7 +38,7 @@ function parseCityMerchantList(filePath) {
 
   for (let i = 0; i < lines.length; i += 1) {
     const line = lines[i].trim();
-    if (line === "## 商户清单") {
+    if (line === "## 商户清单" || line === "## 公园清单") {
       inList = true;
       continue;
     }
@@ -130,7 +130,7 @@ function updateCityMerchantListScrapeStatus(filePath, report = {}) {
       continue;
     }
 
-    if (line === "## 商户清单") {
+    if (line === "## 商户清单" || line === "## 公园清单") {
       inList = true;
       rebuilt.push(raw);
       continue;
@@ -197,7 +197,10 @@ function updateCityMerchantListScrapeStatus(filePath, report = {}) {
     "",
   ];
 
-  const listHeadingIdx = rebuilt.findIndex((line) => line.trim() === "## 商户清单");
+  const listHeadingIdx = rebuilt.findIndex((line) => {
+    const t = line.trim();
+    return t === "## 商户清单" || t === "## 公园清单";
+  });
   if (listHeadingIdx >= 0) {
     rebuilt.splice(listHeadingIdx, 0, ...progress);
   } else {

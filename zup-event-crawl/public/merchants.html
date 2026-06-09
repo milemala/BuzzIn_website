@@ -206,6 +206,12 @@
         <div class="city-filter" id="cityFilter"></div>
       </div>
       <div class="filter-row">
+        <div class="filter-label">类型</div>
+        <div class="filter-tools">
+          <div class="seg" id="bizKindFilter"></div>
+        </div>
+      </div>
+      <div class="filter-row">
         <div class="filter-label">筛选</div>
         <div class="filter-tools">
           <div class="seg" id="statusFilter"></div>
@@ -242,7 +248,7 @@
       merchants: [],
       decisions: {},
       merchantTypes: [],
-      filters: { city: "all", status: "all", search: "" },
+      filters: { city: "all", bizKind: "all", status: "all", search: "" },
       page: 1,
       poiBusy: false,
       poiMatchMode: "normal",
@@ -261,6 +267,7 @@
       grid: document.getElementById("merchantGrid"),
       pager: document.getElementById("pager"),
       cityFilter: document.getElementById("cityFilter"),
+      bizKindFilter: document.getElementById("bizKindFilter"),
       statusFilter: document.getElementById("statusFilter"),
       searchInput: document.getElementById("searchInput"),
       poiModeToggle: document.getElementById("poiModeToggle"),
@@ -278,8 +285,20 @@
       importModalClose: document.getElementById("importModalClose"),
     };
 
+    const BIZ_KIND_FILTERS = [
+      { key: "all", label: "全部" },
+      { key: "bar", label: "酒吧" },
+      { key: "bookstore", label: "书店" },
+      { key: "park", label: "公园" },
+      { key: "cafe", label: "咖啡" },
+      { key: "tea", label: "茶馆" },
+      { key: "restaurant", label: "餐厅" },
+      { key: "other", label: "其他" },
+    ];
+
     function suggestMerchantType(category, name) {
       const text = `${category || ""} ${name || ""}`;
+      if (/公园|植物园|风景名胜|湿地|森林公园/i.test(text) && !/酒吧|精酿|餐吧|咖啡|书店/i.test(category || "")) return 13;
       if (/啤酒|精酿|啤酒屋|啤酒吧/i.test(text)) return 1;
       if (/酒馆|酒吧|清吧|Taproom|COMMUNE|跳海|京A|餐吧/i.test(text)) return 2;
       if (/咖啡/i.test(text)) return 16;
@@ -287,6 +306,33 @@
       if (/餐|饭|食/i.test(text)) return 4;
       if (/书店|图书/i.test(text)) return 13;
       return 2;
+    }
+
+    /** 审核台业务类型（酒吧/书店/公园等），与 Buzz 入库类型 merchant_type 不同 */
+    function getMerchantBizKind(item) {
+      const category = String(item.category || "").trim();
+      const name = String(item.name || "").trim();
+      const batch = String(item.import_batch_id || "");
+      const text = `${category} ${name}`;
+
+      if (batch.includes("公园") || /^(公园|植物园|风景名胜|湿地公园|森林公园)/.test(category)) {
+        return "park";
+      }
+      if (/书店|图书|阅读|茑屋|PAGEONE|单向空间|BOOKSTORE/i.test(text)) {
+        return "bookstore";
+      }
+      if (batch.includes("酒鬼地图") || /酒吧|精酿|啤酒|酒馆|清吧|Live\s*House|餐吧|Hookah|鸡尾酒|威士忌/i.test(category)) {
+        return "bar";
+      }
+      const type = effectiveMerchantType(item);
+      if (type === 16 || /咖啡/i.test(text)) return "cafe";
+      if (type === 3 || /茶馆|茶饮/i.test(text)) return "tea";
+      if (type === 4 || /餐|饭|食/i.test(text)) return "restaurant";
+      return "other";
+    }
+
+    function bizKindLabel(key) {
+      return BIZ_KIND_FILTERS.find((item) => item.key === key)?.label || key;
     }
 
     function effectiveMerchantType(item) {
@@ -899,6 +945,11 @@
       };
     }
 
+    function matchesBizKindFilter(item, filter) {
+      if (filter === "all") return true;
+      return getMerchantBizKind(item) === filter;
+    }
+
     function matchesStatusFilter(item, filter) {
       const status = reviewStatus(item.merchant_uid);
       if (filter === "all") return true;
@@ -920,11 +971,28 @@
     function filteredMerchants() {
       const q = state.filters.search.trim().toLowerCase();
       return merchantsInCity().filter((item) => {
+        if (!matchesBizKindFilter(item, state.filters.bizKind)) return false;
         if (!matchesStatusFilter(item, state.filters.status)) return false;
         if (!q) return true;
         const haystack = `${item.name} ${item.source_address} ${item.address} ${item.poi_title} ${item.poi_address} ${item.district} ${item.category} ${item.search_keyword} ${item.address_poi_id}`.toLowerCase();
         return haystack.includes(q);
       });
+    }
+
+    function renderBizKindFilter() {
+      const scoped = merchantsInCity();
+      els.bizKindFilter.innerHTML = BIZ_KIND_FILTERS.map(({ key, label }) => {
+        const count = key === "all"
+          ? scoped.length
+          : scoped.filter((item) => matchesBizKindFilter(item, key)).length;
+        const active = state.filters.bizKind === key;
+        return `
+          <button type="button" data-biz-kind="${key}" class="${active ? "active" : ""}">
+            <span class="seg-btn-label">${label}</span>
+            <span class="seg-btn-count">${count}</span>
+          </button>
+        `;
+      }).join("");
     }
 
     function renderStatusFilter() {
@@ -1157,6 +1225,7 @@
       const { list, total, totalPages } = paginatedMerchants(filtered);
       renderStats();
       renderCityFilter();
+      renderBizKindFilter();
       renderStatusFilter();
       renderCards(list);
       renderPager({ total, totalPages, page: state.page });
@@ -1172,6 +1241,15 @@
       const button = event.target.closest("button[data-city]");
       if (!button) return;
       state.filters.city = button.dataset.city;
+      resetPage();
+      render();
+    });
+
+    els.bizKindFilter.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-biz-kind]");
+      if (!button) return;
+      state.filters.bizKind = button.dataset.bizKind;
+      [...els.bizKindFilter.querySelectorAll("button")].forEach((node) => node.classList.toggle("active", node === button));
       resetPage();
       render();
     });

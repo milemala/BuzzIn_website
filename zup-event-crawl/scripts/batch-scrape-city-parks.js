@@ -2,12 +2,12 @@
 "use strict";
 
 /**
- * 按城市酒鬼地图清单逐店搜索大众点评（仅列表第一页，不进详情）。
+ * 按城市公园清单搜索大众点评（仅列表第一页，不进详情）。
  *
  * 用法：
- *   node scripts/batch-scrape-city-merchants.js \
- *     --city=成都 \
- *     --list-file=data/城市商户清单/酒鬼地图统计/成都105.md
+ *   node scripts/batch-scrape-city-parks.js \
+ *     --city=北京 \
+ *     --list-file=data/城市商户清单/公园统计/北京公园16.md
  */
 const fs = require("fs");
 const path = require("path");
@@ -19,7 +19,7 @@ const {
   shouldStopListFetchRetry,
   toMerchantRecord,
 } = require("../lib/dianping-parse");
-const { matchesSocialVenueIntent } = require("../lib/merchant-social-filter");
+const { JUNK_NAME_SIGNAL, BLOCKED_CATEGORY } = require("../lib/merchant-social-filter");
 const { extractAddressHints } = require("../lib/tencent-poi");
 const { fetchViaChrome, sleep } = require("../lib/chrome-fetch");
 const { importMerchants, openDatabase } = require("../lib/merchant-db");
@@ -34,6 +34,8 @@ const {
 
 const root = path.join(__dirname, "..");
 const defaultDbPath = path.join(root, "data", "review.db");
+
+const PARK_CATEGORY = /公园|植物园|风景名胜|湿地|森林公园|郊野|湖岸|江滩|遗址|景区|游乐场|度假/i;
 
 class DianpingBlockedError extends Error {
   constructor(detail, reason = "blocked") {
@@ -57,7 +59,7 @@ function parseArgs(argv) {
     force: false,
     chromeWaitMs: 10000,
     taskDelayMs: 3500,
-    minScore: 35,
+    minScore: 40,
     blockThreshold: 1,
   };
 
@@ -74,7 +76,6 @@ function parseArgs(argv) {
     else if (arg.startsWith("--chrome-wait=")) options.chromeWaitMs = Number(arg.slice("--chrome-wait=".length));
     else if (arg.startsWith("--task-delay=")) options.taskDelayMs = Number(arg.slice("--task-delay=".length));
     else if (arg.startsWith("--min-score=")) options.minScore = Number(arg.slice("--min-score=".length));
-    else if (arg.startsWith("--block-threshold=")) options.blockThreshold = Number(arg.slice("--block-threshold=".length));
     else if (arg === "--help" || arg === "-h") {
       printHelp();
       process.exit(0);
@@ -92,13 +93,13 @@ function parseArgs(argv) {
 }
 
 function printHelp() {
-  console.log(`按城市酒鬼地图清单抓取大众点评（仅列表页）:
+  console.log(`按城市公园清单抓取大众点评（仅列表页）:
 
-  node scripts/batch-scrape-city-merchants.js \\
-    --city=成都 \\
-    --list-file=data/城市商户清单/酒鬼地图统计/成都105.md
+  node scripts/batch-scrape-city-parks.js \\
+    --city=北京 \\
+    --list-file=data/城市商户清单/公园统计/北京公园16.md
 
-前提：Chrome 已登录大众点评。默认跳过清单里已标注「已抓取」的商户。
+前提：Chrome 已登录大众点评。默认跳过清单里已标注「已抓取」的条目。
 `);
 }
 
@@ -114,7 +115,7 @@ function saveDebugHtml(city, keyword, html) {
   return file;
 }
 
-function loadCityMerchantEntries(filePath, options = {}) {
+function loadCityParkEntries(filePath, options = {}) {
   const parsed = parseCityMerchantList(resolvePath(filePath));
   const entries = parsed.entries.map((entry) => ({
     listName: entry.listName,
@@ -122,7 +123,7 @@ function loadCityMerchantEntries(filePath, options = {}) {
     scrapeStatus: entry.scrapeStatus,
   }));
   if (!entries.length) {
-    throw new Error(`清单中未解析到商户：${filePath}`);
+    throw new Error(`清单中未解析到公园：${filePath}`);
   }
   if (!options.force) {
     return entries.filter((entry) => entry.scrapeStatus !== "scraped");
@@ -133,12 +134,8 @@ function loadCityMerchantEntries(filePath, options = {}) {
 function normalizeName(name) {
   return String(name || "")
     .toLowerCase()
-    .replace(/[·・\s　（）()&\-—:：.]/g, "")
-    .replace(/bar|bae|cocktail|whisky|whiskey|homebar|homebae|home\s*bar/gi, "");
+    .replace(/[·・\s　（）()&\-—:：.]/g, "");
 }
-
-const GENERIC_BAR_TAIL_RE =
-  /\s*(精酿|鸡尾酒|啤酒|酒馆|酒吧|餐吧|小酒馆|威士忌|民谣|咖啡|书店|餐酒|酒铺|酒场|酒舍|打酒铺|台吧|taproom|homebar|home\s*bar|lounge|pub|club|bar|bistro|pizza|musicbar|music\s*bar|shisha|餐吧|轻酒吧).*$/iu;
 
 function stripBranchName(name) {
   return String(name || "")
@@ -147,8 +144,8 @@ function stripBranchName(name) {
     .trim();
 }
 
-function buildSearchKeywords(listName) {
-  const base = stripBranchName(listName).replace(/[·・]/g, " ").trim();
+function buildParkSearchKeywords(listName) {
+  const base = stripBranchName(listName).trim();
   const keywords = [];
   const add = (kw) => {
     const k = String(kw || "").replace(/\s+/g, " ").trim();
@@ -157,51 +154,37 @@ function buildSearchKeywords(listName) {
     keywords.push(k);
   };
 
-  add(base.split(/[&＆]/)[0].trim());
-
-  const withoutTail = base.replace(GENERIC_BAR_TAIL_RE, "").trim();
-  add(withoutTail);
-
-  const parts = base.split(/\s+/).filter(Boolean);
-  const cnParts = parts.filter((p) => /[\u4e00-\u9fa5]/.test(p));
-  const enParts = parts.filter((p) => /^[A-Za-z][A-Za-z0-9'&.-]*$/i.test(p));
-  if (cnParts.length && enParts.length) {
-    add(`${cnParts[0]} ${enParts[0]}`);
-    if (enParts.length > 1) {
-      add(`${cnParts[0]} ${enParts.slice(0, 2).join(" ")}`);
-    }
-  }
-
-  if (parts.length > 1 && /^[A-Za-z]/.test(parts[0])) {
-    const enRun = [];
-    for (const p of parts) {
-      if (/^[A-Za-z][A-Za-z0-9'&.-]*$/i.test(p)) enRun.push(p);
-      else break;
-    }
-    if (enRun.length) add(enRun.join(" "));
-  }
-
-  const dualMatch = base.match(/^([\u4e00-\u9fa5]{1,8})\s+([A-Za-z][\w\s&'.-]{1,30})/u);
-  if (dualMatch) {
-    const enCore = dualMatch[2].replace(GENERIC_BAR_TAIL_RE, "").trim();
-    const enWords = enCore.split(/\s+/).filter(Boolean);
-    add(`${dualMatch[1]} ${enWords.slice(0, 3).join(" ")}`.trim());
-  }
-
-  add(stripBranchName(listName).split(/[·・]/)[0].trim());
-
-  const cnOnly = base.replace(/[A-Za-z0-9&'.\s-]/g, "").trim();
-  if (cnOnly.length >= 2 && cnOnly.length <= 8 && base.length > cnOnly.length + 3) {
-    add(cnOnly.slice(0, 6));
-  }
-
-  const cnBeforeLatin = base.match(/^([\u4e00-\u9fa5]{2,8})(?=[A-Za-z])/u);
-  if (cnBeforeLatin) add(cnBeforeLatin[1]);
-
-  add(stripBranchName(listName).replace(/[·・\s]/g, ""));
-
   add(base);
+  if (base.includes("奥林匹克森林公园")) add("奥森");
+  if (base.startsWith("北京")) add(base.replace(/^北京/, "").trim());
+  if (base.endsWith("公园")) add(base.replace(/公园$/, "").trim());
+  if (base.includes("风景名胜区")) add(base.replace(/风景名胜区$/, "").trim());
+  if (base.includes("遗址公园")) add(base.replace(/遗址公园$/, "遗址").trim());
   return keywords;
+}
+
+function parkCoreName(listName) {
+  return stripBranchName(listName)
+    .replace(/^北京/, "")
+    .replace(/(国家)?森林公园$/, "")
+    .replace(/风景名胜区$/, "")
+    .replace(/遗址公园$/, "")
+    .replace(/公园$/, "")
+    .trim();
+}
+
+function filterParkCandidates(items, listName) {
+  const core = parkCoreName(listName);
+  return (items || []).filter((item) => {
+    const name = item.name || "";
+    const category = item.category || "";
+    if (JUNK_NAME_SIGNAL.test(name)) return false;
+    if (BLOCKED_CATEGORY.test(category) && !PARK_CATEGORY.test(category)) return false;
+    if (PARK_CATEGORY.test(category) || /公园|植物园|湿地|森林|湖|江滩|景区/.test(name)) return true;
+    if (core && name.includes(core)) return true;
+    if (normalizeName(name).includes(normalizeName(listName))) return true;
+    return false;
+  });
 }
 
 function scoreMatch(listName, listAddress, item) {
@@ -210,10 +193,14 @@ function scoreMatch(listName, listAddress, item) {
   let score = 0;
 
   if (target && candidate && target === candidate) score += 100;
-  else if (target && candidate && (candidate.includes(target) || target.includes(candidate))) score += 75;
-  else if (target && candidate) {
-    const overlap = [...target].filter((ch) => candidate.includes(ch)).length;
-    score += Math.round((overlap / Math.max(target.length, 1)) * 55);
+  else if (target && candidate && (candidate.includes(target) || target.includes(candidate))) score += 80;
+  else {
+    const core = normalizeName(parkCoreName(listName));
+    if (core && candidate.includes(core)) score += 70;
+    else if (core) {
+      const overlap = [...core].filter((ch) => candidate.includes(ch)).length;
+      score += Math.round((overlap / Math.max(core.length, 1)) * 50);
+    }
   }
 
   const regionText = `${item.district || ""} ${item.listRegionText || ""} ${item.name || ""}`;
@@ -224,20 +211,10 @@ function scoreMatch(listName, listAddress, item) {
     if (regionText.includes(hint) || (item.district || "").includes(hint)) score += 8;
   }
 
-  if (item.sourcePosition === 1) score += 4;
-
-  const listCn = (listName.match(/^[\u4e00-\u9fa5·・]+/) || [])[0]?.replace(/[·・]/g, "") || "";
-  const itemCn = (item.name.match(/^[\u4e00-\u9fa5·・]+/) || [])[0]?.replace(/[·・]/g, "") || "";
-  if (listCn && itemCn) {
-    if (listCn === itemCn) score += 50;
-    else if (itemCn.startsWith(listCn) || listCn.startsWith(itemCn)) score += 35;
-  }
+  if (PARK_CATEGORY.test(item.category || "")) score += 15;
+  if (item.sourcePosition === 1) score += 6;
 
   return score;
-}
-
-function filterBarVenueCandidates(items) {
-  return (items || []).filter((item) => matchesSocialVenueIntent(item, { skipKeywordCheck: true }).ok);
 }
 
 function pickBestMatch(listName, listAddress, items, minScore) {
@@ -298,8 +275,8 @@ async function persistResults(options, listPath, report, merchantRows) {
     const result = importMerchants(db, merchantRows, {
       mode: "merge",
       city: options.city,
-      keyword: `酒鬼地图-${options.city}`,
-      sourcePage: `list:${listPath}`,
+      keyword: `公园-${options.city}`,
+      sourcePage: `park-list:${listPath}`,
     });
     console.log(`\n已写入 ${result.imported} 条 → ${dbPath}`);
 
@@ -365,13 +342,13 @@ async function main() {
   const listPath = resolvePath(options.listFile);
   const allParsed = parseCityMerchantList(listPath);
   const existing = countExistingScrapeStatus(allParsed.entries);
-  const entries = loadCityMerchantEntries(listPath, options);
-  const importBatchId = `${options.city}-酒鬼地图-${new Date().toISOString().slice(0, 10)}`;
+  const entries = loadCityParkEntries(listPath, options);
+  const importBatchId = `${options.city}-公园-${new Date().toISOString().slice(0, 10)}`;
   const report = { ok: [], miss: [], fail: [], blocked: "" };
   const merchantRows = [];
-  console.log(`\n按清单抓取 ${options.city} · 待抓 ${entries.length} 家 / 清单共 ${allParsed.entries.length} 家（仅列表页）`);
+  console.log(`\n按公园清单抓取 ${options.city} · 待抓 ${entries.length} 家 / 清单共 ${allParsed.entries.length} 家（仅列表页）`);
   if (!entries.length) {
-    console.log("清单中待抓商户为 0，仅同步清单标注与文件名。");
+    console.log("清单中待抓公园为 0，仅同步清单标注与文件名。");
     await persistResults(options, listPath, report, merchantRows);
     return;
   }
@@ -382,11 +359,10 @@ async function main() {
 
   for (let i = 0; i < entries.length; i += 1) {
     const entry = entries[i];
-    const keywords = buildSearchKeywords(entry.listName);
+    const keywords = buildParkSearchKeywords(entry.listName);
     console.log(`${"=".repeat(60)}`);
     console.log(`[${i + 1}/${entries.length}] ${entry.listName}`);
     console.log(`搜索词候选: ${keywords.join(" → ")}`);
-    if (entry.listAddress) console.log(`清单地址: ${entry.listAddress}`);
 
     try {
       let matched = null;
@@ -403,7 +379,7 @@ async function main() {
 
         const { parsed, shopCount } = await fetchListForKeyword(options, keyword);
         console.log(`     页面约 ${parsed.totalReported ?? "?"} 条 | DOM ${shopCount} 家 | 解析 ${parsed.parsedCount}`);
-        const candidates = filterBarVenueCandidates(parsed.allItems || []);
+        const candidates = filterParkCandidates(parsed.allItems || [], entry.listName);
         const best = pickBestMatch(entry.listName, entry.listAddress, candidates, options.minScore);
         if (best) {
           matched = { best, keyword };
@@ -460,11 +436,6 @@ async function main() {
   if (report.miss.length) console.log(`本轮未匹配 ${report.miss.length} 家`);
   if (report.fail.length) console.log(`本轮失败 ${report.fail.length} 家`);
   if (report.blocked) console.log(`限制状态：${report.blocked}`);
-
-  if (!merchantRows.length && !report.miss.length && !report.fail.length && !report.blocked) {
-    console.log("\n没有需要处理的条目。");
-    return;
-  }
 
   const listUpdate = await persistResults(options, listPath, report, merchantRows);
 
