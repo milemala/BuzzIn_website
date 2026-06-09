@@ -56,6 +56,10 @@
     .city-chip.active .city-chip-pending{color:#ffd84d}
     .city-chip-pending.is-zero{opacity:.55;font-weight:600}
     .city-chip.active .city-chip-pending.is-zero{opacity:.45}
+    .city-chip-pending-import{font-weight:800;color:#197549}
+    .city-chip.active .city-chip-pending-import{color:#9dffc8}
+    .city-chip-pending-import.is-zero{opacity:.55;font-weight:600}
+    .city-chip.active .city-chip-pending-import.is-zero{opacity:.45}
     .seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}
     .seg button{
       min-height:44px;border:0;border-right:1px solid var(--line);background:transparent;padding:5px 10px;cursor:pointer;color:var(--muted);
@@ -164,6 +168,7 @@
           <button type="button" data-mode="normal"><span class="seg-btn-label">标准存疑</span></button>
           <button type="button" data-mode="strict"><span class="seg-btn-label">严格存疑</span></button>
         </div>
+        <button class="btn" id="approveAllPendingBtn" type="button">待定全部通过</button>
         <button class="btn" id="batchPoiBtn" type="button">批量补全 POI</button>
         <button class="btn primary" id="batchImportBtn" type="button">批量入库</button>
         <button class="btn" id="exportImportBtn" type="button">导出入库 JSON</button>
@@ -204,6 +209,7 @@
       poiBusy: false,
       poiMatchMode: "normal",
       poiModeBusy: false,
+      reviewBusy: false,
       importBusy: false,
       poiKeywords: {},
       poiPreviews: {},
@@ -219,6 +225,7 @@
       statusFilter: document.getElementById("statusFilter"),
       searchInput: document.getElementById("searchInput"),
       poiModeToggle: document.getElementById("poiModeToggle"),
+      approveAllPendingBtn: document.getElementById("approveAllPendingBtn"),
       batchPoiBtn: document.getElementById("batchPoiBtn"),
       batchImportBtn: document.getElementById("batchImportBtn"),
       exportImportBtn: document.getElementById("exportImportBtn"),
@@ -251,6 +258,12 @@
 
     function isImportedMerchant(item) {
       return item.import_status === "imported" && Boolean(String(item.buzz_merchant_id || "").trim());
+    }
+
+    /** 入库字段齐全、尚未写入 Buzz（不含已拒绝） */
+    function isPendingImport(item) {
+      if (reviewStatus(item.merchant_uid) === "rejected") return false;
+      return isImportReady(item) && !isImportedMerchant(item);
     }
 
     function canImportMerchant(item) {
@@ -320,25 +333,50 @@
       }
     }
 
+    function formatDuration(ms) {
+      const sec = Math.max(1, Math.round(ms / 1000));
+      if (sec < 60) return `${sec} 秒`;
+      const min = Math.floor(sec / 60);
+      const remSec = sec % 60;
+      if (min < 60) return remSec ? `${min} 分 ${remSec} 秒` : `${min} 分钟`;
+      const hr = Math.floor(min / 60);
+      const remMin = min % 60;
+      return remMin ? `${hr} 小时 ${remMin} 分` : `${hr} 小时`;
+    }
+
     async function runBatchImport() {
       if (state.importBusy) return;
-      if (!window.confirm("将已通过、字段齐全且尚未入库的商户批量写入 Buzz 后台？\n（含图片上传，会较慢）")) return;
+      const city = state.filters.city === "all" ? "" : state.filters.city;
+      const label = city || "全部城市";
+      if (!window.confirm(`将「${label}」下已通过、字段齐全且尚未入库的商户批量写入 Buzz 后台？\n（每批最多 200 家，含图片上传，会较慢）`)) return;
       state.importBusy = true;
       els.batchImportBtn.disabled = true;
-      setSaveState("批量入库中...", "warn");
+      setSaveState(`批量入库中（${label}）...`, "warn");
+      const startedAt = Date.now();
       try {
         const response = await fetch("/api/merchants/import-batch", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({}),
+          body: JSON.stringify({ city }),
         });
         const data = await response.json();
         if (!response.ok || !data.ok) throw new Error(data.error || "批量入库失败");
         await loadMerchants();
-        setSaveState(`批量入库完成：成功 ${data.ok} · 跳过 ${data.skipped} · 失败 ${data.fail}`, data.fail ? "warn" : "ok");
+        const elapsed = formatDuration(Date.now() - startedAt);
+        const summary = [
+          `范围：${label}`,
+          `成功入库：${data.ok ?? 0} 家`,
+          `跳过（已存在）：${data.skipped ?? 0} 家`,
+          `失败：${data.fail ?? 0} 家`,
+          `本批处理：${data.total ?? 0} 家`,
+          `耗时：${elapsed}`,
+        ].join("\n");
+        setSaveState(`批量入库完成：成功 ${data.ok} · 跳过 ${data.skipped} · 失败 ${data.fail} · ${elapsed}`, data.fail ? "warn" : "ok");
+        window.alert(`批量入库完成\n\n${summary}`);
         render();
       } catch (error) {
         setSaveState(error.message || "批量入库失败", "error");
+        window.alert(`批量入库失败\n\n${error.message || "未知错误"}`);
       } finally {
         state.importBusy = false;
         els.batchImportBtn.disabled = false;
@@ -552,24 +590,56 @@
       }
     }
 
-    async function saveReviewState() {
-      setSaveState("保存中...", "warn");
+    async function saveReviewState(options = {}) {
+      const quiet = options.quiet === true;
+      if (!quiet) setSaveState("保存中...", "warn");
       const response = await fetch("/api/merchant-review-state", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ decisions: state.decisions }),
       });
       if (!response.ok) {
-        setSaveState("保存失败", "error");
-        return;
+        if (!quiet) setSaveState("保存失败", "error");
+        return false;
       }
-      setSaveState("已保存", "ok");
+      if (!quiet) setSaveState("已保存", "ok");
       render();
+      return true;
     }
 
     function setDecision(uid, status) {
       state.decisions[uid] = status;
       saveReviewState();
+    }
+
+    function pendingMerchantsInScope() {
+      return merchantsInCity().filter((item) => reviewStatus(item.merchant_uid) === "pending");
+    }
+
+    async function approveAllPending() {
+      if (state.reviewBusy) return;
+      const pending = pendingMerchantsInScope();
+      if (!pending.length) {
+        setSaveState("当前范围内没有待定商户", "warn");
+        return;
+      }
+      const cityLabel = state.filters.city === "all" ? "全部城市" : state.filters.city;
+      const ok = window.confirm(`将「${cityLabel}」下 ${pending.length} 家待定商户全部标为通过？`);
+      if (!ok) return;
+
+      state.reviewBusy = true;
+      if (els.approveAllPendingBtn) els.approveAllPendingBtn.disabled = true;
+      for (const item of pending) {
+        state.decisions[item.merchant_uid] = "approved";
+      }
+      try {
+        const saved = await saveReviewState({ quiet: true });
+        if (saved) setSaveState(`已通过 ${pending.length} 家待定商户`, "ok");
+        else setSaveState("批量通过保存失败", "error");
+      } finally {
+        state.reviewBusy = false;
+        if (els.approveAllPendingBtn) els.approveAllPendingBtn.disabled = false;
+      }
     }
 
     function getCityKey(item) {
@@ -589,13 +659,15 @@
         : state.merchants.filter((item) => getCityKey(item) === cityKey);
       const total = list.length;
       const pending = list.filter((item) => reviewStatus(item.merchant_uid) === "pending").length;
-      return { total, pending };
+      const pendingImport = list.filter((item) => isPendingImport(item)).length;
+      return { total, pending, pendingImport };
     }
 
     function renderCityChip(cityKey, label) {
-      const { total, pending } = cityStats(cityKey);
+      const { total, pending, pendingImport } = cityStats(cityKey);
       const active = state.filters.city === cityKey;
       const pendingClass = pending > 0 ? "" : " is-zero";
+      const pendingImportClass = pendingImport > 0 ? "" : " is-zero";
       return `
         <button
           type="button"
@@ -606,6 +678,7 @@
           <span class="city-chip-counts">
             <span class="city-chip-count">共 ${total}</span>
             <span class="city-chip-pending${pendingClass}">待定 ${pending}</span>
+            <span class="city-chip-pending-import${pendingImportClass}">待入库 ${pendingImport}</span>
           </span>
         </button>
       `;
@@ -636,7 +709,7 @@
       const status = reviewStatus(item.merchant_uid);
       if (filter === "all") return true;
       if (filter === "imported") return isImportedMerchant(item);
-      if (filter === "import_ready") return isImportReady(item);
+      if (filter === "import_ready") return isPendingImport(item);
       if (filter === "needs_poi") {
         if (status === "rejected") return false;
         return !item.address_poi_id;
@@ -668,7 +741,7 @@
         { key: "approved", label: "已通过" },
         { key: "rejected", label: "已拒绝" },
         { key: "pending", label: "待定" },
-        { key: "import_ready", label: "可入库" },
+        { key: "import_ready", label: "待入库" },
         { key: "needs_poi", label: "缺 POI" },
         { key: "poi_doubtful", label: "POI 存疑" },
       ];
@@ -692,13 +765,13 @@
       const approved = scoped.filter((item) => reviewStatus(item.merchant_uid) === "approved").length;
       const pending = scoped.filter((item) => reviewStatus(item.merchant_uid) === "pending").length;
       const rejected = scoped.filter((item) => reviewStatus(item.merchant_uid) === "rejected").length;
-      const importReady = scoped.filter((item) => isImportReady(item)).length;
+      const pendingImport = scoped.filter((item) => isPendingImport(item)).length;
       const cityLabel = state.filters.city === "all" ? "全部城市" : state.filters.city;
 
       els.stats.innerHTML = [
         ["商户总数", total],
         ["已通过", approved],
-        ["可入库", importReady],
+        ["待入库", pendingImport],
         ["待定", pending],
       ].map(([label, value]) => `<div class="stat"><b>${value}</b><span>${label}</span></div>`).join("");
 
@@ -1064,6 +1137,9 @@
         if (!button) return;
         switchPoiMatchMode(button.dataset.mode);
       });
+    }
+    if (els.approveAllPendingBtn) {
+      els.approveAllPendingBtn.addEventListener("click", approveAllPending);
     }
     els.batchPoiBtn.addEventListener("click", runBatchPoi);
     els.batchImportBtn.addEventListener("click", runBatchImport);

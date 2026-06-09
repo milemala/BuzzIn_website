@@ -699,6 +699,7 @@ async function handleApi(req, res, pathname) {
     try {
       const body = JSON.parse((await readBody(req)) || "{}");
       const report = await batchImportApprovedMerchants(db, {
+        city: body.city || "",
         limit: body.limit || 200,
         delayMs: body.delay_ms ?? 1200,
         dedup: body.dedup !== false,

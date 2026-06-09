@@ -276,15 +276,21 @@ function clearMerchantBuzzId(db, merchantUid) {
 function listMerchantsEligibleForImport(db, options = {}) {
   ensureMerchantSchema(db);
   const limit = Number(options.limit) > 0 ? Number(options.limit) : 500;
-  const rows = db.prepare(`
+  let sql = `
     SELECT m.*
     FROM merchants m
     INNER JOIN merchant_review_decisions d ON d.merchant_uid = m.merchant_uid
     WHERE d.status = 'approved'
       AND (m.import_status IS NULL OR m.import_status = '' OR m.import_status = 'failed')
-    ORDER BY m.city, m.search_keyword, m.source_position
-    LIMIT ?
-  `).all(limit);
+  `;
+  const params = [];
+  if (options.city) {
+    sql += " AND m.city = ?";
+    params.push(options.city);
+  }
+  sql += " ORDER BY m.city, m.search_keyword, m.source_position LIMIT ?";
+  params.push(limit);
+  const rows = db.prepare(sql).all(...params);
   return rows.map((row) => rowToMerchant(row)).filter((merchant) => isImportReady(merchant));
 }
 
