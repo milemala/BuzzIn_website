@@ -238,6 +238,10 @@
       return true;
     }
 
+    function isImportedMerchant(item) {
+      return item.import_status === "imported" && Boolean(String(item.buzz_merchant_id || "").trim());
+    }
+
     function canImportMerchant(item) {
       return reviewStatus(item.merchant_uid) === "approved"
         && isImportReady(item)
@@ -576,6 +580,7 @@
     function matchesStatusFilter(item, filter) {
       const status = reviewStatus(item.merchant_uid);
       if (filter === "all") return true;
+      if (filter === "imported") return isImportedMerchant(item);
       if (filter === "import_ready") return isImportReady(item);
       if (filter === "needs_poi") {
         if (status === "rejected") return false;
@@ -604,6 +609,7 @@
       const scoped = merchantsInCity();
       const filters = [
         { key: "all", label: "全部" },
+        { key: "imported", label: "已入库" },
         { key: "approved", label: "已通过" },
         { key: "rejected", label: "已拒绝" },
         { key: "pending", label: "待定" },
