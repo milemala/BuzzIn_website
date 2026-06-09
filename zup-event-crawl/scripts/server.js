@@ -42,6 +42,7 @@ const {
   getApprovedMerchants,
   getExportImportMerchants,
   getMerchantByUid,
+  getMerchantImportProgress,
   getMerchantPoiMatchMode,
   getMerchantReviewState,
   getMerchantsPayload,
@@ -694,6 +695,17 @@ async function handleApi(req, res, pathname) {
       sendJson(res, result.ok ? 200 : 400, result);
     } catch (error) {
       sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (req.method === "GET" && pathname === "/api/merchants/import-progress") {
+    try {
+      const query = url.parse(req.url, true).query || {};
+      const progress = getMerchantImportProgress(db, { city: query.city || "" });
+      sendJson(res, 200, { ok: true, ...progress });
+    } catch (error) {
+      sendJson(res, 400, { ok: false, error: error.message });
     }
     return;
   }

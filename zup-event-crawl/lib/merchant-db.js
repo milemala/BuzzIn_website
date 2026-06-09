@@ -37,6 +37,7 @@ const IMPORT_PREP_COLUMNS = [
   ["buzz_group_id", "TEXT NOT NULL DEFAULT ''"],
   ["bubble_now_id", "TEXT NOT NULL DEFAULT ''"],
   ["bubble_published_at", "TEXT"],
+  ["image_original", "TEXT NOT NULL DEFAULT ''"],
 ];
 
 function migrateMerchantImportColumns(db) {
@@ -175,6 +176,7 @@ function rowToMerchant(row) {
     district: row.district || "",
     category: row.category || "",
     image: normalizeMerchantImageUrl(row.image || ""),
+    image_original: row.image_original || "",
     original_link: row.original_link || "",
     originalLink: row.original_link || "",
     list_region_text: row.list_region_text || "",
@@ -272,6 +274,46 @@ function clearMerchantBuzzId(db, merchantUid) {
     import_error: "",
     imported_at: null,
   });
+}
+
+function getMerchantImportProgress(db, options = {}) {
+  ensureMerchantSchema(db);
+  let where = "d.status = 'approved'";
+  const params = [];
+  if (options.city) {
+    where += " AND m.city = ?";
+    params.push(options.city);
+  }
+  const base = `
+    FROM merchants m
+    INNER JOIN merchant_review_decisions d ON d.merchant_uid = m.merchant_uid
+    WHERE ${where}
+  `;
+  const imported = db.prepare(`SELECT COUNT(*) AS c ${base} AND m.import_status = 'imported' AND m.buzz_merchant_id != ''`).get(...params).c;
+  const failed = db.prepare(`SELECT COUNT(*) AS c ${base} AND m.import_status = 'failed'`).get(...params).c;
+  const latestImported = db.prepare(`
+    SELECT m.name, m.city, m.buzz_merchant_id, m.imported_at
+    ${base} AND m.import_status = 'imported' AND m.imported_at IS NOT NULL
+    ORDER BY m.imported_at DESC LIMIT 1
+  `).get(...params);
+  const latestFailed = db.prepare(`
+    SELECT m.name, m.city, m.import_error, m.updated_at
+    ${base} AND m.import_status = 'failed'
+    ORDER BY m.updated_at DESC LIMIT 1
+  `).get(...params);
+  const pendingImport = listMerchantsEligibleForImport(db, {
+    city: options.city || "",
+    limit: 200,
+  }).length;
+
+  return {
+    city: options.city || "",
+    imported,
+    failed,
+    pending_import: pendingImport,
+    latest_imported: latestImported || null,
+    latest_failed: latestFailed || null,
+  };
 }
 
 function listMerchantsEligibleForImport(db, options = {}) {
@@ -747,6 +789,7 @@ module.exports = {
   getApprovedMerchants,
   getExportImportMerchants,
   getMerchantByUid,
+  getMerchantImportProgress,
   getMerchantReviewState,
   getMerchantPoiMatchMode,
   getMerchantsPayload,

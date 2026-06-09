@@ -129,6 +129,11 @@ node scripts/upgrade-merchant-image-urls.js --dry-run
 # 批量（仅未过期活动）
 node scripts/compose-event-images.js
 node scripts/compose-event-images.js --dry-run
+
+# 批量（已通过商户 → 16:9 封面，写入 image，原图备份 image_original，入库用合成图）
+node scripts/compose-merchant-images.js
+node scripts/compose-merchant-images.js --dry-run
+node scripts/compose-merchant-images.js --force --concurrency=5
 ```
 
 版式与字段说明见 [`docs/HANDOFF.md`](docs/HANDOFF.md)「2026-06-08 活动封面合成」。
