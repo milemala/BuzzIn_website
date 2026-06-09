@@ -403,6 +403,7 @@
     }
 
     function suggestPoiKeyword(item) {
+      if (item.suggested_poi_keyword) return item.suggested_poi_keyword;
       const name = stripBranchSuffix(item.name).trim();
       const city = String(item.city || "").trim();
       if (!name) return city;

@@ -9,7 +9,7 @@ const {
   isImportReady,
   suggestMerchantType,
 } = require("./merchant-import-ready");
-const { assessMerchantPoiConfidence } = require("./tencent-poi");
+const { assessMerchantPoiConfidence, suggestMerchantPoiKeyword } = require("./tencent-poi");
 
 const VALID_REVIEW_STATUSES = new Set(["approved", "pending", "rejected"]);
 
@@ -288,6 +288,7 @@ function enrichMerchantPoiFlags(merchant) {
     poi_doubtful: poiCheck.doubtful,
     poi_match_score: poiCheck.score,
     poi_doubt_reasons: poiCheck.reasons,
+    suggested_poi_keyword: suggestMerchantPoiKeyword(merchant.name, merchant.city),
   };
 }
 

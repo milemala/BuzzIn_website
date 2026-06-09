@@ -4,17 +4,47 @@
  * 腾讯位置服务 WebService — 关键词 POI 搜索（GCJ-02）
  * 文档：https://lbs.qq.com/service/webService/webServiceGuide/webServiceSearch
  *
- * Key 策略（可用 BUZZ_TENCENT_MAP_KEY 强制指定单一 key）：
- * 1. 个人号 ROMBZ-...（优先，省公司配额）
- * 2. 个人号日限额用尽 → 自动切公司号 KRABZ-...（与 Zup 前端同源）
+ * Key 策略（可用 BUZZ_TENCENT_MAP_KEY 强制指定，多个 key 用英文逗号分隔）：
+ * 1. 个人号 keys（按 PERSONAL_MAP_KEYS 顺序，优先消耗个人配额）
+ * 2. 个人号日限额用尽 → 自动切下一个个人号，全部用尽后再切企业号
  */
-const PERSONAL_MAP_KEY = "ROMBZ-NP6RA-UD2K3-CVWY6-7CF6Q-J7BOX";
+/** @type {{ key: string, owner: string }[]} 个人号，按顺序消耗 */
+const PERSONAL_MAP_KEY_ENTRIES = [
+  { key: "XH4BZ-FAMCB-3YWU7-JB6O2-33QAV-DIFWM", owner: "荣志" },
+  { key: "RBABZ-YRA6A-76UK3-CQAJJ-RXMXV-YJBT7", owner: "帽" },
+  { key: "D5YBZ-OIYCU-7N2VO-GYHXJ-NUKLS-HXFSF", owner: "东东" },
+  { key: "ROMBZ-NP6RA-UD2K3-CVWY6-7CF6Q-J7BOX", owner: "明" },
+  { key: "YBNBZ-UEUCQ-42N5S-B5SHE-QN477-NMBME", owner: "英子" },
+];
+
+const PERSONAL_MAP_KEYS = PERSONAL_MAP_KEY_ENTRIES.map((entry) => entry.key);
+
+/** 企业号（个人号都耗尽后使用） */
 const COMPANY_MAP_KEY = "KRABZ-SFJCW-YTZRK-YP25X-2EFC6-ZBFCY";
+
+const MAP_KEY_OWNER = Object.fromEntries([
+  ...PERSONAL_MAP_KEY_ENTRIES.map(({ key, owner }) => [key, owner]),
+  [COMPANY_MAP_KEY, "企业号"],
+]);
+
+function formatMapKeyLabel(key) {
+  const owner = MAP_KEY_OWNER[key];
+  const short = `${String(key || "").slice(0, 8)}…`;
+  return owner ? `${owner} ${short}` : short;
+}
 
 const QUOTA_STATUS_CODES = new Set([120, 121]);
 
-/** @type {boolean} 本进程内个人 key 已不可用（配额用尽或鉴权失败），后续直接用公司 key */
-let personalKeySkipped = false;
+/** @type {Set<string>} 本进程内已确认日配额用尽的 key（按 key 单独记录，不误伤其他个人号） */
+const exhaustedMapKeys = new Set();
+
+function isPersonalMapKey(key) {
+  return PERSONAL_MAP_KEYS.includes(key);
+}
+
+function isCompanyMapKey(key) {
+  return key === COMPANY_MAP_KEY;
+}
 
 function isQuotaExceeded(status, message) {
   if (QUOTA_STATUS_CODES.has(status)) return true;
@@ -22,7 +52,7 @@ function isQuotaExceeded(status, message) {
   return /调用量|上限|配额|quota/i.test(msg);
 }
 
-/** 个人 key 失败时是否应切换公司 key（日配额 / 签名或鉴权失败等） */
+/** 个人 key 失败时是否应切换下一个 key（日配额 / 签名或鉴权失败等） */
 function shouldFallbackFromPersonal(status, message) {
   if (isQuotaExceeded(status, message)) return "quota";
   if (status === 110 || status === 111) return "auth";
@@ -31,9 +61,12 @@ function shouldFallbackFromPersonal(status, message) {
 
 function resolveMapKeyChain() {
   const override = process.env.BUZZ_TENCENT_MAP_KEY;
-  if (override) return [override];
-  if (personalKeySkipped) return [COMPANY_MAP_KEY];
-  return [PERSONAL_MAP_KEY, COMPANY_MAP_KEY];
+  if (override) {
+    return override.split(",").map((key) => key.trim()).filter(Boolean);
+  }
+  const personal = PERSONAL_MAP_KEYS.filter((key) => !exhaustedMapKeys.has(key));
+  const company = exhaustedMapKeys.has(COMPANY_MAP_KEY) ? [] : [COMPANY_MAP_KEY];
+  return [...personal, ...company];
 }
 
 function resolveMapKey() {
@@ -205,11 +238,238 @@ function extractAddressHints(referenceAddress) {
 
   for (const match of text.matchAll(/([\u4e00-\u9fa5A-Za-z0-9]{2,}(?:路|街|道|巷|弄|大道|工业区|大厦|广场))/gu)) {
     add(match[1]);
+    const roadOnly = match[1].replace(/^[\u4e00-\u9fa5]{2,8}(?:新区|区|县|镇|市)?/, "");
+    if (roadOnly.length >= 2) add(roadOnly);
   }
-  for (const match of text.matchAll(/(\d+号[^，,；;]*)/gu)) add(match[1]);
+  for (const match of text.matchAll(/(\d+号)/gu)) add(match[1]);
   for (const match of text.matchAll(/([\u4e00-\u9fa5A-Za-z0-9]{2,}铺)/gu)) add(match[1]);
 
-  return hints.slice(0, 8);
+  return hints.slice(0, 10);
+}
+
+/** 点评地址与 POI 地址是否大致一致（路名、门牌等） */
+function addressesRoughlyAlign(sourceAddress, poiAddress) {
+  const src = normalizeMatchText(sourceAddress);
+  const poi = normalizeMatchText(poiAddress);
+  if (!src || !poi) return false;
+  if (src === poi || poi.includes(src) || src.includes(poi)) return true;
+
+  const hints = extractAddressHints(sourceAddress);
+  if (hints.some((hint) => poi.includes(normalizeMatchText(hint)))) return true;
+
+  const roadMatch = String(sourceAddress).match(/([\u4e00-\u9fa5]{1,10}(?:路|街|道|巷|弄|大道))/);
+  const numMatch = String(sourceAddress).match(/(\d+号)/);
+  if (roadMatch && poi.includes(normalizeMatchText(roadMatch[1]))) {
+    if (!numMatch || poi.includes(normalizeMatchText(numMatch[1]))) return true;
+  }
+  return false;
+}
+
+const GENERIC_ENGLISH_SEARCH_TOKENS = new Set([
+  "bar", "bars", "cafe", "coffee", "pub", "club", "live", "lounge", "bistro",
+  "cocktail", "cocktails", "whisky", "whiskey", "wine", "wines", "beer", "beers",
+  "taproom", "homebar", "shisha", "hookah", "the", "and", "room", "land",
+  "drink", "drinks", "house", "shop", "store", "lab", "studio", "kitchen",
+  "winebar", "cocktailbar", "whiskybar", "beerpark", "精酿", "餐", "酒",
+]);
+
+const GENERIC_CHINESE_SEARCH_TERMS = new Set([
+  "酒吧", "酒馆", "餐吧", "咖啡厅", "咖啡", "小酒馆", "鸡尾酒吧", "鸡尾酒",
+  "精酿啤酒", "精酿", "啤酒吧", "啤酒屋", "啤酒", "威士忌", "威士忌吧",
+  "水烟", "水烟吧", "烟馆", "清吧", "餐酒吧", "啤酒馆", "livehouse",
+  "德扑", "德扑馆", "德扑酒馆", "扑馆", "homebar",
+]);
+
+const GENERIC_CHINESE_SUFFIX_RE = /(?:鸡尾酒吧|精酿啤酒吧|精酿啤酒|威士忌酒吧|啤酒屋|啤酒吧|威士忌吧|小酒馆|鸡尾酒|威士忌|水烟吧|水烟|啤酒|酒吧|酒馆|餐吧|咖啡厅|咖啡|清吧)$/u;
+
+function isGenericSearchToken(token) {
+  const text = String(token || "").trim();
+  if (!text || text.length < 2) return true;
+  const lower = text.toLowerCase();
+  if (GENERIC_ENGLISH_SEARCH_TOKENS.has(lower)) return true;
+  if (GENERIC_CHINESE_SEARCH_TERMS.has(text)) return true;
+  if (GENERIC_CHINESE_SUFFIX_RE.test(text)) {
+    const stripped = text.replace(GENERIC_CHINESE_SUFFIX_RE, "").trim();
+    if (stripped.length < 2) return true;
+  }
+  return false;
+}
+
+function isWeakMerchantSearchToken(token) {
+  const text = String(token || "").trim();
+  if (!text || isGenericSearchToken(text)) return true;
+  if (/[&,，/\\]/u.test(text)) return true;
+  const latinHead = text.match(/^([A-Za-z]+)/)?.[1] || "";
+  if (latinHead && isGenericSearchToken(latinHead) && /[\u4e00-\u9fa5]/.test(text)) return true;
+  if (/^(?:水烟|精酿|鸡尾酒|啤酒|威士忌|德扑)/u.test(text)) return true;
+  return false;
+}
+
+function normalizeBrandCompare(text) {
+  return normalizeMatchText(text).replace(/[·•・\-—–_.\s&｜|/\\]+/g, "");
+}
+
+/** 店名/POI 标题比对用：去分店、去·、繁转简、去酒吧酒馆等大词 */
+function tradToSimplified(text) {
+  const pairs = [
+    ["無", "无"], ["樂", "乐"], ["館", "馆"], ["臺", "台"], ["國", "国"],
+    ["廣", "广"], ["貓", "猫"], ["體", "体"], ["與", "与"], ["園", "园"],
+    ["號", "号"], ["庫", "库"], ["廢", "废"], ["視", "视"], ["聽", "听"],
+    ["開", "开"], ["門", "门"], ["陽", "阳"], ["書", "书"], ["東", "东"],
+    ["車", "车"], ["電", "电"], ["萬", "万"], ["華", "华"], ["鄉", "乡"],
+    ["藝", "艺"], ["龍", "龙"], ["馬", "马"], ["鳥", "鸟"], ["魚", "鱼"],
+    ["歡", "欢"], ["來", "来"], ["見", "见"], ["長", "长"], ["風", "风"],
+    ["時", "时"], ["間", "间"],
+  ];
+  let s = String(text || "");
+  for (const [trad, simp] of pairs) s = s.split(trad).join(simp);
+  return s;
+}
+
+/** 店名里常见的异体字/谐音字（腾讯 POI 与点评写法不一致） */
+function applyVenueCharVariants(text) {
+  return String(text || "")
+    .replace(/镚/g, "蹦")
+    .replace(/廢/g, "废")
+    .replace(/號/g, "号")
+    .replace(/庫/g, "库");
+}
+
+function normalizeMerchantPoiTitle(text) {
+  const stripped = stripGenericVenueSuffix(stripBranchSuffix(text));
+  return normalizeBrandCompare(tradToSimplified(applyVenueCharVariants(stripped)));
+}
+
+/** 中文品牌片段是否算对上（2 字要求贴合词头/词尾，避免「氧气」撞上「氧气厂」） */
+function hanBrandTokensMatch(a, b) {
+  if (a === b) return true;
+  const short = a.length <= b.length ? a : b;
+  const long = a.length <= b.length ? b : a;
+  if (short.length < 2) return false;
+  if (short.length >= 3 && long.includes(short)) return true;
+  if (short.length === 2 && /^[\u4e00-\u9fa5]+$/.test(short)
+    && (long.startsWith(short) || long.endsWith(short))) {
+    return true;
+  }
+  return false;
+}
+
+/** 按 · 等分段后的品牌名（如「旅者的驿站·露台酒吧·…」） */
+function extractMerchantNameSegments(text) {
+  const raw = stripBranchSuffix(text);
+  const pieces = raw.split(/[·•・|｜/]+/).map((s) => s.trim()).filter(Boolean);
+  if (pieces.length <= 1) return pieces;
+  const segments = [];
+  for (const piece of pieces) {
+    const cleaned = stripGenericVenueSuffix(piece).trim();
+    if (cleaned.length >= 2 && !isGenericSearchToken(cleaned)) segments.push(cleaned);
+  }
+  return segments.length ? segments : pieces;
+}
+
+/** 分段店名与 POI 标题是否对得上（POI 常把分店写进标题且无括号） */
+function merchantNameSegmentsMatch(merchantName, poiTitle) {
+  const mSegs = extractMerchantNameSegments(merchantName)
+    .map((s) => normalizeMerchantPoiTitle(s))
+    .filter(Boolean);
+  if (!mSegs.length) return false;
+
+  const pSegs = extractMerchantNameSegments(poiTitle)
+    .map((s) => normalizeMerchantPoiTitle(s))
+    .filter(Boolean);
+  const pWhole = normalizeMerchantPoiTitle(poiTitle);
+  const poiCandidates = [...new Set([...pSegs, pWhole].filter(Boolean))];
+
+  return mSegs.some((a) => poiCandidates.some((b) => {
+    if (a === b) return true;
+    if (a.length >= 3 && b.includes(a)) return true;
+    if (b.length >= 3 && a.includes(b)) return true;
+    return hanBrandTokensMatch(a, b);
+  }));
+}
+
+function latinBrandBonus(term) {
+  let bonus = 0;
+  if (/[A-Za-z]/.test(term) && /\d/.test(term)) bonus += 28;
+  else if (/^[A-Za-z0-9]{4,}$/.test(term)) bonus += 12;
+  return bonus;
+}
+
+function stripGenericVenueSuffix(text) {
+  return String(text || "")
+    .replace(GENERIC_CHINESE_SUFFIX_RE, "")
+    .replace(/\b(?:BAR|Bar|bar|COCKTAIL|Cocktail|cocktail|WHISKY|Whisky|whisky|PUB|Pub|pub|BEER|Beer|beer)\b/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/** 从店名提取有辨识度的搜索词，按优先级排序（排除鸡尾酒吧、精酿啤酒等大词） */
+function rankMerchantSearchAliases(name) {
+  const raw = String(name || "").trim();
+  const short = stripBranchSuffix(raw);
+  const scores = new Map();
+  const consider = (term, score) => {
+    const text = String(term || "").trim();
+    if (text.length < 2 || isWeakMerchantSearchToken(text)) return;
+    scores.set(text, Math.max(scores.get(text) || 0, score));
+  };
+
+  for (const match of short.matchAll(
+    /[A-Za-z][A-Za-z0-9]*[\u4e00-\u9fa5][\u4e00-\u9fa5A-Za-z0-9]*|[\u4e00-\u9fa5]+[A-Za-z][A-Za-z0-9]*|[A-Za-z][A-Za-z0-9]*[\u4e00-\u9fa5]+/gu,
+  )) {
+    consider(match[0], 96);
+  }
+
+  for (const match of short.matchAll(/[A-Za-z0-9][A-Za-z0-9]{2,}/g)) {
+    const word = match[0];
+    if (/^\d+$/.test(word)) continue;
+    consider(word, 72 + Math.min(word.length, 10) + latinBrandBonus(word));
+  }
+
+  for (const match of short.matchAll(/[\u4e00-\u9fa5]{2,}/gu)) {
+    const cleaned = stripGenericVenueSuffix(match[0]);
+    if (cleaned.length >= 2) consider(cleaned, 86);
+  }
+
+  const beforeBar = short.match(/^(.+?)(?:\s+)?(?:BAR|Bar|鸡尾酒吧|威士忌酒吧)/u);
+  if (beforeBar) {
+    const prefix = stripGenericVenueSuffix(beforeBar[1]).trim();
+    if (prefix.length >= 2) consider(prefix, 88);
+    for (const match of prefix.matchAll(/[a-zA-Z][a-zA-Z0-9]{2,}/g)) {
+      consider(match[0], 78 + Math.min(match[0].length, 8));
+    }
+    for (const match of prefix.matchAll(/[A-Za-z][A-Za-z0-9]*[\u4e00-\u9fa5]+/gu)) {
+      consider(match[0], 94);
+    }
+  }
+
+  for (const segment of short.split(/[·•&|｜/\s]+/)) {
+    const cleaned = stripGenericVenueSuffix(segment).trim();
+    if (cleaned.length >= 2) consider(cleaned, 64 + latinBrandBonus(cleaned));
+  }
+
+  const cleanedShort = stripGenericVenueSuffix(short);
+  if (cleanedShort.length >= 2 && cleanedShort !== short) consider(cleanedShort, 58);
+
+  const chineseBias = (term) => (/[\u4e00-\u9fa5]/.test(term) && !/[A-Za-z0-9]/.test(term) ? 1 : 0);
+  return [...scores.entries()]
+    .sort((a, b) => (
+      (b[1] + latinBrandBonus(b[0])) - (a[1] + latinBrandBonus(a[0]))
+      || chineseBias(b[0]) - chineseBias(a[0])
+      || b[0].length - a[0].length
+    ))
+    .map(([term]) => term);
+}
+
+function pickPrimaryMerchantSearchTerm(name) {
+  const ranked = rankMerchantSearchAliases(name);
+  if (ranked.length) return ranked[0];
+  const short = stripBranchSuffix(name);
+  return short || String(name || "").trim();
+}
+
+function extractMerchantSearchAliases(name) {
+  return rankMerchantSearchAliases(name);
 }
 
 /**
@@ -497,7 +757,10 @@ function pickBestPoiForEvent(event, items) {
 function pickBestPoiForMerchant(name, items, options = {}) {
   const full = String(name || "").trim();
   const short = stripBranchSuffix(full);
-  const extraQueries = short && short !== full ? [short] : [];
+  const extraQueries = [
+    ...(short && short !== full ? [short] : []),
+    ...extractMerchantSearchAliases(name),
+  ];
   const addressHints = extractAddressHints(options.referenceAddress || "");
   return pickBestPoiCandidate(full, items, { extraQueries, addressHints });
 }
@@ -520,23 +783,28 @@ function assessMerchantPoiConfidence(merchant) {
   const { score } = pickBestPoiForMerchant(merchant.name, [poi], { referenceAddress });
   const reasons = [];
 
-  if (!poiTitleMatchesMerchant(merchant.name, poi.title)) {
+  const nameMatch = poiTitleMatchesMerchant(merchant.name, poi.title);
+  const addressesMatch = addressesRoughlyAlign(dianpingAddress, poi.address);
+
+  if (!nameMatch) {
     reasons.push("POI 名称与店名不像同一家");
   }
   if (POI_NOISE_TITLE.test(poi.title)) {
     reasons.push("POI 疑似停车场、地铁等非门店地点");
   }
 
-  const hints = extractAddressHints(referenceAddress);
-  if (hints.length) {
-    const addrNorm = normalizeMatchText(poi.address);
-    const matched = hints.some((hint) => addrNorm.includes(normalizeMatchText(hint)));
-    if (!matched) {
-      reasons.push("POI 地址未包含清单门牌信息");
+  if (!nameMatch && !addressesMatch) {
+    const hints = extractAddressHints(referenceAddress);
+    if (hints.length) {
+      const addrNorm = normalizeMatchText(poi.address);
+      const matched = hints.some((hint) => addrNorm.includes(normalizeMatchText(hint)));
+      if (!matched) {
+        reasons.push("POI 地址未包含清单门牌信息");
+      }
     }
   }
 
-  if (score < 55) {
+  if (score < 55 && !nameMatch) {
     reasons.push(`自动匹配得分偏低（${Math.round(score)}）`);
   }
 
@@ -601,26 +869,51 @@ function coreVenueBrand(name) {
   return normalizeVenueBrand(String(name || "").split(/[-—–(（]/)[0]);
 }
 
+/** 店名与 POI 名称高度一致（去分店后缀后相同或互相包含） */
+function isStrongMerchantPoiNameMatch(merchantName, poiTitle) {
+  if (!poiTitleMatchesMerchant(merchantName, poiTitle)) return false;
+  const merchantCore = normalizeBrandCompare(stripBranchSuffix(merchantName));
+  const poiCore = normalizeBrandCompare(stripBranchSuffix(poiTitle));
+  if (!merchantCore || !poiCore) return false;
+  if (merchantCore === poiCore) return true;
+  if (merchantCore.includes(poiCore) || poiCore.includes(merchantCore)) return true;
+  const brandM = coreVenueBrand(merchantName);
+  const brandP = coreVenueBrand(poiTitle);
+  return Boolean(brandM && brandP && (brandM === brandP || brandM.includes(brandP) || brandP.includes(brandM)));
+}
+
 /** Top1 标题是否与店名同一商户（避免「黑犬酒吧(白沙古井店)」搜成地标「白沙古井」） */
 function poiTitleMatchesMerchant(merchantName, poiTitle) {
+  const merchantNorm = normalizeMerchantPoiTitle(merchantName);
+  const poiNorm = normalizeMerchantPoiTitle(poiTitle);
+  if (!merchantNorm || !poiNorm) return false;
+  if (merchantNorm === poiNorm) return true;
+  if (merchantNorm.length >= 4 && poiNorm.includes(merchantNorm)) return true;
+  if (poiNorm.length >= 4 && merchantNorm.includes(poiNorm)) return true;
+
+  const merchantHan = merchantNorm.match(/[\u4e00-\u9fa5]{2,}/gu) || [];
+  const poiHan = poiNorm.match(/[\u4e00-\u9fa5]{2,}/gu) || [];
+  if (merchantHan.some((a) => poiHan.some((b) => hanBrandTokensMatch(a, b)))) {
+    return true;
+  }
+
+  const merchantLatin = merchantNorm.match(/[a-z0-9]{3,}/g) || [];
+  const poiLatin = poiNorm.match(/[a-z0-9]{3,}/g) || [];
+  if (merchantLatin.some((a) => poiLatin.includes(a))) return true;
+
+  if (merchantNameSegmentsMatch(merchantName, poiTitle)) return true;
+
   const brand = normalizeVenueBrand(stripBranchSuffix(merchantName));
   const title = normalizeVenueBrand(poiTitle);
   const core = coreVenueBrand(merchantName);
-  if (!brand || !title) return false;
-  if (title.includes(brand) || brand.includes(title)) return true;
-  if (core && (title.includes(core) || core.includes(title))) return true;
-  const sliceSource = core || brand;
-  for (let len = Math.min(sliceSource.length, 8); len >= 3; len -= 1) {
-    const slice = sliceSource.slice(0, len);
-    if (/^[\u4e00-\u9fa5a-zA-Z0-9]+$/u.test(slice) && title.includes(slice)) {
-      return true;
-    }
-  }
+  if (brand && title && (title.includes(brand) || brand.includes(title))) return true;
+  if (core && title && (title.includes(core) || core.includes(title))) return true;
+
   return false;
 }
 
 /**
- * 按商户店名搜索 POI：先全名，Top1 不像同店则去掉括号分店名重搜，并在候选里优先选名称匹配的。
+ * 按商户店名搜索 POI：全名 → 去分店短名 → 品牌别名，名称对上即停。
  */
 /** 按活动地点文本搜索 POI，并按相似度重排候选（豆瓣 location 字段） */
 async function searchPoiForEvent(location, city, opts = {}) {
@@ -652,36 +945,49 @@ async function searchPoiForEvent(location, city, opts = {}) {
 
 async function searchPoiForMerchant(name, city, opts = {}) {
   const cityName = String(city || "全国").trim() || "全国";
-  const fullKeyword = buildPoiKeyword(name, cityName);
-  const primary = await searchPoi({ ...opts, keyword: fullKeyword, city: cityName });
-
-  if (primary.items.length && poiTitleMatchesMerchant(name, primary.items[0].title)) {
-    return { keyword: fullKeyword, ...primary };
-  }
-
   const shortName = stripBranchSuffix(name);
-  if (shortName && shortName !== String(name || "").trim()) {
-    const shortKeyword = buildPoiKeyword(shortName, cityName);
-    if (shortKeyword !== fullKeyword) {
-      const fallback = await searchPoi({ ...opts, keyword: shortKeyword, city: cityName });
-      if (fallback.items.length) {
-        return { keyword: shortKeyword, ...fallback };
-      }
+  const aliases = extractMerchantSearchAliases(name);
+  const hasNameMatch = (items) => items.some((item) => poiTitleMatchesMerchant(name, item.title));
+
+  const searchTerms = [];
+  const pushTerm = (term) => {
+    const text = String(term || "").trim();
+    if (!text || searchTerms.includes(text)) return;
+    searchTerms.push(text);
+  };
+
+  pushTerm(String(name || "").trim());
+  pushTerm(shortName);
+  for (const alias of aliases.slice(0, 5)) pushTerm(alias);
+
+  const keywordsToTry = searchTerms.map((term) => buildPoiKeyword(term, cityName));
+  let merged = [];
+  let usedKeyword = keywordsToTry[0] || buildPoiKeyword(name, cityName);
+
+  for (const keyword of keywordsToTry) {
+    const result = await searchPoi({ ...opts, keyword, city: cityName });
+    if (result.items?.length) {
+      merged = mergePoiById(merged, result.items);
+      usedKeyword = keyword;
     }
+    if (hasNameMatch(merged)) break;
   }
 
-  const matched = primary.items.find((item) => poiTitleMatchesMerchant(name, item.title));
+  const matched = merged.find((item) => poiTitleMatchesMerchant(name, item.title));
   if (matched) {
     return {
-      keyword: fullKeyword,
-      count: primary.count,
-      items: [matched, ...primary.items.filter((item) => item !== matched)],
+      keyword: usedKeyword,
+      count: merged.length,
+      items: [matched, ...merged.filter((item) => item !== matched)],
     };
   }
 
-  const extraQueries = shortName && shortName !== String(name || "").trim() ? [shortName] : [];
-  const items = reorderPoiByBestMatch(name, primary.items, { extraQueries });
-  return { keyword: fullKeyword, count: primary.count, items };
+  const extraQueries = [
+    ...aliases,
+    ...(shortName && shortName !== String(name || "").trim() ? [shortName] : []),
+  ];
+  const items = reorderPoiByBestMatch(name, merged, { extraQueries });
+  return { keyword: usedKeyword, count: items.length, items };
 }
 
 async function requestTencentPlaceSearch(params) {
@@ -699,13 +1005,21 @@ async function requestTencentPlaceSearch(params) {
     }
 
     const fallbackReason = shouldFallbackFromPersonal(raw.status, raw.message);
-    if (fallbackReason && key === PERSONAL_MAP_KEY && i + 1 < keys.length) {
-      personalKeySkipped = true;
+    if (fallbackReason && (isPersonalMapKey(key) || isCompanyMapKey(key)) && i + 1 < keys.length) {
+      if (fallbackReason === "quota") {
+        exhaustedMapKeys.add(key);
+      }
       const hint = fallbackReason === "quota"
         ? "日配额已满"
         : "不可用（可能需在腾讯控制台关闭 SK 签名校验或配置 WebService 白名单）";
-      console.warn(`[tencent-poi] 个人 key ${hint}，切换公司 key: ${raw.message}`);
+      console.warn(
+        `[tencent-poi] ${formatMapKeyLabel(key)} ${hint}，切换下一 key: ${raw.message}`,
+      );
       continue;
+    }
+
+    if (fallbackReason === "quota") {
+      exhaustedMapKeys.add(key);
     }
 
     const err = new Error(raw.message || `腾讯地图 status=${raw.status}`);
@@ -751,21 +1065,36 @@ async function searchPoi(opts) {
   return { count: raw.count ?? items.length, items };
 }
 
+function suggestMerchantPoiKeyword(name, city) {
+  const cityName = String(city || "").trim();
+  return buildPoiKeyword(String(name || "").trim(), cityName);
+}
+
 module.exports = {
+  addressesRoughlyAlign,
   assessEventPoiConfidence,
   assessMerchantPoiConfidence,
   buildEventPoiSearchKeywords,
   buildPoiKeyword,
   parseDoubanLocation,
   suggestEventPoiKeyword,
+  suggestMerchantPoiKeyword,
   COMPANY_MAP_KEY,
+  formatMapKeyLabel,
   extractAddressHints,
+  extractMerchantSearchAliases,
+  isGenericSearchToken,
   isStreetLevelAddress,
-  PERSONAL_MAP_KEY,
+  pickPrimaryMerchantSearchTerm,
+  isStrongMerchantPoiNameMatch,
+  MAP_KEY_OWNER,
+  PERSONAL_MAP_KEY_ENTRIES,
+  PERSONAL_MAP_KEYS,
   pickBestPoiCandidate,
   pickBestPoiForEvent,
   pickBestPoiForMerchant,
   poiTitleMatchesMerchant,
+  rankMerchantSearchAliases,
   reorderPoiByBestMatch,
   resolveMapKey,
   resolveMapKeyChain,
