@@ -391,6 +391,7 @@ function toMerchantRecord(item, meta) {
     source_position: item.sourcePosition,
     name: item.name,
     address: item.address || "",
+    source_address: item.address || "",
     district: item.district || "",
     category: item.category || "",
     image: item.image || "",

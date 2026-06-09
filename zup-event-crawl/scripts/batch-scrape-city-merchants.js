@@ -7,7 +7,7 @@
  * 用法：
  *   node scripts/batch-scrape-city-merchants.js \
  *     --city=成都 \
- *     --list-file=docs/各城市酒鬼地图/拆分结果/成都105.md
+ *     --list-file=data/各城市酒鬼地图/拆分结果/成都105.md
  */
 const fs = require("fs");
 const path = require("path");
@@ -93,7 +93,7 @@ function printHelp() {
 
   node scripts/batch-scrape-city-merchants.js \\
     --city=成都 \\
-    --list-file=docs/各城市酒鬼地图/拆分结果/成都105.md
+    --list-file=data/各城市酒鬼地图/拆分结果/成都105.md
 
 前提：Chrome 已登录大众点评。默认跳过清单里已标注「已抓取」的商户。
 `);
@@ -412,6 +412,7 @@ async function main() {
           importBatchId,
         });
         record.address = normalizeListAddress(entry.listAddress) || record.address;
+        record.source_address = record.address;
         merchantRows.push(record);
         report.ok.push({
           listName: entry.listName,

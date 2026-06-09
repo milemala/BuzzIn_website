@@ -91,6 +91,7 @@
     .import-block h3{margin:0 0 8px;font-size:13px;font-weight:800;color:#314036}
     .import-row{display:grid;gap:8px;font-size:13px}
     .import-meta{color:var(--muted);font-size:12px;line-height:1.45;word-break:break-all}
+    .addr-label{font-size:11px;font-weight:700;color:var(--muted);margin-right:4px}
     .import-field{display:grid;gap:4px}
     .import-field label{font-size:11px;font-weight:700;color:var(--muted)}
     .import-field select,.import-field input{height:32px;border:1px solid var(--line);border-radius:6px;padding:0 8px;background:#fff}
@@ -593,7 +594,7 @@
       return merchantsInCity().filter((item) => {
         if (!matchesStatusFilter(item, state.filters.status)) return false;
         if (!q) return true;
-        const haystack = `${item.name} ${item.address} ${item.poi_title} ${item.district} ${item.category} ${item.search_keyword} ${item.address_poi_id}`.toLowerCase();
+        const haystack = `${item.name} ${item.source_address} ${item.address} ${item.poi_title} ${item.poi_address} ${item.district} ${item.category} ${item.search_keyword} ${item.address_poi_id}`.toLowerCase();
         return haystack.includes(q);
       });
     }
@@ -676,6 +677,13 @@
       `).join("");
     }
 
+    function dianpingAddressLine(item) {
+      const raw = item.source_address || item.address || "";
+      if (raw) return raw;
+      const district = item.district || item.list_region_text || "";
+      return district ? `商圈：${district}` : "（点评未抓到地址）";
+    }
+
     function renderPoiDoubt(item) {
       if (!item.address_poi_id || !item.poi_doubtful) return "";
       const reasons = Array.isArray(item.poi_doubt_reasons) ? item.poi_doubt_reasons : [];
@@ -746,7 +754,7 @@
         const ready = isImportReady(item);
         const importable = canImportMerchant(item);
         const imported = item.import_status === "imported" && item.buzz_merchant_id;
-        const addressLine = item.address || item.poi_address || `商圈：${item.district || item.list_region_text || "未知"}`;
+        const addressLine = dianpingAddressLine(item);
         const detailUrl = merchantDetailUrl(item);
         const chips = [
           item.city ? `<span class="chip">${escapeHtml(item.city)}</span>` : "",
@@ -764,7 +772,7 @@
               <h2 class="title">${escapeHtml(item.name)}</h2>
               <div class="chips">${chips}</div>
               <div class="info">
-                <div>${escapeHtml(addressLine)}</div>
+                <div><span class="addr-label">点评地址</span>${escapeHtml(addressLine)}</div>
                 <div>${escapeHtml(item.avg_price || "")} ${item.review_count ? `${item.review_count} 条评价` : ""}</div>
                 ${detailUrl ? `
                 <div class="source-url">
@@ -781,7 +789,7 @@
                   </div>
                   <div class="import-meta">
                     ${item.address_poi_id
-    ? `POI：<strong>${escapeHtml(item.poi_title || item.name)}</strong><br>地址：${escapeHtml(item.poi_address || item.address)}<br>ID：${escapeHtml(item.address_poi_id)}<br>坐标：${item.longitude}, ${item.latitude}`
+    ? `POI：<strong>${escapeHtml(item.poi_title || item.name)}</strong><br>地址：${escapeHtml(item.poi_address || "—")}<br>ID：${escapeHtml(item.address_poi_id)}<br>坐标：${item.longitude}, ${item.latitude}`
     : "尚未匹配 POI，可点「智能匹配」或从候选里改选"}
                     ${renderPoiDoubt(item)}
                   </div>

@@ -20,7 +20,7 @@ function resolveListReferenceAddress(merchant, listAddressByUid = {}) {
     || merchant.list_address
     || "";
   if (isStreetLevelAddress(fromList)) return fromList;
-  const fromMerchant = merchant.address || "";
+  const fromMerchant = merchant.source_address || merchant.address || "";
   if (isStreetLevelAddress(fromMerchant)) return fromMerchant;
   return "";
 }

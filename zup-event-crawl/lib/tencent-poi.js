@@ -515,7 +515,8 @@ function assessMerchantPoiConfidence(merchant) {
     title: merchant.poi_title || "",
     address: merchant.poi_address || "",
   };
-  const referenceAddress = isStreetLevelAddress(merchant.address) ? merchant.address : "";
+  const dianpingAddress = merchant.source_address || merchant.address || "";
+  const referenceAddress = isStreetLevelAddress(dianpingAddress) ? dianpingAddress : "";
   const { score } = pickBestPoiForMerchant(merchant.name, [poi], { referenceAddress });
   const reasons = [];
 

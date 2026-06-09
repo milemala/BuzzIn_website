@@ -67,7 +67,7 @@ function buildImportRecord(merchant) {
     description: merchant.category ? `${merchant.category}${merchant.district ? ` · ${merchant.district}` : ""}` : "",
     longitude: Number(merchant.longitude),
     latitude: Number(merchant.latitude),
-    address: String(merchant.address || merchant.poi_address || "").slice(0, 128),
+    address: String(merchant.poi_address || "").slice(0, 128),
     address_poi_id: merchant.address_poi_id,
     status: 1,
     score: 0,

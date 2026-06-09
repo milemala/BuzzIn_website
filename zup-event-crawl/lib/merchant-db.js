@@ -1,5 +1,8 @@
 "use strict";
 
+const fs = require("fs");
+const path = require("path");
+const { parseCityMerchantList } = require("./city-merchant-list");
 const { openDatabase } = require("./review-db");
 const {
   buildImportRecord,
@@ -19,6 +22,7 @@ const IMPORT_PREP_COLUMNS = [
   ["address_poi_id", "TEXT NOT NULL DEFAULT ''"],
   ["poi_title", "TEXT NOT NULL DEFAULT ''"],
   ["poi_address", "TEXT NOT NULL DEFAULT ''"],
+  ["source_address", "TEXT NOT NULL DEFAULT ''"],
   ["poi_candidates", "TEXT NOT NULL DEFAULT '[]'"],
   ["poi_updated_at", "TEXT"],
   ["buzz_group_id", "TEXT NOT NULL DEFAULT ''"],
@@ -33,6 +37,57 @@ function migrateMerchantImportColumns(db) {
   for (const [name, ddl] of IMPORT_PREP_COLUMNS) {
     if (!existing.has(name)) {
       db.exec(`ALTER TABLE merchants ADD COLUMN ${name} ${ddl}`);
+    }
+  }
+  backfillMerchantSourceAddresses(db);
+}
+
+function backfillMerchantSourceAddresses(db) {
+  db.exec(`
+    UPDATE merchants
+    SET source_address = address
+    WHERE source_address = ''
+      AND address != ''
+      AND (poi_address = '' OR address != poi_address)
+  `);
+
+  const pendingCount = db.prepare(`
+    SELECT COUNT(*) AS count
+    FROM merchants
+    WHERE source_address = ''
+      AND search_keyword != ''
+  `).get().count;
+  if (!pendingCount) return;
+
+  const listDir = path.join(__dirname, "..", "data", "各城市酒鬼地图", "拆分结果");
+  if (!fs.existsSync(listDir)) return;
+
+  const addressByListName = new Map();
+  for (const file of fs.readdirSync(listDir)) {
+    if (!file.endsWith(".md")) continue;
+    const { entries } = parseCityMerchantList(path.join(listDir, file));
+    for (const entry of entries) {
+      if (entry.listAddress) addressByListName.set(entry.listName, entry.listAddress);
+    }
+  }
+  if (!addressByListName.size) return;
+
+  const update = db.prepare(`
+    UPDATE merchants
+    SET source_address = @source_address
+    WHERE merchant_uid = @merchant_uid
+      AND source_address = ''
+  `);
+  const pending = db.prepare(`
+    SELECT merchant_uid, search_keyword
+    FROM merchants
+    WHERE source_address = ''
+      AND search_keyword != ''
+  `).all();
+  for (const row of pending) {
+    const sourceAddress = addressByListName.get(row.search_keyword);
+    if (sourceAddress) {
+      update.run({ merchant_uid: row.merchant_uid, source_address: sourceAddress });
     }
   }
 }
@@ -107,6 +162,7 @@ function rowToMerchant(row) {
     source_position: row.source_position,
     name: row.name,
     address: row.address || "",
+    source_address: row.source_address || "",
     district: row.district || "",
     category: row.category || "",
     image: row.image || "",
@@ -253,12 +309,17 @@ function applyPoiSelection(db, merchantUid, poi, options = {}) {
     ?? merchant.merchant_type
     ?? suggestMerchantType(merchant.category, merchant.name);
 
+  const sourceAddress = merchant.source_address
+    || (merchant.address && merchant.address !== String(poi.address || "").trim()
+      ? merchant.address
+      : "");
+
   db.prepare(`
     UPDATE merchants SET
       address_poi_id = @address_poi_id,
       poi_title = @poi_title,
       poi_address = @poi_address,
-      address = @address,
+      source_address = CASE WHEN @source_address != '' THEN @source_address ELSE source_address END,
       latitude = @latitude,
       longitude = @longitude,
       merchant_type = @merchant_type,
@@ -271,7 +332,7 @@ function applyPoiSelection(db, merchantUid, poi, options = {}) {
     address_poi_id: poi.poi_id || "",
     poi_title: poi.title || "",
     poi_address: poi.address || "",
-    address: String(poi.address || "").slice(0, 128),
+    source_address: String(sourceAddress || "").slice(0, 256),
     latitude: poi.latitude ?? null,
     longitude: poi.longitude ?? null,
     merchant_type: merchantType,
@@ -563,12 +624,12 @@ function importMerchants(db, merchants, options = {}) {
   const upsert = db.prepare(`
     INSERT INTO merchants (
       merchant_uid, source_id, source, city, search_keyword, source_position,
-      name, address, district, category, image, original_link, list_region_text,
+      name, address, source_address, district, category, image, original_link, list_region_text,
       phone, latitude, longitude, review_count, avg_price, business_status,
       needs_detail, import_batch_id, updated_at
     ) VALUES (
       @merchant_uid, @source_id, @source, @city, @search_keyword, @source_position,
-      @name, @address, @district, @category, @image, @original_link, @list_region_text,
+      @name, @address, @source_address, @district, @category, @image, @original_link, @list_region_text,
       @phone, @latitude, @longitude, @review_count, @avg_price, @business_status,
       @needs_detail, @import_batch_id, @updated_at
     )
@@ -578,6 +639,7 @@ function importMerchants(db, merchants, options = {}) {
       source_position = excluded.source_position,
       name = excluded.name,
       address = CASE WHEN excluded.address != '' THEN excluded.address ELSE merchants.address END,
+      source_address = CASE WHEN excluded.source_address != '' THEN excluded.source_address ELSE merchants.source_address END,
       district = excluded.district,
       category = excluded.category,
       image = CASE WHEN excluded.image != '' THEN excluded.image ELSE merchants.image END,
