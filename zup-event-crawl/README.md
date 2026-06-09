@@ -171,7 +171,7 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 
 ### 商户审核台入库
 
-- **入库 / 批量入库**；`name_new` 与 `medias` 已按 Zup 后台要求处理。
+- **入库 / 批量入库**：`name` = 腾讯 POI 名，`name_new` = 审核台卡片商户名；`medias` 按 Zup 后台要求处理。
 
 ### 商户气泡（`merchant-bubbles.html`）
 

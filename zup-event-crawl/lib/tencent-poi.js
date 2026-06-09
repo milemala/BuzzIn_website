@@ -203,6 +203,12 @@ function mergePoiById(existing, incoming) {
 /** 明显不是目标场所的 POI（停车场、地铁口等），除非查询词里就含有 */
 const POI_NOISE_TITLE = /停车场|停车区|地下车库|地铁站|公交站|公交总站|卫生间|洗手间|厕所|公厕|座椅|寄存处|售票处|出入口|地下停车场/;
 
+/** 小区门牌/道路等，酒吧搜索时常见误匹配 */
+const POI_BAD_VENUE_TITLE = /(?:新村|公寓|小区|花园|大厦|宾馆|旅馆|便利店|东南门|西南门|西北门|东北门|交叉口|方向\d+米左右)$|^(?:彩虹|都市|红星)(?:路|新村|苑)/;
+
+/** 店名在找酒吧，POI 却是其他业态 */
+const POI_WRONG_BUSINESS_TITLE = /剧本杀|家居|科技|有限公司|便利店|银行|支行|理发|台球|棋牌|幼儿园|旅馆|宾馆|购物中心|写字楼/;
+
 function normalizeMatchText(text) {
   return String(text || "").replace(/\s+/g, "").toLowerCase();
 }
@@ -295,14 +301,73 @@ function isGenericSearchToken(token) {
   return false;
 }
 
-function isWeakMerchantSearchToken(token) {
+function isWeakMerchantSearchToken(token, merchantName = "") {
   const text = String(token || "").trim();
   if (!text || isGenericSearchToken(text)) return true;
   if (/[&,，/\\]/u.test(text)) return true;
   const latinHead = text.match(/^([A-Za-z]+)/)?.[1] || "";
   if (latinHead && isGenericSearchToken(latinHead) && /[\u4e00-\u9fa5]/.test(text)) return true;
   if (/^(?:水烟|精酿|鸡尾酒|啤酒|威士忌|德扑)/u.test(text)) return true;
+  const fullNorm = normalizeBrandCompare(stripBranchSuffix(merchantName));
+  const tokenNorm = normalizeBrandCompare(text);
+  if (/^\d{2,}$/.test(text) && fullNorm.length > tokenNorm.length && fullNorm.startsWith(tokenNorm)) {
+    return true;
+  }
+  if (/^[\u4e00-\u9fa5]{2,4}$/.test(text) && fullNorm.length > tokenNorm.length + 2
+    && fullNorm.includes(tokenNorm) && extractDistinctiveLatinBrands(merchantName).length) {
+    return true;
+  }
   return false;
+}
+
+/** 店名里可区分的英文品牌（Nightingale、Rainbow 等，排除 homebar 等大词） */
+function extractDistinctiveLatinBrands(name) {
+  const brands = new Set();
+  for (const match of String(stripBranchSuffix(name)).matchAll(/[A-Za-z][A-Za-z0-9]{4,}/g)) {
+    const word = match[0].toLowerCase();
+    if (!isGenericSearchToken(word)) brands.add(word);
+  }
+  return [...brands];
+}
+
+/** 店名以「数字+Homebar」为品牌核心（如 707·Homebar），非长店名里顺带出现的 Home bar */
+function merchantHasDigitHomebarBrand(name) {
+  const sig = normalizeBrandCompare(stripBranchSuffix(name));
+  return /^\d{2,}homebar/.test(sig);
+}
+
+/** 过滤「仅数字/仅中文泛词」造成的假匹配 */
+function poiTitlePassesBrandGuards(merchantName, poiTitle) {
+  const latinBrands = extractDistinctiveLatinBrands(merchantName);
+  if (latinBrands.length) {
+    const poiNorm = normalizeMatchText(poiTitle);
+    if (!latinBrands.some((brand) => poiNorm.includes(brand))) return false;
+  }
+
+  if (merchantHasDigitHomebarBrand(merchantName)) {
+    const poiSig = normalizeBrandCompare(stripBranchSuffix(poiTitle));
+    if (!poiSig.includes("homebar")) return false;
+  }
+
+  const mSig = normalizeBrandCompare(stripBranchSuffix(merchantName));
+  const pSig = normalizeBrandCompare(stripBranchSuffix(poiTitle));
+  const mNum = mSig.match(/^(\d{2,})/)?.[1];
+  const pNum = pSig.match(/^(\d{2,})/)?.[1];
+  if (mNum && mNum === pNum && mSig.includes("homebar") && !pSig.includes("homebar")) {
+    return false;
+  }
+
+  const barLike = /bar|酒吧|酒|咖啡|homebar|日咖夜酒/i.test(merchantName)
+    || latinBrands.length > 0;
+  if (barLike && (POI_BAD_VENUE_TITLE.test(poiTitle) || POI_WRONG_BUSINESS_TITLE.test(poiTitle))) {
+    return false;
+  }
+
+  if (merchantHasDigitHomebarBrand(merchantName) && isMallLikePoiTitle(poiTitle)) {
+    return false;
+  }
+
+  return true;
 }
 
 function normalizeBrandCompare(text) {
@@ -410,9 +475,13 @@ function rankMerchantSearchAliases(name) {
   const scores = new Map();
   const consider = (term, score) => {
     const text = String(term || "").trim();
-    if (text.length < 2 || isWeakMerchantSearchToken(text)) return;
+    if (text.length < 2 || isWeakMerchantSearchToken(text, raw)) return;
     scores.set(text, Math.max(scores.get(text) || 0, score));
   };
+
+  for (const match of short.matchAll(/\d+·?[A-Za-z]{3,}/g)) {
+    consider(match[0], 100);
+  }
 
   for (const match of short.matchAll(
     /[A-Za-z][A-Za-z0-9]*[\u4e00-\u9fa5][\u4e00-\u9fa5A-Za-z0-9]*|[\u4e00-\u9fa5]+[A-Za-z][A-Za-z0-9]*|[A-Za-z][A-Za-z0-9]*[\u4e00-\u9fa5]+/gu,
@@ -452,7 +521,17 @@ function rankMerchantSearchAliases(name) {
   if (cleanedShort.length >= 2 && cleanedShort !== short) consider(cleanedShort, 58);
 
   const chineseBias = (term) => (/[\u4e00-\u9fa5]/.test(term) && !/[A-Za-z0-9]/.test(term) ? 1 : 0);
+  const fullNorm = normalizeBrandCompare(short);
   return [...scores.entries()]
+    .filter(([term]) => {
+      const termNorm = normalizeBrandCompare(term);
+      if (termNorm.length >= fullNorm.length) return true;
+      if (/^\d{2,}$/.test(term) && fullNorm.startsWith(termNorm)) return false;
+      if (termNorm.length <= 4 && fullNorm.includes(termNorm) && /[\u4e00-\u9fa5]/.test(term)) {
+        return false;
+      }
+      return true;
+    })
     .sort((a, b) => (
       (b[1] + latinBrandBonus(b[0])) - (a[1] + latinBrandBonus(a[0]))
       || chineseBias(b[0]) - chineseBias(a[0])
@@ -525,6 +604,18 @@ function scorePoiCandidate(query, poi, options = {}) {
   }
 
   if (POI_NOISE_TITLE.test(title) && !POI_NOISE_TITLE.test(queryText)) score -= 55;
+  if (POI_BAD_VENUE_TITLE.test(title) && /bar|酒吧|酒|咖啡|homebar|nightingale|rainbow/i.test(queryText)) {
+    score -= 65;
+  }
+  for (const brand of extractDistinctiveLatinBrands(query)) {
+    if (normalizeMatchText(title).includes(brand)) score += 42;
+  }
+  if (query.length >= 3 && !poiTitleMatchesMerchant(query, title)) {
+    score -= 85;
+  }
+  if (POI_WRONG_BUSINESS_TITLE.test(title) && /bar|酒吧|酒|咖啡|homebar|nightingale|rainbow|日咖夜酒/i.test(queryText)) {
+    score -= 80;
+  }
   if (/剧|酒吧|咖啡|餐|店|馆|厅|中心|书院|艺术|脱口秀|剧场/i.test(queryText)
     && /剧|酒吧|咖啡|餐|店|馆|厅|中心|艺术|脱口秀|剧场/i.test(`${category} ${title}`)) {
     score += 10;
@@ -754,25 +845,123 @@ function pickBestPoiForEvent(event, items) {
   return pickBestPoiCandidate(primary, items, { extraQueries });
 }
 
+const POI_MATCH_MODE_NORMAL = "normal";
+const POI_MATCH_MODE_STRICT = "strict";
+
+function normalizePoiMatchMode(mode) {
+  return mode === POI_MATCH_MODE_STRICT ? POI_MATCH_MODE_STRICT : POI_MATCH_MODE_NORMAL;
+}
+
+function isStrictPoiMatchMode(mode) {
+  return normalizePoiMatchMode(mode) === POI_MATCH_MODE_STRICT;
+}
+
+function poiTitleMatchesForMode(merchantName, poiTitle, mode) {
+  return isStrictPoiMatchMode(mode)
+    ? poiTitleMatchesMerchantForPick(merchantName, poiTitle)
+    : poiTitleMatchesMerchant(merchantName, poiTitle);
+}
+
 function pickBestPoiForMerchant(name, items, options = {}) {
   const full = String(name || "").trim();
   const short = stripBranchSuffix(full);
+  const mode = normalizePoiMatchMode(options.poiMatchMode);
   const extraQueries = [
     ...(short && short !== full ? [short] : []),
     ...extractMerchantSearchAliases(name),
   ];
   const addressHints = extractAddressHints(options.referenceAddress || "");
-  return pickBestPoiCandidate(full, items, { extraQueries, addressHints });
+  const pickOpts = { extraQueries, addressHints };
+
+  if (!isStrictPoiMatchMode(mode)) {
+    return pickBestPoiCandidate(full, items, pickOpts);
+  }
+
+  const scoredRows = items
+    .map((item, i) => ({
+      item,
+      score: scorePoiCandidate(full, { ...item, _rank: i }, pickOpts),
+    }))
+    .filter((row) => poiTitleMatchesMerchantForPick(full, row.item.title))
+    .sort((a, b) => b.score - a.score);
+  if (scoredRows.length) {
+    return { poi: scoredRows[0].item, score: scoredRows[0].score };
+  }
+  const fallback = pickBestPoiCandidate(full, items, pickOpts);
+  return { poi: null, score: fallback.score };
+}
+
+/** 严格存疑：分店后缀与清单不一致（同品牌不同店） */
+function strictMerchantBranchMismatch(merchantName, sourceAddress, poiTitle, poiAddress) {
+  const mBranch = String(merchantName).match(/[（(]([^）)]+)[）)]/)?.[1]?.trim();
+  const pBranch = String(poiTitle).match(/[（(]([^）)]+)[）)]/)?.[1]?.trim();
+  if (!mBranch || !pBranch) return false;
+  const mNorm = normalizeMatchText(mBranch);
+  const pNorm = normalizeMatchText(pBranch);
+  if (mNorm === pNorm || mNorm.includes(pNorm) || pNorm.includes(mNorm)) return false;
+
+  const ref = tradToSimplified(sourceAddress || "");
+  if (isStreetLevelAddress(ref)) {
+    const hints = extractAddressHints(ref);
+    const poiText = normalizeMatchText(`${poiTitle} ${poiAddress}`);
+    if (hints.some((hint) => poiText.includes(normalizeMatchText(hint)))) {
+      return false;
+    }
+  }
+
+  const mCore = normalizeMatchText(stripBranchSuffix(merchantName));
+  const pCore = normalizeMatchText(stripBranchSuffix(poiTitle));
+  if (mCore.length < 4 || pCore.length < 4) return false;
+  const prefixLen = Math.min(6, mCore.length, pCore.length);
+  return mCore.includes(pCore.slice(0, prefixLen)) || pCore.includes(mCore.slice(0, prefixLen));
+}
+
+/**
+ * 严格存疑专用：与自动选点（ForPick）分离，只抓高置信误绑。
+ * 不再因「仅部分相似」或 ForPick 品牌守卫失败而批量误报。
+ */
+function collectStrictMerchantPoiDoubtReasons(merchantName, poiTitle, poiAddress, sourceAddress) {
+  const reasons = [];
+  if (!poiTitleMatchesMerchant(merchantName, poiTitle)) return reasons;
+
+  const latinBrands = extractDistinctiveLatinBrands(merchantName);
+  if (latinBrands.length && !isStrongMerchantPoiNameMatch(merchantName, poiTitle)) {
+    const poiNorm = normalizeMatchText(poiTitle);
+    if (!latinBrands.some((brand) => poiNorm.includes(brand))) {
+      reasons.push("严格：店名含英文品牌，POI 未出现该品牌");
+    }
+  }
+
+  if (merchantHasDigitHomebarBrand(merchantName)) {
+    const poiSig = normalizeBrandCompare(stripBranchSuffix(poiTitle));
+    if (!poiSig.includes("homebar")) {
+      reasons.push("严格：店名含 Homebar，POI 未出现 Homebar");
+    }
+  }
+
+  const barLike = /bar|酒吧|酒|咖啡|homebar|日咖夜酒/i.test(merchantName)
+    || latinBrands.length > 0;
+  if (barLike && (POI_BAD_VENUE_TITLE.test(poiTitle) || POI_WRONG_BUSINESS_TITLE.test(poiTitle))) {
+    reasons.push("严格：POI 疑似非门店（小区门、剧本杀等）");
+  }
+
+  if (strictMerchantBranchMismatch(merchantName, sourceAddress, poiTitle, poiAddress)) {
+    reasons.push("严格：POI 分店名与店名分店不一致");
+  }
+
+  return reasons;
 }
 
 /**
  * 审核台：判断已选 POI 是否存疑（名称不像、地址对不上、低分等）。
+ * 严格模式只叠加额外高置信规则，不复用自动选点的 ForPick 过滤。
  */
-function assessMerchantPoiConfidence(merchant) {
+function assessMerchantPoiConfidence(merchant, options = {}) {
   if (!merchant?.address_poi_id) {
     return { doubtful: false, score: 0, reasons: [] };
   }
 
+  const mode = normalizePoiMatchMode(options.poiMatchMode);
   const poi = {
     poi_id: merchant.address_poi_id,
     title: merchant.poi_title || "",
@@ -780,7 +969,10 @@ function assessMerchantPoiConfidence(merchant) {
   };
   const dianpingAddress = merchant.source_address || merchant.address || "";
   const referenceAddress = isStreetLevelAddress(dianpingAddress) ? dianpingAddress : "";
-  const { score } = pickBestPoiForMerchant(merchant.name, [poi], { referenceAddress });
+  const { score } = pickBestPoiForMerchant(merchant.name, [poi], {
+    referenceAddress,
+    poiMatchMode: POI_MATCH_MODE_NORMAL,
+  });
   const reasons = [];
 
   const nameMatch = poiTitleMatchesMerchant(merchant.name, poi.title);
@@ -806,6 +998,15 @@ function assessMerchantPoiConfidence(merchant) {
 
   if (score < 55 && !nameMatch) {
     reasons.push(`自动匹配得分偏低（${Math.round(score)}）`);
+  }
+
+  if (isStrictPoiMatchMode(mode)) {
+    reasons.push(...collectStrictMerchantPoiDoubtReasons(
+      merchant.name,
+      poi.title,
+      poi.address,
+      dianpingAddress,
+    ));
   }
 
   return {
@@ -883,7 +1084,7 @@ function isStrongMerchantPoiNameMatch(merchantName, poiTitle) {
 }
 
 /** Top1 标题是否与店名同一商户（避免「黑犬酒吧(白沙古井店)」搜成地标「白沙古井」） */
-function poiTitleMatchesMerchant(merchantName, poiTitle) {
+function poiTitleMatchesMerchantCore(merchantName, poiTitle) {
   const merchantNorm = normalizeMerchantPoiTitle(merchantName);
   const poiNorm = normalizeMerchantPoiTitle(poiTitle);
   if (!merchantNorm || !poiNorm) return false;
@@ -897,8 +1098,10 @@ function poiTitleMatchesMerchant(merchantName, poiTitle) {
     return true;
   }
 
-  const merchantLatin = merchantNorm.match(/[a-z0-9]{3,}/g) || [];
-  const poiLatin = poiNorm.match(/[a-z0-9]{3,}/g) || [];
+  const merchantLatin = (merchantNorm.match(/[a-z0-9]{3,}/g) || [])
+    .filter((token) => !/^\d{2,}$/.test(token));
+  const poiLatin = (poiNorm.match(/[a-z0-9]{3,}/g) || [])
+    .filter((token) => !/^\d{2,}$/.test(token));
   if (merchantLatin.some((a) => poiLatin.includes(a))) return true;
 
   if (merchantNameSegmentsMatch(merchantName, poiTitle)) return true;
@@ -910,6 +1113,16 @@ function poiTitleMatchesMerchant(merchantName, poiTitle) {
   if (core && title && (title.includes(core) || core.includes(title))) return true;
 
   return false;
+}
+
+function poiTitleMatchesMerchant(merchantName, poiTitle) {
+  return poiTitleMatchesMerchantCore(merchantName, poiTitle);
+}
+
+/** 自动选 POI 时用：在核心匹配基础上再加英文品牌/业态过滤 */
+function poiTitleMatchesMerchantForPick(merchantName, poiTitle) {
+  if (!poiTitleMatchesMerchantCore(merchantName, poiTitle)) return false;
+  return poiTitlePassesBrandGuards(merchantName, poiTitle);
 }
 
 /**
@@ -945,9 +1158,10 @@ async function searchPoiForEvent(location, city, opts = {}) {
 
 async function searchPoiForMerchant(name, city, opts = {}) {
   const cityName = String(city || "全国").trim() || "全国";
+  const mode = normalizePoiMatchMode(opts.poiMatchMode);
   const shortName = stripBranchSuffix(name);
   const aliases = extractMerchantSearchAliases(name);
-  const hasNameMatch = (items) => items.some((item) => poiTitleMatchesMerchant(name, item.title));
+  const hasNameMatch = (items) => items.some((item) => poiTitleMatchesForMode(name, item.title, mode));
 
   const searchTerms = [];
   const pushTerm = (term) => {
@@ -958,6 +1172,7 @@ async function searchPoiForMerchant(name, city, opts = {}) {
 
   pushTerm(String(name || "").trim());
   pushTerm(shortName);
+  for (const brand of extractDistinctiveLatinBrands(name)) pushTerm(brand);
   for (const alias of aliases.slice(0, 5)) pushTerm(alias);
 
   const keywordsToTry = searchTerms.map((term) => buildPoiKeyword(term, cityName));
@@ -973,7 +1188,7 @@ async function searchPoiForMerchant(name, city, opts = {}) {
     if (hasNameMatch(merged)) break;
   }
 
-  const matched = merged.find((item) => poiTitleMatchesMerchant(name, item.title));
+  const matched = merged.find((item) => poiTitleMatchesForMode(name, item.title, mode));
   if (matched) {
     return {
       keyword: usedKeyword,
@@ -1074,6 +1289,11 @@ module.exports = {
   addressesRoughlyAlign,
   assessEventPoiConfidence,
   assessMerchantPoiConfidence,
+  POI_MATCH_MODE_NORMAL,
+  POI_MATCH_MODE_STRICT,
+  isStrictPoiMatchMode,
+  normalizePoiMatchMode,
+  poiTitleMatchesForMode,
   buildEventPoiSearchKeywords,
   buildPoiKeyword,
   parseDoubanLocation,

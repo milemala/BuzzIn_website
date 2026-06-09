@@ -42,8 +42,10 @@ const {
   getApprovedMerchants,
   getExportImportMerchants,
   getMerchantByUid,
+  getMerchantPoiMatchMode,
   getMerchantReviewState,
   getMerchantsPayload,
+  setMerchantPoiMatchMode,
   replaceMerchantReviewState,
   updateMerchantImportPrep,
   updatePoiCandidatesOnly,
@@ -561,14 +563,31 @@ async function handleApi(req, res, pathname) {
     try {
       const body = JSON.parse((await readBody(req)) || "{}");
       const onlyApproved = body.only_approved === true;
+      const poiMatchMode = body.poi_match_mode || getMerchantPoiMatchMode(db);
       const report = await batchAutoPoi(db, {
         city: body.city || "",
         only_pending: !onlyApproved && body.only_pending !== false,
         only_approved: onlyApproved,
         refresh: body.refresh === true,
+        refresh_all_pending: body.refresh_all_pending === true,
+        poi_match_mode: poiMatchMode,
         limit: body.limit || 80,
       });
-      sendJson(res, 200, report);
+      sendJson(res, 200, { ...report, poi_match_mode: poiMatchMode });
+    } catch (error) {
+      sendJson(res, 400, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/merchants/poi-match-mode") {
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const mode = setMerchantPoiMatchMode(db, body.mode);
+      sendJson(res, 200, {
+        ok: true,
+        poi_match_mode: mode,
+      });
     } catch (error) {
       sendJson(res, 400, { ok: false, error: error.message });
     }
@@ -588,6 +607,7 @@ async function handleApi(req, res, pathname) {
 
       let poi = null;
       let candidates = merchant.poi_candidates || [];
+      const poiMatchMode = getMerchantPoiMatchMode(db);
 
       if (body.poi_id) {
         poi = {
@@ -603,7 +623,7 @@ async function handleApi(req, res, pathname) {
       } else if (Number.isInteger(body.candidate_index) || Number.isFinite(body.candidate_index)) {
         const idx = Number(body.candidate_index);
         if (!candidates.length) {
-          const search = await searchPoiForMerchant(merchant.name, merchant.city || "全国");
+          const search = await searchPoiForMerchant(merchant.name, merchant.city || "全国", { poiMatchMode });
           candidates = search.items;
         }
         poi = candidates[idx];
@@ -617,7 +637,7 @@ async function handleApi(req, res, pathname) {
             keyword: String(body.keyword).trim(),
             city: body.city || merchant.city || "全国",
           })
-          : await searchPoiForMerchant(merchant.name, body.city || merchant.city || "全国");
+          : await searchPoiForMerchant(merchant.name, body.city || merchant.city || "全国", { poiMatchMode });
         candidates = body.keyword
           ? reorderPoiByBestMatch(String(body.keyword).trim(), search.items, [merchant.name])
           : search.items;
@@ -633,7 +653,7 @@ async function handleApi(req, res, pathname) {
           });
           return;
         }
-        poi = pickBestPoiForMerchant(merchant.name, candidates).poi;
+        poi = pickBestPoiForMerchant(merchant.name, candidates, { poiMatchMode }).poi;
         if (!poi) {
           sendJson(res, 404, { ok: false, error: "无 POI 结果", candidates: [] });
           return;

@@ -9,7 +9,15 @@ const {
   isImportReady,
   suggestMerchantType,
 } = require("./merchant-import-ready");
-const { assessMerchantPoiConfidence, suggestMerchantPoiKeyword } = require("./tencent-poi");
+const {
+  assessMerchantPoiConfidence,
+  normalizePoiMatchMode,
+  POI_MATCH_MODE_NORMAL,
+  POI_MATCH_MODE_STRICT,
+  suggestMerchantPoiKeyword,
+} = require("./tencent-poi");
+
+const MERCHANT_POI_MATCH_MODE_KEY = "merchant_poi_match_mode";
 
 const VALID_REVIEW_STATUSES = new Set(["approved", "pending", "rejected"]);
 
@@ -280,9 +288,27 @@ function listMerchantsEligibleForImport(db, options = {}) {
   return rows.map((row) => rowToMerchant(row)).filter((merchant) => isImportReady(merchant));
 }
 
-function enrichMerchantPoiFlags(merchant) {
+function getMerchantPoiMatchMode(db) {
+  ensureMerchantSchema(db);
+  const row = db.prepare("SELECT value FROM app_meta WHERE key = ?").get(MERCHANT_POI_MATCH_MODE_KEY);
+  return normalizePoiMatchMode(row?.value || POI_MATCH_MODE_NORMAL);
+}
+
+function setMerchantPoiMatchMode(db, mode) {
+  ensureMerchantSchema(db);
+  const normalized = normalizePoiMatchMode(mode);
+  db.prepare(`
+    INSERT INTO app_meta (key, value)
+    VALUES (?, ?)
+    ON CONFLICT(key) DO UPDATE SET value = excluded.value
+  `).run(MERCHANT_POI_MATCH_MODE_KEY, normalized);
+  return normalized;
+}
+
+function enrichMerchantPoiFlags(merchant, options = {}) {
   if (!merchant) return merchant;
-  const poiCheck = assessMerchantPoiConfidence(merchant);
+  const poiMatchMode = normalizePoiMatchMode(options.poiMatchMode || POI_MATCH_MODE_NORMAL);
+  const poiCheck = assessMerchantPoiConfidence(merchant, { poiMatchMode });
   return {
     ...merchant,
     poi_doubtful: poiCheck.doubtful,
@@ -342,7 +368,9 @@ function applyPoiSelection(db, merchantUid, poi, options = {}) {
     updated_at: now,
   });
 
-  return enrichMerchantPoiFlags(getMerchantByUid(db, merchantUid));
+  return enrichMerchantPoiFlags(getMerchantByUid(db, merchantUid), {
+    poiMatchMode: getMerchantPoiMatchMode(db),
+  });
 }
 
 function updatePoiCandidatesOnly(db, merchantUid, candidates, options = {}) {
@@ -434,6 +462,28 @@ function listMerchantsNeedingPoi(db, options = {}) {
   }));
 }
 
+function listPendingMerchantsForPoiRefresh(db, options = {}) {
+  ensureMerchantSchema(db);
+  const limit = Math.min(Math.max(Number(options.limit) || 2000, 1), 5000);
+  let sql = `
+    SELECT m.*, COALESCE(d.status, 'pending') AS review_status
+    FROM merchants m
+    LEFT JOIN merchant_review_decisions d ON d.merchant_uid = m.merchant_uid
+    WHERE COALESCE(d.status, 'pending') = 'pending'
+  `;
+  const params = [];
+  if (options.city) {
+    sql += " AND m.city = ?";
+    params.push(options.city);
+  }
+  sql += " ORDER BY m.city, m.search_keyword, m.source_position LIMIT ?";
+  params.push(limit);
+  return db.prepare(sql).all(...params).map((row) => ({
+    ...rowToMerchant(row),
+    review_status: row.review_status,
+  }));
+}
+
 function getExportImportMerchants(db, options = {}) {
   ensureMerchantSchema(db);
   const approvedOnly = options.approvedOnly !== false;
@@ -501,10 +551,11 @@ function getMerchantsPayload(db) {
     ORDER BY m.city, m.search_keyword, m.source_position
   `).all();
 
+  const poiMatchMode = getMerchantPoiMatchMode(db);
   const merchants = rows.map((row) => enrichMerchantPoiFlags({
     ...rowToMerchant(row),
     review_status: row.review_status,
-  }));
+  }, { poiMatchMode }));
 
   const metaRow = db.prepare(`
     SELECT value FROM app_meta WHERE key = 'merchant_review_note'
@@ -513,6 +564,7 @@ function getMerchantsPayload(db) {
   return {
     updatedAt: merchants.length ? merchants[merchants.length - 1].updated_at : null,
     note: metaRow ? metaRow.value : "商户数据来自大众点评，发布前请核对店名、地址与图片。",
+    poi_match_mode: poiMatchMode,
     merchants,
   };
 }
@@ -689,11 +741,14 @@ module.exports = {
   getExportImportMerchants,
   getMerchantByUid,
   getMerchantReviewState,
+  getMerchantPoiMatchMode,
   getMerchantsPayload,
   importMerchants,
   listImportedMerchants,
   listMerchantsEligibleForImport,
   listMerchantsNeedingPoi,
+  listPendingMerchantsForPoiRefresh,
+  setMerchantPoiMatchMode,
   markMerchantBubbleResult,
   markMerchantImportResult,
   updateMerchantGroupId,

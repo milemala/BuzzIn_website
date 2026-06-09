@@ -157,6 +157,10 @@
         <div class="save-state warn" id="saveState">正在连接本地数据库</div>
       </div>
       <div class="top-actions">
+        <div class="seg" id="poiModeToggle" title="只影响「POI 存疑」标记和批量自动选点规则，不会重搜已绑定的 POI">
+          <button type="button" data-mode="normal"><span class="seg-btn-label">标准存疑</span></button>
+          <button type="button" data-mode="strict"><span class="seg-btn-label">严格存疑</span></button>
+        </div>
         <button class="btn" id="batchPoiBtn" type="button">批量补全 POI</button>
         <button class="btn primary" id="batchImportBtn" type="button">批量入库</button>
         <button class="btn" id="exportImportBtn" type="button">导出入库 JSON</button>
@@ -195,6 +199,8 @@
       filters: { city: "all", status: "all", search: "" },
       page: 1,
       poiBusy: false,
+      poiMatchMode: "normal",
+      poiModeBusy: false,
       importBusy: false,
       poiKeywords: {},
       poiPreviews: {},
@@ -209,6 +215,7 @@
       cityFilter: document.getElementById("cityFilter"),
       statusFilter: document.getElementById("statusFilter"),
       searchInput: document.getElementById("searchInput"),
+      poiModeToggle: document.getElementById("poiModeToggle"),
       batchPoiBtn: document.getElementById("batchPoiBtn"),
       batchImportBtn: document.getElementById("batchImportBtn"),
       exportImportBtn: document.getElementById("exportImportBtn"),
@@ -232,6 +239,7 @@
 
     function isImportReady(item) {
       if (!item.name || !String(item.name).trim()) return false;
+      if (!item.poi_title || !String(item.poi_title).trim()) return false;
       if (!effectiveMerchantType(item)) return false;
       if (!item.address_poi_id) return false;
       if (!item.longitude || !item.latitude) return false;
@@ -375,8 +383,47 @@
       const response = await fetch("/api/merchants", { cache: "no-store" });
       const payload = await response.json();
       state.merchants = payload.merchants || [];
+      state.poiMatchMode = payload.poi_match_mode || "normal";
+      renderPoiModeToggle();
       render();
       setSaveState("已连接本地数据库", "ok");
+    }
+
+    function renderPoiModeToggle() {
+      if (!els.poiModeToggle) return;
+      for (const button of els.poiModeToggle.querySelectorAll("button[data-mode]")) {
+        button.classList.toggle("active", button.dataset.mode === state.poiMatchMode);
+        button.disabled = state.poiModeBusy || state.poiBusy;
+      }
+    }
+
+    async function switchPoiMatchMode(mode) {
+      if (state.poiModeBusy || state.poiBusy || mode === state.poiMatchMode) return;
+      const label = mode === "strict" ? "严格存疑" : "标准存疑";
+
+      state.poiModeBusy = true;
+      renderPoiModeToggle();
+      setSaveState(`切换为${label}...`, "warn");
+      try {
+        const response = await fetch("/api/merchants/poi-match-mode", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ mode }),
+        });
+        const payload = await response.json();
+        if (!response.ok || !payload.ok) {
+          throw new Error(payload.error || "切换失败");
+        }
+        state.poiMatchMode = payload.poi_match_mode || mode;
+        await loadMerchants();
+        const doubtful = state.merchants.filter((m) => m.poi_doubtful && m.address_poi_id).length;
+        setSaveState(`已切换为${label}（当前 ${doubtful} 家标为 POI 存疑）`, "ok");
+      } catch (error) {
+        setSaveState(`切换失败: ${error.message}`, "error");
+      } finally {
+        state.poiModeBusy = false;
+        renderPoiModeToggle();
+      }
     }
 
     function upsertMerchant(updated) {
@@ -484,7 +531,12 @@
         const response = await fetch("/api/merchants/poi-auto-batch", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ city, only_pending: true, limit: 100 }),
+          body: JSON.stringify({
+            city,
+            only_pending: true,
+            limit: 100,
+            poi_match_mode: state.poiMatchMode,
+          }),
         });
         const payload = await response.json();
         await loadMerchants();
@@ -976,6 +1028,13 @@
       saveImportPrep(card.dataset.uid, { merchant_type: Number(select.value) });
     });
 
+    if (els.poiModeToggle) {
+      els.poiModeToggle.addEventListener("click", (event) => {
+        const button = event.target.closest("button[data-mode]");
+        if (!button) return;
+        switchPoiMatchMode(button.dataset.mode);
+      });
+    }
     els.batchPoiBtn.addEventListener("click", runBatchPoi);
     els.batchImportBtn.addEventListener("click", runBatchImport);
 

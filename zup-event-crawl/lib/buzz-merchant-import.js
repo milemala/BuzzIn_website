@@ -36,10 +36,9 @@ async function findMerchant(client, name, poiId) {
 }
 
 function buildBuzzMerchantPayload(record, media = {}) {
-  const displayName = String(record.name_new || record.name || "").trim();
   const payload = {
     name: record.name,
-    name_new: displayName,
+    name_new: record.name_new,
     type: record.type,
     description: record.description || "",
     longitude: record.longitude,

@@ -27,11 +27,24 @@ function trimName(name, maxLen = 64) {
   return chars.slice(0, maxLen).join("");
 }
 
+/** Buzz `name_new` 展示名，上限 255 */
+function trimDisplayName(name, maxLen = 255) {
+  return trimName(name, maxLen);
+}
+
 function importReadyIssues(merchant) {
   const issues = [];
-  const name = trimName(merchant.name);
-  if (!name) issues.push("缺少店名");
-  else if ([...name].length > 64) issues.push("店名超过 64 字");
+  const poiName = trimName(merchant.poi_title);
+  if (!poiName) issues.push("缺少 POI 名称");
+  else if ([...String(merchant.poi_title || "").trim()].length > 64) {
+    issues.push("POI 名称超过 64 字");
+  }
+
+  const displayName = trimDisplayName(merchant.name);
+  if (!displayName) issues.push("缺少商户展示名（审核台卡片店名）");
+  else if ([...String(merchant.name || "").trim()].length > 255) {
+    issues.push("商户展示名超过 255 字");
+  }
 
   const type = Number(merchant.merchant_type || 0);
   if (!type || type <= 0) issues.push("未选商户类型");
@@ -50,19 +63,21 @@ function isImportReady(merchant) {
 }
 
 function buildImportRecord(merchant) {
-  const name = trimName(merchant.name);
+  // name = 腾讯 POI 标题（地图/查重主键）；name_new = 审核台卡片商户名（C 端展示）
+  const name = trimName(merchant.poi_title);
+  const nameNew = trimDisplayName(merchant.name);
   const extra = JSON.stringify({
     source: merchant.source || "dianping",
     shop_id: merchant.source_id || "",
     merchant_uid: merchant.merchant_uid || "",
     search_keyword: merchant.search_keyword || "",
     city: merchant.city || "",
+    card_name: nameNew,
   });
 
   return {
     name,
-    // 后台列表/C 端常优先展示 name_new；留空会导致「有 name 但界面无店名」
-    name_new: name,
+    name_new: nameNew,
     type: Number(merchant.merchant_type),
     description: merchant.category ? `${merchant.category}${merchant.district ? ` · ${merchant.district}` : ""}` : "",
     longitude: Number(merchant.longitude),
@@ -86,5 +101,6 @@ module.exports = {
   importReadyIssues,
   isImportReady,
   suggestMerchantType,
+  trimDisplayName,
   trimName,
 };

@@ -9,6 +9,8 @@ const {
   applyPoiSelection,
   getMerchantByUid,
   listMerchantsNeedingPoi,
+  listPendingMerchantsForPoiRefresh,
+  updatePoiCandidatesOnly,
 } = require("./merchant-db");
 
 function sleep(ms) {
@@ -35,12 +37,15 @@ function resolveListReferenceAddress(merchant, listAddressByUid = {}) {
  *   only_pending?: boolean,
  *   only_approved?: boolean,
  *   refresh?: boolean,
+ *   refresh_all_pending?: boolean,
+ *   poi_match_mode?: string,
  *   limit?: number,
  *   delayMs?: number,
  * }} options
  */
 async function batchAutoPoi(db, options = {}) {
   const delayMs = options.delayMs ?? 320;
+  const poiMatchMode = options.poi_match_mode;
   let targets;
 
   if (Array.isArray(options.merchants) && options.merchants.length) {
@@ -49,6 +54,11 @@ async function batchAutoPoi(db, options = {}) {
     targets = options.merchant_uids
       .map((uid) => getMerchantByUid(db, uid))
       .filter(Boolean);
+  } else if (options.refresh && options.refresh_all_pending) {
+    targets = listPendingMerchantsForPoiRefresh(db, {
+      city: options.city || "",
+      limit: options.limit || 2000,
+    });
   } else {
     targets = listMerchantsNeedingPoi(db, {
       city: options.city || "",
@@ -73,6 +83,7 @@ async function batchAutoPoi(db, options = {}) {
       const { items } = await searchPoiForMerchant(
         merchant.name,
         merchant.city || "全国",
+        { poiMatchMode: poiMatchMode },
       );
       if (!items.length) {
         report.fail += 1;
@@ -84,7 +95,31 @@ async function batchAutoPoi(db, options = {}) {
           error: "无 POI 结果",
         });
       } else {
-        const { poi: best } = pickBestPoiForMerchant(merchant.name, items, { referenceAddress });
+        const { poi: best } = pickBestPoiForMerchant(merchant.name, items, {
+          referenceAddress,
+          poiMatchMode,
+        });
+        if (!best) {
+          updatePoiCandidatesOnly(db, merchant.merchant_uid, items);
+          if (options.refresh && merchant.address_poi_id) {
+            applyPoiSelection(db, merchant.merchant_uid, {
+              poi_id: "",
+              title: "",
+              address: "",
+              latitude: null,
+              longitude: null,
+            }, { candidates: items });
+          }
+          report.fail += 1;
+          report.results.push({
+            merchant_uid: merchant.merchant_uid,
+            name: merchant.name,
+            city: merchant.city,
+            ok: false,
+            error: "无可靠 POI 候选",
+          });
+          continue;
+        }
         applyPoiSelection(db, merchant.merchant_uid, best, { candidates: items });
         report.ok += 1;
         report.results.push({
