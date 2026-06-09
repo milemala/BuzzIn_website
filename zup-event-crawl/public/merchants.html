@@ -52,6 +52,10 @@
     .city-chip-counts{display:flex;flex-wrap:wrap;gap:6px;font-size:11px;line-height:1.2;color:var(--muted)}
     .city-chip.active .city-chip-counts{color:rgba(255,255,255,.78)}
     .city-chip-count{font-weight:600}
+    .city-chip-imported{font-weight:800;color:#2f6d4d}
+    .city-chip.active .city-chip-imported{color:#9dffc8}
+    .city-chip-imported.is-zero{opacity:.55;font-weight:600}
+    .city-chip.active .city-chip-imported.is-zero{opacity:.45}
     .city-chip-pending{font-weight:800;color:#9a7200}
     .city-chip.active .city-chip-pending{color:#ffd84d}
     .city-chip-pending.is-zero{opacity:.55;font-weight:600}
@@ -401,7 +405,8 @@
     }
 
     function proxyImage(src) {
-      return src ? `/api/image?src=${encodeURIComponent(src)}&referer=${encodeURIComponent("https://www.dianping.com/")}` : "";
+      if (!src) return "";
+      return `/api/image?src=${encodeURIComponent(src)}&referer=${encodeURIComponent("https://www.dianping.com/")}&v=full`;
     }
 
     function reviewStatus(uid) {
@@ -657,16 +662,17 @@
       const list = cityKey === "all"
         ? state.merchants
         : state.merchants.filter((item) => getCityKey(item) === cityKey);
-      const total = list.length;
       const pending = list.filter((item) => reviewStatus(item.merchant_uid) === "pending").length;
+      const imported = list.filter((item) => isImportedMerchant(item)).length;
       const pendingImport = list.filter((item) => isPendingImport(item)).length;
-      return { total, pending, pendingImport };
+      return { pending, imported, pendingImport };
     }
 
     function renderCityChip(cityKey, label) {
-      const { total, pending, pendingImport } = cityStats(cityKey);
+      const { pending, imported, pendingImport } = cityStats(cityKey);
       const active = state.filters.city === cityKey;
       const pendingClass = pending > 0 ? "" : " is-zero";
+      const importedClass = imported > 0 ? "" : " is-zero";
       const pendingImportClass = pendingImport > 0 ? "" : " is-zero";
       return `
         <button
@@ -676,8 +682,8 @@
         >
           <span class="city-chip-name">${escapeHtml(label)}</span>
           <span class="city-chip-counts">
-            <span class="city-chip-count">共 ${total}</span>
             <span class="city-chip-pending${pendingClass}">待定 ${pending}</span>
+            <span class="city-chip-imported${importedClass}">已入库 ${imported}</span>
             <span class="city-chip-pending-import${pendingImportClass}">待入库 ${pendingImport}</span>
           </span>
         </button>

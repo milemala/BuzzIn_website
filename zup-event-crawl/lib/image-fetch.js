@@ -4,6 +4,11 @@ const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
 const { getComposedImagePath, parseComposedEventUid } = require("./composed-image");
+const { normalizeMerchantImageUrl } = require("./merchant-image-url");
+
+function resolveRemoteImageUrl(src) {
+  return normalizeMerchantImageUrl(String(src || "").trim());
+}
 
 function defaultReferer(src) {
   if (/meituan\.net|dianping\.com/i.test(src)) return "https://www.dianping.com/";
@@ -73,7 +78,7 @@ async function fetchRemoteImage(src, options = {}) {
 }
 
 async function readImageSource(src, options = {}) {
-  const url = String(src || "").trim();
+  const url = resolveRemoteImageUrl(src);
   const composed = readComposedImage(url, options);
   if (composed) return composed;
 
@@ -111,7 +116,7 @@ function readImageFile(filePath) {
 
 /** 抓取/入库前：本地无缓存则从图床拉一次并写入 image-cache */
 async function ensureImageCached(originalUrl, cacheDir, options = {}) {
-  const url = String(originalUrl || "").trim();
+  const url = resolveRemoteImageUrl(originalUrl);
   const composed = readComposedImage(url, options);
   if (composed) {
     const existing = findCachedImage(cacheDir, url);
@@ -139,7 +144,7 @@ async function ensureImageCached(originalUrl, cacheDir, options = {}) {
 
 /** 入库：优先读 image-cache；无缓存时自动补拉一次（不再依赖审核页先打开） */
 async function readImageForImport(originalUrl, cacheDir, options = {}) {
-  const url = String(originalUrl || "").trim();
+  const url = resolveRemoteImageUrl(originalUrl);
   if (!url) throw new Error("媒体地址为空");
   const composed = readComposedImage(url, options);
   if (composed) return composed;

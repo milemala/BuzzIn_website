@@ -16,6 +16,7 @@ const {
   POI_MATCH_MODE_STRICT,
   suggestMerchantPoiKeyword,
 } = require("./tencent-poi");
+const { normalizeMerchantImageUrl } = require("./merchant-image-url");
 
 const MERCHANT_POI_MATCH_MODE_KEY = "merchant_poi_match_mode";
 
@@ -173,7 +174,7 @@ function rowToMerchant(row) {
     source_address: row.source_address || "",
     district: row.district || "",
     category: row.category || "",
-    image: row.image || "",
+    image: normalizeMerchantImageUrl(row.image || ""),
     original_link: row.original_link || "",
     originalLink: row.original_link || "",
     list_region_text: row.list_region_text || "",

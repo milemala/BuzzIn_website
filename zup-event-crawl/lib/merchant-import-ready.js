@@ -1,5 +1,7 @@
 "use strict";
 
+const { normalizeMerchantImageUrl } = require("./merchant-image-url");
+
 /** 与测试环境 merchant-types/list 对齐的常用类型 */
 const MERCHANT_TYPES = [
   { id: 1, name: "啤酒吧" },
@@ -87,8 +89,8 @@ function buildImportRecord(merchant) {
     status: 1,
     score: 0,
     is_verified: 1,
-    logo_image: merchant.image || "",
-    images: merchant.image ? [merchant.image] : [],
+    logo_image: normalizeMerchantImageUrl(merchant.image || ""),
+    images: merchant.image ? [normalizeMerchantImageUrl(merchant.image)] : [],
     operator_user_id: "",
     admin_ids: [],
     extra,

@@ -1,6 +1,7 @@
 "use strict";
 
 const { matchesSocialVenueIntent } = require("./merchant-social-filter");
+const { normalizeMerchantImageUrl } = require("./merchant-image-url");
 
 const CLOSED_MARKERS = [
   "歇业关闭",
@@ -119,7 +120,7 @@ function normalizeImageUrl(raw) {
   }
   url = decodeHtml(url);
   if (url.startsWith("//")) url = `https:${url}`;
-  return url;
+  return normalizeMerchantImageUrl(url);
 }
 
 function parseListItemImage(listItemHtml) {

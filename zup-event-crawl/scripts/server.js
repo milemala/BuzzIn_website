@@ -141,12 +141,15 @@ function getCachedImagePath(src, contentType) {
 }
 
 async function handleImageProxy(req, res, parsed) {
-  const src = parsed.query && parsed.query.src;
+  const rawSrc = parsed.query && parsed.query.src;
   const refererParam = parsed.query && parsed.query.referer;
-  if (!src) {
+  if (!rawSrc) {
     sendJson(res, 400, { ok: false, error: "Missing image src" });
     return;
   }
+
+  const { normalizeMerchantImageUrl } = require("../lib/merchant-image-url");
+  const src = normalizeMerchantImageUrl(rawSrc) || rawSrc;
 
   const { getComposedImagePath, parseComposedEventUid } = require("../lib/composed-image");
   const composedUid = parseComposedEventUid(src);

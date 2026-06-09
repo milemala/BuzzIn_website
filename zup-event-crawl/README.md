@@ -17,7 +17,8 @@ zup-event-crawl/
 │   ├── rebuild-event-bodies.js   # 未过期活动：从 HTML 重算 body / raw_detail_text
 │   ├── enrich-event-participation.js  # 未过期活动：刷新文末参加方式
 │   ├── compose-event-images.js   # 未过期活动：合成 4:3 横版封面
-│   ├── preview-event-image-compose.js  # 单条封面预览
+│   ├── preview-event-image-compose.js  # 单条活动封面预览
+│   ├── preview-merchant-image-compose.js  # 单条商户 16:9 封面预览
 │   ├── save-chrome-douban-html.js
 │   └── migrate-json-to-db.js
 ├── lib/
@@ -117,6 +118,13 @@ node scripts/enrich-event-participation.js
 ```bash
 # 预览单条
 node scripts/preview-event-image-compose.js --title=主动社交的力量 --city=成都
+
+# 商户 16:9 封面预览（模糊底图 + 原图居中不缩放）
+node scripts/preview-merchant-image-compose.js --name=GoodFriend好朋友精酿
+
+# 把库里美团 @340w 缩略图 URL 批量换成原图（抓取已自动换大图）
+node scripts/upgrade-merchant-image-urls.js
+node scripts/upgrade-merchant-image-urls.js --dry-run
 
 # 批量（仅未过期活动）
 node scripts/compose-event-images.js
