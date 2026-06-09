@@ -73,6 +73,9 @@
     .cover{display:block;width:auto;max-width:220px;height:auto;object-fit:contain;object-position:top left;background:#e6eee8}
     .body{padding:13px 14px}
     .title{margin:0;font-size:17px;font-weight:800}
+    .merchant-name-field{margin-bottom:4px}
+    .merchant-name-field input{width:100%;margin:0;font-size:17px;font-weight:800;border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:#fff}
+    .merchant-name-field input:focus{border-color:#7aa88e;outline:none;box-shadow:0 0 0 2px rgba(42,157,104,.12)}
     .chips{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
     .chip{font-size:12px;padding:4px 8px;border-radius:999px;background:#edf3ef;color:#4d6256}
     .chip.warn{background:#fff3c4;color:#806200}
@@ -828,7 +831,10 @@
               <img class="cover" src="${proxyImage(item.image)}" alt="${escapeHtml(item.name)}" loading="lazy">
             </div>
             <div class="body">
-              <h2 class="title">${escapeHtml(item.name)}</h2>
+              <div class="import-field merchant-name-field">
+                <label>商户名（入库 name_new，可改）</label>
+                <input type="text" data-field="merchant_name" value="${escapeHtml(item.name)}" maxlength="255" spellcheck="false">
+              </div>
               <div class="chips">${chips}</div>
               <div class="info">
                 <div><span class="addr-label">点评地址</span>${escapeHtml(addressLine)}</div>
@@ -1022,10 +1028,34 @@
 
     els.grid.addEventListener("change", (event) => {
       const select = event.target.closest('select[data-field="merchant_type"]');
-      if (!select) return;
-      const card = select.closest("[data-uid]");
+      if (select) {
+        const card = select.closest("[data-uid]");
+        if (!card) return;
+        saveImportPrep(card.dataset.uid, { merchant_type: Number(select.value) });
+        return;
+      }
+
+      const nameInput = event.target.closest('input[data-field="merchant_name"]');
+      if (!nameInput) return;
+      const card = nameInput.closest("[data-uid]");
       if (!card) return;
-      saveImportPrep(card.dataset.uid, { merchant_type: Number(select.value) });
+      const merchant = state.merchants.find((m) => m.merchant_uid === card.dataset.uid);
+      const nextName = nameInput.value.trim();
+      if (!nextName) {
+        nameInput.value = merchant?.name || "";
+        setSaveState("商户名不能为空", "error");
+        return;
+      }
+      if (merchant && nextName === merchant.name) return;
+      saveImportPrep(card.dataset.uid, { name: nextName });
+    });
+
+    els.grid.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter") return;
+      const nameInput = event.target.closest('input[data-field="merchant_name"]');
+      if (!nameInput) return;
+      event.preventDefault();
+      nameInput.blur();
     });
 
     if (els.poiModeToggle) {
