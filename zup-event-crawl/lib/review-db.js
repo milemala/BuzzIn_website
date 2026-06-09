@@ -617,12 +617,12 @@ function importPayload(db, payload, options = {}) {
     INSERT INTO events (
       event_uid, source_id, source, source_name, source_position, source_url, source_list_page,
       city, district, title, category, start_date, end_date, time_text, location,
-      latitude, longitude, image, fee, owner, counts, raw_detail_text, raw_detail_html, body, original_link,
+      latitude, longitude, image, image_original, fee, owner, counts, raw_detail_text, raw_detail_html, body, original_link,
       score, suggested, review_reason, updated_at
     ) VALUES (
       ?, ?, ?, ?, ?, ?, ?,
       ?, ?, ?, ?, ?, ?, ?, ?,
-      ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+      ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
       ?, ?, ?, ?
     )
     ON CONFLICT(event_uid) DO UPDATE SET
@@ -643,6 +643,10 @@ function importPayload(db, payload, options = {}) {
       latitude = excluded.latitude,
       longitude = excluded.longitude,
       image = excluded.image,
+      image_original = CASE
+        WHEN excluded.image_original != '' THEN excluded.image_original
+        ELSE events.image_original
+      END,
       fee = excluded.fee,
       owner = excluded.owner,
       counts = excluded.counts,
@@ -673,7 +677,7 @@ function importPayload(db, payload, options = {}) {
     if (mode === "replace-all") {
       deleteAllEvents.run();
       deleteAllCityImports.run();
-    } else {
+    } else if (mode === "replace-city" || mode === "merge-city") {
       for (const city of groups.keys()) {
         deleteCity.run(city);
       }
@@ -704,6 +708,7 @@ function importPayload(db, payload, options = {}) {
           Number.isFinite(Number(event.latitude)) ? Number(event.latitude) : null,
           Number.isFinite(Number(event.longitude)) ? Number(event.longitude) : null,
           event.image || null,
+          event.image_original || event.imageOriginal || "",
           event.fee || null,
           event.owner || null,
           event.counts || null,

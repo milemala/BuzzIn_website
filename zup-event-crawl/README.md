@@ -86,13 +86,21 @@ npm run scrape-merchants -- --city=上海 --keyword=跳海
 
 ## 抓取豆瓣活动
 
-```bash
-# 成都 30 条，合并入库（不覆盖其他城市）
-node scripts/scrape-douban-week-events.js 30 data/review.db --city=chengdu --mode=merge-city
+前提：本机 **Google Chrome 已登录豆瓣**（与大众点评相同，需开启「允许 AppleScript 中的 JavaScript」）。
 
-# 北京 / 上海 / 广州
-node scripts/scrape-douban-week-events.js 30 data/review.db --city=beijing --mode=merge-city
+```bash
+# 成都 30 条，增量入库（不删已有、不重复抓）
+node scripts/scrape-douban-week-events.js 30 data/review.db --city=chengdu --mode=append-city
+
+# 北京 / 上海 / 广州，最多 10 页列表
+node scripts/scrape-douban-week-events.js 500 data/review.db --city=beijing --mode=append-city --max-pages=10
 ```
+
+默认通过 **Chrome**（`lib/douban-chrome-fetch.js`）抓取，避免命令行 `fetch` 被豆瓣 403/429。若需旧主路可加 `--via-fetch`。
+
+离线备路：先 `node scripts/fetch-douban-via-chrome.js --city=北京 --max-pages=10`，再 `--list-dir` / `--detail-dir` 跑同一抓取脚本。
+
+抓取入库时会自动合成 **4:3 横版封面**（模糊底图 + 原图 + 右侧文案），`image_original` 保留豆瓣原图。跳过时加 `--skip-compose`；补跑历史数据：`node scripts/compose-event-images.js --city=北京`。
 
 城市列表 URL 说明（成都为 `www.douban.com/location/...`，见 `docs/HANDOFF.md`）。
 

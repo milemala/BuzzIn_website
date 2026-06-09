@@ -2,98 +2,34 @@
 "use strict";
 
 const path = require("path");
-const { saveComposedImage, isComposedImageUrl, buildComposedImageUrl } = require("../lib/composed-image");
-const { composeEventPosterFromUrl } = require("../lib/event-image-compose");
-const { isExpired } = require("../lib/event-import-ready");
+const { batchComposeEventImages } = require("../lib/compose-event-images-batch");
 const { openDatabase } = require("../lib/review-db");
 
 const root = path.join(__dirname, "..");
 const argv = process.argv.slice(2);
 const dryRun = argv.includes("--dry-run");
 const force = argv.includes("--force");
+const cityArg = argv.find((arg) => arg.startsWith("--city="));
+const city = cityArg ? cityArg.slice("--city=".length) : "";
 const dbPath = argv.find((arg) => !arg.startsWith("--")) || path.join(root, "data", "review.db");
-
-const update = `
-  UPDATE events
-  SET image_original = @image_original,
-      image = @image,
-      updated_at = @updated_at
-  WHERE event_uid = @event_uid
-`;
 
 async function main() {
   const db = openDatabase(dbPath);
-  const rows = db.prepare(`
-    SELECT event_uid, title, city, image, image_original, start_date, end_date
-    FROM events
-    ORDER BY city, title
-  `).all();
-  const stmt = db.prepare(update);
-  const now = new Date().toISOString();
-
-  let skippedExpired = 0;
-  let skippedDone = 0;
-  let skippedNoImage = 0;
-  let failed = 0;
-  let updated = 0;
-
-  for (const row of rows) {
-    if (isExpired(row)) {
-      skippedExpired += 1;
-      continue;
-    }
-
-    const currentImage = String(row.image || "").trim();
-    if (!currentImage) {
-      skippedNoImage += 1;
-      continue;
-    }
-
-    if (!force && isComposedImageUrl(currentImage)) {
-      skippedDone += 1;
-      continue;
-    }
-
-    const sourceUrl = String(row.image_original || "").trim() || currentImage;
-    if (isComposedImageUrl(sourceUrl)) {
-      skippedNoImage += 1;
-      continue;
-    }
-
-    try {
-      const buffer = await composeEventPosterFromUrl(sourceUrl, {
-        cacheDir: path.join(root, "data", "image-cache"),
-      });
-      const composedUrl = buildComposedImageUrl(row.event_uid);
-
-      if (dryRun) {
-        console.log(`[dry-run] ${row.title}（${row.city}）`);
-        console.log(`  ${sourceUrl}`);
-        console.log(`  -> ${composedUrl}`);
-        updated += 1;
-        continue;
-      }
-
-      saveComposedImage(row.event_uid, buffer, root);
-      stmt.run({
-        event_uid: row.event_uid,
-        image_original: sourceUrl,
-        image: composedUrl,
-        updated_at: now,
-      });
-      updated += 1;
-      console.log(`OK ${row.title}（${row.city}）`);
-    } catch (error) {
-      failed += 1;
-      console.error(`FAIL ${row.title}（${row.city}）: ${error.message}`);
-    }
-  }
-
+  const report = await batchComposeEventImages(db, {
+    city: city || undefined,
+    dryRun,
+    force,
+    rootDir: root,
+  });
   db.close();
 
+  const updated = report.ok + report.dry_run;
+  const cityLabel = city || "全部";
   console.log(dryRun
-    ? `Would compose ${updated} active events (skipped ${skippedExpired} expired, ${skippedDone} already composed, ${skippedNoImage} no image)`
-    : `Composed ${updated} active events (skipped ${skippedExpired} expired, ${skippedDone} already composed, ${skippedNoImage} no image, ${failed} failed)`);
+    ? `Would compose ${updated} ${cityLabel} events (total ${report.total}, skipped ${report.skip_done} already composed, ${report.skip_no_source} no source)`
+    : `Composed ${updated} ${cityLabel} events (total ${report.total}, skipped ${report.skip_done} already composed, ${report.skip_no_source} no source, ${report.fail} failed)`);
+
+  if (report.fail > 0) process.exitCode = 1;
 }
 
 main().catch((error) => {

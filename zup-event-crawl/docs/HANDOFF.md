@@ -410,8 +410,10 @@ npm start
 
 | 优先级 | 方式 | 何时用 |
 |--------|------|--------|
-| **主路** | `node scripts/scrape-douban-week-events.js` + Node `fetch` | 默认。本机 2026-06-03 实测成都 30 条可直连成功（改对 URL 后）。 |
-| **备路** | Chrome 已登录 → `save-chrome-douban-html.js` 存 HTML → `--list-dir` / `--detail-dir` 再跑同一抓取脚本 | `fetch failed`、异常访问、需登录态时。 |
+| **主路** | `scrape-douban-week-events.js` + Chrome（`lib/douban-chrome-fetch.js`） | **默认**。与大众点评相同，用已登录 Chrome 避免 403/429。 |
+| **备路 A** | `fetch-douban-via-chrome.js` 批量存 HTML → `--list-dir` / `--detail-dir` 再跑抓取脚本 | 想保留 HTML 快照、或主路 Chrome 导航异常时。 |
+| **备路 B** | 抓取脚本加 `--via-fetch`（Node `fetch`） | 仅当 Chrome 不可用时临时使用。 |
+| **备路 C** | `save-chrome-douban-html.js` 手存当前标签 HTML | 单页应急。 |
 | **Codex 环境** | Codex Chrome 插件 / 内置 Browser 读 DOM | 仅在 Codex 里干活时；见「2026-06-02 抓取故障修复记录」。 |
 | **暂不采用** | Playwright / Puppeteer | 维护成本高、易触发反爬；当前无必要，除非主路+备路长期均不可用。 |
 
