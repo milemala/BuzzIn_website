@@ -440,7 +440,7 @@ node scripts/scrape-douban-week-events.js 30 data/review.db --city=chengdu --mod
 1. 按城市配置拉取列表页（可翻页 `?start=10`…），解析 `list-entry`，打 `sourcePosition`（豆瓣顺序）。
 2. 对候选逐条 `fetch` 详情页 `https://www.douban.com/event/{id}/`，写入 `rawDetailText` / `rawDetailHtml`，生成 `body`、`score`、`reviewReason`。
 3. `importPayload` 写入 `data/review.db`；`merge-city` 只替换/更新该城市分组，保留其他城市。
-4. 入库后 **默认不做 POI**；由 Cursor Agent 按 `docs/event-poi-agent-workflow.md` 匹配（导出 → Agent 定词/定结果 → `apply-event-poi-decisions.js`）。临时 JS 自动 POI：加 `--with-poi`。
+4. 入库后 **默认不做 POI**；由 Cursor Agent 按 [`docs/event-poi-agent-workflow.md`](event-poi-agent-workflow.md) 匹配（导出 → Agent 定词/定结果 → `apply-event-poi-decisions.js`）。**禁止** `--with-poi`（已废弃 JS Top1）。
 
 业务规则不变：
 
@@ -651,11 +651,27 @@ npm start
 
 商户审核台支持：POI Top1 自动 + 候选改选、商户类型、**可入库**筛选、**导出入库 JSON**、**页内入库/删后台**。POI 搜索词与 Zup 后台一致：**城市 + 店名**（不用点评商圈，避免商场名带偏）。腾讯 key：**个人号优先**，日配额用尽自动切**公司号**；可用 `BUZZ_TENCENT_MAP_KEY` 强制指定单一 key。
 
+## 活动分类与 POI（Cursor Agent，2026-06）
+
+**完整流程**（新会话 Agent **必读**）：
+
+- 分类/挡下：[`docs/event-classification-agent.md`](event-classification-agent.md)
+- POI：[`docs/event-poi-agent-workflow.md`](event-poi-agent-workflow.md)
+
+摘要：
+
+- 抓取后 **不再用 JS 正则** 做推荐/挡下；默认 `待分类`，由大模型写 `classification-decisions.json`
+- POI：`export-events-for-poi.js` → `poi-search-cli` + `decisions.json` → `apply-event-poi-decisions.js`
+- Workbench：`data/poi-agent-workbench/<城市>/`（`pending.json` / `decisions.json`）
+- 审核台：卡片展示 **POI 已匹配**；筛选「未匹配 POI」「POI 存疑」；标准/严格存疑模式；展示层叠加 `assessEventPoiConfidence` 校验
+- 维护：`scripts/reassess-agent-poi-doubt.js` 仅重评已标存疑条目，勿推翻 `reject`
+
 ## 当前 UI 状态摘要
 
 **活动页**（`public/index.html`）已经具备：
 
 - 单列活动列表；城市 / 状态 / 来源 / 类型 / 日期筛选、搜索、排序。
+- POI：卡片标签「POI 已匹配/未匹配」+ 主信息区 POI 名称地址；入库准备区候选点选。
 - 入库准备：`publish_user_id`、`now_type`（1/2/3）、POI 匹配与关联商户展示。
 - **入库 / 批量入库 / 删后台**；**批量补全入库**（仅默认发布者与 now_type，不动 POI）。
 - 审核状态增量保存；图片经本地缓存上传 Buzz。

@@ -34,15 +34,6 @@
     .btn.primary{border-color:#111;background:#111;color:#fff}
     .btn:hover{transform:translateY(-1px)}
     .wrap{max-width:1180px;margin:0 auto;padding:18px 20px 44px}
-    .stats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-bottom:14px}
-    .stat{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px}
-    .stat.filterable{cursor:pointer;transition:border-color .15s,box-shadow .15s}
-    .stat.filterable:hover{border-color:#c8b89f}
-    .stat.filterable.active{border-color:#9a7200;background:#fffdf4;box-shadow:0 0 0 1px #e6cf66}
-    .stat b{display:block;font-size:22px;line-height:1.1}
-    .stat-label{display:block;margin-top:5px;color:var(--muted);font-size:12px;font-weight:700}
-    .stat-sub{display:block;margin-top:2px;color:#9a7200;font-size:11px;line-height:1.3}
-    .stat.filterable.active .stat-sub{color:#7a5a00}
     .filters{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
     #cityFilter{display:flex;flex-wrap:wrap;gap:8px;border:0;background:transparent;overflow:visible}
     #cityFilter button{
@@ -150,6 +141,13 @@
     .import-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
     .import-ready-tag{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px;background:#e7f5ec;color:#197549}
     .import-ready-tag.no{background:#fde8e4;color:#ad382c}
+    .chip.poi-hit{background:#e7f5ec;color:#197549}
+    .chip.poi-miss{background:#fde8e4;color:#ad382c}
+    .chip.classify-pending{background:#fff4df;color:#9a7200}
+    .chip.classify-ok{background:#e7f5ec;color:#197549}
+    .chip.classify-blocked{background:#fde8e4;color:#ad382c}
+    .poi-hit-inline{color:#197549}
+    .poi-missing-inline{color:#ad382c}
     .import-merchant-hit{color:#197549}
     .import-merchant-miss{color:#9a7200}
     .import-status{margin-top:6px;font-size:12px;line-height:1.45}
@@ -179,7 +177,6 @@
     @media (max-width:820px){
       .top-inner{align-items:flex-start;flex-direction:column}
       .actions{justify-content:flex-start}
-      .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
       .card{grid-template-columns:104px minmax(0,1fr)}
       .cover-wrap,.cover{width:104px}
       .cover-wrap,.cover{min-height:220px}
@@ -214,7 +211,6 @@
   </header>
 
   <main class="wrap">
-    <section class="stats" id="stats"></section>
     <section class="filters">
       <div class="seg" id="cityFilter">
         <button data-city="all" class="active">全部城市</button>
@@ -271,7 +267,6 @@
     const poiPreviews = {};
 
     const sourceMeta = document.getElementById("sourceMeta");
-    const statsEl = document.getElementById("stats");
     const listEl = document.getElementById("list");
     const pagerEl = document.getElementById("pager");
     const backTopBtn = document.getElementById("backTopBtn");
@@ -286,11 +281,39 @@
     const poiModeToggleEl = document.getElementById("poiModeToggle");
 
     function getStatus(event) {
-      return reviewState[event.eventUid || event.id] || "pending";
+      const uid = event.eventUid || event.event_uid || event.id;
+      return reviewState[uid] || event.review_status || "pending";
+    }
+
+    function isSuggested(event) {
+      return event.suggested === true || event.suggested === 1;
+    }
+
+    function isAgentClassified(event) {
+      return String(event.classification_source || "") === "agent";
+    }
+
+    function isClassificationPending(event) {
+      if (isAgentClassified(event)) return false;
+      return String(event.category || "") === "待分类"
+        || String(event.classification_source || "pending") === "pending";
+    }
+
+    function isAgentBlocked(event) {
+      return isAgentClassified(event) && !isSuggested(event);
     }
 
     function isRuleBlockedUnprocessed(event) {
-      return !event.suggested && getStatus(event) === "pending";
+      return isAgentBlocked(event) && getStatus(event) === "pending";
+    }
+
+    function renderClassificationChip(event) {
+      if (isClassificationPending(event)) {
+        return `<span class="chip classify-pending">待分类</span>`;
+      }
+      return isSuggested(event)
+        ? `<span class="chip classify-ok">推荐</span>`
+        : `<span class="chip classify-blocked">已挡下</span>`;
     }
 
     function setStatusFilter(next) {
@@ -412,6 +435,17 @@
 
     function hasNoPoi(event) {
       return !String(event.location_poi_id || "").trim();
+    }
+
+    function renderPoiSummary(event) {
+      const poiId = String(event.location_poi_id || "").trim();
+      if (!poiId) {
+        return `<div class="poi-missing-inline">POI：<strong>尚未匹配</strong></div>`;
+      }
+      const title = String(event.poi_title || "").trim() || "已绑定 POI";
+      const address = String(event.poi_address || "").trim();
+      const addressLine = address ? `<br><span style="color:var(--muted)">${escapeHtml(address)}</span>` : "";
+      return `<div class="poi-hit-inline">POI：<strong>${escapeHtml(title)}</strong>${addressLine}</div>`;
     }
 
     function canImportEvent(event) {
@@ -909,7 +943,10 @@
       const status = getStatus(event);
       if (filter === "imported") return isImportedEvent(event);
       if (filter === "import_ready") return isPendingImportEvent(event);
-      if (filter === "suggested") return event.suggested;
+      if (filter === "suggested") return isSuggested(event) && !isClassificationPending(event);
+      if (filter === "classification-pending") {
+        return status === "pending" && isClassificationPending(event);
+      }
       if (filter === "rule-blocked") return isRuleBlockedUnprocessed(event);
       if (filter === "poi_doubtful") {
         return status === "pending" && event.poi_doubtful;
@@ -917,6 +954,7 @@
       if (filter === "no_poi") {
         return status === "pending" && hasNoPoi(event);
       }
+      if (filter === "expired") return isExpired(event);
       if (["approved", "rejected", "pending"].includes(filter)) return status === filter;
       return true;
     }
@@ -968,7 +1006,11 @@
 
     function getFilteredEvents() {
       return payload.events.map((event, index) => ({ event, index })).filter(({ event }) => {
-        if (isExpired(event)) return false;
+        if (statusFilter === "expired") {
+          if (!isExpired(event)) return false;
+        } else if (isExpired(event)) {
+          return false;
+        }
         if (cityFilter !== "all" && getCityKey(event) !== cityFilter) return false;
         if (!matchesStatusFilter(event, statusFilter)) return false;
         if (sourceFilter !== "all" && getSourceKey(event) !== sourceFilter) return false;
@@ -985,36 +1027,12 @@
       }).map(({ event }) => event);
     }
 
-    function renderStats() {
-      const activeEvents = getActiveEvents();
-      const total = activeEvents.length;
-      const expired = getExpiredEvents().length;
-      const suggested = activeEvents.filter((event) => event.suggested).length;
-      const ruleBlockedPending = activeEvents.filter((event) => isRuleBlockedUnprocessed(event)).length;
-      const approved = activeEvents.filter((event) => getStatus(event) === "approved").length;
-      const rejected = activeEvents.filter((event) => getStatus(event) === "rejected").length;
-      const statCards = [
-        { label: "未过期总数", value: total },
-        { label: "已过期", value: expired },
-        { label: "规则推荐", value: suggested },
-        {
-          label: "规则挡下",
-          value: ruleBlockedPending,
-          sub: "待处理",
-          filter: "rule-blocked",
-          active: statusFilter === "rule-blocked",
-        },
-        { label: "人工通过", value: approved },
-        { label: "人工拒绝", value: rejected },
-      ];
-      statsEl.innerHTML = statCards.map((card) => {
-        const classes = ["stat"];
-        if (card.filter) classes.push("filterable");
-        if (card.active) classes.push("active");
-        const filterAttr = card.filter ? ` data-status-filter="${card.filter}"` : "";
-        const subHtml = card.sub ? `<span class="stat-sub">${escapeHtml(card.sub)}</span>` : "";
-        return `<div class="${classes.join(" ")}"${filterAttr}><b>${card.value}</b><span class="stat-label">${escapeHtml(card.label)}</span>${subHtml}</div>`;
-      }).join("");
+    function getExpiredScopedEvents() {
+      return payload.events.filter((event) => {
+        if (!isExpired(event)) return false;
+        if (cityFilter !== "all" && getCityKey(event) !== cityFilter) return false;
+        return true;
+      });
     }
 
     function renderCityChip(cityKey, label) {
@@ -1034,10 +1052,12 @@
 
     function renderStatusFilter() {
       const scoped = getActiveEvents();
+      const expiredScoped = getExpiredScopedEvents();
       const filters = [
         { key: "all", label: "全部" },
         { key: "imported", label: "已入库" },
         { key: "suggested", label: "推荐" },
+        { key: "classification-pending", label: "待分类" },
         { key: "rule-blocked", label: "挡下待处理" },
         { key: "approved", label: "已通过" },
         { key: "rejected", label: "已拒绝" },
@@ -1045,11 +1065,14 @@
         { key: "import_ready", label: "待入库" },
         { key: "no_poi", label: "未匹配 POI" },
         { key: "poi_doubtful", label: "POI 存疑" },
+        { key: "expired", label: "已过期" },
       ];
       statusFilterEl.innerHTML = filters.map(({ key, label }) => {
-        const count = key === "all"
-          ? scoped.length
-          : scoped.filter((event) => matchesStatusFilter(event, key)).length;
+        const count = key === "expired"
+          ? expiredScoped.length
+          : key === "all"
+            ? scoped.length
+            : scoped.filter((event) => matchesStatusFilter(event, key)).length;
         return renderSegButton({
           attr: "status",
           value: key,
@@ -1219,14 +1242,18 @@
                 <span class="chip">${escapeHtml(event.category)}</span>
                 <span class="chip">来源：${escapeHtml(getSourceLabel(event))}</span>
                 <span class="chip">${escapeHtml(event.district || event.city)}</span>
-                <span class="chip">${event.suggested ? "规则推荐" : "规则挡下"}</span>
+                ${renderClassificationChip(event)}
                 <span class="chip">来源#${escapeHtml(event.sourcePosition || "-")}</span>
                 <span class="import-ready-tag ${ready ? "" : "no"}">${ready ? "可入库" : "未齐"}</span>
+                ${event.location_poi_id
+    ? `<span class="chip poi-hit">POI 已匹配</span>`
+    : `<span class="chip poi-miss">未匹配 POI</span>`}
                 ${event.poi_doubtful ? `<span class="chip poi-doubt">POI 存疑</span>` : ""}
               </div>
               <div class="info">
                 <div>时间：${escapeHtml(event.timeText)}</div>
                 <div>地点：${escapeHtml(event.location)}</div>
+                ${renderPoiSummary(event)}
                 <div>费用：${escapeHtml(event.fee || "待确认")}</div>
                 <div>发起：${escapeHtml(event.owner || "未知")}</div>
               </div>
@@ -1299,7 +1326,6 @@
       const generatedAt = cityMeta?.generatedAt || payload.generatedAt || "未知时间";
       sourceMeta.textContent = `${cityLabel} · ${sources} · 生成于 ${generatedAt}`;
       renderCityFilter();
-      renderStats();
       renderStatusFilter();
       renderSourceFilter();
       renderCategoryFilter();
@@ -1316,13 +1342,6 @@
       dateFilter = "all";
       resetPage();
       render();
-    });
-
-    statsEl.addEventListener("click", (event) => {
-      const card = event.target.closest("[data-status-filter]");
-      if (!card) return;
-      const next = card.dataset.statusFilter;
-      setStatusFilter(statusFilter === next ? "all" : next);
     });
 
     statusFilterEl.addEventListener("click", (event) => {

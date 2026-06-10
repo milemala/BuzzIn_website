@@ -59,16 +59,19 @@ function main() {
     ].join(" "));
   }
 
+  run(`node scripts/export-events-for-classification.js --city=${options.cityName} --refresh`);
+
   const pendingFlag = options.pendingOnly ? " --pending-only" : "";
   run(`node scripts/export-events-for-poi.js --city=${options.cityName} --refresh${pendingFlag}`);
 
-  const workbench = path.join(root, "data", "poi-agent-workbench", options.cityName, "pending.json");
+  const workbench = path.join(root, "data", "poi-agent-workbench", options.cityName);
   console.log("\n---");
   console.log("抓取与导出已完成。请在 Cursor 对话中由大模型继续：");
-  console.log(`  1. 阅读 ${workbench}`);
-  console.log("  2. 对每组定搜词 → poi-search-cli.js → 写 decisions.json");
-  console.log(`  3. node scripts/apply-event-poi-decisions.js --city=${options.cityName}`);
-  console.log("详见 docs/event-poi-agent-workflow.md");
+  console.log(`  1. 分类/挡下：读 ${path.join(workbench, "classification-pending.json")}`);
+  console.log("     → 写 classification-decisions.json → apply-event-classification-decisions.js");
+  console.log(`  2. POI：读 ${path.join(workbench, "pending.json")}`);
+  console.log("     → poi-search-cli.js → decisions.json → apply-event-poi-decisions.js");
+  console.log("详见 docs/event-classification-agent.md 与 docs/event-poi-agent-workflow.md");
 }
 
 main();

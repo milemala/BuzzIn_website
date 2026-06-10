@@ -759,13 +759,40 @@ function extractVenueHintsFromLocation(location) {
   return extractVenueHints(location, "");
 }
 
+const POI_WEAK_GENERIC_TITLE = /^(文创园|文化园|产业园|科技园|商务园|创意园|工业园|文化产业园|购物中心|商业中心)$/u;
+
+function isWeakGenericPoiTitle(poiTitle) {
+  const brand = normalizeVenueBrand(poiTitle);
+  return POI_WEAK_GENERIC_TITLE.test(brand) || (brand.length <= 3 && /园|苑|里|坊$/u.test(brand));
+}
+
+function extractDistrictLabel(text) {
+  const raw = String(text || "");
+  const doubanStyle = raw.match(/(?:^|\s)([\u4e00-\u9fa5]{1,8}?(?:新区|区))(?=\s)/u);
+  if (doubanStyle) return doubanStyle[1];
+
+  let stripped = raw.replace(/^[\u4e00-\u9fa5]{2,10}(?:省|自治区|特别行政区)?/u, "");
+  stripped = stripped.replace(/^[\u4e00-\u9fa5]{2,10}市/u, "");
+  const district = stripped.match(/^([\u4e00-\u9fa5]{1,8}(?:新区|区))/u);
+  return district ? district[1] : "";
+}
+
+function districtMismatchBetweenLocationAndPoi(location, poiAddress) {
+  const locDistrict = extractDistrictLabel(location);
+  const poiDistrict = extractDistrictLabel(poiAddress);
+  if (!locDistrict || !poiDistrict) return false;
+  return normalizeMatchText(locDistrict) !== normalizeMatchText(poiDistrict);
+}
+
 function poiBrandAppearsInLocation(location, poiTitle) {
   const brand = normalizeVenueBrand(poiTitle);
   if (!brand || brand.length < 2) return false;
+  if (isWeakGenericPoiTitle(poiTitle)) return false;
   const loc = normalizeMatchText(location);
   if (loc.includes(brand)) return true;
-  for (let len = Math.min(brand.length, 8); len >= 2; len -= 1) {
+  for (let len = Math.min(brand.length, 8); len >= 3; len -= 1) {
     const slice = brand.slice(0, len);
+    if (CITY_NAMES.test(slice)) continue;
     if (/^[\u4e00-\u9fa5a-z0-9]+$/iu.test(slice) && loc.includes(slice)) return true;
   }
   return false;
@@ -851,12 +878,16 @@ function extractLocationLandmarks(text) {
 
 /** 活动地点是否与 POI 名称+地址对得上（名称、门牌、地标任一足够） */
 function locationAlignsWithPoi(location, poiTitle, poiAddress) {
+  if (districtMismatchBetweenLocationAndPoi(location, poiAddress)) {
+    return false;
+  }
+
   const poiText = normalizeMatchText(`${poiTitle} ${poiAddress}`);
   const locNorm = normalizeMatchText(location);
 
   const addressHints = extractAddressHints(isStreetLevelAddress(location) ? location : "");
-  if (addressHints.some((hint) => poiText.includes(normalizeMatchText(hint)))) {
-    return true;
+  if (addressHints.length > 0) {
+    return addressHints.some((hint) => poiText.includes(normalizeMatchText(hint)));
   }
 
   const landmarks = extractLocationLandmarks(location);
@@ -868,7 +899,29 @@ function locationAlignsWithPoi(location, poiTitle, poiAddress) {
     return true;
   }
 
-  return addressHints.length === 0 && landmarks.length === 0;
+  return landmarks.length === 0;
+}
+
+function extractLocationBuildingDetail(location, city = "") {
+  const parsed = parseDoubanLocation(location, city);
+  const term = String(parsed.venue || parsed.address || "").trim();
+  const match = term.match(/[A-Za-z0-9一二三四五六七八九十]+[栋座楼幢]/i);
+  return match ? match[0] : "";
+}
+
+function normalizeBuildingToken(value) {
+  return String(value || "").replace(/\s+/g, "").replace(/栋$/iu, "").toLowerCase();
+}
+
+/** 豆瓣地址里的栋/座/楼是否与 POI 名称一致（如 A座、4b栋） */
+function poiBuildingDetailAligned(location, city, poiTitle) {
+  const building = extractLocationBuildingDetail(location, city);
+  if (!building || !poiTitle) return false;
+  const titleNorm = String(poiTitle).replace(/\s+/g, "").toLowerCase();
+  const buildingNorm = building.replace(/\s+/g, "").toLowerCase();
+  if (titleNorm.includes(buildingNorm)) return true;
+  const bare = normalizeBuildingToken(building);
+  return Boolean(bare && titleNorm.includes(bare));
 }
 
 function eventVenueMatchesPoi(location, title, poiTitle) {
@@ -877,7 +930,9 @@ function eventVenueMatchesPoi(location, title, poiTitle) {
   const titleShows = extractTitleShowHints(title);
   const context = `${location} ${titleBrands.join(" ")} ${titleShows.join(" ")}`;
 
-  if (venueHints.some((hint) => venueHintMatchesPoi(hint, poiTitle))) return true;
+  if (venueHints.some((hint) => venueHintMatchesPoi(hint, poiTitle))) {
+    if (!isWeakGenericPoiTitle(poiTitle)) return true;
+  }
   if (titleBrands.some((hint) => venueHintMatchesPoi(hint, poiTitle))) return true;
   if (titleShows.some((hint) => titleShowMatchesPoi(hint, poiTitle))) return true;
 
@@ -1093,6 +1148,13 @@ function assessEventPoiConfidence(event) {
   const nameOk = eventVenueMatchesPoi(location, title, poi.title);
   const addressOk = locationAlignsWithPoi(location, poi.title, poi.address);
 
+  if (districtMismatchBetweenLocationAndPoi(location, poi.address)) {
+    reasons.push("POI 所在区与豆瓣活动地点区划不一致");
+  }
+  if (isWeakGenericPoiTitle(poi.title) && !addressOk) {
+    reasons.push("POI 名称过于笼统，且地址未对上豆瓣门牌");
+  }
+
   if (!nameOk && !addressOk) {
     reasons.push("POI 与活动地点不像同一场所（名称与地址均未对上）");
   } else if (!nameOk && extractVenueHintsFromLocation(location).length > 0) {
@@ -1110,7 +1172,7 @@ function assessEventPoiConfidence(event) {
     reasons.push("POI 疑似停车场、地铁等非活动场所");
   }
 
-  if (score < 55 && !nameOk) {
+  if (score < 55 && !nameOk && !addressOk) {
     reasons.push(`自动匹配得分偏低（${Math.round(score)}）`);
   }
 
@@ -1372,7 +1434,9 @@ module.exports = {
   pickBestPoiForEvent,
   pickBestPoiForMerchant,
   eventVenueMatchesPoi,
+  extractLocationBuildingDetail,
   locationAlignsWithPoi,
+  poiBuildingDetailAligned,
   poiTitleMatchesMerchant,
   rankMerchantSearchAliases,
   reorderPoiByBestMatch,

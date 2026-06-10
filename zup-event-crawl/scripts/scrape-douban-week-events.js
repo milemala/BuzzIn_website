@@ -15,6 +15,7 @@ const { composeScrapedEventImage } = require("../lib/compose-event-images-batch"
 const { ensureImageCached } = require("../lib/image-fetch");
 const { batchEventAutoPoi } = require("../lib/event-poi-batch");
 const { buildDateWindowFromEvents, buildEventDates } = require("../lib/event-dates");
+const { buildPendingClassificationFields } = require("../lib/event-classification");
 const { eventUidFor, importPayload, openDatabase, syncEventPoiCoordinates } = require("../lib/review-db");
 
 const root = path.join(__dirname, "..");
@@ -145,65 +146,6 @@ function getExcludeReason(event, eventType = "") {
   if (/公益/.test(`${event.title} ${event.owner}`)) return "公益";
   if (/课程|培训课|认证课|体验课|学习班|研习班/.test(event.title || "")) return "课程";
   return "";
-}
-
-function classify(title, location, owner, detailText = "") {
-  const haystack = `${title} ${location} ${owner} ${detailText}`;
-  const categories = [
-    ["户外", /徒步|骑行|露营|飞盘|运动|爬山|citywalk|Citywalk|户外|路线|漂流|玩水/],
-    ["演出", /音乐会|演唱会|Live|音乐剧|话剧|舞台|剧场|戏剧|脱口秀|喜剧|相声|魔术|舞蹈|舞剧|公演/],
-    ["展览", /展览|美术馆|艺术展|设计展|博物馆|沉浸|影展|放映/],
-    ["手作", /手作|钩织|编织|陶艺|绘画|插花|市集|旧物|手工/],
-    ["社交", /交友|桌游|读书会|观影|咖啡|酒|派对|聚会|交流会|聊天|认识新朋友/],
-    ["亲子", /亲子|儿童|家庭|科学剧场|小丑|泡泡|气球/],
-  ];
-  const found = categories.find(([, pattern]) => pattern.test(haystack));
-  return found ? found[0] : "其他";
-}
-
-function scoreEvent(event) {
-  const text = `${event.title} ${event.location} ${event.owner} ${event.detailText || ""}`;
-  const good = [
-    /周末|周六|周日|午后|夜|Live|音乐|喜剧|脱口秀|展览|美术馆|剧场|戏剧|手作|钩织|市集|交友|桌游|观影|沉浸|派对|徒步|骑行|露营/,
-    /咖啡|酒|公园|美术馆|剧院|大剧场|西岸|外滩|人民广场|静安|徐汇|长宁|黄浦/,
-  ];
-  const bad = [
-    /峰会|论坛|大会|出海|AI|人工智能|创业|创投|私董会|培训|课程|讲座|招聘|招商|产业|增长|商业化|闭门会|工业|自动化|机器人|具身机器人|博览会/,
-    /指定单日票|临时闭馆|售票|票务/,
-  ];
-  let score = 50;
-  good.forEach((pattern) => {
-    if (pattern.test(text)) score += 15;
-  });
-  bad.forEach((pattern) => {
-    if (pattern.test(text)) score -= 25;
-  });
-  if (event.image) score += 8;
-  if (event.startDate) score += 8;
-  if (event.location) score += 6;
-  if (event.detailText) score += 8;
-  if (/活动|聚会|交流|路线/.test(text) && !/创业|出海|商业/.test(text)) score += 8;
-  if (/创业|创投|出海|商业|搞钱|工业|自动化|机器人|具身机器人|博览会/.test(text)) score -= 45;
-  if (/指定单日票|临时闭馆/.test(text)) score -= 60;
-  if (/猫眼演出/.test(event.owner) && /脱口秀|喜剧|音乐|戏剧|舞蹈|魔术/.test(text)) score += 5;
-  if (/猫眼演出/.test(event.owner) && !/脱口秀|喜剧|音乐|戏剧|舞蹈|魔术|展览/.test(text)) score -= 8;
-  return Math.max(0, Math.min(100, score));
-}
-
-function buildReason(event) {
-  const reasons = [];
-  const text = `${event.title} ${event.location} ${event.owner} ${event.detailText || ""}`;
-  if (/峰会|论坛|大会|出海|AI|人工智能|创业|创投|培训|讲座|产业|商业化|闭门会|工业|自动化|机器人|具身机器人|博览会/.test(text)) {
-    reasons.push("偏行业/商业，不适合 Zup 冷启动");
-  }
-  if (/指定单日票|临时闭馆|售票|票务/.test(text)) {
-    reasons.push("像票务商品或状态不稳定");
-  }
-  if (/音乐|喜剧|脱口秀|展览|美术馆|剧场|戏剧|手作|钩织|交友|桌游|沉浸|派对|徒步|骑行|露营/.test(text)) {
-    reasons.push("生活娱乐属性明显");
-  }
-  if (!event.startDate || !event.location) reasons.push("关键字段不完整");
-  return reasons.join("；") || "待人工判断";
 }
 
 function isLegacyFileTarget(filePath) {
@@ -592,10 +534,13 @@ async function main() {
       console.warn(`Detail failed ${event.title}: ${error.message}`);
       continue;
     }
-    event.category = classify(event.title, event.location, event.owner, event.detailText);
-    event.score = scoreEvent(event);
-    event.suggested = event.score >= 60;
-    event.reviewReason = buildReason(event);
+    const classification = buildPendingClassificationFields(event.doubanEventType);
+    event.category = classification.category;
+    event.score = classification.score;
+    event.suggested = classification.suggested;
+    event.reviewReason = classification.reviewReason;
+    event.douban_event_type = classification.douban_event_type;
+    event.classification_source = classification.classification_source;
     event.body = makeZupSummary(event);
     delete event.detailText;
     detailed.push(event);
