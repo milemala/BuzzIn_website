@@ -4,14 +4,18 @@ const { appendParticipationToBody } = require("./event-participation");
 const {
   decodeHtml,
   extractEdescHtml,
+  extractEventNoticeHtml,
   htmlFragmentToLines,
   normalizeSpace,
 } = require("./douban-html");
 
 const DETAIL_NOISE_LINE = /限购|儿童购票|演出\/活动时长|活动时长|禁止携带|寄存说明|发票|订单|票品|退换|平台|购票|售票|实名|入场规则|温馨提示|观演|座位|不可转让|主办方有权|预约说明|付款时效|异常排单|一人一票|无免票政策|退票|改签|门票/;
+const LOGISTICS_LINE = /^(▏|︱)?\s*(活动时间|活动地点|活动嘉宾|主办方|报名方式|时间|地点|费用|票价)[:：]|^▏|请点击海报报名|报名方式[:：]/;
+const TICKET_LINE = /^[√✔️]|^√|演出\/活动时长|限购说明|退票|儿童说明|儿童购票|发票说明|异常购票|禁止携带|付款时效|实名制|限购说明|退换政策|入场规则|以现场为准|最低演出|主要演员|预约说明|特殊提示|票品为有价/i;
+const INTRO_STOP_LINE = /^嘉\s*\|\s*宾|图\s*\|\s*书|嘉宾介绍|图书介绍|书目信息|展示范围|课程安排|购票须知|报名规则|场次信息|活动要求|关于破浪/;
 
-function cleanDetailText(html) {
-  const lines = htmlFragmentToLines(extractEdescHtml(html))
+function cleanDetailLines(fragment) {
+  return htmlFragmentToLines(fragment)
     .map((line) => line
       .replace(/微信号?[:：]?\s*[A-Za-z0-9_-]+/g, "")
       .replace(/添加微信[^，。；\n]*/g, "")
@@ -19,8 +23,22 @@ function cleanDetailText(html) {
       .trim())
     .filter(Boolean)
     .filter((line) => !DETAIL_NOISE_LINE.test(line));
+}
 
-  return lines
+/** 合并详情页各区块纯文本（活动须知 + edesc_s），存储与提炼均不再区分板块 */
+function cleanDetailText(html) {
+  const source = String(html || "");
+  const noticeLines = cleanDetailLines(extractEventNoticeHtml(source));
+  const edescLines = cleanDetailLines(extractEdescHtml(source));
+  const merged = [];
+  const seen = new Set();
+  for (const line of [...noticeLines, ...edescLines]) {
+    const key = normalizeSpace(line);
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    merged.push(line);
+  }
+  return merged
     .join("\n")
     .replace(/[√✔️]+/g, "")
     .trim();
@@ -76,48 +94,178 @@ function extractSectionSummary(detailText, maxLength = 220) {
   return trimSummary(summary, maxLength);
 }
 
-function extractDetailSentences(detailText) {
-  const introHeader = /^(展会介绍|活动介绍|演出介绍|展览介绍|课程介绍|项目介绍|内容介绍)[:：]?$/;
-  const stopMarkers = /^(展示范围|核心零部件与材料|AI大模型与软件生态|场景解决方案|整机本体|演出曲目|课程安排|购票须知|活动须知|票务须知|注意事项|我们以往探讨过的主题有？|我们希望加一线青年社交站的你)$/;
-  const banned = /限购|退票|换票|儿童购票|儿童说明|发票说明|购票证件说明|异常排单|异常购票|付款时效|温馨提示|禁止携带|预约说明|一人一票|无需实名制购票|电子发票|票品|订单|观演|须持票|请勿|客服|添加微信|微信|扫码|联系电话|联系方式|组委会|手机号|合作伙伴|最终解释权|入场方式说明|入场时间|演出\/活动时长|最低演出曲目|最低演出\/活动时长|主要演员|以现场为准|无需预约|未成年人|儿童谢绝入场|指定区域入座|家庭票至多携|停止检票|名单公布|免费名额|观影时间|观影地点|取票时间|取票方式|报名规则|场次信息|限定福利|活动要求|关于破浪|特殊提示|参观须知|限一次入场|周一闭馆|请确认好所购时间及场次|退场后禁止再次入场|不可更换|不可延期|不可退款|注意：本链接售票|中奖|黑名单|转票|学生票|先到先得|换纸质门票|路线指引|禁止入内|不可携带|购票时请确认|官方公众号|活动地址|其他内容|讲素质|禁止辱骂/;
-  const lines = String(detailText || "").split(/\n+/).map((line) => normalizeDetailSentence(line)).filter(Boolean);
-  if (!lines.length) return [];
+function isTitleRepeatLine(line, title) {
+  const t = normalizeSpace(title);
+  const l = normalizeSpace(line);
+  if (!t || !l || t.length < 6) return false;
+  if (l === t) return true;
+  const head = t.slice(0, Math.min(t.length, 24));
+  return l.startsWith(head) && l.length <= t.length + 48;
+}
 
-  const hasIntro = lines.some((line) => introHeader.test(line));
-  const firstMeaningful = lines[0] || "";
-  if (!hasIntro && /^(【场次信息】|【报名规则】|💡注意|Note:|限购说明|退票\/换票政策|入场方式说明|演出\/活动时长|入场时间|观影时间|免费名额|取票时间|名单公布)/.test(firstMeaningful)) {
-    return [];
+const TICKET_HINT = /电子发票|订单详情|购票页面|票品为有价|未成年人|专业摄录设备|猫眼客服|异常购票|付款时效|限购说明|入场规则|以现场为准|下单成功后需在指定时间内完成支付/i;
+
+function isTicketBoilerplateText(detailText) {
+  const lines = String(detailText || "").split(/\n+/).map(normalizeDetailSentence).filter(Boolean);
+  if (!lines.length) return true;
+
+  const ticketish = lines.filter((line) => TICKET_LINE.test(line) || TICKET_HINT.test(line));
+  if (ticketish.length >= 2 || (lines.length >= 3 && ticketish.length / lines.length >= 0.45)) {
+    return true;
   }
 
+  const substantive = lines.filter((line) => (
+    !TICKET_LINE.test(line)
+    && !TICKET_HINT.test(line)
+    && !LOGISTICS_LINE.test(line)
+    && line.length >= 16
+    && /[。！？，；]/.test(line)
+  ));
+  return substantive.length === 0;
+}
+
+function isWeakSummary(summary) {
+  const text = normalizeSpace(summary);
+  if (!text || text.length < 16) return true;
+  if (/▏|︱/.test(text) && /活动时间|活动地点|活动嘉宾|主办方/.test(text)) return true;
+  if (/^(90分钟|\d+分钟)|实名制购票|退换政策|入场规则/.test(text)) return true;
+  if (TICKET_HINT.test(text)) return true;
+  if (TICKET_LINE.test(text) && text.length < 120) return true;
+  return false;
+}
+
+/** 从合并后的全文提炼介绍句，不区分活动须知/活动详情 */
+function extractIntroSentences(detailText, event = {}) {
+  const title = String(event.title || "");
+  const lines = String(detailText || "").split(/\n+/).map(normalizeDetailSentence).filter(Boolean);
   const kept = [];
-  let started = !hasIntro;
+
   for (const line of lines) {
-    if (introHeader.test(line)) {
-      started = true;
-      continue;
-    }
-    if (!started) continue;
-    if (stopMarkers.test(line) && kept.length > 0) break;
-    if (/^(时间|地点|费用|票价|发起|主办|报名方式|活动时间|活动地点|活动费用)[:：]/.test(line)) continue;
-    if (/^[A-Z0-9\s\-:()&/.]{8,}$/.test(line)) continue;
-    if (banned.test(line)) continue;
+    if (INTRO_STOP_LINE.test(line) && kept.length > 0) break;
+    if (LOGISTICS_LINE.test(line)) continue;
+    if (TICKET_LINE.test(line)) continue;
+    if (isTitleRepeatLine(line, title)) continue;
+    if (/^Hi[～~]|徽章一枚|进群|扫码|影迷群|周边领取/.test(line) && !kept.length) continue;
+    if (/^！！！|请注意/.test(line)) continue;
+    if (/^【场次|【报名规则】|名单公布/.test(line)) continue;
+    if (/^\d+号厅/.test(line)) continue;
+    if (line.length < 12 && !/[。！？]/.test(line)) continue;
     kept.push(line);
-    if (kept.length >= 8) break;
+    if (kept.length >= 6) break;
   }
 
+  const banned = /号厅|观影 取票|报名规则|抽奖|黑名单|转票|取票时间|观影时间/;
   return kept
     .join(" ")
     .split(/(?<=[。！？])/)
     .map((line) => normalizeSpace(line))
     .filter(Boolean)
     .filter((line) => line.length >= 12)
-    .filter((line) => !banned.test(line));
+    .filter((line) => !TICKET_LINE.test(line) && !LOGISTICS_LINE.test(line) && !banned.test(line));
 }
 
-function makeZupSummary(event) {
+function extractDetailSentences(detailText, event = {}) {
+  return extractIntroSentences(detailText, event);
+}
+
+function splitTitleSegments(title) {
+  return String(title || "")
+    .split(/[｜|/／+]+/)
+    .map(normalizeSpace)
+    .filter(Boolean);
+}
+
+function extractPlaceFromLocation(event) {
+  const location = normalizeSpace(event.location || "");
+  if (!location) return "";
+  const tokens = location.split(/\s+/).map((t) => t.replace(/[（(].*$/, "").trim()).filter(Boolean);
+  const venue = tokens.find((part) => /剧场|剧院|酒吧|咖啡|喜剧|Live|影城|艺术馆|美术馆|博物馆|共享际|商场|广场|书店|书|中心|餐吧|小剧场|俱乐部|体育馆|游泳馆|公园/i.test(part));
+  if (venue && venue.length <= 28) return venue;
+  if (tokens.length >= 3) return tokens[2];
+  return "";
+}
+
+/** 详情无实质介绍时，根据标题/场地/分类拼一段发布型简介（不是复述标题） */
+function inferSummaryFromTitle(event, maxLength = 220) {
+  const title = normalizeSpace(event.title || "");
+  if (!title || title.length < 8) return "";
+
+  const segments = splitTitleSegments(title);
+  const category = normalizeSpace(event.category || "");
+  const brand = segments.find((part) => /喜剧|剧场|剧社|俱乐部|Club|Live|酒吧|酒馆|脱口秀|话筒/i.test(part) && part.length <= 28)
+    || segments[segments.length - 1]
+    || "";
+
+  const isEnglish = /英语|英文|English/i.test(title);
+  const isShanghai = /沪语|上海话/i.test(title);
+  const isMandarin = /普通话|中文/i.test(title);
+  const isOpenMic = /Open\s*Mic|开放麦/i.test(title);
+  const isHeadliner = /Headliner/i.test(title);
+  const isAdvanced = /进阶/.test(title);
+  const isSpecial = /专场|精品秀/.test(title);
+  const isTalkShow = /脱口秀|相声|sketch|Sketch|即兴/i.test(title);
+
+  let formatLabel = "";
+  if (isEnglish && isOpenMic) formatLabel = "英语开放麦";
+  else if (isOpenMic) formatLabel = "开放麦";
+  else if (/相声/.test(title)) formatLabel = "相声";
+  else if (/脱口秀/.test(title)) formatLabel = "脱口秀";
+  else if (/音乐剧|话剧|舞剧/.test(title)) formatLabel = title.match(/音乐剧|话剧|舞剧/)[0];
+  else if (/观影|电影|影展/.test(title)) formatLabel = "观影活动";
+  else if (/展览|美术馆|博物馆/.test(title)) formatLabel = "展览";
+  else if (/沙龙|分享会|签售|新书/.test(title)) formatLabel = "沙龙分享";
+  else if (category === "喜剧脱口秀") formatLabel = "脱口秀";
+
+  if (isAdvanced && formatLabel) formatLabel += "进阶场";
+  else if (isSpecial && formatLabel) formatLabel += "专场";
+
+  let langNote = "";
+  if (isEnglish && !formatLabel.includes("英语")) langNote = "英语";
+  else if (isShanghai) langNote = "沪语";
+  else if (isMandarin) langNote = "普通话";
+
+  const place = extractPlaceFromLocation(event);
+  const formatWithLang = `${langNote}${formatLabel}`.replace(/的的/g, "的");
+  const clauses = [];
+
+  if (brand && formatLabel && place) {
+    clauses.push(`${brand}在${place}举办${formatWithLang}`);
+  } else if (brand && formatLabel) {
+    clauses.push(`${brand}带来${formatWithLang}`);
+  } else if (formatLabel && place) {
+    clauses.push(`${place}举办${formatWithLang}`);
+  } else if (formatLabel) {
+    clauses.push(formatWithLang);
+  } else if (brand && place) {
+    clauses.push(`${brand}在${place}举办活动`);
+  } else if (brand) {
+    clauses.push(`${brand}线下活动`);
+  } else {
+    clauses.push(title.replace(/[！!…]+$/g, "").slice(0, 48));
+  }
+
+  if (isHeadliner) clauses.push("当晚设 Headliner 压轴");
+  if (isEnglish && isOpenMic) clauses.push("段子以英语呈现，开放麦可上台试段");
+  else if (isOpenMic) clauses.push("设有开放麦环节，欢迎上台试段");
+  else if (isShanghai && isTalkShow) clauses.push("演出以沪语为主");
+  else if (isMandarin && isTalkShow) clauses.push("普通话演出");
+  else if (/观影|电影|影展/.test(title)) clauses.push("现场放映");
+  else if (/签售/.test(title)) clauses.push("含签售环节");
+  else if (/新书|沙龙|分享会/.test(title)) clauses.push("嘉宾到场对谈交流");
+  else if (/展览|美术馆|博物馆/.test(title)) clauses.push("现场看展");
+  else if (/徒步|Citywalk/.test(title)) clauses.push("结伴同行");
+  else if (/露营/.test(title)) clauses.push("户外露营体验");
+
+  return trimSummary(`${clauses.join("，")}。`, maxLength);
+}
+
+function buildTitleFallbackSummary(event, maxLength = 220) {
+  return inferSummaryFromTitle(event, maxLength);
+}
+
+function makeZupIntro(event, maxLength = 220) {
   const detailText = event.detailText || event.rawDetailText || "";
   const clean = detailText
-    .replace(event.title || "", "")
     .replace(/时间[:：][^。；\n]+/g, "")
     .replace(/地点[:：][^。；\n]+/g, "")
     .replace(/费用[:：][^。；\n]+/g, "")
@@ -125,16 +273,27 @@ function makeZupSummary(event) {
     .replace(/详情[^。]*以原始链接为准/g, "")
     .replace(/[ \t]+/g, " ")
     .trim();
-  let summary = extractSectionSummary(clean, 220);
-  const sentences = extractDetailSentences(clean);
-  if (!summary && sentences.length) {
+
+  let summary = extractSectionSummary(clean, maxLength);
+
+  if (!summary && !isTicketBoilerplateText(detailText)) {
+    const sentences = extractIntroSentences(detailText, event);
     for (const sentence of sentences) {
-      if ((summary + sentence).length > 220) break;
+      if ((summary + sentence).length > maxLength) break;
       summary += sentence;
     }
-    summary = trimSummary(summary, 220);
+    summary = trimSummary(summary, maxLength);
   }
-  return appendParticipationToBody(summary, event);
+
+  if (!summary || isWeakSummary(summary) || isTicketBoilerplateText(detailText)) {
+    summary = buildTitleFallbackSummary(event, maxLength);
+  }
+
+  return summary;
+}
+
+function makeZupSummary(event) {
+  return appendParticipationToBody(makeZupIntro(event), event);
 }
 
 function matchMicroAddress(html, prop) {
@@ -180,6 +339,43 @@ function parseDoubanEventLocation(detailHtml) {
   };
 }
 
+/** 从详情页解析完整活动时间（优先 calendar-str-item 多场次列表） */
+function parseDoubanEventTime(detailHtml) {
+  const html = String(detailHtml || "");
+  if (!html) return null;
+
+  const sessions = [];
+  for (const match of html.matchAll(/<li[^>]*class="[^"]*calendar-str-item[^"]*"[^>]*>([\s\S]*?)<\/li>/gi)) {
+    const text = normalizeSpace(decodeHtml(String(match[1]).replace(/<[^>]+>/g, "")));
+    if (text) sessions.push(text);
+  }
+
+  const startDates = [...html.matchAll(/itemprop="startDate"\s+datetime="([^"]+)"/g)].map((m) => m[1]);
+  const endDates = [...html.matchAll(/itemprop="endDate"\s+datetime="([^"]+)"/g)].map((m) => m[1]);
+  const startDate = startDates[0] || null;
+  const endDate = endDates[endDates.length - 1] || endDates[0] || startDate || null;
+
+  let timeText = "";
+  if (sessions.length === 1) timeText = sessions[0];
+  else if (sessions.length > 1) timeText = sessions.join(" / ");
+
+  return {
+    timeText,
+    startDate,
+    endDate,
+    sessions,
+  };
+}
+
+function applyDoubanEventTime(event, detailHtml) {
+  const parsed = parseDoubanEventTime(detailHtml);
+  if (!parsed) return event;
+  if (parsed.timeText) event.timeText = parsed.timeText;
+  if (parsed.startDate) event.startDate = parsed.startDate;
+  if (parsed.endDate) event.endDate = parsed.endDate;
+  return event;
+}
+
 function applyDoubanEventLocation(event, detailHtml, cityName = "") {
   const parsed = parseDoubanEventLocation(detailHtml);
   if (!parsed) return event;
@@ -200,6 +396,12 @@ function applyDoubanEventLocation(event, detailHtml, cityName = "") {
 }
 
 function rebuildDetailFields(event) {
+  return rebuildEventDerivedFields(event);
+}
+
+/** 从已存详情 HTML 重算：完整原文、简介、详情页时间 */
+function rebuildEventDerivedFields(event) {
+  const { buildEventDates } = require("./event-dates");
   const html = event.rawDetailHtml || event.raw_detail_html || "";
   const detailText = html ? cleanDetailText(html) : (event.rawDetailText || event.raw_detail_text || "");
   const nextEvent = {
@@ -208,21 +410,36 @@ function rebuildDetailFields(event) {
     rawDetailText: detailText,
     rawDetailHtml: html,
   };
+  if (html) applyDoubanEventTime(nextEvent, html);
+
+  const eventDates = nextEvent.startDate && nextEvent.endDate
+    ? buildEventDates(nextEvent.startDate, nextEvent.endDate, { fromToday: false })
+    : (event.eventDates || []);
+
   return {
     rawDetailText: detailText || null,
-    body: makeZupSummary(nextEvent) || null,
+    body: makeZupIntro(nextEvent) || null,
+    timeText: nextEvent.timeText || null,
+    startDate: nextEvent.startDate || null,
+    endDate: nextEvent.endDate || null,
+    eventDates,
   };
 }
 
 module.exports = {
   applyDoubanEventLocation,
+  applyDoubanEventTime,
   cleanDetailText,
   decodeHtml,
   extractDetailSentences,
   extractSectionSummary,
   extractEdescHtml,
+  makeZupIntro,
   makeZupSummary,
   normalizeSpace,
   parseDoubanEventLocation,
+  parseDoubanEventTime,
+  inferSummaryFromTitle,
   rebuildDetailFields,
+  rebuildEventDerivedFields,
 };

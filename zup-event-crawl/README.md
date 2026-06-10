@@ -14,7 +14,10 @@ zup-event-crawl/
 │   ├── server.js                 # 本地审核 HTTP 服务（API + 静态页）
 │   ├── scrape-douban-week-events.js
 │   ├── scrape-dianping-merchants.js
-│   ├── rebuild-event-bodies.js   # 未过期活动：从 HTML 重算 body / raw_detail_text
+│   ├── export-events-for-body.js
+│   ├── apply-event-body-decisions.js
+│   ├── batch-infer-event-bodies.js  # JS 备选生成 body
+│   ├── rebuild-event-bodies.js   # 从 HTML 重算原文/时间（跳过 agent body）
 │   ├── enrich-event-participation.js  # 未过期活动：刷新文末参加方式
 │   ├── compose-event-images.js   # 未过期活动：合成 4:3 横版封面
 │   ├── preview-event-image-compose.js  # 单条活动封面预览
@@ -25,7 +28,8 @@ zup-event-crawl/
 │   ├── review-db.js              # 活动 SQLite
 │   ├── merchant-db.js            # 商户 SQLite
 │   ├── douban-html.js            # 豆瓣详情 HTML 解析（edesc / 活动须知）
-│   ├── douban-detail.js          # 正文提炼、makeZupSummary
+│   ├── douban-detail.js          # 正文提炼、makeZupIntro（JS 备选）
+│   ├── event-body-agent.js       # body Agent 流程常量与校验
 │   ├── event-participation.js    # 参加方式段落（公众号 / 票务 / 发起人）
 │   ├── event-image-compose.js    # 4:3 封面合成（sharp）
 │   ├── composed-image.js         # 合成图路径与 URL 约定

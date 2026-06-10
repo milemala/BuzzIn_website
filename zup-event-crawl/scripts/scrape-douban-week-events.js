@@ -2,7 +2,12 @@
 
 const fs = require("fs");
 const path = require("path");
-const { applyDoubanEventLocation, cleanDetailText, makeZupSummary } = require("../lib/douban-detail");
+const {
+  applyDoubanEventLocation,
+  applyDoubanEventTime,
+  cleanDetailText,
+} = require("../lib/douban-detail");
+const { buildPendingBodyFields } = require("../lib/event-body-agent");
 const {
   DEFAULT_DETAIL_GAP_MS,
   DEFAULT_LIST_GAP_MS,
@@ -486,6 +491,13 @@ async function main() {
       event.detailText = event.rawDetailText;
       event.doubanEventType = parseDoubanEventType(detailHtml);
       applyDoubanEventLocation(event, detailHtml, city);
+      applyDoubanEventTime(event, detailHtml);
+      if (event.startDate && event.endDate) {
+        event.eventDates = buildEventDates(event.startDate, event.endDate, {
+          fromToday: false,
+          anchorDate: scrapeAnchor,
+        });
+      }
       const detailExcludeReason = getExcludeReason(event, event.doubanEventType);
       if (detailExcludeReason) {
         counters.skippedExcluded += 1;
@@ -541,7 +553,7 @@ async function main() {
     event.reviewReason = classification.reviewReason;
     event.douban_event_type = classification.douban_event_type;
     event.classification_source = classification.classification_source;
-    event.body = makeZupSummary(event);
+    Object.assign(event, buildPendingBodyFields());
     delete event.detailText;
     detailed.push(event);
   }

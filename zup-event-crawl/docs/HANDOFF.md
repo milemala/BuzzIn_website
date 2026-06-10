@@ -6,6 +6,8 @@
 
 本节记录活动 `body` 生成、参加方式段落、批量回填脚本的改动。**不向用户展示豆瓣原始链接**；报名方式须从已抓 HTML / 原文提炼，写清楚去哪报名或购票。
 
+**2026-06**：活动介绍主路径改为 **Cursor Agent** 撰写完整 `body`（**含参加方式**，见 [`event-body-agent.md`](event-body-agent.md)）；`body_source=agent` 时不再 JS 追加参加方式。抓取默认 `body_source=pending`，JS `makeZupSummary` 仅备选。
+
 ### 背景与问题
 
 | 现象 | 原因 |
@@ -20,7 +22,7 @@
 | 文件 | 职责 |
 |------|------|
 | `lib/douban-html.js` | 豆瓣详情 HTML 解析：`extractEdescHtml`（读到下一个 `mod` 区块）、`extractEventNotices`（活动须知）、`htmlFragmentToLines` |
-| `lib/douban-detail.js` | `cleanDetailText`、`extractSectionSummary`（优先 `【活动形式】` 等标题下正文）、`makeZupSummary`、`rebuildDetailFields` |
+| `lib/douban-detail.js` | `cleanDetailText`（合并活动须知+活动详情）、`parseDoubanEventTime`（详情页 `calendar-str-item` 完整时间）、`makeZupSummary`、`rebuildEventDerivedFields` |
 | `lib/event-participation.js` | 参加方式段落：`buildParticipationParagraph`、公众号 / 发起人 / 活动须知提炼 |
 | `scripts/rebuild-event-bodies.js` | 从未过期活动中，按 HTML 重算 `raw_detail_text` + `body`（跳过已过期） |
 | `scripts/enrich-event-participation.js` | 仅更新未过期活动的参加方式尾段（跳过已过期） |
@@ -37,8 +39,8 @@
 [参加方式段落，单独一段]
 ```
 
-- 介绍正文：来自 `edesc_s` 提炼，有 `【活动形式】` / `【为什么成立…】` 等小节时**优先用小节内容**，避免只留开头故事。
-- 参加方式：由 `appendParticipationToBody` 追加；若末段已是旧版参加方式，会先剥掉再写入新版。
+- 介绍正文：合并详情页各区块纯文本后**统一提炼**（不区分活动须知/活动详情）；有 `【活动形式】` 等小节时优先小节；跳过时间地点/票务噪音；全文无实质介绍时用标题兜底。
+- 参加方式：**主路径由 Agent 写入**（见 `event-body-agent.md`）；`body_source=agent` 时系统不再 JS 追加。仅 `js_fallback` / 旧数据仍走 `appendParticipationToBody`。
 
 ### 参加方式写作规则（`lib/event-participation.js`）
 
@@ -72,7 +74,7 @@
 ```bash
 cd zup-event-crawl
 
-# 仅未过期活动：从 raw_detail_html 重算正文 + 参加方式
+# 仅未过期活动：从 raw_detail_html 重算完整原文、简介、详情页时间
 node scripts/rebuild-event-bodies.js
 node scripts/rebuild-event-bodies.js --dry-run    # 预览，不写库
 node scripts/rebuild-event-bodies.js --force      # 强制全部未过期活动重算
@@ -555,7 +557,7 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 - 不超过 400 字，但不要为了短而短；信息丰富的活动可以写到 150-300 字。
 - 摘要必须基于活动本身：主题、内容、形式、氛围、亮点、现场体验和参与感。
 - 如果详情页里主要是票务/报名/退款/核销/入场说明，要过滤掉这些内容，只保留能帮助用户理解活动本身的信息。
-- **参加方式**（报名、购票、公众号、豆瓣同城联系发起人、预约与开放时间）写在 `body` **末尾单独一段**，由 `lib/event-participation.js` 自动生成；规则见上文「2026-06-08 活动正文与报名方式提炼」。
+- **参加方式**写在 `body` **末尾单独一段**。**Agent 主路径**根据原文撰写（联系豆瓣发布者 / 公众号微信 / 票务 App，见 `event-body-agent.md`）；JS 自动生成仅作备选。
 - 如果原始详情很短或很像票务入口，可以用标题、分类、主办方和场地信息生成发布型简介，但不能编造不存在的演出阵容、嘉宾、权益或活动流程。
 
 可以写：
@@ -656,14 +658,16 @@ npm start
 **完整流程**（新会话 Agent **必读**）：
 
 - 分类/挡下：[`docs/event-classification-agent.md`](event-classification-agent.md)
+- 活动介绍：[`docs/event-body-agent.md`](event-body-agent.md)
 - POI：[`docs/event-poi-agent-workflow.md`](event-poi-agent-workflow.md)
 
 摘要：
 
 - 抓取后 **不再用 JS 正则** 做推荐/挡下；默认 `待分类`，由大模型写 `classification-decisions.json`
+- 活动 `body` 默认 `body_source=pending`，由大模型写完整正文（含参加方式）到 `body-decisions.json`；JS `makeZupSummary` 仅备选（`batch-infer-event-bodies.js`）
 - POI：`export-events-for-poi.js` → `poi-search-cli` + `decisions.json` → `apply-event-poi-decisions.js`
 - Workbench：`data/poi-agent-workbench/<城市>/`（`pending.json` / `decisions.json`）
-- 审核台：卡片展示 **POI 已匹配**；筛选「未匹配 POI」「POI 存疑」；标准/严格存疑模式；展示层叠加 `assessEventPoiConfidence` 校验
+- 审核台：卡片展示 **POI 已匹配**；筛选「未匹配 POI」「POI 存疑」（只认 Agent 的 `poi_agent_doubtful`）
 - 维护：`scripts/reassess-agent-poi-doubt.js` 仅重评已标存疑条目，勿推翻 `reject`
 
 ## 当前 UI 状态摘要

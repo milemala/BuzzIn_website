@@ -49,12 +49,17 @@ function htmlFragmentToLines(fragment) {
     .filter(Boolean);
 }
 
-function extractEventNotices(html) {
+function extractEventNoticeHtml(html) {
   const source = String(html || "");
   const match = source.match(/<h2>活动须知<\/h2>\s*<div class="wr">([\s\S]*?)<\/div>/);
-  if (!match) return [];
+  return match ? match[1] : "";
+}
 
-  return htmlFragmentToLines(match[1])
+function extractEventNotices(html) {
+  const fragment = extractEventNoticeHtml(html);
+  if (!fragment) return [];
+
+  return htmlFragmentToLines(fragment)
     .map((line) => line.replace(/^\d+[\.、]\s*/, "").trim())
     .filter(Boolean);
 }
@@ -62,6 +67,7 @@ function extractEventNotices(html) {
 module.exports = {
   decodeHtml,
   extractEdescHtml,
+  extractEventNoticeHtml,
   extractEventNotices,
   htmlFragmentToLines,
   normalizeSpace,

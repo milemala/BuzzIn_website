@@ -11,7 +11,6 @@ const {
   countApprovedActiveEvents,
   getApprovedEvents,
   getEventByUid,
-  getEventPoiMatchMode,
   getEventsPayload,
   getExportImportNows,
   getReviewState,
@@ -26,7 +25,6 @@ const {
   syncMerchantsForPoiEvents,
   updateEventImportPrep,
   updateEventPoiCandidatesOnly,
-  setEventPoiMatchMode,
 } = require("../lib/review-db");
 const {
   batchImportApprovedEvents,
@@ -253,21 +251,6 @@ async function handleApi(req, res, pathname) {
 
   if (req.method === "GET" && pathname === "/api/events") {
     sendJson(res, 200, getEventsPayload(db));
-    return;
-  }
-
-  if (req.method === "POST" && pathname === "/api/events/poi-match-mode") {
-    try {
-      const body = JSON.parse((await readBody(req)) || "{}");
-      const mode = setEventPoiMatchMode(db, body.mode);
-      sendJson(res, 200, {
-        ok: true,
-        poi_match_mode: mode,
-        payload: getEventsPayload(db),
-      });
-    } catch (error) {
-      sendJson(res, 400, { ok: false, error: error.message });
-    }
     return;
   }
 

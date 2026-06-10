@@ -198,10 +198,6 @@
         <div class="save-state warn" id="saveState">正在连接本地数据库</div>
       </div>
       <div class="actions">
-        <div class="seg" id="poiModeToggle" title="只影响「POI 存疑」标记，不会重搜已绑定的 POI">
-          <button type="button" data-mode="normal"><span class="seg-btn-label">标准存疑</span></button>
-          <button type="button" data-mode="strict"><span class="seg-btn-label">严格存疑</span></button>
-        </div>
         <button class="btn" id="resetBtn">重置审核</button>
         <button class="btn" id="batchPrepBtn">批量补全入库</button>
         <button class="btn primary" id="batchImportBtn">批量入库</button>
@@ -261,8 +257,6 @@
     const DEFAULT_NOW_TYPE = 3;
     let prepBusy = false;
     let importBusy = false;
-    let poiMatchMode = "normal";
-    let poiModeBusy = false;
     const poiKeywords = {};
     const poiPreviews = {};
 
@@ -278,8 +272,6 @@
     const sortModeEl = document.getElementById("sortMode");
     const searchInput = document.getElementById("searchInput");
     const saveStateEl = document.getElementById("saveState");
-    const poiModeToggleEl = document.getElementById("poiModeToggle");
-
     function getStatus(event) {
       const uid = event.eventUid || event.event_uid || event.id;
       return reviewState[uid] || event.review_status || "pending";
@@ -670,7 +662,7 @@
       const detail = reasons.length
         ? reasons.map((reason) => `<div>· ${escapeHtml(reason)}</div>`).join("")
         : "<div>· 请人工核对 POI 是否对应正确场所</div>";
-      return `<div class="poi-warn"><b>POI 存疑${event.poi_match_score ? `（得分 ${event.poi_match_score}）` : ""}</b>${detail}</div>`;
+      return `<div class="poi-warn"><b>POI 存疑</b>${detail}</div>`;
     }
 
     function renderPoiBlock(event) {
@@ -715,45 +707,6 @@
       payload = await response.json();
       if (!payload || typeof payload !== "object") {
         payload = { events: [], cities: [], cityMeta: {}, sourcePages: {}, dateWindow: [] };
-      }
-      poiMatchMode = payload.poi_match_mode || "normal";
-      renderPoiModeToggle();
-    }
-
-    function renderPoiModeToggle() {
-      if (!poiModeToggleEl) return;
-      for (const button of poiModeToggleEl.querySelectorAll("button[data-mode]")) {
-        button.classList.toggle("active", button.dataset.mode === poiMatchMode);
-        button.disabled = poiModeBusy || prepBusy || importBusy;
-      }
-    }
-
-    async function switchPoiMatchMode(mode) {
-      if (poiModeBusy || prepBusy || importBusy || mode === poiMatchMode) return;
-      const label = mode === "strict" ? "严格存疑" : "标准存疑";
-      poiModeBusy = true;
-      renderPoiModeToggle();
-      setSaveState(`切换为${label}...`, "warn");
-      try {
-        const response = await fetch("/api/events/poi-match-mode", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ mode }),
-        });
-        const data = await response.json();
-        if (!response.ok || !data.ok) {
-          throw new Error(data.error || "切换失败");
-        }
-        payload = data.payload || payload;
-        poiMatchMode = data.poi_match_mode || mode;
-        const doubtful = (payload.events || []).filter((event) => event.poi_doubtful && event.location_poi_id).length;
-        setSaveState(`已切换为${label}（当前 ${doubtful} 条标为 POI 存疑）`, "ok");
-        render();
-      } catch (error) {
-        setSaveState(`切换失败: ${error.message}`, "error");
-      } finally {
-        poiModeBusy = false;
-        renderPoiModeToggle();
       }
     }
 
@@ -1503,14 +1456,6 @@
       resetPage();
       render();
     });
-
-    if (poiModeToggleEl) {
-      poiModeToggleEl.addEventListener("click", (event) => {
-        const button = event.target.closest("button[data-mode]");
-        if (!button || button.disabled) return;
-        void switchPoiMatchMode(button.dataset.mode);
-      });
-    }
 
     document.getElementById("resetBtn").addEventListener("click", () => {
       void clearReviewDecisions();

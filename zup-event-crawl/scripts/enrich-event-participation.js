@@ -29,6 +29,7 @@ for (const row of rows) {
   }
 
   const event = rowToEvent(row);
+  if (String(event.body_source || "") === "agent") continue;
   const cleaned = stripStaleParticipation(row.body);
   const nextBody = enrichEventBody({ ...event, body: cleaned });
   if (nextBody === String(row.body || "").trim()) continue;

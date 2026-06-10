@@ -11,7 +11,8 @@ alwaysApply: false
 **先读**：
 
 1. [`docs/event-classification-agent.md`](../docs/event-classification-agent.md) — 推荐/挡下 + 分类
-2. [`docs/event-poi-agent-workflow.md`](../docs/event-poi-agent-workflow.md) — POI 匹配
+2. [`docs/event-body-agent.md`](../docs/event-body-agent.md) — 活动介绍 body
+3. [`docs/event-poi-agent-workflow.md`](../docs/event-poi-agent-workflow.md) — POI 匹配
 
 **不要依赖聊天记忆。**
 
@@ -45,7 +46,21 @@ node scripts/export-events-for-classification.js --city=<中文城市名> --refr
 node scripts/apply-event-classification-decisions.js --city=<中文城市名>
 ```
 
-### 3. 导出 POI 任务
+### 3. 导出并撰写活动介绍
+
+```bash
+node scripts/export-events-for-body.js --city=<中文城市名> --refresh
+```
+
+读 `body-pending.json`，逐条写 `body-decisions.json`（完整 `body` = 活动介绍 + 参加方式 + `reason`）。参加方式按原文判断：联系豆瓣发布者 / 公众号微信 / 票务 App。
+
+```bash
+node scripts/apply-event-body-decisions.js --city=<中文城市名>
+```
+
+无 Agent 时备选：`node scripts/batch-infer-event-bodies.js --city=<中文城市名>`
+
+### 4. 导出 POI 任务
 
 ```bash
 node scripts/export-events-for-poi.js --city=<中文城市名> --refresh --pending-only
@@ -53,7 +68,7 @@ node scripts/export-events-for-poi.js --city=<中文城市名> --refresh --pendi
 
 读 `data/poi-agent-workbench/<城市>/pending.json`。
 
-### 4. 大模型 POI（核心）
+### 5. 大模型 POI（核心）
 
 对每个 `group`：
 
@@ -64,7 +79,7 @@ node scripts/export-events-for-poi.js --city=<中文城市名> --refresh --pendi
 
 **硬规则**：区划必须一致；泛名「文创园/产业园」无门牌对齐 → 不 match；多场地（等N家影院）要标存疑或只绑主场地。
 
-### 5. 写 POI decisions 并入库
+### 6. 写 POI decisions 并入库
 
 `data/poi-agent-workbench/<城市>/decisions.json` →
 
@@ -72,12 +87,11 @@ node scripts/export-events-for-poi.js --city=<中文城市名> --refresh --pendi
 node scripts/apply-event-poi-decisions.js --city=<城市>
 ```
 
-### 6. 汇报
+### 7. 汇报
 
-抓取条数、推荐/挡下/待分类、POI match/reject/doubtful、需人工条目。
+抓取条数、推荐/挡下/待分类、body 待写/已写、POI match/reject/doubtful、需人工条目。
 
 ## 审核台
 
-- 展示 Agent POI + 运行时校验存疑（`assessEventPoiConfidence`）
-- 标准/严格存疑只影响黄标，见 workflow 文档
+- 展示 Agent POI；POI 存疑只认 `poi_agent_doubtful` / `poi_agent_reason`
 - 人工修正：自由搜索 + 点选（`manual`）

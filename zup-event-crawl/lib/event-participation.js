@@ -53,7 +53,7 @@ function extractPublicAccount(source) {
   const text = String(source || "");
   const patterns = [
     /公众号[:：]\s*[「『"']?([^」』"'\s<，。；\n]{2,24})[」』"']?/,
-    /关注[「『"']?([^」』"'\s<，。；\n]{2,24})[」』"']?公众号/,
+    /关注[「『"']?([^」』"'\s<，。；\n]{2,24})[」』"']?(?:微信服务号|公众号)/,
   ];
   for (const pattern of patterns) {
     const match = text.match(pattern);
@@ -85,6 +85,23 @@ function extractIrregularScheduleNote(rawDetailText, html) {
       .replace(/，?具体时间请咨询管理员/, ""));
   }
   return "";
+}
+
+function buildLotterySignupParagraph(event, html) {
+  const raw = `${event.rawDetailText || event.raw_detail_text || ""}`;
+  const fee = formatFee(event.fee);
+  if (fee !== "免费" && !/免费/.test(raw)) return "";
+  if (!/抽奖|中签|名单公布/.test(raw)) return "";
+
+  const account = extractPublicAccount(html)
+    || extractPublicAccount(raw);
+  const organizer = resolveOrganizerName(event, html);
+  const parts = ["免费参加，需在豆瓣报名并参与抽奖"];
+  if (account) parts.push(`可关注「${account}」公众号接收中签通知`);
+  if (organizer && !/^\d+$/.test(organizer)) {
+    parts.push(`也可在豆瓣同城联系发起人「${organizer}」`);
+  }
+  return `${parts.join("；")}。`;
 }
 
 function buildSignupEntryHint(event, html) {
@@ -201,6 +218,9 @@ function buildParticipationParagraph(event) {
     return `可于${channel.name}${action}。`;
   }
 
+  const lotterySignup = buildLotterySignupParagraph(event, rawDetailHtml);
+  if (lotterySignup) return lotterySignup;
+
   const signupEntry = buildSignupEntryHint(event, rawDetailHtml);
   const scheduleNote = extractIrregularScheduleNote(event.rawDetailText || event.raw_detail_text, rawDetailHtml);
   const noticeHints = summarizeEventNotices(extractEventNotices(rawDetailHtml));
@@ -269,6 +289,9 @@ function appendParticipationToBody(body, event) {
 }
 
 function enrichEventBody(event) {
+  if (String(event?.body_source || "").trim() === "agent") {
+    return String(event.body || "").trim();
+  }
   return appendParticipationToBody(event.body, event);
 }
 

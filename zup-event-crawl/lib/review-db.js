@@ -18,27 +18,12 @@ const {
 const { enrichEventBody } = require("./event-participation");
 const { buildDateWindowFromEvents, resolveEventDates } = require("./event-dates");
 const {
-  assessEventPoiConfidence,
   buildPoiKeyword,
-  isStrictPoiMatchMode,
-  normalizePoiMatchMode,
   extractLocationBuildingDetail,
   parseDoubanLocation,
-  poiBuildingDetailAligned,
-  POI_MATCH_MODE_NORMAL,
 } = require("./tencent-poi");
 
 const DEFAULT_NOTE = "本文件用于本地人工审核。保留原始抓取详情文本，body 为基于原文提炼的 Zup 活动简介。图片发布前需再次确认来源授权与平台规则。";
-const EVENT_POI_MATCH_MODE_KEY = "event_poi_match_mode";
-
-/** Agent 仅因「大楼/园区/楼栋颗粒度」标存疑、主地点其实已对齐时，标准模式放行 */
-const AGENT_GRANULARITY_ONLY_DOUBT_PATTERNS = [
-  /大厦\/园区级地址/,
-  /地标\s*POI/,
-  /具体楼层|活动室/,
-  /楼栋需人工确认/,
-  /先匹配园区\s*POI/,
-];
 const VALID_REVIEW_STATUSES = new Set(["approved", "pending", "rejected"]);
 
 const EVENT_IMPORT_COLUMNS = [
@@ -65,6 +50,7 @@ const EVENT_IMPORT_COLUMNS = [
   ["image_original", "TEXT NOT NULL DEFAULT ''"],
   ["douban_event_type", "TEXT NOT NULL DEFAULT ''"],
   ["classification_source", "TEXT NOT NULL DEFAULT 'pending'"],
+  ["body_source", "TEXT NOT NULL DEFAULT 'pending'"],
 ];
 
 function parsePoiCandidates(raw) {
@@ -214,6 +200,7 @@ function rowToEvent(row) {
     reviewReason: row.review_reason,
     douban_event_type: row.douban_event_type || "",
     classification_source: String(row.classification_source || "pending").trim() || "pending",
+    body_source: String(row.body_source || "pending").trim() || "pending",
     publish_user_id: row.publish_user_id || DEFAULT_PUBLISH_USER_ID,
     now_type: normalizeNowType(row.now_type, row),
     location_poi_id: row.location_poi_id || "",
@@ -245,22 +232,6 @@ function rowToEvent(row) {
   };
 }
 
-function isAgentGranularityOnlyDoubt(reason) {
-  const text = String(reason || "").trim();
-  if (!text) return false;
-  return AGENT_GRANULARITY_ONLY_DOUBT_PATTERNS.some((pattern) => pattern.test(text));
-}
-
-function getEventPoiMatchMode(db) {
-  return normalizePoiMatchMode(getMetaValue(db, EVENT_POI_MATCH_MODE_KEY, POI_MATCH_MODE_NORMAL));
-}
-
-function setEventPoiMatchMode(db, mode) {
-  const normalized = normalizePoiMatchMode(mode);
-  setMetaValue(db, EVENT_POI_MATCH_MODE_KEY, normalized);
-  return normalized;
-}
-
 function agentKeywordDroppedBuildingDetail(agentKeyword, locationTerm) {
   if (!agentKeyword || !locationTerm) return false;
   if (!/[A-Za-z0-9一二三四五六七八九十]+[栋座楼幢]/i.test(locationTerm)) return false;
@@ -270,30 +241,18 @@ function agentKeywordDroppedBuildingDetail(agentKeyword, locationTerm) {
   return locationCore.startsWith(agentCore) && locationCore.length > agentCore.length;
 }
 
-function resolveEventPoiDisplayFlags(event, options = {}) {
-  const poiMatchMode = normalizePoiMatchMode(options.poiMatchMode || POI_MATCH_MODE_NORMAL);
-  if (event?.poi_match_source === "agent" && event?.location_poi_id) {
-    const reason = String(event.poi_agent_reason || "").trim();
-    let agentDoubtful = Boolean(event.poi_agent_doubtful);
-    if (agentDoubtful && isAgentGranularityOnlyDoubt(reason)
-      && poiBuildingDetailAligned(event.location, event.city, event.poi_title)) {
-      agentDoubtful = false;
-    }
-    const agentDisplayDoubtful = agentDoubtful && (
-      isStrictPoiMatchMode(poiMatchMode) || !isAgentGranularityOnlyDoubt(reason)
-    );
-    const heuristic = assessEventPoiConfidence(event);
-    const doubtful = agentDisplayDoubtful || heuristic.doubtful;
-    const reasons = [];
-    if (agentDisplayDoubtful && reason) reasons.push(reason);
-    if (heuristic.doubtful) reasons.push(...heuristic.reasons);
-    return {
-      doubtful,
-      score: heuristic.score,
-      reasons: [...new Set(reasons)],
-    };
+/** 活动 POI 存疑只认 Agent 写入的 poi_agent_doubtful，不再叠加 JS 地址校验 */
+function resolveEventPoiDisplayFlags(event) {
+  if (!event?.location_poi_id || event?.poi_match_source !== "agent") {
+    return { doubtful: false, score: null, reasons: [] };
   }
-  return { doubtful: false, score: null, reasons: [] };
+  const reason = String(event.poi_agent_reason || "").trim();
+  const doubtful = Boolean(event.poi_agent_doubtful);
+  return {
+    doubtful,
+    score: null,
+    reasons: doubtful && reason ? [reason] : [],
+  };
 }
 
 function resolvePoiSuggestKeyword(event) {
@@ -328,10 +287,10 @@ function ensurePoiCandidates(event) {
   }, ...candidates];
 }
 
-function enrichEventPoiFlags(event, options = {}) {
+function enrichEventPoiFlags(event) {
   if (!event) return event;
   const withCandidates = { ...event, poi_candidates: ensurePoiCandidates(event) };
-  const poiCheck = resolveEventPoiDisplayFlags(withCandidates, options);
+  const poiCheck = resolveEventPoiDisplayFlags(withCandidates);
   return {
     ...withCandidates,
     body: isExpired(withCandidates) ? withCandidates.body : enrichEventBody(withCandidates),
@@ -345,9 +304,7 @@ function enrichEventPoiFlags(event, options = {}) {
 function getEventByUid(db, eventUid) {
   const row = db.prepare("SELECT * FROM events WHERE event_uid = ?").get(eventUid);
   if (!row) return null;
-  return enrichEventPoiFlags(rowToEvent(row), {
-    poiMatchMode: getEventPoiMatchMode(db),
-  });
+  return enrichEventPoiFlags(rowToEvent(row));
 }
 
 function applyEventPoiSelection(db, eventUid, poi, options = {}) {
@@ -751,12 +708,12 @@ function importPayload(db, payload, options = {}) {
       event_uid, source_id, source, source_name, source_position, source_url, source_list_page,
       city, district, title, category, start_date, end_date, time_text, location,
       latitude, longitude, image, image_original, fee, owner, counts, raw_detail_text, raw_detail_html, body, original_link,
-      score, suggested, review_reason, douban_event_type, classification_source, updated_at
+      score, suggested, review_reason, douban_event_type, classification_source, body_source, updated_at
     ) VALUES (
       ?, ?, ?, ?, ?, ?, ?,
       ?, ?, ?, ?, ?, ?, ?, ?,
       ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-      ?, ?, ?, ?, ?, ?
+      ?, ?, ?, ?, ?, ?, ?
     )
     ON CONFLICT(event_uid) DO UPDATE SET
       source_id = excluded.source_id,
@@ -788,7 +745,10 @@ function importPayload(db, payload, options = {}) {
       counts = excluded.counts,
       raw_detail_text = excluded.raw_detail_text,
       raw_detail_html = excluded.raw_detail_html,
-      body = excluded.body,
+      body = CASE
+        WHEN events.body_source = 'agent' THEN events.body
+        ELSE excluded.body
+      END,
       original_link = excluded.original_link,
       score = CASE
         WHEN events.classification_source = 'agent' THEN events.score
@@ -809,6 +769,10 @@ function importPayload(db, payload, options = {}) {
       classification_source = CASE
         WHEN events.classification_source = 'agent' THEN events.classification_source
         ELSE excluded.classification_source
+      END,
+      body_source = CASE
+        WHEN events.body_source = 'agent' THEN events.body_source
+        ELSE excluded.body_source
       END,
       updated_at = excluded.updated_at
   `);
@@ -874,6 +838,7 @@ function importPayload(db, payload, options = {}) {
           event.reviewReason || null,
           event.douban_event_type || event.doubanEventType || "",
           event.classification_source || "pending",
+          event.body_source || "pending",
           new Date().toISOString()
         );
 
@@ -1073,7 +1038,6 @@ function getEventsPayload(db) {
 
   const cityOrder = cityImportRows.length ? cityImportRows.map((row) => row.city) : [...new Set(eventRows.map((row) => row.city))];
   const cityOrderMap = new Map(cityOrder.map((city, index) => [city, index]));
-  const poiMatchMode = getEventPoiMatchMode(db);
   const reviewStatusByUid = new Map(
     db.prepare("SELECT event_uid, status FROM review_decisions").all()
       .map((row) => [row.event_uid, row.status]),
@@ -1088,7 +1052,7 @@ function getEventsPayload(db) {
           ...base,
           eventDates: eventDatesByUid.get(row.event_uid) || [],
         }),
-      }, { poiMatchMode });
+      });
     })
     .sort((a, b) => {
       const cityDiff = (cityOrderMap.get(a.city) ?? Number.MAX_SAFE_INTEGER) - (cityOrderMap.get(b.city) ?? Number.MAX_SAFE_INTEGER);
@@ -1124,9 +1088,36 @@ function getEventsPayload(db) {
     dateWindow,
     note,
     cityMeta,
-    poi_match_mode: poiMatchMode,
     events,
   };
+}
+
+function applyEventBody(db, eventUid, decision) {
+  const {
+    BODY_SOURCE_AGENT,
+    validateBodyDecision,
+  } = require("./event-body-agent");
+  const check = validateBodyDecision({ ...decision, event_uid: eventUid });
+  if (!check.ok) {
+    throw new Error(check.errors.join("；"));
+  }
+  const now = new Date().toISOString();
+  const result = db.prepare(`
+    UPDATE events SET
+      body = @body,
+      body_source = @body_source,
+      updated_at = @updated_at
+    WHERE event_uid = @event_uid
+  `).run({
+    event_uid: eventUid,
+    body: check.bodyText,
+    body_source: BODY_SOURCE_AGENT,
+    updated_at: now,
+  });
+  if (!result.changes) {
+    throw new Error(`活动不存在: ${eventUid}`);
+  }
+  return getEventByUid(db, eventUid);
 }
 
 function applyEventClassification(db, eventUid, decision) {
@@ -1168,6 +1159,7 @@ function applyEventClassification(db, eventUid, decision) {
 module.exports = {
   DEFAULT_NOTE,
   applyDefaultImportPrepToActiveEvents,
+  applyEventBody,
   applyEventClassification,
   applyEventPoiSelection,
   syncEventPoiCoordinates,
@@ -1176,7 +1168,6 @@ module.exports = {
   countApprovedActiveEvents,
   getApprovedEvents,
   getEventByUid,
-  getEventPoiMatchMode,
   getEventsPayload,
   getExportImportNows,
   getReviewState,
@@ -1187,7 +1178,6 @@ module.exports = {
   markEventImportResult,
   openDatabase,
   rejectEventForMissingPoi,
-  setEventPoiMatchMode,
   clearReviewDecisions,
   patchReviewDecision,
   patchReviewDecisions,

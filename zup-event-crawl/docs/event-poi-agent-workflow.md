@@ -228,23 +228,14 @@ node scripts/apply-event-poi-decisions.js --city=成都
 | 未匹配 POI | `location_poi_id` 为空 |
 | POI 存疑 | 见下节「存疑怎么算」 |
 
-### 标准存疑 vs 严格存疑
+### POI 存疑怎么算
 
-只影响**黄标展示**，不重搜 POI。
+只认 **Agent 写入** 的 `poi_agent_doubtful` + `poi_agent_reason`（见 `lib/review-db.js` → `resolveEventPoiDisplayFlags`）。
 
-| 模式 | 何时标黄 |
-|------|----------|
-| **严格** | `poi_agent_doubtful=1` 就标（栋座已对齐会先放行） |
-| **标准** | 同上，但 reason 属于「仅颗粒度」类（大厦/园区级、地标POI、具体楼层等）则不标黄 |
+- Agent 标 `doubtful: false` → 审核台**不黄标**
+- Agent 标 `doubtful: true` → 黄标，并展示 Agent 写的 reason
 
-### 存疑怎么算（代码：`lib/review-db.js` → `resolveEventPoiDisplayFlags`）
-
-对 **Agent 已绑定 POI** 的活动：
-
-1. 读库里的 `poi_agent_doubtful` + `poi_agent_reason`（含标准/严格模式规则）
-2. **叠加** `lib/tencent-poi.js` → `assessEventPoiConfidence`（区划不一致、门牌对不上、泛名误匹配等）
-
-因此：Agent 漏标存疑时，审核台仍可能标黄；Agent 标了存疑但地址其实正确时，也可能被校验纠正展示。
+不再叠加 JS 地址/区划自动校验，避免误报（如店名地址已对、却被「区划不一致」标黄）。
 
 ### 人工改 POI
 
@@ -275,7 +266,7 @@ node scripts/apply-event-poi-decisions.js --city=成都
 | 审核页「智能匹配」 | 已移除 |
 | `/api/events/poi-auto-batch` | 已禁用 |
 
-`lib/tencent-poi.js` 仍用于：腾讯 API、商户 POI、审核页自由搜索、**活动 POI 展示层校验**（`assessEventPoiConfidence`）。活动 POI 的**搜词与最终选点**只认大模型 + `decisions.json`。
+`lib/tencent-poi.js` 仍用于：腾讯 API、商户 POI、审核页自由搜索。活动 POI 的**搜词、选点、存疑**只认大模型 + `decisions.json`。
 
 ---
 

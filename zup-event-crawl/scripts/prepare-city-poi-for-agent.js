@@ -60,6 +60,7 @@ function main() {
   }
 
   run(`node scripts/export-events-for-classification.js --city=${options.cityName} --refresh`);
+  run(`node scripts/export-events-for-body.js --city=${options.cityName} --refresh`);
 
   const pendingFlag = options.pendingOnly ? " --pending-only" : "";
   run(`node scripts/export-events-for-poi.js --city=${options.cityName} --refresh${pendingFlag}`);
@@ -69,9 +70,11 @@ function main() {
   console.log("抓取与导出已完成。请在 Cursor 对话中由大模型继续：");
   console.log(`  1. 分类/挡下：读 ${path.join(workbench, "classification-pending.json")}`);
   console.log("     → 写 classification-decisions.json → apply-event-classification-decisions.js");
-  console.log(`  2. POI：读 ${path.join(workbench, "pending.json")}`);
+  console.log(`  2. 活动介绍：读 ${path.join(workbench, "body-pending.json")}`);
+  console.log("     → 写 body-decisions.json（含参加方式）→ apply-event-body-decisions.js");
+  console.log(`  3. POI：读 ${path.join(workbench, "pending.json")}`);
   console.log("     → poi-search-cli.js → decisions.json → apply-event-poi-decisions.js");
-  console.log("详见 docs/event-classification-agent.md 与 docs/event-poi-agent-workflow.md");
+  console.log("详见 docs/event-classification-agent.md、docs/event-body-agent.md 与 docs/event-poi-agent-workflow.md");
 }
 
 main();
