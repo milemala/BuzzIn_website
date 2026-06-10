@@ -18,7 +18,6 @@ const {
   importPayload,
   importReviewState,
   openDatabase,
-  rejectEventForMissingPoi,
   clearReviewDecisions,
   patchReviewDecision,
   patchReviewDecisions,
@@ -60,15 +59,12 @@ const {
   getMerchantBubbleState,
   rebuildRotationBuckets,
 } = require("../lib/merchant-bubble");
-const { batchEventAutoPoi } = require("../lib/event-poi-batch");
 const { batchAutoPoi } = require("../lib/merchant-poi-batch");
 const {
   buildPoiKeyword,
-  pickBestPoiForEvent,
   pickBestPoiForMerchant,
   reorderPoiByBestMatch,
   searchPoi,
-  searchPoiForEvent,
   searchPoiForMerchant,
 } = require("../lib/tencent-poi");
 
@@ -302,15 +298,11 @@ async function handleApi(req, res, pathname) {
     try {
       const body = JSON.parse((await readBody(req)) || "{}");
       const defaults = applyDefaultImportPrepToActiveEvents(db);
-      const poiReport = body.skip_poi
-        ? { total: 0, ok: 0, fail: 0, results: [] }
-        : await batchEventAutoPoi(db, {
-          city: body.city || "",
-          only_approved: body.only_approved === true,
-          refresh: body.refresh === true,
-          limit: body.limit || 500,
-        });
-      sendJson(res, 200, { ok: true, defaults, poi: poiReport });
+      sendJson(res, 200, {
+        ok: true,
+        defaults,
+        poi: { total: 0, ok: 0, fail: 0, results: [], skipped: true, reason: "活动 POI 由 Cursor Agent 匹配，不再批量 JS 自动 POI" },
+      });
     } catch (error) {
       sendJson(res, 400, { ok: false, error: error.message });
     }
@@ -318,18 +310,10 @@ async function handleApi(req, res, pathname) {
   }
 
   if (req.method === "POST" && pathname === "/api/events/poi-auto-batch") {
-    try {
-      const body = JSON.parse((await readBody(req)) || "{}");
-      const report = await batchEventAutoPoi(db, {
-        city: body.city || "",
-        only_approved: body.only_approved === true,
-        refresh: body.refresh === true,
-        limit: body.limit || 80,
-      });
-      sendJson(res, 200, report);
-    } catch (error) {
-      sendJson(res, 400, { ok: false, error: error.message });
-    }
+    sendJson(res, 410, {
+      ok: false,
+      error: "活动批量 JS 自动 POI 已停用。请用 Cursor Agent 匹配 POI，见 docs/event-poi-agent-workflow.md",
+    });
     return;
   }
 
@@ -361,7 +345,15 @@ async function handleApi(req, res, pathname) {
       } else if (Number.isInteger(body.candidate_index) || Number.isFinite(body.candidate_index)) {
         const idx = Number(body.candidate_index);
         if (!candidates.length) {
-          const search = await searchPoiForEvent(event.location, event.city || "全国");
+          const keyword = String(body.keyword || event.poi_agent_search_keyword || "").trim();
+          if (!keyword) {
+            sendJson(res, 400, {
+              ok: false,
+              error: "无候选列表，请先填写关键词并刷新候选",
+            });
+            return;
+          }
+          const search = await searchPoi({ keyword, city: event.city || "全国" });
           candidates = search.items;
         }
         poi = candidates[idx];
@@ -370,29 +362,30 @@ async function handleApi(req, res, pathname) {
           return;
         }
       } else {
-        const search = body.keyword
-          ? await searchPoi({
-            keyword: String(body.keyword).trim(),
-            city: body.city || event.city || "全国",
-          })
-          : await searchPoiForEvent(event.location, body.city || event.city || "全国", {
-            title: event.title,
-          });
-        candidates = body.keyword
-          ? reorderPoiByBestMatch(String(body.keyword).trim(), search.items, [
-            event.location,
-            event.title,
-          ].filter(Boolean))
-          : search.items;
-        if (!candidates.length) {
-          rejectEventForMissingPoi(db, eventUid);
-          sendJson(res, 200, {
+        const keyword = String(
+          body.keyword || event.poi_agent_search_keyword || "",
+        ).trim();
+        if (!keyword) {
+          sendJson(res, 400, {
             ok: false,
-            rejected: true,
-            error: "无 POI 结果，已自动拒绝",
+            error: "请填写搜索关键词，或等待 Cursor Agent 完成 POI 匹配后再在审核页修正",
+          });
+          return;
+        }
+        const search = await searchPoi({
+          keyword,
+          city: body.city || event.city || "全国",
+        });
+        candidates = reorderPoiByBestMatch(keyword, search.items, [
+          event.location,
+          event.title,
+        ].filter(Boolean));
+        if (!candidates.length) {
+          sendJson(res, 200, {
+            ok: true,
             event: getEventByUid(db, eventUid),
             candidates: [],
-            keyword: search.keyword || body.keyword || "",
+            keyword: search.keyword || keyword,
           });
           return;
         }
@@ -402,27 +395,22 @@ async function handleApi(req, res, pathname) {
             ok: true,
             event: updated,
             candidates,
-            keyword: search.keyword || body.keyword || "",
+            keyword: search.keyword || keyword,
           });
           return;
         }
-        poi = pickBestPoiForEvent(event, candidates).poi;
-        if (!poi) {
-          rejectEventForMissingPoi(db, eventUid);
-          sendJson(res, 200, {
-            ok: false,
-            rejected: true,
-            error: "无 POI 结果，已自动拒绝",
-            event: getEventByUid(db, eventUid),
-            candidates: [],
-          });
-          return;
-        }
+        sendJson(res, 400, {
+          ok: false,
+          error: "请从候选列表中点选 POI，或使用「刷新候选」",
+          candidates,
+          keyword: search.keyword || keyword,
+        });
+        return;
       }
 
       applyEventPoiSelection(db, eventUid, poi, {
         candidates,
-        matchSource: "manual",
+        matchSource: body.match_source || "manual",
       });
       const updated = await syncEventMerchantByPoi(db, eventUid);
       sendJson(res, 200, { ok: true, event: updated, candidates });

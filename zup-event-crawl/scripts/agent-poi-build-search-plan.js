@@ -2,13 +2,14 @@
 "use strict";
 
 /**
- * 从 pending.json 生成 search-plan.json（按豆瓣地址提炼搜索词，保留栋/座）。
+ * @deprecated 活动 POI 已改由 Cursor 大模型判断，勿再使用本脚本。
+ * 见 docs/event-poi-agent-workflow.md
  *
- *   node scripts/agent-poi-build-search-plan.js 上海
+ * 从 pending.json 生成 search-plan.json（旧版 JS 自动搜词，已废弃）。
  */
 const fs = require("fs");
 const path = require("path");
-const { buildEventPoiSearchKeywords } = require("../lib/tencent-poi");
+const { buildEventPoiSearchKeywords, parseDoubanLocation } = require("../lib/tencent-poi");
 
 const city = process.argv[2];
 if (!city) {
@@ -27,15 +28,35 @@ function stripCityPrefix(keyword, cityName) {
   return kw.replace(new RegExp(`^${c}市?\\s*`), "").trim() || kw;
 }
 
+function shortenVenueLabel(text) {
+  let venue = String(text || "").trim();
+  if (!venue) return "";
+  // 店名+分店为主，去掉门牌/楼层/进场说明
+  venue = venue.replace(/\s+\d+号.*$/, "").trim();
+  venue = venue.replace(/\s*商场\d*楼.*$/i, "").trim();
+  venue = venue.replace(/[（(].*[）)]\s*$/, "").trim();
+  return venue;
+}
+
 function keywordsForGroup(group, cityName) {
+  const parsed = parseDoubanLocation(group.location, cityName);
+  const venue = shortenVenueLabel(parsed.venue || "");
+  const addressCore = shortenVenueLabel(parsed.address || "");
   const seen = new Set();
   const keywords = [];
   const add = (raw) => {
     const kw = stripCityPrefix(raw, cityName);
-    if (!kw || seen.has(kw)) return;
+    if (!kw || kw.length > 48 || seen.has(kw)) return;
     seen.add(kw);
     keywords.push(kw);
   };
+
+  if (venue) add(venue);
+  if (parsed.district && venue) add(`${parsed.district} ${venue}`);
+  if (addressCore && addressCore !== venue) add(addressCore);
+  if (group.sample_title && !venue.includes(group.sample_title.slice(0, 8))) {
+    add(group.sample_title);
+  }
   for (const kw of buildEventPoiSearchKeywords(group.location, cityName, { title: group.sample_title })) {
     add(kw);
   }

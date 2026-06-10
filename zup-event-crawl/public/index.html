@@ -269,9 +269,6 @@
     let poiModeBusy = false;
     const poiKeywords = {};
     const poiPreviews = {};
-    const poiAutoTried = new Set();
-    const poiAutoQueue = [];
-    let poiAutoRunning = false;
 
     const sourceMeta = document.getElementById("sourceMeta");
     const statsEl = document.getElementById("stats");
@@ -413,6 +410,10 @@
       return isImportReady(event) && !isImportedEvent(event);
     }
 
+    function hasNoPoi(event) {
+      return !String(event.location_poi_id || "").trim();
+    }
+
     function canImportEvent(event) {
       return getStatus(event) === "approved"
         && isImportReady(event)
@@ -439,20 +440,7 @@
     function suggestPoiKeyword(event) {
       if (event.poi_suggest_keyword) return event.poi_suggest_keyword;
       if (event.poi_agent_search_keyword) return event.poi_agent_search_keyword;
-      const location = String(event.location || "").trim();
-      const city = String(event.city || "").trim();
-      if (!location) return city;
-      const parts = location.split(/\s+/).filter(Boolean);
-      let idx = 0;
-      if (parts[idx] && city && parts[idx].replace(/市$/, "") === city.replace(/市$/, "")) idx += 1;
-      if (parts[idx] && /(区|县|旗|新区)$/.test(parts[idx])) idx += 1;
-      const venue = parts[idx] || "";
-      if (venue) {
-        if (!city || city === "全国" || venue.includes(city)) return venue;
-        return `${city} ${venue}`;
-      }
-      if (!city || city === "全国" || location.includes(city)) return location;
-      return `${city} ${location}`;
+      return "";
     }
 
     function poiKeywordValue(event) {
@@ -487,13 +475,6 @@
         body: JSON.stringify(body),
       });
       const data = await response.json();
-      if (data.rejected) {
-        setReviewDecision(uid, "rejected", { skipRender: true });
-        if (data.event) upsertEvent(data.event);
-        setSaveState(data.error || "无 POI，已自动拒绝", "warn");
-        render();
-        return null;
-      }
       if (!response.ok || !data.ok) {
         setSaveState(data.error || "POI 失败", "error");
         return null;
@@ -528,36 +509,6 @@
       poiPreviews[uid] = data.items || [];
       setSaveState(`找到 ${poiPreviews[uid].length} 条，点选后保存`, "ok");
       render();
-    }
-
-    async function autoPoiForEvent(event) {
-      const uid = event.eventUid || event.event_uid;
-      if (!uid || poiAutoTried.has(uid)) return;
-      if (event.location_poi_id) return;
-      if ((event.poi_candidates || []).length) return;
-      poiAutoTried.add(uid);
-      await applyPoi(uid, { refresh: true, candidates_only: true });
-    }
-
-    async function drainPoiAutoQueue() {
-      if (poiAutoRunning) return;
-      poiAutoRunning = true;
-      while (poiAutoQueue.length) {
-        const event = poiAutoQueue.shift();
-        await autoPoiForEvent(event);
-        await new Promise((resolve) => setTimeout(resolve, 360));
-      }
-      poiAutoRunning = false;
-    }
-
-    function queueAutoPoiForVisible(events) {
-      for (const event of events) {
-        const uid = event.eventUid || event.event_uid;
-        if (!event.location_poi_id && !poiAutoTried.has(uid) && !(event.poi_candidates || []).length) {
-          poiAutoQueue.push(event);
-        }
-      }
-      drainPoiAutoQueue();
     }
 
     async function deleteBuzzNow(uid, nowId) {
@@ -849,11 +800,51 @@
       return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
     }
 
+    function getStartDateValue(event) {
+      const raw = event.startDate || "";
+      const date = new Date(raw);
+      if (Number.isNaN(date.getTime())) return "";
+      return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+    }
+
     function getEndDateValue(event) {
       const raw = event.endDate || event.startDate || "";
       const date = new Date(raw);
       if (Number.isNaN(date.getTime())) return "";
       return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+    }
+
+    function eventOccursOnDate(event, dateValue) {
+      const start = getStartDateValue(event);
+      const end = getEndDateValue(event) || start;
+      if (start && end) return dateValue >= start && dateValue <= end;
+      return (event.eventDates || []).includes(dateValue);
+    }
+
+    function collectFilterDates(events, todayValue) {
+      const maxDays = 90;
+      const dates = new Set();
+      for (const event of events) {
+        const start = getStartDateValue(event);
+        const end = getEndDateValue(event) || start;
+        if (!start || !end) {
+          for (const date of event.eventDates || []) {
+            if (date >= todayValue) dates.add(date);
+          }
+          continue;
+        }
+        const rangeStart = start > todayValue ? start : todayValue;
+        if (end < rangeStart) continue;
+        const cursor = new Date(`${rangeStart}T00:00:00`);
+        const finalEnd = new Date(`${end}T00:00:00`);
+        let count = 0;
+        while (cursor <= finalEnd && count < maxDays) {
+          dates.add(`${cursor.getFullYear()}-${String(cursor.getMonth() + 1).padStart(2, "0")}-${String(cursor.getDate()).padStart(2, "0")}`);
+          cursor.setDate(cursor.getDate() + 1);
+          count += 1;
+        }
+      }
+      return [...dates].sort();
     }
 
     function isExpired(event) {
@@ -923,6 +914,9 @@
       if (filter === "poi_doubtful") {
         return status === "pending" && event.poi_doubtful;
       }
+      if (filter === "no_poi") {
+        return status === "pending" && hasNoPoi(event);
+      }
       if (["approved", "rejected", "pending"].includes(filter)) return status === filter;
       return true;
     }
@@ -979,7 +973,7 @@
         if (!matchesStatusFilter(event, statusFilter)) return false;
         if (sourceFilter !== "all" && getSourceKey(event) !== sourceFilter) return false;
         if (categoryFilter !== "all" && event.category !== categoryFilter) return false;
-        if (dateFilter !== "all" && !(event.eventDates || []).includes(dateFilter)) return false;
+        if (dateFilter !== "all" && !eventOccursOnDate(event, dateFilter)) return false;
         if (searchTerm) {
           const searchText = `${event.title} ${event.location} ${event.owner} ${event.category}`.toLowerCase();
           if (!searchText.includes(searchTerm.toLowerCase())) return false;
@@ -1049,6 +1043,7 @@
         { key: "rejected", label: "已拒绝" },
         { key: "pending", label: "待定" },
         { key: "import_ready", label: "待入库" },
+        { key: "no_poi", label: "未匹配 POI" },
         { key: "poi_doubtful", label: "POI 存疑" },
       ];
       statusFilterEl.innerHTML = filters.map(({ key, label }) => {
@@ -1134,10 +1129,7 @@
     function renderDateFilter() {
       const activeEvents = getActiveEvents();
       const today = todayDateValue();
-      const dates = (payload.dateWindow && payload.dateWindow.length
-        ? payload.dateWindow
-        : [...new Set(activeEvents.flatMap((event) => event.eventDates || []))].sort())
-        .filter((date) => date >= today);
+      const dates = collectFilterDates(activeEvents, today);
       if (dateFilter !== "all" && !dates.includes(dateFilter)) dateFilter = "all";
 
       const allCounts = {
@@ -1147,7 +1139,7 @@
       };
       dateFilterEl.innerHTML = `<button data-date="all" class="${dateFilter === "all" ? "active" : ""}"><span class="date-main">全部</span><span class="date-sub">${renderReviewImportCounts(allCounts)}</span></button>` +
         dates.map((date) => {
-          const dayEvents = activeEvents.filter((event) => (event.eventDates || []).includes(date));
+          const dayEvents = activeEvents.filter((event) => eventOccursOnDate(event, date));
           const dayCounts = {
             pending: dayEvents.filter((event) => getStatus(event) === "pending").length,
             imported: dayEvents.filter((event) => isImportedEvent(event)).length,
@@ -1274,12 +1266,11 @@
                   ${renderMerchantInfo(event)}
                   ${renderImportStatus(event)}
                   <div class="import-actions">
-                    <button class="mini" type="button" data-poi-action="auto">智能匹配</button>
-                    <button class="mini" type="button" data-poi-action="refresh">重新查询</button>
+                    <button class="mini" type="button" data-poi-action="refresh">刷新候选</button>
                   </div>
-                  <p class="poi-hint">按活动地点搜索腾讯 POI，并在候选里自动选最相似的一条。重新查询只刷新候选列表，不改当前已选。</p>
+                  <p class="poi-hint">POI 由 Cursor Agent 匹配后写入；此处仅供人工修正。填写关键词后点「自由搜索」，再在候选里点选保存。</p>
                   <div class="poi-search-row">
-                    <input type="text" data-poi-keyword value="${escapeHtml(poiKeywordValue(event))}" placeholder="自定义关键词，如 长沙 谢子龙艺术馆">
+                    <input type="text" data-poi-keyword value="${escapeHtml(poiKeywordValue(event))}" placeholder="Agent 搜词或自填，如 锈罐头剧场">
                     <button class="mini" type="button" data-poi-action="custom-search">自由搜索</button>
                   </div>
                   ${renderPoiBlock(event)}
@@ -1420,8 +1411,12 @@
       const poiBtn = event.target.closest("button[data-poi-action]");
       if (poiBtn) {
         const action = poiBtn.dataset.poiAction;
-        if (action === "auto") applyPoi(uid, {});
-        else if (action === "refresh") applyPoi(uid, { refresh: true, candidates_only: true });
+        if (action === "refresh") {
+          const event = payload.events.find((item) => (item.eventUid || item.event_uid) === uid);
+          const keyword = String(card.querySelector("[data-poi-keyword]")?.value || "").trim()
+            || suggestPoiKeyword(event || {});
+          applyPoi(uid, { refresh: true, candidates_only: true, keyword });
+        }
         else if (action === "custom-search") searchPoiCustom(uid, card);
         return;
       }

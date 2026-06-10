@@ -16,13 +16,12 @@ const {
   resolveStartAt,
 } = require("./event-import-ready");
 const { enrichEventBody } = require("./event-participation");
+const { buildDateWindowFromEvents, resolveEventDates } = require("./event-dates");
 const {
   buildPoiKeyword,
   isStrictPoiMatchMode,
   normalizePoiMatchMode,
-  parseDoubanLocation,
   POI_MATCH_MODE_NORMAL,
-  suggestEventPoiKeyword,
 } = require("./tencent-poi");
 
 const DEFAULT_NOTE = "本文件用于本地人工审核。保留原始抓取详情文本，body 为基于原文提炼的 Zup 活动简介。图片发布前需再次确认来源授权与平台规则。";
@@ -271,29 +270,11 @@ function resolveEventPoiDisplayFlags(event, options = {}) {
   return { doubtful: false, score: null, reasons: [] };
 }
 
-function agentKeywordDroppedBuildingDetail(agentKeyword, locationTerm) {
-  if (!agentKeyword || !locationTerm) return false;
-  if (!/[A-Za-z0-9一二三四五六七八九十]+[栋座楼幢]/.test(locationTerm)) return false;
-  if (/[A-Za-z0-9一二三四五六七八九十]+[栋座楼幢]/.test(agentKeyword)) return false;
-  const locationCore = locationTerm.replace(/\s+/g, "").replace(/[（(].*$/, "");
-  const agentCore = agentKeyword.replace(/\s+/g, "").replace(/[（(].*$/, "");
-  return locationCore.startsWith(agentCore) && locationCore.length > agentCore.length;
-}
-
 function resolvePoiSuggestKeyword(event) {
   const city = event.city || "";
-  const parsed = parseDoubanLocation(event.location, city);
-  const locationTerm = String(parsed.venue || parsed.address || parsed.full || "").trim();
-
-  if (event?.poi_match_source === "agent") {
-    let term = String(event.poi_agent_search_keyword || "").trim();
-    if (term && agentKeywordDroppedBuildingDetail(term, locationTerm)) {
-      term = locationTerm;
-    }
-    if (!term) term = locationTerm;
-    if (term) return buildPoiKeyword(term, city);
-  }
-  return suggestEventPoiKeyword(event.location, city, event.title);
+  const term = String(event.poi_agent_search_keyword || "").trim();
+  if (term) return buildPoiKeyword(term, city);
+  return "";
 }
 
 function enrichEventPoiFlags(event, options = {}) {
@@ -823,7 +804,7 @@ function importPayload(db, payload, options = {}) {
         );
 
         deleteEventDates.run(eventUid);
-        for (const eventDate of Array.isArray(event.eventDates) ? event.eventDates : []) {
+        for (const eventDate of resolveEventDates(event)) {
           insertEventDate.run(eventUid, eventDate);
         }
       }
@@ -882,8 +863,31 @@ function upsertReviewDecision(db, eventUid, status) {
   return status;
 }
 
+function clearEventPoi(db, eventUid) {
+  const now = new Date().toISOString();
+  db.prepare(`
+    UPDATE events SET
+      location_poi_id = '',
+      poi_title = '',
+      poi_address = '',
+      poi_latitude = NULL,
+      poi_longitude = NULL,
+      poi_candidates = '[]',
+      poi_match_source = '',
+      poi_agent_doubtful = 0,
+      poi_agent_reason = '',
+      poi_agent_search_keyword = '',
+      poi_updated_at = NULL,
+      now_merchant_id = '',
+      now_merchant_name = '',
+      updated_at = @updated_at
+    WHERE event_uid = @event_uid
+  `).run({ event_uid: eventUid, updated_at: now });
+}
+
+/** 未匹配到 POI 时清空 POI 字段，审核状态保持不动（由人工在审核台处理） */
 function rejectEventForMissingPoi(db, eventUid) {
-  upsertReviewDecision(db, eventUid, "rejected");
+  clearEventPoi(db, eventUid);
   return getEventByUid(db, eventUid);
 }
 
@@ -997,10 +1001,16 @@ function getEventsPayload(db) {
   const cityOrderMap = new Map(cityOrder.map((city, index) => [city, index]));
   const poiMatchMode = getEventPoiMatchMode(db);
   const events = eventRows
-    .map((row) => enrichEventPoiFlags({
-      ...rowToEvent(row),
-      eventDates: eventDatesByUid.get(row.event_uid) || [],
-    }, { poiMatchMode }))
+    .map((row) => {
+      const base = rowToEvent(row);
+      return enrichEventPoiFlags({
+        ...base,
+        eventDates: resolveEventDates({
+          ...base,
+          eventDates: eventDatesByUid.get(row.event_uid) || [],
+        }),
+      }, { poiMatchMode });
+    })
     .sort((a, b) => {
       const cityDiff = (cityOrderMap.get(a.city) ?? Number.MAX_SAFE_INTEGER) - (cityOrderMap.get(b.city) ?? Number.MAX_SAFE_INTEGER);
       if (cityDiff !== 0) return cityDiff;
@@ -1019,7 +1029,7 @@ function getEventsPayload(db) {
     };
   }
 
-  const dateWindow = [...new Set(dateRows.map((row) => row.event_date))].sort();
+  const dateWindow = buildDateWindowFromEvents(events);
   const note = getMetaValue(db, "note", DEFAULT_NOTE);
   const generatedAt = cityImportRows.reduce((latest, row) => {
     if (!latest) return row.generatedAt || null;

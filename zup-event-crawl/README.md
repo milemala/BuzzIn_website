@@ -104,7 +104,7 @@ node scripts/scrape-douban-week-events.js 500 data/review.db --city=beijing --mo
 
 抓取入库时会自动合成 **4:3 横版封面**（模糊底图 + 原图 + 右侧文案），`image_original` 保留豆瓣原图。跳过时加 `--skip-compose`；补跑历史数据：`node scripts/compose-event-images.js --city=北京`。
 
-**POI 默认由 Cursor Agent 匹配**（见 `docs/event-poi-agent-workflow.md`）：抓完后对我说「给某城匹配 POI」。临时用旧版 JS 自动 POI：抓取时加 `--with-poi`。
+**POI 由 Cursor 大模型在同一次对话里完成**（见 `docs/event-poi-agent-workflow.md`）：对我说「抓取成都豆瓣活动」即可。机械步骤可用 `node scripts/prepare-city-poi-for-agent.js --city=成都`；POI 搜词与判断在对话中完成，不再维护 JS 自动 Top1。
 
 城市列表 URL 说明（成都为 `www.douban.com/location/...`，见 `docs/HANDOFF.md`）。
 

@@ -2,36 +2,17 @@
 "use strict";
 
 /**
- * 单城 Agent POI 全流程：导出待定 → 搜词计划 → 批量搜索 → 决策 → 写库
- *
- *   node scripts/run-city-agent-poi.js --city=上海
+ * @deprecated 已废弃。活动 POI 改由 Cursor 大模型在对话中完成。
+ * 请使用：
+ *   node scripts/prepare-city-poi-for-agent.js --city=上海
+ * 然后在 Cursor 里让 Agent 读 pending.json、写 decisions.json 并 apply。
  */
-const { execSync } = require("child_process");
-const path = require("path");
+console.error(`
+[已废弃] run-city-agent-poi.js 不再运行 JS 自动 POI 流水线。
 
-const root = path.join(__dirname, "..");
+请改用：
+  node scripts/prepare-city-poi-for-agent.js --city=<城市>
 
-function parseArgs(argv) {
-  let city = "";
-  for (const arg of argv.slice(2)) {
-    if (arg.startsWith("--city=")) city = arg.slice("--city=".length).trim();
-  }
-  if (!city) throw new Error("请指定 --city=城市名");
-  return { city };
-}
-
-function run(cmd) {
-  console.log(`\n$ ${cmd}`);
-  execSync(cmd, { cwd: root, stdio: "inherit" });
-}
-
-function main() {
-  const { city } = parseArgs(process.argv);
-  run(`node scripts/export-events-for-poi.js --city=${city} --refresh --pending-only`);
-  run(`node scripts/agent-poi-build-search-plan.js ${city}`);
-  run(`node scripts/agent-poi-batch-search.js ${city}`);
-  run(`node scripts/agent-poi-build-decisions.js ${city}`);
-  run(`node scripts/apply-event-poi-decisions.js --city=${city}`);
-}
-
-main();
+POI 搜词与判断请在 Cursor 对话中由大模型完成，见 docs/event-poi-agent-workflow.md
+`);
+process.exit(1);

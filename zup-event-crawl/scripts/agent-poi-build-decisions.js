@@ -2,14 +2,17 @@
 "use strict";
 
 /**
- * 根据 search-results.json 生成 decisions.json（Agent 规则：选对候选、标存疑/拒绝）。
+ * @deprecated 活动 POI 已改由 Cursor 大模型判断，勿再使用本脚本。
+ * 见 docs/event-poi-agent-workflow.md
  *
- *   node scripts/agent-poi-build-decisions.js 上海
+ * 根据 search-results.json 生成 decisions.json（旧版 JS 规则，已废弃）。
  */
 const fs = require("fs");
 const path = require("path");
 const {
   assessEventPoiConfidence,
+  eventVenueMatchesPoi,
+  locationAlignsWithPoi,
   parseDoubanLocation,
   pickBestPoiForEvent,
 } = require("../lib/tencent-poi");
@@ -29,6 +32,10 @@ const resultMap = new Map((searchPayload.results || []).map((row) => [row.group_
 
 const GRANULARITY_REASON = "豆瓣仅写到大厦/园区级地址，已匹配地标POI，具体楼层/活动室建议人工核对";
 
+function normalizeCompact(text) {
+  return String(text || "").replace(/\s+/g, "");
+}
+
 function locationBuildingDetail(location, cityName) {
   const parsed = parseDoubanLocation(location, cityName);
   const term = String(parsed.venue || parsed.address || "").trim();
@@ -40,12 +47,46 @@ function poiHasBuildingDetail(title) {
   return /[A-Za-z0-9一二三四五六七八九十]+[栋座楼幢]/.test(String(title || ""));
 }
 
-function isGranularityDoubt(location, cityName, poiTitle) {
+function isFloorOnlyDetail(detail) {
+  return /^\d+楼$/.test(String(detail || ""));
+}
+
+function eventDistrict(location, cityName) {
+  return String(parseDoubanLocation(location, cityName).district || "").trim();
+}
+
+function poiMatchesEventDistrict(district, poiAddress) {
+  if (!district) return true;
+  const addr = String(poiAddress || "");
+  if (addr.includes(district)) return true;
+  const short = district.replace(/(区|县|市)$/, "");
+  return short.length >= 2 && addr.includes(short);
+}
+
+function filterItemsByDistrict(items, district) {
+  if (!district) return items;
+  const matched = items.filter((item) => poiMatchesEventDistrict(district, item.address));
+  return matched.length ? matched : items;
+}
+
+function isGranularityDoubt(location, cityName, poiTitle, poiAddress) {
   const building = locationBuildingDetail(location, cityName);
   if (!building) return false;
+
+  const addrNorm = normalizeCompact(poiAddress);
+  const buildingNorm = normalizeCompact(building);
+  if (isFloorOnlyDetail(building) && addrNorm.includes(buildingNorm)) {
+    return false;
+  }
+
+  if (eventVenueMatchesPoi(location, "", poiTitle)
+    && locationAlignsWithPoi(location, poiTitle, poiAddress)) {
+    return false;
+  }
+
   if (poiHasBuildingDetail(poiTitle)) {
-    const norm = (s) => String(s || "").replace(/\s+/g, "");
-    return !norm(poiTitle).includes(norm(building));
+    const titleNorm = normalizeCompact(poiTitle);
+    return !titleNorm.includes(buildingNorm);
   }
   return true;
 }
@@ -69,8 +110,19 @@ function decideGroup(group, searchResult) {
     };
   }
 
+  const district = eventDistrict(group.location, city);
+  const districtItems = filterItemsByDistrict(items, district);
+  if (district && !districtItems.some((item) => poiMatchesEventDistrict(district, item.address))) {
+    return {
+      ...base,
+      action: "reject",
+      reason: `腾讯 POI 结果均不在豆瓣${district}，建议换词重搜或人工处理`,
+      candidates: items,
+    };
+  }
+
   const event = { location: group.location, title: group.sample_title, city };
-  const { poi, score } = pickBestPoiForEvent(event, items.map((item) => ({
+  const { poi, score } = pickBestPoiForEvent(event, districtItems.map((item) => ({
     poi_id: item.poi_id,
     title: item.title,
     address: item.address,
@@ -81,6 +133,15 @@ function decideGroup(group, searchResult) {
 
   if (!poi) {
     return { ...base, action: "reject", reason: "候选 POI 无法选出有效场所" };
+  }
+
+  if (!poiMatchesEventDistrict(district, poi.address)) {
+    return {
+      ...base,
+      action: "reject",
+      reason: `POI 位于${poi.address.match(/市[\u4e00-\u9fa5]+?(区|县)/)?.[0] || "其它区域"}，与豆瓣${district || "地点"}不符`,
+      candidates: items,
+    };
   }
 
   if (POI_NOISE_TITLE.test(poi.title) && score < 50) {
@@ -110,7 +171,7 @@ function decideGroup(group, searchResult) {
     };
   }
 
-  const doubtful = isGranularityDoubt(group.location, city, poi.title);
+  const doubtful = isGranularityDoubt(group.location, city, poi.title, poi.address);
   return {
     ...base,
     action: "match",

@@ -5,7 +5,6 @@ const {
   applyEventPoiSelection,
   getEventByUid,
   listActiveEventsNeedingPoi,
-  rejectEventForMissingPoi,
   syncEventMerchantByPoi,
 } = require("./review-db");
 
@@ -39,7 +38,7 @@ async function batchEventAutoPoi(db, options = {}) {
     targets = targets.filter((event) => !event.location_poi_id);
   }
 
-  const report = { total: targets.length, ok: 0, fail: 0, rejected: 0, results: [] };
+  const report = { total: targets.length, ok: 0, fail: 0, results: [] };
 
   for (const event of targets) {
     try {
@@ -49,16 +48,13 @@ async function batchEventAutoPoi(db, options = {}) {
         { title: event.title },
       );
       if (!items.length) {
-        rejectEventForMissingPoi(db, event.event_uid);
         report.fail += 1;
-        report.rejected += 1;
         report.results.push({
           event_uid: event.event_uid,
           title: event.title,
           city: event.city,
           ok: false,
-          rejected: true,
-          error: "无 POI 结果，已自动拒绝",
+          error: "无 POI 结果",
           keyword,
         });
       } else {
@@ -80,16 +76,13 @@ async function batchEventAutoPoi(db, options = {}) {
         });
       }
     } catch (error) {
-      rejectEventForMissingPoi(db, event.event_uid);
       report.fail += 1;
-      report.rejected += 1;
       report.results.push({
         event_uid: event.event_uid,
         title: event.title,
         city: event.city,
         ok: false,
-        rejected: true,
-        error: `${error.message}，已自动拒绝`,
+        error: error.message,
       });
     }
     await sleep(delayMs);

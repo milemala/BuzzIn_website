@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 "use strict";
 
-/** 按 Agent 制定的关键词批量搜索，输出 search-results.json */
+/** @deprecated 活动 POI 已改由 Cursor 大模型判断，勿再使用。见 docs/event-poi-agent-workflow.md */
+/** 按关键词批量搜索，输出 search-results.json（旧版 JS 流水线，已废弃） */
 const fs = require("fs");
 const path = require("path");
 const { searchPoi } = require("../lib/tencent-poi");

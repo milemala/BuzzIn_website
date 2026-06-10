@@ -139,7 +139,7 @@ async function main() {
       if (synced.updated) console.log(`POI 坐标同步: ${synced.updated} 条`);
     }
 
-    console.log(`完成: 匹配 ${summary.match} · 拒绝 ${summary.reject} · 跳过 ${summary.skip} · 失败 ${summary.fail}`);
+    console.log(`完成: 匹配 ${summary.match} · 未匹配 POI ${summary.reject} · 跳过 ${summary.skip} · 失败 ${summary.fail}`);
   } finally {
     db.close();
   }

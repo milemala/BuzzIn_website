@@ -14,6 +14,7 @@ const { DoubanBlockedError, isDoubanBlockedError } = require("../lib/douban-bloc
 const { composeScrapedEventImage } = require("../lib/compose-event-images-batch");
 const { ensureImageCached } = require("../lib/image-fetch");
 const { batchEventAutoPoi } = require("../lib/event-poi-batch");
+const { buildDateWindowFromEvents, buildEventDates } = require("../lib/event-dates");
 const { eventUidFor, importPayload, openDatabase, syncEventPoiCoordinates } = require("../lib/review-db");
 
 const root = path.join(__dirname, "..");
@@ -40,6 +41,9 @@ const maxPages = Math.max(1, Number(
 const viaFetch = optionArgs.includes("--via-fetch");
 const skipCompose = optionArgs.includes("--skip-compose");
 const withPoi = optionArgs.includes("--with-poi");
+if (withPoi) {
+  console.warn("[已废弃] --with-poi：活动 POI 请由 Cursor Agent 在抓取后匹配，见 docs/event-poi-agent-workflow.md");
+}
 const chromeWaitMs = Math.max(2000, Number(
   optionArgs.find((arg) => arg.startsWith("--chrome-wait="))?.split("=")[1] || DEFAULT_WAIT_MS,
 ));
@@ -54,10 +58,8 @@ const sourcePage = buildDoubanWeekListUrl(citySlug, listUrlKind);
 const sourcePages = Array.from({ length: maxPages }, (_, index) => (
   index === 0 ? sourcePage : `${sourcePage}?start=${index * 10}`
 ));
-const now = new Date();
-now.setHours(0, 0, 0, 0);
-const windowEnd = new Date(now);
-windowEnd.setDate(windowEnd.getDate() + 7);
+const scrapeAnchor = new Date();
+scrapeAnchor.setHours(0, 0, 0, 0);
 
 function decodeHtml(value) {
   return String(value || "")
@@ -121,35 +123,7 @@ function parseDate(value) {
   return Number.isNaN(date.getTime()) ? null : date;
 }
 
-function buildDateWindow() {
-  const days = [];
-  const cursor = new Date(now);
-  while (cursor <= windowEnd) {
-    days.push(formatDate(cursor));
-    cursor.setDate(cursor.getDate() + 1);
-  }
-  return days;
-}
 
-function buildEventDates(startDate, endDate) {
-  const start = parseDate(startDate);
-  const end = parseDate(endDate) || start;
-  if (!start) return [];
-
-  const rangeStart = new Date(Math.max(start.getTime(), now.getTime()));
-  const rangeEnd = new Date(Math.min((end || start).getTime(), windowEnd.getTime()));
-  rangeStart.setHours(0, 0, 0, 0);
-  rangeEnd.setHours(0, 0, 0, 0);
-  if (rangeEnd < rangeStart) return [];
-
-  const dates = [];
-  const cursor = new Date(rangeStart);
-  while (cursor <= rangeEnd) {
-    dates.push(formatDate(cursor));
-    cursor.setDate(cursor.getDate() + 1);
-  }
-  return dates;
-}
 
 function parseDoubanEventType(detailHtml) {
   return matchOne(detailHtml, /itemprop="eventType">([^<]+)</);
@@ -272,7 +246,7 @@ function buildOutputPayload(events) {
     generatedAt: new Date().toISOString(),
     sourcePage,
     city,
-    dateWindow: buildDateWindow(),
+    dateWindow: buildDateWindowFromEvents(events),
     note: "本文件用于本地人工审核。保留原始抓取详情文本，body 为基于原文提炼的 Zup 活动简介。图片发布前需再次确认来源授权与平台规则。",
     events,
   };
@@ -289,10 +263,7 @@ function mergePayload(existingPayload, cityPayload) {
     : existingEvents.filter((event) => event.city !== city);
   const mergedEvents = [...keptEvents, ...cityPayload.events];
   const cityNames = [...new Set(mergedEvents.map((event) => event.city).filter(Boolean))];
-  const dateWindow = [...new Set([
-    ...(Array.isArray(existingPayload.dateWindow) ? existingPayload.dateWindow : []),
-    ...cityPayload.dateWindow,
-  ])].sort();
+  const dateWindow = buildDateWindowFromEvents(mergedEvents);
   const sourcePages = { ...(existingPayload.sourcePages || {}) };
   cityNames.forEach((name) => {
     if (existingPayload.cityMeta?.[name]?.sourcePage) {
@@ -352,7 +323,7 @@ function parseListEvents(html) {
     const image = matchOne(block, /<img[^>]+data-lazy="([^"]+)"/);
     const startDate = matchOne(block, /itemprop="startDate" datetime="([^"]+)"/);
     const endDate = matchOne(block, /itemprop="endDate" datetime="([^"]+)"/);
-    const eventDates = buildEventDates(startDate, endDate);
+    const eventDates = buildEventDates(startDate, endDate, { fromToday: false, anchorDate: scrapeAnchor });
     if (!eventDates.length) return;
 
     const location = matchOne(block, /<meta itemscope itemprop="location" content="([^"]+)"/);
@@ -500,12 +471,6 @@ async function loadListCandidates() {
 
 function writeCityResults(events) {
   const cityPayload = buildOutputPayload(events);
-  const backupDir = path.join(root, "data", "scrape-backup");
-  fs.mkdirSync(backupDir, { recursive: true });
-  fs.writeFileSync(
-    path.join(backupDir, `${city}.json`),
-    `${JSON.stringify(cityPayload, null, 2)}\n`,
-  );
   if (isLegacyFileTarget(output)) {
     const existingPayload = readExistingPayload(output);
     const finalPayload = mergePayload(existingPayload, cityPayload);
@@ -529,7 +494,7 @@ async function autoPoiImportedEvents(importedEvents) {
     console.log(`POI Top1 匹配 ${eventUids.length} 条...`);
     const report = await batchEventAutoPoi(db, { event_uids: eventUids });
     const synced = syncEventPoiCoordinates(db);
-    console.log(`POI: ${report.ok} 成功 / ${report.fail} 失败（无结果会自动拒绝）`);
+    console.log(`POI: ${report.ok} 成功 / ${report.fail} 失败（无结果保持待审核）`);
     if (synced.updated) console.log(`POI 坐标同步: ${synced.updated} 条`);
   } finally {
     db.close();

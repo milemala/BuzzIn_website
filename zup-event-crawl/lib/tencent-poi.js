@@ -102,6 +102,56 @@ function buildPoiKeyword(name, city) {
 
 const KNOWN_CITIES = /^(北京|上海|广州|深圳|成都|杭州|武汉|西安|南京|重庆|天津|苏州|长沙|郑州|东莞|青岛|沈阳|宁波|昆明|佛山|无锡|合肥|大连|厦门|哈尔滨|长春|石家庄|温州|珠海|惠州|中山|嘉兴|金华|绍兴|泉州|南昌|济南|常州|徐州|南通|扬州|唐山|保定|洛阳|襄阳|宜昌|桂林|三亚|丽江|大庆|鞍山|吉林|秦皇岛|邯郸|乌鲁木齐|呼和浩特|南宁|海口|兰州|银川|西宁|拉萨|贵阳|南昌|福州|厦门|烟台|潍坊|镇江|株洲|湘潭|衡阳|湛江|柳州|绵阳|德阳|南充|宜宾|遵义|拉萨|银川|西宁|乌鲁木齐|呼和浩特|拉萨)$/;
 
+const VENUE_NAME_SUFFIX_RE = /(?:剧场|剧院|影城|电影院|LIVEHOUSE|Livehouse|livehouse|CLUB|Club|club|酒吧|会馆|茶楼|茶社|茶馆|脱口秀|喜剧俱乐部|喜剧|空间|Studio|studio|书吧|咖啡店|咖啡馆|餐吧|酒馆|屋|店|厅|馆|社|坊|院|中心)$/u;
+
+function looksLikeShowMarketing(text) {
+  const sample = String(text || "").trim();
+  if (!sample) return false;
+  if (/《[^》]{1,24}》/.test(sample)) return true;
+  if (/^(?:真)?环境式|沉浸式|环境戏剧|环境式戏剧|港风|悬疑剧|音乐剧|原创话剧/.test(sample)) return true;
+  if (/戏剧《|话剧《|音乐剧《|笑场《/.test(sample)) return true;
+  return false;
+}
+
+function scoreVenueNameCandidate(part, index, total) {
+  const sample = String(part || "").trim();
+  if (!sample) return -100;
+  let score = 0;
+  if (VENUE_NAME_SUFFIX_RE.test(sample)) score += 12;
+  if (looksLikeShowMarketing(sample)) score -= 10;
+  if (sample.length >= 2 && sample.length <= 16) score += 4;
+  if (sample.length > 28) score -= 4;
+  if (total >= 2 && index === total - 1) score += 3;
+  if (/[\u4e00-\u9fa5]{2,10}(?:剧场|剧院|酒吧|空间|影城)/.test(sample)) score += 5;
+  return score;
+}
+
+/**
+ * 从豆瓣 venue 段抽出适合腾讯 POI 搜索的店名。
+ * 例：沉浸式环境港风戏剧《阿玫》-锈罐头剧场 → 锈罐头剧场
+ */
+function extractSearchableVenueName(venueText) {
+  const venue = String(venueText || "").trim();
+  if (!venue) return "";
+
+  const dashParts = venue.split(/\s*[-—–]\s*/u).map((part) => part.trim()).filter(Boolean);
+  if (dashParts.length >= 2) {
+    const ranked = dashParts
+      .map((part, index) => ({ part, score: scoreVenueNameCandidate(part, index, dashParts.length) }))
+      .sort((a, b) => b.score - a.score);
+    if (ranked[0].score >= 5) return ranked[0].part;
+  }
+
+  const afterBook = venue.split(/》\s*/u).pop()?.trim() || "";
+  if (afterBook && afterBook !== venue && afterBook.length >= 2 && afterBook.length <= 20) {
+    if (VENUE_NAME_SUFFIX_RE.test(afterBook) && !looksLikeShowMarketing(afterBook)) {
+      return afterBook;
+    }
+  }
+
+  return venue;
+}
+
 /**
  * 解析豆瓣 location：城市、区划、地点名称、具体地址（空格分隔）
  * 例：成都 锦江区 四川省川剧院 指挥街108号
@@ -155,6 +205,10 @@ function parseDoubanLocation(location, city = "") {
     address = rest.slice(addressStart).join(" ");
   }
 
+  if (venue) {
+    venue = extractSearchableVenueName(venue);
+  }
+
   return { city: parsedCity, district, venue, address, full };
 }
 
@@ -174,13 +228,15 @@ function buildEventPoiSearchKeywords(location, city, opts = {}) {
     keywords.push(kw);
   };
 
-  if (parsed.venue) add(parsed.venue);
+  if (parsed.venue && !looksLikeShowMarketing(parsed.venue)) add(parsed.venue);
   if (parsed.address && normalizeMatchText(parsed.address) !== normalizeMatchText(parsed.venue)) {
     add(parsed.address);
   }
-  if (parsed.district && parsed.venue) add(`${parsed.district} ${parsed.venue}`);
+  if (parsed.district && parsed.venue && !looksLikeShowMarketing(parsed.venue)) {
+    add(`${parsed.district} ${parsed.venue}`);
+  }
   if (parsed.full) add(parsed.full);
-  if (title && !parsed.full.includes(title)) add(title);
+  if (title && !parsed.full.includes(title) && !looksLikeShowMarketing(title)) add(title);
 
   if (!keywords.length) add(location || title);
   return keywords;
@@ -1296,6 +1352,8 @@ module.exports = {
   poiTitleMatchesForMode,
   buildEventPoiSearchKeywords,
   buildPoiKeyword,
+  extractSearchableVenueName,
+  looksLikeShowMarketing,
   parseDoubanLocation,
   suggestEventPoiKeyword,
   suggestMerchantPoiKeyword,
@@ -1313,6 +1371,8 @@ module.exports = {
   pickBestPoiCandidate,
   pickBestPoiForEvent,
   pickBestPoiForMerchant,
+  eventVenueMatchesPoi,
+  locationAlignsWithPoi,
   poiTitleMatchesMerchant,
   rankMerchantSearchAliases,
   reorderPoiByBestMatch,
