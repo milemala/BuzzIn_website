@@ -10,40 +10,17 @@ const {
   DEFAULT_LIST_GAP_MS,
   fetchDoubanViaChrome,
 } = require("../lib/douban-chrome-fetch");
+const { isDoubanBlockedError } = require("../lib/douban-block");
 const { openDatabase } = require("../lib/review-db");
 
 const root = path.join(__dirname, "..");
 const args = process.argv.slice(2);
 
-const cityAliases = {
-  beijing: "北京",
-  bj: "北京",
-  北京: "北京",
-  shanghai: "上海",
-  sh: "上海",
-  上海: "上海",
-  guangzhou: "广州",
-  gz: "广州",
-  广州: "广州",
-  chengdu: "成都",
-  cd: "成都",
-  成都: "成都",
-};
-const citySlugMap = {
-  北京: "beijing",
-  广州: "guangzhou",
-  上海: "shanghai",
-  成都: "chengdu",
-};
-const cityListUrlKind = {
-  北京: "subdomain",
-  广州: "subdomain",
-  上海: "subdomain",
-  成都: "location",
-};
+const { buildDoubanWeekListUrl, resolveDoubanCity } = require("../lib/douban-cities");
 
 function parseOptions(argv) {
-  const city = cityAliases[argv.find((arg) => arg.startsWith("--city="))?.split("=")[1]] || "北京";
+  const cityInfo = resolveDoubanCity(argv.find((arg) => arg.startsWith("--city="))?.split("=")[1]) || resolveDoubanCity("北京");
+  const city = cityInfo.name;
   const maxPages = Math.max(1, Number(
     argv.find((arg) => arg.startsWith("--max-pages="))?.split("=")[1] || 10,
   ));
@@ -56,14 +33,7 @@ function parseOptions(argv) {
     || path.join(root, "data", "scrape-cache", city);
   const listOnly = argv.includes("--list-only");
   const detailOnly = argv.includes("--detail-only");
-  return { city, maxPages, waitMs, dbPath, cacheRoot, listOnly, detailOnly };
-}
-
-function buildListSourcePage(slug, kind) {
-  if (kind === "location") {
-    return `https://www.douban.com/location/${slug}/events/week-all`;
-  }
-  return `https://${slug}.douban.com/events/week-all`;
+  return { city, cityInfo, maxPages, waitMs, dbPath, cacheRoot, listOnly, detailOnly };
 }
 
 function listPageUrl(base, pageIndex) {
@@ -93,9 +63,8 @@ function loadExistingDoubanIds(dbPath, city) {
 }
 
 async function fetchListPages(options) {
-  const slug = citySlugMap[options.city] || "beijing";
-  const kind = cityListUrlKind[options.city] || "subdomain";
-  const base = buildListSourcePage(slug, kind);
+  const cityInfo = options.cityInfo || resolveDoubanCity(options.city);
+  const base = buildDoubanWeekListUrl(cityInfo.slug, cityInfo.listKind);
   const listDir = path.join(options.cacheRoot, "list");
   const allIds = new Set();
 
@@ -135,6 +104,7 @@ async function fetchDetailPages(ids, options) {
       saved.push(id);
       console.log(`  saved ${result.html.length} bytes -> ${filePath}`);
     } catch (error) {
+      if (isDoubanBlockedError(error)) throw error;
       failed.push({ id, error: error.message });
       console.error(`  FAIL ${id}: ${error.message}`);
     }
@@ -183,5 +153,5 @@ main().catch((error) => {
   if (error.code === "CHROME_JS_DENIED" || error.code === "CHROME_UNAVAILABLE") {
     console.error("请打开 Chrome 并登录豆瓣，且开启「允许 AppleScript 中的 JavaScript」。");
   }
-  process.exit(1);
+  process.exit(isDoubanBlockedError(error) ? 2 : 1);
 });

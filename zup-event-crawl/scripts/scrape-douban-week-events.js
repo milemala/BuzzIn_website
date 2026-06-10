@@ -2,7 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const { cleanDetailText, makeZupSummary } = require("../lib/douban-detail");
+const { applyDoubanEventLocation, cleanDetailText, makeZupSummary } = require("../lib/douban-detail");
 const {
   DEFAULT_DETAIL_GAP_MS,
   DEFAULT_LIST_GAP_MS,
@@ -10,47 +10,18 @@ const {
   fetchDoubanViaChrome,
   isDoubanDetailUrl,
 } = require("../lib/douban-chrome-fetch");
+const { DoubanBlockedError, isDoubanBlockedError } = require("../lib/douban-block");
 const { composeScrapedEventImage } = require("../lib/compose-event-images-batch");
 const { ensureImageCached } = require("../lib/image-fetch");
-const { importPayload, openDatabase } = require("../lib/review-db");
+const { batchEventAutoPoi } = require("../lib/event-poi-batch");
+const { eventUidFor, importPayload, openDatabase, syncEventPoiCoordinates } = require("../lib/review-db");
 
 const root = path.join(__dirname, "..");
 const imageCacheDir = path.join(root, "data", "image-cache");
 
-const args = process.argv.slice(2);
-const cityAliases = {
-  beijing: "北京",
-  bj: "北京",
-  北京: "北京",
-  guangzhou: "广州",
-  gz: "广州",
-  广州: "广州",
-  shanghai: "上海",
-  sh: "上海",
-  上海: "上海",
-  chengdu: "成都",
-  cd: "成都",
-  成都: "成都",
-};
-const citySlugMap = {
-  北京: "beijing",
-  广州: "guangzhou",
-  上海: "shanghai",
-  成都: "chengdu",
-};
-const cityListUrlKind = {
-  北京: "subdomain",
-  广州: "subdomain",
-  上海: "subdomain",
-  成都: "location",
-};
+const { buildDoubanWeekListUrl, listDoubanCityNames, resolveDoubanCity } = require("../lib/douban-cities");
 
-function buildListSourcePage(slug, kind) {
-  if (kind === "location") {
-    return `https://www.douban.com/location/${slug}/events/week-all`;
-  }
-  return `https://${slug}.douban.com/events/week-all`;
-}
+const args = process.argv.slice(2);
 const optionArgs = args.filter((arg) => arg.startsWith("--"));
 const positionalArgs = args.filter((arg) => !arg.startsWith("--"));
 const limit = Number(positionalArgs[0] || 20);
@@ -68,13 +39,18 @@ const maxPages = Math.max(1, Number(
 ));
 const viaFetch = optionArgs.includes("--via-fetch");
 const skipCompose = optionArgs.includes("--skip-compose");
+const withPoi = optionArgs.includes("--with-poi");
 const chromeWaitMs = Math.max(2000, Number(
   optionArgs.find((arg) => arg.startsWith("--chrome-wait="))?.split("=")[1] || DEFAULT_WAIT_MS,
 ));
-const city = cityAliases[cityOption] || "上海";
-const citySlug = citySlugMap[city] || "shanghai";
-const listUrlKind = cityListUrlKind[city] || "subdomain";
-const sourcePage = buildListSourcePage(citySlug, listUrlKind);
+const cityInfo = resolveDoubanCity(cityOption) || resolveDoubanCity("上海");
+if (!cityInfo) {
+  parseArgsError(`Unknown city: ${cityOption || "(empty)"}. Supported: ${listDoubanCityNames().join("、")}`);
+}
+const city = cityInfo.name;
+const citySlug = cityInfo.slug;
+const listUrlKind = cityInfo.listKind;
+const sourcePage = buildDoubanWeekListUrl(citySlug, listUrlKind);
 const sourcePages = Array.from({ length: maxPages }, (_, index) => (
   index === 0 ? sourcePage : `${sourcePage}?start=${index * 10}`
 ));
@@ -124,7 +100,7 @@ function formatDate(date) {
 }
 
 function parseArgsError(message) {
-  throw new Error(`${message}\nUsage: node scripts/scrape-douban-week-events.js [limit] [output] [--city=shanghai|beijing|guangzhou|chengdu] [--mode=merge-city|append-city|replace-city|replace-all] [--sort=source|score] [--max-pages=N] [--chrome-wait=ms] [--via-fetch] [--skip-compose] [--list-file=path] [--list-dir=path] [--detail-dir=path]`);
+  throw new Error(`${message}\nUsage: node scripts/scrape-douban-week-events.js [limit] [output] [--city=城市名或slug] [--mode=merge-city|append-city|replace-city|replace-all] [--sort=source|score] [--max-pages=N] [--chrome-wait=ms] [--via-fetch] [--skip-compose] [--with-poi] [--list-file=path] [--list-dir=path] [--detail-dir=path]`);
 }
 
 if (!Number.isFinite(limit) || limit <= 0) {
@@ -468,6 +444,9 @@ async function fetchText(fetchUrl, options = {}) {
       },
     });
     if (response.ok) return response.text();
+    if (response.status === 403 || response.status === 429) {
+      throw new DoubanBlockedError(`豆瓣 HTTP ${response.status}`, { url: fetchUrl, status: response.status });
+    }
     lastError = new Error(`${response.status} ${fetchUrl}`);
     if (response.status !== 429 || attempt >= retries) throw lastError;
   }
@@ -508,10 +487,53 @@ async function loadListCandidates() {
         await sleep(DEFAULT_LIST_GAP_MS);
       }
     } catch (error) {
+      if (isDoubanBlockedError(error)) throw error;
       console.warn(`Skip list page ${pageUrl}: ${error.message}`);
     }
   }
+
+  if (candidateMap.size === 0) {
+    throw new DoubanBlockedError(`豆瓣列表页未获取到任何活动（${city}，可能被风控或页面异常）`, { url: sourcePage });
+  }
   return candidateMap;
+}
+
+function writeCityResults(events) {
+  const cityPayload = buildOutputPayload(events);
+  const backupDir = path.join(root, "data", "scrape-backup");
+  fs.mkdirSync(backupDir, { recursive: true });
+  fs.writeFileSync(
+    path.join(backupDir, `${city}.json`),
+    `${JSON.stringify(cityPayload, null, 2)}\n`,
+  );
+  if (isLegacyFileTarget(output)) {
+    const existingPayload = readExistingPayload(output);
+    const finalPayload = mergePayload(existingPayload, cityPayload);
+    writePayload(output, finalPayload);
+  } else {
+    const db = openDatabase(output);
+    try {
+      importPayload(db, cityPayload, { mode });
+    } finally {
+      db.close();
+    }
+  }
+  return events;
+}
+
+async function autoPoiImportedEvents(importedEvents) {
+  if (!isDatabaseTarget(output) || !withPoi || !importedEvents.length) return;
+  const db = openDatabase(output);
+  try {
+    const eventUids = importedEvents.map((event) => eventUidFor(event));
+    console.log(`POI Top1 匹配 ${eventUids.length} 条...`);
+    const report = await batchEventAutoPoi(db, { event_uids: eventUids });
+    const synced = syncEventPoiCoordinates(db);
+    console.log(`POI: ${report.ok} 成功 / ${report.fail} 失败（无结果会自动拒绝）`);
+    if (synced.updated) console.log(`POI 坐标同步: ${synced.updated} 条`);
+  } finally {
+    db.close();
+  }
 }
 
 async function main() {
@@ -556,6 +578,7 @@ async function main() {
       event.rawDetailText = cleanDetailText(detailHtml);
       event.detailText = event.rawDetailText;
       event.doubanEventType = parseDoubanEventType(detailHtml);
+      applyDoubanEventLocation(event, detailHtml, city);
       const detailExcludeReason = getExcludeReason(event, event.doubanEventType);
       if (detailExcludeReason) {
         counters.skippedExcluded += 1;
@@ -587,6 +610,15 @@ async function main() {
         }
       }
     } catch (error) {
+      if (isDoubanBlockedError(error)) {
+        console.error(`\n豆瓣风控，暂停抓取（${city}）：${error.message}`);
+        if (detailed.length) {
+          const saved = writeCityResults(detailed.slice(0, limit));
+          await autoPoiImportedEvents(saved);
+          console.log(`已保存本城已抓取的 ${saved.length} 条后暂停`);
+        }
+        throw error;
+      }
       counters.detailFailed += 1;
       event.detailText = "";
       event.rawDetailText = "";
@@ -608,25 +640,14 @@ async function main() {
     ? [...detailed].sort((a, b) => b.score - a.score)
     : [...detailed].sort((a, b) => Number(a.sourcePosition) - Number(b.sourcePosition));
   const events = ordered.slice(0, limit);
-  const cityPayload = buildOutputPayload(events);
-  if (isLegacyFileTarget(output)) {
-    const existingPayload = readExistingPayload(output);
-    const finalPayload = mergePayload(existingPayload, cityPayload);
-    writePayload(output, finalPayload);
-  } else {
-    const db = openDatabase(output);
-    try {
-      importPayload(db, cityPayload, { mode });
-    } finally {
-      db.close();
-    }
-  }
+  writeCityResults(events);
+  await autoPoiImportedEvents(events);
   console.log(`Wrote ${events.length} new ${city} events to ${output} (${mode})`);
   console.log(`List ${counters.listTotal} · skipped existing ${counters.skippedExisting} · skipped excluded ${counters.skippedExcluded} · detail failed ${counters.detailFailed} · 4:3 composed ${counters.composeOk} · compose failed ${counters.composeFail}`);
   console.log(events.map((event) => `${event.sourcePosition}. ${event.score} ${event.category} ${event.title}`).join("\n"));
 }
 
 main().catch((error) => {
-  console.error(error);
-  process.exit(1);
+  console.error(error.message || error);
+  process.exit(isDoubanBlockedError(error) ? 2 : 1);
 });

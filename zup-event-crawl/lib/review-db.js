@@ -16,9 +16,26 @@ const {
   resolveStartAt,
 } = require("./event-import-ready");
 const { enrichEventBody } = require("./event-participation");
-const { assessEventPoiConfidence, suggestEventPoiKeyword } = require("./tencent-poi");
+const {
+  buildPoiKeyword,
+  isStrictPoiMatchMode,
+  normalizePoiMatchMode,
+  parseDoubanLocation,
+  POI_MATCH_MODE_NORMAL,
+  suggestEventPoiKeyword,
+} = require("./tencent-poi");
 
 const DEFAULT_NOTE = "本文件用于本地人工审核。保留原始抓取详情文本，body 为基于原文提炼的 Zup 活动简介。图片发布前需再次确认来源授权与平台规则。";
+const EVENT_POI_MATCH_MODE_KEY = "event_poi_match_mode";
+
+/** Agent 仅因「大楼/园区/楼栋颗粒度」标存疑、主地点其实已对齐时，标准模式放行 */
+const AGENT_GRANULARITY_ONLY_DOUBT_PATTERNS = [
+  /大厦\/园区级地址/,
+  /地标\s*POI/,
+  /具体楼层|活动室/,
+  /楼栋需人工确认/,
+  /先匹配园区\s*POI/,
+];
 const VALID_REVIEW_STATUSES = new Set(["approved", "pending", "rejected"]);
 
 const EVENT_IMPORT_COLUMNS = [
@@ -31,6 +48,10 @@ const EVENT_IMPORT_COLUMNS = [
   ["poi_updated_at", "TEXT"],
   ["poi_latitude", "REAL"],
   ["poi_longitude", "REAL"],
+  ["poi_match_source", "TEXT NOT NULL DEFAULT ''"],
+  ["poi_agent_doubtful", "INTEGER NOT NULL DEFAULT 0"],
+  ["poi_agent_reason", "TEXT NOT NULL DEFAULT ''"],
+  ["poi_agent_search_keyword", "TEXT NOT NULL DEFAULT ''"],
   ["now_merchant_id", "TEXT NOT NULL DEFAULT ''"],
   ["now_merchant_name", "TEXT NOT NULL DEFAULT ''"],
   ["buzz_now_id", "TEXT NOT NULL DEFAULT ''"],
@@ -192,6 +213,10 @@ function rowToEvent(row) {
     poi_title: row.poi_title || "",
     poi_address: row.poi_address || "",
     poi_candidates: parsePoiCandidates(row.poi_candidates),
+    poi_match_source: row.poi_match_source || "",
+    poi_agent_doubtful: Boolean(row.poi_agent_doubtful),
+    poi_agent_reason: row.poi_agent_reason || "",
+    poi_agent_search_keyword: row.poi_agent_search_keyword || "",
     poi_updated_at: row.poi_updated_at || null,
     now_merchant_id: row.now_merchant_id || "",
     now_merchant_name: row.now_merchant_name || "",
@@ -213,23 +238,83 @@ function rowToEvent(row) {
   };
 }
 
-function enrichEventPoiFlags(event) {
+function isAgentGranularityOnlyDoubt(reason) {
+  const text = String(reason || "").trim();
+  if (!text) return false;
+  return AGENT_GRANULARITY_ONLY_DOUBT_PATTERNS.some((pattern) => pattern.test(text));
+}
+
+function getEventPoiMatchMode(db) {
+  return normalizePoiMatchMode(getMetaValue(db, EVENT_POI_MATCH_MODE_KEY, POI_MATCH_MODE_NORMAL));
+}
+
+function setEventPoiMatchMode(db, mode) {
+  const normalized = normalizePoiMatchMode(mode);
+  setMetaValue(db, EVENT_POI_MATCH_MODE_KEY, normalized);
+  return normalized;
+}
+
+function resolveEventPoiDisplayFlags(event, options = {}) {
+  const poiMatchMode = normalizePoiMatchMode(options.poiMatchMode || POI_MATCH_MODE_NORMAL);
+  if (event?.poi_match_source === "agent") {
+    const reason = String(event.poi_agent_reason || "").trim();
+    const agentDoubtful = Boolean(event.poi_agent_doubtful);
+    const doubtful = agentDoubtful && (
+      isStrictPoiMatchMode(poiMatchMode) || !isAgentGranularityOnlyDoubt(reason)
+    );
+    return {
+      doubtful,
+      score: null,
+      reasons: doubtful && reason ? [reason] : [],
+    };
+  }
+  return { doubtful: false, score: null, reasons: [] };
+}
+
+function agentKeywordDroppedBuildingDetail(agentKeyword, locationTerm) {
+  if (!agentKeyword || !locationTerm) return false;
+  if (!/[A-Za-z0-9一二三四五六七八九十]+[栋座楼幢]/.test(locationTerm)) return false;
+  if (/[A-Za-z0-9一二三四五六七八九十]+[栋座楼幢]/.test(agentKeyword)) return false;
+  const locationCore = locationTerm.replace(/\s+/g, "").replace(/[（(].*$/, "");
+  const agentCore = agentKeyword.replace(/\s+/g, "").replace(/[（(].*$/, "");
+  return locationCore.startsWith(agentCore) && locationCore.length > agentCore.length;
+}
+
+function resolvePoiSuggestKeyword(event) {
+  const city = event.city || "";
+  const parsed = parseDoubanLocation(event.location, city);
+  const locationTerm = String(parsed.venue || parsed.address || parsed.full || "").trim();
+
+  if (event?.poi_match_source === "agent") {
+    let term = String(event.poi_agent_search_keyword || "").trim();
+    if (term && agentKeywordDroppedBuildingDetail(term, locationTerm)) {
+      term = locationTerm;
+    }
+    if (!term) term = locationTerm;
+    if (term) return buildPoiKeyword(term, city);
+  }
+  return suggestEventPoiKeyword(event.location, city, event.title);
+}
+
+function enrichEventPoiFlags(event, options = {}) {
   if (!event) return event;
-  const poiCheck = assessEventPoiConfidence(event);
+  const poiCheck = resolveEventPoiDisplayFlags(event, options);
   return {
     ...event,
     body: isExpired(event) ? event.body : enrichEventBody(event),
     poi_doubtful: poiCheck.doubtful,
     poi_match_score: poiCheck.score,
     poi_doubt_reasons: poiCheck.reasons,
-    poi_suggest_keyword: event.poi_suggest_keyword
-      || suggestEventPoiKeyword(event.location, event.city, event.title),
+    poi_suggest_keyword: resolvePoiSuggestKeyword(event),
   };
 }
 
 function getEventByUid(db, eventUid) {
   const row = db.prepare("SELECT * FROM events WHERE event_uid = ?").get(eventUid);
-  return row ? enrichEventPoiFlags(rowToEvent(row)) : null;
+  if (!row) return null;
+  return enrichEventPoiFlags(rowToEvent(row), {
+    poiMatchMode: getEventPoiMatchMode(db),
+  });
 }
 
 function applyEventPoiSelection(db, eventUid, poi, options = {}) {
@@ -239,6 +324,13 @@ function applyEventPoiSelection(db, eventUid, poi, options = {}) {
     throw new Error(`活动不存在: ${eventUid}`);
   }
 
+  const matchSource = String(options.matchSource || "").trim();
+  const agentDoubtful = matchSource === "agent" ? (options.agentDoubtful ? 1 : 0) : 0;
+  const agentReason = matchSource === "agent" ? String(options.agentReason || "").trim() : "";
+  const agentSearchKeyword = matchSource === "agent"
+    ? String(options.agentSearchKeyword || "").trim()
+    : "";
+
   db.prepare(`
     UPDATE events SET
       location_poi_id = @location_poi_id,
@@ -247,6 +339,10 @@ function applyEventPoiSelection(db, eventUid, poi, options = {}) {
       poi_latitude = @poi_latitude,
       poi_longitude = @poi_longitude,
       poi_candidates = @poi_candidates,
+      poi_match_source = @poi_match_source,
+      poi_agent_doubtful = @poi_agent_doubtful,
+      poi_agent_reason = @poi_agent_reason,
+      poi_agent_search_keyword = @poi_agent_search_keyword,
       poi_updated_at = @poi_updated_at,
       now_merchant_id = '',
       now_merchant_name = '',
@@ -260,6 +356,10 @@ function applyEventPoiSelection(db, eventUid, poi, options = {}) {
     poi_latitude: poi.latitude ?? null,
     poi_longitude: poi.longitude ?? null,
     poi_candidates: JSON.stringify(options.candidates || []),
+    poi_match_source: matchSource,
+    poi_agent_doubtful: agentDoubtful,
+    poi_agent_reason: agentReason,
+    poi_agent_search_keyword: agentSearchKeyword,
     poi_updated_at: now,
     updated_at: now,
   });
@@ -622,7 +722,7 @@ function importPayload(db, payload, options = {}) {
     ) VALUES (
       ?, ?, ?, ?, ?, ?, ?,
       ?, ?, ?, ?, ?, ?, ?, ?,
-      ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+      ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
       ?, ?, ?, ?
     )
     ON CONFLICT(event_uid) DO UPDATE SET
@@ -895,12 +995,12 @@ function getEventsPayload(db) {
 
   const cityOrder = cityImportRows.length ? cityImportRows.map((row) => row.city) : [...new Set(eventRows.map((row) => row.city))];
   const cityOrderMap = new Map(cityOrder.map((city, index) => [city, index]));
+  const poiMatchMode = getEventPoiMatchMode(db);
   const events = eventRows
     .map((row) => enrichEventPoiFlags({
       ...rowToEvent(row),
       eventDates: eventDatesByUid.get(row.event_uid) || [],
-      poi_suggest_keyword: suggestEventPoiKeyword(row.location, row.city, row.title),
-    }))
+    }, { poiMatchMode }))
     .sort((a, b) => {
       const cityDiff = (cityOrderMap.get(a.city) ?? Number.MAX_SAFE_INTEGER) - (cityOrderMap.get(b.city) ?? Number.MAX_SAFE_INTEGER);
       if (cityDiff !== 0) return cityDiff;
@@ -935,6 +1035,7 @@ function getEventsPayload(db) {
     dateWindow,
     note,
     cityMeta,
+    poi_match_mode: poiMatchMode,
     events,
   };
 }
@@ -949,6 +1050,7 @@ module.exports = {
   countApprovedActiveEvents,
   getApprovedEvents,
   getEventByUid,
+  getEventPoiMatchMode,
   getEventsPayload,
   getExportImportNows,
   getReviewState,
@@ -959,6 +1061,7 @@ module.exports = {
   markEventImportResult,
   openDatabase,
   rejectEventForMissingPoi,
+  setEventPoiMatchMode,
   clearReviewDecisions,
   patchReviewDecision,
   patchReviewDecisions,

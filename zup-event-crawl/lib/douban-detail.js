@@ -137,6 +137,68 @@ function makeZupSummary(event) {
   return appendParticipationToBody(summary, event);
 }
 
+function matchMicroAddress(html, prop) {
+  const spanMatch = html.match(new RegExp(`<span[^>]*itemprop="${prop}"[^>]*>([\\s\\S]*?)<\\/span>`, "i"));
+  if (spanMatch) return normalizeSpace(decodeHtml(spanMatch[1]));
+  const metaMatch = html.match(new RegExp(`itemprop="${prop}"[^>]*content="([^"]+)"`, "i"));
+  if (metaMatch) return normalizeSpace(decodeHtml(metaMatch[1]));
+  return "";
+}
+
+function parseDoubanEventLocation(detailHtml) {
+  const html = String(detailHtml || "");
+  if (!html) return null;
+
+  const region = matchMicroAddress(html, "region");
+  const locality = matchMicroAddress(html, "locality");
+  const street = matchMicroAddress(html, "street-address");
+
+  let latitude = null;
+  let longitude = null;
+  const latMatch = html.match(/itemprop="latitude"\s+content="([^"]+)"/);
+  const lngMatch = html.match(/itemprop="longitude"\s+content="([^"]+)"/);
+  if (latMatch) latitude = Number(latMatch[1]);
+  if (lngMatch) longitude = Number(lngMatch[1]);
+  if (!Number.isFinite(latitude)) latitude = null;
+  if (!Number.isFinite(longitude)) longitude = null;
+
+  let location = "";
+  if (region || locality || street) {
+    location = [region, locality, street].filter(Boolean).join(" ");
+  }
+  if (!location) {
+    const mapMatch = html.match(/_event_map_\s*=\s*\{[\s\S]*?address:\s*'((?:\\'|[^'])*)'/);
+    if (mapMatch) location = mapMatch[1].replace(/\\'/g, "'");
+  }
+  if (!location) return null;
+
+  return {
+    location: normalizeSpace(location),
+    district: locality || "",
+    latitude,
+    longitude,
+  };
+}
+
+function applyDoubanEventLocation(event, detailHtml, cityName = "") {
+  const parsed = parseDoubanEventLocation(detailHtml);
+  if (!parsed) return event;
+  if (!event.location) event.location = parsed.location;
+  if (!event.district) {
+    const districtFromLocation = parsed.location
+      .replace(new RegExp(`^${cityName}\\s*`), "")
+      .split(/\s+/)[0] || "";
+    event.district = parsed.district || districtFromLocation;
+  }
+  if (!Number.isFinite(Number(event.latitude)) && parsed.latitude != null) {
+    event.latitude = parsed.latitude;
+  }
+  if (!Number.isFinite(Number(event.longitude)) && parsed.longitude != null) {
+    event.longitude = parsed.longitude;
+  }
+  return event;
+}
+
 function rebuildDetailFields(event) {
   const html = event.rawDetailHtml || event.raw_detail_html || "";
   const detailText = html ? cleanDetailText(html) : (event.rawDetailText || event.raw_detail_text || "");
@@ -153,6 +215,7 @@ function rebuildDetailFields(event) {
 }
 
 module.exports = {
+  applyDoubanEventLocation,
   cleanDetailText,
   decodeHtml,
   extractDetailSentences,
@@ -160,5 +223,6 @@ module.exports = {
   extractEdescHtml,
   makeZupSummary,
   normalizeSpace,
+  parseDoubanEventLocation,
   rebuildDetailFields,
 };

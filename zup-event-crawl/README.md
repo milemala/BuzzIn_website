@@ -98,9 +98,13 @@ node scripts/scrape-douban-week-events.js 500 data/review.db --city=beijing --mo
 
 默认通过 **Chrome**（`lib/douban-chrome-fetch.js`）抓取，避免命令行 `fetch` 被豆瓣 403/429。若需旧主路可加 `--via-fetch`。
 
+遇到豆瓣风控（列表/详情无法访问、403/429、登录墙、验证码等）会**立即暂停**当前城市；批量脚本 `batch-scrape-douban-cities.js` 也会停止后续城市，并提示 `--skip-city=` 续跑。
+
 离线备路：先 `node scripts/fetch-douban-via-chrome.js --city=北京 --max-pages=10`，再 `--list-dir` / `--detail-dir` 跑同一抓取脚本。
 
 抓取入库时会自动合成 **4:3 横版封面**（模糊底图 + 原图 + 右侧文案），`image_original` 保留豆瓣原图。跳过时加 `--skip-compose`；补跑历史数据：`node scripts/compose-event-images.js --city=北京`。
+
+**POI 默认由 Cursor Agent 匹配**（见 `docs/event-poi-agent-workflow.md`）：抓完后对我说「给某城匹配 POI」。临时用旧版 JS 自动 POI：抓取时加 `--with-poi`。
 
 城市列表 URL 说明（成都为 `www.douban.com/location/...`，见 `docs/HANDOFF.md`）。
 

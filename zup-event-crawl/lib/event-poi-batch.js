@@ -63,7 +63,10 @@ async function batchEventAutoPoi(db, options = {}) {
         });
       } else {
         const { poi: best } = pickBestPoiForEvent(event, items);
-        applyEventPoiSelection(db, event.event_uid, best, { candidates: items });
+        applyEventPoiSelection(db, event.event_uid, best, {
+          candidates: items,
+          matchSource: "auto",
+        });
         await syncEventMerchantByPoi(db, event.event_uid);
         report.ok += 1;
         report.results.push({

@@ -440,6 +440,7 @@ node scripts/scrape-douban-week-events.js 30 data/review.db --city=chengdu --mod
 1. 按城市配置拉取列表页（可翻页 `?start=10`…），解析 `list-entry`，打 `sourcePosition`（豆瓣顺序）。
 2. 对候选逐条 `fetch` 详情页 `https://www.douban.com/event/{id}/`，写入 `rawDetailText` / `rawDetailHtml`，生成 `body`、`score`、`reviewReason`。
 3. `importPayload` 写入 `data/review.db`；`merge-city` 只替换/更新该城市分组，保留其他城市。
+4. 入库后 **默认不做 POI**；由 Cursor Agent 按 `docs/event-poi-agent-workflow.md` 匹配（导出 → Agent 定词/定结果 → `apply-event-poi-decisions.js`）。临时 JS 自动 POI：加 `--with-poi`。
 
 业务规则不变：
 
