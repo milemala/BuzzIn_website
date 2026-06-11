@@ -674,12 +674,14 @@ npm start
 
 **完整流程**（新会话 Agent **必读**）：
 
+- 入库时间：[`docs/event-time-agent.md`](event-time-agent.md)（抓取后第一步；豆瓣/小红书均不在抓取阶段写死 start/end）
 - 分类/挡下：[`docs/event-classification-agent.md`](event-classification-agent.md)
 - 活动介绍：[`docs/event-body-agent.md`](event-body-agent.md)
 - POI：[`docs/event-poi-agent-workflow.md`](event-poi-agent-workflow.md)
 
 摘要：
 
+- 抓取只保留 `time_text`（豆瓣详情 HTML 供 Agent 解析）；`time-decisions.json` → `apply-event-time-decisions.js`
 - 抓取后 **不再用 JS 正则** 做推荐/挡下；默认 `待分类`，由大模型写 `classification-decisions.json`
 - 活动 `body` 默认 `body_source=pending`，由大模型写完整正文（含参加方式）到 `body-decisions.json`；JS `makeZupSummary` 仅备选（`batch-infer-event-bodies.js`）
 - POI：`export-events-for-poi.js` → `poi-search-cli` + `decisions.json` → `apply-event-poi-decisions.js`

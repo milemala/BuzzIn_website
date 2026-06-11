@@ -131,7 +131,7 @@ node scripts/run-xhs-weekly-pipeline.js --skip-scrape --city=上海
 - 推荐/挡下 + 活动类型：[`docs/event-classification-agent.md`](docs/event-classification-agent.md)
 - POI 匹配：[`docs/event-poi-agent-workflow.md`](docs/event-poi-agent-workflow.md)
 
-对我说「抓取成都豆瓣活动」即可。机械步骤：`node scripts/prepare-city-poi-for-agent.js --city=成都`（抓取 + 导出分类任务 + 导出 POI 任务）。不再用 JS 正则做推荐/挡下或 POI Top1。
+对我说「抓取成都豆瓣活动」即可。机械步骤：`node scripts/prepare-city-poi-for-agent.js --city=成都`（抓取 + 导出时间任务 + 分类任务 + POI 任务）。抓取只保留 `time_text`，入库时间由 Agent 写 `time-decisions.json`（见 [`docs/event-time-agent.md`](docs/event-time-agent.md)）。不再用 JS 正则做推荐/挡下或 POI Top1。
 
 城市列表 URL 说明（成都为 `www.douban.com/location/...`，见 `docs/HANDOFF.md`）。
 

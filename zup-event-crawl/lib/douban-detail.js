@@ -367,12 +367,13 @@ function parseDoubanEventTime(detailHtml) {
   };
 }
 
+/** 抓取阶段只保留 time_text；start/end 由 Agent 写 time-decisions.json 入库（见 docs/event-time-agent.md） */
 function applyDoubanEventTime(event, detailHtml) {
   const parsed = parseDoubanEventTime(detailHtml);
   if (!parsed) return event;
   if (parsed.timeText) event.timeText = parsed.timeText;
-  if (parsed.startDate) event.startDate = parsed.startDate;
-  if (parsed.endDate) event.endDate = parsed.endDate;
+  event.startDate = null;
+  event.endDate = null;
   return event;
 }
 
@@ -410,18 +411,23 @@ function rebuildEventDerivedFields(event) {
     rawDetailText: detailText,
     rawDetailHtml: html,
   };
-  if (html) applyDoubanEventTime(nextEvent, html);
+  if (html) {
+    const parsed = parseDoubanEventTime(html);
+    if (parsed?.timeText) nextEvent.timeText = parsed.timeText;
+  }
 
-  const eventDates = nextEvent.startDate && nextEvent.endDate
-    ? buildEventDates(nextEvent.startDate, nextEvent.endDate, { fromToday: false })
+  const startDate = event.startDate || event.start_date || null;
+  const endDate = event.endDate || event.end_date || null;
+  const eventDates = startDate && endDate
+    ? buildEventDates(startDate, endDate, { fromToday: false })
     : (event.eventDates || []);
 
   return {
     rawDetailText: detailText || null,
     body: makeZupIntro(nextEvent) || null,
     timeText: nextEvent.timeText || null,
-    startDate: nextEvent.startDate || null,
-    endDate: nextEvent.endDate || null,
+    startDate,
+    endDate,
     eventDates,
   };
 }

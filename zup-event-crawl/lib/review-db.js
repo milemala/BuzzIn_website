@@ -729,8 +729,14 @@ function importPayload(db, payload, options = {}) {
         WHEN events.classification_source = 'agent' THEN events.category
         ELSE excluded.category
       END,
-      start_date = excluded.start_date,
-      end_date = excluded.end_date,
+      start_date = CASE
+        WHEN excluded.start_date IS NOT NULL AND excluded.start_date != '' THEN excluded.start_date
+        ELSE events.start_date
+      END,
+      end_date = CASE
+        WHEN excluded.end_date IS NOT NULL AND excluded.end_date != '' THEN excluded.end_date
+        ELSE events.end_date
+      END,
       time_text = excluded.time_text,
       location = excluded.location,
       latitude = excluded.latitude,
@@ -842,9 +848,12 @@ function importPayload(db, payload, options = {}) {
           new Date().toISOString()
         );
 
-        deleteEventDates.run(eventUid);
-        for (const eventDate of resolveEventDates(event)) {
-          insertEventDate.run(eventUid, eventDate);
+        const nextEventDates = resolveEventDates(event);
+        if (nextEventDates.length) {
+          deleteEventDates.run(eventUid);
+          for (const eventDate of nextEventDates) {
+            insertEventDate.run(eventUid, eventDate);
+          }
         }
       }
 
@@ -1120,6 +1129,32 @@ function applyEventBody(db, eventUid, decision) {
   return getEventByUid(db, eventUid);
 }
 
+function applyEventTime(db, eventUid, decision) {
+  const { syncEventDates, validateTimeDecision } = require("./event-time-agent");
+  const check = validateTimeDecision({ ...decision, event_uid: eventUid });
+  if (!check.ok) {
+    throw new Error(check.errors.join("；"));
+  }
+  const now = new Date().toISOString();
+  const result = db.prepare(`
+    UPDATE events SET
+      start_date = @start_date,
+      end_date = @end_date,
+      updated_at = @updated_at
+    WHERE event_uid = @event_uid
+  `).run({
+    event_uid: eventUid,
+    start_date: decision.start_at,
+    end_date: decision.expired_at,
+    updated_at: now,
+  });
+  if (!result.changes) {
+    throw new Error(`活动不存在: ${eventUid}`);
+  }
+  syncEventDates(db, eventUid, decision.start_at, decision.expired_at);
+  return getEventByUid(db, eventUid);
+}
+
 function applyEventClassification(db, eventUid, decision) {
   const {
     CLASSIFICATION_SOURCE_AGENT,
@@ -1161,6 +1196,7 @@ module.exports = {
   applyDefaultImportPrepToActiveEvents,
   applyEventBody,
   applyEventClassification,
+  applyEventTime,
   applyEventPoiSelection,
   syncEventPoiCoordinates,
   eventUidFor,

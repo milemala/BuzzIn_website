@@ -20,7 +20,9 @@ function startOfDay(date) {
 }
 
 function toDateValue(raw) {
-  const date = parseEventDate(raw);
+  const text = String(raw || "").trim();
+  const dateOnly = text.slice(0, 10);
+  const date = parseEventDate(dateOnly);
   if (!date) return "";
   return formatDateValue(date);
 }

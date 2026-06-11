@@ -59,6 +59,8 @@ function main() {
     ].join(" "));
   }
 
+  run(`node scripts/export-events-for-time.js --city=${options.cityName} --source=douban`);
+  run(`node scripts/suggest-event-time-decisions.js --city=${options.cityName} --source=douban`);
   run(`node scripts/export-events-for-classification.js --city=${options.cityName} --refresh`);
   run(`node scripts/export-events-for-body.js --city=${options.cityName} --refresh`);
 
@@ -68,13 +70,15 @@ function main() {
   const workbench = path.join(root, "data", "poi-agent-workbench", options.cityName);
   console.log("\n---");
   console.log("抓取与导出已完成。请在 Cursor 对话中由大模型继续：");
-  console.log(`  1. 分类/挡下：读 ${path.join(workbench, "classification-pending.json")}`);
+  console.log(`  1. 入库时间：读 ${path.join(workbench, "time-pending.json")}（或核对 time-decisions.json 草稿）`);
+  console.log("     → 写/改 time-decisions.json → apply-event-time-decisions.js");
+  console.log(`  2. 分类/挡下：读 ${path.join(workbench, "classification-pending.json")}`);
   console.log("     → 写 classification-decisions.json → apply-event-classification-decisions.js");
-  console.log(`  2. 活动介绍：读 ${path.join(workbench, "body-pending.json")}`);
+  console.log(`  3. 活动介绍：读 ${path.join(workbench, "body-pending.json")}`);
   console.log("     → 写 body-decisions.json（含参加方式）→ apply-event-body-decisions.js");
-  console.log(`  3. POI：读 ${path.join(workbench, "pending.json")}`);
+  console.log(`  4. POI：读 ${path.join(workbench, "pending.json")}`);
   console.log("     → poi-search-cli.js → decisions.json → apply-event-poi-decisions.js");
-  console.log("详见 docs/event-classification-agent.md、docs/event-body-agent.md 与 docs/event-poi-agent-workflow.md");
+  console.log("详见 docs/event-time-agent.md、docs/event-classification-agent.md、docs/event-body-agent.md、docs/event-poi-agent-workflow.md");
 }
 
 main();

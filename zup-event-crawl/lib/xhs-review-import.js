@@ -9,7 +9,7 @@ const { buildPendingClassificationFields } = require("./event-classification");
 const { readImageFile } = require("./image-fetch");
 const { buildScrapeLocalImageUrl, normalizeRelativePath } = require("./scrape-local-image");
 const { composeXhsTextCover } = require("./xhs-text-cover-compose");
-const { parseXhsTimeRange } = require("./xhs-time-parse");
+const { parseEventTimeFromText } = require("./event-time-parse");
 
 const XHS_SOURCE = "xiaohongshu";
 const XHS_SOURCE_NAME = "小红书";
@@ -52,9 +52,11 @@ function buildRawDetailText(extracted, event, noteDir) {
 function mapExtractedEventToReview(extracted, event, noteDir, rootDir, position) {
   const noteId = extracted.noteId;
   const id = xhsEventId(noteId, event.index);
-  const { startDate, endDate } = parseXhsTimeRange(event.time, {
+  const parsedTime = parseEventTimeFromText(event.time, {
     year: new Date().getFullYear(),
   });
+  const startDate = parsedTime.ok ? parsedTime.start_date : null;
+  const endDate = parsedTime.ok ? parsedTime.end_date : null;
 
   const reviewEvent = {
     id,

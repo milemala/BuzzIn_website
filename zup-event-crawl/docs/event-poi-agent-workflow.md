@@ -6,12 +6,13 @@
 
 你在 Cursor 里说：**「给我抓取成都豆瓣活动」** → Agent 在同一次对话里完成：
 
-1. 抓取豆瓣 → 入库 `data/review.db`
-2. **大模型分类/挡下** → `classification-decisions.json`（见 [`event-classification-agent.md`](event-classification-agent.md)）
-3. 按地址去重导出 POI 任务 → `pending.json`
-4. **大模型**决定搜词、调腾讯地图、选 POI / 未匹配 / 标存疑
-5. 写 `decisions.json` → `apply-event-poi-decisions.js` 写回库
-6. 汇报：抓取数、推荐/挡下、POI 匹配/存疑、需人工条目
+1. 抓取豆瓣 → 入库 `data/review.db`（**只保留 time_text**，不写最终 start/end）
+2. **大模型校正入库时间** → `time-decisions.json`（见 [`event-time-agent.md`](event-time-agent.md)）
+3. **大模型分类/挡下** → `classification-decisions.json`（见 [`event-classification-agent.md`](event-classification-agent.md)）
+4. 按地址去重导出 POI 任务 → `pending.json`
+5. **大模型**决定搜词、调腾讯地图、选 POI / 未匹配 / 标存疑
+6. 写 `decisions.json` → `apply-event-poi-decisions.js` 写回库
+7. 汇报：抓取数、时间校正、推荐/挡下、POI 匹配/存疑、需人工条目
 
 **不部署独立 LLM API**：推理在 Cursor 对话里；脚本只做抓取、腾讯 API、入库。
 
@@ -21,6 +22,10 @@
 
 ```
 抓取 scrape-douban-week-events.js
+    ↓
+导出 export-events-for-time.js → time-pending.json
+    ↓
+【大模型】逐条：start_at / expired_at → time-decisions.json → apply
     ↓
 导出 export-events-for-classification.js → classification-pending.json
     ↓

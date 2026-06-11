@@ -492,12 +492,7 @@ async function main() {
       event.doubanEventType = parseDoubanEventType(detailHtml);
       applyDoubanEventLocation(event, detailHtml, city);
       applyDoubanEventTime(event, detailHtml);
-      if (event.startDate && event.endDate) {
-        event.eventDates = buildEventDates(event.startDate, event.endDate, {
-          fromToday: false,
-          anchorDate: scrapeAnchor,
-        });
-      }
+      event.eventDates = [];
       const detailExcludeReason = getExcludeReason(event, event.doubanEventType);
       if (detailExcludeReason) {
         counters.skippedExcluded += 1;

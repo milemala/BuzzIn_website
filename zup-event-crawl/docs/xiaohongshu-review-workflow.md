@@ -48,8 +48,9 @@ node scripts/run-xhs-weekly-pipeline.js --import-only
 | 2. Agent 读图写 `vision-slots.json` | ❌ **必须人工/Agent** | 版式每周不同，禁止复制上周 posterBox |
 | 3. extract 合并 + 裁海报 | ✅ | 有 `posterBox` 才裁；无则 `poster=null` |
 | 4. 合成封面 + 入库 | ✅ | `append-city`，**不删**同城豆瓣活动；**不做 POI** |
-| 5. 审核台筛选 | 人工 | 来源选「小红书」；状态/类型/日期按来源联动 |
-| 6. 分类 / body / POI | Agent 后续 | 与豆瓣同一套 export → decisions → apply |
+| 5. 校正入库时间 | Agent | `export-events-for-time.js` → `time-decisions.json` → `apply-event-time-decisions.js`（见 [`event-time-agent.md`](event-time-agent.md)） |
+| 6. 审核台筛选 | 人工 | 来源选「小红书」；状态/类型/日期按来源联动 |
+| 7. 分类 / body / POI | Agent 后续 | 与豆瓣同一套 export → decisions → apply |
 
 ## 分步命令（调试时用）
 
@@ -120,6 +121,7 @@ data/scrape-cache/xhs/<城市>/<笔记ID>/
 - [ ] 无海报条目未强行裁切
 - [ ] `events-extracted.json` 活动数与 slide 一致（上海类文字帖可达 30+ 条）
 - [ ] `import-xhs-events-to-review.js` 或流水线 `--import-only` 跑通
+- [ ] `apply-event-time-decisions.js` 后入库准备有 `start_at` / `expired_at`
 - [ ] 审核台来源「小红书」可见，封面正常
 
 ## 禁止事项

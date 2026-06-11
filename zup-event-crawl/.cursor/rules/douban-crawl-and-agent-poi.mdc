@@ -10,9 +10,10 @@ alwaysApply: false
 
 **先读**：
 
-1. [`docs/event-classification-agent.md`](../docs/event-classification-agent.md) — 推荐/挡下 + 分类
-2. [`docs/event-body-agent.md`](../docs/event-body-agent.md) — 活动介绍 body
-3. [`docs/event-poi-agent-workflow.md`](../docs/event-poi-agent-workflow.md) — POI 匹配
+1. [`docs/event-time-agent.md`](../docs/event-time-agent.md) — 入库时间（抓取后第一步）
+2. [`docs/event-classification-agent.md`](../docs/event-classification-agent.md) — 推荐/挡下 + 分类
+3. [`docs/event-body-agent.md`](../docs/event-body-agent.md) — 活动介绍 body
+4. [`docs/event-poi-agent-workflow.md`](../docs/event-poi-agent-workflow.md) — POI 匹配
 
 **不要依赖聊天记忆。**
 
@@ -34,7 +35,21 @@ node scripts/scrape-douban-week-events.js 500 data/review.db --city=<slug> --mod
 
 或一键：`node scripts/prepare-city-poi-for-agent.js --city=<中文城市名> --max-pages=10`
 
-### 2. 导出并做分类/挡下（在 POI 之前）
+抓取脚本**只写 time_text**，不写最终 `start_date`/`end_date`。
+
+### 2. 校正入库时间（在分类之前）
+
+```bash
+node scripts/export-events-for-time.js --city=<中文城市名> --source=douban
+```
+
+读 `time-pending.json`，核对/修改 `time-decisions.json`（可先跑 `suggest-event-time-decisions.js` 生成草稿）。仅开始时刻 → `expired_at` 当天 23:59:59。
+
+```bash
+node scripts/apply-event-time-decisions.js --city=<中文城市名>
+```
+
+### 3. 导出并做分类/挡下（在 POI 之前）
 
 ```bash
 node scripts/export-events-for-classification.js --city=<中文城市名> --refresh
@@ -46,7 +61,7 @@ node scripts/export-events-for-classification.js --city=<中文城市名> --refr
 node scripts/apply-event-classification-decisions.js --city=<中文城市名>
 ```
 
-### 3. 导出并撰写活动介绍
+### 4. 导出并撰写活动介绍
 
 ```bash
 node scripts/export-events-for-body.js --city=<中文城市名> --refresh
@@ -60,7 +75,7 @@ node scripts/apply-event-body-decisions.js --city=<中文城市名>
 
 无 Agent 时备选：`node scripts/batch-infer-event-bodies.js --city=<中文城市名>`
 
-### 4. 导出 POI 任务
+### 5. 导出 POI 任务
 
 ```bash
 node scripts/export-events-for-poi.js --city=<中文城市名> --refresh --pending-only
@@ -68,7 +83,7 @@ node scripts/export-events-for-poi.js --city=<中文城市名> --refresh --pendi
 
 读 `data/poi-agent-workbench/<城市>/pending.json`。
 
-### 5. 大模型 POI（核心）
+### 6. 大模型 POI（核心）
 
 对每个 `group`：
 
@@ -79,7 +94,7 @@ node scripts/export-events-for-poi.js --city=<中文城市名> --refresh --pendi
 
 **硬规则**：区划必须一致；泛名「文创园/产业园」无门牌对齐 → 不 match；多场地（等N家影院）要标存疑或只绑主场地。
 
-### 6. 写 POI decisions 并入库
+### 7. 写 POI decisions 并入库
 
 `data/poi-agent-workbench/<城市>/decisions.json` →
 
@@ -87,9 +102,9 @@ node scripts/export-events-for-poi.js --city=<中文城市名> --refresh --pendi
 node scripts/apply-event-poi-decisions.js --city=<城市>
 ```
 
-### 7. 汇报
+### 8. 汇报
 
-抓取条数、推荐/挡下/待分类、body 待写/已写、POI match/reject/doubtful、需人工条目。
+抓取条数、时间已校正条数、推荐/挡下/待分类、body 待写/已写、POI match/reject/doubtful、需人工条目。
 
 ## 审核台
 

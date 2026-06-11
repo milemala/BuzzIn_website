@@ -48,7 +48,17 @@ node scripts/run-xhs-weekly-pipeline.js --skip-scrape --city=<城市名>
 - **默认不做 POI**（key 没额度时跳过）
 - 审核台：http://127.0.0.1:8787/ 来源选「小红书」
 
-### 4. 后续（与豆瓣相同，按需）
+### 4. 校正入库时间（入库后必做）
+
+见 [`docs/event-time-agent.md`](../docs/event-time-agent.md)：
+
+```bash
+node scripts/suggest-event-time-decisions.js --source=xiaohongshu --all-cities
+# Agent 核对 time-decisions.json（仅开始时刻 → expired_at 当天 23:59:59）
+node scripts/apply-event-time-decisions.js --city=多城市
+```
+
+### 5. 后续（与豆瓣相同，按需）
 
 - 分类：[`docs/event-classification-agent.md`](../docs/event-classification-agent.md)
 - 介绍：[`docs/event-body-agent.md`](../docs/event-body-agent.md)

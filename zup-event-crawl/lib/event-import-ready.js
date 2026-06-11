@@ -8,11 +8,32 @@ function pad2(n) {
   return String(n).padStart(2, "0");
 }
 
+function parseStoredDateTime(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return null;
+  const full = raw.match(/^(\d{4})-(\d{2})-(\d{2})\s+(\d{2}):(\d{2}):(\d{2})$/);
+  if (full) {
+    return new Date(
+      Number(full[1]),
+      Number(full[2]) - 1,
+      Number(full[3]),
+      Number(full[4]),
+      Number(full[5]),
+      Number(full[6]),
+    );
+  }
+  const dateOnly = raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (dateOnly) {
+    return new Date(Number(dateOnly[1]), Number(dateOnly[2]) - 1, Number(dateOnly[3]), 0, 0, 0);
+  }
+  const date = new Date(raw);
+  return Number.isNaN(date.getTime()) ? null : date;
+}
+
 /** 入库时间格式：2006-01-02 15:04:05 */
 function formatImportDateTime(value) {
-  if (!value) return "";
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "";
+  const date = parseStoredDateTime(value);
+  if (!date) return "";
   return `${date.getFullYear()}-${pad2(date.getMonth() + 1)}-${pad2(date.getDate())} ${pad2(date.getHours())}:${pad2(date.getMinutes())}:${pad2(date.getSeconds())}`;
 }
 
@@ -42,14 +63,22 @@ function splitLocation(location) {
 }
 
 function resolveStartAt(event) {
-  return formatImportDateTime(event.startDate || event.start_date);
+  return formatImportDateTime(event.start_at || event.startDate || event.start_date);
 }
 
 function resolveExpiredAt(event) {
+  const fromExplicit = formatImportDateTime(event.expired_at);
+  if (fromExplicit) return fromExplicit;
   const fromEnd = formatImportDateTime(event.endDate || event.end_date);
   if (fromEnd) return fromEnd;
   const fromStart = formatImportDateTime(event.startDate || event.start_date);
-  if (fromStart) return fromStart;
+  if (fromStart) {
+    const date = parseStoredDateTime(event.startDate || event.start_date);
+    if (date && !String(event.startDate || event.start_date).includes(":")) {
+      return formatImportDateTime(`${date.getFullYear()}-${pad2(date.getMonth() + 1)}-${pad2(date.getDate())} 23:59:59`);
+    }
+    return fromStart;
+  }
   return "";
 }
 
