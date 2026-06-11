@@ -160,6 +160,17 @@ async function handleImageProxy(req, res, parsed) {
     return;
   }
 
+  const { getScrapeLocalImagePath } = require("../lib/scrape-local-image");
+  const scrapeLocalPath = getScrapeLocalImagePath(src, root);
+  if (scrapeLocalPath) {
+    if (!fs.existsSync(scrapeLocalPath)) {
+      sendJson(res, 404, { ok: false, error: "Scrape local image not found" });
+      return;
+    }
+    sendFile(res, scrapeLocalPath, null, "public, max-age=86400");
+    return;
+  }
+
   let imageUrl;
   try {
     imageUrl = new URL(src);

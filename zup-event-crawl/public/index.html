@@ -843,12 +843,24 @@
       return event.city || "未知城市";
     }
 
-    function getActiveEvents() {
+    function getCityScopedEvents() {
       return payload.events.filter((event) => {
         if (isExpired(event)) return false;
         if (cityFilter !== "all" && getCityKey(event) !== cityFilter) return false;
         return true;
       });
+    }
+
+    /** 城市 + 来源，用于状态/类型/日期筛选项的计数与选项 */
+    function getBaseScopedEvents() {
+      return getCityScopedEvents().filter((event) => {
+        if (sourceFilter !== "all" && getSourceKey(event) !== sourceFilter) return false;
+        return true;
+      });
+    }
+
+    function getActiveEvents() {
+      return getCityScopedEvents();
     }
 
     function getExpiredEvents() {
@@ -984,8 +996,20 @@
       return payload.events.filter((event) => {
         if (!isExpired(event)) return false;
         if (cityFilter !== "all" && getCityKey(event) !== cityFilter) return false;
+        if (sourceFilter !== "all" && getSourceKey(event) !== sourceFilter) return false;
         return true;
       });
+    }
+
+    function normalizeDependentFilters() {
+      const scoped = getBaseScopedEvents();
+      if (categoryFilter !== "all" && !scoped.some((event) => event.category === categoryFilter)) {
+        categoryFilter = "all";
+      }
+      if (dateFilter !== "all") {
+        const dates = collectFilterDates(scoped, todayDateValue());
+        if (!dates.includes(dateFilter)) dateFilter = "all";
+      }
     }
 
     function renderCityChip(cityKey, label) {
@@ -1004,7 +1028,7 @@
     }
 
     function renderStatusFilter() {
-      const scoped = getActiveEvents();
+      const scoped = getBaseScopedEvents();
       const expiredScoped = getExpiredScopedEvents();
       const filters = [
         { key: "all", label: "全部" },
@@ -1047,8 +1071,8 @@
     }
 
     function renderCategoryFilter() {
-      const scoped = getActiveEvents();
-      const categories = [...new Set(scoped.map((event) => event.category))];
+      const scoped = getBaseScopedEvents();
+      const categories = [...new Set(scoped.map((event) => event.category).filter(Boolean))].sort((a, b) => a.localeCompare(b, "zh-CN"));
       categoryFilterEl.innerHTML = renderSegButton({
         attr: "category",
         value: "all",
@@ -1071,7 +1095,7 @@
         ["xiaohongshu", "小红书"],
         ["wechat", "公众号"],
       ];
-      const scoped = getActiveEvents();
+      const scoped = getCityScopedEvents();
       const present = new Map(scoped.map((event) => [getSourceKey(event), getSourceLabel(event)]));
       const sources = baseSources.map(([key, label]) => [key, present.get(key) || label]);
       present.forEach((label, key) => {
@@ -1103,7 +1127,7 @@
     }
 
     function renderDateFilter() {
-      const activeEvents = getActiveEvents();
+      const activeEvents = getBaseScopedEvents();
       const today = todayDateValue();
       const dates = collectFilterDates(activeEvents, today);
       if (dateFilter !== "all" && !dates.includes(dateFilter)) dateFilter = "all";
@@ -1272,9 +1296,14 @@
     }
 
     function render() {
-      const activeEvents = getActiveEvents();
+      const activeEvents = getBaseScopedEvents();
       const cityLabel = cityFilter === "all" ? (payload.cities || []).join(" / ") || payload.city || "未知城市" : cityFilter;
-      const sources = [...new Set(activeEvents.map((event) => getSourceLabel(event)))].join(" / ") || "暂无来源";
+      const sources = sourceFilter === "all"
+        ? [...new Set(getCityScopedEvents().map((event) => getSourceLabel(event)))].join(" / ") || "暂无来源"
+        : (() => {
+          const sample = activeEvents[0];
+          return sample ? getSourceLabel(sample) : "暂无来源";
+        })();
       const cityMeta = payload.cityMeta && cityFilter !== "all" ? payload.cityMeta[cityFilter] : null;
       const generatedAt = cityMeta?.generatedAt || payload.generatedAt || "未知时间";
       sourceMeta.textContent = `${cityLabel} · ${sources} · 生成于 ${generatedAt}`;
@@ -1307,6 +1336,7 @@
       const button = event.target.closest("button[data-source]");
       if (!button || button.disabled) return;
       sourceFilter = button.dataset.source;
+      normalizeDependentFilters();
       resetPage();
       render();
     });

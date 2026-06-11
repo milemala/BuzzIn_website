@@ -29,7 +29,8 @@ function parseProfileNotes(html, limit = 10) {
   return raw.slice(0, limit).map(normalizeNoteCard).filter((n) => n.noteId);
 }
 
-const WEEKLY_TITLE_RE = /(?:本周|一周|周末).{0,8}活动汇总|活动汇总.*(?:本周|一周|周末)/;
+const WEEKLY_TITLE_RE =
+  /(?:本周|一周|周末).{0,20}(?:活动汇总|活动合集)|(?:活动汇总|活动合集).{0,20}(?:本周|一周|周末)/;
 
 /** 从标题里解析 (M.D-M.D) 或 （M.D-M.D）日期区间 */
 function parseTitleDateRange(title) {

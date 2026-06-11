@@ -49,5 +49,5 @@ node scripts/batch-scrape-xhs-cities.js --city=北京,上海
 
 ## 后续
 
-- [ ] events-extracted → 入库 `review.db`
+- [x] events-extracted → 入库 `review.db`（`node scripts/import-xhs-events-to-review.js`）
 - [ ] 对接分类 / POI Agent

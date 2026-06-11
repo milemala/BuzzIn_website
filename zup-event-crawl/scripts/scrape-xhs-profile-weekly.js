@@ -51,8 +51,20 @@ async function scrapeXhsProfileWeekly(profileUrl, options = {}) {
   }
   console.log(`\n[${city}] 2/4 选中汇总帖: ${picked.title} (${picked.noteId})`);
 
-  const detail = await fetchXhsNoteViaChrome(picked.noteId, picked.xsecToken);
   const noteDir = path.join(outRoot, picked.noteId);
+  const alreadyScraped = fs.existsSync(path.join(noteDir, "weekly-summary.json"));
+  if (alreadyScraped) {
+    console.log(`[${city}] 该帖已抓取过，跳过重复下载 → ${noteDir}`);
+    if (!options.skipExtract) {
+      execFileSync(process.execPath, [path.join(__dirname, "extract-xhs-weekly-events.js"), noteDir], {
+        stdio: "inherit",
+      });
+    }
+    const summary = JSON.parse(fs.readFileSync(path.join(noteDir, "weekly-summary.json"), "utf8"));
+    return { city, noteDir, picked, eventsFromText: summary.eventsFromText || [], skipped: true };
+  }
+
+  const detail = await fetchXhsNoteViaChrome(picked.noteId, picked.xsecToken);
   fs.mkdirSync(noteDir, { recursive: true });
   fs.writeFileSync(path.join(noteDir, "note.json"), `${JSON.stringify(detail.note, null, 2)}\n`);
 

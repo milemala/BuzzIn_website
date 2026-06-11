@@ -50,7 +50,7 @@ function buildEventsFromVision(noteDir, vision, cropped) {
       slot: slotFromKey(slotKey),
       sourceImage: slide ? `images/${slide}` : null,
       poster: crop ? rel(crop.posterFile, noteDir) : null,
-      needsPosterBox: Boolean(v.name && !v.posterBox),
+      needsPosterBox: false,
       category: v.category || null,
       name: v.name || null,
       price: v.price ?? null,
@@ -125,6 +125,12 @@ async function main() {
     console.log(`vision-slots 为空，已从正文列出 ${events.length} 条占位（待 Agent 读图）`);
   }
 
+  const withPoster = events.filter((e) => e.poster).length;
+  const withoutPoster = events.length - withPoster;
+  if (withoutPoster) {
+    console.log(`共 ${events.length} 条活动，其中 ${withPoster} 条有海报、${withoutPoster} 条无海报（poster 留空）`);
+  }
+
   const byCategory = {};
   for (const ev of events) {
     const cat = ev.category || "未分类";
@@ -142,6 +148,7 @@ async function main() {
     extractedAt: new Date().toISOString(),
     extractionMode: withBox ? "vision+posterBox" : "vision-full-slide",
     eventCount: events.filter((e) => e.name && !e.needsVision).length,
+    eventCountWithPoster: events.filter((e) => e.poster).length,
     events,
     byCategory,
   };
@@ -154,7 +161,7 @@ async function main() {
     "",
     `- 账号：${out.account || "—"}`,
     `- 周期：${out.period || "—"}`,
-    `- 活动数：${out.eventCount}`,
+    `- 活动数：${out.eventCount}（有海报 ${out.eventCountWithPoster}）`,
     `- 提炼方式：${out.extractionMode}`,
     "",
   ];
@@ -168,7 +175,7 @@ async function main() {
       if (ev.highlights) md.push(`- **介绍**：${ev.highlights}`);
       if (ev.sourceImage) md.push(`- **原图（slide）**：\`${ev.sourceImage}\``);
       if (ev.poster) md.push(`- **海报（裁切）**：\`${ev.poster}\``);
-      else if (ev.needsPosterBox) md.push("- **海报**：待 Agent 标注 posterBox");
+      else md.push("- **海报**：无");
       md.push("");
     });
   }

@@ -6,7 +6,9 @@ const {
   isComposedImageUrl,
   saveComposedImage,
 } = require("./composed-image");
-const { composeEventPosterFromUrl } = require("./event-image-compose");
+const { composeEventPosterFromUrl, composeEventPosterImage } = require("./event-image-compose");
+const { getScrapeLocalImagePath } = require("./scrape-local-image");
+const { readImageFile } = require("./image-fetch");
 const { isExpired } = require("./event-import-ready");
 const { eventUidFor } = require("./review-db");
 
@@ -74,7 +76,10 @@ async function composeEventImageRecord(record, options = {}) {
     };
   }
 
-  const buffer = await composeEventPosterFromUrl(sourceUrl, { cacheDir });
+  const scrapeLocalPath = getScrapeLocalImagePath(sourceUrl, root);
+  const buffer = scrapeLocalPath
+    ? await composeEventPosterImage(readImageFile(scrapeLocalPath).buffer)
+    : await composeEventPosterFromUrl(sourceUrl, { cacheDir, rootDir: root });
   const composedUrl = buildComposedImageUrl(eventUid);
   saveComposedImage(eventUid, buffer, root);
 

@@ -122,6 +122,15 @@ node scripts/batch-scrape-xhs-cities.js --city=北京,上海
 
 输出在 `data/scrape-cache/xhs/<城市>/<笔记ID>/`。活动信息与海报裁切框均由 **Agent 每次读图**填写 `vision-slots.json`（含 `posterBox`），脚本只执行裁切。详见 [`docs/xiaohongshu-weekly-crawl.md`](docs/xiaohongshu-weekly-crawl.md)、[`docs/xiaohongshu-vision-agent.md`](docs/xiaohongshu-vision-agent.md)。
 
+**入库审核台**（`source=xiaohongshu`，不覆盖同城豆瓣活动）：
+
+```bash
+node scripts/extract-xhs-weekly-events.js data/scrape-cache/xhs/上海/<笔记ID>
+node scripts/import-xhs-events-to-review.js data/review.db
+```
+
+有裁切海报 → 豆瓣同款 4:3 封面（`image_original` 保留海报原图）；无海报 → 文字封面。POI 可后续再批量匹配。
+
 **分类与 POI 均由 Cursor 大模型在同一次对话里完成**：
 
 - 推荐/挡下 + 活动类型：[`docs/event-classification-agent.md`](docs/event-classification-agent.md)

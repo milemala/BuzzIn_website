@@ -4,6 +4,7 @@ const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
 const { getComposedImagePath, parseComposedEventUid } = require("./composed-image");
+const { getScrapeLocalImagePath } = require("./scrape-local-image");
 const { normalizeMerchantImageUrl } = require("./merchant-image-url");
 
 function resolveRemoteImageUrl(src) {
@@ -82,6 +83,14 @@ async function readImageSource(src, options = {}) {
   const composed = readComposedImage(url, options);
   if (composed) return composed;
 
+  const scrapeLocalPath = getScrapeLocalImagePath(url, options.rootDir);
+  if (scrapeLocalPath) {
+    if (!fs.existsSync(scrapeLocalPath)) {
+      throw new Error(`本地抓取图不存在: ${scrapeLocalPath}`);
+    }
+    return readImageFile(scrapeLocalPath);
+  }
+
   if (!url.startsWith("http://") && !url.startsWith("https://")) {
     throw new Error(`不支持的媒体路径: ${url}`);
   }
@@ -126,6 +135,14 @@ async function ensureImageCached(originalUrl, cacheDir, options = {}) {
     const savePath = getCachedImagePath(cacheDir, url, composed.contentType);
     fs.writeFileSync(savePath, composed.buffer);
     return savePath;
+  }
+
+  const scrapeLocalPath = getScrapeLocalImagePath(url, options.rootDir);
+  if (scrapeLocalPath) {
+    if (!fs.existsSync(scrapeLocalPath)) {
+      throw new Error(`本地抓取图不存在: ${scrapeLocalPath}`);
+    }
+    return scrapeLocalPath;
   }
 
   if (!url.startsWith("http://") && !url.startsWith("https://")) {
