@@ -108,6 +108,20 @@ node scripts/scrape-douban-week-events.js 500 data/review.db --city=beijing --mo
 
 抓取入库时会自动合成 **4:3 横版封面**（模糊底图 + 原图 + 右侧文案），`image_original` 保留豆瓣原图。跳过时加 `--skip-compose`；补跑历史数据：`node scripts/compose-event-images.js --city=北京`。
 
+## 抓取小红书一周活动汇总（试跑成功）
+
+前提：Chrome **已登录小红书**（与豆瓣共用 AppleScript 抓取窗口）。
+
+```bash
+# 单城（账号个人页 URL，建议带 xsec_token）
+node scripts/scrape-xhs-profile-weekly.js --city=北京 "https://www.xiaohongshu.com/user/profile/..."
+
+# 多城：先编辑 data/xhs-city-accounts.json，再
+node scripts/batch-scrape-xhs-cities.js --city=北京,上海
+```
+
+输出在 `data/scrape-cache/xhs/<城市>/<笔记ID>/`。活动信息与海报裁切框均由 **Agent 每次读图**填写 `vision-slots.json`（含 `posterBox`），脚本只执行裁切。详见 [`docs/xiaohongshu-weekly-crawl.md`](docs/xiaohongshu-weekly-crawl.md)、[`docs/xiaohongshu-vision-agent.md`](docs/xiaohongshu-vision-agent.md)。
+
 **分类与 POI 均由 Cursor 大模型在同一次对话里完成**：
 
 - 推荐/挡下 + 活动类型：[`docs/event-classification-agent.md`](docs/event-classification-agent.md)

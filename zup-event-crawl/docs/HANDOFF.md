@@ -387,9 +387,25 @@ npm start
 - 来源筛选已预留多来源：
   - 豆瓣
   - 活动行
-  - 小红书
+  - 小红书（抓取流程已试跑，见 [`xiaohongshu-weekly-crawl.md`](xiaohongshu-weekly-crawl.md)；尚未入库）
   - 公众号
   - 当前只有豆瓣有数据，其他来源按钮禁用。
+
+## 小红书一周活动汇总抓取（2026-06-11 试跑成功）
+
+完整说明见 **[`docs/xiaohongshu-weekly-crawl.md`](xiaohongshu-weekly-crawl.md)**。
+
+要点：Chrome 已登录 + 个人页 `__INITIAL_STATE__` + 详情需 `xsec_token`；活动详情在 slide 图里、**版式每次可能不同**；Agent **每次**读 `images/` 写 `vision-slots.json` 并标注 `posterBox`（见 `xiaohongshu-vision-agent.md`），脚本只按框裁图；无固定城市/启发式裁切算法。
+
+```bash
+# 单城
+node scripts/scrape-xhs-profile-weekly.js --city=北京 "<个人页URL>"
+
+# 多城（先填 data/xhs-city-accounts.json）
+node scripts/batch-scrape-xhs-cities.js --city=北京,上海
+```
+
+试跑样本目录：`data/scrape-cache/xhs/北京/6a26734900000000170284f5/`
 
 - 城市筛选：
   - 按钮随 `review.db` 内已有城市生成（当前为北京、上海、广州、成都等）。
