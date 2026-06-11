@@ -259,6 +259,14 @@
     let importBusy = false;
     const poiKeywords = {};
     const poiPreviews = {};
+    let eventIndex = [];
+    const eventUidToIndex = new Map();
+    let filterMetrics = null;
+
+    const STATUS_FILTER_KEYS = [
+      "all", "imported", "suggested", "classification-pending", "rule-blocked",
+      "approved", "rejected", "pending", "import_ready", "no_poi", "poi_doubtful", "expired",
+    ];
 
     const sourceMeta = document.getElementById("sourceMeta");
     const listEl = document.getElementById("list");
@@ -461,6 +469,7 @@
     function upsertEvent(updated) {
       const idx = payload.events.findIndex((item) => (item.eventUid || item.event_uid) === (updated.eventUid || updated.event_uid));
       if (idx >= 0) payload.events[idx] = { ...payload.events[idx], ...updated };
+      rebuildEventIndex();
     }
 
     function suggestPoiKeyword(event) {
@@ -708,6 +717,100 @@
       if (!payload || typeof payload !== "object") {
         payload = { events: [], cities: [], cityMeta: {}, sourcePages: {}, dateWindow: [] };
       }
+      rebuildEventIndex();
+    }
+
+    function rebuildEventIndex() {
+      eventUidToIndex.clear();
+      eventIndex = (payload.events || []).map((event, index) => {
+        const uid = event.eventUid || event.event_uid || event.id;
+        eventUidToIndex.set(uid, index);
+        return {
+          event,
+          index,
+          expired: isExpired(event),
+          city: getCityKey(event),
+          source: getSourceKey(event),
+        };
+      });
+    }
+
+    function initReviewCounts() {
+      return { pending: 0, imported: 0, pendingImport: 0 };
+    }
+
+    function bumpReviewCounts(target, event) {
+      if (getStatus(event) === "pending") target.pending += 1;
+      if (isImportedEvent(event)) target.imported += 1;
+      if (isPendingImportEvent(event)) target.pendingImport += 1;
+    }
+
+    function computeFilterMetrics() {
+      const today = todayDateValue();
+      const cityStatsMap = new Map([["all", initReviewCounts()]]);
+      const cityScoped = [];
+      const baseScoped = [];
+      const expiredScoped = [];
+      const sourceCounts = new Map();
+      const statusCounts = Object.fromEntries(STATUS_FILTER_KEYS.map((key) => [key, 0]));
+      const categoryCounts = new Map();
+
+      for (const row of eventIndex) {
+        const { event, expired, city, source } = row;
+        if (!expired) {
+          bumpReviewCounts(cityStatsMap.get("all"), event);
+          if (!cityStatsMap.has(city)) cityStatsMap.set(city, initReviewCounts());
+          bumpReviewCounts(cityStatsMap.get(city), event);
+        }
+
+        const cityMatch = cityFilter === "all" || city === cityFilter;
+        if (!cityMatch) continue;
+
+        if (expired) {
+          if (sourceFilter === "all" || source === sourceFilter) expiredScoped.push(event);
+          continue;
+        }
+
+        cityScoped.push(event);
+        sourceCounts.set(source, (sourceCounts.get(source) || 0) + 1);
+
+        if (sourceFilter !== "all" && source !== sourceFilter) continue;
+        baseScoped.push(event);
+
+        statusCounts.all += 1;
+        for (const key of STATUS_FILTER_KEYS) {
+          if (key === "expired" || key === "all") continue;
+          if (matchesStatusFilter(event, key)) statusCounts[key] += 1;
+        }
+
+        const category = event.category;
+        if (category) categoryCounts.set(category, (categoryCounts.get(category) || 0) + 1);
+      }
+
+      statusCounts.expired = expiredScoped.length;
+
+      const filterDates = collectFilterDates(baseScoped, today);
+      const dateCounts = new Map([["all", initReviewCounts()]]);
+      for (const event of baseScoped) {
+        bumpReviewCounts(dateCounts.get("all"), event);
+        for (const date of filterDates) {
+          if (!eventOccursOnDate(event, date)) continue;
+          if (!dateCounts.has(date)) dateCounts.set(date, initReviewCounts());
+          bumpReviewCounts(dateCounts.get(date), event);
+        }
+      }
+
+      return {
+        cityStatsMap,
+        cityScoped,
+        baseScoped,
+        expiredScoped,
+        sourceCounts,
+        statusCounts,
+        categoryCounts,
+        dateCounts,
+        filterDates,
+      };
     }
 
     function persistLocalReviewState() {
@@ -844,19 +947,12 @@
     }
 
     function getCityScopedEvents() {
-      return payload.events.filter((event) => {
-        if (isExpired(event)) return false;
-        if (cityFilter !== "all" && getCityKey(event) !== cityFilter) return false;
-        return true;
-      });
+      return filterMetrics?.cityScoped || [];
     }
 
     /** 城市 + 来源，用于状态/类型/日期筛选项的计数与选项 */
     function getBaseScopedEvents() {
-      return getCityScopedEvents().filter((event) => {
-        if (sourceFilter !== "all" && getSourceKey(event) !== sourceFilter) return false;
-        return true;
-      });
+      return filterMetrics?.baseScoped || [];
     }
 
     function getActiveEvents() {
@@ -864,18 +960,11 @@
     }
 
     function getExpiredEvents() {
-      return payload.events.filter((event) => isExpired(event));
+      return filterMetrics?.expiredScoped || [];
     }
 
     function cityStats(cityKey) {
-      const list = cityKey === "all"
-        ? payload.events.filter((event) => !isExpired(event))
-        : payload.events.filter((event) => !isExpired(event) && getCityKey(event) === cityKey);
-      return {
-        pending: list.filter((event) => getStatus(event) === "pending").length,
-        imported: list.filter((event) => isImportedEvent(event)).length,
-        pendingImport: list.filter((event) => isPendingImportEvent(event)).length,
-      };
+      return filterMetrics?.cityStatsMap?.get(cityKey) || initReviewCounts();
     }
 
     function renderReviewImportCounts({ pending, imported, pendingImport }) {
@@ -970,35 +1059,34 @@
     }
 
     function getFilteredEvents() {
-      return payload.events.map((event, index) => ({ event, index })).filter(({ event }) => {
-        if (statusFilter === "expired") {
-          if (!isExpired(event)) return false;
-        } else if (isExpired(event)) {
-          return false;
-        }
-        if (cityFilter !== "all" && getCityKey(event) !== cityFilter) return false;
-        if (!matchesStatusFilter(event, statusFilter)) return false;
-        if (sourceFilter !== "all" && getSourceKey(event) !== sourceFilter) return false;
-        if (categoryFilter !== "all" && event.category !== categoryFilter) return false;
-        if (dateFilter !== "all" && !eventOccursOnDate(event, dateFilter)) return false;
-        if (searchTerm) {
+      const scoped = statusFilter === "expired"
+        ? (filterMetrics?.expiredScoped || [])
+        : (filterMetrics?.baseScoped || []);
+      const needle = searchTerm.trim().toLowerCase();
+      const filtered = [];
+
+      for (const event of scoped) {
+        if (statusFilter !== "expired" && isExpired(event)) continue;
+        if (!matchesStatusFilter(event, statusFilter)) continue;
+        if (categoryFilter !== "all" && event.category !== categoryFilter) continue;
+        if (dateFilter !== "all" && !eventOccursOnDate(event, dateFilter)) continue;
+        if (needle) {
           const searchText = `${event.title} ${event.location} ${event.owner} ${event.category}`.toLowerCase();
-          if (!searchText.includes(searchTerm.toLowerCase())) return false;
+          if (!searchText.includes(needle)) continue;
         }
-        return true;
-      }).sort((a, b) => {
+        const uid = event.eventUid || event.event_uid || event.id;
+        filtered.push({ event, index: eventUidToIndex.get(uid) ?? 0 });
+      }
+
+      filtered.sort((a, b) => {
         if (sortMode === "time") return getTimeValue(a.event) - getTimeValue(b.event);
         return a.index - b.index;
-      }).map(({ event }) => event);
+      });
+      return filtered.map(({ event }) => event);
     }
 
     function getExpiredScopedEvents() {
-      return payload.events.filter((event) => {
-        if (!isExpired(event)) return false;
-        if (cityFilter !== "all" && getCityKey(event) !== cityFilter) return false;
-        if (sourceFilter !== "all" && getSourceKey(event) !== sourceFilter) return false;
-        return true;
-      });
+      return filterMetrics?.expiredScoped || [];
     }
 
     function normalizeDependentFilters() {
@@ -1028,8 +1116,7 @@
     }
 
     function renderStatusFilter() {
-      const scoped = getBaseScopedEvents();
-      const expiredScoped = getExpiredScopedEvents();
+      const statusCounts = filterMetrics?.statusCounts || {};
       const filters = [
         { key: "all", label: "全部" },
         { key: "imported", label: "已入库" },
@@ -1044,24 +1131,18 @@
         { key: "poi_doubtful", label: "POI 存疑" },
         { key: "expired", label: "已过期" },
       ];
-      statusFilterEl.innerHTML = filters.map(({ key, label }) => {
-        const count = key === "expired"
-          ? expiredScoped.length
-          : key === "all"
-            ? scoped.length
-            : scoped.filter((event) => matchesStatusFilter(event, key)).length;
-        return renderSegButton({
-          attr: "status",
-          value: key,
-          label,
-          count,
-          active: statusFilter === key,
-        });
-      }).join("");
+      statusFilterEl.innerHTML = filters.map(({ key, label }) => renderSegButton({
+        attr: "status",
+        value: key,
+        label,
+        count: statusCounts[key] || 0,
+        active: statusFilter === key,
+      })).join("");
     }
 
     function renderCityFilter() {
-      const cities = [...new Set(payload.events.map((event) => getCityKey(event)))].sort((a, b) => {
+      const cityStatsMap = filterMetrics?.cityStatsMap || new Map();
+      const cities = [...cityStatsMap.keys()].filter((key) => key !== "all").sort((a, b) => {
         const pendingDiff = cityStats(b).pending - cityStats(a).pending;
         if (pendingDiff !== 0) return pendingDiff;
         return a.localeCompare(b, "zh-CN");
@@ -1072,7 +1153,8 @@
 
     function renderCategoryFilter() {
       const scoped = getBaseScopedEvents();
-      const categories = [...new Set(scoped.map((event) => event.category).filter(Boolean))].sort((a, b) => a.localeCompare(b, "zh-CN"));
+      const categoryCounts = filterMetrics?.categoryCounts || new Map();
+      const categories = [...categoryCounts.keys()].sort((a, b) => a.localeCompare(b, "zh-CN"));
       categoryFilterEl.innerHTML = renderSegButton({
         attr: "category",
         value: "all",
@@ -1083,7 +1165,7 @@
         attr: "category",
         value: category,
         label: category,
-        count: scoped.filter((event) => event.category === category).length,
+        count: categoryCounts.get(category) || 0,
         active: categoryFilter === category,
       })).join("");
     }
@@ -1096,7 +1178,9 @@
         ["wechat", "公众号"],
       ];
       const scoped = getCityScopedEvents();
-      const present = new Map(scoped.map((event) => [getSourceKey(event), getSourceLabel(event)]));
+      const sourceCounts = filterMetrics?.sourceCounts || new Map();
+      const present = new Map();
+      for (const event of scoped) present.set(getSourceKey(event), getSourceLabel(event));
       const sources = baseSources.map(([key, label]) => [key, present.get(key) || label]);
       present.forEach((label, key) => {
         if (!sources.some(([sourceKey]) => sourceKey === key)) sources.push([key, label]);
@@ -1108,7 +1192,7 @@
         count: scoped.length,
         active: sourceFilter === "all",
       }) + sources.map(([key, label]) => {
-        const count = scoped.filter((event) => getSourceKey(event) === key).length;
+        const count = sourceCounts.get(key) || 0;
         return renderSegButton({
           attr: "source",
           value: key,
@@ -1127,25 +1211,16 @@
     }
 
     function renderDateFilter() {
-      const activeEvents = getBaseScopedEvents();
-      const today = todayDateValue();
-      const dates = collectFilterDates(activeEvents, today);
+      const dateCounts = filterMetrics?.dateCounts || new Map();
+      const dates = filterMetrics?.filterDates || [];
       if (dateFilter !== "all" && !dates.includes(dateFilter)) dateFilter = "all";
 
-      const allCounts = {
-        pending: activeEvents.filter((event) => getStatus(event) === "pending").length,
-        imported: activeEvents.filter((event) => isImportedEvent(event)).length,
-        pendingImport: activeEvents.filter((event) => isPendingImportEvent(event)).length,
-      };
+      const allCounts = dateCounts.get("all") || initReviewCounts();
       dateFilterEl.innerHTML = `<button data-date="all" class="${dateFilter === "all" ? "active" : ""}"><span class="date-main">全部</span><span class="date-sub">${renderReviewImportCounts(allCounts)}</span></button>` +
         dates.map((date) => {
-          const dayEvents = activeEvents.filter((event) => eventOccursOnDate(event, date));
-          const dayCounts = {
-            pending: dayEvents.filter((event) => getStatus(event) === "pending").length,
-            imported: dayEvents.filter((event) => isImportedEvent(event)).length,
-            pendingImport: dayEvents.filter((event) => isPendingImportEvent(event)).length,
-          };
-          const disabled = dayEvents.length ? "" : "disabled";
+          const dayCounts = dateCounts.get(date) || initReviewCounts();
+          const hasEvents = dayCounts.pending + dayCounts.imported + dayCounts.pendingImport > 0;
+          const disabled = hasEvents ? "" : "disabled";
           return `<button data-date="${escapeHtml(date)}" class="${dateFilter === date ? "active" : ""}" ${disabled}><span class="date-main">${escapeHtml(formatDateLabel(date))}</span><span class="date-sub">${renderReviewImportCounts(dayCounts)}</span></button>`;
         }).join("");
     }
@@ -1296,6 +1371,7 @@
     }
 
     function render() {
+      filterMetrics = computeFilterMetrics();
       const activeEvents = getBaseScopedEvents();
       const cityLabel = cityFilter === "all" ? (payload.cities || []).join(" / ") || payload.city || "未知城市" : cityFilter;
       const sources = sourceFilter === "all"

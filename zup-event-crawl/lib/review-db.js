@@ -1026,17 +1026,44 @@ function countApprovedActiveEvents(db) {
   return rows.filter((item) => !isExpired(item)).length;
 }
 
-function getEventsPayload(db) {
+/** 列表接口字段（不含 raw_detail_html / raw_detail_text，见 getEventDetail） */
+const EVENT_LIST_COLUMNS = `
+  event_uid, source_id, source, source_name, source_position, source_url, source_list_page,
+  city, district, title, category, start_date, end_date, time_text, location,
+  latitude, longitude, poi_latitude, poi_longitude, image, image_original, fee, owner, counts,
+  body, original_link, score, suggested, review_reason, douban_event_type,
+  classification_source, body_source, publish_user_id, now_type, location_poi_id,
+  poi_title, poi_address, poi_candidates, poi_match_source, poi_agent_doubtful,
+  poi_agent_reason, poi_agent_search_keyword, poi_updated_at, now_merchant_id,
+  now_merchant_name, buzz_now_id, buzz_group_id, import_status, import_error, imported_at,
+  updated_at
+`.replace(/\s+/g, " ").trim();
+
+function getEventDetail(db, eventUid) {
+  const row = db.prepare(`
+    SELECT event_uid, raw_detail_text, raw_detail_html
+    FROM events
+    WHERE event_uid = ?
+  `).get(eventUid);
+  if (!row) return null;
+  return {
+    event_uid: row.event_uid,
+    rawDetailText: row.raw_detail_text || "",
+    rawDetailHtml: row.raw_detail_html || "",
+  };
+}
+
+function getEventsPayload(db, options = {}) {
+  const includeDetail = options.includeDetail === true;
   const cityImportRows = db.prepare(`
     SELECT city, generated_at AS generatedAt, source_page AS sourcePage, event_count AS eventCount
     FROM city_imports
     ORDER BY rowid
   `).all();
-  const eventRows = db.prepare(`
-    SELECT *
-    FROM events
-    ORDER BY city, source_position, title
-  `).all();
+  const eventSql = includeDetail
+    ? "SELECT * FROM events ORDER BY city, source_position, title"
+    : `SELECT ${EVENT_LIST_COLUMNS} FROM events ORDER BY city, source_position, title`;
+  const eventRows = db.prepare(eventSql).all();
   const dateRows = db.prepare("SELECT event_uid, event_date FROM event_dates ORDER BY event_date").all();
 
   const eventDatesByUid = new Map();
@@ -1204,7 +1231,9 @@ module.exports = {
   countApprovedActiveEvents,
   getApprovedEvents,
   getEventByUid,
+  getEventDetail,
   getEventsPayload,
+  EVENT_LIST_COLUMNS,
   getExportImportNows,
   getReviewState,
   importPayload,

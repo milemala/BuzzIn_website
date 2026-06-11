@@ -32,25 +32,28 @@ function parseProfileNotes(html, limit = 10) {
 const WEEKLY_TITLE_RE =
   /(?:本周|这周|下周|一周|周末).{0,30}(?:活动汇总|活动合集|活动指南|可做的?\d*件事)|(?:活动汇总|活动合集).{0,30}(?:本周|这周|下周|一周|周末)|(?:本周|这周).{0,10}\d+件事/;
 
-const THIS_OR_NEXT_WEEK_RE = /本周|这周|下周|一周|周末/;
-const ROUNDUP_KEYWORD_RE = /活动汇总|活动合集|活动指南|活动清单|可做的?\d*件事|一周活动/;
-const MONTH_ROUNDUP_RE = /活动汇总|活动清单|活动合集|市集活动|活动攻略|值得一去|活动指南/;
+const THIS_OR_NEXT_WEEK_RE = /本周|这周|下周|一周|周末|本周末/;
+const ROUNDUP_KEYWORD_RE = /活动汇总|活动合集|活动指南|活动清单|可做的?\d*件事|一周活动|活动合集/;
+const MONTH_ROUNDUP_RE = /活动汇总|活动清单|活动合集|市集活动|活动攻略|值得一去|活动指南|展览排期|新展/;
 
-/** 从标题里解析 (M.D-M.D)、（M.D-M.D）或末尾裸写 6.8-6.14 */
+/** 从标题里解析日期区间：6.8-6.14、（6.08-6.14）、6月8日-14日、(6.9-14) 等 */
 function parseTitleDateRange(title) {
   const text = String(title || "");
   const patterns = [
-    /[（(](\d{1,2})\.(\d{1,2})\s*[-–—~至]\s*(\d{1,2})\.(\d{1,2})[）)]/,
-    /(\d{1,2})\.(\d{1,2})\s*[-–—~至]\s*(\d{1,2})\.(\d{1,2})(?:\s*$|[^\d])/,
+    { re: /[（(【\[]?(\d{1,2})月(\d{1,2})日\s*[-–—~至]\s*(\d{1,2})月(\d{1,2})日[）)】\]]?/, groups: [1, 2, 3, 4] },
+    { re: /[（(【\[]?(\d{1,2})月(\d{1,2})日\s*[-–—~至]\s*(\d{1,2})日[）)】\]]?/, groups: [1, 2, 1, 3] },
+    { re: /[（(【\[]?(\d{1,2})\.(\d{1,2})\s*[-–—~至]\s*(\d{1,2})\.(\d{1,2})[）)】\]]?/, groups: [1, 2, 3, 4] },
+    { re: /[（(【\[]?(\d{1,2})\.(\d{1,2})\s*[-–—~至]\s*(\d{1,2})[）)】\]]?/, groups: [1, 2, 1, 3] },
+    { re: /(\d{1,2})\.(\d{1,2})\s*[-–—~至]\s*(\d{1,2})\.(\d{1,2})(?:\s*$|[^\d])/, groups: [1, 2, 3, 4] },
   ];
-  for (const re of patterns) {
+  for (const { re, groups } of patterns) {
     const m = text.match(re);
     if (m) {
       return {
-        startMonth: Number(m[1]),
-        startDay: Number(m[2]),
-        endMonth: Number(m[3]),
-        endDay: Number(m[4]),
+        startMonth: Number(m[groups[0]]),
+        startDay: Number(m[groups[1]]),
+        endMonth: Number(m[groups[2]]),
+        endDay: Number(m[groups[3]]),
       };
     }
   }
@@ -84,6 +87,26 @@ function isMonthRoundupTitle(title, refDate = new Date()) {
   return /\d{1,2}月/.test(text);
 }
 
+function rangeEndTime(range, refDate = new Date()) {
+  if (!range) return 0;
+  const year = refDate.getFullYear();
+  let end = new Date(year, range.endMonth - 1, range.endDay, 23, 59, 59);
+  const start = new Date(year, range.startMonth - 1, range.startDay);
+  if (end < start) end = new Date(year + 1, range.endMonth - 1, range.endDay, 23, 59, 59);
+  return end.getTime();
+}
+
+function rangeStartTime(range, refDate = new Date()) {
+  if (!range) return 0;
+  const year = refDate.getFullYear();
+  return new Date(year, range.startMonth - 1, range.startDay).getTime();
+}
+
+function isRangeExpired(range, refDate = new Date()) {
+  if (!range) return false;
+  return rangeEndTime(range, refDate) < refDate.getTime();
+}
+
 function pickBestCandidate(candidates, refDate = new Date()) {
   const withRange = candidates.map((n) => ({
     ...n,
@@ -96,7 +119,15 @@ function pickBestCandidate(candidates, refDate = new Date()) {
   const nextWeek = withRange.find((n) => /下周/.test(n.title));
   if (nextWeek) return nextWeek;
 
-  return withRange.sort((a, b) => {
+  const active = withRange.filter((n) => !isRangeExpired(n.range, refDate));
+  const pool = active.length ? active : withRange;
+
+  const withFutureRange = pool.filter((n) => n.range && rangeStartTime(n.range, refDate) >= refDate.getTime());
+  if (withFutureRange.length) {
+    return withFutureRange.sort((a, b) => rangeStartTime(a.range, refDate) - rangeStartTime(b.range, refDate))[0];
+  }
+
+  return pool.sort((a, b) => {
     const score = (n) => (n.range ? n.range.startMonth * 100 + n.range.startDay : 0);
     return score(b) - score(a);
   })[0];

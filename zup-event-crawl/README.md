@@ -192,7 +192,8 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 
 | 方法 | 路径 | 说明 |
 |------|------|------|
-| GET | `/api/events` | 活动列表与元数据 |
+| GET | `/api/events` | 活动列表与元数据（不含 `rawDetailHtml`，约 5MB） |
+| GET | `/api/events/:uid/detail` | 单条活动原文 `rawDetailText` / `rawDetailHtml`（按需） |
 | GET | `/api/review-state` | 审核状态 |
 | POST | `/api/review-state` | 保存审核状态 |
 | GET | `/api/approved-events` | 已通过活动 |

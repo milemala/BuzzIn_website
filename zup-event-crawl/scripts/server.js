@@ -11,6 +11,7 @@ const {
   countApprovedActiveEvents,
   getApprovedEvents,
   getEventByUid,
+  getEventDetail,
   getEventsPayload,
   getExportImportNows,
   getReviewState,
@@ -107,7 +108,7 @@ function sendJson(res, statusCode, payload) {
     "Content-Type": "application/json; charset=utf-8",
     "Cache-Control": "no-store",
   });
-  res.end(`${JSON.stringify(payload, null, 2)}\n`);
+  res.end(`${JSON.stringify(payload)}\n`);
 }
 
 function sendFile(res, filePath, contentType, cacheControl = "no-store") {
@@ -240,9 +241,16 @@ function readBody(req) {
   });
 }
 
+let databaseSeededChecked = false;
+
 function ensureDatabaseSeeded() {
-  const payload = getEventsPayload(db);
-  if (payload.events.length) return;
+  if (databaseSeededChecked) return;
+
+  const row = db.prepare("SELECT COUNT(*) AS count FROM events").get();
+  if (Number(row?.count) > 0) {
+    databaseSeededChecked = true;
+    return;
+  }
 
   if (fs.existsSync(eventsPath)) {
     importPayload(db, readJson(eventsPath, { events: [] }), { mode: "replace-all" });
@@ -250,6 +258,7 @@ function ensureDatabaseSeeded() {
   if (fs.existsSync(decisionsPath)) {
     importReviewState(db, readJson(decisionsPath, { decisions: {} }));
   }
+  databaseSeededChecked = true;
 }
 
 async function handleApi(req, res, pathname) {
@@ -262,6 +271,18 @@ async function handleApi(req, res, pathname) {
 
   if (req.method === "GET" && pathname === "/api/events") {
     sendJson(res, 200, getEventsPayload(db));
+    return;
+  }
+
+  const eventDetailMatch = pathname.match(/^\/api\/events\/([^/]+)\/detail$/);
+  if (req.method === "GET" && eventDetailMatch) {
+    const eventUid = decodeURIComponent(eventDetailMatch[1]);
+    const detail = getEventDetail(db, eventUid);
+    if (!detail) {
+      sendJson(res, 404, { ok: false, error: "活动不存在" });
+      return;
+    }
+    sendJson(res, 200, detail);
     return;
   }
 
