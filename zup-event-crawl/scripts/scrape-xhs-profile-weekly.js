@@ -23,13 +23,20 @@ const {
   parseEventsFromDesc,
   pickWeeklyRoundupNote,
 } = require("../lib/xiaohongshu-parse");
+const {
+  hasVisionSlots,
+  printAwaitingVisionHelp,
+  processNoteDir,
+  runExtractScript,
+} = require("../lib/xhs-weekly-pipeline");
 
 function parseArgs(argv) {
-  const options = { city: "", profileUrl: "", limit: 10, skipExtract: false };
+  const options = { city: "", profileUrl: "", limit: 10, skipExtract: false, withImport: false };
   for (let i = 2; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg.startsWith("--city=")) options.city = arg.slice("--city=".length).trim();
     else if (arg === "--skip-extract") options.skipExtract = true;
+    else if (arg === "--with-import") options.withImport = true;
     else if (arg.startsWith("--limit=")) options.limit = Number(arg.slice("--limit=".length)) || 10;
     else if (!arg.startsWith("--")) options.profileUrl = arg;
   }
@@ -56,9 +63,7 @@ async function scrapeXhsProfileWeekly(profileUrl, options = {}) {
   if (alreadyScraped) {
     console.log(`[${city}] 该帖已抓取过，跳过重复下载 → ${noteDir}`);
     if (!options.skipExtract) {
-      execFileSync(process.execPath, [path.join(__dirname, "extract-xhs-weekly-events.js"), noteDir], {
-        stdio: "inherit",
-      });
+      await finishExtractAndImport(noteDir, city, options);
     }
     const summary = JSON.parse(fs.readFileSync(path.join(noteDir, "weekly-summary.json"), "utf8"));
     return { city, noteDir, picked, eventsFromText: summary.eventsFromText || [], skipped: true };
@@ -89,13 +94,25 @@ async function scrapeXhsProfileWeekly(profileUrl, options = {}) {
   fs.writeFileSync(path.join(noteDir, "weekly-summary.json"), `${JSON.stringify(result, null, 2)}\n`);
 
   if (!options.skipExtract) {
-    console.log(`[${city}] 4/4 合并 vision（无 posterBox 则不裁图）…`);
-    execFileSync(process.execPath, [path.join(__dirname, "extract-xhs-weekly-events.js"), noteDir], {
-      stdio: "inherit",
-    });
+    await finishExtractAndImport(noteDir, city, options);
   }
 
   return { city, noteDir, picked, eventsFromText };
+}
+
+async function finishExtractAndImport(noteDir, city, options) {
+  const rootDir = path.join(__dirname, "..");
+  if (!hasVisionSlots(noteDir)) {
+    console.log(`[${city}] 4/4 等待 Agent 填写 vision-slots.json（无则跳过 extract/入库）`);
+    printAwaitingVisionHelp(city, rootDir);
+    return;
+  }
+  console.log(`[${city}] 4/4 合并 vision + 入库准备…`);
+  if (options.withImport) {
+    await processNoteDir(noteDir, { rootDir, skipImport: false, log: true });
+  } else {
+    runExtractScript(noteDir, rootDir);
+  }
 }
 
 async function main() {
@@ -111,7 +128,8 @@ async function main() {
 
   const { noteDir, eventsFromText } = await scrapeXhsProfileWeekly(options.profileUrl, options);
   console.log(`\n完成 → ${noteDir}`);
-  console.log("下一步：Agent 读 images/*.webp 全图填写 vision-slots.json；需要单独海报时再写 posterBox");
+  console.log("标准流水线：node scripts/run-xhs-weekly-pipeline.js --skip-scrape --city=" + options.city);
+  console.log("说明：docs/xiaohongshu-review-workflow.md");
   eventsFromText.forEach((sec) => {
     console.log(`\n【${sec.category}】`);
     sec.items.forEach((name, i) => console.log(`  ${i + 1}. ${name}`));

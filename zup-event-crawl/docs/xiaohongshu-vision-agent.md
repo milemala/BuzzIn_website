@@ -2,6 +2,9 @@
 
 每次抓取后，**必须由 Agent 读当次的 `images/*.webp`**，不能复用上一周的 posterBox，也不能用固定算法猜。
 
+> 上下游流程见 **[`xiaohongshu-review-workflow.md`](xiaohongshu-review-workflow.md)**。写完本文件后执行：  
+> `node scripts/run-xhs-weekly-pipeline.js --skip-scrape --city=<城市>`
+
 ## Agent 任务（按笔记目录）
 
 目录示例：`data/scrape-cache/xhs/北京/<笔记ID>/`

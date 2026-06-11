@@ -387,25 +387,26 @@ npm start
 - 来源筛选已预留多来源：
   - 豆瓣
   - 活动行
-  - 小红书（抓取流程已试跑，见 [`xiaohongshu-weekly-crawl.md`](xiaohongshu-weekly-crawl.md)；尚未入库）
+  - 小红书（标准流程 [`xiaohongshu-review-workflow.md`](xiaohongshu-review-workflow.md)，已可入库审核台）
   - 公众号
   - 当前只有豆瓣有数据，其他来源按钮禁用。
 
-## 小红书一周活动汇总抓取（2026-06-11 试跑成功）
+## 小红书一周活动汇总（抓取 → 入库）
 
-完整说明见 **[`docs/xiaohongshu-weekly-crawl.md`](xiaohongshu-weekly-crawl.md)**。
-
-要点：Chrome 已登录 + 个人页 `__INITIAL_STATE__` + 详情需 `xsec_token`；活动详情在 slide 图里、**版式每次可能不同**；Agent **每次**读 `images/` 写 `vision-slots.json` 并标注 `posterBox`（见 `xiaohongshu-vision-agent.md`），脚本只按框裁图；无固定城市/启发式裁切算法。
+**主文档**：[`docs/xiaohongshu-review-workflow.md`](xiaohongshu-review-workflow.md)  
+子文档：[`xiaohongshu-weekly-crawl.md`](xiaohongshu-weekly-crawl.md)、[`xiaohongshu-vision-agent.md`](xiaohongshu-vision-agent.md)  
+Cursor 规则：`.cursor/rules/xhs-crawl-and-review-import.mdc`
 
 ```bash
-# 单城
-node scripts/scrape-xhs-profile-weekly.js --city=北京 "<个人页URL>"
-
-# 多城（先填 data/xhs-city-accounts.json）
-node scripts/batch-scrape-xhs-cities.js --city=北京,上海
+cd zup-event-crawl
+node scripts/run-xhs-weekly-pipeline.js --city=北京,上海,广州
+# Agent 写完 vision-slots 后：
+node scripts/run-xhs-weekly-pipeline.js --skip-scrape --city=上海
 ```
 
-试跑样本目录：`data/scrape-cache/xhs/北京/6a26734900000000170284f5/`
+要点：Chrome 已登录；版式每周不同 → Agent **每次**读图写 `vision-slots.json`；入库 `source=xiaohongshu`、`append-city`；有海报 4:3 封面、无海报文字封面；**默认不做 POI**。审核台来源选「小红书」。
+
+试跑样本：`data/scrape-cache/xhs/北京/6a26734900000000170284f5/`
 
 - 城市筛选：
   - 按钮随 `review.db` 内已有城市生成（当前为北京、上海、广州、成都等）。

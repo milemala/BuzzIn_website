@@ -1,18 +1,29 @@
 {
-  "_comment": "小红书一周活动汇总账号清单。填写 city + profileUrl 后运行 batch-scrape-xhs-cities.js",
+  "_comment": "小红书一周活动汇总账号清单。标准流程见 docs/xiaohongshu-review-workflow.md；一键执行 node scripts/run-xhs-weekly-pipeline.js",
+  "_workflow": {
+    "pipeline": "node scripts/run-xhs-weekly-pipeline.js",
+    "docs": [
+      "docs/xiaohongshu-review-workflow.md",
+      "docs/xiaohongshu-vision-agent.md",
+      "docs/xiaohongshu-weekly-crawl.md"
+    ],
+    "cursorRule": ".cursor/rules/xhs-crawl-and-review-import.mdc"
+  },
   "accounts": [
     {
       "city": "北京",
       "profileUrl": "https://www.xiaohongshu.com/user/profile/64599d22000000001400f9a2",
-      "note": "北京周末去哪（试跑已成功）"
+      "note": "北京周末去哪"
     },
     {
       "city": "广州",
-      "profileUrl": "https://www.xiaohongshu.com/user/profile/640596380000000029014f51?xsec_token=AByIZ6407M-2akJsGFuMhW5DmIdfF9PMtnVtTF0Xxn8m4%3D&xsec_source=pc_search"
+      "profileUrl": "https://www.xiaohongshu.com/user/profile/640596380000000029014f51?xsec_token=AByIZ6407M-2akJsGFuMhW5DmIdfF9PMtnVtTF0Xxn8m4%3D&xsec_source=pc_search",
+      "note": "广州周末去哪"
     },
     {
       "city": "上海",
-      "profileUrl": "https://www.xiaohongshu.com/user/profile/66610546000000000d025599?xsec_token=ABA720UTT1zdQuSgwiLeEfjvcFSimhB1keI_jmdiupHd4%3D&xsec_source=pc_search"
+      "profileUrl": "https://www.xiaohongshu.com/user/profile/66610546000000000d025599?xsec_token=ABA720UTT1zdQuSgwiLeEfjvcFSimhB1keI_jmdiupHd4%3D&xsec_source=pc_search",
+      "note": "上海周末去哪"
     }
   ]
 }
