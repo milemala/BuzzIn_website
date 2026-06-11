@@ -11,6 +11,7 @@ const {
   fetchDoubanViaChrome,
 } = require("../lib/douban-chrome-fetch");
 const { isDoubanBlockedError } = require("../lib/douban-block");
+const { parseListEventIds } = require("../lib/douban-list-parse");
 const { openDatabase } = require("../lib/review-db");
 
 const root = path.join(__dirname, "..");
@@ -46,7 +47,7 @@ function saveHtml(filePath, html) {
 }
 
 function parseListIds(html) {
-  return [...new Set([...html.matchAll(/event\/(\d+)\//g)].map((match) => match[1]))];
+  return parseListEventIds(html);
 }
 
 function loadExistingDoubanIds(dbPath, city) {

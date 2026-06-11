@@ -80,7 +80,7 @@ node scripts/poi-search-cli.js --city=成都 --keyword="锈罐头剧场"
 4. **人工级判断**：对比豆瓣原文与候选的 `title`、`address`、`category`
 5. 写入 `decisions.json` 一条（`group_id` 与 pending 一致）
 
-**禁止**用 `pickBestPoiForEvent` / `agent-poi-build-decisions.js` 等 JS 脚本代替大模型做最终选点。
+**禁止**用 `pickBestPoiForEvent` 等 JS 脚本代替大模型做最终选点（勿恢复已删除的 `agent-poi-build-*` / `agent-complete-*` 流水线）。
 
 ### 4. 入库
 
@@ -261,7 +261,7 @@ node scripts/apply-event-poi-decisions.js --city=成都
 | 项目 | 说明 |
 |------|------|
 | `run-city-agent-poi.js` | 旧 JS 自动 POI 流水线 |
-| `agent-poi-build-search-plan.js` 等 | JS 自动搜词/选 POI |
+| ~~`agent-poi-build-*` / `agent-complete-*`~~ | 已删除；勿用 JS 自动搜词/选 POI |
 | 抓取 `--with-poi` | 旧版 JS Top1 |
 | 审核页「智能匹配」 | 已移除 |
 | `/api/events/poi-auto-batch` | 已禁用 |

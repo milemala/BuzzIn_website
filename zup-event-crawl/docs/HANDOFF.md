@@ -496,7 +496,7 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 - **错误 URL**：`https://chengdu.douban.com/events/week-all` → 本机 DNS **NXDOMAIN**，列表 `fetch` 全部失败，表现为 `Wrote 0 成都 events`。
 - **正确 URL**：`https://www.douban.com/location/chengdu/events/week-all`（脚本 `cityListUrlKind.成都 = location`）。
 - **成功命令**：`node scripts/scrape-douban-week-events.js 30 data/review.db --city=chengdu --mode=merge-city`，约二十几秒，严格列表 1–30 条顺序入库。
-- **新城市检查清单**：先打开列表页确认是 `*.douban.com` 子域名还是 `www.douban.com/location/{slug}/`，再在 `scrape-douban-week-events.js` 的 `cityListUrlKind` / `citySlugMap` 登记。
+- **新城市检查清单**：先打开列表页确认是 `*.douban.com` 子域名还是 `www.douban.com/location/{slug}/`，再在 `lib/douban-cities.js` 登记。**哈尔滨 slug 为 `haerbin`（不是 harbin）**，列表页：https://www.douban.com/location/haerbin/events/week-all
 
 ## 2026-06-02 抓取故障修复记录
 

@@ -1,0 +1,51 @@
+{
+  "updated_at": "2026-06-10",
+  "scope": "仅「因配额用尽/从未搜 POI」而缺坐标的推荐活动；已搜过且 reject 的不列入（共 92 条，换策略前不必重试）",
+  "quota_pending_total": 36,
+  "searched_no_match_excluded": 92,
+  "resume_commands": {
+    "成都": "读 data/poi-agent-workbench/成都/pending.json → poi-search-cli.js → 更新 decisions.json（合并已有 match）→ apply-event-poi-decisions.js --city=成都",
+    "宁波": "读 data/poi-agent-workbench/宁波/pending.json → poi-search-cli.js → decisions.json（合并已有）→ apply-event-poi-decisions.js --city=宁波",
+    "通用": "见 docs/event-poi-agent-workflow.md；禁止 agent-complete-* / agent-poi-build-* 等已删除的 JS 自动流水线"
+  },
+  "cities": {
+    "成都": {
+      "count": 29,
+      "cause": "腾讯 API 日配额用尽；decisions 标为 reject 但 reason=「离线缓存无可靠匹配，待API恢复后重搜」或尚未入 decisions",
+      "venues": [
+        "金融城演艺中心、五粮液体育中心、云端天府音乐厅（大型场馆）",
+        "大笑脱口秀春熙路、后仰喜剧王府井、开心麻花M空间、过载空间",
+        "光芒沉浸剧场铁像寺水街、发伢剧场苏宁广场、AUV幸福小区、喜梦盒异瞳、Rose螺丝钉剧场",
+        "A4X/A4美术馆麓湖、广汇美术馆、成都博物馆、省图书馆、时代美术馆",
+        "博新全宇宙铁像寺、太平洋影城XR、英皇电影城新光天地、NUSPACE纽空间",
+        "IMC黑白艺术空间、艺术边界工作室、以籍书店、白读书屋",
+        "东城茶铺（1条未入组，其余20条已搜未命中不补）"
+      ]
+    },
+    "宁波": {
+      "count": 7,
+      "cause": "续抓的 7 条活动不在现有 decisions.json 内，POI 从未跑",
+      "events": [
+        "37513037 高山鸣泉-华茂艺术教育博物馆",
+        "37644706 The Cave 艺术展 malet当代艺术空间",
+        "36875201 都不酷开放麦 + 37542612 胡萝北专场（都不酷广仁街）",
+        "37622422 蓝梗喜剧樂1844",
+        "37754377 儿童剧灰姑娘 天然舞台",
+        "37818392 一支麦脱口秀 万象城影城"
+      ]
+    }
+  },
+  "excluded_searched_no_match": {
+    "total": 92,
+    "by_city": {
+      "杭州": 29,
+      "成都": 32,
+      "重庆": 17,
+      "天津": 10,
+      "武汉": 2,
+      "上海": 1,
+      "广州": 1
+    },
+    "note": "均已 poi-search-cli 搜过并 reject（地址过泛/腾讯无店级POI/区划不符等），明天不必优先重试"
+  }
+}

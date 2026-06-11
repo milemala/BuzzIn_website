@@ -34,13 +34,21 @@ function detectDoubanBlock(html, url = "") {
   if (/sec\.douban\.com/i.test(urlText)) return "安全验证页";
   if (/accounts\.douban\.com/i.test(urlText) && !/\/event\//i.test(urlText)) return "跳转登录页";
 
+  const pageReady = isDoubanListReady(text) || isDoubanDetailReady(text);
+
   const patterns = [
     [/有异常请求从你的 IP 发出/, "IP 异常请求"],
     [/请登录(?:后)?使用豆瓣/, "需登录"],
-    [/人机验证|验证码|captcha/i, "验证码/人机验证"],
     [/访问过于频繁/, "访问过于频繁"],
-    [/系统繁忙|稍后再试/, "系统繁忙"],
   ];
+  if (!pageReady) {
+    patterns.push(
+      [/人机验证|验证码|captcha/i, "验证码/人机验证"],
+      [/系统繁忙|稍后再试/, "系统繁忙"],
+    );
+  } else if (/<title>[^<]*(?:安全验证|人机验证)[^<]*<\/title>/i.test(text)) {
+    return "验证码/人机验证";
+  }
   for (const [pattern, reason] of patterns) {
     if (pattern.test(text)) return reason;
   }

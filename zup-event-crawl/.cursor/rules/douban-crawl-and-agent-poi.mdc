@@ -18,7 +18,7 @@ alwaysApply: false
 
 ## 禁止
 
-- `run-city-agent-poi.js`、`agent-poi-build-search-plan.js`、`agent-poi-batch-search.js`、`agent-poi-build-decisions.js`
+- `run-city-agent-poi.js`（已废弃占位）及任何 `agent-complete-*` / `agent-poi-build-*` 类 JS 自动流水线（已从仓库删除）
 - 抓取加 `--with-poi`
 - 用 `pickBestPoiForEvent` / `suggestEventPoiKeyword` 代替大模型写 `decisions.json`
 - 用 `reassess-agent-poi-doubt.js` 把 `action:reject` 的组强行绑 POI
