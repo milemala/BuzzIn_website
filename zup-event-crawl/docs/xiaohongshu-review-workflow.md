@@ -44,7 +44,7 @@ node scripts/run-xhs-weekly-pipeline.js --import-only
 
 | 阶段 | 自动？ | 说明 |
 |------|--------|------|
-| 1. 抓个人页 + 选汇总帖 + 下图 | ✅ | `scrape-xhs-profile-weekly.js`；同笔记已有 `weekly-summary.json` 则跳过重复下载 |
+| 1. 抓个人页 + 选汇总帖 + 下图 | ✅ | 优先本周/下周汇总，其次整月汇总；无合适帖则跳过该城；同笔记已有 `weekly-summary.json` 则跳过重复下载 |
 | 2. Agent 读图写 `vision-slots.json` | ❌ **必须人工/Agent** | 版式每周不同，禁止复制上周 posterBox |
 | 3. extract 合并 + 裁海报 | ✅ | 有 `posterBox` 才裁；无则 `poster=null` |
 | 4. 合成封面 + 入库 | ✅ | `append-city`，**不删**同城豆瓣活动；**不做 POI** |
@@ -81,7 +81,7 @@ data/scrape-cache/xhs/<城市>/<笔记ID>/
 
 | 情况 | `image`（展示） | `image_original`（保留） |
 |------|-----------------|--------------------------|
-| 有裁切海报 | 4:3 左图右文（同豆瓣） | 本地 `posters/*.jpg` |
+| 有裁切海报 | 4:3 合成：竖图（≤4:5）左图右文；更宽（如 1:1）居中叠底图、无右侧文案 | 本地 `posters/*.jpg` |
 | 无海报 | 文字封面（标题 + 加入群聊/一起组局） | 本地 `images/*.webp` slide |
 
 ## 核心原则

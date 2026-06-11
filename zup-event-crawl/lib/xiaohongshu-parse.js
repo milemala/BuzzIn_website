@@ -30,18 +30,31 @@ function parseProfileNotes(html, limit = 10) {
 }
 
 const WEEKLY_TITLE_RE =
-  /(?:本周|一周|周末).{0,20}(?:活动汇总|活动合集)|(?:活动汇总|活动合集).{0,20}(?:本周|一周|周末)/;
+  /(?:本周|这周|下周|一周|周末).{0,30}(?:活动汇总|活动合集|活动指南|可做的?\d*件事)|(?:活动汇总|活动合集).{0,30}(?:本周|这周|下周|一周|周末)|(?:本周|这周).{0,10}\d+件事/;
 
-/** 从标题里解析 (M.D-M.D) 或 （M.D-M.D）日期区间 */
+const THIS_OR_NEXT_WEEK_RE = /本周|这周|下周|一周|周末/;
+const ROUNDUP_KEYWORD_RE = /活动汇总|活动合集|活动指南|活动清单|可做的?\d*件事|一周活动/;
+const MONTH_ROUNDUP_RE = /活动汇总|活动清单|活动合集|市集活动|活动攻略|值得一去|活动指南/;
+
+/** 从标题里解析 (M.D-M.D)、（M.D-M.D）或末尾裸写 6.8-6.14 */
 function parseTitleDateRange(title) {
-  const m = String(title || "").match(/[（(](\d{1,2})\.(\d{1,2})\s*[-–—~至]\s*(\d{1,2})\.(\d{1,2})[）)]/);
-  if (!m) return null;
-  return {
-    startMonth: Number(m[1]),
-    startDay: Number(m[2]),
-    endMonth: Number(m[3]),
-    endDay: Number(m[4]),
-  };
+  const text = String(title || "");
+  const patterns = [
+    /[（(](\d{1,2})\.(\d{1,2})\s*[-–—~至]\s*(\d{1,2})\.(\d{1,2})[）)]/,
+    /(\d{1,2})\.(\d{1,2})\s*[-–—~至]\s*(\d{1,2})\.(\d{1,2})(?:\s*$|[^\d])/,
+  ];
+  for (const re of patterns) {
+    const m = text.match(re);
+    if (m) {
+      return {
+        startMonth: Number(m[1]),
+        startDay: Number(m[2]),
+        endMonth: Number(m[3]),
+        endDay: Number(m[4]),
+      };
+    }
+  }
+  return null;
 }
 
 function dateInRange(range, refDate = new Date()) {
@@ -53,14 +66,25 @@ function dateInRange(range, refDate = new Date()) {
   return refDate >= start && refDate <= end;
 }
 
-/**
- * 在前 N 条里找「本周活动汇总」帖。
- * 优先：标题含活动汇总 + 日期区间覆盖今天；其次：标题含活动汇总且日期最近。
- */
-function pickWeeklyRoundupNote(notes, refDate = new Date()) {
-  const candidates = notes.filter((n) => WEEKLY_TITLE_RE.test(n.title));
-  if (!candidates.length) return null;
+function isWeekRoundupTitle(title) {
+  const text = String(title || "");
+  if (!THIS_OR_NEXT_WEEK_RE.test(text)) return false;
+  return WEEKLY_TITLE_RE.test(text)
+    || ROUNDUP_KEYWORD_RE.test(text)
+    || parseTitleDateRange(text) != null
+    || /件事/.test(text);
+}
 
+function isMonthRoundupTitle(title, refDate = new Date()) {
+  const text = String(title || "");
+  if (/本周|这周|下周/.test(text)) return false;
+  if (!MONTH_ROUNDUP_RE.test(text)) return false;
+  const month = refDate.getMonth() + 1;
+  if (new RegExp(`(?:^|[^\\d])${month}月`).test(text)) return true;
+  return /\d{1,2}月/.test(text);
+}
+
+function pickBestCandidate(candidates, refDate = new Date()) {
   const withRange = candidates.map((n) => ({
     ...n,
     range: parseTitleDateRange(n.title),
@@ -69,10 +93,35 @@ function pickWeeklyRoundupNote(notes, refDate = new Date()) {
   const covering = withRange.find((n) => dateInRange(n.range, refDate));
   if (covering) return covering;
 
+  const nextWeek = withRange.find((n) => /下周/.test(n.title));
+  if (nextWeek) return nextWeek;
+
   return withRange.sort((a, b) => {
     const score = (n) => (n.range ? n.range.startMonth * 100 + n.range.startDay : 0);
     return score(b) - score(a);
   })[0];
+}
+
+/**
+ * 在前 N 条里选汇总帖：
+ * 1. 本周/下周活动汇总（含日期区间或「可做的 N 件事」）
+ * 2. 整月活动汇总（如「6月值得一去的市集活动」）
+ * 3. 无合适帖子 → null（调用方应跳过该城）
+ */
+function pickWeeklyRoundupNote(notes, refDate = new Date()) {
+  const weekCandidates = notes.filter((n) => isWeekRoundupTitle(n.title));
+  if (weekCandidates.length) {
+    const picked = pickBestCandidate(weekCandidates, refDate);
+    if (picked) return { ...picked, pickTier: "week" };
+  }
+
+  const monthCandidates = notes.filter((n) => isMonthRoundupTitle(n.title, refDate));
+  if (monthCandidates.length) {
+    const picked = pickBestCandidate(monthCandidates, refDate);
+    if (picked) return { ...picked, pickTier: "month" };
+  }
+
+  return null;
 }
 
 function parseNoteDetailFromHtml(html, noteId) {
@@ -115,6 +164,8 @@ module.exports = {
   WEEKLY_TITLE_RE,
   buildNoteExploreUrl,
   dateInRange,
+  isMonthRoundupTitle,
+  isWeekRoundupTitle,
   normalizeNoteCard,
   parseEventsFromDesc,
   parseInitialState,

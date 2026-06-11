@@ -52,11 +52,12 @@ async function scrapeXhsProfileWeekly(profileUrl, options = {}) {
   console.log(`   前 ${profile.notes.length} 条笔记:`);
   profile.notes.forEach((n, i) => console.log(`   ${i + 1}. ${n.title}`));
 
-  const picked = pickWeeklyRoundupNote(profile.notes);
+  const picked = pickWeeklyRoundupNote(profile.notes, new Date());
   if (!picked) {
-    throw new Error(`[${city}] 未在前 ${profile.notes.length} 条中找到「本周/一周活动汇总」类帖子`);
+    throw new Error(`[${city}] 未找到合适的本周/下周或整月活动汇总帖，已跳过`);
   }
-  console.log(`\n[${city}] 2/4 选中汇总帖: ${picked.title} (${picked.noteId})`);
+  const tierLabel = picked.pickTier === "month" ? "整月汇总" : "本周/下周汇总";
+  console.log(`\n[${city}] 2/4 选中${tierLabel}: ${picked.title} (${picked.noteId})`);
 
   const noteDir = path.join(outRoot, picked.noteId);
   const alreadyScraped = fs.existsSync(path.join(noteDir, "weekly-summary.json"));

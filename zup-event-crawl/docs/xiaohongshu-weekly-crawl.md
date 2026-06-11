@@ -45,6 +45,12 @@ node scripts/batch-scrape-xhs-cities.js --city=北京,上海
 
 账号清单：`data/xhs-city-accounts.json`
 
+### 选帖规则（`pickWeeklyRoundupNote`）
+
+1. **本周/下周**：标题含本周、下周、一周等 + 活动汇总/指南/可做的 N 件事，或标题带 `6.8-6.14` 类日期区间
+2. **整月**：无本周/下周时，选含「N月」+ 活动汇总/市集活动/值得一去 等整月清单帖
+3. **无合适帖**：返回 null，该城**跳过**（不默认抓首条）
+
 ## 代码模块
 
 | 文件 | 职责 |

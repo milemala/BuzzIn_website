@@ -8,6 +8,8 @@ const DEFAULT_WIDTH = 1200;
 const DEFAULT_HEIGHT = 900;
 const DEFAULT_TEXT_LINES = ["加入群聊", "一起组局"];
 const DEFAULT_BLUR_SIGMA = 32;
+/** 宽于 4:5（如 1:1）的海报居中叠底图，右侧不留文案区 */
+const PORTRAIT_TEXT_MAX_RATIO = 4 / 5;
 
 function resolveTextLines(text) {
   if (Array.isArray(text)) return text.map((line) => String(line).trim()).filter(Boolean);
@@ -71,10 +73,32 @@ async function composeEventPosterImage(sourceBuffer, options = {}) {
   const blurSigma = options.blurSigma || DEFAULT_BLUR_SIGMA;
   const fontSize = options.fontSize || Math.round(width * 0.078);
 
+  const sourceMeta = await sharp(sourceBuffer).metadata();
+  const sourceWidth = sourceMeta.width || 1;
+  const sourceHeight = sourceMeta.height || 1;
+  const useCenterOnly = sourceWidth / sourceHeight > PORTRAIT_TEXT_MAX_RATIO;
+
   const background = await sharp(sourceBuffer)
     .resize(width, height, { fit: "cover", position: "centre" })
     .blur(blurSigma)
     .toBuffer();
+
+  if (useCenterOnly) {
+    const poster = await sharp(sourceBuffer)
+      .resize(width, height, { fit: "inside" })
+      .toBuffer();
+    const posterMeta = await sharp(poster).metadata();
+    const posterW = posterMeta.width || width;
+    const posterH = posterMeta.height || height;
+    return sharp(background)
+      .composite([{
+        input: poster,
+        left: Math.round((width - posterW) / 2),
+        top: Math.round((height - posterH) / 2),
+      }])
+      .jpeg({ quality: 90, mozjpeg: true })
+      .toBuffer();
+  }
 
   const poster = await sharp(sourceBuffer)
     .resize({ height, fit: "inside" })
@@ -111,6 +135,7 @@ module.exports = {
   DEFAULT_HEIGHT,
   DEFAULT_TEXT_LINES,
   DEFAULT_WIDTH,
+  PORTRAIT_TEXT_MAX_RATIO,
   composeEventPosterFromUrl,
   composeEventPosterImage,
 };
