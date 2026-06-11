@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const { buildComposedImageUrl, saveComposedImage } = require("./composed-image");
 const { composeEventPosterImage } = require("./event-image-compose");
-const { buildPendingBodyFields } = require("./event-body-agent");
+const { buildXhsBodyFields } = require("./event-body-agent");
 const { buildPendingClassificationFields } = require("./event-classification");
 const { readImageFile } = require("./image-fetch");
 const { buildScrapeLocalImageUrl, normalizeRelativePath } = require("./scrape-local-image");
@@ -90,8 +90,8 @@ function mapExtractedEventToReview(extracted, event, noteDir, rootDir, position)
   };
 
   Object.assign(reviewEvent, buildPendingClassificationFields());
-  Object.assign(reviewEvent, buildPendingBodyFields());
-  reviewEvent.reviewReason = `小红书一周合集 · ${extracted.account || "未知账号"} · 待分类与介绍 Agent`;
+  Object.assign(reviewEvent, buildXhsBodyFields(event));
+  reviewEvent.reviewReason = `小红书一周合集 · ${extracted.account || "未知账号"} · 待分类 Agent`;
 
   return reviewEvent;
 }

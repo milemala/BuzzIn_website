@@ -881,8 +881,11 @@
       }[char]));
     }
 
-    function imageSrc(value) {
-      return value ? `/api/image?src=${encodeURIComponent(value)}` : "";
+    function imageSrc(image, version) {
+      if (!image) return "";
+      const params = new URLSearchParams({ src: image });
+      if (version) params.set("v", String(version));
+      return `/api/image?${params.toString()}`;
     }
 
     function todayDateValue() {
@@ -1282,7 +1285,7 @@
         return `
           <article class="card" data-uid="${escapeHtml(uid)}">
             <div class="cover-wrap">
-              <img class="cover" src="${escapeHtml(imageSrc(event.image))}" alt="${escapeHtml(event.title)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('broken')">
+              <img class="cover" src="${escapeHtml(imageSrc(event.image, event.updated_at || event.updatedAt))}" alt="${escapeHtml(event.title)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('broken')">
               <div class="cover-fallback">图片加载失败<br>可点原始链接查看</div>
             </div>
             <div class="body">

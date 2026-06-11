@@ -50,6 +50,14 @@ function main() {
   try {
     for (const decision of decisions) {
       const eventUid = String(decision.event_uid || "").trim();
+      const sourceRow = eventUid
+        ? db.prepare("SELECT source FROM events WHERE event_uid = ?").get(eventUid)
+        : null;
+      if (sourceRow?.source === "xiaohongshu") {
+        summary.fail += 1;
+        console.warn(`✗ ${eventUid}: 小红书活动介绍来自合集 highlights，请用 apply-xhs-event-bodies.js，勿走豆瓣 body Agent`);
+        continue;
+      }
       const check = validateBodyDecision(decision);
       if (!check.ok) {
         summary.fail += 1;

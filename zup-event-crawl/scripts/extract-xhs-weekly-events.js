@@ -12,7 +12,20 @@
 
 const fs = require("fs");
 const path = require("path");
+const sharp = require("sharp");
 const { cropPostersFromVisionSlots } = require("../lib/xiaohongshu-poster-crop");
+const { validatePosterCrop, formatDropReasons } = require("../lib/xhs-poster-quality-gate");
+
+const slideSizeCache = new Map();
+
+async function slideSize(imagesDir, slideName) {
+  const key = path.join(imagesDir, slideName);
+  if (slideSizeCache.has(key)) return slideSizeCache.get(key);
+  const meta = await sharp(key).metadata();
+  const size = { width: meta.width, height: meta.height };
+  slideSizeCache.set(key, size);
+  return size;
+}
 
 function loadJson(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
@@ -50,6 +63,8 @@ function buildEventsFromVision(noteDir, vision, cropped) {
       slot: slotFromKey(slotKey),
       sourceImage: slide ? `images/${slide}` : null,
       poster: crop ? rel(crop.posterFile, noteDir) : null,
+      posterDropped: Boolean(v.posterDrop),
+      posterDropReasons: v.posterDropReasons || null,
       needsPosterBox: false,
       category: v.category || null,
       name: v.name || null,
@@ -110,11 +125,41 @@ async function main() {
   const cropped = new Map();
   const withBox = Object.values(vision).filter((v) => v?.posterBox).length;
 
+  const qaReport = { generatedAt: new Date().toISOString(), passed: [], dropped: [] };
+
   if (withBox) {
     console.log(`按 Agent 标注的 posterBox 切图（${withBox} 条）…`);
     const map = await cropPostersFromVisionSlots(imagesDir, postersDir, vision);
-    map.forEach((v, k) => cropped.set(k, v));
-    console.log(`  已切 ${cropped.size} 张 → posters/`);
+
+    for (const [slotKey, crop] of map.entries()) {
+      const entry = vision[slotKey] || {};
+      const slideName = entry.posterBox?.slide || crop.slide;
+      const size = slideName ? await slideSize(imagesDir, slideName) : null;
+      const check = await validatePosterCrop(crop.posterFile, entry.posterBox, size);
+      if (check.ok) {
+        cropped.set(slotKey, crop);
+        qaReport.passed.push(slotKey);
+        continue;
+      }
+      const labels = formatDropReasons(check.reasons);
+      qaReport.dropped.push({
+        slot: slotKey,
+        name: entry.name || null,
+        reasons: check.reasons,
+        reasonLabels: labels,
+        metrics: check.metrics,
+        posterBox: entry.posterBox || null,
+      });
+      vision[slotKey].posterDrop = true;
+      vision[slotKey].posterDropReasons = labels;
+      console.warn(`  ✗ ${slotKey} ${entry.name || ""} · 门禁丢弃：${labels.join("；")}`);
+    }
+
+    console.log(`  通过 ${qaReport.passed.length} 张 · 丢弃 ${qaReport.dropped.length} 张 → posters/`);
+    fs.writeFileSync(path.join(noteDir, "poster-qa.json"), `${JSON.stringify(qaReport, null, 2)}\n`);
+    if (qaReport.dropped.length) {
+      console.log(`  详见 poster-qa.json（丢弃项将用文字封面）`);
+    }
   } else {
     console.log("vision-slots 无 posterBox，跳过裁图（见 docs/xiaohongshu-vision-agent.md）");
   }

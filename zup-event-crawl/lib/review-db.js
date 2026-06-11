@@ -219,6 +219,8 @@ function rowToEvent(row) {
     import_status: row.import_status || "",
     import_error: row.import_error || "",
     imported_at: row.imported_at || null,
+    updated_at: row.updated_at || null,
+    updatedAt: row.updated_at || null,
     start_at: resolveStartAt(row),
     expired_at: resolveExpiredAt(row),
     import_ready: isImportReady(row),

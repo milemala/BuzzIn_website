@@ -157,7 +157,7 @@ async function handleImageProxy(req, res, parsed) {
       sendJson(res, 404, { ok: false, error: "Composed image not found" });
       return;
     }
-    sendFile(res, composedPath, null, "public, max-age=86400");
+    sendFile(res, composedPath, null, "no-store");
     return;
   }
 

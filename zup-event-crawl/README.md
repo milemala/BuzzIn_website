@@ -126,6 +126,8 @@ node scripts/run-xhs-weekly-pipeline.js --skip-scrape --city=上海
 
 输出在 `data/scrape-cache/xhs/<城市>/<笔记ID>/`。Agent 读图规则见 [`docs/xiaohongshu-vision-agent.md`](docs/xiaohongshu-vision-agent.md)。入库 `source=xiaohongshu`，`append-city` 不覆盖同城豆瓣；有海报 → 4:3 封面，无海报 → 文字封面；POI 后续再做。
 
+海报裁切默认由**强视觉模型一次性标最终 `posterBox`**，然后只跑 `extract-xhs-weekly-events.js` 和 `create-poster-contact-sheet.js` 低成本看总览。`snap-poster-box-edges.js` 是可选修边工具，默认仅预览，确认后才加 `--write` 写回。
+
 **分类与 POI 均由 Cursor 大模型在同一次对话里完成**：
 
 - 推荐/挡下 + 活动类型：[`docs/event-classification-agent.md`](docs/event-classification-agent.md)

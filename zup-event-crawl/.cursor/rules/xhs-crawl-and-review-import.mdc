@@ -1,14 +1,14 @@
 ---
-description: 抓取小红书一周活动汇总并入库审核台。用户说「抓取小红书/小红书活动/小红书入库」时必读 docs/xiaohongshu-review-workflow.md 并按检查清单执行。
+description: 抓取/处理小红书一周活动汇总并入库审核台。涉及 XHS 图片裁切、vision-slots、posterBox 时按强视觉模型一次标最终框 + 总览图验收流程执行。
 globs: zup-event-crawl/**
 alwaysApply: false
 ---
 
-# 小红书活动：抓取 → 读图 → 入库（标准流程）
+# 小红书活动：抓取 → 原尺寸读图标框 → 裁切验收 → 入库
 
-当用户说「抓取/抓一下 XX 小红书活动」「小红书入库」「小红书一周汇总」或编辑 `data/scrape-cache/xhs/**`、`vision-slots.json` 时：
+当用户说「抓取/重跑/处理 XX 小红书活动」「小红书入库」「小红书一周汇总」，或编辑 `data/scrape-cache/xhs/**`、`vision-slots.json` 时：
 
-**先读**（按顺序，不要依赖聊天记忆）：
+**先读，不依赖聊天记忆**：
 
 1. [`docs/xiaohongshu-review-workflow.md`](../docs/xiaohongshu-review-workflow.md) — **主流程与检查清单**
 2. [`docs/xiaohongshu-vision-agent.md`](../docs/xiaohongshu-vision-agent.md) — Agent 读图与 posterBox
@@ -16,49 +16,83 @@ alwaysApply: false
 
 账号清单：`data/xhs-city-accounts.json`
 
-## 必须执行的步骤
+## 最佳实现路径
 
-### 1. 跑流水线（抓取 + 能自动的后续）
+### 1. 抓取或定位笔记目录
 
 ```bash
 cd zup-event-crawl
 node scripts/run-xhs-weekly-pipeline.js --city=<城市名>
-# 多城：--city=北京,上海,广州
 ```
 
-同笔记已抓过会跳过重复下载；有 `vision-slots.json` 时自动 extract + 入库。
+同笔记已抓过会跳过重复下载。若用户只是“重跑裁切”，先定位 `data/scrape-cache/xhs/<城市>/<笔记ID>/`，不要重复抓取。
 
-### 2. Agent 读图（无 vision 时必做）
+### 2. 强视觉模型读图并一次标最终 `posterBox`
 
 在 `data/scrape-cache/xhs/<城市>/<笔记ID>/`：
 
-- 读 `images/*.webp`（从 `01.webp` 起）
-- 写 `vision-slots.json`（每张 slide 所有活动；posterBox 仅框真实海报）
-- **禁止**复制上周 box、禁止固定比例裁切
+- 读 `images/*.webp`（从 `01.webp` 起）；如果不能直接读，生成**同尺寸临时 PNG**到 `_tmp-review-png/` 辅助读图，临时图不用强制删除，可保留复盘
+- 写/改 `vision-slots.json`：每场活动都要有字段；只有版面里独立、尺寸足够、能干净裁成封面的主视觉才写 `posterBox`
+- `posterBox` 是最终裁切区域，不是粗框：只框海报本体，排除 slide 背景、黄色标题条、右侧说明文字、邻场残影
+- 优先使用强视觉模型（如 Fable）。弱视觉模型/模板化模型容易把“行/卡片/说明文字”当海报，不要信模板坐标
+- **禁止**复制上周 box、固定比例裁切、按城市写启发式自动猜框
+- 不要按图片内容意义过度苛刻：风景照、展品照、现场照、地图式活动图，只要在版面中是该活动的独立主视觉且尺寸够，就算可裁封面
 
-完成后续跑：
+### 3. 裁切 + 总览图验收（默认不入库）
 
 ```bash
-node scripts/run-xhs-weekly-pipeline.js --skip-scrape --city=<城市名>
+node scripts/extract-xhs-weekly-events.js data/scrape-cache/xhs/<城市>/<笔记ID>
+node scripts/create-poster-contact-sheet.js data/scrape-cache/xhs/<城市>/<笔记ID>
 ```
 
-### 3. 确认入库
+必须看 `posters-contact-sheet.png`：把所有 `posters/*.jpg` 放在一张缩略总览图里统一判断。只抓明显坏图，不逐张深挖复核。
+
+如果总览图发现明显坏图，只允许**返工一次**：回原 slide 改 `posterBox` → 重跑 extract → 重跑 contact sheet。第二次总览后不再无限微调，除非用户明确要求继续。
+
+必须回原 slide 重标的情况：
+
+- 裁切里出现活动标题、黄色星标、右侧闹钟/地图/票价/说明文字
+- 裁切包含大块 slide 背景或邻场内容
+- 海报标题/日期/脚标明显被切掉
+- 同一页多个 crop 明显是套模板而不是贴海报外缘
+
+### 4. 像素吸附是可选修边，不是默认流程
+
+只在“语义正确、边缘差几像素”时预览：
+
+```bash
+node scripts/snap-poster-box-edges.js data/scrape-cache/xhs/<城市>/<笔记ID>
+```
+
+确认预览合理才写回：
+
+```bash
+node scripts/snap-poster-box-edges.js data/scrape-cache/xhs/<城市>/<笔记ID> --write
+```
+
+不要用吸附修语义错误；它救不了框错块、框进标题/说明文字。
+
+### 5. 满意后再入库
 
 - `source=xiaohongshu`，`append-city`，不删同城豆瓣
 - **默认不做 POI**（key 没额度时跳过）
 - 审核台：http://127.0.0.1:8787/ 来源选「小红书」
 
-### 4. 校正入库时间（入库后必做）
+```bash
+node scripts/run-xhs-weekly-pipeline.js --skip-scrape --city=<城市名>
+```
+
+### 6. 校正入库时间（入库后必做）
 
 见 [`docs/event-time-agent.md`](../docs/event-time-agent.md)：
 
 ```bash
 node scripts/suggest-event-time-decisions.js --source=xiaohongshu --all-cities
-# Agent 核对 time-decisions.json（仅开始时刻 → expired_at 当天 23:59:59）
+# Agent 核对 time-decisions.json
 node scripts/apply-event-time-decisions.js --city=多城市
 ```
 
-### 5. 后续（与豆瓣相同，按需）
+### 7. 后续（与豆瓣相同，按需）
 
 - 分类：[`docs/event-classification-agent.md`](../docs/event-classification-agent.md)
 - 介绍：[`docs/event-body-agent.md`](../docs/event-body-agent.md)
@@ -66,11 +100,18 @@ node scripts/apply-event-time-decisions.js --city=多城市
 
 ## 禁止
 
-- 用启发式/城市规则自动裁海报（已删除）
+- 用启发式/城市规则自动猜海报位置
+- 把像素吸附作为默认流程或不预览直接写回
 - 入库用 `merge-city` / `replace-city`（会删同城豆瓣活动）
 - 抓取时做 POI 或 `--with-poi`
 - 无 `posterBox` 时硬裁文字 slide 或装饰图
 - 依赖对话记忆而不读 `docs/xiaohongshu-review-workflow.md`
+- 用低分辨率预览量最终坐标；临时图必须同尺寸
+- 反复抽查、反复微调导致无限返工；默认最多返工一次
+
+## 交付口径
+
+汇报：活动数、海报通过/丢弃/无海报数量、总览图路径、是否返工过、是否入库、是否还有需人工判断的坏图。不要只说“跑完了”。
 
 ## 封面规则
 

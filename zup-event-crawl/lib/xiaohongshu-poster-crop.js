@@ -8,16 +8,23 @@ function clamp(n, min, max) {
   return Math.max(min, Math.min(max, n));
 }
 
-/** 将 vision-slots 里的 posterBox 转为像素矩形（支持 0–1 比例或绝对像素） */
+/** posterBox 为像素；若仍为旧版 0–1 比例则按 slide 尺寸换算（迁移期兼容） */
 function resolvePosterBoxPixels(box, imageWidth, imageHeight) {
   if (!box || !imageWidth || !imageHeight) return null;
-  const isRatio = (n) => typeof n === "number" && n > 0 && n <= 1;
-  const toPx = (v, max) => (isRatio(v) ? Math.round(v * max) : Math.round(Number(v) || 0));
 
-  let left = toPx(box.left ?? box.x, imageWidth);
-  let top = toPx(box.top ?? box.y, imageHeight);
-  let width = toPx(box.width ?? box.w, imageWidth);
-  let height = toPx(box.height ?? box.h, imageHeight);
+  const raw = {
+    x: Number(box.left ?? box.x),
+    y: Number(box.top ?? box.y),
+    w: Number(box.width ?? box.w),
+    h: Number(box.height ?? box.h),
+  };
+  if (![raw.x, raw.y, raw.w, raw.h].every((n) => Number.isFinite(n) && n > 0)) return null;
+
+  const looksLikeRatio = raw.x <= 1 && raw.y <= 1 && raw.w <= 1 && raw.h <= 1;
+  let left = looksLikeRatio ? Math.round(raw.x * imageWidth) : Math.round(raw.x);
+  let top = looksLikeRatio ? Math.round(raw.y * imageHeight) : Math.round(raw.y);
+  let width = looksLikeRatio ? Math.round(raw.w * imageWidth) : Math.round(raw.w);
+  let height = looksLikeRatio ? Math.round(raw.h * imageHeight) : Math.round(raw.h);
 
   if (width <= 0 || height <= 0) return null;
   left = clamp(left, 0, imageWidth - 1);

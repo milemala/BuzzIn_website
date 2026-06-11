@@ -3,6 +3,8 @@
 const BODY_SOURCE_PENDING = "pending";
 const BODY_SOURCE_AGENT = "agent";
 const BODY_SOURCE_JS_FALLBACK = "js_fallback";
+/** 小红书合集 vision 提炼的 highlights，入库时直写 body，不走 Agent */
+const BODY_SOURCE_XHS = "xhs_source";
 
 /** 活动介绍正文建议字数（不含参加方式也可，但推荐两段合一写入 body） */
 const BODY_INTRO_MAX_LENGTH = 220;
@@ -15,8 +17,12 @@ function isAgentBody(event) {
   return String(event?.body_source || "").trim() === BODY_SOURCE_AGENT;
 }
 
+function isXhsSourceBody(event) {
+  return String(event?.body_source || "").trim() === BODY_SOURCE_XHS;
+}
+
 function isBodyPending(event) {
-  if (isAgentBody(event)) return false;
+  if (isAgentBody(event) || isXhsSourceBody(event)) return false;
   const source = String(event?.body_source || BODY_SOURCE_PENDING).trim();
   return source === BODY_SOURCE_PENDING || !String(event?.body || "").trim();
 }
@@ -25,6 +31,18 @@ function buildPendingBodyFields() {
   return {
     body: BODY_PENDING_PLACEHOLDER || null,
     body_source: BODY_SOURCE_PENDING,
+  };
+}
+
+/** 小红书 events-extracted.json 的 highlights → body */
+function buildXhsBodyFields(event) {
+  const body = normalizeBodyText(event?.highlights || "");
+  if (!body) {
+    return buildPendingBodyFields();
+  }
+  return {
+    body,
+    body_source: BODY_SOURCE_XHS,
   };
 }
 
@@ -68,9 +86,12 @@ module.exports = {
   BODY_SOURCE_AGENT,
   BODY_SOURCE_JS_FALLBACK,
   BODY_SOURCE_PENDING,
+  BODY_SOURCE_XHS,
   buildPendingBodyFields,
+  buildXhsBodyFields,
   isAgentBody,
   isBodyPending,
+  isXhsSourceBody,
   normalizeBodyText,
   validateBodyDecision,
 };

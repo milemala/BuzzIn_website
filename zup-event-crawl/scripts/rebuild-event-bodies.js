@@ -41,7 +41,8 @@ let updated = 0;
 let skippedExpired = 0;
 
 function needsRebuild(row, event) {
-  if (String(row.body_source || "") === "agent") return false;
+  const bodySource = String(row.body_source || "");
+  if (bodySource === "agent" || bodySource === "xhs_source") return false;
   if (forceAll) return true;
   const bodyText = String(row.body || "");
   const rawText = String(row.raw_detail_text || "");
