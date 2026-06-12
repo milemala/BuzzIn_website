@@ -17,12 +17,29 @@ alwaysApply: false
 
 **不要依赖聊天记忆。**
 
+## POI 铁律（Agent 全程主导）
+
+**搜词、读候选、match/reject/doubtful 判定必须由 Cursor Agent 在对话里完成**，不得交给 JS 自动规则：
+
+1. Agent 读 `pending.json` 每组 → **自己定** 1～3 个搜词
+2. `node scripts/poi-search-cli.js --city=... --keyword=...` → Agent **自己读** JSON 候选
+3. Agent 按 workflow「判断标准」写 `decisions.json`
+4. `node scripts/apply-event-poi-decisions.js` 入库
+
+`buildEventPoiSearchKeywords` / `pickBestPoiForEvent` 等仅供 Agent **参考**，不能代替 Agent 写 `decisions.json`。
+
+**处理范围**：仅 `export-events-for-poi.js --pending-only`（审核 **待定** + 无 POI）。用户已在审核台 **拒绝** 的活动（`review_decisions.status=rejected`）**不要处理**。
+
+**POI `reject` ≠ 审核台「拒绝」**：前者只是本轮没配上 POI，活动仍待定；后者是不要这条活动。
+
 ## 禁止
 
-- `run-city-agent-poi.js`（已废弃占位）及任何 `agent-complete-*` / `agent-poi-build-*` 类 JS 自动流水线（已从仓库删除）
-- 抓取加 `--with-poi`
-- 用 `pickBestPoiForEvent` / `suggestEventPoiKeyword` 代替大模型写 `decisions.json`
-- 用 `reassess-agent-poi-doubt.js` 把 `action:reject` 的组强行绑 POI
+- `batch-resolve-event-poi.js`、`agent-poi-review-apply.js`、`reassess-agent-poi-doubt.js`（已删除）
+- `agent-poi-analyze-doubtful.js`、`build-agent-rerun-decisions.js`（已删除；JS 自动改存疑/生成 decisions）
+- `run-city-agent-poi.js` 及任何 `agent-complete-*` / `agent-poi-build-*` 类 JS 自动流水线
+- 抓取加 `--with-poi`；`batchEventAutoPoi`；审核页批量 JS 自动 POI
+- 用 `pickBestPoiForEvent` / `buildEventPoiSearchKeywords` **自动跑批**并写 `decisions.json` 或 `review.db`
+- 用 JS 比地址文字批量写 `doubtful` 或批量生成 `decisions.json`（必须 Agent 读 `poi-search-cli` 候选后手写）
 
 ## 必须执行的步骤
 
@@ -78,33 +95,45 @@ node scripts/apply-event-body-decisions.js --city=<中文城市名>
 ### 5. 导出 POI 任务
 
 ```bash
+# 一条龙 / 只补未匹配
 node scripts/export-events-for-poi.js --city=<中文城市名> --refresh --pending-only
+
+# 用户只要求复核存疑
+node scripts/export-events-for-poi.js --city=<中文城市名> --refresh --doubtful-only
 ```
 
-读 `data/poi-agent-workbench/<城市>/pending.json`。
+读 `pending.json`（未匹配）或 `doubtful-pending.json`（存疑复核）。
 
-### 6. 大模型 POI（核心）
+### 6. Agent POI（核心，禁止 JS 代劳）
 
-对每个 `group`：
+对导出文件里**每一个** `groups[]` 条目：
 
-1. 定 1～3 个搜词（场馆/门牌/栋座，非活动标题；笔误要纠）
-2. `node scripts/poi-search-cli.js --city=<城市> --keyword="..."`
-3. 按 workflow 文档「判断标准」选点：`match` / `reject` / `doubtful` + `reason`
-4. 可选：把候选列表写入 `search-results.json` 便于审计
+1. **Agent 定** 1～多个搜词（场馆/门牌/栋座；不够准就多试）
+2. **Agent 执行** `node scripts/poi-search-cli.js --city=<城市> --keyword="..."`
+3. **Agent 读** `items[]`，按 workflow「判断标准」**手写** `match` / `reject` / `doubtful` + `reason`
+4. 存疑复核：必须重新搜，不能只看 `current_poi_*` 就改标记
 
-**硬规则**：区划必须一致；泛名「文创园/产业园」无门牌对齐 → 不 match；多场地（等N家影院）要标存疑或只绑主场地。
+不得用 JS 自动生成 `decisions.json`；不得跳过第 2～3 步。
+
+**硬规则**（详见 workflow「判断标准」）：
+
+- 区划一致；泛名「文创园/产业园」无门牌 → 不 match
+- **主体一致、仅差楼层/铺位/室号** → `match` + `doubtful: false`（如商场主体、同门牌楼宇）
+- **多校区/多分店/地址过泛无法唯一确定** → `reject`，禁止猜默认校区或第一家店
+- 除「仅差精度」外仍有跨区、铺位不同、类目不符等 → `match` + `doubtful: true`
 
 ### 7. 写 POI decisions 并入库
 
-`data/poi-agent-workbench/<城市>/decisions.json` →
+`data/poi-agent-workbench/<城市>/decisions.json`（**Agent 手写**）→
 
 ```bash
 node scripts/apply-event-poi-decisions.js --city=<城市>
+# 多城批次：merge-agent-poi-decisions.js --file=...
 ```
 
 ### 8. 汇报
 
-抓取条数、时间已校正条数、推荐/挡下/待分类、body 待写/已写、POI match/reject/doubtful、需人工条目。
+抓取条数、时间/分类/body 条数；POI：**处理了几组**、匹配/reject/仍存疑；需人工条目。
 
 ## 审核台
 

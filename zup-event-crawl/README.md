@@ -34,7 +34,7 @@ zup-event-crawl/
 │   ├── event-image-compose.js    # 4:3 封面合成（sharp）
 │   ├── composed-image.js         # 合成图路径与 URL 约定
 │   ├── event-import-ready.js     # 活动入库字段 / now_type 默认
-│   ├── tencent-poi.js            # 腾讯 POI 搜索与存疑判断
+│   ├── tencent-poi.js            # 腾讯 POI API（供 poi-search-cli；活动 match 由 Agent 判）
 │   ├── buzz-now-import.js        # Buzz 活动气泡客户端
 │   ├── buzz-merchant-import.js   # Buzz 商户入库
 │   ├── merchant-bubble.js        # 商户气泡三分组轮转发布

@@ -115,6 +115,10 @@
     .mini.approve.active{background:var(--green);border-color:var(--green);color:#fff}
     .mini.reject.active{background:var(--red);border-color:var(--red);color:#fff}
     .mini.pending.active{background:var(--yellow);border-color:var(--yellow);color:#211b10}
+    .mini.pending.incomplete,.mini.pending.incomplete.active{background:#ece8e0;border-color:#d8d2c6;color:#8a8278}
+    .batch-review-bar{display:none;align-items:center;gap:10px;flex-wrap:wrap;margin:-4px 0 14px;padding:10px 12px;background:#fffdf6;border:1px solid #e6ded0;border-radius:8px}
+    .batch-review-bar.visible{display:flex}
+    .batch-review-hint{color:var(--muted);font-size:13px}
     .link{margin-left:auto;color:#6b5b00;text-decoration:none;font-size:13px}
     .empty{padding:44px;text-align:center;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:8px}
     .pager{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:16px;padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:8px}
@@ -225,6 +229,11 @@
         <button data-date="all" class="active">全部日期</button>
       </div>
     </section>
+    <section class="batch-review-bar" id="batchReviewBar">
+      <button class="btn primary" id="batchApproveBtn" type="button">批量通过</button>
+      <button class="btn" id="batchRejectBtn" type="button">批量拒绝</button>
+      <span class="batch-review-hint" id="batchReviewHint"></span>
+    </section>
     <section class="grid" id="list"></section>
     <nav class="pager" id="pager" hidden aria-label="分页"></nav>
   </main>
@@ -257,6 +266,13 @@
     const DEFAULT_NOW_TYPE = 3;
     let prepBusy = false;
     let importBusy = false;
+    let reviewBusy = false;
+    const BATCH_REVIEW_STATUS_FILTERS = new Set(["pending", "poi_doubtful", "rule-blocked"]);
+    const BATCH_REVIEW_FILTER_LABELS = {
+      pending: "待定",
+      poi_doubtful: "POI 存疑",
+      "rule-blocked": "挡下待处理",
+    };
     const poiKeywords = {};
     const poiPreviews = {};
     let eventIndex = [];
@@ -368,6 +384,30 @@
       if (!event.start_at) return false;
       if (!event.expired_at) return false;
       return true;
+    }
+
+    /** 审核台「待定」：字段齐全、可进入人工通过队列（不含未匹配 POI / 存疑 / 挡下） */
+    function isReviewPendingReady(event) {
+      if (getStatus(event) !== "pending") return false;
+      if (!isImportReady(event)) return false;
+      if (event.poi_doubtful) return false;
+      if (isRuleBlockedUnprocessed(event)) return false;
+      return true;
+    }
+
+    function reviewPendingButtonTitle(event) {
+      if (isReviewPendingReady(event)) return "字段齐全，计入待定";
+      if (getStatus(event) !== "pending") return "非待定状态";
+      if (!isImportReady(event)) return "字段未齐或未匹配 POI，不计入待定";
+      if (event.poi_doubtful) return "POI 存疑，不计入待定";
+      if (isRuleBlockedUnprocessed(event)) return "挡下待处理，不计入待定";
+      return "不计入待定";
+    }
+
+    function renderPendingButtonClass(event, status) {
+      const counted = isReviewPendingReady(event);
+      if (status === "pending") return counted ? "active" : "active incomplete";
+      return counted ? "" : "incomplete";
     }
 
     function buildImportContent(event) {
@@ -740,7 +780,7 @@
     }
 
     function bumpReviewCounts(target, event) {
-      if (getStatus(event) === "pending") target.pending += 1;
+      if (isReviewPendingReady(event)) target.pending += 1;
       if (isImportedEvent(event)) target.imported += 1;
       if (isPendingImportEvent(event)) target.pendingImport += 1;
     }
@@ -831,6 +871,63 @@
       } catch (error) {
         setSaveState("保存到本地数据库失败，请确认本地审核服务还在运行", "error");
       }
+    }
+
+    async function persistReviewDecisionsBatch(decisions, options = {}) {
+      if (!serverSaveEnabled) return true;
+      try {
+        const response = await fetch("/api/review-state", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ decisions }),
+        });
+        const data = await response.json();
+        if (!response.ok || !data.ok) throw new Error(data.error || "save failed");
+        if (!options.quiet) {
+          setSaveState(`已保存到本地数据库，通过 ${data.approvedCount} 条`, "ok");
+        }
+        return true;
+      } catch (error) {
+        setSaveState("批量保存到本地数据库失败，请确认本地审核服务还在运行", "error");
+        return false;
+      }
+    }
+
+    async function batchSetReviewStatus(nextStatus) {
+      if (reviewBusy || !BATCH_REVIEW_STATUS_FILTERS.has(statusFilter)) return;
+      const events = getFilteredEvents();
+      if (!events.length) {
+        setSaveState("当前筛选下没有可操作的活动", "warn");
+        return;
+      }
+      const actionLabel = nextStatus === "approved" ? "通过" : "拒绝";
+      const filterLabel = BATCH_REVIEW_FILTER_LABELS[statusFilter] || statusFilter;
+      const cityLabel = cityFilter === "all" ? "全部城市" : cityFilter;
+      if (!window.confirm(`将「${cityLabel}」·「${filterLabel}」筛选下的 ${events.length} 条活动全部标为${actionLabel}？`)) {
+        return;
+      }
+
+      reviewBusy = true;
+      const batchApproveBtn = document.getElementById("batchApproveBtn");
+      const batchRejectBtn = document.getElementById("batchRejectBtn");
+      if (batchApproveBtn) batchApproveBtn.disabled = true;
+      if (batchRejectBtn) batchRejectBtn.disabled = true;
+
+      const decisions = {};
+      for (const event of events) {
+        const uid = event.eventUid || event.event_uid || event.id;
+        decisions[uid] = nextStatus;
+        reviewState[uid] = nextStatus;
+      }
+      persistLocalReviewState();
+      const saved = await persistReviewDecisionsBatch(decisions, { quiet: true });
+      reviewBusy = false;
+      if (batchApproveBtn) batchApproveBtn.disabled = false;
+      if (batchRejectBtn) batchRejectBtn.disabled = false;
+      if (saved) {
+        setSaveState(`已批量${actionLabel} ${events.length} 条`, "ok");
+      }
+      render();
     }
 
     function setReviewDecision(uid, status, options = {}) {
@@ -1011,8 +1108,9 @@
       if (filter === "no_poi") {
         return status === "pending" && hasNoPoi(event);
       }
+      if (filter === "pending") return isReviewPendingReady(event);
       if (filter === "expired") return isExpired(event);
-      if (["approved", "rejected", "pending"].includes(filter)) return status === filter;
+      if (["approved", "rejected"].includes(filter)) return status === filter;
       return true;
     }
 
@@ -1360,7 +1458,7 @@
               </div>
               <div class="card-actions">
                 <button class="mini approve ${status === "approved" ? "active" : ""}" data-id="${escapeHtml(uid)}" data-next="approved">通过</button>
-                <button class="mini pending ${status === "pending" ? "active" : ""}" data-id="${escapeHtml(uid)}" data-next="pending">待定</button>
+                <button class="mini pending ${renderPendingButtonClass(event, status)}" data-id="${escapeHtml(uid)}" data-next="pending" title="${escapeHtml(reviewPendingButtonTitle(event))}">待定</button>
                 <button class="mini reject ${status === "rejected" ? "active" : ""}" data-id="${escapeHtml(uid)}" data-next="rejected">拒绝</button>
                 <button class="mini import-now ${imported ? "done" : ""}" type="button" data-import-uid="${escapeHtml(uid)}" ${importable ? "" : "disabled"}>${escapeHtml(importButtonLabel(event))}</button>
                 ${imported ? `<button class="mini delete-buzz" type="button" data-delete-buzz-uid="${escapeHtml(uid)}" data-delete-buzz-now-id="${escapeHtml(event.buzz_now_id)}">删后台</button>` : ""}
@@ -1371,6 +1469,26 @@
         `;
       }).join("");
 
+    }
+
+    function renderBatchReviewBar() {
+      const bar = document.getElementById("batchReviewBar");
+      const hint = document.getElementById("batchReviewHint");
+      const batchApproveBtn = document.getElementById("batchApproveBtn");
+      const batchRejectBtn = document.getElementById("batchRejectBtn");
+      if (!bar || !hint) return;
+
+      const show = BATCH_REVIEW_STATUS_FILTERS.has(statusFilter);
+      bar.classList.toggle("visible", show);
+      if (!show) return;
+
+      const count = getFilteredEvents().length;
+      const filterLabel = BATCH_REVIEW_FILTER_LABELS[statusFilter] || statusFilter;
+      hint.textContent = count
+        ? `当前「${filterLabel}」共 ${count} 条（含搜索/类型/日期筛选）`
+        : `当前「${filterLabel}」筛选下没有活动`;
+      if (batchApproveBtn) batchApproveBtn.disabled = reviewBusy || count === 0;
+      if (batchRejectBtn) batchRejectBtn.disabled = reviewBusy || count === 0;
     }
 
     function render() {
@@ -1391,6 +1509,7 @@
       renderSourceFilter();
       renderCategoryFilter();
       renderDateFilter();
+      renderBatchReviewBar();
       renderList();
     }
 
@@ -1572,6 +1691,12 @@
 
     document.getElementById("batchPrepBtn").addEventListener("click", runBatchPrep);
     document.getElementById("batchImportBtn").addEventListener("click", runBatchImport);
+    document.getElementById("batchApproveBtn").addEventListener("click", () => {
+      void batchSetReviewStatus("approved");
+    });
+    document.getElementById("batchRejectBtn").addEventListener("click", () => {
+      void batchSetReviewStatus("rejected");
+    });
 
     document.getElementById("exportBtn").addEventListener("click", async () => {
       try {

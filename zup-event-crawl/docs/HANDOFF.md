@@ -687,7 +687,7 @@ npm start
 - POI：`export-events-for-poi.js` → `poi-search-cli` + `decisions.json` → `apply-event-poi-decisions.js`
 - Workbench：`data/poi-agent-workbench/<城市>/`（`pending.json` / `decisions.json`）
 - 审核台：卡片展示 **POI 已匹配**；筛选「未匹配 POI」「POI 存疑」（只认 Agent 的 `poi_agent_doubtful`）
-- 维护：`scripts/reassess-agent-poi-doubt.js` 仅重评已标存疑条目，勿推翻 `reject`
+- 存疑条目：由 Agent 重读 `pending.json` / 审核台，定搜词 → `poi-search-cli` → 更新 `decisions.json`（勿用已删除的 JS 自动批处理）
 
 ## 当前 UI 状态摘要
 

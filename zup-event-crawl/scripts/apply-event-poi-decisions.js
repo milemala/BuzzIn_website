@@ -3,6 +3,7 @@
 
 /**
  * 将 Cursor Agent 编写的 decisions.json 写入 review.db。
+ * decisions 须由 Agent 定搜词、读 poi-search-cli 候选后手写，禁止 JS 自动选点代填。
  *
  *   node scripts/apply-event-poi-decisions.js --city=深圳
  *   node scripts/apply-event-poi-decisions.js --file=data/poi-agent-workbench/深圳/decisions.json

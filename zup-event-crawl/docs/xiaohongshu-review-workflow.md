@@ -140,7 +140,7 @@ data/scrape-cache/xhs/<城市>/<笔记ID>/
 
 - 不要用启发式/城市专用规则自动猜海报位置
 - 不要默认跑像素吸附；吸附只能预览修边，确认后才写回
-- 抓取阶段不要做 POI（`--with-poi` 已废弃）
+- 抓取/入库阶段不要做 POI；POI 由 Agent 在分类/介绍后按 [`event-poi-agent-workflow.md`](event-poi-agent-workflow.md) 做（禁止 JS 自动选点）
 - 不要用 `merge-city` / `replace-city` 入库小红书（会删掉同城豆瓣活动）
 - 不要把审核备注写进 `body`
 
@@ -171,10 +171,10 @@ node scripts/apply-event-classification-decisions.js --city=上海
 # 活动介绍（入库时已写 highlights；存量补写）
 node scripts/apply-xhs-event-bodies.js --city=上海
 
-# POI（有腾讯 key 额度时）
-node scripts/export-events-for-poi.js --city=上海 --source=xiaohongshu --refresh
-# → Agent 写 decisions.json
-node scripts/apply-event-poi-decisions.js --city=上海
+# POI（Agent 全程主导：定搜词、读候选、判 match/reject/doubtful）
+node scripts/export-events-for-poi.js --city=上海 --source=xiaohongshu --refresh --pending-only
+# Agent：poi-search-cli.js --keyword=... → 写 data/poi-agent-workbench/上海-xhs/decisions.json
+node scripts/apply-event-poi-decisions.js --file=data/poi-agent-workbench/上海-xhs/decisions.json
 ```
 
-（`--source=xiaohongshu` 若导出脚本尚未支持，按 `source` 字段在 workbench 里手动筛。）
+禁止 JS 自动批处理 POI（`batch-resolve-event-poi.js` 等已删除）。见 [`event-poi-agent-workflow.md`](event-poi-agent-workflow.md)。

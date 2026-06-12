@@ -75,7 +75,7 @@ node scripts/snap-poster-box-edges.js data/scrape-cache/xhs/<城市>/<笔记ID> 
 ### 5. 满意后再入库
 
 - `source=xiaohongshu`，`append-city`，不删同城豆瓣
-- **默认不做 POI**（key 没额度时跳过）
+- **入库阶段不做 POI**（POI 在分类/介绍之后由 Agent 单独做，见下节）
 - 审核台：http://127.0.0.1:8787/ 来源选「小红书」
 
 ```bash
@@ -92,18 +92,29 @@ node scripts/suggest-event-time-decisions.js --source=xiaohongshu --all-cities
 node scripts/apply-event-time-decisions.js --city=多城市
 ```
 
-### 7. 后续（与豆瓣相同，按需）
+### 7. 后续（与豆瓣相同）
 
 - 分类：[`docs/event-classification-agent.md`](../docs/event-classification-agent.md)
 - 介绍：[`docs/event-body-agent.md`](../docs/event-body-agent.md)
-- POI：[`docs/event-poi-agent-workflow.md`](../docs/event-poi-agent-workflow.md)
+- **POI（Agent 全程主导）**：[`docs/event-poi-agent-workflow.md`](../docs/event-poi-agent-workflow.md)
+
+```bash
+node scripts/export-events-for-poi.js --city=<城市> --source=xiaohongshu --refresh --pending-only
+# 或 --doubtful-only 复核存疑 → doubtful-pending.json
+# Agent：每组定搜词 → poi-search-cli.js → 读候选 → 手写 decisions.json
+node scripts/apply-event-poi-decisions.js --file=data/poi-agent-workbench/<城市>-xhs/decisions.json
+```
+
+搜词与 match/reject/doubtful **必须由 Agent 读候选后手写 decisions**，禁止 JS 自动批处理（含已删除的 `build-agent-rerun-decisions.js`、`agent-poi-analyze-doubtful.js`）。
+
+POI 判定硬规则见 workflow「判断标准」：**主体一致仅差精度 → match 且不存疑**；**多校区/无法唯一确定 → reject**。
 
 ## 禁止
 
 - 用启发式/城市规则自动猜海报位置
 - 把像素吸附作为默认流程或不预览直接写回
 - 入库用 `merge-city` / `replace-city`（会删同城豆瓣活动）
-- 抓取时做 POI 或 `--with-poi`
+- 抓取/入库阶段做 POI、`--with-poi`、或 JS 自动选点（`pickBestPoiForEvent` 跑批写库）
 - 无 `posterBox` 时硬裁文字 slide 或装饰图
 - 依赖对话记忆而不读 `docs/xiaohongshu-review-workflow.md`
 - 用低分辨率预览量最终坐标；临时图必须同尺寸

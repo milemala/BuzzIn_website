@@ -96,6 +96,10 @@
     .mini.approve.active{background:var(--green);border-color:var(--green);color:#fff}
     .mini.reject.active{background:var(--red);border-color:var(--red);color:#fff}
     .mini.pending.active{background:var(--yellow);border-color:var(--yellow);color:#211b10}
+    .mini.pending.incomplete,.mini.pending.incomplete.active{background:#ece8e0;border-color:#d8d2c6;color:#8a8278}
+    .batch-review-bar{display:none;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 14px;padding:10px 12px;background:#fffdf6;border:1px solid var(--line);border-radius:8px}
+    .batch-review-bar.visible{display:flex}
+    .batch-review-hint{color:var(--muted);font-size:13px}
     .link{margin-left:auto;color:#2f6d4d;text-decoration:none;font-size:13px}
     .top-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
     .import-block{margin-top:12px;padding:12px;border:1px solid var(--line);border-radius:8px;background:#f7faf8}
@@ -190,7 +194,6 @@
           <button type="button" data-mode="normal"><span class="seg-btn-label">标准存疑</span></button>
           <button type="button" data-mode="strict"><span class="seg-btn-label">严格存疑</span></button>
         </div>
-        <button class="btn" id="approveAllPendingBtn" type="button">待定全部通过</button>
         <button class="btn" id="batchPoiBtn" type="button">批量补全 POI</button>
         <button class="btn primary" id="batchImportBtn" type="button">批量入库</button>
         <button class="btn" id="exportImportBtn" type="button">导出入库 JSON</button>
@@ -218,6 +221,11 @@
           <input class="search" id="searchInput" placeholder="搜索店名、商圈、关键词">
         </div>
       </div>
+    </section>
+    <section class="batch-review-bar" id="batchReviewBar">
+      <button class="btn primary" id="batchApproveBtn" type="button">批量通过</button>
+      <button class="btn" id="batchRejectBtn" type="button">批量拒绝</button>
+      <span class="batch-review-hint" id="batchReviewHint"></span>
     </section>
     <section class="grid" id="merchantGrid"></section>
     <nav class="pager" id="pager" hidden aria-label="分页"></nav>
@@ -260,6 +268,13 @@
       poiPreviews: {},
     };
 
+    const BATCH_REVIEW_STATUS_FILTERS = new Set(["pending", "needs_poi", "poi_doubtful"]);
+    const BATCH_REVIEW_FILTER_LABELS = {
+      pending: "待定",
+      needs_poi: "缺 POI",
+      poi_doubtful: "POI 存疑",
+    };
+
     const els = {
       sourceMeta: document.getElementById("sourceMeta"),
       saveState: document.getElementById("saveState"),
@@ -271,7 +286,10 @@
       statusFilter: document.getElementById("statusFilter"),
       searchInput: document.getElementById("searchInput"),
       poiModeToggle: document.getElementById("poiModeToggle"),
-      approveAllPendingBtn: document.getElementById("approveAllPendingBtn"),
+      batchReviewBar: document.getElementById("batchReviewBar"),
+      batchReviewHint: document.getElementById("batchReviewHint"),
+      batchApproveBtn: document.getElementById("batchApproveBtn"),
+      batchRejectBtn: document.getElementById("batchRejectBtn"),
       batchPoiBtn: document.getElementById("batchPoiBtn"),
       batchImportBtn: document.getElementById("batchImportBtn"),
       exportImportBtn: document.getElementById("exportImportBtn"),
@@ -339,13 +357,40 @@
       return item.merchant_type || suggestMerchantType(item.category, item.name);
     }
 
+    function hasNoPoi(item) {
+      return !String(item.address_poi_id || "").trim();
+    }
+
     function isImportReady(item) {
       if (!item.name || !String(item.name).trim()) return false;
       if (!item.poi_title || !String(item.poi_title).trim()) return false;
       if (!effectiveMerchantType(item)) return false;
-      if (!item.address_poi_id) return false;
+      if (hasNoPoi(item)) return false;
       if (!item.longitude || !item.latitude) return false;
       return true;
+    }
+
+    /** 审核台「待定」：字段齐全、非缺 POI、非 POI 存疑 */
+    function isReviewPendingReady(item) {
+      if (reviewStatus(item.merchant_uid) !== "pending") return false;
+      if (!isImportReady(item)) return false;
+      if (item.poi_doubtful) return false;
+      return true;
+    }
+
+    function reviewPendingButtonTitle(item) {
+      if (isReviewPendingReady(item)) return "字段齐全，计入待定";
+      if (reviewStatus(item.merchant_uid) !== "pending") return "非待定状态";
+      if (hasNoPoi(item)) return "缺 POI，不计入待定";
+      if (!isImportReady(item)) return "入库字段未齐，不计入待定";
+      if (item.poi_doubtful) return "POI 存疑，不计入待定";
+      return "不计入待定";
+    }
+
+    function renderPendingButtonClass(item, status) {
+      const counted = isReviewPendingReady(item);
+      if (status === "pending") return counted ? "active" : "active incomplete";
+      return counted ? "" : "incomplete";
     }
 
     function isImportedMerchant(item) {
@@ -851,33 +896,34 @@
       saveReviewState();
     }
 
-    function pendingMerchantsInScope() {
-      return merchantsInCity().filter((item) => reviewStatus(item.merchant_uid) === "pending");
-    }
-
-    async function approveAllPending() {
-      if (state.reviewBusy) return;
-      const pending = pendingMerchantsInScope();
-      if (!pending.length) {
-        setSaveState("当前范围内没有待定商户", "warn");
+    async function batchSetReviewStatus(nextStatus) {
+      if (state.reviewBusy || !BATCH_REVIEW_STATUS_FILTERS.has(state.filters.status)) return;
+      const merchants = filteredMerchants();
+      if (!merchants.length) {
+        setSaveState("当前筛选下没有可操作的商户", "warn");
         return;
       }
+      const actionLabel = nextStatus === "approved" ? "通过" : "拒绝";
+      const filterLabel = BATCH_REVIEW_FILTER_LABELS[state.filters.status] || state.filters.status;
       const cityLabel = state.filters.city === "all" ? "全部城市" : state.filters.city;
-      const ok = window.confirm(`将「${cityLabel}」下 ${pending.length} 家待定商户全部标为通过？`);
-      if (!ok) return;
+      if (!window.confirm(`将「${cityLabel}」·「${filterLabel}」筛选下的 ${merchants.length} 家商户全部标为${actionLabel}？`)) {
+        return;
+      }
 
       state.reviewBusy = true;
-      if (els.approveAllPendingBtn) els.approveAllPendingBtn.disabled = true;
-      for (const item of pending) {
-        state.decisions[item.merchant_uid] = "approved";
+      if (els.batchApproveBtn) els.batchApproveBtn.disabled = true;
+      if (els.batchRejectBtn) els.batchRejectBtn.disabled = true;
+      for (const item of merchants) {
+        state.decisions[item.merchant_uid] = nextStatus;
       }
       try {
         const saved = await saveReviewState({ quiet: true });
-        if (saved) setSaveState(`已通过 ${pending.length} 家待定商户`, "ok");
-        else setSaveState("批量通过保存失败", "error");
+        if (saved) setSaveState(`已批量${actionLabel} ${merchants.length} 家商户`, "ok");
+        else setSaveState("批量保存失败", "error");
       } finally {
         state.reviewBusy = false;
-        if (els.approveAllPendingBtn) els.approveAllPendingBtn.disabled = false;
+        if (els.batchApproveBtn) els.batchApproveBtn.disabled = false;
+        if (els.batchRejectBtn) els.batchRejectBtn.disabled = false;
       }
     }
 
@@ -896,7 +942,7 @@
       const list = cityKey === "all"
         ? state.merchants
         : state.merchants.filter((item) => getCityKey(item) === cityKey);
-      const pending = list.filter((item) => reviewStatus(item.merchant_uid) === "pending").length;
+      const pending = list.filter((item) => isReviewPendingReady(item)).length;
       const imported = list.filter((item) => isImportedMerchant(item)).length;
       const pendingImport = list.filter((item) => isPendingImport(item)).length;
       return { pending, imported, pendingImport };
@@ -957,12 +1003,13 @@
       if (filter === "import_ready") return isPendingImport(item);
       if (filter === "needs_poi") {
         if (status === "rejected") return false;
-        return !item.address_poi_id;
+        return hasNoPoi(item);
       }
       if (filter === "poi_doubtful") {
         return status === "pending" && item.poi_doubtful;
       }
-      if (["approved", "rejected", "pending"].includes(filter)) {
+      if (filter === "pending") return isReviewPendingReady(item);
+      if (["approved", "rejected"].includes(filter)) {
         return status === filter;
       }
       return true;
@@ -1025,7 +1072,7 @@
       const scoped = merchantsInCity();
       const total = scoped.length;
       const approved = scoped.filter((item) => reviewStatus(item.merchant_uid) === "approved").length;
-      const pending = scoped.filter((item) => reviewStatus(item.merchant_uid) === "pending").length;
+      const pending = scoped.filter((item) => isReviewPendingReady(item)).length;
       const rejected = scoped.filter((item) => reviewStatus(item.merchant_uid) === "rejected").length;
       const pendingImport = scoped.filter((item) => isPendingImport(item)).length;
       const cityLabel = state.filters.city === "all" ? "全部城市" : state.filters.city;
@@ -1208,7 +1255,7 @@
               </div>
               <div class="card-actions">
                 <button class="mini approve ${status === "approved" ? "active" : ""}" data-action="approved">通过</button>
-                <button class="mini pending ${status === "pending" ? "active" : ""}" data-action="pending">待定</button>
+                <button class="mini pending ${renderPendingButtonClass(item, status)}" data-action="pending" title="${escapeHtml(reviewPendingButtonTitle(item))}">待定</button>
                 <button class="mini reject ${status === "rejected" ? "active" : ""}" data-action="rejected">拒绝</button>
                 <button class="mini import-merchant ${imported ? "done" : ""}" type="button" data-import-uid="${escapeHtml(item.merchant_uid)}" ${importable ? "" : "disabled"}>${escapeHtml(importButtonLabel(item))}</button>
                 ${imported ? `<button class="mini delete-buzz" type="button" data-delete-buzz-uid="${escapeHtml(item.merchant_uid)}" data-delete-buzz-merchant-id="${escapeHtml(item.buzz_merchant_id)}">删后台</button>` : ""}
@@ -1220,6 +1267,21 @@
       }).join("");
     }
 
+    function renderBatchReviewBar() {
+      if (!els.batchReviewBar || !els.batchReviewHint) return;
+      const show = BATCH_REVIEW_STATUS_FILTERS.has(state.filters.status);
+      els.batchReviewBar.classList.toggle("visible", show);
+      if (!show) return;
+
+      const count = filteredMerchants().length;
+      const filterLabel = BATCH_REVIEW_FILTER_LABELS[state.filters.status] || state.filters.status;
+      els.batchReviewHint.textContent = count
+        ? `当前「${filterLabel}」共 ${count} 家（含类型/搜索筛选）`
+        : `当前「${filterLabel}」筛选下没有商户`;
+      if (els.batchApproveBtn) els.batchApproveBtn.disabled = state.reviewBusy || count === 0;
+      if (els.batchRejectBtn) els.batchRejectBtn.disabled = state.reviewBusy || count === 0;
+    }
+
     function render() {
       const filtered = filteredMerchants();
       const { list, total, totalPages } = paginatedMerchants(filtered);
@@ -1227,6 +1289,7 @@
       renderCityFilter();
       renderBizKindFilter();
       renderStatusFilter();
+      renderBatchReviewBar();
       renderCards(list);
       renderPager({ total, totalPages, page: state.page });
     }
@@ -1410,8 +1473,15 @@
         switchPoiMatchMode(button.dataset.mode);
       });
     }
-    if (els.approveAllPendingBtn) {
-      els.approveAllPendingBtn.addEventListener("click", approveAllPending);
+    if (els.batchApproveBtn) {
+      els.batchApproveBtn.addEventListener("click", () => {
+        void batchSetReviewStatus("approved");
+      });
+    }
+    if (els.batchRejectBtn) {
+      els.batchRejectBtn.addEventListener("click", () => {
+        void batchSetReviewStatus("rejected");
+      });
     }
     els.batchPoiBtn.addEventListener("click", runBatchPoi);
     els.batchImportBtn.addEventListener("click", runBatchImport);

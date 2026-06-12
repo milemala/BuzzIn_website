@@ -2,9 +2,12 @@
 "use strict";
 
 /**
- * 命令行搜索腾讯 POI，输出 JSON 供 Cursor Agent 阅读。
+ * 调腾讯 POI API，输出 JSON 供 Cursor Agent 阅读与判断。
+ * 本脚本不分词、不选点、不写库——搜词由 Agent 决定，match/reject 由 Agent 写 decisions.json。
  *
  *   node scripts/poi-search-cli.js --city=深圳 --keyword="福田区 寰映影城"
+ *
+ * 见 docs/event-poi-agent-workflow.md
  */
 const { searchPoi } = require("../lib/tencent-poi");
 

@@ -1,82 +1,45 @@
 #!/usr/bin/env node
 "use strict";
 
+/**
+ * 为未过期活动写入默认入库字段（发布者、now_type）。
+ * POI 不在此脚本处理——必须由 Cursor Agent 匹配，见 docs/event-poi-agent-workflow.md
+ */
 const path = require("path");
-const {
-  applyDefaultImportPrepToActiveEvents,
-  openDatabase,
-  syncEventPoiCoordinates,
-} = require("../lib/review-db");
-const { batchEventAutoPoi } = require("../lib/event-poi-batch");
+const { applyDefaultImportPrepToActiveEvents, openDatabase } = require("../lib/review-db");
 
 const root = path.join(__dirname, "..");
 const dbPath = path.join(root, "data", "review.db");
 
 function parseArgs(argv) {
-  const options = {
-    skipPoi: false,
-    refresh: false,
-    city: "",
-    onlyApproved: false,
-    limit: 500,
-  };
+  const options = { city: "" };
   for (const arg of argv) {
-    if (arg === "--skip-poi") options.skipPoi = true;
-    else if (arg === "--refresh") options.refresh = true;
-    else if (arg === "--approved") options.onlyApproved = true;
-    else if (arg.startsWith("--city=")) options.city = arg.slice("--city=".length);
-    else if (arg.startsWith("--limit=")) options.limit = Number(arg.slice("--limit=".length)) || 500;
+    if (arg.startsWith("--city=")) options.city = arg.slice("--city=".length);
     else if (arg === "--help" || arg === "-h") {
       console.log(`用法:
-  node scripts/batch-event-import-prep.js [选项]
+  node scripts/batch-event-import-prep.js
 
-为所有未过期活动写入默认入库字段（发布者 579362104、now_type 按是否已开始默认 2/3），并批量搜索 POI Top1。
+为所有未过期活动写入默认入库字段（发布者 579362104、now_type 按是否已开始默认 2/3）。
 
-选项:
-  --skip-poi      只写默认字段，不查 POI
-  --refresh       已有 POI 也重新搜索覆盖
-  --approved      仅处理人工已通过的活动
-  --city=长沙     限定城市
-  --limit=100     最多处理条数
+POI 请由 Cursor Agent 处理：
+  export-events-for-poi.js → poi-search-cli.js → decisions.json → apply-event-poi-decisions.js
+见 docs/event-poi-agent-workflow.md
 `);
       process.exit(0);
+    } else if (arg === "--skip-poi" || arg === "--refresh" || arg === "--approved") {
+      console.warn(`[已忽略] ${arg}：本脚本不再包含 JS 自动 POI`);
     }
   }
   return options;
 }
 
-async function main() {
-  const options = parseArgs(process.argv.slice(2));
+function main() {
+  parseArgs(process.argv.slice(2));
   const db = openDatabase(dbPath);
-
   const defaults = applyDefaultImportPrepToActiveEvents(db);
+  db.close();
   console.log(`默认入库字段已写入 ${defaults.updated} 条未过期活动`);
-
-  if (options.skipPoi) {
-    console.log("已跳过 POI 搜索（--skip-poi）");
-    return;
-  }
-
-  const report = await batchEventAutoPoi(db, {
-    city: options.city,
-    only_approved: options.onlyApproved,
-    refresh: options.refresh,
-    limit: options.limit,
-  });
-
-  const synced = syncEventPoiCoordinates(db);
-  console.log(`POI 坐标同步：${synced.updated}/${synced.total} 条`);
-  console.log(`POI: ${report.ok} 成功 / ${report.fail} 失败 / 共 ${report.total} 条`);
-  for (const row of report.results) {
-    if (row.ok) {
-      console.log(`  ✓ ${row.city || ""} ${row.title} → ${row.poi_title} (${row.poi_id})`);
-    } else {
-      console.log(`  ✗ ${row.city || ""} ${row.title} — ${row.error}`);
-    }
-  }
+  console.log("POI 请由 Cursor Agent 匹配，见 docs/event-poi-agent-workflow.md");
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+main();
