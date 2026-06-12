@@ -13,6 +13,8 @@
 const fs = require("fs");
 const path = require("path");
 const { searchPoi } = require("../lib/tencent-poi");
+const { openDatabase } = require("../lib/review-db");
+const { lookupPoiAddressCache, cacheEntryToDecisionFields } = require("../lib/poi-address-cache");
 
 const root = path.join(__dirname, "..");
 
@@ -86,18 +88,40 @@ async function main() {
   const { file, out, delayMs } = parseArgs(process.argv);
   const payload = JSON.parse(fs.readFileSync(file, "utf8"));
   const groups = payload.groups || [];
+  const cityDefault = payload.city || "全国";
+  const db = openDatabase(path.join(root, "data", "review.db"));
   const results = {
     source_file: file,
     searched_at: new Date().toISOString(),
     group_count: groups.length,
+    cache_hit_groups: 0,
     groups: [],
   };
 
+  try {
   for (let i = 0; i < groups.length; i++) {
     const group = groups[i];
-    const city = group.city || "全国";
+    const city = group.city || cityDefault || "全国";
     const keywords = suggestKeywords(group);
     const searches = [];
+
+    const cached = group.cached_poi
+      ? null
+      : lookupPoiAddressCache(db, { city, addressText: group.location });
+    if (group.cached_poi || cached) {
+      const fields = group.cached_poi || cacheEntryToDecisionFields(cached);
+      results.cache_hit_groups += 1;
+      results.groups.push({
+        ...group,
+        city,
+        search_keywords_tried: ["poi-address-cache"],
+        cache_hit: true,
+        suggested_decision: fields,
+        searches: [],
+      });
+      process.stderr.write(`[${i + 1}/${groups.length}] ${city} ${group.sample_title?.slice(0, 30)}… (映射库命中，跳过搜索)\n`);
+      continue;
+    }
 
     process.stderr.write(`[${i + 1}/${groups.length}] ${city} ${group.sample_title?.slice(0, 30)}… (${keywords.length} 词)\n`);
 
@@ -125,13 +149,17 @@ async function main() {
 
     results.groups.push({
       ...group,
+      city,
       search_keywords_tried: keywords,
       searches,
     });
   }
 
   fs.writeFileSync(out, `${JSON.stringify(results, null, 2)}\n`);
-  console.log(`已搜索 ${groups.length} 组 → ${out}`);
+  console.log(`已搜索 ${groups.length} 组 · 映射库跳过 ${results.cache_hit_groups} 组 → ${out}`);
+  } finally {
+    db.close();
+  }
 }
 
 main().catch((e) => {

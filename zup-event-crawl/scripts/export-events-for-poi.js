@@ -17,6 +17,7 @@ const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
 const { openDatabase } = require("../lib/review-db");
+const { lookupPoiAddressCache, cacheEntryToDecisionFields } = require("../lib/poi-address-cache");
 
 const root = path.join(__dirname, "..");
 const defaultDb = path.join(root, "data", "review.db");
@@ -128,6 +129,21 @@ function main() {
     }
 
     const groups = [...groupMap.values()];
+    let cacheHits = 0;
+    if (options.pendingOnly) {
+      for (const group of groups) {
+        const cached = lookupPoiAddressCache(db, {
+          city: options.city,
+          addressText: group.location,
+        });
+        if (!cached) continue;
+        const fields = cacheEntryToDecisionFields(cached);
+        if (!fields) continue;
+        group.cached_poi = fields;
+        cacheHits += 1;
+      }
+    }
+
     const exportMode = options.doubtfulOnly ? "doubtful" : (options.pendingOnly ? "unmatched" : "all_no_poi");
     const outName = options.doubtfulOnly ? "doubtful-pending.json" : "pending.json";
 
@@ -142,6 +158,7 @@ function main() {
       doubtful_only: options.doubtfulOnly,
       total_events: rows.length,
       group_count: groups.length,
+      cache_hit_groups: cacheHits,
       groups,
     };
 
@@ -150,7 +167,8 @@ function main() {
     const outPath = path.join(outDir, outName);
     fs.writeFileSync(outPath, `${JSON.stringify(payload, null, 2)}\n`);
     const modeLabel = options.doubtfulOnly ? "存疑复核" : (options.pendingOnly ? "未匹配 POI" : "无 POI");
-    console.log(`已导出 [${modeLabel}] ${rows.length} 条活动 · ${groups.length} 个地址组 → ${outPath}`);
+    const cacheNote = cacheHits ? ` · 映射库命中 ${cacheHits} 组` : "";
+    console.log(`已导出 [${modeLabel}] ${rows.length} 条活动 · ${groups.length} 个地址组${cacheNote} → ${outPath}`);
   } finally {
     db.close();
   }

@@ -142,18 +142,38 @@ node scripts/export-events-for-poi.js --city=成都 --refresh --doubtful-only
 
 | 文件 | 谁写 | 作用 |
 |------|------|------|
-| `pending.json` | 脚本 | 未匹配 POI 的 groups |
+| `pending.json` | 脚本 | 未匹配 POI 的 groups；**含 `cached_poi` 时可直接写 decisions，不必搜** |
 | `doubtful-pending.json` | 脚本 | 存疑复核的 groups（含当前 POI） |
 | `search-results.json` | 可选，Agent 可追加 | 搜词原始候选，便于审计 |
 | `decisions.json` | **Agent 手写** | 最终判定，入库唯一依据 |
+
+### 2b. 地址→POI 映射库（省额度）
+
+已通过的活动，会自动把 **城市 + 豆瓣 location → POI** 写入 `review.db` 的 `poi_address_cache` 表（仅门牌级地址）。**商户不走映射库**。
+
+```bash
+# 首次或批量回填（从现有已通过活动）
+node scripts/backfill-poi-address-cache.js
+
+# 对待定、无 POI 的活动直接套映射（不调腾讯 API）
+node scripts/apply-poi-address-cache.js --city=成都
+```
+
+导出 `pending.json` 时会标注 `cached_poi`；`agent-poi-batch-search.js` 对映射库命中的组**跳过搜索**。
 
 ### 3. POI（大模型）
 
 对每个 `pending.json` → `groups[]` 条目：
 
 1. 读 `location`、`sample_title`、`event_uids`
-2. 决定 1～3 个搜索词（见下表）
-3. 执行搜索并把候选记下来：
+2. 若组内已有 **`cached_poi`**：直接据此写 `match` decisions，**不要搜**
+3. 否则先查映射库（不消耗腾讯额度）：
+
+```bash
+node scripts/poi-search-cli.js --city=成都 --location="成都 锦江区 锈罐头剧场 地址…"
+```
+
+4. 映射库未命中再决定 1～3 个搜索词（见下表），执行腾讯搜索：
 
 ```bash
 node scripts/poi-search-cli.js --city=成都 --keyword="锈罐头剧场"
@@ -423,9 +443,11 @@ node scripts/agent-poi-batch-search.js --file=data/poi-agent-workbench/成都/pe
 
 | 脚本 | Agent 能否依赖它做判定？ | 作用 |
 |------|-------------------------|------|
-| `export-events-for-poi.js` | 否，只导出任务 | `--pending-only` / `--doubtful-only` |
-| `poi-search-cli.js` | 否，只返回候选 | 单次腾讯 POI 搜索 |
-| `agent-poi-batch-search.js` | **否**，只批量搜索 | 可选；输出候选 JSON，不写库 |
+| `export-events-for-poi.js` | 否，只导出任务 | `--pending-only` / `--doubtful-only`；附带 `cached_poi` |
+| `backfill-poi-address-cache.js` | 否 | 从已通过活动回填地址→POI 映射库 |
+| `apply-poi-address-cache.js` | 否 | 对待定无 POI 的活动直接套映射库 |
+| `poi-search-cli.js` | 否，只返回候选 | `--location=` 先查映射库；未命中再 `--keyword=` 搜腾讯 |
+| `agent-poi-batch-search.js` | **否**，只批量搜索 | 映射库命中则跳过搜索；其余批量调 API |
 | `apply-event-poi-decisions.js` | 否，只落库 | Agent 写的 `decisions.json` → DB |
 | `merge-agent-poi-decisions.js` | 否，只合并落库 | 多批次 Agent decisions 入库 |
 | `prepare-city-poi-for-agent.js` | 否 | 抓取 + 导出（不含 POI 判定） |

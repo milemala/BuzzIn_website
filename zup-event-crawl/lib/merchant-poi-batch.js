@@ -80,6 +80,7 @@ async function batchAutoPoi(db, options = {}) {
         merchant,
         options.listAddressByUid || {},
       );
+
       const { items } = await searchPoiForMerchant(
         merchant.name,
         merchant.city || "全国",

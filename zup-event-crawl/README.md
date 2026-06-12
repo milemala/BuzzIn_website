@@ -131,7 +131,7 @@ node scripts/run-xhs-weekly-pipeline.js --skip-scrape --city=上海
 **分类与 POI 均由 Cursor 大模型在同一次对话里完成**：
 
 - 推荐/挡下 + 活动类型：[`docs/event-classification-agent.md`](docs/event-classification-agent.md)
-- POI 匹配：[`docs/event-poi-agent-workflow.md`](docs/event-poi-agent-workflow.md)
+- POI 匹配：[`docs/event-poi-agent-workflow.md`](docs/event-poi-agent-workflow.md)（**活动**已通过记录的豆瓣地址→POI 写入映射库；`apply-poi-address-cache.js` / `poi-search-cli --location=` 可复用，省腾讯搜索额度；商户不走映射库）
 
 对我说「抓取成都豆瓣活动」即可。机械步骤：`node scripts/prepare-city-poi-for-agent.js --city=成都`（抓取 + 导出时间任务 + 分类任务 + POI 任务）。抓取只保留 `time_text`，入库时间由 Agent 写 `time-decisions.json`（见 [`docs/event-time-agent.md`](docs/event-time-agent.md)）。不再用 JS 正则做推荐/挡下或 POI Top1。
 

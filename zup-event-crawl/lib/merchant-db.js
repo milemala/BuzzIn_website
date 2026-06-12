@@ -17,7 +17,6 @@ const {
   suggestMerchantPoiKeyword,
 } = require("./tencent-poi");
 const { normalizeMerchantImageUrl } = require("./merchant-image-url");
-
 const MERCHANT_POI_MATCH_MODE_KEY = "merchant_poi_match_mode";
 
 const VALID_REVIEW_STATUSES = new Set(["approved", "pending", "rejected"]);

@@ -22,6 +22,10 @@ const {
   extractLocationBuildingDetail,
   parseDoubanLocation,
 } = require("./tencent-poi");
+const {
+  ensurePoiAddressCacheSchema,
+  learnPoiFromApprovedEvent,
+} = require("./poi-address-cache");
 
 const DEFAULT_NOTE = "本文件用于本地人工审核。保留原始抓取详情文本，body 为基于原文提炼的 Zup 活动简介。图片发布前需再次确认来源授权与平台规则。";
 const VALID_REVIEW_STATUSES = new Set(["approved", "pending", "rejected"]);
@@ -80,6 +84,7 @@ function openDatabase(dbPath) {
   db.exec("PRAGMA foreign_keys = ON");
   db.exec("PRAGMA journal_mode = WAL");
   ensureSchema(db);
+  ensurePoiAddressCacheSchema(db);
   ensureDefaultMeta(db);
   return db;
 }
@@ -356,7 +361,11 @@ function applyEventPoiSelection(db, eventUid, poi, options = {}) {
     updated_at: now,
   });
 
-  return getEventByUid(db, eventUid);
+  const updated = getEventByUid(db, eventUid);
+  if (poi.poi_id) {
+    learnPoiFromApprovedEvent(db, eventUid, updated);
+  }
+  return updated;
 }
 
 function updateEventMerchantInfo(db, eventUid, info = {}) {
@@ -910,6 +919,9 @@ function upsertReviewDecision(db, eventUid, status) {
       status = excluded.status,
       updated_at = excluded.updated_at
   `).run(eventUid, status, now);
+  if (status === "approved") {
+    learnPoiFromApprovedEvent(db, eventUid, event);
+  }
   return status;
 }
 
