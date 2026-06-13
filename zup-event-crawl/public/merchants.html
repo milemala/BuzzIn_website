@@ -164,9 +164,10 @@
     .import-progress-stats b{font-weight:800}
     .import-progress-latest{margin-top:12px;padding:10px 12px;border-radius:8px;background:#f7faf8;border:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.45;min-height:44px}
     .import-progress-latest strong{display:block;color:#314036;font-size:13px;margin-bottom:2px}
-    .import-modal-actions{display:flex;justify-content:flex-end;margin-top:16px}
+    .import-modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
     .import-modal-actions .btn{min-width:88px}
     .import-modal-actions .btn:disabled{opacity:.45;cursor:not-allowed}
+    .import-modal-actions .btn.abort{border-color:#d95040;color:#ad382c}
     @media (max-width:820px){
       .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
       .filter-row{grid-template-columns:1fr}
@@ -244,6 +245,7 @@
       <div class="import-progress-stats" id="importProgressStats"></div>
       <div class="import-progress-latest" id="importProgressLatest">准备开始…</div>
       <div class="import-modal-actions">
+        <button class="btn abort" id="importModalAbort" type="button">中止</button>
         <button class="btn primary" id="importModalClose" type="button" disabled>关闭</button>
       </div>
     </div>
@@ -263,6 +265,8 @@
       poiModeBusy: false,
       reviewBusy: false,
       importBusy: false,
+      importAbortController: null,
+      importAbortRequested: false,
       importPollTimer: null,
       poiKeywords: {},
       poiPreviews: {},
@@ -301,6 +305,7 @@
       importProgressStats: document.getElementById("importProgressStats"),
       importProgressLatest: document.getElementById("importProgressLatest"),
       importModalClose: document.getElementById("importModalClose"),
+      importModalAbort: document.getElementById("importModalAbort"),
     };
 
     const BIZ_KIND_FILTERS = [
@@ -397,16 +402,14 @@
       return item.import_status === "imported" && Boolean(String(item.buzz_merchant_id || "").trim());
     }
 
-    /** 入库字段齐全、尚未写入 Buzz（不含已拒绝） */
+    /** 待入库：已通过 + 字段齐全 + 尚未写入 Buzz */
     function isPendingImport(item) {
-      if (reviewStatus(item.merchant_uid) === "rejected") return false;
+      if (reviewStatus(item.merchant_uid) !== "approved") return false;
       return isImportReady(item) && !isImportedMerchant(item);
     }
 
     function canImportMerchant(item) {
-      return reviewStatus(item.merchant_uid) === "approved"
-        && isImportReady(item)
-        && item.import_status !== "imported";
+      return isPendingImport(item);
     }
 
     function importButtonLabel(item) {
@@ -426,25 +429,106 @@
     }
 
     async function importSingleMerchant(uid) {
-      setSaveState("正在入库...", "warn");
+      if (state.importBusy) return;
+      const merchant = state.merchants.find((item) => item.merchant_uid === uid);
+      const name = merchant?.name || "商户";
+      state.importBusy = true;
+      resetImportAbortState();
+      const startedAt = Date.now();
+      openImportProgressModal({ label: name, batchTotal: 1 });
+      els.importModalTitle.textContent = "商户入库中";
+      els.importModalScope.textContent = name;
+
+      const timer = setInterval(() => {
+        if (isImportAborted()) return;
+        updateImportProgressModal({
+          batchTotal: 1,
+          processed: 0,
+          elapsed: formatDuration(Date.now() - startedAt),
+          latestText: `<strong>上传中</strong>${escapeHtml(name)}`,
+          phase: "running",
+        });
+      }, 500);
+
       try {
         const response = await fetch(`/api/merchants/${encodeURIComponent(uid)}/import`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: "{}",
+          signal: state.importAbortController.signal,
         });
         const data = await response.json();
+        clearInterval(timer);
+        const elapsed = formatDuration(Date.now() - startedAt);
         if (data.merchant) upsertMerchant(data.merchant);
+        if (isImportAborted()) {
+          updateImportProgressModal({
+            batchTotal: 1,
+            processed: 0,
+            elapsed,
+            aborted: true,
+            latestText: "<strong>已中止</strong>",
+            done: true,
+            phase: "done",
+          });
+          setSaveState("入库已中止", "warn");
+          return;
+        }
         if (!response.ok || !data.ok) {
+          updateImportProgressModal({
+            batchTotal: 1,
+            processed: 1,
+            fail: 1,
+            elapsed,
+            latestText: `<strong>入库失败</strong>${escapeHtml(data.error || "未知错误")}`,
+            done: true,
+            phase: "done",
+          });
           setSaveState(data.error || "入库失败", "error");
           render();
           return;
         }
-        const suffix = data.skipped ? "（后台已存在，已记录 merchant_id）" : "";
+        const suffix = data.skipped ? "（后台已存在）" : "";
+        updateImportProgressModal({
+          batchTotal: 1,
+          processed: 1,
+          ok: data.skipped ? 0 : 1,
+          skipped: data.skipped ? 1 : 0,
+          elapsed,
+          latestText: `<strong>入库成功</strong>merchant_id ${escapeHtml(String(data.merchant_id || ""))}${escapeHtml(suffix)}`,
+          done: true,
+          phase: "done",
+        });
         setSaveState(`入库成功 merchant_id=${data.merchant_id}${suffix}`, "ok");
         render();
       } catch (error) {
-        setSaveState(error.message || "入库失败", "error");
+        clearInterval(timer);
+        const elapsed = formatDuration(Date.now() - startedAt);
+        if (error.name === "AbortError" || isImportAborted()) {
+          updateImportProgressModal({
+            batchTotal: 1,
+            processed: 0,
+            elapsed,
+            aborted: true,
+            latestText: "<strong>已中止</strong>",
+            done: true,
+            phase: "done",
+          });
+          setSaveState("入库已中止", "warn");
+        } else {
+          updateImportProgressModal({
+            batchTotal: 1,
+            processed: 1,
+            fail: 1,
+            elapsed,
+            error: error.message || "入库失败",
+            done: true,
+            phase: "done",
+          });
+          setSaveState(error.message || "入库失败", "error");
+        }
+      } finally {
+        state.importBusy = false;
       }
     }
 
@@ -488,9 +572,33 @@
       }
     }
 
+    function resetImportAbortState() {
+      state.importAbortRequested = false;
+      state.importAbortController = new AbortController();
+    }
+
+    function isImportAborted() {
+      return state.importAbortRequested || state.importAbortController?.signal.aborted;
+    }
+
+    function requestImportAbort() {
+      if (!state.importBusy) return;
+      state.importAbortRequested = true;
+      state.importAbortController?.abort();
+      els.importModalAbort.disabled = true;
+      els.importProgressLatest.innerHTML = "<strong>正在中止…</strong>当前这条处理完后停止，不会开始下一条";
+    }
+
+    function setImportModalControls({ running }) {
+      els.importModalAbort.disabled = !running;
+      els.importModalAbort.hidden = !running;
+      els.importModalClose.disabled = running;
+    }
+
     function openImportProgressModal({ label, batchTotal }) {
+      resetImportAbortState();
       els.importModalTitle.textContent = "批量入库中";
-      els.importModalScope.textContent = `范围：${label} · 本批最多 ${batchTotal} 家`;
+      els.importModalScope.textContent = `范围：${label} · 本批 ${batchTotal} 家`;
       els.importProgressBar.style.width = "0%";
       els.importProgressStats.innerHTML = [
         "<div>本批进度：<b>0 / " + batchTotal + "</b></div>",
@@ -498,7 +606,7 @@
         "<div>已用时间：<b>0 秒</b></div>",
       ].join("");
       els.importProgressLatest.innerHTML = "<strong>准备开始…</strong>正在连接后台";
-      els.importModalClose.disabled = true;
+      setImportModalControls({ running: true });
       els.importModal.hidden = false;
     }
 
@@ -511,14 +619,15 @@
       elapsed,
       latestText,
       done,
+      aborted = false,
       error,
       phase = "running",
     }) {
       const pct = batchTotal > 0 ? Math.min(100, Math.round((processed / batchTotal) * 100)) : 0;
       els.importProgressBar.style.width = `${pct}%`;
       const detailLine = phase === "done"
-        ? `<div>成功入库：<b>${ok}</b> · 跳过：<b>${skipped}</b> · 失败：<b>${fail}</b></div>`
-        : `<div>已写入：<b>${processed}</b> · 失败：<b>${fail}</b></div>`;
+        ? `<div>成功入库：<b>${ok ?? 0}</b> · 跳过：<b>${skipped ?? 0}</b> · 失败：<b>${fail ?? 0}</b></div>`
+        : `<div>已写入：<b>${processed}</b> · 失败：<b>${fail ?? 0}</b></div>`;
       els.importProgressStats.innerHTML = [
         `<div>本批进度：<b>${processed} / ${batchTotal}</b></div>`,
         detailLine,
@@ -530,16 +639,21 @@
       if (error) {
         els.importModalTitle.textContent = "批量入库失败";
         els.importProgressLatest.innerHTML = `<strong>出错了</strong>${escapeHtml(error)}`;
-        els.importModalClose.disabled = false;
+        setImportModalControls({ running: false });
         return;
       }
       if (done) {
-        els.importModalTitle.textContent = fail > 0 ? "批量入库完成（有失败）" : "批量入库完成";
-        els.importModalClose.disabled = false;
+        if (aborted) {
+          els.importModalTitle.textContent = "已中止";
+        } else {
+          els.importModalTitle.textContent = fail > 0 ? "批量入库完成（有失败）" : "批量入库完成";
+        }
+        setImportModalControls({ running: false });
       }
     }
 
     function closeImportProgressModal() {
+      if (state.importBusy) return;
       stopImportProgressPoll();
       els.importModal.hidden = true;
     }
@@ -566,22 +680,29 @@
       return "<strong>处理中…</strong>等待第一条结果";
     }
 
+    function currentMerchantFilterSummary() {
+      const cityLabel = state.filters.city === "all" ? "全部城市" : state.filters.city;
+      const statusLabel = BATCH_REVIEW_FILTER_LABELS[state.filters.status] || state.filters.status;
+      const bizLabel = state.filters.bizKind === "all" ? "全部业态" : state.filters.bizKind;
+      const searchLabel = state.filters.search.trim() ? `搜索「${state.filters.search.trim()}」` : "";
+      return [cityLabel, statusLabel, bizLabel, searchLabel].filter(Boolean).join(" · ");
+    }
+
     async function runBatchImport() {
       if (state.importBusy) return;
-      const city = state.filters.city === "all" ? "" : state.filters.city;
-      const label = city || "全部城市";
-      if (!window.confirm(`将「${label}」下已通过、字段齐全且尚未入库的商户批量写入 Buzz 后台？\n（每批最多 200 家，含图片上传，会较慢）`)) return;
-
-      const eligible = state.merchants.filter((item) => canImportMerchant(item) && (!city || item.city === city));
-      const batchTotal = Math.min(200, eligible.length);
-      if (!batchTotal) {
-        window.alert("当前没有可入库的商户。");
+      const eligible = filteredMerchants().filter(canImportMerchant);
+      const label = currentMerchantFilterSummary();
+      if (!eligible.length) {
+        window.alert("当前筛选下没有可入库的商户（需已通过、字段齐全且尚未入库）。");
         return;
       }
+      const batchTotal = eligible.length;
+      if (!window.confirm(`将当前筛选下的 ${batchTotal} 家可入库商户写入 Buzz 后台？\n（${label}）`)) return;
 
+      const city = state.filters.city === "all" ? "" : state.filters.city;
       state.importBusy = true;
       els.batchImportBtn.disabled = true;
-      setSaveState(`批量入库中（${label}）...`, "warn");
+      setSaveState(`批量入库中（${batchTotal} 家）...`, "warn");
       const startedAt = Date.now();
 
       let baselineImported = 0;
@@ -622,16 +743,19 @@
       refreshProgress();
 
       try {
+        const merchant_uids = eligible.map((item) => item.merchant_uid);
         const response = await fetch("/api/merchants/import-batch", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ city }),
+          body: JSON.stringify({ city, merchant_uids }),
+          signal: state.importAbortController.signal,
         });
         const data = await response.json();
-        if (!response.ok || !data.ok) throw new Error(data.error || "批量入库失败");
+        if (!response.ok || (!data.ok && !data.aborted)) throw new Error(data.error || "批量入库失败");
         stopImportProgressPoll();
         await loadMerchants();
         const elapsed = formatDuration(Date.now() - startedAt);
+        const aborted = isImportAborted() || data.aborted;
         const processed = (data.ok ?? 0) + (data.skipped ?? 0) + (data.fail ?? 0);
         updateImportProgressModal({
           batchTotal: data.total ?? batchTotal,
@@ -640,26 +764,50 @@
           skipped: data.skipped ?? 0,
           fail: data.fail ?? 0,
           elapsed,
-          latestText: data.fail
-            ? `<strong>本批结束</strong>成功 ${data.ok ?? 0} · 跳过 ${data.skipped ?? 0} · 失败 ${data.fail ?? 0}`
-            : `<strong>本批结束</strong>全部处理完成，可关闭窗口继续下一批`,
+          aborted,
+          latestText: aborted
+            ? `<strong>已中止</strong>已完成 ${processed} 家 · 成功 ${data.ok ?? 0} · 跳过 ${data.skipped ?? 0} · 失败 ${data.fail ?? 0}`
+            : (data.fail
+              ? `<strong>本批结束</strong>成功 ${data.ok ?? 0} · 跳过 ${data.skipped ?? 0} · 失败 ${data.fail ?? 0}`
+              : `<strong>本批结束</strong>全部处理完成，可关闭窗口继续下一批`),
           done: true,
           phase: "done",
         });
-        setSaveState(`批量入库完成：成功 ${data.ok} · 跳过 ${data.skipped} · 失败 ${data.fail} · ${elapsed}`, data.fail ? "warn" : "ok");
+        setSaveState(
+          aborted
+            ? `批量入库已中止：成功 ${data.ok ?? 0} · 跳过 ${data.skipped ?? 0} · 失败 ${data.fail ?? 0} · ${elapsed}`
+            : `批量入库完成：成功 ${data.ok} · 跳过 ${data.skipped} · 失败 ${data.fail} · ${elapsed}`,
+          (aborted || data.fail) ? "warn" : "ok",
+        );
         render();
       } catch (error) {
         stopImportProgressPoll();
-        updateImportProgressModal({
-          batchTotal,
-          processed: 0,
-          ok: 0,
-          skipped: 0,
-          fail: 0,
-          elapsed: formatDuration(Date.now() - startedAt),
-          error: error.message || "批量入库失败",
-        });
-        setSaveState(error.message || "批量入库失败", "error");
+        const elapsed = formatDuration(Date.now() - startedAt);
+        if (error.name === "AbortError" || isImportAborted()) {
+          updateImportProgressModal({
+            batchTotal,
+            processed: 0,
+            elapsed,
+            aborted: true,
+            latestText: "<strong>已中止</strong>请求已取消，服务端会在当前这条完成后停止",
+            done: true,
+            phase: "done",
+          });
+          setSaveState("批量入库已中止", "warn");
+        } else {
+          updateImportProgressModal({
+            batchTotal,
+            processed: 0,
+            ok: 0,
+            skipped: 0,
+            fail: 0,
+            elapsed,
+            error: error.message || "批量入库失败",
+            done: true,
+            phase: "done",
+          });
+          setSaveState(error.message || "批量入库失败", "error");
+        }
       } finally {
         state.importBusy = false;
         els.batchImportBtn.disabled = false;
@@ -1485,6 +1633,7 @@
     }
     els.batchPoiBtn.addEventListener("click", runBatchPoi);
     els.batchImportBtn.addEventListener("click", runBatchImport);
+    els.importModalAbort.addEventListener("click", requestImportAbort);
     els.importModalClose.addEventListener("click", closeImportProgressModal);
     els.importModal.querySelector(".import-modal-backdrop").addEventListener("click", () => {
       if (!els.importModalClose.disabled) closeImportProgressModal();

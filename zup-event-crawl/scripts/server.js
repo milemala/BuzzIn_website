@@ -466,12 +466,18 @@ async function handleApi(req, res, pathname) {
     try {
       const body = JSON.parse((await readBody(req)) || "{}");
       const report = await batchImportApprovedEvents(db, {
+        event_uids: Array.isArray(body.event_uids) ? body.event_uids : undefined,
         limit: body.limit || 200,
         delayMs: body.delay_ms ?? 1200,
         dedup: body.dedup !== false,
+        shouldAbort: () => req.aborted,
       });
       sendJson(res, 200, { ok: true, ...report });
     } catch (error) {
+      if (req.aborted) {
+        sendJson(res, 499, { ok: false, aborted: true, error: "客户端已中止入库" });
+        return;
+      }
       sendJson(res, 502, { ok: false, error: error.message });
     }
     return;
@@ -738,12 +744,18 @@ async function handleApi(req, res, pathname) {
       const body = JSON.parse((await readBody(req)) || "{}");
       const report = await batchImportApprovedMerchants(db, {
         city: body.city || "",
+        merchant_uids: Array.isArray(body.merchant_uids) ? body.merchant_uids : undefined,
         limit: body.limit || 200,
         delayMs: body.delay_ms ?? 1200,
         dedup: body.dedup !== false,
+        shouldAbort: () => req.aborted,
       });
       sendJson(res, 200, { ok: true, ...report });
     } catch (error) {
+      if (req.aborted) {
+        sendJson(res, 499, { ok: false, aborted: true, error: "客户端已中止入库" });
+        return;
+      }
       sendJson(res, 502, { ok: false, error: error.message });
     }
     return;

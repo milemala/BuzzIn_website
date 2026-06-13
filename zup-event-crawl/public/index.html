@@ -175,6 +175,25 @@
     .poi-cand span{display:block;font-size:11px;color:var(--muted);margin-top:2px}
     dialog{border:1px solid var(--line);border-radius:8px;padding:0;max-width:min(840px,92vw);width:840px;background:#fffdf8;color:var(--text)}
     dialog::backdrop{background:rgba(0,0,0,.28)}
+    .import-modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px}
+    .import-modal[hidden]{display:none}
+    .import-modal-backdrop{position:absolute;inset:0;background:rgba(16,24,20,.45)}
+    .import-modal-panel{
+      position:relative;width:min(440px,100%);background:#fff;border:1px solid var(--line);border-radius:12px;
+      padding:20px 20px 16px;box-shadow:0 16px 48px rgba(20,32,24,.18)
+    }
+    .import-modal-panel h2{margin:0 0 6px;font-size:18px;font-weight:800}
+    .import-modal-scope{margin:0 0 14px;color:var(--muted);font-size:13px;line-height:1.45}
+    .import-progress-track{height:10px;border-radius:999px;background:#e8efe9;overflow:hidden;margin-bottom:12px}
+    .import-progress-bar{height:100%;width:0;background:linear-gradient(90deg,#2a9d68,#3fbf7f);border-radius:999px;transition:width .35s ease}
+    .import-progress-stats{display:grid;gap:6px;font-size:13px;color:#314036;line-height:1.45}
+    .import-progress-stats b{font-weight:800}
+    .import-progress-latest{margin-top:12px;padding:10px 12px;border-radius:8px;background:#f7faf8;border:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.45;min-height:44px}
+    .import-progress-latest strong{display:block;color:#314036;font-size:13px;margin-bottom:2px}
+    .import-modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
+    .import-modal-actions .btn{min-width:88px}
+    .import-modal-actions .btn:disabled{opacity:.45;cursor:not-allowed}
+    .import-modal-actions .btn.abort{border-color:#d95040;color:#ad382c}
     .modal-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--line)}
     .modal-head h2{font-size:18px;margin:0}
     textarea{display:block;width:100%;height:430px;border:0;padding:16px;background:#fffdf8;color:#211b10;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;line-height:1.5;resize:vertical}
@@ -248,6 +267,23 @@
     <textarea id="exportText" readonly></textarea>
   </dialog>
 
+  <div class="import-modal" id="importModal" hidden>
+    <div class="import-modal-backdrop"></div>
+    <div class="import-modal-panel" role="dialog" aria-modal="true" aria-labelledby="importModalTitle">
+      <h2 id="importModalTitle">入库中</h2>
+      <p class="import-modal-scope" id="importModalScope"></p>
+      <div class="import-progress-track" aria-hidden="true">
+        <div class="import-progress-bar" id="importProgressBar"></div>
+      </div>
+      <div class="import-progress-stats" id="importProgressStats"></div>
+      <div class="import-progress-latest" id="importProgressLatest">准备开始…</div>
+      <div class="import-modal-actions">
+        <button class="btn abort" id="importModalAbort" type="button">中止</button>
+        <button class="btn primary" id="importModalClose" type="button" disabled>关闭</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     let payload = { events: [], cities: [], cityMeta: {}, sourcePages: {}, dateWindow: [] };
     const stateKey = "zup-crawl-review-v1";
@@ -266,6 +302,9 @@
     const DEFAULT_NOW_TYPE = 3;
     let prepBusy = false;
     let importBusy = false;
+    let importElapsedTimer = null;
+    let importAbortController = null;
+    let importAbortRequested = false;
     let reviewBusy = false;
     const BATCH_REVIEW_STATUS_FILTERS = new Set(["pending", "poi_doubtful", "rule-blocked"]);
     const BATCH_REVIEW_FILTER_LABELS = {
@@ -296,6 +335,14 @@
     const sortModeEl = document.getElementById("sortMode");
     const searchInput = document.getElementById("searchInput");
     const saveStateEl = document.getElementById("saveState");
+    const importModalEl = document.getElementById("importModal");
+    const importModalTitleEl = document.getElementById("importModalTitle");
+    const importModalScopeEl = document.getElementById("importModalScope");
+    const importProgressBarEl = document.getElementById("importProgressBar");
+    const importProgressStatsEl = document.getElementById("importProgressStats");
+    const importProgressLatestEl = document.getElementById("importProgressLatest");
+    const importModalCloseEl = document.getElementById("importModalClose");
+    const importModalAbortEl = document.getElementById("importModalAbort");
     function getStatus(event) {
       const uid = event.eventUid || event.event_uid || event.id;
       return reviewState[uid] || event.review_status || "pending";
@@ -468,8 +515,9 @@
       return event.import_status === "imported" && Boolean(String(event.buzz_now_id || "").trim());
     }
 
+    /** 待入库：已通过 + 字段齐全 + 尚未写入 Buzz */
     function isPendingImportEvent(event) {
-      if (getStatus(event) === "rejected") return false;
+      if (getStatus(event) !== "approved") return false;
       return isImportReady(event) && !isImportedEvent(event);
     }
 
@@ -489,9 +537,7 @@
     }
 
     function canImportEvent(event) {
-      return getStatus(event) === "approved"
-        && isImportReady(event)
-        && event.import_status !== "imported";
+      return isPendingImportEvent(event);
     }
 
     function importButtonLabel(event) {
@@ -614,52 +660,371 @@
       return String(field?.value || "").trim();
     }
 
-    async function importSingleEvent(uid) {
-      setSaveState("正在入库...", "warn");
-      const publishUserId = publishUserIdFromCard(uid);
-      if (publishUserId) {
-        await saveImportPrep(uid, { publish_user_id: publishUserId });
+    function formatDuration(ms) {
+      const sec = Math.max(1, Math.round(ms / 1000));
+      if (sec < 60) return `${sec} 秒`;
+      const min = Math.floor(sec / 60);
+      const remSec = sec % 60;
+      if (min < 60) return remSec ? `${min} 分 ${remSec} 秒` : `${min} 分钟`;
+      const hr = Math.floor(min / 60);
+      const remMin = min % 60;
+      return remMin ? `${hr} 小时 ${remMin} 分` : `${hr} 小时`;
+    }
+
+    function stopImportElapsedTimer() {
+      if (importElapsedTimer) {
+        clearInterval(importElapsedTimer);
+        importElapsedTimer = null;
       }
-      try {
-        const response = await fetch(`/api/events/${encodeURIComponent(uid)}/import`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ publish_user_id: publishUserId }),
-        });
-        const data = await response.json();
-        if (data.event) upsertEvent(data.event);
-        if (!response.ok || !data.ok) {
-          setSaveState(data.error || "入库失败", "error");
-          render();
-          return;
+    }
+
+    function resetImportAbortState() {
+      importAbortRequested = false;
+      importAbortController = new AbortController();
+    }
+
+    function isImportAborted() {
+      return importAbortRequested || importAbortController?.signal.aborted;
+    }
+
+    function requestImportAbort() {
+      if (!importBusy) return;
+      importAbortRequested = true;
+      importAbortController?.abort();
+      importModalAbortEl.disabled = true;
+      importProgressLatestEl.innerHTML = "<strong>正在中止…</strong>当前这条处理完后停止，不会开始下一条";
+    }
+
+    function setImportModalControls({ running }) {
+      importModalAbortEl.disabled = !running;
+      importModalAbortEl.hidden = !running;
+      importModalCloseEl.disabled = running;
+    }
+
+    function openImportProgressModal({ title, scope, batchTotal }) {
+      resetImportAbortState();
+      importModalTitleEl.textContent = title || "入库中";
+      importModalScopeEl.textContent = scope || "";
+      importProgressBarEl.style.width = "0%";
+      importProgressStatsEl.innerHTML = [
+        `<div>进度：<b>0 / ${batchTotal}</b></div>`,
+        "<div>成功：<b>0</b> · 跳过：<b>0</b> · 失败：<b>0</b></div>",
+        "<div>已用时间：<b>0 秒</b></div>",
+      ].join("");
+      importProgressLatestEl.innerHTML = "<strong>准备开始…</strong>正在连接后台";
+      setImportModalControls({ running: true });
+      importModalEl.hidden = false;
+    }
+
+    function finishImportProgressModal({
+      batchTotal,
+      processed = 0,
+      ok = 0,
+      skipped = 0,
+      fail = 0,
+      elapsed = "0 秒",
+      latestText,
+      aborted = false,
+      error = "",
+    }) {
+      stopImportElapsedTimer();
+      setImportModalControls({ running: false });
+      updateImportProgressModal({
+        batchTotal,
+        processed,
+        ok,
+        skipped,
+        fail,
+        elapsed,
+        latestText,
+        done: true,
+        aborted,
+        error,
+        phase: "done",
+      });
+    }
+
+    function updateImportProgressModal({
+      batchTotal,
+      processed = 0,
+      ok = 0,
+      skipped = 0,
+      fail = 0,
+      elapsed = "0 秒",
+      latestText,
+      done = false,
+      aborted = false,
+      error = "",
+      phase = "running",
+    }) {
+      const pct = batchTotal > 0 ? Math.min(100, Math.round((processed / batchTotal) * 100)) : 0;
+      importProgressBarEl.style.width = `${pct}%`;
+      importProgressStatsEl.innerHTML = [
+        `<div>进度：<b>${processed} / ${batchTotal}</b></div>`,
+        `<div>成功：<b>${ok}</b> · 跳过：<b>${skipped}</b> · 失败：<b>${fail}</b></div>`,
+        `<div>已用时间：<b>${elapsed}</b></div>`,
+      ].join("");
+      if (latestText) importProgressLatestEl.innerHTML = latestText;
+      if (error) {
+        importModalTitleEl.textContent = "入库失败";
+        importProgressLatestEl.innerHTML = `<strong>出错了</strong>${escapeHtml(error)}`;
+        setImportModalControls({ running: false });
+        return;
+      }
+      if (done) {
+        if (aborted) {
+          importModalTitleEl.textContent = "已中止";
+        } else {
+          importModalTitleEl.textContent = fail > 0 ? "入库完成（有失败）" : "入库完成";
         }
-        const suffix = data.skipped ? "（后台已存在，已记录 now_id）" : "";
-        const groupText = data.group_id ? ` · group_id=${data.group_id}` : "";
-        setSaveState(`入库成功 now_id=${data.now_id}${groupText}${suffix}`, "ok");
+        setImportModalControls({ running: false });
+      }
+    }
+
+    function closeImportProgressModal() {
+      if (importBusy) return;
+      stopImportElapsedTimer();
+      importModalEl.hidden = true;
+    }
+
+    function startImportElapsedTicker(startedAt, renderTick) {
+      stopImportElapsedTimer();
+      const tick = () => renderTick(formatDuration(Date.now() - startedAt));
+      tick();
+      importElapsedTimer = setInterval(tick, 500);
+    }
+
+    function findEventByUid(uid) {
+      return payload.events.find((item) => (item.eventUid || item.event_uid || item.id) === uid) || null;
+    }
+
+    async function performEventImport(uid, signal) {
+      if (isImportAborted()) return { ok: false, aborted: true };
+      const publishUserId = publishUserIdFromCard(uid);
+      const fetchOpts = (body) => ({
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+        signal,
+      });
+      if (publishUserId) {
+        const prepResponse = await fetch(
+          `/api/events/${encodeURIComponent(uid)}/import-prep`,
+          fetchOpts({ publish_user_id: publishUserId }),
+        );
+        const prepData = await prepResponse.json();
+        if (prepData.event) upsertEvent(prepData.event);
+        if (!prepResponse.ok || !prepData.ok) {
+          return { ok: false, error: prepData.error || "保存入库字段失败", data: prepData };
+        }
+      }
+      if (isImportAborted()) return { ok: false, aborted: true };
+      const response = await fetch(
+        `/api/events/${encodeURIComponent(uid)}/import`,
+        fetchOpts({ publish_user_id: publishUserId }),
+      );
+      const data = await response.json();
+      if (data.event) upsertEvent(data.event);
+      return {
+        ok: response.ok && data.ok,
+        skipped: Boolean(data.skipped),
+        data,
+        error: data.error || "",
+        title: data.title || findEventByUid(uid)?.title || "",
+      };
+    }
+
+    async function importSingleEvent(uid) {
+      if (importBusy) return;
+      const event = findEventByUid(uid);
+      const title = event?.title || "活动";
+      importBusy = true;
+      const startedAt = Date.now();
+      openImportProgressModal({
+        title: "活动入库中",
+        scope: title,
+        batchTotal: 1,
+      });
+      startImportElapsedTicker(startedAt, (elapsed) => {
+        updateImportProgressModal({
+          batchTotal: 1,
+          processed: 0,
+          elapsed,
+          latestText: `<strong>上传中</strong>${escapeHtml(title)}`,
+          phase: "running",
+        });
+      });
+
+      try {
+        const result = await performEventImport(uid, importAbortController.signal);
+        stopImportElapsedTimer();
+        const elapsed = formatDuration(Date.now() - startedAt);
+        if (result.aborted || isImportAborted()) {
+          finishImportProgressModal({
+            batchTotal: 1,
+            processed: 0,
+            elapsed,
+            aborted: true,
+            latestText: "<strong>已中止</strong>本条未完成上传",
+          });
+          setSaveState("入库已中止", "warn");
+        } else if (!result.ok) {
+          finishImportProgressModal({
+            batchTotal: 1,
+            processed: 1,
+            fail: 1,
+            elapsed,
+            latestText: `<strong>入库失败</strong>${escapeHtml(result.error || "未知错误")}`,
+          });
+          setSaveState(result.error || "入库失败", "error");
+        } else {
+          const suffix = result.skipped ? "（后台已存在）" : "";
+          const groupText = result.data.group_id ? ` · group_id=${result.data.group_id}` : "";
+          finishImportProgressModal({
+            batchTotal: 1,
+            processed: 1,
+            ok: result.skipped ? 0 : 1,
+            skipped: result.skipped ? 1 : 0,
+            elapsed,
+            latestText: `<strong>入库成功</strong>now_id ${escapeHtml(String(result.data.now_id || ""))}${escapeHtml(groupText)}${escapeHtml(suffix)}`,
+          });
+          setSaveState(`入库成功 now_id=${result.data.now_id}${groupText}${suffix}`, "ok");
+        }
         render();
       } catch (error) {
-        setSaveState(error.message || "入库失败", "error");
+        stopImportElapsedTimer();
+        if (error.name === "AbortError" || isImportAborted()) {
+          finishImportProgressModal({
+            batchTotal: 1,
+            processed: 0,
+            elapsed: formatDuration(Date.now() - startedAt),
+            aborted: true,
+            latestText: "<strong>已中止</strong>",
+          });
+          setSaveState("入库已中止", "warn");
+        } else {
+          finishImportProgressModal({
+            batchTotal: 1,
+            processed: 1,
+            fail: 1,
+            elapsed: formatDuration(Date.now() - startedAt),
+            error: error.message || "入库失败",
+          });
+          setSaveState(error.message || "入库失败", "error");
+        }
+      } finally {
+        importBusy = false;
       }
+    }
+
+    function currentFilterSummary() {
+      const cityLabel = cityFilter === "all" ? "全部城市" : cityFilter;
+      const statusLabel = BATCH_REVIEW_FILTER_LABELS[statusFilter] || statusFilter;
+      const sourceNames = { douban: "豆瓣", huodongxing: "活动行", xiaohongshu: "小红书", wechat: "公众号" };
+      const sourceLabel = sourceFilter === "all" ? "全部来源" : (sourceNames[sourceFilter] || sourceFilter);
+      const categoryLabel = categoryFilter === "all" ? "全部类型" : categoryFilter;
+      const dateLabel = dateFilter === "all" ? "全部日期" : dateFilter;
+      const searchLabel = searchTerm.trim() ? `搜索「${searchTerm.trim()}」` : "";
+      return [cityLabel, statusLabel, sourceLabel, categoryLabel, dateLabel, searchLabel].filter(Boolean).join(" · ");
     }
 
     async function runBatchImport() {
       if (importBusy) return;
-      if (!window.confirm("将已通过、字段齐全且尚未入库的活动批量写入 Buzz 后台？\n（含图片上传，会较慢）")) return;
+      const eligible = getFilteredEvents().filter(canImportEvent);
+      if (!eligible.length) {
+        setSaveState("当前筛选下没有可入库的活动（需已通过、字段齐全且尚未入库）", "warn");
+        return;
+      }
+      const filterSummary = currentFilterSummary();
+      const batchTotal = eligible.length;
       importBusy = true;
       document.getElementById("batchImportBtn").disabled = true;
-      setSaveState("批量入库中...", "warn");
-      try {
-        const response = await fetch("/api/events/import-batch", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({}),
+      const startedAt = Date.now();
+      openImportProgressModal({
+        title: "批量入库中",
+        scope: `筛选：${filterSummary} · 共 ${batchTotal} 条`,
+        batchTotal,
+      });
+
+      let ok = 0;
+      let skipped = 0;
+      let fail = 0;
+      let processed = 0;
+
+      startImportElapsedTicker(startedAt, (elapsed) => {
+        updateImportProgressModal({
+          batchTotal,
+          processed,
+          ok,
+          skipped,
+          fail,
+          elapsed,
+          phase: "running",
         });
-        const data = await response.json();
-        if (!response.ok || !data.ok) throw new Error(data.error || "批量入库失败");
+      });
+
+      try {
+        for (const event of eligible) {
+          if (isImportAborted()) break;
+          const uid = event.eventUid || event.event_uid || event.id;
+          updateImportProgressModal({
+            batchTotal,
+            processed,
+            ok,
+            skipped,
+            fail,
+            elapsed: formatDuration(Date.now() - startedAt),
+            latestText: `<strong>正在入库 (${processed + 1}/${batchTotal})</strong>${escapeHtml(event.title || uid)}`,
+            phase: "running",
+          });
+          try {
+            const result = await performEventImport(uid, importAbortController.signal);
+            if (result.aborted) break;
+            if (result.skipped) skipped += 1;
+            else if (result.ok) ok += 1;
+            else fail += 1;
+            processed += 1;
+          } catch (error) {
+            if (error.name === "AbortError" || isImportAborted()) break;
+            fail += 1;
+            processed += 1;
+          }
+        }
+
+        const elapsed = formatDuration(Date.now() - startedAt);
+        const aborted = isImportAborted();
+        finishImportProgressModal({
+          batchTotal,
+          processed,
+          ok,
+          skipped,
+          fail,
+          elapsed,
+          aborted,
+          latestText: aborted
+            ? `<strong>已中止</strong>已完成 ${processed} 条 · 成功 ${ok} · 跳过 ${skipped} · 失败 ${fail}`
+            : (fail > 0
+              ? `<strong>本批结束</strong>成功 ${ok} · 跳过 ${skipped} · 失败 ${fail}`
+              : `<strong>本批结束</strong>全部处理完成`),
+        });
         await loadEvents();
-        setSaveState(`批量入库完成：成功 ${data.ok} · 跳过 ${data.skipped} · 失败 ${data.fail}`, data.fail ? "warn" : "ok");
+        setSaveState(
+          aborted
+            ? `批量入库已中止：已完成 ${processed} 条 · 成功 ${ok} · 跳过 ${skipped} · 失败 ${fail} · ${elapsed}`
+            : `批量入库完成：成功 ${ok} · 跳过 ${skipped} · 失败 ${fail} · ${elapsed}`,
+          (aborted || fail) ? "warn" : "ok",
+        );
         render();
       } catch (error) {
+        finishImportProgressModal({
+          batchTotal,
+          processed,
+          ok,
+          skipped,
+          fail,
+          elapsed: formatDuration(Date.now() - startedAt),
+          error: error.message || "批量入库失败",
+        });
         setSaveState(error.message || "批量入库失败", "error");
       } finally {
         importBusy = false;
@@ -1691,6 +2056,11 @@
 
     document.getElementById("batchPrepBtn").addEventListener("click", runBatchPrep);
     document.getElementById("batchImportBtn").addEventListener("click", runBatchImport);
+    importModalAbortEl.addEventListener("click", requestImportAbort);
+    importModalCloseEl.addEventListener("click", closeImportProgressModal);
+    importModalEl.querySelector(".import-modal-backdrop").addEventListener("click", () => {
+      if (!importModalCloseEl.disabled) closeImportProgressModal();
+    });
     document.getElementById("batchApproveBtn").addEventListener("click", () => {
       void batchSetReviewStatus("approved");
     });

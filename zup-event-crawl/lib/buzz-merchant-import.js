@@ -188,6 +188,17 @@ async function batchImportApprovedMerchants(db, options = {}) {
   let skipped = 0;
 
   for (const merchant of merchants) {
+    if (options.shouldAbort?.()) {
+      return {
+        total: merchants.length,
+        processed: ok + fail + skipped,
+        ok,
+        fail,
+        skipped,
+        results,
+        aborted: true,
+      };
+    }
     const result = await importMerchantToBuzz(db, merchant.merchant_uid, options);
     results.push(result);
     if (result.skipped) skipped += 1;
@@ -198,7 +209,15 @@ async function batchImportApprovedMerchants(db, options = {}) {
     }
   }
 
-  return { total: merchants.length, ok, fail, skipped, results };
+  return {
+    total: merchants.length,
+    processed: ok + fail + skipped,
+    ok,
+    fail,
+    skipped,
+    results,
+    aborted: false,
+  };
 }
 
 async function deleteMerchantFromBuzz(db, merchantUid, options = {}) {

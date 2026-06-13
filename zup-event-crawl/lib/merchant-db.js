@@ -318,6 +318,28 @@ function getMerchantImportProgress(db, options = {}) {
 function listMerchantsEligibleForImport(db, options = {}) {
   ensureMerchantSchema(db);
   const limit = Number(options.limit) > 0 ? Number(options.limit) : 500;
+  const merchantUids = Array.isArray(options.merchant_uids)
+    ? [...new Set(options.merchant_uids.map((uid) => String(uid || "").trim()).filter(Boolean))]
+    : [];
+
+  if (merchantUids.length) {
+    const placeholders = merchantUids.map(() => "?").join(", ");
+    const rows = db.prepare(`
+      SELECT m.*
+      FROM merchants m
+      INNER JOIN merchant_review_decisions d ON d.merchant_uid = m.merchant_uid
+      WHERE m.merchant_uid IN (${placeholders})
+        AND d.status = 'approved'
+        AND (m.import_status IS NULL OR m.import_status = '' OR m.import_status = 'failed')
+    `).all(...merchantUids);
+    const byUid = new Map(rows.map((row) => [row.merchant_uid, row]));
+    return merchantUids
+      .map((uid) => byUid.get(uid))
+      .filter(Boolean)
+      .map((row) => rowToMerchant(row))
+      .filter((merchant) => isImportReady(merchant));
+  }
+
   let sql = `
     SELECT m.*
     FROM merchants m

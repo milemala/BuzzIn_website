@@ -462,6 +462,29 @@ function clearEventBuzzNow(db, eventUid) {
 
 function listEventsEligibleForImport(db, options = {}) {
   const limit = Number(options.limit) > 0 ? Number(options.limit) : 500;
+  const eventUids = Array.isArray(options.event_uids)
+    ? [...new Set(options.event_uids.map((uid) => String(uid || "").trim()).filter(Boolean))]
+    : [];
+
+  if (eventUids.length) {
+    const placeholders = eventUids.map(() => "?").join(", ");
+    const rows = db.prepare(`
+      SELECT e.*
+      FROM events e
+      INNER JOIN review_decisions r ON r.event_uid = e.event_uid
+      WHERE e.event_uid IN (${placeholders})
+        AND r.status = 'approved'
+        AND (e.import_status IS NULL OR e.import_status = '' OR e.import_status = 'failed')
+    `).all(...eventUids);
+    const byUid = new Map(rows.map((row) => [row.event_uid, row]));
+    return eventUids
+      .map((uid) => byUid.get(uid))
+      .filter(Boolean)
+      .map((row) => rowToEvent(row))
+      .filter((event) => !isExpired(event))
+      .filter((event) => isImportReady(event));
+  }
+
   const rows = db.prepare(`
     SELECT e.*
     FROM events e

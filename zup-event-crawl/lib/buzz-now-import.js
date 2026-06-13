@@ -343,6 +343,17 @@ async function batchImportApprovedEvents(db, options = {}) {
   let skipped = 0;
 
   for (const event of events) {
+    if (options.shouldAbort?.()) {
+      return {
+        total: events.length,
+        processed: ok + fail + skipped,
+        ok,
+        fail,
+        skipped,
+        results,
+        aborted: true,
+      };
+    }
     const result = await importEventToBuzz(db, event.event_uid, options);
     results.push(result);
     if (result.skipped) skipped += 1;
@@ -353,7 +364,15 @@ async function batchImportApprovedEvents(db, options = {}) {
     }
   }
 
-  return { total: events.length, ok, fail, skipped, results };
+  return {
+    total: events.length,
+    processed: ok + fail + skipped,
+    ok,
+    fail,
+    skipped,
+    results,
+    aborted: false,
+  };
 }
 
 async function deleteEventFromBuzz(db, eventUid, options = {}) {

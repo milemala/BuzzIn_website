@@ -10,6 +10,8 @@ const ADMIN_SIG_EXPIRE = 86400 * 180;
 const HTTP_TIMEOUT_MS = 30000;
 const MAX_GROUP_NAME_LEN = 20;
 const MAX_MERCHANT_GROUP_NAME_LEN = 30;
+const MAX_GROUP_INTRO_BYTES = 240;
+const MAX_GROUP_NOTIFICATION_BYTES = 300;
 
 const VALID_GROUP_TYPES = new Set(["Public", "Private", "ChatRoom", "AVChatRoom", "Community"]);
 
@@ -26,6 +28,17 @@ function truncateRunes(value, max) {
   const chars = [...String(value || "")];
   if (chars.length <= max) return chars.join("");
   return chars.slice(0, max).join("");
+}
+
+/** 腾讯 IM 群简介/公告等字段按 UTF-8 字节计长 */
+function truncateUtf8Bytes(value, maxBytes) {
+  const text = String(value || "");
+  if (!text || maxBytes <= 0) return "";
+  const buf = Buffer.from(text, "utf8");
+  if (buf.length <= maxBytes) return text;
+  let end = maxBytes;
+  while (end > 0 && (buf[end] & 0xc0) === 0x80) end -= 1;
+  return buf.subarray(0, end).toString("utf8");
 }
 
 function merchantGroupDisplayName(merchant) {
@@ -119,8 +132,12 @@ async function createGroup(options = {}) {
     const maxLen = Number(options.maxNameLen) > 0 ? Number(options.maxNameLen) : MAX_GROUP_NAME_LEN;
     body.Name = truncateRunes(options.name, maxLen);
   }
-  if (options.introduction) body.Introduction = truncateRunes(options.introduction, 240);
-  if (options.notification) body.Notification = truncateRunes(options.notification, 300);
+  if (options.introduction) {
+    body.Introduction = truncateUtf8Bytes(options.introduction, MAX_GROUP_INTRO_BYTES);
+  }
+  if (options.notification) {
+    body.Notification = truncateUtf8Bytes(options.notification, MAX_GROUP_NOTIFICATION_BYTES);
+  }
   if (options.faceUrl) body.FaceUrl = options.faceUrl;
   if (options.applyJoinOption) body.ApplyJoinOption = options.applyJoinOption;
   if (options.maxMemberCount) body.MaxMemberCount = options.maxMemberCount;
@@ -139,7 +156,9 @@ async function modifyGroupBaseInfo(groupId, patch = {}) {
     const maxLen = Number(patch.maxNameLen) > 0 ? Number(patch.maxNameLen) : MAX_MERCHANT_GROUP_NAME_LEN;
     body.Name = truncateRunes(patch.name, maxLen);
   }
-  if (patch.introduction) body.Introduction = truncateRunes(patch.introduction, 240);
+  if (patch.introduction) {
+    body.Introduction = truncateUtf8Bytes(patch.introduction, MAX_GROUP_INTRO_BYTES);
+  }
   await imPost("group_open_http_svc/modify_group_base_info", body);
 }
 
@@ -187,4 +206,5 @@ module.exports = {
   merchantGroupDisplayName,
   modifyGroupBaseInfo,
   summarizeGroupName,
+  truncateUtf8Bytes,
 };
