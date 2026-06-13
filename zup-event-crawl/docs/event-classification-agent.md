@@ -82,6 +82,7 @@ Zup 要的是 **线下交友、娱乐、体验** 类同城活动，不要：
 
 - `title`、`location`、`fee`、`owner`、`time_text`
 - `douban_event_type`（豆瓣页类型，**仅供参考**）
+- `slide_category`（小红书合集 slide 上的分类标签，**仅供参考**）
 - `body_excerpt`、`detail_excerpt`
 
 **不要**只看豆瓣类型；**不要**用 JS `scoreEvent` 正则。
@@ -147,8 +148,8 @@ Agent 入库后 `classification_source` 变为 `agent`，重抓同条活动**不
 
 | 脚本 | 作用 |
 |------|------|
-| `export-events-for-classification.js` | 导出待分类活动 |
-| `apply-event-classification-decisions.js` | decisions → review.db |
+| `export-events-for-classification.js` | 导出待分类活动；`--source=xiaohongshu` / `--all-cities`；小红书入库后也会自动导出 |
+| `apply-event-classification-decisions.js` | decisions → review.db；小红书加 `--source=xiaohongshu` |
 
 ---
 

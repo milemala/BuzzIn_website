@@ -50,14 +50,28 @@ function parseListIds(html) {
   return parseListEventIds(html);
 }
 
-function loadExistingDoubanIds(dbPath, city) {
+function doubanEventIdFromUrl(url) {
+  const match = String(url || "").match(/event\/(\d+)/);
+  return match ? match[1] : "";
+}
+
+function loadExistingDoubanIds(dbPath) {
   if (!fs.existsSync(dbPath)) return new Set();
   const db = openDatabase(dbPath);
   try {
     const rows = db.prepare(`
-      SELECT source_id FROM events WHERE source = 'douban' AND city = ?
-    `).all(city);
-    return new Set(rows.map((row) => String(row.source_id || "").trim()).filter(Boolean));
+      SELECT source_id, original_link
+      FROM events
+      WHERE source = 'douban'
+    `).all();
+    const ids = new Set();
+    for (const row of rows) {
+      const sourceId = String(row.source_id || "").trim();
+      if (sourceId) ids.add(sourceId);
+      const fromLink = doubanEventIdFromUrl(row.original_link);
+      if (fromLink) ids.add(fromLink);
+    }
+    return ids;
   } finally {
     db.close();
   }
@@ -117,7 +131,7 @@ async function fetchDetailPages(ids, options) {
 
 async function main() {
   const options = parseOptions(args);
-  const existingIds = loadExistingDoubanIds(options.dbPath, options.city);
+  const existingIds = loadExistingDoubanIds(options.dbPath);
   let missingIds = [];
 
   if (!options.detailOnly) {

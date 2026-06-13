@@ -128,12 +128,16 @@ node scripts/run-xhs-weekly-pipeline.js --skip-scrape --city=上海
 
 海报裁切默认由**强视觉模型一次性标最终 `posterBox`**，然后只跑 `extract-xhs-weekly-events.js` 和 `create-poster-contact-sheet.js` 低成本看总览。`snap-poster-box-edges.js` 是可选修边工具，默认仅预览，确认后才加 `--write` 写回。
 
-**分类与 POI 均由 Cursor 大模型在同一次对话里完成**：
+**Agent 全流程（新会话必读，不依赖聊天记忆）**：
 
-- 推荐/挡下 + 活动类型：[`docs/event-classification-agent.md`](docs/event-classification-agent.md)
-- POI 匹配：[`docs/event-poi-agent-workflow.md`](docs/event-poi-agent-workflow.md)（**活动**已通过记录的豆瓣地址→POI 写入映射库；`apply-poi-address-cache.js` / `poi-search-cli --location=` 可复用，省腾讯搜索额度；商户不走映射库）
+- **总览**：[`docs/event-crawl-master-workflow.md`](docs/event-crawl-master-workflow.md)（豆瓣 + 小红书步骤、JS/Agent 分工、检查清单）
+- **入口**：[`AGENTS.md`](AGENTS.md)（复制粘贴开场白）
+- 豆瓣规则：[`.cursor/rules/douban-crawl-and-agent-poi.mdc`](.cursor/rules/douban-crawl-and-agent-poi.mdc)
+- 小红书规则：[`.cursor/rules/xhs-crawl-and-review-import.mdc`](.cursor/rules/xhs-crawl-and-review-import.mdc)
 
-对我说「抓取成都豆瓣活动」即可。机械步骤：`node scripts/prepare-city-poi-for-agent.js --city=成都`（抓取 + 导出时间任务 + 分类任务 + POI 任务）。抓取只保留 `time_text`，入库时间由 Agent 写 `time-decisions.json`（见 [`docs/event-time-agent.md`](docs/event-time-agent.md)）。不再用 JS 正则做推荐/挡下或 POI Top1。
+分类 / body / POI 子文档：[`event-classification-agent.md`](docs/event-classification-agent.md)、[`event-body-agent.md`](docs/event-body-agent.md)、[`event-poi-agent-workflow.md`](docs/event-poi-agent-workflow.md)。活动地址映射库见 POI 文档（仅活动，商户不走）。
+
+对我说「抓取成都豆瓣活动」或「抓取上海小红书活动」→ Agent 按 master-workflow 一条龙执行。豆瓣机械准备：`node scripts/prepare-city-poi-for-agent.js --city=成都`。小红书：`node scripts/run-xhs-weekly-pipeline.js --city=上海`（入库后自动导出分类 + POI pending）。
 
 城市列表 URL 说明（成都为 `www.douban.com/location/...`，见 `docs/HANDOFF.md`）。
 

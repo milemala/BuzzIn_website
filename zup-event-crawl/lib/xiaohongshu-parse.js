@@ -35,16 +35,21 @@ const WEEKLY_TITLE_RE =
 const THIS_OR_NEXT_WEEK_RE = /本周|这周|下周|一周|周末|本周末/;
 const ROUNDUP_KEYWORD_RE = /活动汇总|活动合集|活动指南|活动清单|可做的?\d*件事|一周活动|活动合集/;
 const MONTH_ROUNDUP_RE = /活动汇总|活动清单|活动合集|市集活动|活动攻略|值得一去|活动指南|展览排期|新展/;
+const FESTIVAL_ROUNDUP_RE = /端午|清明|五一|国庆|中秋|元旦|圣诞|跨年|假期|节庆|节日/;
+const DATE_RANGE_SEP_RE = "[-–—~～至]";
+
+/** 未来约 3 周内、带具体日期区间的节日/专题汇总（如「北京端午活动汇总6.19～6.21」） */
+const UPCOMING_DATED_LOOKAHEAD_MS = 21 * 24 * 60 * 60 * 1000;
 
 /** 从标题里解析日期区间：6.8-6.14、（6.08-6.14）、6月8日-14日、(6.9-14) 等 */
 function parseTitleDateRange(title) {
   const text = String(title || "");
   const patterns = [
-    { re: /[（(【\[]?(\d{1,2})月(\d{1,2})日\s*[-–—~至]\s*(\d{1,2})月(\d{1,2})日[）)】\]]?/, groups: [1, 2, 3, 4] },
-    { re: /[（(【\[]?(\d{1,2})月(\d{1,2})日\s*[-–—~至]\s*(\d{1,2})日[）)】\]]?/, groups: [1, 2, 1, 3] },
-    { re: /[（(【\[]?(\d{1,2})\.(\d{1,2})\s*[-–—~至]\s*(\d{1,2})\.(\d{1,2})[）)】\]]?/, groups: [1, 2, 3, 4] },
-    { re: /[（(【\[]?(\d{1,2})\.(\d{1,2})\s*[-–—~至]\s*(\d{1,2})[）)】\]]?/, groups: [1, 2, 1, 3] },
-    { re: /(\d{1,2})\.(\d{1,2})\s*[-–—~至]\s*(\d{1,2})\.(\d{1,2})(?:\s*$|[^\d])/, groups: [1, 2, 3, 4] },
+    { re: new RegExp(`[（(【\\[]?(\\d{1,2})月(\\d{1,2})日\\s*${DATE_RANGE_SEP_RE}\\s*(\\d{1,2})月(\\d{1,2})日[）)】\\]]?`), groups: [1, 2, 3, 4] },
+    { re: new RegExp(`[（(【\\[]?(\\d{1,2})月(\\d{1,2})日\\s*${DATE_RANGE_SEP_RE}\\s*(\\d{1,2})日[）)】\\]]?`), groups: [1, 2, 1, 3] },
+    { re: new RegExp(`[（(【\\[]?(\\d{1,2})\\.(\\d{1,2})\\s*${DATE_RANGE_SEP_RE}\\s*(\\d{1,2})\\.(\\d{1,2})[）)】\\]]?`), groups: [1, 2, 3, 4] },
+    { re: new RegExp(`[（(【\\[]?(\\d{1,2})\\.(\\d{1,2})\\s*${DATE_RANGE_SEP_RE}\\s*(\\d{1,2})[）)】\\]]?`), groups: [1, 2, 1, 3] },
+    { re: new RegExp(`(\\d{1,2})\\.(\\d{1,2})\\s*${DATE_RANGE_SEP_RE}\\s*(\\d{1,2})\\.(\\d{1,2})(?:\\s*$|[^\\d])`), groups: [1, 2, 3, 4] },
   ];
   for (const { re, groups } of patterns) {
     const m = text.match(re);
@@ -85,6 +90,17 @@ function isMonthRoundupTitle(title, refDate = new Date()) {
   const month = refDate.getMonth() + 1;
   if (new RegExp(`(?:^|[^\\d])${month}月`).test(text)) return true;
   return /\d{1,2}月/.test(text);
+}
+
+function isUpcomingDatedRoundupTitle(title, refDate = new Date()) {
+  const text = String(title || "");
+  if (THIS_OR_NEXT_WEEK_RE.test(text)) return false;
+  const range = parseTitleDateRange(text);
+  if (!range || isRangeExpired(range, refDate)) return false;
+  const start = rangeStartTime(range, refDate);
+  if (start > refDate.getTime() + UPCOMING_DATED_LOOKAHEAD_MS) return false;
+  if (FESTIVAL_ROUNDUP_RE.test(text)) return true;
+  return ROUNDUP_KEYWORD_RE.test(text);
 }
 
 function rangeEndTime(range, refDate = new Date()) {
@@ -134,19 +150,31 @@ function pickBestCandidate(candidates, refDate = new Date()) {
 }
 
 /**
- * 在前 N 条里选汇总帖：
- * 1. 本周/下周活动汇总（含日期区间或「可做的 N 件事」）
- * 2. 整月活动汇总（如「6月值得一去的市集活动」）
- * 3. 无合适帖子 → null（调用方应跳过该城）
+ * 在前 N 条里选汇总帖（跳过 scrapedNoteIds 中已抓过的帖）：
+ * 1. 本周/下周活动汇总
+ * 2. 节日/专题 + 日期区间（如端午 6.19～6.21）
+ * 3. 整月活动汇总
+ * 4. 无合适新帖 → null
  */
-function pickWeeklyRoundupNote(notes, refDate = new Date()) {
-  const weekCandidates = notes.filter((n) => isWeekRoundupTitle(n.title));
+function pickWeeklyRoundupNote(notes, refDate = new Date(), options = {}) {
+  const scraped = options.scrapedNoteIds instanceof Set
+    ? options.scrapedNoteIds
+    : new Set(options.scrapedNoteIds || []);
+  const isNew = (note) => note.noteId && !scraped.has(note.noteId);
+
+  const weekCandidates = notes.filter((n) => isNew(n) && isWeekRoundupTitle(n.title));
   if (weekCandidates.length) {
     const picked = pickBestCandidate(weekCandidates, refDate);
     if (picked) return { ...picked, pickTier: "week" };
   }
 
-  const monthCandidates = notes.filter((n) => isMonthRoundupTitle(n.title, refDate));
+  const datedCandidates = notes.filter((n) => isNew(n) && isUpcomingDatedRoundupTitle(n.title, refDate));
+  if (datedCandidates.length) {
+    const picked = pickBestCandidate(datedCandidates, refDate);
+    if (picked) return { ...picked, pickTier: "dated" };
+  }
+
+  const monthCandidates = notes.filter((n) => isNew(n) && isMonthRoundupTitle(n.title, refDate));
   if (monthCandidates.length) {
     const picked = pickBestCandidate(monthCandidates, refDate);
     if (picked) return { ...picked, pickTier: "month" };
@@ -196,6 +224,7 @@ module.exports = {
   buildNoteExploreUrl,
   dateInRange,
   isMonthRoundupTitle,
+  isUpcomingDatedRoundupTitle,
   isWeekRoundupTitle,
   normalizeNoteCard,
   parseEventsFromDesc,

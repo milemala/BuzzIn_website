@@ -1,6 +1,6 @@
 # 活动 POI：Cursor Agent 全程主导（唯一主路径）
 
-> **新开会话必读**：抓取、搜 POI、写 `decisions.json` 的全部规则以本文档 + `.cursor/rules/douban-crawl-and-agent-poi.mdc`（豆瓣）/ `.cursor/rules/xhs-crawl-and-review-import.mdc`（小红书）为准，**不依赖聊天上下文**。
+> **新开会话必读**：抓取、搜 POI、写 `decisions.json` 的全部规则以 **[`event-crawl-master-workflow.md`](event-crawl-master-workflow.md)** + 本文档 + `.cursor/rules/douban-crawl-and-agent-poi.mdc`（豆瓣）/ `.cursor/rules/xhs-crawl-and-review-import.mdc`（小红书）为准，**不依赖聊天上下文**。
 
 ## 铁律：搜词与判定都由 Agent 做
 
@@ -48,9 +48,9 @@
 
 ### 场景 A：抓取入库一条龙
 
-用户说：**「抓取成都豆瓣活动」** / 小红书一周入库。
+用户说：**「抓取成都豆瓣活动」** / **「抓取上海小红书活动」**。
 
-顺序（**不可跳过 Agent 判定步骤**）：
+**豆瓣**顺序（**不可跳过 Agent 判定步骤**）：
 
 1. 抓取 → 入库 `review.db`（只保留 `time_text`）
 2. Agent 校正时间 → `time-decisions.json` → apply
@@ -59,7 +59,15 @@
 5. **POI 未匹配**：`export --pending-only` → 读 `pending.json` → Agent 搜+判 → `decisions.json` → apply
 6. 汇报各步条数
 
-详见下文「标准流程」与 `.cursor/rules/douban-crawl-and-agent-poi.mdc`。
+**小红书**顺序（入库后**同会话**完成分类 + POI，见 `.cursor/rules/xhs-crawl-and-review-import.mdc`）：
+
+1. 抓取 → 读图标框 → extract → 入库（自动导出 `classification-pending.json` + `pending.json`）
+2. Agent 校正时间（若需要）→ apply
+3. Agent **分类** → `classification-decisions.json` → apply
+4. Agent **POI**：读 `pending.json` 每组 → `poi-search-cli` → `decisions.json` → apply（body 已用 highlights，通常跳过 body Agent）
+5. 汇报：入库条数、分类推荐/挡下、POI 匹配/reject 组数
+
+详见下文「标准流程」与对应 cursor rules。
 
 ### 场景 B：只补「未匹配 POI」
 

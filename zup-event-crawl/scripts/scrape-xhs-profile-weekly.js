@@ -23,6 +23,7 @@ const {
   parseEventsFromDesc,
   pickWeeklyRoundupNote,
 } = require("../lib/xiaohongshu-parse");
+const { loadScrapedXhsNoteIds } = require("../lib/xhs-scraped-notes");
 const {
   hasVisionSlots,
   printAwaitingVisionHelp,
@@ -44,27 +45,37 @@ function parseArgs(argv) {
 }
 
 async function scrapeXhsProfileWeekly(profileUrl, options = {}) {
+  const rootDir = path.join(__dirname, "..");
   const city = options.city || "未标注城市";
-  const outRoot = path.join(__dirname, "..", "data", "scrape-cache", "xhs", city);
+  const outRoot = path.join(rootDir, "data", "scrape-cache", "xhs", city);
+  const dbPath = options.dbPath || path.join(rootDir, "data", "review.db");
 
   console.log(`[${city}] 1/4 抓取个人页…`);
   const profile = await fetchXhsProfileViaChrome(profileUrl, { limit: options.limit || 10 });
   console.log(`   前 ${profile.notes.length} 条笔记:`);
   profile.notes.forEach((n, i) => console.log(`   ${i + 1}. ${n.title}`));
 
-  const picked = pickWeeklyRoundupNote(profile.notes, new Date());
-  if (!picked) {
-    throw new Error(`[${city}] 未找到合适的本周/下周或整月活动汇总帖，已跳过`);
+  const scrapedNoteIds = loadScrapedXhsNoteIds(city, rootDir, dbPath);
+  if (scrapedNoteIds.size) {
+    console.log(`   已抓过 ${scrapedNoteIds.size} 篇汇总帖，将跳过重复 noteId`);
   }
-  const tierLabel = picked.pickTier === "month" ? "整月汇总" : "本周/下周汇总";
+
+  const picked = pickWeeklyRoundupNote(profile.notes, new Date(), { scrapedNoteIds });
+  if (!picked) {
+    throw new Error(
+      `[${city}] 无新的合适汇总帖（已抓 ${scrapedNoteIds.size} 篇；个人页前 ${profile.notes.length} 条中无可选本周/节日/整月汇总）`,
+    );
+  }
+  const tierLabels = { week: "本周/下周汇总", dated: "节日/专题汇总", month: "整月汇总" };
+  const tierLabel = tierLabels[picked.pickTier] || "活动汇总";
   console.log(`\n[${city}] 2/4 选中${tierLabel}: ${picked.title} (${picked.noteId})`);
 
   const noteDir = path.join(outRoot, picked.noteId);
   const alreadyScraped = fs.existsSync(path.join(noteDir, "weekly-summary.json"));
   if (alreadyScraped) {
-    console.log(`[${city}] 该帖已抓取过，跳过重复下载 → ${noteDir}`);
+    console.log(`[${city}] 本地已有该帖缓存，跳过重复下载 → ${noteDir}`);
     if (!options.skipExtract) {
-      await finishExtractAndImport(noteDir, city, options);
+      await finishExtractAndImport(noteDir, city, { ...options, rootDir, dbPath });
     }
     const summary = JSON.parse(fs.readFileSync(path.join(noteDir, "weekly-summary.json"), "utf8"));
     return { city, noteDir, picked, eventsFromText: summary.eventsFromText || [], skipped: true };
@@ -95,14 +106,14 @@ async function scrapeXhsProfileWeekly(profileUrl, options = {}) {
   fs.writeFileSync(path.join(noteDir, "weekly-summary.json"), `${JSON.stringify(result, null, 2)}\n`);
 
   if (!options.skipExtract) {
-    await finishExtractAndImport(noteDir, city, options);
+    await finishExtractAndImport(noteDir, city, { ...options, rootDir, dbPath });
   }
 
   return { city, noteDir, picked, eventsFromText };
 }
 
 async function finishExtractAndImport(noteDir, city, options) {
-  const rootDir = path.join(__dirname, "..");
+  const rootDir = options.rootDir || path.join(__dirname, "..");
   if (!hasVisionSlots(noteDir)) {
     console.log(`[${city}] 4/4 等待 Agent 填写 vision-slots.json（无则跳过 extract/入库）`);
     printAwaitingVisionHelp(city, rootDir);
@@ -110,7 +121,7 @@ async function finishExtractAndImport(noteDir, city, options) {
   }
   console.log(`[${city}] 4/4 合并 vision + 入库准备…`);
   if (options.withImport) {
-    await processNoteDir(noteDir, { rootDir, skipImport: false, log: true });
+    await processNoteDir(noteDir, { rootDir, dbPath: options.dbPath, skipImport: false, log: true });
   } else {
     runExtractScript(noteDir, rootDir);
   }

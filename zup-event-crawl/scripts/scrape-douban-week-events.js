@@ -22,6 +22,10 @@ const { batchEventAutoPoi } = require("../lib/event-poi-batch");
 const { buildDateWindowFromEvents, buildEventDates } = require("../lib/event-dates");
 const { buildPendingClassificationFields } = require("../lib/event-classification");
 const { eventUidFor, importPayload, openDatabase, syncEventPoiCoordinates } = require("../lib/review-db");
+const {
+  eventContentDedupKey,
+  loadContentDedupKeys,
+} = require("../lib/event-content-dedup");
 
 const root = path.join(__dirname, "..");
 const imageCacheDir = path.join(root, "data", "image-cache");
@@ -42,7 +46,7 @@ const listFiles = optionArgs
 const listDirOption = optionArgs.find((arg) => arg.startsWith("--list-dir="))?.split("=")[1];
 const detailDirOption = optionArgs.find((arg) => arg.startsWith("--detail-dir="))?.split("=")[1];
 const maxPages = Math.max(1, Number(
-  optionArgs.find((arg) => arg.startsWith("--max-pages="))?.split("=")[1] || 8,
+  optionArgs.find((arg) => arg.startsWith("--max-pages="))?.split("=")[1] || 10,
 ));
 const viaFetch = optionArgs.includes("--via-fetch");
 const skipCompose = optionArgs.includes("--skip-compose");
@@ -161,16 +165,44 @@ function isDatabaseTarget(filePath) {
   return filePath.endsWith(".db");
 }
 
-function loadExistingDoubanIds(filePath, targetCity) {
+function doubanEventIdFromUrl(url) {
+  const match = String(url || "").match(/event\/(\d+)/);
+  return match ? match[1] : "";
+}
+
+function isDoubanEventAlreadyKnown(event, existingIds) {
+  if (existingIds.has(String(event.id))) return true;
+  const fromUrl = doubanEventIdFromUrl(event.originalLink || event.sourceUrl);
+  return Boolean(fromUrl && existingIds.has(fromUrl));
+}
+
+function loadExistingDoubanIds(filePath) {
   if (!isDatabaseTarget(filePath) || !fs.existsSync(filePath)) return new Set();
   const db = openDatabase(filePath);
   try {
     const rows = db.prepare(`
-      SELECT source_id
+      SELECT source_id, original_link
       FROM events
-      WHERE source = 'douban' AND city = ?
-    `).all(targetCity);
-    return new Set(rows.map((row) => String(row.source_id || "").trim()).filter(Boolean));
+      WHERE source = 'douban'
+    `).all();
+    const ids = new Set();
+    for (const row of rows) {
+      const sourceId = String(row.source_id || "").trim();
+      if (sourceId) ids.add(sourceId);
+      const fromLink = doubanEventIdFromUrl(row.original_link);
+      if (fromLink) ids.add(fromLink);
+    }
+    return ids;
+  } finally {
+    db.close();
+  }
+}
+
+function loadExistingContentKeysForCity(filePath, targetCity, source = "douban") {
+  if (!isDatabaseTarget(filePath) || !fs.existsSync(filePath)) return new Set();
+  const db = openDatabase(filePath);
+  try {
+    return loadContentDedupKeys(db, { city: targetCity, source });
   } finally {
     db.close();
   }
@@ -449,13 +481,16 @@ async function autoPoiImportedEvents(importedEvents) {
 }
 
 async function main() {
-  const existingIds = loadExistingDoubanIds(output, city);
+  const existingIds = loadExistingDoubanIds(output);
+  const existingContentKeys = loadExistingContentKeysForCity(output, city, "douban");
+  const batchContentKeys = new Set();
   const candidateMap = await loadListCandidates();
   const candidates = [...candidateMap.values()];
   const detailed = [];
   const counters = {
     listTotal: candidates.length,
     skippedExisting: 0,
+    skippedDuplicate: 0,
     skippedExcluded: 0,
     detailFailed: 0,
     composeOk: 0,
@@ -463,7 +498,7 @@ async function main() {
   };
 
   for (const event of candidates) {
-    if (existingIds.has(String(event.id))) {
+    if (isDoubanEventAlreadyKnown(event, existingIds)) {
       counters.skippedExisting += 1;
       continue;
     }
@@ -550,6 +585,15 @@ async function main() {
     event.classification_source = classification.classification_source;
     Object.assign(event, buildPendingBodyFields());
     delete event.detailText;
+
+    const contentKey = eventContentDedupKey(event);
+    if (existingContentKeys.has(contentKey) || batchContentKeys.has(contentKey)) {
+      counters.skippedDuplicate += 1;
+      console.log(`Skip duplicate content ${event.title}`);
+      continue;
+    }
+    batchContentKeys.add(contentKey);
+
     detailed.push(event);
   }
 
@@ -560,7 +604,7 @@ async function main() {
   writeCityResults(events);
   await autoPoiImportedEvents(events);
   console.log(`Wrote ${events.length} new ${city} events to ${output} (${mode})`);
-  console.log(`List ${counters.listTotal} · skipped existing ${counters.skippedExisting} · skipped excluded ${counters.skippedExcluded} · detail failed ${counters.detailFailed} · 4:3 composed ${counters.composeOk} · compose failed ${counters.composeFail}`);
+  console.log(`List ${counters.listTotal} · skipped existing ${counters.skippedExisting} · skipped duplicate ${counters.skippedDuplicate} · skipped excluded ${counters.skippedExcluded} · detail failed ${counters.detailFailed} · 4:3 composed ${counters.composeOk} · compose failed ${counters.composeFail}`);
   console.log(events.map((event) => `${event.sourcePosition}. ${event.score} ${event.category} ${event.title}`).join("\n"));
 }
 

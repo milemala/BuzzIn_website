@@ -10,6 +10,11 @@ const { readImageFile } = require("./image-fetch");
 const { buildScrapeLocalImageUrl, normalizeRelativePath } = require("./scrape-local-image");
 const { composeXhsTextCover } = require("./xhs-text-cover-compose");
 const { parseEventTimeFromText } = require("./event-time-parse");
+const {
+  eventContentDedupKey,
+  loadContentDedupKeys,
+} = require("./event-content-dedup");
+const { openDatabase } = require("./review-db");
 
 const XHS_SOURCE = "xiaohongshu";
 const XHS_SOURCE_NAME = "小红书";
@@ -169,10 +174,23 @@ async function loadReviewEventsFromNote(noteDir, rootDir, options = {}) {
   const events = (extracted.events || []).filter((event) => event.name && !event.needsVision);
   const reviewEvents = [];
   const coverStats = { poster: 0, text: 0, fail: 0 };
+  const contentKeys = options.contentDedupKeys instanceof Set
+    ? new Set(options.contentDedupKeys)
+    : new Set();
+  let skippedDuplicate = 0;
 
   let position = 1;
   for (const event of events) {
     const reviewEvent = mapExtractedEventToReview(extracted, event, noteDir, rootDir, position);
+    const dedupKey = eventContentDedupKey(reviewEvent);
+    if (contentKeys.has(dedupKey)) {
+      skippedDuplicate += 1;
+      if (options.log !== false) {
+        console.log(`  跳过重复内容: ${reviewEvent.title}`);
+      }
+      continue;
+    }
+    contentKeys.add(dedupKey);
     position += 1;
     try {
       const cover = await attachCoverImages(reviewEvent, noteDir, rootDir, options);
@@ -192,7 +210,7 @@ async function loadReviewEventsFromNote(noteDir, rootDir, options = {}) {
     reviewEvents.push(reviewEvent);
   }
 
-  return { extracted, reviewEvents, coverStats };
+  return { extracted, reviewEvents, coverStats, skippedDuplicate };
 }
 
 async function loadAllXhsReviewEvents(rootDir, options = {}) {
@@ -200,30 +218,52 @@ async function loadAllXhsReviewEvents(rootDir, options = {}) {
   const noteDirs = listXhsNoteDirs(xhsRoot, options.city || null);
   const allEvents = [];
   const byCity = {};
-  const totals = { poster: 0, text: 0, fail: 0, notes: 0, events: 0 };
+  const totals = { poster: 0, text: 0, fail: 0, notes: 0, events: 0, skippedDuplicate: 0 };
+  let contentDedupKeys = options.contentDedupKeys;
+  if (!contentDedupKeys && options.dbPath && fs.existsSync(options.dbPath)) {
+    const db = openDatabase(options.dbPath);
+    try {
+      contentDedupKeys = loadContentDedupKeys(db, {
+        city: options.city || undefined,
+        source: XHS_SOURCE,
+      });
+    } finally {
+      db.close();
+    }
+  }
 
   for (const item of noteDirs) {
     if (options.log !== false) {
       console.log(`\n读取 ${item.city} / ${path.basename(item.noteDir)}`);
     }
-    const { extracted, reviewEvents, coverStats } = await loadReviewEventsFromNote(
+    const { extracted, reviewEvents, coverStats, skippedDuplicate } = await loadReviewEventsFromNote(
       item.noteDir,
       rootDir,
-      options,
+      { ...options, contentDedupKeys },
     );
     totals.notes += 1;
     totals.events += reviewEvents.length;
+    totals.skippedDuplicate += skippedDuplicate || 0;
     totals.poster += coverStats.poster;
     totals.text += coverStats.text;
     totals.fail += coverStats.fail;
+    contentDedupKeys = contentDedupKeys || new Set();
+    for (const event of reviewEvents) {
+      contentDedupKeys.add(eventContentDedupKey(event));
+    }
     if (!byCity[item.city]) {
       byCity[item.city] = { events: [], sourcePage: extracted.sourceUrl || null };
     }
     byCity[item.city].events.push(...reviewEvents);
     allEvents.push(...reviewEvents);
     if (options.log !== false) {
-      console.log(`  ${reviewEvents.length} 条 · 海报封面 ${coverStats.poster} · 文字封面 ${coverStats.text} · 失败 ${coverStats.fail}`);
+      const dupHint = skippedDuplicate ? ` · 跳过重复 ${skippedDuplicate}` : "";
+      console.log(`  ${reviewEvents.length} 条 · 海报封面 ${coverStats.poster} · 文字封面 ${coverStats.text} · 失败 ${coverStats.fail}${dupHint}`);
     }
+  }
+
+  if (totals.skippedDuplicate && options.log !== false) {
+    console.log(`\n内容去重：共跳过 ${totals.skippedDuplicate} 条（名称+地址+时间相同）`);
   }
 
   return { allEvents, byCity, totals, noteDirs };

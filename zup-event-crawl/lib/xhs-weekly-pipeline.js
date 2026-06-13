@@ -3,7 +3,10 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
+const { exportClassificationPending } = require("./export-classification-pending");
+const { exportPoiPending } = require("./export-poi-pending");
 const { importPayload, openDatabase } = require("./review-db");
+const { loadContentDedupKeys } = require("./event-content-dedup");
 const {
   buildImportPayload,
   loadAllXhsReviewEvents,
@@ -54,9 +57,30 @@ function runExtractScript(noteDir, rootDir) {
 }
 
 async function importNoteEvents(noteDir, rootDir, options = {}) {
-  const { extracted, reviewEvents, coverStats } = await loadReviewEventsFromNote(noteDir, rootDir, options);
+  const dbPath = options.dbPath || path.join(rootDir, "data", "review.db");
+  let contentDedupKeys = options.contentDedupKeys;
+  if (!contentDedupKeys && fs.existsSync(dbPath)) {
+    const db = openDatabase(dbPath);
+    try {
+      contentDedupKeys = loadContentDedupKeys(db, { source: "xiaohongshu" });
+    } finally {
+      db.close();
+    }
+  }
+
+  const { extracted, reviewEvents, coverStats, skippedDuplicate } = await loadReviewEventsFromNote(
+    noteDir,
+    rootDir,
+    { ...options, contentDedupKeys, dbPath },
+  );
   if (!reviewEvents.length) {
-    return { status: "skip_no_events", city: extracted.city, noteDir, coverStats };
+    return {
+      status: skippedDuplicate ? "skip_all_duplicate" : "skip_no_events",
+      city: extracted.city,
+      noteDir,
+      coverStats,
+      skippedDuplicate: skippedDuplicate || 0,
+    };
   }
 
   const payload = buildImportPayload({
@@ -87,10 +111,24 @@ async function importNoteEvents(noteDir, rootDir, options = {}) {
     };
   }
 
-  const dbPath = options.dbPath || path.join(rootDir, "data", "review.db");
   const db = openDatabase(dbPath);
+  let classificationExport = null;
+  let poiExport = null;
   try {
     importPayload(db, payload, { mode: "append-city" });
+    if (extracted.city) {
+      classificationExport = exportClassificationPending(db, {
+        city: extracted.city,
+        source: "xiaohongshu",
+      });
+      poiExport = exportPoiPending(db, {
+        city: extracted.city,
+        source: "xiaohongshu",
+        dbPath,
+        refresh: true,
+        pendingOnly: true,
+      });
+    }
   } finally {
     db.close();
   }
@@ -101,6 +139,9 @@ async function importNoteEvents(noteDir, rootDir, options = {}) {
     noteDir,
     eventCount: reviewEvents.length,
     coverStats,
+    skippedDuplicate: skippedDuplicate || 0,
+    classificationExport,
+    poiExport,
   };
 }
 
@@ -176,6 +217,19 @@ function printAwaitingVisionHelp(city, rootDir) {
   console.log(`   node scripts/run-xhs-weekly-pipeline.js --skip-scrape --city=${city}`);
 }
 
+function printPostImportAgentSteps(cities = []) {
+  const cityHint = cities.length ? cities.join("、") : "<城市>";
+  console.log("\n── 入库后同会话 Agent 必做（分类 + POI）──");
+  console.log("已自动导出 poi-agent-workbench/<城市>-xhs/ 下：");
+  console.log("  · classification-pending.json");
+  console.log("  · pending.json（POI 未匹配组，含 cached_poi 若有）");
+  console.log("1. 分类：读 classification-pending → 写 classification-decisions.json");
+  console.log(`   node scripts/apply-event-classification-decisions.js --city=${cityHint.split("、")[0]} --source=xiaohongshu`);
+  console.log("2. POI：读 pending.json 每组 → 定搜词 → poi-search-cli.js → 写 decisions.json");
+  console.log("   规则见 docs/event-poi-agent-workflow.md（禁止 JS 自动选点）");
+  console.log(`   node scripts/apply-event-poi-decisions.js --city=${cityHint.split("、")[0]} --source=xiaohongshu`);
+}
+
 module.exports = {
   WORKFLOW_DOC,
   VISION_AGENT_DOC,
@@ -185,6 +239,7 @@ module.exports = {
   importAllReadyNotes,
   importNoteEvents,
   listXhsNoteDirs,
+  printPostImportAgentSteps,
   processNoteDir,
   printAwaitingVisionHelp,
   runExtractScript,

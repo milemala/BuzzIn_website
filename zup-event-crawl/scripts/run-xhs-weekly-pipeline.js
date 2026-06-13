@@ -21,6 +21,7 @@ const {
   importAllReadyNotes,
   processNoteDir,
   printAwaitingVisionHelp,
+  printPostImportAgentSteps,
 } = require("../lib/xhs-weekly-pipeline");
 
 const root = path.join(__dirname, "..");
@@ -72,6 +73,7 @@ async function scrapeCity(row, options) {
     city: row.city,
     limit: row.limit || 10,
     skipExtract: true,
+    dbPath: options.dbPath,
   });
   return out;
 }
@@ -149,10 +151,12 @@ async function main() {
     const extra = item.eventCount ? ` · ${item.eventCount} 条` : "";
     console.log(`  ${item.city}: ${item.status}${extra}${item.message ? ` — ${item.message}` : ""}`);
   }
-  const imported = summary.filter((item) => item.imported).length;
+  const importedCities = summary.filter((item) => item.imported).map((item) => item.city);
+  const imported = importedCities.length;
   const waiting = summary.filter((item) => item.status === "awaiting_vision").length;
   if (imported) {
     console.log(`\n已入库 ${imported} 城；审核台 http://127.0.0.1:8787/ 来源选「小红书」`);
+    printPostImportAgentSteps(importedCities);
   }
   if (waiting) {
     console.log(`\n${waiting} 城等待 Agent 读图，完成后运行：`);

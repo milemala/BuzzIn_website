@@ -26,6 +26,10 @@ const {
   ensurePoiAddressCacheSchema,
   learnPoiFromApprovedEvent,
 } = require("./poi-address-cache");
+const {
+  eventContentDedupKey,
+  loadContentDedupKeys,
+} = require("./event-content-dedup");
 
 const DEFAULT_NOTE = "本文件用于本地人工审核。保留原始抓取详情文本，body 为基于原文提炼的 Zup 活动简介。图片发布前需再次确认来源授权与平台规则。";
 const VALID_REVIEW_STATUSES = new Set(["approved", "pending", "rejected"]);
@@ -817,11 +821,27 @@ function importPayload(db, payload, options = {}) {
       }
     }
 
+    const shouldDedupContent = mode === "append-city" || mode === "merge-city";
+    const existingContentKeys = shouldDedupContent ? loadContentDedupKeys(db) : new Set();
+    const batchContentKeys = new Set();
+    let skippedDuplicate = 0;
+
     for (const [city, events] of groups.entries()) {
       const generatedAt = cityMeta[city]?.generatedAt || payload.generatedAt || new Date().toISOString();
       const sourcePage = cityMeta[city]?.sourcePage || sourcePages[city] || payload.sourcePage || null;
+      let importedCount = 0;
 
       for (const event of events) {
+        if (shouldDedupContent) {
+          const dedupKey = eventContentDedupKey({ ...event, city: event.city || city });
+          if (existingContentKeys.has(dedupKey) || batchContentKeys.has(dedupKey)) {
+            skippedDuplicate += 1;
+            continue;
+          }
+          batchContentKeys.add(dedupKey);
+        }
+
+        importedCount += 1;
         const eventUid = eventUidFor(event);
         upsertEvent.run(
           eventUid,
@@ -872,9 +892,13 @@ function importPayload(db, payload, options = {}) {
         city,
         generatedAt,
         sourcePage,
-        events.length,
+        importedCount,
         new Date().toISOString()
       );
+    }
+
+    if (skippedDuplicate > 0) {
+      setMetaValue(db, "last_import_skipped_duplicate", String(skippedDuplicate));
     }
   });
 }

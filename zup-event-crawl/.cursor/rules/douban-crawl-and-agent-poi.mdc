@@ -1,5 +1,5 @@
 ---
-description: 抓取豆瓣活动 + Cursor 大模型 POI 匹配。用户说「抓取某城活动」时必读 docs/event-poi-agent-workflow.md 并按其中检查清单执行。
+description: 抓取豆瓣活动 + Cursor 大模型全流程（时间/分类/body/POI）。用户说「抓取某城豆瓣活动」时必读 docs/event-crawl-master-workflow.md 与本文。
 globs: zup-event-crawl/**
 alwaysApply: false
 ---
@@ -10,6 +10,7 @@ alwaysApply: false
 
 **先读**：
 
+0. [`docs/event-crawl-master-workflow.md`](../docs/event-crawl-master-workflow.md) — **总流程与 JS/Agent 分工**
 1. [`docs/event-time-agent.md`](../docs/event-time-agent.md) — 入库时间（抓取后第一步）
 2. [`docs/event-classification-agent.md`](../docs/event-classification-agent.md) — 推荐/挡下 + 分类
 3. [`docs/event-body-agent.md`](../docs/event-body-agent.md) — 活动介绍 body

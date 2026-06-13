@@ -10,14 +10,15 @@ const fs = require("fs");
 const path = require("path");
 const { applyEventClassification, openDatabase } = require("../lib/review-db");
 const { validateClassificationDecision } = require("../lib/event-classification");
+const { classificationDecisionsPath } = require("../lib/export-classification-pending");
 
 const root = path.join(__dirname, "..");
 const defaultDb = path.join(root, "data", "review.db");
-const workbenchRoot = path.join(root, "data", "poi-agent-workbench");
 
 function parseArgs(argv) {
   const options = {
     city: "",
+    source: "douban",
     file: "",
     dbPath: defaultDb,
     dryRun: false,
@@ -25,12 +26,13 @@ function parseArgs(argv) {
   for (const arg of argv.slice(2)) {
     if (arg === "--dry-run") options.dryRun = true;
     else if (arg.startsWith("--city=")) options.city = arg.slice("--city=".length).trim();
+    else if (arg.startsWith("--source=")) options.source = arg.slice("--source=".length).trim() || "douban";
     else if (arg.startsWith("--file=")) options.file = arg.slice("--file=".length).trim();
     else if (arg.startsWith("--db=")) options.dbPath = arg.slice("--db=".length);
     else if (!arg.startsWith("--") && arg.endsWith(".json")) options.file = arg;
   }
   if (!options.file && options.city) {
-    options.file = path.join(workbenchRoot, options.city, "classification-decisions.json");
+    options.file = classificationDecisionsPath(options.city, options.source);
   }
   if (!options.file || !fs.existsSync(options.file)) {
     throw new Error(options.file

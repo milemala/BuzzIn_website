@@ -2,11 +2,11 @@
 
 更新时间：2026-06-12
 
-**不要依赖聊天记忆。** Agent / 人工执行本流程时，以本文 + 子文档为准。
+> **新开会话必读**：以 [`event-crawl-master-workflow.md`](event-crawl-master-workflow.md) + 本文 + `.cursor/rules/xhs-crawl-and-review-import.mdc` 为准，**不依赖聊天上下文**。
 
 ## 一句话
 
-Chrome 抓汇总帖 → **强视觉 Agent 读原尺寸 slide 写最终 `posterBox`** → extract 裁图 → 生成一张 poster 总览缩略图验收 → 如有明显问题最多返工一次 → 满意后合成封面入库 `review.db`（`source=xiaohongshu`）→（后续）时间 / 分类 / POI Agent。
+Chrome 抓汇总帖 → **强视觉 Agent 读原尺寸 slide 写最终 `posterBox`** → extract 裁图 → 生成一张 poster 总览缩略图验收 → 满意后合成封面入库 `review.db`（`source=xiaohongshu`）→ **同会话 Agent 分类 + POI 匹配**。
 
 ## 必读子文档
 
@@ -53,7 +53,9 @@ node scripts/run-xhs-weekly-pipeline.js --import-only
 | 5. 合成封面 + 入库 | ✅ | `append-city`，**不删**同城豆瓣活动；**不做 POI** |
 | 5. 校正入库时间 | Agent | `export-events-for-time.js` → `time-decisions.json` → `apply-event-time-decisions.js`（见 [`event-time-agent.md`](event-time-agent.md)） |
 | 6. 审核台筛选 | 人工 | 来源选「小红书」；状态/类型/日期按来源联动 |
-| 7. 分类 / body / POI | Agent 后续 | 与豆瓣同一套 export → decisions → apply |
+| 7. 分类 | Agent **入库后同会话** | 自动导出 `classification-pending.json` → decisions → apply |
+| 8. POI | Agent **分类后同会话** | 自动导出 `pending.json` → 定搜词 → poi-search-cli → decisions → apply |
+| 9. body | 已入库 | highlights 已写入；存量可用 `apply-xhs-event-bodies.js` |
 
 ## 分步命令（调试时用）
 
@@ -115,7 +117,7 @@ data/scrape-cache/xhs/<城市>/<笔记ID>/
 - `source=xiaohongshu`，`sourceName=小红书`
 - `event_uid` 格式：`xiaohongshu:<笔记ID>:<index>`（如 `01_0`）
 - `importPayload` 使用 **`append-city`**（upsert，不删他源活动）
-- **默认跳过 POI**；`location_poi_id` 留空，后续按 `event-poi-agent-workflow.md` 批量做
+- **入库阶段不写 POI**；入库后同会话由 Agent 读 `pending.json` 搜+判（见下节 POI）
 - `category` 初始为「待分类」；`body` 直接写入 `events-extracted.json` 的 **`highlights` 介绍**（`body_source=xhs_source`，**不走**豆瓣 body Agent）
 
 ### 审核台
@@ -134,6 +136,8 @@ data/scrape-cache/xhs/<城市>/<笔记ID>/
 - [ ] `events-extracted.json` 活动数与 slide 一致（上海类文字帖可达 30+ 条）
 - [ ] `import-xhs-events-to-review.js` 或流水线 `--import-only` 跑通
 - [ ] `apply-event-time-decisions.js` 后入库准备有 `start_at` / `expired_at`
+- [ ] 同会话已完成 **分类**（`classification-decisions.json` → apply）
+- [ ] 同会话已完成 **POI**（`pending.json` → `decisions.json` → apply）
 - [ ] 审核台来源「小红书」可见，封面正常
 
 ## 禁止事项
@@ -160,21 +164,19 @@ data/scrape-cache/xhs/<城市>/<笔记ID>/
 | `lib/xhs-text-cover-compose.js` | 无海报文字封面 |
 | `lib/scrape-local-image.js` | 本地原图 URL |
 
-## 后续（与豆瓣对齐）
+## 后续（入库后同会话：分类 + POI）
 
 ```bash
-# 分类
-node scripts/export-events-for-classification.js --city=上海 --source=xiaohongshu --refresh
-# → Agent 写 classification-decisions.json
-node scripts/apply-event-classification-decisions.js --city=上海
+# 分类（入库已自动导出 classification-pending.json）
+node scripts/apply-event-classification-decisions.js --city=上海 --source=xiaohongshu
+
+# POI（入库已自动导出 pending.json）
+node scripts/export-events-for-poi.js --city=上海 --source=xiaohongshu --refresh --pending-only
+# → Agent 读每组：cached_poi 或 poi-search-cli → 写 decisions.json
+node scripts/apply-event-poi-decisions.js --city=上海 --source=xiaohongshu
 
 # 活动介绍（入库时已写 highlights；存量补写）
 node scripts/apply-xhs-event-bodies.js --city=上海
-
-# POI（Agent 全程主导：定搜词、读候选、判 match/reject/doubtful）
-node scripts/export-events-for-poi.js --city=上海 --source=xiaohongshu --refresh --pending-only
-# Agent：poi-search-cli.js --keyword=... → 写 data/poi-agent-workbench/上海-xhs/decisions.json
-node scripts/apply-event-poi-decisions.js --file=data/poi-agent-workbench/上海-xhs/decisions.json
 ```
 
-禁止 JS 自动批处理 POI（`batch-resolve-event-poi.js` 等已删除）。见 [`event-poi-agent-workflow.md`](event-poi-agent-workflow.md)。
+禁止 JS 自动批处理 POI。见 [`event-poi-agent-workflow.md`](event-poi-agent-workflow.md)。

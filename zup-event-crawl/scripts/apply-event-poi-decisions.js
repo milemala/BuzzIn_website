@@ -6,7 +6,7 @@
  * decisions 须由 Agent 定搜词、读 poi-search-cli 候选后手写，禁止 JS 自动选点代填。
  *
  *   node scripts/apply-event-poi-decisions.js --city=深圳
- *   node scripts/apply-event-poi-decisions.js --file=data/poi-agent-workbench/深圳/decisions.json
+ *   node scripts/apply-event-poi-decisions.js --city=上海 --source=xiaohongshu
  */
 const fs = require("fs");
 const path = require("path");
@@ -19,13 +19,15 @@ const {
   syncEventPoiCoordinates,
 } = require("../lib/review-db");
 
+const { poiDecisionsPath } = require("../lib/export-poi-pending");
+
 const root = path.join(__dirname, "..");
 const defaultDb = path.join(root, "data", "review.db");
-const workbenchRoot = path.join(root, "data", "poi-agent-workbench");
 
 function parseArgs(argv) {
   const options = {
     city: "",
+    source: "douban",
     file: "",
     dbPath: defaultDb,
     dryRun: false,
@@ -33,12 +35,13 @@ function parseArgs(argv) {
   for (const arg of argv.slice(2)) {
     if (arg === "--dry-run") options.dryRun = true;
     else if (arg.startsWith("--city=")) options.city = arg.slice("--city=".length).trim();
+    else if (arg.startsWith("--source=")) options.source = arg.slice("--source=".length).trim() || "douban";
     else if (arg.startsWith("--file=")) options.file = arg.slice("--file=".length).trim();
     else if (arg.startsWith("--db=")) options.dbPath = arg.slice("--db=".length);
     else if (!arg.startsWith("--") && arg.endsWith(".json")) options.file = arg;
   }
   if (!options.file && options.city) {
-    options.file = path.join(workbenchRoot, options.city, "decisions.json");
+    options.file = poiDecisionsPath(options.city, options.source);
   }
   if (!options.file || !fs.existsSync(options.file)) {
     throw new Error(options.file
