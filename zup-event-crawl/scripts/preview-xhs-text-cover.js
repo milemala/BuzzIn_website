@@ -34,7 +34,8 @@ async function main() {
   }
 
   if (!title) {
-    console.error("用法: node scripts/preview-xhs-text-cover.js --title=活动名");
+    console.error("用法: node scripts/preview-xhs-text-cover.js --title=活动名 [--font=zcool-kuaile]");
+    console.error("  字体可选: jiangcheng-lvdong-yuan | houzun-song | source-han-sans-heavy | zcool-kuaile");
     console.error("  或: node scripts/preview-xhs-text-cover.js --event=01_0 --note-dir=<笔记目录>");
     process.exit(1);
   }
@@ -44,12 +45,16 @@ async function main() {
     out ||
     path.join(root, "data", "scrape-cache", "xhs", "cover-preview", `${safeName}-4x3.jpg`);
 
-  await composeXhsTextCoverToFile(title, outputPath);
-  const meta = await require("sharp")(outputPath).metadata();
+  const result = await composeXhsTextCoverToFile(title, outputPath, {
+    font: readArg("font") || undefined,
+    backgroundPath: readArg("background") || undefined,
+  });
+  const meta = await require("sharp")(result.outputPath).metadata();
 
   console.log(`标题: ${title}`);
+  console.log(`背景: ${path.basename(result.backgroundPath)}`);
   console.log(`尺寸: ${meta.width}×${meta.height} (${meta.width / meta.height === 4 / 3 ? "4:3" : "非4:3"})`);
-  console.log(`输出: ${outputPath}`);
+  console.log(`输出: ${result.outputPath}`);
 }
 
 main().catch((error) => {

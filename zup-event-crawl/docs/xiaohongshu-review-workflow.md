@@ -23,7 +23,7 @@ Chrome 抓汇总帖 → **强视觉 Agent 读原尺寸 slide 写最终 `posterBo
 | 文件 | 用途 |
 |------|------|
 | `data/xhs-city-accounts.json` | 城市 ↔ 小红书账号个人页 URL |
-| `data/scrape-cache/xhs/background.jpg` | 无海报活动的文字封面底图 |
+| `data/scrape-cache/xhs/background1.jpg` … `background6.jpg` | 无海报文字封面底图（每次随机一张） |
 
 ## 一键流水线（抓取/入库用）
 

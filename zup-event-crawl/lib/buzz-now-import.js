@@ -215,6 +215,15 @@ function isEventApproved(db, eventUid) {
   return row?.status === "approved";
 }
 
+async function runImportStep(label, fn) {
+  try {
+    return await fn();
+  } catch (error) {
+    const detail = error?.message || String(error);
+    throw new Error(`${label}：${detail}`);
+  }
+}
+
 async function importEventToBuzz(db, eventUid, options = {}) {
   const client = options.client || new BuzzAdminClient(options);
   const dedup = options.dedup !== false;
@@ -237,7 +246,21 @@ async function importEventToBuzz(db, eventUid, options = {}) {
   }
 
   if (event.location_poi_id && !event.now_merchant_id) {
-    event = await syncEventMerchantByPoi(db, eventUid);
+    try {
+      event = await syncEventMerchantByPoi(db, eventUid);
+    } catch (error) {
+      const detail = error?.message || String(error);
+      return {
+        ok: false,
+        event_uid: eventUid,
+        title: event.title,
+        error: `关联商户查询：${detail}`,
+        event: markEventImportResult(db, eventUid, {
+          import_status: "failed",
+          import_error: `关联商户查询：${detail}`,
+        }),
+      };
+    }
   }
 
   const issues = importReadyIssues(event);
@@ -262,7 +285,7 @@ async function importEventToBuzz(db, eventUid, options = {}) {
 
   try {
     if (dedup && record.now_title) {
-      const existingId = await client.findNow(record.user_id, record.now_title);
+      const existingId = await runImportStep("查重气泡", () => client.findNow(record.user_id, record.now_title));
       if (existingId) {
         const updated = markEventImportResult(db, eventUid, {
           buzz_now_id: existingId,
@@ -280,23 +303,23 @@ async function importEventToBuzz(db, eventUid, options = {}) {
       }
     }
 
-    const groupId = await createGroupForNow(record, {
+    const groupId = await runImportStep("腾讯 IM 建群", () => createGroupForNow(record, {
       ...options,
       owner: record.publish_user_id || record.user_id,
-    });
+    }));
     record.group_id = groupId;
 
     // 封面只从本地 image-cache 读取，再 POST /internal/upload 传到 Buzz OSS（不用第三方 URL 建气泡）
     const medias = [];
     for (const src of record.images || []) {
-      const media = await client.uploadMedia(src);
+      const media = await runImportStep("上传封面", () => client.uploadMedia(src));
       medias.push(media);
     }
 
     const payload = buildBuzzPayload(record);
     if (medias.length) payload.now_medias = medias;
 
-    const nowId = await client.createNow(payload);
+    const nowId = await runImportStep("创建气泡", () => client.createNow(payload));
     if (!nowId) {
       throw new Error("创建成功但未返回 now_id");
     }

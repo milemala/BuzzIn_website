@@ -109,8 +109,8 @@ async function composePosterCoverFromFile(posterAbsPath, eventUid, rootDir) {
 }
 
 async function composeTextCover(title, eventUid, rootDir, options = {}) {
-  const composedBuffer = await composeXhsTextCover(title, options);
-  saveComposedImage(eventUid, composedBuffer, rootDir);
+  const { buffer } = await composeXhsTextCover(title, options);
+  saveComposedImage(eventUid, buffer, rootDir);
   return buildComposedImageUrl(eventUid);
 }
 

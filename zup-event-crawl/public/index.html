@@ -190,6 +190,14 @@
     .import-progress-stats b{font-weight:800}
     .import-progress-latest{margin-top:12px;padding:10px 12px;border-radius:8px;background:#f7faf8;border:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.45;min-height:44px}
     .import-progress-latest strong{display:block;color:#314036;font-size:13px;margin-bottom:2px}
+    .import-progress-failures{margin-top:10px;padding:10px 12px;border-radius:8px;background:#fff5f3;border:1px solid #f0c9c3;font-size:12px;color:#5c2f28;line-height:1.5;max-height:200px;overflow:auto}
+    .import-progress-failures[hidden]{display:none}
+    .import-progress-failures > strong{display:block;color:#ad382c;font-size:13px;margin-bottom:6px}
+    .import-progress-failures ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+    .import-progress-failures li{padding:6px 0;border-bottom:1px solid #f5ddd9}
+    .import-progress-failures li:last-child{border-bottom:0;padding-bottom:0}
+    .import-progress-failures b{color:#3a1f1a;font-size:12px}
+    .import-progress-failures .fail-reason{margin-top:2px;color:#8a3f35;word-break:break-word}
     .import-modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
     .import-modal-actions .btn{min-width:88px}
     .import-modal-actions .btn:disabled{opacity:.45;cursor:not-allowed}
@@ -277,6 +285,7 @@
       </div>
       <div class="import-progress-stats" id="importProgressStats"></div>
       <div class="import-progress-latest" id="importProgressLatest">准备开始…</div>
+      <div class="import-progress-failures" id="importProgressFailures" hidden></div>
       <div class="import-modal-actions">
         <button class="btn abort" id="importModalAbort" type="button">中止</button>
         <button class="btn primary" id="importModalClose" type="button" disabled>关闭</button>
@@ -305,6 +314,7 @@
     let importElapsedTimer = null;
     let importAbortController = null;
     let importAbortRequested = false;
+    let importFailures = [];
     let reviewBusy = false;
     const BATCH_REVIEW_STATUS_FILTERS = new Set(["pending", "poi_doubtful", "rule-blocked"]);
     const BATCH_REVIEW_FILTER_LABELS = {
@@ -341,6 +351,7 @@
     const importProgressBarEl = document.getElementById("importProgressBar");
     const importProgressStatsEl = document.getElementById("importProgressStats");
     const importProgressLatestEl = document.getElementById("importProgressLatest");
+    const importProgressFailuresEl = document.getElementById("importProgressFailures");
     const importModalCloseEl = document.getElementById("importModalClose");
     const importModalAbortEl = document.getElementById("importModalAbort");
     function getStatus(event) {
@@ -392,19 +403,42 @@
       return String(event.publish_user_id || DEFAULT_PUBLISH_USER_ID).trim() || DEFAULT_PUBLISH_USER_ID;
     }
 
+    function parseStoredDateTime(value) {
+      const raw = String(value || "").trim();
+      if (!raw) return null;
+      const full = raw.match(/^(\d{4})-(\d{2})-(\d{2})\s+(\d{2}):(\d{2}):(\d{2})$/);
+      if (full) {
+        return new Date(
+          Number(full[1]),
+          Number(full[2]) - 1,
+          Number(full[3]),
+          Number(full[4]),
+          Number(full[5]),
+          Number(full[6]),
+        );
+      }
+      const dateOnly = raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      if (dateOnly) {
+        return new Date(Number(dateOnly[1]), Number(dateOnly[2]) - 1, Number(dateOnly[3]), 0, 0, 0);
+      }
+      const date = new Date(raw);
+      return Number.isNaN(date.getTime()) ? null : date;
+    }
+
     function hasEventStarted(event) {
-      const raw = event.startDate || event.start_date || "";
-      const start = new Date(raw);
-      return !Number.isNaN(start.getTime()) && start.getTime() <= Date.now();
+      const raw = event.start_at || event.startDate || event.start_date || "";
+      const start = parseStoredDateTime(raw);
+      return !!start && start.getTime() <= Date.now();
     }
 
     function suggestNowType(event) {
       return hasEventStarted(event) ? 2 : 3;
     }
 
+    /** 1 动态保留人工选择；2/3 随是否已开始实时变化（与入库逻辑一致） */
     function effectiveNowType(event) {
       const n = Number(event.now_type);
-      if (n === 1 || n === 2 || n === 3) return n;
+      if (n === 1) return 1;
       return suggestNowType(event);
     }
 
@@ -701,8 +735,49 @@
       importModalCloseEl.disabled = running;
     }
 
+    function renderImportFailuresList(failures) {
+      if (!failures.length) {
+        importProgressFailuresEl.hidden = true;
+        importProgressFailuresEl.innerHTML = "";
+        return;
+      }
+      const items = failures.map((item) => (
+        `<li><b>${escapeHtml(item.title || "活动")}</b>`
+        + `<div class="fail-reason">${escapeHtml(item.error || "未知错误")}</div></li>`
+      )).join("");
+      importProgressFailuresEl.hidden = false;
+      importProgressFailuresEl.innerHTML = `<strong>失败明细（${failures.length}）</strong><ul>${items}</ul>`;
+    }
+
+    function summarizeImportFailures(failures, max = 2) {
+      if (!failures.length) return "";
+      const lines = failures.slice(0, max).map((item) => `${item.title}：${item.error || "未知错误"}`);
+      const suffix = failures.length > max ? ` 等共 ${failures.length} 条` : "";
+      return ` · ${lines.join("；")}${suffix}`;
+    }
+
+    function resolveImportFailureMessage(result, uid, fallbackTitle = "") {
+      const event = findEventByUid(uid);
+      return String(
+        result?.error
+        || result?.data?.error
+        || event?.import_error
+        || "未知错误",
+      ).trim() || "未知错误";
+    }
+
+    function recordImportFailure({ title, error }) {
+      importFailures.push({
+        title: String(title || "活动").trim() || "活动",
+        error: String(error || "未知错误").trim() || "未知错误",
+      });
+      renderImportFailuresList(importFailures);
+    }
+
     function openImportProgressModal({ title, scope, batchTotal }) {
       resetImportAbortState();
+      importFailures = [];
+      renderImportFailuresList(importFailures);
       importModalTitleEl.textContent = title || "入库中";
       importModalScopeEl.textContent = scope || "";
       importProgressBarEl.style.width = "0%";
@@ -724,6 +799,7 @@
       fail = 0,
       elapsed = "0 秒",
       latestText,
+      failures,
       aborted = false,
       error = "",
     }) {
@@ -737,6 +813,7 @@
         fail,
         elapsed,
         latestText,
+        failures: failures ?? importFailures,
         done: true,
         aborted,
         error,
@@ -752,6 +829,7 @@
       fail = 0,
       elapsed = "0 秒",
       latestText,
+      failures,
       done = false,
       aborted = false,
       error = "",
@@ -765,6 +843,9 @@
         `<div>已用时间：<b>${elapsed}</b></div>`,
       ].join("");
       if (latestText) importProgressLatestEl.innerHTML = latestText;
+      if (Array.isArray(failures)) {
+        renderImportFailuresList(failures);
+      }
       if (error) {
         importModalTitleEl.textContent = "入库失败";
         importProgressLatestEl.innerHTML = `<strong>出错了</strong>${escapeHtml(error)}`;
@@ -869,14 +950,17 @@
           });
           setSaveState("入库已中止", "warn");
         } else if (!result.ok) {
+          const errMsg = resolveImportFailureMessage(result, uid, title);
+          recordImportFailure({ title, error: errMsg });
           finishImportProgressModal({
             batchTotal: 1,
             processed: 1,
             fail: 1,
             elapsed,
-            latestText: `<strong>入库失败</strong>${escapeHtml(result.error || "未知错误")}`,
+            failures: importFailures,
+            latestText: `<strong>入库失败</strong>${escapeHtml(title)}<br>${escapeHtml(errMsg)}`,
           });
-          setSaveState(result.error || "入库失败", "error");
+          setSaveState(`${title} 入库失败：${errMsg}`, "error");
         } else {
           const suffix = result.skipped ? "（后台已存在）" : "";
           const groupText = result.data.group_id ? ` · group_id=${result.data.group_id}` : "";
@@ -903,14 +987,17 @@
           });
           setSaveState("入库已中止", "warn");
         } else {
+          const errMsg = error.message || "入库失败";
+          recordImportFailure({ title, error: errMsg });
           finishImportProgressModal({
             batchTotal: 1,
             processed: 1,
             fail: 1,
             elapsed: formatDuration(Date.now() - startedAt),
-            error: error.message || "入库失败",
+            failures: importFailures,
+            latestText: `<strong>入库失败</strong>${escapeHtml(title)}<br>${escapeHtml(errMsg)}`,
           });
-          setSaveState(error.message || "入库失败", "error");
+          setSaveState(`${title} 入库失败：${errMsg}`, "error");
         }
       } finally {
         importBusy = false;
@@ -982,12 +1069,40 @@
             if (result.aborted) break;
             if (result.skipped) skipped += 1;
             else if (result.ok) ok += 1;
-            else fail += 1;
+            else {
+              fail += 1;
+              const errMsg = resolveImportFailureMessage(result, uid, event.title || uid);
+              recordImportFailure({ title: result.title || event.title || uid, error: errMsg });
+              updateImportProgressModal({
+                batchTotal,
+                processed: processed + 1,
+                ok,
+                skipped,
+                fail,
+                failures: importFailures,
+                elapsed: formatDuration(Date.now() - startedAt),
+                latestText: `<strong>入库失败 (${processed + 1}/${batchTotal})</strong>${escapeHtml(result.title || event.title || uid)}<br>${escapeHtml(errMsg)}`,
+                phase: "running",
+              });
+            }
             processed += 1;
           } catch (error) {
             if (error.name === "AbortError" || isImportAborted()) break;
             fail += 1;
             processed += 1;
+            const errMsg = error.message || "请求异常";
+            recordImportFailure({ title: event.title || uid, error: errMsg });
+            updateImportProgressModal({
+              batchTotal,
+              processed,
+              ok,
+              skipped,
+              fail,
+              failures: importFailures,
+              elapsed: formatDuration(Date.now() - startedAt),
+              latestText: `<strong>入库失败 (${processed}/${batchTotal})</strong>${escapeHtml(event.title || uid)}<br>${escapeHtml(errMsg)}`,
+              phase: "running",
+            });
           }
         }
 
@@ -1001,17 +1116,19 @@
           fail,
           elapsed,
           aborted,
+          failures: importFailures,
           latestText: aborted
             ? `<strong>已中止</strong>已完成 ${processed} 条 · 成功 ${ok} · 跳过 ${skipped} · 失败 ${fail}`
             : (fail > 0
-              ? `<strong>本批结束</strong>成功 ${ok} · 跳过 ${skipped} · 失败 ${fail}`
+              ? `<strong>本批结束</strong>成功 ${ok} · 跳过 ${skipped} · 失败 ${fail} · 详见下方失败明细`
               : `<strong>本批结束</strong>全部处理完成`),
         });
         await loadEvents();
+        const failSummary = summarizeImportFailures(importFailures);
         setSaveState(
           aborted
-            ? `批量入库已中止：已完成 ${processed} 条 · 成功 ${ok} · 跳过 ${skipped} · 失败 ${fail} · ${elapsed}`
-            : `批量入库完成：成功 ${ok} · 跳过 ${skipped} · 失败 ${fail} · ${elapsed}`,
+            ? `批量入库已中止：已完成 ${processed} 条 · 成功 ${ok} · 跳过 ${skipped} · 失败 ${fail} · ${elapsed}${failSummary}`
+            : `批量入库完成：成功 ${ok} · 跳过 ${skipped} · 失败 ${fail} · ${elapsed}${failSummary}`,
           (aborted || fail) ? "warn" : "ok",
         );
         render();

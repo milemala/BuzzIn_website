@@ -83,9 +83,9 @@ function resolveExpiredAt(event) {
 }
 
 function hasEventStarted(event) {
-  const raw = event?.startDate || event?.start_date || "";
-  const start = new Date(raw);
-  if (Number.isNaN(start.getTime())) return false;
+  const raw = event?.start_at || event?.startDate || event?.start_date || "";
+  const start = parseStoredDateTime(raw);
+  if (!start) return false;
   return start.getTime() <= Date.now();
 }
 
@@ -99,6 +99,13 @@ function normalizeNowType(value, event = null) {
   if (VALID_NOW_TYPES.has(n)) return n;
   if (event) return suggestNowType(event);
   return DEFAULT_NOW_TYPE;
+}
+
+/** 入库时 now_type：1 动态保留人工选择；2/3 按当前是否已开始实时计算 */
+function resolveNowTypeForImport(event) {
+  const n = Number(event?.now_type);
+  if (n === 1) return 1;
+  return suggestNowType(event);
 }
 
 function parsePoiCandidates(event) {
@@ -194,7 +201,7 @@ function buildImportRecord(event, options = {}) {
     user_id: publishUserId,
     now_title: String(event.title || "").slice(0, 128),
     now_content: buildImportContent(event),
-    now_type: normalizeNowType(event.now_type, event),
+    now_type: resolveNowTypeForImport(event),
     images,
     group_id: "",
     location_poi_id: event.location_poi_id || "",
@@ -230,6 +237,7 @@ module.exports = {
   isExpired,
   isImportReady,
   normalizeNowType,
+  resolveNowTypeForImport,
   resolveExpiredAt,
   resolveNowMerchantId,
   resolvePoiCoordinates,

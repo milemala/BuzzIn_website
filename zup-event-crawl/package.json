@@ -15,6 +15,10 @@
     "save-html": "node scripts/save-chrome-douban-html.js"
   },
   "dependencies": {
+    "@fontpkg/hou-zun-song-ti": "^2.1.0",
+    "@fontsource/noto-sans-sc": "^5.2.8",
+    "@fontsource/zcool-kuaile": "^5.2.8",
+    "@resvg/resvg-js": "^2.6.2",
     "sharp": "^0.34.5",
     "tls-sig-api-v2": "^1.0.2"
   }

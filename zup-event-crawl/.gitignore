@@ -7,7 +7,10 @@ data/review.db-*
 data/image-cache/
 data/image-composed-preview/
 data/image-composed/
-data/scrape-cache/
+data/scrape-cache/*
+!data/scrape-cache/xhs/
+data/scrape-cache/xhs/*
+!data/scrape-cache/xhs/background*.jpg
 data/chrome-cdp-profile/
 data/chrome-scrape-window.json
 data/batch-scrape*.log
