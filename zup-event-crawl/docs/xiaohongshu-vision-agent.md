@@ -1,5 +1,7 @@
 # 小红书汇总帖 · Agent 读图与裁切
 
+> **裁切精度定稿**（每场单独标框、保留真实比例、禁止套模板）：[`xiaohongshu-poster-crop-rules.md`](xiaohongshu-poster-crop-rules.md)
+
 ## 分工（先看这个）
 
 | 谁 | 做什么 | 不做什么 |
@@ -220,6 +222,9 @@ node scripts/snap-poster-box-edges.js data/scrape-cache/xhs/<城市>/<笔记ID> 
 | 海报标题、脚标、日期都在 | 裁掉海报下缘日期/右缘大字 |
 | 不含右侧 ✅、闹钟、邻场橙条 | 把上一场的脚标裁进来 |
 | 景区照、商场照也算 | 用「行高 0.2/0.48/0.76」套模板 |
+| 每场 `w×h` 反映该海报真实比例 | 14 张裁出几乎相同宽高（模板坐标） |
+
+详见 [`xiaohongshu-poster-crop-rules.md`](xiaohongshu-poster-crop-rules.md)。
 
 ---
 
@@ -236,4 +241,5 @@ node scripts/snap-poster-box-edges.js data/scrape-cache/xhs/<城市>/<笔记ID> 
 - [ ] `posterBox` 四边对准**目标海报最终外缘**，不是对准「行」  
 - [ ] `posters-contact-sheet.png` 总览图无明显坏裁切；若返工，最多一次  
 - [ ] 如使用吸附，必须先预览，确认合理后再 `--write`  
+- [ ] 已对照 [`xiaohongshu-poster-crop-rules.md`](xiaohongshu-poster-crop-rules.md) 检查：每场坐标独立、比例合理、无模板感  
 - [ ] 满意后再 import

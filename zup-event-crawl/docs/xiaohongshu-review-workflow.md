@@ -14,6 +14,7 @@ Chrome 抓汇总帖 → **强视觉 Agent 读原尺寸 slide 写最终 `posterBo
 |------|------|
 | [`xiaohongshu-weekly-crawl.md`](xiaohongshu-weekly-crawl.md) | 抓取、目录约定、代码模块 |
 | [`xiaohongshu-vision-agent.md`](xiaohongshu-vision-agent.md) | Agent 读图、海报识别原则、posterBox 规则（**标框前必读**） |
+| [`xiaohongshu-poster-crop-rules.md`](xiaohongshu-poster-crop-rules.md) | **裁切精度定稿**：每场单独分析版式，禁止模板坐标 |
 | [`event-classification-agent.md`](event-classification-agent.md) | 入库后推荐/挡下 + 分类 |
 | [`event-body-agent.md`](event-body-agent.md) | 入库后活动介绍 body |
 | [`event-poi-agent-workflow.md`](event-poi-agent-workflow.md) | POI（腾讯 key 有额度时再做） |
@@ -64,6 +65,7 @@ node scripts/run-xhs-weekly-pipeline.js --import-only
 node scripts/scrape-xhs-profile-weekly.js --city=北京 "<个人页URL>"
 
 # Agent 写好 vision-slots.json 后
+node scripts/preview-poster-boxes.js data/scrape-cache/xhs/北京/<笔记ID>   # 可选：slide 上叠红框自检
 node scripts/extract-xhs-weekly-events.js data/scrape-cache/xhs/北京/<笔记ID>
 node scripts/create-poster-contact-sheet.js data/scrape-cache/xhs/北京/<笔记ID>
 

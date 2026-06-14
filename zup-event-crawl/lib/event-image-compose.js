@@ -38,7 +38,14 @@ async function buildPosterRightTextLayer(rightWidth, height, options = {}) {
 
   const ctaLines = resolveCtaLines(options.ctaLines || options.text || options.textLines);
   const fontPreset = resolveFontPreset(options.font || options.fontPreset || DEFAULT_FONT_PRESET);
-  const { svg } = buildPosterSideTextLayerSvg(rightWidth, height, title, ctaLines, fontPreset);
+  const { svg } = buildPosterSideTextLayerSvg(
+    rightWidth,
+    height,
+    title,
+    ctaLines,
+    fontPreset,
+    options.textLayerStyle || {},
+  );
   return rasterizeTextSvg(Buffer.from(svg), rightWidth, height, fontPreset);
 }
 
@@ -107,6 +114,12 @@ async function composeEventPosterFromUrl(imageUrl, options = {}) {
   return composeEventPosterImage(sourceBuffer, options);
 }
 
+function isPortraitPosterLayout(sourceWidth, sourceHeight) {
+  const width = sourceWidth || 1;
+  const height = sourceHeight || 1;
+  return width / height <= PORTRAIT_TEXT_MAX_RATIO;
+}
+
 module.exports = {
   DEFAULT_BLUR_SIGMA,
   DEFAULT_HEIGHT,
@@ -115,4 +128,5 @@ module.exports = {
   PORTRAIT_TEXT_MAX_RATIO,
   composeEventPosterFromUrl,
   composeEventPosterImage,
+  isPortraitPosterLayout,
 };
