@@ -15,6 +15,7 @@ const BACKGROUND_NAME_RE = /^background\d+\.(?:jpe?g|png|webp)$/i;
 const FONTS_DIR = path.join(__dirname, "..", "assets", "fonts");
 
 const COLOR_TEXT = "#1A2332";
+const COLOR_TEXT_ON_DARK = "#FFFFFF";
 
 /** 封面字体预设 */
 const FONT_PRESETS = {
@@ -322,17 +323,20 @@ function maxTitleFontSizeForLines({
   return best;
 }
 
-function plainText({ x, y, fontSize, line, fontPreset, letterSpacing = 0 }) {
+function plainText({ x, y, fontSize, line, fontPreset, letterSpacing = 0, fill = COLOR_TEXT, filter }) {
   const weight = fontPreset.fontWeight || 400;
+  const filterAttr = filter ? ` filter="${filter}"` : "";
   return `<text x="${x}" y="${y}"
     font-family="${fontPreset.family}" font-size="${fontSize}" font-weight="${weight}"
     letter-spacing="${letterSpacing}" text-anchor="middle"
-    fill="${COLOR_TEXT}" stroke="none">${escapeXml(line)}</text>`;
+    fill="${fill}" stroke="none"${filterAttr}>${escapeXml(line)}</text>`;
 }
 
-function buildTextLayerSvg(width, height, title, ctaLines, fontPreset) {
+function buildTextLayerSvg(width, height, title, ctaLines, fontPreset, styleOptions = {}) {
   const preset = resolveFontPreset(fontPreset);
-  const padX = Math.round(width * 0.12);
+  const fill = styleOptions.fill || COLOR_TEXT;
+  const textFilter = styleOptions.textShadow ? "textShadow" : null;
+  const padX = styleOptions.padX ?? Math.round(width * 0.12);
   const innerW = width - padX * 2;
   const centerX = width / 2;
   const safeTop = Math.round(height * 0.2);
@@ -389,6 +393,8 @@ function buildTextLayerSvg(width, height, title, ctaLines, fontPreset) {
         line,
         fontPreset: preset,
         letterSpacing: spacing,
+        fill,
+        filter: textFilter,
       });
     })
     .join("\n    ");
@@ -403,6 +409,8 @@ function buildTextLayerSvg(width, height, title, ctaLines, fontPreset) {
         line,
         fontPreset: preset,
         letterSpacing: 2,
+        fill,
+        filter: textFilter,
       });
     })
     .join("\n    ");
@@ -413,15 +421,33 @@ function buildTextLayerSvg(width, height, title, ctaLines, fontPreset) {
   </g>`
     : titleSvg;
 
+  const shadowDefs = textFilter
+    ? `<defs>
+    <filter id="textShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="5" flood-color="rgba(0,0,0,0.42)"/>
+    </filter>
+  </defs>`
+    : "";
+
   return {
     svg: `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+  ${shadowDefs}
   <rect width="${width}" height="${height}" fill="none"/>
   ${titleGroup}
   ${ctaSvg}
 </svg>`,
     layout: { titleLines, titleFontSize, ctaFontSize, fontPreset: preset.id },
   };
+}
+
+/** 海报合成右侧窄条：白字 + 阴影，与无海报文字封面同一套排版 */
+function buildPosterSideTextLayerSvg(width, height, title, ctaLines, fontPreset) {
+  return buildTextLayerSvg(width, height, title, ctaLines, fontPreset, {
+    fill: COLOR_TEXT_ON_DARK,
+    padX: Math.round(width * 0.08),
+    textShadow: true,
+  });
 }
 
 async function loadCoverBackground(width, height, backgroundPath) {
@@ -525,11 +551,15 @@ module.exports = {
   DEFAULT_WIDTH,
   FONT_PRESETS,
   COLOR_TEXT,
+  COLOR_TEXT_ON_DARK,
   composeXhsTextCover,
   composeXhsTextCoverToFile,
   layoutPosterText,
   wrapTitle,
   buildTextLayerSvg,
+  buildPosterSideTextLayerSvg,
+  rasterizeTextSvg,
+  resolveCtaLines,
   resolveFontPreset,
   listXhsCoverBackgrounds,
   resolveCoverBackgroundPath,

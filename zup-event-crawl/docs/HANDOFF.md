@@ -108,16 +108,19 @@ node scripts/enrich-event-participation.js --dry-run
 |------|------|
 | 画布 | **4:3**，默认 1200×900 |
 | 底图 | 原海报放大铺满 + 高斯模糊 |
-| 左侧 | 豆瓣原竖图**贴左、高度撑满**（不缩小、不偏移） |
-| 右侧 | 半透明渐变遮罩 + 白色文案两行：**加入群聊** / **一起组局**（无逗号） |
+| 左侧 | 原竖图**贴左、高度撑满**（不缩小、不偏移） |
+| 右侧（仅竖图 ≤4:5） | 半透明渐变遮罩 + **活动标题** + **加入群聊** / **一起组局**（两行 CTA，无逗号）；字体 **江城律动圆**，白字 `#FFFFFF` + 轻阴影 |
+| 宽图（>4:5，如 1:1） | 海报居中叠在模糊底图上，**不加**右侧文案 |
+| 无海报（小红书） | `lib/xhs-text-cover-compose.js`：随机 `background1~6.jpg` 底图 + 同上标题/CTA，深色字 `#1A2332` |
 
-曾试验「缩小 80%」「全屏遮罩」等方案，**已回滚**；以本节定稿为准。
+曾试验「缩小 80%」「全屏遮罩」「仅 CTA 无标题」等方案，**已回滚**；以本节定稿为准。
 
 ### 新增 / 调整的文件
 
 | 文件 | 职责 |
 |------|------|
-| `lib/event-image-compose.js` | `composeEventPosterImage` / `composeEventPosterFromUrl`（依赖 `sharp`） |
+| `lib/event-image-compose.js` | `composeEventPosterImage` / `composeEventPosterFromUrl`（有海报 4:3；右侧文案复用 `xhs-text-cover-compose` 排版） |
+| `lib/xhs-text-cover-compose.js` | 无海报文字封面；海报右侧窄条文案（标题 + CTA） |
 | `lib/composed-image.js` | 合成图 URL、`data/image-composed/` 路径、写入 image-cache |
 | `lib/image-fetch.js` | 识别 `https://zup-event-crawl.local/composed/{event_uid}.jpg`，入库可读本地文件 |
 | `scripts/compose-event-images.js` | 批量合成**未过期**活动封面并更新 DB |
@@ -138,6 +141,9 @@ npm install   # 首次需安装 sharp
 
 # 预览单条（输出到 data/image-composed-preview/）
 node scripts/preview-event-image-compose.js --title=主动社交的力量 --city=成都
+
+# 预览本地海报 + 指定标题（瘦高图会出左图右文）
+node scripts/preview-event-image-compose.js --poster=data/scrape-cache/xhs/.../posters/01_slot0.jpg --title=活动标题
 
 # 批量：仅未过期、尚未合成的活动
 node scripts/compose-event-images.js
@@ -295,7 +301,7 @@ npm start
   - 豆瓣详情 HTML 解析、活动介绍提炼、参加方式段落生成。
 
 - `lib/event-image-compose.js` / `lib/composed-image.js` / `scripts/compose-event-images.js`
-  - 豆瓣竖图低清海报 → 4:3 横版封面（模糊底图 + 左原图 + 右文案）。
+  - 竖图低清海报 → 4:3 横版封面（模糊底图 + 左原图 + 右标题与 CTA）；宽图居中无右文案。
   - 详见本文「2026-06-08 活动封面合成」。
 
 - `scripts/save-chrome-douban-html.js`

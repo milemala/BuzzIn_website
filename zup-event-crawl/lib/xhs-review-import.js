@@ -101,9 +101,9 @@ function mapExtractedEventToReview(extracted, event, noteDir, rootDir, position)
   return reviewEvent;
 }
 
-async function composePosterCoverFromFile(posterAbsPath, eventUid, rootDir) {
+async function composePosterCoverFromFile(posterAbsPath, eventUid, rootDir, title) {
   const { buffer } = readImageFile(posterAbsPath);
-  const composedBuffer = await composeEventPosterImage(buffer);
+  const composedBuffer = await composeEventPosterImage(buffer, { title });
   saveComposedImage(eventUid, composedBuffer, rootDir);
   return buildComposedImageUrl(eventUid);
 }
@@ -124,7 +124,12 @@ async function attachCoverImages(reviewEvent, noteDir, rootDir, options = {}) {
     const originalRel = relFromRoot(posterAbs, rootDir);
     reviewEvent.image_original = buildScrapeLocalImageUrl(originalRel);
     if (!options.dryRun) {
-      reviewEvent.image = await composePosterCoverFromFile(posterAbs, eventUid, rootDir);
+      reviewEvent.image = await composePosterCoverFromFile(
+        posterAbs,
+        eventUid,
+        rootDir,
+        reviewEvent.title,
+      );
     } else {
       reviewEvent.image = buildComposedImageUrl(eventUid);
     }

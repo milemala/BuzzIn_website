@@ -150,9 +150,12 @@ node scripts/apply-event-poi-decisions.js --city=<城市> --source=xiaohongshu
 
 汇报：活动数、海报通过/丢弃/无海报数量、总览图路径、是否返工过、是否入库、**分类推荐/挡下条数**、**POI 处理组数（匹配/reject）**。
 
-## 封面规则
+## 封面规则（定稿，勿随意改）
 
-| 有 poster | 无 poster |
-|-----------|-----------|
-| 豆瓣同款 4:3 左图右文 | `lib/xhs-text-cover-compose.js` 文字封面 |
-| `image_original` = 裁切海报 | `image_original` = 原 slide |
+| 情况 | 版式 | 实现 |
+|------|------|------|
+| 有 poster，竖图 ≤4:5 | 4:3：模糊底图 + 左海报 + 右**标题 + 加入群聊/一起组局**（江城律动圆、白字） | `lib/event-image-compose.js` |
+| 有 poster，宽图 >4:5 | 4:3：模糊底图 + 海报居中，无右侧文案 | 同上 |
+| 无 poster | 随机 `background1~6.jpg` + **标题 + 加入群聊/一起组局**（江城律动圆、深色字） | `lib/xhs-text-cover-compose.js` |
+
+`image_original`：有 poster 时 = 裁切海报；无 poster 时 = 原 slide。

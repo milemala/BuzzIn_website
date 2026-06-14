@@ -78,8 +78,14 @@ async function composeEventImageRecord(record, options = {}) {
 
   const scrapeLocalPath = getScrapeLocalImagePath(sourceUrl, root);
   const buffer = scrapeLocalPath
-    ? await composeEventPosterImage(readImageFile(scrapeLocalPath).buffer)
-    : await composeEventPosterFromUrl(sourceUrl, { cacheDir, rootDir: root });
+    ? await composeEventPosterImage(readImageFile(scrapeLocalPath).buffer, {
+      title: record.title,
+    })
+    : await composeEventPosterFromUrl(sourceUrl, {
+      cacheDir,
+      rootDir: root,
+      title: record.title,
+    });
   const composedUrl = buildComposedImageUrl(eventUid);
   saveComposedImage(eventUid, buffer, root);
 

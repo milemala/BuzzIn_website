@@ -158,11 +158,14 @@ node scripts/enrich-event-participation.js
 
 ### 活动封面合成（4:3 横版）
 
-豆瓣竖图低清海报会合成：**模糊底图 + 左侧原图 + 右侧「加入群聊 / 一起组局」**。原图 URL 备份在 `image_original`。
+竖图低清海报（≤4:5）合成：**模糊底图 + 左侧原图 + 右侧活动标题 +「加入群聊 / 一起组局」**（江城律动圆；有海报时白字，无海报文字封面时深色字 + 随机底图）。宽图（>4:5）仅居中叠海报。原图 URL 备份在 `image_original`。
 
 ```bash
-# 预览单条
+# 预览单条（从 review.db 读原图）
 node scripts/preview-event-image-compose.js --title=主动社交的力量 --city=成都
+
+# 预览本地海报文件
+node scripts/preview-event-image-compose.js --poster=data/scrape-cache/xhs/.../posters/01_slot0.jpg --title=活动标题
 
 # 商户 16:9 封面预览（模糊底图 + 原图居中不缩放）
 node scripts/preview-merchant-image-compose.js --name=GoodFriend好朋友精酿
