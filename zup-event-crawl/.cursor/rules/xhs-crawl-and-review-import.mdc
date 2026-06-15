@@ -1,19 +1,35 @@
 ---
-description: 抓取/处理小红书一周活动汇总并入库审核台；入库后同会话须完成 Agent 分类与 POI。涉及 vision-slots、posterBox 时按强视觉流程执行。
+description: 抓取/处理小红书一周活动汇总并入库审核台；入库后同会话须完成 Agent 分类与 POI。涉及 vision-slots、posterBox 时按读图标框流程执行。
 globs: zup-event-crawl/**
 alwaysApply: false
 ---
 
 # 小红书活动：抓取 → 原尺寸读图标框 → 裁切验收 → 入库
 
+## 一站式分工（必读）
+
+| 谁 | 做什么 | 不做什么 |
+|----|--------|----------|
+| **用户** | 用自然语言提需，如「抓取重庆小红书」「重跑重庆海报」「入库并做分类 POI」 | 不运行脚本、不读技术文档、不拼 prompt、不记命令 |
+| **执行 Agent** | 读本文及子文档 → 自行完成抓取/标框/裁切/验收/入库/分类/POI → **汇报结果** | 不把脚本步骤推给用户；不在对话里说「你跑 xx.js」「下次执行 xx」 |
+
+**向用户汇报时**：说清做了什么、活动数/海报情况/是否入库/有无待决问题即可。技术路径（跑了哪些脚本、文件路径）仅在被问到或排查故障时再展开。
+
+用户提需口语示例：[`AGENTS.md`](../AGENTS.md)「用户怎么说」。
+
+---
+
 当用户说「抓取/重跑/处理 XX 小红书活动」「小红书入库」「小红书一周汇总」，或编辑 `data/scrape-cache/xhs/**`、`vision-slots.json` 时：
+
+**硬性门禁（违反即停止，不得交付）**：仓库根 [`.cursor/rules/zup-event-crawl-hard-gates.mdc`](../../.cursor/rules/zup-event-crawl-hard-gates.mdc) — 海报 `posterBox` 须读图标框；禁止像素脚本；`extract` 有 posterBox 守卫。
 
 **先读，不依赖聊天记忆**：
 
 0. [`docs/event-crawl-master-workflow.md`](../docs/event-crawl-master-workflow.md) — **豆瓣/小红书总流程与 JS/Agent 分工**
 1. [`docs/xiaohongshu-review-workflow.md`](../docs/xiaohongshu-review-workflow.md) — **主流程与检查清单**
-2. [`docs/xiaohongshu-vision-agent.md`](../docs/xiaohongshu-vision-agent.md) — Agent 读图与 posterBox
-3. [`docs/xiaohongshu-poster-crop-rules.md`](../docs/xiaohongshu-poster-crop-rules.md) — **海报裁切精度定稿（标框前必读）**
+2. [`docs/xiaohongshu-vision-labeling-prompt.md`](../docs/xiaohongshu-vision-labeling-prompt.md) — **Agent 读图标框提示词（定稿，标框前必读）**
+3. [`docs/xiaohongshu-vision-agent.md`](../docs/xiaohongshu-vision-agent.md) — Agent 读图与 posterBox
+4. [`docs/xiaohongshu-poster-crop-rules.md`](../docs/xiaohongshu-poster-crop-rules.md) — **海报裁切精度定稿（标框前必读）**
 4. [`docs/xiaohongshu-weekly-crawl.md`](../docs/xiaohongshu-weekly-crawl.md) — 抓取与目录约定
 4. [`docs/event-classification-agent.md`](../docs/event-classification-agent.md) — 入库后分类
 5. [`docs/event-poi-agent-workflow.md`](../docs/event-poi-agent-workflow.md) — **入库后 POI（Agent 定搜词、读候选、写 decisions）**
@@ -29,22 +45,24 @@ cd zup-event-crawl
 node scripts/run-xhs-weekly-pipeline.js --city=<城市名>
 ```
 
-同笔记已抓过会跳过重复下载。若用户只是“重跑裁切”，先定位 `data/scrape-cache/xhs/<城市>/<笔记ID>/`，不要重复抓取。
+同笔记已抓过会跳过重复下载。若该 noteId **已入库 review.db**，整条流水线（读图、裁切、入库、分类、POI）**全部跳过**，即使账号重新编辑了原帖也不重做。
 
-### 2. 强视觉模型读图并一次标最终 `posterBox`
+### 2. 读图并一次标最终 `posterBox`
 
-**先读 [`docs/xiaohongshu-poster-crop-rules.md`](../docs/xiaohongshu-poster-crop-rules.md)**：每场单独分析版式与海报位置；禁止套模板坐标；保留海报原始宽高比。
+**用户只下令（如「重跑某城海报」），不拼 prompt。执行 Agent 按下列步骤自行开头：**
+
+1. 读 [`docs/xiaohongshu-vision-labeling-prompt.md`](../docs/xiaohongshu-vision-labeling-prompt.md) 全文，**内化「标框使命」**（目的：从每张 slide 为每场活动单独切出矩形海报，边缘必须准；每张 slide 单独分析，禁止套版式/套坐标）
+2. 读 [`docs/xiaohongshu-poster-crop-rules.md`](../docs/xiaohongshu-poster-crop-rules.md)
+3. 在本会话逐张读图，写 `posterBox`；**禁止**像素/启发式脚本写坐标
+4. 标框后写 **`vision-slots.meta.json`**；再 `extract` → 总览图
 
 在 `data/scrape-cache/xhs/<城市>/<笔记ID>/`：
 
 - 读 `images/*.webp`（从 `01.webp` 起）；如果不能直接读，生成**同尺寸临时 PNG**到 `images-png/` 或 `_tmp-review-png/` 辅助读图
-- 写/改 `vision-slots.json`：每场活动都要有字段；只有版面里独立、尺寸足够、能干净裁成封面的主视觉才写 `posterBox`
-- `posterBox` 是最终裁切区域，不是粗框：只框海报本体，排除 slide 背景、黄色标题条、说明文字区、邻场残影
-- **版式因笔记而异**：可能是左文右图、左图右文、上下两行、整页单海报等——**以当前 slide 实图为准**，不能把某一城（如西安左文右图）的 `x≈640` 套到别的城市
-- 优先使用强视觉模型（如 Fable）。弱视觉模型/模板化模型容易把“行/卡片/说明文字”当海报，不要信模板坐标
-- **禁止**复制上周 box、固定比例裁切、同一笔记内 14 场共用一组 `x,y,w,h`、按城市写启发式自动猜框
-- 不要按图片内容意义过度苛刻：风景照、展品照、现场照、地图式活动图，只要在版面中是该活动的独立主视觉且尺寸够，就算可裁封面
-- 标框后可运行 `node scripts/preview-poster-boxes.js <笔记目录>` 在 slide 上叠红框自检
+- 写/改 `vision-slots.json`：每场活动都要有字段；只有能干净框出**矩形海报外缘**时才写 `posterBox`
+- `posterBox` 是最终裁切区域：四边贴海报本体，排除 slide 背景、黄标题条、说明文字区、邻场残影
+- **禁止**复制其他 slide / 其他笔记的 box、固定比例裁切、同一笔记内多场共用一组 `x,y,w,h`
+- 不要按图片内容意义过度苛刻：风景照、展品照、现场照、地图式活动图，只要在版面中是该活动的独立矩形主视觉且尺寸够，就算可裁封面
 
 ### 3. 裁切 + 总览图验收（默认不入库）
 
@@ -80,7 +98,7 @@ node scripts/snap-poster-box-edges.js data/scrape-cache/xhs/<城市>/<笔记ID> 
 
 不要用吸附修语义错误；它救不了框错块、框进标题/说明文字。
 
-### 5. 满意后再入库
+### 5. Agent 验收通过后入库
 
 - `source=xiaohongshu`，`append-city`，不删同城豆瓣
 - **入库阶段不写 POI**；入库后**同会话** Agent 做分类 + POI（脚本会自动导出 pending 文件）
@@ -138,10 +156,17 @@ node scripts/apply-event-poi-decisions.js --city=<城市> --source=xiaohongshu
 
 ### 9. 汇报
 
+**入库不是终点。** 向用户汇报「抓取/处理完成」前，必须已完成本节第 7、8 步（分类 + POI）；缺一不可。
+
 抓取入库后同会话须汇报：**分类**（推荐/挡下条数）+ **POI**（处理几组、匹配/reject/存疑几组）。
+
+**禁止**仅汇报「已入库/已抓完」而未做分类与 POI 就结束会话。
 
 ## 禁止
 
+- **用 Node/像素/启发式脚本生成或批量写入 `posterBox`**（含临时内联脚本、扫黄条、连通域）
+- **像素/启发式脚本**写 `posterBox`
+- **无 `vision-slots.meta.json` 时跑 extract**（守卫会 exit 3）
 - 用启发式/城市规则自动猜海报位置
 - 把像素吸附作为默认流程或不预览直接写回
 - 入库用 `merge-city` / `replace-city`（会删同城豆瓣活动）

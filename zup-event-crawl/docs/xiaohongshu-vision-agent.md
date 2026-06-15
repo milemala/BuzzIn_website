@@ -2,15 +2,17 @@
 
 > **裁切精度定稿**（每场单独标框、保留真实比例、禁止套模板）：[`xiaohongshu-poster-crop-rules.md`](xiaohongshu-poster-crop-rules.md)
 
+> **标框前内化「标框使命」**：[`xiaohongshu-vision-labeling-prompt.md`](xiaohongshu-vision-labeling-prompt.md) 第一节。由执行 Agent 读入并遵守，不是让用户拼 prompt。
+
 ## 分工（先看这个）
 
 | 谁 | 做什么 | 不做什么 |
 |----|--------|----------|
-| **强视觉 Agent（优先 Fable）** | 读 slide、判断要不要裁、**一次性标最终 `posterBox`**、看总览图 | 不要用同一组坐标套多场活动；不要用「行高模板」代替海报边界 |
-| **裁切 JS** | 按 `posterBox` 机械裁图；裁完跑**质量门禁**、生成总览图 | 不猜海报在左还是右、不用版式模板 |
+| **Agent** | 读 slide、判断 crop/skip、**一次性标最终 `posterBox`**、看总览图 | 不要套模板坐标；禁止像素脚本写框 |
+| **裁切 JS** | 按 `posterBox` 机械裁图；生成总览图 | 不猜位置、不裁切门禁丢弃（crop/skip 已在标框阶段由模型决定） |
 | **边缘吸附 JS（可选）** | 只在边缘轻微露白/缺边时预览修边（`scripts/snap-poster-box-edges.js`） | 不作为默认流程；不修语义错误；不增删框、不改 crop/skip |
 
-> **默认目标：强视觉模型一步到位标准框。** JS 负责忠实裁切和低成本校验，不再默认跑像素吸附。吸附只处理“边缘差几像素”的几何问题，救不了“框错块、框进标题/说明文字”。
+> **默认目标：Agent 读图一步到位标准框。** JS 负责忠实裁切和低成本校验，不再默认跑像素吸附。吸附只处理“边缘差几像素”的几何问题，救不了“框错块、框进标题/说明文字”。
 
 > 裁切满意前：**只跑 extract + contact sheet**，不要 import。  
 > 全流程：[`xiaohongshu-review-workflow.md`](xiaohongshu-review-workflow.md)
@@ -36,13 +38,27 @@ JS 裁切（`lib/xiaohongshu-poster-crop.js`）直接 `sharp.extract({ left: x, 
 
 ---
 
+> **Agent 标注提示词定稿**：[`xiaohongshu-vision-labeling-prompt.md`](xiaohongshu-vision-labeling-prompt.md)（**读图标框前必读**）
+
 ## Agent 读图原则（标 posterBox 前必读）
 
-你的任务是从**一张 slide**（`images/XX.webp`）里，为**本场活动**找到对应的主视觉，并在 `vision-slots.json` 里填写活动字段与 `posterBox`（像素坐标）。
+| 字段 | 含义 |
+|------|------|
+| `category` | 分类（市集活动、展览、演出等） |
+| `name` | 活动名称 |
+| `price` | 费用简写（如「免费」「xx元起」） |
+| `time` | 时间 |
+| `address` | 地点 |
+| **`intro`** | **审核台「介绍」全文**：slide 上本场所有介绍性文字自然合并，**不要**拆 ticket/highlights，**不要**加「门票：」「亮点：」前缀 |
+| `slide` | 所在 `images/XX.webp` |
+| `posterBox` | 可选，海报裁切框（见 labeling-prompt 第二节） |
+
+旧版 `ticket` / `highlights` 仅作兼容；extract 会合并进 `intro` 写入 `body`。
 
 ### 版式假设：没有固定模板
 
-- 每张 slide 的排版**完全不固定**，不能套用上周、别城、同帖其他 slide 的坐标
+- **同一笔记内，每张 slide 的排版可以完全不同**；不能假设「这个帖子统一是某种版式」
+- 也不能套用上周、别城、同帖其他 slide、同页另一场的坐标
 - 一页可能有 **1～20 场**活动（常见 2～3 场，也有单行单活动或三行市集篇）
 - 活动块可能**横排、纵排、瀑布流**混排；各场海报**大小、比例可以不同**
 - 海报可能在文字**左、右、上、下**任意一侧；可能有**圆角、描边、阴影、撕纸边**
@@ -117,17 +133,16 @@ mkdir -p <笔记目录>/_tmp-review-png
 
 **标框时心里默念：**「裁出来应该长什么样？」—— 四边应是海报底色/边框的截止线，不是 slide 白条，也不是右侧说明区。
 
-### 阶段 B：裁切 + 门禁 + 总览图（默认流程）
+### 阶段 B：裁切 + 总览图（默认流程）
 
 ```bash
-# 1. 裁切 + 质量门禁
 node scripts/extract-xhs-weekly-events.js data/scrape-cache/xhs/<城市>/<笔记ID>
 
 # 2. 生成一张总览图，低成本复核全部 crop
 node scripts/create-poster-contact-sheet.js data/scrape-cache/xhs/<城市>/<笔记ID>
 ```
 
-生成 `posters/*.jpg`、`poster-qa.json`、`posters-contact-sheet.png`。
+生成 `posters/*.jpg`、`posters-contact-sheet.png`。
 
 验收必须先看 `posters-contact-sheet.png`，把所有裁图放在一张缩略图里统一判断，只抓明显问题：
 
@@ -171,7 +186,7 @@ node scripts/snap-poster-box-edges.js data/scrape-cache/xhs/<城市>/<笔记ID> 
    - **右下缺字/缺图** → `w` 或 `h` 太小  
    - 带进邻场橙条/地图脚/✅闹钟 → `y`/`h` 跨行，或 `w` 框进说明区  
 3. 只要总览图没有明显坏图，就不要逐张深挖，避免 token 浪费
-4. **全部满意后再** `import-xhs-events-to-review.js`
+4. **全部验收通过后再** `import-xhs-events-to-review.js`
 
 ---
 
@@ -228,10 +243,11 @@ node scripts/snap-poster-box-edges.js data/scrape-cache/xhs/<城市>/<笔记ID> 
 
 ---
 
-## 质量门禁（JS 安全网）
+## 裁切验收（不用 JS 门禁丢弃）
 
-裁切后过宽/过窄、几乎空白等 → `poster-qa.json` 记录 drop。  
-**门禁不能替代准确标框。**
+- **crop / skip**：标框时由 Agent 决定（无 `posterBox` = 文字封面）
+- **裁得好不好**：看 `preview-poster-boxes.js` 红框 + `posters-contact-sheet.png` 总览图
+- 旧版 `lib/xhs-poster-quality-gate.js` 仅作诊断参考，**extract 不再据此自动 drop**
 
 ---
 
@@ -242,4 +258,4 @@ node scripts/snap-poster-box-edges.js data/scrape-cache/xhs/<城市>/<笔记ID> 
 - [ ] `posters-contact-sheet.png` 总览图无明显坏裁切；若返工，最多一次  
 - [ ] 如使用吸附，必须先预览，确认合理后再 `--write`  
 - [ ] 已对照 [`xiaohongshu-poster-crop-rules.md`](xiaohongshu-poster-crop-rules.md) 检查：每场坐标独立、比例合理、无模板感  
-- [ ] 满意后再 import
+- [ ] 验收通过后再 import

@@ -2,7 +2,7 @@
 "use strict";
 
 /**
- * 将 events-extracted.json 的 highlights 写入 review.db 的 body（小红书专用，不走 Agent）。
+ * 将 events-extracted.json 的 intro 写入 review.db 的 body（小红书专用，不走 Agent）。
  *
  *   node scripts/apply-xhs-event-bodies.js
  *   node scripts/apply-xhs-event-bodies.js --city=重庆

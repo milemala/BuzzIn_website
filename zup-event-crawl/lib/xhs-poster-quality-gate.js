@@ -61,7 +61,8 @@ function boxRatios(posterBox, slideWidth, slideHeight) {
 }
 
 /**
- * 裁切后质量门禁：不猜位置，只判断「这张裁出来的图配不配当海报封面」。
+ * 裁切后几何诊断（已退出默认流水线；extract 不再据此 drop）。
+ * crop/skip 与框是否准确由 Agent 标框阶段决定；验收靠红框预览 + 总览图。
  * 不合格 → 调用方应 drop（poster=null，走文字封面）。
  *
  * @returns {{ ok: boolean, reasons: string[], metrics: object }}

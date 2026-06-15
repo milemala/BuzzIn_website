@@ -74,22 +74,35 @@ function dateInRange(range, refDate = new Date()) {
   return refDate >= start && refDate <= end;
 }
 
-function isWeekRoundupTitle(title) {
+function isWeekRoundupTitle(title, refDate = new Date()) {
   const text = String(title || "");
   if (!THIS_OR_NEXT_WEEK_RE.test(text)) return false;
+  const range = parseTitleDateRange(text);
+  if (range && isRangeExpired(range, refDate)) return false;
   return WEEKLY_TITLE_RE.test(text)
     || ROUNDUP_KEYWORD_RE.test(text)
-    || parseTitleDateRange(text) != null
+    || range != null
     || /件事/.test(text);
+}
+
+const CN_MONTHS = { 一: 1, 二: 2, 三: 3, 四: 4, 五: 5, 六: 6, 七: 7, 八: 8, 九: 9, 十: 10, 十一: 11, 十二: 12 };
+
+function titleMentionsCurrentMonth(text, refDate = new Date()) {
+  const month = refDate.getMonth() + 1;
+  if (new RegExp(`(?:^|[^\\d])${month}月`).test(text)) return true;
+  for (const [cn, num] of Object.entries(CN_MONTHS)) {
+    if (num === month && text.includes(`${cn}月`)) return true;
+  }
+  return /\d{1,2}月/.test(text);
 }
 
 function isMonthRoundupTitle(title, refDate = new Date()) {
   const text = String(title || "");
   if (/本周|这周|下周/.test(text)) return false;
+  const range = parseTitleDateRange(text);
+  if (range && isRangeExpired(range, refDate)) return false;
   if (!MONTH_ROUNDUP_RE.test(text)) return false;
-  const month = refDate.getMonth() + 1;
-  if (new RegExp(`(?:^|[^\\d])${month}月`).test(text)) return true;
-  return /\d{1,2}月/.test(text);
+  return titleMentionsCurrentMonth(text, refDate);
 }
 
 function isUpcomingDatedRoundupTitle(title, refDate = new Date()) {
@@ -136,14 +149,14 @@ function pickBestCandidate(candidates, refDate = new Date()) {
   if (nextWeek) return nextWeek;
 
   const active = withRange.filter((n) => !isRangeExpired(n.range, refDate));
-  const pool = active.length ? active : withRange;
+  if (!active.length) return null;
 
-  const withFutureRange = pool.filter((n) => n.range && rangeStartTime(n.range, refDate) >= refDate.getTime());
+  const withFutureRange = active.filter((n) => n.range && rangeStartTime(n.range, refDate) >= refDate.getTime());
   if (withFutureRange.length) {
     return withFutureRange.sort((a, b) => rangeStartTime(a.range, refDate) - rangeStartTime(b.range, refDate))[0];
   }
 
-  return pool.sort((a, b) => {
+  return active.sort((a, b) => {
     const score = (n) => (n.range ? n.range.startMonth * 100 + n.range.startDay : 0);
     return score(b) - score(a);
   })[0];
@@ -162,7 +175,7 @@ function pickWeeklyRoundupNote(notes, refDate = new Date(), options = {}) {
     : new Set(options.scrapedNoteIds || []);
   const isNew = (note) => note.noteId && !scraped.has(note.noteId);
 
-  const weekCandidates = notes.filter((n) => isNew(n) && isWeekRoundupTitle(n.title));
+  const weekCandidates = notes.filter((n) => isNew(n) && isWeekRoundupTitle(n.title, refDate));
   if (weekCandidates.length) {
     const picked = pickBestCandidate(weekCandidates, refDate);
     if (picked) return { ...picked, pickTier: "week" };

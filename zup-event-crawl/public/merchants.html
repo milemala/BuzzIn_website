@@ -196,8 +196,8 @@
           <button type="button" data-mode="strict"><span class="seg-btn-label">严格存疑</span></button>
         </div>
         <button class="btn" id="batchPoiBtn" type="button">批量补全 POI</button>
-        <button class="btn primary" id="batchImportBtn" type="button">批量入库</button>
-        <button class="btn" id="exportImportBtn" type="button">导出入库 JSON</button>
+        <button class="btn primary" id="batchImportBtn" type="button">批量推送 Zup</button>
+        <button class="btn" id="exportImportBtn" type="button">导出推送 Zup JSON</button>
       </div>
     </div>
   </header>
@@ -237,7 +237,7 @@
   <div class="import-modal" id="importModal" hidden>
     <div class="import-modal-backdrop"></div>
     <div class="import-modal-panel" role="dialog" aria-modal="true" aria-labelledby="importModalTitle">
-      <h2 id="importModalTitle">批量入库中</h2>
+      <h2 id="importModalTitle">批量推送 Zup 中</h2>
       <p class="import-modal-scope" id="importModalScope"></p>
       <div class="import-progress-track" aria-hidden="true">
         <div class="import-progress-bar" id="importProgressBar"></div>
@@ -387,7 +387,7 @@
       if (isReviewPendingReady(item)) return "字段齐全，计入待定";
       if (reviewStatus(item.merchant_uid) !== "pending") return "非待定状态";
       if (hasNoPoi(item)) return "缺 POI，不计入待定";
-      if (!isImportReady(item)) return "入库字段未齐，不计入待定";
+      if (!isImportReady(item)) return "推送字段未齐，不计入待定";
       if (item.poi_doubtful) return "POI 存疑，不计入待定";
       return "不计入待定";
     }
@@ -402,7 +402,7 @@
       return item.import_status === "imported" && Boolean(String(item.buzz_merchant_id || "").trim());
     }
 
-    /** 待入库：已通过 + 字段齐全 + 尚未写入 Buzz */
+    /** 待推送：已通过 + 字段齐全 + 尚未写入 Buzz */
     function isPendingImport(item) {
       if (reviewStatus(item.merchant_uid) !== "approved") return false;
       return isImportReady(item) && !isImportedMerchant(item);
@@ -413,19 +413,19 @@
     }
 
     function importButtonLabel(item) {
-      if (item.import_status === "imported" && item.buzz_merchant_id) return "已入库";
-      if (item.import_status === "failed") return "重试入库";
-      return "入库";
+      if (item.import_status === "imported" && item.buzz_merchant_id) return "已推送";
+      if (item.import_status === "failed") return "重试推送 Zup";
+      return "推送 Zup";
     }
 
     function renderImportStatus(item) {
       if (item.import_status === "imported" && item.buzz_merchant_id) {
-        return `<div class="import-status imported">已入库 · merchant_id <strong>${escapeHtml(item.buzz_merchant_id)}</strong></div>`;
+        return `<div class="import-status imported">已推送 · merchant_id <strong>${escapeHtml(item.buzz_merchant_id)}</strong></div>`;
       }
       if (item.import_status === "failed") {
-        return `<div class="import-status failed">入库失败：${escapeHtml(item.import_error || "未知错误")}</div>`;
+        return `<div class="import-status failed">推送失败：${escapeHtml(item.import_error || "未知错误")}</div>`;
       }
-      return `<div class="import-status pending">尚未入库</div>`;
+      return `<div class="import-status pending">尚未推送</div>`;
     }
 
     async function importSingleMerchant(uid) {
@@ -436,7 +436,7 @@
       resetImportAbortState();
       const startedAt = Date.now();
       openImportProgressModal({ label: name, batchTotal: 1 });
-      els.importModalTitle.textContent = "商户入库中";
+      els.importModalTitle.textContent = "商户推送 Zup 中";
       els.importModalScope.textContent = name;
 
       const timer = setInterval(() => {
@@ -471,7 +471,7 @@
             done: true,
             phase: "done",
           });
-          setSaveState("入库已中止", "warn");
+          setSaveState("推送已中止", "warn");
           return;
         }
         if (!response.ok || !data.ok) {
@@ -480,11 +480,11 @@
             processed: 1,
             fail: 1,
             elapsed,
-            latestText: `<strong>入库失败</strong>${escapeHtml(data.error || "未知错误")}`,
+            latestText: `<strong>推送失败</strong>${escapeHtml(data.error || "未知错误")}`,
             done: true,
             phase: "done",
           });
-          setSaveState(data.error || "入库失败", "error");
+          setSaveState(data.error || "推送失败", "error");
           render();
           return;
         }
@@ -495,11 +495,11 @@
           ok: data.skipped ? 0 : 1,
           skipped: data.skipped ? 1 : 0,
           elapsed,
-          latestText: `<strong>入库成功</strong>merchant_id ${escapeHtml(String(data.merchant_id || ""))}${escapeHtml(suffix)}`,
+          latestText: `<strong>推送成功</strong>merchant_id ${escapeHtml(String(data.merchant_id || ""))}${escapeHtml(suffix)}`,
           done: true,
           phase: "done",
         });
-        setSaveState(`入库成功 merchant_id=${data.merchant_id}${suffix}`, "ok");
+        setSaveState(`推送成功 merchant_id=${data.merchant_id}${suffix}`, "ok");
         render();
       } catch (error) {
         clearInterval(timer);
@@ -514,18 +514,18 @@
             done: true,
             phase: "done",
           });
-          setSaveState("入库已中止", "warn");
+          setSaveState("推送已中止", "warn");
         } else {
           updateImportProgressModal({
             batchTotal: 1,
             processed: 1,
             fail: 1,
             elapsed,
-            error: error.message || "入库失败",
+            error: error.message || "推送失败",
             done: true,
             phase: "done",
           });
-          setSaveState(error.message || "入库失败", "error");
+          setSaveState(error.message || "推送失败", "error");
         }
       } finally {
         state.importBusy = false;
@@ -533,7 +533,7 @@
     }
 
     async function deleteBuzzMerchant(uid, merchantId) {
-      const message = `确定从 Buzz 后台删除此商户？\n\nmerchant_id: ${merchantId}\n\n审核台里的抓取记录会保留，仅清除入库状态。`;
+      const message = `确定从 Buzz 后台删除此商户？\n\nmerchant_id: ${merchantId}\n\n审核台里的抓取记录会保留，仅清除推送状态。`;
       if (!window.confirm(message)) return;
       setSaveState("正在删除后台商户...", "warn");
       try {
@@ -597,12 +597,12 @@
 
     function openImportProgressModal({ label, batchTotal }) {
       resetImportAbortState();
-      els.importModalTitle.textContent = "批量入库中";
+      els.importModalTitle.textContent = "批量推送 Zup 中";
       els.importModalScope.textContent = `范围：${label} · 本批 ${batchTotal} 家`;
       els.importProgressBar.style.width = "0%";
       els.importProgressStats.innerHTML = [
         "<div>本批进度：<b>0 / " + batchTotal + "</b></div>",
-        "<div>成功入库：<b>0</b> · 跳过：<b>0</b> · 失败：<b>0</b></div>",
+        "<div>成功推送：<b>0</b> · 跳过：<b>0</b> · 失败：<b>0</b></div>",
         "<div>已用时间：<b>0 秒</b></div>",
       ].join("");
       els.importProgressLatest.innerHTML = "<strong>准备开始…</strong>正在连接后台";
@@ -626,7 +626,7 @@
       const pct = batchTotal > 0 ? Math.min(100, Math.round((processed / batchTotal) * 100)) : 0;
       els.importProgressBar.style.width = `${pct}%`;
       const detailLine = phase === "done"
-        ? `<div>成功入库：<b>${ok ?? 0}</b> · 跳过：<b>${skipped ?? 0}</b> · 失败：<b>${fail ?? 0}</b></div>`
+        ? `<div>成功推送：<b>${ok ?? 0}</b> · 跳过：<b>${skipped ?? 0}</b> · 失败：<b>${fail ?? 0}</b></div>`
         : `<div>已写入：<b>${processed}</b> · 失败：<b>${fail ?? 0}</b></div>`;
       els.importProgressStats.innerHTML = [
         `<div>本批进度：<b>${processed} / ${batchTotal}</b></div>`,
@@ -637,7 +637,7 @@
         els.importProgressLatest.innerHTML = latestText;
       }
       if (error) {
-        els.importModalTitle.textContent = "批量入库失败";
+        els.importModalTitle.textContent = "批量推送失败";
         els.importProgressLatest.innerHTML = `<strong>出错了</strong>${escapeHtml(error)}`;
         setImportModalControls({ running: false });
         return;
@@ -646,7 +646,7 @@
         if (aborted) {
           els.importModalTitle.textContent = "已中止";
         } else {
-          els.importModalTitle.textContent = fail > 0 ? "批量入库完成（有失败）" : "批量入库完成";
+          els.importModalTitle.textContent = fail > 0 ? "批量推送完成（有失败）" : "批量推送完成";
         }
         setImportModalControls({ running: false });
       }
@@ -662,7 +662,7 @@
       const query = city ? `?city=${encodeURIComponent(city)}` : "";
       const response = await fetch(`/api/merchants/import-progress${query}`);
       const data = await response.json();
-      if (!response.ok || !data.ok) throw new Error(data.error || "读取入库进度失败");
+      if (!response.ok || !data.ok) throw new Error(data.error || "读取推送进度失败");
       return data;
     }
 
@@ -675,7 +675,7 @@
         return `<strong>最近失败</strong>${escapeHtml(failed.name)}（${escapeHtml(failed.city)}）<br>${escapeHtml(failed.import_error || "未知错误")}`;
       }
       if (imported) {
-        return `<strong>最近入库</strong>${escapeHtml(imported.name)}（${escapeHtml(imported.city)}）`;
+        return `<strong>最近推送</strong>${escapeHtml(imported.name)}（${escapeHtml(imported.city)}）`;
       }
       return "<strong>处理中…</strong>等待第一条结果";
     }
@@ -693,16 +693,16 @@
       const eligible = filteredMerchants().filter(canImportMerchant);
       const label = currentMerchantFilterSummary();
       if (!eligible.length) {
-        window.alert("当前筛选下没有可入库的商户（需已通过、字段齐全且尚未入库）。");
+        window.alert("当前筛选下没有可推送的商户（需已通过、字段齐全且尚未推送）。");
         return;
       }
       const batchTotal = eligible.length;
-      if (!window.confirm(`将当前筛选下的 ${batchTotal} 家可入库商户写入 Buzz 后台？\n（${label}）`)) return;
+      if (!window.confirm(`将当前筛选下的 ${batchTotal} 家可推送商户写入 Buzz 后台？\n（${label}）`)) return;
 
       const city = state.filters.city === "all" ? "" : state.filters.city;
       state.importBusy = true;
       els.batchImportBtn.disabled = true;
-      setSaveState(`批量入库中（${batchTotal} 家）...`, "warn");
+      setSaveState(`批量推送 Zup 中（${batchTotal} 家）...`, "warn");
       const startedAt = Date.now();
 
       let baselineImported = 0;
@@ -751,7 +751,7 @@
           signal: state.importAbortController.signal,
         });
         const data = await response.json();
-        if (!response.ok || (!data.ok && !data.aborted)) throw new Error(data.error || "批量入库失败");
+        if (!response.ok || (!data.ok && !data.aborted)) throw new Error(data.error || "批量推送失败");
         stopImportProgressPoll();
         await loadMerchants();
         const elapsed = formatDuration(Date.now() - startedAt);
@@ -775,8 +775,8 @@
         });
         setSaveState(
           aborted
-            ? `批量入库已中止：成功 ${data.ok ?? 0} · 跳过 ${data.skipped ?? 0} · 失败 ${data.fail ?? 0} · ${elapsed}`
-            : `批量入库完成：成功 ${data.ok} · 跳过 ${data.skipped} · 失败 ${data.fail} · ${elapsed}`,
+            ? `批量推送已中止：成功 ${data.ok ?? 0} · 跳过 ${data.skipped ?? 0} · 失败 ${data.fail ?? 0} · ${elapsed}`
+            : `批量推送完成：成功 ${data.ok} · 跳过 ${data.skipped} · 失败 ${data.fail} · ${elapsed}`,
           (aborted || data.fail) ? "warn" : "ok",
         );
         render();
@@ -793,7 +793,7 @@
             done: true,
             phase: "done",
           });
-          setSaveState("批量入库已中止", "warn");
+          setSaveState("批量推送已中止", "warn");
         } else {
           updateImportProgressModal({
             batchTotal,
@@ -802,11 +802,11 @@
             skipped: 0,
             fail: 0,
             elapsed,
-            error: error.message || "批量入库失败",
+            error: error.message || "批量推送失败",
             done: true,
             phase: "done",
           });
-          setSaveState(error.message || "批量入库失败", "error");
+          setSaveState(error.message || "批量推送失败", "error");
         }
       } finally {
         state.importBusy = false;
@@ -905,7 +905,7 @@
     }
 
     async function saveImportPrep(uid, patch) {
-      setSaveState("保存入库字段...", "warn");
+      setSaveState("保存推送字段...", "warn");
       const response = await fetch(`/api/merchants/${encodeURIComponent(uid)}/import-prep`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -1111,8 +1111,8 @@
           <span class="city-chip-name">${escapeHtml(label)}</span>
           <span class="city-chip-counts">
             <span class="city-chip-pending${pendingClass}">待定 ${pending}</span>
-            <span class="city-chip-imported${importedClass}">已入库 ${imported}</span>
-            <span class="city-chip-pending-import${pendingImportClass}">待入库 ${pendingImport}</span>
+            <span class="city-chip-imported${importedClass}">已推送 ${imported}</span>
+            <span class="city-chip-pending-import${pendingImportClass}">待推送 ${pendingImport}</span>
           </span>
         </button>
       `;
@@ -1194,11 +1194,11 @@
       const scoped = merchantsInCity();
       const filters = [
         { key: "all", label: "全部" },
-        { key: "imported", label: "已入库" },
+        { key: "imported", label: "已推送" },
         { key: "approved", label: "已通过" },
         { key: "rejected", label: "已拒绝" },
         { key: "pending", label: "待定" },
-        { key: "import_ready", label: "待入库" },
+        { key: "import_ready", label: "待推送" },
         { key: "needs_poi", label: "缺 POI" },
         { key: "poi_doubtful", label: "POI 存疑" },
       ];
@@ -1228,7 +1228,7 @@
       els.stats.innerHTML = [
         ["商户总数", total],
         ["已通过", approved],
-        ["待入库", pendingImport],
+        ["待推送", pendingImport],
         ["待定", pending],
       ].map(([label, value]) => `<div class="stat"><b>${value}</b><span>${label}</span></div>`).join("");
 
@@ -1352,7 +1352,7 @@
           item.city ? `<span class="chip">${escapeHtml(item.city)}</span>` : "",
           item.category ? `<span class="chip">${escapeHtml(item.category)}</span>` : "",
           item.search_keyword ? `<span class="chip">关键词 ${escapeHtml(item.search_keyword)}</span>` : "",
-          ready ? `<span class="chip ready">可入库</span>` : `<span class="chip miss">待补全</span>`,
+          ready ? `<span class="chip ready">可推送</span>` : `<span class="chip miss">待补全</span>`,
           item.poi_doubtful ? `<span class="chip poi-doubt">POI 存疑</span>` : "",
         ].join("");
         return `
@@ -1362,7 +1362,7 @@
             </div>
             <div class="body">
               <div class="import-field merchant-name-field">
-                <label>商户名（入库 name_new，可改）</label>
+                <label>商户名（推送字段 name_new，可改）</label>
                 <input type="text" data-field="merchant_name" value="${escapeHtml(item.name)}" maxlength="255" spellcheck="false">
               </div>
               <div class="chips">${chips}</div>
@@ -1376,7 +1376,7 @@
                 </div>` : ""}
               </div>
               <div class="import-block">
-                <h3>入库准备（腾讯 POI）</h3>
+                <h3>推送 Zup 准备（腾讯 POI）</h3>
                 <div class="import-row">
                   <div class="import-field">
                     <label>商户类型</label>
@@ -1643,7 +1643,7 @@
       const response = await fetch("/api/export-import-merchants?approved_only=1&ready_only=1", { cache: "no-store" });
       const payload = await response.json();
       if (!payload.count) {
-        setSaveState("没有「已通过且可入库」的商户", "warn");
+        setSaveState("没有「已通过且可推送」的商户", "warn");
         return;
       }
       const blob = new Blob([JSON.stringify(payload.merchants, null, 2)], { type: "application/json" });
@@ -1653,7 +1653,7 @@
       anchor.download = "merchants-import.json";
       anchor.click();
       URL.revokeObjectURL(url);
-      setSaveState(`已导出 ${payload.count} 条入库 JSON`, "ok");
+      setSaveState(`已导出 ${payload.count} 条推送 JSON`, "ok");
     });
 
     async function boot() {

@@ -1,11 +1,22 @@
 # 活动抓取主流程（豆瓣 + 小红书）
 
 > **新开会话必读本文**。流程以仓库内文档与 Cursor 规则为准，**不依赖聊天上下文**。  
-> Agent 执行前还应读 [`AGENTS.md`](../AGENTS.md) 与对应 `.cursor/rules/*.mdc`。
+> **用户**只对 Agent 用自然语言提需；**Agent** 读本文并执行。提需示例见 [`AGENTS.md`](../AGENTS.md)。
+
+## 术语（勿混淆）
+
+| 说法 | 含义 | 典型位置 |
+|------|------|----------|
+| **入库** | 抓取结果写入本地 **`review.db`**，在**审核台**里可见、可审 | `importPayload`、`append-city`、Agent 汇报「入库 N 条」 |
+| **推送 Zup** | 审核台里**已通过且字段齐全**的活动/商户，写入 **Buzz 线上后台** | 审核页顶部「批量推送 Zup」、单条「推送 Zup」按钮、`buzz-now-import.js` |
+
+审核台筛选项「已推送 / 待推送」指 **Zup 后台**状态，不是「有没有进审核台」。代码里 `import_status` / `import_ready` 等字段名历史沿用，**对用户一律说「推送 Zup」**。
+
+---
 
 ## 权威来源（按来源分）
 
-| 来源 | 主文档 | Cursor 规则（用户说「抓取」时触发） |
+| 来源 | 主文档 | Cursor 规则（Agent 在用户提需后触发） |
 |------|--------|-----------------------------------|
 | **豆瓣** | 本文 §豆瓣 + 子文档 | [`.cursor/rules/douban-crawl-and-agent-poi.mdc`](../.cursor/rules/douban-crawl-and-agent-poi.mdc) |
 | **小红书** | 本文 §小红书 + [`xiaohongshu-review-workflow.md`](xiaohongshu-review-workflow.md) | [`.cursor/rules/xhs-crawl-and-review-import.mdc`](../.cursor/rules/xhs-crawl-and-review-import.mdc) |
@@ -40,7 +51,7 @@ Workbench 目录：
 | **定搜词、读候选、match/reject/doubtful** | ❌ **禁止** | ✅ **必须** |
 | **写 `*-decisions.json`** | ❌ | ✅ **唯一依据** |
 | apply decisions 落库 | ✅ | ❌ |
-| 小红书读图写 `posterBox` | ❌ | ✅ 强视觉 Agent |
+| 小红书读图写 `posterBox` | ❌ | ✅ Agent 读图 |
 
 **铁律**：`pickBestPoiForEvent`、`batch-resolve-*`、JS 自动生成 `decisions.json` 均已禁止。
 
@@ -54,7 +65,7 @@ Workbench 目录：
 | **豆瓣跳过已抓** | 按 `source_id` 或详情页 URL 中的 `event/<id>` 判断；**全库**去重，不限城市 |
 | **小红书跳过已抓帖** | 本地 `weekly-summary.json` + 库内 `xiaohongshu:<noteId>:*` 反查；选帖时自动跳过，优先选**未抓过**的本周/节日/整月汇总 |
 | **节日专题帖** | 如「北京端午活动汇总6.19～6.21」会作为「未来约 3 周内」的候选（支持全角 `～` 日期） |
-| **内容去重** | 同城下 **名称 + 地址 + 时间** 完全相同 → 丢弃（抓取阶段 + 入库 `append-city` 双保险） |
+| **内容去重** | 同城 **名称 + 地址 + 时间** 完全相同 → 丢弃；同城 **名称 + 地址** 相同 → **只保留 `end_date` 最晚** 的一条（抓取 + 入库 `append-city` 双保险，新条更晚会替换旧条） |
 
 实现：`lib/event-content-dedup.js`、`lib/xhs-scraped-notes.js`。
 
@@ -140,4 +151,4 @@ Workbench 目录：
 | 只重写 body | event-body-agent.md | `export-events-for-body.js --refresh` |
 | 只补分类 | event-classification-agent.md | `export-events-for-classification.js`（小红书加 `--source=xiaohongshu`） |
 
-复制粘贴开场白见 [`AGENTS.md`](../AGENTS.md)「新会话开场白」。
+用户提需口语示例见 [`AGENTS.md`](../AGENTS.md)「用户怎么说」。

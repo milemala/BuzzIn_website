@@ -12,20 +12,13 @@
 
 const fs = require("fs");
 const path = require("path");
-const sharp = require("sharp");
 const { cropPostersFromVisionSlots } = require("../lib/xiaohongshu-poster-crop");
-const { validatePosterCrop, formatDropReasons } = require("../lib/xhs-poster-quality-gate");
-
-const slideSizeCache = new Map();
-
-async function slideSize(imagesDir, slideName) {
-  const key = path.join(imagesDir, slideName);
-  if (slideSizeCache.has(key)) return slideSizeCache.get(key);
-  const meta = await sharp(key).metadata();
-  const size = { width: meta.width, height: meta.height };
-  slideSizeCache.set(key, size);
-  return size;
-}
+const { buildIntroFromVisionSlot, formatIntroParagraphs } = require("../lib/xhs-event-intro");
+const {
+  META_FILENAME,
+  loadMeta,
+  validateVisionPosterBoxes,
+} = require("../lib/xhs-vision-poster-guard");
 
 function loadJson(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
@@ -69,9 +62,9 @@ function buildEventsFromVision(noteDir, vision, cropped) {
       category: v.category || null,
       name: v.name || null,
       price: v.price ?? null,
+      intro: formatIntroParagraphs(buildIntroFromVisionSlot(v)) || null,
       time: v.time || null,
       address: v.address || null,
-      highlights: v.highlights || null,
       needsVision: !v.name,
     };
   });
@@ -93,7 +86,7 @@ function buildPlaceholderEvents(summary) {
         price: null,
         time: null,
         address: null,
-        highlights: null,
+        intro: null,
         needsVision: true,
       });
     });
@@ -124,42 +117,29 @@ async function main() {
   const postersDir = path.join(noteDir, "posters");
   const cropped = new Map();
   const withBox = Object.values(vision).filter((v) => v?.posterBox).length;
+  const skipPosterGuard = process.argv.includes("--skip-poster-guard");
 
-  const qaReport = { generatedAt: new Date().toISOString(), passed: [], dropped: [] };
+  if (withBox && !skipPosterGuard) {
+    const meta = loadMeta(noteDir, fs);
+    const check = validateVisionPosterBoxes(vision, { meta });
+    for (const w of check.warnings) console.warn(`  ⚠ posterBox 守卫：${w}`);
+    if (!check.ok) {
+      console.error("✗ posterBox 硬性守卫未通过，拒绝裁切。须重标 vision-slots.json 并写入 vision-slots.meta.json");
+      for (const e of check.errors) console.error(`  · ${e}`);
+      console.error(`  见 .cursor/rules/zup-event-crawl-hard-gates.mdc 与 docs/xiaohongshu-vision-labeling-prompt.md`);
+      process.exit(3);
+    }
+  }
 
   if (withBox) {
     console.log(`按 Agent 标注的 posterBox 切图（${withBox} 条）…`);
     const map = await cropPostersFromVisionSlots(imagesDir, postersDir, vision);
 
     for (const [slotKey, crop] of map.entries()) {
-      const entry = vision[slotKey] || {};
-      const slideName = entry.posterBox?.slide || crop.slide;
-      const size = slideName ? await slideSize(imagesDir, slideName) : null;
-      const check = await validatePosterCrop(crop.posterFile, entry.posterBox, size);
-      if (check.ok) {
-        cropped.set(slotKey, crop);
-        qaReport.passed.push(slotKey);
-        continue;
-      }
-      const labels = formatDropReasons(check.reasons);
-      qaReport.dropped.push({
-        slot: slotKey,
-        name: entry.name || null,
-        reasons: check.reasons,
-        reasonLabels: labels,
-        metrics: check.metrics,
-        posterBox: entry.posterBox || null,
-      });
-      vision[slotKey].posterDrop = true;
-      vision[slotKey].posterDropReasons = labels;
-      console.warn(`  ✗ ${slotKey} ${entry.name || ""} · 门禁丢弃：${labels.join("；")}`);
+      cropped.set(slotKey, crop);
     }
 
-    console.log(`  通过 ${qaReport.passed.length} 张 · 丢弃 ${qaReport.dropped.length} 张 → posters/`);
-    fs.writeFileSync(path.join(noteDir, "poster-qa.json"), `${JSON.stringify(qaReport, null, 2)}\n`);
-    if (qaReport.dropped.length) {
-      console.log(`  详见 poster-qa.json（丢弃项将用文字封面）`);
-    }
+    console.log(`  裁切 ${cropped.size} 张 → posters/（crop/skip 由标框阶段决定，extract 不做 JS 门禁丢弃）`);
   } else {
     console.log("vision-slots 无 posterBox，跳过裁图（见 docs/xiaohongshu-vision-agent.md）");
   }
@@ -217,7 +197,7 @@ async function main() {
       if (ev.price) md.push(`- **费用**：${ev.price}`);
       if (ev.time) md.push(`- **时间**：${ev.time}`);
       if (ev.address) md.push(`- **地址**：${ev.address}`);
-      if (ev.highlights) md.push(`- **介绍**：${ev.highlights}`);
+      if (ev.intro) md.push(`- **介绍**：${ev.intro}`);
       if (ev.sourceImage) md.push(`- **原图（slide）**：\`${ev.sourceImage}\``);
       if (ev.poster) md.push(`- **海报（裁切）**：\`${ev.poster}\``);
       else md.push("- **海报**：无");

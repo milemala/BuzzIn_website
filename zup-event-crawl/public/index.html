@@ -230,8 +230,8 @@
       </div>
       <div class="actions">
         <button class="btn" id="resetBtn">重置审核</button>
-        <button class="btn" id="batchPrepBtn">批量补全入库</button>
-        <button class="btn primary" id="batchImportBtn">批量入库</button>
+        <button class="btn" id="batchPrepBtn">批量补全推送字段</button>
+        <button class="btn primary" id="batchImportBtn">批量推送 Zup</button>
         <button class="btn" id="exportBtn">导出 JSON</button>
       </div>
     </div>
@@ -269,7 +269,7 @@
 
   <dialog id="exportDialog">
     <div class="modal-head">
-      <h2>入库 JSON（now/sample 格式）</h2>
+      <h2>推送 Zup JSON（now/sample 格式）</h2>
       <button class="btn" onclick="document.getElementById('exportDialog').close()">关闭</button>
     </div>
     <textarea id="exportText" readonly></textarea>
@@ -278,7 +278,7 @@
   <div class="import-modal" id="importModal" hidden>
     <div class="import-modal-backdrop"></div>
     <div class="import-modal-panel" role="dialog" aria-modal="true" aria-labelledby="importModalTitle">
-      <h2 id="importModalTitle">入库中</h2>
+      <h2 id="importModalTitle">推送 Zup 中</h2>
       <p class="import-modal-scope" id="importModalScope"></p>
       <div class="import-progress-track" aria-hidden="true">
         <div class="import-progress-bar" id="importProgressBar"></div>
@@ -316,9 +316,10 @@
     let importAbortRequested = false;
     let importFailures = [];
     let reviewBusy = false;
-    const BATCH_REVIEW_STATUS_FILTERS = new Set(["pending", "poi_doubtful", "rule-blocked"]);
+    const BATCH_REVIEW_STATUS_FILTERS = new Set(["pending", "no_poi", "poi_doubtful", "rule-blocked"]);
     const BATCH_REVIEW_FILTER_LABELS = {
       pending: "待定",
+      no_poi: "未匹配 POI",
       poi_doubtful: "POI 存疑",
       "rule-blocked": "挡下待处理",
     };
@@ -435,7 +436,7 @@
       return hasEventStarted(event) ? 2 : 3;
     }
 
-    /** 1 动态保留人工选择；2/3 随是否已开始实时变化（与入库逻辑一致） */
+    /** 1 动态保留人工选择；2/3 随是否已开始实时变化（与推送逻辑一致） */
     function effectiveNowType(event) {
       const n = Number(event.now_type);
       if (n === 1) return 1;
@@ -537,19 +538,19 @@
         const groupLine = event.buzz_group_id
           ? `<br>群聊 group_id <strong>${escapeHtml(event.buzz_group_id)}</strong>`
           : "";
-        return `<div class="import-status imported">已入库 · now_id <strong>${escapeHtml(event.buzz_now_id)}</strong>${groupLine}</div>`;
+        return `<div class="import-status imported">已推送 · now_id <strong>${escapeHtml(event.buzz_now_id)}</strong>${groupLine}</div>`;
       }
       if (event.import_status === "failed") {
-        return `<div class="import-status failed">入库失败：${escapeHtml(event.import_error || "未知错误")}</div>`;
+        return `<div class="import-status failed">推送失败：${escapeHtml(event.import_error || "未知错误")}</div>`;
       }
-      return `<div class="import-status pending">尚未入库</div>`;
+      return `<div class="import-status pending">尚未推送</div>`;
     }
 
     function isImportedEvent(event) {
       return event.import_status === "imported" && Boolean(String(event.buzz_now_id || "").trim());
     }
 
-    /** 待入库：已通过 + 字段齐全 + 尚未写入 Buzz */
+    /** 待推送：已通过 + 字段齐全 + 尚未写入 Buzz */
     function isPendingImportEvent(event) {
       if (getStatus(event) !== "approved") return false;
       return isImportReady(event) && !isImportedEvent(event);
@@ -575,9 +576,9 @@
     }
 
     function importButtonLabel(event) {
-      if (event.import_status === "imported" && event.buzz_now_id) return "已入库";
-      if (event.import_status === "failed") return "重试入库";
-      return "入库";
+      if (event.import_status === "imported" && event.buzz_now_id) return "已推送";
+      if (event.import_status === "failed") return "重试推送 Zup";
+      return "推送 Zup";
     }
 
     function getApprovedEvents() {
@@ -604,7 +605,7 @@
     }
 
     async function saveImportPrep(uid, patch) {
-      setSaveState("保存入库字段...", "warn");
+      setSaveState("保存推送字段...", "warn");
       const response = await fetch(`/api/events/${encodeURIComponent(uid)}/import-prep`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -667,7 +668,7 @@
     }
 
     async function deleteBuzzNow(uid, nowId) {
-      const message = `确定从 Buzz 后台删除此气泡？\n\nnow_id: ${nowId}\n\n审核台里的活动记录会保留，仅清除入库状态。`;
+      const message = `确定从 Buzz 后台删除此气泡？\n\nnow_id: ${nowId}\n\n审核台里的活动记录会保留，仅清除推送状态。`;
       if (!window.confirm(message)) return;
       setSaveState("正在删除后台气泡...", "warn");
       try {
@@ -778,7 +779,7 @@
       resetImportAbortState();
       importFailures = [];
       renderImportFailuresList(importFailures);
-      importModalTitleEl.textContent = title || "入库中";
+      importModalTitleEl.textContent = title || "推送 Zup 中";
       importModalScopeEl.textContent = scope || "";
       importProgressBarEl.style.width = "0%";
       importProgressStatsEl.innerHTML = [
@@ -847,7 +848,7 @@
         renderImportFailuresList(failures);
       }
       if (error) {
-        importModalTitleEl.textContent = "入库失败";
+        importModalTitleEl.textContent = "推送失败";
         importProgressLatestEl.innerHTML = `<strong>出错了</strong>${escapeHtml(error)}`;
         setImportModalControls({ running: false });
         return;
@@ -856,7 +857,7 @@
         if (aborted) {
           importModalTitleEl.textContent = "已中止";
         } else {
-          importModalTitleEl.textContent = fail > 0 ? "入库完成（有失败）" : "入库完成";
+          importModalTitleEl.textContent = fail > 0 ? "推送完成（有失败）" : "推送完成";
         }
         setImportModalControls({ running: false });
       }
@@ -896,7 +897,7 @@
         const prepData = await prepResponse.json();
         if (prepData.event) upsertEvent(prepData.event);
         if (!prepResponse.ok || !prepData.ok) {
-          return { ok: false, error: prepData.error || "保存入库字段失败", data: prepData };
+          return { ok: false, error: prepData.error || "保存推送字段失败", data: prepData };
         }
       }
       if (isImportAborted()) return { ok: false, aborted: true };
@@ -922,7 +923,7 @@
       importBusy = true;
       const startedAt = Date.now();
       openImportProgressModal({
-        title: "活动入库中",
+        title: "活动推送 Zup 中",
         scope: title,
         batchTotal: 1,
       });
@@ -948,7 +949,7 @@
             aborted: true,
             latestText: "<strong>已中止</strong>本条未完成上传",
           });
-          setSaveState("入库已中止", "warn");
+          setSaveState("推送已中止", "warn");
         } else if (!result.ok) {
           const errMsg = resolveImportFailureMessage(result, uid, title);
           recordImportFailure({ title, error: errMsg });
@@ -958,9 +959,9 @@
             fail: 1,
             elapsed,
             failures: importFailures,
-            latestText: `<strong>入库失败</strong>${escapeHtml(title)}<br>${escapeHtml(errMsg)}`,
+            latestText: `<strong>推送失败</strong>${escapeHtml(title)}<br>${escapeHtml(errMsg)}`,
           });
-          setSaveState(`${title} 入库失败：${errMsg}`, "error");
+          setSaveState(`${title} 推送失败：${errMsg}`, "error");
         } else {
           const suffix = result.skipped ? "（后台已存在）" : "";
           const groupText = result.data.group_id ? ` · group_id=${result.data.group_id}` : "";
@@ -970,9 +971,9 @@
             ok: result.skipped ? 0 : 1,
             skipped: result.skipped ? 1 : 0,
             elapsed,
-            latestText: `<strong>入库成功</strong>now_id ${escapeHtml(String(result.data.now_id || ""))}${escapeHtml(groupText)}${escapeHtml(suffix)}`,
+            latestText: `<strong>推送成功</strong>now_id ${escapeHtml(String(result.data.now_id || ""))}${escapeHtml(groupText)}${escapeHtml(suffix)}`,
           });
-          setSaveState(`入库成功 now_id=${result.data.now_id}${groupText}${suffix}`, "ok");
+          setSaveState(`推送成功 now_id=${result.data.now_id}${groupText}${suffix}`, "ok");
         }
         render();
       } catch (error) {
@@ -985,9 +986,9 @@
             aborted: true,
             latestText: "<strong>已中止</strong>",
           });
-          setSaveState("入库已中止", "warn");
+          setSaveState("推送已中止", "warn");
         } else {
-          const errMsg = error.message || "入库失败";
+          const errMsg = error.message || "推送失败";
           recordImportFailure({ title, error: errMsg });
           finishImportProgressModal({
             batchTotal: 1,
@@ -995,9 +996,9 @@
             fail: 1,
             elapsed: formatDuration(Date.now() - startedAt),
             failures: importFailures,
-            latestText: `<strong>入库失败</strong>${escapeHtml(title)}<br>${escapeHtml(errMsg)}`,
+            latestText: `<strong>推送失败</strong>${escapeHtml(title)}<br>${escapeHtml(errMsg)}`,
           });
-          setSaveState(`${title} 入库失败：${errMsg}`, "error");
+          setSaveState(`${title} 推送失败：${errMsg}`, "error");
         }
       } finally {
         importBusy = false;
@@ -1019,7 +1020,7 @@
       if (importBusy) return;
       const eligible = getFilteredEvents().filter(canImportEvent);
       if (!eligible.length) {
-        setSaveState("当前筛选下没有可入库的活动（需已通过、字段齐全且尚未入库）", "warn");
+        setSaveState("当前筛选下没有可推送的活动（需已通过、字段齐全且尚未推送）", "warn");
         return;
       }
       const filterSummary = currentFilterSummary();
@@ -1028,7 +1029,7 @@
       document.getElementById("batchImportBtn").disabled = true;
       const startedAt = Date.now();
       openImportProgressModal({
-        title: "批量入库中",
+        title: "批量推送 Zup 中",
         scope: `筛选：${filterSummary} · 共 ${batchTotal} 条`,
         batchTotal,
       });
@@ -1061,7 +1062,7 @@
             skipped,
             fail,
             elapsed: formatDuration(Date.now() - startedAt),
-            latestText: `<strong>正在入库 (${processed + 1}/${batchTotal})</strong>${escapeHtml(event.title || uid)}`,
+            latestText: `<strong>正在推送 Zup (${processed + 1}/${batchTotal})</strong>${escapeHtml(event.title || uid)}`,
             phase: "running",
           });
           try {
@@ -1081,7 +1082,7 @@
                 fail,
                 failures: importFailures,
                 elapsed: formatDuration(Date.now() - startedAt),
-                latestText: `<strong>入库失败 (${processed + 1}/${batchTotal})</strong>${escapeHtml(result.title || event.title || uid)}<br>${escapeHtml(errMsg)}`,
+                latestText: `<strong>推送失败 (${processed + 1}/${batchTotal})</strong>${escapeHtml(result.title || event.title || uid)}<br>${escapeHtml(errMsg)}`,
                 phase: "running",
               });
             }
@@ -1100,7 +1101,7 @@
               fail,
               failures: importFailures,
               elapsed: formatDuration(Date.now() - startedAt),
-              latestText: `<strong>入库失败 (${processed}/${batchTotal})</strong>${escapeHtml(event.title || uid)}<br>${escapeHtml(errMsg)}`,
+              latestText: `<strong>推送失败 (${processed}/${batchTotal})</strong>${escapeHtml(event.title || uid)}<br>${escapeHtml(errMsg)}`,
               phase: "running",
             });
           }
@@ -1127,8 +1128,8 @@
         const failSummary = summarizeImportFailures(importFailures);
         setSaveState(
           aborted
-            ? `批量入库已中止：已完成 ${processed} 条 · 成功 ${ok} · 跳过 ${skipped} · 失败 ${fail} · ${elapsed}${failSummary}`
-            : `批量入库完成：成功 ${ok} · 跳过 ${skipped} · 失败 ${fail} · ${elapsed}${failSummary}`,
+            ? `批量推送已中止：已完成 ${processed} 条 · 成功 ${ok} · 跳过 ${skipped} · 失败 ${fail} · ${elapsed}${failSummary}`
+            : `批量推送完成：成功 ${ok} · 跳过 ${skipped} · 失败 ${fail} · ${elapsed}${failSummary}`,
           (aborted || fail) ? "warn" : "ok",
         );
         render();
@@ -1140,9 +1141,9 @@
           skipped,
           fail,
           elapsed: formatDuration(Date.now() - startedAt),
-          error: error.message || "批量入库失败",
+          error: error.message || "批量推送失败",
         });
-        setSaveState(error.message || "批量入库失败", "error");
+        setSaveState(error.message || "批量推送失败", "error");
       } finally {
         importBusy = false;
         document.getElementById("batchImportBtn").disabled = false;
@@ -1154,7 +1155,7 @@
       if (!window.confirm("为全部未过期活动写入默认发布者/now_type？\n（不会改动 POI）")) return;
       prepBusy = true;
       document.getElementById("batchPrepBtn").disabled = true;
-      setSaveState("批量补全入库中...", "warn");
+      setSaveState("批量补全推送字段中...", "warn");
       try {
         const response = await fetch("/api/events/import-prep-batch", {
           method: "POST",
@@ -1555,8 +1556,8 @@
       const pendingImportClass = pendingImport > 0 ? "" : " is-zero";
       return `
         <span class="city-pending${pendingClass}">待定 ${pending}</span>
-        <span class="city-imported${importedClass}">已入库 ${imported}</span>
-        <span class="city-pending-import${pendingImportClass}">待入库 ${pendingImport}</span>
+        <span class="city-imported${importedClass}">已推送 ${imported}</span>
+        <span class="city-pending-import${pendingImportClass}">待推送 ${pendingImport}</span>
       `;
     }
 
@@ -1702,14 +1703,14 @@
       const statusCounts = filterMetrics?.statusCounts || {};
       const filters = [
         { key: "all", label: "全部" },
-        { key: "imported", label: "已入库" },
+        { key: "imported", label: "已推送" },
         { key: "suggested", label: "推荐" },
         { key: "classification-pending", label: "待分类" },
         { key: "rule-blocked", label: "挡下待处理" },
         { key: "approved", label: "已通过" },
         { key: "rejected", label: "已拒绝" },
         { key: "pending", label: "待定" },
-        { key: "import_ready", label: "待入库" },
+        { key: "import_ready", label: "待推送" },
         { key: "no_poi", label: "未匹配 POI" },
         { key: "poi_doubtful", label: "POI 存疑" },
         { key: "expired", label: "已过期" },
@@ -1879,7 +1880,7 @@
                 <span class="chip">${escapeHtml(event.district || event.city)}</span>
                 ${renderClassificationChip(event)}
                 <span class="chip">来源#${escapeHtml(event.sourcePosition || "-")}</span>
-                <span class="import-ready-tag ${ready ? "" : "no"}">${ready ? "可入库" : "未齐"}</span>
+                <span class="import-ready-tag ${ready ? "" : "no"}">${ready ? "可推送" : "未齐"}</span>
                 ${event.location_poi_id
     ? `<span class="chip poi-hit">POI 已匹配</span>`
     : `<span class="chip poi-miss">未匹配 POI</span>`}
@@ -1895,7 +1896,7 @@
               <div class="summary">${escapeHtml(event.body || "")}</div>
               <div class="reason">${escapeHtml(event.reviewReason)}</div>
               <div class="import-block">
-                <h3>入库准备</h3>
+                <h3>推送 Zup 准备</h3>
                 <div class="import-row">
                   <div class="import-field">
                     <label for="user-${escapeHtml(uid)}">发布者 user_id</label>
@@ -1910,7 +1911,7 @@
                     </select>
                   </div>
                   <div class="import-meta">
-                    入库时间：<strong>start_at</strong> ${escapeHtml(event.start_at || "—")}<br>
+                    推送时间：<strong>start_at</strong> ${escapeHtml(event.start_at || "—")}<br>
                     <strong>expired_at</strong> ${escapeHtml(event.expired_at || "—")}
                   </div>
                   <div class="import-meta">

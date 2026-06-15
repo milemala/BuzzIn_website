@@ -13,6 +13,10 @@ const { parseEventTimeFromText } = require("./event-time-parse");
 const {
   eventContentDedupKey,
   loadContentDedupKeys,
+  loadTitleLocationDedupIndex,
+  isEventBetterByEnd,
+  eventTitleLocationDedupKey,
+  toTitleLocationIncumbent,
 } = require("./event-content-dedup");
 const { openDatabase } = require("./review-db");
 
@@ -38,7 +42,8 @@ function buildRawDetailText(extracted, event, noteDir) {
     `时间：${event.time || "—"}`,
     `地址：${event.address || "—"}`,
   ];
-  if (event.highlights) lines.push(`介绍：${event.highlights}`);
+  const intro = event.intro || event.highlights || event.ticket;
+  if (intro) lines.push(`介绍：${intro}`);
   lines.push(
     "",
     `来源账号：${extracted.account || "—"}`,
@@ -182,7 +187,14 @@ async function loadReviewEventsFromNote(noteDir, rootDir, options = {}) {
   const contentKeys = options.contentDedupKeys instanceof Set
     ? new Set(options.contentDedupKeys)
     : new Set();
+  const titleLocationIndex = options.titleLocationIndex instanceof Map
+    ? options.titleLocationIndex
+    : new Map();
+  const batchTitleLocationWinners = options.batchTitleLocationWinners instanceof Map
+    ? options.batchTitleLocationWinners
+    : new Map();
   let skippedDuplicate = 0;
+  let skippedTitleLocation = 0;
 
   let position = 1;
   for (const event of events) {
@@ -195,6 +207,36 @@ async function loadReviewEventsFromNote(noteDir, rootDir, options = {}) {
       }
       continue;
     }
+
+    const titleLocationKey = eventTitleLocationDedupKey(reviewEvent);
+    if (titleLocationKey) {
+      const dbIncumbent = titleLocationIndex.get(titleLocationKey);
+      const batchIncumbent = batchTitleLocationWinners.get(titleLocationKey);
+      const incumbent = dbIncumbent && batchIncumbent
+        ? (isEventBetterByEnd(batchIncumbent, dbIncumbent) ? batchIncumbent : dbIncumbent)
+        : (batchIncumbent || dbIncumbent);
+      if (incumbent && !isEventBetterByEnd(reviewEvent, incumbent)) {
+        skippedTitleLocation += 1;
+        if (options.log !== false) {
+          console.log(`  跳过较早结束(标题+地点): ${reviewEvent.title}`);
+        }
+        continue;
+      }
+      if (batchIncumbent && isEventBetterByEnd(reviewEvent, batchIncumbent)) {
+        for (let i = reviewEvents.length - 1; i >= 0; i -= 1) {
+          if (eventTitleLocationDedupKey(reviewEvents[i]) !== titleLocationKey) continue;
+          if (isEventBetterByEnd(reviewEvents[i], reviewEvent)) continue;
+          reviewEvents.splice(i, 1);
+          break;
+        }
+      }
+      batchTitleLocationWinners.set(titleLocationKey, {
+        ...toTitleLocationIncumbent(reviewEvent, reviewEvent.city),
+        xhsNoteId: reviewEvent.xhsNoteId,
+        xhsIndex: reviewEvent.xhsIndex,
+      });
+    }
+
     contentKeys.add(dedupKey);
     position += 1;
     try {
@@ -215,7 +257,7 @@ async function loadReviewEventsFromNote(noteDir, rootDir, options = {}) {
     reviewEvents.push(reviewEvent);
   }
 
-  return { extracted, reviewEvents, coverStats, skippedDuplicate };
+  return { extracted, reviewEvents, coverStats, skippedDuplicate, skippedTitleLocation };
 }
 
 async function loadAllXhsReviewEvents(rootDir, options = {}) {
@@ -223,8 +265,10 @@ async function loadAllXhsReviewEvents(rootDir, options = {}) {
   const noteDirs = listXhsNoteDirs(xhsRoot, options.city || null);
   const allEvents = [];
   const byCity = {};
-  const totals = { poster: 0, text: 0, fail: 0, notes: 0, events: 0, skippedDuplicate: 0 };
+  const totals = { poster: 0, text: 0, fail: 0, notes: 0, events: 0, skippedDuplicate: 0, skippedTitleLocation: 0 };
   let contentDedupKeys = options.contentDedupKeys;
+  let titleLocationIndex = options.titleLocationIndex;
+  const batchTitleLocationWinners = new Map();
   if (!contentDedupKeys && options.dbPath && fs.existsSync(options.dbPath)) {
     const db = openDatabase(options.dbPath);
     try {
@@ -232,23 +276,29 @@ async function loadAllXhsReviewEvents(rootDir, options = {}) {
         city: options.city || undefined,
         source: XHS_SOURCE,
       });
+      titleLocationIndex = loadTitleLocationDedupIndex(db, {
+        city: options.city || undefined,
+        source: XHS_SOURCE,
+      });
     } finally {
       db.close();
     }
   }
+  titleLocationIndex = titleLocationIndex || new Map();
 
   for (const item of noteDirs) {
     if (options.log !== false) {
       console.log(`\n读取 ${item.city} / ${path.basename(item.noteDir)}`);
     }
-    const { extracted, reviewEvents, coverStats, skippedDuplicate } = await loadReviewEventsFromNote(
+    const { extracted, reviewEvents, coverStats, skippedDuplicate, skippedTitleLocation } = await loadReviewEventsFromNote(
       item.noteDir,
       rootDir,
-      { ...options, contentDedupKeys },
+      { ...options, contentDedupKeys, titleLocationIndex, batchTitleLocationWinners },
     );
     totals.notes += 1;
     totals.events += reviewEvents.length;
     totals.skippedDuplicate += skippedDuplicate || 0;
+    totals.skippedTitleLocation += skippedTitleLocation || 0;
     totals.poster += coverStats.poster;
     totals.text += coverStats.text;
     totals.fail += coverStats.fail;
@@ -269,6 +319,9 @@ async function loadAllXhsReviewEvents(rootDir, options = {}) {
 
   if (totals.skippedDuplicate && options.log !== false) {
     console.log(`\n内容去重：共跳过 ${totals.skippedDuplicate} 条（名称+地址+时间相同）`);
+  }
+  if (totals.skippedTitleLocation && options.log !== false) {
+    console.log(`标题+地点去重：共跳过 ${totals.skippedTitleLocation} 条（保留结束时间更晚）`);
   }
 
   return { allEvents, byCity, totals, noteDirs };

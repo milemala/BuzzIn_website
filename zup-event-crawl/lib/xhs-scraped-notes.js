@@ -46,7 +46,24 @@ function loadScrapedXhsNoteIds(city, rootDir, dbPath) {
   return ids;
 }
 
+/** 该小红书汇总帖是否已有活动写入 review.db（已入库则不再做读图/裁切/入库/分类/POI） */
+function noteHasImportedEvents(city, noteId, dbPath) {
+  if (!city || !noteId || !dbPath || !fs.existsSync(dbPath)) return false;
+  const db = openDatabase(dbPath);
+  try {
+    const row = db.prepare(`
+      SELECT COUNT(*) AS n
+      FROM events
+      WHERE source = 'xiaohongshu' AND city = ? AND event_uid LIKE ?
+    `).get(city, `xiaohongshu:${noteId}:%`);
+    return Number(row?.n) > 0;
+  } finally {
+    db.close();
+  }
+}
+
 module.exports = {
   loadScrapedXhsNoteIds,
   noteIdFromXhsEventUid,
+  noteHasImportedEvents,
 };

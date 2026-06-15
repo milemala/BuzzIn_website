@@ -6,7 +6,8 @@ const { execFileSync } = require("child_process");
 const { exportClassificationPending } = require("./export-classification-pending");
 const { exportPoiPending } = require("./export-poi-pending");
 const { importPayload, openDatabase } = require("./review-db");
-const { loadContentDedupKeys } = require("./event-content-dedup");
+const { loadContentDedupKeys, loadTitleLocationDedupIndex } = require("./event-content-dedup");
+const { noteHasImportedEvents } = require("./xhs-scraped-notes");
 const {
   buildImportPayload,
   loadAllXhsReviewEvents,
@@ -59,19 +60,21 @@ function runExtractScript(noteDir, rootDir) {
 async function importNoteEvents(noteDir, rootDir, options = {}) {
   const dbPath = options.dbPath || path.join(rootDir, "data", "review.db");
   let contentDedupKeys = options.contentDedupKeys;
+  let titleLocationIndex = options.titleLocationIndex;
   if (!contentDedupKeys && fs.existsSync(dbPath)) {
     const db = openDatabase(dbPath);
     try {
       contentDedupKeys = loadContentDedupKeys(db, { source: "xiaohongshu" });
+      titleLocationIndex = loadTitleLocationDedupIndex(db, { source: "xiaohongshu" });
     } finally {
       db.close();
     }
   }
 
-  const { extracted, reviewEvents, coverStats, skippedDuplicate } = await loadReviewEventsFromNote(
+  const { extracted, reviewEvents, coverStats, skippedDuplicate, skippedTitleLocation } = await loadReviewEventsFromNote(
     noteDir,
     rootDir,
-    { ...options, contentDedupKeys, dbPath },
+    { ...options, contentDedupKeys, titleLocationIndex, dbPath },
   );
   if (!reviewEvents.length) {
     return {
@@ -163,6 +166,8 @@ async function importAllReadyNotes(rootDir, options = {}) {
  */
 async function processNoteDir(noteDir, options = {}) {
   const rootDir = options.rootDir || path.join(__dirname, "..");
+  const dbPath = options.dbPath || path.join(rootDir, "data", "review.db");
+  const noteId = path.basename(noteDir);
   const result = {
     noteDir,
     city: path.basename(path.dirname(noteDir)),
@@ -173,6 +178,12 @@ async function processNoteDir(noteDir, options = {}) {
     status: "pending",
     message: "",
   };
+
+  if (noteHasImportedEvents(result.city, noteId, dbPath)) {
+    result.status = "already_imported";
+    result.message = "该笔记已入库 review.db，跳过后续处理（不重复抓、不重复入库）";
+    return result;
+  }
 
   if (!hasVisionSlots(noteDir)) {
     result.status = "awaiting_vision";

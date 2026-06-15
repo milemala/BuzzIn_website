@@ -1,0 +1,61 @@
+---
+description: zup-event-crawl 硬性门禁。用户提抓取/入库/海报/vision-slots 等需求时，Agent 必须先过门禁，禁止用像素脚本写 posterBox。
+alwaysApply: true
+---
+
+# zup-event-crawl · 硬性门禁（违反即停止）
+
+用户对本仓库下活动抓取（豆瓣/小红书）**只用自然语言提需**。Agent **必须**按已定流程执行，**禁止随意发挥、禁止捷径**。
+
+完整流程：[`zup-event-crawl/AGENTS.md`](zup-event-crawl/AGENTS.md) → [`zup-event-crawl/docs/event-crawl-master-workflow.md`](zup-event-crawl/docs/event-crawl-master-workflow.md) → 对应 [`.cursor/rules/*.mdc`](zup-event-crawl/.cursor/rules/)
+
+---
+
+## 触发条件（命中任一条，先读门禁再动手）
+
+- 用户提到：小红书、豆瓣、抓取、入库、海报、裁切、切图、`vision-slots`、`posterBox`、某城市活动
+- 将编辑 `zup-event-crawl/data/scrape-cache/**`、`vision-slots.json`、`posters/`
+
+小红书细则：[`zup-event-crawl/.cursor/rules/xhs-crawl-and-review-import.mdc`](zup-event-crawl/.cursor/rules/xhs-crawl-and-review-import.mdc)
+
+---
+
+## 海报 `posterBox` 门禁
+
+### 唯一合法方式
+
+在本会话内**逐张读图**（`images/*.webp` 或同尺寸 png），为每场活动单独标 `posterBox`；写 `vision-slots.meta.json`；再 `extract` + 总览图；向用户汇报。
+
+### 绝对禁止
+
+| 禁止 | 原因 |
+|------|------|
+| **Node / 像素 / 启发式脚本**写 `posterBox` | 套坐标，守卫会拦 |
+| 套模板坐标、多场共用同一组 `x,y,w,h` | 裁切必坏 |
+
+---
+
+## 标框方式
+
+1. 读 [`xiaohongshu-vision-labeling-prompt.md`](zup-event-crawl/docs/xiaohongshu-vision-labeling-prompt.md) **「标框使命」**
+2. 每张 slide、每场单独读图；禁止套坐标
+3. 只改 `posterBox` 时保留 `intro`
+4. 写 `vision-slots.meta.json`（含 `labeledAt`；`labeledBy` 可选，仅作记录）
+5. `extract` → `create-poster-contact-sheet.js` → 汇报活动数、海报数、总览是否过关
+
+默认不对用户交付 `preview-poster-boxes` 红框中间产物。
+
+---
+
+## 其他铁律
+
+- 分类、POI：Agent 判断，禁止 JS 自动选点；**入库**（写入审核台）后同会话必做分类+POI，做完才能向用户汇报完成
+- 入库小红书：`append-city`
+- 不向用户口述脚本命令
+- 任务结束须向用户汇报结果，禁止无声结束
+
+---
+
+## 违反时
+
+不得交付坏切图；不得隐瞒用脚本标框。

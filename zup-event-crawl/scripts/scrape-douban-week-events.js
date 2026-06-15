@@ -25,6 +25,10 @@ const { eventUidFor, importPayload, openDatabase, syncEventPoiCoordinates } = re
 const {
   eventContentDedupKey,
   loadContentDedupKeys,
+  loadTitleLocationDedupIndex,
+  isEventBetterByEnd,
+  eventTitleLocationDedupKey,
+  toTitleLocationIncumbent,
 } = require("../lib/event-content-dedup");
 
 const root = path.join(__dirname, "..");
@@ -203,6 +207,16 @@ function loadExistingContentKeysForCity(filePath, targetCity, source = "douban")
   const db = openDatabase(filePath);
   try {
     return loadContentDedupKeys(db, { city: targetCity, source });
+  } finally {
+    db.close();
+  }
+}
+
+function loadExistingTitleLocationIndexForCity(filePath, targetCity, source = "douban") {
+  if (!isDatabaseTarget(filePath) || !fs.existsSync(filePath)) return new Map();
+  const db = openDatabase(filePath);
+  try {
+    return loadTitleLocationDedupIndex(db, { city: targetCity, source });
   } finally {
     db.close();
   }
@@ -483,7 +497,9 @@ async function autoPoiImportedEvents(importedEvents) {
 async function main() {
   const existingIds = loadExistingDoubanIds(output);
   const existingContentKeys = loadExistingContentKeysForCity(output, city, "douban");
+  const existingTitleLocationIndex = loadExistingTitleLocationIndexForCity(output, city, "douban");
   const batchContentKeys = new Set();
+  const batchTitleLocationWinners = new Map();
   const candidateMap = await loadListCandidates();
   const candidates = [...candidateMap.values()];
   const detailed = [];
@@ -491,6 +507,7 @@ async function main() {
     listTotal: candidates.length,
     skippedExisting: 0,
     skippedDuplicate: 0,
+    skippedTitleLocation: 0,
     skippedExcluded: 0,
     detailFailed: 0,
     composeOk: 0,
@@ -592,6 +609,27 @@ async function main() {
       console.log(`Skip duplicate content ${event.title}`);
       continue;
     }
+
+    const titleLocationKey = eventTitleLocationDedupKey(event);
+    if (titleLocationKey) {
+      const dbIncumbent = existingTitleLocationIndex.get(titleLocationKey);
+      const batchIncumbent = batchTitleLocationWinners.get(titleLocationKey);
+      const incumbent = dbIncumbent && batchIncumbent
+        ? (isEventBetterByEnd(batchIncumbent, dbIncumbent) ? batchIncumbent : dbIncumbent)
+        : (batchIncumbent || dbIncumbent);
+      if (incumbent && !isEventBetterByEnd(event, incumbent)) {
+        counters.skippedTitleLocation += 1;
+        console.log(`Skip older title+location ${event.title}`);
+        continue;
+      }
+      if (batchIncumbent && isEventBetterByEnd(event, batchIncumbent)) {
+        const loserId = batchIncumbent.id;
+        const loserIdx = detailed.findIndex((item) => item.id === loserId);
+        if (loserIdx >= 0) detailed.splice(loserIdx, 1);
+      }
+      batchTitleLocationWinners.set(titleLocationKey, toTitleLocationIncumbent(event, city));
+    }
+
     batchContentKeys.add(contentKey);
 
     detailed.push(event);
@@ -604,7 +642,7 @@ async function main() {
   writeCityResults(events);
   await autoPoiImportedEvents(events);
   console.log(`Wrote ${events.length} new ${city} events to ${output} (${mode})`);
-  console.log(`List ${counters.listTotal} · skipped existing ${counters.skippedExisting} · skipped duplicate ${counters.skippedDuplicate} · skipped excluded ${counters.skippedExcluded} · detail failed ${counters.detailFailed} · 4:3 composed ${counters.composeOk} · compose failed ${counters.composeFail}`);
+  console.log(`List ${counters.listTotal} · skipped existing ${counters.skippedExisting} · skipped duplicate ${counters.skippedDuplicate} · skipped title+location ${counters.skippedTitleLocation} · skipped excluded ${counters.skippedExcluded} · detail failed ${counters.detailFailed} · 4:3 composed ${counters.composeOk} · compose failed ${counters.composeFail}`);
   console.log(events.map((event) => `${event.sourcePosition}. ${event.score} ${event.category} ${event.title}`).join("\n"));
 }
 

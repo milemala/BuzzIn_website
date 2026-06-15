@@ -29,7 +29,12 @@ const {
 const {
   eventContentDedupKey,
   loadContentDedupKeys,
+  loadTitleLocationDedupIndex,
+  collapseEventsByTitleLocation,
+  createTitleLocationDedupGate,
+  isEventBetterByEnd,
 } = require("./event-content-dedup");
+const { getComposedImagePath } = require("./composed-image");
 
 const DEFAULT_NOTE = "本文件用于本地人工审核。保留原始抓取详情文本，body 为基于原文提炼的 Zup 活动简介。图片发布前需再次确认来源授权与平台规则。";
 const VALID_REVIEW_STATUSES = new Set(["approved", "pending", "rejected"]);
@@ -846,21 +851,44 @@ function importPayload(db, payload, options = {}) {
 
     const shouldDedupContent = mode === "append-city" || mode === "merge-city";
     const existingContentKeys = shouldDedupContent ? loadContentDedupKeys(db) : new Set();
+    const titleLocationGate = shouldDedupContent
+      ? createTitleLocationDedupGate(loadTitleLocationDedupIndex(db))
+      : null;
     const batchContentKeys = new Set();
+    const deleteEvent = db.prepare("DELETE FROM events WHERE event_uid = ?");
     let skippedDuplicate = 0;
+    let skippedTitleLocation = 0;
+    let replacedTitleLocation = 0;
+    const rootDir = options.rootDir || path.join(__dirname, "..");
 
     for (const [city, events] of groups.entries()) {
       const generatedAt = cityMeta[city]?.generatedAt || payload.generatedAt || new Date().toISOString();
       const sourcePage = cityMeta[city]?.sourcePage || sourcePages[city] || payload.sourcePage || null;
       let importedCount = 0;
+      const cityEvents = shouldDedupContent
+        ? collapseEventsByTitleLocation(events, city)
+        : events;
 
-      for (const event of events) {
+      for (const event of cityEvents) {
         if (shouldDedupContent) {
           const dedupKey = eventContentDedupKey({ ...event, city: event.city || city });
           if (existingContentKeys.has(dedupKey) || batchContentKeys.has(dedupKey)) {
             skippedDuplicate += 1;
             continue;
           }
+
+          const tlDecision = titleLocationGate.decide({ ...event, city: event.city || city }, city);
+          if (tlDecision.action === "skip") {
+            skippedTitleLocation += 1;
+            continue;
+          }
+          if (tlDecision.deleteUid) {
+            deleteEvent.run(tlDecision.deleteUid);
+            const coverPath = getComposedImagePath(tlDecision.deleteUid, rootDir);
+            if (fs.existsSync(coverPath)) fs.unlinkSync(coverPath);
+            replacedTitleLocation += 1;
+          }
+
           batchContentKeys.add(dedupKey);
         }
 
@@ -922,6 +950,12 @@ function importPayload(db, payload, options = {}) {
 
     if (skippedDuplicate > 0) {
       setMetaValue(db, "last_import_skipped_duplicate", String(skippedDuplicate));
+    }
+    if (skippedTitleLocation > 0) {
+      setMetaValue(db, "last_import_skipped_title_location", String(skippedTitleLocation));
+    }
+    if (replacedTitleLocation > 0) {
+      setMetaValue(db, "last_import_replaced_title_location", String(replacedTitleLocation));
     }
   });
 }

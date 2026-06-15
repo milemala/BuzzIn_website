@@ -4,6 +4,8 @@
 
 本目录位于官网仓库 `BuzzInMap_website/zup-event-crawl/` 内，与根目录静态页、`events/` H5 原型**分文件夹**维护，便于单独扩展抓取能力；与官网共用同一 git 仓库，在 Cursor 侧边栏可直接展开本目录。
 
+**术语**：**入库** = 抓取结果写入本地 `review.db`（审核台）；**推送 Zup** = 审核台里已通过的内容同步到 Buzz 线上后台（审核页顶部按钮，勿称「入库」）。
+
 ## 目录结构
 
 ```
@@ -124,14 +126,14 @@ node scripts/run-xhs-weekly-pipeline.js --city=北京,上海,广州
 node scripts/run-xhs-weekly-pipeline.js --skip-scrape --city=上海
 ```
 
-输出在 `data/scrape-cache/xhs/<城市>/<笔记ID>/`。Agent 读图规则见 [`docs/xiaohongshu-vision-agent.md`](docs/xiaohongshu-vision-agent.md)、裁切精度见 [`docs/xiaohongshu-poster-crop-rules.md`](docs/xiaohongshu-poster-crop-rules.md)。入库 `source=xiaohongshu`，`append-city` 不覆盖同城豆瓣；有海报 → 4:3 封面，无海报 → 文字封面；POI 后续再做。
+输出在 `data/scrape-cache/xhs/<城市>/<笔记ID>/`。海报由 Agent 逐张读图标框、裁切、验收后入库；有海报 → 4:3 封面，无海报 → 文字封面。
 
-海报裁切由**强视觉模型逐张 slide、逐场活动标 `posterBox`**（版式因笔记而异，禁止套模板坐标），然后跑 `extract-xhs-weekly-events.js` 和 `create-poster-contact-sheet.js` 看总览。标框自检：`node scripts/preview-poster-boxes.js <笔记目录>`。`snap-poster-box-edges.js` 是可选修边工具，默认仅预览，确认后才加 `--write` 写回。
+**一站式**：对 Agent 说「抓取成都豆瓣活动」或「处理上海小红书一周活动」即可，用户不跑脚本。
 
-**Agent 全流程（新会话必读，不依赖聊天记忆）**：
+Agent 内部文档：
 
-- **总览**：[`docs/event-crawl-master-workflow.md`](docs/event-crawl-master-workflow.md)（豆瓣 + 小红书步骤、JS/Agent 分工、检查清单）
-- **入口**：[`AGENTS.md`](AGENTS.md)（复制粘贴开场白）
+- **总览**：[`docs/event-crawl-master-workflow.md`](docs/event-crawl-master-workflow.md)
+- **用户怎么说**：[`AGENTS.md`](AGENTS.md)
 - 豆瓣规则：[`.cursor/rules/douban-crawl-and-agent-poi.mdc`](.cursor/rules/douban-crawl-and-agent-poi.mdc)
 - 小红书规则：[`.cursor/rules/xhs-crawl-and-review-import.mdc`](.cursor/rules/xhs-crawl-and-review-import.mdc)
 

@@ -4,9 +4,15 @@
 
 > **新开会话必读**：以 [`event-crawl-master-workflow.md`](event-crawl-master-workflow.md) + 本文 + `.cursor/rules/xhs-crawl-and-review-import.mdc` 为准，**不依赖聊天上下文**。
 
-## 一句话
+## 用户视角（一站式）
 
-Chrome 抓汇总帖 → **强视觉 Agent 读原尺寸 slide 写最终 `posterBox`** → extract 裁图 → 生成一张 poster 总览缩略图验收 → 满意后合成封面入库 `review.db`（`source=xiaohongshu`）→ **同会话 Agent 分类 + POI 匹配**。
+**用户只对 Agent 用自然语言提需**（如「处理重庆小红书一周活动」「重跑重庆海报」），不运行脚本、不读本文档。
+
+**Agent 包办**：抓取 → 读图标框 → 裁切验收 → 入库 → 分类 → POI，完成后汇报活动数、海报情况、是否入库。用户提需示例见 [`AGENTS.md`](../AGENTS.md)。
+
+## 一句话（Agent 内部）
+
+Chrome 抓汇总帖 → **读 slide 写 `posterBox`** → extract 裁图 → 总览图验收 → Agent 确认通过后入库 `review.db` → **同会话分类 + POI**。
 
 ## 必读子文档
 
@@ -48,28 +54,30 @@ node scripts/run-xhs-weekly-pipeline.js --import-only
 | 阶段 | 自动？ | 说明 |
 |------|--------|------|
 | 1. 抓个人页 + 选汇总帖 + 下图 | ✅ | 优先本周/下周汇总，其次整月汇总；无合适帖则跳过该城；同笔记已有 `weekly-summary.json` 则跳过重复下载 |
-| 2. 强视觉 Agent 读图写 `vision-slots.json` | ❌ **必须人工/Agent** | 版式每周不同；`posterBox` 是最终裁切区域，不是粗框 |
-| 3. extract 合并 + 裁海报 + 质量门禁 | ✅ | 有 `posterBox` 才裁；裁完太离谱自动 drop → 文字封面 |
+| 2. 读图写 `vision-slots.json` | Agent | 版式因 slide 而异；`posterBox` 是最终裁切区域 |
+| 3. extract 合并 + 裁海报 | ✅ | 有 `posterBox` 才裁；**守卫**：须 `vision-slots.meta.json`（含 `labeledAt`），拒绝模板坐标 |
 | 4. 裁图验收 | ✅ + Agent | 必须用 `create-poster-contact-sheet.js` 把所有裁图合成一张总览缩略图；有明显坏图最多返工一次 |
 | 5. 合成封面 + 入库 | ✅ | `append-city`，**不删**同城豆瓣活动；**不做 POI** |
 | 5. 校正入库时间 | Agent | `export-events-for-time.js` → `time-decisions.json` → `apply-event-time-decisions.js`（见 [`event-time-agent.md`](event-time-agent.md)） |
-| 6. 审核台筛选 | 人工 | 来源选「小红书」；状态/类型/日期按来源联动 |
+| 6. 审核台筛选 | 用户可选 | 来源选「小红书」；Agent 汇报入库结果，用户自行在审核台浏览 |
 | 7. 分类 | Agent **入库后同会话** | 自动导出 `classification-pending.json` → decisions → apply |
 | 8. POI | Agent **分类后同会话** | 自动导出 `pending.json` → 定搜词 → poi-search-cli → decisions → apply |
 | 9. body | 已入库 | highlights 已写入；存量可用 `apply-xhs-event-bodies.js` |
 
-## 分步命令（调试时用）
+## Agent 内部执行（用户无需操作）
+
+以下命令由 **Agent 自行运行**，不向用户口述步骤：
 
 ```bash
 # 单城抓取
 node scripts/scrape-xhs-profile-weekly.js --city=北京 "<个人页URL>"
 
-# Agent 写好 vision-slots.json 后
-node scripts/preview-poster-boxes.js data/scrape-cache/xhs/北京/<笔记ID>   # 可选：slide 上叠红框自检
+# 标好 vision-slots.json 后
+node scripts/preview-poster-boxes.js data/scrape-cache/xhs/北京/<笔记ID>
 node scripts/extract-xhs-weekly-events.js data/scrape-cache/xhs/北京/<笔记ID>
 node scripts/create-poster-contact-sheet.js data/scrape-cache/xhs/北京/<笔记ID>
 
-# 总览图满意后再入库审核台
+# 总览图验收通过后
 node scripts/import-xhs-events-to-review.js data/review.db --city=北京
 ```
 
@@ -80,8 +88,8 @@ data/scrape-cache/xhs/<城市>/<笔记ID>/
 ├── images/*.webp           # slide 原图（posterBox 坐标以这些为准）
 ├── _tmp-review-png/        # 可选：同尺寸临时 PNG，Agent 读图用，可保留复盘
 ├── vision-slots.json       # Agent 填写（无此文件不能 extract/入库）
-├── posters/                # 仅有 posterBox 且通过门禁时保留
-├── poster-qa.json          # 裁切门禁：passed / dropped 及原因
+├── posters/                # 有 posterBox 时 extract 裁出
+├── posters-contact-sheet.png  # 总览验收（必看）
 ├── posters-contact-sheet.png # 海报总览图（低成本验收）
 ├── events-extracted.json   # extract 输出
 ├── events-extracted.md     # 人类可读摘要
@@ -107,7 +115,7 @@ data/scrape-cache/xhs/<城市>/<笔记ID>/
 ### Agent 读图
 
 - **每张 slide 所有活动都要写**（`01_0`、`01_1`、`01_2`…）
-- **posterBox 由强视觉 Agent 逐张 slide、逐场活动看图填写最终框**；脚本只执行裁切，不猜框
+- **posterBox 由 Agent 逐张 slide、逐场活动看图填写最终框**；脚本只执行裁切，不猜框
 - 如果 `webp` 不能稳定直读，可生成**同尺寸临时 PNG**读图；不要用低清预览量坐标；临时图不用强制删除，可保留复盘
 - **是否裁切看版面主视觉**：独立图块、尺寸足够、裁出来能当封面就写 `posterBox`；不要按风景/展品/现场照的内容意义过度苛刻
 - 纯文字 slide、装饰小图、太小缩略图、无法干净裁出的图 → 不写 `posterBox`

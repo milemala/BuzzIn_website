@@ -1,9 +1,11 @@
 "use strict";
 
+const { buildIntroFromEventFields } = require("./xhs-event-intro");
+
 const BODY_SOURCE_PENDING = "pending";
 const BODY_SOURCE_AGENT = "agent";
 const BODY_SOURCE_JS_FALLBACK = "js_fallback";
-/** 小红书合集 vision 提炼的 highlights，入库时直写 body，不走 Agent */
+/** 小红书合集 vision 提炼的介绍，入库时直写 body，不走 Agent */
 const BODY_SOURCE_XHS = "xhs_source";
 
 /** 活动介绍正文建议字数（不含参加方式也可，但推荐两段合一写入 body） */
@@ -34,9 +36,9 @@ function buildPendingBodyFields() {
   };
 }
 
-/** 小红书 events-extracted.json 的 highlights → body */
+/** 小红书 events-extracted.json → 审核台「介绍」（整段 intro，不拆门票/亮点标签） */
 function buildXhsBodyFields(event) {
-  const body = normalizeBodyText(event?.highlights || "");
+  const body = buildIntroFromEventFields(event);
   if (!body) {
     return buildPendingBodyFields();
   }
