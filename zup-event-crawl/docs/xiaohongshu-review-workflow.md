@@ -12,7 +12,7 @@
 
 ## 一句话（Agent 内部）
 
-Chrome 抓汇总帖 → **读 slide 写 `posterBox`** → extract 裁图 → 总览图验收 → Agent 确认通过后入库 `review.db` → **同会话分类 + POI**。
+Chrome 抓汇总帖 → **动态读 slide 标 `posterBox`** → extract 裁图 → 入库 `review.db` → **同会话分类 + POI**。
 
 ## 必读子文档
 
@@ -47,17 +47,16 @@ node scripts/run-xhs-weekly-pipeline.js --skip-scrape --city=上海
 node scripts/run-xhs-weekly-pipeline.js --import-only
 ```
 
-> 裁切质量没验收前，不要急着跑入库。先用下方分步命令 `extract + create-poster-contact-sheet` 看总览图。
+> 标好 `vision-slots.json` 后跑 `extract` 再入库。不跑红框预览、不拼 contact sheet。
 
 ### 流水线阶段
 
 | 阶段 | 自动？ | 说明 |
 |------|--------|------|
 | 1. 抓个人页 + 选汇总帖 + 下图 | ✅ | 优先本周/下周汇总，其次整月汇总；无合适帖则跳过该城；同笔记已有 `weekly-summary.json` 则跳过重复下载 |
-| 2. 读图写 `vision-slots.json` | Agent | 版式因 slide 而异；`posterBox` 是最终裁切区域 |
-| 3. extract 合并 + 裁海报 | ✅ | 有 `posterBox` 才裁；**守卫**：须 `vision-slots.meta.json`（含 `labeledAt`），拒绝模板坐标 |
-| 4. 裁图验收 | ✅ + Agent | 必须用 `create-poster-contact-sheet.js` 把所有裁图合成一张总览缩略图；有明显坏图最多返工一次 |
-| 5. 合成封面 + 入库 | ✅ | `append-city`，**不删**同城豆瓣活动；**不做 POI** |
+| 2. 读图写 `vision-slots.json` | Agent | 动态决定一次读几张；`images-jpg/` |
+| 3. extract 合并 + 裁海报 | ✅ | 有 `posterBox` 才裁；守卫：meta + 反模板坐标 |
+| 4. 入库 | ✅ | `append-city` |
 | 5. 校正入库时间 | Agent | `export-events-for-time.js` → `time-decisions.json` → `apply-event-time-decisions.js`（见 [`event-time-agent.md`](event-time-agent.md)） |
 | 6. 审核台筛选 | 用户可选 | 来源选「小红书」；Agent 汇报入库结果，用户自行在审核台浏览 |
 | 7. 分类 | Agent **入库后同会话** | 自动导出 `classification-pending.json` → decisions → apply |
@@ -73,11 +72,7 @@ node scripts/run-xhs-weekly-pipeline.js --import-only
 node scripts/scrape-xhs-profile-weekly.js --city=北京 "<个人页URL>"
 
 # 标好 vision-slots.json 后
-node scripts/preview-poster-boxes.js data/scrape-cache/xhs/北京/<笔记ID>
 node scripts/extract-xhs-weekly-events.js data/scrape-cache/xhs/北京/<笔记ID>
-node scripts/create-poster-contact-sheet.js data/scrape-cache/xhs/北京/<笔记ID>
-
-# 总览图验收通过后
 node scripts/import-xhs-events-to-review.js data/review.db --city=北京
 ```
 
@@ -86,11 +81,10 @@ node scripts/import-xhs-events-to-review.js data/review.db --city=北京
 ```
 data/scrape-cache/xhs/<城市>/<笔记ID>/
 ├── images/*.webp           # slide 原图（posterBox 坐标以这些为准）
-├── _tmp-review-png/        # 可选：同尺寸临时 PNG，Agent 读图用，可保留复盘
+├── images-jpg/*.jpg        # Agent 读图用（与 webp 同尺寸，quality≈60；抓取时自动双写）
 ├── vision-slots.json       # Agent 填写（无此文件不能 extract/入库）
+├── vision-slots.meta.json  # 标框元数据（含 labeledAt）
 ├── posters/                # 有 posterBox 时 extract 裁出
-├── posters-contact-sheet.png  # 总览验收（必看）
-├── posters-contact-sheet.png # 海报总览图（低成本验收）
 ├── events-extracted.json   # extract 输出
 ├── events-extracted.md     # 人类可读摘要
 └── weekly-summary.json     # 抓取元数据
@@ -115,12 +109,10 @@ data/scrape-cache/xhs/<城市>/<笔记ID>/
 ### Agent 读图
 
 - **每张 slide 所有活动都要写**（`01_0`、`01_1`、`01_2`…）
-- **posterBox 由 Agent 逐张 slide、逐场活动看图填写最终框**；脚本只执行裁切，不猜框
-- 如果 `webp` 不能稳定直读，可生成**同尺寸临时 PNG**读图；不要用低清预览量坐标；临时图不用强制删除，可保留复盘
-- **是否裁切看版面主视觉**：独立图块、尺寸足够、裁出来能当封面就写 `posterBox`；不要按风景/展品/现场照的内容意义过度苛刻
-- 纯文字 slide、装饰小图、太小缩略图、无法干净裁出的图 → 不写 `posterBox`
-- **禁止**固定比例裁切、禁止复制其他笔记/上周的 box
-- 像素吸附不是默认流程；只在语义正确但边缘差几像素时预览，确认后才 `--write`
+- **动态读图**：根据版式复杂度决定一次读几张；列表左栏活动海报应标 `posterBox`
+- 读 **`images-jpg/`**；禁止一次塞整帖；禁止子代理合并套坐标
+- 纯文字 slide、时间表 → 不写 `posterBox`
+- **禁止**跨 slide 复制完全相同 `x,y,w,h`
 
 ### 入库
 
@@ -139,9 +131,9 @@ data/scrape-cache/xhs/<城市>/<笔记ID>/
 ## 检查清单（Agent 交付前自检）
 
 - [ ] `weekly-summary.json` 存在，slide 图齐全
-- [ ] `vision-slots.json` 每条活动有 `name/time/address/highlights`
-- [ ] 已生成 `posters-contact-sheet.png`，所有裁图缩略图无明显坏裁切
-- [ ] 如果总览图有明显问题，只返工一次：改 `posterBox` → 重跑 extract → 重跑 contact sheet
+- [ ] `vision-slots.json` 每条活动有 `name/time/address/intro`
+- [ ] 已写 `vision-slots.meta.json`
+- [ ] 动态读图标完；已 `extract`；**未**跑红框预览与 contact sheet
 - [ ] 无海报条目未强行裁切
 - [ ] `events-extracted.json` 活动数与 slide 一致（上海类文字帖可达 30+ 条）
 - [ ] `import-xhs-events-to-review.js` 或流水线 `--import-only` 跑通
@@ -166,7 +158,7 @@ data/scrape-cache/xhs/<城市>/<笔记ID>/
 | `scripts/batch-scrape-xhs-cities.js` | 多城抓取（内部应调流水线） |
 | `scripts/scrape-xhs-profile-weekly.js` | 单城抓取 |
 | `scripts/extract-xhs-weekly-events.js` | vision → events-extracted |
-| `scripts/create-poster-contact-sheet.js` | 生成 `posters-contact-sheet.png` 总览图 |
+| `scripts/extract-xhs-weekly-events.js` | 合并 + 按 posterBox 裁 `posters/` |
 | `scripts/snap-poster-box-edges.js` | 可选边缘吸附；默认预览，确认后才 `--write` |
 | `scripts/import-xhs-events-to-review.js` | 入库 + 封面合成 |
 | `lib/xhs-weekly-pipeline.js` | 流水线编排 |

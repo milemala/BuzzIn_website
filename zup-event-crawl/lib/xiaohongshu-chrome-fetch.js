@@ -10,6 +10,11 @@ const {
   parseNoteDetailFromHtml,
   parseProfileNotes,
 } = require("./xiaohongshu-parse");
+const {
+  DEFAULT_JPEG_QUALITY,
+  slideJpgPath,
+  webpToReviewJpg,
+} = require("./ensure-slide-review-jpg");
 
 const DEFAULT_WAIT_MS = 12000;
 const DEFAULT_POLL_MS = 1500;
@@ -74,8 +79,10 @@ function fetchBuffer(url) {
   });
 }
 
-async function downloadNoteImages(note, outDir) {
+async function downloadNoteImages(note, outDir, options = {}) {
   fs.mkdirSync(outDir, { recursive: true });
+  const noteDir = path.dirname(outDir);
+  const jpegQuality = options.jpegQuality ?? DEFAULT_JPEG_QUALITY;
   const saved = [];
   const list = note?.imageList || [];
   for (let i = 0; i < list.length; i++) {
@@ -83,9 +90,12 @@ async function downloadNoteImages(note, outDir) {
     const url = img.urlDefault || img.url || img.infoList?.find((x) => x.imageScene === "WB_DFT")?.url;
     if (!url) continue;
     const buf = await fetchBuffer(url);
-    const file = path.join(outDir, `${String(i).padStart(2, "0")}.webp`);
+    const slide = `${String(i).padStart(2, "0")}.webp`;
+    const file = path.join(outDir, slide);
     fs.writeFileSync(file, buf);
-    saved.push({ index: i, file, url, bytes: buf.length });
+    const jpgPath = slideJpgPath(noteDir, slide);
+    await webpToReviewJpg(file, jpgPath, jpegQuality);
+    saved.push({ index: i, file, jpg: jpgPath, url, bytes: buf.length });
   }
   return saved;
 }

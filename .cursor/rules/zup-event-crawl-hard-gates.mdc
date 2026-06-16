@@ -24,7 +24,9 @@ alwaysApply: true
 
 ### 唯一合法方式
 
-在本会话内**逐张读图**（`images/*.webp` 或同尺寸 png），为每场活动单独标 `posterBox`；写 `vision-slots.meta.json`；再 `extract` + 总览图；向用户汇报。
+在本会话内根据版式复杂度**动态读图**（`images-jpg/`）标 `posterBox`；写 `vision-slots.meta.json`；`extract` → 入库；向用户汇报。
+
+**禁止**跑 `preview-poster-boxes.js`（红框）、`create-poster-contact-sheet.js`（拼大图）。
 
 ### 绝对禁止
 
@@ -38,12 +40,13 @@ alwaysApply: true
 ## 标框方式
 
 1. 读 [`xiaohongshu-vision-labeling-prompt.md`](zup-event-crawl/docs/xiaohongshu-vision-labeling-prompt.md) **「标框使命」**
-2. 每张 slide、每场单独读图；禁止套坐标
-3. 只改 `posterBox` 时保留 `intro`
-4. 写 `vision-slots.meta.json`（含 `labeledAt`；`labeledBy` 可选，仅作记录）
-5. `extract` → `create-poster-contact-sheet.js` → 汇报活动数、海报数、总览是否过关
+2. **动态读图**：根据版式复杂度决定一次读几张；同页三场 `y` 分行量；禁止整帖一气标完、禁止子代理合并坐标
+3. 问题清单（左%/上%/宽%/高%）→ 换算 px
+4. 只改 `posterBox` 时保留 `intro`
+5. 写 `vision-slots.meta.json`（含 `labeledAt`）
+6. 全部标完 → `extract` → `import` → 汇报活动数、海报数
 
-默认不对用户交付 `preview-poster-boxes` 红框中间产物。
+**禁止**：红框预览、拼 contact sheet 大图。
 
 ---
 

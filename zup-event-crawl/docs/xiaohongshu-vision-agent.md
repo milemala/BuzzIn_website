@@ -8,7 +8,7 @@
 
 | 谁 | 做什么 | 不做什么 |
 |----|--------|----------|
-| **Agent** | 读 slide、判断 crop/skip、**一次性标最终 `posterBox`**、看总览图 | 不要套模板坐标；禁止像素脚本写框 |
+| **Agent** | 动态读 slide、问题清单标框、**一次性标最终 `posterBox`** | 不要套模板坐标；禁止语义脚本写框 |
 | **裁切 JS** | 按 `posterBox` 机械裁图；生成总览图 | 不猜位置、不裁切门禁丢弃（crop/skip 已在标框阶段由模型决定） |
 | **边缘吸附 JS（可选）** | 只在边缘轻微露白/缺边时预览修边（`scripts/snap-poster-box-edges.js`） | 不作为默认流程；不修语义错误；不增删框、不改 crop/skip |
 
@@ -102,55 +102,36 @@ JS 裁切（`lib/xiaohongshu-poster-crop.js`）直接 `sharp.extract({ left: x, 
 
 ## Agent 标准流程（必须按顺序）
 
-### 阶段 0：临时读图输入
+### 阶段 0：读图输入（JPEG，同尺寸）
 
-如果工具不能稳定直接读 `images/*.webp`，允许生成**同尺寸临时 PNG** 辅助视觉标注：
+Cursor Read 工具通常无法直接读 `webp`。使用 **`images-jpg/XX.jpg`**（与 `images/XX.webp` 同尺寸，quality≈60）：
 
-```bash
-# 仅作 Agent 读图，不作为最终裁切产物；可保留，便于后续复盘
-mkdir -p <笔记目录>/_tmp-review-png
-```
+- 抓取时已自动双写 `images-jpg/`；缺某页时按需生成：`ensure-slide-review-jpg.js --slide=XX.webp`
+- **禁止**批量转全帖 PNG（慢、占空间）
+- `posterBox` 仍写回相对原 `images/XX.webp` 的像素坐标
+- 旧目录若有 `images-png/`，可保留但新流程优先 `images-jpg/`
 
-- 临时 PNG 必须与原 `webp` 同尺寸，避免低清图换算导致坐标偏移
-- `posterBox` 仍然写回相对原 `images/XX.webp` 的像素坐标
-- 不要生成低分辨率预览来量最终坐标
-- `_tmp-review-png/`、`images-png/` 等临时目录**不用强制删除**；保留它们可以减少下次读图成本
+### 阶段 A：动态读图标框
 
-### 阶段 A：逐张 slide 标注
-
-对 `images/01.webp`、`02.webp`… **一张一张**，每场活动 **单独** 处理：
+一次读几张由版式复杂度决定。版式稳定时可以多读几张一起处理；版式突变、信息密集或边界难量时，单页处理。
 
 ```
-读 slide 全图
-  → 本场活动（01_0、01_1…）对应哪一块图？
-  → 两个判断：
-       ① 左侧（或该场）有没有可作为封面的图？（见下「crop / skip」）
-       ② 我能否标出该图四边，使裁切结果 = 仅这张图、不夹带邻场文字/图标？
-  → 能 → 写 posterBox（四边贴海报外缘，不是贴「行」、不是贴 slide）
-  → 不能 → 不写 posterBox
-  → 下一场（禁止复制上一场坐标）
+读当前判断合适的一组 slide
+  → 每张、每场：问题清单 → % → px
+  → 同页三场 y 分行量；禁止整帖一气读完再写坐标
+  → 纯文字/时间表 skip
+继续下一组
 ```
 
-**标框时心里默念：**「裁出来应该长什么样？」—— 四边应是海报底色/边框的截止线，不是 slide 白条，也不是右侧说明区。
-
-### 阶段 B：裁切 + 总览图（默认流程）
+### 阶段 B：extract + 入库
 
 ```bash
 node scripts/extract-xhs-weekly-events.js data/scrape-cache/xhs/<城市>/<笔记ID>
-
-# 2. 生成一张总览图，低成本复核全部 crop
-node scripts/create-poster-contact-sheet.js data/scrape-cache/xhs/<城市>/<笔记ID>
 ```
 
-生成 `posters/*.jpg`、`posters-contact-sheet.png`。
+有 `posterBox` 时产出 `posters/*.jpg`，然后 `import-xhs-events-to-review.js`。
 
-验收必须先看 `posters-contact-sheet.png`，把所有裁图放在一张缩略图里统一判断，只抓明显问题：
-
-- 顶部还带活动标题/黄色星标 → `y` 太小，框进了 slide 标题
-- 右侧出现闹钟、地图、票价、说明文字 → `w` 太宽或 `x` 错
-- 只裁到局部照片/缺标题、日期、脚标 → `y/h` 太紧
-- 同一页多个 crop 长得像同一套模板 → 需要回原 slide 逐场重标
-- 如果总览图发现明显坏图，允许回原 slide **整体返工一次**：改 `posterBox` → 重跑 extract → 重跑 contact sheet。第二次总览后不再无限循环微调，除非用户明确要求继续。
+**不跑**：`preview-poster-boxes.js`、`create-poster-contact-sheet.js`。
 
 ### 阶段 C：可选边缘吸附（只修几何，不修语义）
 
@@ -178,15 +159,11 @@ node scripts/snap-poster-box-edges.js data/scrape-cache/xhs/<城市>/<笔记ID> 
 
 > **不要**用全图像素扫描去猜 `posterBox` 在哪（旧 measure 脚本已删除）。「哪块是海报」只能来自 Agent 读图。
 
-### 阶段 D：最小复核
+### 阶段 D：入库前确认
 
-1. 先看 `posters-contact-sheet.png`，只挑明显坏图回原 slide
-2. 坏裁切典型征象 → 改 `vision-slots.json` 里该场 `posterBox` → 重跑 extract + contact sheet（**最多返工一次**）
-   - 裁切图**左上露白** → `x` 太小或 `y` 太小（框在海报外侧）  
-   - **右下缺字/缺图** → `w` 或 `h` 太小  
-   - 带进邻场橙条/地图脚/✅闹钟 → `y`/`h` 跨行，或 `w` 框进说明区  
-3. 只要总览图没有明显坏图，就不要逐张深挖，避免 token 浪费
-4. **全部验收通过后再** `import-xhs-events-to-review.js`
+1. `vision-slots.meta.json` 已写（含 `labeledAt`）
+2. `extract` 守卫无模板坐标警告
+3. **全部验收通过后再** `import-xhs-events-to-review.js`
 
 ---
 
@@ -207,7 +184,8 @@ node scripts/snap-poster-box-edges.js data/scrape-cache/xhs/<城市>/<笔记ID> 
 
 - 整段只有标题+时间+地址列表，**没有任何独立图块**（如「免费电影」纯文字 slide）  
 - 只有分隔装饰、 rocking horse 页眉图标等  
-- 图块太小、只能裁出缩略图；或框不干净（会跨行、会夹邻场/正文）→ 宁可 skip，用文字封面  
+- **占比太小**：宽 < slide 25%，或高 < 约 280px；本地宝左侧小缩略图默认 skip  
+- 图块框不干净（会跨行、会夹邻场/正文）→ 宁可 skip，用文字封面  
 
 ---
 
@@ -243,19 +221,18 @@ node scripts/snap-poster-box-edges.js data/scrape-cache/xhs/<城市>/<笔记ID> 
 
 ---
 
-## 裁切验收（不用 JS 门禁丢弃）
+## 裁切验收
 
-- **crop / skip**：标框时由 Agent 决定（无 `posterBox` = 文字封面）
-- **裁得好不好**：看 `preview-poster-boxes.js` 红框 + `posters-contact-sheet.png` 总览图
-- 旧版 `lib/xhs-poster-quality-gate.js` 仅作诊断参考，**extract 不再据此自动 drop**
+- 标框阶段解决；**不靠**红框预览或拼大图
+- `extract` 守卫（meta + 反套模板坐标）是唯一脚本侧拦截
 
 ---
 
 ## 交付自检（裁切阶段）
 
-- [ ] 每张 slide、每场单独判断 crop / skip  
+- [ ] 动态控制读图数量，未一次塞整帖  
+- [ ] 每张 slide、每场单独判断 crop / skip；太小缩略图已 skip  
 - [ ] `posterBox` 四边对准**目标海报最终外缘**，不是对准「行」  
-- [ ] `posters-contact-sheet.png` 总览图无明显坏裁切；若返工，最多一次  
-- [ ] 如使用吸附，必须先预览，确认合理后再 `--write`  
+- [ ] 已写 `vision-slots.meta.json`  
 - [ ] 已对照 [`xiaohongshu-poster-crop-rules.md`](xiaohongshu-poster-crop-rules.md) 检查：每场坐标独立、比例合理、无模板感  
 - [ ] 验收通过后再 import

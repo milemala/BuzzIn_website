@@ -2,9 +2,10 @@
 "use strict";
 
 /**
- * 生成 posters/ 总览图，用一张图低成本复核裁切质量。
+ * 【已退出标准流程，勿在 Agent 流水线运行】
+ * 将 posters/ 拼成一张大图。默认不生成。
  *
- * 用法：
+ * 用法（仅人工需要时）：
  *   node scripts/create-poster-contact-sheet.js <笔记目录> [--out=文件名.png]
  */
 

@@ -97,7 +97,8 @@ Workbench 目录：
 |---|------|--------|-------------|
 | 1 | 抓个人页/下图 | JS | `run-xhs-weekly-pipeline.js --city=` |
 | 2 | 读 slide 写 `vision-slots.json` | **Agent** | 见 [xiaohongshu-vision-agent.md](xiaohongshu-vision-agent.md) |
-| 3 | extract + 总览图验收 | JS + Agent 看图 | `extract-xhs-weekly-events.js` + `create-poster-contact-sheet.js` |
+| 3 | extract | JS | `extract-xhs-weekly-events.js`（产出 `posters/`） |
+| 4 | 入库 + 分类 + POI | Agent + JS | `import-xhs-events-to-review.js` 等 |
 | 4 | 入库 | JS | `run-xhs-weekly-pipeline.js --skip-scrape --city=` → **自动导出** `classification-pending.json` + `pending.json` |
 | 5 | 校正时间 | Agent + JS | 见 [event-time-agent.md](event-time-agent.md)（`--source=xiaohongshu`） |
 | 6 | 分类 | Agent + JS | `classification-decisions.json` → `apply-event-classification-decisions.js --source=xiaohongshu` |
@@ -136,7 +137,7 @@ Workbench 目录：
 ### 小红书全套
 
 - [ ] 已读本文 + `xhs-crawl-and-review-import.mdc` + `xiaohongshu-review-workflow.md`
-- [ ] `vision-slots.json` 已填且总览图已验收再入库
+- [ ] `vision-slots.json` 已填且已 `extract` 再入库
 - [ ] 入库后**同会话**完成分类 + POI（非「以后再说」）
 - [ ] apply 分类/POI 均带 `--source=xiaohongshu`
 

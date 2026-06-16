@@ -30,20 +30,21 @@
 5. **宁可 skip，不可硬裁**  
    框不干净、会带进说明文字或邻场 → 不写 `posterBox`，走文字封面。
 
+6. **列表帖左栏海报仍算海报**  
+   本地宝等「左图右文」每条活动左侧约 190×280 的竖图，是该场宣传主视觉，**应标 `posterBox`**（不要因宽 <25% 就 skip）。  
+   仅 skip：纯文字、时间表、横条 banner、极小装饰 icon。
+
 ---
 
 ## 标框流程（每次抓取 / 重裁都做）
 
 ```
-读 slide 原图（images/*.webp，必要时转 images-png/*.png）
-  → 判断本场 crop / skip
-  → 若 crop：在 vision-slots.json 写本场专属 posterBox（px）
-  → extract + posters-contact-sheet 总览验收
-  → 明显坏图：回原 slide 改 box，最多返工一次
-  → Agent 验收总览图通过后再入库
+抓取 → webp + images-jpg/
+标框 → 根据版式复杂度动态读图 → 每场 posterBox（%→px）→ skip 纯文字/时间表
+全部标完 → extract（产出 posters/）→ import
 ```
 
-可选：标框后用 `node scripts/preview-poster-boxes.js <笔记目录>` 在 slide 上叠加红框，入库前快速自检。
+**不跑**：`preview-poster-boxes.js`（红框）、`create-poster-contact-sheet.js`（拼大图）。
 
 ---
 
@@ -97,10 +98,9 @@
 
 ## 裁切后与入库
 
-- `node scripts/extract-xhs-weekly-events.js <笔记目录>`  
-- `node scripts/create-poster-contact-sheet.js <笔记目录>` → 必看 `posters-contact-sheet.png`  
-- crop/skip 与框是否准确：**Agent 标框阶段**决定；验收靠红框预览 + 总览图，**不用 JS 门禁自动丢弃**  
-- `snap-poster-box-edges.js` 仅可选修边（语义已对、差几像素）；**不要**用来修框错块、白底海报语义错误
+- `node scripts/extract-xhs-weekly-events.js <笔记目录>` → 有 `posterBox` 时写 `posters/*.jpg`
+- 然后 `import-xhs-events-to-review.js`
+- **不跑**红框预览、不拼 `posters-contact-sheet.png`
 
 有海报入库后：`event-image-compose.js` 按海报比例合成 4:3 封面（瘦高左图右文 + 标题 CTA），见封面规则文档。
 
@@ -108,9 +108,5 @@
 
 ## 交付自检清单
 
-- [ ] 已读**每一张** slide，不是只读第一张就套全场  
-- [ ] 每场 `posterBox` 四边对准海报外缘，坐标互不相同（除非两张海报尺寸真的一样）  
-- [ ] 总览图里无「说明文字当海报」「邻场残影」「标题日期被切」  
-- [ ] 抽查输出 `posters/*.jpg` 的宽高比合理（可用 `preview-poster-boxes.js` 对照原图）  
-- [ ] 返工最多一次；仍不满意则 skip 该场或请用户指定继续微调  
-- [ ] Agent 验收总览图通过后再 `import-xhs-events-to-review.js`
+- [ ] 动态控制读图数量，同页三场 `y` 分别量
+- [ ] 已 `extract`；**未**跑红框预览与 contact sheet

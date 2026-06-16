@@ -2,9 +2,10 @@
 "use strict";
 
 /**
- * 在 slide 原图上叠加 vision-slots.json 里的 posterBox，便于标框自检。
+ * 【已退出标准流程，勿在 Agent 标框时运行】
+ * 在 slide 原图上叠加 posterBox 红框。默认禁用。
  *
- * 用法:
+ * 用法（仅人工调试）:
  *   node scripts/preview-poster-boxes.js data/scrape-cache/xhs/<城市>/<笔记ID>
  *
  * 输出: <笔记目录>/poster-box-preview/<slotKey>.png

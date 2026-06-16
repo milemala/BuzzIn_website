@@ -20,7 +20,8 @@
 
 ```
 data/scrape-cache/xhs/<城市>/<笔记ID>/
-├── images/*.webp          # slide 原图（Agent 读这些）
+├── images/*.webp          # slide 原图（posterBox 坐标基准）
+├── images-jpg/*.jpg       # Agent 读图用（抓取时自动双写，quality≈60）
 ├── vision-slots.json      # Agent 填写（必备，否则不能入库）
 ├── posters/               # 仅在有 posterBox 时生成
 ├── events-extracted.json
@@ -58,7 +59,9 @@ node scripts/batch-scrape-xhs-cities.js --city=北京,上海
 | `scripts/run-xhs-weekly-pipeline.js` | **标准一键流水线** |
 | `lib/xhs-weekly-pipeline.js` | 流水线编排（vision 检查、extract、import） |
 | `lib/xiaohongshu-parse.js` | 个人页解析、选汇总帖 |
-| `lib/xiaohongshu-chrome-fetch.js` | Chrome 抓取 + 下图 |
+| `lib/xiaohongshu-chrome-fetch.js` | Chrome 抓取 + 下图（webp + images-jpg 双写） |
+| `lib/ensure-slide-review-jpg.js` | 按需单页生成读图 JPEG |
+| `lib/poster-box-percent-to-px.js` | 问题清单 % → posterBox px（仅算术） |
 | `lib/xiaohongshu-poster-crop.js` | 仅执行 Agent 给的 `posterBox` |
 | `lib/xhs-review-import.js` | 入库字段映射与封面 |
 | `lib/xhs-text-cover-compose.js` | 无海报文字封面 |

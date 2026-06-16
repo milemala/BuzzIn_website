@@ -4,14 +4,14 @@ globs: zup-event-crawl/**
 alwaysApply: false
 ---
 
-# 小红书活动：抓取 → 原尺寸读图标框 → 裁切验收 → 入库
+# 小红书活动：抓取 → 动态读图标框 → extract → 入库
 
 ## 一站式分工（必读）
 
 | 谁 | 做什么 | 不做什么 |
 |----|--------|----------|
 | **用户** | 用自然语言提需，如「抓取重庆小红书」「重跑重庆海报」「入库并做分类 POI」 | 不运行脚本、不读技术文档、不拼 prompt、不记命令 |
-| **执行 Agent** | 读本文及子文档 → 自行完成抓取/标框/裁切/验收/入库/分类/POI → **汇报结果** | 不把脚本步骤推给用户；不在对话里说「你跑 xx.js」「下次执行 xx」 |
+| **执行 Agent** | 读本文 → 动态读图标框/extract/入库/分类/POI → **汇报** | 不跑红框预览、不拼 contact sheet；禁止子代理批量套坐标 |
 
 **向用户汇报时**：说清做了什么、活动数/海报情况/是否入库/有无待决问题即可。技术路径（跑了哪些脚本、文件路径）仅在被问到或排查故障时再展开。
 
@@ -47,40 +47,20 @@ node scripts/run-xhs-weekly-pipeline.js --city=<城市名>
 
 同笔记已抓过会跳过重复下载。若该 noteId **已入库 review.db**，整条流水线（读图、裁切、入库、分类、POI）**全部跳过**，即使账号重新编辑了原帖也不重做。
 
-### 2. 读图并一次标最终 `posterBox`
+### 2. 读图并标 `posterBox`（动态）
 
-**用户只下令（如「重跑某城海报」），不拼 prompt。执行 Agent 按下列步骤自行开头：**
+1. 读 labeling-prompt + poster-crop-rules
+2. 根据版式复杂度决定一次读几张 `images-jpg/XX.jpg`，标完当前这组所有场次
+3. 同页三场：`y` 按行分别量；禁止整帖一气读完再写坐标、禁止子代理并行合并
+4. 写 `vision-slots.meta.json` → `extract` → `import`
 
-1. 读 [`docs/xiaohongshu-vision-labeling-prompt.md`](../docs/xiaohongshu-vision-labeling-prompt.md) 全文，**内化「标框使命」**（目的：从每张 slide 为每场活动单独切出矩形海报，边缘必须准；每张 slide 单独分析，禁止套版式/套坐标）
-2. 读 [`docs/xiaohongshu-poster-crop-rules.md`](../docs/xiaohongshu-poster-crop-rules.md)
-3. 在本会话逐张读图，写 `posterBox`；**禁止**像素/启发式脚本写坐标
-4. 标框后写 **`vision-slots.meta.json`**；再 `extract` → 总览图
-
-在 `data/scrape-cache/xhs/<城市>/<笔记ID>/`：
-
-- 读 `images/*.webp`（从 `01.webp` 起）；如果不能直接读，生成**同尺寸临时 PNG**到 `images-png/` 或 `_tmp-review-png/` 辅助读图
-- 写/改 `vision-slots.json`：每场活动都要有字段；只有能干净框出**矩形海报外缘**时才写 `posterBox`
-- `posterBox` 是最终裁切区域：四边贴海报本体，排除 slide 背景、黄标题条、说明文字区、邻场残影
-- **禁止**复制其他 slide / 其他笔记的 box、固定比例裁切、同一笔记内多场共用一组 `x,y,w,h`
-- 不要按图片内容意义过度苛刻：风景照、展品照、现场照、地图式活动图，只要在版面中是该活动的独立矩形主视觉且尺寸够，就算可裁封面
-
-### 3. 裁切 + 总览图验收（默认不入库）
+### 3. extract + 入库（无红框、无大图）
 
 ```bash
 node scripts/extract-xhs-weekly-events.js data/scrape-cache/xhs/<城市>/<笔记ID>
-node scripts/create-poster-contact-sheet.js data/scrape-cache/xhs/<城市>/<笔记ID>
 ```
 
-必须看 `posters-contact-sheet.png`：把所有 `posters/*.jpg` 放在一张缩略总览图里统一判断。只抓明显坏图，不逐张深挖复核。
-
-如果总览图发现明显坏图，只允许**返工一次**：回原 slide 改 `posterBox` → 重跑 extract → 重跑 contact sheet。第二次总览后不再无限微调，除非用户明确要求继续。
-
-必须回原 slide 重标的情况：
-
-- 裁切里出现活动标题、黄色星标、右侧闹钟/地图/票价/说明文字
-- 裁切包含大块 slide 背景或邻场内容
-- 海报标题/日期/脚标明显被切掉
-- 同一页多个 crop 明显是套模板而不是贴海报外缘（多场 `w×h` 几乎完全相同且总览图有切字/切边）
+**不跑** `preview-poster-boxes.js`、`create-poster-contact-sheet.js`。
 
 ### 4. 像素吸附是可选修边，不是默认流程
 
@@ -164,8 +144,10 @@ node scripts/apply-event-poi-decisions.js --city=<城市> --source=xiaohongshu
 
 ## 禁止
 
-- **用 Node/像素/启发式脚本生成或批量写入 `posterBox`**（含临时内联脚本、扫黄条、连通域）
-- **像素/启发式脚本**写 `posterBox`
+- **用 Node/像素/启发式脚本判断并批量写入 `posterBox`**（`poster-box-percent-to-px.js` 仅允许 %→px 算术）
+- **跑红框预览**（`preview-poster-boxes.js`）
+- **拼海报大图**（`create-poster-contact-sheet.js`）
+- **子代理并行批量写坐标**（套模板）
 - **无 `vision-slots.meta.json` 时跑 extract**（守卫会 exit 3）
 - 用启发式/城市规则自动猜海报位置
 - 把像素吸附作为默认流程或不预览直接写回
@@ -173,12 +155,12 @@ node scripts/apply-event-poi-decisions.js --city=<城市> --source=xiaohongshu
 - 抓取/入库阶段做 POI、`--with-poi`、或 JS 自动选点（`pickBestPoiForEvent` 跑批写库）
 - 无 `posterBox` 时硬裁文字 slide 或装饰图
 - 依赖对话记忆而不读 `docs/xiaohongshu-review-workflow.md`
-- 用低分辨率预览量最终坐标；临时图必须同尺寸
-- 反复抽查、反复微调导致无限返工；默认最多返工一次
+- 用低分辨率预览量最终坐标；读图 JPEG 必须与原 webp **同尺寸**
+- 占比太小的缩略图硬标 posterBox
 
 ## 交付口径
 
-汇报：活动数、海报通过/丢弃/无海报数量、总览图路径、是否返工过、是否入库、**分类推荐/挡下条数**、**POI 处理组数（匹配/reject）**。
+汇报：活动数、海报数/无海报数、是否入库、**分类**、**POI**。
 
 ## 封面规则（定稿，勿随意改）
 

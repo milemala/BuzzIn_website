@@ -35,6 +35,8 @@
     .btn:hover{transform:translateY(-1px)}
     .wrap{max-width:1180px;margin:0 auto;padding:18px 20px 44px}
     .filters{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+    .source-filters{margin-bottom:10px}
+    .source-filters .filter-label{flex:0 0 100%;font-size:12px;font-weight:700;color:var(--muted);margin:0 0 -4px}
     #cityFilter{display:flex;flex-wrap:wrap;gap:8px;border:0;background:transparent;overflow:visible}
     #cityFilter button{
       height:auto;min-width:88px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;
@@ -238,12 +240,15 @@
   </header>
 
   <main class="wrap">
+    <section class="filters source-filters">
+      <p class="filter-label">活动来源</p>
+      <div class="seg" id="sourceFilter"></div>
+    </section>
     <section class="filters">
       <div class="seg" id="cityFilter">
         <button data-city="all" class="active">全部城市</button>
       </div>
       <div class="seg" id="statusFilter"></div>
-      <div class="seg" id="sourceFilter"></div>
       <div class="seg" id="categoryFilter"></div>
       <div class="seg" id="sortMode">
         <button data-sort="source" class="active">来源原始顺序</button>
@@ -1274,30 +1279,35 @@
       const cityScoped = [];
       const baseScoped = [];
       const expiredScoped = [];
-      const sourceCounts = new Map();
+      const globalSourceCounts = new Map();
+      let globalTotal = 0;
       const statusCounts = Object.fromEntries(STATUS_FILTER_KEYS.map((key) => [key, 0]));
       const categoryCounts = new Map();
 
       for (const row of eventIndex) {
         const { event, expired, city, source } = row;
         if (!expired) {
-          bumpReviewCounts(cityStatsMap.get("all"), event);
-          if (!cityStatsMap.has(city)) cityStatsMap.set(city, initReviewCounts());
-          bumpReviewCounts(cityStatsMap.get(city), event);
+          globalTotal += 1;
+          globalSourceCounts.set(source, (globalSourceCounts.get(source) || 0) + 1);
+          if (sourceFilter === "all" || source === sourceFilter) {
+            bumpReviewCounts(cityStatsMap.get("all"), event);
+            if (!cityStatsMap.has(city)) cityStatsMap.set(city, initReviewCounts());
+            bumpReviewCounts(cityStatsMap.get(city), event);
+          }
         }
 
+        const sourceMatch = sourceFilter === "all" || source === sourceFilter;
         const cityMatch = cityFilter === "all" || city === cityFilter;
         if (!cityMatch) continue;
 
         if (expired) {
-          if (sourceFilter === "all" || source === sourceFilter) expiredScoped.push(event);
+          if (sourceMatch) expiredScoped.push(event);
           continue;
         }
 
-        cityScoped.push(event);
-        sourceCounts.set(source, (sourceCounts.get(source) || 0) + 1);
+        if (!sourceMatch) continue;
 
-        if (sourceFilter !== "all" && source !== sourceFilter) continue;
+        cityScoped.push(event);
         baseScoped.push(event);
 
         statusCounts.all += 1;
@@ -1328,7 +1338,8 @@
         cityScoped,
         baseScoped,
         expiredScoped,
-        sourceCounts,
+        globalSourceCounts,
+        globalTotal,
         statusCounts,
         categoryCounts,
         dateCounts,
@@ -1594,7 +1605,7 @@
       if (filter === "pending") return isReviewPendingReady(event);
       if (filter === "expired") return isExpired(event);
       if (["approved", "rejected"].includes(filter)) return status === filter;
-      return true;
+        return true;
     }
 
     function resetPage() {
@@ -1655,7 +1666,7 @@
         if (categoryFilter !== "all" && event.category !== categoryFilter) continue;
         if (dateFilter !== "all" && !eventOccursOnDate(event, dateFilter)) continue;
         if (needle) {
-          const searchText = `${event.title} ${event.location} ${event.owner} ${event.category}`.toLowerCase();
+        const searchText = `${event.title} ${event.location} ${event.owner} ${event.category}`.toLowerCase();
           if (!searchText.includes(needle)) continue;
         }
         const uid = event.eventUid || event.event_uid || event.id;
@@ -1673,15 +1684,30 @@
       return filterMetrics?.expiredScoped || [];
     }
 
+    function cityReviewTotal(cityKey) {
+      const counts = cityStats(cityKey);
+      return counts.pending + counts.imported + counts.pendingImport;
+    }
+
     function normalizeDependentFilters() {
+      let changed = false;
+      if (cityFilter !== "all" && cityReviewTotal(cityFilter) === 0) {
+        cityFilter = "all";
+        changed = true;
+      }
       const scoped = getBaseScopedEvents();
       if (categoryFilter !== "all" && !scoped.some((event) => event.category === categoryFilter)) {
         categoryFilter = "all";
+        changed = true;
       }
       if (dateFilter !== "all") {
         const dates = collectFilterDates(scoped, todayDateValue());
-        if (!dates.includes(dateFilter)) dateFilter = "all";
+        if (!dates.includes(dateFilter)) {
+          dateFilter = "all";
+          changed = true;
+        }
       }
+      return changed;
     }
 
     function renderCityChip(cityKey, label) {
@@ -1761,10 +1787,13 @@
         ["xiaohongshu", "小红书"],
         ["wechat", "公众号"],
       ];
-      const scoped = getCityScopedEvents();
-      const sourceCounts = filterMetrics?.sourceCounts || new Map();
+      const globalSourceCounts = filterMetrics?.globalSourceCounts || new Map();
+      const globalTotal = filterMetrics?.globalTotal || 0;
       const present = new Map();
-      for (const event of scoped) present.set(getSourceKey(event), getSourceLabel(event));
+      for (const row of eventIndex) {
+        if (row.expired) continue;
+        present.set(row.source, getSourceLabel(row.event));
+      }
       const sources = baseSources.map(([key, label]) => [key, present.get(key) || label]);
       present.forEach((label, key) => {
         if (!sources.some(([sourceKey]) => sourceKey === key)) sources.push([key, label]);
@@ -1773,10 +1802,10 @@
         attr: "source",
         value: "all",
         label: "全部来源",
-        count: scoped.length,
+        count: globalTotal,
         active: sourceFilter === "all",
       }) + sources.map(([key, label]) => {
-        const count = sourceCounts.get(key) || 0;
+        const count = globalSourceCounts.get(key) || 0;
         return renderSegButton({
           attr: "source",
           value: key,
@@ -1785,7 +1814,7 @@
           active: sourceFilter === key,
           disabled: !count,
         });
-      }).join("");
+        }).join("");
     }
 
     function formatDateLabel(dateValue) {
@@ -1976,20 +2005,23 @@
 
     function render() {
       filterMetrics = computeFilterMetrics();
+      if (normalizeDependentFilters()) {
+        filterMetrics = computeFilterMetrics();
+      }
       const activeEvents = getBaseScopedEvents();
       const cityLabel = cityFilter === "all" ? (payload.cities || []).join(" / ") || payload.city || "未知城市" : cityFilter;
       const sources = sourceFilter === "all"
-        ? [...new Set(getCityScopedEvents().map((event) => getSourceLabel(event)))].join(" / ") || "暂无来源"
+        ? [...new Set(eventIndex.filter((row) => !row.expired).map((row) => getSourceLabel(row.event)))].join(" / ") || "暂无来源"
         : (() => {
-          const sample = activeEvents[0];
+          const sample = activeEvents[0] || eventIndex.find((row) => !row.expired && row.source === sourceFilter)?.event;
           return sample ? getSourceLabel(sample) : "暂无来源";
         })();
       const cityMeta = payload.cityMeta && cityFilter !== "all" ? payload.cityMeta[cityFilter] : null;
       const generatedAt = cityMeta?.generatedAt || payload.generatedAt || "未知时间";
       sourceMeta.textContent = `${cityLabel} · ${sources} · 生成于 ${generatedAt}`;
+      renderSourceFilter();
       renderCityFilter();
       renderStatusFilter();
-      renderSourceFilter();
       renderCategoryFilter();
       renderDateFilter();
       renderBatchReviewBar();
@@ -2000,7 +2032,6 @@
       const button = event.target.closest("button[data-city]");
       if (!button) return;
       cityFilter = button.dataset.city;
-      sourceFilter = "all";
       categoryFilter = "all";
       dateFilter = "all";
       resetPage();
@@ -2017,7 +2048,8 @@
       const button = event.target.closest("button[data-source]");
       if (!button || button.disabled) return;
       sourceFilter = button.dataset.source;
-      normalizeDependentFilters();
+      categoryFilter = "all";
+      dateFilter = "all";
       resetPage();
       render();
     });
@@ -2083,7 +2115,7 @@
     listEl.addEventListener("click", (event) => {
       const button = event.target.closest("button[data-next]");
       if (button) {
-        setStatus(button.dataset.id, button.dataset.next);
+      setStatus(button.dataset.id, button.dataset.next);
         return;
       }
 
@@ -2193,7 +2225,7 @@
         const records = data.nows || getApprovedEvents();
         document.getElementById("exportText").value = JSON.stringify(records, null, 2);
       } catch (error) {
-        document.getElementById("exportText").value = JSON.stringify(getApprovedEvents(), null, 2);
+      document.getElementById("exportText").value = JSON.stringify(getApprovedEvents(), null, 2);
       }
       document.getElementById("exportDialog").showModal();
     });

@@ -14,6 +14,10 @@ data/scrape-cache/xhs/*
 data/chrome-cdp-profile/
 data/chrome-scrape-window.json
 data/batch-scrape*.log
+data/**/*.log
+data/_*.json
+data/poi-agent-workbench/_*.json
+data/poi-agent-workbench/**/*search-results*.json
 
 # Optional local backups — uncomment to ignore
 # data/crawled-events.json
