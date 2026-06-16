@@ -17,6 +17,11 @@ const {
   suggestMerchantPoiKeyword,
 } = require("./tencent-poi");
 const { normalizeMerchantImageUrl } = require("./merchant-image-url");
+const {
+  applyBuzzEnvToMerchant,
+  markMerchantImportResult: storeMarkMerchantImportResult,
+} = require("./buzz-import-store");
+const { normalizeBuzzEnv } = require("./buzz-env");
 const MERCHANT_POI_MATCH_MODE_KEY = "merchant_poi_match_mode";
 
 const VALID_REVIEW_STATUSES = new Set(["approved", "pending", "rejected"]);
@@ -205,11 +210,29 @@ function rowToMerchant(row) {
   };
 }
 
-function findBuzzMerchantIdByPoi(db, poiId) {
+function findBuzzMerchantIdByPoi(db, poiId, buzzEnv = "test") {
   ensureMerchantSchema(db);
   const id = String(poiId || "").trim();
   if (!id) return "";
+  const env = normalizeBuzzEnv(buzzEnv);
   const row = db.prepare(`
+    SELECT bi.buzz_id AS buzz_merchant_id
+    FROM merchants m
+    INNER JOIN merchant_review_decisions d ON d.merchant_uid = m.merchant_uid
+    INNER JOIN buzz_imports bi
+      ON bi.entity_kind = 'merchant'
+     AND bi.entity_uid = m.merchant_uid
+     AND bi.buzz_env = ?
+    WHERE d.status = 'approved'
+      AND m.address_poi_id = ?
+      AND bi.import_status = 'imported'
+      AND bi.buzz_id IS NOT NULL
+      AND bi.buzz_id != ''
+    LIMIT 1
+  `).get(env, id);
+  if (row?.buzz_merchant_id) return row.buzz_merchant_id;
+  if (env !== "test") return "";
+  const legacy = db.prepare(`
     SELECT m.buzz_merchant_id
     FROM merchants m
     INNER JOIN merchant_review_decisions d ON d.merchant_uid = m.merchant_uid
@@ -219,66 +242,41 @@ function findBuzzMerchantIdByPoi(db, poiId) {
       AND m.buzz_merchant_id != ''
     LIMIT 1
   `).get(id);
-  return row?.buzz_merchant_id || "";
+  return legacy?.buzz_merchant_id || "";
 }
 
-function updateMerchantBuzzId(db, merchantUid, buzzMerchantId) {
+function updateMerchantBuzzId(db, merchantUid, buzzMerchantId, buzzEnv = "test") {
   return markMerchantImportResult(db, merchantUid, {
     buzz_merchant_id: String(buzzMerchantId || "").trim(),
     import_status: buzzMerchantId ? "imported" : "",
     import_error: "",
-  });
+  }, buzzEnv);
 }
 
-function markMerchantImportResult(db, merchantUid, result = {}) {
+function markMerchantImportResult(db, merchantUid, result = {}, buzzEnv = "test") {
   ensureMerchantSchema(db);
   const current = getMerchantByUid(db, merchantUid);
   if (!current) {
     throw new Error(`商户不存在: ${merchantUid}`);
   }
-  const now = new Date().toISOString();
-  const imported = result.import_status === "imported";
-  const pick = (key, fallback = "") => (
-    Object.prototype.hasOwnProperty.call(result, key)
-      ? String(result[key] || "").trim()
-      : String(current?.[key] || fallback).trim()
-  );
-  db.prepare(`
-    UPDATE merchants SET
-      buzz_merchant_id = @buzz_merchant_id,
-      import_status = @import_status,
-      import_error = @import_error,
-      imported_at = @imported_at,
-      updated_at = @updated_at
-    WHERE merchant_uid = @merchant_uid
-  `).run({
-    merchant_uid: merchantUid,
-    buzz_merchant_id: pick("buzz_merchant_id"),
-    import_status: pick("import_status"),
-    import_error: pick("import_error"),
-    imported_at: imported
-      ? now
-      : (Object.prototype.hasOwnProperty.call(result, "imported_at")
-        ? result.imported_at
-        : (current?.imported_at || null)),
-    updated_at: now,
-  });
-  return getMerchantByUid(db, merchantUid);
+  storeMarkMerchantImportResult(db, merchantUid, result, buzzEnv);
+  return applyBuzzEnvToMerchant(db, current, buzzEnv);
 }
 
-function clearMerchantBuzzId(db, merchantUid) {
+function clearMerchantBuzzId(db, merchantUid, buzzEnv = "test") {
   return markMerchantImportResult(db, merchantUid, {
     buzz_merchant_id: "",
     import_status: "",
     import_error: "",
     imported_at: null,
-  });
+  }, buzzEnv);
 }
 
 function getMerchantImportProgress(db, options = {}) {
   ensureMerchantSchema(db);
+  const buzzEnv = normalizeBuzzEnv(options.buzz_env);
   let where = "d.status = 'approved'";
-  const params = [];
+  const params = [buzzEnv];
   if (options.city) {
     where += " AND m.city = ?";
     params.push(options.city);
@@ -286,27 +284,33 @@ function getMerchantImportProgress(db, options = {}) {
   const base = `
     FROM merchants m
     INNER JOIN merchant_review_decisions d ON d.merchant_uid = m.merchant_uid
+    LEFT JOIN buzz_imports bi
+      ON bi.entity_kind = 'merchant'
+     AND bi.entity_uid = m.merchant_uid
+     AND bi.buzz_env = ?
     WHERE ${where}
   `;
-  const imported = db.prepare(`SELECT COUNT(*) AS c ${base} AND m.import_status = 'imported' AND m.buzz_merchant_id != ''`).get(...params).c;
-  const failed = db.prepare(`SELECT COUNT(*) AS c ${base} AND m.import_status = 'failed'`).get(...params).c;
+  const imported = db.prepare(`SELECT COUNT(*) AS c ${base} AND bi.import_status = 'imported' AND bi.buzz_id != ''`).get(...params).c;
+  const failed = db.prepare(`SELECT COUNT(*) AS c ${base} AND bi.import_status = 'failed'`).get(...params).c;
   const latestImported = db.prepare(`
-    SELECT m.name, m.city, m.buzz_merchant_id, m.imported_at
-    ${base} AND m.import_status = 'imported' AND m.imported_at IS NOT NULL
-    ORDER BY m.imported_at DESC LIMIT 1
+    SELECT m.name, m.city, bi.buzz_id AS buzz_merchant_id, bi.imported_at
+    ${base} AND bi.import_status = 'imported' AND bi.imported_at IS NOT NULL
+    ORDER BY bi.imported_at DESC LIMIT 1
   `).get(...params);
   const latestFailed = db.prepare(`
-    SELECT m.name, m.city, m.import_error, m.updated_at
-    ${base} AND m.import_status = 'failed'
-    ORDER BY m.updated_at DESC LIMIT 1
+    SELECT m.name, m.city, bi.import_error, bi.updated_at
+    ${base} AND bi.import_status = 'failed'
+    ORDER BY bi.updated_at DESC LIMIT 1
   `).get(...params);
   const pendingImport = listMerchantsEligibleForImport(db, {
     city: options.city || "",
     limit: 200,
+    buzz_env: buzzEnv,
   }).length;
 
   return {
     city: options.city || "",
+    buzz_env: buzzEnv,
     imported,
     failed,
     pending_import: pendingImport,
@@ -317,10 +321,18 @@ function getMerchantImportProgress(db, options = {}) {
 
 function listMerchantsEligibleForImport(db, options = {}) {
   ensureMerchantSchema(db);
+  const buzzEnv = normalizeBuzzEnv(options.buzz_env);
   const limit = Number(options.limit) > 0 ? Number(options.limit) : 500;
   const merchantUids = Array.isArray(options.merchant_uids)
     ? [...new Set(options.merchant_uids.map((uid) => String(uid || "").trim()).filter(Boolean))]
     : [];
+  const importJoin = `
+    LEFT JOIN buzz_imports bi
+      ON bi.entity_kind = 'merchant'
+     AND bi.entity_uid = m.merchant_uid
+     AND bi.buzz_env = ?
+  `;
+  const pendingClause = `AND (bi.import_status IS NULL OR bi.import_status = '' OR bi.import_status = 'failed')`;
 
   if (merchantUids.length) {
     const placeholders = merchantUids.map(() => "?").join(", ");
@@ -328,15 +340,16 @@ function listMerchantsEligibleForImport(db, options = {}) {
       SELECT m.*
       FROM merchants m
       INNER JOIN merchant_review_decisions d ON d.merchant_uid = m.merchant_uid
+      ${importJoin}
       WHERE m.merchant_uid IN (${placeholders})
         AND d.status = 'approved'
-        AND (m.import_status IS NULL OR m.import_status = '' OR m.import_status = 'failed')
-    `).all(...merchantUids);
+        ${pendingClause}
+    `).all(buzzEnv, ...merchantUids);
     const byUid = new Map(rows.map((row) => [row.merchant_uid, row]));
     return merchantUids
       .map((uid) => byUid.get(uid))
       .filter(Boolean)
-      .map((row) => rowToMerchant(row))
+      .map((row) => applyBuzzEnvToMerchant(db, rowToMerchant(row), buzzEnv))
       .filter((merchant) => isImportReady(merchant));
   }
 
@@ -344,10 +357,11 @@ function listMerchantsEligibleForImport(db, options = {}) {
     SELECT m.*
     FROM merchants m
     INNER JOIN merchant_review_decisions d ON d.merchant_uid = m.merchant_uid
+    ${importJoin}
     WHERE d.status = 'approved'
-      AND (m.import_status IS NULL OR m.import_status = '' OR m.import_status = 'failed')
+      ${pendingClause}
   `;
-  const params = [];
+  const params = [buzzEnv];
   if (options.city) {
     sql += " AND m.city = ?";
     params.push(options.city);
@@ -355,7 +369,9 @@ function listMerchantsEligibleForImport(db, options = {}) {
   sql += " ORDER BY m.city, m.search_keyword, m.source_position LIMIT ?";
   params.push(limit);
   const rows = db.prepare(sql).all(...params);
-  return rows.map((row) => rowToMerchant(row)).filter((merchant) => isImportReady(merchant));
+  return rows
+    .map((row) => applyBuzzEnvToMerchant(db, rowToMerchant(row), buzzEnv))
+    .filter((merchant) => isImportReady(merchant));
 }
 
 function getMerchantPoiMatchMode(db) {
@@ -394,6 +410,16 @@ function getMerchantByUid(db, merchantUid) {
   return row ? rowToMerchant(row) : null;
 }
 
+function getMerchantForEnv(db, merchantUid, buzzEnv = "test", options = {}) {
+  const merchant = getMerchantByUid(db, merchantUid);
+  if (!merchant) return null;
+  const poiMatchMode = options.poiMatchMode ?? getMerchantPoiMatchMode(db);
+  return enrichMerchantPoiFlags(
+    applyBuzzEnvToMerchant(db, merchant, buzzEnv),
+    { poiMatchMode },
+  );
+}
+
 function applyPoiSelection(db, merchantUid, poi, options = {}) {
   ensureMerchantSchema(db);
   const now = new Date().toISOString();
@@ -404,7 +430,7 @@ function applyPoiSelection(db, merchantUid, poi, options = {}) {
 
   const merchantType = options.merchant_type
     ?? merchant.merchant_type
-    ?? suggestMerchantType(merchant.category, merchant.name);
+    ?? suggestMerchantType(merchant.category, merchant.name, merchant.import_batch_id);
 
   const sourceAddress = merchant.source_address
     || (merchant.address && merchant.address !== String(poi.address || "").trim()
@@ -612,8 +638,9 @@ function replaceMerchantReviewState(db, decisions) {
   return getMerchantReviewState(db);
 }
 
-function getMerchantsPayload(db) {
+function getMerchantsPayload(db, options = {}) {
   ensureMerchantSchema(db);
+  const buzzEnv = normalizeBuzzEnv(options.buzz_env);
   const rows = db.prepare(`
     SELECT m.*, COALESCE(d.status, 'pending') AS review_status
     FROM merchants m
@@ -623,7 +650,7 @@ function getMerchantsPayload(db) {
 
   const poiMatchMode = getMerchantPoiMatchMode(db);
   const merchants = rows.map((row) => enrichMerchantPoiFlags({
-    ...rowToMerchant(row),
+    ...applyBuzzEnvToMerchant(db, rowToMerchant(row), buzzEnv),
     review_status: row.review_status,
   }, { poiMatchMode }));
 
@@ -635,22 +662,28 @@ function getMerchantsPayload(db) {
     updatedAt: merchants.length ? merchants[merchants.length - 1].updated_at : null,
     note: metaRow ? metaRow.value : "商户数据来自大众点评，发布前请核对店名、地址与图片。",
     poi_match_mode: poiMatchMode,
+    buzz_env: buzzEnv,
     merchants,
   };
 }
 
 function listImportedMerchants(db, options = {}) {
   ensureMerchantSchema(db);
+  const buzzEnv = normalizeBuzzEnv(options.buzz_env);
   let sql = `
     SELECT m.*
     FROM merchants m
     INNER JOIN merchant_review_decisions d ON d.merchant_uid = m.merchant_uid
+    INNER JOIN buzz_imports bi
+      ON bi.entity_kind = 'merchant'
+     AND bi.entity_uid = m.merchant_uid
+     AND bi.buzz_env = ?
     WHERE d.status = 'approved'
-      AND m.import_status = 'imported'
-      AND m.buzz_merchant_id IS NOT NULL
-      AND m.buzz_merchant_id != ''
+      AND bi.import_status = 'imported'
+      AND bi.buzz_id IS NOT NULL
+      AND bi.buzz_id != ''
   `;
-  const params = [];
+  const params = [buzzEnv];
   if (options.city) {
     sql += " AND m.city = ?";
     params.push(options.city);
@@ -666,28 +699,21 @@ function listImportedMerchants(db, options = {}) {
     sql += " LIMIT ?";
     params.push(limit);
   }
-  return db.prepare(sql).all(...params).map((row) => rowToMerchant(row));
+  return db.prepare(sql).all(...params).map((row) => applyBuzzEnvToMerchant(db, rowToMerchant(row), buzzEnv));
 }
 
-function updateMerchantGroupId(db, merchantUid, groupId) {
+function updateMerchantGroupId(db, merchantUid, groupId, buzzEnv = "test") {
   ensureMerchantSchema(db);
-  const now = new Date().toISOString();
-  db.prepare(`
-    UPDATE merchants SET
-      buzz_group_id = @buzz_group_id,
-      updated_at = @updated_at
-    WHERE merchant_uid = @merchant_uid
-  `).run({
-    merchant_uid: merchantUid,
+  const { upsertBuzzImport, ENTITY_MERCHANT } = require("./buzz-import-store");
+  upsertBuzzImport(db, ENTITY_MERCHANT, merchantUid, buzzEnv, {
     buzz_group_id: String(groupId || "").trim(),
-    updated_at: now,
   });
-  return getMerchantByUid(db, merchantUid);
+  return applyBuzzEnvToMerchant(db, getMerchantByUid(db, merchantUid), buzzEnv);
 }
 
-function markMerchantBubbleResult(db, merchantUid, result = {}) {
+function markMerchantBubbleResult(db, merchantUid, result = {}, buzzEnv = "test") {
   ensureMerchantSchema(db);
-  const current = getMerchantByUid(db, merchantUid);
+  const current = applyBuzzEnvToMerchant(db, getMerchantByUid(db, merchantUid), buzzEnv);
   if (!current) {
     throw new Error(`商户不存在: ${merchantUid}`);
   }
@@ -697,23 +723,15 @@ function markMerchantBubbleResult(db, merchantUid, result = {}) {
       ? String(result[key] || "").trim()
       : String(current?.[key] || fallback).trim()
   );
-  db.prepare(`
-    UPDATE merchants SET
-      bubble_now_id = @bubble_now_id,
-      buzz_group_id = @buzz_group_id,
-      bubble_published_at = @bubble_published_at,
-      updated_at = @updated_at
-    WHERE merchant_uid = @merchant_uid
-  `).run({
-    merchant_uid: merchantUid,
+  const { upsertBuzzImport, ENTITY_MERCHANT } = require("./buzz-import-store");
+  upsertBuzzImport(db, ENTITY_MERCHANT, merchantUid, buzzEnv, {
     bubble_now_id: pick("bubble_now_id"),
     buzz_group_id: pick("buzz_group_id", current.buzz_group_id),
     bubble_published_at: Object.prototype.hasOwnProperty.call(result, "bubble_published_at")
       ? result.bubble_published_at
       : (pick("bubble_now_id") ? now : current.bubble_published_at),
-    updated_at: now,
   });
-  return getMerchantByUid(db, merchantUid);
+  return applyBuzzEnvToMerchant(db, getMerchantByUid(db, merchantUid), buzzEnv);
 }
 
 function getApprovedMerchants(db) {
@@ -810,6 +828,7 @@ module.exports = {
   getApprovedMerchants,
   getExportImportMerchants,
   getMerchantByUid,
+  getMerchantForEnv,
   getMerchantImportProgress,
   getMerchantReviewState,
   getMerchantPoiMatchMode,

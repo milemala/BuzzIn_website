@@ -1,0 +1,1936 @@
+{
+  "city": "重庆",
+  "source": "xiaohongshu",
+  "updated_at": "2026-06-14T17:32:00.906Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "e5ed66b00f31",
+      "location": "四川美术学院（虎溪校区、黄桷坪校区）",
+      "sample_title": "川美青年艺术创意市集",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:01_0"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "low",
+      "doubtful": false,
+      "action": "reject",
+      "reason": "活动写虎溪、黄桷坪双校区，相距十余公里，无法确定唯一场馆POI",
+      "search_keywords_tried": [
+        "四川美术学院",
+        "虎溪校区",
+        "黄桷坪校区"
+      ],
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "5392562573334562088",
+          "title": "四川美术学院(虎溪校区)",
+          "address": "重庆市沙坪坝区大学城南路28号",
+          "category": "教育学校:大学",
+          "latitude": 29.602831,
+          "longitude": 106.29754
+        },
+        {
+          "index": 1,
+          "poi_id": "8280040532736009086",
+          "title": "四川美术学院(黄桷坪校区)",
+          "address": "重庆市九龙坡区黄桷坪正街108号",
+          "category": "教育学校:大学",
+          "latitude": 29.487994,
+          "longitude": 106.541478
+        },
+        {
+          "index": 2,
+          "poi_id": "16590099763355508289",
+          "title": "四川美术学院美术馆(罗中立美术馆)",
+          "address": "重庆市沙坪坝区大学城南路56号",
+          "category": "文化场馆:美术馆",
+          "latitude": 29.601442,
+          "longitude": 106.300552
+        },
+        {
+          "index": 3,
+          "poi_id": "3488097497102519703",
+          "title": "四川美术学院美育学院",
+          "address": "重庆市九龙坡区新建路与黄桷坪正街交叉口西北方向86米左右",
+          "category": "教育学校:教育学校附属",
+          "latitude": 29.48863,
+          "longitude": 106.542656
+        },
+        {
+          "index": 4,
+          "poi_id": "10438299914240648136",
+          "title": "四川美术学院(虎溪校区)-西门",
+          "address": "重庆市沙坪坝区大学城南路四川美术学院虎溪校区",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 29.603656,
+          "longitude": 106.294188
+        },
+        {
+          "index": 5,
+          "poi_id": "2694924824732685510",
+          "title": "四川美术学院(虎溪校区)-北门",
+          "address": "重庆市沙坪坝区大学城南路四川美术学院虎溪校区",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 29.606727,
+          "longitude": 106.298367
+        },
+        {
+          "index": 6,
+          "poi_id": "2027221441024663864",
+          "title": "四川美术学院校友墙",
+          "address": "重庆市沙坪坝区大学城熙街商业街与景苑路交叉口西100米",
+          "category": "教育学校:教育学校附属",
+          "latitude": 29.603141,
+          "longitude": 106.300743
+        },
+        {
+          "index": 7,
+          "poi_id": "14419986262086013490",
+          "title": "四川美术学院(虎溪校区)-东1门",
+          "address": "重庆市沙坪坝区大学城南路28号四川美术学院虎溪校区",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 29.6031,
+          "longitude": 106.300926
+        }
+      ]
+    },
+    {
+      "group_id": "5db913d9fdd5",
+      "location": "重庆方圆LIVE",
+      "sample_title": "n次方市集",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:01_1",
+        "xiaohongshu:6a22bc9200000000080245d6:02_0"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "high",
+      "doubtful": false,
+      "action": "match",
+      "poi_id": "1442838543002193836",
+      "poi_title": "重庆方圆LIVE",
+      "poi_address": "重庆市两江新区建新北路二支路1号B2层(观音桥地铁站5号口旁)",
+      "latitude": 29.57442,
+      "longitude": 106.531633,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "1442838543002193836",
+          "title": "重庆方圆LIVE",
+          "address": "重庆市两江新区建新北路二支路1号B2层(观音桥地铁站5号口旁)",
+          "category": "购物:其它购物",
+          "latitude": 29.57442,
+          "longitude": 106.531633
+        },
+        {
+          "index": 1,
+          "poi_id": "543737244613405173",
+          "title": "GOODSLOVE(重庆方圆LIVE店)",
+          "address": "重庆市两江新区观音桥街道建新北路二支路1号方圆LIVE-B1层B1036号",
+          "category": "购物:其它购物",
+          "latitude": 29.573688,
+          "longitude": 106.530663
+        },
+        {
+          "index": 2,
+          "poi_id": "13106177897759602974",
+          "title": "三月兽(重庆方圆LIVE店)",
+          "address": "重庆市两江新区观音桥街道建新南路方圆LIVE商场LG层003B号",
+          "category": "购物:其它购物",
+          "latitude": 29.574183,
+          "longitude": 106.531008
+        },
+        {
+          "index": 3,
+          "poi_id": "15816971745121650938",
+          "title": "Vanwalk(重庆方圆live店)",
+          "address": "重庆市两江新区建新北路二支路1号方圆LIVEB1层铺位号071",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 29.57431,
+          "longitude": 106.531784
+        },
+        {
+          "index": 4,
+          "poi_id": "8709808949727322254",
+          "title": "方圆LIVE-东南门",
+          "address": "重庆市两江新区建新北路9号同聚远景附近",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 29.57457,
+          "longitude": 106.53165
+        },
+        {
+          "index": 5,
+          "poi_id": "2661875745960851273",
+          "title": "卡游(重庆方圆live店)",
+          "address": "重庆市两江新区观音桥街道建新北路二支路1号(观音桥地铁站5号口旁)方圆liveLG层LG008(名创优品楼上)",
+          "category": "购物:其它购物",
+          "latitude": 29.573975,
+          "longitude": 106.5308
+        },
+        {
+          "index": 6,
+          "poi_id": "13409221006300689512",
+          "title": "BASEMENT FG(重庆方圆LIVE店)",
+          "address": "重庆市两江新区观音桥街道建北二支路1号方圆LIVE商场B1层",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 29.574539,
+          "longitude": 106.531028
+        },
+        {
+          "index": 7,
+          "poi_id": "6043739946637589253",
+          "title": "WOW COLOUR(观音桥方圆LIVE店)",
+          "address": "重庆市两江新区观音桥街道建新北路二支路1号方圆LIVE",
+          "category": "购物:化妆品",
+          "latitude": 29.573685,
+          "longitude": 106.529405
+        }
+      ],
+      "reason": "活动地点与POI「重庆方圆LIVE」主体一致",
+      "search_keywords_tried": [
+        "重庆方圆LIVE",
+        "LIVE"
+      ]
+    },
+    {
+      "group_id": "37e61bac4fb7",
+      "location": "朝天门大融汇12F天空买手街",
+      "sample_title": "椒朋友市集",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:02_1"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "high",
+      "doubtful": false,
+      "action": "match",
+      "poi_id": "3586362009185611929",
+      "poi_title": "大融汇",
+      "poi_address": "",
+      "latitude": 0,
+      "longitude": 0,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "3586362009185611929",
+          "title": "大融汇",
+          "address": "",
+          "latitude": 0,
+          "longitude": 0
+        }
+      ],
+      "reason": "地址映射库命中：朝天门大融汇12F天空买手街 → 大融汇（来源 event:xiaohongshu:6a27fa4a0000000022014556:01_1）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ]
+    },
+    {
+      "group_id": "3228a41f5018",
+      "location": "合川区南涪路凤凰城水域（龙舟赛场）",
+      "sample_title": "龙腾三江·2026合川龙舟盛会",
+      "event_uids": [
+        "xiaohongshu:6a27fa4a0000000022014556:04_0"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "low",
+      "doubtful": false,
+      "action": "reject",
+      "reason": "合川龙舟赛场为水域临时赛场，无固定场馆POI",
+      "search_keywords_tried": [
+        "合川区南涪路凤凰城水域",
+        "龙舟赛场",
+        "合川凤凰城"
+      ],
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "14012428021651738867",
+          "title": "南涪路",
+          "address": "重庆市合川区",
+          "category": "地名地址:道路名",
+          "latitude": 29.984813,
+          "longitude": 106.254307
+        },
+        {
+          "index": 1,
+          "poi_id": "2982859368414416086",
+          "title": "南涪路",
+          "address": "重庆市巴南区",
+          "category": "地名地址:道路名",
+          "latitude": 29.599548,
+          "longitude": 106.886168
+        },
+        {
+          "index": 2,
+          "poi_id": "11835108821949540646",
+          "title": "南涪路",
+          "address": "重庆市南岸区",
+          "category": "地名地址:道路名",
+          "latitude": 29.539968,
+          "longitude": 106.750359
+        },
+        {
+          "index": 3,
+          "poi_id": "13056673109447333224",
+          "title": "南涪路",
+          "address": "重庆市南川区",
+          "category": "地名地址:道路名",
+          "latitude": 29.190771,
+          "longitude": 107.109772
+        },
+        {
+          "index": 4,
+          "poi_id": "395618858759550300",
+          "title": "南涪路",
+          "address": "重庆市南川区",
+          "category": "地名地址:道路名",
+          "latitude": 29.160052,
+          "longitude": 107.095335
+        },
+        {
+          "index": 5,
+          "poi_id": "5267908265102536098",
+          "title": "南涪路",
+          "address": "重庆市涪陵区",
+          "category": "地名地址:道路名",
+          "latitude": 29.387901,
+          "longitude": 107.124404
+        },
+        {
+          "index": 6,
+          "poi_id": "13056899363308107809",
+          "title": "日丰管(南涪路店)",
+          "address": "重庆市合川区南涪路与金鹿街交叉口东北方向45米左右",
+          "category": "购物:家具家居建材:建材",
+          "latitude": 29.982887,
+          "longitude": 106.259039
+        },
+        {
+          "index": 7,
+          "poi_id": "17149026901848984158",
+          "title": "南涪路",
+          "address": "重庆市南川区",
+          "category": "地名地址:道路名",
+          "latitude": 29.314164,
+          "longitude": 107.111663
+        }
+      ]
+    },
+    {
+      "group_id": "2efe14a54ce1",
+      "location": "重庆国际博览中心",
+      "sample_title": "重庆银河左岸音乐节",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:04_0"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "high",
+      "doubtful": false,
+      "action": "match",
+      "poi_id": "948642846691352962",
+      "poi_title": "重庆国际博览中心",
+      "poi_address": "重庆市两江新区悦来大道66号",
+      "latitude": 29.718941,
+      "longitude": 106.541801,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "948642846691352962",
+          "title": "重庆国际博览中心",
+          "address": "重庆市两江新区悦来大道66号",
+          "category": "文化场馆:展览馆",
+          "latitude": 29.718941,
+          "longitude": 106.541801
+        },
+        {
+          "index": 1,
+          "poi_id": "4130346954901398202",
+          "title": "重庆国际博览中心-N5展馆",
+          "address": "重庆市两江新区悦来街道悦来大道66号(悦来地铁站1号口步行490米)",
+          "category": "文化场馆:展览馆",
+          "latitude": 29.721525,
+          "longitude": 106.545354
+        },
+        {
+          "index": 2,
+          "poi_id": "5981897037192494592",
+          "title": "重庆国际博览中心-S1展馆",
+          "address": "重庆市两江新区悦来大道66号",
+          "category": "文化场馆:展览馆",
+          "latitude": 29.715198,
+          "longitude": 106.542686
+        },
+        {
+          "index": 3,
+          "poi_id": "12439356724394077907",
+          "title": "重庆国际博览中心中央大厅",
+          "address": "重庆市两江新区悦来大道66号",
+          "category": "文化场馆:其它文化场馆",
+          "latitude": 29.717165,
+          "longitude": 106.542035
+        },
+        {
+          "index": 4,
+          "poi_id": "6045352007832296335",
+          "title": "重庆国际博览中心-N8展馆",
+          "address": "重庆市两江新区悦来大道66号(悦来地铁站1号口步行270米)",
+          "category": "文化场馆:展览馆",
+          "latitude": 29.723317,
+          "longitude": 106.546205
+        },
+        {
+          "index": 5,
+          "poi_id": "9188876412928062975",
+          "title": "重庆国际博览中心-N4展馆",
+          "address": "重庆市两江新区悦来大道66号",
+          "category": "文化场馆:展览馆",
+          "latitude": 29.721688,
+          "longitude": 106.542131
+        },
+        {
+          "index": 6,
+          "poi_id": "5326815126315305253",
+          "title": "重庆国际博览中心-N3展馆",
+          "address": "重庆市两江新区悦来大道66号(国博中心地铁站4号口步行400米)",
+          "category": "文化场馆:展览馆",
+          "latitude": 29.720585,
+          "longitude": 106.54498
+        },
+        {
+          "index": 7,
+          "poi_id": "15309757529739662771",
+          "title": "重庆曼德姆酒店(重庆国际博览中心)",
+          "address": "重庆市两江新区悦来街道滨江路94号附13号",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 29.722793,
+          "longitude": 106.54176
+        }
+      ],
+      "reason": "银河左岸音乐节场地为重庆国际博览中心",
+      "search_keywords_tried": [
+        "重庆国际博览中心"
+      ]
+    },
+    {
+      "group_id": "d5b09a6dfc95",
+      "location": "重庆龙兴足球场",
+      "sample_title": "青橙跳动 城市在场",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:04_1"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "high",
+      "doubtful": false,
+      "action": "match",
+      "poi_id": "11302637449749216047",
+      "poi_title": "重庆龙兴足球场",
+      "poi_address": "重庆市两江新区怡园路与两江大道交叉口西南角(龙兴地铁站1B口步行450米)",
+      "latitude": 29.70456,
+      "longitude": 106.800386,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "11302637449749216047",
+          "title": "重庆龙兴足球场",
+          "address": "重庆市两江新区怡园路与两江大道交叉口西南角(龙兴地铁站1B口步行450米)",
+          "category": "运动健身:足球场",
+          "latitude": 29.70456,
+          "longitude": 106.800386
+        },
+        {
+          "index": 1,
+          "poi_id": "1061323815569188781",
+          "title": "重庆龙兴足球场-VVIP入口",
+          "address": "重庆市两江新区兴航大道与轩龙路交叉口正北方向173米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 29.704639,
+          "longitude": 106.797792
+        },
+        {
+          "index": 2,
+          "poi_id": "9913332048195542751",
+          "title": "重庆龙兴足球场训练场",
+          "address": "重庆市两江新区龙兴镇天龙路333号",
+          "category": "运动健身:足球场",
+          "latitude": 29.705886,
+          "longitude": 106.792694
+        },
+        {
+          "index": 3,
+          "poi_id": "6220529104579141790",
+          "title": "龙兴足球场3",
+          "address": "重庆市两江新区龙华路285号",
+          "category": "运动健身:足球场",
+          "latitude": 29.702891,
+          "longitude": 106.797349
+        },
+        {
+          "index": 4,
+          "poi_id": "2320169689505730742",
+          "title": "重庆龙兴足球场-G1入口",
+          "address": "重庆市两江新区两江大道与兴航大道交叉口正北方向85米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 29.70227,
+          "longitude": 106.801469
+        },
+        {
+          "index": 5,
+          "poi_id": "18368767436039477890",
+          "title": "龙兴足球场1",
+          "address": "重庆市两江新区龙华路285号",
+          "category": "运动健身:足球场",
+          "latitude": 29.702891,
+          "longitude": 106.797349
+        },
+        {
+          "index": 6,
+          "poi_id": "1673448077417221717",
+          "title": "重庆龙兴足球场-G2入口",
+          "address": "重庆市两江新区龙兴足球场",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 29.705811,
+          "longitude": 106.802962
+        },
+        {
+          "index": 7,
+          "poi_id": "13996480082783242699",
+          "title": "重庆龙兴足球场-G3入口",
+          "address": "重庆市两江新区怡园路与两江大道交叉口西南角(龙兴地铁站1B口步行450米)",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 29.706112,
+          "longitude": 106.798281
+        }
+      ],
+      "reason": "活动场地与POI名称一致",
+      "search_keywords_tried": [
+        "重庆龙兴足球场"
+      ]
+    },
+    {
+      "group_id": "12c3ebd40d3e",
+      "location": "重庆奥体中心体育场",
+      "sample_title": "薛之谦「天外来物」巡回演唱会",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:05_0"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "high",
+      "doubtful": false,
+      "action": "match",
+      "poi_id": "17153260061053492329",
+      "poi_title": "重庆奥体中心体育场",
+      "poi_address": "重庆市九龙坡区渝州路街道重庆市九龙坡区奥体中心一支路",
+      "latitude": 29.525935,
+      "longitude": 106.506025,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "17153260061053492329",
+          "title": "重庆奥体中心体育场",
+          "address": "重庆市九龙坡区渝州路街道重庆市九龙坡区奥体中心一支路",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 29.525935,
+          "longitude": 106.506025
+        },
+        {
+          "index": 1,
+          "poi_id": "5741328752251883299",
+          "title": "重庆奥体体育公园",
+          "address": "重庆市九龙坡区奥体中心奥体三支路旁",
+          "category": "旅游景点:公园",
+          "latitude": 29.524794,
+          "longitude": 106.502147
+        },
+        {
+          "index": 2,
+          "poi_id": "16113156910702475776",
+          "title": "重庆市奥林匹克体育中心",
+          "address": "重庆市九龙坡区奥体五支路",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 29.525317,
+          "longitude": 106.506568
+        },
+        {
+          "index": 3,
+          "poi_id": "18254424072142399931",
+          "title": "重庆涪陵奥体中心-体育馆",
+          "address": "重庆市涪陵区聚贤大道19号附87西北方向200米",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 29.746276,
+          "longitude": 107.272921
+        },
+        {
+          "index": 4,
+          "poi_id": "7626137796258604584",
+          "title": "重庆市奥林匹克体育中心五环广场",
+          "address": "重庆市九龙坡区奥体路120号",
+          "category": "旅游景点:城市广场",
+          "latitude": 29.525903,
+          "longitude": 106.509655
+        },
+        {
+          "index": 5,
+          "poi_id": "1750010124562553556",
+          "title": "重庆市奥林匹克体育中心-1号门",
+          "address": "重庆市九龙坡区奥体二支路与奥体路交叉口正南方向274米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 29.525691,
+          "longitude": 106.504738
+        },
+        {
+          "index": 6,
+          "poi_id": "13466855117028610307",
+          "title": "重庆市奥林匹克体育中心体育场停车场",
+          "address": "重庆市九龙坡区龙腾大道重庆市奥林匹克体育中心体育场",
+          "category": "汽车:停车场",
+          "latitude": 29.522396,
+          "longitude": 106.505412
+        },
+        {
+          "index": 7,
+          "poi_id": "17126385872694879427",
+          "title": "重庆市奥体中心停车场",
+          "address": "重庆市九龙坡区袁家岗奥体车市附近重庆奥林匹克体育中心",
+          "category": "汽车:停车场",
+          "latitude": 29.524244,
+          "longitude": 106.506083
+        }
+      ],
+      "reason": "薛之谦演唱会场地为奥体中心体育场",
+      "search_keywords_tried": [
+        "重庆奥体中心体育场",
+        "重庆奥体中心"
+      ]
+    },
+    {
+      "group_id": "d8de7bbdb44d",
+      "location": "华熙生物·润百颜ECM中心",
+      "sample_title": "徐良「时间折叠」巡回演唱会",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:05_1"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "high",
+      "doubtful": false,
+      "action": "match",
+      "poi_id": "6968767295551160167",
+      "poi_title": "华熙生物·润百颜ECM中心",
+      "poi_address": "重庆市巴南区平江东路5号",
+      "latitude": 29.378636,
+      "longitude": 106.50803,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6968767295551160167",
+          "title": "华熙生物·润百颜ECM中心",
+          "address": "重庆市巴南区平江东路5号",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 29.378636,
+          "longitude": 106.50803
+        },
+        {
+          "index": 1,
+          "poi_id": "5557208680116727149",
+          "title": "华熙生物·润百颜ECM中心-北门",
+          "address": "重庆市巴南区鱼轻路10号",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 29.379366,
+          "longitude": 106.50791
+        },
+        {
+          "index": 2,
+          "poi_id": "11063149711549367470",
+          "title": "华熙生物·润百颜ECM中心-南门",
+          "address": "重庆市巴南区华熙LIVE·鱼洞泼水节(鱼洞地铁站1号口步行370米)",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 29.378083,
+          "longitude": 106.508211
+        },
+        {
+          "index": 3,
+          "poi_id": "12835213159414332846",
+          "title": "华熙生物·润百颜ECM中心-西门",
+          "address": "重庆市巴南区丰华路与平江东路交叉口正南方向207米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 29.379136,
+          "longitude": 106.50718
+        }
+      ],
+      "reason": "徐良演唱会场地与POI「华熙生物·润百颜ECM中心」一致",
+      "search_keywords_tried": [
+        "润百颜ECM中心",
+        "ECM"
+      ]
+    },
+    {
+      "group_id": "72caa19dc404",
+      "location": "中国重庆·科学会堂3号馆",
+      "sample_title": "2026「帝均杯」音乐电竞嘉年华",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:05_2"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "high",
+      "doubtful": false,
+      "action": "match",
+      "poi_id": "13181002453257422803",
+      "poi_title": "中国重庆·科学会堂",
+      "poi_address": "重庆市九龙坡区新春路与汇玺一路交叉口正东方向214米左右",
+      "latitude": 29.515682,
+      "longitude": 106.352079,
+      "candidates": [
+        {
+          "poi_id": "13181002453257422803",
+          "title": "中国重庆·科学会堂",
+          "address": "重庆市九龙坡区新春路与汇玺一路交叉口正东方向214米左右",
+          "category": "文化场馆:会展中心",
+          "latitude": 29.515682,
+          "longitude": 106.352079
+        },
+        {
+          "index": 0,
+          "poi_id": "6083749386170726292",
+          "title": "驿舍·民国老营房院子私房菜(科学会堂店)",
+          "address": "重庆市九龙坡区白市驿镇天赐路腾意塑料厂对面(天赐温泉南侧)",
+          "category": "美食:中餐厅:其它中餐厅",
+          "latitude": 29.510255,
+          "longitude": 106.373181
+        },
+        {
+          "index": 1,
+          "poi_id": "2199037295339",
+          "title": "科学会堂[地铁站]",
+          "address": "轨道交通7号线",
+          "category": "基础设施:交通设施:地铁站",
+          "latitude": 29.518262,
+          "longitude": 106.354808
+        },
+        {
+          "index": 0,
+          "poi_id": "6229135685343877681",
+          "title": "叁号肖像摄影艺术馆",
+          "address": "重庆市两江新区天宫殿街道熊婆婆的花园",
+          "category": "生活服务:摄影冲印",
+          "latitude": 29.607295,
+          "longitude": 106.540664
+        },
+        {
+          "index": 1,
+          "poi_id": "15933447378398069071",
+          "title": "合川汽摩中心3号馆",
+          "address": "重庆市合川区合州实业路与汽摩大道交叉口东北方向72米左右",
+          "category": "汽车:汽车销售",
+          "latitude": 30.016623,
+          "longitude": 106.267833
+        },
+        {
+          "index": 2,
+          "poi_id": "17421174773177668529",
+          "title": "时代天街B馆-3号楼",
+          "address": "重庆市渝中区大坪正街与龙湖天街交叉口东南方向130米左右",
+          "category": "房产小区:房产小区附属",
+          "latitude": 29.538714,
+          "longitude": 106.512046
+        },
+        {
+          "index": 3,
+          "poi_id": "2764804106819284770",
+          "title": "叁号健身铁馆(龙湖森镜)",
+          "address": "重庆市巴南区龙汇路2515号2-1",
+          "category": "运动健身:健身中心",
+          "latitude": 29.461942,
+          "longitude": 106.50962
+        },
+        {
+          "index": 4,
+          "poi_id": "6194376104794231210",
+          "title": "龙湖时代天街(大坪店)A馆3号门",
+          "address": "重庆市渝中区时代天街",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 29.53797,
+          "longitude": 106.510754
+        }
+      ],
+      "reason": "活动写科学会堂3号馆，POI主体为中国重庆·科学会堂，仅馆号未精确到腾讯店级POI",
+      "search_keywords_tried": [
+        "科学会堂3号馆",
+        "科学会堂",
+        "重庆科学会堂"
+      ]
+    },
+    {
+      "group_id": "49696d07e1f8",
+      "location": "南滨路、江北嘴、朝天门一带",
+      "sample_title": "无人机表演",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:06_0"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "low",
+      "doubtful": false,
+      "action": "reject",
+      "reason": "南滨路、江北嘴、朝天门一带为沿江多片区，地址过泛无法对应唯一POI",
+      "search_keywords_tried": [
+        "南滨路",
+        "江北嘴",
+        "朝天门一带"
+      ],
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "4306234345153340792",
+          "title": "南滨路",
+          "address": "重庆市南岸区",
+          "category": "地名地址:道路名",
+          "latitude": 29.541536,
+          "longitude": 106.574669
+        },
+        {
+          "index": 1,
+          "poi_id": "11673580616691277163",
+          "title": "南滨路",
+          "address": "重庆市长寿区",
+          "category": "地名地址:道路名",
+          "latitude": 29.810538,
+          "longitude": 107.069782
+        },
+        {
+          "index": 2,
+          "poi_id": "13410275753221281302",
+          "title": "南滨路",
+          "address": "重庆市云阳县",
+          "category": "地名地址:道路名",
+          "latitude": 30.908083,
+          "longitude": 108.710917
+        },
+        {
+          "index": 3,
+          "poi_id": "16559065667637751949",
+          "title": "南滨大道辅路",
+          "address": "重庆市万州区",
+          "category": "地名地址:道路名",
+          "latitude": 30.809471,
+          "longitude": 108.40108
+        },
+        {
+          "index": 4,
+          "poi_id": "12269388098944221525",
+          "title": "南滨大道",
+          "address": "重庆市万州区",
+          "category": "地名地址:道路名",
+          "latitude": 30.788338,
+          "longitude": 108.40892
+        },
+        {
+          "index": 5,
+          "poi_id": "15273214034458752405",
+          "title": "南滨街",
+          "address": "重庆市开州区",
+          "category": "地名地址:道路名",
+          "latitude": 31.033801,
+          "longitude": 108.130132
+        },
+        {
+          "index": 6,
+          "poi_id": "10566502836902220447",
+          "title": "南滨路",
+          "address": "重庆市武隆区",
+          "category": "地名地址:道路名",
+          "latitude": 29.321892,
+          "longitude": 107.751894
+        },
+        {
+          "index": 7,
+          "poi_id": "16977969697720628606",
+          "title": "南滨大道",
+          "address": "重庆市万州区",
+          "category": "地名地址:道路名",
+          "latitude": 30.826037,
+          "longitude": 108.457018
+        }
+      ]
+    },
+    {
+      "group_id": "0b0a83c9b0a9",
+      "location": "四川美术学院虎溪校区、黄桷坪校区",
+      "sample_title": "2026川美毕业展",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:06_1"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "low",
+      "doubtful": false,
+      "action": "reject",
+      "reason": "毕业展覆盖虎溪、黄桷坪双校区，无法确定唯一场馆POI",
+      "search_keywords_tried": [
+        "四川美术学院虎溪校区",
+        "黄桷坪校区",
+        "四川美术学院"
+      ],
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "5392562573334562088",
+          "title": "四川美术学院(虎溪校区)",
+          "address": "重庆市沙坪坝区大学城南路28号",
+          "category": "教育学校:大学",
+          "latitude": 29.602831,
+          "longitude": 106.29754
+        },
+        {
+          "index": 1,
+          "poi_id": "2694924824732685510",
+          "title": "四川美术学院(虎溪校区)-北门",
+          "address": "重庆市沙坪坝区大学城南路四川美术学院虎溪校区",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 29.606727,
+          "longitude": 106.298367
+        },
+        {
+          "index": 2,
+          "poi_id": "18126207155827419485",
+          "title": "四川美术学院(虎溪校区)-南门",
+          "address": "重庆市沙坪坝区大学城南路28号",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 29.598882,
+          "longitude": 106.297557
+        },
+        {
+          "index": 3,
+          "poi_id": "10438299914240648136",
+          "title": "四川美术学院(虎溪校区)-西门",
+          "address": "重庆市沙坪坝区大学城南路四川美术学院虎溪校区",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 29.603656,
+          "longitude": 106.294188
+        },
+        {
+          "index": 4,
+          "poi_id": "16934532369806270981",
+          "title": "四川美术学院(虎溪校区)操场",
+          "address": "重庆市沙坪坝区大学城南路28号四川美术学院虎溪校区",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 29.60145,
+          "longitude": 106.294742
+        },
+        {
+          "index": 5,
+          "poi_id": "16590099763355508289",
+          "title": "四川美术学院虎溪校区美术馆",
+          "address": "重庆市沙坪坝区大学城南路56号",
+          "category": "文化场馆:美术馆",
+          "latitude": 29.601442,
+          "longitude": 106.300552
+        },
+        {
+          "index": 6,
+          "poi_id": "4829264273152650421",
+          "title": "四川美术学院(虎溪校区)影视动画学院",
+          "address": "重庆市沙坪坝区虎溪街道大学城南路四川美术学院南门",
+          "category": "教育学校:教育学校附属",
+          "latitude": 29.59899,
+          "longitude": 106.298648
+        },
+        {
+          "index": 7,
+          "poi_id": "507266973793164433",
+          "title": "四川美术学院(虎溪校区)艺术人文学院",
+          "address": "重庆市沙坪坝区景苑路",
+          "category": "教育学校:教育学校附属",
+          "latitude": 29.600653,
+          "longitude": 106.299269
+        }
+      ]
+    },
+    {
+      "group_id": "1133bef5538c",
+      "location": "重庆印象城1F中庭",
+      "sample_title": "重庆首届豆包辩论大赛",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:07_0",
+        "xiaohongshu:6a22bc9200000000080245d6:07_1"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "high",
+      "doubtful": false,
+      "action": "match",
+      "poi_id": "2084262791714245466",
+      "poi_title": "印象城",
+      "poi_address": "重庆市渝中区华盛路与昌盛路交叉口东北方向90米左右",
+      "latitude": 29.550398,
+      "longitude": 106.517693,
+      "candidates": [
+        {
+          "poi_id": "2084262791714245466",
+          "title": "印象城",
+          "address": "重庆市渝中区华盛路与昌盛路交叉口东北方向90米左右",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 29.550398,
+          "longitude": 106.517693
+        },
+        {
+          "index": 1,
+          "poi_id": "10004492636384183576",
+          "title": "Pagoda君亭设计酒店(重庆化龙桥地铁站印象城店)",
+          "address": "重庆市渝中区化龙桥街道嘉陵江滨江路456号重庆陆海国际中心181号",
+          "category": "酒店宾馆:经济型酒店",
+          "latitude": 29.550614,
+          "longitude": 106.518427
+        },
+        {
+          "index": 2,
+          "poi_id": "15200673720374858437",
+          "title": "印象棠城",
+          "address": "重庆市荣昌区昌元街道昌州故里6号楼",
+          "category": "娱乐休闲:KTV",
+          "latitude": 29.414435,
+          "longitude": 105.589423
+        },
+        {
+          "index": 3,
+          "poi_id": "4529805272199417998",
+          "title": "NOWWA挪瓦咖啡(美宜佳重庆印象城店)",
+          "address": "重庆市南岸区光电路与花园路交叉口正西方向91米左右",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 29.525005,
+          "longitude": 106.553744
+        },
+        {
+          "index": 4,
+          "poi_id": "7083729136760253644",
+          "title": "重庆印象城停车场入口(陆海国际中心)",
+          "address": "重庆市渝中区化龙桥陆海国际中心(嘉陵江滨江路南)",
+          "category": "室内及附属设施:通行设施类:停车场入口",
+          "latitude": 29.55094,
+          "longitude": 106.518157
+        },
+        {
+          "index": 5,
+          "poi_id": "14053678019894398753",
+          "title": "重庆交运医药大药房(重庆印象城店)",
+          "address": "重庆市渝中区化龙桥街道嘉陵江滨江路456号附17号LG层35号商铺",
+          "category": "医疗保健:药房药店",
+          "latitude": 29.550368,
+          "longitude": 106.516569
+        },
+        {
+          "index": 6,
+          "poi_id": "6827823907398405082",
+          "title": "M Stand(重庆印象城店)",
+          "address": "重庆市渝中区华盛路6号附5号L103号",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 29.550054,
+          "longitude": 106.517528
+        },
+        {
+          "index": 7,
+          "poi_id": "7683294710886336007",
+          "title": "BA(印象城店)",
+          "address": "重庆市渝中区滨江路456号第MA栋第L1层第L1-X12号",
+          "category": "美食:面包甜点",
+          "latitude": 29.550673,
+          "longitude": 106.517051
+        }
+      ],
+      "reason": "重庆印象城1F中庭与POI「印象城」主体一致，仅楼层未精确到店级POI",
+      "search_keywords_tried": [
+        "重庆印象城",
+        "重庆印象城1F中庭",
+        "THE RING 重庆印象城"
+      ]
+    },
+    {
+      "group_id": "604fbfbb3457",
+      "location": "重庆南坪国际会展中心",
+      "sample_title": "重庆·第九届TAX动漫文化节",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:08_0"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "high",
+      "doubtful": false,
+      "action": "match",
+      "poi_id": "16113546982774433562",
+      "poi_title": "重庆国际会议展览中心",
+      "poi_address": "重庆市南岸区江南大道2号",
+      "latitude": 29.53344,
+      "longitude": 106.56146,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "16113546982774433562",
+          "title": "重庆国际会议展览中心",
+          "address": "重庆市南岸区江南大道2号",
+          "category": "文化场馆:会展中心",
+          "latitude": 29.53344,
+          "longitude": 106.56146
+        },
+        {
+          "index": 1,
+          "poi_id": "2571373505005610813",
+          "title": "南坪会展中心",
+          "address": "重庆市南岸区铜元局街道江南大道2号南坪国际会议中心242室展览策划分公司(近南坪北路)",
+          "category": "文化场馆:会展中心",
+          "latitude": 29.533817,
+          "longitude": 106.561483
+        },
+        {
+          "index": 2,
+          "poi_id": "1974274330335238953",
+          "title": "重庆国际会议展览中心-会议中心",
+          "address": "重庆市南岸区铜元局街道亚太路重庆国际会议展览中心(工贸地铁站3B口步行290米)",
+          "category": "教育学校:培训",
+          "latitude": 29.534767,
+          "longitude": 106.561615
+        },
+        {
+          "index": 3,
+          "poi_id": "7888367499728857727",
+          "title": "布郎特酒店(重庆南坪会展中心站店)",
+          "address": "重庆市南岸区南坪街道开发路31号(科尔大厦)1,2,3层",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 29.530703,
+          "longitude": 106.563492
+        },
+        {
+          "index": 4,
+          "poi_id": "2757111316393449574",
+          "title": "你好酒店(重庆南坪会展中心店)",
+          "address": "重庆市南岸区江南大道9号",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 29.530266,
+          "longitude": 106.566768
+        },
+        {
+          "index": 5,
+          "poi_id": "7754022670699390609",
+          "title": "重庆港丽酒店(南坪会展中心店)",
+          "address": "重庆市南岸区江南大道7号浪高亮阁1楼(会展中心东南400米,轻轨3号线工贸站1号出口东160米)",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 29.531603,
+          "longitude": 106.565754
+        },
+        {
+          "index": 6,
+          "poi_id": "2803548003675090340",
+          "title": "重庆瑞祥酒店(南坪会展中心店)",
+          "address": "重庆市南岸区亚太路1号一期裙楼1-105号",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 29.535069,
+          "longitude": 106.559518
+        },
+        {
+          "index": 7,
+          "poi_id": "17322692115713650020",
+          "title": "重庆永洁酒店(南坪会展中心店)",
+          "address": "重庆市南岸区南坪西路31号台湾花园B栋5楼(近工贸地铁站,上海城对面,可以步行导航丁子户便利店)",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 29.52801,
+          "longitude": 106.562545
+        }
+      ],
+      "reason": "TAX动漫节场地为重庆国际会议展览中心（南坪国际会展中心）",
+      "search_keywords_tried": [
+        "重庆南坪国际会展中心"
+      ]
+    },
+    {
+      "group_id": "5963bf1e5e7d",
+      "location": "南坪国际会展中心",
+      "sample_title": "重庆端午食博会",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:08_1"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "high",
+      "doubtful": false,
+      "action": "match",
+      "poi_id": "16113546982774433562",
+      "poi_title": "重庆国际会议展览中心",
+      "poi_address": "重庆市南岸区江南大道2号",
+      "latitude": 29.53344,
+      "longitude": 106.56146,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "16113546982774433562",
+          "title": "重庆国际会议展览中心",
+          "address": "重庆市南岸区江南大道2号",
+          "category": "文化场馆:会展中心",
+          "latitude": 29.53344,
+          "longitude": 106.56146
+        },
+        {
+          "index": 1,
+          "poi_id": "2571373505005610813",
+          "title": "南坪会展中心",
+          "address": "重庆市南岸区铜元局街道江南大道2号南坪国际会议中心242室展览策划分公司(近南坪北路)",
+          "category": "文化场馆:会展中心",
+          "latitude": 29.533817,
+          "longitude": 106.561483
+        },
+        {
+          "index": 2,
+          "poi_id": "2199037773124",
+          "title": "南坪会展中心[公交站]",
+          "address": "渝南同城便民快巴",
+          "category": "基础设施:交通设施:公交车站",
+          "latitude": 29.533525,
+          "longitude": 106.560379
+        },
+        {
+          "index": 3,
+          "poi_id": "1974274330335238953",
+          "title": "重庆国际会议展览中心-会议中心",
+          "address": "重庆市南岸区铜元局街道亚太路重庆国际会议展览中心(工贸地铁站3B口步行290米)",
+          "category": "教育学校:培训",
+          "latitude": 29.534767,
+          "longitude": 106.561615
+        },
+        {
+          "index": 4,
+          "poi_id": "13996899406860057075",
+          "title": "神州租车(南坪会展中心服务点)",
+          "address": "重庆市南岸区南坪会展中心正对面公交车站上行100米(会展花市1口旁独栋建筑)",
+          "category": "汽车:汽车租赁",
+          "latitude": 29.534853,
+          "longitude": 106.564357
+        },
+        {
+          "index": 5,
+          "poi_id": "7754022670699390609",
+          "title": "重庆港丽酒店(南坪会展中心店)",
+          "address": "重庆市南岸区江南大道7号浪高亮阁1楼(会展中心东南400米,轻轨3号线工贸站1号出口东160米)",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 29.531603,
+          "longitude": 106.565754
+        },
+        {
+          "index": 6,
+          "poi_id": "17263362444104737044",
+          "title": "八佰丰酒店(南坪会展中心店)",
+          "address": "重庆市南岸区长江村9号长江村小区",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 29.531763,
+          "longitude": 106.555128
+        },
+        {
+          "index": 7,
+          "poi_id": "10088201220706997700",
+          "title": "重庆舒心酒店(南坪会展中心店)",
+          "address": "重庆市南岸区铜元局街道亚太路9号玖玺国际7栋1楼(距离轻轨3号线工贸站3号出口300米,亚太商谷对面)",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 29.535821,
+          "longitude": 106.560298
+        }
+      ],
+      "reason": "端午食博会场地为重庆国际会议展览中心",
+      "search_keywords_tried": [
+        "南坪国际会展中心"
+      ]
+    },
+    {
+      "group_id": "54c977823d9b",
+      "location": "重庆中国三峡博物馆1楼临展厅A",
+      "sample_title": "跨越山海——寻找东西方传说中的奇幻生物",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:09_0"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "high",
+      "doubtful": false,
+      "action": "match",
+      "poi_id": "8213064061767453738",
+      "poi_title": "重庆中国三峡博物馆",
+      "poi_address": "重庆市渝中区人民路236号",
+      "latitude": 29.56208,
+      "longitude": 106.55034,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "8213064061767453738",
+          "title": "重庆中国三峡博物馆",
+          "address": "重庆市渝中区人民路236号",
+          "category": "文化场馆:博物馆",
+          "latitude": 29.56208,
+          "longitude": 106.55034
+        },
+        {
+          "index": 1,
+          "poi_id": "10136777872909811449",
+          "title": "重庆中国三峡博物馆三峡文物科技保护基地",
+          "address": "重庆市南岸区丹回路1号",
+          "category": "文化场馆:博物馆",
+          "latitude": 29.510808,
+          "longitude": 106.551064
+        },
+        {
+          "index": 2,
+          "poi_id": "1774502158748225332",
+          "title": "重庆中国三峡博物馆-正门",
+          "address": "重庆市渝中区人民路",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 29.562069,
+          "longitude": 106.550698
+        },
+        {
+          "index": 3,
+          "poi_id": "3956570931770241086",
+          "title": "重庆中国三峡博物馆开州分馆",
+          "address": "重庆市开州区S202与滨湖路交叉口西北方向59米左右",
+          "category": "文化场馆:博物馆",
+          "latitude": 31.166677,
+          "longitude": 108.389922
+        },
+        {
+          "index": 4,
+          "poi_id": "713594272732844920",
+          "title": "重庆中国三峡博物馆(重庆博物馆)-南门",
+          "address": "重庆市渝中区人民路与学田湾正街交叉口东北方向214米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 29.561307,
+          "longitude": 106.549965
+        },
+        {
+          "index": 5,
+          "poi_id": "14389793986345719360",
+          "title": "重庆中国三峡博物馆巫山分馆",
+          "address": "重庆市巫山县平湖西湖369",
+          "category": "文化场馆:博物馆",
+          "latitude": 31.073007,
+          "longitude": 109.882816
+        },
+        {
+          "index": 6,
+          "poi_id": "18301006423267306587",
+          "title": "重庆中国三峡博物馆(P1)停车场",
+          "address": "重庆市渝中区人民路236号重庆中国三峡博物馆(P1)",
+          "category": "汽车:停车场",
+          "latitude": 29.561411,
+          "longitude": 106.549853
+        },
+        {
+          "index": 7,
+          "poi_id": "10163990308194866763",
+          "title": "重庆中国三峡博物馆-接待中心",
+          "address": "重庆市渝中区人民路236号重庆中国三峡博物馆一楼",
+          "category": "旅游景点:景点公园附属",
+          "latitude": 29.561998,
+          "longitude": 106.550513
+        }
+      ],
+      "reason": "临展厅A位于三峡博物馆主体，仅展厅号未精确到店级POI",
+      "search_keywords_tried": [
+        "重庆中国三峡博物馆",
+        "重庆中国三峡博物馆1楼临展厅A",
+        "楼临展厅"
+      ]
+    },
+    {
+      "group_id": "050b5122dd75",
+      "location": "重庆中国三峡博物馆4楼临展厅D",
+      "sample_title": "月港流韵——漳州市博物馆藏明清外销瓷",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:09_1"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "high",
+      "doubtful": false,
+      "action": "match",
+      "poi_id": "8213064061767453738",
+      "poi_title": "重庆中国三峡博物馆",
+      "poi_address": "重庆市渝中区人民路236号",
+      "latitude": 29.56208,
+      "longitude": 106.55034,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "8213064061767453738",
+          "title": "重庆中国三峡博物馆",
+          "address": "重庆市渝中区人民路236号",
+          "category": "文化场馆:博物馆",
+          "latitude": 29.56208,
+          "longitude": 106.55034
+        },
+        {
+          "index": 1,
+          "poi_id": "10136777872909811449",
+          "title": "重庆中国三峡博物馆三峡文物科技保护基地",
+          "address": "重庆市南岸区丹回路1号",
+          "category": "文化场馆:博物馆",
+          "latitude": 29.510808,
+          "longitude": 106.551064
+        },
+        {
+          "index": 2,
+          "poi_id": "1774502158748225332",
+          "title": "重庆中国三峡博物馆-正门",
+          "address": "重庆市渝中区人民路",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 29.562069,
+          "longitude": 106.550698
+        },
+        {
+          "index": 3,
+          "poi_id": "713594272732844920",
+          "title": "重庆中国三峡博物馆(重庆博物馆)-南门",
+          "address": "重庆市渝中区人民路与学田湾正街交叉口东北方向214米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 29.561307,
+          "longitude": 106.549965
+        },
+        {
+          "index": 4,
+          "poi_id": "3956570931770241086",
+          "title": "重庆中国三峡博物馆开州分馆",
+          "address": "重庆市开州区S202与滨湖路交叉口西北方向59米左右",
+          "category": "文化场馆:博物馆",
+          "latitude": 31.166677,
+          "longitude": 108.389922
+        },
+        {
+          "index": 5,
+          "poi_id": "14389793986345719360",
+          "title": "重庆中国三峡博物馆巫山分馆",
+          "address": "重庆市巫山县平湖西湖369",
+          "category": "文化场馆:博物馆",
+          "latitude": 31.073007,
+          "longitude": 109.882816
+        },
+        {
+          "index": 6,
+          "poi_id": "18301006423267306587",
+          "title": "重庆中国三峡博物馆(P1)停车场",
+          "address": "重庆市渝中区人民路236号重庆中国三峡博物馆(P1)",
+          "category": "汽车:停车场",
+          "latitude": 29.561411,
+          "longitude": 106.549853
+        },
+        {
+          "index": 7,
+          "poi_id": "3540214514572975242",
+          "title": "重庆中国三峡博物馆(P4)停车场",
+          "address": "重庆市渝中区人民路236号重庆中国三峡博物馆(P4)",
+          "category": "汽车:停车场",
+          "latitude": 29.562121,
+          "longitude": 106.55079
+        }
+      ],
+      "reason": "临展厅D位于三峡博物馆主体，仅展厅号未精确到店级POI",
+      "search_keywords_tried": [
+        "重庆中国三峡博物馆",
+        "重庆中国三峡博物馆4楼临展厅D",
+        "楼临展厅"
+      ]
+    },
+    {
+      "group_id": "0d106bf3a558",
+      "location": "龙美术馆·重庆馆",
+      "sample_title": "「10——60」展览",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:10_0"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "high",
+      "doubtful": false,
+      "action": "match",
+      "poi_id": "14227355650711538314",
+      "poi_title": "龙美术馆(重庆分馆)",
+      "poi_address": "重庆市两江新区五里店江北嘴聚贤岩广场9号重庆国华金融中心1-3层",
+      "latitude": 29.568724,
+      "longitude": 106.573686,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "8213064061767453738",
+          "title": "重庆中国三峡博物馆",
+          "address": "重庆市渝中区人民路236号",
+          "category": "文化场馆:博物馆",
+          "latitude": 29.56208,
+          "longitude": 106.55034
+        },
+        {
+          "index": 1,
+          "poi_id": "15256982316578992551",
+          "title": "重庆科技馆",
+          "address": "重庆市两江新区文星门街7号",
+          "category": "旅游景点:国家级景点",
+          "latitude": 29.571021,
+          "longitude": 106.57781
+        },
+        {
+          "index": 2,
+          "poi_id": "5259769636814980836",
+          "title": "重庆自然博物馆",
+          "address": "重庆市北碚区金华路398号",
+          "category": "文化场馆:博物馆",
+          "latitude": 29.818902,
+          "longitude": 106.407788
+        },
+        {
+          "index": 3,
+          "poi_id": "14109759864490675902",
+          "title": "重庆市体育馆",
+          "address": "重庆市渝中区体育村32号",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 29.555999,
+          "longitude": 106.547944
+        },
+        {
+          "index": 4,
+          "poi_id": "10157008250718106803",
+          "title": "重庆图书馆",
+          "address": "重庆市沙坪坝区凤天大道106号",
+          "category": "文化场馆:图书馆",
+          "latitude": 29.53235,
+          "longitude": 106.454822
+        },
+        {
+          "index": 5,
+          "poi_id": "436790455692286748",
+          "title": "重庆美术馆",
+          "address": "重庆市渝中区临江路重庆国泰艺术中心5层",
+          "category": "文化场馆:美术馆",
+          "latitude": 29.56,
+          "longitude": 106.57672
+        },
+        {
+          "index": 6,
+          "poi_id": "15187185352081752431",
+          "title": "重庆宋庆龄旧居陈列馆",
+          "address": "重庆市渝中区两路口新村5号",
+          "category": "旅游景点:风景名胜",
+          "latitude": 29.554111,
+          "longitude": 106.548725
+        },
+        {
+          "index": 7,
+          "poi_id": "10049331414730165797",
+          "title": "重庆渝北体育馆",
+          "address": "重庆市两江新区兰馨大道与盛景路交叉口东北方向153米左右",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 29.704653,
+          "longitude": 106.609373
+        }
+      ],
+      "reason": "龙美术馆·重庆馆与POI「龙美术馆(重庆分馆)」一致",
+      "search_keywords_tried": [
+        "龙美术馆",
+        "重庆馆"
+      ]
+    },
+    {
+      "group_id": "594c236bea35",
+      "location": "重庆A4X艺术中心",
+      "sample_title": "「剪的练习」陈粉丸个展",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:10_1"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "high",
+      "doubtful": false,
+      "action": "match",
+      "poi_id": "11924576783248205463",
+      "poi_title": "A4X艺术中心(重庆馆)",
+      "poi_address": "重庆市两江新区创悦路绿心GreenHeart商业",
+      "latitude": 29.746282,
+      "longitude": 106.537167,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "11924576783248205463",
+          "title": "A4X艺术中心(重庆馆)",
+          "address": "重庆市两江新区创悦路绿心GreenHeart商业",
+          "category": "其它",
+          "latitude": 29.746282,
+          "longitude": 106.537167
+        },
+        {
+          "index": 0,
+          "poi_id": "6208695089849590290",
+          "title": "龙摄影婚礼艺术中心(芙蓉中路都市广场店)",
+          "address": "重庆市武隆区芙蓉中路2号都市广场2楼(苹果手机楼上)",
+          "category": "生活服务:摄影冲印",
+          "latitude": 29.324063,
+          "longitude": 107.760021
+        },
+        {
+          "index": 1,
+          "poi_id": "6177241168183517548",
+          "title": "永川文化艺术中心",
+          "address": "重庆市永川区中山路街道红河大道1号新区2楼",
+          "category": "文化场馆:文化宫",
+          "latitude": 29.354072,
+          "longitude": 105.931106
+        },
+        {
+          "index": 2,
+          "poi_id": "2757525303885205232",
+          "title": "重庆国泰艺术中心",
+          "address": "重庆市渝中区临江路1号",
+          "category": "文化场馆:其它文化场馆",
+          "latitude": 29.560093,
+          "longitude": 106.577223
+        },
+        {
+          "index": 3,
+          "poi_id": "2709420876162376975",
+          "title": "映画鱼艺术影像中心",
+          "address": "重庆市南岸区金开电商产业园2期19栋2楼",
+          "category": "生活服务:摄影冲印",
+          "latitude": 29.523817,
+          "longitude": 106.686329
+        },
+        {
+          "index": 4,
+          "poi_id": "15684555500251527516",
+          "title": "宁河之音艺术培训中心",
+          "address": "重庆市巫溪县学府路珠海实验小学后门",
+          "category": "教育学校:培训",
+          "latitude": 31.394201,
+          "longitude": 109.564423
+        },
+        {
+          "index": 5,
+          "poi_id": "1890710686523315482",
+          "title": "秋庄茶楼",
+          "address": "重庆市两江新区星汇两江5区(E区)1层",
+          "category": "娱乐休闲:茶馆",
+          "latitude": 29.617496,
+          "longitude": 106.504423
+        },
+        {
+          "index": 6,
+          "poi_id": "381545157226988121",
+          "title": "刘开渠艺术中心(龙湖春森星悦荟店)",
+          "address": "重庆市两江新区北滨一路258号龙湖星悦荟F3",
+          "category": "教育学校:培训:美术培训",
+          "latitude": 29.569293,
+          "longitude": 106.545454
+        }
+      ],
+      "reason": "陈粉丸个展场地与A4X艺术中心(重庆馆)一致",
+      "search_keywords_tried": [
+        "重庆A4X艺术中心",
+        "A4X",
+        "艺术中心"
+      ]
+    },
+    {
+      "group_id": "407e1af53e50",
+      "location": "重庆美术馆1号厅",
+      "sample_title": "行走的画卷：第四届西部艺术展",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:11_0"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "high",
+      "doubtful": false,
+      "action": "match",
+      "poi_id": "436790455692286748",
+      "poi_title": "重庆美术馆",
+      "poi_address": "",
+      "latitude": 29.56,
+      "longitude": 106.57672,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "436790455692286748",
+          "title": "重庆美术馆",
+          "address": "",
+          "latitude": 29.56,
+          "longitude": 106.57672
+        }
+      ],
+      "reason": "地址映射库命中：重庆美术馆1号厅 → 重庆美术馆（来源 event:xiaohongshu:6a27fa4a0000000022014556:08_0）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ]
+    },
+    {
+      "group_id": "a1baec92f6e2",
+      "location": "重庆美术馆2-5号厅",
+      "sample_title": "千里同风",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:11_1"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "high",
+      "doubtful": false,
+      "action": "match",
+      "poi_id": "436790455692286748",
+      "poi_title": "重庆美术馆",
+      "poi_address": "重庆市渝中区临江路重庆国泰艺术中心5层",
+      "latitude": 29.56,
+      "longitude": 106.57672,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "3557270169512508557",
+          "title": "YOLO鹅岭美术馆酒店(重庆鹅岭二厂文创公园店)",
+          "address": "重庆市渝中区鹅岭正街1号楼附1号(近贰厂,鹅岭公园,俯瞰重庆夜景理想之地)",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 29.550863,
+          "longitude": 106.538754
+        },
+        {
+          "index": 1,
+          "poi_id": "4698563557812961684",
+          "title": "字画十字绣装裱装框(墨艺轩画廊)",
+          "address": "重庆市两江新区湖红路184号",
+          "category": "生活服务:其它生活服务",
+          "latitude": 29.656554,
+          "longitude": 106.521771
+        },
+        {
+          "index": 2,
+          "poi_id": "2402784657732012636",
+          "title": "重庆蓝图公寓(华人当代美术馆2号店)",
+          "address": "重庆市两江新区兴科大道250号汇凯青年城1号楼1110室(回兴轻轨站旁)",
+          "category": "酒店宾馆:公寓式酒店",
+          "latitude": 29.690626,
+          "longitude": 106.605633
+        },
+        {
+          "index": 0,
+          "poi_id": "436790455692286748",
+          "title": "重庆美术馆",
+          "address": "重庆市渝中区临江路重庆国泰艺术中心5层",
+          "category": "文化场馆:美术馆",
+          "latitude": 29.56,
+          "longitude": 106.57672
+        },
+        {
+          "index": 1,
+          "poi_id": "7195806947810701330",
+          "title": "重庆文联美术馆",
+          "address": "重庆市两江新区龙山街道松石大道162号重庆文联1层",
+          "category": "文化场馆:美术馆",
+          "latitude": 29.581188,
+          "longitude": 106.491113
+        },
+        {
+          "index": 2,
+          "poi_id": "10149374671159704409",
+          "title": "重庆虹美术馆",
+          "address": "重庆市两江新区礼洁路",
+          "category": "文化场馆:美术馆",
+          "latitude": 29.656079,
+          "longitude": 106.478272
+        },
+        {
+          "index": 3,
+          "poi_id": "15265245175176034475",
+          "title": "重庆人文美术馆",
+          "address": "重庆市北碚区北温泉街道北碚行政中心背后半山",
+          "category": "文化场馆:美术馆",
+          "latitude": 29.814308,
+          "longitude": 106.387499
+        },
+        {
+          "index": 4,
+          "poi_id": "11845393218653842632",
+          "title": "千叶美术馆",
+          "address": "重庆市渝中区八一路与邹容路交叉口正西方向42米左右",
+          "category": "文化场馆:美术馆",
+          "latitude": 29.55674,
+          "longitude": 106.5776
+        }
+      ],
+      "reason": "千里同风展在美术馆2-5号厅，POI主体为重庆美术馆，仅厅号未精确到店级POI",
+      "search_keywords_tried": [
+        "重庆美术馆",
+        "重庆美术馆2-5号厅",
+        "5号厅"
+      ]
+    },
+    {
+      "group_id": "b0d3d382c539",
+      "location": "MOCO168 B馆LG层以梦为马限定展厅",
+      "sample_title": "《以梦为马》儿童绘画艺术展",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:12_0"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "high",
+      "doubtful": false,
+      "action": "match",
+      "poi_id": "6161887009029834261",
+      "poi_title": "MOCO168-A馆",
+      "poi_address": "",
+      "latitude": 29.601617,
+      "longitude": 106.498229,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6161887009029834261",
+          "title": "MOCO168-A馆",
+          "address": "",
+          "latitude": 29.601617,
+          "longitude": 106.498229
+        }
+      ],
+      "reason": "地址映射库命中：MOCO168 B馆LG层以梦为马限定展厅 → MOCO168-A馆（来源 event:xiaohongshu:6a27fa4a0000000022014556:09_0）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ]
+    },
+    {
+      "group_id": "86f8f02e2186",
+      "location": "王琦美术博物馆1-2号展厅",
+      "sample_title": "欢迎来到，童年美好收集事务所",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:12_1"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "high",
+      "doubtful": false,
+      "action": "match",
+      "poi_id": "7847359499882622641",
+      "poi_title": "王琦美术博物馆",
+      "poi_address": "",
+      "latitude": 29.563548,
+      "longitude": 106.54743,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "7847359499882622641",
+          "title": "王琦美术博物馆",
+          "address": "",
+          "latitude": 29.563548,
+          "longitude": 106.54743
+        }
+      ],
+      "reason": "地址映射库命中：王琦美术博物馆1-2号展厅 → 王琦美术博物馆（来源 event:xiaohongshu:6a27fa4a0000000022014556:09_1）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ]
+    },
+    {
+      "group_id": "5aaeb7cdc686",
+      "location": "重庆中央公园·光环花园城",
+      "sample_title": "夏以昼生日主题痛楼",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:13_0"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "high",
+      "doubtful": false,
+      "action": "match",
+      "poi_id": "7420769942037403303",
+      "poi_title": "中央公园光环花园城",
+      "poi_address": "重庆市两江新区同茂大道236号",
+      "latitude": 29.722634,
+      "longitude": 106.59068,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "7420769942037403303",
+          "title": "中央公园光环花园城",
+          "address": "重庆市两江新区同茂大道236号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 29.722634,
+          "longitude": 106.59068
+        },
+        {
+          "index": 1,
+          "poi_id": "14756238580392319513",
+          "title": "星巴克(重庆光环花园城店)",
+          "address": "重庆市两江新区仙桃街道同茂大道113号零售商区地上一层A-L1-13A",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 29.723206,
+          "longitude": 106.59292
+        },
+        {
+          "index": 2,
+          "poi_id": "17112922186316082305",
+          "title": "重庆光环花园城招商中心地下停车场",
+          "address": "重庆市两江新区中央公园壹号(重庆中央公园东)",
+          "category": "汽车:停车场",
+          "latitude": 29.721368,
+          "longitude": 106.588737
+        },
+        {
+          "index": 3,
+          "poi_id": "16775636125783829635",
+          "title": "蒲公英光环花园城店",
+          "address": "重庆市两江新区仙桃街道同茂大道236号光环花园城A馆LG2层1号",
+          "category": "美食:面包甜点",
+          "latitude": 29.722595,
+          "longitude": 106.591915
+        },
+        {
+          "index": 4,
+          "poi_id": "11773586714665558241",
+          "title": "光环花园城老凤祥",
+          "address": "重庆市两江新区中央公园光环花园城B馆LG2老凤祥",
+          "category": "购物:珠宝饰品:珠宝",
+          "latitude": 29.722729,
+          "longitude": 106.590342
+        },
+        {
+          "index": 5,
+          "poi_id": "5940296096837646514",
+          "title": "厚重老火锅(光环花园城直营店)",
+          "address": "重庆市两江新区仙桃街道和悦路8号附2号",
+          "category": "美食:火锅",
+          "latitude": 29.720481,
+          "longitude": 106.59174
+        },
+        {
+          "index": 6,
+          "poi_id": "9955026850683506299",
+          "title": "潮宏基(光环花园城店)",
+          "address": "重庆市两江新区仙桃街道同茂大道115号LG2层B-LG-22号商铺",
+          "category": "购物:珠宝饰品:珠宝",
+          "latitude": 29.723065,
+          "longitude": 106.590633
+        },
+        {
+          "index": 7,
+          "poi_id": "283160366516751518",
+          "title": "蓉城烟酒(光环花园城店)",
+          "address": "重庆市两江新区仙桃街道中央公园舟济路129号",
+          "category": "购物:烟酒专卖",
+          "latitude": 29.722179,
+          "longitude": 106.589186
+        }
+      ],
+      "reason": "夏以昼痛楼在中央公园光环花园城，与POI主体一致",
+      "search_keywords_tried": [
+        "光环花园城"
+      ]
+    },
+    {
+      "group_id": "5385e8adba2c",
+      "location": "中央公园光环花园城B馆LG2层中庭",
+      "sample_title": "KKV海绵宝宝路人鱼快闪",
+      "event_uids": [
+        "xiaohongshu:6a22bc9200000000080245d6:13_1"
+      ],
+      "decided_at": "2026-06-14T17:32:00.906Z",
+      "confidence": "high",
+      "doubtful": false,
+      "action": "match",
+      "poi_id": "2822944281155206055",
+      "poi_title": "中央公园光环花园城B馆",
+      "poi_address": "",
+      "latitude": 29.722869,
+      "longitude": 106.590729,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "2822944281155206055",
+          "title": "中央公园光环花园城B馆",
+          "address": "",
+          "latitude": 29.722869,
+          "longitude": 106.590729
+        }
+      ],
+      "reason": "地址映射库命中：中央公园光环花园城B馆LG2层中庭 → 中央公园光环花园城B馆（来源 event:xiaohongshu:6a27fa4a0000000022014556:07_1）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ]
+    }
+  ]
+}

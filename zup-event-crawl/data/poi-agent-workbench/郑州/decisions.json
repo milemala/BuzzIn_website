@@ -1,0 +1,190 @@
+{
+  "city": "郑州",
+  "source": "douban",
+  "updated_at": "2026-06-16T05:47:03.416Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "817c3508d695",
+      "event_uids": [
+        "douban:35857538"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "14695670024399702637",
+      "poi_title": "是个喜剧(油化厂创意园店)",
+      "poi_address": "",
+      "latitude": 34.772323,
+      "longitude": 113.640176,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：郑州 金水区 是个喜剧-郑州记忆油化厂店 沙口路黄河路东北角郑州记忆油化厂有熊街2号 → 是个喜剧(油化厂创意园店)（来源 event:douban:37788193）",
+      "candidates": []
+    },
+    {
+      "group_id": "e540f9733f6f",
+      "event_uids": [
+        "douban:37227264",
+        "douban:36599775",
+        "douban:36390382"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "12646792652841498343",
+      "poi_title": "喷空剧场-尚座中心店",
+      "poi_address": "",
+      "latitude": 34.763826,
+      "longitude": 113.756388,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：郑州 金水区 喷空剧场-尚座中心店 金水东路农业南路交叉口尚座中心A座8楼（需乘坐一号电梯上8楼） → 喷空剧场-尚座中心店（来源 event:douban:37716195）",
+      "candidates": []
+    },
+    {
+      "group_id": "91a478f848e2",
+      "event_uids": [
+        "douban:37845639"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "2212880197566482970",
+      "poi_title": "小皇后大剧院(河南文化大厦店)",
+      "poi_address": "",
+      "latitude": 34.714243,
+      "longitude": 113.688471,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：郑州 管城回族区 小皇后大剧院 紫辰路9号 → 小皇后大剧院(河南文化大厦店)（来源 event:douban:37845661）",
+      "candidates": []
+    },
+    {
+      "group_id": "6c2026a16ec6",
+      "event_uids": [
+        "douban:37816557"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "郑州 7LIVEHOUSE"
+      ],
+      "poi_id": "1755158220296960639",
+      "poi_title": "7LIVEHOUSE",
+      "poi_address": "河南省郑州市金水区文化路2号",
+      "latitude": 34.765107,
+      "longitude": 113.668046,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 114）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "9808637794160405571",
+          "title": "7LIVEHOUSE+",
+          "address": "河南省郑州市管城回族区东风南路康宁街海汇港2号楼5层",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 34.752036,
+          "longitude": 113.769736
+        },
+        {
+          "index": 1,
+          "poi_id": "1755158220296960639",
+          "title": "7LIVEHOUSE",
+          "address": "河南省郑州市金水区文化路2号",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 34.765107,
+          "longitude": 113.668046
+        },
+        {
+          "index": 2,
+          "poi_id": "7623500487969677246",
+          "title": "SEPT.Restaurant&Bar(海汇港店)",
+          "address": "河南省郑州市管城回族区东风南路与康宁街交叉口海汇港2号楼5层(7LIVEHOUSE+)",
+          "category": "美食:西餐:其它西餐",
+          "latitude": 34.752079,
+          "longitude": 113.76966
+        }
+      ]
+    },
+    {
+      "group_id": "9af087bb8bd6",
+      "event_uids": [
+        "douban:37832217"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "郑州大剧院歌舞剧场"
+      ],
+      "poi_id": "10949715273587582845",
+      "poi_title": "郑州大剧院",
+      "poi_address": "河南省郑州市中原区丹水大道与雪松路交叉口西南角",
+      "latitude": 34.742346,
+      "longitude": 113.550694,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 220）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "10949715273587582845",
+          "title": "郑州大剧院",
+          "address": "河南省郑州市中原区丹水大道与雪松路交叉口西南角",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 34.742346,
+          "longitude": 113.550694
+        },
+        {
+          "index": 1,
+          "poi_id": "2728892941314997392",
+          "title": "郑州歌舞剧院",
+          "address": "河南省郑州市金水区人民路街道紫荆山路2号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 34.759612,
+          "longitude": 113.682806
+        }
+      ]
+    },
+    {
+      "group_id": "4b7b6ac9fe34",
+      "event_uids": [
+        "douban:37749839"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "10949715273587582845",
+      "poi_title": "郑州大剧院",
+      "poi_address": "",
+      "latitude": 34.742346,
+      "longitude": 113.550694,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：郑州 中原区 郑州大剧院 丹水大道与雪松路交叉口西南角 → 郑州大剧院（来源 event:douban:37794435）",
+      "candidates": []
+    },
+    {
+      "group_id": "e3edaa9983bf",
+      "event_uids": [
+        "douban:37823658"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "10325596395021920273",
+      "poi_title": "禧仔亲子剧场(河南儿童影剧院)",
+      "poi_address": "",
+      "latitude": 34.76943,
+      "longitude": 113.665817,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：郑州 金水区 禧仔亲子剧场 优胜北路1号 → 禧仔亲子剧场(河南儿童影剧院)（来源 event:douban:37823259）",
+      "candidates": []
+    }
+  ]
+}

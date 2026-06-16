@@ -1,0 +1,291 @@
+{
+  "city": "苏州",
+  "source": "douban",
+  "updated_at": "2026-06-16T05:46:56.520Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "c91948ff9d62",
+      "event_uids": [
+        "douban:37827205"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "苏州 LIVE空间"
+      ],
+      "poi_id": "10762504415123644215",
+      "poi_title": "Ton Ton吨吨小酒馆Live(观前街店)",
+      "poi_address": "江苏省苏州市姑苏区富仁坊巷68号2楼(小龙坎老火锅楼上)",
+      "latitude": 31.308614,
+      "longitude": 120.623183,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 184）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "3157127042199077403",
+          "title": "风聆JAZZ HOUSE",
+          "address": "江苏省苏州市姑苏区人民路620号",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 31.294759,
+          "longitude": 120.624336
+        },
+        {
+          "index": 1,
+          "poi_id": "13946472195061679917",
+          "title": "传奇 LIVE HOUSE",
+          "address": "江苏省苏州市昆山市玉山镇跃进路168号新朝阳生活荟广场3楼B-306-1",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 31.37338,
+          "longitude": 120.960048
+        },
+        {
+          "index": 2,
+          "poi_id": "12971175406904273881",
+          "title": "凡·VAN Live Bar",
+          "address": "江苏省苏州市昆山市体育场路",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 31.386802,
+          "longitude": 120.905938
+        },
+        {
+          "index": 3,
+          "poi_id": "16625500727148562431",
+          "title": "电 live house(苏州琴湖溪里花园城)",
+          "address": "江苏省苏州市常熟市琴湖路58号苏州琴湖溪里花园城L1",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 31.638397,
+          "longitude": 120.761387
+        },
+        {
+          "index": 4,
+          "poi_id": "10762504415123644215",
+          "title": "Ton Ton吨吨小酒馆Live(观前街店)",
+          "address": "江苏省苏州市姑苏区富仁坊巷68号2楼(小龙坎老火锅楼上)",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 31.308614,
+          "longitude": 120.623183
+        }
+      ]
+    },
+    {
+      "group_id": "bc287c268da0",
+      "event_uids": [
+        "douban:37843220"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "6797155481651446902",
+      "poi_title": "山丘LIVEHOUSE(红唐店)",
+      "poi_address": "",
+      "latitude": 31.291997,
+      "longitude": 120.563408,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：苏州 虎丘区 山丘livehouse-红唐店 滨河路999号喜年生活广场西侧一楼 → 山丘LIVEHOUSE(红唐店)（来源 event:douban:37833604）",
+      "candidates": []
+    },
+    {
+      "group_id": "9fe514043d47",
+      "event_uids": [
+        "douban:37866630",
+        "douban:37821780"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "4417634079719729738",
+      "poi_title": "苏州狮山大剧院",
+      "poi_address": "",
+      "latitude": 31.291799,
+      "longitude": 120.54773,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：苏州 虎丘区 苏州狮山大剧院 长江路409号 → 苏州狮山大剧院（来源 event:douban:37834799）",
+      "candidates": []
+    },
+    {
+      "group_id": "83638967ddcc",
+      "event_uids": [
+        "douban:37791819"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "苏州 昆山 昆山周市文化艺术中心"
+      ],
+      "poi_id": "2855609297176432332",
+      "poi_title": "昆山周市文化艺术中心",
+      "poi_address": "江苏省苏州市昆山市昆山体育生态公园",
+      "latitude": 31.454763,
+      "longitude": 120.988105,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 268）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "2855609297176432332",
+          "title": "昆山周市文化艺术中心",
+          "address": "江苏省苏州市昆山市昆山体育生态公园",
+          "category": "文化场馆:文化宫",
+          "latitude": 31.454763,
+          "longitude": 120.988105
+        },
+        {
+          "index": 1,
+          "poi_id": "2963126069381798199",
+          "title": "弘星艺术中心(周市店)",
+          "address": "江苏省苏州市昆山市港龙商业广场海峡海鲜城负一楼D2D4D6D8D10D12",
+          "category": "教育学校:培训",
+          "latitude": 31.416887,
+          "longitude": 120.994083
+        },
+        {
+          "index": 2,
+          "poi_id": "2297266385525707958",
+          "title": "昆山文化艺术中心",
+          "address": "江苏省苏州市昆山市玉山镇前进西路1850号",
+          "category": "文化场馆:文化宫",
+          "latitude": 31.383191,
+          "longitude": 120.906574
+        },
+        {
+          "index": 3,
+          "poi_id": "6715147175788259270",
+          "title": "弘星艺术中心(周市店)",
+          "address": "江苏省苏州市昆山市港龙喜临门二期三楼",
+          "category": "教育学校:培训",
+          "latitude": 31.416727,
+          "longitude": 120.992108
+        },
+        {
+          "index": 4,
+          "poi_id": "2199033668086",
+          "title": "文化艺术中心[公交站]",
+          "address": "昆山105路,昆山161路,昆山128路,昆山156路,昆山117路,昆山32路,昆山138路,昆山139路,昆山204路,昆山159路,昆山26路,昆山35路,昆山168路,昆山W6路,昆山W3路,昆山165路,昆山204路区间线",
+          "category": "基础设施:交通设施:公交车站",
+          "latitude": 31.381145,
+          "longitude": 120.906363
+        }
+      ]
+    },
+    {
+      "group_id": "23718b028bd0",
+      "event_uids": [
+        "douban:37832189",
+        "douban:37703915"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "11514486545186817455",
+      "poi_title": "苏州湾大剧院",
+      "poi_address": "",
+      "latitude": 31.132232,
+      "longitude": 120.585871,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：苏州 吴江区 苏州湾大剧院 东太湖大道12000号 → 苏州湾大剧院（来源 event:douban:37764981）",
+      "candidates": []
+    },
+    {
+      "group_id": "a6b9b2e66c4a",
+      "event_uids": [
+        "douban:37817979"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "苏州 开心麻花运河剧场"
+      ],
+      "poi_id": "18444336822554355830",
+      "poi_title": "开心麻花运河剧场",
+      "poi_address": "江苏省苏州市姑苏区金门路33号",
+      "latitude": 31.309624,
+      "longitude": 120.604756,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 268）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "18444336822554355830",
+          "title": "开心麻花运河剧场",
+          "address": "江苏省苏州市姑苏区金门路33号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.309624,
+          "longitude": 120.604756
+        }
+      ]
+    },
+    {
+      "group_id": "6b7d75e39ba3",
+      "event_uids": [
+        "douban:37768613"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "苏州文化艺术中心"
+      ],
+      "poi_id": "16426009644565534547",
+      "poi_title": "苏州文化艺术中心",
+      "poi_address": "江苏省苏州市吴中区观枫街1号",
+      "latitude": 31.321221,
+      "longitude": 120.702453,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 274）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "16426009644565534547",
+          "title": "苏州文化艺术中心",
+          "address": "江苏省苏州市吴中区观枫街1号",
+          "category": "文化场馆:文化宫",
+          "latitude": 31.321221,
+          "longitude": 120.702453
+        },
+        {
+          "index": 1,
+          "poi_id": "13880552032886262024",
+          "title": "苏州文化艺术中心大剧院",
+          "address": "江苏省苏州市吴中区工业园区观枫街1号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.32208,
+          "longitude": 120.70194
+        },
+        {
+          "index": 2,
+          "poi_id": "3049535290006745155",
+          "title": "苏州果霖文化艺术中心",
+          "address": "江苏省苏州市昆山市凯德都会新峰2-5号商铺",
+          "category": "文化场馆:文化宫",
+          "latitude": 31.284946,
+          "longitude": 121.160182
+        },
+        {
+          "index": 3,
+          "poi_id": "15183575200271509727",
+          "title": "苏州文化艺术中心培训基地",
+          "address": "江苏省苏州市吴中区观枫街1号3楼",
+          "category": "教育学校:培训",
+          "latitude": 31.321897,
+          "longitude": 120.70169
+        },
+        {
+          "index": 4,
+          "poi_id": "2297266385525707958",
+          "title": "昆山文化艺术中心",
+          "address": "江苏省苏州市昆山市玉山镇前进西路1850号",
+          "category": "文化场馆:文化宫",
+          "latitude": 31.383191,
+          "longitude": 120.906574
+        }
+      ]
+    }
+  ]
+}

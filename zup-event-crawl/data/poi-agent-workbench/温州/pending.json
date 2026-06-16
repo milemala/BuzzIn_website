@@ -1,0 +1,33 @@
+{
+  "city": "温州",
+  "source": "douban",
+  "exported_at": "2026-06-16T05:48:01.072Z",
+  "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
+  "refresh": true,
+  "export_mode": "unmatched",
+  "pending_only": true,
+  "doubtful_only": false,
+  "total_events": 2,
+  "group_count": 2,
+  "cache_hit_groups": 0,
+  "groups": [
+    {
+      "group_id": "169f8d842407",
+      "location": "温州 鹿城区 盲堂 学院中路263号小坝坊17号楼1F",
+      "sample_title": "SinceTMRW始于明天 TOUR 2026 温州站",
+      "event_uids": [
+        "douban:37815080"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "bb994f40519b",
+      "location": "温州 龙湾区 温州高新文化广场 龙祥路1111号",
+      "sample_title": "《星际穿越·海盗魔法》好莱坞史诗电影金曲音乐会——北欧极光乐团",
+      "event_uids": [
+        "douban:37753694"
+      ],
+      "event_count": 1
+    }
+  ]
+}

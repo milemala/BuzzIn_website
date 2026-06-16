@@ -1,0 +1,303 @@
+{
+  "city": "佛山",
+  "source": "douban",
+  "updated_at": "2026-06-16T06:05:21.011Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "2edd250b4a94",
+      "event_uids": [
+        "douban:37774984",
+        "douban:37871658"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "16458810857050558908",
+      "poi_title": "佛山大剧院",
+      "poi_address": "",
+      "latitude": 22.968953,
+      "longitude": 113.115754,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：佛山 顺德区 佛山大剧院 华康道1号 → 佛山大剧院（来源 event:douban:37844038）",
+      "candidates": []
+    },
+    {
+      "group_id": "99e975f6a4a4",
+      "event_uids": [
+        "douban:37877660",
+        "douban:37877658"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "佛山 环影天地影城演出厅"
+      ],
+      "poi_id": "16355000192848645531",
+      "poi_title": "环影天地影城 演出厅-佛山映月湖环宇城",
+      "poi_address": "广东省佛山市南海区桂城街道石龙南路6号映月湖环宇城F4",
+      "latitude": 23.033136,
+      "longitude": 113.187675,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 310）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "16355000192848645531",
+          "title": "环影天地影城 演出厅-佛山映月湖环宇城",
+          "address": "广东省佛山市南海区桂城街道石龙南路6号映月湖环宇城F4",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 23.033136,
+          "longitude": 113.187675
+        }
+      ]
+    },
+    {
+      "group_id": "4f722ce096a7",
+      "event_uids": [
+        "douban:37710865"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "佛山 南海影剧院"
+      ],
+      "poi_id": "12009224118761718600",
+      "poi_title": "南海影剧院[公交站]",
+      "poi_address": "桂15路,桂01路,桂15路(工作日高峰)",
+      "latitude": 23.026988,
+      "longitude": 113.148234,
+      "confidence": "high",
+      "doubtful": true,
+      "reason": "POI 疑似停车场、地铁等非活动场所",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "11778588964468607088",
+          "title": "佛山南海影剧院",
+          "address": "广东省佛山市南海区桂城天佑六路11号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 23.027513,
+          "longitude": 113.147539
+        },
+        {
+          "index": 1,
+          "poi_id": "1078433997174698231",
+          "title": "佛山红毯电影院",
+          "address": "广东省佛山市南海区桃园二路1号升宝广场4楼",
+          "category": "娱乐休闲:电影院",
+          "latitude": 23.145552,
+          "longitude": 113.101276
+        },
+        {
+          "index": 2,
+          "poi_id": "12009224118761718600",
+          "title": "南海影剧院[公交站]",
+          "address": "桂15路,桂01路,桂15路(工作日高峰)",
+          "category": "基础设施:交通设施:公交车站",
+          "latitude": 23.026988,
+          "longitude": 113.148234
+        },
+        {
+          "index": 3,
+          "poi_id": "3632945057526210580",
+          "title": "佛山市南海区交通运输局",
+          "address": "广东省佛山市南海区南新二路65号",
+          "category": "机构团体:政府机关",
+          "latitude": 23.026324,
+          "longitude": 113.146966
+        },
+        {
+          "index": 4,
+          "poi_id": "6328834991220450076",
+          "title": "比高电影城(南海店)",
+          "address": "广东省佛山市南海区佛平二路家天下广场C区首层A01号",
+          "category": "娱乐休闲:电影院",
+          "latitude": 23.039775,
+          "longitude": 113.153171
+        }
+      ]
+    },
+    {
+      "group_id": "cc528d7eed9d",
+      "event_uids": [
+        "douban:37862079"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "佛山 顺德演艺中心大剧院"
+      ],
+      "poi_id": "3406399627012643504",
+      "poi_title": "顺德演艺中心大剧院",
+      "poi_address": "广东省佛山市顺德区图书馆旁边",
+      "latitude": 22.801224,
+      "longitude": 113.296842,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 256）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "3406399627012643504",
+          "title": "顺德演艺中心大剧院",
+          "address": "广东省佛山市顺德区图书馆旁边",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 22.801224,
+          "longitude": 113.296842
+        }
+      ]
+    },
+    {
+      "group_id": "69a71a2f66d9",
+      "event_uids": [
+        "douban:37867370"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "佛山 好说喜剧 铂顿城"
+      ],
+      "reason": "豆瓣好说喜剧在铂顿城地下BF-036，POI商场主体一致",
+      "doubtful": false,
+      "confidence": "high",
+      "candidates": [],
+      "poi_id": "13115264192226056372",
+      "poi_title": "铂顿城",
+      "poi_address": "广东省佛山市禅城区建新路111号",
+      "latitude": 23.03,
+      "longitude": 113.11
+    },
+    {
+      "group_id": "9387b97d2387",
+      "event_uids": [
+        "douban:37752800",
+        "douban:37870600",
+        "douban:37804160"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "佛山 琼花大剧院"
+      ],
+      "poi_id": "2984913764483185002",
+      "poi_title": "琼花大剧院",
+      "poi_address": "广东省佛山市禅城区祖庙路26号(祖庙地铁站出入口步行490米)丽园商业广场F1",
+      "latitude": 23.032055,
+      "longitude": 113.111508,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 262）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "2984913764483185002",
+          "title": "琼花大剧院",
+          "address": "广东省佛山市禅城区祖庙路26号(祖庙地铁站出入口步行490米)丽园商业广场F1",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 23.032055,
+          "longitude": 113.111508
+        },
+        {
+          "index": 1,
+          "poi_id": "6763012621276885877",
+          "title": "琼花大剧院停车场-出入口",
+          "address": "广东省佛山市禅城区人民路与祖庙路交叉口正北方向45米左右",
+          "category": "室内及附属设施:通行设施类:停车场出入口",
+          "latitude": 23.03196,
+          "longitude": 113.11217
+        },
+        {
+          "index": 2,
+          "poi_id": "2445336289830801232",
+          "title": "琼花大剧院停车场",
+          "address": "广东省佛山市禅城区祖庙路22号琼花大剧院F1",
+          "category": "汽车:停车场",
+          "latitude": 23.03188,
+          "longitude": 113.111957
+        },
+        {
+          "index": 3,
+          "poi_id": "10605736711016943950",
+          "title": "琼花大剧院-东门",
+          "address": "广东省佛山市禅城区人民路与祖庙路交叉口西北方向49米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 23.03196,
+          "longitude": 113.112094
+        },
+        {
+          "index": 4,
+          "poi_id": "9601540161413310214",
+          "title": "大可以(祖庙路店)",
+          "address": "广东省佛山市禅城区祖庙街道祖庙路20号(琼花歌剧院)",
+          "category": "美食:中餐厅:其它中餐厅",
+          "latitude": 23.03235,
+          "longitude": 113.112163
+        }
+      ]
+    },
+    {
+      "group_id": "4c97b6507bbb",
+      "event_uids": [
+        "douban:37835375"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "佛山国际体育文化演艺中心"
+      ],
+      "poi_id": "4046272567310108118",
+      "poi_title": "佛山国际体育文化演艺中心-西门",
+      "poi_address": "广东省佛山市顺德区裕和路95号国际体育文化演艺中心(新城东地铁站D口旁)",
+      "latitude": 22.95969,
+      "longitude": 113.141253,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 228）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "17512055418411941906",
+          "title": "国际体育文化演艺中心",
+          "address": "广东省佛山市顺德区乐从镇新城裕和路95号-新城东地铁站D口步行50米",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 22.959266,
+          "longitude": 113.14161
+        },
+        {
+          "index": 1,
+          "poi_id": "3438352181210116411",
+          "title": "莱德公寓(佛山国际体育文化演艺中心店)",
+          "address": "广东省佛山市顺德区佛山新城百合道6号德国港B1-2518",
+          "category": "酒店宾馆:公寓式酒店",
+          "latitude": 22.959139,
+          "longitude": 113.143115
+        },
+        {
+          "index": 2,
+          "poi_id": "4046272567310108118",
+          "title": "佛山国际体育文化演艺中心-西门",
+          "address": "广东省佛山市顺德区裕和路95号国际体育文化演艺中心(新城东地铁站D口旁)",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 22.95969,
+          "longitude": 113.141253
+        },
+        {
+          "index": 3,
+          "poi_id": "8129010868382374417",
+          "title": "佛山国际体育文化演艺中心(南门)",
+          "address": "广东省佛山市顺德区百合道与裕和路交叉口东北方向90米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 22.958589,
+          "longitude": 113.141322
+        },
+        {
+          "index": 4,
+          "poi_id": "789562834563257163",
+          "title": "佛山国际体育文化演艺中心停车场",
+          "address": "广东省佛山市顺德区百合道(新城东地铁站D口步行210米)",
+          "category": "汽车:停车场",
+          "latitude": 22.959503,
+          "longitude": 113.14251
+        }
+      ]
+    }
+  ]
+}

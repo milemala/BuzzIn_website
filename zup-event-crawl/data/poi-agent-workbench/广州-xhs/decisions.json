@@ -1,0 +1,1544 @@
+{
+  "city": "广州",
+  "source": "xiaohongshu",
+  "updated_at": "2026-06-14T17:31:31.269Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "86ca2379a10b",
+      "location": "平行线美术馆（广州环贸中心六楼）",
+      "sample_title": "爱阅之城 阅读展览计划",
+      "event_uids": [
+        "xiaohongshu:6a2675f40000000006021e9d:01_0"
+      ],
+      "decided_at": "2026-06-11T20:34:37.067Z",
+      "action": "match",
+      "poi_id": "12093933087717625551",
+      "poi_title": "平行线美术馆(ICC环贸中心馆)",
+      "poi_address": "广东省广州市天河区林和街道天河北路ICC环贸中心6楼607室",
+      "latitude": 23.141783,
+      "longitude": 113.326587,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "12093933087717625551",
+          "title": "平行线美术馆(ICC环贸中心馆)",
+          "address": "广东省广州市天河区林和街道天河北路ICC环贸中心6楼607室",
+          "category": "文化场馆:美术馆",
+          "latitude": 23.141783,
+          "longitude": 113.326587
+        }
+      ],
+      "reason": "自动匹配 score=97",
+      "search_keywords_tried": [
+        "平行线美术馆（广州环贸中心六楼）",
+        "广州 爱阅之城 阅读展览计划"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "f83ef58b446c",
+      "location": "海珠区广州大道南1818号·中交天翠露营基地",
+      "sample_title": "晚风草坪音乐会 陈奕迅专场",
+      "event_uids": [
+        "xiaohongshu:6a2675f40000000006021e9d:01_1",
+        "xiaohongshu:6a2675f40000000006021e9d:05_1"
+      ],
+      "decided_at": "2026-06-11T20:34:37.600Z",
+      "action": "match",
+      "poi_id": "1558141322458731971",
+      "poi_title": "中交天翠komorebi露营基地",
+      "poi_address": "广东省广州市海珠区南洲路",
+      "latitude": 23.062689,
+      "longitude": 113.303958,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "1558141322458731971",
+          "title": "中交天翠komorebi露营基地",
+          "address": "广东省广州市海珠区南洲路",
+          "category": "娱乐休闲:户外活动:露营地",
+          "latitude": 23.062689,
+          "longitude": 113.303958
+        }
+      ],
+      "reason": "自动匹配 score=75",
+      "search_keywords_tried": [
+        "海珠区广州大道南1818号·中交天翠露营基地",
+        "广州 晚风草坪音乐会 陈奕迅专场"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "b5822e4f3d35",
+      "location": "广州天河区华康小区40号 · SoAcai门店",
+      "sample_title": "旧衣交换循环",
+      "event_uids": [
+        "xiaohongshu:6a2675f40000000006021e9d:02_0"
+      ],
+      "decided_at": "2026-06-11T20:34:38.160Z",
+      "action": "match",
+      "poi_id": "11311084392687071391",
+      "poi_title": "华康小区",
+      "poi_address": "广东省广州市天河区华康街22号",
+      "latitude": 23.138147,
+      "longitude": 113.331371,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "11311084392687071391",
+          "title": "华康小区",
+          "address": "广东省广州市天河区华康街22号",
+          "category": "房产小区:住宅区:住宅小区",
+          "latitude": 23.138147,
+          "longitude": 113.331371
+        },
+        {
+          "index": 1,
+          "poi_id": "7270161762511018109",
+          "title": "华康小区-66号",
+          "address": "广东省广州市天河区华康小区",
+          "category": "房产小区:房产小区附属",
+          "latitude": 23.138444,
+          "longitude": 113.330749
+        },
+        {
+          "index": 2,
+          "poi_id": "12407986996747629042",
+          "title": "华康小区-6号",
+          "address": "广东省广州市天河区华康街华康小区",
+          "category": "房产小区:房产小区附属",
+          "latitude": 23.137581,
+          "longitude": 113.331091
+        },
+        {
+          "index": 3,
+          "poi_id": "10738612118010843111",
+          "title": "华康小区-10号",
+          "address": "广东省广州市天河区林和街道信成南街9号",
+          "category": "房产小区:房产小区附属",
+          "latitude": 23.138599,
+          "longitude": 113.331868
+        },
+        {
+          "index": 4,
+          "poi_id": "6849775809170549618",
+          "title": "华康小区-13号楼",
+          "address": "广东省广州市天河区华康街华康小区",
+          "category": "房产小区:房产小区附属",
+          "latitude": 23.138043,
+          "longitude": 113.331611
+        },
+        {
+          "index": 5,
+          "poi_id": "6224930755332662227",
+          "title": "华康小区-11号",
+          "address": "广东省广州市天河区林和街道华康街9号",
+          "category": "房产小区:房产小区附属",
+          "latitude": 23.137316,
+          "longitude": 113.331775
+        },
+        {
+          "index": 6,
+          "poi_id": "2680786658433252235",
+          "title": "华康小区-58号",
+          "address": "广东省广州市天河区林和街道华康街22号华康小区",
+          "category": "房产小区:房产小区附属",
+          "latitude": 23.137768,
+          "longitude": 113.331052
+        },
+        {
+          "index": 7,
+          "poi_id": "9281869883997330392",
+          "title": "华康小区-8号",
+          "address": "广东省广州市天河区林和街道华康街华康小区",
+          "category": "房产小区:房产小区附属",
+          "latitude": 23.137831,
+          "longitude": 113.331201
+        }
+      ],
+      "reason": "自动匹配 score=90",
+      "search_keywords_tried": [
+        "广州天河区华康小区40号 · SoAcai门店",
+        "广州 旧衣交换循环"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "89ae43d275d5",
+      "location": "广州K11 天河区珠江东路6号 L4 时间塔",
+      "sample_title": "巨型游龙花灯亮相",
+      "event_uids": [
+        "xiaohongshu:6a2675f40000000006021e9d:02_1"
+      ],
+      "decided_at": "2026-06-11T20:34:38.720Z",
+      "action": "match",
+      "poi_id": "1835838189355997586",
+      "poi_title": "广州K11",
+      "poi_address": "广东省广州市天河区珠江新城珠江东路6号",
+      "latitude": 23.118275,
+      "longitude": 113.326378,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "1835838189355997586",
+          "title": "广州K11",
+          "address": "广东省广州市天河区珠江新城珠江东路6号",
+          "category": "房产小区:商务楼宇",
+          "latitude": 23.118275,
+          "longitude": 113.326378
+        },
+        {
+          "index": 1,
+          "poi_id": "12013280909313855294",
+          "title": "广州K11购物艺术中心-东门",
+          "address": "广东省广州市天河区猎德街道珠江东路6号广州K11购物艺术中心L1",
+          "category": "室内及附属设施:通行设施类:正门",
+          "latitude": 23.118034,
+          "longitude": 113.326663
+        },
+        {
+          "index": 2,
+          "poi_id": "7841443980837936417",
+          "title": "广州K11购物艺术中心",
+          "address": "广东省广州市天河区猎德街道珠江东路6号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 23.118213,
+          "longitude": 113.326371
+        },
+        {
+          "index": 3,
+          "poi_id": "11976967769198574720",
+          "title": "广州K11 Select",
+          "address": "广东省广州市番禺区钟村街道汉溪大道东178号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 22.99339,
+          "longitude": 113.330744
+        },
+        {
+          "index": 4,
+          "poi_id": "18153073841873699638",
+          "title": "广州汉溪K11购物艺术中心",
+          "address": "广东省广州市番禺区钟村街道汉溪大道东178号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 22.992778,
+          "longitude": 113.332111
+        },
+        {
+          "index": 5,
+          "poi_id": "15241560130467990203",
+          "title": "广州K11购物艺术中心地下停车场-出入口",
+          "address": "广东省广州市天河区猎德街道珠江东路6号广州K11购物艺术中心B3",
+          "category": "室内及附属设施:通行设施类:停车场出入口",
+          "latitude": 23.117235,
+          "longitude": 113.326298
+        },
+        {
+          "index": 6,
+          "poi_id": "532658877670093801",
+          "title": "广州K11购物艺术中心地下停车场",
+          "address": "广东省广州市天河区猎德街道珠江东路6号广州K11购物艺术中心B5",
+          "category": "汽车:停车场",
+          "latitude": 23.117218,
+          "longitude": 113.326241
+        },
+        {
+          "index": 7,
+          "poi_id": "2362073341964031694",
+          "title": "Gucci(广州K11店)",
+          "address": "广东省广州市天河区珠江东路6号广州K11购物中心一层L102号",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 23.118277,
+          "longitude": 113.326017
+        }
+      ],
+      "reason": "自动匹配 score=120",
+      "search_keywords_tried": [
+        "广州K11",
+        "广州 天河区珠江东路6号 L4 时间塔",
+        "广州K11 天河区珠江东路6号 L4 时间塔",
+        "广州 巨型游龙花灯亮相"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "75b9d35c2481",
+      "location": "广州正佳4F中庭",
+      "sample_title": "光遇官方快闪店",
+      "event_uids": [
+        "xiaohongshu:6a2675f40000000006021e9d:03_0"
+      ],
+      "decided_at": "2026-06-12T04:05:00.800Z",
+      "action": "match",
+      "reason": "活动写4F中庭；复核：仍缺楼层/铺位精确对应，保持存疑",
+      "search_keywords_tried": [
+        "正佳广场"
+      ],
+      "confidence": "medium",
+      "doubtful": true,
+      "candidates": [],
+      "poi_id": "17952384081769500856",
+      "poi_title": "正佳广场",
+      "poi_address": "广东省广州市天河区天河路228号",
+      "latitude": 23.132126,
+      "longitude": 113.327,
+      "_rerun": "doubtful-rerun"
+    },
+    {
+      "group_id": "aa4dd75f6680",
+      "location": "广州太古汇 M中庭",
+      "sample_title": "《玩具总动员5》主题快闪",
+      "event_uids": [
+        "xiaohongshu:6a2675f40000000006021e9d:03_1"
+      ],
+      "decided_at": "2026-06-11T20:34:40.264Z",
+      "action": "match",
+      "poi_id": "4816248989597073791",
+      "poi_title": "理想汽车广州太古汇零售中心",
+      "poi_address": "广东省广州市天河区河东路220号1层理想汽车",
+      "latitude": 23.136434,
+      "longitude": 113.333973,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "4816248989597073791",
+          "title": "理想汽车广州太古汇零售中心",
+          "address": "广东省广州市天河区河东路220号1层理想汽车",
+          "category": "汽车:汽车销售",
+          "latitude": 23.136434,
+          "longitude": 113.333973
+        },
+        {
+          "index": 1,
+          "poi_id": "1249404611254646579",
+          "title": "启德留学广州太古汇校区",
+          "address": "广东省广州市天河区太古汇1座17楼1701室",
+          "category": "教育学校:培训:升学辅导",
+          "latitude": 23.133871,
+          "longitude": 113.333391
+        },
+        {
+          "index": 2,
+          "poi_id": "16296246181781699110",
+          "title": "EP雅莹(广州太古汇店)",
+          "address": "广东省广州市天河区天河路383号太古汇广场M04铺EP雅莹",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 23.133965,
+          "longitude": 113.33274
+        },
+        {
+          "index": 3,
+          "poi_id": "9185195345618625700",
+          "title": "Gucci(广州太古汇店)",
+          "address": "广东省广州市天河区天河路383号太古汇一层L113号及二层L217号",
+          "category": "购物:服饰鞋包",
+          "latitude": 23.134481,
+          "longitude": 113.332496
+        },
+        {
+          "index": 4,
+          "poi_id": "13720797416305599188",
+          "title": "Gucci(广州太古汇男装店)",
+          "address": "广东省广州市天河区天河路383号太古汇二层L218号及二层L219号",
+          "category": "购物:服饰鞋包",
+          "latitude": 23.134,
+          "longitude": 113.332649
+        },
+        {
+          "index": 5,
+          "poi_id": "13078574991648572312",
+          "title": "巴黎世家(广州太古汇店)",
+          "address": "广东省广州市天河区天河路383号太古汇商场L116&L223&L224店铺",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 23.134347,
+          "longitude": 113.332062
+        },
+        {
+          "index": 6,
+          "poi_id": "12872670265430880993",
+          "title": "BURBERRY(广州太古汇店)",
+          "address": "广东省广州市天河区天河路383号太古汇裙楼一层L117号商铺",
+          "category": "购物:服饰鞋包",
+          "latitude": 23.134402,
+          "longitude": 113.33198
+        },
+        {
+          "index": 7,
+          "poi_id": "2427877431708773597",
+          "title": "HUBLOT宇舶表(广州太古汇专卖店)",
+          "address": "广东省广州市天河区天河路383号太古汇商场裙楼第二层L210b号",
+          "category": "购物:钟表店",
+          "latitude": 23.134369,
+          "longitude": 113.33324
+        }
+      ],
+      "reason": "自动匹配 score=87",
+      "search_keywords_tried": [
+        "广州太古汇",
+        "广州 M中庭",
+        "广州太古汇 M中庭"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "eb11da853e46",
+      "location": "颐德中心六楼社创中心",
+      "sample_title": "星火百年 美术作品展",
+      "event_uids": [
+        "xiaohongshu:6a2675f40000000006021e9d:04_0"
+      ],
+      "decided_at": "2026-06-12T03:43:00.026Z",
+      "action": "match",
+      "reason": "社创中心与活动地址六楼社创中心一致",
+      "search_keywords_tried": [
+        "颐德中心",
+        "颐德社创中心"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "1360252062836840856",
+          "title": "颐德社创中心",
+          "address": "广东省广州市越秀区东风中路362号颐德中心6层",
+          "category": "公司企业:其它公司企业",
+          "latitude": 23.130638,
+          "longitude": 113.27083
+        },
+        {
+          "index": 1,
+          "poi_id": "14512517543853704093",
+          "title": "珠江颐德中心",
+          "address": "广东省广州市越秀区洪桥街道东风中路362号",
+          "category": "房产小区:商务楼宇",
+          "latitude": 23.130674,
+          "longitude": 113.270831
+        },
+        {
+          "index": 2,
+          "poi_id": "17365678166127332698",
+          "title": "颐德国际租售中心",
+          "address": "广东省广州市南沙区凤冠一街与勇拓街交叉口正西方向35米左右",
+          "category": "生活服务:中介机构",
+          "latitude": 22.781703,
+          "longitude": 113.511652
+        },
+        {
+          "index": 3,
+          "poi_id": "7654530013114959092",
+          "title": "颐德中心爱心驿站",
+          "address": "广东省广州市越秀区东风中路与小北路辅路交叉口西南方向66米左右",
+          "category": "生活服务:生活服务场所",
+          "latitude": 23.130616,
+          "longitude": 113.270886
+        },
+        {
+          "index": 4,
+          "poi_id": "6196777961021634936",
+          "title": "美团外卖柜(珠江颐德中心门口)",
+          "address": "广东省广州市越秀区",
+          "category": "生活服务:其它生活服务",
+          "latitude": 23.130702,
+          "longitude": 113.271102
+        },
+        {
+          "index": 5,
+          "poi_id": "6553558520251570933",
+          "title": "百年缘",
+          "address": "广东省广州市越秀区同乐路与雅言里交叉口东南方向31米左右",
+          "category": "购物:眼镜店",
+          "latitude": 23.116999,
+          "longitude": 113.253757
+        },
+        {
+          "index": 6,
+          "poi_id": "17873441382053247301",
+          "title": "百年艺术",
+          "address": "广东省广州市天河区王园路与黄村路交叉口西南方向27米左右",
+          "category": "教育学校:培训",
+          "latitude": 23.124221,
+          "longitude": 113.409808
+        },
+        {
+          "index": 7,
+          "poi_id": "12357920247497465761",
+          "title": "汤味匠百年云吞(恩宁路店)",
+          "address": "广东省广州市荔湾区多宝街道恩宁路124号",
+          "category": "美食:小吃快餐",
+          "latitude": 23.11416,
+          "longitude": 113.238176
+        }
+      ],
+      "poi_id": "1360252062836840856",
+      "poi_title": "颐德社创中心",
+      "poi_address": "广东省广州市越秀区东风中路362号颐德中心6层",
+      "latitude": 23.130638,
+      "longitude": 113.27083
+    },
+    {
+      "group_id": "14339de0c328",
+      "location": "广州市天河区粤生街48号122铺",
+      "sample_title": "中转房间 InTransit",
+      "event_uids": [
+        "xiaohongshu:6a2675f40000000006021e9d:04_1"
+      ],
+      "decided_at": "2026-06-12T05:08:56.590Z",
+      "action": "match",
+      "reason": "Agent审核通过：小城之春别苑与活动地点主体一致，仅楼层/中庭/展厅/室号等未精确到腾讯店级POI",
+      "search_keywords_tried": [
+        "小城之春别苑"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "8548835085850824524",
+          "title": "小城之春别苑",
+          "address": "广东省广州市天河区粤生街48号",
+          "category": "房产小区:住宅区:住宅小区",
+          "latitude": 23.136574,
+          "longitude": 113.360188
+        },
+        {
+          "index": 1,
+          "poi_id": "7885689324622918265",
+          "title": "小城之春小区物业管理处",
+          "address": "广东省广州市天河区粤生街48号",
+          "category": "公司企业:公司企业",
+          "latitude": 23.136174,
+          "longitude": 113.359535
+        },
+        {
+          "index": 2,
+          "poi_id": "15234842735796681767",
+          "title": "棠下街邮电社区长者饭堂",
+          "address": "广东省广州市天河区粤生街48号",
+          "category": "美食:小吃快餐",
+          "latitude": 23.136139,
+          "longitude": 113.359551
+        },
+        {
+          "index": 3,
+          "poi_id": "12221522160203109775",
+          "title": "平羽山房(小城之春店)",
+          "address": "广东省广州市天河区粤生街48号121铺",
+          "category": "购物:其它购物",
+          "latitude": 23.136878,
+          "longitude": 113.360267
+        },
+        {
+          "index": 4,
+          "poi_id": "10416346672935931186",
+          "title": "纵诚地产(小城之春店)",
+          "address": "广东省广州市天河区粤生街48号120铺",
+          "category": "生活服务:中介机构",
+          "latitude": 23.1368,
+          "longitude": 113.360182
+        },
+        {
+          "index": 5,
+          "poi_id": "12335406412847890276",
+          "title": "日啡夜酒(墨)",
+          "address": "广东省广州市天河区粤生街48号103铺之一",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 23.136454,
+          "longitude": 113.359739
+        },
+        {
+          "index": 6,
+          "poi_id": "4783447882656506871",
+          "title": "广州杰承图文快印",
+          "address": "广东省广州市天河区棠下街道粤生街48号109号铺",
+          "category": "生活服务:摄影冲印",
+          "latitude": 23.136673,
+          "longitude": 113.359984
+        },
+        {
+          "index": 7,
+          "poi_id": "6091470743268272347",
+          "title": "乡村绿色特产(华景分店)",
+          "address": "广东省广州市天河区华景路粤生街48号",
+          "category": "购物:其它购物",
+          "latitude": 23.136757,
+          "longitude": 113.360152
+        }
+      ],
+      "poi_id": "8548835085850824524",
+      "poi_title": "小城之春别苑",
+      "poi_address": "广东省广州市天河区粤生街48号",
+      "latitude": 0,
+      "longitude": 0,
+      "_rerun": "doubtful-rerun",
+      "workbench": "广州-xhs",
+      "city": "广州",
+      "source": "xiaohongshu"
+    },
+    {
+      "group_id": "d1ca3a1e2c9a",
+      "location": "广州百脑汇负一楼东门痛梯",
+      "sample_title": "夏以昼生日痛楼",
+      "event_uids": [
+        "xiaohongshu:6a2675f40000000006021e9d:05_0"
+      ],
+      "decided_at": "2026-06-11T20:34:42.894Z",
+      "action": "match",
+      "poi_id": "6549345523002176345",
+      "poi_title": "百脑汇",
+      "poi_address": "广东省广州市番禺区南村镇新南大道368号广州番禺万达广场B3",
+      "latitude": 23.007705,
+      "longitude": 113.349875,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6549345523002176345",
+          "title": "百脑汇",
+          "address": "广东省广州市番禺区南村镇新南大道368号广州番禺万达广场B3",
+          "category": "购物:数码家电",
+          "latitude": 23.007705,
+          "longitude": 113.349875
+        },
+        {
+          "index": 1,
+          "poi_id": "11495442584179179710",
+          "title": "百脑汇(广州店)",
+          "address": "广东省广州市天河区石牌街道天河路598号",
+          "category": "购物:数码家电",
+          "latitude": 23.13423,
+          "longitude": 113.339412
+        },
+        {
+          "index": 2,
+          "poi_id": "12912805774917324146",
+          "title": "广州百脑汇B座",
+          "address": "广东省广州市天河区天河路594号",
+          "category": "房产小区:商务楼宇",
+          "latitude": 23.134229,
+          "longitude": 113.339495
+        },
+        {
+          "index": 3,
+          "poi_id": "10413372750209909752",
+          "title": "广州百脑汇A栋",
+          "address": "广东省广州市天河区天河路592号",
+          "category": "房产小区:房产小区附属",
+          "latitude": 23.134014,
+          "longitude": 113.339104
+        },
+        {
+          "index": 4,
+          "poi_id": "14371970407385901683",
+          "title": "百脑汇科技大厦(天河路)",
+          "address": "广东省广州市天河区天河路598号(岗顶地铁站C口旁)",
+          "category": "房产小区:商务楼宇",
+          "latitude": 23.134167,
+          "longitude": 113.339415
+        },
+        {
+          "index": 5,
+          "poi_id": "6613200747037045136",
+          "title": "百脑汇科技大厦C座",
+          "address": "广东省广州市天河区天河路596号",
+          "category": "房产小区:房产小区附属",
+          "latitude": 23.134346,
+          "longitude": 113.339873
+        },
+        {
+          "index": 6,
+          "poi_id": "9532165267165325266",
+          "title": "奈雪的茶(广州天河百脑汇店)",
+          "address": "广东省广州市天河区天河路598号101(自编:1y02)",
+          "category": "美食:冷饮店",
+          "latitude": 23.134074,
+          "longitude": 113.338855
+        },
+        {
+          "index": 7,
+          "poi_id": "3330573611081326302",
+          "title": "荣耀官方授权服务中心(广州天河百脑汇店)",
+          "address": "广东省广州市天河区天河路598号百脑汇地下一层0A21(岗顶站C出口负一楼附近)",
+          "category": "生活服务:其它生活服务",
+          "latitude": 23.134345,
+          "longitude": 113.339428
+        }
+      ],
+      "reason": "自动匹配 score=90",
+      "search_keywords_tried": [
+        "广州百脑汇负一楼东门痛梯",
+        "广州 夏以昼生日痛楼"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "83e21f215889",
+      "location": "荔湾区广东美术馆新馆2楼",
+      "sample_title": "风景与想象之间 意大利当代艺术在中国",
+      "event_uids": [
+        "xiaohongshu:6a2675f40000000006021e9d:06_0",
+        "xiaohongshu:6a2675f40000000006021e9d:07_1"
+      ],
+      "decided_at": "2026-06-11T20:34:43.668Z",
+      "action": "match",
+      "poi_id": "2922632961011281738",
+      "poi_title": "广东美术馆新馆",
+      "poi_address": "广东省广州市荔湾区白鹅潭大湾区艺术中心",
+      "latitude": 23.101366,
+      "longitude": 113.239205,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "2922632961011281738",
+          "title": "广东美术馆新馆",
+          "address": "广东省广州市荔湾区白鹅潭大湾区艺术中心",
+          "category": "文化场馆:美术馆",
+          "latitude": 23.101366,
+          "longitude": 113.239205
+        },
+        {
+          "index": 1,
+          "poi_id": "2562879114294194356",
+          "title": "白鹅潭大湾区艺术中心广东美术馆(北2门)",
+          "address": "广东省广州市荔湾区白鹅潭大湾区艺术中心",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 23.100072,
+          "longitude": 113.240319
+        },
+        {
+          "index": 2,
+          "poi_id": "10852525922569901767",
+          "title": "广州文化公园-文荟馆",
+          "address": "广东省广州市荔湾区岭南街道西堤二马路37号广州文化公园内(西侧)",
+          "category": "文化场馆:展览馆",
+          "latitude": 23.110116,
+          "longitude": 113.249928
+        },
+        {
+          "index": 3,
+          "poi_id": "7613795058158678957",
+          "title": "广州NO.W屋面艺术中心",
+          "address": "广东省广州市荔湾区渔尾西路8号2栋8楼(必须坐3号电梯)",
+          "category": "文化场馆:美术馆",
+          "latitude": 23.058119,
+          "longitude": 113.223198
+        },
+        {
+          "index": 4,
+          "poi_id": "1452050062717634199",
+          "title": "广州市荔湾区双岳美术商行(文件批发市场店)",
+          "address": "广东省广州市荔湾区黄沙后道25号B馆2层3106档-3123档",
+          "category": "购物:文化用品",
+          "latitude": 23.111201,
+          "longitude": 113.237969
+        }
+      ],
+      "reason": "自动匹配 score=100",
+      "search_keywords_tried": [
+        "广州 荔湾区广东美术馆新馆2楼",
+        "广州 风景与想象之间 意大利当代艺术在中国"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "7b9e3b6c51fb",
+      "location": "天河区广州高德置地",
+      "sample_title": "CROSSOVER 潮流艺术节",
+      "event_uids": [
+        "xiaohongshu:6a2675f40000000006021e9d:06_1"
+      ],
+      "decided_at": "2026-06-12T05:08:56.590Z",
+      "action": "match",
+      "reason": "Agent审核通过：高德置地广场·冬广场与活动地点主体一致，仅楼层/中庭/展厅/室号等未精确到腾讯店级POI",
+      "search_keywords_tried": [
+        "高德置地广场·冬广场"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "candidates": [],
+      "poi_id": "13673767752936484036",
+      "poi_title": "高德置地广场·冬广场",
+      "poi_address": "广东省广州市天河区珠江新城花城大道85号",
+      "latitude": 0,
+      "longitude": 0,
+      "_rerun": "doubtful-rerun",
+      "workbench": "广州-xhs",
+      "city": "广州",
+      "source": "xiaohongshu"
+    },
+    {
+      "group_id": "466f1fec366e",
+      "location": "荔湾区广东美术馆新馆三楼",
+      "sample_title": "葵山-许江艺术展",
+      "event_uids": [
+        "xiaohongshu:6a2675f40000000006021e9d:07_0"
+      ],
+      "decided_at": "2026-06-11T20:34:45.296Z",
+      "action": "match",
+      "poi_id": "2922632961011281738",
+      "poi_title": "广东美术馆新馆",
+      "poi_address": "广东省广州市荔湾区白鹅潭大湾区艺术中心",
+      "latitude": 23.101366,
+      "longitude": 113.239205,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "2922632961011281738",
+          "title": "广东美术馆新馆",
+          "address": "广东省广州市荔湾区白鹅潭大湾区艺术中心",
+          "category": "文化场馆:美术馆",
+          "latitude": 23.101366,
+          "longitude": 113.239205
+        },
+        {
+          "index": 1,
+          "poi_id": "2778861310134953404",
+          "title": "广东美术馆",
+          "address": "广东省广州市越秀区二沙岛烟雨路38号",
+          "category": "文化场馆:美术馆",
+          "latitude": 23.107977,
+          "longitude": 113.307164
+        },
+        {
+          "index": 2,
+          "poi_id": "2614590498778373698",
+          "title": "广东美术馆(白鹅潭馆区)",
+          "address": "广东省广州市荔湾区白鹅潭南路19号",
+          "category": "文化场馆:美术馆",
+          "latitude": 23.100216,
+          "longitude": 113.240595
+        },
+        {
+          "index": 3,
+          "poi_id": "1694033355521692313",
+          "title": "广东三塔美术馆",
+          "address": "广东省广州市番禺区紫泥堂(桥头路西)",
+          "category": "文化场馆:美术馆",
+          "latitude": 22.891402,
+          "longitude": 113.285645
+        },
+        {
+          "index": 4,
+          "poi_id": "7238473821804931073",
+          "title": "广东公安美术馆",
+          "address": "广东省广州市越秀区黄华路公安厅宿舍87号大院",
+          "category": "文化场馆:美术馆",
+          "latitude": 23.13528,
+          "longitude": 113.277806
+        },
+        {
+          "index": 5,
+          "poi_id": "2585242663283950269",
+          "title": "广东大家美术馆",
+          "address": "广东省广州市天河区天源路1190号华南植物园2-3号馆",
+          "category": "文化场馆:美术馆",
+          "latitude": 23.186024,
+          "longitude": 113.363603
+        },
+        {
+          "index": 6,
+          "poi_id": "509188805236599953",
+          "title": "李伟广美术馆",
+          "address": "广东省广州市荔湾区沙面北街73号",
+          "category": "文化场馆:其它文化场馆",
+          "latitude": 23.107899,
+          "longitude": 113.242839
+        },
+        {
+          "index": 7,
+          "poi_id": "1987483399063333236",
+          "title": "粒子美术馆",
+          "address": "广东省广州市增城区广州增城凤凰城凤凰荟三楼",
+          "category": "教育学校:培训:美术培训",
+          "latitude": 23.126394,
+          "longitude": 113.574216
+        }
+      ],
+      "reason": "自动匹配 score=100",
+      "search_keywords_tried": [
+        "广州 荔湾区广东美术馆新馆三楼",
+        "广州 葵山-许江艺术展"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "e5b0179b6be0",
+      "location": "广州艺术博物院（广州美术馆）四楼",
+      "sample_title": "「我们」在一起 儿童成长视界",
+      "event_uids": [
+        "xiaohongshu:6a2675f40000000006021e9d:08_1"
+      ],
+      "decided_at": "2026-06-11T20:34:46.755Z",
+      "action": "match",
+      "poi_id": "15788207633856372198",
+      "poi_title": "广州艺术博物院",
+      "poi_address": "广东省广州市海珠区赤岗街道艺苑路198号",
+      "latitude": 23.101079,
+      "longitude": 113.326173,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "15788207633856372198",
+          "title": "广州艺术博物院",
+          "address": "广东省广州市海珠区赤岗街道艺苑路198号",
+          "category": "文化场馆:博物馆",
+          "latitude": 23.101079,
+          "longitude": 113.326173
+        },
+        {
+          "index": 1,
+          "poi_id": "17566823880803842761",
+          "title": "广州艺术博物院(广州美术馆)",
+          "address": "广东省广州市海珠区艺洲路与赤岗北路交汇处西南角广州TIT创意园内",
+          "category": "文化场馆:博物馆",
+          "latitude": 23.100692,
+          "longitude": 113.326183
+        },
+        {
+          "index": 2,
+          "poi_id": "11502819026659595400",
+          "title": "广州艺术博物院(广州美术馆)-东1门",
+          "address": "广东省广州市海珠区赤岗北路118-14号",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 23.100499,
+          "longitude": 113.327158
+        }
+      ],
+      "reason": "自动匹配 score=112",
+      "search_keywords_tried": [
+        "广州艺术博物院（广州美术馆）四楼",
+        "广州 「我们」在一起 儿童成长视界"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "96cbbeb44c51",
+      "location": "广东美术馆本馆",
+      "sample_title": "其命惟新 东美术百年陈列展",
+      "event_uids": [
+        "xiaohongshu:6a2675f40000000006021e9d:09_0",
+        "xiaohongshu:6a2675f40000000006021e9d:09_1"
+      ],
+      "decided_at": "2026-06-11T20:34:47.294Z",
+      "action": "match",
+      "poi_id": "2778861310134953404",
+      "poi_title": "广东美术馆",
+      "poi_address": "广东省广州市越秀区二沙岛烟雨路38号",
+      "latitude": 23.107977,
+      "longitude": 113.307164,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "2778861310134953404",
+          "title": "广东美术馆",
+          "address": "广东省广州市越秀区二沙岛烟雨路38号",
+          "category": "文化场馆:美术馆",
+          "latitude": 23.107977,
+          "longitude": 113.307164
+        },
+        {
+          "index": 1,
+          "poi_id": "2922632961011281738",
+          "title": "广东美术馆新馆",
+          "address": "广东省广州市荔湾区白鹅潭大湾区艺术中心",
+          "category": "文化场馆:美术馆",
+          "latitude": 23.101366,
+          "longitude": 113.239205
+        },
+        {
+          "index": 2,
+          "poi_id": "3992029283670347983",
+          "title": "TIT创意园A8栋",
+          "address": "广东省广州市海珠区赤岗街道美术馆新馆隔壁",
+          "category": "房产小区:房产小区附属",
+          "latitude": 23.099964,
+          "longitude": 113.325644
+        }
+      ],
+      "reason": "自动匹配 score=100",
+      "search_keywords_tried": [
+        "广州 广东美术馆本馆",
+        "广州 其命惟新 东美术百年陈列展"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "49cbc98b8f39",
+      "location": "越秀区恤孤院路9号 逵园艺术馆",
+      "sample_title": "小世界 | Inner Worlds",
+      "event_uids": [
+        "xiaohongshu:6a2675f40000000006021e9d:10_1"
+      ],
+      "decided_at": "2026-06-11T20:34:48.969Z",
+      "action": "match",
+      "poi_id": "15932048168433621864",
+      "poi_title": "逵园艺术馆-东南门",
+      "poi_address": "广东省广州市越秀区恤孤院路9号逵园艺术馆",
+      "latitude": 23.119247,
+      "longitude": 113.296565,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "15932048168433621864",
+          "title": "逵园艺术馆-东南门",
+          "address": "广东省广州市越秀区恤孤院路9号逵园艺术馆",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 23.119247,
+          "longitude": 113.296565
+        },
+        {
+          "index": 1,
+          "poi_id": "3846679984197456378",
+          "title": "逵园艺术馆-西南门",
+          "address": "广东省广州市越秀区恤孤院路9号逵园艺术馆",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 23.119047,
+          "longitude": 113.296391
+        },
+        {
+          "index": 2,
+          "poi_id": "13436365244029901211",
+          "title": "逵园艺术馆",
+          "address": "广东省广州市越秀区恤孤院路3号附近",
+          "category": "文化场馆:展览馆",
+          "latitude": 23.119179,
+          "longitude": 113.296468
+        }
+      ],
+      "reason": "自动匹配 score=267",
+      "search_keywords_tried": [
+        "广州 越秀区恤孤院路9号 逵园艺术馆",
+        "广州 小世界 | Inner Worlds"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "141bc8136689",
+      "location": "从化区环市东路688号金汇城一楼",
+      "sample_title": "元次谷动漫游戏嘉年华",
+      "event_uids": [
+        "xiaohongshu:6a2becf20000000015026e6a:01_0"
+      ],
+      "decided_at": "2026-06-14T17:31:31.269Z",
+      "action": "match",
+      "poi_id": "4840184834641248055",
+      "poi_title": "金滙城",
+      "poi_address": "广东省广州市从化区环市东路688号",
+      "latitude": 23.557702,
+      "longitude": 113.617785,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "4840184834641248055",
+          "title": "金滙城",
+          "address": "广东省广州市从化区环市东路688号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 23.557702,
+          "longitude": 113.617785
+        },
+        {
+          "index": 1,
+          "poi_id": "14915011775357742452",
+          "title": "安踏(金滙城店)",
+          "address": "广东省广州市从化区环市东路688号金滙城L1",
+          "category": "购物:体育户外",
+          "latitude": 23.557718,
+          "longitude": 113.61759
+        },
+        {
+          "index": 2,
+          "poi_id": "15059052821483244811",
+          "title": "金汇城停车场",
+          "address": "广东省广州市从化区环市东路688号",
+          "category": "汽车:停车场",
+          "latitude": 23.558092,
+          "longitude": 113.616682
+        },
+        {
+          "index": 3,
+          "poi_id": "14996800262546232962",
+          "title": "麦当劳(从化环市东路金滙城店)",
+          "address": "广东省广州市从化区环市东路688号金滙城L1",
+          "category": "美食:小吃快餐",
+          "latitude": 23.558068,
+          "longitude": 113.617638
+        },
+        {
+          "index": 4,
+          "poi_id": "3368336972061472971",
+          "title": "Adidas阿迪达斯(从化金滙城店)",
+          "address": "广东省广州市从化区环市东路688号金滙城L1",
+          "category": "购物:体育户外",
+          "latitude": 23.557569,
+          "longitude": 113.617766
+        },
+        {
+          "index": 5,
+          "poi_id": "2915997159048330384",
+          "title": "维也纳酒店(广州从化水利学院金滙城店)",
+          "address": "广东省广州市从化区江埔街环市东路728号(毗邻金滙城商场,近从化水利学院)",
+          "category": "酒店宾馆:经济型酒店",
+          "latitude": 23.559071,
+          "longitude": 113.618642
+        },
+        {
+          "index": 6,
+          "poi_id": "7464841024881257629",
+          "title": "必胜客(从化金滙城卫星店)",
+          "address": "广东省广州市从化区环市东路688号金滙城L1",
+          "category": "美食:西餐:比萨",
+          "latitude": 23.557766,
+          "longitude": 113.617221
+        },
+        {
+          "index": 7,
+          "poi_id": "7342276109186688294",
+          "title": "小米之家(广州从化区金汇城专卖店)",
+          "address": "广东省广州市从化区江埔街环市东路688号金滙城一楼",
+          "category": "购物:数码家电",
+          "latitude": 23.557695,
+          "longitude": 113.617684
+        }
+      ],
+      "reason": "金滙城门牌环市东路688号与活动地一致，仅一楼未精确到店级POI",
+      "search_keywords_tried": [
+        "金汇城 从化"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "20ba8d25f80e",
+      "location": "广州健康方舟会展中心博览馆",
+      "sample_title": "Star Link Fes 广州首个二次元游戏动漫日夜场活动",
+      "event_uids": [
+        "xiaohongshu:6a2becf20000000015026e6a:02_0"
+      ],
+      "decided_at": "2026-06-14T17:31:31.269Z",
+      "action": "match",
+      "poi_id": "3435096446477420300",
+      "poi_title": "广州健康方舟会议会展中心",
+      "poi_address": "广东省广州市荔湾区东沙大道16号健康方舟6楼(30号电梯直上)",
+      "latitude": 23.058435,
+      "longitude": 113.257147,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "3435096446477420300",
+          "title": "广州健康方舟会议会展中心",
+          "address": "广东省广州市荔湾区东沙大道16号健康方舟6楼(30号电梯直上)",
+          "category": "文化场馆:会展中心",
+          "latitude": 23.058435,
+          "longitude": 113.257147
+        }
+      ],
+      "reason": "健康方舟会展中心与活动地点博览馆主体一致",
+      "search_keywords_tried": [
+        "健康方舟会展中心"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "0bd1f5a50b69",
+      "location": "广州·时尚天河商业广场中区",
+      "sample_title": "砂糖桔谷子集市",
+      "event_uids": [
+        "xiaohongshu:6a2becf20000000015026e6a:02_1"
+      ],
+      "decided_at": "2026-06-14T17:31:31.269Z",
+      "action": "match",
+      "poi_id": "15044223112867902015",
+      "poi_title": "时尚天河商业广场中区",
+      "poi_address": "广东省广州市天河区时尚天河商业广场",
+      "latitude": 23.133873,
+      "longitude": 113.325306,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "17181157933967338288",
+          "title": "时尚天河商业广场",
+          "address": "广东省广州市天河区天河路299号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 23.13503,
+          "longitude": 113.32522
+        },
+        {
+          "index": 1,
+          "poi_id": "1783792677863484675",
+          "title": "时尚天河商业广场东区",
+          "address": "广东省广州市天河区天河路299号(近地铁体育西和体育中心站)",
+          "category": "购物:综合商场",
+          "latitude": 23.13384,
+          "longitude": 113.32518
+        },
+        {
+          "index": 2,
+          "poi_id": "10786746080983019131",
+          "title": "时尚天河夜上海",
+          "address": "广东省广州市天河区天河路299号时尚天河商业广场B1",
+          "category": "购物:商业步行街",
+          "latitude": 23.135272,
+          "longitude": 113.322735
+        },
+        {
+          "index": 3,
+          "poi_id": "15401593218087276768",
+          "title": "时尚天河商业广场-南1门",
+          "address": "广东省广州市天河区天河路299号时尚天河商业广场B1",
+          "category": "室内及附属设施:通行设施类:正门",
+          "latitude": 23.133932,
+          "longitude": 113.324924
+        },
+        {
+          "index": 4,
+          "poi_id": "16940436597956807120",
+          "title": "时尚天河商业广场停车场",
+          "address": "广东省广州市天河区体育东路b1",
+          "category": "汽车:停车场",
+          "latitude": 23.135255,
+          "longitude": 113.328013
+        },
+        {
+          "index": 5,
+          "poi_id": "15044223112867902015",
+          "title": "时尚天河商业广场中区",
+          "address": "广东省广州市天河区时尚天河商业广场",
+          "category": "购物:综合商场",
+          "latitude": 23.133873,
+          "longitude": 113.325306
+        },
+        {
+          "index": 6,
+          "poi_id": "9564475850375119191",
+          "title": "1点点(时尚天河商业广场)",
+          "address": "广东省广州市天河区天河路时尚天河商业广场西六街071号",
+          "category": "美食:冷饮店",
+          "latitude": 23.133824,
+          "longitude": 113.326096
+        },
+        {
+          "index": 7,
+          "poi_id": "8518797627102460524",
+          "title": "时尚天河商业广场西区",
+          "address": "广东省广州市天河区时尚天河商业广场",
+          "category": "购物:综合商场",
+          "latitude": 23.13388,
+          "longitude": 113.32513
+        }
+      ],
+      "reason": "活动地点写时尚天河商业广场中区，POI名称完全一致",
+      "search_keywords_tried": [
+        "时尚天河商业广场"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "03dc16b5bcc9",
+      "location": "广州万菱汇一楼中庭",
+      "sample_title": "魔法少女小圆 圆梦如织",
+      "event_uids": [
+        "xiaohongshu:6a2becf20000000015026e6a:03_0"
+      ],
+      "decided_at": "2026-06-14T17:31:31.269Z",
+      "action": "match",
+      "poi_id": "13830470529404015089",
+      "poi_title": "万菱汇",
+      "poi_address": "广东省广州市天河区天河路230-232号",
+      "latitude": 23.132722,
+      "longitude": 113.330291,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "13830470529404015089",
+          "title": "万菱汇",
+          "address": "广东省广州市天河区天河路230-232号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 23.132722,
+          "longitude": 113.330291
+        },
+        {
+          "index": 1,
+          "poi_id": "946831950917448872",
+          "title": "万菱汇-北1门",
+          "address": "广东省广州市天河区天河路230-232号万菱汇L1",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 23.132923,
+          "longitude": 113.32973
+        },
+        {
+          "index": 2,
+          "poi_id": "1855488457041610600",
+          "title": "星巴克臻选(广州万菱汇店)",
+          "address": "广东省广州市天河区天河路230号L1-23号",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 23.132865,
+          "longitude": 113.329244
+        },
+        {
+          "index": 3,
+          "poi_id": "18227904684668484040",
+          "title": "万菱汇停车场",
+          "address": "广东省广州市天河区天河南街道万菱国际中心万菱汇",
+          "category": "汽车:停车场",
+          "latitude": 23.132588,
+          "longitude": 113.328671
+        },
+        {
+          "index": 4,
+          "poi_id": "9808423660015498204",
+          "title": "万菱汇·君临",
+          "address": "广东省广州市天河区天河路230-232号万菱汇L1",
+          "category": "房产小区:住宅区:其它住宅区",
+          "latitude": 23.132604,
+          "longitude": 113.330438
+        },
+        {
+          "index": 5,
+          "poi_id": "4240323245755249692",
+          "title": "万菱汇-A号楼",
+          "address": "广东省广州市天河区天河路230号万菱国际中心",
+          "category": "房产小区:房产小区附属",
+          "latitude": 23.132841,
+          "longitude": 113.329084
+        },
+        {
+          "index": 6,
+          "poi_id": "39322958863347320",
+          "title": "寿司郎(万菱汇店)",
+          "address": "广东省广州市天河区天河南街道天河路232号B101房(自编万菱汇B1层73-1号铺,石牌桥A出口)",
+          "category": "其它",
+          "latitude": 23.132829,
+          "longitude": 113.328918
+        },
+        {
+          "index": 7,
+          "poi_id": "10605459900617483601",
+          "title": "JPGcanteen(万菱汇店)",
+          "address": "广东省广州市天河区天河南街道天河路232号102房(自编万菱汇L1层43号铺)",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 23.132737,
+          "longitude": 113.331628
+        }
+      ],
+      "reason": "万菱汇主体与活动地一致，仅一楼中庭未精确到店级POI",
+      "search_keywords_tried": [
+        "万菱汇"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "4fa1d4353915",
+      "location": "广州永庆坊吉祥坊一号",
+      "sample_title": "甜心格格15周年展",
+      "event_uids": [
+        "xiaohongshu:6a2becf20000000015026e6a:03_1"
+      ],
+      "decided_at": "2026-06-14T17:31:31.269Z",
+      "action": "match",
+      "poi_id": "5423942429088466012",
+      "poi_title": "永庆坊吉祥坊1号",
+      "poi_address": "广东省广州市荔湾区恩宁路",
+      "latitude": 23.114221,
+      "longitude": 113.240303,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "5423942429088466012",
+          "title": "永庆坊吉祥坊1号",
+          "address": "广东省广州市荔湾区恩宁路",
+          "category": "房产小区:房产小区附属",
+          "latitude": 23.114221,
+          "longitude": 113.240303
+        },
+        {
+          "index": 1,
+          "poi_id": "3220634125376642738",
+          "title": "永庆坊吉祥坊3号",
+          "address": "广东省广州市荔湾区丛桂路与恩宁路交叉口西北方向111米左右",
+          "category": "房产小区:其它房产小区",
+          "latitude": 23.114282,
+          "longitude": 113.240216
+        },
+        {
+          "index": 2,
+          "poi_id": "3136746238593468795",
+          "title": "永庆坊吉祥广场",
+          "address": "广东省广州市荔湾区恩宁路99号永庆坊",
+          "category": "旅游景点:城市广场",
+          "latitude": 23.114546,
+          "longitude": 113.240305
+        },
+        {
+          "index": 3,
+          "poi_id": "10582164281897045702",
+          "title": "永庆坊吉祥坊-2号楼",
+          "address": "广东省广州市荔湾区恩宁路永庆坊吉祥坊",
+          "category": "房产小区:房产小区附属",
+          "latitude": 23.114446,
+          "longitude": 113.240544
+        },
+        {
+          "index": 4,
+          "poi_id": "1334879514537320734",
+          "title": "MASONPRINCE(永庆坊店)",
+          "address": "广东省广州市荔湾区恩宁路永庆坊吉祥坊13号B103(1-3F)",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 23.113922,
+          "longitude": 113.240736
+        },
+        {
+          "index": 5,
+          "poi_id": "3214774172812087999",
+          "title": "Sanse(永庆坊店)",
+          "address": "广东省广州市荔湾区多宝街道恩宁路永庆坊东区B102室",
+          "category": "购物:服饰鞋包",
+          "latitude": 23.113826,
+          "longitude": 113.240657
+        },
+        {
+          "index": 6,
+          "poi_id": "3124685066713090792",
+          "title": "POP MART(POP MART永庆坊)",
+          "address": "广东省广州市荔湾区多宝街道恩宁路永庆坊吉祥段B101(L1-L2)号商铺(钟书阁后门对面)(吉祥坊13号)",
+          "category": "购物:礼品",
+          "latitude": 23.113839,
+          "longitude": 113.240501
+        },
+        {
+          "index": 7,
+          "poi_id": "13272073699926173335",
+          "title": "OLD ORDER(永庆坊店)",
+          "address": "广东省广州市荔湾区恩宁路永庆坊二期吉祥坊2号",
+          "category": "购物:服饰鞋包",
+          "latitude": 23.114179,
+          "longitude": 113.241101
+        }
+      ],
+      "reason": "吉祥坊一号与POI永庆坊吉祥坊1号一致，荔湾区恩宁路",
+      "search_keywords_tried": [
+        "永庆坊吉祥坊"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "3fd87a59e13e",
+      "location": "越秀公园花卉馆中馆和美艺术中心",
+      "sample_title": "歧域幻景-彭杜作品展",
+      "event_uids": [
+        "xiaohongshu:6a2675f40000000006021e9d:08_0"
+      ],
+      "decided_at": "2026-06-14T17:31:31.269Z",
+      "action": "reject",
+      "reason": "搜和美艺术中心、越秀公园花卉馆均无和美艺术中心或花卉馆中馆店级POI",
+      "search_keywords_tried": [
+        "和美艺术中心",
+        "越秀公园花卉馆"
+      ],
+      "confidence": "low",
+      "doubtful": false,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "4494245627189490403",
+          "title": "美臣艺术中心",
+          "address": "广东省广州市南沙区南沙街道海熙大街30号",
+          "category": "教育学校:培训",
+          "latitude": 22.792834,
+          "longitude": 113.532664
+        },
+        {
+          "index": 1,
+          "poi_id": "3245766445575280741",
+          "title": "格林艺术中心",
+          "address": "广东省广州市番禺区沙浦东路158号",
+          "category": "教育学校:培训:美术培训",
+          "latitude": 22.970849,
+          "longitude": 113.492563
+        },
+        {
+          "index": 2,
+          "poi_id": "5839966828291701480",
+          "title": "思源艺术中心",
+          "address": "广东省广州市越秀区水荫路57号嘉富广场1号铺",
+          "category": "教育学校:培训",
+          "latitude": 23.139875,
+          "longitude": 113.310988
+        },
+        {
+          "index": 3,
+          "poi_id": "2768627983789061511",
+          "title": "郎特艺术中心",
+          "address": "广东省广州市番禺区S296与兴南大道交叉口正北方向89米左右",
+          "category": "教育学校:培训",
+          "latitude": 23.015003,
+          "longitude": 113.318289
+        },
+        {
+          "index": 4,
+          "poi_id": "3602716452419220913",
+          "title": "小洲艺术馆",
+          "address": "广东省广州市海珠区高桥直街三巷1号",
+          "category": "文化场馆:美术馆",
+          "latitude": 23.060133,
+          "longitude": 113.360973
+        },
+        {
+          "index": 5,
+          "poi_id": "2936060214224673204",
+          "title": "十八拍艺术中心",
+          "address": "广东省广州市番禺区福景路887号",
+          "category": "教育学校:培训",
+          "latitude": 22.918978,
+          "longitude": 113.361723
+        },
+        {
+          "index": 6,
+          "poi_id": "13202686432085617217",
+          "title": "丹枫艺术中心",
+          "address": "广东省广州市南沙区东涌镇鱼丰大街41号",
+          "category": "教育学校:培训",
+          "latitude": 22.852393,
+          "longitude": 113.459791
+        },
+        {
+          "index": 7,
+          "poi_id": "6489978113382466856",
+          "title": "沙面艺术中心L.C美术馆",
+          "address": "广东省广州市荔湾区沙面街道沙面北街35号",
+          "category": "文化场馆:美术馆",
+          "latitude": 23.10785,
+          "longitude": 113.24731
+        }
+      ]
+    },
+    {
+      "group_id": "6dfa1495331f",
+      "location": "见展览现场",
+      "sample_title": "植物从不比较",
+      "event_uids": [
+        "xiaohongshu:6a2675f40000000006021e9d:10_0"
+      ],
+      "decided_at": "2026-06-14T17:31:31.269Z",
+      "action": "reject",
+      "reason": "地点仅「见展览现场」，无法绑定POI",
+      "search_keywords_tried": [],
+      "confidence": "low",
+      "doubtful": false,
+      "candidates": []
+    }
+  ]
+}

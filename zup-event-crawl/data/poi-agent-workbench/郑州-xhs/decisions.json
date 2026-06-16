@@ -1,0 +1,2193 @@
+{
+  "city": "郑州",
+  "source": "xiaohongshu",
+  "updated_at": "2026-06-12T04:05:35.301Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "175a8b49279a",
+      "location": "正弘汇下沉广场",
+      "sample_title": "校园音乐大赛半决赛/决赛",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:01_0"
+      ],
+      "decided_at": "2026-06-12T02:51:32.600Z",
+      "action": "match",
+      "reason": "下沉广场活动，对齐正弘汇主体",
+      "search_keywords_tried": [
+        "正弘汇"
+      ],
+      "confidence": "high",
+      "doubtful": true,
+      "candidates": [],
+      "poi_id": "8087830949945214436",
+      "poi_title": "正弘汇",
+      "poi_address": "河南省郑州市中原区高新区瑞达路138号",
+      "latitude": 34.808906,
+      "longitude": 113.566271
+    },
+    {
+      "group_id": "e381a253aab3",
+      "location": "正弘汇",
+      "sample_title": "人生报纸大头贴",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:01_1"
+      ],
+      "decided_at": "2026-06-12T02:51:32.600Z",
+      "action": "match",
+      "poi_id": "8087830949945214436",
+      "poi_title": "正弘汇",
+      "poi_address": "河南省郑州市中原区高新区瑞达路138号",
+      "latitude": 34.808906,
+      "longitude": 113.566271,
+      "candidates": [],
+      "reason": "纠正批量误匹配特斯拉体验店",
+      "search_keywords_tried": [
+        "正弘汇"
+      ],
+      "confidence": "high",
+      "doubtful": true
+    },
+    {
+      "group_id": "9984aa1fd74b",
+      "location": "星光城A馆1楼",
+      "sample_title": "星光城萌鸭嗑瓜子大赛",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:01_2"
+      ],
+      "decided_at": "2026-06-11T20:34:06.130Z",
+      "action": "match",
+      "poi_id": "7831431233694751837",
+      "poi_title": "星光城购物中心-A馆",
+      "poi_address": "河南省郑州市金水区凤凰台街道郑汴路127号星光城购物中心F3层",
+      "latitude": 34.746377,
+      "longitude": 113.716619,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "7831431233694751837",
+          "title": "星光城购物中心-A馆",
+          "address": "河南省郑州市金水区凤凰台街道郑汴路127号星光城购物中心F3层",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 34.746377,
+          "longitude": 113.716619
+        },
+        {
+          "index": 1,
+          "poi_id": "16907221680879595432",
+          "title": "星光城购物中心A座",
+          "address": "河南省郑州市金水区凤凰台街道郑汴路127号星光城购物中心",
+          "category": "房产小区:房产小区附属",
+          "latitude": 34.746224,
+          "longitude": 113.715763
+        },
+        {
+          "index": 2,
+          "poi_id": "13835533908855487525",
+          "title": "BOM电竞馆(星光城购物中心店)",
+          "address": "河南省郑州市金水区凤凰台街道郑汴路与英协路交叉口西南角星光城A馆西门门口左侧",
+          "category": "娱乐休闲:网吧",
+          "latitude": 34.745892,
+          "longitude": 113.716103
+        },
+        {
+          "index": 3,
+          "poi_id": "3893886531863774145",
+          "title": "模度(星光城购物中心店)",
+          "address": "河南省郑州市金水区凤凰台街道郑汴路星光城A馆3楼",
+          "category": "教育学校:培训",
+          "latitude": 34.746356,
+          "longitude": 113.716674
+        },
+        {
+          "index": 4,
+          "poi_id": "2876898050709657181",
+          "title": "G06女装工厂店(星光城店)",
+          "address": "河南省郑州市金水区郑汴路星光城A馆二楼西北角",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 34.746403,
+          "longitude": 113.71628
+        },
+        {
+          "index": 5,
+          "poi_id": "8159353275250762337",
+          "title": "瑞幸咖啡(星光城购物中心a馆店)",
+          "address": "河南省郑州市金水区郑汴路与凤台路交汇处郑州上悦城购物中心F1",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 34.746119,
+          "longitude": 113.715744
+        },
+        {
+          "index": 6,
+          "poi_id": "7207970420952056090",
+          "title": "李建兵台球学院郑州校区",
+          "address": "河南省郑州市金水区郑汴路星光城A馆4楼",
+          "category": "运动健身:台球馆",
+          "latitude": 34.746422,
+          "longitude": 113.716183
+        },
+        {
+          "index": 7,
+          "poi_id": "14794397600097734582",
+          "title": "SUQI苏柒美学空间生活馆",
+          "address": "河南省郑州市金水区星光城A馆2楼西北角",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 34.74637,
+          "longitude": 113.716154
+        }
+      ],
+      "reason": "自动匹配 score=103",
+      "search_keywords_tried": [
+        "郑州 星光城A馆1楼",
+        "郑州 星光城萌鸭嗑瓜子大赛"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "d42ef5a31941",
+      "location": "正弘汇2号门",
+      "sample_title": "霸总戏精大赛",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:02_0"
+      ],
+      "decided_at": "2026-06-11T20:34:06.633Z",
+      "action": "match",
+      "poi_id": "16016982103144785877",
+      "poi_title": "正弘汇-南门",
+      "poi_address": "河南省郑州市中原区科学大道与瑞达路交叉口西北角正弘汇L1",
+      "latitude": 34.808552,
+      "longitude": 113.56621,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "16016982103144785877",
+          "title": "正弘汇-南门",
+          "address": "河南省郑州市中原区科学大道与瑞达路交叉口西北角正弘汇L1",
+          "category": "室内及附属设施:通行设施类:正门",
+          "latitude": 34.808552,
+          "longitude": 113.56621
+        },
+        {
+          "index": 1,
+          "poi_id": "426092913988410613",
+          "title": "中国黄金(正弘汇店)",
+          "address": "河南省郑州市中原区科学大道与瑞达路交叉口西北角正弘汇L2-L239A",
+          "category": "购物:珠宝饰品",
+          "latitude": 34.808953,
+          "longitude": 113.565932
+        },
+        {
+          "index": 2,
+          "poi_id": "4067107900922748332",
+          "title": "AJIDOU阿吉豆(郑州正弘汇二店)",
+          "address": "河南省郑州市中原区科学大道与瑞达路交叉口西北角正弘汇L3",
+          "category": "购物:珠宝饰品:饰品",
+          "latitude": 34.809143,
+          "longitude": 113.566155
+        },
+        {
+          "index": 3,
+          "poi_id": "3284342901100697726",
+          "title": "郑州悠至酒店(科学大道正弘汇店)",
+          "address": "河南省郑州市中原区瑞达路88号2号楼",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 34.804725,
+          "longitude": 113.567778
+        },
+        {
+          "index": 4,
+          "poi_id": "7004652195114223841",
+          "title": "枝间·民宿(正弘汇保利文化广场店)",
+          "address": "河南省郑州市中原区国槐街与桃花里交叉口东北方向105米左右",
+          "category": "酒店宾馆:其它酒店宾馆",
+          "latitude": 34.811305,
+          "longitude": 113.559349
+        },
+        {
+          "index": 5,
+          "poi_id": "803160193674383020",
+          "title": "高新白尔雅口腔(正弘汇店)",
+          "address": "河南省郑州市中原区玉兰街6号玉兰雅庭1幢1层附13号",
+          "category": "医疗保健:专科医院:齿科",
+          "latitude": 34.80577,
+          "longitude": 113.568641
+        },
+        {
+          "index": 6,
+          "poi_id": "6921576365232795256",
+          "title": "小白龙宠物店",
+          "address": "河南省郑州市金水区东风路街道智汇城2号门4楼401",
+          "category": "生活服务:宠物服务:宠物商店",
+          "latitude": 34.798254,
+          "longitude": 113.671688
+        },
+        {
+          "index": 7,
+          "poi_id": "15737315994157966540",
+          "title": "汇港新城-2号楼",
+          "address": "河南省郑州市二七区汇港新城(华润·万象城西南)",
+          "category": "房产小区:房产小区附属",
+          "latitude": 34.753718,
+          "longitude": 113.661428
+        }
+      ],
+      "reason": "自动匹配 score=93",
+      "search_keywords_tried": [
+        "郑州 正弘汇2号门",
+        "郑州 霸总戏精大赛"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "a65ee68cac8a",
+      "location": "河南博物院一楼文创区快闪店",
+      "sample_title": "胡辣汤主题快闪",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:02_1"
+      ],
+      "decided_at": "2026-06-11T20:34:07.290Z",
+      "action": "match",
+      "poi_id": "163291984587765553",
+      "poi_title": "河南博物院",
+      "poi_address": "河南省郑州市金水区农业路8号",
+      "latitude": 34.78844,
+      "longitude": 113.67224,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "163291984587765553",
+          "title": "河南博物院",
+          "address": "河南省郑州市金水区农业路8号",
+          "category": "文化场馆:博物馆",
+          "latitude": 34.78844,
+          "longitude": 113.67224
+        },
+        {
+          "index": 1,
+          "poi_id": "8078041606202591740",
+          "title": "河南博物院-主展馆",
+          "address": "河南省郑州市金水区文化路街道农业路8号河南博物院",
+          "category": "文化场馆:展览馆",
+          "latitude": 34.788393,
+          "longitude": 113.672242
+        },
+        {
+          "index": 2,
+          "poi_id": "4033617693389271786",
+          "title": "河南博物院-南门",
+          "address": "河南省郑州市金水区农业路8号河南博物院",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 34.787068,
+          "longitude": 113.67226
+        },
+        {
+          "index": 3,
+          "poi_id": "18404494025209015363",
+          "title": "河南博物院-入口",
+          "address": "河南省郑州市金水区农业东路与农业路交叉口正北方向23米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 34.78708,
+          "longitude": 113.672331
+        },
+        {
+          "index": 4,
+          "poi_id": "11765719994693877604",
+          "title": "河南毛笔博物馆",
+          "address": "河南省郑州市二七区小赵寨街与陇海中路辅路交叉口正北方向94米左右",
+          "category": "文化场馆:博物馆",
+          "latitude": 34.738535,
+          "longitude": 113.659286
+        },
+        {
+          "index": 5,
+          "poi_id": "12298767061317774057",
+          "title": "河南自然博物馆",
+          "address": "河南省郑州市金水区金水东路18号",
+          "category": "文化场馆:博物馆",
+          "latitude": 34.765785,
+          "longitude": 113.751868
+        },
+        {
+          "index": 6,
+          "poi_id": "10980713115553120936",
+          "title": "中州国际饭店(河南博物院正弘城店)",
+          "address": "河南省郑州市金水区农业路71号",
+          "category": "酒店宾馆:星级酒店",
+          "latitude": 34.786387,
+          "longitude": 113.672942
+        },
+        {
+          "index": 7,
+          "poi_id": "4674909302965712121",
+          "title": "河南电信博物馆",
+          "address": "河南省郑州市金水区祭城路街道金水东路25号",
+          "category": "文化场馆:博物馆",
+          "latitude": 34.762925,
+          "longitude": 113.751138
+        }
+      ],
+      "reason": "自动匹配 score=100",
+      "search_keywords_tried": [
+        "郑州 河南博物院一楼文创区快闪店",
+        "郑州 胡辣汤主题快闪"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "4570050c17b8",
+      "location": "杉杉奥特莱斯中牟店",
+      "sample_title": "偷吃大赛",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:02_2"
+      ],
+      "decided_at": "2026-06-11T20:34:07.921Z",
+      "action": "match",
+      "poi_id": "13703904547991237984",
+      "poi_title": "膳魔师(郑州杉杉奥特莱斯中牟店)",
+      "poi_address": "河南省郑州市中牟县大孟街道杉杉奥特莱斯中牟店二期2楼中厅",
+      "latitude": 34.782591,
+      "longitude": 114.030805,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "13703904547991237984",
+          "title": "膳魔师(郑州杉杉奥特莱斯中牟店)",
+          "address": "河南省郑州市中牟县大孟街道杉杉奥特莱斯中牟店二期2楼中厅",
+          "category": "购物:其它购物",
+          "latitude": 34.782591,
+          "longitude": 114.030805
+        },
+        {
+          "index": 1,
+          "poi_id": "12446066001021787746",
+          "title": "写生(郑州杉杉奥特莱斯中牟店)",
+          "address": "河南省郑州市中牟县郑开大道406号杉杉奥特莱斯购物广场F2",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 34.782224,
+          "longitude": 114.0278
+        },
+        {
+          "index": 2,
+          "poi_id": "930247891742070341",
+          "title": "GAP(郑州杉杉奥莱中牟店)",
+          "address": "河南省郑州市中牟县郑开大道406号杉杉奥特莱斯购物广场F1",
+          "category": "购物:服饰鞋包",
+          "latitude": 34.782723,
+          "longitude": 114.027407
+        },
+        {
+          "index": 3,
+          "poi_id": "10091513041922294214",
+          "title": "Clarks(中牟杉杉奥特莱斯广场·郑州店)",
+          "address": "河南省郑州市中牟县郑开大道406号杉杉奥特莱斯购物广场F1",
+          "category": "购物:服饰鞋包",
+          "latitude": 34.782165,
+          "longitude": 114.028114
+        },
+        {
+          "index": 4,
+          "poi_id": "14818510959151358690",
+          "title": "恩裳(杉杉奥特莱斯广场·郑州店)",
+          "address": "河南省郑州市中牟县郑开大道406号杉杉奥特莱斯购物广场F1",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 34.781804,
+          "longitude": 114.029907
+        },
+        {
+          "index": 5,
+          "poi_id": "2073145652596802741",
+          "title": "双立人(中牟杉杉奥特莱斯广场·郑州店)",
+          "address": "河南省郑州市中牟县郑州杉杉奥特莱斯购物广场-二期",
+          "category": "购物:家具家居建材:家具家居",
+          "latitude": 34.782577,
+          "longitude": 114.030797
+        },
+        {
+          "index": 6,
+          "poi_id": "10639901855097387797",
+          "title": "杉杉奥特莱斯购物广场·郑州",
+          "address": "河南省郑州市中牟县郑开大道406号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 34.782035,
+          "longitude": 114.02926
+        },
+        {
+          "index": 7,
+          "poi_id": "3351473600096647275",
+          "title": "MO&Co.(杉杉奥特莱斯广场·郑州店)",
+          "address": "河南省郑州市中牟县郑开大道406号杉杉奥特莱斯购物广场F2",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 34.78199,
+          "longitude": 114.029131
+        }
+      ],
+      "reason": "自动匹配 score=58",
+      "search_keywords_tried": [
+        "郑州 杉杉奥特莱斯中牟店",
+        "郑州 偷吃大赛"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "bf660b620b38",
+      "location": "杉杉奥莱二七店LG中庭广场",
+      "sample_title": "狗狗恋综大会",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:03_0"
+      ],
+      "decided_at": "2026-06-11T20:34:08.791Z",
+      "action": "match",
+      "poi_id": "10639901855097387797",
+      "poi_title": "杉杉奥特莱斯购物广场·郑州",
+      "poi_address": "河南省郑州市中牟县郑开大道406号",
+      "latitude": 34.782035,
+      "longitude": 114.02926,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "10639901855097387797",
+          "title": "杉杉奥特莱斯购物广场·郑州",
+          "address": "河南省郑州市中牟县郑开大道406号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 34.782035,
+          "longitude": 114.02926
+        },
+        {
+          "index": 1,
+          "poi_id": "1413589356836397557",
+          "title": "361°Kids(郑州杉杉奥特莱斯广场二七店)",
+          "address": "河南省郑州市二七区大学南路郑州杉杉奥特莱斯购物广场(二七店)3楼",
+          "category": "购物:体育户外",
+          "latitude": 34.649634,
+          "longitude": 113.646501
+        },
+        {
+          "index": 2,
+          "poi_id": "5408379164918263465",
+          "title": "匹克(二七郑州杉杉奥特莱斯购物广场店)",
+          "address": "河南省郑州市二七区侯寨街道大学南路319号郑州杉杉奥特莱斯广场F2",
+          "category": "购物:体育户外",
+          "latitude": 34.649371,
+          "longitude": 113.646256
+        },
+        {
+          "index": 3,
+          "poi_id": "15403347811059489394",
+          "title": "MO&Co.(郑州杉杉奥特莱斯广场店)",
+          "address": "河南省郑州市二七区侯寨街道大学南路319号郑州杉杉奥特莱斯广场F2",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 34.650552,
+          "longitude": 113.645608
+        },
+        {
+          "index": 4,
+          "poi_id": "7443667446776472279",
+          "title": "AFIONA妍丽(郑州杉杉奥特莱斯二七店)",
+          "address": "河南省郑州市二七区侯寨街道大学南路319号郑州杉杉奥特莱斯购物广场(二七店)B107妍丽",
+          "category": "购物:化妆品",
+          "latitude": 34.649834,
+          "longitude": 113.645665
+        },
+        {
+          "index": 5,
+          "poi_id": "16082453692725443100",
+          "title": "姐弟俩土豆粉(二七区杉杉奥特莱斯店)",
+          "address": "河南省郑州市二七区大学南路319号郑州杉杉奥特莱斯购物广场二七店F2层",
+          "category": "美食:小吃快餐",
+          "latitude": 34.651487,
+          "longitude": 113.645713
+        },
+        {
+          "index": 6,
+          "poi_id": "2329415255269055872",
+          "title": "茉莉奶白(郑州杉杉奥特莱斯广场二七店)",
+          "address": "河南省郑州市二七区侯寨街道大学南路319号杉杉奥特莱斯PL106",
+          "category": "美食:冷饮店",
+          "latitude": 34.650339,
+          "longitude": 113.646502
+        },
+        {
+          "index": 7,
+          "poi_id": "1893306127911260988",
+          "title": "杉杉奥特莱斯二七店",
+          "address": "河南省郑州市二七区",
+          "category": "娱乐休闲:KTV",
+          "latitude": 34.6516,
+          "longitude": 113.647692
+        }
+      ],
+      "reason": "自动匹配 score=-75",
+      "search_keywords_tried": [
+        "郑州 杉杉奥莱二七店LG中庭广场",
+        "郑州 狗狗恋综大会"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "a9b193dcdc0a",
+      "location": "亚细亚卓悦城1F中庭",
+      "sample_title": "剥花生大赛",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:03_1"
+      ],
+      "decided_at": "2026-06-11T20:34:09.400Z",
+      "action": "match",
+      "poi_id": "12239975422344587368",
+      "poi_title": "亚细亚卓悦城",
+      "poi_address": "河南省郑州市二七区德化街89号",
+      "latitude": 34.75151,
+      "longitude": 113.66744,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "12239975422344587368",
+          "title": "亚细亚卓悦城",
+          "address": "河南省郑州市二七区德化街89号",
+          "category": "购物:综合商场",
+          "latitude": 34.75151,
+          "longitude": 113.66744
+        },
+        {
+          "index": 1,
+          "poi_id": "164788066089604423",
+          "title": "亚细亚卓悦城-入口",
+          "address": "河南省郑州市二七区德化街89号亚细亚卓悦城",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 34.751302,
+          "longitude": 113.667404
+        },
+        {
+          "index": 2,
+          "poi_id": "13663147724705839456",
+          "title": "中庭花园",
+          "address": "河南省郑州市金水区祭城路街道金水东路与众旺路交叉路口往西南约100米(楷林中心)",
+          "category": "房产小区:其它房产小区",
+          "latitude": 34.765618,
+          "longitude": 113.759363
+        },
+        {
+          "index": 3,
+          "poi_id": "2827123886114559109",
+          "title": "亚细亚卓悦城-出入口",
+          "address": "河南省郑州市二七区德化街89号亚细亚卓悦城",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 34.751262,
+          "longitude": 113.667734
+        },
+        {
+          "index": 4,
+          "poi_id": "3379391536634610322",
+          "title": "亚细亚大药房(亚细亚卓悦城店)",
+          "address": "河南省郑州市二七区德化街街道德化街亚细亚商场负一层",
+          "category": "医疗保健:药房药店",
+          "latitude": 34.751709,
+          "longitude": 113.667693
+        },
+        {
+          "index": 5,
+          "poi_id": "2238922367293042420",
+          "title": "名创优品(郑州亚细亚卓悦城店)",
+          "address": "河南省郑州市二七区德化街街道亚细亚卓越城1楼A5号铺",
+          "category": "购物:服饰鞋包",
+          "latitude": 34.751404,
+          "longitude": 113.667156
+        },
+        {
+          "index": 6,
+          "poi_id": "18413898450177541003",
+          "title": "银库中国银饰(亚细亚卓悦城店)",
+          "address": "河南省郑州市二七区德化街89号亚细亚F1",
+          "category": "购物:珠宝饰品:珠宝",
+          "latitude": 34.751311,
+          "longitude": 113.667494
+        },
+        {
+          "index": 7,
+          "poi_id": "15811871868796091960",
+          "title": "转转二手回收(亚细亚卓悦城店)",
+          "address": "河南省郑州市二七区彩虹路与德化步行商业街交叉口东北方向52米左右",
+          "category": "生活服务:废品收购站",
+          "latitude": 34.751571,
+          "longitude": 113.667166
+        }
+      ],
+      "reason": "自动匹配 score=102",
+      "search_keywords_tried": [
+        "郑州 亚细亚卓悦城1F中庭",
+        "郑州 剥花生大赛"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "415e7d24a489",
+      "location": "新田360A馆L1",
+      "sample_title": "嗑瓜子大赛",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:03_2"
+      ],
+      "decided_at": "2026-06-11T20:34:10.164Z",
+      "action": "reject",
+      "reason": "自动判断不匹配（score=-51, name=false, addr=true）",
+      "search_keywords_tried": [
+        "郑州 新田360A馆L1",
+        "郑州 嗑瓜子大赛"
+      ],
+      "confidence": "low",
+      "doubtful": false,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "11253337764122743894",
+          "title": "周大福荟馆JEWELRIA(绿地新田360)",
+          "address": "河南省郑州市金水区金水东路80号新田360广场L1",
+          "category": "购物:珠宝饰品:珠宝",
+          "latitude": 34.770249,
+          "longitude": 113.767379
+        },
+        {
+          "index": 1,
+          "poi_id": "1717243730037219285",
+          "title": "MANNER COFFEE(新田360广场店)",
+          "address": "河南省郑州市金水区金水东路新田360广场郑州绿地A馆L1",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 34.770095,
+          "longitude": 113.766931
+        },
+        {
+          "index": 2,
+          "poi_id": "12084399768806385160",
+          "title": "POP MART(郑州绿地新都会新田360广场店)",
+          "address": "河南省郑州市金水区金水东路80号新田360广场L1",
+          "category": "购物:礼品",
+          "latitude": 34.769773,
+          "longitude": 113.76902
+        },
+        {
+          "index": 3,
+          "poi_id": "7828936801972141391",
+          "title": "小米之家(郑州金水区绿地新田360广场专卖店)",
+          "address": "河南省郑州市金水区金水东路80号新田360广场L1",
+          "category": "购物:数码家电",
+          "latitude": 34.770489,
+          "longitude": 113.766288
+        },
+        {
+          "index": 4,
+          "poi_id": "11863978308472710465",
+          "title": "MR PANCAKE(新田360广场)",
+          "address": "河南省郑州市金水区金水东路80号新田360广场L1",
+          "category": "美食:西餐:其它西餐",
+          "latitude": 34.770589,
+          "longitude": 113.766712
+        },
+        {
+          "index": 5,
+          "poi_id": "12353772586103266448",
+          "title": "华为(新田360广场)",
+          "address": "河南省郑州市金水区金水东路80号新田360广场L1",
+          "category": "购物:数码家电",
+          "latitude": 34.769637,
+          "longitude": 113.767028
+        },
+        {
+          "index": 6,
+          "poi_id": "14234439111909014280",
+          "title": "西西弗书店&矢量咖啡(郑州绿地360店)",
+          "address": "河南省郑州市金水区金水东路80号新田360广场L1",
+          "category": "购物:图书音像",
+          "latitude": 34.770037,
+          "longitude": 113.769328
+        },
+        {
+          "index": 7,
+          "poi_id": "17980935263633185287",
+          "title": "沙土瓜子(郑州万邦店)",
+          "address": "河南省郑州市中牟县万邦粮油干果市场B1-217号",
+          "category": "购物:农贸市场",
+          "latitude": 34.696644,
+          "longitude": 113.954772
+        }
+      ]
+    },
+    {
+      "group_id": "f5910167e7b4",
+      "location": "合物660二号楼中庭",
+      "sample_title": "660合物集",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:04_0"
+      ],
+      "decided_at": "2026-06-12T04:05:00.800Z",
+      "action": "match",
+      "reason": "活动写二号楼中庭，POI为商场主体；复核：活动在该POI主体内举办，地址区划一致",
+      "search_keywords_tried": [
+        "合物660"
+      ],
+      "confidence": "medium",
+      "doubtful": false,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "18241527538656821602",
+          "title": "绿地澜庭一期",
+          "address": "河南省郑州市管城回族区绿地澜庭(经南八路北)",
+          "category": "房产小区:住宅区:住宅小区",
+          "latitude": 34.690405,
+          "longitude": 113.807409
+        },
+        {
+          "index": 1,
+          "poi_id": "10015652436627241387",
+          "title": "菜鸟驿站(郑州鑫苑名家碧水中庭39号楼店)",
+          "address": "河南省郑州市金水区北林路街道鑫苑名家碧水中庭39号楼一楼西户",
+          "category": "生活服务:邮局速递:速递",
+          "latitude": 34.797784,
+          "longitude": 113.700069
+        },
+        {
+          "index": 2,
+          "poi_id": "12956235699029374869",
+          "title": "鑫苑名家碧水中庭",
+          "address": "河南省郑州市金水区鑫苑路18号",
+          "category": "房产小区:住宅区:住宅小区",
+          "latitude": 34.797409,
+          "longitude": 113.700222
+        },
+        {
+          "index": 3,
+          "poi_id": "10997440635635020179",
+          "title": "集物社河南分公司",
+          "address": "河南省郑州市二七区盈合万货城7排13-15号",
+          "category": "公司企业:公司企业",
+          "latitude": 34.694952,
+          "longitude": 113.659366
+        }
+      ],
+      "poi_id": "7144759591385132809",
+      "poi_title": "合物660",
+      "poi_address": "河南省郑州市中原区桐柏南路",
+      "latitude": 34.727596,
+      "longitude": 113.615375,
+      "_rerun": "doubtful-rerun"
+    },
+    {
+      "group_id": "a9f9f4a80780",
+      "location": "金融岛东半岛",
+      "sample_title": "非遗文创市集",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:04_1"
+      ],
+      "decided_at": "2026-06-11T20:34:11.502Z",
+      "action": "reject",
+      "reason": "自动判断不匹配（score=-85, name=false, addr=true）",
+      "search_keywords_tried": [
+        "郑州 金融岛东半岛",
+        "郑州 非遗文创市集"
+      ],
+      "confidence": "low",
+      "doubtful": false,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "382172575882923410",
+          "title": "郑州金融岛",
+          "address": "河南省郑州市金水区龙湖街道北三环与众意路交叉路口东南侧",
+          "category": "银行金融:其它银行金融",
+          "latitude": 34.806257,
+          "longitude": 113.727267
+        },
+        {
+          "index": 1,
+          "poi_id": "7560094269525434358",
+          "title": "郑州金融岛",
+          "address": "河南省郑州市金水区龙湖街道龙湖公园",
+          "category": "房产小区:商务楼宇",
+          "latitude": 34.812135,
+          "longitude": 113.734632
+        },
+        {
+          "index": 2,
+          "poi_id": "13728869582585298841",
+          "title": "奥斯卡龙湖金融岛影城(郑州银泰inPARK店)",
+          "address": "河南省郑州市金水区龙湖街道自贸试验区郑州片区(郑东)银泰金融岛项目地上3层DL3002-3013号铺位",
+          "category": "娱乐休闲:电影院",
+          "latitude": 34.813959,
+          "longitude": 113.730006
+        },
+        {
+          "index": 3,
+          "poi_id": "10440982789632759466",
+          "title": "金融岛银泰",
+          "address": "河南省郑州市金水区龙湖街道银泰inPark金融岛南地铁站B口步行360米",
+          "category": "房产小区:住宅区:住宅小区",
+          "latitude": 34.810639,
+          "longitude": 113.737099
+        },
+        {
+          "index": 4,
+          "poi_id": "17146863032588938772",
+          "title": "金融岛建设集团",
+          "address": "河南省郑州市金水区如意河东二街与龙翔一街交叉口西南方向120米左右",
+          "category": "公司企业:公司企业",
+          "latitude": 34.801683,
+          "longitude": 113.740123
+        },
+        {
+          "index": 5,
+          "poi_id": "11366824038996509567",
+          "title": "金融岛外环路",
+          "address": "河南省郑州市金水区",
+          "category": "地名地址:道路名",
+          "latitude": 34.816977,
+          "longitude": 113.729213
+        },
+        {
+          "index": 6,
+          "poi_id": "2082460129113374802",
+          "title": "郑州金融岛城市展厅",
+          "address": "河南省郑州市金水区众意路正商祯瑞上境西北侧约240米",
+          "category": "房产小区:房产小区附属",
+          "latitude": 34.805554,
+          "longitude": 113.727047
+        },
+        {
+          "index": 7,
+          "poi_id": "5321195217497404107",
+          "title": "美豪丽致酒店(郑大一附院东院区龙湖金融岛旗舰店)",
+          "address": "河南省郑州市金水区龙湖街道龙湖中环东路便民服务中心1号楼(郑大一附院东院区斜对面)",
+          "category": "酒店宾馆:星级酒店",
+          "latitude": 34.79543,
+          "longitude": 113.764
+        }
+      ]
+    },
+    {
+      "group_id": "9da6b9b4ac35",
+      "location": "龙湖郑州美盛天街",
+      "sample_title": "第二人生手帐集市4.0",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:04_2"
+      ],
+      "decided_at": "2026-06-11T20:34:12.164Z",
+      "action": "match",
+      "poi_id": "468694782778378533",
+      "poi_title": "龙湖郑州美盛天街1号门",
+      "poi_address": "河南省郑州市金水区丰庆路龙湖郑州美盛天街",
+      "latitude": 34.817571,
+      "longitude": 113.64864,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6903270369997221129",
+          "title": "龙湖郑州美盛天街",
+          "address": "河南省郑州市金水区丰庆路与博远路交叉口",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 34.81659,
+          "longitude": 113.649276
+        },
+        {
+          "index": 1,
+          "poi_id": "468694782778378533",
+          "title": "龙湖郑州美盛天街1号门",
+          "address": "河南省郑州市金水区丰庆路龙湖郑州美盛天街",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 34.817571,
+          "longitude": 113.64864
+        },
+        {
+          "index": 2,
+          "poi_id": "13103989391146417348",
+          "title": "龙湖郑州美盛天街2号门",
+          "address": "河南省郑州市金水区丰庆路龙湖郑州美盛天街",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 34.816738,
+          "longitude": 113.648589
+        },
+        {
+          "index": 3,
+          "poi_id": "5520919968409597531",
+          "title": "龙湖郑州美盛天街3号门",
+          "address": "河南省郑州市金水区博卉路1-37号",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 34.815685,
+          "longitude": 113.648579
+        },
+        {
+          "index": 4,
+          "poi_id": "3292383654946340851",
+          "title": "迪卡侬(龙湖郑州美盛天街店)",
+          "address": "河南省郑州市金水区丰庆路龙湖郑州美盛天街",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 34.816395,
+          "longitude": 113.64928
+        },
+        {
+          "index": 5,
+          "poi_id": "1377617958848696460",
+          "title": "龙湖郑州美盛天街地下停车场入口",
+          "address": "河南省郑州市金水区丰庆路与博远路交叉口东南方向142米左右",
+          "category": "室内及附属设施:通行设施类:停车场入口",
+          "latitude": 34.81723,
+          "longitude": 113.649885
+        },
+        {
+          "index": 6,
+          "poi_id": "8172633625010774089",
+          "title": "乐高(龙湖郑州美盛天街店)",
+          "address": "河南省郑州市金水区丰庆路龙湖郑州美盛天街",
+          "category": "购物:其它购物",
+          "latitude": 34.816778,
+          "longitude": 113.649278
+        },
+        {
+          "index": 7,
+          "poi_id": "3093985296322122328",
+          "title": "KKV(郑州龙湖美盛天街主力店)",
+          "address": "河南省郑州市金水区丰庆路与博远路交叉口郑州龙湖美盛天街商场一楼",
+          "category": "购物:其它购物",
+          "latitude": 34.817422,
+          "longitude": 113.649329
+        }
+      ],
+      "reason": "自动匹配 score=133",
+      "search_keywords_tried": [
+        "龙湖郑州美盛天街",
+        "郑州 第二人生手帐集市4.0"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "fd912b8e22f5",
+      "location": "郑州中原万达广场2号门室外广场",
+      "sample_title": "职工心理市集",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:05_0"
+      ],
+      "decided_at": "2026-06-11T20:34:12.728Z",
+      "action": "match",
+      "poi_id": "4390905303112295820",
+      "poi_title": "万达广场中原店-2号门",
+      "poi_address": "河南省郑州市中原区中原中路171号万达广场(中原店)F1",
+      "latitude": 34.747009,
+      "longitude": 113.600515,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "4390905303112295820",
+          "title": "万达广场中原店-2号门",
+          "address": "河南省郑州市中原区中原中路171号万达广场(中原店)F1",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 34.747009,
+          "longitude": 113.600515
+        },
+        {
+          "index": 1,
+          "poi_id": "1978803704828145189",
+          "title": "万达广场(郑州高新)-2号门",
+          "address": "河南省郑州市中原区科学大道郑州高新万达广场",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 34.808092,
+          "longitude": 113.582769
+        },
+        {
+          "index": 2,
+          "poi_id": "16586435054194253773",
+          "title": "万达广场二七店-2号门",
+          "address": "河南省郑州市二七区航海中路与大学南路交汇口西南角万达广场(二七店)F1",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 34.717,
+          "longitude": 113.643389
+        },
+        {
+          "index": 3,
+          "poi_id": "12794103863535640105",
+          "title": "万达广场(中原区店)-7号门",
+          "address": "河南省郑州市中原区二砂北路与华山路交叉口东北方向97米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 34.745968,
+          "longitude": 113.600559
+        },
+        {
+          "index": 4,
+          "poi_id": "16495229688247841404",
+          "title": "魅族授权体验店(郑州中原万达广场店)",
+          "address": "河南省郑州市中原区郑州中原万达广场",
+          "category": "购物:数码家电",
+          "latitude": 34.746768,
+          "longitude": 113.600152
+        },
+        {
+          "index": 5,
+          "poi_id": "3771681601124175835",
+          "title": "郑州泰酷啦游乐有限公司(万达广场郑州高新店)",
+          "address": "河南省郑州市中原区科学大道万达广场2号门",
+          "category": "娱乐休闲:亲子",
+          "latitude": 34.808142,
+          "longitude": 113.582768
+        },
+        {
+          "index": 6,
+          "poi_id": "117012393886337056",
+          "title": "crocs(中原万达店)",
+          "address": "河南省郑州市中原区万达广场2号门",
+          "category": "购物:服饰鞋包:鞋店",
+          "latitude": 34.746702,
+          "longitude": 113.60086
+        },
+        {
+          "index": 7,
+          "poi_id": "2310309928302296021",
+          "title": "薇诺娜(万达广场中原店)",
+          "address": "河南省郑州市中原区中原中路171号万达广场(中原店)F1",
+          "category": "购物:化妆品",
+          "latitude": 34.746109,
+          "longitude": 113.600427
+        }
+      ],
+      "reason": "自动匹配 score=75",
+      "search_keywords_tried": [
+        "郑州中原万达广场2号门室外广场",
+        "郑州 职工心理市集"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "81962c7c81aa",
+      "location": "瑞光创意工厂",
+      "sample_title": "瑞光跳蚤市集",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:05_1"
+      ],
+      "decided_at": "2026-06-11T20:34:13.286Z",
+      "action": "match",
+      "poi_id": "17746079984900462723",
+      "poi_title": "瑞光创意工厂3号楼",
+      "poi_address": "河南省郑州市二七区五里堡街道二环支路35号瑞光创意工厂",
+      "latitude": 34.762949,
+      "longitude": 113.638547,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "958229341851896411",
+          "title": "瑞光创意工厂",
+          "address": "河南省郑州市二七区二环支路35号",
+          "category": "公司企业:企业/工厂",
+          "latitude": 34.762975,
+          "longitude": 113.638548
+        },
+        {
+          "index": 1,
+          "poi_id": "17746079984900462723",
+          "title": "瑞光创意工厂3号楼",
+          "address": "河南省郑州市二七区五里堡街道二环支路35号瑞光创意工厂",
+          "category": "房产小区:房产小区附属",
+          "latitude": 34.762949,
+          "longitude": 113.638547
+        },
+        {
+          "index": 2,
+          "poi_id": "11992687644069387389",
+          "title": "瑞光创意工厂叁号院",
+          "address": "河南省郑州市二七区二环支路37号",
+          "category": "房产小区:产业园区",
+          "latitude": 34.763647,
+          "longitude": 113.638002
+        },
+        {
+          "index": 3,
+          "poi_id": "17930445777255892646",
+          "title": "瑞光创意工厂壹号院",
+          "address": "河南省郑州市二七区五里堡街道二环支路35号",
+          "category": "房产小区:产业园区",
+          "latitude": 34.764053,
+          "longitude": 113.637609
+        },
+        {
+          "index": 4,
+          "poi_id": "10982881775661123896",
+          "title": "瑞光创意工厂贰号院",
+          "address": "河南省郑州市二七区沙口路二环支路35号(五里堡街道)",
+          "category": "房产小区:产业园区",
+          "latitude": 34.762997,
+          "longitude": 113.638593
+        },
+        {
+          "index": 5,
+          "poi_id": "11506821549009951492",
+          "title": "瑞光创意工厂文创园",
+          "address": "河南省郑州市二七区二环支路与瑞光路交叉口西南方向36米左右",
+          "category": "房产小区:产业园区",
+          "latitude": 34.765552,
+          "longitude": 113.636371
+        },
+        {
+          "index": 6,
+          "poi_id": "9086744439470464872",
+          "title": "瑞光创意工厂园区服务中心",
+          "address": "河南省郑州市二七区五里堡街道二环支路35号",
+          "category": "公司企业:公司企业",
+          "latitude": 34.763379,
+          "longitude": 113.637453
+        },
+        {
+          "index": 7,
+          "poi_id": "7418284556098317563",
+          "title": "瑞光创意工厂立体停车场",
+          "address": "河南省郑州市二七区二环支路35号瑞光创意工厂",
+          "category": "汽车:停车场",
+          "latitude": 34.762863,
+          "longitude": 113.638126
+        }
+      ],
+      "reason": "自动匹配 score=133",
+      "search_keywords_tried": [
+        "郑州 瑞光创意工厂",
+        "郑州 瑞光跳蚤市集"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "be12d696bddf",
+      "location": "郑州惠济万达广场",
+      "sample_title": "刘浩存生日痛楼",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:06_0"
+      ],
+      "decided_at": "2026-06-11T20:34:13.973Z",
+      "action": "match",
+      "poi_id": "6083555245894909453",
+      "poi_title": "郑州惠济万达广场",
+      "poi_address": "河南省郑州市惠济区开元路68号",
+      "latitude": 34.868566,
+      "longitude": 113.636719,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6083555245894909453",
+          "title": "郑州惠济万达广场",
+          "address": "河南省郑州市惠济区开元路68号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 34.868566,
+          "longitude": 113.636719
+        },
+        {
+          "index": 1,
+          "poi_id": "974292134533055330",
+          "title": "郑州惠济万达广场-出入口",
+          "address": "河南省郑州市惠济区文创路与新城路交叉口正西方向212米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 34.869036,
+          "longitude": 113.636549
+        },
+        {
+          "index": 2,
+          "poi_id": "1535085596319447467",
+          "title": "麦当劳(郑州惠济万达广场)",
+          "address": "河南省郑州市惠济区开元路68号万达广场(惠济店)F1-1001A",
+          "category": "美食:小吃快餐",
+          "latitude": 34.868366,
+          "longitude": 113.635186
+        },
+        {
+          "index": 3,
+          "poi_id": "16542351155959825209",
+          "title": "安踏(郑州惠济万达广场店)",
+          "address": "河南省郑州市惠济区开元路68号万达广场(惠济店)F1-1066",
+          "category": "购物:体育户外",
+          "latitude": 34.868573,
+          "longitude": 113.636774
+        },
+        {
+          "index": 4,
+          "poi_id": "13105916794311069014",
+          "title": "优衣库(郑州惠济万达广场店)",
+          "address": "河南省郑州市惠济区开元路68号万达广场(惠济店)F1",
+          "category": "购物:服饰鞋包",
+          "latitude": 34.868323,
+          "longitude": 113.637718
+        },
+        {
+          "index": 5,
+          "poi_id": "3969308750070092610",
+          "title": "意尔康(郑州惠济万达广场店)",
+          "address": "河南省郑州市惠济区开元路68号万达广场(惠济店)F2-2080",
+          "category": "购物:服饰鞋包",
+          "latitude": 34.868656,
+          "longitude": 113.635602
+        },
+        {
+          "index": 6,
+          "poi_id": "8835684665987992086",
+          "title": "AIRIQI(郑州惠济万达广场店)",
+          "address": "河南省郑州市惠济区开元路68号万达广场(惠济店)F1-1032",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 34.868921,
+          "longitude": 113.637803
+        },
+        {
+          "index": 7,
+          "poi_id": "35229672335178945",
+          "title": "安踏(郑州惠济万达广场店)",
+          "address": "河南省郑州市惠济区开元路68号万达广场(惠济店)F3-3012",
+          "category": "购物:体育户外",
+          "latitude": 34.868937,
+          "longitude": 113.635928
+        }
+      ],
+      "reason": "自动匹配 score=132",
+      "search_keywords_tried": [
+        "郑州惠济万达广场",
+        "郑州 刘浩存生日痛楼"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "a4ea798ffd5c",
+      "location": "二七区无限城购物中心",
+      "sample_title": "时代少年团拼豆大赛",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:06_1"
+      ],
+      "decided_at": "2026-06-11T20:34:14.543Z",
+      "action": "match",
+      "poi_id": "16366808682480187594",
+      "poi_title": "无限城·购物中心",
+      "poi_address": "河南省郑州市二七区德化街36号",
+      "latitude": 34.749227,
+      "longitude": 113.665799,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "16366808682480187594",
+          "title": "无限城·购物中心",
+          "address": "河南省郑州市二七区德化街36号",
+          "category": "购物:综合商场",
+          "latitude": 34.749227,
+          "longitude": 113.665799
+        },
+        {
+          "index": 1,
+          "poi_id": "11050081197272776610",
+          "title": "无限城购物中心-3号门",
+          "address": "河南省郑州市二七区德化街36号无限城·购物中心(德化·无限城店)",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 34.749249,
+          "longitude": 113.665008
+        },
+        {
+          "index": 2,
+          "poi_id": "17417468219788198242",
+          "title": "乐奇猫咪领养(无限城购物中心店)",
+          "address": "河南省郑州市二七区德化街街道德化街负一楼D08号(二七广场地铁站D口步行370米)",
+          "category": "购物:其它购物",
+          "latitude": 34.749297,
+          "longitude": 113.666478
+        },
+        {
+          "index": 3,
+          "poi_id": "13947044741932373013",
+          "title": "蜜凯缇首饰(无限城购物中心店)",
+          "address": "河南省郑州市二七区德化街街道德化街无限城购物中心一楼中庭",
+          "category": "购物:珠宝饰品:珠宝",
+          "latitude": 34.749277,
+          "longitude": 113.665889
+        },
+        {
+          "index": 4,
+          "poi_id": "17695798566828266271",
+          "title": "潮棱镜潮玩街区(无限城购物中心店)",
+          "address": "河南省郑州市二七区德化街街道德化街无限城购物中心B1层",
+          "category": "娱乐休闲:游戏棋牌:游戏厅",
+          "latitude": 34.749194,
+          "longitude": 113.66651
+        },
+        {
+          "index": 5,
+          "poi_id": "3133025980700753584",
+          "title": "流年碎影(无限城购物中心店)",
+          "address": "河南省郑州市二七区德化新街15号口负二楼Y1085-1流年碎影汉服洛丽塔jk",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 34.749237,
+          "longitude": 113.665333
+        },
+        {
+          "index": 6,
+          "poi_id": "2543895189777885433",
+          "title": "喜见(无限城购物中心店)",
+          "address": "河南省郑州市二七区德化街街道德化街与苑陵街交叉口西北角无限城购物中心B2",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 34.749297,
+          "longitude": 113.666463
+        },
+        {
+          "index": 7,
+          "poi_id": "7849232702318407686",
+          "title": "静素(无限城购物中心店)",
+          "address": "河南省郑州市二七区德化街与苑陵街交叉口西北角无限城购物中心F2",
+          "category": "购物:化妆品",
+          "latitude": 34.749242,
+          "longitude": 113.665678
+        }
+      ],
+      "reason": "自动匹配 score=85",
+      "search_keywords_tried": [
+        "郑州 二七区无限城购物中心",
+        "郑州 时代少年团拼豆大赛"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "402653d1c27d",
+      "location": "中原/二七/高新万达广场",
+      "sample_title": "邓为大屏打卡领咖啡",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:06_2"
+      ],
+      "decided_at": "2026-06-11T20:34:15.164Z",
+      "action": "match",
+      "poi_id": "8671598236871066623",
+      "poi_title": "郑州高新万达广场",
+      "poi_address": "河南省郑州市中原区郑州高新技术产业开发区科学大道郁香路西北角",
+      "latitude": 34.8091,
+      "longitude": 113.582217,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "8671598236871066623",
+          "title": "郑州高新万达广场",
+          "address": "河南省郑州市中原区郑州高新技术产业开发区科学大道郁香路西北角",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 34.8091,
+          "longitude": 113.582217
+        },
+        {
+          "index": 1,
+          "poi_id": "9514213152642174742",
+          "title": "郑州高新万达广场停车场",
+          "address": "河南省郑州市中原区郁香路37号郑州高新万达广场停车场B1",
+          "category": "汽车:停车场",
+          "latitude": 34.80935,
+          "longitude": 113.582517
+        },
+        {
+          "index": 2,
+          "poi_id": "9052758321202860733",
+          "title": "URBAN REVIVO(郑州高新万达广场店)",
+          "address": "河南省郑州市中原区郁香路37号郑州高新万达广场停车场1F",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 34.809175,
+          "longitude": 113.583128
+        },
+        {
+          "index": 3,
+          "poi_id": "11608158395258141522",
+          "title": "意尔康(郑州高新万达广场店)",
+          "address": "河南省郑州市中原区郁香路37号郑州高新万达广场停车场2F",
+          "category": "购物:服饰鞋包",
+          "latitude": 34.809363,
+          "longitude": 113.581768
+        },
+        {
+          "index": 4,
+          "poi_id": "17748238787924767371",
+          "title": "利郎(郑州高新万达广场店)",
+          "address": "河南省郑州市中原区郁香路37号郑州高新万达广场停车场2F",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 34.809363,
+          "longitude": 113.582348
+        },
+        {
+          "index": 5,
+          "poi_id": "12888993617656424358",
+          "title": "优衣库(郑州高新万达广场)",
+          "address": "河南省郑州市中原区郁香路37号郑州高新万达广场停车场1F",
+          "category": "购物:服饰鞋包",
+          "latitude": 34.80892,
+          "longitude": 113.583164
+        },
+        {
+          "index": 6,
+          "poi_id": "15834898242364645811",
+          "title": "匹克(万达广场郑州高新店)",
+          "address": "河南省郑州市中原区郁香路37号郑州高新万达广场停车场3F",
+          "category": "购物:体育户外",
+          "latitude": 34.809605,
+          "longitude": 113.582545
+        },
+        {
+          "index": 7,
+          "poi_id": "10344032096092443860",
+          "title": "AIRIQI(万达广场郑州高新店)",
+          "address": "河南省郑州市中原区郁香路37号郑州高新万达广场停车场1F",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 34.808854,
+          "longitude": 113.582236
+        }
+      ],
+      "reason": "自动匹配 score=103",
+      "search_keywords_tried": [
+        "郑州 中原/二七/高新万达广场",
+        "郑州 邓为大屏打卡领咖啡"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "33731e5a866b",
+      "location": "郑州二七万达广场2号门",
+      "sample_title": "周杰伦歌友会",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:07_0"
+      ],
+      "decided_at": "2026-06-11T20:34:15.716Z",
+      "action": "match",
+      "poi_id": "16586435054194253773",
+      "poi_title": "万达广场二七店-2号门",
+      "poi_address": "河南省郑州市二七区航海中路与大学南路交汇口西南角万达广场(二七店)F1",
+      "latitude": 34.717,
+      "longitude": 113.643389,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "16586435054194253773",
+          "title": "万达广场二七店-2号门",
+          "address": "河南省郑州市二七区航海中路与大学南路交汇口西南角万达广场(二七店)F1",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 34.717,
+          "longitude": 113.643389
+        },
+        {
+          "index": 1,
+          "poi_id": "13904633609315143189",
+          "title": "六福珠宝(郑州二七万达广场店)",
+          "address": "河南省郑州市二七区航海中路与大学南路交汇口西南角万达广场(二七店)F1",
+          "category": "购物:珠宝饰品:珠宝",
+          "latitude": 34.717203,
+          "longitude": 113.642697
+        },
+        {
+          "index": 2,
+          "poi_id": "14882881672497728445",
+          "title": "海马体照相馆(郑州二七万达广场店)",
+          "address": "河南省郑州市二七区航海中路与大学南路交汇口西南角万达广场(二七店)2层2070AB,2070B商铺",
+          "category": "生活服务:摄影冲印",
+          "latitude": 34.719277,
+          "longitude": 113.643498
+        },
+        {
+          "index": 3,
+          "poi_id": "11169931331610419835",
+          "title": "THE COLORIST调色师(郑州二七万达广场TC店)",
+          "address": "河南省郑州市二七区航海中路与大学南路交汇口西南角万达广场(二七店)F2-2028",
+          "category": "购物:化妆品",
+          "latitude": 34.717139,
+          "longitude": 113.642618
+        },
+        {
+          "index": 4,
+          "poi_id": "17682999925079499165",
+          "title": "麦当劳(郑州二七万达店)",
+          "address": "河南省郑州市二七区长江路街道大学路二七万达广场2号门2楼2035号商铺",
+          "category": "美食:小吃快餐",
+          "latitude": 34.717002,
+          "longitude": 113.643327
+        },
+        {
+          "index": 5,
+          "poi_id": "8953012115581695538",
+          "title": "孩子王(郑州二七万达店)",
+          "address": "河南省郑州市二七区二七万达广场2号门3楼",
+          "category": "购物:母婴儿童",
+          "latitude": 34.717504,
+          "longitude": 113.643295
+        },
+        {
+          "index": 6,
+          "poi_id": "10978877661190660957",
+          "title": "1点点(二七万达店)",
+          "address": "河南省郑州市二七区长江路街道人和路万达广场3号门西70米路北(大学南路8号2号楼)",
+          "category": "美食:冷饮店",
+          "latitude": 34.717796,
+          "longitude": 113.641544
+        },
+        {
+          "index": 7,
+          "poi_id": "6546880433627348295",
+          "title": "星巴克(郑州二七万达店)",
+          "address": "河南省郑州市二七区航海中路与大学南路交汇口西南角万达广场(二七店)F1-1028",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 34.716669,
+          "longitude": 113.643343
+        }
+      ],
+      "reason": "自动匹配 score=87",
+      "search_keywords_tried": [
+        "郑州二七万达广场2号门",
+        "郑州 周杰伦歌友会"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "cf786a81c3c2",
+      "location": "新田国贸360",
+      "sample_title": "刘宇宁痛楼打卡",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:07_1"
+      ],
+      "decided_at": "2026-06-11T20:34:16.401Z",
+      "action": "match",
+      "poi_id": "2849526731692898267",
+      "poi_title": "新田360广场(郑州国贸店)",
+      "poi_address": "河南省郑州市金水区花园路39号",
+      "latitude": 34.784948,
+      "longitude": 113.68012,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "2849526731692898267",
+          "title": "新田360广场(郑州国贸店)",
+          "address": "河南省郑州市金水区花园路39号",
+          "category": "购物:综合商场",
+          "latitude": 34.784948,
+          "longitude": 113.68012
+        },
+        {
+          "index": 1,
+          "poi_id": "7428581072730038451",
+          "title": "新田360广场(郑州国贸店)-北区",
+          "address": "河南省郑州市金水区文化路街道花园路与农业路交叉口西南80米郑州国贸中心北区三楼L305-1",
+          "category": "购物:其它购物",
+          "latitude": 34.785392,
+          "longitude": 113.680402
+        },
+        {
+          "index": 2,
+          "poi_id": "6577509267470908536",
+          "title": "LINE FRIENDS(郑州新田360国贸店)",
+          "address": "河南省郑州市金水区花园路39号新田360广场F1",
+          "category": "购物:其它购物",
+          "latitude": 34.785189,
+          "longitude": 113.680111
+        },
+        {
+          "index": 3,
+          "poi_id": "1661781830489996830",
+          "title": "ARIA LEISURE(新田360广场·郑州国贸店)",
+          "address": "河南省郑州市金水区花园路39号新田360广场F1",
+          "category": "购物:服饰鞋包",
+          "latitude": 34.784769,
+          "longitude": 113.67979
+        },
+        {
+          "index": 4,
+          "poi_id": "402584799847891899",
+          "title": "MINISO LAND(郑州新田360广场国贸店)",
+          "address": "河南省郑州市金水区花园路39号新田360广场F1",
+          "category": "购物:礼品",
+          "latitude": 34.784198,
+          "longitude": 113.680033
+        },
+        {
+          "index": 5,
+          "poi_id": "11211950548528427772",
+          "title": "天梭 TISSOT(郑州国贸新田360广场店)",
+          "address": "河南省郑州市金水区花园路39号新田360广场F1",
+          "category": "购物:钟表店",
+          "latitude": 34.785162,
+          "longitude": 113.679788
+        },
+        {
+          "index": 6,
+          "poi_id": "5680876805090300907",
+          "title": "RIVER BEAUTY(新田360广场·郑州国贸店)",
+          "address": "河南省郑州市金水区花园路39号新田360广场F3",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 34.785586,
+          "longitude": 113.680598
+        },
+        {
+          "index": 7,
+          "poi_id": "11183075445226932823",
+          "title": "海底捞火锅(新田360广场郑州国贸夜宵主题店)",
+          "address": "河南省郑州市金水区花园路39号新田360广场F7",
+          "category": "美食:火锅",
+          "latitude": 34.785425,
+          "longitude": 113.681013
+        }
+      ],
+      "reason": "自动匹配 score=87",
+      "search_keywords_tried": [
+        "郑州 新田国贸360",
+        "郑州 刘宇宁痛楼打卡"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "78a64adbbc22",
+      "location": "丹尼斯大卫城六楼中庭",
+      "sample_title": "西昊巨猫撑腰展",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:08_0"
+      ],
+      "decided_at": "2026-06-11T20:34:17.018Z",
+      "action": "match",
+      "poi_id": "6705431147462652397",
+      "poi_title": "丹尼斯大卫城",
+      "poi_address": "河南省郑州市金水区西太康路与二七路交汇处西北角",
+      "latitude": 34.757776,
+      "longitude": 113.665792,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6705431147462652397",
+          "title": "丹尼斯大卫城",
+          "address": "河南省郑州市金水区西太康路与二七路交汇处西北角",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 34.757776,
+          "longitude": 113.665792
+        },
+        {
+          "index": 1,
+          "poi_id": "1500929097116276625",
+          "title": "丹尼斯大卫城-6号门",
+          "address": "河南省郑州市金水区西太康路与二七路交汇处西北角丹尼斯大卫城F1",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 34.758637,
+          "longitude": 113.665516
+        },
+        {
+          "index": 2,
+          "poi_id": "5327527247745959179",
+          "title": "Lofree洛斐专卖店(丹尼斯大卫城店)",
+          "address": "河南省郑州市金水区丹尼斯大卫城6楼",
+          "category": "购物:数码家电",
+          "latitude": 34.757743,
+          "longitude": 113.665728
+        },
+        {
+          "index": 3,
+          "poi_id": "15403776085754416568",
+          "title": "GARMIN佳明旗舰店(丹尼斯大卫城店)",
+          "address": "河南省郑州市金水区西太康路与二七路交汇处西北角丹尼斯大卫城F6",
+          "category": "购物:钟表店",
+          "latitude": 34.757832,
+          "longitude": 113.665784
+        },
+        {
+          "index": 4,
+          "poi_id": "9968151090221202257",
+          "title": "NEWERA(丹尼斯大卫城店)",
+          "address": "河南省郑州市金水区西太康路与二七路交汇处西北角丹尼斯大卫城F6",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 34.757049,
+          "longitude": 113.665858
+        },
+        {
+          "index": 5,
+          "poi_id": "6927162139950077167",
+          "title": "speedo(丹尼斯·大卫城店)",
+          "address": "河南省郑州市金水区西太康路与二七路交汇处西北角丹尼斯大卫城F6",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 34.757055,
+          "longitude": 113.666132
+        },
+        {
+          "index": 6,
+          "poi_id": "1835917449054176949",
+          "title": "MAMMUT猛犸象(丹尼斯·大卫城店)",
+          "address": "河南省郑州市金水区西太康路与二七路交汇处西北角丹尼斯大卫城F6",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 34.757479,
+          "longitude": 113.666188
+        },
+        {
+          "index": 7,
+          "poi_id": "12250800239021718888",
+          "title": "yoose有色剃须刀(丹尼斯大卫城店)",
+          "address": "河南省郑州市金水区西太康路与二七路交汇处西北角丹尼斯大卫城F6",
+          "category": "购物:数码家电",
+          "latitude": 34.758097,
+          "longitude": 113.665782
+        }
+      ],
+      "reason": "自动匹配 score=90",
+      "search_keywords_tried": [
+        "郑州 丹尼斯大卫城六楼中庭",
+        "郑州 西昊巨猫撑腰展"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "c8c0045a5651",
+      "location": "中原锦艺城",
+      "sample_title": "蛙声一片",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:08_1"
+      ],
+      "decided_at": "2026-06-11T20:34:17.643Z",
+      "action": "match",
+      "poi_id": "9856864145356641453",
+      "poi_title": "中原锦艺城购物中心A区",
+      "poi_address": "河南省郑州市中原区锦艺城b区一层",
+      "latitude": 34.761618,
+      "longitude": 113.612609,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "9856864145356641453",
+          "title": "中原锦艺城购物中心A区",
+          "address": "河南省郑州市中原区锦艺城b区一层",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 34.761618,
+          "longitude": 113.612609
+        },
+        {
+          "index": 1,
+          "poi_id": "13397158206649001228",
+          "title": "中原锦艺城购物中心-C区",
+          "address": "河南省郑州市中原区棉纺西路与锦霞街交叉口东北侧",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 34.763347,
+          "longitude": 113.606007
+        },
+        {
+          "index": 2,
+          "poi_id": "11196783707948955317",
+          "title": "中原锦艺城购物中心B区",
+          "address": "河南省郑州市中原区棉纺西路23号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 34.762131,
+          "longitude": 113.610021
+        },
+        {
+          "index": 3,
+          "poi_id": "10242499956942070420",
+          "title": "锦艺城",
+          "address": "河南省郑州市中原区棉纺西路36号",
+          "category": "购物:综合商场",
+          "latitude": 34.762067,
+          "longitude": 113.610093
+        },
+        {
+          "index": 4,
+          "poi_id": "942520795335993597",
+          "title": "屈臣氏(中原锦艺城)",
+          "address": "河南省郑州市中原区棉纺西路与秦岭路交汇处东50米路北锦艺城C区F1",
+          "category": "购物:化妆品",
+          "latitude": 34.763087,
+          "longitude": 113.605962
+        },
+        {
+          "index": 5,
+          "poi_id": "6522372848701356729",
+          "title": "郑州龙湖锦艺城购物中心",
+          "address": "河南省郑州市新郑市双湖大道152号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 34.613184,
+          "longitude": 113.726016
+        },
+        {
+          "index": 6,
+          "poi_id": "18017796968467459145",
+          "title": "郑州银行(锦艺城支行)",
+          "address": "河南省郑州市中原区棉纺西路2号锦艺国际华都4号楼临街",
+          "category": "银行金融:银行",
+          "latitude": 34.762367,
+          "longitude": 113.613134
+        },
+        {
+          "index": 7,
+          "poi_id": "11414424700871379025",
+          "title": "海豚乐园(郑州锦艺城购物中心店)",
+          "address": "河南省郑州市中原区秦岭路街道锦艺城购物中心B区北1号门西170米",
+          "category": "旅游景点:水族馆",
+          "latitude": 34.762907,
+          "longitude": 113.608205
+        }
+      ],
+      "reason": "自动匹配 score=102",
+      "search_keywords_tried": [
+        "郑州 中原锦艺城",
+        "郑州 蛙声一片"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "43d59284ddc6",
+      "location": "郑州杉杉奥莱二七店",
+      "sample_title": "520爱意骑遇骑行活动",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:09_0"
+      ],
+      "decided_at": "2026-06-11T20:34:18.205Z",
+      "action": "match",
+      "poi_id": "5467018126866212604",
+      "poi_title": "MK(MICHAELKORS)郑州杉杉奥莱二七店",
+      "poi_address": "河南省郑州市二七区大学南路",
+      "latitude": 34.650364,
+      "longitude": 113.646028,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "5467018126866212604",
+          "title": "MK(MICHAELKORS)郑州杉杉奥莱二七店",
+          "address": "河南省郑州市二七区大学南路",
+          "category": "购物:服饰鞋包",
+          "latitude": 34.650364,
+          "longitude": 113.646028
+        },
+        {
+          "index": 1,
+          "poi_id": "5951528802498606566",
+          "title": "郑州杉杉奥莱·二七店",
+          "address": "河南省郑州市二七区大学南路319号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 34.650369,
+          "longitude": 113.64614
+        },
+        {
+          "index": 2,
+          "poi_id": "7723608303915656139",
+          "title": "TKYSHOP(郑州杉杉奥莱二七店)",
+          "address": "河南省郑州市二七区大学南路郑州杉杉奥莱二七店2楼A203柜位",
+          "category": "购物:服饰鞋包",
+          "latitude": 34.650174,
+          "longitude": 113.646253
+        },
+        {
+          "index": 3,
+          "poi_id": "17626872413109913765",
+          "title": "HAZZYS(郑州杉杉奥莱二七店)",
+          "address": "河南省郑州市二七区侯寨街道大学南路杉杉奥莱二七店B146",
+          "category": "购物:服饰鞋包",
+          "latitude": 34.650377,
+          "longitude": 113.646321
+        },
+        {
+          "index": 4,
+          "poi_id": "12099279262243797219",
+          "title": "特步(郑州杉杉奥莱二七店)",
+          "address": "河南省郑州市二七区侯寨街道大学南路319号杉杉奥特莱斯",
+          "category": "购物:体育户外",
+          "latitude": 34.649259,
+          "longitude": 113.646313
+        },
+        {
+          "index": 5,
+          "poi_id": "1893306127911260988",
+          "title": "杉杉奥特莱斯二七店",
+          "address": "河南省郑州市二七区",
+          "category": "娱乐休闲:KTV",
+          "latitude": 34.6516,
+          "longitude": 113.647692
+        },
+        {
+          "index": 6,
+          "poi_id": "2384027502151501427",
+          "title": "膳魔师(郑州杉杉奥特莱斯二七店)",
+          "address": "河南省郑州市二七区侯寨街道大学南路319号L143-2号商铺",
+          "category": "购物:其它购物",
+          "latitude": 34.651034,
+          "longitude": 113.64676
+        },
+        {
+          "index": 7,
+          "poi_id": "11546866332993176077",
+          "title": "GAP(郑州杉杉奥莱·二七店)",
+          "address": "河南省郑州市二七区侯寨街道大学南路319号郑州杉杉奥莱·二七店L1层",
+          "category": "购物:服饰鞋包",
+          "latitude": 34.650414,
+          "longitude": 113.646174
+        }
+      ],
+      "reason": "自动匹配 score=112",
+      "search_keywords_tried": [
+        "郑州杉杉奥莱二七店",
+        "郑州 520爱意骑遇骑行活动"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "b5fae72789ec",
+      "location": "北龙湖金融岛西区五铁街广场",
+      "sample_title": "郑好有个伴·520脱单市集",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:09_1"
+      ],
+      "decided_at": "2026-06-11T20:34:18.782Z",
+      "action": "match",
+      "poi_id": "14051723318464098920",
+      "poi_title": "龙湖金融岛-东北广场",
+      "poi_address": "河南省郑州市金水区郑州龙湖公园郑州金融岛",
+      "latitude": 34.81468,
+      "longitude": 113.734591,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "14051723318464098920",
+          "title": "龙湖金融岛-东北广场",
+          "address": "河南省郑州市金水区郑州龙湖公园郑州金融岛",
+          "category": "旅游景点:城市广场",
+          "latitude": 34.81468,
+          "longitude": 113.734591
+        }
+      ],
+      "reason": "自动匹配 score=75",
+      "search_keywords_tried": [
+        "郑州 北龙湖金融岛西区五铁街广场",
+        "郑州 郑好有个伴·520脱单市集"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "5430433d594b",
+      "location": "郑州博物馆1层5展厅",
+      "sample_title": "两周中原列国青铜展",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:10_0"
+      ],
+      "decided_at": "2026-06-11T20:34:19.452Z",
+      "action": "match",
+      "poi_id": "14224722523358382004",
+      "poi_title": "郑州博物馆",
+      "poi_address": "河南省郑州市中原区文翰街9号",
+      "latitude": 34.739621,
+      "longitude": 113.546832,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "14224722523358382004",
+          "title": "郑州博物馆",
+          "address": "河南省郑州市中原区文翰街9号",
+          "category": "文化场馆:博物馆",
+          "latitude": 34.739621,
+          "longitude": 113.546832
+        },
+        {
+          "index": 1,
+          "poi_id": "2496266069894854019",
+          "title": "郑州博物馆-西1门",
+          "address": "河南省郑州市中原区奥体中心东边郑州博物馆新馆",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 34.738941,
+          "longitude": 113.544814
+        },
+        {
+          "index": 2,
+          "poi_id": "5975214443216198069",
+          "title": "郑州博物馆-东1门",
+          "address": "河南省郑州市中原区文翰街9号郑州博物馆(河南博物院郑州分院)",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 34.740377,
+          "longitude": 113.548689
+        },
+        {
+          "index": 3,
+          "poi_id": "5393213765388089778",
+          "title": "郑州二七纪念馆-第五展厅",
+          "address": "河南省郑州市二七区德化街街道钱塘路82号郑州二七纪念馆",
+          "category": "文化场馆:展览馆",
+          "latitude": 34.752217,
+          "longitude": 113.666424
+        },
+        {
+          "index": 4,
+          "poi_id": "2199036178750",
+          "title": "郑州博物馆[公交站]",
+          "address": "奥体中心F口环线",
+          "category": "基础设施:交通设施:公交车站",
+          "latitude": 34.737702,
+          "longitude": 113.549107
+        },
+        {
+          "index": 5,
+          "poi_id": "15885086354868619325",
+          "title": "豫锦博物馆",
+          "address": "河南省郑州市管城回族区十八里河街道文兴路7号1号楼5楼展厅",
+          "category": "文化场馆:博物馆",
+          "latitude": 34.691575,
+          "longitude": 113.718649
+        },
+        {
+          "index": 6,
+          "poi_id": "13106971780778289549",
+          "title": "郑州庚贤中医药文化博物馆",
+          "address": "河南省郑州市金水区人民路8-1号一楼展厅",
+          "category": "医疗保健:诊所",
+          "latitude": 34.76134,
+          "longitude": 113.679179
+        },
+        {
+          "index": 7,
+          "poi_id": "16056366312342764819",
+          "title": "郑州聚瓷博物馆",
+          "address": "河南省郑州市二七区嵩山南路128号嵩山南路128号",
+          "category": "文化场馆:博物馆",
+          "latitude": 34.737964,
+          "longitude": 113.627398
+        }
+      ],
+      "reason": "自动匹配 score=112",
+      "search_keywords_tried": [
+        "郑州博物馆1层5展厅",
+        "郑州 两周中原列国青铜展"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "4555e023fe4a",
+      "location": "河南博物院东临展厅",
+      "sample_title": "吉金铸史-青铜器里的古代中国",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:10_1"
+      ],
+      "decided_at": "2026-06-11T20:34:19.989Z",
+      "action": "match",
+      "poi_id": "163291984587765553",
+      "poi_title": "河南博物院",
+      "poi_address": "河南省郑州市金水区农业路8号",
+      "latitude": 34.78844,
+      "longitude": 113.67224,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "163291984587765553",
+          "title": "河南博物院",
+          "address": "河南省郑州市金水区农业路8号",
+          "category": "文化场馆:博物馆",
+          "latitude": 34.78844,
+          "longitude": 113.67224
+        },
+        {
+          "index": 1,
+          "poi_id": "8078041606202591740",
+          "title": "河南博物院-主展馆",
+          "address": "河南省郑州市金水区文化路街道农业路8号河南博物院",
+          "category": "文化场馆:展览馆",
+          "latitude": 34.788393,
+          "longitude": 113.672242
+        },
+        {
+          "index": 2,
+          "poi_id": "18404494025209015363",
+          "title": "河南博物院主展馆入口",
+          "address": "河南省郑州市金水区农业东路与农业路交叉口正北方向23米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 34.78708,
+          "longitude": 113.672331
+        },
+        {
+          "index": 3,
+          "poi_id": "12298767061317774057",
+          "title": "河南自然博物馆",
+          "address": "河南省郑州市金水区金水东路18号",
+          "category": "文化场馆:博物馆",
+          "latitude": 34.765785,
+          "longitude": 113.751868
+        },
+        {
+          "index": 4,
+          "poi_id": "4259556274547550594",
+          "title": "河南自然博物馆生态展厅",
+          "address": "河南省郑州市金水区祭城路街道金水东路18号河南自然博物馆",
+          "category": "文化场馆:博物馆",
+          "latitude": 34.765664,
+          "longitude": 113.75178
+        },
+        {
+          "index": 5,
+          "poi_id": "1776739789067309945",
+          "title": "河南博物院主展馆-东1门",
+          "address": "河南省郑州市金水区农业路8号河南博物院主展馆",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 34.788439,
+          "longitude": 113.672997
+        },
+        {
+          "index": 6,
+          "poi_id": "13106971780778289549",
+          "title": "郑州庚贤中医药文化博物馆",
+          "address": "河南省郑州市金水区人民路8-1号一楼展厅",
+          "category": "医疗保健:诊所",
+          "latitude": 34.76134,
+          "longitude": 113.679179
+        },
+        {
+          "index": 7,
+          "poi_id": "15732033402053974476",
+          "title": "中国厨房文化博物馆",
+          "address": "河南省郑州市中牟县南三环郑东国际产业园南",
+          "category": "文化场馆:博物馆",
+          "latitude": 34.700248,
+          "longitude": 113.904866
+        }
+      ],
+      "reason": "自动匹配 score=100",
+      "search_keywords_tried": [
+        "郑州 河南博物院东临展厅",
+        "郑州 吉金铸史-青铜器里的古代中国"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    },
+    {
+      "group_id": "56a92868c041",
+      "location": "郑州大象陶瓷博物馆",
+      "sample_title": "印迹-古代陶瓷中的马",
+      "event_uids": [
+        "xiaohongshu:6a0ece80000000003501e67c:10_2"
+      ],
+      "decided_at": "2026-06-11T20:34:20.432Z",
+      "action": "match",
+      "poi_id": "1947143527768609391",
+      "poi_title": "郑州大象陶瓷博物馆(南门)",
+      "poi_address": "河南省郑州市金水区顺河路36号郑州大象陶瓷博物馆",
+      "latitude": 34.760131,
+      "longitude": 113.689359,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "1947143527768609391",
+          "title": "郑州大象陶瓷博物馆(南门)",
+          "address": "河南省郑州市金水区顺河路36号郑州大象陶瓷博物馆",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 34.760131,
+          "longitude": 113.689359
+        },
+        {
+          "index": 1,
+          "poi_id": "12295748715564101248",
+          "title": "大象陶瓷博物馆",
+          "address": "河南省郑州市金水区顺河路36号",
+          "category": "文化场馆:博物馆",
+          "latitude": 34.760177,
+          "longitude": 113.689341
+        }
+      ],
+      "reason": "自动匹配 score=143",
+      "search_keywords_tried": [
+        "郑州大象陶瓷博物馆",
+        "郑州 印迹-古代陶瓷中的马"
+      ],
+      "confidence": "high",
+      "doubtful": false
+    }
+  ]
+}

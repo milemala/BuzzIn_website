@@ -1,0 +1,74 @@
+{
+  "city": "石家庄",
+  "source": "douban",
+  "updated_at": "2026-06-16T05:48:00.496Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "c9ea603e604d",
+      "event_uids": [
+        "douban:37832175"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "石家庄 庄里大剧院"
+      ],
+      "poi_id": "12153572953691259438",
+      "poi_title": "庄里大剧院",
+      "poi_address": "河北省石家庄市裕华区育才街与槐岭路交叉口西南角怀特艺术中心1楼西厅",
+      "latitude": 38.024111,
+      "longitude": 114.527752,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 256）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "12153572953691259438",
+          "title": "庄里大剧院",
+          "address": "河北省石家庄市裕华区育才街与槐岭路交叉口西南角怀特艺术中心1楼西厅",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 38.024111,
+          "longitude": 114.527752
+        },
+        {
+          "index": 1,
+          "poi_id": "9307394927503345202",
+          "title": "简纱集婚纱美学馆",
+          "address": "河北省石家庄市裕华区怀特艺术中心庄里大剧院4楼",
+          "category": "生活服务:婚庆服务",
+          "latitude": 38.02429,
+          "longitude": 114.52754
+        },
+        {
+          "index": 2,
+          "poi_id": "10582422176538038358",
+          "title": "德馨美学烫染工作室",
+          "address": "河北省石家庄市裕华区怀特艺术中心庄里大剧院上3楼",
+          "category": "生活服务:美容美发:美发",
+          "latitude": 38.022748,
+          "longitude": 114.527133
+        }
+      ]
+    },
+    {
+      "group_id": "c8f1ab93fc0e",
+      "event_uids": [
+        "douban:37448319"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "11316102721831789765",
+      "poi_title": "河北省艺术中心-造艺空间",
+      "poi_address": "",
+      "latitude": 38.036456,
+      "longitude": 114.480854,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：石家庄 桥西区 河北省艺术中心-造艺空间 裕华西路13号河北省艺术中心西侧 → 河北省艺术中心-造艺空间（来源 event:douban:37658403）",
+      "candidates": []
+    }
+  ]
+}

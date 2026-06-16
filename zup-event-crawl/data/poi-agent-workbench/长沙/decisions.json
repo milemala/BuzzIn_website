@@ -1,0 +1,172 @@
+{
+  "city": "长沙",
+  "source": "douban",
+  "updated_at": "2026-06-16T05:46:59.322Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "5b8bded58d76",
+      "event_uids": [
+        "douban:36605584"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "长沙 笑嘛屋顶脱口秀剧场"
+      ],
+      "poi_id": "9504157443715300338",
+      "poi_title": "笑嘛屋顶脱口秀剧场",
+      "poi_address": "湖南省长沙市天心区黄兴南路407号D区5楼,恋爱天台旁",
+      "latitude": 28.187729,
+      "longitude": 112.976148,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 268）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "9504157443715300338",
+          "title": "笑嘛屋顶脱口秀剧场",
+          "address": "湖南省长沙市天心区黄兴南路407号D区5楼,恋爱天台旁",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 28.187729,
+          "longitude": 112.976148
+        }
+      ]
+    },
+    {
+      "group_id": "a60ba7d4a125",
+      "event_uids": [
+        "douban:37841783"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "3969604418623067287",
+      "poi_title": "Vox Livehouse(长沙店)",
+      "poi_address": "",
+      "latitude": 28.195744,
+      "longitude": 112.905414,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：长沙 岳麓区 VOX LIVEHOUSE-演出现场 天顶街道环湖路1200号梅溪湖国际文化艺术中心小剧场101号地下一层南侧 → Vox Livehouse(长沙店)（来源 event:douban:37766545）",
+      "candidates": []
+    },
+    {
+      "group_id": "a6f40c865d21",
+      "event_uids": [
+        "douban:37860892",
+        "douban:37762100"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "13348260499578885956",
+      "poi_title": "长沙音乐厅",
+      "poi_address": "",
+      "latitude": 28.242921,
+      "longitude": 112.979271,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：长沙 开福区 长沙音乐厅 湘江北路滨江文化园 → 长沙音乐厅（来源 event:douban:37728553）",
+      "candidates": []
+    },
+    {
+      "group_id": "bbeec5fe7de6",
+      "event_uids": [
+        "douban:37843578",
+        "douban:37865756"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "778045471434447270",
+      "poi_title": "梅溪湖国际文化艺术中心大剧院-入口",
+      "poi_address": "",
+      "latitude": 28.195469,
+      "longitude": 112.907104,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：长沙 岳麓区 梅溪湖国际文化艺术中心大剧院 梅溪湖路与节庆路交叉口西南200米 → 梅溪湖国际文化艺术中心大剧院-入口（来源 event:douban:37862746）",
+      "candidates": []
+    },
+    {
+      "group_id": "0e9c2d645d25",
+      "event_uids": [
+        "douban:37796458"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "2554153063398531721",
+      "poi_title": "湖南大剧院",
+      "poi_address": "",
+      "latitude": 28.189747,
+      "longitude": 112.997792,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：长沙 芙蓉区 湖南大剧院 韶山路139号 → 湖南大剧院（来源 event:douban:37664991）",
+      "candidates": []
+    },
+    {
+      "group_id": "450858e7c95e",
+      "event_uids": [
+        "douban:37854299"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "11342804219887204926",
+      "poi_title": "易度时光演艺中心",
+      "poi_address": "",
+      "latitude": 28.142022,
+      "longitude": 112.94486,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：长沙 岳麓区 易度时光演艺中心 阳光100凤凰街16栋二楼 → 易度时光演艺中心（来源 event:douban:37853598）",
+      "candidates": []
+    },
+    {
+      "group_id": "a0daed4722c9",
+      "event_uids": [
+        "douban:37664704"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "长沙 文和友剧场"
+      ],
+      "poi_id": "3640914270533312018",
+      "poi_title": "超级文和友剧场(海信广场长沙店)",
+      "poi_address": "湖南省长沙市天心区坡子街街道湘江中路36号海信东广场长沙文和友五楼",
+      "latitude": 28.189056,
+      "longitude": 112.969695,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 174）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "3640914270533312018",
+          "title": "超级文和友剧场(海信广场长沙店)",
+          "address": "湖南省长沙市天心区坡子街街道湘江中路36号海信东广场长沙文和友五楼",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 28.189056,
+          "longitude": 112.969695
+        },
+        {
+          "index": 1,
+          "poi_id": "15488028727077493118",
+          "title": "男巫公会剧场-文和友店",
+          "address": "湖南省长沙市天心区坡子街街道湘江中路二段36号文和友5楼",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 28.189004,
+          "longitude": 112.969703
+        }
+      ]
+    }
+  ]
+}

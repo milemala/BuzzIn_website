@@ -9,22 +9,25 @@ const {
 const { readImageForImport } = require("./image-fetch");
 const { createGroupForNow } = require("./tencent-im-group");
 const {
+  applyBuzzEnvToEvent,
+  markEventImportResult,
   clearEventBuzzNow,
+} = require("./buzz-import-store");
+const {
+  createBuzzClientOptions,
+  normalizeBuzzEnv,
+  resolvePublishUserId,
+} = require("./buzz-env");
+const {
   getEventByUid,
   syncEventMerchantByPoi,
-  markEventImportResult,
 } = require("./review-db");
 
 const API_PREFIX = "/internal";
 const HTTP_TIMEOUT_MS = 60000;
 const DEFAULT_EXPIRE_DAYS = 30;
-const DEFAULT_ADMIN_USER = "admin";
-const DEFAULT_ADMIN_PASS = "Test1234";
 const MAX_TITLE_LEN = 128;
 const MAX_CONTENT_LEN = 2000;
-function normalizeBase(base) {
-  return String(base || process.env.BUZZ_API_BASE || "https://test-go-api.nowmap.cn").trim().replace(/\/$/, "");
-}
 
 function truncateRunes(value, max) {
   const chars = [...String(value || "")];
@@ -57,16 +60,19 @@ async function readSource(src) {
 
 class BuzzAdminClient {
   constructor(options = {}) {
-    this.base = normalizeBase(options.base);
-    this.token = String(options.token || process.env.BUZZ_TOKEN || "").trim();
-    this.user = String(options.user || process.env.BUZZ_ADMIN_USER || DEFAULT_ADMIN_USER).trim();
-    this.pass = String(options.pass || process.env.BUZZ_ADMIN_PASS || DEFAULT_ADMIN_PASS).trim();
+    const envKey = normalizeBuzzEnv(options.buzz_env || options.env);
+    const envOpts = createBuzzClientOptions(envKey);
+    this.buzz_env = envKey;
+    this.base = String(options.base || envOpts.base).trim().replace(/\/$/, "");
+    this.token = String(options.token || envOpts.token || "").trim();
+    this.user = String(options.user || envOpts.user || "").trim();
+    this.pass = String(options.pass || envOpts.pass || "").trim();
   }
 
   async ensureToken() {
     if (this.token) return this.token;
     if (!this.user || !this.pass) {
-      throw new Error("未配置 BUZZ_TOKEN，且缺少后台账号密码");
+      throw new Error(`未配置 ${this.buzz_env} 环境 BUZZ_TOKEN，且缺少后台账号密码`);
     }
     const payload = await this.requestJSON("/auth/login", {
       username: this.user,
@@ -96,13 +102,13 @@ class BuzzAdminClient {
     return envelope.data ?? null;
   }
 
-  async requestJSON(path, body, options = {}) {
+  async requestJSON(pathname, body, options = {}) {
     const headers = { "Content-Type": "application/json" };
     if (!options.skipAuth) {
       await this.ensureToken();
       headers.Authorization = `Bearer ${this.token}`;
     }
-    const response = await fetch(`${this.base}${API_PREFIX}${path}`, {
+    const response = await fetch(`${this.base}${API_PREFIX}${pathname}`, {
       method: "POST",
       headers,
       body: JSON.stringify(body),
@@ -111,9 +117,9 @@ class BuzzAdminClient {
     return this.parseEnvelope(response);
   }
 
-  async deleteJSON(path) {
+  async deleteJSON(pathname) {
     await this.ensureToken();
-    const response = await fetch(`${this.base}${API_PREFIX}${path}`, {
+    const response = await fetch(`${this.base}${API_PREFIX}${pathname}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${this.token}` },
       signal: AbortSignal.timeout(HTTP_TIMEOUT_MS),
@@ -121,8 +127,17 @@ class BuzzAdminClient {
     return this.parseEnvelope(response);
   }
 
-  async postJSON(path, body) {
-    return this.requestJSON(path, body);
+  async postJSON(pathname, body) {
+    return this.requestJSON(pathname, body);
+  }
+
+  async listMerchantTypes() {
+    const data = await this.postJSON("/merchant-types/list", {});
+    const list = data?.list || [];
+    return list.map((item) => ({
+      id: Number(item.id ?? item.type),
+      name: String(item.name || "").trim(),
+    })).filter((item) => item.id && item.name);
   }
 
   async uploadMedia(src) {
@@ -224,21 +239,37 @@ async function runImportStep(label, fn) {
   }
 }
 
+function resolveBuzzEnv(options = {}) {
+  return normalizeBuzzEnv(options.buzz_env || options.env);
+}
+
+function createClientForEnv(options = {}) {
+  if (options.client) return options.client;
+  const buzzEnv = resolveBuzzEnv(options);
+  return new BuzzAdminClient({ ...createBuzzClientOptions(buzzEnv), ...options, buzz_env: buzzEnv });
+}
+
+function eventWithBuzzEnv(db, eventUid, buzzEnv) {
+  return applyBuzzEnvToEvent(db, getEventByUid(db, eventUid), buzzEnv);
+}
+
 async function importEventToBuzz(db, eventUid, options = {}) {
-  const client = options.client || new BuzzAdminClient(options);
+  const buzzEnv = resolveBuzzEnv(options);
+  const client = createClientForEnv(options);
   const dedup = options.dedup !== false;
-  let event = getEventByUid(db, eventUid);
+  let event = eventWithBuzzEnv(db, eventUid, buzzEnv);
   if (!event) {
-    return { ok: false, event_uid: eventUid, error: "活动不存在" };
+    return { ok: false, event_uid: eventUid, buzz_env: buzzEnv, error: "活动不存在" };
   }
   if (!isEventApproved(db, eventUid)) {
-    return { ok: false, event_uid: eventUid, title: event.title, error: "仅已通过的活动可入库", event };
+    return { ok: false, event_uid: eventUid, buzz_env: buzzEnv, title: event.title, error: "仅已通过的活动可入库", event };
   }
   if (event.import_status === "imported" && event.buzz_now_id) {
     return {
       ok: true,
       skipped: true,
       event_uid: eventUid,
+      buzz_env: buzzEnv,
       title: event.title,
       now_id: event.buzz_now_id,
       event,
@@ -247,18 +278,16 @@ async function importEventToBuzz(db, eventUid, options = {}) {
 
   if (event.location_poi_id && !event.now_merchant_id) {
     try {
-      event = await syncEventMerchantByPoi(db, eventUid);
+      event = await syncEventMerchantByPoi(db, eventUid, { buzz_env: buzzEnv });
     } catch (error) {
       const detail = error?.message || String(error);
       return {
         ok: false,
         event_uid: eventUid,
+        buzz_env: buzzEnv,
         title: event.title,
         error: `关联商户查询：${detail}`,
-        event: markEventImportResult(db, eventUid, {
-          import_status: "failed",
-          import_error: `关联商户查询：${detail}`,
-        }),
+        event: eventWithBuzzEnv(db, eventUid, buzzEnv),
       };
     }
   }
@@ -268,48 +297,55 @@ async function importEventToBuzz(db, eventUid, options = {}) {
     return {
       ok: false,
       event_uid: eventUid,
+      buzz_env: buzzEnv,
       title: event.title,
       error: issues.join("；") || "入库字段未齐",
       event,
     };
   }
 
-  const publishUserId = String(options.publish_user_id || event.publish_user_id || "").trim();
+  const publishUserId = resolvePublishUserId(
+    buzzEnv,
+    options.publish_user_id || event.publish_user_id,
+    event.publish_user_id,
+  );
   const record = buildImportRecord({
     ...event,
-    publish_user_id: publishUserId || event.publish_user_id,
+    publish_user_id: publishUserId,
+    now_merchant_id: event.now_merchant_id,
   });
   if (!record.user_id) {
-    return { ok: false, event_uid: eventUid, title: event.title, error: "缺少发布者 user_id", event };
+    return { ok: false, event_uid: eventUid, buzz_env: buzzEnv, title: event.title, error: "缺少发布者 user_id", event };
   }
 
   try {
     if (dedup && record.now_title) {
       const existingId = await runImportStep("查重气泡", () => client.findNow(record.user_id, record.now_title));
       if (existingId) {
-        const updated = markEventImportResult(db, eventUid, {
+        markEventImportResult(db, eventUid, {
           buzz_now_id: existingId,
           import_status: "imported",
           import_error: "",
-        });
+          publish_user_id: publishUserId,
+        }, buzzEnv);
         return {
           ok: true,
           skipped: true,
           event_uid: eventUid,
+          buzz_env: buzzEnv,
           title: event.title,
           now_id: existingId,
-          event: updated,
+          event: eventWithBuzzEnv(db, eventUid, buzzEnv),
         };
       }
     }
 
     const groupId = await runImportStep("腾讯 IM 建群", () => createGroupForNow(record, {
       ...options,
-      owner: record.publish_user_id || record.user_id,
+      owner: publishUserId || record.user_id,
     }));
     record.group_id = groupId;
 
-    // 封面只从本地 image-cache 读取，再 POST /internal/upload 传到 Buzz OSS（不用第三方 URL 建气泡）
     const medias = [];
     for (const src of record.images || []) {
       const media = await runImportStep("上传封面", () => client.uploadMedia(src));
@@ -324,31 +360,36 @@ async function importEventToBuzz(db, eventUid, options = {}) {
       throw new Error("创建成功但未返回 now_id");
     }
 
-    const updated = markEventImportResult(db, eventUid, {
+    markEventImportResult(db, eventUid, {
       buzz_now_id: nowId,
       buzz_group_id: groupId,
       import_status: "imported",
       import_error: "",
-    });
+      publish_user_id: publishUserId,
+      now_merchant_id: event.now_merchant_id,
+      now_merchant_name: event.now_merchant_name,
+    }, buzzEnv);
     return {
       ok: true,
       event_uid: eventUid,
+      buzz_env: buzzEnv,
       title: event.title,
       now_id: nowId,
       group_id: groupId,
-      event: updated,
+      event: eventWithBuzzEnv(db, eventUid, buzzEnv),
     };
   } catch (error) {
-    const updated = markEventImportResult(db, eventUid, {
+    markEventImportResult(db, eventUid, {
       import_status: "failed",
       import_error: error.message,
-    });
+    }, buzzEnv);
     return {
       ok: false,
       event_uid: eventUid,
+      buzz_env: buzzEnv,
       title: event.title,
       error: error.message,
-      event: updated,
+      event: eventWithBuzzEnv(db, eventUid, buzzEnv),
     };
   }
 }
@@ -375,6 +416,7 @@ async function batchImportApprovedEvents(db, options = {}) {
         skipped,
         results,
         aborted: true,
+        buzz_env: resolveBuzzEnv(options),
       };
     }
     const result = await importEventToBuzz(db, event.event_uid, options);
@@ -395,40 +437,45 @@ async function batchImportApprovedEvents(db, options = {}) {
     skipped,
     results,
     aborted: false,
+    buzz_env: resolveBuzzEnv(options),
   };
 }
 
 async function deleteEventFromBuzz(db, eventUid, options = {}) {
-  const event = getEventByUid(db, eventUid);
+  const buzzEnv = resolveBuzzEnv(options);
+  const event = eventWithBuzzEnv(db, eventUid, buzzEnv);
   if (!event) {
-    return { ok: false, event_uid: eventUid, error: "活动不存在" };
+    return { ok: false, event_uid: eventUid, buzz_env: buzzEnv, error: "活动不存在" };
   }
   const nowId = String(event.buzz_now_id || "").trim();
   if (!nowId) {
     return {
       ok: false,
       event_uid: eventUid,
+      buzz_env: buzzEnv,
       title: event.title,
       error: "本地未记录 now_id，无法删除后台气泡",
       event,
     };
   }
 
-  const client = options.client || new BuzzAdminClient(options);
+  const client = createClientForEnv(options);
   try {
     await client.deleteNow(nowId);
-    const updated = clearEventBuzzNow(db, eventUid);
+    clearEventBuzzNow(db, eventUid, buzzEnv);
     return {
       ok: true,
       event_uid: eventUid,
+      buzz_env: buzzEnv,
       title: event.title,
       now_id: nowId,
-      event: updated,
+      event: eventWithBuzzEnv(db, eventUid, buzzEnv),
     };
   } catch (error) {
     return {
       ok: false,
       event_uid: eventUid,
+      buzz_env: buzzEnv,
       title: event.title,
       now_id: nowId,
       error: error.message,

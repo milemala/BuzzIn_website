@@ -1,0 +1,253 @@
+{
+  "city": "青岛",
+  "source": "douban",
+  "updated_at": "2026-06-16T05:46:52.443Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "322683b16286",
+      "event_uids": [
+        "douban:37815158"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "青岛市民健身中心体育场"
+      ],
+      "poi_id": "7403925188536531003",
+      "poi_title": "青岛市民健身中心体育场",
+      "poi_address": "山东省青岛市城阳区青岛市民健身中心",
+      "latitude": 36.232126,
+      "longitude": 120.219747,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 136）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6797724445178504650",
+          "title": "青岛市民健身中心体育馆",
+          "address": "山东省青岛市城阳区上马街道火炬路318号青岛市民健身中心",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 36.23058,
+          "longitude": 120.217769
+        },
+        {
+          "index": 1,
+          "poi_id": "7403925188536531003",
+          "title": "青岛市民健身中心体育场",
+          "address": "山东省青岛市城阳区青岛市民健身中心",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 36.232126,
+          "longitude": 120.219747
+        },
+        {
+          "index": 2,
+          "poi_id": "7953616367628728979",
+          "title": "大型器材",
+          "address": "山东省青岛市城阳区上马街道青岛市民健身中心体育馆",
+          "category": "购物:摄影器材",
+          "latitude": 36.23054,
+          "longitude": 120.217769
+        },
+        {
+          "index": 3,
+          "poi_id": "1963472022881095991",
+          "title": "青岛北岸乐园文化体育发展有限公司",
+          "address": "山东省青岛市城阳区上马街道高新区火炬路318号青岛市民健身中心体育场四区高跨商业用房C5",
+          "category": "公司企业:公司企业",
+          "latitude": 36.231672,
+          "longitude": 120.219302
+        },
+        {
+          "index": 4,
+          "poi_id": "3547154335950865121",
+          "title": "友家餐饮",
+          "address": "山东省青岛市城阳区上马街道火炬路318号市民健身中心体育馆G6区",
+          "category": "美食:中餐厅:其它中餐厅",
+          "latitude": 36.230588,
+          "longitude": 120.217058
+        }
+      ]
+    },
+    {
+      "group_id": "85f26e1398c8",
+      "event_uids": [
+        "douban:37845954"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "8562069382059890278",
+      "poi_title": "青岛音乐厅",
+      "poi_address": "",
+      "latitude": 36.062951,
+      "longitude": 120.319832,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：青岛 市南区 青岛音乐厅 中山路街道兰山路1号(近中山路) → 青岛音乐厅（来源 event:douban:37686032）",
+      "candidates": []
+    },
+    {
+      "group_id": "92c1f4d384b3",
+      "event_uids": [
+        "douban:37823687"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "青岛国信体育中心体育场"
+      ],
+      "poi_id": "6892128322905967845",
+      "poi_title": "青岛国信体育中心",
+      "poi_address": "山东省青岛市崂山区银川东路3号",
+      "latitude": 36.104151,
+      "longitude": 120.446377,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 130）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "16624577122827783918",
+          "title": "青岛国信体育场",
+          "address": "山东省青岛市崂山区银川东路3号国信体育中心",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 36.103522,
+          "longitude": 120.445428
+        },
+        {
+          "index": 1,
+          "poi_id": "6892128322905967845",
+          "title": "青岛国信体育中心",
+          "address": "山东省青岛市崂山区银川东路3号",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 36.104151,
+          "longitude": 120.446377
+        },
+        {
+          "index": 2,
+          "poi_id": "17280294462137668813",
+          "title": "飞翔鸟体育(青岛市体育中心国信体育馆店)",
+          "address": "山东省青岛市崂山区金家岭街道银川东路3号国信体育场1层",
+          "category": "购物:体育户外",
+          "latitude": 36.104583,
+          "longitude": 120.444444
+        },
+        {
+          "index": 3,
+          "poi_id": "17074933934437983937",
+          "title": "青岛市体育中心国信体育馆南门西停车场",
+          "address": "山东省青岛市崂山区体育中心国信体育馆",
+          "category": "汽车:停车场",
+          "latitude": 36.102348,
+          "longitude": 120.447411
+        },
+        {
+          "index": 4,
+          "poi_id": "7143111770609077080",
+          "title": "青岛市体育中心国信体育馆南门东停车场",
+          "address": "山东省青岛市崂山区金家岭街道银川东路青岛市体育中心国信体育场",
+          "category": "汽车:停车场",
+          "latitude": 36.102906,
+          "longitude": 120.448124
+        }
+      ]
+    },
+    {
+      "group_id": "94dde3becd05",
+      "event_uids": [
+        "douban:37815834"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "青岛 Downtown_Live"
+      ],
+      "poi_id": "14194780680200183402",
+      "poi_title": "裆烫Downtown_Live",
+      "poi_address": "山东省青岛市市北区宁海路18号大悦城joyoark B栋18-23号",
+      "latitude": 36.080867,
+      "longitude": 120.348884,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 378）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "14194780680200183402",
+          "title": "裆烫Downtown_Live",
+          "address": "山东省青岛市市北区宁海路18号大悦城joyoark B栋18-23号",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 36.080867,
+          "longitude": 120.348884
+        }
+      ]
+    },
+    {
+      "group_id": "78516d9deb47",
+      "event_uids": [
+        "douban:37842637"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "青岛 城阳开心麻花大剧院"
+      ],
+      "poi_id": "4552282480564069476",
+      "poi_title": "城阳开心麻花大剧院",
+      "poi_address": "山东省青岛市城阳区城阳大剧院",
+      "latitude": 36.302108,
+      "longitude": 120.394266,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 256）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "4552282480564069476",
+          "title": "城阳开心麻花大剧院",
+          "address": "山东省青岛市城阳区城阳大剧院",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 36.302108,
+          "longitude": 120.394266
+        }
+      ]
+    },
+    {
+      "group_id": "cf0c595eeeba",
+      "event_uids": [
+        "douban:37835051"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "7244854423040967076",
+      "poi_title": "青岛大剧院",
+      "poi_address": "",
+      "latitude": 36.098814,
+      "longitude": 120.474704,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：青岛 崂山区 青岛大剧院 金家岭街道云岭路5号(香港东路北侧) → 青岛大剧院（来源 event:douban:37776883）",
+      "candidates": []
+    },
+    {
+      "group_id": "1e2198500cae",
+      "event_uids": [
+        "douban:37700219"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "7260200990468429618",
+      "poi_title": "大红礼娱演出新空间·剧场",
+      "poi_address": "",
+      "latitude": 36.109097,
+      "longitude": 120.391191,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：青岛 市北区 大红礼娱演出新空间·剧场 哈尔滨路88号和达中心城LG层1005-1006号 → 大红礼娱演出新空间·剧场（来源 event:douban:37563966）",
+      "candidates": []
+    }
+  ]
+}

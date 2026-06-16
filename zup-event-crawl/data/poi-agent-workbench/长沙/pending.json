@@ -1,0 +1,33 @@
+{
+  "city": "长沙",
+  "source": "douban",
+  "exported_at": "2026-06-16T05:46:57.831Z",
+  "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
+  "refresh": true,
+  "export_mode": "unmatched",
+  "pending_only": true,
+  "doubtful_only": false,
+  "total_events": 2,
+  "group_count": 2,
+  "cache_hit_groups": 0,
+  "groups": [
+    {
+      "group_id": "5b8bded58d76",
+      "location": "长沙 开福区 笑嘛屋顶脱口秀剧场 黄兴南路407号D区5楼,恋爱天台旁",
+      "sample_title": "小雪单口喜剧专场《生而为人》丨《脱口秀和Ta的朋友们》明星卡司丨长沙脱口秀必打卡",
+      "event_uids": [
+        "douban:36605584"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "a0daed4722c9",
+      "location": "长沙 天心区 文和友剧场 坡子街街道湘江中路36号海信东广场长沙文和友五楼文和友剧场",
+      "sample_title": "嘻嘻分子罐头脱口秀@文和友剧场",
+      "event_uids": [
+        "douban:37664704"
+      ],
+      "event_count": 1
+    }
+  ]
+}

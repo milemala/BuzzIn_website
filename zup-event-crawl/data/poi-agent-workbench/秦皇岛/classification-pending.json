@@ -1,0 +1,21 @@
+{
+  "city": "秦皇岛",
+  "exported_at": "2026-06-10T16:48:12.996Z",
+  "note": "由 Cursor Agent 逐条判断 suggested（推荐/挡下）与 category。见 docs/event-classification-agent.md",
+  "events": [
+    {
+      "event_uid": "douban:37712938",
+      "title": "秦皇岛有麦脱口秀｜全国高分口碑演员专场巡演｜刘琪专场｜约会、脱单、组团快乐",
+      "location": "秦皇岛 海港区 秦皇岛有麦脱口秀-新天地中影国际影城 秦皇西大街88号秦皇新天地2号楼3层中影国际影城",
+      "fee": "78.00元起",
+      "owner": "猫眼演出",
+      "time_text": "08月09日 周日 16:30-18:00",
+      "douban_event_type": "喜剧-脱口秀",
+      "body_excerpt": "",
+      "detail_excerpt": "约90分钟，以现场为准 主要演员 以现场为准 无需预约 儿童说明 特殊提示",
+      "current_category": "待分类",
+      "current_suggested": true,
+      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+    }
+  ]
+}

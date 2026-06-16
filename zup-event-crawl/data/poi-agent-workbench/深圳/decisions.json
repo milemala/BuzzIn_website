@@ -1,0 +1,1039 @@
+{
+  "city": "深圳",
+  "source": "douban",
+  "updated_at": "2026-06-16T06:05:16.440Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "9991f249d6b7",
+      "event_uids": [
+        "douban:37887848"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳 寰映影城-福田中洲湾激光IMAX店（福田区沙头街道上沙社区中洲滨海商业中心3F）"
+      ],
+      "poi_id": "13069007327036492129",
+      "poi_title": "中洲滨海商业中心",
+      "poi_address": "广东省深圳市福田区滨河大道9283号(滨河大道与11号路交汇处KKONE斜对面)",
+      "latitude": 22.527356,
+      "longitude": 114.028483,
+      "confidence": "high",
+      "doubtful": true,
+      "reason": "POI 与活动地点不像同一场所（名称与地址均未对上）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "13069007327036492129",
+          "title": "中洲滨海商业中心",
+          "address": "广东省深圳市福田区滨河大道9283号(滨河大道与11号路交汇处KKONE斜对面)",
+          "category": "房产小区:房产小区附属",
+          "latitude": 22.527356,
+          "longitude": 114.028483
+        },
+        {
+          "index": 1,
+          "poi_id": "1218818081309871016",
+          "title": "中洲滨海商业中心停车场",
+          "address": "广东省深圳市福田区中洲滨海商业中心",
+          "category": "汽车:停车场",
+          "latitude": 22.528265,
+          "longitude": 114.029053
+        },
+        {
+          "index": 2,
+          "poi_id": "8182753365582339789",
+          "title": "中洲滨海商业中心1期2栋B座",
+          "address": "广东省深圳市福田区沙头街道中洲湾CFutureCity",
+          "category": "房产小区:商务楼宇",
+          "latitude": 22.526481,
+          "longitude": 114.028872
+        },
+        {
+          "index": 3,
+          "poi_id": "17887595557734029173",
+          "title": "中洲湾滨海商业中心B栋",
+          "address": "广东省深圳市福田区11号路中洲湾滨海商业中心",
+          "category": "房产小区:房产小区附属",
+          "latitude": 22.525742,
+          "longitude": 114.028162
+        },
+        {
+          "index": 4,
+          "poi_id": "16757051360122731993",
+          "title": "中洲湾营销中心",
+          "address": "广东省深圳市福田区中洲滨海商业中心写字楼西塔56楼",
+          "category": "房产小区:房产小区附属",
+          "latitude": 22.528141,
+          "longitude": 114.028204
+        }
+      ]
+    },
+    {
+      "group_id": "edf01001a832",
+      "event_uids": [
+        "douban:36151420"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳红樽坊展厅",
+        "深圳 益田路3008号皇都广场C座709",
+        "福田区 深圳红樽坊展厅",
+        "深圳 福田区 深圳红樽坊展厅 益田路3008号皇都广场C座709"
+      ],
+      "poi_id": "14929614747449833972",
+      "poi_title": "皇都广场C座",
+      "poi_address": "广东省深圳市福田区福田街道益田路3008号皇都广场",
+      "latitude": 22.527225,
+      "longitude": 114.057344,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 120）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "2437267105902454902",
+          "title": "深圳红樽坊贸易有限公司",
+          "address": "广东省深圳市福田区益田路3008号皇都广场C座709室",
+          "category": "购物:其它购物",
+          "latitude": 22.527148,
+          "longitude": 114.057486
+        },
+        {
+          "index": 1,
+          "poi_id": "14929614747449833972",
+          "title": "皇都广场C座",
+          "address": "广东省深圳市福田区福田街道益田路3008号皇都广场",
+          "category": "房产小区:房产小区附属",
+          "latitude": 22.527225,
+          "longitude": 114.057344
+        },
+        {
+          "index": 2,
+          "poi_id": "9521804738135346841",
+          "title": "皇都广场",
+          "address": "广东省深圳市福田区益田路3008号",
+          "category": "房产小区:商务楼宇",
+          "latitude": 22.527628,
+          "longitude": 114.057483
+        },
+        {
+          "index": 3,
+          "poi_id": "1953668489136857520",
+          "title": "皇都广场A座",
+          "address": "广东省深圳市福田区福田街道益田路3008号",
+          "category": "房产小区:房产小区附属",
+          "latitude": 22.528034,
+          "longitude": 114.057588
+        },
+        {
+          "index": 4,
+          "poi_id": "13029018333744912965",
+          "title": "皇都广场-2号楼",
+          "address": "广东省深圳市福田区益田路3008号皇都广场",
+          "category": "房产小区:房产小区附属",
+          "latitude": 22.527582,
+          "longitude": 114.057516
+        }
+      ]
+    },
+    {
+      "group_id": "4a74da0d2902",
+      "event_uids": [
+        "douban:36346035"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "11111322890805285824",
+      "poi_title": "华夏艺术中心",
+      "poi_address": "",
+      "latitude": 22.534393,
+      "longitude": 113.985376,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：深圳 南山区 华夏艺术中心 华侨城光侨街1号2楼 → 华夏艺术中心（来源 event:douban:36621203）",
+      "candidates": []
+    },
+    {
+      "group_id": "a39269e4a950",
+      "event_uids": [
+        "douban:36633253"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳 爪马戏剧沉浸剧场"
+      ],
+      "poi_id": "15527672665745255439",
+      "poi_title": "爪马戏剧沉浸剧场(睿印店)",
+      "poi_address": "广东省深圳市南山区深湾一路与白石三路交汇处深圳湾睿印F2",
+      "latitude": 22.523923,
+      "longitude": 113.969538,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 322）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "15527672665745255439",
+          "title": "爪马戏剧沉浸剧场(睿印店)",
+          "address": "广东省深圳市南山区深湾一路与白石三路交汇处深圳湾睿印F2",
+          "category": "娱乐休闲:其它娱乐休闲",
+          "latitude": 22.523923,
+          "longitude": 113.969538
+        }
+      ]
+    },
+    {
+      "group_id": "d2e36b044f90",
+      "event_uids": [
+        "douban:37856034"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳 坪山大剧院"
+      ],
+      "poi_id": "1453690711798617688",
+      "poi_title": "坪山大剧院",
+      "poi_address": "广东省深圳市坪山区招商花园城南区东南(行政五路东)",
+      "latitude": 22.704995,
+      "longitude": 114.346383,
+      "confidence": "high",
+      "doubtful": true,
+      "reason": "POI 所在区与豆瓣活动地点区划不一致",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "1453690711798617688",
+          "title": "坪山大剧院",
+          "address": "广东省深圳市坪山区招商花园城南区东南(行政五路东)",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 22.704995,
+          "longitude": 114.346383
+        },
+        {
+          "index": 1,
+          "poi_id": "16024036739128918539",
+          "title": "汉堡王(深圳坪山大剧院餐厅)",
+          "address": "广东省深圳市坪山区坪山街道六和社区汇德路2号坪山大剧院1层001号商铺",
+          "category": "美食:小吃快餐",
+          "latitude": 22.705399,
+          "longitude": 114.346574
+        },
+        {
+          "index": 2,
+          "poi_id": "2199028393963",
+          "title": "坪山大剧院[公交站]",
+          "address": "M479路,915路,M440路,B923路,939路",
+          "category": "基础设施:交通设施:公交车站",
+          "latitude": 22.705588,
+          "longitude": 114.345774
+        },
+        {
+          "index": 3,
+          "poi_id": "13318678548741175245",
+          "title": "坪山大剧院停车场",
+          "address": "广东省深圳市坪山区坪山街道坪山大剧院",
+          "category": "汽车:停车场",
+          "latitude": 22.704631,
+          "longitude": 114.34585
+        },
+        {
+          "index": 4,
+          "poi_id": "8276847911805803385",
+          "title": "坪山大剧院票务中心",
+          "address": "广东省深圳市坪山区兰竹西路坪山大剧院",
+          "category": "生活服务:票务代售:其它票务代售",
+          "latitude": 22.704936,
+          "longitude": 114.346159
+        }
+      ]
+    },
+    {
+      "group_id": "c27f15922552",
+      "event_uids": [
+        "douban:37862594"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳 南山文体中心聚橙剧院"
+      ],
+      "poi_id": "9298945216007090386",
+      "poi_title": "南山文体中心聚橙剧院-正门",
+      "poi_address": "广东省深圳市南山区南头红花路与南山大道交叉口西南方向165米左右",
+      "latitude": 22.536405,
+      "longitude": 113.922891,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 210）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "5231327464381028818",
+          "title": "南山文体中心聚橙剧院 大剧院",
+          "address": "广东省深圳市南山区南头街道红花园社区南山文体中心1-4楼北侧大剧院",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 22.536481,
+          "longitude": 113.923019
+        },
+        {
+          "index": 1,
+          "poi_id": "3128822838607863195",
+          "title": "聚橙院线",
+          "address": "广东省深圳市南山区南山大道与南头街交汇处南山文体中心聚橙剧院",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 22.536198,
+          "longitude": 113.922355
+        },
+        {
+          "index": 2,
+          "poi_id": "8865370945878259717",
+          "title": "爱情絮语(南山文体中心聚橙剧院)",
+          "address": "广东省深圳市南山区南头街道南头街62号(南头古城地铁站E2口步行180米)",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 22.536391,
+          "longitude": 113.922788
+        },
+        {
+          "index": 3,
+          "poi_id": "9298945216007090386",
+          "title": "南山文体中心聚橙剧院-正门",
+          "address": "广东省深圳市南山区南头红花路与南山大道交叉口西南方向165米左右",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 22.536405,
+          "longitude": 113.922891
+        },
+        {
+          "index": 4,
+          "poi_id": "6466988109034070782",
+          "title": "鹏城国际象棋俱乐部(南山文体中心校区)",
+          "address": "广东省深圳市南山区南头街62号南山文体中心聚橙院线3楼306室",
+          "category": "教育学校:培训",
+          "latitude": 22.535849,
+          "longitude": 113.922529
+        }
+      ]
+    },
+    {
+      "group_id": "ecef818ee75d",
+      "event_uids": [
+        "douban:37654813"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "17613690289369736299",
+      "poi_title": "爪马世界(3号剧场)",
+      "poi_address": "",
+      "latitude": 22.536176,
+      "longitude": 113.982465,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：深圳 南山区 深圳爪马世界剧场 兴隆西路2号华生活馆A212 → 爪马世界(3号剧场)（来源 event:douban:37508979）",
+      "candidates": []
+    },
+    {
+      "group_id": "c4d894419afd",
+      "event_uids": [
+        "douban:37654821"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳 沙河街道兴隆西路2号华·生活馆爪马世界三楼8号剧场"
+      ],
+      "poi_id": "2687720076470739266",
+      "poi_title": "华·生活馆",
+      "poi_address": "广东省深圳市南山区兴隆西路2号",
+      "latitude": 22.535546,
+      "longitude": 113.983324,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 112）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "2687720076470739266",
+          "title": "华·生活馆",
+          "address": "广东省深圳市南山区兴隆西路2号",
+          "category": "购物:综合商场",
+          "latitude": 22.535546,
+          "longitude": 113.983324
+        },
+        {
+          "index": 1,
+          "poi_id": "4356980672051386962",
+          "title": "简单生活(华生活馆店)",
+          "address": "广东省深圳市南山区兴隆西路2号华·生活馆F1",
+          "category": "购物:家具家居建材:家具家居",
+          "latitude": 22.535527,
+          "longitude": 113.983682
+        },
+        {
+          "index": 2,
+          "poi_id": "16046510408913536070",
+          "title": "智慧生活馆",
+          "address": "广东省深圳市福田区深南中路与爱华路交叉口东南方向27米左右",
+          "category": "购物:数码家电",
+          "latitude": 22.540353,
+          "longitude": 114.092061
+        },
+        {
+          "index": 3,
+          "poi_id": "11251342226095958261",
+          "title": "华芭蕾(华·生活馆校区)",
+          "address": "广东省深圳市南山区沙河街道兴隆街华侨城华生活馆3楼B313B-B314C号",
+          "category": "教育学校:培训:音乐舞蹈",
+          "latitude": 22.536068,
+          "longitude": 113.98252
+        },
+        {
+          "index": 4,
+          "poi_id": "6917621156994999850",
+          "title": "VanCamel(华·生活馆店)",
+          "address": "广东省深圳市南山区兴隆西路2号华·生活馆F1",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 22.535547,
+          "longitude": 113.983624
+        }
+      ]
+    },
+    {
+      "group_id": "c23a4b9a1baa",
+      "event_uids": [
+        "douban:37887724",
+        "douban:37882746",
+        "douban:37884863"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "15281668256543917083",
+      "poi_title": "ROOTS HOUSE(华侨城店)",
+      "poi_address": "",
+      "latitude": 22.537591,
+      "longitude": 113.992029,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：深圳 南山区 华侨城创意园E3栋101C ROOTS HOUSE → ROOTS HOUSE(华侨城店)（来源 event:douban:37877228）",
+      "candidates": []
+    },
+    {
+      "group_id": "7d7be3205105",
+      "event_uids": [
+        "douban:37705423"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳 青春无限乐团烛光音乐会音乐厅"
+      ],
+      "poi_id": "18093005889884925272",
+      "poi_title": "青春无限乐团烛光音乐会(南山店)",
+      "poi_address": "广东省深圳市南山区沙河街道侨发路侨城坊1栋1层主会场",
+      "latitude": 22.551405,
+      "longitude": 113.980215,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 184）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "18093005889884925272",
+          "title": "青春无限乐团烛光音乐会(南山店)",
+          "address": "广东省深圳市南山区沙河街道侨发路侨城坊1栋1层主会场",
+          "category": "娱乐休闲:剧场音乐厅:音乐厅",
+          "latitude": 22.551405,
+          "longitude": 113.980215
+        }
+      ]
+    },
+    {
+      "group_id": "cd5b6e4a4fcd",
+      "event_uids": [
+        "douban:37888988"
+      ],
+      "action": "reject",
+      "search_keywords_tried": [
+        "深圳 光明区 龙舟"
+      ],
+      "reason": "豆瓣仅写光明区，无法确定具体龙舟活动场地",
+      "doubtful": false,
+      "candidates": []
+    },
+    {
+      "group_id": "7dd5644d6de9",
+      "event_uids": [
+        "douban:37705788"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳 青深民谣现场"
+      ],
+      "poi_id": "15958100185558117460",
+      "poi_title": "青深民谣现场",
+      "poi_address": "广东省深圳市南山区沙河街道华侨城中旅广场裙楼2楼B233B号",
+      "latitude": 22.536333,
+      "longitude": 113.982763,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 126）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "15958100185558117460",
+          "title": "青深民谣现场",
+          "address": "广东省深圳市南山区沙河街道华侨城中旅广场裙楼2楼B233B号",
+          "category": "娱乐休闲:其它娱乐休闲",
+          "latitude": 22.536333,
+          "longitude": 113.982763
+        }
+      ]
+    },
+    {
+      "group_id": "e780bd4e13a4",
+      "event_uids": [
+        "douban:37730301"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳 新空间剧场"
+      ],
+      "poi_id": "9365954080090963047",
+      "poi_title": "新空间剧场(福田岗厦店)",
+      "poi_address": "广东省深圳市福田区福华路兆邦基金融大厦503",
+      "latitude": 22.534258,
+      "longitude": 114.06758,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 209）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "3911166451553229564",
+          "title": "笑满堂文化空间剧场",
+          "address": "广东省深圳市宝安区新安街道尖岗山壹号花园6栋2楼",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 22.586804,
+          "longitude": 113.918464
+        },
+        {
+          "index": 1,
+          "poi_id": "1202114319381656400",
+          "title": "深圳共生演艺新空间",
+          "address": "广东省深圳市福田区莲花街道景田路78号妇儿大厦裙楼5层501",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 22.552452,
+          "longitude": 114.045012
+        },
+        {
+          "index": 2,
+          "poi_id": "1397975157289088494",
+          "title": "保利剧聚空间370号",
+          "address": "广东省深圳市南山区粤海街道文体中心12楼",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 22.523642,
+          "longitude": 113.950545
+        },
+        {
+          "index": 3,
+          "poi_id": "4034952031393645017",
+          "title": "深圳瑞吉酒店",
+          "address": "广东省深圳市罗湖区深南东路5016号",
+          "category": "酒店宾馆:星级酒店",
+          "latitude": 22.543116,
+          "longitude": 114.106569
+        },
+        {
+          "index": 4,
+          "poi_id": "10098226490597348699",
+          "title": "保利剧聚空间",
+          "address": "广东省深圳市南山区文体公园3层",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 22.493724,
+          "longitude": 113.93763
+        }
+      ]
+    },
+    {
+      "group_id": "3ed45cb08908",
+      "event_uids": [
+        "douban:37845647"
+      ],
+      "action": "reject",
+      "search_keywords_tried": [
+        "深圳 华侨城文化创意园",
+        "深圳 南山区 华侨城文化创意园",
+        "深圳 跨职业社交，来和创业者们一起脑暴"
+      ],
+      "reason": "搜索无有效候选",
+      "candidates": []
+    },
+    {
+      "group_id": "cadddd94bb20",
+      "event_uids": [
+        "douban:37777673",
+        "douban:37747924"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳 D+数字艺术馆"
+      ],
+      "poi_id": "7420272595555718359",
+      "poi_title": "D+数字艺术馆",
+      "poi_address": "广东省深圳市龙岗区贝尔路龙岗国际艺术中心",
+      "latitude": 22.640709,
+      "longitude": 114.063491,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 256）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "7420272595555718359",
+          "title": "D+数字艺术馆",
+          "address": "广东省深圳市龙岗区贝尔路龙岗国际艺术中心",
+          "category": "文化场馆:其它文化场馆",
+          "latitude": 22.640709,
+          "longitude": 114.063491
+        }
+      ]
+    },
+    {
+      "group_id": "3c1e3259c64f",
+      "event_uids": [
+        "douban:37886746"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳 中科大厦"
+      ],
+      "reason": "豆瓣高新南一道9号与中科大厦POI门牌一致",
+      "doubtful": false,
+      "confidence": "high",
+      "candidates": [],
+      "poi_id": "14941485189220752821",
+      "poi_title": "中科大厦",
+      "poi_address": "广东省深圳市南山区高新南一道9号",
+      "latitude": 22.54,
+      "longitude": 113.95
+    },
+    {
+      "group_id": "ff55ac5a765f",
+      "event_uids": [
+        "douban:37886109"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳 恒大天璟A座 （南油地铁站B出口）",
+        "深圳 南山区 恒大天璟A座 （南油地铁站B出口）"
+      ],
+      "poi_id": "13651049673708614487",
+      "poi_title": "恒大天璟A栋",
+      "poi_address": "广东省深圳市南山区粤海街道双子湾(南油地铁站B口步行90米)",
+      "latitude": 22.509829,
+      "longitude": 113.926916,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 103）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "1391687153157178329",
+          "title": "沐香雅舍spa",
+          "address": "广东省深圳市南山区粤海街道建南路15号恒大天璟A座A1019(南油地铁站 B_出口)",
+          "category": "生活服务:美容美发:美容SPA",
+          "latitude": 22.510061,
+          "longitude": 113.926935
+        },
+        {
+          "index": 1,
+          "poi_id": "6862206651337387218",
+          "title": "圣仲曦·苗族·祖传中草药熬水洗头(南油店)",
+          "address": "广东省深圳市南山区粤海街道恒大天璟A座917(南油地铁站B出口)",
+          "category": "生活服务:其它生活服务",
+          "latitude": 22.509785,
+          "longitude": 113.926835
+        },
+        {
+          "index": 2,
+          "poi_id": "1867185944465079050",
+          "title": "一三心理空间",
+          "address": "广东省深圳市南山区粤海街道南油社区建南路15号恒大天璟A座2916室(地铁12号线或9号线南油站B出口)",
+          "category": "医疗保健:其它医疗保健",
+          "latitude": 22.509839,
+          "longitude": 113.926797
+        },
+        {
+          "index": 3,
+          "poi_id": "13565861876868935260",
+          "title": "正午·美甲美睫",
+          "address": "广东省深圳市南山区粤海街道南油地铁站B出口恒大天璟A座2009",
+          "category": "生活服务:美容美发:美甲",
+          "latitude": 22.509762,
+          "longitude": 113.927056
+        },
+        {
+          "index": 4,
+          "poi_id": "1960411991558624232",
+          "title": "Farmore Real 美肤Spa",
+          "address": "广东省深圳市南山区粤海街道南海大道与登良路交汇处恒大天璟A座3216(南油地铁站B出口)",
+          "category": "生活服务:美容美发:美容SPA",
+          "latitude": 22.509787,
+          "longitude": 113.926832
+        }
+      ]
+    },
+    {
+      "group_id": "37c23ef748c0",
+      "event_uids": [
+        "douban:37886373"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "14096223677103963759",
+      "poi_title": "新天·世纪商务中心B座",
+      "poi_address": "",
+      "latitude": 22.520955,
+      "longitude": 114.053108,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：深圳 福田区 新天世纪商务中心B座 → 新天·世纪商务中心B座（来源 event:douban:37876752）",
+      "candidates": []
+    },
+    {
+      "group_id": "30b451e9d881",
+      "event_uids": [
+        "douban:37817018"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳 12号线中山公园地铁站a出口集合"
+      ],
+      "poi_id": "2199027063090",
+      "poi_title": "中山公园[地铁站]",
+      "poi_address": "地铁12号线(南宝线)",
+      "latitude": 22.54661,
+      "longitude": 113.923297,
+      "confidence": "high",
+      "doubtful": true,
+      "reason": "POI 疑似停车场、地铁等非活动场所",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "2199027063090",
+          "title": "中山公园[地铁站]",
+          "address": "地铁12号线(南宝线)",
+          "category": "基础设施:交通设施:地铁站",
+          "latitude": 22.54661,
+          "longitude": 113.923297
+        },
+        {
+          "index": 1,
+          "poi_id": "2199034128905",
+          "title": "中山公园西[地铁站]",
+          "address": "地铁20号线二期",
+          "category": "基础设施:交通设施:地铁站",
+          "latitude": 22.544914,
+          "longitude": 113.914825
+        },
+        {
+          "index": 2,
+          "poi_id": "7028329861984012387",
+          "title": "金翠酒店(南山中山公园地铁站店)",
+          "address": "广东省深圳市南山区南头街道南头城社区臻林天汇2A01",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 22.547862,
+          "longitude": 113.922553
+        },
+        {
+          "index": 3,
+          "poi_id": "7529224061441259062",
+          "title": "合景同创·臻林天汇",
+          "address": "广东省深圳市南山区南山大道中山公园地铁口C出口",
+          "category": "房产小区:住宅区:住宅小区",
+          "latitude": 22.548077,
+          "longitude": 113.922649
+        },
+        {
+          "index": 4,
+          "poi_id": "16372773381810074506",
+          "title": "深圳伯爵精品酒店(中山公园地铁站店)",
+          "address": "广东省深圳市南山区南头街道艺园路78号",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 22.54674,
+          "longitude": 113.928185
+        }
+      ]
+    },
+    {
+      "group_id": "a38cfa2c3df0",
+      "event_uids": [
+        "douban:37882884"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳 皇庭广场"
+      ],
+      "reason": "豆瓣皇庭广场g1楼咖啡厅，POI商场主体一致，仅差楼层",
+      "doubtful": false,
+      "confidence": "high",
+      "candidates": [],
+      "poi_id": "24755459556481699",
+      "poi_title": "皇庭广场",
+      "poi_address": "广东省深圳市福田区福华三路118号",
+      "latitude": 22.53,
+      "longitude": 114.06
+    },
+    {
+      "group_id": "82761ac6b398",
+      "event_uids": [
+        "douban:37888422"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "9811527835637013287",
+      "poi_title": "龙光·玖钻4B",
+      "poi_address": "",
+      "latitude": 22.620228,
+      "longitude": 114.023632,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：深圳 龙华区 龙光玖钻4b栋 → 龙光·玖钻4B（来源 event:douban:37860218）",
+      "candidates": []
+    },
+    {
+      "group_id": "95bc08939f91",
+      "event_uids": [
+        "douban:37888439"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳 恒大天璟A座（南油地铁站B出口）",
+        "深圳 南山区 恒大天璟A座（南油地铁站B出口）"
+      ],
+      "poi_id": "13651049673708614487",
+      "poi_title": "恒大天璟A栋",
+      "poi_address": "广东省深圳市南山区粤海街道双子湾(南油地铁站B口步行90米)",
+      "latitude": 22.509829,
+      "longitude": 113.926916,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 103）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6862206651337387218",
+          "title": "圣仲曦·苗族·祖传中草药熬水洗头(南油店)",
+          "address": "广东省深圳市南山区粤海街道恒大天璟A座917(南油地铁站B出口)",
+          "category": "生活服务:其它生活服务",
+          "latitude": 22.509785,
+          "longitude": 113.926835
+        },
+        {
+          "index": 1,
+          "poi_id": "1391687153157178329",
+          "title": "沐香雅舍spa",
+          "address": "广东省深圳市南山区粤海街道建南路15号恒大天璟A座A1019(南油地铁站 B_出口)",
+          "category": "生活服务:美容美发:美容SPA",
+          "latitude": 22.510061,
+          "longitude": 113.926935
+        },
+        {
+          "index": 2,
+          "poi_id": "1867185944465079050",
+          "title": "一三心理空间",
+          "address": "广东省深圳市南山区粤海街道南油社区建南路15号恒大天璟A座2916室(地铁12号线或9号线南油站B出口)",
+          "category": "医疗保健:其它医疗保健",
+          "latitude": 22.509839,
+          "longitude": 113.926797
+        },
+        {
+          "index": 3,
+          "poi_id": "13565861876868935260",
+          "title": "正午·美甲美睫",
+          "address": "广东省深圳市南山区粤海街道南油地铁站B出口恒大天璟A座2009",
+          "category": "生活服务:美容美发:美甲",
+          "latitude": 22.509762,
+          "longitude": 113.927056
+        },
+        {
+          "index": 4,
+          "poi_id": "1960411991558624232",
+          "title": "Farmore Real 美肤Spa",
+          "address": "广东省深圳市南山区粤海街道南海大道与登良路交汇处恒大天璟A座3216(南油地铁站B出口)",
+          "category": "生活服务:美容美发:美容SPA",
+          "latitude": 22.509787,
+          "longitude": 113.926832
+        }
+      ]
+    },
+    {
+      "group_id": "18b41f88d5c1",
+      "event_uids": [
+        "douban:37888479"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳 荣超经贸中心4801室天空冥想馆"
+      ],
+      "poi_id": "18185713332639949230",
+      "poi_title": "MOCICI天空冥想(荣超经贸中心店)",
+      "poi_address": "广东省深圳市福田区莲花街道金田路4028号荣超经贸中心4801号",
+      "latitude": 22.544153,
+      "longitude": 114.063756,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 220）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "18185713332639949230",
+          "title": "MOCICI天空冥想(荣超经贸中心店)",
+          "address": "广东省深圳市福田区莲花街道金田路4028号荣超经贸中心4801号",
+          "category": "生活服务:其它生活服务",
+          "latitude": 22.544153,
+          "longitude": 114.063756
+        }
+      ]
+    },
+    {
+      "group_id": "34b27f8854ae",
+      "event_uids": [
+        "douban:37888562",
+        "douban:37864999"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "262628701006936448",
+      "poi_title": "安徽大厦",
+      "poi_address": "",
+      "latitude": 22.536255,
+      "longitude": 114.031628,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：深圳 福田区 安徽大厦 → 安徽大厦（来源 event:douban:37874541）",
+      "candidates": []
+    },
+    {
+      "group_id": "be7873efaa12",
+      "event_uids": [
+        "douban:37888609"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳 观筑艺术空间"
+      ],
+      "poi_id": "524726888809961165",
+      "poi_title": "观筑艺术空间",
+      "poi_address": "广东省深圳市南山区沙河街道 锦绣北街2号华侨城创意文化园B10栋02铺",
+      "latitude": 22.539471,
+      "longitude": 113.993636,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 124）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "524726888809961165",
+          "title": "观筑艺术空间",
+          "address": "广东省深圳市南山区沙河街道 锦绣北街2号华侨城创意文化园B10栋02铺",
+          "category": "娱乐休闲:其它娱乐休闲",
+          "latitude": 22.539471,
+          "longitude": 113.993636
+        }
+      ]
+    },
+    {
+      "group_id": "6f83ad8999f0",
+      "event_uids": [
+        "douban:37889173"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "3575825143035739176",
+      "poi_title": "科兴科学园-A栋",
+      "poi_address": "",
+      "latitude": 22.716412,
+      "longitude": 114.026782,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：深圳 南山区 科兴科技园a1栋 → 科兴科学园-A栋（来源 event:douban:37884600）",
+      "candidates": []
+    },
+    {
+      "group_id": "dcae6a20f097",
+      "event_uids": [
+        "douban:37828696"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳 新羽胜羽毛球馆"
+      ],
+      "poi_id": "1841571083918731737",
+      "poi_title": "新羽胜羽毛球馆(公明店)",
+      "poi_address": "广东省深圳市光明区公明松宝大家具城4楼",
+      "latitude": 22.776132,
+      "longitude": 113.910855,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 205）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "5640762142886187848",
+          "title": "羽健羽毛球馆",
+          "address": "广东省深圳市光明区公明街道北环大道433号",
+          "category": "运动健身:羽毛球馆",
+          "latitude": 22.790154,
+          "longitude": 113.905917
+        },
+        {
+          "index": 1,
+          "poi_id": "1841571083918731737",
+          "title": "新羽胜羽毛球馆(公明店)",
+          "address": "广东省深圳市光明区公明松宝大家具城4楼",
+          "category": "运动健身:羽毛球馆",
+          "latitude": 22.776132,
+          "longitude": 113.910855
+        },
+        {
+          "index": 2,
+          "poi_id": "6165202323725832173",
+          "title": "燃羽羽毛球馆",
+          "address": "广东省深圳市龙岗区龙岗街道植物园路295-2号华腾龙文创园3栋102",
+          "category": "运动健身:羽毛球馆",
+          "latitude": 22.710586,
+          "longitude": 114.266294
+        },
+        {
+          "index": 3,
+          "poi_id": "490562206982673585",
+          "title": "青羽羽毛球馆",
+          "address": "广东省深圳市坪山区龙田街道乐彩产业园1栋502",
+          "category": "运动健身:羽毛球馆",
+          "latitude": 22.710679,
+          "longitude": 114.3942
+        },
+        {
+          "index": 4,
+          "poi_id": "11181327935569183369",
+          "title": "羽雨羽毛球馆",
+          "address": "广东省深圳市宝安区沙井街道勤基电路板厂4栋一层",
+          "category": "运动健身:羽毛球馆",
+          "latitude": 22.721148,
+          "longitude": 113.797631
+        }
+      ]
+    }
+  ]
+}

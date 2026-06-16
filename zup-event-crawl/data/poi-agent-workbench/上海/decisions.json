@@ -1,0 +1,1623 @@
+{
+  "city": "上海",
+  "source": "douban",
+  "updated_at": "2026-06-16T06:05:14.001Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "b9f9eb20f63f",
+      "event_uids": [
+        "douban:37887545"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 福州路620号百新书局2层"
+      ],
+      "poi_id": "14767536168491239120",
+      "poi_title": "百新书局",
+      "poi_address": "上海市黄浦区南京东路街道福州路620号",
+      "latitude": 31.23264,
+      "longitude": 121.478804,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 114）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "14767536168491239120",
+          "title": "百新书局",
+          "address": "上海市黄浦区南京东路街道福州路620号",
+          "category": "购物:图书音像",
+          "latitude": 31.23264,
+          "longitude": 121.478804
+        },
+        {
+          "index": 1,
+          "poi_id": "15410288219693473219",
+          "title": "有座叁(百新书局店)",
+          "address": "上海市黄浦区南京东路街道福州路620号(百新书局内)",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 31.232608,
+          "longitude": 121.478688
+        }
+      ]
+    },
+    {
+      "group_id": "eb52e3a1393d",
+      "event_uids": [
+        "douban:36979215"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "12274046795217222669",
+      "poi_title": "SpicyComedy(新天地时尚一期店)",
+      "poi_address": "",
+      "latitude": 31.219344,
+      "longitude": 121.474926,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：上海 黄浦区 SpicyComedy-新天地时尚一期店 兴业路123弄6-7号3层南里食集北区14号 → SpicyComedy(新天地时尚一期店)（来源 event:douban:36979221）",
+      "candidates": []
+    },
+    {
+      "group_id": "045e9c2b17e8",
+      "event_uids": [
+        "douban:37687291",
+        "douban:37842864"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "14987562979168640294",
+      "poi_title": "捷豹上海交响音乐厅",
+      "poi_address": "",
+      "latitude": 31.211524,
+      "longitude": 121.451652,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：上海 徐汇区 捷豹上海交响音乐厅 湖南路街道复兴中路1380号(近宝庆路) → 捷豹上海交响音乐厅（来源 event:douban:37872162）",
+      "candidates": []
+    },
+    {
+      "group_id": "6d01add84db3",
+      "event_uids": [
+        "douban:37691778",
+        "douban:37677650",
+        "douban:37163551"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海东方艺术中心"
+      ],
+      "poi_id": "52919750025520475",
+      "poi_title": "上海东方艺术中心",
+      "poi_address": "上海市浦东新区丁香路425号",
+      "latitude": 31.222824,
+      "longitude": 121.541307,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 280）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "52919750025520475",
+          "title": "上海东方艺术中心",
+          "address": "上海市浦东新区丁香路425号",
+          "category": "文化场馆:文化宫",
+          "latitude": 31.222824,
+          "longitude": 121.541307
+        },
+        {
+          "index": 1,
+          "poi_id": "17076609617465868378",
+          "title": "上海东方艺术中心-正门",
+          "address": "上海市浦东新区丁香路",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 31.222606,
+          "longitude": 121.541801
+        },
+        {
+          "index": 2,
+          "poi_id": "10137882151829071760",
+          "title": "上海东方艺术中心·音乐厅",
+          "address": "上海市浦东新区丁香路425号(上海科技馆地铁站1号口步行460米)",
+          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
+          "latitude": 31.222564,
+          "longitude": 121.540956
+        },
+        {
+          "index": 3,
+          "poi_id": "5142342281115028501",
+          "title": "上海东方艺术中心·歌剧厅",
+          "address": "上海市浦东新区丁香路425号上海东方艺术中心",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.223232,
+          "longitude": 121.541864
+        },
+        {
+          "index": 4,
+          "poi_id": "7144712391849772343",
+          "title": "上海东方艺术中心-东方歌剧院",
+          "address": "上海市浦东新区丁香路425号上海东方艺术中心2层",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.222441,
+          "longitude": 121.541228
+        }
+      ]
+    },
+    {
+      "group_id": "5d2335a6780d",
+      "event_uids": [
+        "douban:37836328"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 THE PEARL livehouse 珍珠剧场"
+      ],
+      "poi_id": "1785091379035755489",
+      "poi_title": "THE PEARL(乍浦路店)",
+      "poi_address": "上海市虹口区乍浦路471号",
+      "latitude": 31.252056,
+      "longitude": 121.486175,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 187）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "1785091379035755489",
+          "title": "THE PEARL(乍浦路店)",
+          "address": "上海市虹口区乍浦路471号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.252056,
+          "longitude": 121.486175
+        }
+      ]
+    },
+    {
+      "group_id": "a45e0491e227",
+      "event_uids": [
+        "douban:37884535",
+        "douban:37886683",
+        "douban:37886705",
+        "douban:37886721",
+        "douban:37884514",
+        "douban:37884526"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "14252119467906121381",
+      "poi_title": "嘉发大厦-A栋",
+      "poi_address": "",
+      "latitude": 31.23286,
+      "longitude": 121.464008,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：上海 静安区 大田路129弄嘉发大厦A栋5D → 嘉发大厦-A栋（来源 event:douban:37884017）",
+      "candidates": []
+    },
+    {
+      "group_id": "d49541239e14",
+      "event_uids": [
+        "douban:37618705"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 黄浦剧场·小剧场"
+      ],
+      "poi_id": "15284250398834785365",
+      "poi_title": "CANDOR小剧场",
+      "poi_address": "上海市黄浦区瑞金二路街道茂名南路57号兰心大戏院2F-3F",
+      "latitude": 31.220908,
+      "longitude": 121.460367,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 196）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "8626762173639255760",
+          "title": "上海大剧院中剧场",
+          "address": "上海市黄浦区人民大道300号大剧院内(近黄陂南路)",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.229556,
+          "longitude": 121.471292
+        },
+        {
+          "index": 1,
+          "poi_id": "15284250398834785365",
+          "title": "CANDOR小剧场",
+          "address": "上海市黄浦区瑞金二路街道茂名南路57号兰心大戏院2F-3F",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.220908,
+          "longitude": 121.460367
+        },
+        {
+          "index": 2,
+          "poi_id": "3208644587648391630",
+          "title": "星空间1023号·涵金小剧场",
+          "address": "上海市黄浦区南京东路街道南京东路800号上海第一百货C馆7楼",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.235574,
+          "longitude": 121.475284
+        },
+        {
+          "index": 3,
+          "poi_id": "3393104915955258582",
+          "title": "上海共舞台·男巫客厅",
+          "address": "上海市黄浦区延安东路433号2楼小剧场",
+          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
+          "latitude": 31.228728,
+          "longitude": 121.479428
+        }
+      ]
+    },
+    {
+      "group_id": "fcc498044616",
+      "event_uids": [
+        "douban:37787867"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 光新无限演艺中心"
+      ],
+      "poi_id": "8449197580783373662",
+      "poi_title": "光新无限演艺中心",
+      "poi_address": "上海市普陀区华池路10号普陀区职工文体活动中心2楼",
+      "latitude": 31.257061,
+      "longitude": 121.429783,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 268）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "8449197580783373662",
+          "title": "光新无限演艺中心",
+          "address": "上海市普陀区华池路10号普陀区职工文体活动中心2楼",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.257061,
+          "longitude": 121.429783
+        }
+      ]
+    },
+    {
+      "group_id": "ca227422fc26",
+      "event_uids": [
+        "douban:37867161"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 育音堂小镇 C厅 YUYINTOWN CUBE"
+      ],
+      "poi_id": "6674447953114383161",
+      "poi_title": "育音堂小镇YUYINTOWN",
+      "poi_address": "上海市长宁区华阳路街道昭化路638号CPARK地下一层LG-21室育音堂小镇C厅",
+      "latitude": 31.210366,
+      "longitude": 121.419653,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 201）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6674447953114383161",
+          "title": "育音堂小镇YUYINTOWN",
+          "address": "上海市长宁区华阳路街道昭化路638号CPARK地下一层LG-21室育音堂小镇C厅",
+          "category": "旅游景点:其它旅游景点",
+          "latitude": 31.210366,
+          "longitude": 121.419653
+        },
+        {
+          "index": 1,
+          "poi_id": "7042815495979816288",
+          "title": "育音堂小镇C厅 YYTC",
+          "address": "上海市长宁区昭化路658号地下一层LG-21室",
+          "category": "娱乐休闲:剧场音乐厅:音乐厅",
+          "latitude": 31.210264,
+          "longitude": 121.420048
+        }
+      ]
+    },
+    {
+      "group_id": "c8348a11462f",
+      "event_uids": [
+        "douban:37888575",
+        "douban:37878857"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "4105257615610063886",
+      "poi_title": "启示望远文创园",
+      "poi_address": "",
+      "latitude": 31.143743,
+      "longitude": 121.345218,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：上海 闵行区 联明路555号文创园5幢105 → 启示望远文创园（来源 event:douban:37884989）",
+      "candidates": []
+    },
+    {
+      "group_id": "5b45a8875478",
+      "event_uids": [
+        "douban:37028892"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 星空间10号·MOriginal Box 西藏南路1号大世界4楼"
+      ],
+      "poi_id": "5373573384831562778",
+      "poi_title": "星空间10号·MOriginal Box",
+      "poi_address": "上海市黄浦区外滩街道西藏南路1号大世界4楼",
+      "latitude": 31.228281,
+      "longitude": 121.479251,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 214）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "5373573384831562778",
+          "title": "星空间10号·MOriginal Box",
+          "address": "上海市黄浦区外滩街道西藏南路1号大世界4楼",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.228281,
+          "longitude": 121.479251
+        }
+      ]
+    },
+    {
+      "group_id": "7b0a95d0b1fa",
+      "event_uids": [
+        "douban:37796495"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海保利大剧院"
+      ],
+      "poi_id": "12922008065356701086",
+      "poi_title": "上海保利大剧院-票务中心",
+      "poi_address": "上海市嘉定区白银路159号上海保利大剧院一层",
+      "latitude": 31.353384,
+      "longitude": 121.265047,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 264）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6465397749718064720",
+          "title": "上海保利大剧院(白银路店)",
+          "address": "上海市嘉定区嘉定新城白银路159号(远香湖畔)",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.353327,
+          "longitude": 121.264796
+        },
+        {
+          "index": 1,
+          "poi_id": "3410239083647668320",
+          "title": "上海保利云间剧院",
+          "address": "上海市松江区",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.000313,
+          "longitude": 121.231752
+        },
+        {
+          "index": 2,
+          "poi_id": "2099640161504286235",
+          "title": "上海保利大剧院地下车库",
+          "address": "上海市嘉定区白银路159号上海保利大剧院",
+          "category": "汽车:停车场",
+          "latitude": 31.352042,
+          "longitude": 121.264484
+        },
+        {
+          "index": 3,
+          "poi_id": "9223789158200225961",
+          "title": "上海保利大剧院管理有限公司",
+          "address": "上海市嘉定区白银路233号上海TSF购物中心(保利国际广场店)",
+          "category": "公司企业:公司企业",
+          "latitude": 31.353202,
+          "longitude": 121.263712
+        },
+        {
+          "index": 4,
+          "poi_id": "11651023169493354813",
+          "title": "保利上海城市剧院",
+          "address": "上海市闵行区都市路4889号(近莘庄地铁站南广场)",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.105091,
+          "longitude": 121.389463
+        }
+      ]
+    },
+    {
+      "group_id": "4e92b9b26c85",
+      "event_uids": [
+        "douban:37872959"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 育音堂小镇 B厅 YUYINTOWN BASEMENT"
+      ],
+      "poi_id": "7528622883034367199",
+      "poi_title": "育音堂小镇B厅",
+      "poi_address": "上海市长宁区昭化路658号D栋地下一 层LG-14B室",
+      "latitude": 31.210327,
+      "longitude": 121.419686,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 142）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "7528622883034367199",
+          "title": "育音堂小镇B厅",
+          "address": "上海市长宁区昭化路658号D栋地下一 层LG-14B室",
+          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
+          "latitude": 31.210327,
+          "longitude": 121.419686
+        }
+      ]
+    },
+    {
+      "group_id": "0e21715a299d",
+      "event_uids": [
+        "douban:37873058"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "10227013600410885792",
+      "poi_title": "上音歌剧院",
+      "poi_address": "",
+      "latitude": 31.214788,
+      "longitude": 121.455584,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：上海 徐汇区 上音歌剧院 汾阳路6号 → 上音歌剧院（来源 event:douban:37802962）",
+      "candidates": []
+    },
+    {
+      "group_id": "cf7d3d8d67c5",
+      "event_uids": [
+        "douban:37600008"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 崧泽大道2229弄66号天空万科广场L3造梦盒子家庭音乐剧剧场"
+      ],
+      "poi_id": "6846764937704657944",
+      "poi_title": "造梦盒子·专业家庭音乐剧院(天空万科广场店)",
+      "poi_address": "上海市青浦区徐泾镇崧泽大道2229弄66号上海天空万科广场L3-13",
+      "latitude": 31.177315,
+      "longitude": 121.253521,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 295）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6846764937704657944",
+          "title": "造梦盒子·专业家庭音乐剧院(天空万科广场店)",
+          "address": "上海市青浦区徐泾镇崧泽大道2229弄66号上海天空万科广场L3-13",
+          "category": "娱乐休闲:亲子",
+          "latitude": 31.177315,
+          "longitude": 121.253521
+        }
+      ]
+    },
+    {
+      "group_id": "7ff6c8f2e2b7",
+      "event_uids": [
+        "douban:37798991",
+        "douban:37810192"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 YOUNG剧场"
+      ],
+      "poi_id": "5527323411719490889",
+      "poi_title": "Theatre YOUNG剧场",
+      "poi_address": "上海市杨浦区控江路1155号(黄兴路地铁站3号口步行110米)",
+      "latitude": 31.278051,
+      "longitude": 121.528544,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 175）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "5527323411719490889",
+          "title": "Theatre YOUNG剧场",
+          "address": "上海市杨浦区控江路1155号(黄兴路地铁站3号口步行110米)",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.278051,
+          "longitude": 121.528544
+        },
+        {
+          "index": 1,
+          "poi_id": "974570777568901700",
+          "title": "YOUNG剧场停车场",
+          "address": "上海市杨浦区控江路1155号YOUNG剧场",
+          "category": "汽车:停车场",
+          "latitude": 31.27814,
+          "longitude": 121.528221
+        },
+        {
+          "index": 2,
+          "poi_id": "13786644946602637573",
+          "title": "YOUNG剧场-西三门",
+          "address": "上海市杨浦区控江路与靖宇南路交叉口东南方向112米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 31.277908,
+          "longitude": 121.528448
+        },
+        {
+          "index": 3,
+          "poi_id": "7571194421628434321",
+          "title": "yOUNG剧场-西1门",
+          "address": "上海市杨浦区控江路与靖宇南路交叉口正东方向84米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 31.278228,
+          "longitude": 121.528276
+        },
+        {
+          "index": 4,
+          "poi_id": "960613498728959998",
+          "title": "Theatre YOUNG剧场-出入口",
+          "address": "上海市杨浦区控江路与靖宇南路交叉口正东方向80米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 31.278338,
+          "longitude": 121.528234
+        }
+      ]
+    },
+    {
+      "group_id": "eaa1095908a6",
+      "event_uids": [
+        "douban:37875394"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "大世界-上海·第十五届ICG动漫游戏博览会"
+      ],
+      "poi_id": "7693476389294155500",
+      "poi_title": "上海大世界",
+      "poi_address": "上海市黄浦区宁海东路288号",
+      "latitude": 31.228432,
+      "longitude": 121.478801,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 204）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "10331910144659527452",
+          "title": "大世界",
+          "address": "上海市普陀区莫干山路与西苏州路交叉口西北方向100米左右",
+          "category": "购物:其它购物",
+          "latitude": 31.247621,
+          "longitude": 121.448624
+        },
+        {
+          "index": 1,
+          "poi_id": "7693476389294155500",
+          "title": "上海大世界",
+          "address": "上海市黄浦区宁海东路288号",
+          "category": "购物:其它购物",
+          "latitude": 31.228432,
+          "longitude": 121.478801
+        },
+        {
+          "index": 2,
+          "poi_id": "12516444351806276975",
+          "title": "演艺大世界",
+          "address": "上海市黄浦区广西北路与牛庄路交叉口东北方向14米左右",
+          "category": "娱乐休闲:其它娱乐休闲",
+          "latitude": 31.237525,
+          "longitude": 121.476533
+        },
+        {
+          "index": 3,
+          "poi_id": "7391667363823202928",
+          "title": "水果大世界",
+          "address": "上海市闵行区闵碧物业瑞丽分公司西1门旁",
+          "category": "购物:农贸市场",
+          "latitude": 31.003624,
+          "longitude": 121.409362
+        },
+        {
+          "index": 4,
+          "poi_id": "1517403865969511097",
+          "title": "丝网大世界",
+          "address": "上海市浦东新区横桥路311号大缔建材市场6栋7号",
+          "category": "购物:家具家居建材:建材",
+          "latitude": 31.106218,
+          "longitude": 121.567426
+        }
+      ]
+    },
+    {
+      "group_id": "720238a9e335",
+      "event_uids": [
+        "douban:37879202"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海西岸大剧院"
+      ],
+      "poi_id": "2198531495687242211",
+      "poi_title": "上海西岸大剧院",
+      "poi_address": "上海市徐汇区龙腾大道2290号GateM西岸梦中心F1",
+      "latitude": 31.163516,
+      "longitude": 121.465665,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 373）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "2198531495687242211",
+          "title": "上海西岸大剧院",
+          "address": "上海市徐汇区龙腾大道2290号GateM西岸梦中心F1",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.163516,
+          "longitude": 121.465665
+        },
+        {
+          "index": 1,
+          "poi_id": "14991304005011413770",
+          "title": "木寸野集(西岸大剧院店)",
+          "address": "上海市徐汇区龙华街道西岸大剧院W3号口",
+          "category": "美食:冷饮店",
+          "latitude": 31.163378,
+          "longitude": 121.465395
+        },
+        {
+          "index": 2,
+          "poi_id": "2059953493398380779",
+          "title": "Olivino餐厅",
+          "address": "上海市徐汇区龙华街道龙腾大道2380号西岸油罐艺术中心4号罐停车场旁(或者西岸大剧院靠北S1门对面)",
+          "category": "美食:西餐:其它西餐",
+          "latitude": 31.164899,
+          "longitude": 121.465321
+        }
+      ]
+    },
+    {
+      "group_id": "ff4009ea5921",
+      "event_uids": [
+        "douban:37286440"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "18344564924041466715",
+      "poi_title": "SpicyComedy(滨港商业中心店)",
+      "poi_address": "",
+      "latitude": 31.249592,
+      "longitude": 121.483554,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：上海 虹口区 SpicyComedy-滨港商业中心店 四川北路939号滨港商业中心5层1508单元 → SpicyComedy(滨港商业中心店)（来源 event:douban:37756152）",
+      "candidates": []
+    },
+    {
+      "group_id": "7f9ea584cd9a",
+      "event_uids": [
+        "douban:37611107"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 开心麻花L空间"
+      ],
+      "poi_id": "14578161203300111039",
+      "poi_title": "开心麻花(CITY MART城市集市合生汇店)",
+      "poi_address": "上海市杨浦区翔殷路1099号B1-35号",
+      "latitude": 31.300295,
+      "longitude": 121.518811,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 214）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "14578161203300111039",
+          "title": "开心麻花(CITY MART城市集市合生汇店)",
+          "address": "上海市杨浦区翔殷路1099号B1-35号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.300295,
+          "longitude": 121.518811
+        }
+      ]
+    },
+    {
+      "group_id": "214712f13ce9",
+      "event_uids": [
+        "douban:37880203"
+      ],
+      "action": "reject",
+      "search_keywords_tried": [
+        "上海 龙之梦万丽酒店",
+        "上海 长宁区 龙之梦万丽酒店",
+        "上海 2026第三届中国银行业数宇化峰会暨财富管理与私人银行论坛会"
+      ],
+      "reason": "搜索无有效候选",
+      "candidates": []
+    },
+    {
+      "group_id": "6b26e5ad3735",
+      "event_uids": [
+        "douban:37830420"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 交通银行前滩31演艺中心"
+      ],
+      "poi_id": "16133749839580883268",
+      "poi_title": "交通银行前滩31演艺中心1号",
+      "poi_address": "上海市浦东新区三林镇交通银行前滩31演艺中心",
+      "latitude": 31.150688,
+      "longitude": 121.484738,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 320）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "5705623475713552211",
+          "title": "交通银行前滩31演艺中心",
+          "address": "上海市浦东新区海阳西路666弄",
+          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
+          "latitude": 31.15076,
+          "longitude": 121.484961
+        },
+        {
+          "index": 1,
+          "poi_id": "16133749839580883268",
+          "title": "交通银行前滩31演艺中心1号",
+          "address": "上海市浦东新区三林镇交通银行前滩31演艺中心",
+          "category": "房产小区:房产小区附属",
+          "latitude": 31.150688,
+          "longitude": 121.484738
+        },
+        {
+          "index": 2,
+          "poi_id": "17798662331861896080",
+          "title": "Manner Coffee(交通银行前滩31演艺中心店)",
+          "address": "上海市浦东新区三林镇(上海)自由贸易试验区海阳西路666弄15号2层02-09单元",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 31.150976,
+          "longitude": 121.484204
+        },
+        {
+          "index": 3,
+          "poi_id": "11768710161491256948",
+          "title": "交通银行前滩31演艺中心停车场-出入口",
+          "address": "上海市浦东新区高青西路777号交通银行前滩31演艺中心",
+          "category": "室内及附属设施:通行设施类:停车场出入口",
+          "latitude": 31.151512,
+          "longitude": 121.484309
+        },
+        {
+          "index": 4,
+          "poi_id": "7198470918334742888",
+          "title": "交通银行前滩31演艺中心地下停车场-出入口",
+          "address": "上海市浦东新区东育路与高青西路交叉口正北方向83米左右",
+          "category": "室内及附属设施:通行设施类:停车场出入口",
+          "latitude": 31.150541,
+          "longitude": 121.484044
+        }
+      ]
+    },
+    {
+      "group_id": "9f8e3dbb6b2d",
+      "event_uids": [
+        "douban:37317849"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 打浦桥店",
+        "上海 徐家汇路618号日月光中心五楼"
+      ],
+      "poi_id": "16601175661901634745",
+      "poi_title": "日月光中心-写字楼",
+      "poi_address": "上海市黄浦区徐家汇路618号日月光中心F1",
+      "latitude": 31.20583,
+      "longitude": 121.468507,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 105）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "11605007894043861620",
+          "title": "M Stand(上海打浦桥日月光店)",
+          "address": "上海市黄浦区徐家汇路618号日月光中心1F-TK03B(打浦桥地铁1号口旁)",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 31.207398,
+          "longitude": 121.468424
+        },
+        {
+          "index": 1,
+          "poi_id": "12105533478759511551",
+          "title": "纯K(打浦桥店)",
+          "address": "上海市黄浦区徐家汇路618号日月光中心广场1楼直达电梯到3F(瑞金二路泰康路口处电梯直达)",
+          "category": "娱乐休闲:KTV",
+          "latitude": 31.206979,
+          "longitude": 121.46767
+        },
+        {
+          "index": 2,
+          "poi_id": "3516570773740552016",
+          "title": "如家精选酒店(上海打浦桥店)",
+          "address": "上海市黄浦区打浦路475号(鲁班路地铁站3号口步行460米)",
+          "category": "酒店宾馆:经济型酒店",
+          "latitude": 31.196518,
+          "longitude": 121.473781
+        },
+        {
+          "index": 3,
+          "poi_id": "11929273145818351019",
+          "title": "霸王茶姬(上海打浦桥日月光二店)",
+          "address": "上海市黄浦区徐家汇路618号日月光中心F1",
+          "category": "美食:冷饮店",
+          "latitude": 31.207617,
+          "longitude": 121.469404
+        },
+        {
+          "index": 4,
+          "poi_id": "4680607060749829314",
+          "title": "布丁酒店(上海瑞金医院打浦桥地铁站店)",
+          "address": "上海市黄浦区打浦桥街道瑞金南路1号海兴广场3楼303室(近天桥、日月光商场)",
+          "category": "酒店宾馆:经济型酒店",
+          "latitude": 31.204437,
+          "longitude": 121.46761
+        }
+      ]
+    },
+    {
+      "group_id": "692d90eb0ba9",
+      "event_uids": [
+        "douban:37827271"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 人民广场店",
+        "上海 南京西路388号仙乐斯广场406——人民广场地铁站11号口步行360米"
+      ],
+      "poi_id": "1602374012804435248",
+      "poi_title": "仙乐斯广场",
+      "poi_address": "上海市黄浦区南京西路388号(近黄陂北路)",
+      "latitude": 31.231401,
+      "longitude": 121.469042,
+      "confidence": "high",
+      "doubtful": true,
+      "reason": "POI 名称与活动地点不像同一场所",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "10466609155910207120",
+          "title": "上海人民广场",
+          "address": "上海市黄浦区人民大道185号",
+          "category": "旅游景点:城市广场",
+          "latitude": 31.228725,
+          "longitude": 121.475186
+        },
+        {
+          "index": 1,
+          "poi_id": "2084962092908663247",
+          "title": "Youli Hotel(上海外滩人民广场店)",
+          "address": "上海市黄浦区南京东路街道云南中路41号1楼",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 31.229898,
+          "longitude": 121.47878
+        },
+        {
+          "index": 2,
+          "poi_id": "518994613043924797",
+          "title": "安遇公寓(上海人民广场店)",
+          "address": "上海市黄浦区南京东路街道西藏中路725弄41号",
+          "category": "酒店宾馆:公寓式酒店",
+          "latitude": 31.238782,
+          "longitude": 121.471613
+        },
+        {
+          "index": 3,
+          "poi_id": "10002100840181639085",
+          "title": "天华酒店(上海人民广场长征医院店)",
+          "address": "上海市黄浦区黄河路159号(新闸路地铁站6号口步行350米)",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 31.235588,
+          "longitude": 121.470138
+        },
+        {
+          "index": 4,
+          "poi_id": "13398850145418772367",
+          "title": "藤野造型(上海人民广场店)",
+          "address": "上海市黄浦区南京东路街道汉口路650号亚洲大厦(星空间进)21楼2112室",
+          "category": "生活服务:美容美发:美发",
+          "latitude": 31.233816,
+          "longitude": 121.477957
+        }
+      ]
+    },
+    {
+      "group_id": "be7fed768ffb",
+      "event_uids": [
+        "douban:36896098"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 肆笑喜剧脱口秀丨南京东路外滩店 南京东路479号U479商场4楼"
+      ],
+      "poi_id": "7227024046237794453",
+      "poi_title": "肆笑喜剧脱口秀(南京东路店)",
+      "poi_address": "上海市黄浦区U479商场4F-03商铺",
+      "latitude": 31.235865,
+      "longitude": 121.481378,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 289）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "7227024046237794453",
+          "title": "肆笑喜剧脱口秀(南京东路店)",
+          "address": "上海市黄浦区U479商场4F-03商铺",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.235865,
+          "longitude": 121.481378
+        }
+      ]
+    },
+    {
+      "group_id": "eb9ee603fe33",
+      "event_uids": [
+        "douban:37317463"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 百联世纪店",
+        "上海 世纪大道百联世纪购物中心三楼",
+        "上海 浦东新区 百联世纪店",
+        "上海 浦东新区 暴风岛沉浸式体验馆-百联世纪店 世纪大道百联世纪购物中心三楼"
+      ],
+      "poi_id": "9400247680146919764",
+      "poi_title": "暴风岛沉浸式体验馆(百联世纪店)",
+      "poi_address": "上海市浦东新区世纪大道1217号百联世纪购物中心F3",
+      "latitude": 31.230316,
+      "longitude": 121.528121,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 312）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "13349633268567327912",
+          "title": "鲜芋仙(百联世纪店)",
+          "address": "上海市浦东新区世纪大道1217号百联世纪购物中心B2",
+          "category": "美食:冷饮店",
+          "latitude": 31.22985,
+          "longitude": 121.526801
+        },
+        {
+          "index": 1,
+          "poi_id": "17226072102245943912",
+          "title": "M Stand(上海百联世纪店)",
+          "address": "上海市浦东新区潍坊新村街道世纪大道1217号百联世纪1层G-F0-1-002A(近世纪大道站2,5号口)",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 31.230105,
+          "longitude": 121.527992
+        },
+        {
+          "index": 2,
+          "poi_id": "16263239410564317411",
+          "title": "百联世纪购物中心",
+          "address": "上海市浦东新区世纪大道1217号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 31.230019,
+          "longitude": 121.527304
+        },
+        {
+          "index": 3,
+          "poi_id": "2767946945913385428",
+          "title": "西安建宏(百联世纪店)",
+          "address": "上海市浦东新区福山路295号",
+          "category": "美食:清真",
+          "latitude": 31.230175,
+          "longitude": 121.52879
+        },
+        {
+          "index": 4,
+          "poi_id": "3589997138772472196",
+          "title": "KOI Thé(上海百联世纪店)",
+          "address": "上海市浦东新区潍坊新村街道世纪大道1217号百联世纪购物中心B2楼24号(望师傅小炒肉对面)",
+          "category": "美食:冷饮店",
+          "latitude": 31.229755,
+          "longitude": 121.527729
+        }
+      ]
+    },
+    {
+      "group_id": "78e27166b58e",
+      "event_uids": [
+        "douban:37721928"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 大笑喜剧-南京东路店 南京东路792号第一百货商场c馆二楼"
+      ],
+      "poi_id": "16020257116780911114",
+      "poi_title": "大笑喜剧脱口秀俱乐部(南京东路店)",
+      "poi_address": "上海市黄浦区南京东路800号第一百货商场c馆二楼",
+      "latitude": 31.235895,
+      "longitude": 121.475195,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 177）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "16020257116780911114",
+          "title": "大笑喜剧脱口秀俱乐部(南京东路店)",
+          "address": "上海市黄浦区南京东路800号第一百货商场c馆二楼",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.235895,
+          "longitude": 121.475195
+        }
+      ]
+    },
+    {
+      "group_id": "e01fe613ca99",
+      "event_uids": [
+        "douban:37635990"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 半笑空间"
+      ],
+      "poi_id": "17216326224513056104",
+      "poi_title": "半笑空间-外滩店1号剧场",
+      "poi_address": "上海市黄浦区汉口路398号华盛大厦2楼半笑空间",
+      "latitude": 31.235289,
+      "longitude": 121.482746,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 120）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "17204319762785386008",
+          "title": "半笑空间(南京东路店)",
+          "address": "上海市黄浦区汉口路422号德必外滩WE一层115室",
+          "category": "旅游景点:其它旅游景点",
+          "latitude": 31.235451,
+          "longitude": 121.482301
+        },
+        {
+          "index": 1,
+          "poi_id": "10064109302946805637",
+          "title": "半笑空间-生日快乐",
+          "address": "上海市黄浦区牛庄路658号中财中心大厦4层东401生日快乐",
+          "category": "娱乐休闲:其它娱乐休闲",
+          "latitude": 31.238174,
+          "longitude": 121.477321
+        },
+        {
+          "index": 2,
+          "poi_id": "17216326224513056104",
+          "title": "半笑空间-外滩店1号剧场",
+          "address": "上海市黄浦区汉口路398号华盛大厦2楼半笑空间",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.235289,
+          "longitude": 121.482746
+        }
+      ]
+    },
+    {
+      "group_id": "320a2d59deaa",
+      "event_uids": [
+        "douban:37863165"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 虹桥艺术中心"
+      ],
+      "poi_id": "15222610840936288047",
+      "poi_title": "上海虹桥艺术中心",
+      "poi_address": "上海市长宁区天山路街道天山路888号(娄山关路地铁站3号口步行110米)",
+      "latitude": 31.211712,
+      "longitude": 121.404018,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 93）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "15222610840936288047",
+          "title": "上海虹桥艺术中心",
+          "address": "上海市长宁区天山路街道天山路888号(娄山关路地铁站3号口步行110米)",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.211712,
+          "longitude": 121.404018
+        },
+        {
+          "index": 1,
+          "poi_id": "2323513005658661412",
+          "title": "北虹桥艺术中心",
+          "address": "上海市嘉定区华江路129弄3号楼",
+          "category": "教育学校:其它教育学校",
+          "latitude": 31.253998,
+          "longitude": 121.341863
+        },
+        {
+          "index": 2,
+          "poi_id": "6351531061115035136",
+          "title": "上海市科技艺术教育中心",
+          "address": "上海市长宁区虹桥街道",
+          "category": "教育学校:培训",
+          "latitude": 31.193789,
+          "longitude": 121.418471
+        },
+        {
+          "index": 3,
+          "poi_id": "16595314404754032157",
+          "title": "上海瑄之得(虹桥艺术中心)",
+          "address": "上海市闵行区金汇路528号虹桥古玩城二楼B229-231",
+          "category": "教育学校:培训",
+          "latitude": 31.181593,
+          "longitude": 121.374972
+        },
+        {
+          "index": 4,
+          "poi_id": "331840916911883783",
+          "title": "上海虹桥艺术中心-出入口",
+          "address": "上海市长宁区天山路与娄山关路交叉口西北方向26米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 31.211295,
+          "longitude": 121.40425
+        }
+      ]
+    },
+    {
+      "group_id": "88646dc5e733",
+      "event_uids": [
+        "douban:37874539"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 沪宜公路1188号",
+        "上海 嘉定区 沪宜公路1188号"
+      ],
+      "poi_id": "1887241842825075527",
+      "poi_title": "i换电(上海嘉定区沪宜公路2126号(4001))",
+      "poi_address": "上海市嘉定区沪宜公路2126号(久箭机车门店旁边)",
+      "latitude": 31.330718,
+      "longitude": 121.284934,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 126）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "10290147605940751998",
+          "title": "上海远淙工程技术有限公司",
+          "address": "上海市嘉定区沪宜公路1188号9幢",
+          "category": "公司企业:公司企业",
+          "latitude": 31.296822,
+          "longitude": 121.303259
+        },
+        {
+          "index": 1,
+          "poi_id": "95151874348627901",
+          "title": "上海古猗园餐厅(沪宜公路店)",
+          "address": "上海市嘉定区南翔镇沪宜公路218号",
+          "category": "美食:中餐厅:上海菜",
+          "latitude": 31.290127,
+          "longitude": 121.31594
+        },
+        {
+          "index": 2,
+          "poi_id": "8127649381935707517",
+          "title": "我嘉书房(沪宜公路店)",
+          "address": "上海市嘉定区南翔镇沪宜公路1188号",
+          "category": "购物:图书音像",
+          "latitude": 31.297706,
+          "longitude": 121.303521
+        },
+        {
+          "index": 3,
+          "poi_id": "1638203059370436083",
+          "title": "全季酒店(上海大学沪宜公路店)",
+          "address": "上海市嘉定区沪宜公路(苏宁易购西北)",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 31.370699,
+          "longitude": 121.257213
+        },
+        {
+          "index": 4,
+          "poi_id": "3209060049340383058",
+          "title": "速8酒店(上海沪宜公路上海大学店)",
+          "address": "上海市嘉定区沪宜公路3879号",
+          "category": "酒店宾馆:经济型酒店",
+          "latitude": 31.371712,
+          "longitude": 121.236842
+        }
+      ]
+    },
+    {
+      "group_id": "f5bec5e99dc9",
+      "event_uids": [
+        "douban:37883585"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 Cream"
+      ],
+      "poi_id": "3071030059043537756",
+      "poi_title": "奶油俱乐部 CREAM Club",
+      "poi_address": "上海市浦东新区滨江大道5230号B1微山路路口",
+      "latitude": 31.209825,
+      "longitude": 121.510401,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 263）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "12135143851820797074",
+          "title": "Cream Cafe",
+          "address": "上海市黄浦区南京东路800号上海市第一百货商店(C馆)F6",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 31.235143,
+          "longitude": 121.475345
+        },
+        {
+          "index": 1,
+          "poi_id": "1800926024951924003",
+          "title": "Doiceful Ice Cream",
+          "address": "上海市黄浦区淮海中路街道湖滨路202号102A室",
+          "category": "美食:冷饮店",
+          "latitude": 31.220773,
+          "longitude": 121.476256
+        },
+        {
+          "index": 2,
+          "poi_id": "13235122983565123341",
+          "title": "奶油兔美甲 cream bunny nail",
+          "address": "上海市徐汇区康健新村街道冠生园路393号云景德必易园2号楼108",
+          "category": "生活服务:美容美发:美甲",
+          "latitude": 31.163102,
+          "longitude": 121.424991
+        },
+        {
+          "index": 3,
+          "poi_id": "3071030059043537756",
+          "title": "奶油俱乐部 CREAM Club",
+          "address": "上海市浦东新区滨江大道5230号B1微山路路口",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 31.209825,
+          "longitude": 121.510401
+        },
+        {
+          "index": 4,
+          "poi_id": "16220014107866490559",
+          "title": "奶油日报CREAM DAILY",
+          "address": "上海市松江区中展瑞景2号楼1121",
+          "category": "美食:面包甜点",
+          "latitude": 31.055339,
+          "longitude": 121.242539
+        }
+      ]
+    },
+    {
+      "group_id": "d48fdc13cf32",
+      "event_uids": [
+        "douban:36982377"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 一台好戏方寸剧场·去你的夏天"
+      ],
+      "poi_id": "1843015425448717026",
+      "poi_title": "一台好戏方寸剧场·去你的夏天",
+      "poi_address": "上海市黄浦区九江路663号2层星空间8号",
+      "latitude": 31.234152,
+      "longitude": 121.477803,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 235）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "1843015425448717026",
+          "title": "一台好戏方寸剧场·去你的夏天",
+          "address": "上海市黄浦区九江路663号2层星空间8号",
+          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
+          "latitude": 31.234152,
+          "longitude": 121.477803
+        }
+      ]
+    },
+    {
+      "group_id": "d894e4af2a33",
+      "event_uids": [
+        "douban:37430900"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 山眠剧场"
+      ],
+      "poi_id": "3910036122322956594",
+      "poi_title": "环境式沉浸舞蹈剧场《寅时说》-山眠剧场(亚洲大厦店)",
+      "poi_address": "上海市黄浦区南京东路街道汉口路650号亚洲大厦7楼星空间5号",
+      "latitude": 31.233817,
+      "longitude": 121.478077,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 370）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "3910036122322956594",
+          "title": "环境式沉浸舞蹈剧场《寅时说》-山眠剧场(亚洲大厦店)",
+          "address": "上海市黄浦区南京东路街道汉口路650号亚洲大厦7楼星空间5号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.233817,
+          "longitude": 121.478077
+        }
+      ]
+    },
+    {
+      "group_id": "9c2111b001dc",
+      "event_uids": [
+        "douban:37486762"
+      ],
+      "action": "reject",
+      "search_keywords_tried": [
+        "上海 衡山路880号 和集Coffee",
+        "上海 徐汇区 衡山路880号 和集Coffee",
+        "上海 跨行业社交: 一起来听创业者们的声音"
+      ],
+      "reason": "搜索无有效候选",
+      "candidates": []
+    },
+    {
+      "group_id": "d200a3966a8e",
+      "event_uids": [
+        "douban:37585385"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 汉口路650号亚洲大厦一楼星空间108号.山眠剧场Ⅱ"
+      ],
+      "poi_id": "3910036122322956594",
+      "poi_title": "环境式沉浸舞蹈剧场《寅时说》-山眠剧场(亚洲大厦店)",
+      "poi_address": "上海市黄浦区南京东路街道汉口路650号亚洲大厦7楼星空间5号",
+      "latitude": 31.233817,
+      "longitude": 121.478077,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 220）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "3910036122322956594",
+          "title": "环境式沉浸舞蹈剧场《寅时说》-山眠剧场(亚洲大厦店)",
+          "address": "上海市黄浦区南京东路街道汉口路650号亚洲大厦7楼星空间5号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.233817,
+          "longitude": 121.478077
+        }
+      ]
+    },
+    {
+      "group_id": "349433f3247a",
+      "event_uids": [
+        "douban:36933743"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 虹桥路地铁站3口",
+        "上海 长宁区 虹桥路地铁站3口"
+      ],
+      "poi_id": "10804306494648421891",
+      "poi_title": "虹桥路[地铁站]",
+      "poi_address": "地铁10号线,地铁3号线,地铁4号线外圈",
+      "latitude": 31.196653,
+      "longitude": 121.422209,
+      "confidence": "high",
+      "doubtful": true,
+      "reason": "POI 疑似停车场、地铁等非活动场所",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "12041844306852957629",
+          "title": "瑞幸咖啡(虹桥路地铁站2号口店)",
+          "address": "上海市长宁区凯旋路1540号轨道交通三号线虹桥路站1层",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 31.197239,
+          "longitude": 121.421032
+        },
+        {
+          "index": 1,
+          "poi_id": "1675546967716008776",
+          "title": "上海虹桥云峰宾馆(水城路地铁站)",
+          "address": "上海市长宁区虹桥路1665号(水城路地铁站1号口步行240米)",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 31.201394,
+          "longitude": 121.392995
+        },
+        {
+          "index": 2,
+          "poi_id": "17265236887752754244",
+          "title": "星尚客栈(上海虹桥威宁路地铁站店)",
+          "address": "上海市长宁区威宁路333号501-504室、516、517室",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 31.21268,
+          "longitude": 121.384665
+        },
+        {
+          "index": 3,
+          "poi_id": "15222610840936288047",
+          "title": "上海虹桥艺术中心",
+          "address": "上海市长宁区天山路街道天山路888号(娄山关路地铁站3号口步行110米)",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.211712,
+          "longitude": 121.404018
+        },
+        {
+          "index": 4,
+          "poi_id": "8646351256653571340",
+          "title": "程十发美术馆 英文别名",
+          "address": "上海市长宁区虹桥路1398号(伊犁路地铁站1号口步行310米)",
+          "category": "文化场馆:美术馆",
+          "latitude": 31.197656,
+          "longitude": 121.405309
+        }
+      ]
+    },
+    {
+      "group_id": "ce70093fd05a",
+      "event_uids": [
+        "douban:37206586"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 星空间1794号·临窗小剧场 九江路663号一楼"
+      ],
+      "poi_id": "5866546789516628746",
+      "poi_title": "星空间",
+      "poi_address": "上海市闵行区申达一路1号上海虹桥国际机场2号航站楼",
+      "latitude": 31.194967,
+      "longitude": 121.326476,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 210）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "5866546789516628746",
+          "title": "星空间",
+          "address": "上海市闵行区申达一路1号上海虹桥国际机场2号航站楼",
+          "category": "房产小区:商务楼宇",
+          "latitude": 31.194967,
+          "longitude": 121.326476
+        },
+        {
+          "index": 1,
+          "poi_id": "1208846053293865008",
+          "title": "星空间PARTY·K",
+          "address": "上海市闵行区七莘路2099号2幢南楼3楼",
+          "category": "娱乐休闲:KTV",
+          "latitude": 31.140569,
+          "longitude": 121.358642
+        },
+        {
+          "index": 2,
+          "poi_id": "11895855932617157399",
+          "title": "星空间18号·谜剧场·怪物剧场",
+          "address": "上海市黄浦区南京东路街道汉口路650号亚洲大厦B1楼",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.23381,
+          "longitude": 121.478097
+        },
+        {
+          "index": 3,
+          "poi_id": "17865092125057790506",
+          "title": "上海星动力科创空间",
+          "address": "上海市浦东新区上南路168号世博源2区1层133号",
+          "category": "生活服务:其它生活服务",
+          "latitude": 31.186274,
+          "longitude": 121.491684
+        },
+        {
+          "index": 4,
+          "poi_id": "832610503222332431",
+          "title": "星空间123号·燃剧场",
+          "address": "上海市黄浦区南京东路街道南京东路829号世茂广场东区L8星空间886剧场",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.234363,
+          "longitude": 121.475637
+        }
+      ]
+    },
+    {
+      "group_id": "ad8d4e71b9e7",
+      "event_uids": [
+        "douban:37681087"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 半笑空间"
+      ],
+      "poi_id": "17216326224513056104",
+      "poi_title": "半笑空间-外滩店1号剧场",
+      "poi_address": "上海市黄浦区汉口路398号华盛大厦2楼半笑空间",
+      "latitude": 31.235289,
+      "longitude": 121.482746,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 126）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "17204319762785386008",
+          "title": "半笑空间(南京东路店)",
+          "address": "上海市黄浦区汉口路422号德必外滩WE一层115室",
+          "category": "旅游景点:其它旅游景点",
+          "latitude": 31.235451,
+          "longitude": 121.482301
+        },
+        {
+          "index": 1,
+          "poi_id": "10064109302946805637",
+          "title": "半笑空间-生日快乐",
+          "address": "上海市黄浦区牛庄路658号中财中心大厦4层东401生日快乐",
+          "category": "娱乐休闲:其它娱乐休闲",
+          "latitude": 31.238174,
+          "longitude": 121.477321
+        },
+        {
+          "index": 2,
+          "poi_id": "17216326224513056104",
+          "title": "半笑空间-外滩店1号剧场",
+          "address": "上海市黄浦区汉口路398号华盛大厦2楼半笑空间",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.235289,
+          "longitude": 121.482746
+        }
+      ]
+    },
+    {
+      "group_id": "8c7e3e814153",
+      "event_uids": [
+        "douban:37875465"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海 联明路555号"
+      ],
+      "reason": "豆瓣写联明路555号文创园5幢105，POI为联明路555号地标，楼幢未精确",
+      "doubtful": true,
+      "confidence": "medium",
+      "candidates": [],
+      "poi_id": "7482863478415498720",
+      "poi_title": "联明路555号",
+      "poi_address": "上海市闵行区中春路与联明路交叉口正东方向187米左右",
+      "latitude": 31.15,
+      "longitude": 121.35
+    }
+  ]
+}

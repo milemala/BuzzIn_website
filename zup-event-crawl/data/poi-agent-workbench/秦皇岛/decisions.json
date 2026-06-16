@@ -1,0 +1,27 @@
+{
+  "city": "秦皇岛",
+  "source": "douban",
+  "updated_at": "2026-06-16T06:05:22.252Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "5cba50adbc78",
+      "event_uids": [
+        "douban:37827198"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "秦皇岛 金棕榈国际电影城"
+      ],
+      "reason": "豆瓣金棕榈文化广场剧场与POI一致",
+      "doubtful": false,
+      "confidence": "high",
+      "candidates": [],
+      "poi_id": "16683972028394137197",
+      "poi_title": "金棕榈国际电影城文化广场剧场",
+      "poi_address": "河北省秦皇岛市海港区北环路街道秦皇东大街80号文化广场秦皇岛金棕榈国际电影城",
+      "latitude": 39.94,
+      "longitude": 119.6
+    }
+  ]
+}

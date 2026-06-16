@@ -1,0 +1,840 @@
+{
+  "city": "北京",
+  "source": "douban",
+  "updated_at": "2026-06-16T06:05:13.030Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "7576532da2e3",
+      "event_uids": [
+        "douban:37888465"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "北京展览馆"
+      ],
+      "poi_id": "10535731078663200590",
+      "poi_title": "北京展览馆",
+      "poi_address": "北京市西城区西直门外大街135号(近地铁西直门站)",
+      "latitude": 39.94068,
+      "longitude": 116.34406,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 268）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "13688886443653650267",
+          "title": "北大博雅数字展厅",
+          "address": "北京市海淀区中关村北大街",
+          "category": "文化场馆:展览馆",
+          "latitude": 39.997586,
+          "longitude": 116.31334
+        },
+        {
+          "index": 1,
+          "poi_id": "10535731078663200590",
+          "title": "北京展览馆",
+          "address": "北京市西城区西直门外大街135号(近地铁西直门站)",
+          "category": "文化场馆:展览馆",
+          "latitude": 39.94068,
+          "longitude": 116.34406
+        },
+        {
+          "index": 2,
+          "poi_id": "4601391167425246823",
+          "title": "中国美术展览馆",
+          "address": "北京市东城区五四大街1号",
+          "category": "文化场馆:美术馆",
+          "latitude": 39.92535,
+          "longitude": 116.409
+        },
+        {
+          "index": 3,
+          "poi_id": "14172608746078225569",
+          "title": "中国国家博物馆",
+          "address": "北京市东城区东长安街16号",
+          "category": "文化场馆:博物馆",
+          "latitude": 39.905408,
+          "longitude": 116.401397
+        },
+        {
+          "index": 4,
+          "poi_id": "10929071078415510902",
+          "title": "北京自然博物馆",
+          "address": "北京市东城区天桥南大街126号",
+          "category": "文化场馆:博物馆",
+          "latitude": 39.883095,
+          "longitude": 116.399739
+        }
+      ]
+    },
+    {
+      "group_id": "a09e7e0de810",
+      "event_uids": [
+        "douban:37884997"
+      ],
+      "action": "reject",
+      "search_keywords_tried": [
+        "方所北京店",
+        "海淀区 方所北京店",
+        "北京 海淀区 方所北京店",
+        "【北京】书，作为女孩和世界的连接-克莱尔-露易丝·本内特新书分享会"
+      ],
+      "reason": "搜索无有效候选",
+      "candidates": []
+    },
+    {
+      "group_id": "b1bc1d88615e",
+      "event_uids": [
+        "douban:37771953"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "北京 奥森公园南门旁边",
+        "北京 亚洲金融大厦B1",
+        "北京 朝阳区 奥森公园南门旁边",
+        "北京 朝阳区 奥森公园南门旁边 亚洲金融大厦B1"
+      ],
+      "poi_id": "3145367305457135866",
+      "poi_title": "亚洲金融大厦",
+      "poi_address": "北京市朝阳区天辰东路1号院",
+      "latitude": 40.008352,
+      "longitude": 116.389672,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 106）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "7871862241654963787",
+          "title": "奥林匹克森林公园南园-南门",
+          "address": "北京市朝阳区科荟路33号奥林匹克森林公园南园内(南侧)",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 40.010133,
+          "longitude": 116.392656
+        },
+        {
+          "index": 1,
+          "poi_id": "1708308645274538069",
+          "title": "奥林匹克森林公园北园-南门",
+          "address": "北京市朝阳区北五环辅路",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 40.024496,
+          "longitude": 116.398352
+        },
+        {
+          "index": 2,
+          "poi_id": "13021851819358578122",
+          "title": "奥林匹克森林公园-南2门",
+          "address": "北京市朝阳区科荟路33号",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 40.007102,
+          "longitude": 116.392775
+        },
+        {
+          "index": 3,
+          "poi_id": "9695796636794405714",
+          "title": "奥林匹克森林公园南园-东南1门",
+          "address": "北京市朝阳区科荟路33号奥林匹克森林公园南园(东南角)",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 40.011607,
+          "longitude": 116.401013
+        },
+        {
+          "index": 4,
+          "poi_id": "16895701987677907478",
+          "title": "奥林匹克森林公园南门东侧停车场",
+          "address": "北京市朝阳区科荟路33号奥林匹克森林公园南园(东南角)",
+          "category": "汽车:停车场",
+          "latitude": 40.010294,
+          "longitude": 116.395892
+        }
+      ]
+    },
+    {
+      "group_id": "189c91be3c40",
+      "event_uids": [
+        "douban:37782697"
+      ],
+      "action": "reject",
+      "search_keywords_tried": [
+        "北京 田村地铁站 茶楼"
+      ],
+      "reason": "地址仅写田村地铁站附近茶楼，无法对应唯一场所",
+      "doubtful": false,
+      "candidates": []
+    },
+    {
+      "group_id": "7887731a08d1",
+      "event_uids": [
+        "douban:37782972"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "北京市石景山区杨庄地铁站（6号线）南行700米茶楼"
+      ],
+      "poi_id": "8812246846796391724",
+      "poi_title": "杨庄[地铁站]",
+      "poi_address": "地铁6号线",
+      "latitude": 39.927897,
+      "longitude": 116.187152,
+      "confidence": "high",
+      "doubtful": true,
+      "reason": "POI 疑似停车场、地铁等非活动场所",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "8812246846796391724",
+          "title": "杨庄[地铁站]",
+          "address": "地铁6号线",
+          "category": "基础设施:交通设施:地铁站",
+          "latitude": 39.927897,
+          "longitude": 116.187152
+        },
+        {
+          "index": 1,
+          "poi_id": "370620077322408334",
+          "title": "库迪咖啡(杨庄地铁站店)",
+          "address": "北京市石景山区杨庄大街2号苹东市集临街店铺",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 39.926958,
+          "longitude": 116.186361
+        },
+        {
+          "index": 2,
+          "poi_id": "17458478584665635606",
+          "title": "淘乐堡儿童乐园(杨庄地铁站店)",
+          "address": "北京市石景山区苹果园街道远洋春秋里2层",
+          "category": "娱乐休闲:亲子",
+          "latitude": 39.928753,
+          "longitude": 116.186083
+        },
+        {
+          "index": 3,
+          "poi_id": "6711661107213270024",
+          "title": "链家地产(新苹果园店)",
+          "address": "北京市石景山区苹果园大街84号(杨庄地铁站A西北口步行460米)",
+          "category": "生活服务:中介机构",
+          "latitude": 39.931652,
+          "longitude": 116.184109
+        },
+        {
+          "index": 4,
+          "poi_id": "10868455313255237927",
+          "title": "良镜优选(石景山杨庄地铁站店)",
+          "address": "北京市石景山区杨庄地铁站A口右转远洋春秋里B1",
+          "category": "购物:眼镜店",
+          "latitude": 39.928659,
+          "longitude": 116.18602
+        }
+      ]
+    },
+    {
+      "group_id": "725e2b6ca0e1",
+      "event_uids": [
+        "douban:36953021"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "3824281412291127974",
+      "poi_title": "蜂巢剧场(东直门店)",
+      "poi_address": "",
+      "latitude": 39.940318,
+      "longitude": 116.438659,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：北京 东城区 蜂巢剧场-东直门店 东直门外大街十字坡西里甲3号3楼(近东二环) → 蜂巢剧场(东直门店)（来源 event:douban:36685455）",
+      "candidates": []
+    },
+    {
+      "group_id": "8ceac060f6f0",
+      "event_uids": [
+        "douban:37886121"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "北京 英皇影城三里屯"
+      ],
+      "reason": "豆瓣英皇影城三里屯店与POI一致",
+      "doubtful": false,
+      "confidence": "high",
+      "candidates": [],
+      "poi_id": "10916598351297727590",
+      "poi_title": "英皇电影城(北京三里屯太古里店)",
+      "poi_address": "北京市朝阳区三里屯路19号三里屯太古里(南区)LG-SLG-18",
+      "latitude": 39.934,
+      "longitude": 116.454
+    },
+    {
+      "group_id": "d8d4a31b6cbb",
+      "event_uids": [
+        "douban:37828283"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "17987642018513161306",
+      "poi_title": "天桥艺术中心·第五空间",
+      "poi_address": "",
+      "latitude": 39.88265,
+      "longitude": 116.398158,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：北京 西城区 天桥艺术中心 天桥南大街9号楼 → 天桥艺术中心·第五空间（来源 event:douban:37832331）",
+      "candidates": []
+    },
+    {
+      "group_id": "0fcf860b70cc",
+      "event_uids": [
+        "douban:37712643",
+        "douban:37679940"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "18094129804566749180",
+      "poi_title": "爱乐汇艺术空间",
+      "poi_address": "",
+      "latitude": 39.9129,
+      "longitude": 116.276808,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：北京 海淀区 五棵松·爱乐汇艺术空间 复兴路69号五棵松万达广场6层爱乐汇艺术空间五棵松剧场 → 爱乐汇艺术空间（来源 event:douban:37745272）",
+      "candidates": []
+    },
+    {
+      "group_id": "62d5b1fcc3b3",
+      "event_uids": [
+        "douban:37814521",
+        "douban:37885414"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "北京喜剧院"
+      ],
+      "poi_id": "16772745798574551935",
+      "poi_title": "北京喜剧院",
+      "poi_address": "北京市东城区朝阳门北大街11号(朝阳门桥)",
+      "latitude": 39.930234,
+      "longitude": 116.432905,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 379）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "16772745798574551935",
+          "title": "北京喜剧院",
+          "address": "北京市东城区朝阳门北大街11号(朝阳门桥)",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 39.930234,
+          "longitude": 116.432905
+        },
+        {
+          "index": 1,
+          "poi_id": "1753364673053102988",
+          "title": "北京喜剧院-南门",
+          "address": "北京市东城区朝阳门北大街11号北京喜剧院",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 39.929622,
+          "longitude": 116.433052
+        },
+        {
+          "index": 2,
+          "poi_id": "11102900025019427127",
+          "title": "保利剧聚|北京喜剧院·FUN空间",
+          "address": "北京市东城区东四街道朝阳门北大街11号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 39.930202,
+          "longitude": 116.432863
+        },
+        {
+          "index": 3,
+          "poi_id": "4056951636099983668",
+          "title": "FLOCK TO COFFEE(北京喜剧院店)",
+          "address": "北京市东城区东四街道朝阳门北大街11号北京喜剧院2层201",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 39.930213,
+          "longitude": 116.433248
+        },
+        {
+          "index": 4,
+          "poi_id": "17503176511541227106",
+          "title": "北京喜剧院-南1门",
+          "address": "北京市东城区朝阳门北大街11号北京喜剧院",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 39.929666,
+          "longitude": 116.433569
+        }
+      ]
+    },
+    {
+      "group_id": "eb895341af2e",
+      "event_uids": [
+        "douban:37885699"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "16374944766863526832",
+      "poi_title": "远洋国际中心E座",
+      "poi_address": "",
+      "latitude": 39.915974,
+      "longitude": 116.491505,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：北京 朝阳区 远洋国际中心E座 → 远洋国际中心E座（来源 event:douban:37866542）",
+      "candidates": []
+    },
+    {
+      "group_id": "225a3bd62879",
+      "event_uids": [
+        "douban:37888540"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "北京 三旗悦读空间"
+      ],
+      "poi_id": "6533487314356463949",
+      "poi_title": "三旗悦读空间",
+      "poi_address": "北京市昌平区建材城西路87号院上奥世纪中心2号楼三层",
+      "latitude": 40.057112,
+      "longitude": 116.329663,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 114）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6533487314356463949",
+          "title": "三旗悦读空间",
+          "address": "北京市昌平区建材城西路87号院上奥世纪中心2号楼三层",
+          "category": "购物:图书音像",
+          "latitude": 40.057112,
+          "longitude": 116.329663
+        },
+        {
+          "index": 1,
+          "poi_id": "13117227237446443039",
+          "title": "花小帆口才演讲素养中心",
+          "address": "北京市昌平区建材城西路上奥世纪B座悦读空间二层花小帆口才",
+          "category": "教育学校:培训",
+          "latitude": 40.057282,
+          "longitude": 116.329578
+        }
+      ]
+    },
+    {
+      "group_id": "ac707fe24587",
+      "event_uids": [
+        "douban:37888970"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "北京 前炒面胡同49号可能有书"
+      ],
+      "poi_id": "10671848573001900872",
+      "poi_title": "可能有书",
+      "poi_address": "北京市东城区前炒面胡同49号(东四地铁站C东南口步行260米)",
+      "latitude": 39.922623,
+      "longitude": 116.418264,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 114）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "10671848573001900872",
+          "title": "可能有书",
+          "address": "北京市东城区前炒面胡同49号(东四地铁站C东南口步行260米)",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 39.922623,
+          "longitude": 116.418264
+        }
+      ]
+    },
+    {
+      "group_id": "8d512d078a02",
+      "event_uids": [
+        "douban:37863399"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "北京 顺义大剧院"
+      ],
+      "poi_id": "5879370965752661540",
+      "poi_title": "顺义大剧院",
+      "poi_address": "北京市顺义区文化中心院内",
+      "latitude": 40.109543,
+      "longitude": 116.670308,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 256）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "5879370965752661540",
+          "title": "顺义大剧院",
+          "address": "北京市顺义区文化中心院内",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 40.109543,
+          "longitude": 116.670308
+        },
+        {
+          "index": 1,
+          "poi_id": "8290929251958954054",
+          "title": "福尼亚剧院",
+          "address": "北京市顺义区火沙路空港工业园B区裕华路23号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 40.099678,
+          "longitude": 116.548523
+        }
+      ]
+    },
+    {
+      "group_id": "3d01e646c99e",
+      "event_uids": [
+        "douban:37889218"
+      ],
+      "action": "reject",
+      "search_keywords_tried": [
+        "北京 天辰东路 7 号国家会议中心",
+        "北京 朝阳区 天辰东路 7 号国家会议中心",
+        "北京 DK典藏系列新书发布会｜邀你相约BIBF?"
+      ],
+      "reason": "搜索无有效候选",
+      "candidates": []
+    },
+    {
+      "group_id": "3d84ed3dd9f6",
+      "event_uids": [
+        "douban:37701093"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "北京 亦花园剧场"
+      ],
+      "poi_id": "2737712115828629758",
+      "poi_title": "亦花园剧场",
+      "poi_address": "北京市大兴区东渠路与经海七路交叉口西南方向259米左右",
+      "latitude": 39.822893,
+      "longitude": 116.537279,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 262）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "2737712115828629758",
+          "title": "亦花园剧场",
+          "address": "北京市大兴区东渠路与经海七路交叉口西南方向259米左右",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 39.822893,
+          "longitude": 116.537279
+        }
+      ]
+    },
+    {
+      "group_id": "aac967421c2e",
+      "event_uids": [
+        "douban:37878581",
+        "douban:37725759"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "12557970248534164329",
+      "poi_title": "爱乐汇艺术空间(三里屯SOHO店)",
+      "poi_address": "",
+      "latitude": 39.931213,
+      "longitude": 116.453603,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：北京 朝阳区 三里屯·爱乐汇艺术空间 三里屯soho 6号商场b1层（下沉广场最南端) → 爱乐汇艺术空间(三里屯SOHO店)（来源 event:douban:37645423）",
+      "candidates": []
+    },
+    {
+      "group_id": "f9ece7e7840c",
+      "event_uids": [
+        "douban:37453498"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "10409527025063302260",
+      "poi_title": "南阳共享际剧场",
+      "poi_address": "",
+      "latitude": 39.929087,
+      "longitude": 116.413866,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：北京 东城区 南阳共享际剧场 南阳胡同6号 → 南阳共享际剧场（来源 event:douban:36605618）",
+      "candidates": []
+    },
+    {
+      "group_id": "41f542751ab0",
+      "event_uids": [
+        "douban:37881052"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "北京 天通苑文化艺术中心"
+      ],
+      "poi_id": "14838731246779007034",
+      "poi_title": "天通苑文化艺术中心",
+      "poi_address": "北京市昌平区天通苑北街道太平庄中一街天通中苑配套公建G区G-la号",
+      "latitude": 40.070444,
+      "longitude": 116.417456,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 124）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "14838731246779007034",
+          "title": "天通苑文化艺术中心",
+          "address": "北京市昌平区天通苑北街道太平庄中一街天通中苑配套公建G区G-la号",
+          "category": "文化场馆:文化宫",
+          "latitude": 40.070444,
+          "longitude": 116.417456
+        },
+        {
+          "index": 1,
+          "poi_id": "4517418613996702377",
+          "title": "昌品书店(天通苑文化艺术中心店)",
+          "address": "北京市昌平区天通苑北街道天通苑文化艺术中心一层西门",
+          "category": "购物:图书音像",
+          "latitude": 40.070205,
+          "longitude": 116.416979
+        },
+        {
+          "index": 2,
+          "poi_id": "1993656629050260130",
+          "title": "颂赞舞蹈艺术中心(天通苑校区)",
+          "address": "北京市昌平区太平庄中街天通东苑一区63号楼1-2(骨汤牛肉面香河肉饼楼上)",
+          "category": "教育学校:培训:音乐舞蹈",
+          "latitude": 40.065801,
+          "longitude": 116.431991
+        },
+        {
+          "index": 3,
+          "poi_id": "269988739178533378",
+          "title": "365影院(天通苑文化艺术中心4层)",
+          "address": "北京市昌平区太平庄中一街天通苑文化艺术中心4层",
+          "category": "娱乐休闲:电影院",
+          "latitude": 40.070564,
+          "longitude": 116.417414
+        },
+        {
+          "index": 4,
+          "poi_id": "11933954038315496469",
+          "title": "新华书店(天通苑文化艺术中心店)",
+          "address": "北京市昌平区天通中苑配套公建G区G-1a",
+          "category": "购物:图书音像",
+          "latitude": 40.070385,
+          "longitude": 116.416981
+        }
+      ]
+    },
+    {
+      "group_id": "fe03bc259e07",
+      "event_uids": [
+        "douban:37712277"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "北京 一方剧场",
+        "北京 芳群园四区26号楼一层F1C-007、三层F3-006室"
+      ],
+      "poi_id": "2496724132255553865",
+      "poi_title": "金路之声(北京)教育科技集团有限公司",
+      "poi_address": "北京市丰台区南三环芳群园四区26号楼三层3038室",
+      "latitude": 39.860954,
+      "longitude": 116.431367,
+      "confidence": "high",
+      "doubtful": true,
+      "reason": "POI 所在区与豆瓣活动地点区划不一致；POI 与活动地点不像同一场所（名称与地址均未对上）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "16821358796827406842",
+          "title": "方庄文化艺术中心-一方剧场",
+          "address": "北京市丰台区芳群园4区26号楼3层",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 39.86097,
+          "longitude": 116.431501
+        },
+        {
+          "index": 1,
+          "poi_id": "1403399188894007575",
+          "title": "芳群园4区-26号楼",
+          "address": "北京市丰台区丰台方庄方庄芳群园4区",
+          "category": "房产小区:房产小区附属",
+          "latitude": 39.86097,
+          "longitude": 116.4315
+        },
+        {
+          "index": 2,
+          "poi_id": "6395689799781165674",
+          "title": "一隅芳华",
+          "address": "北京市丰台区芳群园四区26号楼一层F1-008",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 39.8611,
+          "longitude": 116.431177
+        },
+        {
+          "index": 3,
+          "poi_id": "6105092181039626089",
+          "title": "方庄文化艺术中心",
+          "address": "北京市丰台区方庄芳群园4区26号楼(东铁营桥北300米)",
+          "category": "文化场馆:文化宫",
+          "latitude": 39.861065,
+          "longitude": 116.43146
+        },
+        {
+          "index": 4,
+          "poi_id": "2496724132255553865",
+          "title": "金路之声(北京)教育科技集团有限公司",
+          "address": "北京市丰台区南三环芳群园四区26号楼三层3038室",
+          "category": "公司企业:公司企业",
+          "latitude": 39.860954,
+          "longitude": 116.431367
+        }
+      ]
+    },
+    {
+      "group_id": "d2a8def3cbe6",
+      "event_uids": [
+        "douban:37345209"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "北京 枫蓝熙剧场"
+      ],
+      "poi_id": "6365167917553938537",
+      "poi_title": "枫蓝熙剧场",
+      "poi_address": "北京市海淀区西直门北大街32号枫蓝购物中心4层",
+      "latitude": 39.952899,
+      "longitude": 116.35598,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 256）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6365167917553938537",
+          "title": "枫蓝熙剧场",
+          "address": "北京市海淀区西直门北大街32号枫蓝购物中心4层",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 39.952899,
+          "longitude": 116.35598
+        }
+      ]
+    },
+    {
+      "group_id": "9f49f778f1f3",
+      "event_uids": [
+        "douban:37878989"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "北京 房山幽洞",
+        "北京 河北镇辛庄村",
+        "北京 房山区 房山幽洞",
+        "北京 房山区 洞穴探秘-房山幽洞 河北镇辛庄村"
+      ],
+      "poi_id": "17543679733587415286",
+      "poi_title": "辛庄村",
+      "poi_address": "北京市房山区",
+      "latitude": 39.598033,
+      "longitude": 116.185761,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 96）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "11761386132023702730",
+          "title": "河北辛庄村村委会",
+          "address": "北京市大兴区刘堡路魏善庄镇河北辛庄村民委员会",
+          "category": "机构团体:政府机关",
+          "latitude": 39.652462,
+          "longitude": 116.463838
+        },
+        {
+          "index": 1,
+          "poi_id": "6509506213163691342",
+          "title": "河北辛庄",
+          "address": "北京市大兴区魏善庄镇河北辛庄村民委员会",
+          "category": "地名地址:行政地名",
+          "latitude": 39.653986,
+          "longitude": 116.463191
+        },
+        {
+          "index": 2,
+          "poi_id": "8643838706558141060",
+          "title": "河北辛庄村综治维稳中心室",
+          "address": "北京市大兴区刘堡路魏善庄镇河北辛庄村民委员会河北辛庄村委会附近",
+          "category": "机构团体:政府机关",
+          "latitude": 39.653474,
+          "longitude": 116.464328
+        },
+        {
+          "index": 3,
+          "poi_id": "927766563210010117",
+          "title": "北京市大兴区魏善庄镇河北辛庄村政务服务站",
+          "address": "北京市大兴区刘堡路",
+          "category": "机构团体:政府机关",
+          "latitude": 39.652379,
+          "longitude": 116.463739
+        },
+        {
+          "index": 4,
+          "poi_id": "8029237679353748071",
+          "title": "公共厕所(辛庄村花园旁)",
+          "address": "北京市房山区河北镇辛庄村花园旁",
+          "category": "基础设施:公共设施:公共厕所",
+          "latitude": 39.813147,
+          "longitude": 115.929676
+        }
+      ]
+    },
+    {
+      "group_id": "48b5059661f9",
+      "event_uids": [
+        "douban:36324353"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "北京 夜莺剧场"
+      ],
+      "poi_id": "13264966526675912145",
+      "poi_title": "夜莺剧场",
+      "poi_address": "北京市西城区大栅栏街道三井胡同26号",
+      "latitude": 39.897621,
+      "longitude": 116.390848,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 268）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "13264966526675912145",
+          "title": "夜莺剧场",
+          "address": "北京市西城区大栅栏街道三井胡同26号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 39.897621,
+          "longitude": 116.390848
+        }
+      ]
+    }
+  ]
+}

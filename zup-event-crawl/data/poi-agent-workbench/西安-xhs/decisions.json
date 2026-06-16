@@ -1,0 +1,346 @@
+{
+  "city": "西安",
+  "source": "xiaohongshu",
+  "updated_at": "2026-06-15T15:28:18.572Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "9046fd073454",
+      "location": "星旋广场LG1层街区",
+      "sample_title": "星旋广场首届精酿啤酒节",
+      "event_uids": [
+        "xiaohongshu:6a2fcfd000000000110150d2:01_0"
+      ],
+      "action": "match",
+      "poi_id": "2881365718189959631",
+      "poi_title": "星旋广场",
+      "poi_address": "陕西省西安市长安区航新路与星云路交叉口西南侧",
+      "latitude": 34.145037,
+      "longitude": 108.97623,
+      "search_keywords_tried": [
+        "星旋广场"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "星旋广场LG1层街区与星旋广场商场主体一致，仅楼层未精确到腾讯店级POI"
+    },
+    {
+      "group_id": "e41aea11e3ba",
+      "location": "西安大悦城",
+      "sample_title": "热界潮玩节",
+      "event_uids": [
+        "xiaohongshu:6a2fcfd000000000110150d2:01_1"
+      ],
+      "action": "match",
+      "poi_id": "14614923837351895883",
+      "poi_title": "西安大悦城",
+      "poi_address": "陕西省西安市雁塔区慈恩西路66号",
+      "latitude": 34.216589,
+      "longitude": 108.962024,
+      "search_keywords_tried": [
+        "西安大悦城"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "店名与雁塔区慈恩西路66号地址完全一致"
+    },
+    {
+      "group_id": "8e7de2b12d07",
+      "location": "华清广场一楼中厅",
+      "sample_title": "华清广场联名夏日集市",
+      "event_uids": [
+        "xiaohongshu:6a2fcfd000000000110150d2:02_0"
+      ],
+      "action": "match",
+      "poi_id": "2395659012132647928",
+      "poi_title": "华清广场",
+      "poi_address": "陕西省西安市碑林区雁塔路99号李家村十字东南角",
+      "latitude": 34.240378,
+      "longitude": 108.964453,
+      "search_keywords_tried": [
+        "华清广场"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "华清广场一楼中厅与华清广场商场主体一致"
+    },
+    {
+      "group_id": "1c75bccac10c",
+      "location": "西安龙湖长乐天街",
+      "sample_title": "EPIC汉堡节西安站",
+      "event_uids": [
+        "xiaohongshu:6a2fcfd000000000110150d2:02_1"
+      ],
+      "action": "match",
+      "poi_id": "9493716232425894750",
+      "poi_title": "龙湖西安长乐天街",
+      "poi_address": "陕西省西安市新城区胡家庙街道万寿北路58号",
+      "latitude": 34.282161,
+      "longitude": 109.013482,
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：西安龙湖长乐天街 → 龙湖西安长乐天街"
+    },
+    {
+      "group_id": "fd13afaa066c",
+      "location": "西安美术学院雁塔校区·小树林",
+      "sample_title": "「未来艺术家」市集",
+      "event_uids": [
+        "xiaohongshu:6a2fcfd000000000110150d2:03_0"
+      ],
+      "action": "match",
+      "poi_id": "14550999253547854151",
+      "poi_title": "西安美术学院",
+      "poi_address": "陕西省西安市雁塔区含光南路100号",
+      "latitude": 34.218394,
+      "longitude": 108.928788,
+      "search_keywords_tried": [
+        "西安美术学院"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "雁塔校区含光南路100号与POI一致，小树林为校内地点"
+    },
+    {
+      "group_id": "c1e370da1b95",
+      "location": "西安荟聚雁南中庭",
+      "sample_title": "玩具总动员5主题快闪",
+      "event_uids": [
+        "xiaohongshu:6a2fcfd000000000110150d2:03_1"
+      ],
+      "action": "match",
+      "poi_id": "3216963301426431370",
+      "poi_title": "西安荟聚",
+      "poi_address": "陕西省西安市雁塔区子午大道6号",
+      "latitude": 34.172522,
+      "longitude": 108.901427,
+      "search_keywords_tried": [
+        "西安荟聚"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "西安荟聚雁南中庭与荟聚购物中心主体一致"
+    },
+    {
+      "group_id": "0fc09bd43c17",
+      "location": "西安环贸中心",
+      "sample_title": "墨西哥风情阶梯艺术展",
+      "event_uids": [
+        "xiaohongshu:6a2fcfd000000000110150d2:04_0"
+      ],
+      "action": "match",
+      "poi_id": "2002727209310506818",
+      "poi_title": "西安环贸中心",
+      "poi_address": "陕西省西安市雁塔区丈八四路与锦业路十字东南角",
+      "latitude": 34.193105,
+      "longitude": 108.870214,
+      "search_keywords_tried": [
+        "西安环贸中心"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "店名与丈八四路锦业路十字东南角地址一致"
+    },
+    {
+      "group_id": "42cf62d8f19b",
+      "location": "西安SKP 10F",
+      "sample_title": "自然而然——然女孩x艺术家联展",
+      "event_uids": [
+        "xiaohongshu:6a2fcfd000000000110150d2:04_1"
+      ],
+      "action": "match",
+      "poi_id": "6684414354044584355",
+      "poi_title": "西安SKP",
+      "poi_address": "陕西省西安市碑林区长安北路261号",
+      "latitude": 34.247578,
+      "longitude": 108.948756,
+      "search_keywords_tried": [
+        "西安SKP"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "西安SKP 10F画廊与SKP商场主体一致，仅楼层未精确到腾讯店级POI"
+    },
+    {
+      "group_id": "2d2e649239fa",
+      "location": "亮宝楼二楼东厅",
+      "sample_title": "咫尺清凉——中国当代扇面绘画展",
+      "event_uids": [
+        "xiaohongshu:6a2fcfd000000000110150d2:05_0"
+      ],
+      "action": "match",
+      "poi_id": "736446541149923381",
+      "poi_title": "亮宝楼艺术博物馆",
+      "poi_address": "陕西省西安市雁塔区芙蓉东路与芙蓉西路交叉口正东方向84米左右",
+      "latitude": 34.217622,
+      "longitude": 108.970957,
+      "search_keywords_tried": [
+        "亮宝楼"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "亮宝楼二楼东厅与亮宝楼艺术博物馆主体一致"
+    },
+    {
+      "group_id": "2fd416b5cb2a",
+      "location": "寨子空间",
+      "sample_title": "雅集安装指南——简丽庭个展",
+      "event_uids": [
+        "xiaohongshu:6a2fcfd000000000110150d2:05_1"
+      ],
+      "action": "match",
+      "poi_id": "7345226364359116887",
+      "poi_title": "寨子空间Zz ART SPACE",
+      "poi_address": "陕西省西安市雁塔区含光南路罗家寨村77号",
+      "latitude": 34.215972,
+      "longitude": 108.932111,
+      "search_keywords_tried": [
+        "寨子空间"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "寨子空间与含光南路罗家寨村77号POI名称地址一致"
+    },
+    {
+      "group_id": "73c5826ca317",
+      "location": "西安美术馆",
+      "sample_title": "馈赠·微光聚影——2026富士胶片用户影像周",
+      "event_uids": [
+        "xiaohongshu:6a2fcfd000000000110150d2:06_0"
+      ],
+      "action": "match",
+      "poi_id": "8911840766857547894",
+      "poi_title": "西安美术馆",
+      "poi_address": "陕西省西安市雁塔区曲江新区大唐不夜城1区",
+      "latitude": 34.211083,
+      "longitude": 108.963369,
+      "search_keywords_tried": [
+        "西安美术馆"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "店名与曲江大唐不夜城西安美术馆POI一致"
+    },
+    {
+      "group_id": "35816b955fbd",
+      "location": "临潼校区（校内）；老城根G park、西安DT51、西仓市集文创公园（校外）",
+      "sample_title": "西安美术学院本科生毕业展",
+      "event_uids": [
+        "xiaohongshu:6a2fcfd000000000110150d2:06_1"
+      ],
+      "action": "reject",
+      "search_keywords_tried": [
+        "西安美术学院",
+        "老城根G park"
+      ],
+      "confidence": "low",
+      "doubtful": false,
+      "reason": "临潼校区与校外老城根G park、DT51、西仓市集等多点位同步展出，无法绑定唯一POI",
+      "decided_at": "2026-06-15T15:28:18.572Z"
+    },
+    {
+      "group_id": "0b1720dc46e6",
+      "location": "西安广电大剧院",
+      "sample_title": "女性反乌托邦音乐剧《奇美拉》西安站",
+      "event_uids": [
+        "xiaohongshu:6a2fcfd000000000110150d2:07_0"
+      ],
+      "action": "match",
+      "poi_id": "11368481084201109136",
+      "poi_title": "西安广电大剧院",
+      "poi_address": "陕西省西安市雁塔区芙蓉西路91号(大唐芙蓉园西门向南600米)",
+      "latitude": 34.205803,
+      "longitude": 108.976021,
+      "search_keywords_tried": [
+        "西安广电大剧院"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "店名与芙蓉西路91号西安广电大剧院一致"
+    },
+    {
+      "group_id": "1099abb7c476",
+      "location": "陕西大剧院-歌剧厅",
+      "sample_title": "外百老汇音乐剧《谋杀歌谣》中文版",
+      "event_uids": [
+        "xiaohongshu:6a2fcfd000000000110150d2:07_1"
+      ],
+      "action": "match",
+      "poi_id": "1182652445584959081",
+      "poi_title": "陕西大剧院歌剧厅",
+      "poi_address": "陕西省西安市雁塔区雁南一路26号",
+      "latitude": 34.209908,
+      "longitude": 108.963508,
+      "search_keywords_tried": [
+        "陕西大剧院"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "陕西大剧院歌剧厅与雁南一路26号POI一致"
+    },
+    {
+      "group_id": "95b885903c57",
+      "location": "陕西广电大剧院",
+      "sample_title": "「仙侠·时光」穿越古今音乐会·西安站",
+      "event_uids": [
+        "xiaohongshu:6a2fcfd000000000110150d2:07_2",
+        "xiaohongshu:6a2fcfd000000000110150d2:08_0"
+      ],
+      "action": "match",
+      "poi_id": "7854985022287789095",
+      "poi_title": "广电大剧院",
+      "poi_address": "陕西省西安市雁塔区长延堡街道长安南路336号,陕西广播电视台北80米",
+      "latitude": 34.211311,
+      "longitude": 108.945868,
+      "search_keywords_tried": [
+        "陕西广电大剧院"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "陕西广电大剧院与长安南路336号广电大剧院POI一致（非芙蓉西路西安广电大剧院）"
+    },
+    {
+      "group_id": "0de45a9fc5e6",
+      "location": "西安浐灞保利大剧院",
+      "sample_title": "浪漫主义画卷交响音乐会",
+      "event_uids": [
+        "xiaohongshu:6a2fcfd000000000110150d2:08_1"
+      ],
+      "action": "match",
+      "poi_id": "5717632390196954225",
+      "poi_title": "西安浐灞保利大剧院",
+      "poi_address": "陕西省西安市灞桥区浐灞生态区金茂一路2168号",
+      "latitude": 34.315838,
+      "longitude": 109.043004,
+      "search_keywords_tried": [
+        "西安浐灞保利大剧院"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "店名与浐灞金茂一路2168号地址一致"
+    },
+    {
+      "group_id": "228c191dd398",
+      "location": "西安音乐厅-交响大厅",
+      "sample_title": "张国勇、秦立巍与XSO演绎圣桑作品音乐会",
+      "event_uids": [
+        "xiaohongshu:6a2fcfd000000000110150d2:08_2"
+      ],
+      "action": "match",
+      "poi_id": "10834092220146621823",
+      "poi_title": "西安音乐厅",
+      "poi_address": "陕西省西安市雁塔区长延堡街道雁南一路与雁塔南路十字向南200米路东",
+      "latitude": 34.210006,
+      "longitude": 108.964957,
+      "search_keywords_tried": [
+        "西安音乐厅"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "西安音乐厅交响大厅与雁南一路西安音乐厅主体一致"
+    }
+  ]
+}

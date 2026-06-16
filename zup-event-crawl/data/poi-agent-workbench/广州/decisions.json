@@ -1,0 +1,654 @@
+{
+  "city": "广州",
+  "source": "douban",
+  "updated_at": "2026-06-16T06:05:15.582Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "37e30eef709a",
+      "event_uids": [
+        "douban:36700067"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "广州 NO.W屋面艺术中心"
+      ],
+      "poi_id": "7613795058158678957",
+      "poi_title": "NO.W屋面艺术中心(珠江钢琴创梦园店)",
+      "poi_address": "广东省广州市荔湾区渔尾西路8号2栋8楼(必须坐3号电梯)",
+      "latitude": 23.058119,
+      "longitude": 113.223198,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 247）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "7613795058158678957",
+          "title": "NO.W屋面艺术中心(珠江钢琴创梦园店)",
+          "address": "广东省广州市荔湾区渔尾西路8号2栋8楼(必须坐3号电梯)",
+          "category": "文化场馆:美术馆",
+          "latitude": 23.058119,
+          "longitude": 113.223198
+        }
+      ]
+    },
+    {
+      "group_id": "ba9b5a7cff03",
+      "event_uids": [
+        "douban:37642251"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "11405468392197237654",
+      "poi_title": "中山纪念堂-演出厅",
+      "poi_address": "",
+      "latitude": 23.133746,
+      "longitude": 113.264908,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：广州 越秀区 中山纪念堂·演出厅 东风中路299号 → 中山纪念堂-演出厅（来源 event:douban:37724385）",
+      "candidates": []
+    },
+    {
+      "group_id": "bdd7023f02f5",
+      "event_uids": [
+        "douban:37715587",
+        "douban:37687945"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "广州 蓓蕾剧院"
+      ],
+      "poi_id": "5587914683168271961",
+      "poi_title": "广州蓓蕾剧院",
+      "poi_address": "广东省广州市越秀区人民北路875号",
+      "latitude": 23.134378,
+      "longitude": 113.253102,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 75）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "5587914683168271961",
+          "title": "广州蓓蕾剧院",
+          "address": "广东省广州市越秀区人民北路875号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 23.134378,
+          "longitude": 113.253102
+        },
+        {
+          "index": 1,
+          "poi_id": "12346866850390516951",
+          "title": "花东戏院",
+          "address": "广东省广州市花都区推广街2号附近",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 23.439716,
+          "longitude": 113.329867
+        },
+        {
+          "index": 2,
+          "poi_id": "4316359991749699190",
+          "title": "广州市少年宫游泳馆",
+          "address": "广东省广州市越秀区东风西路167号少年宫体育中心1楼",
+          "category": "运动健身:游泳馆",
+          "latitude": 23.133371,
+          "longitude": 113.251615
+        },
+        {
+          "index": 3,
+          "poi_id": "14943955248314733566",
+          "title": "共青团广州市委员会",
+          "address": "广东省广州市越秀区人民北路875号5层",
+          "category": "机构团体:政府机关",
+          "latitude": 23.1348,
+          "longitude": 113.25362
+        },
+        {
+          "index": 4,
+          "poi_id": "2795939757235200842",
+          "title": "法兰克福花园",
+          "address": "广东省广州市越秀区人民北路903号流花湖公园内",
+          "category": "旅游景点:公园",
+          "latitude": 23.135392,
+          "longitude": 113.253686
+        }
+      ]
+    },
+    {
+      "group_id": "5158f3bc6d68",
+      "event_uids": [
+        "douban:37837534"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "广州 花都大剧院"
+      ],
+      "poi_id": "13375969868210963563",
+      "poi_title": "花都大剧院",
+      "poi_address": "广东省广州市花都区公益北路4号",
+      "latitude": 23.412189,
+      "longitude": 113.220051,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 256）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "13375969868210963563",
+          "title": "花都大剧院",
+          "address": "广东省广州市花都区公益北路4号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 23.412189,
+          "longitude": 113.220051
+        },
+        {
+          "index": 1,
+          "poi_id": "7305439317192753686",
+          "title": "融创广州大剧院",
+          "address": "广东省广州市花都区广州融创文化旅游城",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 23.430648,
+          "longitude": 113.234337
+        },
+        {
+          "index": 2,
+          "poi_id": "1484398288747183898",
+          "title": "PIU剧院秀酒吧",
+          "address": "广东省广州市花都区花都大道",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 23.423596,
+          "longitude": 113.233973
+        },
+        {
+          "index": 3,
+          "poi_id": "1283129806471969934",
+          "title": "花都大剧院项目经理部",
+          "address": "广东省广州市花都区花城街道公益路保利国际金融中心南侧约50米",
+          "category": "娱乐休闲:其它娱乐休闲",
+          "latitude": 23.412715,
+          "longitude": 113.220265
+        },
+        {
+          "index": 4,
+          "poi_id": "4720528616933131306",
+          "title": "融创广州大剧院停车场",
+          "address": "广东省广州市花都区凤凰北路65号融创广州大剧院",
+          "category": "汽车:停车场",
+          "latitude": 23.431081,
+          "longitude": 113.23506
+        }
+      ]
+    },
+    {
+      "group_id": "663afbd07afe",
+      "event_uids": [
+        "douban:37882384",
+        "douban:37882208",
+        "douban:37882394",
+        "douban:37882439",
+        "douban:37882125",
+        "douban:37882164",
+        "douban:37882188"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "广州 珠江新城A1"
+      ],
+      "poi_id": "5840767460891337193",
+      "poi_title": "珠江新城",
+      "poi_address": "广东省广州市天河区",
+      "latitude": 23.11999,
+      "longitude": 113.32689,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 112）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6196835048042088375",
+          "title": "珠江新城-A1口",
+          "address": "",
+          "category": "基础设施:交通设施:地铁站出入口",
+          "latitude": 23.120087,
+          "longitude": 113.320949
+        },
+        {
+          "index": 1,
+          "poi_id": "7239084413469431887",
+          "title": "广州市公安局天河区分局冼村派出所",
+          "address": "广东省广州市天河区华夏路33号(珠江新城地铁站A1口步行250米)",
+          "category": "机构团体:公检法机构",
+          "latitude": 23.122556,
+          "longitude": 113.320841
+        },
+        {
+          "index": 2,
+          "poi_id": "1775440097096483680",
+          "title": "中国邮政储蓄银行(天河珠江新城网点)",
+          "address": "广东省广州市天河区冼村街道珠江新城猎德大道46-48号尚东美御雅苑A1栋首02号房、8层全层、9层全层",
+          "category": "银行金融:银行",
+          "latitude": 23.12388,
+          "longitude": 113.333909
+        },
+        {
+          "index": 3,
+          "poi_id": "8714584991287349956",
+          "title": "广州市天河中学(珠江新城高中部校区)",
+          "address": "广东省广州市天河区冼村街道珠江新城华成路7号",
+          "category": "教育学校:中学",
+          "latitude": 23.121663,
+          "longitude": 113.319805
+        },
+        {
+          "index": 4,
+          "poi_id": "10333118486779752109",
+          "title": "广州市天河中学(珠江新城校区)游泳池",
+          "address": "广东省广州市天河区珠江新城华成路7号天河中学内(珠江新城地铁站,星汇园后面对面)",
+          "category": "运动健身:游泳馆",
+          "latitude": 23.12177,
+          "longitude": 113.320157
+        }
+      ]
+    },
+    {
+      "group_id": "237cbbe0e0ec",
+      "event_uids": [
+        "douban:37888588",
+        "douban:37888590"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "7841443980837936417",
+      "poi_title": "广州K11购物艺术中心",
+      "poi_address": "",
+      "latitude": 23.118213,
+      "longitude": 113.326371,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：广州 天河区 广东 广州 我图--天河区体育东路86号204（邮编：510620） → 广州K11购物艺术中心（来源 event:douban:37884560）",
+      "candidates": []
+    },
+    {
+      "group_id": "ff9d76a560a8",
+      "event_uids": [
+        "douban:37889149"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "广州 兴盛路"
+      ],
+      "poi_id": "16433023900688728568",
+      "poi_title": "兴盛路",
+      "poi_address": "广东省广州市天河区",
+      "latitude": 23.120906,
+      "longitude": 113.329007,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 114）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "16433023900688728568",
+          "title": "兴盛路",
+          "address": "广东省广州市天河区",
+          "category": "地名地址:道路名",
+          "latitude": 23.120906,
+          "longitude": 113.329007
+        },
+        {
+          "index": 1,
+          "poi_id": "1694419534669837709",
+          "title": "兴盛路兴盛街",
+          "address": "广东省广州市南沙区",
+          "category": "地名地址:道路名",
+          "latitude": 22.80897,
+          "longitude": 113.396539
+        },
+        {
+          "index": 2,
+          "poi_id": "10316114246789718829",
+          "title": "兴盛街",
+          "address": "广东省广州市从化区",
+          "category": "地名地址:道路名",
+          "latitude": 23.58184,
+          "longitude": 113.712944
+        },
+        {
+          "index": 3,
+          "poi_id": "2592873509548099899",
+          "title": "兴盛街",
+          "address": "广东省广州市南沙区",
+          "category": "地名地址:道路名",
+          "latitude": 22.831234,
+          "longitude": 113.333755
+        },
+        {
+          "index": 4,
+          "poi_id": "1195274044180860634",
+          "title": "兴盛街",
+          "address": "广东省广州市番禺区",
+          "category": "地名地址:道路名",
+          "latitude": 22.938561,
+          "longitude": 113.456023
+        }
+      ]
+    },
+    {
+      "group_id": "38cefad99297",
+      "event_uids": [
+        "douban:37765394"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "广州正佳大剧院"
+      ],
+      "poi_id": "17541014955335555437",
+      "poi_title": "广州正佳大剧院(正佳广场店)",
+      "poi_address": "广东省广州市天河区天河路228号正佳广场F7",
+      "latitude": 23.131772,
+      "longitude": 113.327381,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 340）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "17541014955335555437",
+          "title": "广州正佳大剧院(正佳广场店)",
+          "address": "广东省广州市天河区天河路228号正佳广场F7",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 23.131772,
+          "longitude": 113.327381
+        }
+      ]
+    },
+    {
+      "group_id": "ffd7a48efd83",
+      "event_uids": [
+        "douban:37886903"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "广州 敬梓里文创社区"
+      ],
+      "reason": "豆瓣敬梓里文创社区与POI一致",
+      "doubtful": false,
+      "confidence": "high",
+      "candidates": [],
+      "poi_id": "5004226067703989862",
+      "poi_title": "敬梓里文创社区",
+      "poi_address": "广东省广州市荔湾区光复北路与高第坊交叉口",
+      "latitude": 23.13,
+      "longitude": 113.25
+    },
+    {
+      "group_id": "cc0d9c8913c7",
+      "event_uids": [
+        "douban:37888172"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "广州 同福西地铁站B口300米"
+      ],
+      "poi_id": "14269264362528765076",
+      "poi_title": "同福西-B口",
+      "poi_address": "",
+      "latitude": 23.101353,
+      "longitude": 113.252706,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 75）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "14269264362528765076",
+          "title": "同福西-B口",
+          "address": "",
+          "category": "基础设施:交通设施:地铁站出入口",
+          "latitude": 23.101353,
+          "longitude": 113.252706
+        },
+        {
+          "index": 1,
+          "poi_id": "16791179176633429206",
+          "title": "艺丰大厦",
+          "address": "广东省广州市海珠区工业大道北1号(同福西地铁站B口步行320米)",
+          "category": "房产小区:商务楼宇",
+          "latitude": 23.098866,
+          "longitude": 113.25341
+        },
+        {
+          "index": 2,
+          "poi_id": "9692864543026460291",
+          "title": "保利丰花园莲花阁",
+          "address": "广东省广州市海珠区南华西街道同福西地铁站B口步行290米",
+          "category": "房产小区:住宅区:住宅小区",
+          "latitude": 23.100139,
+          "longitude": 113.253588
+        },
+        {
+          "index": 3,
+          "poi_id": "1136712697688000925",
+          "title": "广州市海珠区南华西派出所",
+          "address": "广东省广州市海珠区洪德路183号(同福西地铁站B口步行60米)",
+          "category": "机构团体:公检法机构",
+          "latitude": 23.100881,
+          "longitude": 113.253096
+        },
+        {
+          "index": 4,
+          "poi_id": "13674592401267776998",
+          "title": "鹤洲直街大院-25号",
+          "address": "广东省广州市海珠区鹤洲直街(同福西地铁站B口步行490米)",
+          "category": "房产小区:房产小区附属",
+          "latitude": 23.099212,
+          "longitude": 113.255086
+        }
+      ]
+    },
+    {
+      "group_id": "bae81ccfc5ae",
+      "event_uids": [
+        "douban:36705087"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "广州 好好有戏小剧场"
+      ],
+      "poi_id": "861453729944346669",
+      "poi_title": "辛吉路的画材店·好好有戏小剧场",
+      "poi_address": "广东省广州市越秀区珠光街道北京路天河城A区四楼B419",
+      "latitude": 23.119247,
+      "longitude": 113.270047,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 322）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "861453729944346669",
+          "title": "辛吉路的画材店·好好有戏小剧场",
+          "address": "广东省广州市越秀区珠光街道北京路天河城A区四楼B419",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 23.119247,
+          "longitude": 113.270047
+        }
+      ]
+    },
+    {
+      "group_id": "8ed8d697185a",
+      "event_uids": [
+        "douban:36950689"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "广州长隆飞鸟乐园"
+      ],
+      "poi_id": "11161805208105502402",
+      "poi_title": "广州长隆飞鸟乐园-夜行馆",
+      "poi_address": "广东省广州市番禺区大石街道大边村兴边街183号飞鸟乐园内",
+      "latitude": 23.025014,
+      "longitude": 113.278993,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 218）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "4798426339507388670",
+          "title": "长隆飞鸟乐园",
+          "address": "广东省广州市番禺区大石镇海堤路",
+          "category": "旅游景点:动物园",
+          "latitude": 23.026053,
+          "longitude": 113.277483
+        },
+        {
+          "index": 1,
+          "poi_id": "1212527878880251973",
+          "title": "广州长隆飞鸟乐园-尼罗河谷",
+          "address": "广东省广州市番禺区大石街道大边村长隆飞鸟乐园(西南角)",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 23.024626,
+          "longitude": 113.275098
+        },
+        {
+          "index": 2,
+          "poi_id": "6174720492848833080",
+          "title": "广州长隆飞鸟乐园广州长隆停车场",
+          "address": "广东省广州市番禺区大石街道长隆飞鸟乐园",
+          "category": "汽车:停车场",
+          "latitude": 23.026222,
+          "longitude": 113.277443
+        },
+        {
+          "index": 3,
+          "poi_id": "11161805208105502402",
+          "title": "广州长隆飞鸟乐园-夜行馆",
+          "address": "广东省广州市番禺区大石街道大边村兴边街183号飞鸟乐园内",
+          "category": "旅游景点:动物园",
+          "latitude": 23.025014,
+          "longitude": 113.278993
+        },
+        {
+          "index": 4,
+          "poi_id": "597265768078289531",
+          "title": "广州长隆飞鸟乐园-耳廓狐",
+          "address": "广东省广州市番禺区大石街道石北大道长隆飞鸟乐园内",
+          "category": "旅游景点:其它旅游景点",
+          "latitude": 23.027478,
+          "longitude": 113.277567
+        }
+      ]
+    },
+    {
+      "group_id": "a4eb73032056",
+      "event_uids": [
+        "douban:37883816",
+        "douban:37878543"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "7900472676081068007",
+      "poi_title": "南天广场龙庭阁-南门",
+      "poi_address": "",
+      "latitude": 23.120099,
+      "longitude": 113.316404,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：广州 天河区 南天广场龙庭阁2702 → 南天广场龙庭阁-南门（来源 event:douban:37879896）",
+      "candidates": []
+    },
+    {
+      "group_id": "de6f72ebd4d5",
+      "event_uids": [
+        "douban:37886593"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "广州 捷登都会"
+      ],
+      "reason": "豆瓣捷登都会1418-1428房，POI主体为捷登都会大厦",
+      "doubtful": false,
+      "confidence": "high",
+      "candidates": [],
+      "poi_id": "2943241976517281617",
+      "poi_title": "捷登都会",
+      "poi_address": "广东省广州市越秀区中山五路70号",
+      "latitude": 23.13,
+      "longitude": 113.27
+    },
+    {
+      "group_id": "f84706f96a0f",
+      "event_uids": [
+        "douban:37888001"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "广州白云国际会议中心附近"
+      ],
+      "poi_id": "10128480872620000663",
+      "poi_title": "广州白云国际会议中心",
+      "poi_address": "广东省广州市白云区白云大道南1039-1045号",
+      "latitude": 23.188677,
+      "longitude": 113.279451,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 217）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "2235674964201862039",
+          "title": "广州白云国际会议中心国际会堂",
+          "address": "广东省广州市白云区齐富路433号",
+          "category": "文化场馆:会展中心",
+          "latitude": 23.192441,
+          "longitude": 113.281424
+        },
+        {
+          "index": 1,
+          "poi_id": "10128480872620000663",
+          "title": "广州白云国际会议中心",
+          "address": "广东省广州市白云区白云大道南1039-1045号",
+          "category": "文化场馆:会展中心",
+          "latitude": 23.188677,
+          "longitude": 113.279451
+        },
+        {
+          "index": 2,
+          "poi_id": "14085612412916312489",
+          "title": "广州白云国际会议中心越秀万豪酒店-会议中心",
+          "address": "广东省广州市白云区云城街云城中二路6号",
+          "category": "酒店宾馆:酒店宾馆附属",
+          "latitude": 23.188755,
+          "longitude": 113.274913
+        },
+        {
+          "index": 3,
+          "poi_id": "9119112022054188969",
+          "title": "广州白云国际会议中心-东方厅",
+          "address": "广东省广州市白云区白云大道南1039-1045号白云国际会议中心3号楼2层",
+          "category": "文化场馆:会展中心",
+          "latitude": 23.188306,
+          "longitude": 113.279493
+        },
+        {
+          "index": 4,
+          "poi_id": "10408425557635494505",
+          "title": "维也纳国际酒店(广州白云国际会议中心店)",
+          "address": "广东省广州市白云区机场路1618-2号(近黄石南公交站,白云区人民法院)",
+          "category": "酒店宾馆:经济型酒店",
+          "latitude": 23.198892,
+          "longitude": 113.26471
+        }
+      ]
+    }
+  ]
+}

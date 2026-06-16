@@ -1,0 +1,34 @@
+{
+  "city": "厦门",
+  "source": "douban",
+  "exported_at": "2026-06-16T05:47:57.400Z",
+  "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
+  "refresh": true,
+  "export_mode": "unmatched",
+  "pending_only": true,
+  "doubtful_only": false,
+  "total_events": 3,
+  "group_count": 2,
+  "cache_hit_groups": 0,
+  "groups": [
+    {
+      "group_id": "443813f048be",
+      "location": "厦门 思明区 闽南大戏院 会展北片区横三路(国际会议中心酒店北侧)",
+      "sample_title": "2026年6月19-20日 音乐剧《粉丝来信》中文版",
+      "event_uids": [
+        "douban:37692255",
+        "douban:37822605"
+      ],
+      "event_count": 2
+    },
+    {
+      "group_id": "7dd8eaaa1cc8",
+      "location": "厦门 思明区 宏泰音乐厅 筼筜街道湖滨东路309号宏泰中心(体育中心西门对面)(体育中心)",
+      "sample_title": "厦门爱歌室内合唱团『无尽之声』十周年专场音乐会",
+      "event_uids": [
+        "douban:37835898"
+      ],
+      "event_count": 1
+    }
+  ]
+}

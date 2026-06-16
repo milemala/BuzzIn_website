@@ -1,0 +1,420 @@
+{
+  "city": "成都",
+  "source": "douban",
+  "updated_at": "2026-06-16T05:47:10.396Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "c4960cac14bf",
+      "event_uids": [
+        "douban:37801077"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "成都金融城演艺中心"
+      ],
+      "poi_id": "1455010881819602098",
+      "poi_title": "成都金融城演艺中心",
+      "poi_address": "四川省成都市武侯区高新区天府大道北段1777号成都大魔方招商花园城F1",
+      "latitude": 30.574695,
+      "longitude": 104.069761,
+      "confidence": "high",
+      "doubtful": true,
+      "reason": "POI 所在区与豆瓣活动地点区划不一致",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "1455010881819602098",
+          "title": "成都金融城演艺中心",
+          "address": "四川省成都市武侯区高新区天府大道北段1777号成都大魔方招商花园城F1",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 30.574695,
+          "longitude": 104.069761
+        },
+        {
+          "index": 1,
+          "poi_id": "15470722932116719969",
+          "title": "成都金融城演艺中心-东南门",
+          "address": "四川省成都市武侯区高新区天府大道北段1777号",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 30.573936,
+          "longitude": 104.070338
+        },
+        {
+          "index": 2,
+          "poi_id": "4236774060911414134",
+          "title": "央可演艺中心",
+          "address": "四川省成都市武侯区浆洗街街道二环路西一段80号金科双楠天都",
+          "category": "旅游景点:其它旅游景点",
+          "latitude": 30.64079,
+          "longitude": 104.027775
+        },
+        {
+          "index": 3,
+          "poi_id": "6746793935237170000",
+          "title": "罗布林演艺中心",
+          "address": "四川省成都市武侯区武侯祠大街19号附108号3楼",
+          "category": "机构团体:文艺团体",
+          "latitude": 30.646048,
+          "longitude": 104.055844
+        },
+        {
+          "index": 4,
+          "poi_id": "14630387715104426111",
+          "title": "康雪域演艺中心",
+          "address": "四川省成都市武侯区二环路西一段84号1栋2层附201号",
+          "category": "娱乐休闲:其它娱乐休闲",
+          "latitude": 30.640773,
+          "longitude": 104.027363
+        }
+      ]
+    },
+    {
+      "group_id": "8d49ab5cdabb",
+      "event_uids": [
+        "douban:37786801",
+        "douban:37805596",
+        "douban:37716939"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "17793737809543540578",
+      "poi_title": "成都城市音乐厅",
+      "poi_address": "",
+      "latitude": 30.636008,
+      "longitude": 104.079413,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：成都 武侯区 成都城市音乐厅 一环路南一段45号 → 成都城市音乐厅（来源 event:douban:37752662）",
+      "candidates": []
+    },
+    {
+      "group_id": "b77df371c7f2",
+      "event_uids": [
+        "douban:37888070"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "2305365833422175537",
+      "poi_title": "趣本屋",
+      "poi_address": "",
+      "latitude": 30.620228,
+      "longitude": 104.096836,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：成都 锦江区 万达·锦华城(二环路东五段) → 趣本屋（来源 event:douban:37883638）",
+      "candidates": []
+    },
+    {
+      "group_id": "8fbd5297c5bd",
+      "event_uids": [
+        "douban:37647989",
+        "douban:37649056"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "成都 凤求凰剧场"
+      ],
+      "poi_id": "3772492142220594512",
+      "poi_title": "凤求凰剧场(星辉家园)",
+      "poi_address": "四川省成都市金牛区星辉家园西北",
+      "latitude": 30.673644,
+      "longitude": 104.083005,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 211）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "3772492142220594512",
+          "title": "凤求凰剧场(星辉家园)",
+          "address": "四川省成都市金牛区星辉家园西北",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 30.673644,
+          "longitude": 104.083005
+        }
+      ]
+    },
+    {
+      "group_id": "2830fbe36580",
+      "event_uids": [
+        "douban:37888919"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "成都 文轩BOOKS"
+      ],
+      "poi_id": "9493599076743306405",
+      "poi_title": "文轩BOOKS(九方店)",
+      "poi_address": "四川省成都市武侯区府城大道中段88号九方购物中心L3-L300-302",
+      "latitude": 30.589322,
+      "longitude": 104.065352,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 153）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "9493599076743306405",
+          "title": "文轩BOOKS(九方店)",
+          "address": "四川省成都市武侯区府城大道中段88号九方购物中心L3-L300-302",
+          "category": "购物:图书音像",
+          "latitude": 30.589322,
+          "longitude": 104.065352
+        },
+        {
+          "index": 1,
+          "poi_id": "1996030733442142970",
+          "title": "文轩BOOKS(成华店)",
+          "address": "四川省成都市成华区成华大道杉板桥路669号招商花园城F1-F3",
+          "category": "购物:图书音像",
+          "latitude": 30.671503,
+          "longitude": 104.134151
+        },
+        {
+          "index": 2,
+          "poi_id": "5665958176551295690",
+          "title": "网易有道(招商花园城文轩books店)",
+          "address": "四川省成都市成华区招商花园城文轩books书店三楼",
+          "category": "购物:其它购物",
+          "latitude": 30.671709,
+          "longitude": 104.133528
+        },
+        {
+          "index": 3,
+          "poi_id": "2538468265590331196",
+          "title": "文轩呀咪西餐厅(九方店)",
+          "address": "四川省成都市武侯区府城大道中段88号九方购物中心2楼文轩BOOKS书店内",
+          "category": "美食:西餐:其它西餐",
+          "latitude": 30.589816,
+          "longitude": 104.065313
+        },
+        {
+          "index": 4,
+          "poi_id": "11326342466704719547",
+          "title": "文轩Books-4号门",
+          "address": "四川省成都市武侯区天晖南街与天韵路交叉口西南方向125米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 30.589965,
+          "longitude": 104.065325
+        }
+      ]
+    },
+    {
+      "group_id": "92ca99828515",
+      "event_uids": [
+        "douban:37649351"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "成都国际剧院"
+      ],
+      "poi_id": "5835006909887934464",
+      "poi_title": "成都国际剧院(龙湖滨江天街店)",
+      "poi_address": "四川省成都市成华区跳蹬河街道杉板桥路266龙湖滨江天街L3层05室",
+      "latitude": 30.665438,
+      "longitude": 104.124317,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 265）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "5835006909887934464",
+          "title": "成都国际剧院(龙湖滨江天街店)",
+          "address": "四川省成都市成华区跳蹬河街道杉板桥路266龙湖滨江天街L3层05室",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 30.665438,
+          "longitude": 104.124317
+        },
+        {
+          "index": 1,
+          "poi_id": "6233321651717200165",
+          "title": "金沙国际音乐厅",
+          "address": "四川省成都市锦江区牛市口街道水碾河路48号",
+          "category": "娱乐休闲:剧场音乐厅:音乐厅",
+          "latitude": 30.649184,
+          "longitude": 104.096371
+        },
+        {
+          "index": 2,
+          "poi_id": "15840432109006335587",
+          "title": "局中人剧场(多弗国际中心)",
+          "address": "四川省成都市成华区跳蹬河街道成华大道杉板桥路1号4层50号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 30.663253,
+          "longitude": 104.114913
+        },
+        {
+          "index": 3,
+          "poi_id": "15199412901008897104",
+          "title": "民族国际歌剧院(华府双楠店)",
+          "address": "四川省成都市武侯区双丰东路97号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 30.640907,
+          "longitude": 104.017567
+        },
+        {
+          "index": 4,
+          "poi_id": "5767332532724708859",
+          "title": "成都华熙国际影城",
+          "address": "四川省成都市锦江区三圣街道雨树巷30号L2-209华熙528艺术村B区",
+          "category": "娱乐休闲:电影院",
+          "latitude": 30.591731,
+          "longitude": 104.145951
+        }
+      ]
+    },
+    {
+      "group_id": "4cee8833f27d",
+      "event_uids": [
+        "douban:36708520",
+        "douban:37435717",
+        "douban:37349113",
+        "douban:37695665",
+        "douban:37702652"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "11355264698095238494",
+      "poi_title": "博新全宇宙沉浸式探索中心",
+      "poi_address": "",
+      "latitude": 30.559391,
+      "longitude": 104.050996,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：成都 武侯区 博新全宇宙沉浸式探索中心 盛华北路116号10栋附101-301 → 博新全宇宙沉浸式探索中心（来源 event:douban:37809960）",
+      "candidates": []
+    },
+    {
+      "group_id": "c90da2376115",
+      "event_uids": [
+        "douban:37648090"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "4052645401845140964",
+      "poi_title": "过载空间",
+      "poi_address": "",
+      "latitude": 30.603232,
+      "longitude": 104.069195,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：成都 武侯区 过载脱口秀-过载空间 天仁路388号凯德天府4层17-19号 → 过载空间（来源 event:douban:37648427）",
+      "candidates": []
+    },
+    {
+      "group_id": "4118e2717374",
+      "event_uids": [
+        "douban:37828948"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "成都 太古里店",
+        "成都 东大街下东大街段169号晶融汇购物中心二期2栋3层1号商铺"
+      ],
+      "poi_id": "4711066789074141774",
+      "poi_title": "魔脱喜剧脱口秀(太古里晶融汇店)",
+      "poi_address": "四川省成都市锦江区锦官驿街道东大街下东大街段169号晶融汇购物中心二期2栋3层1号商铺",
+      "latitude": 30.650636,
+      "longitude": 104.082946,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 143）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "3022219539568354466",
+          "title": "Gucci(成都太古里店)",
+          "address": "四川省成都市锦江区中纱帽街8号成都太古里1101号",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 30.653283,
+          "longitude": 104.08215
+        },
+        {
+          "index": 1,
+          "poi_id": "9650309308969660725",
+          "title": "Apple 成都太古里(成都太古里-东广场店)",
+          "address": "四川省成都市锦江区中纱帽街8号远洋太古里L2",
+          "category": "购物:数码家电",
+          "latitude": 30.652194,
+          "longitude": 104.083812
+        },
+        {
+          "index": 2,
+          "poi_id": "2303856593018613623",
+          "title": "BIRKENSTOCK 勃肯(成都太古里店)",
+          "address": "四川省成都市锦江区中纱帽街8号远洋太古里L2-2212",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 30.652349,
+          "longitude": 104.08295
+        },
+        {
+          "index": 3,
+          "poi_id": "6109046147942411580",
+          "title": "OMEGA 成都太古里旗舰店",
+          "address": "四川省成都市锦江区中纱帽街8号远洋太古里L1",
+          "category": "购物:钟表店",
+          "latitude": 30.652723,
+          "longitude": 104.082045
+        },
+        {
+          "index": 4,
+          "poi_id": "14018567603346957954",
+          "title": "BURBERRY(成都太古里店)",
+          "address": "四川省成都市锦江区中纱帽街8号太古里一层1217&1218及二层2232B&2233号商铺",
+          "category": "购物:服饰鞋包",
+          "latitude": 30.652612,
+          "longitude": 104.083403
+        }
+      ]
+    },
+    {
+      "group_id": "69c3ce1ff828",
+      "event_uids": [
+        "douban:37200065",
+        "douban:37647520"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "成都艺云中心"
+      ],
+      "poi_id": "3237409471997998861",
+      "poi_title": "成都艺云中心",
+      "poi_address": "四川省成都市武侯区天府三街妇女儿童中心2楼",
+      "latitude": 30.54631,
+      "longitude": 104.050188,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 268）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "3237409471997998861",
+          "title": "成都艺云中心",
+          "address": "四川省成都市武侯区天府三街妇女儿童中心2楼",
+          "category": "文化场馆:其它文化场馆",
+          "latitude": 30.54631,
+          "longitude": 104.050188
+        },
+        {
+          "index": 1,
+          "poi_id": "3738812904277684090",
+          "title": "青鸟云艺艺术中心",
+          "address": "四川省成都市郫都区郫筒街道创智北环路30号海骏达城3楼瑞思英语旁",
+          "category": "教育学校:培训",
+          "latitude": 30.792441,
+          "longitude": 103.896018
+        }
+      ]
+    }
+  ]
+}

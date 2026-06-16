@@ -1,0 +1,40 @@
+{
+  "city": "成都",
+  "source": "douban",
+  "exported_at": "2026-06-12T04:31:02.938Z",
+  "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
+  "refresh": true,
+  "export_mode": "doubtful",
+  "pending_only": false,
+  "doubtful_only": true,
+  "total_events": 2,
+  "group_count": 2,
+  "groups": [
+    {
+      "group_id": "e7db4cd88391",
+      "location": "成都 武侯区 省体育馆技术学院",
+      "sample_title": "成都玉林英文陪练+书画陪伴",
+      "event_uids": [
+        "douban:37435639"
+      ],
+      "event_count": 1,
+      "current_poi_id": "15192773467742986960",
+      "current_poi_title": "四川省运动技术学院",
+      "current_poi_address": "四川省成都市武侯区一环路南三段16号",
+      "poi_agent_reason": "地点写省体育馆技术学院，搜技术学院玉林得四川省运动技术学院；复核：仍缺楼层/铺位精确对应，保持存疑"
+    },
+    {
+      "group_id": "976648050c71",
+      "location": "成都 锦江区 成都太古里",
+      "sample_title": "嗨翻·有趣青年社交聚会新物种 愿我们在这个城市都不再孤独！",
+      "event_uids": [
+        "douban:37607611"
+      ],
+      "event_count": 1,
+      "current_poi_id": "9470914529585906887",
+      "current_poi_title": "成都太古里",
+      "current_poi_address": "四川省成都市锦江区中纱帽街8号",
+      "poi_agent_reason": "活动写太古里商圈社交，POI为商场主体；复核：仍缺楼层/铺位精确对应，保持存疑"
+    }
+  ]
+}

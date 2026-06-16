@@ -42,6 +42,7 @@ const {
   getApprovedMerchants,
   getExportImportMerchants,
   getMerchantByUid,
+  getMerchantForEnv,
   getMerchantImportProgress,
   getMerchantPoiMatchMode,
   getMerchantReviewState,
@@ -52,6 +53,8 @@ const {
   updatePoiCandidatesOnly,
 } = require("../lib/merchant-db");
 const { MERCHANT_TYPES } = require("../lib/merchant-import-ready");
+const { listBuzzEnvsPublic, normalizeBuzzEnv } = require("../lib/buzz-env");
+const { BuzzAdminClient } = require("../lib/buzz-now-import");
 const {
   batchCreateMerchantGroups,
   batchPublishMerchantBubbles,
@@ -75,6 +78,26 @@ const decisionsPath = path.join(root, "data", "review-decisions.json");
 const eventsPath = path.join(root, "data", "crawled-events.json");
 const imageCacheDir = path.join(root, "data", "image-cache");
 const db = openDatabase(dbPath);
+
+function parseBuzzEnvFromRequest(req, body = {}) {
+  const parsed = url.parse(req.url, true);
+  return normalizeBuzzEnv(body.buzz_env || parsed.query.buzz_env);
+}
+
+function merchantForClient(db, merchantUid, req, body = {}) {
+  return getMerchantForEnv(db, merchantUid, parseBuzzEnvFromRequest(req, body));
+}
+
+async function fetchMerchantTypesForEnv(buzzEnv) {
+  const client = new BuzzAdminClient({ buzz_env: buzzEnv });
+  try {
+    const types = await client.listMerchantTypes();
+    if (types.length) return types;
+  } catch {
+    // 拉取失败时回退本地常用列表
+  }
+  return MERCHANT_TYPES;
+}
 
 const mimeTypes = {
   ".html": "text/html; charset=utf-8",
@@ -269,8 +292,14 @@ async function handleApi(req, res, pathname) {
     return;
   }
 
+  if (req.method === "GET" && pathname === "/api/buzz-envs") {
+    sendJson(res, 200, { envs: listBuzzEnvsPublic() });
+    return;
+  }
+
   if (req.method === "GET" && pathname === "/api/events") {
-    sendJson(res, 200, getEventsPayload(db));
+    const buzzEnv = parseBuzzEnvFromRequest(req);
+    sendJson(res, 200, getEventsPayload(db, { buzz_env: buzzEnv }));
     return;
   }
 
@@ -440,7 +469,9 @@ async function handleApi(req, res, pathname) {
     try {
       const eventUid = decodeURIComponent(eventImportMatch[1]);
       const body = JSON.parse((await readBody(req)) || "{}");
+      const buzzEnv = parseBuzzEnvFromRequest(req, body);
       const result = await importEventToBuzz(db, eventUid, {
+        buzz_env: buzzEnv,
         publish_user_id: body.publish_user_id,
       });
       sendJson(res, result.ok ? 200 : 400, result);
@@ -454,7 +485,9 @@ async function handleApi(req, res, pathname) {
   if (req.method === "DELETE" && eventBuzzDeleteMatch) {
     try {
       const eventUid = decodeURIComponent(eventBuzzDeleteMatch[1]);
-      const result = await deleteEventFromBuzz(db, eventUid);
+      const parsed = url.parse(req.url, true);
+      const buzzEnv = normalizeBuzzEnv(parsed.query.buzz_env);
+      const result = await deleteEventFromBuzz(db, eventUid, { buzz_env: buzzEnv });
       sendJson(res, result.ok ? 200 : 400, result);
     } catch (error) {
       sendJson(res, 502, { ok: false, error: error.message });
@@ -465,7 +498,9 @@ async function handleApi(req, res, pathname) {
   if (req.method === "POST" && pathname === "/api/events/import-batch") {
     try {
       const body = JSON.parse((await readBody(req)) || "{}");
+      const buzzEnv = parseBuzzEnvFromRequest(req, body);
       const report = await batchImportApprovedEvents(db, {
+        buzz_env: buzzEnv,
         event_uids: Array.isArray(body.event_uids) ? body.event_uids : undefined,
         limit: body.limit || 200,
         delayMs: body.delay_ms ?? 1200,
@@ -486,7 +521,9 @@ async function handleApi(req, res, pathname) {
   if (req.method === "POST" && pathname === "/api/events/sync-merchants") {
     try {
       const body = JSON.parse((await readBody(req)) || "{}");
+      const buzzEnv = parseBuzzEnvFromRequest(req, body);
       const report = await syncMerchantsForPoiEvents(db, {
+        buzz_env: buzzEnv,
         only_missing: body.only_missing !== false,
       });
       sendJson(res, 200, { ok: true, ...report });
@@ -501,10 +538,8 @@ async function handleApi(req, res, pathname) {
     try {
       const eventUid = decodeURIComponent(eventPrepMatch[1]);
       const body = JSON.parse((await readBody(req)) || "{}");
-      const updated = updateEventImportPrep(db, eventUid, {
-        publish_user_id: body.publish_user_id,
-        now_type: body.now_type,
-      });
+      const buzzEnv = parseBuzzEnvFromRequest(req, body);
+      const updated = updateEventImportPrep(db, eventUid, body, { buzz_env: buzzEnv });
       sendJson(res, 200, { ok: true, event: updated });
     } catch (error) {
       sendJson(res, 400, { ok: false, error: error.message });
@@ -541,7 +576,8 @@ async function handleApi(req, res, pathname) {
   }
 
   if (req.method === "GET" && pathname === "/api/merchants") {
-    sendJson(res, 200, getMerchantsPayload(db));
+    const buzzEnv = parseBuzzEnvFromRequest(req);
+    sendJson(res, 200, getMerchantsPayload(db, { buzz_env: buzzEnv }));
     return;
   }
 
@@ -559,7 +595,13 @@ async function handleApi(req, res, pathname) {
   }
 
   if (req.method === "GET" && pathname === "/api/merchant-types") {
-    sendJson(res, 200, { types: MERCHANT_TYPES });
+    try {
+      const buzzEnv = parseBuzzEnvFromRequest(req);
+      const types = await fetchMerchantTypesForEnv(buzzEnv);
+      sendJson(res, 200, { buzz_env: buzzEnv, types });
+    } catch (error) {
+      sendJson(res, 502, { ok: false, error: error.message });
+    }
     return;
   }
 
@@ -675,12 +717,12 @@ async function handleApi(req, res, pathname) {
           ? reorderPoiByBestMatch(String(body.keyword).trim(), search.items, [merchant.name])
           : search.items;
         if (body.candidates_only || body.refresh) {
-          const updated = updatePoiCandidatesOnly(db, merchantUid, candidates, {
+          updatePoiCandidatesOnly(db, merchantUid, candidates, {
             merchant_type: body.merchant_type,
           });
           sendJson(res, 200, {
             ok: true,
-            merchant: updated,
+            merchant: merchantForClient(db, merchantUid, req, body),
             candidates,
             keyword: search.keyword || body.keyword || "",
           });
@@ -693,11 +735,15 @@ async function handleApi(req, res, pathname) {
         }
       }
 
-      const updated = applyPoiSelection(db, merchantUid, poi, {
+      applyPoiSelection(db, merchantUid, poi, {
         candidates,
         merchant_type: body.merchant_type,
       });
-      sendJson(res, 200, { ok: true, merchant: updated, candidates });
+      sendJson(res, 200, {
+        ok: true,
+        merchant: merchantForClient(db, merchantUid, req, body),
+        candidates,
+      });
     } catch (error) {
       sendJson(res, 502, { ok: false, error: error.message });
     }
@@ -708,7 +754,9 @@ async function handleApi(req, res, pathname) {
   if (req.method === "POST" && merchantImportMatch) {
     try {
       const merchantUid = decodeURIComponent(merchantImportMatch[1]);
-      const result = await importMerchantToBuzz(db, merchantUid);
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const buzzEnv = parseBuzzEnvFromRequest(req, body);
+      const result = await importMerchantToBuzz(db, merchantUid, { buzz_env: buzzEnv });
       sendJson(res, result.ok ? 200 : 400, result);
     } catch (error) {
       sendJson(res, 502, { ok: false, error: error.message });
@@ -720,7 +768,9 @@ async function handleApi(req, res, pathname) {
   if (req.method === "DELETE" && merchantBuzzDeleteMatch) {
     try {
       const merchantUid = decodeURIComponent(merchantBuzzDeleteMatch[1]);
-      const result = await deleteMerchantFromBuzz(db, merchantUid);
+      const parsed = url.parse(req.url, true);
+      const buzzEnv = normalizeBuzzEnv(parsed.query.buzz_env);
+      const result = await deleteMerchantFromBuzz(db, merchantUid, { buzz_env: buzzEnv });
       sendJson(res, result.ok ? 200 : 400, result);
     } catch (error) {
       sendJson(res, 502, { ok: false, error: error.message });
@@ -731,7 +781,10 @@ async function handleApi(req, res, pathname) {
   if (req.method === "GET" && pathname === "/api/merchants/import-progress") {
     try {
       const query = url.parse(req.url, true).query || {};
-      const progress = getMerchantImportProgress(db, { city: query.city || "" });
+      const progress = getMerchantImportProgress(db, {
+        city: query.city || "",
+        buzz_env: query.buzz_env,
+      });
       sendJson(res, 200, { ok: true, ...progress });
     } catch (error) {
       sendJson(res, 400, { ok: false, error: error.message });
@@ -742,7 +795,9 @@ async function handleApi(req, res, pathname) {
   if (req.method === "POST" && pathname === "/api/merchants/import-batch") {
     try {
       const body = JSON.parse((await readBody(req)) || "{}");
+      const buzzEnv = parseBuzzEnvFromRequest(req, body);
       const report = await batchImportApprovedMerchants(db, {
+        buzz_env: buzzEnv,
         city: body.city || "",
         merchant_uids: Array.isArray(body.merchant_uids) ? body.merchant_uids : undefined,
         limit: body.limit || 200,
@@ -766,11 +821,14 @@ async function handleApi(req, res, pathname) {
     try {
       const merchantUid = decodeURIComponent(merchantPrepMatch[1]);
       const body = JSON.parse((await readBody(req)) || "{}");
-      const updated = updateMerchantImportPrep(db, merchantUid, {
+      updateMerchantImportPrep(db, merchantUid, {
         merchant_type: body.merchant_type,
         name: body.name,
       });
-      sendJson(res, 200, { ok: true, merchant: updated });
+      sendJson(res, 200, {
+        ok: true,
+        merchant: merchantForClient(db, merchantUid, req, body),
+      });
     } catch (error) {
       sendJson(res, 400, { ok: false, error: error.message });
     }
@@ -780,7 +838,10 @@ async function handleApi(req, res, pathname) {
   if (req.method === "GET" && pathname === "/api/merchant-bubbles/state") {
     try {
       const query = url.parse(req.url, true).query || {};
-      const state = getMerchantBubbleState(db, { city: query.city || "" });
+      const state = getMerchantBubbleState(db, {
+        city: query.city || "",
+        buzz_env: query.buzz_env,
+      });
       sendJson(res, 200, { ok: true, ...state });
     } catch (error) {
       sendJson(res, 400, { ok: false, error: error.message });
@@ -791,7 +852,10 @@ async function handleApi(req, res, pathname) {
   if (req.method === "POST" && pathname === "/api/merchant-bubbles/rebuild-buckets") {
     try {
       const body = JSON.parse((await readBody(req)) || "{}");
-      const state = rebuildRotationBuckets(db, { city: body.city || "" });
+      const state = rebuildRotationBuckets(db, {
+        city: body.city || "",
+        buzz_env: parseBuzzEnvFromRequest(req, body),
+      });
       sendJson(res, 200, { ok: true, ...state });
     } catch (error) {
       sendJson(res, 400, { ok: false, error: error.message });
@@ -803,6 +867,7 @@ async function handleApi(req, res, pathname) {
     try {
       const body = JSON.parse((await readBody(req)) || "{}");
       const report = await batchCreateMerchantGroups(db, {
+        buzz_env: parseBuzzEnvFromRequest(req, body),
         city: body.city || "",
         publish_user_id: body.publish_user_id,
         only_missing: body.only_missing === true,
@@ -820,6 +885,7 @@ async function handleApi(req, res, pathname) {
     try {
       const body = JSON.parse((await readBody(req)) || "{}");
       const report = await batchPublishMerchantBubbles(db, {
+        buzz_env: parseBuzzEnvFromRequest(req, body),
         city: body.city || "",
         publish_user_id: body.publish_user_id,
         title_mode: body.title_mode || "unified",

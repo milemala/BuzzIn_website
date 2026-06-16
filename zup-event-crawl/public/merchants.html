@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Zup 抓取商户审核台</title>
   <link rel="stylesheet" href="/workspace-nav.css">
+  <link rel="stylesheet" href="/buzz-env-ui.css">
   <style>
     :root{
       --bg:#f3f6f4;
@@ -20,7 +21,7 @@
     *{box-sizing:border-box}
     body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
     button,input{font:inherit}
-    .top{position:sticky;top:0;z-index:20;background:rgba(243,246,244,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .top{background:rgba(243,246,244,.92);border-bottom:1px solid var(--line)}
     .top-inner{max-width:1180px;margin:0 auto;padding:18px 20px;display:flex;gap:16px;align-items:center;justify-content:space-between}
     h1{margin:0;font-size:22px;font-weight:800}
     .meta{margin-top:5px;color:var(--muted);font-size:13px}
@@ -106,6 +107,8 @@
     .import-block h3{margin:0 0 8px;font-size:13px;font-weight:800;color:#314036}
     .import-row{display:grid;gap:8px;font-size:13px}
     .import-meta{color:var(--muted);font-size:12px;line-height:1.45;word-break:break-all}
+    .entity-id{font-size:11px;color:var(--muted);line-height:1.45;word-break:break-all;margin-top:4px}
+    .entity-id strong{color:#314036;font-weight:700;font-family:ui-monospace,Menlo,Consolas,monospace}
     .addr-label{font-size:11px;font-weight:700;color:var(--muted);margin-right:4px}
     .import-field{display:grid;gap:4px}
     .import-field label{font-size:11px;font-weight:700;color:var(--muted)}
@@ -186,6 +189,7 @@
           <a href="/merchants.html" class="active">商户审核</a>
           <a href="/merchant-bubbles.html">商户气泡</a>
         </nav>
+        <div class="buzz-env-bar" id="buzzEnvBar"></div>
         <h1>Zup 抓取商户审核台</h1>
         <div class="meta" id="sourceMeta">读取本地商户数据中...</div>
         <div class="save-state warn" id="saveState">正在连接本地数据库</div>
@@ -251,6 +255,7 @@
     </div>
   </div>
 
+  <script src="/buzz-env-ui.js"></script>
   <script>
     const PAGE_SIZE = 20;
 
@@ -319,16 +324,41 @@
       { key: "other", label: "其他" },
     ];
 
-    function suggestMerchantType(category, name) {
+    function suggestMerchantTypeName(category, name, importBatchId = "") {
       const text = `${category || ""} ${name || ""}`;
-      if (/公园|植物园|风景名胜|湿地|森林公园/i.test(text) && !/酒吧|精酿|餐吧|咖啡|书店/i.test(category || "")) return 13;
-      if (/啤酒|精酿|啤酒屋|啤酒吧/i.test(text)) return 1;
-      if (/酒馆|酒吧|清吧|Taproom|COMMUNE|跳海|京A|餐吧/i.test(text)) return 2;
-      if (/咖啡/i.test(text)) return 16;
-      if (/茶(?!馆)|茶饮/i.test(text)) return 3;
-      if (/餐|饭|食/i.test(text)) return 4;
-      if (/书店|图书/i.test(text)) return 13;
-      return 2;
+      const batch = String(importBatchId || "");
+      if (batch.includes("公园") || /^(公园|植物园|风景名胜|湿地公园|森林公园)/.test(String(category || ""))) {
+        return "公园";
+      }
+      if (/书店|图书|阅读|茑屋|PAGEONE|单向空间|BOOKSTORE/i.test(text)) {
+        return "书店";
+      }
+      if (/公园|植物园|风景名胜|湿地|森林公园/i.test(text) && !/酒吧|精酿|餐吧|咖啡|书店/i.test(category || "")) {
+        return "公园";
+      }
+      if (/啤酒|精酿|啤酒屋|啤酒吧/i.test(text)) return "啤酒吧";
+      if (/酒馆|酒吧|清吧|Taproom|COMMUNE|跳海|京A|餐吧/i.test(text)) return "酒馆";
+      if (/咖啡/i.test(text)) return "咖啡厅";
+      if (/茶(?!馆)|茶饮/i.test(text)) return "茶馆";
+      if (/餐|饭|食/i.test(text)) return "餐厅";
+      return "酒馆";
+    }
+
+    function merchantTypeIdByName(typeName) {
+      const name = String(typeName || "").trim();
+      if (!name) return 0;
+      const types = state.merchantTypes.length ? state.merchantTypes : [];
+      const hit = types.find((t) => t.name === name);
+      if (hit) return Number(hit.id);
+      if (name === "书店" || name === "公园") {
+        const other = types.find((t) => t.name === "其他");
+        if (other) return Number(other.id);
+      }
+      return 0;
+    }
+
+    function suggestMerchantType(category, name, importBatchId = "") {
+      return merchantTypeIdByName(suggestMerchantTypeName(category, name, importBatchId)) || 2;
     }
 
     /** 审核台业务类型（酒吧/书店/公园等），与 Buzz 入库类型 merchant_type 不同 */
@@ -359,7 +389,13 @@
     }
 
     function effectiveMerchantType(item) {
-      return item.merchant_type || suggestMerchantType(item.category, item.name);
+      const suggestedName = suggestMerchantTypeName(item.category, item.name, item.import_batch_id);
+      if (suggestedName === "书店" || suggestedName === "公园") {
+        const byName = merchantTypeIdByName(suggestedName);
+        if (byName) return byName;
+      }
+      if (item.merchant_type) return item.merchant_type;
+      return suggestMerchantType(item.category, item.name, item.import_batch_id);
     }
 
     function hasNoPoi(item) {
@@ -412,15 +448,27 @@
       return isPendingImport(item);
     }
 
+    function importEnvLabel() {
+      return BuzzEnvUi.envLabel();
+    }
+
+    function updateBatchImportButtonLabel() {
+      if (els.batchImportBtn) {
+        els.batchImportBtn.textContent = `批量推送 Zup（${importEnvLabel()}）`;
+      }
+    }
+
     function importButtonLabel(item) {
-      if (item.import_status === "imported" && item.buzz_merchant_id) return "已推送";
-      if (item.import_status === "failed") return "重试推送 Zup";
-      return "推送 Zup";
+      const env = importEnvLabel();
+      if (item.import_status === "imported" && item.buzz_merchant_id) return `已推送（${env}）`;
+      if (item.import_status === "failed") return `重试推送（${env}）`;
+      return `推送 Zup（${env}）`;
     }
 
     function renderImportStatus(item) {
+      const env = importEnvLabel();
       if (item.import_status === "imported" && item.buzz_merchant_id) {
-        return `<div class="import-status imported">已推送 · merchant_id <strong>${escapeHtml(item.buzz_merchant_id)}</strong></div>`;
+        return `<div class="import-status imported">已推送 · ${escapeHtml(env)} · merchant_id <strong>${escapeHtml(item.buzz_merchant_id)}</strong></div>`;
       }
       if (item.import_status === "failed") {
         return `<div class="import-status failed">推送失败：${escapeHtml(item.import_error || "未知错误")}</div>`;
@@ -430,6 +478,7 @@
 
     async function importSingleMerchant(uid) {
       if (state.importBusy) return;
+      if (!(await BuzzEnvUi.confirmProdAction("将把商户推送到正式环境"))) return;
       const merchant = state.merchants.find((item) => item.merchant_uid === uid);
       const name = merchant?.name || "商户";
       state.importBusy = true;
@@ -454,7 +503,7 @@
         const response = await fetch(`/api/merchants/${encodeURIComponent(uid)}/import`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: "{}",
+          body: JSON.stringify(BuzzEnvUi.importBody({})),
           signal: state.importAbortController.signal,
         });
         const data = await response.json();
@@ -537,7 +586,7 @@
       if (!window.confirm(message)) return;
       setSaveState("正在删除后台商户...", "warn");
       try {
-        const response = await fetch(`/api/merchants/${encodeURIComponent(uid)}/buzz-merchant`, {
+        const response = await fetch(BuzzEnvUi.withBuzzEnv(`/api/merchants/${encodeURIComponent(uid)}/buzz-merchant`), {
           method: "DELETE",
         });
         const data = await response.json();
@@ -659,7 +708,9 @@
     }
 
     async function fetchImportProgress(city) {
-      const query = city ? `?city=${encodeURIComponent(city)}` : "";
+      const parts = [BuzzEnvUi.envQuery()];
+      if (city) parts.push(`city=${encodeURIComponent(city)}`);
+      const query = `?${parts.join("&")}`;
       const response = await fetch(`/api/merchants/import-progress${query}`);
       const data = await response.json();
       if (!response.ok || !data.ok) throw new Error(data.error || "读取推送进度失败");
@@ -697,7 +748,8 @@
         return;
       }
       const batchTotal = eligible.length;
-      if (!window.confirm(`将当前筛选下的 ${batchTotal} 家可推送商户写入 Buzz 后台？\n（${label}）`)) return;
+      if (!window.confirm(`将当前筛选下的 ${batchTotal} 家可推送商户写入 Buzz【${importEnvLabel()}】后台？\n（${label}）`)) return;
+      if (!(await BuzzEnvUi.confirmProdAction(`将批量推送 ${batchTotal} 家商户到正式环境`))) return;
 
       const city = state.filters.city === "all" ? "" : state.filters.city;
       state.importBusy = true;
@@ -747,7 +799,7 @@
         const response = await fetch("/api/merchants/import-batch", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ city, merchant_uids }),
+          body: JSON.stringify(BuzzEnvUi.importBody({ city, merchant_uids })),
           signal: state.importAbortController.signal,
         });
         const data = await response.json();
@@ -847,13 +899,13 @@
     }
 
     async function loadMerchantTypes() {
-      const response = await fetch("/api/merchant-types", { cache: "no-store" });
+      const response = await fetch(BuzzEnvUi.withBuzzEnv("/api/merchant-types"), { cache: "no-store" });
       const payload = await response.json();
       state.merchantTypes = payload.types || [];
     }
 
     async function loadMerchants() {
-      const response = await fetch("/api/merchants", { cache: "no-store" });
+      const response = await fetch(BuzzEnvUi.withBuzzEnv("/api/merchants"), { cache: "no-store" });
       const payload = await response.json();
       state.merchants = payload.merchants || [];
       state.poiMatchMode = payload.poi_match_mode || "normal";
@@ -909,7 +961,7 @@
       const response = await fetch(`/api/merchants/${encodeURIComponent(uid)}/import-prep`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(patch),
+        body: JSON.stringify(BuzzEnvUi.importBody(patch)),
       });
       const payload = await response.json();
       if (!response.ok || !payload.ok) {
@@ -947,7 +999,7 @@
       const response = await fetch(`/api/merchants/${encodeURIComponent(uid)}/poi`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
+        body: JSON.stringify(BuzzEnvUi.importBody(body)),
       });
       const payload = await response.json();
       if (!response.ok || !payload.ok) {
@@ -1365,6 +1417,7 @@
                 <label>商户名（推送字段 name_new，可改）</label>
                 <input type="text" data-field="merchant_name" value="${escapeHtml(item.name)}" maxlength="255" spellcheck="false">
               </div>
+              <div class="entity-id">商户 ID：<strong>${escapeHtml(item.merchant_uid)}</strong>${imported ? ` · 后台 merchant_id <strong>${escapeHtml(item.buzz_merchant_id)}</strong>` : ""}</div>
               <div class="chips">${chips}</div>
               <div class="info">
                 <div><span class="addr-label">点评地址</span>${escapeHtml(addressLine)}</div>
@@ -1658,6 +1711,13 @@
 
     async function boot() {
       try {
+        await BuzzEnvUi.initBuzzEnvUi("#buzzEnvBar");
+        updateBatchImportButtonLabel();
+        window.onBuzzEnvChanged = async () => {
+          updateBatchImportButtonLabel();
+          await loadMerchantTypes();
+          await loadMerchants();
+        };
         await loadMerchantTypes();
         await loadReviewState();
         await loadMerchants();

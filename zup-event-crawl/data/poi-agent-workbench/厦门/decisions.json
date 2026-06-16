@@ -1,0 +1,141 @@
+{
+  "city": "厦门",
+  "source": "douban",
+  "updated_at": "2026-06-16T05:47:58.882Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "443813f048be",
+      "event_uids": [
+        "douban:37692255",
+        "douban:37822605"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "厦门 闽南大戏院"
+      ],
+      "poi_id": "9553621768810285816",
+      "poi_title": "闽南大戏院·大剧场",
+      "poi_address": "福建省厦门市思明区展鸿路81-89号厦门星河COCO ParkF1",
+      "latitude": 24.474133,
+      "longitude": 118.189124,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 109）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "9553621768810285816",
+          "title": "闽南大戏院·大剧场",
+          "address": "福建省厦门市思明区展鸿路81-89号厦门星河COCO ParkF1",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 24.474133,
+          "longitude": 118.189124
+        },
+        {
+          "index": 1,
+          "poi_id": "11185256014847700920",
+          "title": "闽南大戏院[公交站]",
+          "address": "58路,M39路,641路,M7路,402路",
+          "category": "基础设施:交通设施:公交车站",
+          "latitude": 24.471868,
+          "longitude": 118.187974
+        },
+        {
+          "index": 2,
+          "poi_id": "5247922267701329196",
+          "title": "闽南大戏院艺术教育中心",
+          "address": "福建省厦门市思明区展鸿路87号闽南大戏院4楼",
+          "category": "教育学校:其它教育学校",
+          "latitude": 24.473857,
+          "longitude": 118.189201
+        },
+        {
+          "index": 3,
+          "poi_id": "149988465176576207",
+          "title": "闽南大戏院-观众进出口1",
+          "address": "福建省厦门市思明区闽南大戏院",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 24.474504,
+          "longitude": 118.189865
+        },
+        {
+          "index": 4,
+          "poi_id": "15707402611665084287",
+          "title": "闽南大戏院·多功能厅",
+          "address": "福建省厦门市思明区莲前街道会展北片区展鸿路87号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 24.474153,
+          "longitude": 118.189133
+        }
+      ]
+    },
+    {
+      "group_id": "7dd8eaaa1cc8",
+      "event_uids": [
+        "douban:37835898"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "厦门 宏泰音乐厅"
+      ],
+      "poi_id": "4659799849934232952",
+      "poi_title": "宏泰音乐厅",
+      "poi_address": "福建省厦门市思明区筼筜街道湖滨东路309号宏泰中心(体育中心西门对面)(体育中心)",
+      "latitude": 24.485804,
+      "longitude": 118.104392,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "三轮匹配（score 286）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "4659799849934232952",
+          "title": "宏泰音乐厅",
+          "address": "福建省厦门市思明区筼筜街道湖滨东路309号宏泰中心(体育中心西门对面)(体育中心)",
+          "category": "娱乐休闲:剧场音乐厅:音乐厅",
+          "latitude": 24.485804,
+          "longitude": 118.104392
+        }
+      ]
+    },
+    {
+      "group_id": "e97543ca1307",
+      "event_uids": [
+        "douban:37841204"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "4962443366430196576",
+      "poi_title": "厦门嘉庚剧院",
+      "poi_address": "",
+      "latitude": 24.592574,
+      "longitude": 118.060373,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：厦门 集美区 嘉庚剧院 杏林湾路368号 → 厦门嘉庚剧院（来源 event:douban:37864082）",
+      "candidates": []
+    },
+    {
+      "group_id": "c1865321ee7c",
+      "event_uids": [
+        "douban:37842187"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "15613634814297343817",
+      "poi_title": "RealLive And Books",
+      "poi_address": "",
+      "latitude": 24.469177,
+      "longitude": 118.105614,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：厦门 思明区 RealLive And Books 湖滨中路26号禾祥鑫天地B1层B115室 → RealLive And Books（来源 event:douban:37856911）",
+      "candidates": []
+    }
+  ]
+}

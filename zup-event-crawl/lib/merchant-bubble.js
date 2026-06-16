@@ -12,9 +12,10 @@ const {
   markMerchantBubbleResult,
   updateMerchantGroupId,
 } = require("./merchant-db");
+const { applyBuzzEnvToMerchant } = require("./buzz-import-store");
+const { getBuzzEnvConfig, normalizeBuzzEnv } = require("./buzz-env");
 
-const DEFAULT_PUBLISH_USER_ID = "579362104";
-const ROTATION_META_KEY = "merchant_bubble_rotation";
+const ROTATION_META_PREFIX = "merchant_bubble_rotation";
 const BUCKET_COUNT = 3;
 const BUBBLE_EXPIRE_DAYS = 3;
 
@@ -41,8 +42,25 @@ function setMetaValue(db, key, value) {
   `).run(key, typeof value === "string" ? value : JSON.stringify(value));
 }
 
-function loadRotationState(db) {
-  const raw = getMetaValue(db, ROTATION_META_KEY, "{}");
+function rotationMetaKey(buzzEnv) {
+  return `${ROTATION_META_PREFIX}_${normalizeBuzzEnv(buzzEnv)}`;
+}
+
+function resolveBuzzEnv(options = {}) {
+  return normalizeBuzzEnv(options.buzz_env || options.env);
+}
+
+function defaultPublishUserId(options = {}) {
+  return getBuzzEnvConfig(resolveBuzzEnv(options)).defaultPublishUserId;
+}
+
+function merchantInEnv(db, merchantUid, options = {}) {
+  const buzzEnv = resolveBuzzEnv(options);
+  return applyBuzzEnvToMerchant(db, getMerchantByUid(db, merchantUid), buzzEnv);
+}
+
+function loadRotationState(db, buzzEnv) {
+  const raw = getMetaValue(db, rotationMetaKey(buzzEnv), "{}");
   try {
     const parsed = JSON.parse(raw);
     return parsed && typeof parsed === "object" ? parsed : {};
@@ -51,8 +69,8 @@ function loadRotationState(db) {
   }
 }
 
-function saveRotationState(db, state) {
-  setMetaValue(db, ROTATION_META_KEY, state);
+function saveRotationState(db, state, buzzEnv) {
+  setMetaValue(db, rotationMetaKey(buzzEnv), state);
 }
 
 function shuffleInPlace(list, random = Math.random) {
@@ -111,23 +129,35 @@ function ensureCityRotation(state, city, merchantUids, options = {}) {
   return current;
 }
 
+function importListOptions(options = {}) {
+  const buzzEnv = resolveBuzzEnv(options);
+  return {
+    city: options.city || "",
+    buzz_env: buzzEnv,
+    limit: options.limit || 0,
+    merchant_uids: options.merchant_uids,
+  };
+}
+
 function rebuildRotationBuckets(db, options = {}) {
-  const merchants = listImportedMerchants(db, { city: options.city || "" });
+  const buzzEnv = resolveBuzzEnv(options);
+  const merchants = listImportedMerchants(db, importListOptions(options));
   const byCity = groupMerchantsByCity(merchants);
-  const state = loadRotationState(db);
+  const state = loadRotationState(db, buzzEnv);
 
   for (const [city, list] of byCity.entries()) {
     ensureCityRotation(state, city, list.map((item) => item.merchant_uid), { reshuffle: true });
   }
 
-  saveRotationState(db, state);
+  saveRotationState(db, state, buzzEnv);
   return getMerchantBubbleState(db, options);
 }
 
 function pickMerchantsForCurrentSlot(db, options = {}) {
-  const merchants = listImportedMerchants(db, { city: options.city || "" });
+  const buzzEnv = resolveBuzzEnv(options);
+  const merchants = listImportedMerchants(db, importListOptions(options));
   const byCity = groupMerchantsByCity(merchants);
-  const state = loadRotationState(db);
+  const state = loadRotationState(db, buzzEnv);
   const selected = [];
   const plan = [];
 
@@ -150,18 +180,19 @@ function pickMerchantsForCurrentSlot(db, options = {}) {
     });
   }
 
-  saveRotationState(db, state);
-  return { merchants: selected, plan, state };
+  saveRotationState(db, state, buzzEnv);
+  return { merchants: selected, plan, state, buzz_env: buzzEnv };
 }
 
-function advanceRotationSlots(db, cities) {
-  const state = loadRotationState(db);
+function advanceRotationSlots(db, cities, buzzEnv = "test") {
+  const env = normalizeBuzzEnv(buzzEnv);
+  const state = loadRotationState(db, env);
   const targetCities = cities?.length ? cities : Object.keys(state);
   for (const city of targetCities) {
     if (!state[city]) continue;
     state[city].slot = (Number(state[city].slot || 0) + 1) % BUCKET_COUNT;
   }
-  saveRotationState(db, state);
+  saveRotationState(db, state, env);
   return state;
 }
 
@@ -174,7 +205,7 @@ function buildPerMerchantCopy(merchant) {
 }
 
 function buildBubbleRecord(merchant, options = {}) {
-  const publishUserId = String(options.publish_user_id || DEFAULT_PUBLISH_USER_ID).trim();
+  const publishUserId = String(options.publish_user_id || defaultPublishUserId(options)).trim();
   const titleMode = options.title_mode === "per_merchant" ? "per_merchant" : "unified";
   const copy = titleMode === "per_merchant"
     ? buildPerMerchantCopy(merchant)
@@ -206,9 +237,10 @@ function buildBubbleRecord(merchant, options = {}) {
 }
 
 function getMerchantBubbleState(db, options = {}) {
-  const merchants = listImportedMerchants(db, { city: options.city || "" });
+  const buzzEnv = resolveBuzzEnv(options);
+  const merchants = listImportedMerchants(db, importListOptions(options));
   const byCity = groupMerchantsByCity(merchants);
-  const state = loadRotationState(db);
+  const state = loadRotationState(db, buzzEnv);
   const cities = [];
 
   for (const [city, list] of byCity.entries()) {
@@ -233,19 +265,21 @@ function getMerchantBubbleState(db, options = {}) {
     });
   }
 
-  saveRotationState(db, state);
+  saveRotationState(db, state, buzzEnv);
 
   return {
+    buzz_env: buzzEnv,
     imported_total: merchants.length,
     with_group: merchants.filter((item) => item.buzz_group_id).length,
     with_bubble: merchants.filter((item) => item.bubble_now_id).length,
-    default_publish_user_id: DEFAULT_PUBLISH_USER_ID,
+    default_publish_user_id: defaultPublishUserId(options),
     cities,
   };
 }
 
 async function createMerchantGroup(db, merchantUid, options = {}) {
-  const merchant = getMerchantByUid(db, merchantUid);
+  const buzzEnv = resolveBuzzEnv(options);
+  const merchant = merchantInEnv(db, merchantUid, options);
   if (!merchant) {
     return { ok: false, merchant_uid: merchantUid, error: "商户不存在" };
   }
@@ -258,7 +292,7 @@ async function createMerchantGroup(db, merchantUid, options = {}) {
       merchant,
     };
   }
-  const publishUserId = String(options.publish_user_id || DEFAULT_PUBLISH_USER_ID).trim();
+  const publishUserId = String(options.publish_user_id || defaultPublishUserId(options)).trim();
   const groupName = merchantGroupDisplayName(merchant);
   try {
     if (merchant.buzz_group_id) {
@@ -267,6 +301,7 @@ async function createMerchantGroup(db, merchantUid, options = {}) {
         ok: true,
         renamed: true,
         merchant_uid: merchantUid,
+        buzz_env: buzzEnv,
         name: merchant.name,
         group_id: merchant.buzz_group_id,
         merchant,
@@ -277,11 +312,12 @@ async function createMerchantGroup(db, merchantUid, options = {}) {
       owner: publishUserId,
       publish_user_id: publishUserId,
     });
-    const updated = updateMerchantGroupId(db, merchantUid, groupId);
+    const updated = updateMerchantGroupId(db, merchantUid, groupId, buzzEnv);
     return {
       ok: true,
       created: true,
       merchant_uid: merchantUid,
+      buzz_env: buzzEnv,
       name: merchant.name,
       group_id: groupId,
       merchant: updated,
@@ -298,10 +334,7 @@ async function createMerchantGroup(db, merchantUid, options = {}) {
 }
 
 async function batchCreateMerchantGroups(db, options = {}) {
-  const merchants = listImportedMerchants(db, {
-    city: options.city || "",
-    limit: options.limit || 0,
-  });
+  const merchants = listImportedMerchants(db, importListOptions(options));
   const targets = options.only_missing === true
     ? merchants.filter((item) => !item.buzz_group_id)
     : merchants;
@@ -337,23 +370,25 @@ async function batchCreateMerchantGroups(db, options = {}) {
 }
 
 async function publishMerchantBubble(db, merchantUid, options = {}) {
-  const merchant = getMerchantByUid(db, merchantUid);
+  const buzzEnv = resolveBuzzEnv(options);
+  const merchant = merchantInEnv(db, merchantUid, options);
   if (!merchant) {
-    return { ok: false, merchant_uid: merchantUid, error: "商户不存在" };
+    return { ok: false, merchant_uid: merchantUid, buzz_env: buzzEnv, error: "商户不存在" };
   }
   if (merchant.import_status !== "imported" || !merchant.buzz_merchant_id) {
     return {
       ok: false,
       merchant_uid: merchantUid,
+      buzz_env: buzzEnv,
       name: merchant.name,
       error: "商户尚未入库后台",
       merchant,
     };
   }
 
-  const client = options.client || new BuzzAdminClient(options);
+  const client = options.client || new BuzzAdminClient({ ...options, buzz_env: buzzEnv });
   const groupMode = options.group_mode === "create_new" ? "create_new" : "use_merchant";
-  const publishUserId = String(options.publish_user_id || DEFAULT_PUBLISH_USER_ID).trim();
+  const publishUserId = String(options.publish_user_id || defaultPublishUserId(options)).trim();
 
   try {
     const record = buildBubbleRecord(merchant, { ...options, publish_user_id: publishUserId });
@@ -387,11 +422,12 @@ async function publishMerchantBubble(db, merchantUid, options = {}) {
       bubble_now_id: nowId,
       buzz_group_id: record.group_id,
       bubble_published_at: new Date().toISOString(),
-    });
+    }, buzzEnv);
 
     return {
       ok: true,
       merchant_uid: merchantUid,
+      buzz_env: buzzEnv,
       name: merchant.name,
       now_id: nowId,
       group_id: record.group_id,
@@ -409,9 +445,10 @@ async function publishMerchantBubble(db, merchantUid, options = {}) {
 }
 
 async function batchPublishMerchantBubbles(db, options = {}) {
+  const buzzEnv = resolveBuzzEnv(options);
   const pick = options.merchant_uids?.length
     ? {
-      merchants: listImportedMerchants(db, { merchant_uids: options.merchant_uids }),
+      merchants: listImportedMerchants(db, importListOptions(options)),
       plan: [],
     }
     : pickMerchantsForCurrentSlot(db, options);
@@ -432,13 +469,14 @@ async function batchPublishMerchantBubbles(db, options = {}) {
   }
 
   if (options.advance_rotation !== false && !options.merchant_uids?.length) {
-    advanceRotationSlots(db, pick.plan.map((item) => item.city));
+    advanceRotationSlots(db, pick.plan.map((item) => item.city), buzzEnv);
   }
 
   return {
     total: merchants.length,
     ok,
     fail,
+    buzz_env: buzzEnv,
     plan: pick.plan,
     results,
     state: getMerchantBubbleState(db, options),
@@ -451,13 +489,13 @@ function sleep(ms) {
 
 module.exports = {
   BUCKET_COUNT,
-  DEFAULT_PUBLISH_USER_ID,
   advanceRotationSlots,
   batchCreateMerchantGroups,
   batchPublishMerchantBubbles,
   buildBubbleRecord,
   buildPerMerchantCopy,
   createMerchantGroup,
+  defaultPublishUserId,
   getMerchantBubbleState,
   pickMerchantsForCurrentSlot,
   publishMerchantBubble,

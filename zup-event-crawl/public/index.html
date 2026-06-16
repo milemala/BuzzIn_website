@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Zup 抓取活动审核台</title>
   <link rel="stylesheet" href="/workspace-nav.css">
+  <link rel="stylesheet" href="/buzz-env-ui.css">
   <style>
     :root{
       --bg:#f7f4ed;
@@ -20,7 +21,7 @@
     *{box-sizing:border-box}
     body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
     button,input,select,textarea{font:inherit}
-    .top{position:sticky;top:0;z-index:20;background:rgba(247,244,237,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .top{background:rgba(247,244,237,.92);border-bottom:1px solid var(--line)}
     .top-inner{max-width:1180px;margin:0 auto;padding:18px 20px;display:flex;gap:16px;align-items:center;justify-content:space-between}
     .brand{min-width:0}
     h1{margin:0;font-size:22px;line-height:1.25;letter-spacing:0;font-weight:800}
@@ -141,6 +142,8 @@
     .import-block h3{margin:0 0 8px;font-size:13px;font-weight:800;color:#3a342c}
     .import-row{display:grid;gap:8px;font-size:13px}
     .import-meta{color:var(--muted);font-size:12px;line-height:1.45;word-break:break-all}
+    .entity-id{font-size:11px;color:var(--muted);line-height:1.45;word-break:break-all}
+    .entity-id strong{color:#3a342c;font-weight:700;font-family:ui-monospace,Menlo,Consolas,monospace}
     .import-field{display:grid;gap:4px}
     .import-field label{font-size:11px;font-weight:700;color:var(--muted)}
     .import-field select,.import-field input{height:32px;border:1px solid var(--line);border-radius:6px;padding:0 8px;background:#fff}
@@ -226,6 +229,7 @@
           <a href="/merchants.html">商户审核</a>
           <a href="/merchant-bubbles.html">商户气泡</a>
         </nav>
+        <div class="buzz-env-bar" id="buzzEnvBar"></div>
         <h1>Zup 抓取活动审核台</h1>
         <div class="meta" id="sourceMeta">读取本地活动数据中...</div>
         <div class="save-state warn" id="saveState">正在连接本地数据库</div>
@@ -233,7 +237,7 @@
       <div class="actions">
         <button class="btn" id="resetBtn">重置审核</button>
         <button class="btn" id="batchPrepBtn">批量补全推送字段</button>
-        <button class="btn primary" id="batchImportBtn">批量推送 Zup</button>
+        <button class="btn primary" id="batchImportBtn">批量推送 Zup（测试）</button>
         <button class="btn" id="exportBtn">导出 JSON</button>
       </div>
     </div>
@@ -298,6 +302,7 @@
     </div>
   </div>
 
+  <script src="/buzz-env-ui.js"></script>
   <script>
     let payload = { events: [], cities: [], cityMeta: {}, sourcePages: {}, dateWindow: [] };
     const stateKey = "zup-crawl-review-v1";
@@ -312,7 +317,13 @@
     let searchTerm = "";
     let page = 1;
     const PAGE_SIZE = 20;
-    const DEFAULT_PUBLISH_USER_ID = "579362104";
+    function defaultPublishUserId() {
+      return BuzzEnvUi.defaultPublishUserId() || "579362104";
+    }
+
+    function publishUserIdFromEvent(event) {
+      return String(event?.publish_user_id || defaultPublishUserId()).trim() || defaultPublishUserId();
+    }
     const DEFAULT_NOW_TYPE = 3;
     let prepBusy = false;
     let importBusy = false;
@@ -406,7 +417,7 @@
     }
 
     function effectivePublishUserId(event) {
-      return String(event.publish_user_id || DEFAULT_PUBLISH_USER_ID).trim() || DEFAULT_PUBLISH_USER_ID;
+      return publishUserIdFromEvent(event);
     }
 
     function parseStoredDateTime(value) {
@@ -539,11 +550,12 @@
     }
 
     function renderImportStatus(event) {
+      const env = importEnvLabel();
       if (event.import_status === "imported" && event.buzz_now_id) {
         const groupLine = event.buzz_group_id
           ? `<br>群聊 group_id <strong>${escapeHtml(event.buzz_group_id)}</strong>`
           : "";
-        return `<div class="import-status imported">已推送 · now_id <strong>${escapeHtml(event.buzz_now_id)}</strong>${groupLine}</div>`;
+        return `<div class="import-status imported">已推送 · ${escapeHtml(env)} · now_id <strong>${escapeHtml(event.buzz_now_id)}</strong>${groupLine}</div>`;
       }
       if (event.import_status === "failed") {
         return `<div class="import-status failed">推送失败：${escapeHtml(event.import_error || "未知错误")}</div>`;
@@ -581,9 +593,10 @@
     }
 
     function importButtonLabel(event) {
-      if (event.import_status === "imported" && event.buzz_now_id) return "已推送";
-      if (event.import_status === "failed") return "重试推送 Zup";
-      return "推送 Zup";
+      const env = importEnvLabel();
+      if (event.import_status === "imported" && event.buzz_now_id) return `已推送（${env}）`;
+      if (event.import_status === "failed") return `重试推送（${env}）`;
+      return `推送 Zup（${env}）`;
     }
 
     function getApprovedEvents() {
@@ -614,7 +627,7 @@
       const response = await fetch(`/api/events/${encodeURIComponent(uid)}/import-prep`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(patch),
+        body: JSON.stringify(BuzzEnvUi.importBody(patch)),
       });
       const data = await response.json();
       if (!response.ok || !data.ok) {
@@ -673,11 +686,13 @@
     }
 
     async function deleteBuzzNow(uid, nowId) {
-      const message = `确定从 Buzz 后台删除此气泡？\n\nnow_id: ${nowId}\n\n审核台里的活动记录会保留，仅清除推送状态。`;
+      const env = importEnvLabel();
+      const message = `确定从 Buzz【${env}】后台删除此气泡？\n\nnow_id: ${nowId}\n\n审核台里的活动记录会保留，仅清除该环境的推送状态。`;
       if (!window.confirm(message)) return;
+      if (!(await BuzzEnvUi.confirmProdAction("将删除正式环境上的真实气泡"))) return;
       setSaveState("正在删除后台气泡...", "warn");
       try {
-        const response = await fetch(`/api/events/${encodeURIComponent(uid)}/buzz-now`, {
+        const response = await fetch(BuzzEnvUi.withBuzzEnv(`/api/events/${encodeURIComponent(uid)}/buzz-now`), {
           method: "DELETE",
         });
         const data = await response.json();
@@ -697,7 +712,16 @@
     function publishUserIdFromCard(uid) {
       const card = listEl.querySelector(`article.card[data-uid="${uid}"]`);
       const field = card?.querySelector("[data-import-field='publish_user_id']");
-      return String(field?.value || "").trim();
+      return String(field?.value || "").trim() || defaultPublishUserId();
+    }
+
+    function importEnvLabel() {
+      return BuzzEnvUi.envLabel();
+    }
+
+    function updateBatchImportButtonLabel() {
+      const btn = document.getElementById("batchImportBtn");
+      if (btn) btn.textContent = `批量推送 Zup（${importEnvLabel()}）`;
     }
 
     function formatDuration(ms) {
@@ -891,7 +915,7 @@
       const fetchOpts = (body) => ({
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
+        body: JSON.stringify(BuzzEnvUi.importBody(body)),
         signal,
       });
       if (publishUserId) {
@@ -923,6 +947,7 @@
 
     async function importSingleEvent(uid) {
       if (importBusy) return;
+      if (!(await BuzzEnvUi.confirmProdAction("将把活动推送到正式环境"))) return;
       const event = findEventByUid(uid);
       const title = event?.title || "活动";
       importBusy = true;
@@ -1028,6 +1053,7 @@
         setSaveState("当前筛选下没有可推送的活动（需已通过、字段齐全且尚未推送）", "warn");
         return;
       }
+      if (!(await BuzzEnvUi.confirmProdAction(`将批量推送 ${eligible.length} 条活动到正式环境`))) return;
       const filterSummary = currentFilterSummary();
       const batchTotal = eligible.length;
       importBusy = true;
@@ -1239,7 +1265,7 @@
     }
 
     async function loadEvents() {
-      const response = await fetch("/api/events", { cache: "no-store" });
+      const response = await fetch(BuzzEnvUi.withBuzzEnv("/api/events"), { cache: "no-store" });
       if (!response.ok) throw new Error("events unavailable");
       payload = await response.json();
       if (!payload || typeof payload !== "object") {
@@ -1903,6 +1929,7 @@
                 <h2 class="title">${escapeHtml(event.title)}</h2>
                 <span class="score ${scoreClass}">${event.score}</span>
               </div>
+              <div class="entity-id">活动 ID：<strong>${escapeHtml(uid)}</strong>${imported ? ` · 后台 now_id <strong>${escapeHtml(event.buzz_now_id)}</strong>` : ""}</div>
               <div class="chips">
                 <span class="chip">${escapeHtml(event.category)}</span>
                 <span class="chip">来源：${escapeHtml(getSourceLabel(event))}</span>
@@ -2230,7 +2257,16 @@
       document.getElementById("exportDialog").showModal();
     });
 
-    Promise.all([loadEvents(), loadServerState()])
+    Promise.all([BuzzEnvUi.initBuzzEnvUi("#buzzEnvBar"), loadServerState()])
+      .then(() => {
+        updateBatchImportButtonLabel();
+        window.onBuzzEnvChanged = async () => {
+          updateBatchImportButtonLabel();
+          await loadEvents();
+          render();
+        };
+        return loadEvents();
+      })
       .then(render)
       .catch((error) => {
         sourceMeta.textContent = "读取活动数据失败，请确认本地审核服务正在运行";

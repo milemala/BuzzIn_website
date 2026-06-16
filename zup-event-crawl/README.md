@@ -247,14 +247,33 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 
 详见 [`docs/HANDOFF.md`](docs/HANDOFF.md) 顶部「2026-06-08 更新摘要」。
 
-环境变量（可选，本地已内置测试环境默认值）：
+### 测试 / 正式双环境（顶栏切换）
 
-| 变量 | 默认 | 说明 |
-|------|------|------|
-| `BUZZ_API_BASE` | `https://test-go-api.nowmap.cn` | Buzz 后端地址 |
-| `BUZZ_ADMIN_USER` | `admin` | 测试环境后台账号 |
-| `BUZZ_ADMIN_PASS` | `Test1234` | 测试环境后台密码 |
-| `BUZZ_TOKEN` | — | 有 token 时优先用，跳过登录 |
+审核台三页顶栏有 **推送环境** 下拉：`测试` / `正式`。抓取与人工审核只做一遍；推送到哪个环境由切换器决定，各环境独立记录 `now_id` / `merchant_id`（存 `buzz_imports` 表）。
+
+| 环境 | API | 默认发布者 user_id |
+|------|-----|-------------------|
+| 测试 | `https://test-go-api.nowmap.cn` | `579362104` |
+| 正式 | `https://zup.nowmap.cn` | `382380210` |
+
+切到 **正式** 时顶栏变红，推送前会二次确认。商户类型按目标环境实时拉取（正式库 id 与测试不同，入库时按类型名称映射）。
+
+环境变量（可选；未设置时用代码内默认值，含正式凭据）：
+
+| 变量 | 说明 |
+|------|------|
+| `BUZZ_API_BASE_TEST` / `BUZZ_API_BASE` | 测试 API |
+| `BUZZ_ADMIN_USER_TEST` / `BUZZ_ADMIN_USER` | 测试账号 |
+| `BUZZ_ADMIN_PASS_TEST` / `BUZZ_ADMIN_PASS` | 测试密码 |
+| `BUZZ_TOKEN_TEST` / `BUZZ_TOKEN` | 测试 token（有则跳过登录） |
+| `BUZZ_PUBLISH_USER_ID_TEST` | 测试发布者（默认 `579362104`） |
+| `BUZZ_API_BASE_PROD` | 正式 API（默认 `https://zup.nowmap.cn`） |
+| `BUZZ_ADMIN_USER_PROD` | 正式账号 |
+| `BUZZ_ADMIN_PASS_PROD` | 正式密码 |
+| `BUZZ_TOKEN_PROD` | 正式 token |
+| `BUZZ_PUBLISH_USER_ID_PROD` | 正式发布者（默认 `382380210`） |
+
+详见 [`docs/import/changeLogToProduct.md`](docs/import/changeLogToProduct.md)。
 
 ## 与官网其他目录的关系
 

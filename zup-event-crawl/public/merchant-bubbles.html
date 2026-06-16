@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>商户气泡批量发布</title>
   <link rel="stylesheet" href="/workspace-nav.css">
+  <link rel="stylesheet" href="/buzz-env-ui.css">
   <style>
     :root{
       --bg:#f3f6f4;--panel:#fcfffd;--text:#142018;--muted:#5f6d64;--line:#d8e3dc;
@@ -13,7 +14,7 @@
     *{box-sizing:border-box}
     body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
     button,input,textarea,select{font:inherit}
-    .top{position:sticky;top:0;z-index:20;background:rgba(243,246,244,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .top{background:rgba(243,246,244,.92);border-bottom:1px solid var(--line)}
     .top-inner{max-width:980px;margin:0 auto;padding:18px 20px}
     h1{margin:0;font-size:22px;font-weight:800}
     .meta{margin-top:5px;color:var(--muted);font-size:13px;line-height:1.5}
@@ -67,6 +68,7 @@
         <a href="/merchants.html">商户审核</a>
         <a href="/merchant-bubbles.html" class="active">商户气泡</a>
       </nav>
+      <div class="buzz-env-bar" id="buzzEnvBar"></div>
       <h1>商户气泡批量发布</h1>
       <div class="meta">基于已入库商户，按城市随机三分组轮转发布。气泡默认 <strong>3 天后过期</strong>；商户群聊名称 = 完整店名（含分店括号）。</div>
       <div class="save-state warn" id="saveState">加载中...</div>
@@ -153,6 +155,7 @@
     </section>
   </main>
 
+  <script src="/buzz-env-ui.js"></script>
   <script>
     const saveStateEl = document.getElementById("saveState");
     const statsEl = document.getElementById("stats");
@@ -205,15 +208,22 @@
     });
 
     function currentOptions() {
-      return {
-        publish_user_id: document.getElementById("publishUserId").value.trim(),
+      return BuzzEnvUi.importBody({
+        publish_user_id: document.getElementById("publishUserId").value.trim() || BuzzEnvUi.defaultPublishUserId(),
         title_mode: titleMode,
         unified_title: document.getElementById("unifiedTitle").value.trim(),
         unified_content: document.getElementById("unifiedContent").value.trim(),
         group_mode: groupMode,
         now_type: Number(document.getElementById("nowType").value),
         city: document.getElementById("cityFilter").value.trim(),
-      };
+      });
+    }
+
+    function applyPublishUserDefault() {
+      const field = document.getElementById("publishUserId");
+      if (field && !field.dataset.userEdited) {
+        field.value = BuzzEnvUi.defaultPublishUserId();
+      }
     }
 
     function renderState(data) {
@@ -252,25 +262,32 @@
 
     async function loadState() {
       const city = document.getElementById("cityFilter").value.trim();
-      const query = city ? `?city=${encodeURIComponent(city)}` : "";
+      const parts = [BuzzEnvUi.envQuery()];
+      if (city) parts.push(`city=${encodeURIComponent(city)}`);
+      const query = `?${parts.join("&")}`;
       const response = await fetch(`/api/merchant-bubbles/state${query}`, { cache: "no-store" });
       const data = await response.json();
       if (!response.ok || !data.ok) throw new Error(data.error || "加载失败");
       renderState(data);
-      setSaveState("就绪", "ok");
+      if (data.default_publish_user_id) {
+        const field = document.getElementById("publishUserId");
+        if (field && !field.dataset.userEdited) field.value = data.default_publish_user_id;
+      }
+      setSaveState(`就绪 · ${BuzzEnvUi.envLabel()}`, "ok");
       return data;
     }
 
     async function runAction(label, url, body) {
       if (busy) return;
+      if (!(await BuzzEnvUi.confirmProdAction(`${label}将写入正式环境`))) return;
       busy = true;
-      setSaveState(`${label}中...`, "warn");
+      setSaveState(`${label}中（${BuzzEnvUi.envLabel()}）...`, "warn");
       resultEl.textContent = "";
       try {
         const response = await fetch(url, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body || {}),
+          body: JSON.stringify(BuzzEnvUi.importBody(body || {})),
         });
         const data = await response.json();
         if (!response.ok || !data.ok) throw new Error(data.error || `${label}失败`);
@@ -323,7 +340,17 @@
 
     syncTitleModeUI();
     syncGroupModeUI();
-    loadState().catch((error) => setSaveState(error.message || "加载失败", "error"));
+    document.getElementById("publishUserId").addEventListener("input", (event) => {
+      event.target.dataset.userEdited = "1";
+    });
+    BuzzEnvUi.initBuzzEnvUi("#buzzEnvBar").then(() => {
+      applyPublishUserDefault();
+      window.onBuzzEnvChanged = async () => {
+        applyPublishUserDefault();
+        await loadState();
+      };
+      return loadState();
+    }).catch((error) => setSaveState(error.message || "加载失败", "error"));
   </script>
 </body>
 </html>

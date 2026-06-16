@@ -4,13 +4,20 @@ const {
   buildImportRecord,
   importReadyIssues,
   isImportReady,
+  merchantTypeNameFromId,
+  resolveMerchantTypeId,
+  resolveMerchantTypeName,
 } = require("./merchant-import-ready");
 const { BuzzAdminClient } = require("./buzz-now-import");
 const {
+  applyBuzzEnvToMerchant,
   clearMerchantBuzzId,
+  markMerchantImportResult,
+} = require("./buzz-import-store");
+const { normalizeBuzzEnv, createBuzzClientOptions } = require("./buzz-env");
+const {
   getMerchantByUid,
   listMerchantsEligibleForImport,
-  markMerchantImportResult,
 } = require("./merchant-db");
 
 function isMerchantApproved(db, merchantUid) {
@@ -63,17 +70,41 @@ async function uploadMerchantMedia(client, src) {
   return client.uploadMedia(url);
 }
 
+function resolveBuzzEnv(options = {}) {
+  return normalizeBuzzEnv(options.buzz_env || options.env);
+}
+
+function createClientForEnv(options = {}) {
+  if (options.client) return options.client;
+  const buzzEnv = resolveBuzzEnv(options);
+  return new BuzzAdminClient({ ...createBuzzClientOptions(buzzEnv), ...options, buzz_env: buzzEnv });
+}
+
+function merchantWithBuzzEnv(db, merchantUid, buzzEnv) {
+  return applyBuzzEnvToMerchant(db, getMerchantByUid(db, merchantUid), buzzEnv);
+}
+
+async function buildEnvImportRecord(client, merchant) {
+  const record = buildImportRecord(merchant);
+  const envTypes = await client.listMerchantTypes();
+  const typeName = resolveMerchantTypeName(merchant);
+  record.type = resolveMerchantTypeId(merchant.merchant_type, typeName, envTypes);
+  return record;
+}
+
 async function importMerchantToBuzz(db, merchantUid, options = {}) {
-  const client = options.client || new BuzzAdminClient(options);
+  const buzzEnv = resolveBuzzEnv(options);
+  const client = createClientForEnv(options);
   const dedup = options.dedup !== false;
-  const merchant = getMerchantByUid(db, merchantUid);
+  const merchant = merchantWithBuzzEnv(db, merchantUid, buzzEnv);
   if (!merchant) {
-    return { ok: false, merchant_uid: merchantUid, error: "商户不存在" };
+    return { ok: false, merchant_uid: merchantUid, buzz_env: buzzEnv, error: "商户不存在" };
   }
   if (!isMerchantApproved(db, merchantUid)) {
     return {
       ok: false,
       merchant_uid: merchantUid,
+      buzz_env: buzzEnv,
       name: merchant.name,
       error: "仅已通过的商户可入库",
       merchant,
@@ -84,6 +115,7 @@ async function importMerchantToBuzz(db, merchantUid, options = {}) {
       ok: true,
       skipped: true,
       merchant_uid: merchantUid,
+      buzz_env: buzzEnv,
       name: merchant.name,
       merchant_id: merchant.buzz_merchant_id,
       merchant,
@@ -95,30 +127,48 @@ async function importMerchantToBuzz(db, merchantUid, options = {}) {
     return {
       ok: false,
       merchant_uid: merchantUid,
+      buzz_env: buzzEnv,
       name: merchant.name,
       error: issues.join("；") || "入库字段未齐",
       merchant,
     };
   }
 
-  const record = buildImportRecord(merchant);
+  let record;
+  try {
+    record = await buildEnvImportRecord(client, merchant);
+  } catch (error) {
+    markMerchantImportResult(db, merchantUid, {
+      import_status: "failed",
+      import_error: error.message,
+    }, buzzEnv);
+    return {
+      ok: false,
+      merchant_uid: merchantUid,
+      buzz_env: buzzEnv,
+      name: merchant.name,
+      error: error.message,
+      merchant: merchantWithBuzzEnv(db, merchantUid, buzzEnv),
+    };
+  }
 
   try {
     if (dedup) {
       const existingId = await findMerchant(client, record.name, record.address_poi_id);
       if (existingId) {
-        const updated = markMerchantImportResult(db, merchantUid, {
+        markMerchantImportResult(db, merchantUid, {
           buzz_merchant_id: existingId,
           import_status: "imported",
           import_error: "",
-        });
+        }, buzzEnv);
         return {
           ok: true,
           skipped: true,
           merchant_uid: merchantUid,
+          buzz_env: buzzEnv,
           name: merchant.name,
           merchant_id: existingId,
-          merchant: updated,
+          merchant: merchantWithBuzzEnv(db, merchantUid, buzzEnv),
         };
       }
     }
@@ -149,29 +199,31 @@ async function importMerchantToBuzz(db, merchantUid, options = {}) {
       throw new Error("创建成功但未返回 merchant_id");
     }
 
-    const updated = markMerchantImportResult(db, merchantUid, {
+    markMerchantImportResult(db, merchantUid, {
       buzz_merchant_id: merchantId,
       import_status: "imported",
       import_error: "",
-    });
+    }, buzzEnv);
     return {
       ok: true,
       merchant_uid: merchantUid,
+      buzz_env: buzzEnv,
       name: merchant.name,
       merchant_id: merchantId,
-      merchant: updated,
+      merchant: merchantWithBuzzEnv(db, merchantUid, buzzEnv),
     };
   } catch (error) {
-    const updated = markMerchantImportResult(db, merchantUid, {
+    markMerchantImportResult(db, merchantUid, {
       import_status: "failed",
       import_error: error.message,
-    });
+    }, buzzEnv);
     return {
       ok: false,
       merchant_uid: merchantUid,
+      buzz_env: buzzEnv,
       name: merchant.name,
       error: error.message,
-      merchant: updated,
+      merchant: merchantWithBuzzEnv(db, merchantUid, buzzEnv),
     };
   }
 }
@@ -197,6 +249,7 @@ async function batchImportApprovedMerchants(db, options = {}) {
         skipped,
         results,
         aborted: true,
+        buzz_env: resolveBuzzEnv(options),
       };
     }
     const result = await importMerchantToBuzz(db, merchant.merchant_uid, options);
@@ -217,40 +270,45 @@ async function batchImportApprovedMerchants(db, options = {}) {
     skipped,
     results,
     aborted: false,
+    buzz_env: resolveBuzzEnv(options),
   };
 }
 
 async function deleteMerchantFromBuzz(db, merchantUid, options = {}) {
-  const merchant = getMerchantByUid(db, merchantUid);
+  const buzzEnv = resolveBuzzEnv(options);
+  const merchant = merchantWithBuzzEnv(db, merchantUid, buzzEnv);
   if (!merchant) {
-    return { ok: false, merchant_uid: merchantUid, error: "商户不存在" };
+    return { ok: false, merchant_uid: merchantUid, buzz_env: buzzEnv, error: "商户不存在" };
   }
   const merchantId = String(merchant.buzz_merchant_id || "").trim();
   if (!merchantId) {
     return {
       ok: false,
       merchant_uid: merchantUid,
+      buzz_env: buzzEnv,
       name: merchant.name,
       error: "本地未记录 merchant_id，无法删除后台商户",
       merchant,
     };
   }
 
-  const client = options.client || new BuzzAdminClient(options);
+  const client = createClientForEnv(options);
   try {
     await client.deleteJSON(`/merchants/${encodeURIComponent(merchantId)}`);
-    const updated = clearMerchantBuzzId(db, merchantUid);
+    clearMerchantBuzzId(db, merchantUid, buzzEnv);
     return {
       ok: true,
       merchant_uid: merchantUid,
+      buzz_env: buzzEnv,
       name: merchant.name,
       merchant_id: merchantId,
-      merchant: updated,
+      merchant: merchantWithBuzzEnv(db, merchantUid, buzzEnv),
     };
   } catch (error) {
     return {
       ok: false,
       merchant_uid: merchantUid,
+      buzz_env: buzzEnv,
       name: merchant.name,
       merchant_id: merchantId,
       error: error.message,

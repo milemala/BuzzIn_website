@@ -35,6 +35,14 @@ const {
   isEventBetterByEnd,
 } = require("./event-content-dedup");
 const { getComposedImagePath } = require("./composed-image");
+const {
+  applyBuzzEnvToEvent,
+  ensureBuzzImportSchema,
+  markEventImportResult: storeMarkEventImportResult,
+  updateEventImportPrepForEnv,
+  updateEventMerchantInfoForEnv,
+} = require("./buzz-import-store");
+const { normalizeBuzzEnv } = require("./buzz-env");
 
 const DEFAULT_NOTE = "本文件用于本地人工审核。保留原始抓取详情文本，body 为基于原文提炼的 Zup 活动简介。图片发布前需再次确认来源授权与平台规则。";
 const VALID_REVIEW_STATUSES = new Set(["approved", "pending", "rejected"]);
@@ -94,6 +102,7 @@ function openDatabase(dbPath) {
   db.exec("PRAGMA journal_mode = WAL");
   ensureSchema(db);
   ensurePoiAddressCacheSchema(db);
+  ensureBuzzImportSchema(db);
   ensureDefaultMeta(db);
   return db;
 }
@@ -394,82 +403,74 @@ function updateEventMerchantInfo(db, eventUid, info = {}) {
   return getEventByUid(db, eventUid);
 }
 
-async function syncEventMerchantByPoi(db, eventUid) {
+async function syncEventMerchantByPoi(db, eventUid, options = {}) {
+  const buzzEnv = normalizeBuzzEnv(options.buzz_env || options.env);
   const event = getEventByUid(db, eventUid);
   if (!event) {
     throw new Error(`活动不存在: ${eventUid}`);
   }
   const poiId = String(event.location_poi_id || "").trim();
   if (!poiId) {
-    return updateEventMerchantInfo(db, eventUid, { now_merchant_id: "", now_merchant_name: "" });
+    updateEventMerchantInfoForEnv(db, eventUid, buzzEnv, { now_merchant_id: "", now_merchant_name: "" });
+    return applyBuzzEnvToEvent(db, event, buzzEnv);
   }
   const { lookupMerchantByPoiId } = require("./buzz-merchant-poi");
-  const found = await lookupMerchantByPoiId(poiId);
-  return updateEventMerchantInfo(db, eventUid, {
+  const { createBuzzClientOptions } = require("./buzz-env");
+  const found = await lookupMerchantByPoiId(poiId, createBuzzClientOptions(buzzEnv));
+  updateEventMerchantInfoForEnv(db, eventUid, buzzEnv, {
     now_merchant_id: found?.merchant_id || "",
     now_merchant_name: found?.merchant_name || "",
   });
+  return applyBuzzEnvToEvent(db, getEventByUid(db, eventUid), buzzEnv);
 }
 
 async function syncMerchantsForPoiEvents(db, options = {}) {
+  const buzzEnv = normalizeBuzzEnv(options.buzz_env || options.env);
   const rows = db.prepare(`
-    SELECT event_uid, location_poi_id, now_merchant_id
+    SELECT event_uid, location_poi_id
     FROM events
     WHERE location_poi_id IS NOT NULL AND location_poi_id != ''
   `).all();
   let updated = 0;
   for (const row of rows) {
-    if (options.only_missing && row.now_merchant_id) continue;
-    await syncEventMerchantByPoi(db, row.event_uid);
+    if (options.only_missing) {
+      const envEvent = applyBuzzEnvToEvent(db, rowToEvent(row), buzzEnv);
+      if (envEvent.now_merchant_id) continue;
+    }
+    await syncEventMerchantByPoi(db, row.event_uid, { buzz_env: buzzEnv });
     updated += 1;
   }
-  return { updated };
+  return { updated, buzz_env: buzzEnv };
 }
 
-function markEventImportResult(db, eventUid, result = {}) {
-  const current = getEventByUid(db, eventUid);
-  const now = new Date().toISOString();
-  const imported = result.import_status === "imported";
-  const pick = (key, fallback = "") => (
-    Object.prototype.hasOwnProperty.call(result, key)
-      ? String(result[key] || "").trim()
-      : String(current?.[key] || fallback).trim()
-  );
-  db.prepare(`
-    UPDATE events SET
-      buzz_now_id = @buzz_now_id,
-      buzz_group_id = @buzz_group_id,
-      import_status = @import_status,
-      import_error = @import_error,
-      imported_at = @imported_at,
-      updated_at = @updated_at
-    WHERE event_uid = @event_uid
-  `).run({
-    event_uid: eventUid,
-    buzz_now_id: pick("buzz_now_id"),
-    buzz_group_id: pick("buzz_group_id"),
-    import_status: pick("import_status"),
-    import_error: pick("import_error"),
-    imported_at: imported ? now : (current?.imported_at || null),
-    updated_at: now,
-  });
-  return getEventByUid(db, eventUid);
+function markEventImportResult(db, eventUid, result = {}, buzzEnv = "test") {
+  storeMarkEventImportResult(db, eventUid, result, buzzEnv);
+  return applyBuzzEnvToEvent(db, getEventByUid(db, eventUid), buzzEnv);
 }
 
-function clearEventBuzzNow(db, eventUid) {
+function clearEventBuzzNow(db, eventUid, buzzEnv = "test") {
   return markEventImportResult(db, eventUid, {
     buzz_now_id: "",
     buzz_group_id: "",
     import_status: "",
     import_error: "",
-  });
+  }, buzzEnv);
 }
 
 function listEventsEligibleForImport(db, options = {}) {
+  const buzzEnv = normalizeBuzzEnv(options.buzz_env || options.env);
   const limit = Number(options.limit) > 0 ? Number(options.limit) : 500;
   const eventUids = Array.isArray(options.event_uids)
     ? [...new Set(options.event_uids.map((uid) => String(uid || "").trim()).filter(Boolean))]
     : [];
+
+  const importClause = `
+    LEFT JOIN buzz_imports bi
+      ON bi.entity_kind = 'event'
+     AND bi.entity_uid = e.event_uid
+     AND bi.buzz_env = ?
+  `;
+  const pendingClause = `AND (bi.import_status IS NULL OR bi.import_status = '' OR bi.import_status = 'failed')`;
 
   if (eventUids.length) {
     const placeholders = eventUids.map(() => "?").join(", ");
@@ -477,15 +478,16 @@ function listEventsEligibleForImport(db, options = {}) {
       SELECT e.*
       FROM events e
       INNER JOIN review_decisions r ON r.event_uid = e.event_uid
+      ${importClause}
       WHERE e.event_uid IN (${placeholders})
         AND r.status = 'approved'
-        AND (e.import_status IS NULL OR e.import_status = '' OR e.import_status = 'failed')
-    `).all(...eventUids);
+        ${pendingClause}
+    `).all(buzzEnv, ...eventUids);
     const byUid = new Map(rows.map((row) => [row.event_uid, row]));
     return eventUids
       .map((uid) => byUid.get(uid))
       .filter(Boolean)
-      .map((row) => rowToEvent(row))
+      .map((row) => applyBuzzEnvToEvent(db, rowToEvent(row), buzzEnv))
       .filter((event) => !isExpired(event))
       .filter((event) => isImportReady(event));
   }
@@ -494,13 +496,14 @@ function listEventsEligibleForImport(db, options = {}) {
     SELECT e.*
     FROM events e
     INNER JOIN review_decisions r ON r.event_uid = e.event_uid
+    ${importClause}
     WHERE r.status = 'approved'
-      AND (e.import_status IS NULL OR e.import_status = '' OR e.import_status = 'failed')
+      ${pendingClause}
     ORDER BY e.city, e.source_position, e.title
     LIMIT ?
-  `).all(limit);
+  `).all(buzzEnv, limit);
   return rows
-    .map((row) => rowToEvent(row))
+    .map((row) => applyBuzzEnvToEvent(db, rowToEvent(row), buzzEnv))
     .filter((event) => !isExpired(event))
     .filter((event) => isImportReady(event));
 }
@@ -528,36 +531,34 @@ function updateEventPoiCandidatesOnly(db, eventUid, candidates) {
   return getEventByUid(db, eventUid);
 }
 
-function updateEventImportPrep(db, eventUid, patch) {
+function updateEventImportPrep(db, eventUid, patch, options = {}) {
   const event = getEventByUid(db, eventUid);
   if (!event) {
     throw new Error(`活动不存在: ${eventUid}`);
   }
+  const buzzEnv = normalizeBuzzEnv(options.buzz_env || patch.buzz_env);
 
   const now = new Date().toISOString();
-  const next = {
-    publish_user_id: patch.publish_user_id !== undefined
-      ? String(patch.publish_user_id || "").trim()
-      : event.publish_user_id,
-    now_type: patch.now_type !== undefined
-      ? normalizeNowType(patch.now_type, event)
-      : event.now_type,
-  };
+  if (patch.now_type !== undefined) {
+    db.prepare(`
+      UPDATE events SET
+        now_type = @now_type,
+        updated_at = @updated_at
+      WHERE event_uid = @event_uid
+    `).run({
+      event_uid: eventUid,
+      now_type: normalizeNowType(patch.now_type, event),
+      updated_at: now,
+    });
+  }
 
-  db.prepare(`
-    UPDATE events SET
-      publish_user_id = @publish_user_id,
-      now_type = @now_type,
-      updated_at = @updated_at
-    WHERE event_uid = @event_uid
-  `).run({
-    event_uid: eventUid,
-    publish_user_id: next.publish_user_id || DEFAULT_PUBLISH_USER_ID,
-    now_type: next.now_type,
-    updated_at: now,
-  });
+  if (patch.publish_user_id !== undefined) {
+    updateEventImportPrepForEnv(db, eventUid, buzzEnv, {
+      publish_user_id: patch.publish_user_id,
+    });
+  }
 
-  return getEventByUid(db, eventUid);
+  return applyBuzzEnvToEvent(db, getEventByUid(db, eventUid), buzzEnv);
 }
 
 function listActiveEventsNeedingPoi(db, options = {}) {
@@ -1150,6 +1151,7 @@ function getEventDetail(db, eventUid) {
 
 function getEventsPayload(db, options = {}) {
   const includeDetail = options.includeDetail === true;
+  const buzzEnv = normalizeBuzzEnv(options.buzz_env);
   const cityImportRows = db.prepare(`
     SELECT city, generated_at AS generatedAt, source_page AS sourcePage, event_count AS eventCount
     FROM city_imports
@@ -1175,7 +1177,7 @@ function getEventsPayload(db, options = {}) {
   );
   const events = eventRows
     .map((row) => {
-      const base = rowToEvent(row);
+      const base = applyBuzzEnvToEvent(db, rowToEvent(row), buzzEnv);
       return enrichEventPoiFlags({
         ...base,
         review_status: reviewStatusByUid.get(row.event_uid) || "pending",
@@ -1219,6 +1221,7 @@ function getEventsPayload(db, options = {}) {
     dateWindow,
     note,
     cityMeta,
+    buzz_env: buzzEnv,
     events,
   };
 }

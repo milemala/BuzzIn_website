@@ -1,0 +1,33 @@
+{
+  "city": "西安",
+  "source": "douban",
+  "exported_at": "2026-06-16T05:45:52.340Z",
+  "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
+  "refresh": true,
+  "export_mode": "unmatched",
+  "pending_only": true,
+  "doubtful_only": false,
+  "total_events": 2,
+  "group_count": 2,
+  "cache_hit_groups": 0,
+  "groups": [
+    {
+      "group_id": "361ecdccdf93",
+      "location": "西安 雁塔区 陕西大剧院",
+      "sample_title": "外百老汇音乐剧《谋杀歌谣》中文版",
+      "event_uids": [
+        "douban:37887219"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "146320bcf759",
+      "location": "西安 未央区 开元大剧院 凤城九路和开元路十字西南角",
+      "sample_title": "【端午节合家欢】澳大利亚亲子互动剧《泡泡宇航员》",
+      "event_uids": [
+        "douban:37780432"
+      ],
+      "event_count": 1
+    }
+  ]
+}

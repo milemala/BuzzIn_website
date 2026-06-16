@@ -1,0 +1,166 @@
+{
+  "city": "天津",
+  "source": "xiaohongshu",
+  "updated_at": "2026-06-15T15:28:18.572Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "a939fd603f2d",
+      "location": "天津",
+      "sample_title": "天津免费观影",
+      "event_uids": [
+        "xiaohongshu:6a2fc966000000001100523b:00_0"
+      ],
+      "action": "reject",
+      "search_keywords_tried": [
+        "天津免费观影"
+      ],
+      "confidence": "low",
+      "doubtful": false,
+      "reason": "地址仅写天津市，无具体场馆门牌，无法对应唯一POI",
+      "decided_at": "2026-06-15T15:28:18.572Z"
+    },
+    {
+      "group_id": "6bbf088a9c76",
+      "location": "MoviePark大岛影城（梅江）",
+      "sample_title": "MoviePark大岛影城公益放映",
+      "event_uids": [
+        "xiaohongshu:6a2fc966000000001100523b:06_0"
+      ],
+      "action": "match",
+      "poi_id": "178423523244631838",
+      "poi_title": "Movie Park 大岛影城(大岛商业广场店)",
+      "poi_address": "天津市河西区友谊南路梅江大岛商业广场4层",
+      "latitude": 39.043513,
+      "longitude": 117.21915,
+      "search_keywords_tried": [
+        "MoviePark大岛影城",
+        "大岛影城"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "店名与河西区友谊南路梅江大岛商业广场4层地址一致"
+    },
+    {
+      "group_id": "518517b6c4d5",
+      "location": "天津友谊南路梅江大岛商业广场4层（梅江会展中心对面）",
+      "sample_title": "MoviePark大岛影城",
+      "event_uids": [
+        "xiaohongshu:6a2fc966000000001100523b:07_0"
+      ],
+      "action": "match",
+      "poi_id": "178423523244631838",
+      "poi_title": "Movie Park 大岛影城(大岛商业广场店)",
+      "poi_address": "天津市河西区友谊南路梅江大岛商业广场4层",
+      "latitude": 39.043513,
+      "longitude": 117.21915,
+      "search_keywords_tried": [
+        "大岛商业广场",
+        "大岛影城"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "友谊南路梅江大岛商业广场4层与POI门牌楼层一致"
+    },
+    {
+      "group_id": "eaf3ecd30fcf",
+      "location": "天影朗香影城（和平）",
+      "sample_title": "天影朗香影城公益放映",
+      "event_uids": [
+        "xiaohongshu:6a2fc966000000001100523b:09_0"
+      ],
+      "action": "match",
+      "poi_id": "5774487510088985144",
+      "poi_title": "天影朗香国际影城(南京路店)",
+      "poi_address": "天津市和平区建设路88号小白楼朗香街B2层",
+      "latitude": 39.11537,
+      "longitude": 117.215114,
+      "search_keywords_tried": [
+        "天影朗香影城"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "天影朗香影城和平店与建设路88号朗香街POI一致"
+    },
+    {
+      "group_id": "f8d207e60bf0",
+      "location": "天津市和平区建设路88号朗香街负二层",
+      "sample_title": "天影朗香影城",
+      "event_uids": [
+        "xiaohongshu:6a2fc966000000001100523b:10_0"
+      ],
+      "action": "match",
+      "poi_id": "5774487510088985144",
+      "poi_title": "天影朗香国际影城(南京路店)",
+      "poi_address": "天津市和平区建设路88号小白楼朗香街B2层",
+      "latitude": 39.11537,
+      "longitude": 117.215114,
+      "search_keywords_tried": [
+        "天影朗香影城"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "建设路88号朗香街B2层与天影朗香国际影城地址一致，仅楼层表述差异"
+    },
+    {
+      "group_id": "77166cb86726",
+      "location": "天津光明电影院（滨江道）",
+      "sample_title": "天津光明电影院公益放映",
+      "event_uids": [
+        "xiaohongshu:6a2fc966000000001100523b:12_0"
+      ],
+      "action": "match",
+      "poi_id": "6116722996477713864",
+      "poi_title": "光明电影院(滨江道店)",
+      "poi_address": "天津市和平区滨江道143号(天津巧克力博物馆2楼)",
+      "latitude": 39.126587,
+      "longitude": 117.201405,
+      "search_keywords_tried": [
+        "天津光明电影院"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "光明电影院滨江道店与和平区滨江道143号一致"
+    },
+    {
+      "group_id": "3dbc75e0a42f",
+      "location": "天津和平区滨江道143号（劝业场对面）",
+      "sample_title": "天津光明电影院",
+      "event_uids": [
+        "xiaohongshu:6a2fc966000000001100523b:13_0"
+      ],
+      "action": "match",
+      "poi_id": "6116722996477713864",
+      "poi_title": "光明电影院(滨江道店)",
+      "poi_address": "天津市和平区滨江道143号(天津巧克力博物馆2楼)",
+      "latitude": 39.126587,
+      "longitude": 117.201405,
+      "search_keywords_tried": [
+        "天津光明电影院"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "滨江道143号与光明电影院滨江道店门牌一致"
+    },
+    {
+      "group_id": "b45bdd729616",
+      "location": "天津二宫前广场（天津市河东区光华路与富民路交口）",
+      "sample_title": "二宫公益电影",
+      "event_uids": [
+        "xiaohongshu:6a2fc966000000001100523b:14_0"
+      ],
+      "action": "match",
+      "poi_id": "18066939367994262323",
+      "poi_title": "二宫公园",
+      "poi_address": "天津市河东区光华路2号新城市广场(近二宫足球场)",
+      "latitude": 39.104122,
+      "longitude": 117.251887,
+      "search_keywords_tried": [
+        "二宫前广场"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "二宫前广场露天放映与河东区光华路二宫公园主体一致，仅广场/公园表述差异"
+    }
+  ]
+}
