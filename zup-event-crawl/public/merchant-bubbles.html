@@ -79,6 +79,10 @@
     <section class="panel">
       <h2>概览</h2>
       <div class="stats" id="stats"></div>
+      <div class="actions" style="margin-top:12px">
+        <button class="btn" id="syncFromBuzzBtn" type="button">从当前环境补全商户</button>
+      </div>
+      <p class="hint" style="margin-top:8px">将 Buzz 后台已有商户写入审核台并标记为已入库。若与本地商户 <strong>POI 相同但 merchant_id 不同</strong>，会删除审核台本地旧记录（不删后台商户）。</p>
     </section>
 
     <section class="panel">
@@ -313,6 +317,37 @@
     document.getElementById("rebuildBtn").addEventListener("click", () => {
       if (!window.confirm("重新随机三分组？各城市商户会重新洗牌分组。")) return;
       runAction("重新分组", "/api/merchant-bubbles/rebuild-buckets", { city: currentOptions().city });
+    });
+
+    document.getElementById("syncFromBuzzBtn").addEventListener("click", async () => {
+      if (busy) return;
+      const envLabel = BuzzEnvUi.envLabel();
+      if (!window.confirm(
+        `从 ${envLabel} 拉取商户到审核台？\n\n仅补全后台已有、本地缺失的商户。\n同 POI 但 merchant_id 不同的本地记录将被删除（不删 Buzz 后台）。`,
+      )) return;
+      busy = true;
+      setSaveState(`补全商户中（${envLabel}）...`, "warn");
+      resultEl.textContent = "";
+      try {
+        const response = await fetch("/api/merchants/sync-from-buzz", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(BuzzEnvUi.importBody({})),
+        });
+        const data = await response.json();
+        if (!response.ok || !data.ok) throw new Error(data.error || "补全失败");
+        await loadState();
+        resultEl.textContent = [
+          `补全完成：拉取 ${data.fetched} · 新增 ${data.created} · 跳过 ${data.skipped} · 删除 ${data.deleted}`,
+          data.images?.updated ? `图片更新 ${data.images.updated} 家` : "",
+          data.errors?.length ? `失败 ${data.errors.length} 条` : "",
+        ].filter(Boolean).join("\n");
+        setSaveState(`补全完成：新增 ${data.created}，删除 ${data.deleted}`, data.errors?.length ? "warn" : "ok");
+      } catch (error) {
+        setSaveState(error.message || "补全失败", "error");
+      } finally {
+        busy = false;
+      }
     });
 
     document.getElementById("createGroupsBtn").addEventListener("click", () => {

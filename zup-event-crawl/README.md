@@ -221,6 +221,7 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 | POST | `/api/events/import-prep-batch` | 批量写入默认发布者 / now_type（默认 `skip_poi: true`） |
 | POST | `/api/merchants/:uid/import` | 单条商户写入 Buzz |
 | POST | `/api/merchants/import-batch` | 批量商户入库 |
+| POST | `/api/merchants/sync-from-buzz` | 从 Buzz 后台拉取商户补全审核台（同 POI 冲突删本地旧记录） |
 | GET | `/api/merchant-bubbles/state` | 商户气泡轮转状态 |
 | POST | `/api/merchant-bubbles/groups-batch` | 批量建群或同步群名 |
 | POST | `/api/merchant-bubbles/publish-batch` | 发布当前轮次 1/3 商户气泡 |
@@ -239,11 +240,14 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 
 ### 商户气泡（`merchant-bubbles.html`）
 
-前提：商户已在商户审核页 **入库 Buzz**。
+前提：商户已在商户审核页 **入库 Buzz**，或通过 **从当前环境补全商户** 从正式后台拉回。
 
-1. **批量创建商户群聊**：无群新建，有群则 IM 接口改名（群名 = 完整店名）
-2. 配置文案（统一 or 按店名）、群聊模式、发布者、`now_type`
-3. **发布本批气泡**：每城市随机三分组，每次只发 1/3，过期 **3 天**
+1. **从当前环境补全商户**（商户审核 / 商户气泡页）：拉取 Buzz 后台已有商户写入审核台；同 POI 但 merchant_id 不同时删除本地旧记录
+2. **批量创建商户群聊**：无群新建，有群则 IM 接口改名（群名 = 完整店名）
+3. 配置文案（统一 or 按店名）、群聊模式、发布者、`now_type`
+4. **发布本批气泡**：每城市随机三分组，每次只发 1/3，过期 **3 天**
+
+CLI：`node scripts/sync-merchants-from-buzz.js --env=prod [--dry-run]`
 
 详见 [`docs/HANDOFF.md`](docs/HANDOFF.md) 顶部「2026-06-08 更新摘要」。
 

@@ -820,9 +820,140 @@ function importMerchants(db, merchants, options = {}) {
   return { imported: merchants.length, importKey };
 }
 
+function listLocalMerchantsByPoi(db, poiId) {
+  ensureMerchantSchema(db);
+  const id = String(poiId || "").trim();
+  if (!id) return [];
+  return db.prepare(`
+    SELECT merchant_uid, name, address_poi_id, source, source_id
+    FROM merchants
+    WHERE address_poi_id = ?
+  `).all(id);
+}
+
+function deleteLocalMerchant(db, merchantUid) {
+  ensureMerchantSchema(db);
+  const { ensureBuzzImportSchema, ENTITY_MERCHANT } = require("./buzz-import-store");
+  ensureBuzzImportSchema(db);
+  const uid = String(merchantUid || "").trim();
+  if (!uid) return false;
+
+  db.prepare(`
+    DELETE FROM buzz_imports
+    WHERE entity_kind = ? AND entity_uid = ?
+  `).run(ENTITY_MERCHANT, uid);
+
+  const result = db.prepare(`
+    DELETE FROM merchants WHERE merchant_uid = ?
+  `).run(uid);
+  return result.changes > 0;
+}
+
+function approveMerchantReview(db, merchantUid) {
+  ensureMerchantSchema(db);
+  const uid = String(merchantUid || "").trim();
+  if (!uid) return;
+  const now = new Date().toISOString();
+  db.prepare(`
+    INSERT INTO merchant_review_decisions (merchant_uid, status, updated_at)
+    VALUES (?, 'approved', ?)
+    ON CONFLICT(merchant_uid) DO UPDATE SET
+      status = 'approved',
+      updated_at = excluded.updated_at
+  `).run(uid, now);
+}
+
+function upsertBuzzSyncedMerchant(db, row, buzzEnv = "prod") {
+  ensureMerchantSchema(db);
+  const now = row.updated_at || new Date().toISOString();
+  const merchantUid = String(row.merchant_uid || "").trim();
+  if (!merchantUid) {
+    throw new Error("缺少 merchant_uid");
+  }
+
+  db.prepare(`
+    INSERT INTO merchants (
+      merchant_uid, source_id, source, city, search_keyword, source_position,
+      name, address, source_address, district, category, image, original_link, list_region_text,
+      phone, latitude, longitude, review_count, avg_price, business_status,
+      needs_detail, import_batch_id, updated_at,
+      merchant_type, address_poi_id, poi_title, poi_address, poi_candidates, poi_updated_at
+    ) VALUES (
+      @merchant_uid, @source_id, @source, @city, @search_keyword, @source_position,
+      @name, @address, @source_address, @district, @category, @image, @original_link, @list_region_text,
+      @phone, @latitude, @longitude, @review_count, @avg_price, @business_status,
+      @needs_detail, @import_batch_id, @updated_at,
+      @merchant_type, @address_poi_id, @poi_title, @poi_address, @poi_candidates, @poi_updated_at
+    )
+    ON CONFLICT(merchant_uid) DO UPDATE SET
+      source_id = excluded.source_id,
+      source = excluded.source,
+      city = CASE WHEN excluded.city != '' THEN excluded.city ELSE merchants.city END,
+      search_keyword = excluded.search_keyword,
+      name = excluded.name,
+      address = excluded.address,
+      source_address = excluded.source_address,
+      image = CASE WHEN excluded.image != '' THEN excluded.image ELSE merchants.image END,
+      latitude = COALESCE(excluded.latitude, merchants.latitude),
+      longitude = COALESCE(excluded.longitude, merchants.longitude),
+      business_status = excluded.business_status,
+      needs_detail = excluded.needs_detail,
+      import_batch_id = excluded.import_batch_id,
+      updated_at = excluded.updated_at,
+      merchant_type = COALESCE(excluded.merchant_type, merchants.merchant_type),
+      address_poi_id = excluded.address_poi_id,
+      poi_title = excluded.poi_title,
+      poi_address = excluded.poi_address,
+      poi_candidates = excluded.poi_candidates,
+      poi_updated_at = excluded.poi_updated_at
+  `).run({
+    merchant_uid: merchantUid,
+    source_id: String(row.source_id || "").trim(),
+    source: row.source || "buzz",
+    city: row.city || "",
+    search_keyword: row.search_keyword || "",
+    source_position: Number(row.source_position) || 0,
+    name: row.name || "",
+    address: row.address || "",
+    source_address: row.source_address || row.address || "",
+    district: row.district || "",
+    category: row.category || "",
+    image: row.image || "",
+    original_link: row.original_link || "",
+    list_region_text: row.list_region_text || "",
+    phone: row.phone || "",
+    latitude: row.latitude ?? null,
+    longitude: row.longitude ?? null,
+    review_count: row.review_count ?? null,
+    avg_price: row.avg_price || "",
+    business_status: row.business_status || "open",
+    needs_detail: row.needs_detail ? 1 : 0,
+    import_batch_id: row.import_batch_id || "",
+    updated_at: now,
+    merchant_type: row.merchant_type ?? null,
+    address_poi_id: row.address_poi_id || "",
+    poi_title: row.poi_title || "",
+    poi_address: row.poi_address || "",
+    poi_candidates: row.poi_candidates || "[]",
+    poi_updated_at: row.poi_updated_at || null,
+  });
+
+  approveMerchantReview(db, merchantUid);
+  markMerchantImportResult(db, merchantUid, {
+    buzz_merchant_id: String(row.source_id || "").trim(),
+    import_status: "imported",
+    import_error: "",
+    imported_at: now,
+  }, buzzEnv);
+
+  return applyBuzzEnvToMerchant(db, getMerchantByUid(db, merchantUid), buzzEnv);
+}
+
 module.exports = {
   applyPoiSelection,
+  approveMerchantReview,
   clearMerchantBuzzId,
+  deleteLocalMerchant,
   ensureMerchantSchema,
   findBuzzMerchantIdByPoi,
   getApprovedMerchants,
@@ -835,6 +966,7 @@ module.exports = {
   getMerchantsPayload,
   importMerchants,
   listImportedMerchants,
+  listLocalMerchantsByPoi,
   listMerchantsEligibleForImport,
   listMerchantsNeedingPoi,
   listPendingMerchantsForPoiRefresh,
@@ -842,6 +974,7 @@ module.exports = {
   markMerchantBubbleResult,
   markMerchantImportResult,
   updateMerchantGroupId,
+  upsertBuzzSyncedMerchant,
   openDatabase,
   replaceMerchantReviewState,
   rowToMerchant,

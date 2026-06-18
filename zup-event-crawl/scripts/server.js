@@ -62,6 +62,7 @@ const {
   rebuildRotationBuckets,
 } = require("../lib/merchant-bubble");
 const { batchAutoPoi } = require("../lib/merchant-poi-batch");
+const { syncMerchantsFromBuzz } = require("../lib/buzz-merchant-sync");
 const {
   buildPoiKeyword,
   pickBestPoiForMerchant,
@@ -811,6 +812,22 @@ async function handleApi(req, res, pathname) {
         sendJson(res, 499, { ok: false, aborted: true, error: "客户端已中止入库" });
         return;
       }
+      sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/merchants/sync-from-buzz") {
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const buzzEnv = parseBuzzEnvFromRequest(req, body);
+      const report = await syncMerchantsFromBuzz(db, {
+        buzz_env: buzzEnv,
+        dry_run: body.dry_run === true,
+        status: body.status != null ? body.status : 1,
+      });
+      sendJson(res, 200, { ok: true, ...report });
+    } catch (error) {
       sendJson(res, 502, { ok: false, error: error.message });
     }
     return;

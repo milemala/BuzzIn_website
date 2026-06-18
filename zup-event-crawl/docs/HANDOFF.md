@@ -664,6 +664,7 @@ npm start
 | POST | `/api/merchants/:uid/import` | 单条商户写入 Buzz |
 | DELETE | `/api/merchants/:uid/buzz-merchant` | 删除后台商户并清空本地 buzz id |
 | POST | `/api/merchants/import-batch` | 批量商户入库 |
+| POST | `/api/merchants/sync-from-buzz` | 从 Buzz 拉取商户补全审核台（同 POI 删本地旧记录） |
 
 ### 商户气泡 API（`merchant-bubbles.html`）
 
@@ -712,6 +713,7 @@ npm start
 **商户气泡页**（`public/merchant-bubbles.html`）已经具备：
 
 - 已入库商户统计；各城市三分组轮转预览。
+- **从当前环境补全商户**：拉取 Buzz 后台已有商户；同 POI 冲突时删除审核台本地旧记录后以正式为准。
 - 批量建群（新建或改名）、批量发布气泡（文案模式、群聊模式、now_type、限定城市）。
 
 
