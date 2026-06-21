@@ -1,8 +1,8 @@
 {
   "city": "重庆",
   "source": "douban",
-  "updated_at": "2026-06-16T06:05:20.156Z",
-  "agent": "cursor-agent",
+  "updated_at": "2026-06-20T18:41:07.868Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "3c1645e17c6b",
@@ -267,11 +267,32 @@
       ],
       "action": "reject",
       "search_keywords_tried": [
-        "重庆 南坪 影迷"
+        "南岸区",
+        "重庆市南岸区南坪"
       ],
-      "reason": "豆瓣仅写南岸区南坪，地址过泛无法唯一确定场所",
+      "confidence": "low",
       "doubtful": false,
-      "candidates": []
+      "reason": "仅标注南岸区南坪片区，无具体场馆，候选均为政府机关/商场等无关 POI",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "4098943566303534104",
+          "title": "重庆南坪万达广场",
+          "address": "重庆市南岸区江南大道8号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 29.525918,
+          "longitude": 106.569041
+        },
+        {
+          "index": 1,
+          "poi_id": "10102772806560611811",
+          "title": "重庆市南岸区图书馆(南坪馆区)",
+          "address": "重庆市南岸区南城大道199号南岸文化艺术中心4_5楼",
+          "category": "文化场馆:图书馆",
+          "latitude": 29.522518,
+          "longitude": 106.562703
+        }
+      ]
     },
     {
       "group_id": "2c7cc8bebe29",
@@ -476,6 +497,35 @@
       "doubtful": false,
       "reason": "地址映射库命中：重庆 两江新区 旅行箱喜剧|脱口秀剧场 龙溪街道红锦大道89号新光里+SKLP四楼C区 → 旅行箱喜剧|脱口秀剧场（来源 event:douban:37729166）",
       "candidates": []
+    },
+    {
+      "group_id": "0f0209254eae",
+      "event_uids": [
+        "douban:37885846"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "重庆爱乐工厂"
+      ],
+      "poi_id": "1073283805602343470",
+      "poi_title": "重庆爱乐工厂",
+      "poi_address": "重庆市两江新区紫园路292号(唐家院子地铁站出口)",
+      "latitude": 29.59838,
+      "longitude": 106.539811,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "爱乐工厂与紫园路292号一致，五楼演奏厅为同楼不同层",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "1073283805602343470",
+          "title": "重庆爱乐工厂",
+          "address": "重庆市两江新区紫园路292号(唐家院子地铁站出口)",
+          "category": "教育学校:培训:音乐舞蹈",
+          "latitude": 29.59838,
+          "longitude": 106.539811
+        }
+      ]
     }
   ]
 }

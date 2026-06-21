@@ -1,7 +1,7 @@
 {
   "city": "西安",
   "source": "xiaohongshu",
-  "updated_at": "2026-06-15T15:28:18.572Z",
+  "updated_at": "2026-06-20T19:50:00.000Z",
   "agent": "cursor-agent",
   "decisions": [
     {
@@ -233,13 +233,15 @@
       ],
       "action": "reject",
       "search_keywords_tried": [
-        "西安美术学院",
-        "老城根G park"
+        "西安美术学院临潼校区",
+        "老城根G park",
+        "西安DT51",
+        "西仓市集文创公园"
       ],
       "confidence": "low",
       "doubtful": false,
-      "reason": "临潼校区与校外老城根G park、DT51、西仓市集等多点位同步展出，无法绑定唯一POI",
-      "decided_at": "2026-06-15T15:28:18.572Z"
+      "reason": "四个搜索词分别命中临潼校区、老城根G park、西安DT51、西仓市集文创公园等多个有效但相距较远的展出点，活动地址明确为多点位，不能只绑定其中一个POI",
+      "decided_at": "2026-06-20T19:50:00.000Z"
     },
     {
       "group_id": "0b1720dc46e6",

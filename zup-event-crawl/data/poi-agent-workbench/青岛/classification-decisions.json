@@ -1,49 +1,61 @@
 {
   "city": "青岛",
-  "decided_at": "2026-06-16T05:26:10.560Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-06-20T18:30:10.634Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "event_uid": "douban:37815158",
+      "event_uid": "douban:37530416",
+      "suggested": false,
+      "category": "其他",
+      "reason": "跨境电商/贸易展会，偏行业招商不适合线下交友娱乐"
+    },
+    {
+      "event_uid": "douban:37796792",
+      "suggested": false,
+      "category": "其他",
+      "reason": "展会/展销类活动，不适合线下交友娱乐"
+    },
+    {
+      "event_uid": "douban:37889962",
+      "suggested": false,
+      "category": "其他",
+      "reason": "图书发布会，偏宣传性质"
+    },
+    {
+      "event_uid": "douban:37805189",
+      "suggested": true,
+      "category": "喜剧脱口秀",
+      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37835965",
+      "suggested": true,
+      "category": "喜剧脱口秀",
+      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37811825",
       "suggested": true,
       "category": "音乐现场",
       "reason": "音乐会/演唱会/Live 等音乐演出"
     },
     {
-      "event_uid": "douban:37845954",
-      "suggested": true,
-      "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
-    },
-    {
-      "event_uid": "douban:37823687",
-      "suggested": true,
-      "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
-    },
-    {
-      "event_uid": "douban:37815834",
+      "event_uid": "douban:37829941",
       "suggested": true,
       "category": "戏剧表演",
       "reason": "话剧/音乐剧/舞剧等舞台演出"
     },
     {
-      "event_uid": "douban:37842637",
+      "event_uid": "douban:37853913",
       "suggested": true,
       "category": "喜剧脱口秀",
       "reason": "脱口秀/相声/喜剧，适合结伴观演"
     },
     {
-      "event_uid": "douban:37835051",
+      "event_uid": "douban:37855616",
       "suggested": true,
-      "category": "喜剧脱口秀",
-      "reason": "脱口秀/相声/喜剧，适合结伴观演"
-    },
-    {
-      "event_uid": "douban:37700219",
-      "suggested": true,
-      "category": "遛娃亲子",
-      "reason": "明确面向亲子/儿童的活动"
+      "category": "戏剧表演",
+      "reason": "话剧/音乐剧/舞剧等舞台演出"
     }
   ]
 }

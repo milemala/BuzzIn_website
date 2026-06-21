@@ -348,7 +348,9 @@
     const STATUS_FILTER_KEYS = [
       "all", "imported", "suggested", "classification-pending", "rule-blocked",
       "approved", "rejected", "pending", "import_ready", "no_poi", "poi_doubtful", "expired",
+      "imported_not_expired",
     ];
+    const IMPORTED_WIDE_SCOPE_FILTERS = new Set(["imported", "imported_not_expired"]);
 
     const sourceMeta = document.getElementById("sourceMeta");
     const listEl = document.getElementById("list");
@@ -1328,6 +1330,11 @@
 
         if (expired) {
           if (sourceMatch) expiredScoped.push(event);
+          if (sourceMatch) {
+            for (const key of IMPORTED_WIDE_SCOPE_FILTERS) {
+              if (matchesStatusFilter(event, key)) statusCounts[key] += 1;
+            }
+          }
           continue;
         }
 
@@ -1562,6 +1569,26 @@
       return endDate ? endDate < todayDateValue() : false;
     }
 
+    /** 气泡在 Buzz 上的 expired_at 是否已过 */
+    function isBuzzExpired(event) {
+      const raw = String(event.expired_at || "").trim();
+      if (!raw) return false;
+      const normalized = raw.includes("T") ? raw : raw.replace(" ", "T");
+      const ts = Date.parse(normalized);
+      return !Number.isNaN(ts) && ts < Date.now();
+    }
+
+    function isImportedNotExpired(event) {
+      return isImportedEvent(event) && !isBuzzExpired(event);
+    }
+
+    function getImportedWideScopedEvents() {
+      return [
+        ...(filterMetrics?.baseScoped || []),
+        ...(filterMetrics?.expiredScoped || []),
+      ];
+    }
+
     function getCityKey(event) {
       return event.city || "未知城市";
     }
@@ -1630,8 +1657,9 @@
       }
       if (filter === "pending") return isReviewPendingReady(event);
       if (filter === "expired") return isExpired(event);
+      if (filter === "imported_not_expired") return isImportedNotExpired(event);
       if (["approved", "rejected"].includes(filter)) return status === filter;
-        return true;
+      return true;
     }
 
     function resetPage() {
@@ -1682,12 +1710,14 @@
     function getFilteredEvents() {
       const scoped = statusFilter === "expired"
         ? (filterMetrics?.expiredScoped || [])
+        : IMPORTED_WIDE_SCOPE_FILTERS.has(statusFilter)
+        ? getImportedWideScopedEvents()
         : (filterMetrics?.baseScoped || []);
       const needle = searchTerm.trim().toLowerCase();
       const filtered = [];
 
       for (const event of scoped) {
-        if (statusFilter !== "expired" && isExpired(event)) continue;
+        if (statusFilter !== "expired" && !IMPORTED_WIDE_SCOPE_FILTERS.has(statusFilter) && isExpired(event)) continue;
         if (!matchesStatusFilter(event, statusFilter)) continue;
         if (categoryFilter !== "all" && event.category !== categoryFilter) continue;
         if (dateFilter !== "all" && !eventOccursOnDate(event, dateFilter)) continue;
@@ -1766,6 +1796,7 @@
         { key: "no_poi", label: "未匹配 POI" },
         { key: "poi_doubtful", label: "POI 存疑" },
         { key: "expired", label: "已过期" },
+        { key: "imported_not_expired", label: "已推送且未过期" },
       ];
       statusFilterEl.innerHTML = filters.map(({ key, label }) => renderSegButton({
         attr: "status",

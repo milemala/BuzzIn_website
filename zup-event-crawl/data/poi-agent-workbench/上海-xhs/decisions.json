@@ -1,7 +1,7 @@
 {
   "city": "上海",
   "source": "xiaohongshu",
-  "updated_at": "2026-06-15T15:28:18.572Z",
+  "updated_at": "2026-06-20T19:50:00.000Z",
   "agent": "cursor-agent",
   "decisions": [
     {
@@ -143,12 +143,12 @@
       "event_uids": [
         "xiaohongshu:6a2fce3d000000001101dbd8:03_0"
       ],
-      "decided_at": "2026-06-15T15:28:18.572Z",
+      "decided_at": "2026-06-20T19:50:00.000Z",
       "action": "reject",
-      "reason": "老滧河C湖码头无对应腾讯POI，仅搜到崇明道路名",
+      "reason": "老滧河C湖码头未搜到对应实体POI，候选多为崇明道路/路口/桥；游艇码头候选多在杨浦、虹口、奉贤、浦东或崇明东滩，均非城桥老滧河C湖码头",
       "search_keywords_tried": [
         "老滧河C湖码头",
-        "崇明城桥游艇码头"
+        "崇明 城桥 游艇码头"
       ]
     },
     {

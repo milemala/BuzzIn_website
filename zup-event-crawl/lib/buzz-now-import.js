@@ -354,6 +354,7 @@ async function importEventToBuzz(db, eventUid, options = {}) {
 
     const payload = buildBuzzPayload(record);
     if (medias.length) payload.now_medias = medias;
+    payload.enroll_hidden = 1;
 
     const nowId = await runImportStep("创建气泡", () => client.createNow(payload));
     if (!nowId) {

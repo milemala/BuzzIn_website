@@ -1,49 +1,67 @@
 {
   "city": "青岛",
   "source": "douban",
-  "exported_at": "2026-06-16T05:46:49.339Z",
+  "exported_at": "2026-06-20T18:31:04.607Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "unmatched",
   "pending_only": true,
   "doubtful_only": false,
-  "total_events": 4,
-  "group_count": 4,
+  "total_events": 6,
+  "group_count": 6,
   "cache_hit_groups": 0,
   "groups": [
     {
-      "group_id": "322683b16286",
-      "location": "青岛 城阳区 青岛市民健身中心体育场 上马街道火炬路318号",
-      "sample_title": "CAISSA一声有你演唱会·青岛站",
+      "group_id": "a686949d0c11",
+      "location": "青岛 即墨区 山东青岛 中铁青岛世界博览城",
+      "sample_title": "2026青岛黄河流域跨境电商博览会",
       "event_uids": [
-        "douban:37815158"
+        "douban:37530416"
       ],
       "event_count": 1
     },
     {
-      "group_id": "92c1f4d384b3",
-      "location": "青岛 崂山区 青岛国信体育中心体育场 银川东路3号",
-      "sample_title": "2026张韶涵 玩家 巡回演唱会-青岛站",
+      "group_id": "a04e380208ce",
+      "location": "青岛 即墨区 青岛世界博览城（西海岸新区）",
+      "sample_title": "2026第五届中国·青岛外贸源头工厂暨跨境选品展览会",
       "event_uids": [
-        "douban:37823687"
+        "douban:37796792"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "3a123dc44977",
+      "location": "青岛 市南区 方所书店",
+      "sample_title": "我们终将找到自己：东来《她和她的决心》新书分享会",
+      "event_uids": [
+        "douban:37889962"
       ],
       "event_count": 1
     },
     {
       "group_id": "94dde3becd05",
       "location": "青岛 市北区 Downtown_Live 宁海路18号中粮大悦城悦街广场B栋023号DowntownLive",
-      "sample_title": "陶薏点（桃子）BOOM TO SHARE分享欲爆棚巡演 青岛站",
+      "sample_title": "花墙FancyWall「This,That」十周年巡演 青岛站",
       "event_uids": [
-        "douban:37815834"
+        "douban:37829941"
       ],
       "event_count": 1
     },
     {
-      "group_id": "78516d9deb47",
-      "location": "青岛 城阳区 城阳开心麻花大剧院 江城路101号",
-      "sample_title": "【自营演出】开心麻花经典爆笑大戏《乌龙山伯爵》",
+      "group_id": "4705f4bc8083",
+      "location": "青岛 李沧区 青岛市李沧剧院 兴城路39号",
+      "sample_title": "“廿念不忘”青曲社苗阜王声合作20周年巡演·青岛站",
       "event_uids": [
-        "douban:37842637"
+        "douban:37853913"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "44cc3a924b61",
+      "location": "青岛 崂山区 青岛DMC 演出现场 金家岭街道银川路3号国信体育中心M区G层底商",
+      "sample_title": "「前后」2026饮马池巡演 青岛站",
+      "event_uids": [
+        "douban:37855616"
       ],
       "event_count": 1
     }

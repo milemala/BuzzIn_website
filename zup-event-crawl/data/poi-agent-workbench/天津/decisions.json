@@ -1,672 +1,651 @@
 {
   "city": "天津",
   "source": "douban",
-  "updated_at": "2026-06-16T06:05:22.591Z",
-  "agent": "cursor-agent",
+  "updated_at": "2026-06-20T18:39:56.428Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "d04a4380c61d",
+      "group_id": "41cf33c569c2",
       "event_uids": [
-        "douban:37889329"
+        "douban:36975212"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "SFC上影影城(天津天河城IMAX店)",
-        "和平区小白楼街和平路263号天津天河城第八层809商铺"
+        "南开区",
+        "杨家班相声剧场",
+        "古文化街文化小城7号楼一层",
+        "7号楼一层",
+        "古文化街店",
+        "南开区 杨家班相声剧场 古文化街文化小城7号楼一层"
       ],
-      "poi_id": "9285036432254658383",
-      "poi_title": "天津天河城购物中心",
-      "poi_address": "天津市和平区和平路263号",
-      "latitude": 39.127057,
-      "longitude": 117.203965,
+      "poi_id": "11243222953704919044",
+      "poi_title": "杨家班相声茶馆(古文化街店)",
+      "poi_address": "天津市南开区鼓楼街道张自忠路与水阁大街交口西北侧文化小城7号楼124一层底商",
+      "latitude": 39.144329,
+      "longitude": 117.193936,
       "confidence": "high",
       "doubtful": false,
-      "reason": "三轮匹配（score 139）",
+      "reason": "杨家班相声茶馆(古文化街店)与豆瓣「杨家班相声剧场·古文化街文化小城7号楼一层」一致，南开区、文化小城7号楼一层底商均吻合",
       "candidates": [
         {
           "index": 0,
-          "poi_id": "17697442673876052758",
-          "title": "上影国际影城(天河城店)",
-          "address": "天津市和平区和平路263号天津天河城购物中心F8",
-          "category": "娱乐休闲:电影院",
-          "latitude": 39.127264,
-          "longitude": 117.204748
-        },
-        {
-          "index": 1,
-          "poi_id": "9285036432254658383",
-          "title": "天津天河城购物中心",
-          "address": "天津市和平区和平路263号",
-          "category": "购物:综合商场:购物中心",
-          "latitude": 39.127057,
-          "longitude": 117.203965
-        },
-        {
-          "index": 2,
-          "poi_id": "13989172849649026862",
-          "title": "千九福金包银·黄金回收(天河城店)",
-          "address": "天津市和平区小白楼街和平路263号天河城购物中心第二层233-05-1",
-          "category": "生活服务:婚庆服务",
-          "latitude": 39.127262,
-          "longitude": 117.204497
-        },
-        {
-          "index": 3,
-          "poi_id": "8435792184017047391",
-          "title": "鱼酷活鱼烤鱼(天津滨江天河城店)",
-          "address": "天津市和平区和平路263号天津天河城购物中心F7",
-          "category": "美食:中餐厅:其它中餐厅",
-          "latitude": 39.127269,
-          "longitude": 117.203477
-        },
-        {
-          "index": 4,
-          "poi_id": "5829626238856122078",
-          "title": "胖哥俩肉蟹煲(天津天河城店)",
-          "address": "天津市和平区和平路263号天津天河城购物中心F6",
-          "category": "美食:中餐厅:其它中餐厅",
-          "latitude": 39.126867,
-          "longitude": 117.204355
-        }
-      ]
-    },
-    {
-      "group_id": "aa6804cff40a",
-      "event_uids": [
-        "douban:37803902"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "天津 天津人艺实验剧场"
-      ],
-      "reason": "豆瓣天津人艺实验剧场与POI一致",
-      "doubtful": false,
-      "confidence": "high",
-      "candidates": [],
-      "poi_id": "2601464891243608973",
-      "poi_title": "天津人民艺术剧院实验剧场",
-      "poi_address": "天津市河西区平山道43号",
-      "latitude": 39.1,
-      "longitude": 117.2
-    },
-    {
-      "group_id": "56bbf1254c43",
-      "event_uids": [
-        "douban:37352647"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "3856211485896985164",
-      "poi_title": "戏梦时空剧场(和平印象城A座三楼)",
-      "poi_address": "",
-      "latitude": 39.13166,
-      "longitude": 117.193147,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：天津 和平区 戏梦时空剧场 和平路119号和平印象城A座3楼 → 戏梦时空剧场(和平印象城A座三楼)（来源 event:douban:37711030）",
-      "candidates": []
-    },
-    {
-      "group_id": "eab05e3ae3aa",
-      "event_uids": [
-        "douban:37753621"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "16003848378464773584",
-      "poi_title": "大笑脱口秀俱乐部-滨江道店",
-      "poi_address": "",
-      "latitude": 39.118894,
-      "longitude": 117.193948,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：天津 和平区 大笑脱口秀俱乐部-滨江道店 南京路211号国际商场B座4层 → 大笑脱口秀俱乐部-滨江道店（来源 event:douban:37726278）",
-      "candidates": []
-    },
-    {
-      "group_id": "9651b2b6eb7a",
-      "event_uids": [
-        "douban:37811146"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "17697442673876052758",
-      "poi_title": "SFC上影影城(天津天河城IMAX店)",
-      "poi_address": "",
-      "latitude": 39.127264,
-      "longitude": 117.204748,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：天津 和平区 SFC上影影城演出厅-天津天河城IMAX店 小白楼街和平路263号天津天河城第八层809商铺 → SFC上影影城(天津天河城IMAX店)（来源 event:douban:37722862）",
-      "candidates": []
-    },
-    {
-      "group_id": "099ac9516a0e",
-      "event_uids": [
-        "douban:37675233",
-        "douban:37728597"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "天津大礼堂"
-      ],
-      "poi_id": "9221272510725327847",
-      "poi_title": "天津大礼堂",
-      "poi_address": "天津市河西区友谊路街道友谊路24号(文化中心地铁站D口步行430米)",
-      "latitude": 39.086847,
-      "longitude": 117.204211,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 166）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "9221272510725327847",
-          "title": "天津大礼堂",
-          "address": "天津市河西区友谊路街道友谊路24号(文化中心地铁站D口步行430米)",
-          "category": "文化场馆:其它文化场馆",
-          "latitude": 39.086847,
-          "longitude": 117.204211
-        },
-        {
-          "index": 1,
-          "poi_id": "10145649051682280584",
-          "title": "天津大礼堂-东北门",
-          "address": "天津市河西区乐园道与友谊路交叉口东南方向267米左右",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 39.086507,
-          "longitude": 117.205725
-        },
-        {
-          "index": 2,
-          "poi_id": "13550612707226989060",
-          "title": "天津大礼堂-东北1门",
-          "address": "天津市河西区乐园道与友谊路交叉口东南方向176米左右",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 39.087187,
-          "longitude": 117.205157
-        },
-        {
-          "index": 3,
-          "poi_id": "1205081912280804759",
-          "title": "天津大礼堂停车场",
-          "address": "天津市河西区文化中心地铁站G口步行420米",
-          "category": "汽车:停车场",
-          "latitude": 39.087362,
-          "longitude": 117.204636
-        },
-        {
-          "index": 4,
-          "poi_id": "3378536570135595786",
-          "title": "天津大礼堂-中剧场",
-          "address": "天津市河西区友谊路30号(文化中心地铁站G口步行360米)",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 39.08669,
-          "longitude": 117.204
-        }
-      ]
-    },
-    {
-      "group_id": "1e60e9fd8b88",
-      "event_uids": [
-        "douban:37795218"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "天津 杨柳青镇估衣街47号石家大院"
-      ],
-      "poi_id": "478467218066016560",
-      "poi_title": "石家大院",
-      "poi_address": "天津市西青区杨柳青镇估衣街47号",
-      "latitude": 39.134947,
-      "longitude": 117.010616,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 228）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "478467218066016560",
-          "title": "石家大院",
-          "address": "天津市西青区杨柳青镇估衣街47号",
-          "category": "旅游景点:风景名胜",
-          "latitude": 39.134947,
-          "longitude": 117.010616
-        },
-        {
-          "index": 1,
-          "poi_id": "18223489579026056635",
-          "title": "天津市西青区杨柳青镇石家大院主停车场充电站(古镇杨柳青)",
-          "address": "天津市西青区杨柳青估衣街47号-石家大院院内停车场",
-          "category": "汽车:加油站:充电站",
-          "latitude": 39.136156,
-          "longitude": 117.01152
-        },
-        {
-          "index": 2,
-          "poi_id": "5331513727333706548",
-          "title": "王记糖画",
-          "address": "天津市西青区杨柳青镇估衣街47号石家大院",
-          "category": "教育学校:培训",
-          "latitude": 39.135199,
-          "longitude": 117.010896
-        },
-        {
-          "index": 3,
-          "poi_id": "4558559951551498897",
-          "title": "街电(石家大院店)",
-          "address": "天津市西青区估衣街47号",
-          "category": "生活服务:其它生活服务",
-          "latitude": 39.134496,
-          "longitude": 117.010725
-        },
-        {
-          "index": 4,
-          "poi_id": "4270938769230571417",
-          "title": "石家大院-正门",
-          "address": "天津市西青区杨柳青镇估衣街47号石家大院内(南侧)",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 39.134472,
-          "longitude": 117.010799
-        }
-      ]
-    },
-    {
-      "group_id": "ff4e3e153481",
-      "event_uids": [
-        "douban:37799548"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "天津 津湾大剧院店"
-      ],
-      "poi_id": "11805831732686530903",
-      "poi_title": "津湾大剧院",
-      "poi_address": "天津市和平区解放北路津湾广场4号楼(近地铁3号线津湾广场站)",
-      "latitude": 39.132447,
-      "longitude": 117.209419,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 298）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "11805831732686530903",
-          "title": "津湾大剧院",
-          "address": "天津市和平区解放北路津湾广场4号楼(近地铁3号线津湾广场站)",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 39.132447,
-          "longitude": 117.209419
-        },
-        {
-          "index": 1,
-          "poi_id": "6726778927089422150",
-          "title": "宜必思津湾广场地下停车场",
-          "address": "天津市和平区津湾大剧院西北",
-          "category": "汽车:停车场",
-          "latitude": 39.132727,
-          "longitude": 117.208156
-        },
-        {
-          "index": 2,
-          "poi_id": "16452648021884063369",
-          "title": "津湾大剧院-南门",
-          "address": "天津市和平区张自忠路",
-          "category": "室内及附属设施:通行设施类:外部门",
-          "latitude": 39.132261,
-          "longitude": 117.209647
-        },
-        {
-          "index": 3,
-          "poi_id": "8929885200386273040",
-          "title": "名流茶馆(津湾大剧院店)",
-          "address": "天津市和平区小白楼街道解放北路和滨江道交叉口津湾广场4号",
+          "poi_id": "11243222953704919044",
+          "title": "杨家班相声茶馆(古文化街店)",
+          "address": "天津市南开区鼓楼街道张自忠路与水阁大街交口西北侧文化小城7号楼124一层底商",
           "category": "娱乐休闲:茶馆",
-          "latitude": 39.132619,
-          "longitude": 117.209465
+          "latitude": 39.144329,
+          "longitude": 117.193936
         },
         {
-          "index": 4,
-          "poi_id": "4392665508367826705",
-          "title": "落日酒场",
-          "address": "天津市和平区小白楼街道津湾大剧院旁边",
+          "index": 1,
+          "poi_id": "12915809286211995509",
+          "title": "杨家班相声茶馆·杨光茶社(友谊新天地广场店)",
+          "address": "天津市和平区滨江道友谊新天地广场B座二层",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 39.12514,
+          "longitude": 117.197152
+        },
+        {
+          "index": 1,
+          "poi_id": "10576514995583469592",
+          "title": "天实景相声剧场-古文化街店",
+          "address": "天津市南开区鼓楼街道古文化街文化小城7号楼7134",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 39.144626,
+          "longitude": 117.193937
+        },
+        {
+          "index": 0,
+          "poi_id": "11737824411091704699",
+          "title": "海富盛烟酒茶(富裕广场一期7号楼店)",
+          "address": "天津市河西区下瓦房街道福建路47号",
+          "category": "购物:烟酒专卖",
+          "latitude": 39.102858,
+          "longitude": 117.227948
+        },
+        {
+          "index": 1,
+          "poi_id": "7226200974081988845",
+          "title": "富裕广场1期-7号楼",
+          "address": "天津市河西区爱国道富裕广场1期",
+          "category": "房产小区:房产小区附属",
+          "latitude": 39.102969,
+          "longitude": 117.228262
+        }
+      ]
+    },
+    {
+      "group_id": "88cc999ebbf3",
+      "event_uids": [
+        "douban:36573709"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "和平区",
+        "听角儿相声茶馆",
+        "滨江道211号麦购休闲广场5楼",
+        "号麦购休闲广场",
+        "211号麦购休闲广场5楼",
+        "滨江道店"
+      ],
+      "poi_id": "6317125968019363614",
+      "poi_title": "听·角儿相声茶馆(滨江道店)",
+      "poi_address": "天津市和平区滨江道211号麦购商场五楼039-041店铺",
+      "latitude": 39.122312,
+      "longitude": 117.198241,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "听·角儿相声茶馆(滨江道店)地址为和平区滨江道211号麦购商场五楼，与豆瓣门牌及楼层一致",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6317125968019363614",
+          "title": "听·角儿相声茶馆(滨江道店)",
+          "address": "天津市和平区滨江道211号麦购商场五楼039-041店铺",
+          "category": "娱乐休闲:茶馆",
+          "latitude": 39.122312,
+          "longitude": 117.198241
+        },
+        {
+          "index": 1,
+          "poi_id": "14721847693877472957",
+          "title": "橘里橘气·拼豆·银饰DIY(滨江道)",
+          "address": "天津市和平区劝业场街道滨江道211号麦购休闲广场5层5-054(听角儿相声茶馆旁)",
+          "category": "娱乐休闲:其它娱乐休闲",
+          "latitude": 39.121956,
+          "longitude": 117.19841
+        },
+        {
+          "index": 0,
+          "poi_id": "14213639327197392291",
+          "title": "麦购休闲广场",
+          "address": "天津市和平区滨江道211号",
+          "category": "购物:综合商场",
+          "latitude": 39.12224,
+          "longitude": 117.198269
+        },
+        {
+          "index": 1,
+          "poi_id": "14736544639491963098",
+          "title": "滨果台球棋牌俱乐部",
+          "address": "天津市和平区劝业场街道滨江道211号麦购休闲广场五楼5-018-038.059-067.169",
+          "category": "运动健身:台球馆",
+          "latitude": 39.122092,
+          "longitude": 117.197991
+        },
+        {
+          "index": 2,
+          "poi_id": "3007734535151379761",
+          "title": "GW桌游(滨江道麦购休闲广场店)",
+          "address": "天津市和平区滨江道211号麦购休闲广场",
+          "category": "娱乐休闲:游戏棋牌:桌面游戏",
+          "latitude": 39.122157,
+          "longitude": 117.198206
+        }
+      ]
+    },
+    {
+      "group_id": "8afdad4b56cd",
+      "event_uids": [
+        "douban:37760525"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "和平区",
+        "利顺德博物馆—泰晤士厅",
+        "台儿庄路33号利顺德大饭店地下一层",
+        "利顺德博物馆",
+        "泰晤士厅",
+        "号利顺德大饭店",
+        "33号利顺德大饭店地下一层",
+        "天津利顺德博物馆"
+      ],
+      "poi_id": "7454418480953102825",
+      "poi_title": "利顺德博物馆",
+      "poi_address": "天津市和平区台儿庄路33号",
+      "latitude": 39.120883,
+      "longitude": 117.216456,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "活动场地为利顺德博物馆泰晤士厅，台儿庄路33号和平区；泰晤士厅无独立POI，匹配博物馆主体（同址同楼地下一层）",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "7454418480953102825",
+          "title": "利顺德博物馆",
+          "address": "天津市和平区台儿庄路33号",
+          "category": "文化场馆:博物馆",
+          "latitude": 39.120883,
+          "longitude": 117.216456
+        },
+        {
+          "index": 1,
+          "poi_id": "6665401244170924487",
+          "title": "利顺德博物馆-出入口",
+          "address": "天津市和平区泰安道与解放北路交叉口西北方向51米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 39.120874,
+          "longitude": 117.216215
+        },
+        {
+          "index": 0,
+          "poi_id": "17631512152120703410",
+          "title": "天津利顺德大饭店",
+          "address": "天津市和平区台儿庄路33号",
+          "category": "酒店宾馆:星级酒店",
+          "latitude": 39.121082,
+          "longitude": 117.216587
+        },
+        {
+          "index": 1,
+          "poi_id": "15439916762123795530",
+          "title": "利顺德大饭店海维林酒吧",
+          "address": "天津市和平区小白楼街道台儿庄路33号利顺德大饭店豪华精选酒店利顺德翼1楼(近解放北园)",
           "category": "娱乐休闲:酒吧",
-          "latitude": 39.132698,
-          "longitude": 117.209248
+          "latitude": 39.121173,
+          "longitude": 117.216779
+        },
+        {
+          "index": 0,
+          "poi_id": "18178285073928415803",
+          "title": "天津利顺德大饭店-南门",
+          "address": "天津市和平区台儿庄路33号天津利顺德大饭店",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 39.120899,
+          "longitude": 117.21688
         }
       ]
     },
     {
-      "group_id": "a900e7aeedc9",
+      "group_id": "9df4ab4ce4e2",
       "event_uids": [
-        "douban:37751256"
+        "douban:36084235"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "poi-address-cache"
+        "和平区",
+        "观乐小剧场",
+        "小白楼街道建设路88号朗香街地铁层M026-028号",
+        "M026-028",
+        "88号朗香街地铁层M026-028号"
       ],
-      "poi_id": "5192144685254939370",
-      "poi_title": "天津大剧院",
-      "poi_address": "",
-      "latitude": 39.087342,
-      "longitude": 117.216161,
+      "poi_id": "12524347914397313432",
+      "poi_title": "观乐小剧场",
+      "poi_address": "天津市和平区建设路小白楼朗香街B2层M026号商铺",
+      "latitude": 39.115357,
+      "longitude": 117.215116,
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：天津 河西区 天津大剧院 平江道58号增1号 → 天津大剧院（来源 event:douban:37801975）",
-      "candidates": []
-    },
-    {
-      "group_id": "8b5ae8a00482",
-      "event_uids": [
-        "douban:37840882"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "天津音乐厅"
-      ],
-      "poi_id": "1534516290909584326",
-      "poi_title": "天津音乐厅",
-      "poi_address": "天津市和平区建设路与浙江路交叉口南20米(小白楼地铁站A口旁)",
-      "latitude": 39.115469,
-      "longitude": 117.215194,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 292）",
+      "reason": "观乐小剧场位于和平区建设路88号朗香街B2层M026号，与豆瓣朗香街地铁层M026-028号同址同层",
       "candidates": [
         {
           "index": 0,
-          "poi_id": "1534516290909584326",
-          "title": "天津音乐厅",
-          "address": "天津市和平区建设路与浙江路交叉口南20米(小白楼地铁站A口旁)",
+          "poi_id": "12524347914397313432",
+          "title": "观乐小剧场",
+          "address": "天津市和平区建设路小白楼朗香街B2层M026号商铺",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 39.115357,
+          "longitude": 117.215116
+        },
+        {
+          "index": 0,
+          "poi_id": "1738979070806729533",
+          "title": "津乐园(朗香街店)",
+          "address": "天津市和平区小白楼街道建设路与南京路交口小白楼朗香街地铁层M006号商铺",
+          "category": "美食:面包甜点",
+          "latitude": 39.11507,
+          "longitude": 117.215849
+        },
+        {
+          "index": 1,
+          "poi_id": "10223232940333751855",
+          "title": "米村拌饭(小白楼朗香街店)",
+          "address": "天津市和平区小白楼街道建设路88号朗香街B2层M019号地铁层(小白楼地铁站A口出口就到)",
+          "category": "美食:日韩菜:其它日韩菜",
+          "latitude": 39.115111,
+          "longitude": 117.215785
+        },
+        {
+          "index": 2,
+          "poi_id": "8929314890018215982",
+          "title": "伊爱克斯首饰设计(小白楼朗香街店)",
+          "address": "天津市和平区建设路88号朗香街地铁站m089号",
+          "category": "购物:珠宝饰品:珠宝",
+          "latitude": 39.115566,
+          "longitude": 117.215294
+        },
+        {
+          "index": 4,
+          "poi_id": "7088209212896360175",
+          "title": "库迪咖啡(朗香街店)",
+          "address": "天津市和平区建设路88号朗香街地铁层M019号(小白楼地铁站A口旁)旁边",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 39.115362,
+          "longitude": 117.215175
+        }
+      ]
+    },
+    {
+      "group_id": "b86f941af7af",
+      "event_uids": [
+        "douban:36619486"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "和平区",
+        "名流相声茶馆-恒隆店",
+        "兴安路166号恒隆广场4楼4034号",
+        "名流相声茶馆",
+        "恒隆店",
+        "号恒隆广场",
+        "166号恒隆广场4楼4034号"
+      ],
+      "poi_id": "9170136248580433509",
+      "poi_title": "名流相声茶馆(恒隆店)",
+      "poi_address": "天津市和平区兴安路166号恒隆广场F4",
+      "latitude": 39.12811,
+      "longitude": 117.20078,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "名流相声茶馆(恒隆店)位于和平区兴安路166号恒隆广场F4，与豆瓣恒隆店及4楼一致",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "9170136248580433509",
+          "title": "名流相声茶馆(恒隆店)",
+          "address": "天津市和平区兴安路166号恒隆广场F4",
+          "category": "娱乐休闲:茶馆",
+          "latitude": 39.12811,
+          "longitude": 117.20078
+        },
+        {
+          "index": 0,
+          "poi_id": "3316840892676525593",
+          "title": "新氧青春诊所(天津恒隆广场店)",
+          "address": "天津市和平区小白楼街道兴安路166号恒隆广场4楼4017-4019",
+          "category": "医疗保健:诊所",
+          "latitude": 39.128126,
+          "longitude": 117.200654
+        },
+        {
+          "index": 1,
+          "poi_id": "9051708098314577799",
+          "title": "3C Hair叁熙形象设计(恒隆广场店)",
+          "address": "天津市和平区劝业场街道兴安路166号天津恒隆广场4F(4F西厅4012旁)",
+          "category": "生活服务:美容美发:美发",
+          "latitude": 39.127914,
+          "longitude": 117.198806
+        },
+        {
+          "index": 2,
+          "poi_id": "5230534143311107602",
+          "title": "奇遇星球",
+          "address": "天津市和平区兴安路166号恒隆广场4楼东庭4057(近大铜钱直梯直达)",
+          "category": "购物:母婴儿童",
+          "latitude": 39.127634,
+          "longitude": 117.200522
+        },
+        {
+          "index": 3,
+          "poi_id": "10444964912331159064",
+          "title": "南京大牌档(恒隆广场店)",
+          "address": "天津市和平区小白楼街道兴安路166号恒隆广场4层东庭4029号",
+          "category": "美食:中餐厅:浙江菜",
+          "latitude": 39.1274,
+          "longitude": 117.201115
+        }
+      ]
+    },
+    {
+      "group_id": "79de00585fca",
+      "event_uids": [
+        "douban:37191654"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "南开区",
+        "新华相声社",
+        "古文化街文化小城7-204",
+        "南开区 新华相声社 古文化街文化小城7-204"
+      ],
+      "poi_id": "1903478441552664875",
+      "poi_title": "新华相声社(古文化街玉皇阁店)",
+      "poi_address": "天津市南开区古文化街",
+      "latitude": 39.145056,
+      "longitude": 117.193131,
+      "confidence": "medium",
+      "doubtful": false,
+      "reason": "新华相声社(古文化街玉皇阁店)与豆瓣「新华相声社·古文化街文化小城7-204」店名及南开区古文化街一致",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "2647528469228303648",
+          "title": "新华相声社(北门店)",
+          "address": "天津市南开区通北路北方美博城",
           "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
-          "latitude": 39.115469,
-          "longitude": 117.215194
+          "latitude": 39.145796,
+          "longitude": 117.191695
         },
         {
           "index": 1,
-          "poi_id": "5192144685254939370",
-          "title": "天津大剧院",
-          "address": "天津市河西区越秀路文化中心内",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 39.087342,
-          "longitude": 117.216161
+          "poi_id": "1903478441552664875",
+          "title": "新华相声社(古文化街玉皇阁店)",
+          "address": "天津市南开区古文化街",
+          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
+          "latitude": 39.145056,
+          "longitude": 117.193131
+        },
+        {
+          "index": 0,
+          "poi_id": "9944160019012343079",
+          "title": "古文化街码头",
+          "address": "天津市南开区鼓楼街道文化小城7号",
+          "category": "基础设施:交通设施:港口码头",
+          "latitude": 39.144797,
+          "longitude": 117.194624
+        },
+        {
+          "index": 1,
+          "poi_id": "7658894142044963387",
+          "title": "天津古文化街旅游区-玉皇阁",
+          "address": "天津市南开区鼓楼街道古文化街文化小城7-503对面",
+          "category": "旅游景点:风景名胜",
+          "latitude": 39.145379,
+          "longitude": 117.192828
         },
         {
           "index": 2,
-          "poi_id": "3139009570794360279",
-          "title": "天津歌舞剧院",
-          "address": "天津市河西区尖山街道尖山路96(尖山路地铁站D口步行140米)",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 39.08749,
-          "longitude": 117.222695
+          "poi_id": "15088722452498484140",
+          "title": "古文化街管理委员会",
+          "address": "天津市南开区古文化街文化小城7-135号",
+          "category": "机构团体:政府机关",
+          "latitude": 39.144019,
+          "longitude": 117.193849
+        }
+      ]
+    },
+    {
+      "group_id": "7d4b6cc355a1",
+      "event_uids": [
+        "douban:37672095"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "和平区",
+        "相遇相声社",
+        "津湾广场5号楼三楼",
+        "津湾广场",
+        "5号楼三楼",
+        "天津相遇相声社",
+        "和平区 相遇相声社 津湾广场5号楼三楼"
+      ],
+      "poi_id": "597911881864813960",
+      "poi_title": "相遇相声社(津湾广场店)",
+      "poi_address": "天津市和平区小白楼街道解放北路与赤峰道交口津湾广场5号楼3层3D-02",
+      "latitude": 39.132263,
+      "longitude": 117.210241,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "相遇相声社(津湾广场店)位于和平区津湾广场5号楼3层，与豆瓣津湾广场5号楼三楼一致",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "597911881864813960",
+          "title": "相遇相声社(津湾广场店)",
+          "address": "天津市和平区小白楼街道解放北路与赤峰道交口津湾广场5号楼3层3D-02",
+          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
+          "latitude": 39.132263,
+          "longitude": 117.210241
+        },
+        {
+          "index": 0,
+          "poi_id": "6646590262694271575",
+          "title": "津湾广场5号楼",
+          "address": "天津市和平区解放北路津湾广场",
+          "category": "房产小区:房产小区附属",
+          "latitude": 39.132596,
+          "longitude": 117.210113
+        },
+        {
+          "index": 1,
+          "poi_id": "9152078936820205377",
+          "title": "津湾广场5号楼-A门",
+          "address": "天津市和平区张自忠路与津湾张自忠路隧道交叉口正南方向28米左右",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 39.132656,
+          "longitude": 117.210069
+        },
+        {
+          "index": 2,
+          "poi_id": "7371447689408244264",
+          "title": "天津津湾广场五大道公园亚朵酒店",
+          "address": "天津市和平区大同道20号(和平路地铁站G口步行300米)",
+          "category": "酒店宾馆:经济型酒店",
+          "latitude": 39.126022,
+          "longitude": 117.210254
         },
         {
           "index": 3,
-          "poi_id": "14694096430531753900",
-          "title": "天津光华剧院",
-          "address": "天津市河西区挂甲寺街道南北大街2号围堤道口(近凯德MALL购物中心)",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 39.096859,
-          "longitude": 117.238196
+          "poi_id": "15300744048841645103",
+          "title": "津都湾广场5号楼",
+          "address": "天津市河西区大沽南路天津湾海景芯苑",
+          "category": "房产小区:房产小区附属",
+          "latitude": 39.086706,
+          "longitude": 117.242213
+        }
+      ]
+    },
+    {
+      "group_id": "e6964a74dfab",
+      "event_uids": [
+        "douban:37685915"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "和平区",
+        "康之乐相声大会",
+        "劝业场街道滨江道155号",
+        "155号",
+        "金街店",
+        "和平区 康之乐相声大会 劝业场街道滨江道155号"
+      ],
+      "poi_id": "11399280191182952171",
+      "poi_title": "康之乐相声茶馆(金街店)",
+      "poi_address": "天津市和平区滨江道155号一楼101、102(辽宁路口)",
+      "latitude": 39.12595,
+      "longitude": 117.20092,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "康之乐相声茶馆(金街店)位于和平区滨江道155号一楼，与豆瓣劝业场街道滨江道155号一致",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "4248044543023516006",
+          "title": "康之乐",
+          "address": "天津市滨海新区海滨街道港盛道帝驿道主题文化酒店北侧约200米",
+          "category": "娱乐休闲:其它娱乐休闲",
+          "latitude": 38.710596,
+          "longitude": 117.484886
+        },
+        {
+          "index": 1,
+          "poi_id": "16655978335741841934",
+          "title": "世足康足之乐(新兴南道店)",
+          "address": "天津市滨海新区海滨街道新兴南道141号",
+          "category": "娱乐休闲:洗浴推拿足疗:足疗",
+          "latitude": 38.725926,
+          "longitude": 117.507385
+        },
+        {
+          "index": 2,
+          "poi_id": "11399280191182952171",
+          "title": "康之乐相声茶馆(金街店)",
+          "address": "天津市和平区滨江道155号一楼101、102(辽宁路口)",
+          "category": "美食:冷饮店",
+          "latitude": 39.12595,
+          "longitude": 117.20092
+        },
+        {
+          "index": 3,
+          "poi_id": "9940278260161317287",
+          "title": "乐之康诊所",
+          "address": "天津市滨海新区北塘街道欣嘉园商业广场4-5号底商",
+          "category": "医疗保健:诊所",
+          "latitude": 39.125974,
+          "longitude": 117.636293
         },
         {
           "index": 4,
-          "poi_id": "10336720558969969243",
-          "title": "天津河北梆子剧院",
-          "address": "天津市河西区马场街道马场道街三合里111号",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 39.095564,
-          "longitude": 117.198012
+          "poi_id": "7550308828185775177",
+          "title": "康欣养乐之道",
+          "address": "天津市蓟州区商贸街与裕兴中道交叉口正南方向67米左右",
+          "category": "娱乐休闲:洗浴推拿足疗:足疗",
+          "latitude": 40.034663,
+          "longitude": 117.4147
         }
       ]
     },
     {
-      "group_id": "4e27a008ce1b",
+      "group_id": "e0b7f9c01a5c",
       "event_uids": [
-        "douban:37842694",
-        "douban:37373757"
+        "douban:37852190"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "poi-address-cache"
+        "河东区",
+        "二十年音乐现场MAX",
+        "演出现场",
+        "津塘路146号泰达津一产业公园4号楼东侧",
+        "MAX",
+        "146号泰达津一产业公园4号楼东侧"
       ],
-      "poi_id": "14694096430531753900",
-      "poi_title": "光华剧院",
-      "poi_address": "",
-      "latitude": 39.096859,
-      "longitude": 117.238196,
+      "poi_id": "2917757307300944180",
+      "poi_title": "二十年音乐现场MAX",
+      "poi_address": "天津市河东区津塘路泰达津一产业公园4号楼东侧",
+      "latitude": 39.093933,
+      "longitude": 117.277707,
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：天津 河西区 光华剧院 挂甲寺街道南北大街2号围堤道口(近凯德MALL购物中心) → 光华剧院（来源 event:douban:37714405）",
-      "candidates": []
-    },
-    {
-      "group_id": "4f9b7427132a",
-      "event_uids": [
-        "douban:37851005"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "7738159007364714106",
-      "poi_title": "滨海演艺中心",
-      "poi_address": "",
-      "latitude": 39.016031,
-      "longitude": 117.686405,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：天津 滨海新区 滨海演艺中心 中央大道与大连东道交汇处西南侧 → 滨海演艺中心（来源 event:douban:37722230）",
-      "candidates": []
-    },
-    {
-      "group_id": "e2c93ee76ba2",
-      "event_uids": [
-        "douban:37864111",
-        "douban:37864126"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "天津 万达影城演出厅"
-      ],
-      "poi_id": "4266108510691009313",
-      "poi_title": "万达影城演出厅-蓟州万达广场店",
-      "poi_address": "天津市蓟州区渔阳镇滨河大道蓟州万达广场",
-      "latitude": 40.023974,
-      "longitude": 117.378394,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 388）",
+      "reason": "二十年音乐现场MAX位于河东区津塘路泰达津一产业公园4号楼东侧，与豆瓣地址一致（门牌146号POI未单列）",
       "candidates": [
         {
           "index": 0,
-          "poi_id": "4266108510691009313",
-          "title": "万达影城演出厅-蓟州万达广场店",
-          "address": "天津市蓟州区渔阳镇滨河大道蓟州万达广场",
-          "category": "娱乐休闲:电影院",
-          "latitude": 40.023974,
-          "longitude": 117.378394
+          "poi_id": "2917757307300944180",
+          "title": "二十年音乐现场MAX",
+          "address": "天津市河东区津塘路泰达津一产业公园4号楼东侧",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 39.093933,
+          "longitude": 117.277707
         },
-        {
-          "index": 1,
-          "poi_id": "5376725109153689738",
-          "title": "万达影城",
-          "address": "天津市北辰区大孚国际商务中心辰悦广场",
-          "category": "娱乐休闲:电影院",
-          "latitude": 39.212092,
-          "longitude": 117.140834
-        }
-      ]
-    },
-    {
-      "group_id": "8017211adc62",
-      "event_uids": [
-        "douban:37628688"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "天津 卫嘴子相声茶馆"
-      ],
-      "poi_id": "2949346586972521181",
-      "poi_title": "卫嘴子相声茶馆",
-      "poi_address": "天津市河北区民生路89号4楼",
-      "latitude": 39.133357,
-      "longitude": 117.200599,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 262）",
-      "candidates": [
         {
           "index": 0,
-          "poi_id": "2949346586972521181",
-          "title": "卫嘴子相声茶馆",
-          "address": "天津市河北区民生路89号4楼",
-          "category": "娱乐休闲:茶馆",
-          "latitude": 39.133357,
-          "longitude": 117.200599
+          "poi_id": "12579919488079413381",
+          "title": "木马LIVEHOUSE",
+          "address": "天津市北辰区铁东路北方汽贸园B区3排5号",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 39.203897,
+          "longitude": 117.186062
         },
         {
           "index": 1,
-          "poi_id": "11818516718326257887",
-          "title": "卫嘴子相声体验馆·茶馆",
-          "address": "天津市河北区光复道街道自由道68号1F-01",
-          "category": "娱乐休闲:茶馆",
-          "latitude": 39.135447,
-          "longitude": 117.196794
-        }
-      ]
-    },
-    {
-      "group_id": "954380ff16c4",
-      "event_uids": [
-        "douban:37636447"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "天津水上剧场",
-        "天津 水上公园西门周邓纪念馆地铁站B口旁",
-        "南开区 天津水上剧场",
-        "天津 南开区 天津水上剧场 水上公园西门周邓纪念馆地铁站B口旁"
-      ],
-      "poi_id": "10023327286902634380",
-      "poi_title": "周邓纪念馆地铁站[公交站]",
-      "poi_address": "643路,872路,588路",
-      "latitude": 39.092687,
-      "longitude": 117.161026,
-      "confidence": "high",
-      "doubtful": true,
-      "reason": "POI 疑似停车场、地铁等非活动场所",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "9212091907595044725",
-          "title": "海河剧院",
-          "address": "天津市南开区卫津南路8号(近八里台立交桥,八里台文化广场)",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 39.098844,
-          "longitude": 117.178506
-        },
-        {
-          "index": 1,
-          "poi_id": "18331926790104587247",
-          "title": "戏骨全沉浸演绎剧场(鲁能城店)",
-          "address": "天津市南开区天塔道与水上东路交口上谷商业中心地下一层(上谷商业街提示牌院内)",
-          "category": "娱乐休闲:其它娱乐休闲",
-          "latitude": 39.091874,
-          "longitude": 117.174741
+          "poi_id": "9898871265760579805",
+          "title": "泰达津一产业公园-9号楼",
+          "address": "天津市河东区津塘路泰达津一产业公园",
+          "category": "房产小区:房产小区附属",
+          "latitude": 39.093275,
+          "longitude": 117.275985
         },
         {
           "index": 2,
-          "poi_id": "11917010351071321600",
-          "title": "天津美年大健康体检中心（卫津路店）",
-          "address": "天津市南开区卫津南路北路西侧京燕大厦501",
-          "category": "医疗保健:体检",
-          "latitude": 39.099637,
-          "longitude": 117.1787
-        },
-        {
-          "index": 3,
-          "poi_id": "12910895737547998944",
-          "title": "京燕大厦",
-          "address": "天津市南开区水上公园街道卫津南路109号(天塔地铁站B口步行380米)",
+          "poi_id": "12718436190775598196",
+          "title": "泰达津一产业创新中心A座(天津)",
+          "address": "天津市河东区津塘路146号津一·Park产业公园内",
           "category": "房产小区:商务楼宇",
-          "latitude": 39.099817,
-          "longitude": 117.178524
+          "latitude": 39.095565,
+          "longitude": 117.279172
         },
         {
-          "index": 4,
-          "poi_id": "2469901099660989712",
-          "title": "肯德基(八里台店)",
-          "address": "天津市南开区卫津南路北端西侧京燕大厦1层",
-          "category": "美食:小吃快餐",
-          "latitude": 39.099769,
-          "longitude": 117.178843
+          "index": 1,
+          "poi_id": "1907775342263737105",
+          "title": "Max普拉提健身",
+          "address": "天津市西青区腾达东路",
+          "category": "运动健身:健身中心",
+          "latitude": 39.032832,
+          "longitude": 117.208986
         }
       ]
-    },
-    {
-      "group_id": "2ff94c6415dd",
-      "event_uids": [
-        "douban:37831259"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "天津 SoulSense Live"
-      ],
-      "poi_id": "12890763372682320441",
-      "poi_title": "SoulSense Live",
-      "poi_address": "天津市河西区解放南路与湘江道交口铂津湾南苑配建17号楼101-A",
-      "latitude": 39.099845,
-      "longitude": 117.235887,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 282）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "12890763372682320441",
-          "title": "SoulSense Live",
-          "address": "天津市河西区解放南路与湘江道交口铂津湾南苑配建17号楼101-A",
-          "category": "娱乐休闲:其它娱乐休闲",
-          "latitude": 39.099845,
-          "longitude": 117.235887
-        }
-      ]
-    },
-    {
-      "group_id": "6551918b967e",
-      "event_uids": [
-        "douban:37636722",
-        "douban:37640894"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "3246965086466095161",
-      "poi_title": "中华剧院",
-      "poi_address": "",
-      "latitude": 39.085219,
-      "longitude": 117.217489,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：天津 河西区 中华剧院 平江道56号（隆昌路口） → 中华剧院（来源 event:douban:37759520）",
-      "candidates": []
     },
     {
       "group_id": "880be375bab0",
       "event_uids": [
-        "douban:37854858"
+        "douban:37806880"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "天津 二十年音乐现场"
+        "河东区",
+        "二十年音乐现场",
+        "津塘路146号泰达津一产业公园4号楼西侧",
+        "146号泰达津一产业公园4号楼西侧"
       ],
       "poi_id": "1153133185343987457",
       "poi_title": "二十年音乐现场",
@@ -675,7 +654,7 @@
       "longitude": 117.277011,
       "confidence": "high",
       "doubtful": false,
-      "reason": "三轮匹配（score 132）",
+      "reason": "二十年音乐现场位于河东区津塘路146号泰达津一产业园4号楼西侧，与豆瓣西侧地址完全一致",
       "candidates": [
         {
           "index": 0,
@@ -694,122 +673,33 @@
           "category": "娱乐休闲:酒吧",
           "latitude": 39.093947,
           "longitude": 117.277011
-        }
-      ]
-    },
-    {
-      "group_id": "a11be061ba77",
-      "event_uids": [
-        "douban:36467046"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "天津 春来相声茶馆"
-      ],
-      "poi_id": "16101886200271444136",
-      "poi_title": "春来相声茶馆(滨江道店)",
-      "poi_address": "天津市和平区劝业场街道滨江道300号吾悦广场5层503号距五大道1公里·距西开教堂400米",
-      "latitude": 39.121039,
-      "longitude": 117.196282,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 217）",
-      "candidates": [
+        },
         {
           "index": 0,
-          "poi_id": "16101886200271444136",
-          "title": "春来相声茶馆(滨江道店)",
-          "address": "天津市和平区劝业场街道滨江道300号吾悦广场5层503号距五大道1公里·距西开教堂400米",
-          "category": "娱乐休闲:茶馆",
-          "latitude": 39.121039,
-          "longitude": 117.196282
-        }
-      ]
-    },
-    {
-      "group_id": "3f45e07b4c00",
-      "event_uids": [
-        "douban:36964856"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "天津 光复街道民生路89号5层"
-      ],
-      "poi_id": "15231172740641032639",
-      "poi_title": "泰顺祥沉浸式相声体验馆(天津店)",
-      "poi_address": "天津市河北区光复道街道民生路89号5层",
-      "latitude": 39.133404,
-      "longitude": 117.200618,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 343）",
-      "candidates": [
+          "poi_id": "8637069087467213378",
+          "title": "津一PARK",
+          "address": "天津市河东区津塘路146号",
+          "category": "房产小区:产业园区",
+          "latitude": 39.093083,
+          "longitude": 117.278902
+        },
         {
-          "index": 0,
-          "poi_id": "15231172740641032639",
-          "title": "泰顺祥沉浸式相声体验馆(天津店)",
-          "address": "天津市河北区光复道街道民生路89号5层",
-          "category": "娱乐休闲:茶馆",
-          "latitude": 39.133404,
-          "longitude": 117.200618
-        }
-      ]
-    },
-    {
-      "group_id": "1dc175ec2f74",
-      "event_uids": [
-        "douban:37579641"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "天津 广轩相声会馆"
-      ],
-      "poi_id": "9449707076540094787",
-      "poi_title": "广轩相声会馆",
-      "poi_address": "天津市南开区南马路泰达荟商业广场C座4层",
-      "latitude": 39.137321,
-      "longitude": 117.187543,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 352）",
-      "candidates": [
+          "index": 2,
+          "poi_id": "3241895734135465539",
+          "title": "跳海酒馆(津一PARK店)",
+          "address": "天津市河东区津塘路146号泰达津一产业公园9号楼",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 39.093216,
+          "longitude": 117.275806
+        },
         {
-          "index": 0,
-          "poi_id": "9449707076540094787",
-          "title": "广轩相声会馆",
-          "address": "天津市南开区南马路泰达荟商业广场C座4层",
-          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
-          "latitude": 39.137321,
-          "longitude": 117.187543
-        }
-      ]
-    },
-    {
-      "group_id": "4cc5d30f3e0a",
-      "event_uids": [
-        "douban:37617565"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "天津 卫嘴子相声体验馆"
-      ],
-      "poi_id": "11818516718326257887",
-      "poi_title": "卫嘴子相声体验馆·茶馆",
-      "poi_address": "天津市河北区光复道街道自由道68号1F-01",
-      "latitude": 39.135447,
-      "longitude": 117.196794,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 235）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "11818516718326257887",
-          "title": "卫嘴子相声体验馆·茶馆",
-          "address": "天津市河北区光复道街道自由道68号1F-01",
-          "category": "娱乐休闲:茶馆",
-          "latitude": 39.135447,
-          "longitude": 117.196794
+          "index": 3,
+          "poi_id": "14195956340149231547",
+          "title": "乒乓Pingpong Space(公园店)",
+          "address": "天津市河东区津塘路146号泰达津一产业公园9号",
+          "category": "运动健身:乒乓球馆",
+          "latitude": 39.093174,
+          "longitude": 117.276098
         }
       ]
     }

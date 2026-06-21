@@ -1,8 +1,8 @@
 {
   "city": "苏州",
   "source": "douban",
-  "updated_at": "2026-06-16T05:46:56.520Z",
-  "agent": "cursor-agent",
+  "updated_at": "2026-06-20T18:41:07.868Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "c91948ff9d62",
@@ -111,11 +111,12 @@
     {
       "group_id": "83638967ddcc",
       "event_uids": [
-        "douban:37791819"
+        "douban:37833127"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "苏州 昆山 昆山周市文化艺术中心"
+        "昆山周市文化艺术中心",
+        "周市镇迎宾东路585号"
       ],
       "poi_id": "2855609297176432332",
       "poi_title": "昆山周市文化艺术中心",
@@ -124,7 +125,7 @@
       "longitude": 120.988105,
       "confidence": "high",
       "doubtful": false,
-      "reason": "三轮匹配（score 268）",
+      "reason": "场馆名称与昆山市周市镇迎宾东路585号片区一致",
       "candidates": [
         {
           "index": 0,
@@ -134,42 +135,6 @@
           "category": "文化场馆:文化宫",
           "latitude": 31.454763,
           "longitude": 120.988105
-        },
-        {
-          "index": 1,
-          "poi_id": "2963126069381798199",
-          "title": "弘星艺术中心(周市店)",
-          "address": "江苏省苏州市昆山市港龙商业广场海峡海鲜城负一楼D2D4D6D8D10D12",
-          "category": "教育学校:培训",
-          "latitude": 31.416887,
-          "longitude": 120.994083
-        },
-        {
-          "index": 2,
-          "poi_id": "2297266385525707958",
-          "title": "昆山文化艺术中心",
-          "address": "江苏省苏州市昆山市玉山镇前进西路1850号",
-          "category": "文化场馆:文化宫",
-          "latitude": 31.383191,
-          "longitude": 120.906574
-        },
-        {
-          "index": 3,
-          "poi_id": "6715147175788259270",
-          "title": "弘星艺术中心(周市店)",
-          "address": "江苏省苏州市昆山市港龙喜临门二期三楼",
-          "category": "教育学校:培训",
-          "latitude": 31.416727,
-          "longitude": 120.992108
-        },
-        {
-          "index": 4,
-          "poi_id": "2199033668086",
-          "title": "文化艺术中心[公交站]",
-          "address": "昆山105路,昆山161路,昆山128路,昆山156路,昆山117路,昆山32路,昆山138路,昆山139路,昆山204路,昆山159路,昆山26路,昆山35路,昆山168路,昆山W6路,昆山W3路,昆山165路,昆山204路区间线",
-          "category": "基础设施:交通设施:公交车站",
-          "latitude": 31.381145,
-          "longitude": 120.906363
         }
       ]
     },
@@ -284,6 +249,104 @@
           "category": "文化场馆:文化宫",
           "latitude": 31.383191,
           "longitude": 120.906574
+        }
+      ]
+    },
+    {
+      "group_id": "396cae615162",
+      "event_uids": [
+        "douban:37890191"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "诚品书店",
+        "月廊街8号"
+      ],
+      "poi_id": "857894878015071000",
+      "poi_title": "诚品书店(诚品生活苏州店)",
+      "poi_address": "江苏省苏州市吴中区月廊街8号诚品生活3F",
+      "latitude": 31.320852,
+      "longitude": 120.71044,
+      "confidence": "high",
+      "doubtful": true,
+      "reason": "诚品书店与月廊街8号一致，豆瓣标注姑苏区，POI 位于吴中区工业园区",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "857894878015071000",
+          "title": "诚品书店(诚品生活苏州店)",
+          "address": "江苏省苏州市吴中区月廊街8号诚品生活3F",
+          "category": "购物:图书音像",
+          "latitude": 31.320852,
+          "longitude": 120.71044
+        },
+        {
+          "index": 1,
+          "poi_id": "1207531462633616072",
+          "title": "诚品生活苏州",
+          "address": "江苏省苏州市吴中区月廊街8号诚品生活苏州3F展演厅",
+          "category": "文化场馆:美术馆",
+          "latitude": 31.321047,
+          "longitude": 120.709985
+        }
+      ]
+    },
+    {
+      "group_id": "65263b43b6f5",
+      "event_uids": [
+        "douban:37840184"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "LIVERSE",
+        "音宇宙"
+      ],
+      "poi_id": "3347665304730979432",
+      "poi_title": "苏州LIVERSE音宇宙艺术中心",
+      "poi_address": "江苏省苏州市吴中区苏州数智影视文化产业园(原木渎影视城)5号楼",
+      "latitude": 31.278925,
+      "longitude": 120.516135,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "LIVERSE音宇宙与吴中区金山南路288号5号楼一致",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "3347665304730979432",
+          "title": "苏州LIVERSE音宇宙艺术中心",
+          "address": "江苏省苏州市吴中区苏州数智影视文化产业园(原木渎影视城)5号楼",
+          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
+          "latitude": 31.278925,
+          "longitude": 120.516135
+        }
+      ]
+    },
+    {
+      "group_id": "10b21c2ccef8",
+      "event_uids": [
+        "douban:37882358"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "常熟博物馆"
+      ],
+      "poi_id": "6536487571087111816",
+      "poi_title": "常熟博物馆",
+      "poi_address": "江苏省苏州市常熟市北门大街1号",
+      "latitude": 31.646875,
+      "longitude": 120.740569,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "常熟博物馆名称与常熟市北门大街1号一致",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6536487571087111816",
+          "title": "常熟博物馆",
+          "address": "江苏省苏州市常熟市北门大街1号",
+          "category": "文化场馆:博物馆",
+          "latitude": 31.646875,
+          "longitude": 120.740569
         }
       ]
     }

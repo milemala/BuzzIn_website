@@ -1,22 +1,40 @@
 {
   "city": "石家庄",
   "source": "douban",
-  "exported_at": "2026-06-16T05:47:59.708Z",
+  "exported_at": "2026-06-20T18:31:05.153Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "unmatched",
   "pending_only": true,
   "doubtful_only": false,
-  "total_events": 1,
-  "group_count": 1,
+  "total_events": 3,
+  "group_count": 3,
   "cache_hit_groups": 0,
   "groups": [
     {
-      "group_id": "c9ea603e604d",
-      "location": "石家庄 裕华区 庄里大剧院 育才街与槐岭路交叉口西南角怀特艺术中心一楼西厅大剧院",
-      "sample_title": "大型儿童魔幻剧《大闹天宫》",
+      "group_id": "1d5448593305",
+      "location": "石家庄 长安区 国际庄大剧院 中山路繁华商业街勒泰中心五层",
+      "sample_title": "[石家庄站]老舍经典话剧《茶馆》定制版",
       "event_uids": [
-        "douban:37832175"
+        "douban:37820748"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "1936a226f46b",
+      "location": "石家庄 新华区 红糖LIVEHOUSE 湾里庙步行街水幕广场M08",
+      "sample_title": "大粉乐队十五周年「粉末登场」巡演 石家庄站",
+      "event_uids": [
+        "douban:37836593"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "a7ef5d72954d",
+      "location": "石家庄 桥西区 火柴梗喜剧中心-脱口秀·即兴·魔术 万象天成4楼火柴梗喜剧中心",
+      "sample_title": "《良言主打秀》冠军收割机 【喜剧之王单口季】人气卡司 I 全新内容 石家庄站",
+      "event_uids": [
+        "douban:37062947"
       ],
       "event_count": 1
     }

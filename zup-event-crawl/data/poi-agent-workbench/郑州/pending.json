@@ -1,33 +1,25 @@
 {
   "city": "郑州",
   "source": "douban",
-  "exported_at": "2026-06-16T05:47:01.690Z",
+  "exported_at": "2026-06-20T18:31:04.811Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "unmatched",
   "pending_only": true,
   "doubtful_only": false,
   "total_events": 2,
-  "group_count": 2,
+  "group_count": 1,
   "cache_hit_groups": 0,
   "groups": [
     {
       "group_id": "6c2026a16ec6",
       "location": "郑州 金水区 7LIVEHOUSE 文化路和金水路交汇处东北角中原大舞台内2层",
-      "sample_title": "陶薏点（桃子）BOOM TO SHARE分享欲爆棚巡演 郑州站",
+      "sample_title": "小狗的骨头「New Old Body」2026巡演 郑州站",
       "event_uids": [
-        "douban:37816557"
+        "douban:37762586",
+        "douban:37791406"
       ],
-      "event_count": 1
-    },
-    {
-      "group_id": "9af087bb8bd6",
-      "location": "郑州 中原区 郑州大剧院歌舞剧场 丹水大道与雪松路交叉口西南角",
-      "sample_title": "【端午节专场】开心麻花爆笑奇谈大戏《开心聊斋·三生PLUS》",
-      "event_uids": [
-        "douban:37832217"
-      ],
-      "event_count": 1
+      "event_count": 2
     }
   ]
 }

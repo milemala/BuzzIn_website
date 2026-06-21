@@ -1,8 +1,8 @@
 {
   "city": "青岛",
   "source": "douban",
-  "updated_at": "2026-06-16T05:46:52.443Z",
-  "agent": "cursor-agent",
+  "updated_at": "2026-06-20T18:41:07.868Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "322683b16286",
@@ -156,11 +156,12 @@
     {
       "group_id": "94dde3becd05",
       "event_uids": [
-        "douban:37815834"
+        "douban:37829941"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "青岛 Downtown_Live"
+        "Downtown_Live",
+        "宁海路18号"
       ],
       "poi_id": "14194780680200183402",
       "poi_title": "裆烫Downtown_Live",
@@ -169,7 +170,7 @@
       "longitude": 120.348884,
       "confidence": "high",
       "doubtful": false,
-      "reason": "三轮匹配（score 378）",
+      "reason": "Downtown_Live 与市北区宁海路18号大悦城B栋一致",
       "candidates": [
         {
           "index": 0,
@@ -248,6 +249,155 @@
       "doubtful": false,
       "reason": "地址映射库命中：青岛 市北区 大红礼娱演出新空间·剧场 哈尔滨路88号和达中心城LG层1005-1006号 → 大红礼娱演出新空间·剧场（来源 event:douban:37563966）",
       "candidates": []
+    },
+    {
+      "group_id": "a686949d0c11",
+      "event_uids": [
+        "douban:37530416"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "中铁青岛世界博览城"
+      ],
+      "poi_id": "7003234860211418048",
+      "poi_title": "中铁青岛世界博览城",
+      "poi_address": "山东省青岛市黄岛区西海岸新区滨海大道7977号",
+      "latitude": 35.824679,
+      "longitude": 120.015607,
+      "confidence": "high",
+      "doubtful": true,
+      "reason": "场馆唯一匹配，但豆瓣标注即墨区，POI 位于黄岛区西海岸新区",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "7003234860211418048",
+          "title": "中铁青岛世界博览城",
+          "address": "山东省青岛市黄岛区西海岸新区滨海大道7977号",
+          "category": "文化场馆:会展中心",
+          "latitude": 35.824679,
+          "longitude": 120.015607
+        }
+      ]
+    },
+    {
+      "group_id": "a04e380208ce",
+      "event_uids": [
+        "douban:37796792"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "青岛世界博览城",
+        "西海岸新区"
+      ],
+      "poi_id": "7003234860211418048",
+      "poi_title": "中铁青岛世界博览城",
+      "poi_address": "山东省青岛市黄岛区西海岸新区滨海大道7977号",
+      "latitude": 35.824679,
+      "longitude": 120.015607,
+      "confidence": "high",
+      "doubtful": true,
+      "reason": "场馆与西海岸新区一致，豆瓣区划标注即墨区有误",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "7003234860211418048",
+          "title": "中铁青岛世界博览城",
+          "address": "山东省青岛市黄岛区西海岸新区滨海大道7977号",
+          "category": "文化场馆:会展中心",
+          "latitude": 35.824679,
+          "longitude": 120.015607
+        }
+      ]
+    },
+    {
+      "group_id": "3a123dc44977",
+      "event_uids": [
+        "douban:37889962"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "方所书店",
+        "市南区 方所书店"
+      ],
+      "poi_id": "9565778754695880",
+      "poi_title": "方所(华润万象城店)",
+      "poi_address": "山东省青岛市市南区山东路10号万象城B1层B168店铺",
+      "latitude": 36.067229,
+      "longitude": 120.378124,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "方所书店与市南区万象城一致",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "9565778754695880",
+          "title": "方所(华润万象城店)",
+          "address": "山东省青岛市市南区山东路10号万象城B1层B168店铺",
+          "category": "购物:图书音像",
+          "latitude": 36.067229,
+          "longitude": 120.378124
+        }
+      ]
+    },
+    {
+      "group_id": "4705f4bc8083",
+      "event_uids": [
+        "douban:37853913"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "青岛市李沧剧院",
+        "兴城路39号"
+      ],
+      "poi_id": "4136302895776987675",
+      "poi_title": "青岛市李沧剧院",
+      "poi_address": "山东省青岛市李沧区兴城路街道兴城路39号",
+      "latitude": 36.192539,
+      "longitude": 120.38261,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "剧院名称与李沧区兴城路39号一致",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "4136302895776987675",
+          "title": "青岛市李沧剧院",
+          "address": "山东省青岛市李沧区兴城路街道兴城路39号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 36.192539,
+          "longitude": 120.38261
+        }
+      ]
+    },
+    {
+      "group_id": "44cc3a924b61",
+      "event_uids": [
+        "douban:37855616"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "青岛DMC",
+        "演出现场"
+      ],
+      "poi_id": "4446455439667986648",
+      "poi_title": "青岛DMC演出现场",
+      "poi_address": "山东省青岛市崂山区银川东路三号国信体育中心M区上街里G层",
+      "latitude": 36.103198,
+      "longitude": 120.44645,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "DMC演出现场与崂山区国信体育中心M区一致",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "4446455439667986648",
+          "title": "青岛DMC演出现场",
+          "address": "山东省青岛市崂山区银川东路三号国信体育中心M区上街里G层",
+          "category": "娱乐休闲:其它娱乐休闲",
+          "latitude": 36.103198,
+          "longitude": 120.44645
+        }
+      ]
     }
   ]
 }

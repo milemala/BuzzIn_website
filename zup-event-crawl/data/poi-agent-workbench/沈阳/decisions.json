@@ -1,19 +1,18 @@
 {
   "city": "沈阳",
   "source": "douban",
-  "updated_at": "2026-06-16T05:44:54.584Z",
-  "agent": "cursor-agent",
+  "updated_at": "2026-06-20T18:41:07.868Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "c61c055fc1cb",
       "event_uids": [
-        "douban:37833286",
-        "douban:37855145"
+        "douban:37815435"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "沈阳 大悦城店",
-        "沈阳 小东路8号大悦城E馆601"
+        "原料库-大悦城店",
+        "小东路8号大悦城E馆601"
       ],
       "poi_id": "6553359225048812354",
       "poi_title": "原料库(沈阳大悦城E馆店)",
@@ -22,52 +21,16 @@
       "longitude": 123.468802,
       "confidence": "high",
       "doubtful": false,
-      "reason": "三轮匹配（score 222）",
+      "reason": "原料库与大东区小东路8号大悦城E馆601一致",
       "candidates": [
         {
           "index": 0,
-          "poi_id": "11640818153782060102",
-          "title": "沈阳大悦城A馆",
-          "address": "辽宁省沈阳市大东区万泉街道小东路6号(东中街地铁站B口步行220米)",
-          "category": "购物:综合商场:购物中心",
-          "latitude": 41.802577,
-          "longitude": 123.466998
-        },
-        {
-          "index": 1,
-          "poi_id": "17840892809282147160",
-          "title": "顺丰速运(沈阳大悦城快递服务中心)",
-          "address": "辽宁省沈阳市大东区万泉街道小东路7号大悦城E魔方1层4门",
-          "category": "生活服务:邮局速递:物流公司",
-          "latitude": 41.801795,
-          "longitude": 123.4694
-        },
-        {
-          "index": 2,
-          "poi_id": "13570936382225979749",
-          "title": "沈阳大悦城C区",
-          "address": "辽宁省沈阳市大东区小东路10-3号",
-          "category": "购物:综合商场:购物中心",
-          "latitude": 41.803146,
-          "longitude": 123.469822
-        },
-        {
-          "index": 3,
-          "poi_id": "7985355974870668130",
-          "title": "沈阳大悦城D区",
-          "address": "辽宁省沈阳市大东区小什字街大悦城D2座",
-          "category": "购物:综合商场",
-          "latitude": 41.802273,
-          "longitude": 123.470759
-        },
-        {
-          "index": 4,
-          "poi_id": "3774282423757333387",
-          "title": "ZARA(沈阳大悦城店)",
-          "address": "辽宁省沈阳市大东区小东路6号大悦城E座",
-          "category": "购物:服饰鞋包",
-          "latitude": 41.802088,
-          "longitude": 123.468272
+          "poi_id": "6553359225048812354",
+          "title": "原料库(沈阳大悦城E馆店)",
+          "address": "辽宁省沈阳市大东区万泉街道小东路8号大悦城E馆601",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 41.801874,
+          "longitude": 123.468802
         }
       ]
     },
@@ -141,11 +104,12 @@
     {
       "group_id": "389ed6011b03",
       "event_uids": [
-        "douban:37838606"
+        "douban:37783124"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "沈阳 盛京大剧院"
+        "盛京大剧院",
+        "沈水路518号"
       ],
       "poi_id": "14733440405124475096",
       "poi_title": "盛京大剧院",
@@ -154,7 +118,7 @@
       "longitude": 123.445216,
       "confidence": "high",
       "doubtful": false,
-      "reason": "三轮匹配（score 268）",
+      "reason": "大剧院与沈河区沈水路518号一致",
       "candidates": [
         {
           "index": 0,
@@ -164,42 +128,6 @@
           "category": "娱乐休闲:剧场音乐厅:剧场",
           "latitude": 41.75427,
           "longitude": 123.445216
-        },
-        {
-          "index": 1,
-          "poi_id": "415728453728740367",
-          "title": "盛京大剧院-歌剧厅",
-          "address": "辽宁省沈阳市沈河区五爱街盛京大剧院",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 41.753683,
-          "longitude": 123.443501
-        },
-        {
-          "index": 2,
-          "poi_id": "15136415021035490078",
-          "title": "盛京大剧院-演职人员",
-          "address": "辽宁省沈阳市沈河区二环快速路与沈水路交叉口西南方向239米左右",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 41.754902,
-          "longitude": 123.444565
-        },
-        {
-          "index": 3,
-          "poi_id": "2199026969830",
-          "title": "盛京大剧院[公交站]",
-          "address": "213路",
-          "category": "基础设施:交通设施:公交车站",
-          "latitude": 41.755379,
-          "longitude": 123.446039
-        },
-        {
-          "index": 4,
-          "poi_id": "1649552838551357949",
-          "title": "盛京大剧院停车场",
-          "address": "辽宁省沈阳市沈河区沈水路518号盛京大剧院",
-          "category": "汽车:停车场",
-          "latitude": 41.755024,
-          "longitude": 123.444563
         }
       ]
     },
@@ -221,6 +149,36 @@
       "doubtful": false,
       "reason": "地址映射库命中：沈阳 沈河区 四季有戏-中街·盛京大家庭店 中街路115号盛京大家庭广场区G层G005 → 四季有戏方城剧场(盛京大家庭店)（来源 event:douban:37526249）",
       "candidates": []
+    },
+    {
+      "group_id": "6e4b68d9fd81",
+      "event_uids": [
+        "douban:37672446"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "三生制药体育馆",
+        "浑南中路32号"
+      ],
+      "poi_id": "8327331189272780185",
+      "poi_title": "三生制药体育馆",
+      "poi_address": "辽宁省沈阳市浑南区五三街道浑南中路32号",
+      "latitude": 41.739943,
+      "longitude": 123.458641,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "体育馆名称与浑南区浑南中路32号一致",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "8327331189272780185",
+          "title": "三生制药体育馆",
+          "address": "辽宁省沈阳市浑南区五三街道浑南中路32号",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 41.739943,
+          "longitude": 123.458641
+        }
+      ]
     }
   ]
 }

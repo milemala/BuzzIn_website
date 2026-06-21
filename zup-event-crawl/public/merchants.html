@@ -150,8 +150,8 @@
     .mini.import-merchant{border-color:#111}
     .mini.import-merchant:disabled{opacity:.45;cursor:not-allowed}
     .mini.import-merchant.done{background:#e7f5ec;border-color:#2a9d68;color:#197549}
-    .mini.delete-buzz{border-color:#d95040;color:#ad382c}
-    .mini.delete-buzz:hover{background:#fde8e4}
+    .mini.delete-buzz,.mini.delete-local{border-color:#d95040;color:#ad382c}
+    .mini.delete-buzz:hover,.mini.delete-local:hover{background:#fde8e4}
     .import-modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px}
     .import-modal[hidden]{display:none}
     .import-modal-backdrop{position:absolute;inset:0;background:rgba(16,24,20,.45)}
@@ -215,15 +215,15 @@
         <div class="city-filter" id="cityFilter"></div>
       </div>
       <div class="filter-row">
-        <div class="filter-label">类型</div>
-        <div class="filter-tools">
-          <div class="seg" id="bizKindFilter"></div>
-        </div>
-      </div>
-      <div class="filter-row">
         <div class="filter-label">来源</div>
         <div class="filter-tools">
           <div class="seg" id="sourceFilter"></div>
+        </div>
+      </div>
+      <div class="filter-row">
+        <div class="filter-label">类型</div>
+        <div class="filter-tools">
+          <div class="seg" id="bizKindFilter"></div>
         </div>
       </div>
       <div class="filter-row">
@@ -337,6 +337,17 @@
       { key: "all", label: "全部" },
       { key: "dianping", label: "大众点评" },
       { key: "buzz", label: "Zup 同步" },
+    ];
+
+    const STATUS_FILTERS = [
+      { key: "all", label: "全部" },
+      { key: "imported", label: "已推送" },
+      { key: "approved", label: "已通过" },
+      { key: "rejected", label: "已拒绝" },
+      { key: "pending", label: "待定" },
+      { key: "import_ready", label: "待推送" },
+      { key: "needs_poi", label: "缺 POI" },
+      { key: "poi_doubtful", label: "POI 存疑" },
     ];
 
     function suggestMerchantTypeName(category, name, importBatchId = "") {
@@ -593,6 +604,30 @@
         }
       } finally {
         state.importBusy = false;
+      }
+    }
+
+    async function deleteLocalMerchant(uid, name, imported) {
+      let message = `确定从审核台删除「${name}」？\n\n本地记录将永久删除，无法恢复。`;
+      if (imported) {
+        message += "\n\n注意：该商户已推送 Zup，删审核台记录不会删除后台商户；如需删后台请点「删后台」。";
+      }
+      if (!window.confirm(message)) return;
+      setSaveState("正在删除商户...", "warn");
+      try {
+        const response = await fetch(`/api/merchants/${encodeURIComponent(uid)}`, {
+          method: "DELETE",
+        });
+        const data = await response.json();
+        if (!response.ok || !data.ok) {
+          setSaveState(data.error || "删除失败", "error");
+          return;
+        }
+        removeMerchant(uid);
+        setSaveState(`已删除「${data.name || name}」`, "ok");
+        render();
+      } catch (error) {
+        setSaveState(error.message || "删除失败", "error");
       }
     }
 
@@ -920,16 +955,42 @@
       const response = await fetch(BuzzEnvUi.withBuzzEnv("/api/merchant-types"), { cache: "no-store" });
       const payload = await response.json();
       state.merchantTypes = payload.types || [];
+      if (state.merchants.length) render();
     }
 
     async function loadMerchants() {
-      const response = await fetch(BuzzEnvUi.withBuzzEnv("/api/merchants"), { cache: "no-store" });
+      const response = await fetch(BuzzEnvUi.withBuzzEnv("/api/merchants?include_poi_candidates=0"), { cache: "no-store" });
       const payload = await response.json();
       state.merchants = payload.merchants || [];
       state.poiMatchMode = payload.poi_match_mode || "normal";
       renderPoiModeToggle();
       render();
       setSaveState("已连接本地数据库", "ok");
+      void hydrateVisiblePoiCandidates();
+    }
+
+    async function hydrateVisiblePoiCandidates() {
+      const { list } = paginatedMerchants(filteredMerchants());
+      const uids = list
+        .filter((item) => Number(item.poi_candidate_count) > 0 && !(item.poi_candidates?.length))
+        .map((item) => item.merchant_uid);
+      if (!uids.length) return;
+      try {
+        const response = await fetch("/api/merchants/poi-candidates-batch", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ merchant_uids: uids }),
+        });
+        const payload = await response.json();
+        if (!response.ok || !payload.ok) return;
+        for (const [uid, candidates] of Object.entries(payload.candidates || {})) {
+          const item = state.merchants.find((m) => m.merchant_uid === uid);
+          if (item) item.poi_candidates = candidates;
+        }
+        renderCards(paginatedMerchants(filteredMerchants()).list);
+      } catch {
+        // 候选 POI 可稍后手动重新查询
+      }
     }
 
     function renderPoiModeToggle() {
@@ -972,6 +1033,13 @@
     function upsertMerchant(updated) {
       const idx = state.merchants.findIndex((m) => m.merchant_uid === updated.merchant_uid);
       if (idx >= 0) state.merchants[idx] = updated;
+    }
+
+    function removeMerchant(uid) {
+      state.merchants = state.merchants.filter((m) => m.merchant_uid !== uid);
+      delete state.decisions[uid];
+      delete state.poiPreviews[uid];
+      delete state.poiKeywords[uid];
     }
 
     async function saveImportPrep(uid, patch) {
@@ -1253,12 +1321,43 @@
       });
     }
 
+    function buildFilterCountSnapshot() {
+      const inCity = merchantsInCity();
+      const sourceScoped = state.filters.source === "all"
+        ? inCity
+        : inCity.filter((item) => matchesSourceFilter(item, state.filters.source));
+      const bizScoped = state.filters.bizKind === "all"
+        ? sourceScoped
+        : sourceScoped.filter((item) => matchesBizKindFilter(item, state.filters.bizKind));
+
+      const sourceCounts = {};
+      for (const { key } of SOURCE_FILTERS) {
+        sourceCounts[key] = key === "all"
+          ? inCity.length
+          : inCity.filter((item) => matchesSourceFilter(item, key)).length;
+      }
+
+      const bizKindCounts = {};
+      for (const { key } of BIZ_KIND_FILTERS) {
+        bizKindCounts[key] = key === "all"
+          ? sourceScoped.length
+          : sourceScoped.filter((item) => matchesBizKindFilter(item, key)).length;
+      }
+
+      const statusCounts = {};
+      for (const { key } of STATUS_FILTERS) {
+        statusCounts[key] = key === "all"
+          ? bizScoped.length
+          : bizScoped.filter((item) => matchesStatusFilter(item, key)).length;
+      }
+
+      return { sourceCounts, bizKindCounts, statusCounts };
+    }
+
     function renderBizKindFilter() {
-      const scoped = merchantsInCity();
+      const { bizKindCounts } = buildFilterCountSnapshot();
       els.bizKindFilter.innerHTML = BIZ_KIND_FILTERS.map(({ key, label }) => {
-        const count = key === "all"
-          ? scoped.length
-          : scoped.filter((item) => matchesBizKindFilter(item, key)).length;
+        const count = bizKindCounts[key] || 0;
         const active = state.filters.bizKind === key;
         return `
           <button type="button" data-biz-kind="${key}" class="${active ? "active" : ""}">
@@ -1270,11 +1369,9 @@
     }
 
     function renderSourceFilter() {
-      const scoped = merchantsInCity();
+      const { sourceCounts } = buildFilterCountSnapshot();
       els.sourceFilter.innerHTML = SOURCE_FILTERS.map(({ key, label }) => {
-        const count = key === "all"
-          ? scoped.length
-          : scoped.filter((item) => matchesSourceFilter(item, key)).length;
+        const count = sourceCounts[key] || 0;
         const active = state.filters.source === key;
         return `
           <button type="button" data-source="${key}" class="${active ? "active" : ""}">
@@ -1286,21 +1383,9 @@
     }
 
     function renderStatusFilter() {
-      const scoped = merchantsInCity();
-      const filters = [
-        { key: "all", label: "全部" },
-        { key: "imported", label: "已推送" },
-        { key: "approved", label: "已通过" },
-        { key: "rejected", label: "已拒绝" },
-        { key: "pending", label: "待定" },
-        { key: "import_ready", label: "待推送" },
-        { key: "needs_poi", label: "缺 POI" },
-        { key: "poi_doubtful", label: "POI 存疑" },
-      ];
-      els.statusFilter.innerHTML = filters.map(({ key, label }) => {
-        const count = key === "all"
-          ? scoped.length
-          : scoped.filter((item) => matchesStatusFilter(item, key)).length;
+      const { statusCounts } = buildFilterCountSnapshot();
+      els.statusFilter.innerHTML = STATUS_FILTERS.map(({ key, label }) => {
+        const count = statusCounts[key] || 0;
         const active = state.filters.status === key;
         return `
           <button type="button" data-status="${key}" class="${active ? "active" : ""}">
@@ -1504,6 +1589,7 @@
                 <button class="mini reject ${status === "rejected" ? "active" : ""}" data-action="rejected">拒绝</button>
                 <button class="mini import-merchant ${imported ? "done" : ""}" type="button" data-import-uid="${escapeHtml(item.merchant_uid)}" ${importable ? "" : "disabled"}>${escapeHtml(importButtonLabel(item))}</button>
                 ${imported ? `<button class="mini delete-buzz" type="button" data-delete-buzz-uid="${escapeHtml(item.merchant_uid)}" data-delete-buzz-merchant-id="${escapeHtml(item.buzz_merchant_id)}">删后台</button>` : ""}
+                <button class="mini delete-local" type="button" data-delete-local-uid="${escapeHtml(item.merchant_uid)}" data-delete-local-name="${escapeHtml(item.name)}" data-delete-local-imported="${imported ? "1" : "0"}">删除</button>
                 ${detailUrl ? `<a class="link" href="${escapeHtml(detailUrl)}" target="_blank" rel="noopener">打开详情页</a>` : ""}
               </div>
             </div>
@@ -1532,8 +1618,8 @@
       const { list, total, totalPages } = paginatedMerchants(filtered);
       renderStats();
       renderCityFilter();
-      renderBizKindFilter();
       renderSourceFilter();
+      renderBizKindFilter();
       renderStatusFilter();
       renderBatchReviewBar();
       renderCards(list);
@@ -1543,6 +1629,7 @@
     function goToPage(nextPage, scroll = true) {
       state.page = nextPage;
       render();
+      void hydrateVisiblePoiCandidates();
       if (scroll) scrollToListTop();
     }
 
@@ -1675,9 +1762,19 @@
         return;
       }
 
-      const deleteBtn = event.target.closest("button[data-delete-buzz-uid]");
-      if (deleteBtn) {
-        deleteBuzzMerchant(deleteBtn.dataset.deleteBuzzUid, deleteBtn.dataset.deleteBuzzMerchantId);
+      const deleteBuzzBtn = event.target.closest("button[data-delete-buzz-uid]");
+      if (deleteBuzzBtn) {
+        deleteBuzzMerchant(deleteBuzzBtn.dataset.deleteBuzzUid, deleteBuzzBtn.dataset.deleteBuzzMerchantId);
+        return;
+      }
+
+      const deleteLocalBtn = event.target.closest("button[data-delete-local-uid]");
+      if (deleteLocalBtn) {
+        deleteLocalMerchant(
+          deleteLocalBtn.dataset.deleteLocalUid,
+          deleteLocalBtn.dataset.deleteLocalName,
+          deleteLocalBtn.dataset.deleteLocalImported === "1",
+        );
       }
     });
 
@@ -1793,12 +1890,15 @@
         updateBatchImportButtonLabel();
         window.onBuzzEnvChanged = async () => {
           updateBatchImportButtonLabel();
-          await loadMerchantTypes();
-          await loadMerchants();
+          setSaveState("切换环境中...", "warn");
+          await Promise.all([loadMerchantTypes(), loadMerchants()]);
         };
-        await loadMerchantTypes();
-        await loadReviewState();
-        await loadMerchants();
+        setSaveState("加载商户数据...", "warn");
+        await Promise.all([
+          loadReviewState(),
+          loadMerchantTypes(),
+          loadMerchants(),
+        ]);
       } catch (error) {
         setSaveState(`连接失败: ${error.message}`, "error");
       }

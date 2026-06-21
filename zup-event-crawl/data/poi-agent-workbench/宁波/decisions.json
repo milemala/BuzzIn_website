@@ -1,231 +1,14 @@
 {
   "city": "宁波",
   "source": "douban",
-  "updated_at": "2026-06-16T06:05:19.208Z",
-  "agent": "cursor-agent",
+  "updated_at": "2026-06-21T02:40:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "348118d3e9c2",
-      "event_uids": [
-        "douban:34808670",
-        "douban:37733649"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "6341080010138381793",
-      "poi_title": "都不酷(秀水街店)",
-      "poi_address": "",
-      "latitude": 29.879098,
-      "longitude": 121.54912,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：宁波 鄞州区 都不酷 广仁街33弄9号（洗手间隔壁） → 都不酷(秀水街店)（来源 event:douban:37542612）",
-      "candidates": []
-    },
-    {
-      "group_id": "7b1a0b682cd6",
-      "event_uids": [
-        "douban:37440891"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "宁波 松果兴喜剧"
-      ],
-      "poi_id": "13106748783380536494",
-      "poi_title": "松果兴喜剧(宁波天一店)",
-      "poi_address": "浙江省宁波市海曙区天一国际购物中心3楼(洗手间旁)",
-      "latitude": 29.870627,
-      "longitude": 121.553791,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 208）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "13106748783380536494",
-          "title": "松果兴喜剧(宁波天一店)",
-          "address": "浙江省宁波市海曙区天一国际购物中心3楼(洗手间旁)",
-          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
-          "latitude": 29.870627,
-          "longitude": 121.553791
-        }
-      ]
-    },
-    {
-      "group_id": "5ae2878e1f2c",
-      "event_uids": [
-        "douban:37802890",
-        "douban:37754547",
-        "douban:37802640",
-        "douban:37801001",
-        "douban:37848859",
-        "douban:37859431",
-        "douban:37768447",
-        "douban:37628318",
-        "douban:37754384",
-        "douban:37768455"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "宁波 高桥镇梁祝文化园12弄2-10（松境心理咨询工作室，地图可直搜）"
-      ],
-      "poi_id": "2364116715093614009",
-      "poi_title": "梁祝文化园",
-      "poi_address": "浙江省宁波市海曙区梁祝路",
-      "latitude": 29.908114,
-      "longitude": 121.484667,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 108）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "2364116715093614009",
-          "title": "梁祝文化园",
-          "address": "浙江省宁波市海曙区梁祝路",
-          "category": "旅游景点:国家级景点",
-          "latitude": 29.908114,
-          "longitude": 121.484667
-        },
-        {
-          "index": 1,
-          "poi_id": "9203057630736101805",
-          "title": "宁波薇拉尚美花园酒店",
-          "address": "浙江省宁波市海曙区高桥镇梁祝文化产业园A9栋",
-          "category": "酒店宾馆:酒店宾馆",
-          "latitude": 29.905578,
-          "longitude": 121.482861
-        },
-        {
-          "index": 2,
-          "poi_id": "12752128915169208300",
-          "title": "托斯谷纳婚纱摄影中心",
-          "address": "浙江省宁波市海曙区高桥镇梁祝路23弄15号",
-          "category": "生活服务:婚庆服务",
-          "latitude": 29.904901,
-          "longitude": 121.485146
-        },
-        {
-          "index": 3,
-          "poi_id": "7602233982535840552",
-          "title": "梁祝凤凰塔",
-          "address": "浙江省宁波市海曙区高桥镇梁祝文化园内",
-          "category": "旅游景点:风景名胜",
-          "latitude": 29.907583,
-          "longitude": 121.48553
-        },
-        {
-          "index": 4,
-          "poi_id": "14650268791911745976",
-          "title": "梁祝景区-祝府",
-          "address": "浙江省宁波市海曙区高桥镇梁祝路1号梁祝文化园内(北侧)",
-          "category": "旅游景点:风景名胜",
-          "latitude": 29.910003,
-          "longitude": 121.484925
-        }
-      ]
-    },
-    {
-      "group_id": "25076b054296",
-      "event_uids": [
-        "douban:37885786",
-        "douban:37870120",
-        "douban:37811437"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "宁波 中海环宇城 鄞州"
-      ],
-      "reason": "豆瓣环宇城A馆2楼与中海环宇城购物中心主体一致",
-      "doubtful": false,
-      "confidence": "high",
-      "candidates": [],
-      "poi_id": "15743744012776413008",
-      "poi_title": "中海环宇城购物中心",
-      "poi_address": "浙江省宁波市鄞州区江东南路689号",
-      "latitude": 29.87,
-      "longitude": 121.57
-    },
-    {
-      "group_id": "903c799f552d",
-      "event_uids": [
-        "douban:37668086"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "宁波 罗城剧场",
-        "宁波 中山东路220号3楼L3-005（第二百货商店3楼）",
-        "宁波 海曙区 罗城剧场"
-      ],
-      "poi_id": "15929540552230413462",
-      "poi_title": "开关·SWITCH剧场|罗城剧场",
-      "poi_address": "浙江省宁波市海曙区宁波第二百货商店3楼005",
-      "latitude": 29.870062,
-      "longitude": 121.557323,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 391）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "12695222179172154958",
-          "title": "万达影城(鄞州万达广场IMAX激光店)",
-          "address": "浙江省宁波市鄞州区宁南北路与四明中路交汇处万达广场(宁波鄞州店)F3",
-          "category": "娱乐休闲:电影院",
-          "latitude": 29.826332,
-          "longitude": 121.546477
-        },
-        {
-          "index": 1,
-          "poi_id": "15949378340548110564",
-          "title": "白云实验剧场",
-          "address": "浙江省宁波市海曙区白云街道蓝天路121号(近白云小区)",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 29.870775,
-          "longitude": 121.52348
-        },
-        {
-          "index": 2,
-          "poi_id": "462906174337207958",
-          "title": "象山剧院影视厅",
-          "address": "浙江省宁波市象山县建设路122号",
-          "category": "娱乐休闲:电影院",
-          "latitude": 29.473199,
-          "longitude": 121.873655
-        },
-        {
-          "index": 3,
-          "poi_id": "10888693049397791601",
-          "title": "泗门汝湖影剧院(泗门影剧院)",
-          "address": "浙江省宁波市余姚市泗门镇汝湖路103号",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 30.151806,
-          "longitude": 121.049966
-        },
-        {
-          "index": 4,
-          "poi_id": "18248039032734265627",
-          "title": "宁波大剧院",
-          "address": "浙江省宁波市江北区轨道交通6号线;轨道交通7号线",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 29.891281,
-          "longitude": 121.548475
-        }
-      ]
-    },
-    {
       "group_id": "a28db87369e8",
-      "event_uids": [
-        "douban:37859200",
-        "douban:37545612",
-        "douban:37804308"
-      ],
+      "event_uids": ["douban:37847165"],
       "action": "match",
-      "search_keywords_tried": [
-        "宁波文化广场大剧院"
-      ],
+      "search_keywords_tried": ["鄞州区", "宁波文化广场大剧院", "宁穿路1900号", "1900号", "鄞州区 宁波文化广场大剧院 宁穿路1900号"],
       "poi_id": "1921137803586066728",
       "poi_title": "宁波文化广场大剧院",
       "poi_address": "浙江省宁波市鄞州区宁波文化广场内",
@@ -233,199 +16,44 @@
       "longitude": 121.619756,
       "confidence": "high",
       "doubtful": false,
-      "reason": "三轮匹配（score 361）",
+      "reason": "宁波文化广场大剧院与POI一致，鄞州区宁穿路1900号文化广场内",
       "candidates": [
-        {
-          "index": 0,
-          "poi_id": "1921137803586066728",
-          "title": "宁波文化广场大剧院",
-          "address": "浙江省宁波市鄞州区宁波文化广场内",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 29.858222,
-          "longitude": 121.619756
-        },
-        {
-          "index": 1,
-          "poi_id": "11660828044195132302",
-          "title": "宁波文化广场大剧院-东门",
-          "address": "浙江省宁波市鄞州区宁穿路与河清北路交叉口西南方向133米左右",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 29.858459,
-          "longitude": 121.62046
-        },
-        {
-          "index": 2,
-          "poi_id": "1464847955051366794",
-          "title": "宁波文化广场大剧院-6号门",
-          "address": "浙江省宁波市鄞州区河清北路",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 29.857667,
-          "longitude": 121.619457
-        },
-        {
-          "index": 3,
-          "poi_id": "16873454147448740771",
-          "title": "宁波文化广场大剧院售票厅",
-          "address": "浙江省宁波市鄞州区宁波文化广场大剧院东门旁",
-          "category": "生活服务:票务代售:其它票务代售",
-          "latitude": 29.858717,
-          "longitude": 121.620274
-        },
-        {
-          "index": 4,
-          "poi_id": "16467223978612074136",
-          "title": "宁波文化广场大剧院IV2幢",
-          "address": "浙江省宁波市鄞州区河清北路宁波文化广场大剧院",
-          "category": "房产小区:房产小区附属",
-          "latitude": 29.858196,
-          "longitude": 121.619817
-        }
+        {"index": 0, "poi_id": "1921137803586066728", "title": "宁波文化广场大剧院", "address": "浙江省宁波市鄞州区宁波文化广场内", "category": "娱乐休闲:剧场音乐厅:剧场", "latitude": 29.858222, "longitude": 121.619756}
       ]
     },
     {
-      "group_id": "d43ea8161e7e",
-      "event_uids": [
-        "douban:37816446",
-        "douban:37864398",
-        "douban:37796633"
-      ],
+      "group_id": "3d0c1f70336b",
+      "event_uids": ["douban:37574954"],
       "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "14274252420512460750",
-      "poi_title": "天然舞台",
-      "poi_address": "",
-      "latitude": 29.853942,
-      "longitude": 121.574,
+      "search_keywords_tried": ["江北区", "宁波大剧院", "大闸路1号", "近永丰北路", "1号(近永丰北路)", "江北区 宁波大剧院 大闸路1号"],
+      "poi_id": "18248039032734265627",
+      "poi_title": "宁波大剧院",
+      "poi_address": "浙江省宁波市江北区轨道交通6号线;轨道交通7号线",
+      "latitude": 29.891281,
+      "longitude": 121.548475,
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：宁波 鄞州区 天然舞台 甬港南路245号 → 天然舞台（来源 event:douban:37754377）",
-      "candidates": []
-    },
-    {
-      "group_id": "56a2b7ba0387",
-      "event_uids": [
-        "douban:37378852"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "宁波 都不酷"
-      ],
-      "poi_id": "6341080010138381793",
-      "poi_title": "都不酷(秀水街店)",
-      "poi_address": "浙江省宁波市海曙区广仁街33弄9号(洗手间隔壁)",
-      "latitude": 29.879098,
-      "longitude": 121.54912,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 117）",
+      "reason": "宁波大剧院与POI一致，江北区大闸路1号近永丰北路",
       "candidates": [
-        {
-          "index": 0,
-          "poi_id": "18353449070811907861",
-          "title": "都不酷(白鹤店)",
-          "address": "浙江省宁波市鄞州区原天然舞台小剧院(近白鹤站A出口)",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 29.853795,
-          "longitude": 121.571137
-        },
-        {
-          "index": 1,
-          "poi_id": "6341080010138381793",
-          "title": "都不酷(秀水街店)",
-          "address": "浙江省宁波市海曙区广仁街33弄9号(洗手间隔壁)",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 29.879098,
-          "longitude": 121.54912
-        }
+        {"index": 0, "poi_id": "18248039032734265627", "title": "宁波大剧院", "address": "浙江省宁波市江北区轨道交通6号线;轨道交通7号线", "category": "娱乐休闲:剧场音乐厅:剧场", "latitude": 29.891281, "longitude": 121.548475}
       ]
     },
     {
-      "group_id": "a31f7eb96a9e",
-      "event_uids": [
-        "douban:37456281",
-        "douban:37494645"
-      ],
+      "group_id": "2bd69fdce335",
+      "event_uids": ["douban:37806891"],
       "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "16849122124707112762",
-      "poi_title": "蓝梗喜剧宁波旗舰店(樂1844店)",
-      "poi_address": "",
-      "latitude": 29.874,
-      "longitude": 121.555,
+      "search_keywords_tried": ["北仑区", "博地影秀大剧院", "宝山路1296号", "1296号", "北仑区 博地影秀大剧院 宝山路1296号"],
+      "poi_id": "15033281056158654628",
+      "poi_title": "博地影秀大剧院",
+      "poi_address": "浙江省宁波市北仑区大碶街道宝山路1296号",
+      "latitude": 29.900818,
+      "longitude": 121.809075,
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：宁波 海曙区 蓝梗喜剧宁波旗舰店 和义路102弄1号LG-08·制梗车间 → 蓝梗喜剧宁波旗舰店(樂1844店)（来源 event:douban:37622422）",
-      "candidates": []
-    },
-    {
-      "group_id": "5bc6b3b329ec",
-      "event_uids": [
-        "douban:37824465"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "宁波 宁海大剧院"
-      ],
-      "poi_id": "10992813385885461944",
-      "poi_title": "宁海大剧院(天明中路店)",
-      "poi_address": "浙江省宁波市宁海县桃源街道天明中路88号-1",
-      "latitude": 29.331372,
-      "longitude": 121.441182,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 223）",
+      "reason": "博地影秀大剧院与POI一致，北仑区宝山路1296号",
       "candidates": [
-        {
-          "index": 0,
-          "poi_id": "10992813385885461944",
-          "title": "宁海大剧院(天明中路店)",
-          "address": "浙江省宁波市宁海县桃源街道天明中路88号-1",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 29.331372,
-          "longitude": 121.441182
-        },
-        {
-          "index": 1,
-          "poi_id": "1999995851864275184",
-          "title": "宁海剧院",
-          "address": "浙江省宁波市宁海县跃龙街道桃源南路228号",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 29.285631,
-          "longitude": 121.431203
-        },
-        {
-          "index": 2,
-          "poi_id": "12617275266982913335",
-          "title": "大观剧院",
-          "address": "浙江省宁波市宁海县跃龙五路与银河路交叉口西南方向77米左右",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 29.308217,
-          "longitude": 121.427103
-        }
+        {"index": 0, "poi_id": "15033281056158654628", "title": "博地影秀大剧院", "address": "浙江省宁波市北仑区大碶街道宝山路1296号", "category": "娱乐休闲:剧场音乐厅:剧场", "latitude": 29.900818, "longitude": 121.809075}
       ]
-    },
-    {
-      "group_id": "12a98b3b6fd2",
-      "event_uids": [
-        "douban:37426436"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "宁波 中山东路366号 K11"
-      ],
-      "reason": "豆瓣灵境空间在ThePark K11 A201铺位，腾讯无店级POI，对齐K11商场主体",
-      "doubtful": true,
-      "confidence": "medium",
-      "candidates": [],
-      "poi_id": "1001055786056384688",
-      "poi_title": "K11购物艺术中心",
-      "poi_address": "浙江省宁波市鄞州区中山东路与江东北路交叉口东南",
-      "latitude": 29.87,
-      "longitude": 121.57
     }
   ]
 }

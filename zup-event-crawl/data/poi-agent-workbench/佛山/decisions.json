@@ -1,8 +1,8 @@
 {
   "city": "佛山",
   "source": "douban",
-  "updated_at": "2026-06-16T06:05:21.011Z",
-  "agent": "cursor-agent",
+  "updated_at": "2026-06-20T18:41:07.868Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "2edd250b4a94",
@@ -170,13 +170,12 @@
     {
       "group_id": "9387b97d2387",
       "event_uids": [
-        "douban:37752800",
-        "douban:37870600",
-        "douban:37804160"
+        "douban:37793069"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "佛山 琼花大剧院"
+        "琼花大剧院",
+        "祖庙路22号"
       ],
       "poi_id": "2984913764483185002",
       "poi_title": "琼花大剧院",
@@ -185,7 +184,7 @@
       "longitude": 113.111508,
       "confidence": "high",
       "doubtful": false,
-      "reason": "三轮匹配（score 262）",
+      "reason": "琼花大剧院与禅城区祖庙路22号片区一致",
       "candidates": [
         {
           "index": 0,
@@ -195,42 +194,6 @@
           "category": "娱乐休闲:剧场音乐厅:剧场",
           "latitude": 23.032055,
           "longitude": 113.111508
-        },
-        {
-          "index": 1,
-          "poi_id": "6763012621276885877",
-          "title": "琼花大剧院停车场-出入口",
-          "address": "广东省佛山市禅城区人民路与祖庙路交叉口正北方向45米左右",
-          "category": "室内及附属设施:通行设施类:停车场出入口",
-          "latitude": 23.03196,
-          "longitude": 113.11217
-        },
-        {
-          "index": 2,
-          "poi_id": "2445336289830801232",
-          "title": "琼花大剧院停车场",
-          "address": "广东省佛山市禅城区祖庙路22号琼花大剧院F1",
-          "category": "汽车:停车场",
-          "latitude": 23.03188,
-          "longitude": 113.111957
-        },
-        {
-          "index": 3,
-          "poi_id": "10605736711016943950",
-          "title": "琼花大剧院-东门",
-          "address": "广东省佛山市禅城区人民路与祖庙路交叉口西北方向49米左右",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 23.03196,
-          "longitude": 113.112094
-        },
-        {
-          "index": 4,
-          "poi_id": "9601540161413310214",
-          "title": "大可以(祖庙路店)",
-          "address": "广东省佛山市禅城区祖庙街道祖庙路20号(琼花歌剧院)",
-          "category": "美食:中餐厅:其它中餐厅",
-          "latitude": 23.03235,
-          "longitude": 113.112163
         }
       ]
     },
@@ -296,6 +259,67 @@
           "category": "汽车:停车场",
           "latitude": 22.959503,
           "longitude": 113.14251
+        }
+      ]
+    },
+    {
+      "group_id": "afb7d436cc0e",
+      "event_uids": [
+        "douban:37879468",
+        "douban:37878963"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "中影华纳国际影城演出厅",
+        "里广路50号永润广场4层"
+      ],
+      "poi_id": "4662749094785360789",
+      "poi_title": "中影华纳国际影城(永润广场店)",
+      "poi_address": "广东省佛山市南海区里广路50号里水永润广场F4",
+      "latitude": 23.184512,
+      "longitude": 113.195278,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "影城与南海区里广路50号永润广场4层一致",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "4662749094785360789",
+          "title": "中影华纳国际影城(永润广场店)",
+          "address": "广东省佛山市南海区里广路50号里水永润广场F4",
+          "category": "娱乐休闲:电影院",
+          "latitude": 23.184512,
+          "longitude": 113.195278
+        }
+      ]
+    },
+    {
+      "group_id": "4722e59def23",
+      "event_uids": [
+        "douban:37868677"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "南海体育馆",
+        "桂城南海大道北36号"
+      ],
+      "poi_id": "10423382284527712704",
+      "poi_title": "南海体育馆",
+      "poi_address": "广东省佛山市南海区南海大道北36",
+      "latitude": 23.047485,
+      "longitude": 113.140899,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "南海体育馆与桂城南海大道北36号一致",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "10423382284527712704",
+          "title": "南海体育馆",
+          "address": "广东省佛山市南海区南海大道北36",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 23.047485,
+          "longitude": 113.140899
         }
       ]
     }

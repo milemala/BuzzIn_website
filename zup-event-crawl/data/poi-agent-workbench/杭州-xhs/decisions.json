@@ -1,7 +1,7 @@
 {
   "city": "杭州",
   "source": "xiaohongshu",
-  "updated_at": "2026-06-15T15:28:18.572Z",
+  "updated_at": "2026-06-20T19:50:00.000Z",
   "agent": "cursor-agent",
   "decisions": [
     {
@@ -332,7 +332,7 @@
       "event_uids": [
         "xiaohongshu:6a2f9bb90000000006031218:04_2"
       ],
-      "decided_at": "2026-06-15T15:28:18.572Z",
+      "decided_at": "2026-06-20T19:50:00.000Z",
       "action": "reject",
       "poi_id": "",
       "poi_title": "",
@@ -340,7 +340,7 @@
       "latitude": 0,
       "longitude": 0,
       "candidates": [],
-      "reason": "腾讯POI无五里塘历史文化街区实体，仅五里塘路/社区等泛地名，无法唯一确定活动主体",
+      "reason": "五里塘历史文化街区未搜到明确实体POI，候选为五里塘社区/道路/住宅等泛地名；三墩老街搜索结果又偏向祥符老街或店铺，无法唯一确定活动主体",
       "search_keywords_tried": [
         "五里塘历史文化街区",
         "三墩老街",

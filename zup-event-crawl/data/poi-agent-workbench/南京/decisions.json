@@ -1,8 +1,8 @@
 {
   "city": "南京",
   "source": "douban",
-  "updated_at": "2026-06-16T05:45:06.613Z",
-  "agent": "cursor-agent",
+  "updated_at": "2026-06-20T18:41:07.868Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "cdfd2e958cf1",
@@ -282,6 +282,45 @@
           "category": "娱乐休闲:酒吧",
           "latitude": 31.983071,
           "longitude": 118.718237
+        }
+      ]
+    },
+    {
+      "group_id": "ce9d48ac2e03",
+      "event_uids": [
+        "douban:37867972"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "幸福蓝海音乐剧场-荔枝广场店",
+        "幸福蓝海音乐剧场"
+      ],
+      "poi_id": "7175188136065039611",
+      "poi_title": "幸福蓝海国际影城(荔枝广场旗舰店)",
+      "poi_address": "江苏省南京市玄武区北京东路2号荔枝广场F8",
+      "latitude": 32.057524,
+      "longitude": 118.785538,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "幸福蓝海音乐剧场位于荔枝广场内，同楼不同楼层",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "7175188136065039611",
+          "title": "幸福蓝海国际影城(荔枝广场旗舰店)",
+          "address": "江苏省南京市玄武区北京东路2号荔枝广场F8",
+          "category": "娱乐休闲:电影院",
+          "latitude": 32.057524,
+          "longitude": 118.785538
+        },
+        {
+          "index": 1,
+          "poi_id": "4365873924955267224",
+          "title": "荔枝广场",
+          "address": "江苏省南京市玄武区北京东路4号",
+          "category": "购物:综合商场",
+          "latitude": 32.057334,
+          "longitude": 118.785891
         }
       ]
     }

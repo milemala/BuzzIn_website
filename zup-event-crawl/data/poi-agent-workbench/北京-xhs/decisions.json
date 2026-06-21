@@ -1,7 +1,7 @@
 {
   "city": "北京",
   "source": "xiaohongshu",
-  "updated_at": "2026-06-15T15:28:18.572Z",
+  "updated_at": "2026-06-20T19:50:00.000Z",
   "agent": "cursor-agent",
   "decisions": [
     {
@@ -602,12 +602,13 @@
       "event_uids": [
         "xiaohongshu:6a16bfb2000000003603144d:09_1"
       ],
-      "decided_at": "2026-06-15T15:26:34.052Z",
+      "decided_at": "2026-06-20T19:50:00.000Z",
       "search_keywords_tried": [
-        "平谷·马坊"
+        "平谷 马坊",
+        "平谷 马坊 爬行动物"
       ],
       "action": "reject",
-      "reason": "平谷马坊无爬宠展场馆POI，候选仅为马坊镇/大集等泛称，无法匹配展会场地",
+      "reason": "活动地点仅写平谷马坊，候选为马坊镇、马坊大集等泛地名；爬行动物相关候选均在大兴/朝阳/怀柔等其他区，无法匹配平谷展会场地",
       "doubtful": false
     },
     {

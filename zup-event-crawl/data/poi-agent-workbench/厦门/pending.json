@@ -1,32 +1,40 @@
 {
   "city": "厦门",
   "source": "douban",
-  "exported_at": "2026-06-16T05:47:57.400Z",
+  "exported_at": "2026-06-20T18:31:05.085Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "unmatched",
   "pending_only": true,
   "doubtful_only": false,
   "total_events": 3,
-  "group_count": 2,
+  "group_count": 3,
   "cache_hit_groups": 0,
   "groups": [
     {
-      "group_id": "443813f048be",
-      "location": "厦门 思明区 闽南大戏院 会展北片区横三路(国际会议中心酒店北侧)",
-      "sample_title": "2026年6月19-20日 音乐剧《粉丝来信》中文版",
+      "group_id": "1c91ee01d660",
+      "location": "厦门 思明区 DVLN PaRK退化公园",
+      "sample_title": "主题策划放映|思维空间::飘",
       "event_uids": [
-        "douban:37692255",
-        "douban:37822605"
+        "douban:37889538"
       ],
-      "event_count": 2
+      "event_count": 1
     },
     {
-      "group_id": "7dd8eaaa1cc8",
-      "location": "厦门 思明区 宏泰音乐厅 筼筜街道湖滨东路309号宏泰中心(体育中心西门对面)(体育中心)",
-      "sample_title": "厦门爱歌室内合唱团『无尽之声』十周年专场音乐会",
+      "group_id": "443813f048be",
+      "location": "厦门 思明区 闽南大戏院 会展北片区横三路(国际会议中心酒店北侧)",
+      "sample_title": "2026年6月24日 Grissini Project法国格里西尼乐团音乐会",
       "event_uids": [
-        "douban:37835898"
+        "douban:37763257"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "bab5fd743389",
+      "location": "厦门 思明区 厦门歌舞剧院 公园西路12号",
+      "sample_title": "清一色×辣条领衔主演《失控玩家》| 超强互动爆笑即兴喜剧 | 幽默油条喜剧·厦门站",
+      "event_uids": [
+        "douban:37868157"
       ],
       "event_count": 1
     }

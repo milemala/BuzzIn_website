@@ -1,135 +1,54 @@
 {
   "city": "武汉",
   "source": "douban",
-  "exported_at": "2026-06-16T05:45:08.215Z",
+  "exported_at": "2026-06-20T18:31:04.136Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "unmatched",
   "pending_only": true,
   "doubtful_only": false,
-  "total_events": 16,
-  "group_count": 13,
+  "total_events": 7,
+  "group_count": 4,
   "cache_hit_groups": 0,
   "groups": [
     {
-      "group_id": "2e58c7d48bac",
-      "location": "武汉 汉阳区 琴台大剧院 知音大道7号",
-      "sample_title": "朱洁静、乔振宇主演 话剧《倾城之恋》五周年特别版（武汉站）",
+      "group_id": "c06cbf535ff1",
+      "location": "武汉 洪山区 洪山区神墩五路199号OVIS光谷康桥外籍人员子女学校",
+      "sample_title": "一个德国人为什么把一生献给中国？",
       "event_uids": [
-        "douban:37798935"
+        "douban:37891167"
       ],
       "event_count": 1
+    },
+    {
+      "group_id": "8a8912b641a6",
+      "location": "武汉 江岸区 东立国际32栋1楼106室（从工农兵路东立国际4号门进）",
+      "sample_title": "心理分析：《主角》忆秦娥关于心理创伤的哀悼与丧失，爱与救赎",
+      "event_uids": [
+        "douban:37888730"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "2e58c7d48bac",
+      "location": "武汉 汉阳区 琴台大剧院 知音大道7号",
+      "sample_title": "大型民族舞剧《醒·狮》武汉站2026",
+      "event_uids": [
+        "douban:37688024",
+        "douban:37798950"
+      ],
+      "event_count": 2
     },
     {
       "group_id": "1be0bd2a4d6c",
       "location": "武汉 武昌区 果然戏剧小剧场 水果湖街道烟霞路1号3层3006号",
-      "sample_title": "【科学秀】亲子嘉年华《科学实验室》",
+      "sample_title": "亲子魔术专场：白日梦想家",
       "event_uids": [
-        "douban:37839290",
-        "douban:37698111"
+        "douban:37839284",
+        "douban:37698096",
+        "douban:37698121"
       ],
-      "event_count": 2
-    },
-    {
-      "group_id": "21334f401c5e",
-      "location": "武汉 青山区 Live Hub剧场 红卫路街道和平大道809号奥山世纪广场1层012号",
-      "sample_title": "沉浸式互动剧——《曙光之前》",
-      "event_uids": [
-        "douban:37844930"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "e9a2ad07dc78",
-      "location": "武汉 蔡甸区 车里子演艺空间 沌阳街道车城北路武汉体育中心8号门篮球公园旁",
-      "sample_title": "霉粉假期必看!Cruel summer-TaylorSwift金曲演唱会，燃爆初夏！@TayMe",
-      "event_uids": [
-        "douban:37861671",
-        "douban:37336238"
-      ],
-      "event_count": 2
-    },
-    {
-      "group_id": "1763b35569d1",
-      "location": "武汉 武昌区 人民网·梦幻灵境AI展演中心 临江大道667号四美塘文化公园2号馆2-1-2",
-      "sample_title": "AI魔术戏剧 《AI上黄鹤楼》一秒穿越盛唐黄鹤楼|魔术虚实交织的时空幻境",
-      "event_uids": [
-        "douban:37651593"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "348d1e5b3cf3",
-      "location": "武汉 洪山区 珞珈山剧院 珞狮路84号",
-      "sample_title": "“一梦红楼·梁祝”经典国风题材音乐会·武汉站",
-      "event_uids": [
-        "douban:37843171"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "1ccb4fd15404",
-      "location": "武汉 江岸区 左邻右社新汉派剧场 鄱阳街21号D-F7号楼4F",
-      "sample_title": "左邻右社相声&脱口秀|开放麦",
-      "event_uids": [
-        "douban:37651106"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "1a50763d9ec2",
-      "location": "武汉 江岸区 快活里剧场 胜利街157号",
-      "sample_title": "江汉路必看高分沉浸式喜剧《风声鹤“立”》",
-      "event_uids": [
-        "douban:37650392"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "67cfc75beecf",
-      "location": "武汉 江汉区 《汉口風崋》 沿江大道1号",
-      "sample_title": "汉口风华",
-      "event_uids": [
-        "douban:37672231"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "8d758d6e7c33",
-      "location": "武汉 武昌区 昙华四季演艺剧场 粮道街昙华林三期人文小镇F8-2",
-      "sample_title": "《爱如昙华》昙华林独家丨民国爱情舞台剧",
-      "event_uids": [
-        "douban:37431981"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "dfb721e3598d",
-      "location": "武汉 东西湖区 武汉临空港大剧院 东西湖临空港开发区临空港大道与金北一路交叉口东北200米",
-      "sample_title": "第二届临空港流行音乐嘉年华——“回响·王杰作品金曲演唱会”武汉站(非自营)",
-      "event_uids": [
-        "douban:37838596",
-        "douban:36916408"
-      ],
-      "event_count": 2
-    },
-    {
-      "group_id": "bfcc1a1a5d31",
-      "location": "武汉 洪山区 《开关SWITCH》惊悚喜剧鬼混剧场 珞喻路世界城光谷步行街1期悦心汇4楼",
-      "sample_title": "【武汉必看】《开关SWITCH》鬼混剧场",
-      "event_uids": [
-        "douban:37714473"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "e9c44f74cd7e",
-      "location": "武汉 江岸区 武汉天乐社吉庆街剧场 吉庆街4栋4楼武汉天乐社（与仟吉西饼吉庆街店同一栋楼）",
-      "sample_title": "武汉天乐社相声大会-吉庆街剧场",
-      "event_uids": [
-        "douban:37765223"
-      ],
-      "event_count": 1
+      "event_count": 3
     }
   ]
 }

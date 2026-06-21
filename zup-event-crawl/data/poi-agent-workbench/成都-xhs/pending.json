@@ -1,22 +1,31 @@
 {
   "city": "成都",
   "source": "xiaohongshu",
-  "exported_at": "2026-06-15T15:25:00.331Z",
+  "exported_at": "2026-06-20T19:54:53.720Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "unmatched",
   "pending_only": true,
   "doubtful_only": false,
-  "total_events": 4,
-  "group_count": 4,
+  "total_events": 3,
+  "group_count": 3,
   "cache_hit_groups": 0,
   "groups": [
     {
-      "group_id": "b7444d8f30f1",
-      "location": "成都银泰城1号门外广场+一号中庭（高新区）",
-      "sample_title": "成都冰甜生活节",
+      "group_id": "c3d08a1de9de",
+      "location": "新津南河两岸（新津区）",
+      "sample_title": "2026天府端午龙舟会",
       "event_uids": [
-        "xiaohongshu:6a2fb1ae000000001101e8df:08_0"
+        "xiaohongshu:6a2fb1ae000000001101e8df:06_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "de26d17e3d83",
+      "location": "英盟当代艺术馆（武侯区）",
+      "sample_title": "交界地——2026届川音成都美术学院油画系研究生学术推荐展",
+      "event_uids": [
+        "xiaohongshu:6a3361de00000000200388ff:14_1"
       ],
       "event_count": 1
     },
@@ -26,24 +35,6 @@
       "sample_title": "四川大学美术馆青绿山水画巡展",
       "event_uids": [
         "xiaohongshu:6a2fb1ae000000001101e8df:13_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "f0d5a8eb5295",
-      "location": "四川歌舞大剧院",
-      "sample_title": "开心麻花《开心聊斋·三生PLUS》",
-      "event_uids": [
-        "xiaohongshu:6a2fb1ae000000001101e8df:15_2"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "842feafe4296",
-      "location": "成都金融城演艺中心",
-      "sample_title": "动力火车2026「一路向前」巡回演唱会-成都站",
-      "event_uids": [
-        "xiaohongshu:6a2fb1ae000000001101e8df:16_3"
       ],
       "event_count": 1
     }

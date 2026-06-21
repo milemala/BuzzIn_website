@@ -1,88 +1,25 @@
 {
   "city": "福州",
   "source": "douban",
-  "updated_at": "2026-06-16T05:48:11.708Z",
-  "agent": "cursor-agent",
+  "updated_at": "2026-06-21T02:40:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "91f99d920107",
-      "event_uids": [
-        "douban:37819360"
-      ],
+      "group_id": "14280814abbf",
+      "event_uids": ["douban:37763703"],
       "action": "match",
-      "search_keywords_tried": [
-        "福州 唯美客MAKERLIVE.三盛i33店"
-      ],
-      "poi_id": "2192942275681814310",
-      "poi_title": "MAKER LIVE(唯美客i33店)",
-      "poi_address": "福建省福州市晋安区福峰路68号三盛i33城市广场2号楼唯美客文创聚落C2号",
-      "latitude": 26.144737,
-      "longitude": 119.332266,
+      "search_keywords_tried": ["鼓楼区", "福建会堂", "华林路11号西湖宾馆福建会堂", "号西湖宾馆", "11号西湖宾馆福建会堂", "鼓楼区 福建会堂 华林路11号西湖宾馆福建会堂"],
+      "poi_id": "14133530576794798958",
+      "poi_title": "福建会堂",
+      "poi_address": "福建省福州市鼓楼区北后弄与北后街交叉口西南方向89米左右",
+      "latitude": 26.094631,
+      "longitude": 119.292455,
       "confidence": "high",
       "doubtful": false,
-      "reason": "三轮匹配（score 334）",
+      "reason": "福建会堂与POI一致，鼓楼区华林路11号西湖宾馆内",
       "candidates": [
-        {
-          "index": 0,
-          "poi_id": "2192942275681814310",
-          "title": "MAKER LIVE(唯美客i33店)",
-          "address": "福建省福州市晋安区福峰路68号三盛i33城市广场2号楼唯美客文创聚落C2号",
-          "category": "娱乐休闲:酒吧",
-          "latitude": 26.144737,
-          "longitude": 119.332266
-        }
+        {"index": 0, "poi_id": "14133530576794798958", "title": "福建会堂", "address": "福建省福州市鼓楼区北后弄与北后街交叉口西南方向89米左右", "category": "文化场馆:会展中心", "latitude": 26.094631, "longitude": 119.292455}
       ]
-    },
-    {
-      "group_id": "badf7ed50baf",
-      "event_uids": [
-        "douban:37789886",
-        "douban:37849929"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "回响之地·福州馆"
-      ],
-      "poi_id": "5165756411818677066",
-      "poi_title": "回响之地·福州馆",
-      "poi_address": "福建省福州市台江区苍霞路13号青年广场02-1铺",
-      "latitude": 26.050285,
-      "longitude": 119.310534,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 316）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "5165756411818677066",
-          "title": "回响之地·福州馆",
-          "address": "福建省福州市台江区苍霞路13号青年广场02-1铺",
-          "category": "文化场馆:展览馆",
-          "latitude": 26.050285,
-          "longitude": 119.310534
-        }
-      ]
-    },
-    {
-      "group_id": "a53fa3fed340",
-      "event_uids": [
-        "douban:37658615",
-        "douban:37463545",
-        "douban:36059959"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "2312146045768955736",
-      "poi_title": "福立社喜剧-福州脱口秀",
-      "poi_address": "",
-      "latitude": 26.064798,
-      "longitude": 119.290562,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：福州 台江区 福立社喜剧-福州脱口秀 工业路万象九宜城5楼425号 → 福立社喜剧-福州脱口秀（来源 event:douban:36500304）",
-      "candidates": []
     }
   ]
 }

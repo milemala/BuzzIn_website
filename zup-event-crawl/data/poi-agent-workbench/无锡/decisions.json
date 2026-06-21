@@ -1,229 +1,25 @@
 {
   "city": "无锡",
   "source": "douban",
-  "updated_at": "2026-06-16T05:48:08.495Z",
-  "agent": "cursor-agent",
+  "updated_at": "2026-06-21T02:40:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "38e9518a7333",
-      "event_uids": [
-        "douban:37773783",
-        "douban:37808833"
-      ],
+      "group_id": "7468dd712189",
+      "event_uids": ["douban:37861930"],
       "action": "match",
-      "search_keywords_tried": [
-        "无锡 WOOBOX艺术空间",
-        "无锡 崇安寺街道八佰伴七楼",
-        "无锡 梁溪区 WOOBOX艺术空间",
-        "无锡 梁溪区 WOOBOX艺术空间 崇安寺街道八佰伴七楼"
-      ],
-      "poi_id": "8670335272802325720",
-      "poi_title": "WOOBOX艺术空间(小剧场)",
-      "poi_address": "江苏省无锡市梁溪区八佰伴七楼",
-      "latitude": 31.57202,
-      "longitude": 120.302756,
+      "search_keywords_tried": ["江阴", "江阴大剧院", "澄江中路128号", "128号", "江阴 江阴大剧院 澄江中路128号"],
+      "poi_id": "15642778966023224337",
+      "poi_title": "江阴大剧院",
+      "poi_address": "江苏省无锡市江阴市江阴高新技术产业开发区澄江中路128号",
+      "latitude": 31.92238,
+      "longitude": 120.29863,
       "confidence": "high",
       "doubtful": false,
-      "reason": "三轮匹配（score 157）",
+      "reason": "江阴大剧院与POI一致，江阴市澄江中路128号",
       "candidates": [
-        {
-          "index": 0,
-          "poi_id": "16196447776941466546",
-          "title": "中国宜兴陶瓷博物馆",
-          "address": "江苏省无锡市宜兴市丁山北路150号",
-          "category": "文化场馆:博物馆",
-          "latitude": 31.259419,
-          "longitude": 119.830581
-        },
-        {
-          "index": 1,
-          "poi_id": "13982279112632060459",
-          "title": "无锡博物院",
-          "address": "江苏省无锡市梁溪区太湖广场南侧钟书路100号",
-          "category": "文化场馆:博物馆",
-          "latitude": 31.549618,
-          "longitude": 120.305869
-        },
-        {
-          "index": 2,
-          "poi_id": "6416442434209309299",
-          "title": "中国泥人博物馆（无锡）",
-          "address": "江苏省无锡市梁溪区宝善街18号",
-          "category": "文化场馆:博物馆",
-          "latitude": 31.582427,
-          "longitude": 120.275122
-        },
-        {
-          "index": 3,
-          "poi_id": "3454535547993898853",
-          "title": "宜兴市博物馆",
-          "address": "江苏省无锡市宜兴市解放东路388号",
-          "category": "文化场馆:博物馆",
-          "latitude": 31.357394,
-          "longitude": 119.852461
-        },
-        {
-          "index": 4,
-          "poi_id": "15024908977032234487",
-          "title": "中国宜兴吴冠中艺术馆",
-          "address": "江苏省无锡市宜兴市陶都路2-1号",
-          "category": "文化场馆:展览馆",
-          "latitude": 31.325857,
-          "longitude": 119.82835
-        }
+        {"index": 0, "poi_id": "15642778966023224337", "title": "江阴大剧院", "address": "江苏省无锡市江阴市江阴高新技术产业开发区澄江中路128号", "category": "娱乐休闲:剧场音乐厅:剧场", "latitude": 31.92238, "longitude": 120.29863}
       ]
-    },
-    {
-      "group_id": "5364a1d3117e",
-      "event_uids": [
-        "douban:36550434",
-        "douban:37650702"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "无锡 戏丸子亲子剧场"
-      ],
-      "poi_id": "12129911788923438893",
-      "poi_title": "戏丸子亲子剧场(融创茂店)",
-      "poi_address": "江苏省无锡市滨湖区雪浪街道融创茂商场二楼2033(靠近1号门,海世界出口隔壁)",
-      "latitude": 31.448471,
-      "longitude": 120.272159,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 271）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "12129911788923438893",
-          "title": "戏丸子亲子剧场(融创茂店)",
-          "address": "江苏省无锡市滨湖区雪浪街道融创茂商场二楼2033(靠近1号门,海世界出口隔壁)",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 31.448471,
-          "longitude": 120.272159
-        }
-      ]
-    },
-    {
-      "group_id": "c2e45210c670",
-      "event_uids": [
-        "douban:37819472"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "6144012209989303629",
-      "poi_title": "江阴音乐厅",
-      "poi_address": "",
-      "latitude": 31.913299,
-      "longitude": 120.257948,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：无锡 江阴 江阴音乐厅 环城北路270号 → 江阴音乐厅（来源 event:douban:37788043）",
-      "candidates": []
-    },
-    {
-      "group_id": "f3d25447ea3a",
-      "event_uids": [
-        "douban:37777854"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "18373871647542107691",
-      "poi_title": "无锡大剧院·歌剧厅",
-      "poi_address": "",
-      "latitude": 31.514424,
-      "longitude": 120.278924,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：无锡 滨湖区 无锡大剧院 大剧院（蠡湖大道金石路口） → 无锡大剧院·歌剧厅（来源 event:douban:37818872）",
-      "candidates": []
-    },
-    {
-      "group_id": "bb82141fbe70",
-      "event_uids": [
-        "douban:37796194"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "无锡市人民大会堂"
-      ],
-      "poi_id": "9071228715760249436",
-      "poi_title": "无锡市人民大会堂",
-      "poi_address": "江苏省无锡市梁溪区永和路2号",
-      "latitude": 31.55463,
-      "longitude": 120.30449,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 132）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "9071228715760249436",
-          "title": "无锡市人民大会堂",
-          "address": "江苏省无锡市梁溪区永和路2号",
-          "category": "文化场馆:会展中心",
-          "latitude": 31.55463,
-          "longitude": 120.30449
-        },
-        {
-          "index": 1,
-          "poi_id": "8839220577916461209",
-          "title": "无锡市人民大会堂综艺楼",
-          "address": "江苏省无锡市梁溪区永和路2号无锡市人民大会堂",
-          "category": "房产小区:商务楼宇",
-          "latitude": 31.554121,
-          "longitude": 120.304071
-        },
-        {
-          "index": 2,
-          "poi_id": "14001366663222273315",
-          "title": "无锡市人民大会堂(东南门)",
-          "address": "江苏省无锡市梁溪区永和路2号无锡市人民大会堂",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 31.553638,
-          "longitude": 120.304624
-        },
-        {
-          "index": 3,
-          "poi_id": "8884440563418208946",
-          "title": "无锡市人民大会堂停车场",
-          "address": "江苏省无锡市梁溪区永和路2号无锡市人民大会堂停车场B1",
-          "category": "汽车:停车场",
-          "latitude": 31.554596,
-          "longitude": 120.304478
-        },
-        {
-          "index": 4,
-          "poi_id": "17633324419832556785",
-          "title": "无锡市人民大会堂-西门",
-          "address": "江苏省无锡市梁溪区扬名路与清扬路交叉口正西方向122米左右",
-          "category": "室内及附属设施:通行设施类:外部门",
-          "latitude": 31.554408,
-          "longitude": 120.304368
-        }
-      ]
-    },
-    {
-      "group_id": "c5997e04a41a",
-      "event_uids": [
-        "douban:37770403"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "2761693111356093735",
-      "poi_title": "无锡交响音乐厅",
-      "poi_address": "",
-      "latitude": 31.481164,
-      "longitude": 120.3666,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：无锡 新吴区 无锡交响音乐厅 净慧西道与清晏路交叉口 → 无锡交响音乐厅（来源 event:douban:37770416）",
-      "candidates": []
     }
   ]
 }

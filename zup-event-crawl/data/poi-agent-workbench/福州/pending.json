@@ -1,34 +1,24 @@
 {
   "city": "福州",
   "source": "douban",
-  "exported_at": "2026-06-16T05:48:10.155Z",
+  "exported_at": "2026-06-20T18:31:05.353Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "unmatched",
   "pending_only": true,
   "doubtful_only": false,
-  "total_events": 3,
-  "group_count": 2,
+  "total_events": 1,
+  "group_count": 1,
   "cache_hit_groups": 0,
   "groups": [
     {
-      "group_id": "91f99d920107",
-      "location": "福州 晋安区 唯美客MAKERLIVE.三盛i33店 三盛i33城市广场2号楼",
-      "sample_title": "SinceTMRW始于明天 TOUR 2026 福州站",
+      "group_id": "14280814abbf",
+      "location": "福州 鼓楼区 福建会堂 华林路11号西湖宾馆福建会堂",
+      "sample_title": "【纪念专场】“真的爱你”致敬 BEYOND 黄家驹 33 周年演唱会",
       "event_uids": [
-        "douban:37819360"
+        "douban:37763703"
       ],
       "event_count": 1
-    },
-    {
-      "group_id": "badf7ed50baf",
-      "location": "福州 台江区 回响之地·福州馆 苍霞路13号青年广场02-1铺",
-      "sample_title": "野星WildStar《野孩子的星空》-福州站",
-      "event_uids": [
-        "douban:37789886",
-        "douban:37849929"
-      ],
-      "event_count": 2
     }
   ]
 }

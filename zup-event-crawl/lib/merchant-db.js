@@ -21,7 +21,7 @@ const {
   applyBuzzEnvToMerchant,
   markMerchantImportResult: storeMarkMerchantImportResult,
 } = require("./buzz-import-store");
-const { normalizeBuzzEnv } = require("./buzz-env");
+const { normalizeBuzzEnv, getBuzzEnvConfig } = require("./buzz-env");
 const MERCHANT_POI_MATCH_MODE_KEY = "merchant_poi_match_mode";
 
 const VALID_REVIEW_STATUSES = new Set(["approved", "pending", "rejected"]);
@@ -116,6 +116,33 @@ function parsePoiCandidates(raw) {
   }
 }
 
+function poiCandidateCount(raw) {
+  if (!raw || raw === "[]") return 0;
+  try {
+    const list = JSON.parse(raw);
+    return Array.isArray(list) ? list.length : 0;
+  } catch {
+    return 0;
+  }
+}
+
+function attachBuzzEnvFromJoin(merchant, row, buzzEnv) {
+  const env = normalizeBuzzEnv(buzzEnv);
+  const cfg = getBuzzEnvConfig(env);
+  return {
+    ...merchant,
+    buzz_env: env,
+    buzz_env_label: cfg.label || env,
+    buzz_merchant_id: row.env_buzz_id || "",
+    buzz_group_id: row.env_buzz_group_id || "",
+    bubble_now_id: row.env_bubble_now_id || "",
+    bubble_published_at: row.env_bubble_published_at || null,
+    import_status: row.env_import_status || "",
+    import_error: row.env_import_error || "",
+    imported_at: row.env_imported_at || null,
+  };
+}
+
 function ensureMerchantSchema(db) {
   db.exec(`
     CREATE TABLE IF NOT EXISTS merchants (
@@ -166,7 +193,9 @@ function ensureMerchantSchema(db) {
   migrateMerchantImportColumns(db);
 }
 
-function rowToMerchant(row) {
+function rowToMerchant(row, options = {}) {
+  const includePoiCandidates = options.include_poi_candidates !== false;
+  const candidates = includePoiCandidates ? parsePoiCandidates(row.poi_candidates) : [];
   return {
     merchant_uid: row.merchant_uid,
     source_id: row.source_id,
@@ -201,7 +230,8 @@ function rowToMerchant(row) {
     address_poi_id: row.address_poi_id || "",
     poi_title: row.poi_title || "",
     poi_address: row.poi_address || "",
-    poi_candidates: parsePoiCandidates(row.poi_candidates),
+    poi_candidates: candidates,
+    poi_candidate_count: poiCandidateCount(row.poi_candidates),
     poi_updated_at: row.poi_updated_at || null,
     buzz_group_id: row.buzz_group_id || "",
     bubble_now_id: row.bubble_now_id || "",
@@ -641,16 +671,32 @@ function replaceMerchantReviewState(db, decisions) {
 function getMerchantsPayload(db, options = {}) {
   ensureMerchantSchema(db);
   const buzzEnv = normalizeBuzzEnv(options.buzz_env);
+  const includePoiCandidates = options.include_poi_candidates === true;
   const rows = db.prepare(`
-    SELECT m.*, COALESCE(d.status, 'pending') AS review_status
+    SELECT m.*, COALESCE(d.status, 'pending') AS review_status,
+      bi.buzz_id AS env_buzz_id,
+      bi.buzz_group_id AS env_buzz_group_id,
+      bi.bubble_now_id AS env_bubble_now_id,
+      bi.bubble_published_at AS env_bubble_published_at,
+      bi.import_status AS env_import_status,
+      bi.import_error AS env_import_error,
+      bi.imported_at AS env_imported_at
     FROM merchants m
     LEFT JOIN merchant_review_decisions d ON d.merchant_uid = m.merchant_uid
+    LEFT JOIN buzz_imports bi
+      ON bi.entity_kind = 'merchant'
+     AND bi.entity_uid = m.merchant_uid
+     AND bi.buzz_env = ?
     ORDER BY m.city, m.search_keyword, m.source_position
-  `).all();
+  `).all(buzzEnv);
 
   const poiMatchMode = getMerchantPoiMatchMode(db);
   const merchants = rows.map((row) => enrichMerchantPoiFlags({
-    ...applyBuzzEnvToMerchant(db, rowToMerchant(row), buzzEnv),
+    ...attachBuzzEnvFromJoin(
+      rowToMerchant(row, { include_poi_candidates: includePoiCandidates }),
+      row,
+      buzzEnv,
+    ),
     review_status: row.review_status,
   }, { poiMatchMode }));
 
@@ -665,6 +711,27 @@ function getMerchantsPayload(db, options = {}) {
     buzz_env: buzzEnv,
     merchants,
   };
+}
+
+function getMerchantPoiCandidatesBatch(db, merchantUids) {
+  ensureMerchantSchema(db);
+  const uids = [...new Set(
+    (Array.isArray(merchantUids) ? merchantUids : [])
+      .map((uid) => String(uid || "").trim())
+      .filter(Boolean),
+  )];
+  if (!uids.length) return {};
+  const placeholders = uids.map(() => "?").join(", ");
+  const rows = db.prepare(`
+    SELECT merchant_uid, poi_candidates
+    FROM merchants
+    WHERE merchant_uid IN (${placeholders})
+  `).all(...uids);
+  const out = {};
+  for (const row of rows) {
+    out[row.merchant_uid] = parsePoiCandidates(row.poi_candidates);
+  }
+  return out;
 }
 
 function listImportedMerchants(db, options = {}) {
@@ -843,6 +910,10 @@ function deleteLocalMerchant(db, merchantUid) {
     WHERE entity_kind = ? AND entity_uid = ?
   `).run(ENTITY_MERCHANT, uid);
 
+  db.prepare(`
+    DELETE FROM merchant_review_decisions WHERE merchant_uid = ?
+  `).run(uid);
+
   const result = db.prepare(`
     DELETE FROM merchants WHERE merchant_uid = ?
   `).run(uid);
@@ -962,6 +1033,7 @@ module.exports = {
   getMerchantForEnv,
   getMerchantImportProgress,
   getMerchantReviewState,
+  getMerchantPoiCandidatesBatch,
   getMerchantPoiMatchMode,
   getMerchantsPayload,
   importMerchants,

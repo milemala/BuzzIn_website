@@ -1,26 +1,28 @@
 {
   "city": "武汉",
   "source": "douban",
-  "updated_at": "2026-06-16T06:05:18.004Z",
-  "agent": "cursor-agent",
+  "updated_at": "2026-06-20T18:41:07.868Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "2e58c7d48bac",
       "event_uids": [
-        "douban:37798935"
+        "douban:37688024",
+        "douban:37798950"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "武汉 琴台大剧院"
+        "琴台大剧院",
+        "知音大道7号"
       ],
-      "poi_id": "8124524374723016491",
-      "poi_title": "纽宾凯酒店武汉汉阳国博琴台大剧院店大堂",
-      "poi_address": "湖北省武汉市汉阳区晴川街道龙灯路33号(武汉汉阳国博琴台大剧院店)",
-      "latitude": 30.561615,
-      "longitude": 114.245992,
+      "poi_id": "2054636966946479774",
+      "poi_title": "武汉琴台大剧院",
+      "poi_address": "湖北省武汉市汉阳区晴川街道知音大道7号",
+      "latitude": 30.561106,
+      "longitude": 114.259086,
       "confidence": "high",
       "doubtful": false,
-      "reason": "三轮匹配（score 96）",
+      "reason": "剧场名称与汉阳区知音大道7号一致",
       "candidates": [
         {
           "index": 0,
@@ -30,42 +32,6 @@
           "category": "娱乐休闲:剧场音乐厅:剧场",
           "latitude": 30.561106,
           "longitude": 114.259086
-        },
-        {
-          "index": 1,
-          "poi_id": "7694744665222369143",
-          "title": "琴台大剧院音乐厅",
-          "address": "湖北省武汉市汉阳区晴川街道知音大道7号",
-          "category": "娱乐休闲:剧场音乐厅:音乐厅",
-          "latitude": 30.560614,
-          "longitude": 114.262756
-        },
-        {
-          "index": 2,
-          "poi_id": "12060745190293757557",
-          "title": "知音大道琴台大剧院[公交站]",
-          "address": "542路",
-          "category": "基础设施:交通设施:公交车站",
-          "latitude": 30.561672,
-          "longitude": 114.262054
-        },
-        {
-          "index": 3,
-          "poi_id": "2491738295861248948",
-          "title": "纽宾凯月湖酒店(武汉国博琴台大剧院店)",
-          "address": "湖北省武汉市汉阳区龙灯里33号",
-          "category": "酒店宾馆:酒店宾馆",
-          "latitude": 30.561582,
-          "longitude": 114.246015
-        },
-        {
-          "index": 4,
-          "poi_id": "18061251043844370536",
-          "title": "武汉琴台大剧院-北门",
-          "address": "湖北省武汉市汉阳区知音大道7号",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 30.561953,
-          "longitude": 114.259078
         }
       ]
     },
@@ -92,12 +58,14 @@
     {
       "group_id": "1be0bd2a4d6c",
       "event_uids": [
-        "douban:37839290",
-        "douban:37698111"
+        "douban:37839284",
+        "douban:37698096",
+        "douban:37698121"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "武汉 果然戏剧小剧场"
+        "果然戏剧小剧场",
+        "水果湖街道烟霞路1号3层3006号"
       ],
       "poi_id": "14139564909759288142",
       "poi_title": "果然戏剧小剧场",
@@ -106,7 +74,7 @@
       "longitude": 114.332849,
       "confidence": "high",
       "doubtful": false,
-      "reason": "三轮匹配（score 268）",
+      "reason": "小剧场名称与武昌区烟霞路1号3层3006号一致",
       "candidates": [
         {
           "index": 0,
@@ -778,6 +746,70 @@
       "doubtful": false,
       "reason": "地址映射库命中：武汉 汉阳区 琴台音乐厅 知音大道7号 → 武汉琴台音乐厅（来源 event:douban:37799147）",
       "candidates": []
+    },
+    {
+      "group_id": "c06cbf535ff1",
+      "event_uids": [
+        "douban:37891167"
+      ],
+      "action": "reject",
+      "search_keywords_tried": [
+        "OVIS",
+        "洪山区神墩五路199号OVIS光谷康桥外籍人员子女学校"
+      ],
+      "confidence": "low",
+      "doubtful": false,
+      "reason": "豆瓣标注洪山区，腾讯 POI 位于江夏区神墩五路199号，区划不一致",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "16091492690056973774",
+          "title": "OVIS光谷康桥外籍人员子女学校",
+          "address": "湖北省武汉市江夏区神墩五路199号",
+          "category": "教育学校:其它教育学校",
+          "latitude": 30.473338,
+          "longitude": 114.515691
+        }
+      ]
+    },
+    {
+      "group_id": "8a8912b641a6",
+      "event_uids": [
+        "douban:37888730"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "东立国际32栋1楼106室",
+        "江岸区 东立国际32栋1楼106室"
+      ],
+      "poi_id": "6361730785150871745",
+      "poi_title": "东立国际3期-32栋",
+      "poi_address": "湖北省武汉市江岸区二七街道工农兵路152号东立国际",
+      "latitude": 30.623699,
+      "longitude": 114.310663,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "江岸区东立国际32栋，同楼不同楼层",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6361730785150871745",
+          "title": "东立国际3期-32栋",
+          "address": "湖北省武汉市江岸区二七街道工农兵路152号东立国际",
+          "category": "房产小区:房产小区附属",
+          "latitude": 30.623699,
+          "longitude": 114.310663
+        },
+        {
+          "index": 1,
+          "poi_id": "7388015615508132160",
+          "title": "东立国际3期32栋1单元",
+          "address": "湖北省武汉市江岸区东立国际3期32栋",
+          "category": "房产小区:房产小区附属",
+          "latitude": 30.623834,
+          "longitude": 114.3108
+        }
+      ]
     }
   ]
 }

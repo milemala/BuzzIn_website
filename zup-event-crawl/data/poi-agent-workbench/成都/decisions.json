@@ -1,8 +1,8 @@
 {
   "city": "成都",
   "source": "douban",
-  "updated_at": "2026-06-16T05:47:10.396Z",
-  "agent": "cursor-agent",
+  "updated_at": "2026-06-20T18:41:07.868Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "c4960cac14bf",
@@ -413,6 +413,144 @@
           "category": "教育学校:培训",
           "latitude": 30.792441,
           "longitude": 103.896018
+        }
+      ]
+    },
+    {
+      "group_id": "5dee1b9eb5c3",
+      "event_uids": [
+        "douban:37890670"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "12号莲花府邸",
+        "锦里古街12号莲花府邸"
+      ],
+      "poi_id": "17875317494203234851",
+      "poi_title": "莲花府邸音乐餐酒吧(锦里店)",
+      "poi_address": "四川省成都市武侯区浆洗街街道武侯祠大街231号锦里12号",
+      "latitude": 30.645786,
+      "longitude": 104.049848,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "店名莲花府邸、门牌锦里12号与武侯区一致",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "17875317494203234851",
+          "title": "莲花府邸音乐餐酒吧(锦里店)",
+          "address": "四川省成都市武侯区浆洗街街道武侯祠大街231号锦里12号",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 30.645786,
+          "longitude": 104.049848
+        },
+        {
+          "index": 1,
+          "poi_id": "16173919904269104634",
+          "title": "锦里12号楼",
+          "address": "四川省成都市武侯区浆洗街街道武侯祠大街231号",
+          "category": "房产小区:房产小区附属",
+          "latitude": 30.645789,
+          "longitude": 104.04983
+        }
+      ]
+    },
+    {
+      "group_id": "aef0b7c2eaac",
+      "event_uids": [
+        "douban:37862253"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "中演·成都大剧院",
+        "仙韵一路420号"
+      ],
+      "poi_id": "6669559818769471538",
+      "poi_title": "中演·成都大剧院",
+      "poi_address": "四川省成都市成华区仙韵一路420号",
+      "latitude": 30.68944,
+      "longitude": 104.119364,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "剧场名称与成华区仙韵一路420号门牌完全吻合",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6669559818769471538",
+          "title": "中演·成都大剧院",
+          "address": "四川省成都市成华区仙韵一路420号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 30.68944,
+          "longitude": 104.119364
+        }
+      ]
+    },
+    {
+      "group_id": "fa15983c8f0a",
+      "event_uids": [
+        "douban:37842730"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "四川省歌舞剧院",
+        "西大街97"
+      ],
+      "poi_id": "17995812410012811133",
+      "poi_title": "四川省歌舞剧院(西大街店)",
+      "poi_address": "四川省成都市青羊区西大街(西大街地铁站F1口步行240米)",
+      "latitude": 30.674071,
+      "longitude": 104.055951,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "剧场名称与青羊区西大街97号片区一致",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "17995812410012811133",
+          "title": "四川省歌舞剧院(西大街店)",
+          "address": "四川省成都市青羊区西大街(西大街地铁站F1口步行240米)",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 30.674071,
+          "longitude": 104.055951
+        },
+        {
+          "index": 1,
+          "poi_id": "13209745456382215263",
+          "title": "四川省歌舞剧院四川现代舞蹈团",
+          "address": "四川省成都市青羊区西大街97号",
+          "category": "机构团体:文艺团体",
+          "latitude": 30.674721,
+          "longitude": 104.056294
+        }
+      ]
+    },
+    {
+      "group_id": "44535e5c1c44",
+      "event_uids": [
+        "douban:37853477"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "金沙国际音乐厅",
+        "水碾河路48号"
+      ],
+      "poi_id": "6233321651717200165",
+      "poi_title": "金沙国际音乐厅",
+      "poi_address": "四川省成都市锦江区牛市口街道水碾河路48号",
+      "latitude": 30.649184,
+      "longitude": 104.096371,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "场馆名称与锦江区水碾河路48号一致",
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6233321651717200165",
+          "title": "金沙国际音乐厅",
+          "address": "四川省成都市锦江区牛市口街道水碾河路48号",
+          "category": "娱乐休闲:剧场音乐厅:音乐厅",
+          "latitude": 30.649184,
+          "longitude": 104.096371
         }
       ]
     }

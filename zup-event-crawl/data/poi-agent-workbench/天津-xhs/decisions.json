@@ -1,7 +1,7 @@
 {
   "city": "天津",
   "source": "xiaohongshu",
-  "updated_at": "2026-06-15T15:28:18.572Z",
+  "updated_at": "2026-06-20T19:50:00.000Z",
   "agent": "cursor-agent",
   "decisions": [
     {
@@ -13,12 +13,13 @@
       ],
       "action": "reject",
       "search_keywords_tried": [
-        "天津免费观影"
+        "天津免费观影",
+        "公益放映 天津"
       ],
       "confidence": "low",
       "doubtful": false,
-      "reason": "地址仅写天津市，无具体场馆门牌，无法对应唯一POI",
-      "decided_at": "2026-06-15T15:28:18.572Z"
+      "reason": "地址仅写天津市，无具体影院或门牌；搜索结果为观影民宿/酒店及多个分散公益电影放映点，无法对应唯一活动场馆",
+      "decided_at": "2026-06-20T19:50:00.000Z"
     },
     {
       "group_id": "6bbf088a9c76",

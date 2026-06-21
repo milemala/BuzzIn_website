@@ -1,74 +1,59 @@
 {
   "city": "石家庄",
   "source": "douban",
-  "updated_at": "2026-06-16T05:48:00.496Z",
-  "agent": "cursor-agent",
+  "updated_at": "2026-06-21T02:40:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "c9ea603e604d",
-      "event_uids": [
-        "douban:37832175"
-      ],
+      "group_id": "1d5448593305",
+      "event_uids": ["douban:37820748"],
       "action": "match",
-      "search_keywords_tried": [
-        "石家庄 庄里大剧院"
-      ],
-      "poi_id": "12153572953691259438",
-      "poi_title": "庄里大剧院",
-      "poi_address": "河北省石家庄市裕华区育才街与槐岭路交叉口西南角怀特艺术中心1楼西厅",
-      "latitude": 38.024111,
-      "longitude": 114.527752,
+      "search_keywords_tried": ["长安区", "国际庄大剧院", "中山路繁华商业街勒泰中心五层", "中山路繁华商业街勒泰中心", "长安区 国际庄大剧院 中山路繁华商业街勒泰中心五层"],
+      "poi_id": "15123759518473647245",
+      "poi_title": "勒泰国际庄大剧院(勒泰中心店)",
+      "poi_address": "河北省石家庄市长安区中山东路39号勒泰中心F5-F507",
+      "latitude": 38.04562,
+      "longitude": 114.507065,
       "confidence": "high",
       "doubtful": false,
-      "reason": "三轮匹配（score 256）",
+      "reason": "国际庄大剧院即勒泰国际庄大剧院，长安区勒泰中心F5",
       "candidates": [
-        {
-          "index": 0,
-          "poi_id": "12153572953691259438",
-          "title": "庄里大剧院",
-          "address": "河北省石家庄市裕华区育才街与槐岭路交叉口西南角怀特艺术中心1楼西厅",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 38.024111,
-          "longitude": 114.527752
-        },
-        {
-          "index": 1,
-          "poi_id": "9307394927503345202",
-          "title": "简纱集婚纱美学馆",
-          "address": "河北省石家庄市裕华区怀特艺术中心庄里大剧院4楼",
-          "category": "生活服务:婚庆服务",
-          "latitude": 38.02429,
-          "longitude": 114.52754
-        },
-        {
-          "index": 2,
-          "poi_id": "10582422176538038358",
-          "title": "德馨美学烫染工作室",
-          "address": "河北省石家庄市裕华区怀特艺术中心庄里大剧院上3楼",
-          "category": "生活服务:美容美发:美发",
-          "latitude": 38.022748,
-          "longitude": 114.527133
-        }
+        {"index": 0, "poi_id": "15123759518473647245", "title": "勒泰国际庄大剧院(勒泰中心店)", "address": "河北省石家庄市长安区中山东路39号勒泰中心F5-F507", "category": "娱乐休闲:剧场音乐厅:剧场", "latitude": 38.04562, "longitude": 114.507065}
       ]
     },
     {
-      "group_id": "c8f1ab93fc0e",
-      "event_uids": [
-        "douban:37448319"
-      ],
+      "group_id": "1936a226f46b",
+      "event_uids": ["douban:37836593"],
       "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "11316102721831789765",
-      "poi_title": "河北省艺术中心-造艺空间",
-      "poi_address": "",
-      "latitude": 38.036456,
-      "longitude": 114.480854,
+      "search_keywords_tried": ["新华区", "红糖LIVEHOUSE", "湾里庙步行街水幕广场M08", "LIVEHOUSE", "M08", "湾里庙步行街水幕广场"],
+      "poi_id": "532037913248001448",
+      "poi_title": "星光艺术空间&红糖LIVEHOUSE",
+      "poi_address": "河北省石家庄市新华区湾里庙步行街水幕广场M08",
+      "latitude": 38.044978,
+      "longitude": 114.487492,
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：石家庄 桥西区 河北省艺术中心-造艺空间 裕华西路13号河北省艺术中心西侧 → 河北省艺术中心-造艺空间（来源 event:douban:37658403）",
-      "candidates": []
+      "reason": "红糖LIVEHOUSE与POI一致，新华区湾里庙步行街水幕广场M08",
+      "candidates": [
+        {"index": 0, "poi_id": "532037913248001448", "title": "星光艺术空间&红糖LIVEHOUSE", "address": "河北省石家庄市新华区湾里庙步行街水幕广场M08", "category": "娱乐休闲:其它娱乐休闲", "latitude": 38.044978, "longitude": 114.487492}
+      ]
+    },
+    {
+      "group_id": "a7ef5d72954d",
+      "event_uids": ["douban:37062947"],
+      "action": "match",
+      "search_keywords_tried": ["桥西区", "火柴梗喜剧中心-脱口秀·即兴·魔术", "万象天成4楼火柴梗喜剧中心", "火柴梗喜剧中心", "楼火柴梗喜剧中心"],
+      "poi_id": "18229620176419144850",
+      "poi_title": "火柴梗喜剧中心(石家庄旗舰店)",
+      "poi_address": "河北省石家庄市桥西区裕华西路15号万象天成F4-419",
+      "latitude": 38.03621,
+      "longitude": 114.480084,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "火柴梗喜剧中心与POI一致，桥西区万象天成F4",
+      "candidates": [
+        {"index": 0, "poi_id": "18229620176419144850", "title": "火柴梗喜剧中心(石家庄旗舰店)", "address": "河北省石家庄市桥西区裕华西路15号万象天成F4-419", "category": "娱乐休闲:剧场音乐厅:剧场", "latitude": 38.03621, "longitude": 114.480084}
+      ]
     }
   ]
 }

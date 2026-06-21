@@ -1,140 +1,41 @@
 {
   "city": "温州",
   "source": "douban",
-  "updated_at": "2026-06-16T05:48:02.628Z",
-  "agent": "cursor-agent",
+  "updated_at": "2026-06-21T02:40:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "37a6d4ffccc0",
-      "event_uids": [
-        "douban:37764913",
-        "douban:37809649",
-        "douban:37763693"
-      ],
+      "group_id": "3e8461de2e9a",
+      "event_uids": ["douban:37891544"],
       "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "10469979600925213444",
-      "poi_title": "温州大剧院",
-      "poi_address": "",
-      "latitude": 27.990555,
-      "longitude": 120.70253,
-      "confidence": "high",
+      "search_keywords_tried": ["鹿城区", "下吕浦温迪路冬宁组团3幢108", "鹿城区 下吕浦温迪路冬宁组团3幢108"],
+      "poi_id": "18345158314250076251",
+      "poi_title": "下吕浦2区冬宁组团-3幢",
+      "poi_address": "浙江省温州市鹿城区南汇街道温迪路251号",
+      "latitude": 27.992626,
+      "longitude": 120.678193,
+      "confidence": "medium",
       "doubtful": false,
-      "reason": "地址映射库命中：温州 鹿城区 温州大剧院 府东路466号 → 温州大剧院（来源 event:douban:37840477）",
-      "candidates": []
-    },
-    {
-      "group_id": "169f8d842407",
-      "event_uids": [
-        "douban:37815080"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "温州 盲堂"
-      ],
-      "poi_id": "8968027432150271314",
-      "poi_title": "盲堂",
-      "poi_address": "浙江省温州市鹿城区学院中路263号小坝坊17号楼1F",
-      "latitude": 28.004654,
-      "longitude": 120.688404,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 150）",
+      "reason": "豆瓣3幢108与POI冬宁组团3幢主体一致，鹿城区温迪路，仅差室号108无店级POI",
       "candidates": [
-        {
-          "index": 0,
-          "poi_id": "8968027432150271314",
-          "title": "盲堂",
-          "address": "浙江省温州市鹿城区学院中路263号小坝坊17号楼1F",
-          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
-          "latitude": 28.004654,
-          "longitude": 120.688404
-        },
-        {
-          "index": 1,
-          "poi_id": "3977051050834123421",
-          "title": "盲堂小坝坊17幢",
-          "address": "浙江省温州市鹿城区蒲鞋市街道学院中路236号",
-          "category": "房产小区:房产小区附属",
-          "latitude": 28.004541,
-          "longitude": 120.688538
-        },
-        {
-          "index": 2,
-          "poi_id": "6905254475355769400",
-          "title": "温州盲堂纹 TATTOO Studio",
-          "address": "浙江省温州市瓯海区梧田街道北纬一路C18-103号",
-          "category": "生活服务:美容美发:美发",
-          "latitude": 27.953537,
-          "longitude": 120.658758
-        }
+        {"index": 0, "poi_id": "18345158314250076251", "title": "下吕浦2区冬宁组团-3幢", "address": "浙江省温州市鹿城区南汇街道温迪路251号", "category": "房产小区:房产小区附属", "latitude": 27.992626, "longitude": 120.678193}
       ]
     },
     {
-      "group_id": "bb994f40519b",
-      "event_uids": [
-        "douban:37753694"
-      ],
+      "group_id": "132bc796160e",
+      "event_uids": ["douban:37854263"],
       "action": "match",
-      "search_keywords_tried": [
-        "温州高新文化广场"
-      ],
-      "poi_id": "12939089335030750984",
-      "poi_title": "温州高新文化广场-D栋",
-      "poi_address": "浙江省温州市龙湾区永中街道龙祥路1111号温州高新文化广场",
-      "latitude": 27.938334,
-      "longitude": 120.815569,
+      "search_keywords_tried": ["鹿城区", "INSPEIS意空间见-美美店", "松台街道鹿城路42号4楼L401B", "INSPEIS", "L401B", "美美店", "42号4楼L401B"],
+      "poi_id": "13504950659553108445",
+      "poi_title": "INSPEIS意空间见",
+      "poi_address": "浙江省温州市鹿城区松台街道鹿城路42号4楼L401B",
+      "latitude": 28.010244,
+      "longitude": 120.644669,
       "confidence": "high",
       "doubtful": false,
-      "reason": "三轮匹配（score 128）",
+      "reason": "INSPEIS意空间见美美店与POI一致，鹿城区鹿城路42号4楼L401B",
       "candidates": [
-        {
-          "index": 0,
-          "poi_id": "8913727099204750947",
-          "title": "温州高新文化广场",
-          "address": "浙江省温州市龙湾区龙翔路2885号",
-          "category": "旅游景点:城市广场",
-          "latitude": 27.93732,
-          "longitude": 120.81445
-        },
-        {
-          "index": 1,
-          "poi_id": "2199037546765",
-          "title": "温州高新文化广场[公交站]",
-          "address": "龙湾园博分会场接驳专线",
-          "category": "基础设施:交通设施:公交车站",
-          "latitude": 27.936037,
-          "longitude": 120.814615
-        },
-        {
-          "index": 2,
-          "poi_id": "12939089335030750984",
-          "title": "温州高新文化广场-D栋",
-          "address": "浙江省温州市龙湾区永中街道龙祥路1111号温州高新文化广场",
-          "category": "房产小区:房产小区附属",
-          "latitude": 27.938334,
-          "longitude": 120.815569
-        },
-        {
-          "index": 3,
-          "poi_id": "14920973602475345978",
-          "title": "高新文化广场剧场",
-          "address": "浙江省温州市龙湾区永中街道龙江路558号",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 27.936572,
-          "longitude": 120.813958
-        },
-        {
-          "index": 4,
-          "poi_id": "13446915788181561045",
-          "title": "温州高新文化广场-A栋",
-          "address": "浙江省温州市龙湾区龙祥路1111号温州高新文化广场",
-          "category": "房产小区:房产小区附属",
-          "latitude": 27.93681,
-          "longitude": 120.814121
-        }
+        {"index": 0, "poi_id": "13504950659553108445", "title": "INSPEIS意空间见", "address": "浙江省温州市鹿城区松台街道鹿城路42号4楼L401B", "category": "娱乐休闲:咖啡厅", "latitude": 28.010244, "longitude": 120.644669}
       ]
     }
   ]

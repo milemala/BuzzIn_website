@@ -5,6 +5,7 @@ const http = require("http");
 const crypto = require("crypto");
 const path = require("path");
 const url = require("url");
+const zlib = require("zlib");
 const {
   applyDefaultImportPrepToActiveEvents,
   applyEventPoiSelection,
@@ -39,11 +40,13 @@ const {
 } = require("../lib/buzz-merchant-import");
 const {
   applyPoiSelection,
+  deleteLocalMerchant,
   getApprovedMerchants,
   getExportImportMerchants,
   getMerchantByUid,
   getMerchantForEnv,
   getMerchantImportProgress,
+  getMerchantPoiCandidatesBatch,
   getMerchantPoiMatchMode,
   getMerchantReviewState,
   getMerchantsPayload,
@@ -89,11 +92,28 @@ function merchantForClient(db, merchantUid, req, body = {}) {
   return getMerchantForEnv(db, merchantUid, parseBuzzEnvFromRequest(req, body));
 }
 
+const merchantTypesCache = new Map();
+const MERCHANT_TYPES_CACHE_MS = 5 * 60 * 1000;
+const MERCHANT_TYPES_TIMEOUT_MS = 5000;
+
 async function fetchMerchantTypesForEnv(buzzEnv) {
-  const client = new BuzzAdminClient({ buzz_env: buzzEnv });
+  const env = normalizeBuzzEnv(buzzEnv);
+  const cached = merchantTypesCache.get(env);
+  if (cached && Date.now() - cached.at < MERCHANT_TYPES_CACHE_MS) {
+    return cached.types;
+  }
+  const client = new BuzzAdminClient({ buzz_env: env });
   try {
-    const types = await client.listMerchantTypes();
-    if (types.length) return types;
+    const types = await Promise.race([
+      client.listMerchantTypes(),
+      new Promise((_, reject) => {
+        setTimeout(() => reject(new Error("merchant-types timeout")), MERCHANT_TYPES_TIMEOUT_MS);
+      }),
+    ]);
+    if (types.length) {
+      merchantTypesCache.set(env, { types, at: Date.now() });
+      return types;
+    }
   } catch {
     // 拉取失败时回退本地常用列表
   }
@@ -127,12 +147,31 @@ function readJson(filePath, fallback) {
   }
 }
 
-function sendJson(res, statusCode, payload) {
-  res.writeHead(statusCode, {
+function sendJson(res, statusCode, payload, req) {
+  const body = `${JSON.stringify(payload)}\n`;
+  const headers = {
     "Content-Type": "application/json; charset=utf-8",
     "Cache-Control": "no-store",
-  });
-  res.end(`${JSON.stringify(payload)}\n`);
+  };
+  const accept = String(req?.headers?.["accept-encoding"] || "");
+  if (req && accept.includes("gzip") && body.length > 2048) {
+    zlib.gzip(body, (error, compressed) => {
+      if (error) {
+        res.writeHead(statusCode, headers);
+        res.end(body);
+        return;
+      }
+      res.writeHead(statusCode, {
+        ...headers,
+        "Content-Encoding": "gzip",
+        "Vary": "Accept-Encoding",
+      });
+      res.end(compressed);
+    });
+    return;
+  }
+  res.writeHead(statusCode, headers);
+  res.end(body);
 }
 
 function sendFile(res, filePath, contentType, cacheControl = "no-store") {
@@ -577,8 +616,13 @@ async function handleApi(req, res, pathname) {
   }
 
   if (req.method === "GET" && pathname === "/api/merchants") {
+    const parsed = url.parse(req.url, true);
     const buzzEnv = parseBuzzEnvFromRequest(req);
-    sendJson(res, 200, getMerchantsPayload(db, { buzz_env: buzzEnv }));
+    const includePoiCandidates = parsed.query.include_poi_candidates === "1";
+    sendJson(res, 200, getMerchantsPayload(db, {
+      buzz_env: buzzEnv,
+      include_poi_candidates: includePoiCandidates,
+    }), req);
     return;
   }
 
@@ -615,6 +659,20 @@ async function handleApi(req, res, pathname) {
       count: records.length,
       merchants: records,
     });
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/merchants/poi-candidates-batch") {
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const merchantUids = Array.isArray(body.merchant_uids) ? body.merchant_uids : [];
+      sendJson(res, 200, {
+        ok: true,
+        candidates: getMerchantPoiCandidatesBatch(db, merchantUids),
+      }, req);
+    } catch (error) {
+      sendJson(res, 400, { ok: false, error: error.message });
+    }
     return;
   }
 
@@ -759,6 +817,31 @@ async function handleApi(req, res, pathname) {
       const buzzEnv = parseBuzzEnvFromRequest(req, body);
       const result = await importMerchantToBuzz(db, merchantUid, { buzz_env: buzzEnv });
       sendJson(res, result.ok ? 200 : 400, result);
+    } catch (error) {
+      sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  const merchantDeleteMatch = pathname.match(/^\/api\/merchants\/([^/]+)$/);
+  if (req.method === "DELETE" && merchantDeleteMatch) {
+    try {
+      const merchantUid = decodeURIComponent(merchantDeleteMatch[1]);
+      const merchant = getMerchantByUid(db, merchantUid);
+      if (!merchant) {
+        sendJson(res, 404, { ok: false, error: "商户不存在" });
+        return;
+      }
+      const removed = deleteLocalMerchant(db, merchantUid);
+      if (!removed) {
+        sendJson(res, 404, { ok: false, error: "商户不存在" });
+        return;
+      }
+      sendJson(res, 200, {
+        ok: true,
+        merchant_uid: merchantUid,
+        name: merchant.name,
+      });
     } catch (error) {
       sendJson(res, 502, { ok: false, error: error.message });
     }

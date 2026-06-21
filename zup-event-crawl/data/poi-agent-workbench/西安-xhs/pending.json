@@ -1,183 +1,22 @@
 {
   "city": "西安",
   "source": "xiaohongshu",
-  "exported_at": "2026-06-15T15:18:22.380Z",
+  "exported_at": "2026-06-20T19:44:01.041Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "unmatched",
   "pending_only": true,
   "doubtful_only": false,
-  "total_events": 18,
-  "group_count": 17,
-  "cache_hit_groups": 1,
+  "total_events": 1,
+  "group_count": 1,
+  "cache_hit_groups": 0,
   "groups": [
-    {
-      "group_id": "9046fd073454",
-      "location": "星旋广场LG1层街区",
-      "sample_title": "星旋广场首届精酿啤酒节",
-      "event_uids": [
-        "xiaohongshu:6a2fcfd000000000110150d2:01_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "e41aea11e3ba",
-      "location": "西安大悦城",
-      "sample_title": "热界潮玩节",
-      "event_uids": [
-        "xiaohongshu:6a2fcfd000000000110150d2:01_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "8e7de2b12d07",
-      "location": "华清广场一楼中厅",
-      "sample_title": "华清广场联名夏日集市",
-      "event_uids": [
-        "xiaohongshu:6a2fcfd000000000110150d2:02_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "1c75bccac10c",
-      "location": "西安龙湖长乐天街",
-      "sample_title": "EPIC汉堡节西安站",
-      "event_uids": [
-        "xiaohongshu:6a2fcfd000000000110150d2:02_1"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "9493716232425894750",
-        "poi_title": "龙湖西安长乐天街",
-        "poi_address": "",
-        "latitude": 34.282161,
-        "longitude": 109.013482,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：西安龙湖长乐天街 → 龙湖西安长乐天街（来源 event:xiaohongshu:6a2972b2000000003501e5c2:06_0）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "1c75bccac10c5b285e1c2ad3c82f004dc8cc2b75"
-      }
-    },
-    {
-      "group_id": "fd13afaa066c",
-      "location": "西安美术学院雁塔校区·小树林",
-      "sample_title": "「未来艺术家」市集",
-      "event_uids": [
-        "xiaohongshu:6a2fcfd000000000110150d2:03_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "c1e370da1b95",
-      "location": "西安荟聚雁南中庭",
-      "sample_title": "玩具总动员5主题快闪",
-      "event_uids": [
-        "xiaohongshu:6a2fcfd000000000110150d2:03_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "0fc09bd43c17",
-      "location": "西安环贸中心",
-      "sample_title": "墨西哥风情阶梯艺术展",
-      "event_uids": [
-        "xiaohongshu:6a2fcfd000000000110150d2:04_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "42cf62d8f19b",
-      "location": "西安SKP 10F",
-      "sample_title": "自然而然——然女孩x艺术家联展",
-      "event_uids": [
-        "xiaohongshu:6a2fcfd000000000110150d2:04_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "2d2e649239fa",
-      "location": "亮宝楼二楼东厅",
-      "sample_title": "咫尺清凉——中国当代扇面绘画展",
-      "event_uids": [
-        "xiaohongshu:6a2fcfd000000000110150d2:05_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "2fd416b5cb2a",
-      "location": "寨子空间",
-      "sample_title": "雅集安装指南——简丽庭个展",
-      "event_uids": [
-        "xiaohongshu:6a2fcfd000000000110150d2:05_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "73c5826ca317",
-      "location": "西安美术馆",
-      "sample_title": "馈赠·微光聚影——2026富士胶片用户影像周",
-      "event_uids": [
-        "xiaohongshu:6a2fcfd000000000110150d2:06_0"
-      ],
-      "event_count": 1
-    },
     {
       "group_id": "35816b955fbd",
       "location": "临潼校区（校内）；老城根G park、西安DT51、西仓市集文创公园（校外）",
       "sample_title": "西安美术学院本科生毕业展",
       "event_uids": [
         "xiaohongshu:6a2fcfd000000000110150d2:06_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "0b1720dc46e6",
-      "location": "西安广电大剧院",
-      "sample_title": "女性反乌托邦音乐剧《奇美拉》西安站",
-      "event_uids": [
-        "xiaohongshu:6a2fcfd000000000110150d2:07_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "1099abb7c476",
-      "location": "陕西大剧院-歌剧厅",
-      "sample_title": "外百老汇音乐剧《谋杀歌谣》中文版",
-      "event_uids": [
-        "xiaohongshu:6a2fcfd000000000110150d2:07_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "95b885903c57",
-      "location": "陕西广电大剧院",
-      "sample_title": "「仙侠·时光」穿越古今音乐会·西安站",
-      "event_uids": [
-        "xiaohongshu:6a2fcfd000000000110150d2:07_2",
-        "xiaohongshu:6a2fcfd000000000110150d2:08_0"
-      ],
-      "event_count": 2
-    },
-    {
-      "group_id": "0de45a9fc5e6",
-      "location": "西安浐灞保利大剧院",
-      "sample_title": "浪漫主义画卷交响音乐会",
-      "event_uids": [
-        "xiaohongshu:6a2fcfd000000000110150d2:08_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "228c191dd398",
-      "location": "西安音乐厅-交响大厅",
-      "sample_title": "张国勇、秦立巍与XSO演绎圣桑作品音乐会",
-      "event_uids": [
-        "xiaohongshu:6a2fcfd000000000110150d2:08_2"
       ],
       "event_count": 1
     }
