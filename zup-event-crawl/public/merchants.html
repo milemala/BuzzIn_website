@@ -270,7 +270,7 @@
       merchants: [],
       decisions: {},
       merchantTypes: [],
-      filters: { city: "all", bizKind: "all", source: "all", status: "all", search: "" },
+      filters: { city: "all", merchantType: "all", source: "all", status: "all", search: "" },
       page: 1,
       poiBusy: false,
       poiMatchMode: "normal",
@@ -322,16 +322,24 @@
       importModalAbort: document.getElementById("importModalAbort"),
     };
 
-    const BIZ_KIND_FILTERS = [
-      { key: "all", label: "全部" },
-      { key: "bar", label: "酒吧" },
-      { key: "bookstore", label: "书店" },
-      { key: "park", label: "公园" },
-      { key: "cafe", label: "咖啡" },
-      { key: "tea", label: "茶馆" },
-      { key: "restaurant", label: "餐厅" },
-      { key: "other", label: "其他" },
-    ];
+    function merchantTypeFilters() {
+      const types = Array.isArray(state.merchantTypes) ? state.merchantTypes : [];
+      return [
+        { key: "all", label: "全部" },
+        ...types.map((t) => ({ key: String(t.id), label: t.name })),
+      ];
+    }
+
+    function merchantTypeLabel(key) {
+      if (key === "all") return "全部类型";
+      return merchantTypeFilters().find((item) => item.key === String(key))?.label || key;
+    }
+
+    function normalizeMerchantTypeFilter() {
+      if (state.filters.merchantType === "all") return;
+      const valid = merchantTypeFilters().some((item) => item.key === String(state.filters.merchantType));
+      if (!valid) state.filters.merchantType = "all";
+    }
 
     const SOURCE_FILTERS = [
       { key: "all", label: "全部" },
@@ -387,31 +395,9 @@
       return merchantTypeIdByName(suggestMerchantTypeName(category, name, importBatchId)) || 2;
     }
 
-    /** 审核台业务类型（酒吧/书店/公园等），与 Buzz 入库类型 merchant_type 不同 */
-    function getMerchantBizKind(item) {
-      const category = String(item.category || "").trim();
-      const name = String(item.name || "").trim();
-      const batch = String(item.import_batch_id || "");
-      const text = `${category} ${name}`;
-
-      if (batch.includes("公园") || /^(公园|植物园|风景名胜|湿地公园|森林公园)/.test(category)) {
-        return "park";
-      }
-      if (/书店|图书|阅读|茑屋|PAGEONE|单向空间|BOOKSTORE/i.test(text)) {
-        return "bookstore";
-      }
-      if (batch.includes("酒鬼地图") || /酒吧|精酿|啤酒|酒馆|清吧|Live\s*House|餐吧|Hookah|鸡尾酒|威士忌/i.test(category)) {
-        return "bar";
-      }
-      const type = effectiveMerchantType(item);
-      if (type === 16 || /咖啡/i.test(text)) return "cafe";
-      if (type === 3 || /茶馆|茶饮/i.test(text)) return "tea";
-      if (type === 4 || /餐|饭|食/i.test(text)) return "restaurant";
-      return "other";
-    }
-
-    function bizKindLabel(key) {
-      return BIZ_KIND_FILTERS.find((item) => item.key === key)?.label || key;
+    function matchesMerchantTypeFilter(item, filter) {
+      if (filter === "all") return true;
+      return String(effectiveMerchantType(item) || "") === String(filter);
     }
 
     function effectiveMerchantType(item) {
@@ -784,10 +770,10 @@
     function currentMerchantFilterSummary() {
       const cityLabel = state.filters.city === "all" ? "全部城市" : state.filters.city;
       const statusLabel = BATCH_REVIEW_FILTER_LABELS[state.filters.status] || state.filters.status;
-      const bizLabel = state.filters.bizKind === "all" ? "全部业态" : state.filters.bizKind;
+      const typeLabel = state.filters.merchantType === "all" ? "全部类型" : merchantTypeLabel(state.filters.merchantType);
       const sourceLabel = SOURCE_FILTERS.find((item) => item.key === state.filters.source)?.label || state.filters.source;
       const searchLabel = state.filters.search.trim() ? `搜索「${state.filters.search.trim()}」` : "";
-      return [cityLabel, statusLabel, bizLabel, sourceLabel === "全部" ? "" : sourceLabel, searchLabel].filter(Boolean).join(" · ");
+      return [cityLabel, statusLabel, typeLabel, sourceLabel === "全部" ? "" : sourceLabel, searchLabel].filter(Boolean).join(" · ");
     }
 
     async function runBatchImport() {
@@ -952,9 +938,10 @@
     }
 
     async function loadMerchantTypes() {
-      const response = await fetch(BuzzEnvUi.withBuzzEnv("/api/merchant-types"), { cache: "no-store" });
+      const response = await fetch(BuzzEnvUi.withBuzzEnv("/api/merchant-types?refresh=1"), { cache: "no-store" });
       const payload = await response.json();
       state.merchantTypes = payload.types || [];
+      normalizeMerchantTypeFilter();
       if (state.merchants.length) render();
     }
 
@@ -1277,11 +1264,6 @@
       };
     }
 
-    function matchesBizKindFilter(item, filter) {
-      if (filter === "all") return true;
-      return getMerchantBizKind(item) === filter;
-    }
-
     function matchesSourceFilter(item, filter) {
       if (filter === "all") return true;
       const source = String(item.source || "dianping").trim();
@@ -1313,7 +1295,7 @@
       const q = state.filters.search.trim().toLowerCase();
       return merchantsInCity().filter((item) => {
         if (!matchesSourceFilter(item, state.filters.source)) return false;
-        if (!matchesBizKindFilter(item, state.filters.bizKind)) return false;
+        if (!matchesMerchantTypeFilter(item, state.filters.merchantType)) return false;
         if (!matchesStatusFilter(item, state.filters.status)) return false;
         if (!q) return true;
         const haystack = `${item.name} ${item.source_address} ${item.address} ${item.poi_title} ${item.poi_address} ${item.district} ${item.category} ${item.search_keyword} ${item.address_poi_id}`.toLowerCase();
@@ -1326,9 +1308,9 @@
       const sourceScoped = state.filters.source === "all"
         ? inCity
         : inCity.filter((item) => matchesSourceFilter(item, state.filters.source));
-      const bizScoped = state.filters.bizKind === "all"
+      const typeScoped = state.filters.merchantType === "all"
         ? sourceScoped
-        : sourceScoped.filter((item) => matchesBizKindFilter(item, state.filters.bizKind));
+        : sourceScoped.filter((item) => matchesMerchantTypeFilter(item, state.filters.merchantType));
 
       const sourceCounts = {};
       for (const { key } of SOURCE_FILTERS) {
@@ -1337,35 +1319,38 @@
           : inCity.filter((item) => matchesSourceFilter(item, key)).length;
       }
 
-      const bizKindCounts = {};
-      for (const { key } of BIZ_KIND_FILTERS) {
-        bizKindCounts[key] = key === "all"
+      const merchantTypeCounts = {};
+      for (const { key } of merchantTypeFilters()) {
+        merchantTypeCounts[key] = key === "all"
           ? sourceScoped.length
-          : sourceScoped.filter((item) => matchesBizKindFilter(item, key)).length;
+          : sourceScoped.filter((item) => matchesMerchantTypeFilter(item, key)).length;
       }
 
       const statusCounts = {};
       for (const { key } of STATUS_FILTERS) {
         statusCounts[key] = key === "all"
-          ? bizScoped.length
-          : bizScoped.filter((item) => matchesStatusFilter(item, key)).length;
+          ? typeScoped.length
+          : typeScoped.filter((item) => matchesStatusFilter(item, key)).length;
       }
 
-      return { sourceCounts, bizKindCounts, statusCounts };
+      return { sourceCounts, merchantTypeCounts, statusCounts };
     }
 
     function renderBizKindFilter() {
-      const { bizKindCounts } = buildFilterCountSnapshot();
-      els.bizKindFilter.innerHTML = BIZ_KIND_FILTERS.map(({ key, label }) => {
-        const count = bizKindCounts[key] || 0;
-        const active = state.filters.bizKind === key;
-        return `
-          <button type="button" data-biz-kind="${key}" class="${active ? "active" : ""}">
-            <span class="seg-btn-label">${label}</span>
+      const { merchantTypeCounts } = buildFilterCountSnapshot();
+      const filters = merchantTypeFilters();
+      els.bizKindFilter.innerHTML = filters.length > 1
+        ? filters.map(({ key, label }) => {
+          const count = merchantTypeCounts[key] || 0;
+          const active = state.filters.merchantType === key;
+          return `
+          <button type="button" data-merchant-type="${key}" class="${active ? "active" : ""}">
+            <span class="seg-btn-label">${escapeHtml(label)}</span>
             <span class="seg-btn-count">${count}</span>
           </button>
         `;
-      }).join("");
+        }).join("")
+        : `<button type="button" data-merchant-type="all" class="active"><span class="seg-btn-label">全部</span><span class="seg-btn-count">${merchantsInCity().length}</span></button>`;
     }
 
     function renderSourceFilter() {
@@ -1642,9 +1627,9 @@
     });
 
     els.bizKindFilter.addEventListener("click", (event) => {
-      const button = event.target.closest("button[data-biz-kind]");
+      const button = event.target.closest("button[data-merchant-type]");
       if (!button) return;
-      state.filters.bizKind = button.dataset.bizKind;
+      state.filters.merchantType = button.dataset.merchantType;
       [...els.bizKindFilter.querySelectorAll("button")].forEach((node) => node.classList.toggle("active", node === button));
       resetPage();
       render();
@@ -1891,6 +1876,7 @@
         window.onBuzzEnvChanged = async () => {
           updateBatchImportButtonLabel();
           setSaveState("切换环境中...", "warn");
+          state.filters.merchantType = "all";
           await Promise.all([loadMerchantTypes(), loadMerchants()]);
         };
         setSaveState("加载商户数据...", "warn");

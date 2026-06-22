@@ -8,7 +8,7 @@ const BUZZ_ENVS = {
     base: "https://test-go-api.nowmap.cn",
     adminUser: "admin",
     adminPass: "Test1234",
-    defaultPublishUserId: "579362104",
+    defaultPublishUserId: "854508330",
     danger: false,
   },
   prod: {

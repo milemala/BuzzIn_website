@@ -19,7 +19,7 @@ function parseArgs(argv) {
       console.log(`用法:
   node scripts/batch-event-import-prep.js
 
-为所有未过期活动写入默认入库字段（发布者 579362104、now_type 按是否已开始默认 2/3）。
+为所有未过期活动写入默认入库字段（发布者 854508330、now_type 按是否已开始默认 2/3）。
 
 POI 请由 Cursor Agent 处理：
   export-events-for-poi.js → poi-search-cli.js → decisions.json → apply-event-poi-decisions.js

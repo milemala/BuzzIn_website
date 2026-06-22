@@ -162,6 +162,18 @@ async function modifyGroupBaseInfo(groupId, patch = {}) {
   await imPost("group_open_http_svc/modify_group_base_info", body);
 }
 
+async function destroyGroup(groupId, options = {}) {
+  const id = String(groupId || "").trim();
+  if (!id) throw new Error("缺少 group_id");
+  try {
+    await imPost("group_open_http_svc/destroy_group", { GroupId: id });
+  } catch (error) {
+    const msg = String(error?.message || error || "");
+    if (options.ignoreMissing && /not exist|不存在|10015|no group/i.test(msg)) return;
+    throw error;
+  }
+}
+
 function resolveGroupOwner(record, options = {}) {
   const owner = String(
     options.owner || options.groupOwner || record.publish_user_id || record.user_id || ""
@@ -202,6 +214,7 @@ module.exports = {
   createGroup,
   createGroupForMerchant,
   createGroupForNow,
+  destroyGroup,
   importAccount,
   merchantGroupDisplayName,
   modifyGroupBaseInfo,

@@ -1,6 +1,6 @@
 "use strict";
 
-const DEFAULT_PUBLISH_USER_ID = "579362104";
+const DEFAULT_PUBLISH_USER_ID = "854508330";
 const DEFAULT_NOW_TYPE = 3;
 const VALID_NOW_TYPES = new Set([1, 2, 3]);
 

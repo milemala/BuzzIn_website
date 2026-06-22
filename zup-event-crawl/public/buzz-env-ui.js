@@ -93,7 +93,7 @@
       envs = Array.isArray(data.envs) ? data.envs : [];
     } catch {
       envs = [
-        { key: "test", label: "测试", danger: false, base: "https://test-go-api.nowmap.cn", default_publish_user_id: "579362104" },
+        { key: "test", label: "测试", danger: false, base: "https://test-go-api.nowmap.cn", default_publish_user_id: "854508330" },
         { key: "prod", label: "正式", danger: true, base: "https://zup.nowmap.cn", default_publish_user_id: "382380210" },
       ];
     }

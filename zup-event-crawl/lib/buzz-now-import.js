@@ -19,6 +19,12 @@ const {
   resolvePublishUserId,
 } = require("./buzz-env");
 const {
+  createPublishUserPoolContext,
+  isImGroupLimitError,
+  poolEnabled,
+  resolvePublishUserId: resolvePoolPublishUserId,
+} = require("./publish-user-pool");
+const {
   getEventByUid,
   syncEventMerchantByPoi,
 } = require("./review-db");
@@ -127,6 +133,20 @@ class BuzzAdminClient {
     return this.parseEnvelope(response);
   }
 
+  async putJSON(pathname, body) {
+    await this.ensureToken();
+    const response = await fetch(`${this.base}${API_PREFIX}${pathname}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.token}`,
+      },
+      body: JSON.stringify(body),
+      signal: AbortSignal.timeout(HTTP_TIMEOUT_MS),
+    });
+    return this.parseEnvelope(response);
+  }
+
   async postJSON(pathname, body) {
     return this.requestJSON(pathname, body);
   }
@@ -134,8 +154,9 @@ class BuzzAdminClient {
   async listMerchantTypes() {
     const data = await this.postJSON("/merchant-types/list", {});
     const list = data?.list || [];
+    // 建商户 / 审核台 merchant_type 用接口的 type（业务类型 id），不是行 id
     return list.map((item) => ({
-      id: Number(item.id ?? item.type),
+      id: Number(item.type ?? item.id),
       name: String(item.name || "").trim(),
     })).filter((item) => item.id && item.name);
   }
@@ -190,6 +211,20 @@ class BuzzAdminClient {
   async createNow(payload) {
     const data = await this.postJSON("/nows", payload);
     return data?.now_id || "";
+  }
+
+  async getNowById(nowId) {
+    const id = String(nowId || "").trim();
+    if (!id) return null;
+    const data = await this.postJSON("/nows/list", { page: 1, size: 10, now_id: id });
+    const list = data?.list || [];
+    return list.find((item) => String(item.now_id) === id) || null;
+  }
+
+  async updateNow(nowId, payload) {
+    const id = String(nowId || "").trim();
+    if (!id) throw new Error("缺少 now_id");
+    return this.putJSON(`/nows/${encodeURIComponent(id)}`, payload);
   }
 
   async deleteNow(nowId) {
@@ -253,6 +288,43 @@ function eventWithBuzzEnv(db, eventUid, buzzEnv) {
   return applyBuzzEnvToEvent(db, getEventByUid(db, eventUid), buzzEnv);
 }
 
+function ensureImportPoolContext(db, buzzEnv, options = {}) {
+  if (!poolEnabled(buzzEnv)) return null;
+  if (options.poolContext) return options.poolContext;
+  const pool = createPublishUserPoolContext(db, buzzEnv);
+  options.poolContext = pool;
+  return pool;
+}
+
+async function createGroupForNowWithPool(record, options = {}) {
+  const pool = options.poolContext;
+  if (!pool) {
+    return createGroupForNow(record, options);
+  }
+
+  const maxTries = pool.userCount();
+  let lastError = null;
+  for (let attempt = 0; attempt < maxTries; attempt += 1) {
+    const publishUserId = pool.currentUserId();
+    try {
+      const groupId = await createGroupForNow(record, {
+        ...options,
+        owner: publishUserId,
+      });
+      options.publish_user_id = publishUserId;
+      record.user_id = publishUserId;
+      return groupId;
+    } catch (error) {
+      lastError = error;
+      if (!isImGroupLimitError(error)) throw error;
+      const rotation = pool.rotateOnLimit(publishUserId);
+      options.publish_user_id = rotation.to_user_id;
+      record.user_id = rotation.to_user_id;
+    }
+  }
+  throw lastError || new Error("所有马甲号群聊额度均已用尽");
+}
+
 async function importEventToBuzz(db, eventUid, options = {}) {
   const buzzEnv = resolveBuzzEnv(options);
   const client = createClientForEnv(options);
@@ -304,11 +376,14 @@ async function importEventToBuzz(db, eventUid, options = {}) {
     };
   }
 
-  const publishUserId = resolvePublishUserId(
-    buzzEnv,
-    options.publish_user_id || event.publish_user_id,
-    event.publish_user_id,
-  );
+  const publishUserId = poolEnabled(buzzEnv)
+    ? resolvePoolPublishUserId(db, buzzEnv, options.publish_user_id || event.publish_user_id)
+    : resolvePublishUserId(
+      buzzEnv,
+      options.publish_user_id || event.publish_user_id,
+      event.publish_user_id,
+    );
+  ensureImportPoolContext(db, buzzEnv, options);
   const record = buildImportRecord({
     ...event,
     publish_user_id: publishUserId,
@@ -340,11 +415,12 @@ async function importEventToBuzz(db, eventUid, options = {}) {
       }
     }
 
-    const groupId = await runImportStep("腾讯 IM 建群", () => createGroupForNow(record, {
+    const groupId = await runImportStep("腾讯 IM 建群", () => createGroupForNowWithPool(record, {
       ...options,
       owner: publishUserId || record.user_id,
     }));
     record.group_id = groupId;
+    const finalPublishUserId = String(record.user_id || options.publish_user_id || publishUserId).trim();
 
     const medias = [];
     for (const src of record.images || []) {
@@ -366,7 +442,7 @@ async function importEventToBuzz(db, eventUid, options = {}) {
       buzz_group_id: groupId,
       import_status: "imported",
       import_error: "",
-      publish_user_id: publishUserId,
+      publish_user_id: finalPublishUserId,
       now_merchant_id: event.now_merchant_id,
       now_merchant_name: event.now_merchant_name,
     }, buzzEnv);
@@ -401,6 +477,8 @@ function sleep(ms) {
 
 async function batchImportApprovedEvents(db, options = {}) {
   const { listEventsEligibleForImport } = require("./review-db");
+  const buzzEnv = resolveBuzzEnv(options);
+  ensureImportPoolContext(db, buzzEnv, options);
   const events = listEventsEligibleForImport(db, options);
   const results = [];
   let ok = 0;

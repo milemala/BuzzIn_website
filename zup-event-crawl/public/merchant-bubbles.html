@@ -51,12 +51,50 @@
     .btn:disabled{opacity:.45;cursor:not-allowed}
     .city-grid{display:grid;gap:10px}
     .city-card{border:1px solid var(--line);border-radius:8px;padding:12px;background:#fff}
-    .city-card h3{margin:0 0 8px;font-size:14px}
-    .buckets{display:flex;gap:8px;flex-wrap:wrap}
-    .bucket{font-size:12px;padding:6px 10px;border-radius:999px;background:#edf3ef;color:#476054}
-    .bucket.current{background:#111;color:#fff;font-weight:800}
+    .city-card h3{margin:0 0 10px;font-size:14px}
+    .bucket-rows{display:grid;gap:8px}
+    .bucket-row{
+      display:grid;gap:8px;padding:10px;border:1px solid var(--line);border-radius:8px;background:#f7faf8;
+      cursor:pointer;transition:border-color .15s,box-shadow .15s
+    }
+    .bucket-row:hover{border-color:#b8c9be}
+    .bucket-row.current{border-color:#9ab5a4;background:#f2fbf6}
+    .bucket-row.selected{border-color:#111;box-shadow:0 0 0 1px #111;background:#fff}
+    .bucket-row-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+    .bucket-label{font-size:13px;font-weight:800;color:var(--text)}
+    .bucket-meta{font-size:12px;color:var(--muted)}
+    .bucket-badge{font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;background:#111;color:#fff}
+    .bucket-actions{display:flex;flex-wrap:wrap;gap:6px}
+    .bucket-actions .mini{height:30px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:0 10px;cursor:pointer;font-size:12px;font-weight:700;color:var(--ink)}
+    .bucket-actions .mini.primary{border-color:#111;background:#111;color:#fff}
+    .bucket-actions .mini.danger{border-color:#e8b4ae;color:#ad382c}
+    .bucket-actions .mini:disabled{opacity:.45;cursor:not-allowed}
     .hint{margin:0;color:var(--muted);font-size:12px;line-height:1.55}
     .result{margin-top:10px;font-size:13px;line-height:1.55;white-space:pre-wrap}
+    .job-modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px}
+    .job-modal[hidden]{display:none}
+    .job-modal-backdrop{position:absolute;inset:0;background:rgba(16,24,20,.45)}
+    .job-modal-panel{
+      position:relative;width:min(560px,100%);max-height:min(82vh,720px);overflow:auto;
+      background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 18px 16px;box-shadow:0 16px 48px rgba(20,32,24,.18)
+    }
+    .job-modal-panel h2{margin:0 0 6px;font-size:18px;font-weight:800}
+    .job-modal-scope{margin:0 0 12px;color:var(--muted);font-size:13px;line-height:1.5}
+    .job-progress-track{height:10px;border-radius:999px;background:#e8efe9;overflow:hidden;margin-bottom:12px}
+    .job-progress-bar{height:100%;width:0;background:linear-gradient(90deg,#2a9d68,#3fbf7f);border-radius:999px;transition:width .35s ease}
+    .job-progress-stats{display:grid;gap:6px;font-size:13px;color:#314036;line-height:1.45}
+    .job-progress-stats b{font-weight:800}
+    .job-progress-current{margin-top:10px;padding:10px 12px;border-radius:8px;background:#f7faf8;border:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.45;min-height:40px}
+    .job-progress-current strong{display:block;color:#314036;font-size:13px;margin-bottom:2px}
+    .job-log{margin-top:10px;padding:10px 12px;border-radius:8px;background:#fafcfb;border:1px solid var(--line);font-size:12px;line-height:1.5;max-height:220px;overflow:auto}
+    .job-log-entry{padding:5px 0;border-bottom:1px solid #e8efe9}
+    .job-log-entry:last-child{border-bottom:0;padding-bottom:0}
+    .job-log-entry.fail{color:#ad382c}
+    .job-log-entry.ok{color:#197549}
+    .job-log-entry.warn{color:#806200}
+    .job-modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+    .job-modal-actions .btn{min-width:88px}
+    .job-modal-actions .btn:disabled{opacity:.45;cursor:not-allowed}
     @media (max-width:720px){.stats{grid-template-columns:1fr}}
   </style>
 </head>
@@ -81,8 +119,10 @@
       <div class="stats" id="stats"></div>
       <div class="actions" style="margin-top:12px">
         <button class="btn" id="syncFromBuzzBtn" type="button">从当前环境补全商户</button>
+        <button class="btn" id="publishTestBtn" type="button">发布1个测试气泡</button>
       </div>
       <p class="hint" style="margin-top:8px">将 Buzz 后台已有商户写入审核台并标记为已入库。若与本地商户 <strong>POI 相同但 merchant_id 不同</strong>，会删除审核台本地旧记录（不删后台商户）。</p>
+      <p class="hint" style="margin-top:6px">「发布1个测试气泡」会在<strong>北京</strong>已入库商户中随机选 1 家发布，标题用店名，并临时新建群聊（不影响三分组轮转）。</p>
     </section>
 
     <section class="panel">
@@ -91,7 +131,8 @@
 
       <div class="field">
         <label for="publishUserId">发布者 user_id</label>
-        <input id="publishUserId" type="text" value="579362104">
+        <input id="publishUserId" type="text" value="" placeholder="留空则用当前马甲号">
+        <p class="hint" id="publishUserPoolHint" hidden style="margin-top:6px"></p>
       </div>
 
       <div class="option-block">
@@ -155,9 +196,27 @@
 
     <section class="panel">
       <h2>各城市轮转分组</h2>
+      <p class="hint" style="margin-bottom:10px">点击分组可选中；每组可单独发布、删除或过期该组内<strong>未过期</strong>的已发气泡。单组发布后该城市自动轮到下一组。</p>
       <div class="city-grid" id="cityGrid"></div>
     </section>
   </main>
+
+  <div class="job-modal" id="jobModal" hidden>
+    <div class="job-modal-backdrop"></div>
+    <div class="job-modal-panel" role="dialog" aria-modal="true" aria-labelledby="jobModalTitle">
+      <h2 id="jobModalTitle">处理中</h2>
+      <p class="job-modal-scope" id="jobModalScope"></p>
+      <div class="job-progress-track" aria-hidden="true">
+        <div class="job-progress-bar" id="jobProgressBar"></div>
+      </div>
+      <div class="job-progress-stats" id="jobProgressStats"></div>
+      <div class="job-progress-current" id="jobProgressCurrent"><strong>准备开始…</strong>正在连接后台</div>
+      <div class="job-log" id="jobLog" hidden></div>
+      <div class="job-modal-actions">
+        <button class="btn primary" id="jobModalClose" type="button" disabled>关闭</button>
+      </div>
+    </div>
+  </div>
 
   <script src="/buzz-env-ui.js"></script>
   <script>
@@ -173,6 +232,187 @@
     let busy = false;
     let titleMode = "unified";
     let groupMode = "use_merchant";
+    let jobPollTimer = null;
+    const selectedBuckets = new Map();
+    const jobModalEl = document.getElementById("jobModal");
+    const jobModalTitleEl = document.getElementById("jobModalTitle");
+    const jobModalScopeEl = document.getElementById("jobModalScope");
+    const jobProgressBarEl = document.getElementById("jobProgressBar");
+    const jobProgressStatsEl = document.getElementById("jobProgressStats");
+    const jobProgressCurrentEl = document.getElementById("jobProgressCurrent");
+    const jobLogEl = document.getElementById("jobLog");
+    const jobModalCloseEl = document.getElementById("jobModalClose");
+
+    function formatDuration(ms) {
+      const sec = Math.max(0, Math.floor(ms / 1000));
+      if (sec < 60) return `${sec} 秒`;
+      const min = Math.floor(sec / 60);
+      const rest = sec % 60;
+      return rest ? `${min} 分 ${rest} 秒` : `${min} 分`;
+    }
+
+    function stopJobPoll() {
+      if (jobPollTimer) {
+        clearInterval(jobPollTimer);
+        jobPollTimer = null;
+      }
+    }
+
+    function renderJobLogs(logs) {
+      if (!logs?.length) {
+        jobLogEl.hidden = true;
+        jobLogEl.innerHTML = "";
+        return;
+      }
+      jobLogEl.hidden = false;
+      jobLogEl.innerHTML = logs.slice().reverse().map((entry) => `
+        <div class="job-log-entry ${escapeHtml(entry.level || "info")}">
+          <strong>${escapeHtml(entry.name || "—")}</strong> ${escapeHtml(entry.message || "")}
+        </div>
+      `).join("");
+    }
+
+    function updateJobModal(job, { title, scope, startedAt }) {
+      const total = job.total || 0;
+      const processed = job.processed || 0;
+      const pct = total > 0 ? Math.min(100, Math.round((processed / total) * 100)) : 0;
+      jobProgressBarEl.style.width = `${pct}%`;
+
+      if (job.kind === "groups") {
+        jobProgressStatsEl.innerHTML = [
+          `<div>进度：<b>${processed} / ${total}</b></div>`,
+          `<div>成功：<b>${job.ok_count || 0}</b> · 失败：<b>${job.fail_count || 0}</b> · 新建群：<b>${job.created || 0}</b> · 改名：<b>${job.renamed || 0}</b></div>`,
+          `<div>已用时间：<b>${formatDuration(Date.now() - startedAt)}</b></div>`,
+        ].join("");
+      } else {
+        jobProgressStatsEl.innerHTML = [
+          `<div>进度：<b>${processed} / ${total}</b></div>`,
+          `<div>成功：<b>${job.ok_count || 0}</b> · 失败：<b>${job.fail_count || 0}</b></div>`,
+          `<div>已用时间：<b>${formatDuration(Date.now() - startedAt)}</b></div>`,
+        ].join("");
+      }
+
+      if (job.status === "running") {
+        jobProgressCurrentEl.innerHTML = job.current_name
+          ? `<strong>正在处理</strong>${escapeHtml(job.current_name)}`
+          : "<strong>准备中…</strong>正在排队处理";
+      }
+
+      renderJobLogs(job.logs);
+
+      if (job.status === "done") {
+        const fail = job.fail_count || 0;
+        jobModalTitleEl.textContent = fail ? `${title}完成（有失败）` : `${title}完成`;
+        const summary = job.kind === "groups"
+          ? `新建 ${job.created || 0} · 改名 ${job.renamed || 0} · 失败 ${fail}`
+          : `成功 ${job.ok_count || 0} · 失败 ${fail}`;
+        jobProgressCurrentEl.innerHTML = `<strong>全部结束</strong>${escapeHtml(summary)}`;
+        jobModalCloseEl.disabled = false;
+      } else if (job.status === "error") {
+        jobModalTitleEl.textContent = `${title}失败`;
+        jobProgressCurrentEl.innerHTML = `<strong>出错了</strong>${escapeHtml(job.error || "未知错误")}`;
+        jobModalCloseEl.disabled = false;
+      }
+    }
+
+    function openJobModal({ title, scope }) {
+      jobModalTitleEl.textContent = `${title}中`;
+      jobModalScopeEl.textContent = scope;
+      jobProgressBarEl.style.width = "0%";
+      jobProgressStatsEl.innerHTML = "";
+      jobProgressCurrentEl.innerHTML = "<strong>准备开始…</strong>正在连接后台";
+      jobLogEl.hidden = true;
+      jobLogEl.innerHTML = "";
+      jobModalCloseEl.disabled = true;
+      jobModalEl.hidden = false;
+    }
+
+    function closeJobModal() {
+      if (busy) return;
+      stopJobPoll();
+      jobModalEl.hidden = true;
+    }
+
+    async function fetchJob(jobId) {
+      const url = BuzzEnvUi.withBuzzEnv(`/api/merchant-bubbles/jobs/${encodeURIComponent(jobId)}`);
+      const response = await fetch(url, { cache: "no-store" });
+      const data = await response.json();
+      if (!response.ok || !data.ok) throw new Error(data.error || "读取任务进度失败");
+      return data;
+    }
+
+    async function runBatchJob({ title, scope, url, body }) {
+      if (busy) return false;
+      if (!(await BuzzEnvUi.confirmProdAction(`${title}将写入正式环境`))) return false;
+      busy = true;
+      setSaveState(`${title}中（${BuzzEnvUi.envLabel()}）...`, "warn");
+      resultEl.textContent = "";
+      openJobModal({ title, scope });
+      const startedAt = Date.now();
+
+      try {
+        const startRes = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(BuzzEnvUi.importBody(body || {})),
+        });
+        const startData = await startRes.json();
+        if (!startRes.ok || !startData.ok || !startData.job_id) {
+          throw new Error(startData.error || `${title}启动失败`);
+        }
+
+        const jobId = startData.job_id;
+        const poll = async () => {
+          try {
+            const job = await fetchJob(jobId);
+            updateJobModal(job, { title, scope, startedAt });
+            if (job.done) {
+              stopJobPoll();
+              try {
+                await loadState();
+              } catch (loadError) {
+                console.warn(loadError);
+              }
+              const summary = job.kind === "groups"
+                ? `成功 ${job.ok_count} · 失败 ${job.fail_count} · 新建 ${job.created} · 改名 ${job.renamed}`
+                : `成功 ${job.ok_count} · 失败 ${job.fail_count}`;
+              resultEl.textContent = `${title}完成：${summary}`;
+              setSaveState(`${title}完成`, job.fail_count ? "warn" : "ok");
+              busy = false;
+            }
+          } catch (error) {
+            stopJobPoll();
+            jobModalTitleEl.textContent = `${title}失败`;
+            jobProgressCurrentEl.innerHTML = `<strong>出错了</strong>${escapeHtml(error.message)}`;
+            jobModalCloseEl.disabled = false;
+            setSaveState(error.message || `${title}失败`, "error");
+            busy = false;
+          }
+        };
+
+        jobPollTimer = setInterval(poll, 800);
+        await poll();
+        return true;
+      } catch (error) {
+        stopJobPoll();
+        jobModalTitleEl.textContent = `${title}失败`;
+        jobProgressCurrentEl.innerHTML = `<strong>出错了</strong>${escapeHtml(error.message)}`;
+        jobModalCloseEl.disabled = false;
+        setSaveState(error.message || `${title}失败`, "error");
+        busy = false;
+        return false;
+      }
+    }
+
+    jobModalCloseEl.addEventListener("click", closeJobModal);
+    jobModalEl.querySelector(".job-modal-backdrop").addEventListener("click", closeJobModal);
+
+    function setSelectedBucket(city, slot) {
+      selectedBuckets.set(city, slot);
+      cityGridEl.querySelectorAll(".bucket-row").forEach((row) => {
+        row.classList.toggle("selected", row.dataset.city === city && Number(row.dataset.slot) === slot);
+      });
+    }
 
     function setSaveState(text, tone = "warn") {
       saveStateEl.textContent = text;
@@ -243,17 +483,44 @@
         return;
       }
 
-      cityGridEl.innerHTML = cities.map((city) => `
-        <article class="city-card">
-          <h3>${escapeHtml(city.city)} · 共 ${city.total} 家 · 本批第 ${city.current_slot + 1} 组</h3>
-          <div class="buckets">
+      cityGridEl.innerHTML = cities.map((city) => {
+        const selectedSlot = selectedBuckets.has(city.city)
+          ? selectedBuckets.get(city.city)
+          : city.current_slot;
+        if (!selectedBuckets.has(city.city)) {
+          selectedBuckets.set(city.city, city.current_slot);
+        }
+        return `
+        <article class="city-card" data-city="${escapeHtml(city.city)}">
+          <h3>${escapeHtml(city.city)} · 共 ${city.total} 家 · 当前轮次第 ${city.current_slot + 1} 组</h3>
+          <div class="bucket-rows">
             ${(city.buckets || []).map((bucket) => `
-              <span class="bucket ${bucket.is_current ? "current" : ""}">第 ${bucket.index + 1} 组 ${bucket.count} 家</span>
+              <div class="bucket-row ${bucket.is_current ? "current" : ""} ${selectedSlot === bucket.index ? "selected" : ""}"
+                   data-city="${escapeHtml(city.city)}" data-slot="${bucket.index}" data-count="${bucket.count}"
+                   data-with-bubble="${bucket.with_bubble || 0}"
+                   data-with-active-bubble="${bucket.with_active_bubble || 0}">
+                <div class="bucket-row-head">
+                  <div>
+                    <div class="bucket-label">第 ${bucket.index + 1} 组 · ${bucket.count} 家</div>
+                    <div class="bucket-meta">未过期气泡 ${bucket.with_active_bubble || 0} 家 · 本地记录 ${bucket.with_bubble || 0} 家</div>
+                  </div>
+                  ${bucket.is_current ? '<span class="bucket-badge">当前轮次</span>' : ""}
+                </div>
+                <div class="bucket-actions">
+                  <button class="mini primary" type="button" data-action="publish-bucket"
+                    ${bucket.count ? "" : "disabled"}>发布气泡</button>
+                  <button class="mini danger" type="button" data-action="delete-bucket-bubbles"
+                    ${bucket.with_active_bubble ? "" : "disabled"}>批量删除</button>
+                  <button class="mini" type="button" data-action="expire-bucket-bubbles"
+                    ${bucket.with_active_bubble ? "" : "disabled"}>批量过期</button>
+                </div>
+              </div>
             `).join("")}
           </div>
-          <p class="hint" style="margin-top:8px">已有群聊 ${city.with_group} · 已发气泡 ${city.with_bubble}</p>
+          <p class="hint" style="margin-top:8px">已有群聊 ${city.with_group} · 未过期气泡 ${city.with_active_bubble || 0} 家 · 本地气泡记录 ${city.with_bubble}</p>
         </article>
-      `).join("");
+      `;
+      }).join("");
     }
 
     function escapeHtml(value) {
@@ -277,9 +544,110 @@
         const field = document.getElementById("publishUserId");
         if (field && !field.dataset.userEdited) field.value = data.default_publish_user_id;
       }
+      const poolHint = document.getElementById("publishUserPoolHint");
+      const pool = data.publish_user_pool;
+      if (poolHint && pool?.enabled) {
+        poolHint.hidden = false;
+        poolHint.textContent = `正式环境马甲号池：当前 ${pool.current_label || pool.current_user_id}（第 ${pool.index + 1}/${pool.total} 个）。单号满 500 群时自动换下一个。`;
+      } else if (poolHint) {
+        poolHint.hidden = true;
+      }
       setSaveState(`就绪 · ${BuzzEnvUi.envLabel()}`, "ok");
       return data;
     }
+
+    async function runBucketAction(label, url, city, slot, body = {}) {
+      if (busy) return;
+      if (!(await BuzzEnvUi.confirmProdAction(`${label}将写入正式环境`))) return;
+      busy = true;
+      setSaveState(`${label}中（${BuzzEnvUi.envLabel()}）...`, "warn");
+      resultEl.textContent = "";
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(BuzzEnvUi.importBody({ ...body, city, slot })),
+        });
+        const data = await response.json();
+        if (!response.ok || data.error) throw new Error(data.error || `${label}失败`);
+        await loadState();
+        const successCount = typeof data.ok === "number" ? data.ok : 0;
+        const detail = (data.results || [])
+          .filter((item) => !item.ok || item.note)
+          .slice(0, 8)
+          .map((item) => `${item.name || item.merchant_uid}: ${item.error || item.note || "完成"}`)
+          .join("\n");
+        resultEl.textContent = [
+          `${label}完成：${city} 第 ${slot + 1} 组`,
+          `处理 ${data.total ?? 0} 家 · 成功 ${successCount} · 失败 ${data.fail ?? 0}${data.cleaned != null ? ` · 清理本地 ${data.cleaned}` : ""}${data.skipped != null ? ` · 跳过 ${data.skipped}` : ""}`,
+          data.next_slot != null ? `该城市已轮到第 ${data.next_slot + 1} 组` : "",
+          data.expired_at ? `过期时间设为 ${data.expired_at}` : "",
+          detail,
+        ].filter(Boolean).join("\n");
+        setSaveState(`${label}完成`, data.fail ? "warn" : "ok");
+      } catch (error) {
+        setSaveState(error.message || `${label}失败`, "error");
+      } finally {
+        busy = false;
+      }
+    }
+
+    cityGridEl.addEventListener("click", async (event) => {
+      const actionBtn = event.target.closest("button[data-action]");
+      const row = event.target.closest(".bucket-row");
+      if (!row) return;
+
+      const city = row.dataset.city;
+      const slot = Number(row.dataset.slot);
+      setSelectedBucket(city, slot);
+
+      if (!actionBtn || busy) return;
+      event.stopPropagation();
+
+      const action = actionBtn.dataset.action;
+      const count = Number(row.dataset.count || 0);
+      const withBubble = Number(row.dataset.withBubble || 0);
+      const withActiveBubble = Number(row.dataset.withActiveBubble || 0);
+      const opts = currentOptions();
+
+      if (action === "publish-bucket") {
+        if (!count) return;
+        if (opts.title_mode === "unified" && !opts.unified_title) {
+          setSaveState("请填写统一标题", "error");
+          return;
+        }
+        if (opts.group_mode === "use_merchant" && !window.confirm(
+          `${city} 第 ${slot + 1} 组共 ${count} 家。若部分商户尚无群聊，发布可能失败。继续？`,
+        )) return;
+        if (!window.confirm(
+          `为 ${city} 第 ${slot + 1} 组（${count} 家）发布气泡？\n发布后该城市将轮到第 ${((slot + 1) % 3) + 1} 组。`,
+        )) return;
+        await runBatchJob({
+          title: "分组发布",
+          scope: `${city} · 第 ${slot + 1} 组 · ${count} 家 · ${BuzzEnvUi.envLabel()}`,
+          url: "/api/merchant-bubbles/publish-bucket",
+          body: { ...opts, city, slot },
+        });
+        return;
+      }
+
+      if (action === "delete-bucket-bubbles") {
+        if (!withActiveBubble) return;
+        if (!window.confirm(
+          `删除 ${city} 第 ${slot + 1} 组内所有未过期气泡？\n将软删 Buzz 后台气泡并清空本地记录。`,
+        )) return;
+        await runBucketAction("批量删除", "/api/merchant-bubbles/delete-bucket-bubbles", city, slot);
+        return;
+      }
+
+      if (action === "expire-bucket-bubbles") {
+        if (!withActiveBubble) return;
+        if (!window.confirm(
+          `将 ${city} 第 ${slot + 1} 组内所有未过期气泡的过期时间设为此刻？`,
+        )) return;
+        await runBucketAction("批量过期", "/api/merchant-bubbles/expire-bucket-bubbles", city, slot);
+      }
+    });
 
     async function runAction(label, url, body) {
       if (busy) return;
@@ -319,6 +687,46 @@
       runAction("重新分组", "/api/merchant-bubbles/rebuild-buckets", { city: currentOptions().city });
     });
 
+    document.getElementById("publishTestBtn").addEventListener("click", async () => {
+      if (busy) return;
+      const envLabel = BuzzEnvUi.envLabel();
+      if (!window.confirm(
+        `在北京随机选 1 家已入库商户，发布 1 个测试气泡到 ${envLabel}？\n\n标题 = 店名，会临时新建群聊，3 天后过期。`,
+      )) return;
+      if (!(await BuzzEnvUi.confirmProdAction("将写入正式环境"))) return;
+      busy = true;
+      setSaveState(`发布测试气泡中（${envLabel}）...`, "warn");
+      resultEl.textContent = "";
+      try {
+        const response = await fetch("/api/merchant-bubbles/publish-test", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(BuzzEnvUi.importBody({
+            publish_user_id: document.getElementById("publishUserId").value.trim()
+              || BuzzEnvUi.defaultPublishUserId(),
+          })),
+        });
+        const data = await response.json();
+        if (!response.ok || !data.ok) throw new Error(data.error || "发布测试气泡失败");
+        renderState(data.state || data);
+        resultEl.textContent = [
+          "测试气泡发布成功",
+          `商户：${data.merchant_name || data.name || "—"}`,
+          data.address ? `地址：${data.address}` : "",
+          `merchant_uid：${data.merchant_uid || "—"}`,
+          data.buzz_merchant_id ? `buzz_merchant_id：${data.buzz_merchant_id}` : "",
+          data.now_id ? `now_id：${data.now_id}` : "",
+          data.group_id ? `group_id：${data.group_id}` : "",
+          data.picked_from ? `（从北京 ${data.picked_from} 家已入库商户中随机抽取）` : "",
+        ].filter(Boolean).join("\n");
+        setSaveState(`测试气泡已发到：${data.merchant_name || data.name || "未知商户"}`, "ok");
+      } catch (error) {
+        setSaveState(error.message || "发布测试气泡失败", "error");
+      } finally {
+        busy = false;
+      }
+    });
+
     document.getElementById("syncFromBuzzBtn").addEventListener("click", async () => {
       if (busy) return;
       const envLabel = BuzzEnvUi.envLabel();
@@ -350,13 +758,18 @@
       }
     });
 
-    document.getElementById("createGroupsBtn").addEventListener("click", () => {
+    document.getElementById("createGroupsBtn").addEventListener("click", async () => {
       const opts = currentOptions();
       if (!window.confirm(`为${opts.city || "全部城市"}已入库商户处理 IM 群？\n无群聊的会新建；已有群聊的会同步群名为完整店名。`)) return;
-      runAction("批量建群", "/api/merchant-bubbles/groups-batch", opts);
+      await runBatchJob({
+        title: "批量建群",
+        scope: `${opts.city || "全部城市"} · ${BuzzEnvUi.envLabel()}`,
+        url: "/api/merchant-bubbles/groups-batch",
+        body: opts,
+      });
     });
 
-    document.getElementById("publishBtn").addEventListener("click", () => {
+    document.getElementById("publishBtn").addEventListener("click", async () => {
       const opts = currentOptions();
       if (opts.title_mode === "unified" && !opts.unified_title) {
         setSaveState("请填写统一标题", "error");
@@ -370,7 +783,12 @@
         }
       }
       if (!window.confirm("发布本批气泡？将按各城市当前轮次的 1/3 商户发布，过期时间为 3 天后。")) return;
-      runAction("批量发布", "/api/merchant-bubbles/publish-batch", opts);
+      await runBatchJob({
+        title: "批量发布",
+        scope: `${opts.city || "全部城市"} · 当前轮次 1/3 · ${BuzzEnvUi.envLabel()}`,
+        url: "/api/merchant-bubbles/publish-batch",
+        body: opts,
+      });
     });
 
     syncTitleModeUI();

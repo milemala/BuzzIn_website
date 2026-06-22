@@ -253,7 +253,7 @@ func cmdAdminList(name, path string, args []string) {
 	printList(data)
 }
 
-// cmdMerchantTypes 列出可用的商户类型 id（建商户的 type 字段取这里的值）
+// cmdMerchantTypes 列出可用的商户类型（建商户的 type 字段取 list[].type，不是 id）
 // POST /internal/merchant-types/list -> data:{ list:[{id,type,name,sort,icon}] }
 func cmdMerchantTypes(args []string) {
 	cf := parseFlags(args)
@@ -271,9 +271,9 @@ func cmdMerchantTypes(args []string) {
 		} `json:"list"`
 	}
 	_ = json.Unmarshal(data, &out)
-	fmt.Println("可用商户类型（建商户的 type 字段填 id 列的值）:")
+	fmt.Println("可用商户类型（建商户的 type 字段填 type 列的值，勿用 id）:")
 	for _, t := range out.List {
-		fmt.Printf("  id=%-4d type=%-4d name=%s\n", t.ID, t.Type, t.Name)
+		fmt.Printf("  type=%-4d id=%-4d name=%s\n", t.Type, t.ID, t.Name)
 	}
 	fmt.Printf("\n共 %d 个\n", len(out.List))
 }

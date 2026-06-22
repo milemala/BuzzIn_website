@@ -57,13 +57,27 @@ const {
 } = require("../lib/merchant-db");
 const { MERCHANT_TYPES } = require("../lib/merchant-import-ready");
 const { listBuzzEnvsPublic, normalizeBuzzEnv } = require("../lib/buzz-env");
+const { getPublishUserPoolStatus } = require("../lib/publish-user-pool");
 const { BuzzAdminClient } = require("../lib/buzz-now-import");
 const {
   batchCreateMerchantGroups,
+  batchDissolveMerchantGroups,
+  batchDeleteBucketBubbles,
+  batchExpireBucketBubbles,
   batchPublishMerchantBubbles,
   getMerchantBubbleState,
+  publishCityBucketBubbles,
+  publishRandomTestMerchantBubble,
   rebuildRotationBuckets,
 } = require("../lib/merchant-bubble");
+const {
+  getJob,
+  publicJobView,
+  startGroupsBatchJob,
+  startPublishBatchJob,
+  countGroupTargets,
+  countPublishTargets,
+} = require("../lib/merchant-bubble-jobs");
 const { batchAutoPoi } = require("../lib/merchant-poi-batch");
 const { syncMerchantsFromBuzz } = require("../lib/buzz-merchant-sync");
 const {
@@ -96,8 +110,9 @@ const merchantTypesCache = new Map();
 const MERCHANT_TYPES_CACHE_MS = 5 * 60 * 1000;
 const MERCHANT_TYPES_TIMEOUT_MS = 5000;
 
-async function fetchMerchantTypesForEnv(buzzEnv) {
+async function fetchMerchantTypesForEnv(buzzEnv, options = {}) {
   const env = normalizeBuzzEnv(buzzEnv);
+  if (options.refresh) merchantTypesCache.delete(env);
   const cached = merchantTypesCache.get(env);
   if (cached && Date.now() - cached.at < MERCHANT_TYPES_CACHE_MS) {
     return cached.types;
@@ -333,7 +348,23 @@ async function handleApi(req, res, pathname) {
   }
 
   if (req.method === "GET" && pathname === "/api/buzz-envs") {
-    sendJson(res, 200, { envs: listBuzzEnvsPublic() });
+    const buzzEnv = parseBuzzEnvFromRequest(req);
+    const envs = listBuzzEnvsPublic().map((item) => {
+      const pool = getPublishUserPoolStatus(db, item.key);
+      if (!pool.enabled) return item;
+      return {
+        ...item,
+        default_publish_user_id: pool.default_publish_user_id || item.default_publish_user_id,
+        publish_user_pool: pool,
+      };
+    });
+    sendJson(res, 200, { envs, publish_user_pool: getPublishUserPoolStatus(db, buzzEnv) });
+    return;
+  }
+
+  if (req.method === "GET" && pathname === "/api/publish-user-pool/status") {
+    const buzzEnv = parseBuzzEnvFromRequest(req);
+    sendJson(res, 200, getPublishUserPoolStatus(db, buzzEnv));
     return;
   }
 
@@ -641,8 +672,11 @@ async function handleApi(req, res, pathname) {
 
   if (req.method === "GET" && pathname === "/api/merchant-types") {
     try {
+      const parsed = url.parse(req.url, true);
       const buzzEnv = parseBuzzEnvFromRequest(req);
-      const types = await fetchMerchantTypesForEnv(buzzEnv);
+      const types = await fetchMerchantTypesForEnv(buzzEnv, {
+        refresh: parsed.query.refresh === "1",
+      });
       sendJson(res, 200, { buzz_env: buzzEnv, types });
     } catch (error) {
       sendJson(res, 502, { ok: false, error: error.message });
@@ -938,7 +972,7 @@ async function handleApi(req, res, pathname) {
   if (req.method === "GET" && pathname === "/api/merchant-bubbles/state") {
     try {
       const query = url.parse(req.url, true).query || {};
-      const state = getMerchantBubbleState(db, {
+      const state = await getMerchantBubbleState(db, {
         city: query.city || "",
         buzz_env: query.buzz_env,
       });
@@ -952,7 +986,11 @@ async function handleApi(req, res, pathname) {
   if (req.method === "POST" && pathname === "/api/merchant-bubbles/rebuild-buckets") {
     try {
       const body = JSON.parse((await readBody(req)) || "{}");
-      const state = rebuildRotationBuckets(db, {
+      rebuildRotationBuckets(db, {
+        city: body.city || "",
+        buzz_env: parseBuzzEnvFromRequest(req, body),
+      });
+      const state = await getMerchantBubbleState(db, {
         city: body.city || "",
         buzz_env: parseBuzzEnvFromRequest(req, body),
       });
@@ -963,17 +1001,60 @@ async function handleApi(req, res, pathname) {
     return;
   }
 
+  if (req.method === "GET" && pathname.startsWith("/api/merchant-bubbles/jobs/")) {
+    try {
+      const jobId = decodeURIComponent(pathname.slice("/api/merchant-bubbles/jobs/".length));
+      const job = publicJobView(getJob(jobId));
+      if (!job) {
+        sendJson(res, 404, { ok: false, error: "任务不存在或已过期" });
+        return;
+      }
+      sendJson(res, 200, job);
+    } catch (error) {
+      sendJson(res, 400, { ok: false, error: error.message });
+    }
+    return;
+  }
+
   if (req.method === "POST" && pathname === "/api/merchant-bubbles/groups-batch") {
     try {
       const body = JSON.parse((await readBody(req)) || "{}");
-      const report = await batchCreateMerchantGroups(db, {
+      const options = {
         buzz_env: parseBuzzEnvFromRequest(req, body),
         city: body.city || "",
         publish_user_id: body.publish_user_id,
         only_missing: body.only_missing === true,
         limit: body.limit || 0,
         delayMs: body.delay_ms ?? 400,
-      });
+      };
+      const total = countGroupTargets(db, options);
+      const jobId = startGroupsBatchJob(db, options);
+      sendJson(res, 200, { ok: true, job_id: jobId, total, kind: "groups" });
+    } catch (error) {
+      sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/merchant-bubbles/groups-dissolve-batch") {
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      if (body.confirm !== true) {
+        sendJson(res, 400, {
+          ok: false,
+          error: "危险操作：请在请求体中传 confirm: true 以确认解散全部商户群聊",
+        });
+        return;
+      }
+      const options = {
+        buzz_env: parseBuzzEnvFromRequest(req, body),
+        city: body.city || "",
+        limit: body.limit || 0,
+        delayMs: body.delay_ms ?? 300,
+        destroy_remote: body.destroy_remote !== false,
+        ignore_missing: body.ignore_missing !== false,
+      };
+      const report = await batchDissolveMerchantGroups(db, options);
       sendJson(res, 200, { ok: true, ...report });
     } catch (error) {
       sendJson(res, 502, { ok: false, error: error.message });
@@ -984,7 +1065,7 @@ async function handleApi(req, res, pathname) {
   if (req.method === "POST" && pathname === "/api/merchant-bubbles/publish-batch") {
     try {
       const body = JSON.parse((await readBody(req)) || "{}");
-      const report = await batchPublishMerchantBubbles(db, {
+      const options = {
         buzz_env: parseBuzzEnvFromRequest(req, body),
         city: body.city || "",
         publish_user_id: body.publish_user_id,
@@ -995,10 +1076,86 @@ async function handleApi(req, res, pathname) {
         now_type: body.now_type,
         advance_rotation: body.advance_rotation !== false,
         delayMs: body.delay_ms ?? 1200,
+      };
+      const total = countPublishTargets(db, options);
+      const jobId = startPublishBatchJob(db, options);
+      sendJson(res, 200, { ok: true, job_id: jobId, total, kind: "publish" });
+    } catch (error) {
+      sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/merchant-bubbles/publish-bucket") {
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const options = {
+        buzz_env: parseBuzzEnvFromRequest(req, body),
+        city: body.city || "",
+        slot: body.slot,
+        publish_user_id: body.publish_user_id,
+        title_mode: body.title_mode || "unified",
+        unified_title: body.unified_title || "",
+        unified_content: body.unified_content || "",
+        group_mode: body.group_mode || "use_merchant",
+        now_type: body.now_type,
+        delayMs: body.delay_ms ?? 1200,
+      };
+      const total = countPublishTargets(db, options);
+      const jobId = startPublishBatchJob(db, options);
+      sendJson(res, 200, { ok: true, job_id: jobId, total, kind: "publish" });
+    } catch (error) {
+      sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/merchant-bubbles/delete-bucket-bubbles") {
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const report = await batchDeleteBucketBubbles(db, {
+        buzz_env: parseBuzzEnvFromRequest(req, body),
+        city: body.city || "",
+        slot: body.slot,
+        delayMs: body.delay_ms ?? 400,
       });
       sendJson(res, 200, { ok: true, ...report });
     } catch (error) {
       sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/merchant-bubbles/expire-bucket-bubbles") {
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const report = await batchExpireBucketBubbles(db, {
+        buzz_env: parseBuzzEnvFromRequest(req, body),
+        city: body.city || "",
+        slot: body.slot,
+        delayMs: body.delay_ms ?? 400,
+      });
+      sendJson(res, 200, { ok: true, ...report });
+    } catch (error) {
+      sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/merchant-bubbles/publish-test") {
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const report = await publishRandomTestMerchantBubble(db, {
+        buzz_env: parseBuzzEnvFromRequest(req, body),
+        city: body.city || "北京",
+        publish_user_id: body.publish_user_id,
+        title_mode: body.title_mode || "per_merchant",
+        group_mode: body.group_mode || "create_new",
+        now_type: body.now_type || 1,
+      });
+      sendJson(res, report.ok ? 200 : 502, { ok: report.ok, ...report });
+    } catch (error) {
+      sendJson(res, 400, { ok: false, error: error.message });
     }
     return;
   }
