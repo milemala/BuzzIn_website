@@ -125,7 +125,7 @@ node scripts/apply-event-classification-decisions.js --city=<城市> --source=xi
 5. 写入 `decisions.json` → apply
 
 ```bash
-node scripts/export-events-for-poi.js --city=<城市> --source=xiaohongshu --refresh --pending-only   # 入库已自动导出时可跳过
+node scripts/export-events-for-poi.js --city=<城市> --source=xiaohongshu --refresh --pending-only --new-import-only   # 入库已自动导出时可跳过；补历史 backlog 去掉 --new-import-only
 # Agent 写 data/poi-agent-workbench/<城市>-xhs/decisions.json
 node scripts/apply-event-poi-decisions.js --city=<城市> --source=xiaohongshu
 ```

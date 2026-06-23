@@ -1,163 +1,17 @@
 {
   "city": "广州",
-  "decided_at": "2026-06-20T18:30:10.628Z",
-  "agent": "cursor-composer",
+  "source": "douban",
+  "decided_at": "2026-06-23T01:22:00.000Z",
   "decisions": [
-    {
-      "event_uid": "douban:37889389",
-      "suggested": true,
-      "category": "看展逛馆",
-      "reason": "看展、逛馆、观影放映类文化体验"
-    },
-    {
-      "event_uid": "douban:37542063",
-      "suggested": false,
-      "category": "其他",
-      "reason": "展会/展销类活动，不适合线下交友娱乐"
-    },
-    {
-      "event_uid": "douban:37572116",
-      "suggested": false,
-      "category": "其他",
-      "reason": "行业展会/博览会，不适合线下交友娱乐"
-    },
-    {
-      "event_uid": "douban:37840917",
-      "suggested": true,
-      "category": "戏剧表演",
-      "reason": "话剧/音乐剧/舞剧等舞台演出"
-    },
-    {
-      "event_uid": "douban:37584246",
-      "suggested": true,
-      "category": "看展逛馆",
-      "reason": "看展、逛馆、观影放映类文化体验"
-    },
-    {
-      "event_uid": "douban:37584273",
-      "suggested": false,
-      "category": "其他",
-      "reason": "展会/展销类活动，不适合线下交友娱乐"
-    },
-    {
-      "event_uid": "douban:37584300",
-      "suggested": false,
-      "category": "其他",
-      "reason": "展会/展销类活动，不适合线下交友娱乐"
-    },
-    {
-      "event_uid": "douban:37890555",
-      "suggested": true,
-      "category": "交友聚会",
-      "reason": "交友/桌游/派对等社交属性明显"
-    },
-    {
-      "event_uid": "douban:37584322",
-      "suggested": false,
-      "category": "其他",
-      "reason": "展会/展销类活动，不适合线下交友娱乐"
-    },
-    {
-      "event_uid": "douban:37891186",
-      "suggested": true,
-      "category": "其他",
-      "reason": "生活娱乐属性，可保留人工复核"
-    },
-    {
-      "event_uid": "douban:37584331",
-      "suggested": false,
-      "category": "其他",
-      "reason": "展会/展销类活动，不适合线下交友娱乐"
-    },
-    {
-      "event_uid": "douban:37618828",
-      "suggested": false,
-      "category": "其他",
-      "reason": "展会/展销类活动，不适合线下交友娱乐"
-    },
-    {
-      "event_uid": "douban:37623052",
-      "suggested": false,
-      "category": "其他",
-      "reason": "展会/展销类活动，不适合线下交友娱乐"
-    },
-    {
-      "event_uid": "douban:37623080",
-      "suggested": false,
-      "category": "其他",
-      "reason": "展会/展销类活动，不适合线下交友娱乐"
-    },
-    {
-      "event_uid": "douban:37622979",
-      "suggested": false,
-      "category": "其他",
-      "reason": "行业展会/博览会，不适合线下交友娱乐"
-    },
-    {
-      "event_uid": "douban:37812519",
-      "suggested": true,
-      "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
-    },
-    {
-      "event_uid": "douban:37844565",
-      "suggested": true,
-      "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
-    },
-    {
-      "event_uid": "douban:37847819",
-      "suggested": true,
-      "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
-    },
-    {
-      "event_uid": "douban:37890778",
-      "suggested": true,
-      "category": "交友聚会",
-      "reason": "交友/桌游/派对等社交属性明显"
-    },
-    {
-      "event_uid": "douban:37604326",
-      "suggested": true,
-      "category": "其他",
-      "reason": "生活娱乐属性，可保留人工复核"
-    },
-    {
-      "event_uid": "douban:37731745",
-      "suggested": true,
-      "category": "其他",
-      "reason": "生活娱乐属性，可保留人工复核"
-    },
-    {
-      "event_uid": "douban:37604334",
-      "suggested": true,
-      "category": "其他",
-      "reason": "生活娱乐属性，可保留人工复核"
-    },
-    {
-      "event_uid": "douban:37605638",
-      "suggested": true,
-      "category": "其他",
-      "reason": "生活娱乐属性，可保留人工复核"
-    },
-    {
-      "event_uid": "douban:37731778",
-      "suggested": true,
-      "category": "其他",
-      "reason": "生活娱乐属性，可保留人工复核"
-    },
-    {
-      "event_uid": "douban:37732680",
-      "suggested": true,
-      "category": "其他",
-      "reason": "生活娱乐属性，可保留人工复核"
-    },
-    {
-      "event_uid": "douban:37732697",
-      "suggested": true,
-      "category": "其他",
-      "reason": "生活娱乐属性，可保留人工复核"
-    }
+    {"event_uid": "douban:37892097", "suggested": true, "category": "看展逛馆", "reason": "免费公映观影活动"},
+    {"event_uid": "douban:37747873", "suggested": true, "category": "音乐现场", "reason": "史诗电影交响音乐会"},
+    {"event_uid": "douban:37890843", "suggested": true, "category": "交友聚会", "reason": "新书分享会沙龙"},
+    {"event_uid": "douban:37735945", "suggested": true, "category": "户外运动", "reason": "松山湖赏花周边一日游"},
+    {"event_uid": "douban:37736001", "suggested": true, "category": "户外运动", "reason": "樱花峪风铃海赏花一日游"},
+    {"event_uid": "douban:37736623", "suggested": true, "category": "户外运动", "reason": "漓江徒步骑行长途游"},
+    {"event_uid": "douban:37732959", "suggested": true, "category": "户外运动", "reason": "从化樱花园一日游"},
+    {"event_uid": "douban:37735863", "suggested": true, "category": "户外运动", "reason": "惠州三角梅花海一日游"},
+    {"event_uid": "douban:37735909", "suggested": true, "category": "户外运动", "reason": "翁源桃花赏花一日游"},
+    {"event_uid": "douban:37640189", "suggested": true, "category": "交友聚会", "reason": "深度聊天社交圆桌会"}
   ]
 }

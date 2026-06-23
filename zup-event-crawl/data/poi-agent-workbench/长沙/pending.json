@@ -1,34 +1,49 @@
 {
   "city": "长沙",
   "source": "douban",
-  "exported_at": "2026-06-20T18:31:04.742Z",
+  "exported_at": "2026-06-23T01:32:02.096Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "unmatched",
   "pending_only": true,
   "doubtful_only": false,
-  "total_events": 3,
+  "total_events": 2,
   "group_count": 2,
-  "cache_hit_groups": 0,
+  "cache_hit_groups": 1,
   "groups": [
     {
-      "group_id": "e46ca9707fb2",
-      "location": "长沙 雨花区 MAO Livehouse-长沙沙湾店 劳动东路268号吉联MALL外1楼",
-      "sample_title": "黄恺「见你开心」巡演 长沙站",
+      "group_id": "62e951f67f55",
+      "location": "长沙 芙蓉区 英皇电影城-长沙国金购物中心店(芙蓉区解放西路188号长沙国金中心商场六层)",
+      "sample_title": "出奇制胜！重磅史诗之作《四渡》长沙公映首日免费观影",
       "event_uids": [
-        "douban:37754597",
-        "douban:37844965"
-      ],
-      "event_count": 2
-    },
-    {
-      "group_id": "8485bc49c2a7",
-      "location": "长沙 岳麓区 长沙达丰空间 银盆岭街道银盆岭路228号长沙保利时光汇5楼",
-      "sample_title": "babychair 2026「BACK IN TIME」亚洲巡演·长沙站",
-      "event_uids": [
-        "douban:37795387"
+        "douban:37892072"
       ],
       "event_count": 1
+    },
+    {
+      "group_id": "0e9c2d645d25",
+      "location": "长沙 芙蓉区 湖南大剧院 韶山路139号",
+      "sample_title": "法国Grissini Project 格里西尼乐团「幻乐交织・光影新章」2026 巡回音乐会",
+      "event_uids": [
+        "douban:37760748"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2554153063398531721",
+        "poi_title": "湖南大剧院",
+        "poi_address": "",
+        "latitude": 28.189747,
+        "longitude": 112.997792,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：长沙 芙蓉区 湖南大剧院 韶山路139号 → 湖南大剧院（来源 event:douban:37664991）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "0e9c2d645d25c4dc831e8bab5bf1bb182579aada"
+      }
     }
   ]
 }

@@ -1,13 +1,9 @@
 {
   "city": "重庆",
-  "decided_at": "2026-06-20T18:30:10.633Z",
-  "agent": "cursor-composer",
+  "source": "douban",
+  "decided_at": "2026-06-23T01:21:00.000Z",
   "decisions": [
-    {
-      "event_uid": "douban:37885846",
-      "suggested": true,
-      "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
-    }
+    {"event_uid": "douban:36571484", "suggested": true, "category": "喜剧脱口秀", "reason": "脱口秀新梗赛比赛演出"},
+    {"event_uid": "douban:36881584", "suggested": true, "category": "戏剧表演", "reason": "大型魔术秀演出"}
   ]
 }

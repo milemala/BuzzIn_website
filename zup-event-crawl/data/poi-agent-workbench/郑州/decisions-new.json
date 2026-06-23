@@ -1,0 +1,64 @@
+{
+  "city": "郑州",
+  "source": "douban",
+  "decided_at": "2026-06-23T02:10:00.000Z",
+  "agent": "cursor-composer",
+  "decisions": [
+    {
+      "group_id": "4b7b6ac9fe34",
+      "event_uids": ["douban:37858752"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "10949715273587582845",
+      "poi_title": "郑州大剧院",
+      "poi_address": "河南省郑州市中原区丹水大道与雪松路交叉口西南角",
+      "latitude": 34.742346,
+      "longitude": 113.550694,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中，郑州大剧院与钢琴音乐会场地一致"
+    },
+    {
+      "group_id": "817c3508d695",
+      "event_uids": ["douban:36317686"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "14695670024399702637",
+      "poi_title": "是个喜剧(油化厂创意园店)",
+      "poi_address": "河南省郑州市金水区沙口路黄河路东北角郑州记忆油化厂有熊街2号",
+      "latitude": 34.772323,
+      "longitude": 113.640176,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中，是个喜剧油化厂店与脱口秀场地一致"
+    },
+    {
+      "group_id": "82760422ff35",
+      "event_uids": ["douban:37812110"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "15788701412219640069",
+      "poi_title": "河南省人民会堂",
+      "poi_address": "河南省郑州市金水区花园路1号",
+      "latitude": 34.764414,
+      "longitude": 113.683659,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中，河南省人民会堂与舞台剧场地一致"
+    },
+    {
+      "group_id": "0e4c15bf7fd6",
+      "event_uids": ["douban:37858066"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "4860000343163251826",
+      "poi_title": "河南艺术中心大剧院",
+      "poi_address": "河南省郑州市金水区商务内环路1号",
+      "latitude": 34.771262,
+      "longitude": 113.723097,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中，河南艺术中心大剧院与演唱会场地一致"
+    }
+  ]
+}

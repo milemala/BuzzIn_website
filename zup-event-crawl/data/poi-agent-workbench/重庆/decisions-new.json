@@ -1,0 +1,34 @@
+{
+  "city": "重庆",
+  "source": "douban",
+  "updated_at": "2026-06-23T01:21:00.000Z",
+  "agent": "cursor-composer",
+  "decisions": [
+    {
+      "group_id": "c85b1b609e82",
+      "event_uids": ["douban:36571484"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "1957204529531340506",
+      "poi_title": "旅行箱喜剧|脱口秀剧场",
+      "latitude": 29.593318,
+      "longitude": 106.521911,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中新光里旅行箱喜剧剧场"
+    },
+    {
+      "group_id": "5a34edd36a41",
+      "event_uids": ["douban:36881584"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "9924413222897895137",
+      "poi_title": "重庆国泰艺术中心云卫剧场-渝戏",
+      "latitude": 29.560091,
+      "longitude": 106.577163,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中国泰艺术中心云卫剧场"
+    }
+  ]
+}

@@ -29,7 +29,7 @@ alwaysApply: false
 
 `buildEventPoiSearchKeywords` / `pickBestPoiForEvent` 等仅供 Agent **参考**，不能代替 Agent 写 `decisions.json`。
 
-**处理范围**：仅 `export-events-for-poi.js --pending-only`（审核 **待定** + 无 POI）。用户已在审核台 **拒绝** 的活动（`review_decisions.status=rejected`）**不要处理**。
+**处理范围**：抓取一条龙默认 `export-events-for-poi.js --pending-only --new-import-only`（**仅本轮新入库** + 待定 + 无 POI）。补历史 backlog 时用 `--pending-only`（不加 `--new-import-only`）。用户已在审核台 **拒绝** 的活动**不要处理**。
 
 **POI `reject` ≠ 审核台「拒绝」**：前者只是本轮没配上 POI，活动仍待定；后者是不要这条活动。
 

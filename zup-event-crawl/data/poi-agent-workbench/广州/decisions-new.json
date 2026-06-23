@@ -1,0 +1,78 @@
+{
+  "city": "广州",
+  "source": "douban",
+  "updated_at": "2026-06-23T01:22:30.000Z",
+  "agent": "cursor-composer",
+  "decisions": [
+    {
+      "group_id": "01068e387c68",
+      "event_uids": ["douban:37892097"],
+      "action": "match",
+      "search_keywords_tried": ["星汇电影城 光明广场"],
+      "poi_id": "11943345134901718656",
+      "poi_title": "星汇电影城(光明广场)",
+      "poi_address": "广东省广州市越秀区西湖路63号光明广场F7层-701",
+      "latitude": 23.121597,
+      "longitude": 113.267424,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "光明广场7层星汇电影城与活动地址一致"
+    },
+    {
+      "group_id": "b82cca436242",
+      "event_uids": ["douban:37747873"],
+      "action": "match",
+      "search_keywords_tried": ["星海音乐厅"],
+      "poi_id": "10798684933118352428",
+      "poi_title": "星海音乐厅",
+      "poi_address": "广东省广州市越秀区晴波路33号",
+      "latitude": 23.107748,
+      "longitude": 113.305678,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "晴波路33号星海音乐厅"
+    },
+    {
+      "group_id": "b633bf23e884",
+      "event_uids": ["douban:37890843"],
+      "action": "match",
+      "search_keywords_tried": ["方所 太古汇"],
+      "poi_id": "582301426002051054",
+      "poi_title": "方所(广州太古汇店)",
+      "poi_address": "广东省广州市天河区林和街道天河路383号太古汇商场MU35号",
+      "latitude": 23.134678,
+      "longitude": 113.331352,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "太古汇MU35号方所书店"
+    },
+    {
+      "group_id": "663afbd07afe",
+      "event_uids": ["douban:37735945", "douban:37736001", "douban:37736623", "douban:37732959", "douban:37735863", "douban:37735909"],
+      "action": "match",
+      "search_keywords_tried": ["珠江新城地铁站 A1"],
+      "poi_id": "6196835048042088375",
+      "poi_title": "珠江新城-A1口",
+      "poi_address": "",
+      "latitude": 23.120087,
+      "longitude": 113.320949,
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "周边游集合点为珠江新城地铁站A1口，实际目的地在东莞/惠州/桂林等地"
+    },
+    {
+      "group_id": "0eb115804d39",
+      "event_uids": ["douban:37640189"],
+      "action": "match",
+      "search_keywords_tried": ["星巴克 天河城店"],
+      "poi_id": "15397926718475443193",
+      "poi_title": "星巴克(广州天河城店)",
+      "poi_address": "广东省广州市天河区天河路208号天河城首层北门103C号铺",
+      "latitude": 23.132752,
+      "longitude": 113.322723,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "星巴克天河城店与活动场地一致"
+    }
+  ]
+}

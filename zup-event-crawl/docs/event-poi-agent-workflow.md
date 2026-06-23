@@ -26,7 +26,8 @@
 
 | 场景 | 导出命令 | 输出文件 | 审核台筛选项 |
 |------|----------|----------|--------------|
-| **未匹配 POI** | `export-events-for-poi.js --pending-only` | `pending.json` | 未匹配 POI |
+| **未匹配 POI（抓取一条龙）** | `export-events-for-poi.js --pending-only --new-import-only` | `pending.json` | 本轮新入库且未匹配 POI |
+| **未匹配 POI（补历史 backlog）** | `export-events-for-poi.js --pending-only` | `pending.json` | 未匹配 POI |
 | **存疑复核** | `export-events-for-poi.js --doubtful-only` | `doubtful-pending.json` | POI 存疑 |
 
 两种模式均要求：
@@ -56,7 +57,7 @@
 2. Agent 校正时间 → `time-decisions.json` → apply
 3. Agent 分类/挡下 → `classification-decisions.json` → apply
 4. Agent 写介绍 → `body-decisions.json` → apply
-5. **POI 未匹配**：`export --pending-only` → 读 `pending.json` → Agent 搜+判 → `decisions.json` → apply
+5. **POI 未匹配**：`export --pending-only --new-import-only` → 读 `pending.json` → Agent 搜+判 → `decisions.json` → apply
 6. 汇报各步条数
 
 **小红书**顺序（入库后**同会话**完成分类 + POI，见 `.cursor/rules/xhs-crawl-and-review-import.mdc`）：

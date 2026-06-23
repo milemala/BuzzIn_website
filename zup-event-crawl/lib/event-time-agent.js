@@ -4,6 +4,7 @@ const { parseDoubanEventTime } = require("./douban-detail");
 const { formatDateTime, parseEventTimeFromText, datePart } = require("./event-time-parse");
 
 const TIME_SOURCE_AGENT = "agent";
+const TIME_SOURCE_MANUAL = "manual";
 const TIME_SOURCE_PENDING = "pending";
 const TIME_SOURCE_JS = "js_fallback";
 
@@ -155,6 +156,7 @@ function syncEventDates(db, eventUid, startDate, endDate) {
 
 module.exports = {
   TIME_SOURCE_AGENT,
+  TIME_SOURCE_MANUAL,
   TIME_SOURCE_JS,
   TIME_SOURCE_PENDING,
   finishSameDayEndAt,

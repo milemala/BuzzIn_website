@@ -1,0 +1,21 @@
+{
+  "city": "福州",
+  "source": "douban",
+  "updated_at": "2026-06-23T01:21:00.000Z",
+  "agent": "cursor-composer",
+  "decisions": [
+    {
+      "group_id": "91f99d920107",
+      "event_uids": ["douban:37721316"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "2192942275681814310",
+      "poi_title": "MAKER LIVE(唯美客i33店)",
+      "latitude": 26.144737,
+      "longitude": 119.332266,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中唯美客MAKERLIVE三盛i33店"
+    }
+  ]
+}

@@ -46,7 +46,7 @@ function main() {
   const payload = JSON.parse(fs.readFileSync(options.file, "utf8"));
   const decisions = Array.isArray(payload.decisions) ? payload.decisions : [];
   const db = openDatabase(options.dbPath);
-  const summary = { ok: 0, fail: 0 };
+  const summary = { ok: 0, fail: 0, skipped: 0 };
 
   try {
     for (const decision of decisions) {
@@ -63,7 +63,13 @@ function main() {
         continue;
       }
       try {
-        const event = applyEventTime(db, eventUid, decision);
+        const result = applyEventTime(db, eventUid, decision);
+        if (result.skipped) {
+          summary.skipped += 1;
+          console.log(`⊘ ${eventUid} 跳过（${result.reason}）`);
+          continue;
+        }
+        const event = result.event;
         summary.ok += 1;
         console.log(`✓ ${event.title?.slice(0, 28)} · ${resolveStartAt(event)} → ${resolveExpiredAt(event)}`);
       } catch (error) {
@@ -71,7 +77,7 @@ function main() {
         console.warn(`✗ ${eventUid}: ${error.message}`);
       }
     }
-    console.log(`完成: 成功 ${summary.ok} · 失败 ${summary.fail}`);
+    console.log(`完成: 成功 ${summary.ok} · 跳过 ${summary.skipped} · 失败 ${summary.fail}`);
   } finally {
     db.close();
   }

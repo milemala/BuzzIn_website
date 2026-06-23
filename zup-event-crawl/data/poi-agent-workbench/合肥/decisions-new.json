@@ -1,0 +1,481 @@
+{
+  "city": "合肥",
+  "source": "douban",
+  "decided_at": "2026-06-23T01:39:19.523Z",
+  "agent": "cursor-composer",
+  "decisions": [
+    {
+      "group_id": "3558b781f95e",
+      "event_uids": [
+        "douban:37551627"
+      ],
+      "search_keywords_tried": [
+        "ONTHEWAY狭剧场",
+        "罍街二期15号楼"
+      ],
+      "action": "match",
+      "poi_id": "13773469555606060359",
+      "poi_title": "OTW LIVEHOUSE",
+      "poi_address": "安徽省合肥市包河区罍街二期15号楼3楼301室",
+      "latitude": 31.819596,
+      "longitude": 117.294611,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "ONTHEWAY狭剧场与活动OTW狭剧场地址一致"
+    },
+    {
+      "group_id": "c740c8b5becc",
+      "event_uids": [
+        "douban:36334728"
+      ],
+      "search_keywords_tried": [
+        "追笑喜剧空间-港汇广场七楼"
+      ],
+      "action": "match",
+      "poi_id": "3844383793227150543",
+      "poi_title": "追笑喜剧空间(京东超体7楼)",
+      "poi_address": "安徽省合肥市蜀山区南七街道港汇广场7楼(望江西路与潜山路东北角)",
+      "latitude": 31.832848,
+      "longitude": 117.23239,
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "港汇广场7楼追笑喜剧空间与活动场地一致"
+    },
+    {
+      "group_id": "55f608ff9061",
+      "event_uids": [
+        "douban:37682550"
+      ],
+      "search_keywords_tried": [
+        "忘忧吧",
+        "龙河路19号"
+      ],
+      "action": "match",
+      "poi_id": "11371658975115678730",
+      "poi_title": "忘忧吧",
+      "poi_address": "安徽省合肥市蜀山区龙河路西园新村68幢102室",
+      "latitude": 31.848472,
+      "longitude": 117.253835,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "忘忧吧社交酒馆与活动场地一致"
+    },
+    {
+      "group_id": "09f9b0940504",
+      "event_uids": [
+        "douban:37506042"
+      ],
+      "search_keywords_tried": [
+        "未来清晨"
+      ],
+      "action": "match",
+      "poi_id": "1525980244850689672",
+      "poi_title": "未来清晨(文化集合店)",
+      "poi_address": "安徽省合肥市蜀山区经开区北海路欧风街A区01号",
+      "latitude": 31.780387,
+      "longitude": 117.227359,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "未来清晨文化集合店与圆桌读书会场地一致"
+    },
+    {
+      "group_id": "7c4ea48c699e",
+      "event_uids": [
+        "douban:37852029"
+      ],
+      "search_keywords_tried": [
+        "合肥市政府"
+      ],
+      "action": "reject",
+      "reason": "仅写合肥市政府，地址过泛无法对应唯一POI"
+    },
+    {
+      "group_id": "01b8181c4902",
+      "event_uids": [
+        "douban:37799225"
+      ],
+      "search_keywords_tried": [
+        "万达广场(合肥包河店)"
+      ],
+      "action": "reject",
+      "reason": "CEO创业沙龙已挡下，万达广场POI无法代表具体活动场地"
+    },
+    {
+      "group_id": "3fe78dcedf92",
+      "event_uids": [
+        "douban:37438050",
+        "douban:36260947"
+      ],
+      "search_keywords_tried": [
+        "包河万象汇",
+        "下一站火星"
+      ],
+      "action": "match",
+      "poi_id": "8858291516002836541",
+      "poi_title": "合肥包河万象汇",
+      "poi_address": "安徽省合肥市包河区包河大道351号",
+      "latitude": 31.808366,
+      "longitude": 117.306806,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "下一站火星XR展位于包河万象汇3楼，商场主体一致"
+    },
+    {
+      "group_id": "e9377918d00e",
+      "event_uids": [
+        "douban:37761275",
+        "douban:37817841"
+      ],
+      "search_keywords_tried": [
+        "安徽大剧院"
+      ],
+      "action": "match",
+      "poi_id": "1232056429360386943",
+      "poi_title": "安徽大剧院",
+      "poi_address": "安徽省合肥市包河区芜湖路301号",
+      "latitude": 31.852388,
+      "longitude": 117.287032,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "芜湖路301号安徽大剧院与音乐会场地一致"
+    },
+    {
+      "group_id": "fc69e3c3e86b",
+      "event_uids": [
+        "douban:37854078"
+      ],
+      "search_keywords_tried": [
+        "回响之地·合肥馆"
+      ],
+      "action": "match",
+      "poi_id": "7088115097498560918",
+      "poi_title": "回响之地·合肥馆",
+      "poi_address": "安徽省合肥市瑶海区国家地理中文杂志经典视觉大展东(新安江路北)",
+      "latitude": 31.864543,
+      "longitude": 117.336738,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "回响之地合肥馆与庞麦郎巡演场地一致"
+    },
+    {
+      "group_id": "9d09cbd97844",
+      "event_uids": [
+        "douban:37633321",
+        "douban:37535269"
+      ],
+      "search_keywords_tried": [
+        "ONTHEWAY微剧场",
+        "罍街"
+      ],
+      "action": "match",
+      "poi_id": "16022797522579181595",
+      "poi_title": "罍街·OTW安徽原创音乐基地",
+      "poi_address": "安徽省合肥市包河区同安街道酒船路罍街二期15号楼三楼",
+      "latitude": 31.819639,
+      "longitude": 117.294521,
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "OTW微剧场位于罍街原创音乐基地4楼，基地POI主体一致"
+    },
+    {
+      "group_id": "264cd7225b51",
+      "event_uids": [
+        "douban:37839037"
+      ],
+      "search_keywords_tried": [
+        "百乐门大剧院"
+      ],
+      "action": "match",
+      "poi_id": "8650735711280205215",
+      "poi_title": "百乐门大剧院",
+      "poi_address": "安徽省合肥市蜀山区繁华大道与莲花路交叉口",
+      "latitude": 31.775613,
+      "longitude": 117.230617,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "莲花路与繁华大道百乐门大剧院与魔术秀场地一致"
+    },
+    {
+      "group_id": "d40643538964",
+      "event_uids": [
+        "douban:37716381"
+      ],
+      "search_keywords_tried": [
+        "合肥大剧院",
+        "天鹅湖路516号"
+      ],
+      "action": "match",
+      "poi_id": "2006381386252406525",
+      "poi_title": "合肥大剧院",
+      "poi_address": "安徽省合肥市蜀山区天鹅湖路516号",
+      "latitude": 31.815872,
+      "longitude": 117.224418,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "天鹅湖路516号合肥大剧院与舞剧场地一致"
+    },
+    {
+      "group_id": "3aa370b85f07",
+      "event_uids": [
+        "douban:37839361"
+      ],
+      "search_keywords_tried": [
+        "肥东大剧院"
+      ],
+      "action": "match",
+      "poi_id": "15193364080442917279",
+      "poi_title": "肥东大剧院",
+      "poi_address": "安徽省合肥市肥东县瑶岗路与深秀路交口西门停车场",
+      "latitude": 31.84381,
+      "longitude": 117.486809,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "肥东大剧院与流行歌曲演唱会场地一致"
+    },
+    {
+      "group_id": "92bae3a428bd",
+      "event_uids": [
+        "douban:37239702",
+        "douban:37527726"
+      ],
+      "search_keywords_tried": [
+        "哈啦子喜剧-之心城剧场"
+      ],
+      "action": "match",
+      "poi_id": "8699188752722527019",
+      "poi_title": "哈啦子喜剧(之心城)",
+      "poi_address": "安徽省合肥市蜀山区之心城购物中心7楼胖哥俩肉蟹煲右手边进来",
+      "latitude": 31.854057,
+      "longitude": 117.257838,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "之心城7楼哈啦子喜剧剧场与脱口秀专场一致"
+    },
+    {
+      "group_id": "f09a37d04139",
+      "event_uids": [
+        "douban:37854399",
+        "douban:37837057",
+        "douban:37862124",
+        "douban:37837157"
+      ],
+      "search_keywords_tried": [
+        "安徽百戏城大剧院"
+      ],
+      "action": "match",
+      "poi_id": "6621209379540509382",
+      "poi_title": "安徽百戏城大剧院",
+      "poi_address": "安徽省合肥市包河区云谷路与环湖北路交口",
+      "latitude": 31.71316,
+      "longitude": 117.33608,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "安徽百戏城大剧院与亲子魔术剧场地一致"
+    },
+    {
+      "group_id": "4c05499e047c",
+      "event_uids": [
+        "douban:37797877"
+      ],
+      "search_keywords_tried": [
+        "包河凤凰剧院"
+      ],
+      "action": "match",
+      "poi_id": "12489696708234009723",
+      "poi_title": "包河凤凰剧院",
+      "poi_address": "安徽省合肥市包河区徽州大道1418号",
+      "latitude": 31.809199,
+      "longitude": 117.285777,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "徽州大道1418号包河凤凰剧院与舞剧场地一致"
+    },
+    {
+      "group_id": "70797866a78c",
+      "event_uids": [
+        "douban:37854838"
+      ],
+      "search_keywords_tried": [
+        "开心麻花·花花世界剧场"
+      ],
+      "action": "match",
+      "poi_id": "7993386644896896900",
+      "poi_title": "合肥开心麻花·花花世界剧场(龙湖·车桥新界店)",
+      "poi_address": "安徽省合肥市瑶海区长江东大街与铜陵路交叉口西北角龙湖车桥新界B1厂房101室",
+      "latitude": 31.863687,
+      "longitude": 117.322367,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "龙湖车桥新界开心麻花花花世界剧场与活动场地一致"
+    },
+    {
+      "group_id": "9b48e16d4844",
+      "event_uids": [
+        "douban:36897099",
+        "douban:36897112"
+      ],
+      "search_keywords_tried": [
+        "金大地东西街",
+        "机遇时空X-META"
+      ],
+      "action": "match",
+      "poi_id": "1195528669840326937",
+      "poi_title": "金大地东西街",
+      "poi_address": "安徽省合肥市蜀山区黄山路街区6号楼",
+      "latitude": 31.841365,
+      "longitude": 117.221653,
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "X-META VR乐园位于金大地东西街6号楼3楼，街区POI主体一致"
+    },
+    {
+      "group_id": "de8cec48d3ee",
+      "event_uids": [
+        "douban:37491135",
+        "douban:36902072",
+        "douban:36902276"
+      ],
+      "search_keywords_tried": [
+        "机遇时空X-META",
+        "风起洛阳"
+      ],
+      "action": "match",
+      "poi_id": "6776174056747752621",
+      "poi_title": "机遇时空X-META·全感VR乐园·风起洛阳(淮河路步行街店)",
+      "poi_address": "安徽省合肥市庐阳区淮河路与含山路交汇处美居酒店3层",
+      "latitude": 31.864386,
+      "longitude": 117.292101,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "淮河路步行街X-META全感VR乐园与活动场地一致"
+    },
+    {
+      "group_id": "af73c92b7cc7",
+      "event_uids": [
+        "douban:37616787"
+      ],
+      "search_keywords_tried": [
+        "笑在霸都相声社"
+      ],
+      "action": "match",
+      "poi_id": "1332494272083443393",
+      "poi_title": "笑在霸都相声剧社",
+      "poi_address": "安徽省合肥市蜀山区南七街道潜山路216号大唐国际购物广场B1层",
+      "latitude": 31.831243,
+      "longitude": 117.232884,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "大唐国际购物广场B1笑在霸都相声剧社与活动场地一致"
+    },
+    {
+      "group_id": "dd46a6aebc40",
+      "event_uids": [
+        "douban:37673697",
+        "douban:37710730",
+        "douban:37698798"
+      ],
+      "search_keywords_tried": [
+        "追笑喜剧空间"
+      ],
+      "action": "match",
+      "poi_id": "3844383793227150543",
+      "poi_title": "追笑喜剧空间(京东超体7楼)",
+      "poi_address": "安徽省合肥市蜀山区南七街道港汇广场7楼",
+      "latitude": 31.832848,
+      "longitude": 117.23239,
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "追笑喜剧空间与活动场地一致"
+    },
+    {
+      "group_id": "c0b85172542b",
+      "event_uids": [
+        "douban:37513537"
+      ],
+      "search_keywords_tried": [
+        "来看剧场"
+      ],
+      "action": "match",
+      "poi_id": "7565514584472375990",
+      "poi_title": "来看剧场",
+      "poi_address": "安徽省合肥市包河区繁华大道辅路贡街罍+村二楼(来听相声茶馆)",
+      "latitude": 31.793743,
+      "longitude": 117.327695,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "贡街罍+村二楼来看剧场与脱口秀场地一致"
+    },
+    {
+      "group_id": "82c09856f072",
+      "event_uids": [
+        "douban:37844845"
+      ],
+      "search_keywords_tried": [
+        "OTW LIVEHOUSE"
+      ],
+      "action": "match",
+      "poi_id": "13773469555606060359",
+      "poi_title": "OTW LIVEHOUSE",
+      "poi_address": "安徽省合肥市包河区罍街二期15号楼3楼301室",
+      "latitude": 31.819596,
+      "longitude": 117.294611,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "罍街二期15号楼OTW LIVEHOUSE与巡演场地一致"
+    },
+    {
+      "group_id": "3a48f4a0af76",
+      "event_uids": [
+        "douban:37600585"
+      ],
+      "search_keywords_tried": [
+        "乐馆YourClub"
+      ],
+      "action": "match",
+      "poi_id": "16577094381325146853",
+      "poi_title": "乐馆YourClub(罍街店)",
+      "poi_address": "安徽省合肥市包河区同安街道宁国南路与水阳江路交口罍街四期5栋2楼201",
+      "latitude": 31.817977,
+      "longitude": 117.290857,
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "罍街四期乐馆YourClub与沉浸式喜剧场地一致"
+    },
+    {
+      "group_id": "73ff3440b482",
+      "event_uids": [
+        "douban:37850571"
+      ],
+      "search_keywords_tried": [
+        "BaoBao来了"
+      ],
+      "action": "match",
+      "poi_id": "11855146929354463840",
+      "poi_title": "BaoBao来了·沉浸式治愈系艺术展(合肥站)",
+      "poi_address": "安徽省合肥市包河区包公街道徽州大道838号漫乐城购物中心4楼423号",
+      "latitude": 31.835065,
+      "longitude": 117.286584,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "漫乐城4楼BaoBao治愈系艺术展与活动场地一致"
+    },
+    {
+      "group_id": "43944719b9cc",
+      "event_uids": [
+        "douban:37444011"
+      ],
+      "search_keywords_tried": [
+        "OTW狭剧场"
+      ],
+      "action": "match",
+      "poi_id": "6329334192622551530",
+      "poi_title": "ONTHEWAY狭剧场",
+      "poi_address": "安徽省合肥市包河区罍街二期15号楼安徽原创音乐基地3层302室",
+      "latitude": 31.819701,
+      "longitude": 117.294641,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "罍街OTW狭剧场与儿童剧场地一致"
+    }
+  ]
+}

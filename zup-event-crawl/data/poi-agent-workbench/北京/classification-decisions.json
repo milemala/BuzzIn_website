@@ -1,199 +1,74 @@
 {
   "city": "北京",
-  "decided_at": "2026-06-20T18:30:10.624Z",
+  "source": "douban",
+  "updated_at": "2026-06-23T01:15:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "event_uid": "douban:37890942",
+      "event_uid": "douban:37892188",
       "suggested": true,
-      "category": "看展逛馆",
-      "reason": "看展、逛馆、观影放映类文化体验"
+      "category": "交友聚会",
+      "reason": "新书分享沙龙，作者与读者面对面交流，偏文化社交"
     },
     {
-      "event_uid": "douban:37891374",
+      "event_uid": "douban:37891994",
       "suggested": true,
       "category": "看展逛馆",
-      "reason": "看展、逛馆、观影放映类文化体验"
+      "reason": "电影首映礼观影活动，含映后主创交流"
     },
     {
-      "event_uid": "douban:37869743",
+      "event_uid": "douban:37892151",
       "suggested": true,
+      "category": "看展逛馆",
+      "reason": "电影首映观影活动，含映后嘉宾交流"
+    },
+    {
+      "event_uid": "douban:37871594",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "革命历史题材音乐剧公演"
+    },
+    {
+      "event_uid": "douban:37876226",
+      "suggested": true,
+      "category": "音乐现场",
+      "reason": "清北毕业季乐队联合演出，Live 音乐"
+    },
+    {
+      "event_uid": "douban:37877847",
+      "suggested": true,
+      "category": "交友聚会",
+      "reason": "红色文化+非遗手作交友一日游，明确交友社交向"
+    },
+    {
+      "event_uid": "douban:37877926",
+      "suggested": true,
+      "category": "音乐现场",
+      "reason": "中央芭蕾舞团交响乐团音乐会"
+    },
+    {
+      "event_uid": "douban:37889252",
+      "suggested": false,
       "category": "其他",
-      "reason": "生活娱乐属性，可保留人工复核"
+      "reason": "AI Agent 创业路演/Demo Day，偏 B2B 创投峰会，非线下娱乐社交"
     },
     {
-      "event_uid": "douban:37877394",
+      "event_uid": "douban:37690860",
       "suggested": true,
       "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
+      "reason": "古典名曲系列音乐会"
     },
     {
-      "event_uid": "douban:37884023",
-      "suggested": true,
-      "category": "喜剧脱口秀",
-      "reason": "脱口秀/相声/喜剧，适合结伴观演"
-    },
-    {
-      "event_uid": "douban:37634511",
-      "suggested": true,
-      "category": "遛娃亲子",
-      "reason": "明确面向亲子/儿童的活动"
-    },
-    {
-      "event_uid": "douban:37810222",
+      "event_uid": "douban:37868369",
       "suggested": true,
       "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
+      "reason": "致敬 Beyond 不插电演唱会"
     },
     {
-      "event_uid": "douban:37889824",
-      "suggested": true,
-      "category": "交友聚会",
-      "reason": "交友/桌游/派对等社交属性明显"
-    },
-    {
-      "event_uid": "douban:37889996",
-      "suggested": true,
-      "category": "看展逛馆",
-      "reason": "看展、逛馆、观影放映类文化体验"
-    },
-    {
-      "event_uid": "douban:37838847",
+      "event_uid": "douban:37868280",
       "suggested": true,
       "category": "戏剧表演",
-      "reason": "话剧/音乐剧/舞剧等舞台演出"
-    },
-    {
-      "event_uid": "douban:37780965",
-      "suggested": true,
-      "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
-    },
-    {
-      "event_uid": "douban:37872523",
-      "suggested": true,
-      "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
-    },
-    {
-      "event_uid": "douban:37685844",
-      "suggested": true,
-      "category": "戏剧表演",
-      "reason": "话剧/音乐剧/舞剧等舞台演出"
-    },
-    {
-      "event_uid": "douban:37744386",
-      "suggested": true,
-      "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
-    },
-    {
-      "event_uid": "douban:37619327",
-      "suggested": true,
-      "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
-    },
-    {
-      "event_uid": "douban:37857688",
-      "suggested": true,
-      "category": "戏剧表演",
-      "reason": "话剧/音乐剧/舞剧等舞台演出"
-    },
-    {
-      "event_uid": "douban:37847111",
-      "suggested": true,
-      "category": "戏剧表演",
-      "reason": "话剧/音乐剧/舞剧等舞台演出"
-    },
-    {
-      "event_uid": "douban:37857274",
-      "suggested": true,
-      "category": "戏剧表演",
-      "reason": "话剧/音乐剧/舞剧等舞台演出"
-    },
-    {
-      "event_uid": "douban:37857716",
-      "suggested": true,
-      "category": "戏剧表演",
-      "reason": "话剧/音乐剧/舞剧等舞台演出"
-    },
-    {
-      "event_uid": "douban:37818472",
-      "suggested": true,
-      "category": "戏剧表演",
-      "reason": "话剧/音乐剧/舞剧等舞台演出"
-    },
-    {
-      "event_uid": "douban:37235396",
-      "suggested": true,
-      "category": "遛娃亲子",
-      "reason": "明确面向亲子/儿童的活动"
-    },
-    {
-      "event_uid": "douban:37678015",
-      "suggested": true,
-      "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
-    },
-    {
-      "event_uid": "douban:37887362",
-      "suggested": true,
-      "category": "交友聚会",
-      "reason": "交友/桌游/派对等社交属性明显"
-    },
-    {
-      "event_uid": "douban:37889337",
-      "suggested": true,
-      "category": "看展逛馆",
-      "reason": "看展、逛馆、观影放映类文化体验"
-    },
-    {
-      "event_uid": "douban:34797925",
-      "suggested": true,
-      "category": "喜剧脱口秀",
-      "reason": "脱口秀/相声/喜剧，适合结伴观演"
-    },
-    {
-      "event_uid": "douban:37279150",
-      "suggested": true,
-      "category": "遛娃亲子",
-      "reason": "明确面向亲子/儿童的活动"
-    },
-    {
-      "event_uid": "douban:37579915",
-      "suggested": true,
-      "category": "戏剧表演",
-      "reason": "话剧/音乐剧/舞剧等舞台演出"
-    },
-    {
-      "event_uid": "douban:37598598",
-      "suggested": true,
-      "category": "遛娃亲子",
-      "reason": "明确面向亲子/儿童的活动"
-    },
-    {
-      "event_uid": "douban:37732815",
-      "suggested": true,
-      "category": "遛娃亲子",
-      "reason": "明确面向亲子/儿童的活动"
-    },
-    {
-      "event_uid": "douban:37877135",
-      "suggested": true,
-      "category": "看展逛馆",
-      "reason": "看展、逛馆、观影放映类文化体验"
-    },
-    {
-      "event_uid": "douban:37887357",
-      "suggested": true,
-      "category": "交友聚会",
-      "reason": "交友/桌游/派对等社交属性明显"
-    },
-    {
-      "event_uid": "douban:34796122",
-      "suggested": true,
-      "category": "喜剧脱口秀",
-      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+      "reason": "开心麻花沉浸式互动戏剧"
     }
   ]
 }

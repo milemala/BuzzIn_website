@@ -1,0 +1,92 @@
+{
+  "city": "天津",
+  "source": "douban",
+  "decided_at": "2026-06-23T02:10:00.000Z",
+  "agent": "cursor-composer",
+  "decisions": [
+    {
+      "group_id": "a900e7aeedc9",
+      "event_uids": ["douban:37841577"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "5192144685254939370",
+      "poi_title": "天津大剧院",
+      "poi_address": "天津市河西区平江道58号增1号",
+      "latitude": 39.087342,
+      "longitude": 117.216161,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中，天津大剧院与活动场地一致"
+    },
+    {
+      "group_id": "a5f9fc995642",
+      "event_uids": ["douban:37561509"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "12573518917429878176",
+      "poi_title": "群星剧院",
+      "poi_address": "天津市和平区烟台道82号",
+      "latitude": 39.118676,
+      "longitude": 117.205819,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中，群星剧院与活动场地一致"
+    },
+    {
+      "group_id": "66f418f312bf",
+      "event_uids": ["douban:37677238"],
+      "action": "match",
+      "search_keywords_tried": ["飞鸟剧场 智慧山"],
+      "poi_id": "9634594934333036750",
+      "poi_title": "智慧山·飞鸟剧场",
+      "poi_address": "天津市西青区开华道与榕苑路交叉口正北方向101米左右",
+      "latitude": 39.092194,
+      "longitude": 117.121437,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "智慧山艺术中心2F飞鸟剧场与活动场地一致"
+    },
+    {
+      "group_id": "4f9b7427132a",
+      "event_uids": ["douban:37681441"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "7738159007364714106",
+      "poi_title": "滨海演艺中心",
+      "poi_address": "天津市滨海新区中央大道与大连东道交汇处西南侧",
+      "latitude": 39.016031,
+      "longitude": 117.686405,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中，滨海演艺中心与活动场地一致"
+    },
+    {
+      "group_id": "880be375bab0",
+      "event_uids": ["douban:37681453"],
+      "action": "match",
+      "search_keywords_tried": ["二十年音乐现场"],
+      "poi_id": "1153133185343987457",
+      "poi_title": "二十年音乐现场",
+      "poi_address": "天津市河东区津塘路146号泰达津一产业园4号楼西侧",
+      "latitude": 39.093947,
+      "longitude": 117.277011,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "津塘路146号二十年音乐现场与巡演场地一致"
+    },
+    {
+      "group_id": "6df13511b784",
+      "event_uids": ["douban:37696847"],
+      "action": "match",
+      "search_keywords_tried": ["天津滨湖剧院"],
+      "poi_id": "6495190320339676832",
+      "poi_title": "天津滨湖剧院-荣程小百花剧场",
+      "poi_address": "天津市河西区环湖中路6号",
+      "latitude": 39.0849,
+      "longitude": 117.185014,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "环湖中路6号滨湖剧院与话剧《骆驼祥子》场地一致"
+    }
+  ]
+}

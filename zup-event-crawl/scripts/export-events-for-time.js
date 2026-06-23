@@ -13,7 +13,7 @@ const fs = require("fs");
 const path = require("path");
 const { openDatabase } = require("../lib/review-db");
 const { resolveStartAt, resolveExpiredAt } = require("../lib/event-import-ready");
-const { suggestTimeDecision } = require("../lib/event-time-agent");
+const { suggestTimeDecision, TIME_SOURCE_AGENT, TIME_SOURCE_MANUAL } = require("../lib/event-time-agent");
 
 const root = path.join(__dirname, "..");
 const defaultDb = path.join(root, "data", "review.db");
@@ -26,11 +26,13 @@ function parseArgs(argv) {
     allCities: false,
     dbPath: defaultDb,
     limit: 5000,
+    pendingOnly: false,
   };
   for (const arg of argv.slice(2)) {
     if (arg.startsWith("--city=")) options.city = arg.slice("--city=".length).trim();
     else if (arg.startsWith("--source=")) options.source = arg.slice("--source=".length).trim();
     else if (arg === "--all-cities") options.allCities = true;
+    else if (arg === "--pending-only") options.pendingOnly = true;
     else if (arg.startsWith("--limit=")) options.limit = Number(arg.slice("--limit=".length)) || 5000;
     else if (arg.startsWith("--db=")) options.dbPath = arg.slice("--db=".length);
   }
@@ -57,6 +59,10 @@ function main() {
     if (options.source) {
       sql += " AND source = ?";
       params.push(options.source);
+    }
+    if (options.pendingOnly) {
+      sql += ` AND COALESCE(time_source, 'pending') NOT IN (?, ?)`;
+      params.push(TIME_SOURCE_AGENT, TIME_SOURCE_MANUAL);
     }
     sql += " ORDER BY city, source_position ASC, event_uid ASC LIMIT ?";
     params.push(options.limit);

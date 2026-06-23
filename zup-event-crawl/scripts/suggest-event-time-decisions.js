@@ -11,7 +11,7 @@
 const fs = require("fs");
 const path = require("path");
 const { openDatabase } = require("../lib/review-db");
-const { suggestTimeDecision } = require("../lib/event-time-agent");
+const { suggestTimeDecision, TIME_SOURCE_AGENT, TIME_SOURCE_MANUAL } = require("../lib/event-time-agent");
 
 const root = path.join(__dirname, "..");
 const defaultDb = path.join(root, "data", "review.db");
@@ -24,11 +24,13 @@ function parseArgs(argv) {
     allCities: false,
     dbPath: defaultDb,
     anchorDate: "2026-06-08",
+    pendingOnly: false,
   };
   for (const arg of argv.slice(2)) {
     if (arg.startsWith("--city=")) options.city = arg.slice("--city=".length).trim();
     else if (arg.startsWith("--source=")) options.source = arg.slice("--source=".length).trim();
     else if (arg === "--all-cities") options.allCities = true;
+    else if (arg === "--pending-only") options.pendingOnly = true;
     else if (arg.startsWith("--anchor-date=")) options.anchorDate = arg.slice("--anchor-date=".length).trim();
     else if (arg.startsWith("--db=")) options.dbPath = arg.slice("--db=".length);
   }
@@ -48,6 +50,10 @@ function main() {
     if (options.source) {
       sql += " AND source = ?";
       params.push(options.source);
+    }
+    if (options.pendingOnly) {
+      sql += ` AND COALESCE(time_source, 'pending') NOT IN (?, ?)`;
+      params.push(TIME_SOURCE_AGENT, TIME_SOURCE_MANUAL);
     }
     sql += " ORDER BY city, event_uid";
     const rows = db.prepare(sql).all(...params);

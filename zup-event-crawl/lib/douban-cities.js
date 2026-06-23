@@ -28,6 +28,7 @@ const DOUBAN_CITIES = {
   温州: { slug: "wenzhou", listKind: "location" },
   无锡: { slug: "wuxi", listKind: "location" },
   福州: { slug: "fuzhou", listKind: "location" },
+  合肥: { slug: "hefei", listKind: "location" },
 };
 
 const SLUG_ALIASES = {
@@ -63,6 +64,7 @@ const SLUG_ALIASES = {
   wenzhou: "温州",
   wuxi: "无锡",
   fuzhou: "福州",
+  hefei: "合肥",
 };
 
 function resolveDoubanCity(input) {

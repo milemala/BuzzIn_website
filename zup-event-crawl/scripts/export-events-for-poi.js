@@ -4,7 +4,7 @@
 /**
  * 导出 POI 任务（按地址去重），供 Cursor Agent 处理。
  *
- *   node scripts/export-events-for-poi.js --city=深圳 --refresh --pending-only
+ *   node scripts/export-events-for-poi.js --city=深圳 --refresh --pending-only --new-import-only
  *   node scripts/export-events-for-poi.js --city=上海 --source=xiaohongshu --refresh --pending-only
  */
 const path = require("path");
@@ -21,6 +21,7 @@ function parseArgs(argv) {
     refresh: false,
     pendingOnly: false,
     doubtfulOnly: false,
+    newImportOnly: false,
     limit: 2000,
   };
   for (const arg of argv.slice(2)) {
@@ -28,6 +29,7 @@ function parseArgs(argv) {
     else if (arg.startsWith("--source=")) options.source = arg.slice("--source=".length).trim() || "douban";
     else if (arg === "--refresh") options.refresh = true;
     else if (arg === "--pending-only") options.pendingOnly = true;
+    else if (arg === "--new-import-only") options.newImportOnly = true;
     else if (arg === "--doubtful-only") options.doubtfulOnly = true;
     else if (arg.startsWith("--limit=")) options.limit = Number(arg.slice("--limit=".length)) || 2000;
     else if (arg.startsWith("--db=")) options.dbPath = arg.slice("--db=".length);
@@ -38,6 +40,9 @@ function parseArgs(argv) {
   }
   if (options.pendingOnly && options.doubtfulOnly) {
     throw new Error("--pending-only 与 --doubtful-only 不能同时使用");
+  }
+  if (options.newImportOnly && !options.pendingOnly) {
+    throw new Error("--new-import-only 须与 --pending-only 一起使用");
   }
   return options;
 }
@@ -53,9 +58,12 @@ function main() {
       refresh: options.refresh,
       pendingOnly: options.pendingOnly,
       doubtfulOnly: options.doubtfulOnly,
+      newImportOnly: options.newImportOnly,
       limit: options.limit,
     });
-    const modeLabel = options.doubtfulOnly ? "存疑复核" : (options.pendingOnly ? "未匹配 POI" : "无 POI");
+    const modeLabel = options.doubtfulOnly
+      ? "存疑复核"
+      : (options.newImportOnly ? "本轮新入库未匹配 POI" : (options.pendingOnly ? "未匹配 POI" : "无 POI"));
     const cacheNote = result.cacheHits ? ` · 映射库命中 ${result.cacheHits} 组` : "";
     console.log(`已导出 [${modeLabel}] ${result.totalEvents} 条活动 · ${result.groupCount} 个地址组${cacheNote} → ${result.outPath}`);
   } finally {

@@ -1,40 +1,73 @@
 {
   "city": "西安",
   "source": "douban",
-  "exported_at": "2026-06-20T18:31:04.274Z",
+  "exported_at": "2026-06-23T01:32:00.778Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "unmatched",
   "pending_only": true,
   "doubtful_only": false,
-  "total_events": 3,
+  "total_events": 4,
   "group_count": 3,
-  "cache_hit_groups": 0,
+  "cache_hit_groups": 2,
   "groups": [
     {
-      "group_id": "1736f8b5a7c1",
-      "location": "西安 新城区 西安人民剧院 北大街41号(近西华门)",
-      "sample_title": "曹禺经典话剧《雷雨》",
+      "group_id": "10145d34ef32",
+      "location": "西安 雁塔区 陕西广电大剧院 长安南路336号，陕西广播电视台北80米",
+      "sample_title": "新国风美学经典舞台剧《红楼梦》",
       "event_uids": [
-        "douban:37756752"
+        "douban:37826972"
       ],
-      "event_count": 1
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "7854985022287789095",
+        "poi_title": "广电大剧院",
+        "poi_address": "",
+        "latitude": 34.21,
+        "longitude": 108.95,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：西安 雁塔区 陕西广电大剧院 长安南路336号，陕西广播电视台北80米 → 广电大剧院（来源 event:douban:37853545）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "10145d34ef322e2645ca4be479988db7b17605c3"
+      }
     },
     {
-      "group_id": "1ba87d958264",
-      "location": "西安 灞桥区 西安浐灞保利大剧院 浐灞生态区金茂一路2168号",
-      "sample_title": "《我们的爱》给未来的自己流行金曲传递演唱会",
+      "group_id": "044ba8870e6e",
+      "location": "西安 雁塔区 陕西大剧院 雁塔南路",
+      "sample_title": "2026.6.28俄罗斯莫斯科芭蕾舞团《天鹅湖》",
       "event_uids": [
-        "douban:37856088"
+        "douban:37737963",
+        "douban:37753711"
       ],
-      "event_count": 1
+      "event_count": 2,
+      "cached_poi": {
+        "poi_id": "8139344882893239294",
+        "poi_title": "陕西大剧院",
+        "poi_address": "",
+        "latitude": 34.209825,
+        "longitude": 108.963086,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：西安 雁塔区 陕西大剧院 雁塔南路 → 陕西大剧院（来源 event:douban:37779903）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "044ba8870e6ebb8a83acd6a9017d41e90dcf01d1"
+      }
     },
     {
-      "group_id": "146320bcf759",
-      "location": "西安 未央区 开元大剧院 凤城九路和开元路十字西南角",
-      "sample_title": "同名电视剧改编 南京市话剧团《父母爱情》",
+      "group_id": "d2c6c6254e9f",
+      "location": "西安 新城区 西演SPACE·福星现场 西一路282号易俗文化街区1号楼3F",
+      "sample_title": "碎梦飞跃「外面是夏天」2026巡演 西安站",
       "event_uids": [
-        "douban:37757415"
+        "douban:37789379"
       ],
       "event_count": 1
     }

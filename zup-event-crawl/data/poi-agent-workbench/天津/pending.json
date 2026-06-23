@@ -1,103 +1,115 @@
 {
   "city": "天津",
   "source": "douban",
-  "exported_at": "2026-06-20T18:31:04.952Z",
+  "exported_at": "2026-06-23T01:31:57.620Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "unmatched",
   "pending_only": true,
   "doubtful_only": false,
-  "total_events": 10,
-  "group_count": 10,
-  "cache_hit_groups": 0,
+  "total_events": 6,
+  "group_count": 6,
+  "cache_hit_groups": 3,
   "groups": [
     {
-      "group_id": "41cf33c569c2",
-      "location": "天津 南开区 杨家班相声剧场 古文化街文化小城7号楼一层",
-      "sample_title": "《杨少华杨家班》杨氏相声剧场（古文化街店）",
+      "group_id": "a900e7aeedc9",
+      "location": "天津 河西区 天津大剧院 平江道58号增1号",
+      "sample_title": "“中银之声”2026天津音乐节|庆祝建党105周年—“党旗颂・赤子心”专场音乐会",
       "event_uids": [
-        "douban:36975212"
+        "douban:37841577"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "5192144685254939370",
+        "poi_title": "天津大剧院",
+        "poi_address": "",
+        "latitude": 39.087342,
+        "longitude": 117.216161,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：天津 河西区 天津大剧院 平江道58号增1号 → 天津大剧院（来源 event:douban:37751256）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "a900e7aeedc9f641376d05c9ced0b92791c8d298"
+      }
+    },
+    {
+      "group_id": "a5f9fc995642",
+      "location": "天津 和平区 群星剧院 烟台道82号",
+      "sample_title": "《光辉岁月·传奇经典》beyond 经典歌曲演唱会",
+      "event_uids": [
+        "douban:37561509"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "12573518917429878176",
+        "poi_title": "群星剧院",
+        "poi_address": "",
+        "latitude": 39.118676,
+        "longitude": 117.205819,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：天津 和平区 群星剧院 烟台道82号 → 群星剧院（来源 event:douban:37091608）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "a5f9fc9956427a37cc9f1d926c58fff3ef5da7fb"
+      }
+    },
+    {
+      "group_id": "66f418f312bf",
+      "location": "天津 西青区 智慧山·飞鸟剧场 开华道20号智慧山艺术中心2F",
+      "sample_title": "天津脱口秀·90分钟情绪出逃计划",
+      "event_uids": [
+        "douban:37677238"
       ],
       "event_count": 1
     },
     {
-      "group_id": "88cc999ebbf3",
-      "location": "天津 和平区 听角儿相声茶馆 滨江道211号麦购休闲广场5楼",
-      "sample_title": "津味浓·包袱足 听角儿相声大会（滨江道店）",
+      "group_id": "4f9b7427132a",
+      "location": "天津 滨海新区 滨海演艺中心 中央大道与大连东道交汇处西南侧",
+      "sample_title": "老舍经典话剧《骆驼祥子》",
       "event_uids": [
-        "douban:36573709"
+        "douban:37681441"
       ],
-      "event_count": 1
-    },
-    {
-      "group_id": "8afdad4b56cd",
-      "location": "天津 和平区 利顺德博物馆—泰晤士厅 台儿庄路33号利顺德大饭店地下一层",
-      "sample_title": "天津利顺德博物馆里的音乐会[斯拉夫的浪漫]",
-      "event_uids": [
-        "douban:37760525"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "9df4ab4ce4e2",
-      "location": "天津 和平区 观乐小剧场 小白楼街道建设路88号朗香街地铁层M026-028号",
-      "sample_title": "【天津相声推荐】观乐小剧场·嘎嘎乐相声专场",
-      "event_uids": [
-        "douban:36084235"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "b86f941af7af",
-      "location": "天津 和平区 名流相声茶馆-恒隆店 兴安路166号恒隆广场4楼4034号",
-      "sample_title": "马三立亲笔题字-名流相声茶馆（恒隆店）",
-      "event_uids": [
-        "douban:36619486"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "79de00585fca",
-      "location": "天津 南开区 新华相声社 古文化街文化小城7-204",
-      "sample_title": "新华相声社（古文化街玉皇阁店）",
-      "event_uids": [
-        "douban:37191654"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "7d4b6cc355a1",
-      "location": "天津 和平区 相遇相声社 津湾广场5号楼三楼",
-      "sample_title": "津湾广场新地标·天津相遇相声社·旅游推荐项目之一",
-      "event_uids": [
-        "douban:37672095"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "e6964a74dfab",
-      "location": "天津 和平区 康之乐相声大会 劝业场街道滨江道155号",
-      "sample_title": "喝茶品茗，听个相声-康之乐相声大会（金街店）",
-      "event_uids": [
-        "douban:37685915"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "e0b7f9c01a5c",
-      "location": "天津 河东区 二十年音乐现场MAX 演出现场 津塘路146号泰达津一产业公园4号楼东侧",
-      "sample_title": "康姆士COM'Z 「桃花源」2026巡演（天津站）",
-      "event_uids": [
-        "douban:37852190"
-      ],
-      "event_count": 1
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "7738159007364714106",
+        "poi_title": "滨海演艺中心",
+        "poi_address": "",
+        "latitude": 39.016031,
+        "longitude": 117.686405,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：天津 滨海新区 滨海演艺中心 中央大道与大连东道交汇处西南侧 → 滨海演艺中心（来源 event:douban:37722230）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "4f9b7427132a5c32069cc880252bdfa5c622a826"
+      }
     },
     {
       "group_id": "880be375bab0",
       "location": "天津 河东区 二十年音乐现场 津塘路146号泰达津一产业公园4号楼西侧",
-      "sample_title": "碎梦飞跃「外面是夏天」2026巡演 天津站",
+      "sample_title": "zkaaai2026巡演",
       "event_uids": [
-        "douban:37806880"
+        "douban:37681453"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "6df13511b784",
+      "location": "天津 河西区 天津滨湖剧院 马场街道环湖中路6号(招商银行旁)",
+      "sample_title": "老舍经典话剧《骆驼祥子》",
+      "event_uids": [
+        "douban:37696847"
       ],
       "event_count": 1
     }

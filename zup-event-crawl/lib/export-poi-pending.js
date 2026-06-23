@@ -5,6 +5,7 @@ const path = require("path");
 const crypto = require("crypto");
 const { lookupPoiAddressCache, cacheEntryToDecisionFields } = require("./poi-address-cache");
 const { workbenchDir } = require("./export-classification-pending");
+const { getLastImportNewUids } = require("./review-db");
 
 function locationGroupKey(location, city) {
   const text = String(location || "").trim() || "(无地址)";
@@ -29,6 +30,7 @@ function poiDecisionsPath(city, source = "douban") {
  *   refresh?: boolean,
  *   pendingOnly?: boolean,
  *   doubtfulOnly?: boolean,
+ *   newImportOnly?: boolean,
  *   limit?: number,
  * }} options
  */
@@ -39,7 +41,14 @@ function exportPoiPending(db, options) {
 
   const pendingOnly = Boolean(options.pendingOnly);
   const doubtfulOnly = Boolean(options.doubtfulOnly);
+  const newImportOnly = Boolean(options.newImportOnly);
   const today = new Date().toISOString().slice(0, 10);
+
+  if (newImportOnly && !pendingOnly) {
+    throw new Error("--new-import-only 须与 --pending-only 一起使用");
+  }
+
+  const lastImportNewUids = newImportOnly ? getLastImportNewUids(db, city, source) : [];
 
   let sql = `
     SELECT e.event_uid, e.city, e.title, e.location, e.location_poi_id,
@@ -63,6 +72,15 @@ function exportPoiPending(db, options) {
     params.push(today);
   } else if (!options.refresh) {
     sql += " AND (e.location_poi_id IS NULL OR trim(e.location_poi_id) = '')";
+  }
+
+  if (newImportOnly) {
+    if (!lastImportNewUids.length) {
+      sql += " AND 1 = 0";
+    } else {
+      sql += ` AND e.event_uid IN (${lastImportNewUids.map(() => "?").join(", ")})`;
+      params.push(...lastImportNewUids);
+    }
   }
 
   sql += " ORDER BY e.source_position ASC, e.event_uid ASC LIMIT ?";
@@ -111,7 +129,7 @@ function exportPoiPending(db, options) {
     }
   }
 
-  const exportMode = doubtfulOnly ? "doubtful" : (pendingOnly ? "unmatched" : "all_no_poi");
+  const exportMode = doubtfulOnly ? "doubtful" : (newImportOnly ? "new_import_unmatched" : (pendingOnly ? "unmatched" : "all_no_poi"));
   const outName = doubtfulOnly ? "doubtful-pending.json" : "pending.json";
   const dbPath = options.dbPath || "";
 
@@ -123,6 +141,8 @@ function exportPoiPending(db, options) {
     refresh: Boolean(options.refresh),
     export_mode: exportMode,
     pending_only: pendingOnly,
+    new_import_only: newImportOnly,
+    last_import_new_uids: newImportOnly ? lastImportNewUids.length : undefined,
     doubtful_only: doubtfulOnly,
     total_events: rows.length,
     group_count: groups.length,

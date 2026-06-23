@@ -59,12 +59,12 @@ function main() {
     ].join(" "));
   }
 
-  run(`node scripts/export-events-for-time.js --city=${options.cityName} --source=douban`);
-  run(`node scripts/suggest-event-time-decisions.js --city=${options.cityName} --source=douban`);
+  run(`node scripts/export-events-for-time.js --city=${options.cityName} --source=douban --pending-only`);
+  run(`node scripts/suggest-event-time-decisions.js --city=${options.cityName} --source=douban --pending-only`);
   run(`node scripts/export-events-for-classification.js --city=${options.cityName} --refresh`);
   run(`node scripts/export-events-for-body.js --city=${options.cityName} --refresh`);
 
-  const pendingFlag = options.pendingOnly ? " --pending-only" : "";
+  const pendingFlag = options.pendingOnly ? " --pending-only --new-import-only" : "";
   run(`node scripts/export-events-for-poi.js --city=${options.cityName} --refresh${pendingFlag}`);
 
   const workbench = path.join(root, "data", "poi-agent-workbench", options.cityName);

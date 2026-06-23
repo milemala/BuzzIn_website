@@ -1,0 +1,33 @@
+{
+  "city": "合肥",
+  "source": "douban",
+  "exported_at": "2026-06-23T01:41:08.052Z",
+  "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
+  "refresh": true,
+  "export_mode": "unmatched",
+  "pending_only": true,
+  "doubtful_only": false,
+  "total_events": 2,
+  "group_count": 2,
+  "cache_hit_groups": 0,
+  "groups": [
+    {
+      "group_id": "7c4ea48c699e",
+      "location": "合肥 合肥市政府",
+      "sample_title": "每周:野餐·观影·观星·深度对话/非盈利",
+      "event_uids": [
+        "douban:37852029"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "01b8181c4902",
+      "location": "合肥 包河区 万达广场(合肥包河店)",
+      "sample_title": "进化论CEO创业沙龙 | 创业者聚会 拓展人脉 链接资源！",
+      "event_uids": [
+        "douban:37799225"
+      ],
+      "event_count": 1
+    }
+  ]
+}

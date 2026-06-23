@@ -1,25 +1,115 @@
 {
   "city": "郑州",
   "source": "douban",
-  "exported_at": "2026-06-20T18:31:04.811Z",
+  "exported_at": "2026-06-23T01:32:03.246Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "unmatched",
   "pending_only": true,
   "doubtful_only": false,
-  "total_events": 2,
-  "group_count": 1,
-  "cache_hit_groups": 0,
+  "total_events": 4,
+  "group_count": 4,
+  "cache_hit_groups": 4,
   "groups": [
     {
-      "group_id": "6c2026a16ec6",
-      "location": "郑州 金水区 7LIVEHOUSE 文化路和金水路交汇处东北角中原大舞台内2层",
-      "sample_title": "小狗的骨头「New Old Body」2026巡演 郑州站",
+      "group_id": "4b7b6ac9fe34",
+      "location": "郑州 中原区 郑州大剧院 丹水大道与雪松路交叉口西南角",
+      "sample_title": "2026桂冠之声｜黄正峄《溯根而行：当中西名曲在抒情与史诗中相遇》钢琴独奏音乐会",
       "event_uids": [
-        "douban:37762586",
-        "douban:37791406"
+        "douban:37858752"
       ],
-      "event_count": 2
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "10949715273587582845",
+        "poi_title": "郑州大剧院",
+        "poi_address": "",
+        "latitude": 34.742346,
+        "longitude": 113.550694,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：郑州 中原区 郑州大剧院 丹水大道与雪松路交叉口西南角 → 郑州大剧院（来源 event:douban:37749839）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "4b7b6ac9fe34730408cf816c673b7adf53604c29"
+      }
+    },
+    {
+      "group_id": "817c3508d695",
+      "location": "郑州 金水区 是个喜剧-郑州记忆油化厂店 沙口路黄河路东北角郑州记忆油化厂有熊街2号",
+      "sample_title": "是个喜剧｜《嘎嘎笑拼盘秀》周周特邀综艺卡司｜轻松解压@油化厂",
+      "event_uids": [
+        "douban:36317686"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "14695670024399702637",
+        "poi_title": "是个喜剧(油化厂创意园店)",
+        "poi_address": "",
+        "latitude": 34.772323,
+        "longitude": 113.640176,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：郑州 金水区 是个喜剧-郑州记忆油化厂店 沙口路黄河路东北角郑州记忆油化厂有熊街2号 → 是个喜剧(油化厂创意园店)（来源 event:douban:35857538）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "817c3508d695b819522ba76abf877e28774c127c"
+      }
+    },
+    {
+      "group_id": "82760422ff35",
+      "location": "郑州 金水区 河南省人民会堂 花园路1号（紫荆山立交桥河南饭店对面）",
+      "sample_title": "【郑州站】6月28日新中式美学经典舞台剧《红楼梦》【河南省人民会堂】",
+      "event_uids": [
+        "douban:37812110"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "15788701412219640069",
+        "poi_title": "河南省人民会堂",
+        "poi_address": "",
+        "latitude": 34.764414,
+        "longitude": 113.683659,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：郑州 金水区 河南省人民会堂 花园路1号（紫荆山立交桥河南饭店对面） → 河南省人民会堂（来源 event:douban:37701746）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "82760422ff35ffe7381d9290f53634e898e4e23d"
+      }
+    },
+    {
+      "group_id": "0e4c15bf7fd6",
+      "location": "郑州 金水区 河南艺术中心 商务内环路1号",
+      "sample_title": "声声不息--港乐经典金曲演唱会",
+      "event_uids": [
+        "douban:37858066"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "4860000343163251826",
+        "poi_title": "河南艺术中心大剧院",
+        "poi_address": "",
+        "latitude": 34.771262,
+        "longitude": 113.723097,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：郑州 金水区 河南艺术中心 商务内环路1号 → 河南艺术中心大剧院（来源 event:douban:37848972）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "0e4c15bf7fd658520a5479e23c3b20964a7e3c33"
+      }
     }
   ]
 }

@@ -5,6 +5,7 @@ const {
   buildImportRecord,
   importReadyIssues,
   isImportReady,
+  resolveStartAt,
 } = require("./event-import-ready");
 const { readImageForImport } = require("./image-fetch");
 const { createGroupForNow } = require("./tencent-im-group");
@@ -520,6 +521,93 @@ async function batchImportApprovedEvents(db, options = {}) {
   };
 }
 
+function expiredAtDaysFromNow(days, endOfDay = true) {
+  const date = new Date();
+  date.setDate(date.getDate() + Number(days) || 0);
+  if (endOfDay) {
+    date.setHours(23, 59, 59, 0);
+  }
+  return formatDateTime(date);
+}
+
+async function batchUpdateEventsExpiredAt(db, eventUids, options = {}) {
+  const { applyEventTime } = require("./review-db");
+  const { TIME_SOURCE_MANUAL } = require("./event-time-agent");
+  const buzzEnv = resolveBuzzEnv(options);
+  const client = createClientForEnv(options);
+  const syncBuzz = options.sync_buzz !== false;
+  const expiredAt = String(options.expired_at || "").trim()
+    || expiredAtDaysFromNow(options.days_from_now ?? 12);
+
+  const uids = [...new Set(
+    (Array.isArray(eventUids) ? eventUids : [])
+      .map((uid) => String(uid || "").trim())
+      .filter(Boolean),
+  )];
+
+  const results = [];
+  let updated = 0;
+  let buzzUpdated = 0;
+  let fail = 0;
+
+  for (const eventUid of uids) {
+    const event = eventWithBuzzEnv(db, eventUid, buzzEnv);
+    if (!event) {
+      fail += 1;
+      results.push({ ok: false, event_uid: eventUid, error: "活动不存在" });
+      continue;
+    }
+    const startAt = resolveStartAt(event);
+    if (!startAt) {
+      fail += 1;
+      results.push({ ok: false, event_uid: eventUid, title: event.title, error: "缺少开始时间" });
+      continue;
+    }
+    try {
+      const applyResult = applyEventTime(db, eventUid, {
+        start_at: startAt,
+        expired_at: expiredAt,
+      }, { timeSource: TIME_SOURCE_MANUAL, force: true });
+      const updatedEvent = applyResult.event;
+      let buzzSync = null;
+      const nowId = String(event.buzz_now_id || "").trim();
+      if (syncBuzz && nowId) {
+        await client.updateNow(nowId, { expired_at: expiredAt });
+        buzzUpdated += 1;
+        buzzSync = nowId;
+      }
+      updated += 1;
+      results.push({
+        ok: true,
+        event_uid: eventUid,
+        title: event.title,
+        expired_at: expiredAt,
+        buzz_now_id: buzzSync,
+        event: applyBuzzEnvToEvent(db, updatedEvent, buzzEnv),
+      });
+    } catch (error) {
+      fail += 1;
+      results.push({
+        ok: false,
+        event_uid: eventUid,
+        title: event.title,
+        error: error.message,
+      });
+    }
+  }
+
+  return {
+    ok: fail === 0,
+    total: uids.length,
+    updated,
+    fail,
+    buzz_updated: buzzUpdated,
+    expired_at: expiredAt,
+    buzz_env: buzzEnv,
+    results,
+  };
+}
+
 async function deleteEventFromBuzz(db, eventUid, options = {}) {
   const buzzEnv = resolveBuzzEnv(options);
   const event = eventWithBuzzEnv(db, eventUid, buzzEnv);
@@ -566,8 +654,12 @@ async function deleteEventFromBuzz(db, eventUid, options = {}) {
 module.exports = {
   BuzzAdminClient,
   batchImportApprovedEvents,
+  batchUpdateEventsExpiredAt,
   buildBuzzPayload,
+  createClientForEnv,
   defaultExpiredAt,
   deleteEventFromBuzz,
+  expiredAtDaysFromNow,
   importEventToBuzz,
+  resolveBuzzEnv,
 };

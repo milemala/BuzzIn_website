@@ -1,0 +1,78 @@
+{
+  "city": "成都",
+  "source": "douban",
+  "updated_at": "2026-06-23T01:19:00.000Z",
+  "agent": "cursor-composer",
+  "decisions": [
+    {
+      "group_id": "53b3d3a73cb2",
+      "event_uids": ["douban:37892062"],
+      "action": "match",
+      "search_keywords_tried": ["中影紫荆国际影城 环球中心"],
+      "poi_id": "8563528716255735678",
+      "poi_title": "中影紫荆国际影城4K激光IMAX(环球中心旗舰店)",
+      "poi_address": "四川省成都市武侯区天府大道北段1700号2栋1单元401号4FB01A商铺",
+      "latitude": 30.56926,
+      "longitude": 104.064829,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址与活动场地完全一致：环球中心旗舰店4F"
+    },
+    {
+      "group_id": "1f5e34c77340",
+      "event_uids": ["douban:37839526"],
+      "action": "match",
+      "search_keywords_tried": ["趣耍剧场 摩尔百货"],
+      "poi_id": "13715251142567790098",
+      "poi_title": "趣耍剧场|新派互动剧场(春熙路店)",
+      "poi_address": "四川省成都市锦江区春熙路街道摩尔百货5楼趣耍剧场",
+      "latitude": 30.656893,
+      "longitude": 104.068543,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "摩尔百货5楼趣耍剧场，与活动地址一致"
+    },
+    {
+      "group_id": "60c34f834473",
+      "event_uids": ["douban:37882859"],
+      "action": "match",
+      "search_keywords_tried": ["蓉创茶馆 天府新谷"],
+      "poi_id": "15159654605724749441",
+      "poi_title": "蓉创茶馆",
+      "poi_address": "四川省成都市武侯区石羊街道府城大道西段399号天府新谷南门9号楼1层",
+      "latitude": 30.586238,
+      "longitude": 104.055971,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "天府新谷9号楼一楼蓉创茶馆，与活动场地一致"
+    },
+    {
+      "group_id": "ac409ea0a1f4",
+      "event_uids": ["douban:37596537", "douban:37648187"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "9376801705905655058",
+      "poi_title": "笑古里喜剧剧场",
+      "poi_address": "",
+      "latitude": 30.65836,
+      "longitude": 104.078775,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中，烟雨蓉城剧场即笑古里喜剧剧场"
+    },
+    {
+      "group_id": "8fbd5297c5bd",
+      "event_uids": ["douban:37647562"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "3772492142220594512",
+      "poi_title": "凤求凰剧场(星辉家园)",
+      "poi_address": "",
+      "latitude": 30.673644,
+      "longitude": 104.083005,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中，驷马桥凤求凰剧场"
+    }
+  ]
+}

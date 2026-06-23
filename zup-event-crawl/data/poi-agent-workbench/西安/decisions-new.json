@@ -1,0 +1,50 @@
+{
+  "city": "西安",
+  "source": "douban",
+  "decided_at": "2026-06-23T02:10:00.000Z",
+  "agent": "cursor-composer",
+  "decisions": [
+    {
+      "group_id": "10145d34ef32",
+      "event_uids": ["douban:37826972"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "7854985022287789095",
+      "poi_title": "广电大剧院",
+      "poi_address": "陕西省西安市雁塔区长安南路336号",
+      "latitude": 34.21,
+      "longitude": 108.95,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中，陕西广电大剧院与活动场地一致"
+    },
+    {
+      "group_id": "044ba8870e6e",
+      "event_uids": ["douban:37737963", "douban:37753711"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "8139344882893239294",
+      "poi_title": "陕西大剧院",
+      "poi_address": "陕西省西安市雁塔区雁塔南路",
+      "latitude": 34.209825,
+      "longitude": 108.963086,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中，陕西大剧院与芭蕾/儿童剧场地一致"
+    },
+    {
+      "group_id": "d2c6c6254e9f",
+      "event_uids": ["douban:37789379"],
+      "action": "match",
+      "search_keywords_tried": ["西演SPACE福星现场"],
+      "poi_id": "9895974090361940514",
+      "poi_title": "西演SPACE·福星现场",
+      "poi_address": "陕西省西安市新城区西一路282号易俗文化街区1号楼3F",
+      "latitude": 34.260834,
+      "longitude": 108.949155,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "西一路282号福星现场与乐队巡演场地一致"
+    }
+  ]
+}

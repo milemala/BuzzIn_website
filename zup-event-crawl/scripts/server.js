@@ -30,6 +30,7 @@ const {
 } = require("../lib/review-db");
 const {
   batchImportApprovedEvents,
+  batchUpdateEventsExpiredAt,
   deleteEventFromBuzz,
   importEventToBuzz,
 } = require("../lib/buzz-now-import");
@@ -585,6 +586,27 @@ async function handleApi(req, res, pathname) {
         return;
       }
       sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/events/batch-expired-at") {
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const buzzEnv = parseBuzzEnvFromRequest(req, body);
+      const eventUids = Array.isArray(body.event_uids) ? body.event_uids : [];
+      if (!eventUids.length) {
+        throw new Error("缺少 event_uids");
+      }
+      const report = await batchUpdateEventsExpiredAt(db, eventUids, {
+        buzz_env: buzzEnv,
+        expired_at: body.expired_at,
+        days_from_now: body.days_from_now,
+        sync_buzz: body.sync_buzz !== false,
+      });
+      sendJson(res, 200, { ok: true, ...report });
+    } catch (error) {
+      sendJson(res, 400, { ok: false, error: error.message });
     }
     return;
   }

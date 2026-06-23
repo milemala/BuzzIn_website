@@ -72,6 +72,7 @@ const EVENT_IMPORT_COLUMNS = [
   ["douban_event_type", "TEXT NOT NULL DEFAULT ''"],
   ["classification_source", "TEXT NOT NULL DEFAULT 'pending'"],
   ["body_source", "TEXT NOT NULL DEFAULT 'pending'"],
+  ["time_source", "TEXT NOT NULL DEFAULT 'pending'"],
 ];
 
 function parsePoiCandidates(raw) {
@@ -224,6 +225,7 @@ function rowToEvent(row) {
     douban_event_type: row.douban_event_type || "",
     classification_source: String(row.classification_source || "pending").trim() || "pending",
     body_source: String(row.body_source || "pending").trim() || "pending",
+    time_source: String(row.time_source || "pending").trim() || "pending",
     publish_user_id: row.publish_user_id || DEFAULT_PUBLISH_USER_ID,
     now_type: normalizeNowType(row.now_type, row),
     location_poi_id: row.location_poi_id || "",
@@ -726,6 +728,21 @@ function setMetaValue(db, key, value) {
   `).run(key, String(value));
 }
 
+function lastImportNewUidsMetaKey(city, source) {
+  return `last_import_new_uids:${city}:${source || "all"}`;
+}
+
+function getLastImportNewUids(db, city, source) {
+  const raw = getMetaValue(db, lastImportNewUidsMetaKey(city, source), "");
+  if (!raw) return [];
+  try {
+    const payload = JSON.parse(raw);
+    return Array.isArray(payload?.event_uids) ? payload.event_uids : [];
+  } catch {
+    return [];
+  }
+}
+
 function groupEventsByCity(payload) {
   const events = Array.isArray(payload.events) ? payload.events : [];
   const groups = new Map();
@@ -752,12 +769,12 @@ function importPayload(db, payload, options = {}) {
       event_uid, source_id, source, source_name, source_position, source_url, source_list_page,
       city, district, title, category, start_date, end_date, time_text, location,
       latitude, longitude, image, image_original, fee, owner, counts, raw_detail_text, raw_detail_html, body, original_link,
-      score, suggested, review_reason, douban_event_type, classification_source, body_source, updated_at
+      score, suggested, review_reason, douban_event_type, classification_source, body_source, time_source, updated_at
     ) VALUES (
       ?, ?, ?, ?, ?, ?, ?,
       ?, ?, ?, ?, ?, ?, ?, ?,
       ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-      ?, ?, ?, ?, ?, ?, ?
+      ?, ?, ?, ?, ?, ?, ?, ?
     )
     ON CONFLICT(event_uid) DO UPDATE SET
       source_id = excluded.source_id,
@@ -774,10 +791,12 @@ function importPayload(db, payload, options = {}) {
         ELSE excluded.category
       END,
       start_date = CASE
+        WHEN events.time_source IN ('agent', 'manual') THEN events.start_date
         WHEN excluded.start_date IS NOT NULL AND excluded.start_date != '' THEN excluded.start_date
         ELSE events.start_date
       END,
       end_date = CASE
+        WHEN events.time_source IN ('agent', 'manual') THEN events.end_date
         WHEN excluded.end_date IS NOT NULL AND excluded.end_date != '' THEN excluded.end_date
         ELSE events.end_date
       END,
@@ -824,6 +843,10 @@ function importPayload(db, payload, options = {}) {
         WHEN events.body_source = 'agent' THEN events.body_source
         ELSE excluded.body_source
       END,
+      time_source = CASE
+        WHEN events.time_source IN ('agent', 'manual') THEN events.time_source
+        ELSE excluded.time_source
+      END,
       updated_at = excluded.updated_at
   `);
   const deleteEventDates = db.prepare("DELETE FROM event_dates WHERE event_uid = ?");
@@ -857,6 +880,8 @@ function importPayload(db, payload, options = {}) {
       : null;
     const batchContentKeys = new Set();
     const deleteEvent = db.prepare("DELETE FROM events WHERE event_uid = ?");
+    const eventExistsStmt = db.prepare("SELECT 1 AS ok FROM events WHERE event_uid = ? LIMIT 1");
+    const newImportUidsByCitySource = new Map();
     let skippedDuplicate = 0;
     let skippedTitleLocation = 0;
     let replacedTitleLocation = 0;
@@ -895,6 +920,8 @@ function importPayload(db, payload, options = {}) {
 
         importedCount += 1;
         const eventUid = eventUidFor(event);
+        const eventSource = event.source || "unknown";
+        const isNewImport = !eventExistsStmt.get(eventUid);
         upsertEvent.run(
           eventUid,
           event.id || "",
@@ -928,8 +955,15 @@ function importPayload(db, payload, options = {}) {
           event.douban_event_type || event.doubanEventType || "",
           event.classification_source || "pending",
           event.body_source || "pending",
+          event.time_source || "pending",
           new Date().toISOString()
         );
+
+        if (isNewImport) {
+          const mapKey = `${city}\0${eventSource}`;
+          if (!newImportUidsByCitySource.has(mapKey)) newImportUidsByCitySource.set(mapKey, []);
+          newImportUidsByCitySource.get(mapKey).push(eventUid);
+        }
 
         const nextEventDates = resolveEventDates(event);
         if (nextEventDates.length) {
@@ -957,6 +991,17 @@ function importPayload(db, payload, options = {}) {
     }
     if (replacedTitleLocation > 0) {
       setMetaValue(db, "last_import_replaced_title_location", String(replacedTitleLocation));
+    }
+
+    const importedAt = new Date().toISOString();
+    for (const [mapKey, eventUids] of newImportUidsByCitySource.entries()) {
+      const [cityName, sourceName] = mapKey.split("\0");
+      setMetaValue(db, lastImportNewUidsMetaKey(cityName, sourceName), JSON.stringify({
+        event_uids: eventUids,
+        imported_at: importedAt,
+        source: sourceName,
+        city: cityName,
+      }));
     }
   });
 }
@@ -1254,30 +1299,65 @@ function applyEventBody(db, eventUid, decision) {
   return getEventByUid(db, eventUid);
 }
 
-function applyEventTime(db, eventUid, decision) {
-  const { syncEventDates, validateTimeDecision } = require("./event-time-agent");
+function getReviewStatus(db, eventUid) {
+  const row = db.prepare("SELECT status FROM review_decisions WHERE event_uid = ?").get(eventUid);
+  return String(row?.status || "pending").trim() || "pending";
+}
+
+function shouldSkipEventTimeApply(db, eventUid, options = {}) {
+  if (options.force) return null;
+  const row = db.prepare("SELECT time_source FROM events WHERE event_uid = ?").get(eventUid);
+  if (!row) return null;
+  const timeSource = String(row.time_source || "pending").trim() || "pending";
+  const { TIME_SOURCE_AGENT, TIME_SOURCE_MANUAL } = require("./event-time-agent");
+  if (timeSource === TIME_SOURCE_MANUAL) {
+    return "manual";
+  }
+  if (options.protectApproved !== false) {
+    const status = getReviewStatus(db, eventUid);
+    if (status === "approved" && timeSource === TIME_SOURCE_AGENT) {
+      return "approved_agent";
+    }
+  }
+  return null;
+}
+
+function applyEventTime(db, eventUid, decision, options = {}) {
+  const {
+    TIME_SOURCE_AGENT,
+    TIME_SOURCE_MANUAL,
+    syncEventDates,
+    validateTimeDecision,
+  } = require("./event-time-agent");
+  const skipReason = shouldSkipEventTimeApply(db, eventUid, options);
+  if (skipReason) {
+    return { skipped: true, reason: skipReason, event: getEventByUid(db, eventUid) };
+  }
   const check = validateTimeDecision({ ...decision, event_uid: eventUid });
   if (!check.ok) {
     throw new Error(check.errors.join("；"));
   }
+  const timeSource = options.timeSource || TIME_SOURCE_AGENT;
   const now = new Date().toISOString();
   const result = db.prepare(`
     UPDATE events SET
       start_date = @start_date,
       end_date = @end_date,
+      time_source = @time_source,
       updated_at = @updated_at
     WHERE event_uid = @event_uid
   `).run({
     event_uid: eventUid,
     start_date: decision.start_at,
     end_date: decision.expired_at,
+    time_source: timeSource === TIME_SOURCE_MANUAL ? TIME_SOURCE_MANUAL : timeSource,
     updated_at: now,
   });
   if (!result.changes) {
     throw new Error(`活动不存在: ${eventUid}`);
   }
   syncEventDates(db, eventUid, decision.start_at, decision.expired_at);
-  return getEventByUid(db, eventUid);
+  return { skipped: false, event: getEventByUid(db, eventUid) };
 }
 
 function applyEventClassification(db, eventUid, decision) {
@@ -1331,6 +1411,9 @@ module.exports = {
   getEventByUid,
   getEventDetail,
   getEventsPayload,
+  getReviewStatus,
+  getLastImportNewUids,
+  lastImportNewUidsMetaKey,
   EVENT_LIST_COLUMNS,
   getExportImportNows,
   getReviewState,

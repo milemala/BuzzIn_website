@@ -1,0 +1,118 @@
+{
+  "city": "南京",
+  "source": "douban",
+  "updated_at": "2026-06-23T01:36:26.266Z",
+  "agent": "cursor-composer",
+  "decisions": [
+    {
+      "group_id": "7315f9401541",
+      "event_uids": [
+        "douban:37891982"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "1742648908505199704",
+      "poi_title": "幸福蓝海国际影城(IMAX激光环宇城店)",
+      "poi_address": "",
+      "latitude": 32.044447,
+      "longitude": 118.753355,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：南京 鼓楼区 幸福蓝海国际影城 -IMAX激光环宇城店（鼓楼区凤凰街道清凉门大街1号中海环宇城4层） → 幸福蓝海国际影城(IMAX激光环宇城店)（来源 event:douban:37884701）"
+    },
+    {
+      "group_id": "d302c3bb6c0d",
+      "event_uids": [
+        "douban:37891803"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "小红梅 梅园新村"
+      ],
+      "poi_id": "15910025293845104436",
+      "poi_title": "小红梅",
+      "poi_address": "江苏省南京市玄武区梅园新村34号",
+      "latitude": 32.043093,
+      "longitude": 118.8023,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "梅园新村34号小红梅"
+    },
+    {
+      "group_id": "c6f0d7e84980",
+      "event_uids": [
+        "douban:37847123",
+        "douban:37847133"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "13900860064096979638",
+      "poi_title": "SOLO ONE 1913国民小剧场",
+      "poi_address": "",
+      "latitude": 32.046479,
+      "longitude": 118.788158,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：南京 玄武区 南京国民小剧场 洪武北路129号1913艺术街区 → SOLO ONE 1913国民小剧场（来源 event:douban:37348124）"
+    },
+    {
+      "group_id": "4f2c859af023",
+      "event_uids": [
+        "douban:37802182",
+        "douban:37867618"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "1642575190922527024",
+      "poi_title": "南京保利大剧院",
+      "poi_address": "",
+      "latitude": 31.991479,
+      "longitude": 118.708455,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：南京 建邺区 南京保利大剧院 邺城路6号(近青奥文化体育公园) → 南京保利大剧院（来源 event:douban:37799041）"
+    },
+    {
+      "group_id": "cdfd2e958cf1",
+      "event_uids": [
+        "douban:37764351"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "6981577208442308340",
+      "poi_title": "江苏大剧院",
+      "poi_address": "",
+      "latitude": 32.012298,
+      "longitude": 118.713942,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：南京 建邺区 江苏大剧院 梦都大街181号 → 江苏大剧院（来源 event:douban:37644104）"
+    },
+    {
+      "group_id": "c72bfd5145fe",
+      "event_uids": [
+        "douban:37854956"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "2083361752843734485",
+      "poi_title": "1701 LIVE HOUSE",
+      "poi_address": "",
+      "latitude": 31.970603,
+      "longitude": 118.764462,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：南京 雨花台区 1701 Live House 安德门大街57号 → 1701 LIVE HOUSE（来源 event:douban:37823465）"
+    }
+  ]
+}

@@ -81,7 +81,7 @@ Workbench 目录：
 | 2 | 校正时间 | Agent + JS | `export-events-for-time.js` → Agent 写 `time-decisions.json` → `apply-event-time-decisions.js` |
 | 3 | 分类挡下 | Agent + JS | `export-events-for-classification.js --city=` → `classification-decisions.json` → apply |
 | 4 | 写介绍 | Agent + JS | `export-events-for-body.js` → `body-decisions.json` → apply |
-| 5 | 导出 POI 任务 | JS | `export-events-for-poi.js --city= --refresh --pending-only` → `pending.json`（含 `cached_poi`） |
+| 5 | 导出 POI 任务 | JS | `export-events-for-poi.js --city= --refresh --pending-only --new-import-only` → `pending.json`（仅本轮新入库；含 `cached_poi`） |
 | 6 | 配 POI | Agent + JS | 每组：定搜词 → `poi-search-cli.js` → Agent 读候选 → `decisions.json` → `apply-event-poi-decisions.js` |
 | 7 | 汇报 | Agent | 各步条数；POI：几组、匹配/reject/存疑 |
 

@@ -1,19 +1,8 @@
 {
   "city": "福州",
-  "decided_at": "2026-06-20T18:30:10.632Z",
-  "agent": "cursor-composer",
+  "source": "douban",
+  "decided_at": "2026-06-23T01:21:00.000Z",
   "decisions": [
-    {
-      "event_uid": "douban:37862412",
-      "suggested": true,
-      "category": "戏剧表演",
-      "reason": "话剧/音乐剧/舞剧等舞台演出"
-    },
-    {
-      "event_uid": "douban:37763703",
-      "suggested": true,
-      "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
-    }
+    {"event_uid": "douban:37721316", "suggested": true, "category": "音乐现场", "reason": "乐队巡演Live演出"}
   ]
 }

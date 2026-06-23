@@ -130,6 +130,7 @@ async function importNoteEvents(noteDir, rootDir, options = {}) {
         dbPath,
         refresh: true,
         pendingOnly: true,
+        newImportOnly: true,
       });
     }
   } finally {

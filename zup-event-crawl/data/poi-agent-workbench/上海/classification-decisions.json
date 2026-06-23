@@ -1,175 +1,25 @@
 {
   "city": "上海",
-  "decided_at": "2026-06-20T18:30:10.622Z",
+  "source": "douban",
+  "updated_at": "2026-06-23T01:17:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
-    {
-      "event_uid": "douban:37891124",
-      "suggested": true,
-      "category": "其他",
-      "reason": "生活娱乐属性，可保留人工复核"
-    },
-    {
-      "event_uid": "douban:37889311",
-      "suggested": true,
-      "category": "其他",
-      "reason": "生活娱乐属性，可保留人工复核"
-    },
-    {
-      "event_uid": "douban:37489347",
-      "suggested": false,
-      "category": "其他",
-      "reason": "跨境电商/贸易展会，偏行业招商不适合线下交友娱乐"
-    },
-    {
-      "event_uid": "douban:37489404",
-      "suggested": false,
-      "category": "其他",
-      "reason": "行业展会/博览会，不适合线下交友娱乐"
-    },
-    {
-      "event_uid": "douban:37879686",
-      "suggested": true,
-      "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
-    },
-    {
-      "event_uid": "douban:37726808",
-      "suggested": true,
-      "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
-    },
-    {
-      "event_uid": "douban:37881793",
-      "suggested": true,
-      "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
-    },
-    {
-      "event_uid": "douban:37889908",
-      "suggested": true,
-      "category": "交友聚会",
-      "reason": "交友/桌游/派对等社交属性明显"
-    },
-    {
-      "event_uid": "douban:37889917",
-      "suggested": true,
-      "category": "交友聚会",
-      "reason": "交友/桌游/派对等社交属性明显"
-    },
-    {
-      "event_uid": "douban:37889920",
-      "suggested": true,
-      "category": "交友聚会",
-      "reason": "交友/桌游/派对等社交属性明显"
-    },
-    {
-      "event_uid": "douban:37889934",
-      "suggested": true,
-      "category": "交友聚会",
-      "reason": "交友/桌游/派对等社交属性明显"
-    },
-    {
-      "event_uid": "douban:37870168",
-      "suggested": true,
-      "category": "喜剧脱口秀",
-      "reason": "脱口秀/相声/喜剧，适合结伴观演"
-    },
-    {
-      "event_uid": "douban:37891303",
-      "suggested": true,
-      "category": "交友聚会",
-      "reason": "交友/桌游/派对等社交属性明显"
-    },
-    {
-      "event_uid": "douban:37710415",
-      "suggested": true,
-      "category": "戏剧表演",
-      "reason": "话剧/音乐剧/舞剧等舞台演出"
-    },
-    {
-      "event_uid": "douban:37874842",
-      "suggested": true,
-      "category": "戏剧表演",
-      "reason": "话剧/音乐剧/舞剧等舞台演出"
-    },
-    {
-      "event_uid": "douban:37891310",
-      "suggested": true,
-      "category": "交友聚会",
-      "reason": "交友/桌游/派对等社交属性明显"
-    },
-    {
-      "event_uid": "douban:37638759",
-      "suggested": false,
-      "category": "其他",
-      "reason": "行业展会/博览会，不适合线下交友娱乐"
-    },
-    {
-      "event_uid": "douban:37715019",
-      "suggested": true,
-      "category": "戏剧表演",
-      "reason": "话剧/音乐剧/舞剧等舞台演出"
-    },
-    {
-      "event_uid": "douban:37882367",
-      "suggested": true,
-      "category": "看展逛馆",
-      "reason": "看展、逛馆、观影放映类文化体验"
-    },
-    {
-      "event_uid": "douban:37890835",
-      "suggested": true,
-      "category": "交友聚会",
-      "reason": "交友/桌游/派对等社交属性明显"
-    },
-    {
-      "event_uid": "douban:37889681",
-      "suggested": true,
-      "category": "其他",
-      "reason": "生活娱乐属性，可保留人工复核"
-    },
-    {
-      "event_uid": "douban:37889544",
-      "suggested": true,
-      "category": "交友聚会",
-      "reason": "交友/桌游/派对等社交属性明显"
-    },
-    {
-      "event_uid": "douban:37814494",
-      "suggested": true,
-      "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
-    },
-    {
-      "event_uid": "douban:37830355",
-      "suggested": true,
-      "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
-    },
-    {
-      "event_uid": "douban:37359572",
-      "suggested": true,
-      "category": "戏剧表演",
-      "reason": "话剧/音乐剧/舞剧等舞台演出"
-    },
-    {
-      "event_uid": "douban:37833475",
-      "suggested": true,
-      "category": "喜剧脱口秀",
-      "reason": "脱口秀/相声/喜剧，适合结伴观演"
-    },
-    {
-      "event_uid": "douban:37882603",
-      "suggested": true,
-      "category": "喜剧脱口秀",
-      "reason": "脱口秀/相声/喜剧，适合结伴观演"
-    },
-    {
-      "event_uid": "douban:37890962",
-      "suggested": true,
-      "category": "交友聚会",
-      "reason": "交友/桌游/派对等社交属性明显"
-    }
+    {"event_uid": "douban:37890201", "suggested": true, "category": "交友聚会", "reason": "新书分享会，读者与作者面对面交流"},
+    {"event_uid": "douban:37892018", "suggested": true, "category": "看展逛馆", "reason": "电影公映首日免费观影活动"},
+    {"event_uid": "douban:37892275", "suggested": true, "category": "交友聚会", "reason": "游记新书分享沙龙"},
+    {"event_uid": "douban:37891175", "suggested": true, "category": "交友聚会", "reason": "旧物交换故事会，明确社交交友向"},
+    {"event_uid": "douban:37891643", "suggested": true, "category": "交友聚会", "reason": "英语电影之夜观影讨论，Popcorn Club 社交活动"},
+    {"event_uid": "douban:37891651", "suggested": true, "category": "手作体验", "reason": "涂鸦艺术工作坊，动手体验+社交"},
+    {"event_uid": "douban:37891660", "suggested": false, "category": "其他", "reason": "Claude AI Agent 技术培训课程，偏职业技能课"},
+    {"event_uid": "douban:37891719", "suggested": true, "category": "交友聚会", "reason": "书斋下午茶小型社交谈心"},
+    {"event_uid": "douban:37891778", "suggested": true, "category": "交友聚会", "reason": "英语主题讨论沙龙"},
+    {"event_uid": "douban:37891785", "suggested": true, "category": "交友聚会", "reason": "英语沟通技能工作坊，偏社交讨论"},
+    {"event_uid": "douban:37891795", "suggested": true, "category": "交友聚会", "reason": "英语电影之夜观影讨论"},
+    {"event_uid": "douban:37891866", "suggested": true, "category": "交友聚会", "reason": "播客线下主题局，职场话题小型社交"},
+    {"event_uid": "douban:37612148", "suggested": true, "category": "遛娃亲子", "reason": "豆瓣类型为亲子，大型亲子互动科学剧场"},
+    {"event_uid": "douban:37765213", "suggested": true, "category": "音乐现场", "reason": "中提琴与肩式大提琴无伴奏音乐会"},
+    {"event_uid": "douban:37705585", "suggested": true, "category": "喜剧脱口秀", "reason": "上海话脱口秀专场"},
+    {"event_uid": "douban:37604500", "suggested": true, "category": "戏剧表演", "reason": "原创沉浸式荒诞音乐剧"},
+    {"event_uid": "douban:37763104", "suggested": true, "category": "音乐现场", "reason": "烛光音乐会主题演奏"}
   ]
 }
