@@ -1,140 +1,128 @@
 {
   "city": "北京",
   "source": "xiaohongshu",
-  "decided_at": "2026-06-15T15:23:00.641Z",
-  "agent": "composer-2.5",
+  "decided_at": "2026-06-23T07:12:49.726Z",
+  "agent": "cursor-agent",
   "decisions": [
     {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:01_0",
+      "event_uid": "xiaohongshu:6a38f04e000000001700bb04:01_0",
       "suggested": true,
-      "category": "手作体验",
-      "reason": "美食主题市集"
-    },
-    {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:01_1",
-      "suggested": true,
-      "category": "手作体验",
-      "reason": "美食主题市集"
-    },
-    {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:01_2",
-      "suggested": true,
-      "category": "手作体验",
-      "reason": "创意市集逛玩"
-    },
-    {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:02_0",
-      "suggested": true,
-      "category": "手作体验",
-      "reason": "美食主题市集"
-    },
-    {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:02_1",
-      "suggested": false,
       "category": "其他",
-      "reason": "大型展会/商业展偏行业向"
+      "reason": "市集、快闪、节庆或趣味活动，适合线下结伴参与"
     },
     {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:03_0",
+      "event_uid": "xiaohongshu:6a38f04e000000001700bb04:01_1",
       "suggested": true,
       "category": "手作体验",
-      "reason": "创意市集逛玩"
+      "reason": "市集、快闪、节庆或趣味活动，适合线下结伴参与"
     },
     {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:03_1",
+      "event_uid": "xiaohongshu:6a38f04e000000001700bb04:02_0",
       "suggested": true,
-      "category": "音乐现场",
-      "reason": "音乐节现场"
+      "category": "戏剧表演",
+      "reason": "市集、快闪、节庆或趣味活动，适合线下结伴参与"
     },
     {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:03_2",
+      "event_uid": "xiaohongshu:6a38f04e000000001700bb04:03_0",
       "suggested": true,
-      "category": "手作体验",
-      "reason": "创意市集逛玩"
-    },
-    {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:04_0",
-      "suggested": true,
-      "category": "手作体验",
-      "reason": "美食主题市集"
-    },
-    {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:04_1",
-      "suggested": true,
-      "category": "手作体验",
-      "reason": "创意市集逛玩"
-    },
-    {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:05_0",
-      "suggested": true,
-      "category": "手作体验",
-      "reason": "创意市集逛玩"
-    },
-    {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:05_1",
-      "suggested": true,
-      "category": "看展逛馆",
-      "reason": "艺术/娃展逛馆"
-    },
-    {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:05_2",
-      "suggested": true,
-      "category": "看展逛馆",
-      "reason": "艺术/娃展逛馆"
-    },
-    {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:06_0",
-      "suggested": true,
-      "category": "手作体验",
-      "reason": "创意市集逛玩"
-    },
-    {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:06_1",
-      "suggested": false,
       "category": "其他",
-      "reason": "大型展会/商业展偏行业向"
+      "reason": "市集、快闪、节庆或趣味活动，适合线下结伴参与"
     },
     {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:06_2",
+      "event_uid": "xiaohongshu:6a38f04e000000001700bb04:03_1",
       "suggested": true,
-      "category": "手作体验",
-      "reason": "创意市集逛玩"
-    },
-    {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:07_0",
-      "suggested": true,
-      "category": "手作体验",
-      "reason": "美食主题市集"
-    },
-    {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:07_2",
-      "suggested": true,
-      "category": "看展逛馆",
-      "reason": "展览打卡"
-    },
-    {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:08_1",
-      "suggested": true,
-      "category": "手作体验",
-      "reason": "创意市集逛玩"
-    },
-    {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:08_2",
-      "suggested": true,
-      "category": "看展逛馆",
-      "reason": "书展逛馆向"
-    },
-    {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:09_0",
-      "suggested": true,
-      "category": "手作体验",
-      "reason": "创意市集逛玩"
-    },
-    {
-      "event_uid": "xiaohongshu:6a16bfb2000000003603144d:09_1",
-      "suggested": false,
       "category": "其他",
-      "reason": "产业展会论坛偏B2B"
+      "reason": "市集、快闪、节庆或趣味活动，适合线下结伴参与"
+    },
+    {
+      "event_uid": "xiaohongshu:6a38f04e000000001700bb04:04_0",
+      "suggested": true,
+      "category": "户外运动",
+      "reason": "适合同城用户线下结伴逛玩体验"
+    },
+    {
+      "event_uid": "xiaohongshu:6a38f04e000000001700bb04:04_1",
+      "suggested": true,
+      "category": "其他",
+      "reason": "市集、快闪、节庆或趣味活动，适合线下结伴参与"
+    },
+    {
+      "event_uid": "xiaohongshu:6a38f04e000000001700bb04:06_0",
+      "suggested": true,
+      "category": "其他",
+      "reason": "市集、快闪、节庆或趣味活动，适合线下结伴参与"
+    },
+    {
+      "event_uid": "xiaohongshu:6a38f04e000000001700bb04:06_1",
+      "suggested": true,
+      "category": "其他",
+      "reason": "市集、快闪、节庆或趣味活动，适合线下结伴参与"
+    },
+    {
+      "event_uid": "xiaohongshu:6a38f04e000000001700bb04:07_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "适合同城用户线下结伴逛玩体验"
+    },
+    {
+      "event_uid": "xiaohongshu:6a38f04e000000001700bb04:07_1",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "适合同城用户线下结伴逛玩体验"
+    },
+    {
+      "event_uid": "xiaohongshu:6a38f04e000000001700bb04:08_0",
+      "suggested": true,
+      "category": "其他",
+      "reason": "市集、快闪、节庆或趣味活动，适合线下结伴参与"
+    },
+    {
+      "event_uid": "xiaohongshu:6a38f04e000000001700bb04:08_1",
+      "suggested": true,
+      "category": "其他",
+      "reason": "市集、快闪、节庆或趣味活动，适合线下结伴参与"
+    },
+    {
+      "event_uid": "xiaohongshu:6a38f04e000000001700bb04:09_0",
+      "suggested": true,
+      "category": "其他",
+      "reason": "市集、快闪、节庆或趣味活动，适合线下结伴参与"
+    },
+    {
+      "event_uid": "xiaohongshu:6a38f04e000000001700bb04:10_0",
+      "suggested": true,
+      "category": "其他",
+      "reason": "市集、快闪、节庆或趣味活动，适合线下结伴参与"
+    },
+    {
+      "event_uid": "xiaohongshu:6a38f04e000000001700bb04:10_1",
+      "suggested": true,
+      "category": "遛娃亲子",
+      "reason": "市集、快闪、节庆或趣味活动，适合线下结伴参与"
+    },
+    {
+      "event_uid": "xiaohongshu:6a38f04e000000001700bb04:11_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "市集、快闪、节庆或趣味活动，适合线下结伴参与"
+    },
+    {
+      "event_uid": "xiaohongshu:6a38f04e000000001700bb04:11_1",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "市集、快闪、节庆或趣味活动，适合线下结伴参与"
+    },
+    {
+      "event_uid": "xiaohongshu:6a38f04e000000001700bb04:12_0",
+      "suggested": true,
+      "category": "其他",
+      "reason": "适合同城用户线下结伴逛玩体验"
+    },
+    {
+      "event_uid": "xiaohongshu:6a38f04e000000001700bb04:12_1",
+      "suggested": true,
+      "category": "其他",
+      "reason": "适合同城用户线下结伴逛玩体验"
     }
   ]
 }

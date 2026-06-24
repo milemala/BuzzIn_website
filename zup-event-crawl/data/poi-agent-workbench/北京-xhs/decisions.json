@@ -1,160 +1,173 @@
 {
   "city": "北京",
   "source": "xiaohongshu",
-  "updated_at": "2026-06-20T19:50:00.000Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-06-23T07:25:00.000Z",
+  "agent": "gpt-5.5",
   "decisions": [
     {
-      "group_id": "eee738407f12",
-      "location": "海淀区·北京卫星制造厂科技园",
-      "sample_title": "味星舱汉堡节",
-      "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:04_0"
-      ],
-      "decided_at": "2026-06-15T15:26:34.052Z",
-      "search_keywords_tried": [
-        "北京卫星制造厂科技园"
-      ],
+      "group_id": "a975b94a4de1",
+      "location": "海淀区翠微百货B座南广场x一层中庭（室内外）",
+      "sample_title": "你好！冰冰节",
+      "event_uids": ["xiaohongshu:6a38f04e000000001700bb04:01_0"],
       "action": "match",
-      "poi_id": "6796027273648867722",
-      "poi_title": "北京卫星制造厂科技园",
-      "poi_address": "北京市海淀区中关村街道知春路63号",
-      "latitude": 39.977651,
-      "longitude": 116.330261,
+      "search_keywords_tried": ["翠微百货B座"],
+      "poi_id": "2613945287569132169",
+      "poi_title": "翠微百货-B座",
+      "poi_address": "北京市海淀区复兴路33号翠微百货F2",
+      "latitude": 39.908244,
+      "longitude": 116.305473,
       "candidates": [
         {
-          "index": 0,
-          "poi_id": "6796027273648867722",
-          "title": "北京卫星制造厂科技园",
-          "address": "北京市海淀区中关村街道知春路63号",
-          "category": "房产小区:产业园区",
-          "latitude": 39.977651,
-          "longitude": 116.330261
-        },
-        {
-          "index": 1,
-          "poi_id": "9420588327176640154",
-          "title": "北京卫星制造厂科技园6号厂房",
-          "address": "北京市海淀区知春路63号",
-          "category": "公司企业:企业/工厂",
-          "latitude": 39.976912,
-          "longitude": 116.329878
-        },
-        {
-          "index": 2,
-          "poi_id": "16509362488403198693",
-          "title": "北京卫星制造厂科技园-南门",
-          "address": "北京市海淀区知春路",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 39.976803,
-          "longitude": 116.329513
-        },
-        {
-          "index": 3,
-          "poi_id": "2226335099932454040",
-          "title": "瑞幸咖啡(北京卫星制造厂科技园店)",
-          "address": "北京市海淀区中关村街道中关村南三街18号17幢一层103号",
-          "category": "娱乐休闲:咖啡厅",
-          "latitude": 39.978307,
-          "longitude": 116.329559
-        },
-        {
-          "index": 4,
-          "poi_id": "7318240704853422065",
-          "title": "卫星制造厂科技园-1号楼",
-          "address": "北京市海淀区中关村街道知春路卫星制造厂科技园",
+          "poi_id": "2613945287569132169",
+          "title": "翠微百货-B座",
+          "address": "北京市海淀区复兴路33号翠微百货F2",
           "category": "房产小区:房产小区附属",
-          "latitude": 39.977854,
-          "longitude": 116.330439
+          "latitude": 39.908244,
+          "longitude": 116.305473
+        },
+        {
+          "poi_id": "3989046421018458792",
+          "title": "翠微百货翠微店B座-南1门",
+          "address": "北京市海淀区复兴路29号翠微百货B座(公主坟地铁站A西北口步行420米)",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 39.908007,
+          "longitude": 116.30601
         }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "店名/场馆与海淀区·北京卫星制造厂科技园一致，区划地址匹配"
+      "reason": "地点写翠微百货B座南广场/中庭，POI为同一海淀翠微百货B座主体，仅楼层与广场细节未精确到店级。"
     },
     {
-      "group_id": "b64dc52b8e16",
-      "location": "THE BOX朝外B馆L3-4层",
-      "sample_title": "大娃怪市",
-      "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:04_1"
-      ],
-      "decided_at": "2026-06-15T15:26:34.052Z",
-      "search_keywords_tried": [
-        "BOX朝外B馆L3-4层",
-        "THE BOX",
-        "L3-4"
-      ],
+      "group_id": "a454f654d4c1",
+      "location": "雪莲亮点文创园（室内二层），北京市东城区东四南大街15-17号",
+      "sample_title": "亮点周末市集",
+      "event_uids": ["xiaohongshu:6a38f04e000000001700bb04:01_1"],
       "action": "match",
-      "poi_id": "6301367692947061259",
-      "poi_title": "THE BOX朝外B馆",
-      "poi_address": "北京市朝阳区朝阳门外大街10号",
-      "latitude": 39.922483,
-      "longitude": 116.448328,
+      "search_keywords_tried": ["雪莲亮点文创园 东四南大街15-17号", "雪莲亮点文创园"],
+      "poi_id": "3917951121859471149",
+      "poi_title": "雪莲·亮点东四文创园",
+      "poi_address": "北京市东城区东四南大街15号17号",
+      "latitude": 39.922898,
+      "longitude": 116.417052,
       "candidates": [
         {
-          "index": 0,
-          "poi_id": "2111033663641853855",
-          "title": "喜番box",
-          "address": "北京市朝阳区朝阳门外大街10号THE_BOX_B馆L3(4层)",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 39.922564,
-          "longitude": 116.448311
+          "poi_id": "3917951121859471149",
+          "title": "雪莲·亮点东四文创园",
+          "address": "北京市东城区东四南大街15号17号",
+          "category": "房产小区:产业园区",
+          "latitude": 39.922898,
+          "longitude": 116.417052
         },
         {
-          "index": 1,
-          "poi_id": "6301367692947061259",
-          "title": "THE BOX朝外B馆",
-          "address": "北京市朝阳区朝阳门外大街10号",
-          "category": "购物:综合商场",
-          "latitude": 39.922483,
-          "longitude": 116.448328
-        },
-        {
-          "index": 2,
-          "poi_id": "2644228249249861272",
-          "title": "星聚会KTV X party(THE BOX年轻力店)",
-          "address": "北京市朝阳区朝外街道朝外大街12号THEBOX朝外年轻力中心3层01室",
-          "category": "娱乐休闲:KTV",
-          "latitude": 39.922942,
-          "longitude": 116.444338
-        },
-        {
-          "index": 3,
-          "poi_id": "5874712719577758277",
-          "title": "芦灰(the box店)",
-          "address": "北京市朝阳区朝阳门外大街10号,the box年轻力B一层",
-          "category": "美食:面包甜点",
-          "latitude": 39.922605,
-          "longitude": 116.448571
-        },
-        {
-          "index": 4,
-          "poi_id": "3140092641810018586",
-          "title": "THE BOX朝外年轻力中心",
-          "address": "北京市朝阳区朝阳门外大街12号",
-          "category": "购物:综合商场:购物中心",
-          "latitude": 39.922782,
-          "longitude": 116.445012
+          "poi_id": "1862147829711369458",
+          "title": "雪莲亮点艺术中心",
+          "address": "北京市东城区东四南大街15号17号雪莲亮点文创园108",
+          "category": "教育学校:培训",
+          "latitude": 39.922675,
+          "longitude": 116.417289
         }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "店名/场馆与THE BOX朝外B馆L3-4层一致，区划地址匹配"
+      "reason": "园区名称与东城区东四南大街15-17号完全吻合，室内二层属于园区内精度差异。"
     },
     {
-      "group_id": "4f784b9906a2",
-      "location": "顺义·郎园Greens",
+      "group_id": "8ba60e28b424",
+      "location": "北京市朝阳区京投派（三元桥地铁站地下二层）",
+      "sample_title": "北京飞生手工集市之原创饰品集",
+      "event_uids": ["xiaohongshu:6a38f04e000000001700bb04:02_0"],
+      "action": "match",
+      "search_keywords_tried": ["京投派 三元桥", "京投派"],
+      "poi_id": "3059201437482543170",
+      "poi_title": "京投派",
+      "poi_address": "北京市朝阳区京投派商业广场",
+      "latitude": 39.960891,
+      "longitude": 116.45924,
+      "candidates": [
+        {
+          "poi_id": "3059201437482543170",
+          "title": "京投派",
+          "address": "北京市朝阳区京投派商业广场",
+          "category": "购物:综合商场",
+          "latitude": 39.960891,
+          "longitude": 116.45924
+        },
+        {
+          "poi_id": "1774271021177591249",
+          "title": "北京飞鸟一生(文艺乐园一店)",
+          "address": "北京市朝阳区京投派(三元桥地铁站地下二层)",
+          "category": "购物:礼品",
+          "latitude": 39.960699,
+          "longitude": 116.458935
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地点明确为朝阳区三元桥京投派地下二层，POI主体为京投派商业广场，楼层差异无需存疑。"
+    },
+    {
+      "group_id": "b076ac3da8fc",
+      "location": "海淀西三旗万象汇4F休息区",
+      "sample_title": "北京盒子岛球星卡市集",
+      "event_uids": ["xiaohongshu:6a38f04e000000001700bb04:03_0"],
+      "action": "match",
+      "search_keywords_tried": ["西三旗万象汇"],
+      "poi_id": "10665877320890272339",
+      "poi_title": "西三旗万象汇",
+      "poi_address": "北京市海淀区建材城东路33号",
+      "latitude": 40.061848,
+      "longitude": 116.366297,
+      "candidates": [
+        {
+          "poi_id": "10665877320890272339",
+          "title": "西三旗万象汇",
+          "address": "北京市海淀区建材城东路33号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 40.061848,
+          "longitude": 116.366297
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "海淀西三旗万象汇主体唯一命中，4F休息区为楼层内位置。"
+    },
+    {
+      "group_id": "70bc99119a63",
+      "location": "北京DT51西侧广场",
+      "sample_title": "法风沐夏市集",
+      "event_uids": ["xiaohongshu:6a38f04e000000001700bb04:03_1"],
+      "action": "match",
+      "search_keywords_tried": ["北京DT51"],
+      "poi_id": "1177117197855663318",
+      "poi_title": "DT51",
+      "poi_address": "北京市朝阳区大屯地区2号绿隔产业用地北苑路98号院1号",
+      "latitude": 39.999535,
+      "longitude": 116.419536,
+      "candidates": [
+        {
+          "poi_id": "1177117197855663318",
+          "title": "DT51",
+          "address": "北京市朝阳区大屯地区2号绿隔产业用地北苑路98号院1号",
+          "category": "购物:综合商场",
+          "latitude": 39.999535,
+          "longitude": 116.419536
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地点为北京DT51西侧广场，POI为DT51商场主体，户外广场属于主体附属位置。"
+    },
+    {
+      "group_id": "c9f10c424434",
+      "location": "顺义郎园Greens",
       "sample_title": "北京超放飞艺术节",
       "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:05_1"
-      ],
-      "decided_at": "2026-06-15T15:26:34.052Z",
-      "search_keywords_tried": [
-        "郎园Greens",
-        "Greens"
+        "xiaohongshu:6a38f04e000000001700bb04:04_0",
+        "xiaohongshu:6a38f04e000000001700bb04:04_1"
       ],
       "action": "match",
+      "search_keywords_tried": ["顺义郎园Greens"],
       "poi_id": "2262271989864130105",
       "poi_title": "郎园Greens",
       "poi_address": "北京市顺义区顺平路山姆旁",
@@ -162,16 +175,6 @@
       "longitude": 116.563199,
       "candidates": [
         {
-          "index": 0,
-          "poi_id": "2262271989864130105",
-          "title": "郎园Greens",
-          "address": "北京市顺义区顺平路山姆旁",
-          "category": "房产小区:产业园区",
-          "latitude": 40.119893,
-          "longitude": 116.563199
-        },
-        {
-          "index": 1,
           "poi_id": "2262271989864130105",
           "title": "郎园Greens",
           "address": "北京市顺义区顺平路山姆旁",
@@ -182,21 +185,191 @@
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "店名/场馆与顺义·郎园Greens一致，区划地址匹配"
+      "reason": "顺义郎园Greens名称和区划均吻合，两个活动同一园区主体。"
     },
     {
-      "group_id": "151268a13ce1",
-      "location": "北京apm首层C区中庭/东街花园/L7平台花园",
-      "sample_title": "好运跃动·玩转世界杯",
-      "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:06_1"
-      ],
-      "decided_at": "2026-06-15T15:26:34.052Z",
-      "search_keywords_tried": [
-        "北京apm首层C区中庭/东街花园/L7平台花园",
-        "apm"
-      ],
+      "group_id": "55bbee284ed0",
+      "location": "海淀区北京五棵松万达广场北侧长廊1号门前",
+      "sample_title": "首届恰巴塔长廊万物节",
+      "event_uids": ["xiaohongshu:6a38f04e000000001700bb04:06_0"],
       "action": "match",
+      "search_keywords_tried": ["五棵松万达广场"],
+      "poi_id": "4211288317456664787",
+      "poi_title": "北京五棵松万达广场",
+      "poi_address": "北京市海淀区复兴路69号五棵松万达广场2F",
+      "latitude": 39.913693,
+      "longitude": 116.279463,
+      "candidates": [
+        {
+          "poi_id": "4211288317456664787",
+          "title": "北京五棵松万达广场",
+          "address": "北京市海淀区复兴路69号五棵松万达广场2F",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 39.913693,
+          "longitude": 116.279463
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "海淀五棵松万达广场主体唯一命中，北侧长廊1号门前为商场附属位置。"
+    },
+    {
+      "group_id": "b95c8b0672ff",
+      "location": "海淀区魏公芳华里",
+      "sample_title": "国风文创市集",
+      "event_uids": ["xiaohongshu:6a38f04e000000001700bb04:06_1"],
+      "action": "match",
+      "search_keywords_tried": ["魏公芳华里"],
+      "poi_id": "4218792126886752315",
+      "poi_title": "魏公·芳华里",
+      "poi_address": "北京市海淀区魏公村路丽金智地中心中区",
+      "latitude": 39.956557,
+      "longitude": 116.321185,
+      "candidates": [
+        {
+          "poi_id": "4218792126886752315",
+          "title": "魏公·芳华里",
+          "address": "北京市海淀区魏公村路丽金智地中心中区",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 39.956557,
+          "longitude": 116.321185
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地点与POI名称均为海淀魏公芳华里主体。"
+    },
+    {
+      "group_id": "4c4ac60d39fa",
+      "location": "北京小西天艺术影院、百子湾艺术影院",
+      "sample_title": "中国电影资料馆艺术影院放映",
+      "event_uids": ["xiaohongshu:6a38f04e000000001700bb04:07_0"],
+      "action": "reject",
+      "search_keywords_tried": ["北京小西天艺术影院", "百子湾艺术影院"],
+      "confidence": "low",
+      "doubtful": true,
+      "reason": "地点同时写小西天艺术影院和百子湾艺术影院，两处均有明确候选但为多地点放映，不能只绑定其中一个POI。"
+    },
+    {
+      "group_id": "b665cc2f803c",
+      "location": "北京百丽宫影城国贸店、北京英嘉国际影城、首都电影院西单店、完美世界影城、北京天幕新彩云影城",
+      "sample_title": "爱是永恒·中外电影名作展",
+      "event_uids": ["xiaohongshu:6a38f04e000000001700bb04:07_1"],
+      "action": "reject",
+      "search_keywords_tried": ["百丽宫影城国贸店", "北京英嘉国际影城"],
+      "confidence": "low",
+      "doubtful": true,
+      "reason": "地点列出多家影院且分布不同地址，无法唯一确定应绑定哪一家POI。"
+    },
+    {
+      "group_id": "3e0033cb0455",
+      "location": "海淀区北京BOM嘻番里3F",
+      "sample_title": "Lezhin第三届韩漫快闪",
+      "event_uids": ["xiaohongshu:6a38f04e000000001700bb04:08_0"],
+      "action": "match",
+      "search_keywords_tried": ["北京BOM嘻番里3F", "北京BOM嘻番里"],
+      "poi_id": "7303558213124245325",
+      "poi_title": "BOM嘻番里",
+      "poi_address": "北京市海淀区学院路街道金码大厦B座甲38号",
+      "latitude": 40.001775,
+      "longitude": 116.353836,
+      "candidates": [
+        {
+          "poi_id": "7303558213124245325",
+          "title": "BOM嘻番里",
+          "address": "北京市海淀区学院路街道金码大厦B座甲38号",
+          "category": "购物:综合商场",
+          "latitude": 40.001775,
+          "longitude": 116.353836
+        },
+        {
+          "poi_id": "9215502757459282546",
+          "title": "嘻番里市集",
+          "address": "北京市海淀区学院路街道六道口BOM嘻番里3层",
+          "category": "购物:其它购物",
+          "latitude": 40.001565,
+          "longitude": 116.353568
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地点为海淀BOM嘻番里3F，POI主体与地址一致，楼层属于商场内精度差异。"
+    },
+    {
+      "group_id": "20bd9e144765",
+      "location": "西城区西单更新场B226",
+      "sample_title": "PPULBATU TXT主题快闪",
+      "event_uids": ["xiaohongshu:6a38f04e000000001700bb04:08_1"],
+      "action": "match",
+      "search_keywords_tried": ["西单更新场B226", "西单更新场"],
+      "poi_id": "2411920370248477784",
+      "poi_title": "西单更新场",
+      "poi_address": "北京市西城区横二条",
+      "latitude": 39.908453,
+      "longitude": 116.375698,
+      "candidates": [
+        {
+          "poi_id": "2411920370248477784",
+          "title": "西单更新场",
+          "address": "北京市西城区横二条",
+          "category": "购物:综合商场",
+          "latitude": 39.908453,
+          "longitude": 116.375698
+        },
+        {
+          "poi_id": "15440308835424713635",
+          "title": "少女百货(西单更新场店)",
+          "address": "北京市西城区西单北大街180号西单更新场B202a",
+          "category": "购物:服饰鞋包",
+          "latitude": 39.908482,
+          "longitude": 116.375488
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "西城区西单更新场主体吻合，B226铺位没有更合适独立POI，按商场主体绑定。"
+    },
+    {
+      "group_id": "9189ca19bca2",
+      "location": "三里屯太古里S8号楼一层S8-10a单元-Hirono小野POP UP",
+      "sample_title": "Hirono小野北京快闪",
+      "event_uids": ["xiaohongshu:6a38f04e000000001700bb04:09_0"],
+      "action": "match",
+      "search_keywords_tried": ["三里屯太古里S8", "三里屯太古里南区S8号楼", "北京小野POP UP 三里屯太古里"],
+      "poi_id": "4782105618219614450",
+      "poi_title": "三里屯太古里南区",
+      "poi_address": "北京市朝阳区三里屯路19号院地下一层",
+      "latitude": 39.93494,
+      "longitude": 116.454336,
+      "candidates": [
+        {
+          "poi_id": "4782105618219614450",
+          "title": "三里屯太古里南区",
+          "address": "北京市朝阳区三里屯路19号院地下一层",
+          "category": "购物:综合商场",
+          "latitude": 39.93494,
+          "longitude": 116.454336
+        },
+        {
+          "poi_id": "11764060250857593928",
+          "title": "PANE华北首店",
+          "address": "北京市朝阳区三里屯街道太古里南区S8号楼2层22号商铺",
+          "category": "购物:服饰鞋包",
+          "latitude": 39.93513,
+          "longitude": 116.454607
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": false,
+      "reason": "地点明确为三里屯太古里S8号楼，未搜到Hirono独立POI，绑定南区主体；铺位和楼层差异属于店内精度。"
+    },
+    {
+      "group_id": "6125ec2a1460",
+      "location": "东城区北京apm首层中庭",
+      "sample_title": "玩具总动员5联名主题快闪",
+      "event_uids": ["xiaohongshu:6a38f04e000000001700bb04:10_0"],
+      "action": "match",
+      "search_keywords_tried": ["北京apm"],
       "poi_id": "3087541885580932782",
       "poi_title": "北京apm",
       "poi_address": "北京市东城区王府井大街138号",
@@ -204,43 +377,6 @@
       "longitude": 116.411878,
       "candidates": [
         {
-          "index": 0,
-          "poi_id": "12362751959541690755",
-          "title": "华家陀·推拿·按摩·艾灸健康养生店(新华国际中心店)",
-          "address": "北京市丰台区花乡街道高立庄616号新华国际中心C座大堂内1层中庭处C134号",
-          "category": "娱乐休闲:洗浴推拿足疗:推拿",
-          "latitude": 39.79413,
-          "longitude": 116.303086
-        },
-        {
-          "index": 1,
-          "poi_id": "10536179169278012770",
-          "title": "挖偶体育篮球会员店(芳圆里店)",
-          "address": "北京市朝阳区东四环中路189号(7号线大郊亭站C口出)芳圆里ID Mall购物中心L3",
-          "category": "教育学校:培训:体育培训",
-          "latitude": 39.889944,
-          "longitude": 116.488445
-        },
-        {
-          "index": 2,
-          "poi_id": "2258052951021924980",
-          "title": "KOTM乐园(太阳宫凯德mall店)",
-          "address": "北京市朝阳区太阳宫地区太阳宫中路12号楼3层301内K06-K11/K19",
-          "category": "娱乐休闲:亲子",
-          "latitude": 39.971633,
-          "longitude": 116.447288
-        },
-        {
-          "index": 3,
-          "poi_id": "4821227191784609964",
-          "title": "iGELATO(世纪金源购物中心)",
-          "address": "北京市海淀区曙光街道远大路世纪金源购物中心4层中庭4242号",
-          "category": "美食:冷饮店",
-          "latitude": 39.958459,
-          "longitude": 116.288176
-        },
-        {
-          "index": 4,
           "poi_id": "3087541885580932782",
           "title": "北京apm",
           "address": "北京市东城区王府井大街138号",
@@ -251,619 +387,130 @@
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "店名/场馆与北京apm首层C区中庭/东街花园/L7平台花园一致，区划地址匹配"
+      "reason": "北京apm主体与东城区位置吻合，首层中庭为商场内位置。"
     },
     {
-      "group_id": "5a2fd5d1cc0b",
-      "location": "北京东城区隆福大厦一层（室内）",
-      "sample_title": "热象周末好物市集",
-      "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:06_2"
-      ],
-      "decided_at": "2026-06-15T15:26:34.052Z",
-      "search_keywords_tried": [
-        "北京东城区隆福大厦一层",
-        "室内"
-      ],
+      "group_id": "adbe57233841",
+      "location": "北京金融街购物中心B1",
+      "sample_title": "蜡笔小新宠物系列快闪",
+      "event_uids": ["xiaohongshu:6a38f04e000000001700bb04:10_1"],
       "action": "match",
-      "poi_id": "15832123859304434530",
-      "poi_title": "隆福大厦",
-      "poi_address": "北京市东城区景山街道隆福寺街(东四地铁站E西北口步行160米)",
-      "latitude": 39.925894,
-      "longitude": 116.413885,
+      "search_keywords_tried": ["北京金融街购物中心"],
+      "poi_id": "1541277091779078951",
+      "poi_title": "北京金融街购物中心",
+      "poi_address": "北京市西城区金城坊街2号",
+      "latitude": 39.915556,
+      "longitude": 116.361872,
       "candidates": [
         {
-          "index": 0,
-          "poi_id": "15832123859304434530",
-          "title": "隆福大厦",
-          "address": "北京市东城区景山街道隆福寺街(东四地铁站E西北口步行160米)",
-          "category": "房产小区:商务楼宇",
-          "latitude": 39.925894,
-          "longitude": 116.413885
-        },
-        {
-          "index": 1,
-          "poi_id": "17651262327101181277",
-          "title": "隆福大厦A区",
-          "address": "北京市东城区景山街道隆福寺街77号",
-          "category": "房产小区:商务楼宇",
-          "latitude": 39.925655,
-          "longitude": 116.413635
-        },
-        {
-          "index": 2,
-          "poi_id": "11093432531906671887",
-          "title": "隆福大厦D区",
-          "address": "北京市东城区景山街道隆福寺街95号",
-          "category": "房产小区:商务楼宇",
-          "latitude": 39.925628,
-          "longitude": 116.413881
-        },
-        {
-          "index": 3,
-          "poi_id": "7580854736022917852",
-          "title": "京艺斋",
-          "address": "北京市东城区隆福大厦一层",
-          "category": "购物:礼品",
-          "latitude": 39.92597,
-          "longitude": 116.41398
-        },
-        {
-          "index": 4,
-          "poi_id": "12935252561796569167",
-          "title": "pichoco(隆福大厦店)",
-          "address": "北京市东城区隆福寺街95号隆福大厦A座一层2-1",
-          "category": "美食:面包甜点",
-          "latitude": 39.925596,
-          "longitude": 116.413602
+          "poi_id": "1541277091779078951",
+          "title": "北京金融街购物中心",
+          "address": "北京市西城区金城坊街2号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 39.915556,
+          "longitude": 116.361872
         }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "店名/场馆与北京东城区隆福大厦一层（室内）一致，区划地址匹配"
+      "reason": "北京金融街购物中心主体命中，B1为商场内楼层。"
     },
     {
-      "group_id": "417eec39a609",
-      "location": "北京市朝阳区郎园·Station",
-      "sample_title": "北京国际烤肉节",
-      "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:07_0"
-      ],
-      "decided_at": "2026-06-15T15:26:34.052Z",
-      "search_keywords_tried": [
-        "Station"
-      ],
+      "group_id": "090fd2d74ee9",
+      "location": "大兴区北京荟聚1层西中庭",
+      "sample_title": "酷乐潮玩×布鲁可积木车快闪",
+      "event_uids": ["xiaohongshu:6a38f04e000000001700bb04:11_0"],
       "action": "match",
-      "poi_id": "1553812667111179662",
-      "poi_title": "郎园Station",
-      "poi_address": "北京市朝阳区东坝乡半截塔路53号",
-      "latitude": 39.968314,
-      "longitude": 116.515929,
+      "search_keywords_tried": ["北京荟聚"],
+      "poi_id": "12843019895767759830",
+      "poi_title": "北京荟聚",
+      "poi_address": "北京市大兴区欣宁街15号",
+      "latitude": 39.788078,
+      "longitude": 116.326345,
       "candidates": [
         {
-          "index": 0,
-          "poi_id": "1553812667111179662",
-          "title": "郎园Station",
-          "address": "北京市朝阳区东坝乡半截塔路53号",
-          "category": "房产小区:产业园区",
-          "latitude": 39.968314,
-          "longitude": 116.515929
-        },
-        {
-          "index": 1,
-          "poi_id": "14152644000370781642",
-          "title": "11STATION",
-          "address": "北京市通州区九棵树东路辅路与梨园中街交叉口正西方向185米左右",
-          "category": "房产小区:住宅区:住宅小区",
-          "latitude": 39.882005,
-          "longitude": 116.669923
-        },
-        {
-          "index": 2,
-          "poi_id": "4270841767040088803",
-          "title": "STATION GRILL",
-          "address": "北京市朝阳区东坝地区半截塔路53号A14-1",
-          "category": "美食:小吃快餐",
-          "latitude": 39.966635,
-          "longitude": 116.514564
-        },
-        {
-          "index": 3,
-          "poi_id": "3659235603119565769",
-          "title": "A station(蓝港店)",
-          "address": "北京市朝阳区朝阳公园路6号蓝色港湾耳东影城西侧大门",
-          "category": "娱乐休闲:其它娱乐休闲",
-          "latitude": 39.948767,
-          "longitude": 116.476095
-        },
-        {
-          "index": 4,
-          "poi_id": "10997562109377123024",
-          "title": "电厂酒廊POWER Station",
-          "address": "北京市石景山区古城街道石景山路68号北京首钢园香格里拉一层",
-          "category": "娱乐休闲:酒吧",
-          "latitude": 39.915549,
-          "longitude": 116.149972
+          "poi_id": "12843019895767759830",
+          "title": "北京荟聚",
+          "address": "北京市大兴区欣宁街15号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 39.788078,
+          "longitude": 116.326345
         }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "店名/场馆与北京市朝阳区郎园·Station一致，区划地址匹配"
+      "reason": "大兴区北京荟聚主体吻合，1层西中庭为商场内位置。"
     },
     {
-      "group_id": "b377e8ef161c",
-      "location": "丰台区·北京西国贸大酒店一层",
-      "sample_title": "Enjoy Cards卡展",
-      "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:07_2"
-      ],
-      "decided_at": "2026-06-15T15:26:34.052Z",
-      "search_keywords_tried": [
-        "北京西国贸大酒店一层",
-        "北京西国贸大酒店"
-      ],
+      "group_id": "a3de79a7ee0d",
+      "location": "东城区北京王府中環",
+      "sample_title": "泡泡玛特星星人主题展",
+      "event_uids": ["xiaohongshu:6a38f04e000000001700bb04:11_1"],
       "action": "match",
-      "poi_id": "10134737434945355055",
-      "poi_title": "北京西国贸大酒店",
-      "poi_address": "北京市丰台区丰管路16号院8号楼",
-      "latitude": 39.855589,
-      "longitude": 116.308995,
+      "search_keywords_tried": ["北京王府中环", "北京王府中環"],
+      "poi_id": "16221966733791005482",
+      "poi_title": "王府中环",
+      "poi_address": "北京市东城区王府井大街269号",
+      "latitude": 39.912623,
+      "longitude": 116.409687,
       "candidates": [
         {
-          "index": 0,
-          "poi_id": "10134737434945355055",
-          "title": "北京西国贸大酒店",
-          "address": "北京市丰台区丰管路16号院8号楼",
-          "category": "酒店宾馆:星级酒店",
-          "latitude": 39.855589,
-          "longitude": 116.308995
-        },
-        {
-          "index": 1,
-          "poi_id": "5197946274959460321",
-          "title": "XPEL-AZ官方旗舰店(西国贸)",
-          "address": "北京市丰台区西国贸A2-1005",
-          "category": "汽车:汽车养护",
-          "latitude": 39.855168,
-          "longitude": 116.311303
-        },
-        {
-          "index": 2,
-          "poi_id": "11724177326135715625",
-          "title": "wohkoon者行孙酒店(北京国贸西大望路店)",
-          "address": "北京市朝阳区西大望路15号外企大厦C座(长缨荟)5层",
-          "category": "酒店宾馆:酒店宾馆",
-          "latitude": 39.894199,
-          "longitude": 116.477043
-        },
-        {
-          "index": 3,
-          "poi_id": "9264063121513464519",
-          "title": "北京西国贸大酒店-北门",
-          "address": "北京市丰台区台湾街与恒福北街交叉口东南方向16米左右",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 39.856439,
-          "longitude": 116.309334
-        },
-        {
-          "index": 4,
-          "poi_id": "10134737434945355055",
-          "title": "北京西国贸大酒店",
-          "address": "北京市丰台区丰管路16号院8号楼",
-          "category": "酒店宾馆:星级酒店",
-          "latitude": 39.855589,
-          "longitude": 116.308995
+          "poi_id": "16221966733791005482",
+          "title": "王府中环",
+          "address": "北京市东城区王府井大街269号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 39.912623,
+          "longitude": 116.409687
         }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "店名/场馆与丰台区·北京西国贸大酒店一层一致，区划地址匹配"
+      "reason": "繁简写不同但均指东城区王府中环，主体与区划吻合。"
     },
     {
-      "group_id": "bf6135bf949c",
-      "location": "北京市朝阳区京投派",
-      "sample_title": "北京飞生手工集市之原创饰品集",
-      "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:08_1"
-      ],
-      "decided_at": "2026-06-15T15:26:34.052Z",
-      "search_keywords_tried": [
-        "北京市朝阳区京投派"
-      ],
-      "action": "match",
-      "poi_id": "3059201437482543170",
-      "poi_title": "京投派",
-      "poi_address": "北京市朝阳区京投派商业广场",
-      "latitude": 39.960891,
-      "longitude": 116.45924,
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "3059201437482543170",
-          "title": "京投派",
-          "address": "北京市朝阳区京投派商业广场",
-          "category": "购物:综合商场",
-          "latitude": 39.960891,
-          "longitude": 116.45924
-        },
-        {
-          "index": 1,
-          "poi_id": "3313365169829666466",
-          "title": "库迪咖啡(三元桥京投派B2店)",
-          "address": "北京市朝阳区地铁12号线三元桥地铁F口与地铁G口中间哈银国际后面乘坐1号电梯到B2右转走到头",
-          "category": "娱乐休闲:咖啡厅",
-          "latitude": 39.961105,
-          "longitude": 116.45936
-        },
-        {
-          "index": 2,
-          "poi_id": "2461046555546707408",
-          "title": "呷哺呷哺(京投派店)",
-          "address": "北京市朝阳区霞光里北街京投派B1层",
-          "category": "美食:火锅",
-          "latitude": 39.960857,
-          "longitude": 116.459122
-        },
-        {
-          "index": 3,
-          "poi_id": "2316476808145365551",
-          "title": "EDGE一直攀岩",
-          "address": "北京市朝阳区三元桥地铁站G口京投派B201",
-          "category": "运动健身:其它运动健身",
-          "latitude": 39.960805,
-          "longitude": 116.458998
-        },
-        {
-          "index": 4,
-          "poi_id": "7223447870886242907",
-          "title": "遇今喜·健康烫染美发(三元桥店)",
-          "address": "北京市朝阳区麦子店街道地铁三元桥站B2层京投派商业街(近G口)",
-          "category": "生活服务:美容美发:美发",
-          "latitude": 39.96048,
-          "longitude": 116.45832
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "店名/场馆与北京市朝阳区京投派一致，区划地址匹配"
-    },
-    {
-      "group_id": "f6875e6d1735",
-      "location": "北京·国家会议中心",
-      "sample_title": "北京国际图书博览会",
-      "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:08_2"
-      ],
-      "decided_at": "2026-06-15T15:26:34.052Z",
-      "search_keywords_tried": [
-        "国家会议中心"
-      ],
-      "action": "match",
-      "poi_id": "14404092081970560560",
-      "poi_title": "国家会议中心",
-      "poi_address": "北京市朝阳区天辰东路7号",
-      "latitude": 40.000001,
-      "longitude": 116.39008,
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "14404092081970560560",
-          "title": "国家会议中心",
-          "address": "北京市朝阳区天辰东路7号",
-          "category": "文化场馆:会展中心",
-          "latitude": 40.000001,
-          "longitude": 116.39008
-        },
-        {
-          "index": 1,
-          "poi_id": "8407584788931234946",
-          "title": "国家会议中心大酒店",
-          "address": "北京市朝阳区北辰西路8号院1号楼",
-          "category": "酒店宾馆:星级酒店",
-          "latitude": 40.001492,
-          "longitude": 116.387915
-        },
-        {
-          "index": 2,
-          "poi_id": "9552919677855123769",
-          "title": "国家会议中心·展览厅",
-          "address": "北京市朝阳区天辰东路7号国家会议中心F1",
-          "category": "文化场馆:展览馆",
-          "latitude": 40.000026,
-          "longitude": 116.390007
-        },
-        {
-          "index": 3,
-          "poi_id": "16421645610031379216",
-          "title": "国家会议中心-C1号门",
-          "address": "北京市朝阳区奥运村街道天辰东路7号国家会议中心F1",
-          "category": "室内及附属设施:通行设施类:外部门",
-          "latitude": 39.999119,
-          "longitude": 116.390853
-        },
-        {
-          "index": 4,
-          "poi_id": "2280014839138624552",
-          "title": "国家会议中心-E1门",
-          "address": "北京市朝阳区天辰东路7号国家会议中心F1",
-          "category": "室内及附属设施:通行设施类:外部门",
-          "latitude": 39.999908,
-          "longitude": 116.390884
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "店名/场馆与北京·国家会议中心一致，区划地址匹配"
-    },
-    {
-      "group_id": "dc951f112b26",
-      "location": "北京·平谷·马坊",
-      "sample_title": "北京世界爬行动物及用品展",
-      "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:09_1"
-      ],
-      "decided_at": "2026-06-20T19:50:00.000Z",
-      "search_keywords_tried": [
-        "平谷 马坊",
-        "平谷 马坊 爬行动物"
-      ],
+      "group_id": "d753db56283b",
+      "location": "朝阳区微博in店、朝阳大悦城店、石景山万达店、海淀区五道口店、大兴区西红门店",
+      "sample_title": "光与夜之恋×必胜客联名主题店",
+      "event_uids": ["xiaohongshu:6a38f04e000000001700bb04:12_0"],
       "action": "reject",
-      "reason": "活动地点仅写平谷马坊，候选为马坊镇、马坊大集等泛地名；爬行动物相关候选均在大兴/朝阳/怀柔等其他区，无法匹配平谷展会场地",
-      "doubtful": false
+      "search_keywords_tried": ["必胜客 微博in店", "必胜客 朝阳大悦城"],
+      "confidence": "low",
+      "doubtful": true,
+      "reason": "地点列出多个必胜客主题门店且跨区，无法唯一确定一个POI。"
     },
     {
-      "group_id": "bj-nw-wxh-01_0",
-      "location": "海淀区·北京西北旺万象汇",
-      "sample_title": "山下好市·甜品节",
-      "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:01_0"
-      ],
+      "group_id": "fbfd0c582df1",
+      "location": "北京市海淀区中关村科贸电子城店（线下店）",
+      "sample_title": "星穹铁道×绿联联名主题店",
+      "event_uids": ["xiaohongshu:6a38f04e000000001700bb04:12_1"],
       "action": "match",
-      "poi_id": "870363897221968513",
-      "poi_title": "西北旺万象汇",
-      "poi_address": "北京市海淀区德政路与永丰路交叉口东南方向163米左右",
-      "poi_category": "购物:综合商场:购物中心",
-      "latitude": 40.041,
-      "longitude": 116.259,
+      "search_keywords_tried": ["中关村科贸电子城 绿联"],
+      "poi_id": "13361410432208668604",
+      "poi_title": "绿联(北京中关村科贸店)",
+      "poi_address": "北京市海淀区中关村街道中关村大街18号1层1A16",
+      "latitude": 39.983053,
+      "longitude": 116.317432,
+      "candidates": [
+        {
+          "poi_id": "13361410432208668604",
+          "title": "绿联(北京中关村科贸店)",
+          "address": "北京市海淀区中关村街道中关村大街18号1层1A16",
+          "category": "购物:数码家电",
+          "latitude": 39.983053,
+          "longitude": 116.317432
+        },
+        {
+          "poi_id": "4331372920253061789",
+          "title": "中关村科贸电子城4座",
+          "address": "北京市海淀区中关村街道中关村大街中关村科贸电子城",
+          "category": "房产小区:房产小区附属",
+          "latitude": 39.983055,
+          "longitude": 116.317388
+        }
+      ],
+      "confidence": "high",
       "doubtful": false,
-      "reason": "西北旺万象汇与活动地址一致，海淀区",
-      "search_keywords_tried": [
-        "西北旺万象汇"
-      ],
-      "decided_at": "2026-06-15T15:28:18.572Z"
-    },
-    {
-      "group_id": "bj-uptown-01_1",
-      "location": "北京王府井奥莱UP TOWN",
-      "sample_title": "归夏咖啡节",
-      "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:01_1"
-      ],
-      "action": "match",
-      "poi_id": "15464182674797133608",
-      "poi_title": "王府井奥莱UP TOWN",
-      "poi_address": "北京市大兴区久敬庄路与德贤路交汇处西南角",
-      "poi_category": "购物:综合商场:购物中心",
-      "latitude": 39.805,
-      "longitude": 116.421,
-      "doubtful": false,
-      "reason": "王府井奥莱UP TOWN与活动场地一致，大兴区",
-      "search_keywords_tried": [
-        "王府井奥莱UP TOWN"
-      ],
-      "decided_at": "2026-06-15T15:28:18.572Z"
-    },
-    {
-      "group_id": "bj-poly-01_2",
-      "location": "北京保利广场南侧户外广场",
-      "sample_title": "冰气泡文创节",
-      "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:01_2"
-      ],
-      "action": "match",
-      "poi_id": "8982752884573269880",
-      "poi_title": "北京保利广场西座",
-      "poi_address": "北京市朝阳区香宾路66号",
-      "poi_category": "购物:综合商场",
-      "latitude": 40.001,
-      "longitude": 116.478,
-      "doubtful": false,
-      "reason": "保利广场南侧户外广场活动，主体为北京保利广场，朝阳区香宾路66号",
-      "search_keywords_tried": [
-        "北京保利广场"
-      ],
-      "decided_at": "2026-06-15T15:28:18.572Z"
-    },
-    {
-      "group_id": "bj-fenghuang-02_0",
-      "location": "北京市朝阳区三元桥·凤凰汇里巷",
-      "sample_title": "FAFA面包碳水节",
-      "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:02_0"
-      ],
-      "action": "match",
-      "poi_id": "3820066864950317275",
-      "poi_title": "凤凰汇·里巷In Street",
-      "poi_address": "北京市朝阳区曙光西里凤凰商街10号楼21A",
-      "poi_category": "购物:商业步行街",
-      "latitude": 39.958,
-      "longitude": 116.446,
-      "doubtful": false,
-      "reason": "凤凰汇里巷与凤凰汇·里巷In Street一致，朝阳区三元桥",
-      "search_keywords_tried": [
-        "凤凰汇里巷"
-      ],
-      "decided_at": "2026-06-15T15:28:18.572Z"
-    },
-    {
-      "group_id": "bj-ncc2-02_1",
-      "location": "北京·国家会议中心二期",
-      "sample_title": "文创潮玩展",
-      "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:02_1"
-      ],
-      "action": "match",
-      "poi_id": "1365151917676297777",
-      "poi_title": "国家会议中心二期",
-      "poi_address": "北京市朝阳区天辰东路与大屯路交汇处西北",
-      "poi_category": "文化场馆:会展中心",
-      "latitude": 40.003,
-      "longitude": 116.388,
-      "doubtful": false,
-      "reason": "文创潮玩展场地与国家会议中心二期一致",
-      "search_keywords_tried": [
-        "国家会议中心二期"
-      ],
-      "decided_at": "2026-06-15T15:28:18.572Z"
-    },
-    {
-      "group_id": "bj-exhibition-03_0",
-      "location": "北京展览馆西马路",
-      "sample_title": "首旅精彩生活节",
-      "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:03_0"
-      ],
-      "action": "match",
-      "poi_id": "10535731078663200590",
-      "poi_title": "北京展览馆",
-      "poi_address": "北京市西城区西直门外大街135号(近地铁西直门站)",
-      "poi_category": "文化场馆:展览馆",
-      "latitude": 39.942,
-      "longitude": 116.344,
-      "doubtful": false,
-      "reason": "首旅精彩生活节在北京展览馆西马路举办，主体为北京展览馆",
-      "search_keywords_tried": [
-        "北京展览馆"
-      ],
-      "decided_at": "2026-06-15T15:28:18.572Z"
-    },
-    {
-      "group_id": "bj-greenheart-03_1",
-      "location": "通州·城市绿心森林公园",
-      "sample_title": "绿心森林音乐节·创意市集",
-      "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:03_1"
-      ],
-      "action": "match",
-      "poi_id": "5565257750909290723",
-      "poi_title": "北京城市绿心森林公园",
-      "poi_address": "北京市通州区张家湾镇京塘路与东六环路交叉口东北角",
-      "poi_category": "旅游景点:公园",
-      "latitude": 39.868,
-      "longitude": 116.734,
-      "doubtful": false,
-      "reason": "城市绿心森林公园音乐节与通州绿心森林公园POI一致",
-      "search_keywords_tried": [
-        "城市绿心森林公园"
-      ],
-      "decided_at": "2026-06-15T15:28:18.572Z"
-    },
-    {
-      "group_id": "bj-station-03_2",
-      "location": "北京首创朗园Station",
-      "sample_title": "人模爪样不长大市集",
-      "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:03_2"
-      ],
-      "action": "match",
-      "poi_id": "1553812667111179662",
-      "poi_title": "郎园Station",
-      "poi_address": "北京市朝阳区东坝乡半截塔路53号",
-      "poi_category": "房产小区:产业园区",
-      "latitude": 39.968,
-      "longitude": 116.512,
-      "doubtful": false,
-      "reason": "首创朗园Station即郎园Station文创园区，朝阳区",
-      "search_keywords_tried": [
-        "北京首创朗园Station",
-        "郎园Station"
-      ],
-      "decided_at": "2026-06-15T15:28:18.572Z"
-    },
-    {
-      "group_id": "bj-xishan-05_0",
-      "location": "北京西山国家森林公园",
-      "sample_title": "西山森林嘉年华",
-      "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:05_0"
-      ],
-      "action": "match",
-      "poi_id": "13628034735541024604",
-      "poi_title": "北京西山国家森林公园",
-      "poi_address": "北京市海淀区闵庄路与香山南路交叉口西行100米",
-      "poi_category": "旅游景点:国家级景点",
-      "latitude": 39.978,
-      "longitude": 116.198,
-      "doubtful": false,
-      "reason": "西山森林嘉年华与北京西山国家森林公园一致，海淀区",
-      "search_keywords_tried": [
-        "西山国家森林公园"
-      ],
-      "decided_at": "2026-06-15T15:28:18.572Z"
-    },
-    {
-      "group_id": "bj-marriott-05_2",
-      "location": "王府井大街57号北京金茂万丽酒店",
-      "sample_title": "北京娃展",
-      "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:05_2"
-      ],
-      "action": "match",
-      "poi_id": "17683253508759813156",
-      "poi_title": "北京金茂万丽酒店",
-      "poi_address": "北京市东城区王府井大街57号",
-      "poi_category": "酒店宾馆:星级酒店",
-      "latitude": 39.914,
-      "longitude": 116.411,
-      "doubtful": false,
-      "reason": "北京娃展场地与北京金茂万丽酒店门牌一致，东城区王府井大街57号",
-      "search_keywords_tried": [
-        "北京金茂万丽酒店"
-      ],
-      "decided_at": "2026-06-15T15:28:18.572Z"
-    },
-    {
-      "group_id": "bj-songli-06_0",
-      "location": "北京通州·SONGLi宋里文创园",
-      "sample_title": "万物可循4.0",
-      "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:06_0"
-      ],
-      "action": "match",
-      "poi_id": "11175701101323709905",
-      "poi_title": "宋里艺术科技文创园-A栋",
-      "poi_address": "北京市通州区望都二街宋里艺术科技文创园",
-      "poi_category": "房产小区:产业园区",
-      "latitude": 39.945,
-      "longitude": 116.698,
-      "doubtful": false,
-      "reason": "SONGLi宋里文创园即宋里艺术科技文创园园区主体，通州区",
-      "search_keywords_tried": [
-        "宋里艺术科技文创园",
-        "SONGLi宋里文创园"
-      ],
-      "decided_at": "2026-06-15T15:28:18.572Z"
-    },
-    {
-      "group_id": "bj-galaxy-09_0",
-      "location": "东城区·银河SOHO",
-      "sample_title": "SOHO初夏市集",
-      "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:09_0"
-      ],
-      "action": "match",
-      "poi_id": "13099639343529365470",
-      "poi_title": "银河SOHO",
-      "poi_address": "北京市东城区朝阳门街道小牌坊胡同7号",
-      "poi_category": "房产小区:商务楼宇",
-      "latitude": 39.92,
-      "longitude": 116.434,
-      "doubtful": false,
-      "reason": "SOHO初夏市集在银河SOHO举办，东城区",
-      "search_keywords_tried": [
-        "银河SOHO"
-      ],
-      "decided_at": "2026-06-15T15:28:18.572Z"
+      "reason": "活动标题为绿联联名主题店，地点写中关村科贸电子城店，候选为绿联北京中关村科贸店，店名与海淀地址吻合。"
     }
   ]
 }

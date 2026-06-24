@@ -1,691 +1,794 @@
 {
   "city": "上海",
   "source": "xiaohongshu",
-  "updated_at": "2026-06-20T19:50:00.000Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-06-23T07:25:00.000Z",
+  "agent": "gpt-5.5",
   "decisions": [
     {
-      "group_id": "10dacbb8d7a6",
-      "location": "瑞虹天地月亮湾L1",
-      "sample_title": "蔚冉生长月亮湾花市端午集",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:01_0"
-      ],
-      "decided_at": "2026-06-15T15:20:53.261Z",
+      "group_id": "a8d82c5cbbe1",
+      "location": "上海古猗园（主会场）",
+      "sample_title": "第十三届上海荷花睡莲展",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:01_0"],
       "action": "match",
-      "poi_id": "7746667140482168162",
-      "poi_title": "瑞虹新天地月亮湾",
-      "poi_address": "上海市虹口区瑞虹路188号",
-      "latitude": 31.264404,
-      "longitude": 121.498585,
+      "search_keywords_tried": ["上海古猗园"],
+      "poi_id": "12190156923438800193",
+      "poi_title": "古猗园",
+      "poi_address": "上海市嘉定区沪宜公路218号",
+      "latitude": 31.291792,
+      "longitude": 121.316896,
+      "candidates": [
+        {
+          "poi_id": "12190156923438800193",
+          "title": "古猗园",
+          "address": "上海市嘉定区沪宜公路218号",
+          "category": "旅游景点:国家级景点",
+          "latitude": 31.291792,
+          "longitude": 121.316896
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "豆瓣瑞虹天地月亮湾L1与POI瑞虹新天地月亮湾主体一致",
-      "search_keywords_tried": [
-        "瑞虹天地月亮湾"
-      ]
+      "reason": "地点明确为上海古猗园主会场，POI为古猗园景区主体。"
     },
     {
-      "group_id": "2f45dba6e8ec",
-      "location": "上海长风大悦城室内L2中庭，大渡河路196号",
-      "sample_title": "留白手账市集",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:01_1"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
+      "group_id": "ddccfb8e1e82",
+      "location": "松江区新浜镇胡家埭村（导航搜索“新浜荷花园”）",
+      "sample_title": "2026松江新浜荷花节",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:01_1"],
       "action": "match",
-      "poi_id": "18318386993313418946",
-      "poi_title": "长风大悦城",
-      "poi_address": "上海市普陀区大渡河路196号",
-      "latitude": 31.22267,
-      "longitude": 121.395285,
+      "search_keywords_tried": ["新浜荷花园"],
+      "poi_id": "9301392272981996452",
+      "poi_title": "新浜荷花园",
+      "poi_address": "上海市松江区新浜镇胡曹路和园胡路交叉口东南角",
+      "latitude": 30.932128,
+      "longitude": 121.092816,
+      "candidates": [
+        {
+          "poi_id": "9301392272981996452",
+          "title": "新浜荷花园",
+          "address": "上海市松江区新浜镇胡曹路和园胡路交叉口东南角",
+          "category": "旅游景点:其它旅游景点",
+          "latitude": 30.932128,
+          "longitude": 121.092816
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "豆瓣上海长风大悦城室内L2中庭，大渡河路196号与POI长风大悦城一致",
-      "search_keywords_tried": [
-        "上海长风大悦城室内L2中庭",
-        "大渡河路196号",
-        "196号",
-        "上海长风大悦城室内L2中庭，大渡河路196号"
-      ]
+      "reason": "地址提示导航搜索新浜荷花园，POI名称与松江新浜镇位置吻合。"
     },
     {
-      "group_id": "dc3d09189213",
-      "location": "大学路限时步行街，上海市杨浦区智星路至锦创路",
-      "sample_title": "「清迈初夏」市集",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:01_2"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
+      "group_id": "e17d5d103331",
+      "location": "顾村公园",
+      "sample_title": "2026消夏赏荷活动",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:01_2"],
       "action": "match",
-      "poi_id": "1149204572821023744",
-      "poi_title": "大学路限时步行街",
-      "poi_address": "上海市杨浦区大学路40号",
-      "latitude": 31.304755,
-      "longitude": 121.511696,
+      "search_keywords_tried": ["顾村公园"],
+      "poi_id": "9590133195728005282",
+      "poi_title": "顾村公园",
+      "poi_address": "上海市宝山区顾村镇沪太路4788号",
+      "latitude": 31.337061,
+      "longitude": 121.36559,
+      "candidates": [
+        {
+          "poi_id": "9590133195728005282",
+          "title": "顾村公园",
+          "address": "上海市宝山区顾村镇沪太路4788号",
+          "category": "旅游景点:公园",
+          "latitude": 31.337061,
+          "longitude": 121.36559
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "豆瓣大学路限时步行街，上海市杨浦区智星路至锦创路与POI大学路限时步行街一致",
-      "search_keywords_tried": [
-        "大学路限时步行街",
-        "上海市杨浦区智星路至锦创路",
-        "大学路限时步行街，上海市杨浦区智星路至锦创路"
-      ]
+      "reason": "地点为顾村公园，POI主体唯一且区划合理。"
     },
     {
-      "group_id": "4b76857d6d11",
-      "location": "上海市静安区苏河湾万象天地慎余里",
-      "sample_title": "了不起的汉堡节",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:02_0"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
+      "group_id": "09cd2151a308",
+      "location": "麦可将文旅村",
+      "sample_title": "2026收藏绿色生活市集",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:02_0"],
       "action": "match",
-      "poi_id": "8418993890342167738",
-      "poi_title": "上海苏河湾万象天地",
-      "poi_address": "上海市静安区福建北路100号",
-      "latitude": 31.24229,
-      "longitude": 121.478419,
+      "search_keywords_tried": ["麦可将文旅村"],
+      "poi_id": "14563586376633541794",
+      "poi_title": "麦可将文旅村",
+      "poi_address": "上海市闵行区联明路与联盛路交叉口西南方向101米左右",
+      "latitude": 31.144497,
+      "longitude": 121.346468,
+      "candidates": [
+        {
+          "poi_id": "14563586376633541794",
+          "title": "麦可将文旅村",
+          "address": "上海市闵行区联明路与联盛路交叉口西南方向101米左右",
+          "category": "旅游景点:其它旅游景点",
+          "latitude": 31.144497,
+          "longitude": 121.346468
+        },
+        {
+          "poi_id": "2280238294121184232",
+          "title": "389麦可将两岸文创园",
+          "address": "上海市闵行区七宝镇联明路389号",
+          "category": "房产小区:产业园区",
+          "latitude": 31.143991,
+          "longitude": 121.34711
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "豆瓣上海市静安区苏河湾万象天地慎余里与POI上海苏河湾万象天地主体一致",
-      "search_keywords_tried": [
-        "苏河湾万象天地"
-      ]
+      "reason": "POI名称与地点完全一致，地址在闵行联明路片区。"
     },
     {
-      "group_id": "530b81af0c51",
-      "location": "虹口北外滩",
-      "sample_title": "2026上海国际游艇生活嘉年华",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:02_1"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
+      "group_id": "4e6b8abecc73",
+      "location": "江湾里MEET678",
+      "sample_title": "大小孩夏日放风晚会",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:02_1"],
       "action": "match",
-      "poi_id": "10528473002221920382",
-      "poi_title": "北外滩滨江绿地",
-      "poi_address": "上海市虹口区东大名路558-678",
-      "latitude": 31.24776,
-      "longitude": 121.49947,
+      "search_keywords_tried": ["江湾里MEET678"],
+      "poi_id": "19366294682160235",
+      "poi_title": "江湾里MEET678",
+      "poi_address": "上海市杨浦区新江湾城街道民府路678号(三门路地铁站6号口步行480米)",
+      "latitude": 31.315496,
+      "longitude": 121.509267,
+      "candidates": [
+        {
+          "poi_id": "19366294682160235",
+          "title": "江湾里MEET678",
+          "address": "上海市杨浦区新江湾城街道民府路678号(三门路地铁站6号口步行480米)",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 31.315496,
+          "longitude": 121.509267
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "豆瓣虹口北外滩与POI北外滩滨江绿地主体一致",
-      "search_keywords_tried": [
-        "虹口北外滩",
-        "北外滩滨江"
-      ]
+      "reason": "地点与POI名称完全一致。"
     },
     {
-      "group_id": "1e3f6f2b415c",
-      "location": "奉贤龙湖天街",
-      "sample_title": "与湖好市·奉贤首届精酿汉堡节",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:02_2"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
+      "group_id": "bce42c91c024",
+      "location": "蟠龙新天地·粮仓码头（近余德耀美术馆）",
+      "sample_title": "蟠龙水市夏日焕新——荷花市集",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:02_2"],
       "action": "match",
-      "poi_id": "5110397369773041803",
-      "poi_title": "龙湖上海奉贤天街",
-      "poi_address": "上海市奉贤区金海公路3800号奉贤龙湖天街商场A-B1-19,A-B1-20号",
-      "latitude": 30.913288,
-      "longitude": 121.497575,
+      "search_keywords_tried": ["蟠龙新天地 粮仓码头", "粮仓码头"],
+      "poi_id": "7440194880654570571",
+      "poi_title": "蟠龙新天地",
+      "poi_address": "上海市青浦区蟠鼎路123弄8号",
+      "latitude": 31.189172,
+      "longitude": 121.27593,
+      "candidates": [
+        {
+          "poi_id": "7440194880654570571",
+          "title": "蟠龙新天地",
+          "address": "上海市青浦区蟠鼎路123弄8号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 31.189172,
+          "longitude": 121.27593
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": false,
+      "reason": "地点主体为蟠龙新天地，粮仓码头未搜到独立有效POI，按商场/街区主体绑定。"
+    },
+    {
+      "group_id": "83f832231a01",
+      "location": "上海合生汇1号门厅",
+      "sample_title": "TearNaara奇想秘境主题快闪",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:03_0"],
+      "action": "match",
+      "search_keywords_tried": ["上海合生汇"],
+      "poi_id": "4046073433432904559",
+      "poi_title": "上海五角场合生汇",
+      "poi_address": "上海市杨浦区翔殷路1099号",
+      "latitude": 31.299513,
+      "longitude": 121.518175,
+      "candidates": [
+        {
+          "poi_id": "4046073433432904559",
+          "title": "上海五角场合生汇",
+          "address": "上海市杨浦区翔殷路1099号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 31.299513,
+          "longitude": 121.518175
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "豆瓣奉贤龙湖天街与POI龙湖上海奉贤天街一致",
-      "search_keywords_tried": [
-        "奉贤龙湖天街"
-      ]
+      "reason": "上海合生汇主体命中，1号门厅为商场内附属位置。"
     },
     {
-      "group_id": "cc4fdc8c5c1d",
-      "location": "老滧河C湖码头（游艇码头）",
-      "sample_title": "2026崇明城桥端午城心诚意 水岸市集",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:03_0"
-      ],
-      "decided_at": "2026-06-20T19:50:00.000Z",
-      "action": "reject",
-      "reason": "老滧河C湖码头未搜到对应实体POI，候选多为崇明道路/路口/桥；游艇码头候选多在杨浦、虹口、奉贤、浦东或崇明东滩，均非城桥老滧河C湖码头",
-      "search_keywords_tried": [
-        "老滧河C湖码头",
-        "崇明 城桥 游艇码头"
-      ]
-    },
-    {
-      "group_id": "21acb5a3a04a",
-      "location": "南大中央公园",
-      "sample_title": "南大智慧城·玩食生活汇",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:03_1"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
+      "group_id": "c00fe1adc5ce",
+      "location": "五角场万达广场",
+      "sample_title": "FANTOWN世界杯豪门官方授权快闪",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:03_1"],
       "action": "match",
-      "poi_id": "1599423340009798743",
-      "poi_title": "南大中央公园",
-      "poi_address": "上海市宝山区祁骆路大场南大工业园区东侧",
-      "latitude": 31.293719,
-      "longitude": 121.376369,
+      "search_keywords_tried": ["五角场万达广场"],
+      "poi_id": "9131276545502795994",
+      "poi_title": "上海五角场万达广场",
+      "poi_address": "上海市杨浦区淞沪路77号",
+      "latitude": 31.301228,
+      "longitude": 121.513622,
+      "candidates": [
+        {
+          "poi_id": "9131276545502795994",
+          "title": "上海五角场万达广场",
+          "address": "上海市杨浦区淞沪路77号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 31.301228,
+          "longitude": 121.513622
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "豆瓣南大中央公园与POI南大中央公园一致",
-      "search_keywords_tried": [
-        "南大中央公园"
-      ]
+      "reason": "五角场万达广场主体唯一命中。"
     },
     {
-      "group_id": "56ff59997fc3",
-      "location": "松江区大叶公路441号（泊舟里·造物集临时停车场）",
-      "sample_title": "泊舟里·造物集",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:03_2"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
+      "group_id": "b35206819e0b",
+      "location": "百联又一城",
+      "sample_title": "TEDDYISLAND燃动夏日足球嘉年华",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:03_2"],
       "action": "match",
-      "poi_id": "2051684790972143238",
-      "poi_title": "泊舟里·造物集",
-      "poi_address": "上海市松江区陈姚路",
-      "latitude": 30.956083,
-      "longitude": 121.343833,
+      "search_keywords_tried": ["百联又一城"],
+      "poi_id": "136667312646889483",
+      "poi_title": "百联又一城",
+      "poi_address": "上海市杨浦区淞沪路8号",
+      "latitude": 31.301655,
+      "longitude": 121.51557,
+      "candidates": [
+        {
+          "poi_id": "136667312646889483",
+          "title": "百联又一城",
+          "address": "上海市杨浦区淞沪路8号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 31.301655,
+          "longitude": 121.51557
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "豆瓣松江区大叶公路441号（泊舟里·造物集临时停车场）与POI泊舟里·造物集一致",
-      "search_keywords_tried": [
-        "松江区大叶公路441号",
-        "泊舟里·造物集临时停车场",
-        "441号（泊舟里·造物集临时停车场）"
-      ]
+      "reason": "地点与POI名称完全一致。"
     },
     {
-      "group_id": "d3668de53e3c",
-      "location": "山阳田园",
-      "sample_title": "田园仲夏夜，端午奇妙游",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:04_0"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
+      "group_id": "c04b3b102798",
+      "location": "徐行天地一楼",
+      "sample_title": "徐行镇第三届“蒲华塘之夜”夏季村晚",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:04_0"],
       "action": "match",
-      "poi_id": "8740384699907424870",
-      "poi_title": "山阳田园",
-      "poi_address": "上海市金山区山阳镇亭卫公路2833弄183号",
-      "latitude": 30.790671,
-      "longitude": 121.353279,
+      "search_keywords_tried": ["徐行天地"],
+      "poi_id": "9176313758071718559",
+      "poi_title": "徐行天地购物中心",
+      "poi_address": "上海市嘉定区启宁路688号",
+      "latitude": 31.413943,
+      "longitude": 121.278972,
+      "candidates": [
+        {
+          "poi_id": "9176313758071718559",
+          "title": "徐行天地购物中心",
+          "address": "上海市嘉定区启宁路688号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 31.413943,
+          "longitude": 121.278972
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "豆瓣山阳田园与POI山阳田园一致",
-      "search_keywords_tried": [
-        "山阳田园"
-      ]
+      "reason": "徐行天地主体命中，一楼为楼层精度。"
     },
     {
-      "group_id": "130cf14f583c",
-      "location": "南翔古镇",
-      "sample_title": "放「粽」一夏，「艾」在南翔",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:04_1"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
+      "group_id": "c440af9bd600",
+      "location": "西岸凤巢",
+      "sample_title": "HeyBlue Oasis城市绿洲水上乐园 西岸凤巢夏日玩水季",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:04_1"],
       "action": "match",
-      "poi_id": "11363196054813672464",
-      "poi_title": "南翔古镇",
-      "poi_address": "上海市嘉定区解放街206号",
-      "latitude": 31.29067,
-      "longitude": 121.30828,
+      "search_keywords_tried": ["西岸凤巢"],
+      "poi_id": "1989978242219595164",
+      "poi_title": "GATE M西岸凤巢",
+      "poi_address": "上海市徐汇区云锦路683号",
+      "latitude": 31.16383,
+      "longitude": 121.460361,
+      "candidates": [
+        {
+          "poi_id": "1989978242219595164",
+          "title": "GATE M西岸凤巢",
+          "address": "上海市徐汇区云锦路683号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 31.16383,
+          "longitude": 121.460361
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "豆瓣南翔古镇与POI南翔古镇一致",
-      "search_keywords_tried": [
-        "南翔古镇"
-      ]
+      "reason": "地点与POI主体西岸凤巢一致。"
     },
     {
-      "group_id": "3947fc53510a",
-      "location": "奉贤区柘林镇迎龙村",
-      "sample_title": "一起去村游2.0：柘林镇迎龙村水上运动季",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:04_2"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
+      "group_id": "5bbb48156122",
+      "location": "曲水湿地",
+      "sample_title": "蟠龙新天地林涧涧溪开放",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:04_2"],
       "action": "match",
-      "poi_id": "13440132170226617512",
-      "poi_title": "柘林镇迎龙村党群服务中心",
-      "poi_address": "上海市奉贤区柘林镇迎龙村迎立路519号",
-      "latitude": 30.848825,
-      "longitude": 121.415645,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "豆瓣奉贤区柘林镇迎龙村与POI柘林镇迎龙村党群服务中心一致",
-      "search_keywords_tried": [
-        "奉贤区柘林镇迎龙村"
-      ]
-    },
-    {
-      "group_id": "8147a21f22b4",
-      "location": "浦江郊野公园",
-      "sample_title": "首届长三角「粽子节」",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:05_0"
+      "search_keywords_tried": ["曲水湿地", "蟠龙新天地 曲水湿地"],
+      "poi_id": "7440194880654570571",
+      "poi_title": "蟠龙新天地",
+      "poi_address": "上海市青浦区蟠鼎路123弄8号",
+      "latitude": 31.189172,
+      "longitude": 121.27593,
+      "candidates": [
+        {
+          "poi_id": "7440194880654570571",
+          "title": "蟠龙新天地",
+          "address": "上海市青浦区蟠鼎路123弄8号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 31.189172,
+          "longitude": 121.27593
+        }
       ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
-      "action": "match",
-      "poi_id": "5673077432519023091",
-      "poi_title": "上海浦江郊野公园",
-      "poi_address": "上海市闵行区浦星公路2578弄8号",
-      "latitude": 31.055162,
-      "longitude": 121.505011,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "豆瓣浦江郊野公园与POI上海浦江郊野公园一致",
-      "search_keywords_tried": [
-        "浦江郊野公园"
-      ]
-    },
-    {
-      "group_id": "4aaca7c83ef9",
-      "location": "川沙古镇",
-      "sample_title": "川沙古镇生活集市",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:05_1"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
-      "action": "match",
-      "poi_id": "17239960827555923324",
-      "poi_title": "川沙古镇",
-      "poi_address": "上海市浦东新区乔家弄11东北方向40米",
-      "latitude": 31.196315,
-      "longitude": 121.704546,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "豆瓣川沙古镇与POI川沙古镇一致",
-      "search_keywords_tried": [
-        "川沙古镇"
-      ]
-    },
-    {
-      "group_id": "9b78fa2cf23d",
-      "location": "虹桥新天地",
-      "sample_title": "出游入画 端午游园会",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:06_0"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
-      "action": "match",
-      "poi_id": "7428104182865048667",
-      "poi_title": "虹桥新天地THE HUB",
-      "poi_address": "上海市闵行区申长路688号",
-      "latitude": 31.192711,
-      "longitude": 121.3154,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "豆瓣虹桥新天地与POI虹桥新天地THE HUB一致",
-      "search_keywords_tried": [
-        "虹桥新天地"
-      ]
-    },
-    {
-      "group_id": "fe9d2335a1cb",
-      "location": "松江区泗泾镇泗泾塘休闲绿地（外婆泾路1号）",
-      "sample_title": "2026第四届千年古镇龙舟邀请赛",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:06_1"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
-      "action": "match",
-      "poi_id": "6588826931130479852",
-      "poi_title": "古镇泗泾",
-      "poi_address": "上海市松江区开江中路与开江路交叉口正东方向38米左右",
-      "latitude": 31.11113,
-      "longitude": 121.27483,
       "confidence": "medium",
       "doubtful": true,
-      "reason": "活动地址为泗泾塘休闲绿地外婆泾路1号，腾讯无该绿地POI，对齐泗泾镇古镇地标，建议人工核对",
-      "search_keywords_tried": [
-        "泗泾塘休闲绿地",
-        "古镇泗泾"
-      ]
+      "reason": "曲水湿地未搜到独立POI，样例标题指向蟠龙新天地林涧涧溪，绑定蟠龙新天地主体但内部湿地位置建议人工核对。"
     },
     {
-      "group_id": "3a16d3f83055",
-      "location": "宝山区罗店镇远景花田",
-      "sample_title": "宝山区罗店镇远景花田向日葵花海",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:07_0"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
+      "group_id": "226483746665",
+      "location": "新天地湖滨路济南路交叉口（太平湖亲水平台）",
+      "sample_title": "新天地旋转木马焕新回归",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:05_0"],
       "action": "match",
-      "poi_id": "10745236611012019342",
-      "poi_title": "远景花田",
-      "poi_address": "上海市宝山区北周新路与田园一路交叉口西北方向55米左右",
-      "latitude": 31.405034,
-      "longitude": 121.330819,
+      "search_keywords_tried": ["太平湖亲水平台 新天地", "太平湖公园", "太平湖亲水平台", "湖滨路 济南路"],
+      "poi_id": "2729397688284533748",
+      "poi_title": "太平湖",
+      "poi_address": "上海市黄浦区湖滨路与顺昌路交叉口东南方向62米左右",
+      "latitude": 31.219851,
+      "longitude": 121.477885,
+      "candidates": [
+        {
+          "poi_id": "2729397688284533748",
+          "title": "太平湖",
+          "address": "上海市黄浦区湖滨路与顺昌路交叉口东南方向62米左右",
+          "category": "地名地址:自然地名:湖泊",
+          "latitude": 31.219851,
+          "longitude": 121.477885
+        },
+        {
+          "poi_id": "14251083623243116846",
+          "title": "济南路与湖滨路交叉口",
+          "address": "上海市黄浦区",
+          "category": "基础设施:道路附属:路口",
+          "latitude": 31.220158,
+          "longitude": 121.478636
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": false,
+      "reason": "地点写太平湖亲水平台且交叉口在太平湖旁，POI太平湖比泛化的新天地主体更贴近场地。"
+    },
+    {
+      "group_id": "12bb37e96396",
+      "location": "滴水湖庆典广场",
+      "sample_title": "“滴水湖畔·玉兰花开”影视主题音乐会",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:05_1"],
+      "action": "match",
+      "search_keywords_tried": ["滴水湖庆典广场"],
+      "poi_id": "8019657763733684371",
+      "poi_title": "滴水湖庆典广场",
+      "poi_address": "上海市浦东新区南汇新城镇南汇新城申港大道与环湖西一路交叉口东侧",
+      "latitude": 30.897454,
+      "longitude": 121.927301,
+      "candidates": [
+        {
+          "poi_id": "8019657763733684371",
+          "title": "滴水湖庆典广场",
+          "address": "上海市浦东新区南汇新城镇南汇新城申港大道与环湖西一路交叉口东侧",
+          "category": "旅游景点:城市广场",
+          "latitude": 30.897454,
+          "longitude": 121.927301
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "豆瓣宝山区罗店镇远景花田与POI远景花田一致",
-      "search_keywords_tried": [
-        "宝山区罗店镇远景花田",
-        "宝山区罗店"
-      ]
+      "reason": "地点与POI名称完全一致。"
     },
     {
-      "group_id": "e7b5cad86f0d",
-      "location": "浦江郊野公园·奇迹花园区",
-      "sample_title": "浦江郊野公园奇迹花园区免费开放",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:07_1"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
+      "group_id": "efd6493730d9",
+      "location": "莫比乌斯公园",
+      "sample_title": "“玉兰花开抓马街”嘉年华",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:05_2"],
       "action": "match",
-      "poi_id": "7399585235783669526",
-      "poi_title": "奇迹花园",
-      "poi_address": "上海市闵行区浦星公路2578弄8号",
-      "latitude": 31.054595,
-      "longitude": 121.507641,
+      "search_keywords_tried": ["莫比乌斯公园", "玉兰花开抓马街 莫比乌斯公园"],
+      "poi_id": "2654554631074796995",
+      "poi_title": "莫比乌斯公园",
+      "poi_address": "上海市浦东新区振桥路与申轮路交叉口西南方向115米左右",
+      "latitude": 31.287375,
+      "longitude": 121.630833,
+      "candidates": [
+        {
+          "poi_id": "2654554631074796995",
+          "title": "莫比乌斯公园",
+          "address": "上海市浦东新区振桥路与申轮路交叉口西南方向115米左右",
+          "category": "旅游景点:公园",
+          "latitude": 31.287375,
+          "longitude": 121.630833
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": false,
+      "reason": "地点直接写莫比乌斯公园，候选中有同名公园主体；活动标题搜索未提供更具体场地。"
+    },
+    {
+      "group_id": "73de300dcdaa",
+      "location": "上海市历史博物馆",
+      "sample_title": "传与承——哈萨克斯坦民俗文化展",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:06_0"],
+      "action": "match",
+      "search_keywords_tried": ["上海市历史博物馆"],
+      "poi_id": "1381287723848569740",
+      "poi_title": "上海市历史博物馆",
+      "poi_address": "上海市黄浦区南京西路325号",
+      "latitude": 31.23097,
+      "longitude": 121.47093,
+      "candidates": [
+        {
+          "poi_id": "1381287723848569740",
+          "title": "上海市历史博物馆",
+          "address": "上海市黄浦区南京西路325号",
+          "category": "文化场馆:博物馆",
+          "latitude": 31.23097,
+          "longitude": 121.47093
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "豆瓣浦江郊野公园·奇迹花园区与POI奇迹花园一致",
-      "search_keywords_tried": [
-        "奇迹花园区"
-      ]
+      "reason": "博物馆名称完全一致。"
     },
     {
-      "group_id": "af60e0746313",
-      "location": "上海辰山植物园",
-      "sample_title": "2026「美洲奇珍」积水凤梨展",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:07_2"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
+      "group_id": "0544ac49eecc",
+      "location": "上海Fotografiska影像艺术中心",
+      "sample_title": "苏文 北京银矿：档案合辑",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:06_1"],
       "action": "match",
-      "poi_id": "13838316571513233172",
-      "poi_title": "上海辰山植物园",
-      "poi_address": "上海市松江区辰花公路3888号",
-      "latitude": 31.075,
-      "longitude": 121.18304,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "豆瓣上海辰山植物园与POI上海辰山植物园一致",
-      "search_keywords_tried": [
-        "上海辰山植物园"
-      ]
-    },
-    {
-      "group_id": "5e1dcfa32d4a",
-      "location": "浦东美术馆",
-      "sample_title": "乔治·莫兰迪：独白",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:08_0"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
-      "action": "match",
-      "poi_id": "16833720526891253285",
-      "poi_title": "浦东美术馆",
-      "poi_address": "上海市浦东新区滨江大道2777号",
-      "latitude": 31.23812,
-      "longitude": 121.495877,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "豆瓣浦东美术馆与POI浦东美术馆一致",
-      "search_keywords_tried": [
-        "浦东美术馆"
-      ]
-    },
-    {
-      "group_id": "dfa773839df1",
-      "location": "世界会客厅",
-      "sample_title": "神马都好玩——当达拉木马遇见中国非遗",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:08_1"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
-      "action": "match",
-      "poi_id": "4922431903043849302",
-      "poi_title": "北外滩世界会客厅",
-      "poi_address": "上海市虹口区黄浦路118号",
-      "latitude": 31.24479,
-      "longitude": 121.493847,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "豆瓣世界会客厅与POI北外滩世界会客厅一致",
-      "search_keywords_tried": [
-        "世界会客厅"
-      ]
-    },
-    {
-      "group_id": "6a1e10c0c7a4",
-      "location": "上海中国画院美术馆",
-      "sample_title": "云山雄天——蔡天雄艺海六十春秋回顾展",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:08_2"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
-      "action": "match",
-      "poi_id": "16841138555011063016",
-      "poi_title": "上海中国画院",
-      "poi_address": "上海市徐汇区岳阳路197号华仁大厦1-2楼",
-      "latitude": 31.204416,
-      "longitude": 121.452897,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "豆瓣上海中国画院美术馆与POI上海中国画院一致",
-      "search_keywords_tried": [
-        "上海中国画院美术馆"
-      ]
-    },
-    {
-      "group_id": "5f836ed8c8c0",
-      "location": "chi K11美术馆",
-      "sample_title": "时光代理人5周年——原画艺术巡回特展",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:09_0"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
-      "action": "match",
-      "poi_id": "10432582796426320283",
-      "poi_title": "久仰了大诗人·国风诗词艺术展-上海站",
-      "poi_address": "上海市黄浦区淮海中路300号K11购物中心B3层 chi K11美术馆",
-      "latitude": 31.223541,
-      "longitude": 121.473563,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "豆瓣chi K11美术馆与POI久仰了大诗人·国风诗词艺术展-上海站一致",
-      "search_keywords_tried": [
-        "K11美术馆",
-        "chi K11",
-        "美术馆"
-      ]
-    },
-    {
-      "group_id": "bb59be69fb8d",
-      "location": "Fotografiska影像艺术中心",
-      "sample_title": "黎晨驰：坏品味的人",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:09_1"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
-      "action": "match",
+      "search_keywords_tried": ["上海Fotografiska影像艺术中心"],
       "poi_id": "1890930917668523143",
       "poi_title": "Fotografiska上海影像艺术中心",
       "poi_address": "上海市静安区光复路127号,毗邻四行仓库",
       "latitude": 31.239777,
       "longitude": 121.469834,
+      "candidates": [
+        {
+          "poi_id": "1890930917668523143",
+          "title": "Fotografiska上海影像艺术中心",
+          "address": "上海市静安区光复路127号,毗邻四行仓库",
+          "category": "文化场馆:展览馆",
+          "latitude": 31.239777,
+          "longitude": 121.469834
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "豆瓣Fotografiska影像艺术中心与POIFotografiska上海影像艺术中心一致",
-      "search_keywords_tried": [
-        "Fotografiska影像艺术中心",
-        "Fotografiska",
-        "影像艺术中心"
-      ]
+      "reason": "名称完全对应，Fotografiska上海影像艺术中心为同一主体。"
     },
     {
-      "group_id": "f6c3e7c2f2db",
-      "location": "上海海派艺术馆",
-      "sample_title": "江山人民——新时代中国青年艺术家邀请展",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:09_2"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
+      "group_id": "28b8be549528",
+      "location": "上海博物馆东馆",
+      "sample_title": "暂得之乐——暂得楼捐赠明清瓷器展",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:06_2"],
       "action": "match",
-      "poi_id": "14006451566715333610",
-      "poi_title": "上海海派艺术馆",
-      "poi_address": "上海市闵行区新镇路闵行文化公园内",
-      "latitude": 31.160577,
-      "longitude": 121.358262,
+      "search_keywords_tried": ["上海博物馆东馆"],
+      "poi_id": "12583235804204926797",
+      "poi_title": "上海博物馆(东馆)",
+      "poi_address": "上海市浦东新区世纪大道1952号",
+      "latitude": 31.219918,
+      "longitude": 121.53876,
+      "candidates": [
+        {
+          "poi_id": "12583235804204926797",
+          "title": "上海博物馆(东馆)",
+          "address": "上海市浦东新区世纪大道1952号",
+          "category": "文化场馆:博物馆",
+          "latitude": 31.219918,
+          "longitude": 121.53876
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "豆瓣上海海派艺术馆与POI上海海派艺术馆一致",
-      "search_keywords_tried": [
-        "上海海派艺术馆"
-      ]
+      "reason": "地点与POI名称一致。"
     },
     {
-      "group_id": "9d9e6e8d8a49",
-      "location": "上海嘉艺术（中江路677弄51号）",
-      "sample_title": "观乎人文",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:12_1"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
+      "group_id": "5e1dcfa32d4a",
+      "location": "浦东美术馆",
+      "sample_title": "让·努维尔：若无艺术家，建筑亦无存",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:07_0"],
       "action": "match",
-      "poi_id": "17329230980537713512",
-      "poi_title": "嘉艺术",
-      "poi_address": "上海市普陀区中江路677弄51号",
-      "latitude": 31.229611,
-      "longitude": 121.391127,
+      "search_keywords_tried": ["浦东美术馆"],
+      "poi_id": "16833720526891253285",
+      "poi_title": "浦东美术馆",
+      "poi_address": "上海市浦东新区滨江大道2777号",
+      "latitude": 31.23812,
+      "longitude": 121.495877,
+      "candidates": [
+        {
+          "poi_id": "16833720526891253285",
+          "title": "浦东美术馆",
+          "address": "上海市浦东新区滨江大道2777号",
+          "category": "文化场馆:美术馆",
+          "latitude": 31.23812,
+          "longitude": 121.495877
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "豆瓣上海嘉艺术（中江路677弄51号）与POI嘉艺术一致",
-      "search_keywords_tried": [
-        "上海嘉艺术",
-        "中江路677弄51号",
-        "51号）"
-      ]
+      "reason": "地点与POI名称一致。"
     },
     {
-      "group_id": "b278c479ec4d",
-      "location": "捷豹上海交响音乐厅",
-      "sample_title": "大师与经典系列 陈燮阳与上海爱乐乐团",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:13_0"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
+      "group_id": "bb59be69fb8d",
+      "location": "Fotografiska影像艺术中心",
+      "sample_title": "黎晨驰：环品味的人",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:08_1"],
       "action": "match",
-      "poi_id": "14987562979168640294",
-      "poi_title": "捷豹上海交响音乐厅",
-      "poi_address": "上海市徐汇区复兴中路1380号(常熟路地铁站4号口步行450米)",
-      "latitude": 31.211524,
-      "longitude": 121.451652,
+      "search_keywords_tried": ["上海Fotografiska影像艺术中心"],
+      "poi_id": "1890930917668523143",
+      "poi_title": "Fotografiska上海影像艺术中心",
+      "poi_address": "上海市静安区光复路127号,毗邻四行仓库",
+      "latitude": 31.239777,
+      "longitude": 121.469834,
+      "candidates": [
+        {
+          "poi_id": "1890930917668523143",
+          "title": "Fotografiska上海影像艺术中心",
+          "address": "上海市静安区光复路127号,毗邻四行仓库",
+          "category": "文化场馆:展览馆",
+          "latitude": 31.239777,
+          "longitude": 121.469834
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "豆瓣捷豹上海交响音乐厅与POI捷豹上海交响音乐厅一致",
-      "search_keywords_tried": [
-        "捷豹上海交响音乐厅"
-      ]
+      "reason": "地点缺少城市前缀但名称对应同一上海Fotografiska影像艺术中心。"
     },
     {
-      "group_id": "e89ac44d91ff",
-      "location": "上剧场",
-      "sample_title": "音乐剧《我的遗愿清单》",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:13_1"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
+      "group_id": "1c027f706dfc",
+      "location": "西岸穹顶艺术中心",
+      "sample_title": "“蚝式传奇”主题展",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:09_1"],
       "action": "match",
-      "poi_id": "153602161594871306",
-      "poi_title": "上剧场(美罗城店)",
-      "poi_address": "上海市徐汇区肇嘉浜路1111号美罗城F5",
-      "latitude": 31.192891,
-      "longitude": 121.440037,
+      "search_keywords_tried": ["西岸穹顶艺术中心"],
+      "poi_id": "3316634125202145822",
+      "poi_title": "西岸穹顶艺术中心",
+      "poi_address": "上海市徐汇区龙腾大道2350号",
+      "latitude": 31.163172,
+      "longitude": 121.464565,
+      "candidates": [
+        {
+          "poi_id": "3316634125202145822",
+          "title": "西岸穹顶艺术中心",
+          "address": "上海市徐汇区龙腾大道2350号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.163172,
+          "longitude": 121.464565
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "豆瓣上剧场与POI上剧场(美罗城店)一致",
-      "search_keywords_tried": [
-        "上剧场"
-      ]
+      "reason": "地点与POI名称完全一致。"
     },
     {
-      "group_id": "d3b047b23d96",
-      "location": "上海保利大剧院",
-      "sample_title": "音乐剧《青春之歌》",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:13_2"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
+      "group_id": "2e9f97a44266",
+      "location": "刘海粟美术馆",
+      "sample_title": "“青花+”艺术大展",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:10_0"],
       "action": "match",
-      "poi_id": "6465397749718064720",
-      "poi_title": "上海保利大剧院(白银路店)",
-      "poi_address": "上海市嘉定区嘉定新城白银路159号(远香湖畔)",
-      "latitude": 31.353327,
-      "longitude": 121.264796,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "豆瓣上海保利大剧院与POI上海保利大剧院(白银路店)一致",
-      "search_keywords_tried": [
-        "上海保利大剧院"
-      ]
+      "search_keywords_tried": ["刘海粟美术馆"],
+      "poi_id": "231327142243008926",
+      "poi_title": "刘海粟美术馆(延安西路新馆)",
+      "poi_address": "上海市长宁区延安西路1609号凯桥绿地内(近凯旋路)",
+      "latitude": 31.209508,
+      "longitude": 121.419496,
+      "candidates": [
+        {
+          "poi_id": "231327142243008926",
+          "title": "刘海粟美术馆(延安西路新馆)",
+          "address": "上海市长宁区延安西路1609号凯桥绿地内(近凯旋路)",
+          "category": "文化场馆:美术馆",
+          "latitude": 31.209508,
+          "longitude": 121.419496
+        },
+        {
+          "poi_id": "8394815748401081737",
+          "title": "刘海粟美术馆(铜川路分馆)",
+          "address": "上海市普陀区铜川路1869号(真光路地铁站2号口步行90米)",
+          "category": "文化场馆:美术馆",
+          "latitude": 31.252933,
+          "longitude": 121.384909
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "地点只写刘海粟美术馆，候选存在延安西路新馆和铜川路分馆；通常展览在主馆新馆，但因地址未写分馆建议人工核对。"
     },
     {
-      "group_id": "1a504a91f4cb",
-      "location": "大上海剧场",
-      "sample_title": "话剧《四世同堂》",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:14_0"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
+      "group_id": "d303e5eb556e",
+      "location": "上海外滩华尔道夫酒店·总会大楼（中山东一路2号）",
+      "sample_title": "AWHITE×艺术家温秋雯的联名艺术展",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:11_2"],
       "action": "match",
-      "poi_id": "8363515065751123953",
-      "poi_title": "黄浦文化中心·大上海剧场",
-      "poi_address": "上海市黄浦区中华路968号",
-      "latitude": 31.214497,
-      "longitude": 121.492072,
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "3689149344639091515",
+      "poi_title": "上海外滩华尔道夫酒店大门",
+      "poi_address": "",
+      "latitude": 31.23348,
+      "longitude": 121.489747,
+      "candidates": [
+        {
+          "poi_id": "3689149344639091515",
+          "title": "上海外滩华尔道夫酒店大门",
+          "address": "",
+          "category": "cached_poi",
+          "latitude": 31.23348,
+          "longitude": 121.489747
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "豆瓣大上海剧场与POI黄浦文化中心·大上海剧场一致",
-      "search_keywords_tried": [
-        "大上海剧场"
-      ]
+      "reason": "cached_poi指向上海外滩华尔道夫酒店大门，位置与总会大楼中山东一路2号同一酒店主体吻合。"
     },
     {
-      "group_id": "406170f9db5c",
-      "location": "YOUNG剧场",
-      "sample_title": "话剧《向晚》",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:14_1"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
+      "group_id": "36787ecf121f",
+      "location": "上海大剧院 大剧场",
+      "sample_title": "大型原创民族舞剧《花木兰》",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:12_0"],
       "action": "match",
-      "poi_id": "5527323411719490889",
-      "poi_title": "Theatre YOUNG剧场",
-      "poi_address": "上海市杨浦区控江路1155号(黄兴路地铁站3号口步行110米)",
-      "latitude": 31.278051,
-      "longitude": 121.528544,
+      "search_keywords_tried": ["上海大剧院 大剧场"],
+      "poi_id": "6589873532820127969",
+      "poi_title": "上海大剧院",
+      "poi_address": "上海市黄浦区人民大道300号",
+      "latitude": 31.229393,
+      "longitude": 121.471826,
+      "candidates": [
+        {
+          "poi_id": "6589873532820127969",
+          "title": "上海大剧院",
+          "address": "上海市黄浦区人民大道300号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.229393,
+          "longitude": 121.471826
+        },
+        {
+          "poi_id": "12453473618971333159",
+          "title": "上海大剧院大剧场贵宾厅",
+          "address": "上海市黄浦区人民大道300号上海大剧院B2口",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.229355,
+          "longitude": 121.471793
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "豆瓣YOUNG剧场与POITheatre YOUNG剧场一致",
-      "search_keywords_tried": [
-        "YOUNG剧场",
-        "YOUNG"
-      ]
+      "reason": "地点为上海大剧院大剧场，POI上海大剧院主体与人民大道地址吻合。"
     },
     {
-      "group_id": "32cb08253f30",
-      "location": "浦发银行东方体育中心",
-      "sample_title": "大张伟「大好时光——我们伟大的人生」演唱会",
-      "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:14_2"
-      ],
-      "decided_at": "2026-06-15T15:20:53.262Z",
+      "group_id": "11651510950b",
+      "location": "上海文化广场",
+      "sample_title": "话剧《青蛇》",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:12_1"],
       "action": "match",
-      "poi_id": "16520649264313704846",
-      "poi_title": "浦发银行东方体育中心",
-      "poi_address": "上海市浦东新区泳耀路300号",
-      "latitude": 31.156011,
-      "longitude": 121.477417,
+      "search_keywords_tried": ["上海文化广场"],
+      "poi_id": "2868361964880583690",
+      "poi_title": "上海文化广场",
+      "poi_address": "上海市黄浦区复兴中路597号",
+      "latitude": 31.212301,
+      "longitude": 121.462493,
+      "candidates": [
+        {
+          "poi_id": "2868361964880583690",
+          "title": "上海文化广场",
+          "address": "上海市黄浦区复兴中路597号",
+          "category": "旅游景点:城市广场",
+          "latitude": 31.212301,
+          "longitude": 121.462493
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "豆瓣浦发银行东方体育中心与POI浦发银行东方体育中心一致",
-      "search_keywords_tried": [
-        "浦发银行东方体育中心"
-      ]
+      "reason": "地点与POI名称一致。"
+    },
+    {
+      "group_id": "93edd9bee8bd",
+      "location": "上海西岸大剧院",
+      "sample_title": "三宝音乐剧《雌雄》",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:12_2"],
+      "action": "match",
+      "search_keywords_tried": ["上海西岸大剧院"],
+      "poi_id": "2198531495687242211",
+      "poi_title": "上海西岸大剧院",
+      "poi_address": "上海市徐汇区龙腾大道2290号GateM西岸梦中心F1",
+      "latitude": 31.163516,
+      "longitude": 121.465665,
+      "candidates": [
+        {
+          "poi_id": "2198531495687242211",
+          "title": "上海西岸大剧院",
+          "address": "上海市徐汇区龙腾大道2290号GateM西岸梦中心F1",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.163516,
+          "longitude": 121.465665
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地点与POI名称完全一致。"
+    },
+    {
+      "group_id": "533f444b2638",
+      "location": "上海话剧艺术中心",
+      "sample_title": "舞台剧《觉醒年代》",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:13_0"],
+      "action": "match",
+      "search_keywords_tried": ["上海话剧艺术中心"],
+      "poi_id": "15696576218127323146",
+      "poi_title": "上海话剧艺术中心-艺术剧院(话剧大厦店)",
+      "poi_address": "上海市徐汇区安福路288号话剧大厦1层",
+      "latitude": 31.213714,
+      "longitude": 121.44114,
+      "candidates": [
+        {
+          "poi_id": "15696576218127323146",
+          "title": "上海话剧艺术中心-艺术剧院(话剧大厦店)",
+          "address": "上海市徐汇区安福路288号话剧大厦1层",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.213714,
+          "longitude": 121.44114
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地点为上海话剧艺术中心，候选为其话剧大厦艺术剧院，名称和安福路主体吻合。"
+    },
+    {
+      "group_id": "b9c3dd2b6394",
+      "location": "上海国际舞蹈中心",
+      "sample_title": "现代舞剧场《UTOPIA问世》",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:13_1"],
+      "action": "match",
+      "search_keywords_tried": ["上海国际舞蹈中心"],
+      "poi_id": "13595737998992201929",
+      "poi_title": "上海国际舞蹈中心·大剧场",
+      "poi_address": "上海市长宁区虹桥街道虹桥路1650号上海国际舞蹈中心2号楼",
+      "latitude": 31.199393,
+      "longitude": 121.395258,
+      "candidates": [
+        {
+          "poi_id": "13595737998992201929",
+          "title": "上海国际舞蹈中心·大剧场",
+          "address": "上海市长宁区虹桥街道虹桥路1650号上海国际舞蹈中心2号楼",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.199393,
+          "longitude": 121.395258
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地点为上海国际舞蹈中心，候选为其大剧场，主体和地址吻合。"
+    },
+    {
+      "group_id": "61053eb06891",
+      "location": "黄浦剧场",
+      "sample_title": "原创音乐剧《西尔莎号》",
+      "event_uids": ["xiaohongshu:6a3909900000000016026c13:13_2"],
+      "action": "match",
+      "search_keywords_tried": ["黄浦剧场"],
+      "poi_id": "18200725857983477772",
+      "poi_title": "黄浦剧场",
+      "poi_address": "上海市黄浦区北京东路交通大厦旁",
+      "latitude": 31.23848,
+      "longitude": 121.475649,
+      "candidates": [
+        {
+          "poi_id": "18200725857983477772",
+          "title": "黄浦剧场",
+          "address": "上海市黄浦区北京东路交通大厦旁",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.23848,
+          "longitude": 121.475649
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地点与POI名称一致。"
     }
   ]
 }

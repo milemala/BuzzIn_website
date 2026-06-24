@@ -1,848 +1,386 @@
 {
   "city": "武汉",
   "source": "xiaohongshu",
-  "updated_at": "2026-06-20T19:42:40.644Z",
+  "updated_at": "2026-06-23T07:30:00.000Z",
   "agent": "cursor-agent",
   "decisions": [
     {
-      "group_id": "2abfa965373b",
-      "event_uids": [
-        "xiaohongshu:6a335a2e000000001c025afd:01_0"
-      ],
+      "group_id": "f5b1979d479f",
+      "location": "武汉江夏中央大公园",
+      "sample_title": "2026武汉端午龙舟邀请赛",
+      "event_uids": ["xiaohongshu:6a38e99f000000001702cd58:01_0"],
       "action": "match",
-      "search_keywords_tried": [
-        "湖北省博物馆"
-      ],
-      "poi_id": "17809956601970412689",
-      "poi_title": "湖北省博物馆",
-      "poi_address": "湖北省武汉市武昌区东湖路160号",
-      "latitude": 30.561361,
-      "longitude": 114.365558,
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "17809956601970412689",
-          "title": "湖北省博物馆",
-          "address": "湖北省武汉市武昌区东湖路160号",
-          "category": "文化场馆:博物馆",
-          "latitude": 30.561361,
-          "longitude": 114.365558
-        },
-        {
-          "index": 1,
-          "poi_id": "17278213285431982332",
-          "title": "湖北省博物馆-南门",
-          "address": "湖北省武汉市武昌区东湖路160号湖北省博物馆",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 30.559856,
-          "longitude": 114.366498
-        },
-        {
-          "index": 8,
-          "poi_id": "3654077682123181350",
-          "title": "湖北艺术博物馆",
-          "address": "湖北省武汉市武昌区东湖路三宫殿1号(省博湖北日报地铁站A口步行约150米)",
-          "category": "文化场馆:美术馆",
-          "latitude": 30.56396,
-          "longitude": 114.365567
-        }
-      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地点写武昌区东湖路160号，候选湖北省博物馆名称、门牌和博物馆类目完全一致",
-      "location": "湖北省武汉市武昌区东湖路160号",
-      "sample_title": "湖北省博物馆端午系列活动",
-      "decided_at": "2026-06-20T19:42:40.644Z"
-    },
-    {
-      "group_id": "380128c0bbbe",
-      "event_uids": [
-        "xiaohongshu:6a335a2e000000001c025afd:01_1"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "洪山体育馆"
-      ],
-      "poi_id": "16354020362566541733",
-      "poi_title": "洪山体育馆",
-      "poi_address": "湖北省武汉市武昌区体育馆路特1号(洪山广场地铁站E口步行90米)",
-      "latitude": 30.547147,
-      "longitude": 114.333715,
+      "search_keywords_tried": ["武汉江夏中央大公园"],
+      "poi_id": "1726652625001018800",
+      "poi_title": "江夏中央大公园",
+      "poi_address": "湖北省武汉市江夏区文化大道与金龙大街交叉口西北",
+      "latitude": 30.380841,
+      "longitude": 114.316306,
       "candidates": [
-        {
-          "index": 0,
-          "poi_id": "11713508499207127128",
-          "title": "洪山体育馆-北2门",
-          "address": "湖北省武汉市武昌区中南路街道体育馆路1号洪山体育馆",
-          "category": "室内及附属设施:通行设施类:外部门",
-          "latitude": 30.546246,
-          "longitude": 114.334849
-        },
-        {
-          "index": 4,
-          "poi_id": "12112140416118781108",
-          "title": "洪山体育中心-综合馆",
-          "address": "湖北省武汉市武昌区体育馆路1号洪山体育中心内",
-          "category": "运动健身:综合体育场馆",
-          "latitude": 30.545922,
-          "longitude": 114.334668
-        },
-        {
-          "index": 5,
-          "poi_id": "16354020362566541733",
-          "title": "洪山体育馆",
-          "address": "湖北省武汉市武昌区体育馆路特1号(洪山广场地铁站E口步行90米)",
-          "category": "运动健身:综合体育场馆",
-          "latitude": 30.547147,
-          "longitude": 114.333715
-        }
+        {"index": 0, "poi_id": "1726652625001018800", "title": "江夏中央大公园", "address": "湖北省武汉市江夏区文化大道与金龙大街交叉口西北", "category": "旅游景点:公园", "latitude": 30.380841, "longitude": 114.316306}
       ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "活动地点仅写洪山体育馆，候选中有同名体育馆主体，区划与体育场馆类目一致",
-      "location": "洪山体育馆",
-      "sample_title": "三角洲行动全面战场国际邀请赛",
-      "decided_at": "2026-06-20T19:42:40.644Z"
-    },
-    {
-      "group_id": "d3bb0eae1ae8",
-      "event_uids": [
-        "xiaohongshu:6a335a2e000000001c025afd:01_2"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "武汉科技馆"
-      ],
-      "poi_id": "12749856440367102949",
-      "poi_title": "武汉科学技术馆",
-      "poi_address": "湖北省武汉市江岸区沿江大道91号",
-      "latitude": 30.579385,
-      "longitude": 114.299841,
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "12749856440367102949",
-          "title": "武汉科学技术馆",
-          "address": "湖北省武汉市江岸区沿江大道91号",
-          "category": "文化场馆:科技馆",
-          "latitude": 30.579385,
-          "longitude": 114.299841
-        },
-        {
-          "index": 1,
-          "poi_id": "6647262632520977417",
-          "title": "武汉视觉科技馆",
-          "address": "湖北省武汉市江汉区水塔街街道江汉路187号M+购物中心二楼荣耀手机店上去",
-          "category": "文化场馆:科技馆",
-          "latitude": 30.583432,
-          "longitude": 114.285834
-        },
-        {
-          "index": 7,
-          "poi_id": "14913727762136195225",
-          "title": "湖北省科学技术馆",
-          "address": "湖北省武汉市洪山区高新大道779号",
-          "category": "文化场馆:科技馆",
-          "latitude": 30.491407,
-          "longitude": 114.505532
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "武汉科技馆通称对应武汉科学技术馆，候选为科技馆主体，名称和类目一致",
-      "location": "武汉科技馆",
-      "sample_title": "武汉科技馆第七届「科学天问节」",
-      "decided_at": "2026-06-20T19:42:40.644Z"
-    },
-    {
-      "group_id": "147e16a0a081",
-      "event_uids": [
-        "xiaohongshu:6a335a2e000000001c025afd:02_0"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "武汉光谷K11"
-      ],
-      "poi_id": "3307210458475070741",
-      "poi_title": "武汉光谷K11购物艺术中心",
-      "poi_address": "湖北省武汉市洪山区关山大道355号",
-      "latitude": 30.493326,
-      "longitude": 114.413031,
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "3307210458475070741",
-          "title": "武汉光谷K11购物艺术中心",
-          "address": "湖北省武汉市洪山区关山大道355号",
-          "category": "购物:综合商场:购物中心",
-          "latitude": 30.493326,
-          "longitude": 114.413031
-        },
-        {
-          "index": 4,
-          "poi_id": "4500466940072847973",
-          "title": "AFIONA妍丽(武汉光谷k11 Select)",
-          "address": "湖北省武汉市洪山区关山大道355号武汉K11 SelectL1",
-          "category": "购物:化妆品",
-          "latitude": 30.493222,
-          "longitude": 114.412854
-        },
-        {
-          "index": 8,
-          "poi_id": "1257298916301150751",
-          "title": "百方汇(光谷K11店)",
-          "address": "湖北省武汉市洪山区关东街道东湖新技术开发区关山大道355号3层3-13号",
-          "category": "娱乐休闲:电影院",
-          "latitude": 30.493714,
-          "longitude": 114.413404
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "活动写武汉光谷K11 L1中庭，候选为光谷K11商场主体，仅差楼层和中庭位置",
-      "location": "武汉光谷K11 L1瀑布屏中庭+BEAUTY中庭",
-      "sample_title": "M.by Marsper星辰宿语主题快闪",
-      "decided_at": "2026-06-20T19:42:40.644Z"
-    },
-    {
-      "group_id": "966a223520db",
-      "event_uids": [
-        "xiaohongshu:6a335a2e000000001c025afd:02_2"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "X118"
-      ],
-      "poi_id": "17709610729132640287",
-      "poi_title": "X118",
-      "poi_address": "湖北省武汉市江岸区大智街道江汉路步行街118号",
-      "latitude": 30.58245,
-      "longitude": 114.290191,
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "17709610729132640287",
-          "title": "X118",
-          "address": "湖北省武汉市江岸区大智街道江汉路步行街118号",
-          "category": "购物:综合商场",
-          "latitude": 30.58245,
-          "longitude": 114.290191
-        },
-        {
-          "index": 6,
-          "poi_id": "2264706616496009809",
-          "title": "停高兴影城(江汉路X118店)",
-          "address": "湖北省武汉市江岸区江汉路118号新世界百货(时尚广场店)F6",
-          "category": "娱乐休闲:电影院",
-          "latitude": 30.582449,
-          "longitude": 114.290305
-        },
-        {
-          "index": 8,
-          "poi_id": "3221667576617368627",
-          "title": "GOODSLOVE(武汉X118店)",
-          "address": "湖北省武汉市江岸区江汉路118号新世界百货(时尚广场店)F3",
-          "category": "购物:其它购物",
-          "latitude": 30.582489,
-          "longitude": 114.290531
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "活动写X118三楼舞台，候选X118为江汉路118号商场主体，仅差楼层舞台",
-      "location": "X118三楼舞台",
-      "sample_title": "武汉X118端午舞台活动",
-      "decided_at": "2026-06-20T19:42:40.644Z"
-    },
-    {
-      "group_id": "ed5b5695f959",
-      "event_uids": [
-        "xiaohongshu:6a335a2e000000001c025afd:03_0"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "武汉开元森泊",
-        "武汉城建开元森泊度假乐园"
-      ],
-      "poi_id": "3957258135889959251",
-      "poi_title": "武汉城建开元森泊度假乐园幻想岛",
-      "poi_address": "湖北省武汉市蔡甸区中法武汉生态示范城生态城大道1号武汉城建开元森泊度假乐园森泊乐园2楼",
-      "latitude": 30.536137,
-      "longitude": 114.128808,
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "1167456037412119446",
-          "title": "武汉城建开元森泊度假酒店",
-          "address": "湖北省武汉市蔡甸区新天大道3545号",
-          "category": "酒店宾馆:酒店宾馆",
-          "latitude": 30.533744,
-          "longitude": 114.127941
-        },
-        {
-          "index": 1,
-          "poi_id": "5401255926034277933",
-          "title": "武汉城建开元森泊度假乐园水乐园",
-          "address": "湖北省武汉市蔡甸区中法武汉生态示范城生态城大道1号武汉城建开元森泊度假乐园内",
-          "category": "娱乐休闲:户外活动:水上活动中心",
-          "latitude": 30.536588,
-          "longitude": 114.128128
-        },
-        {
-          "index": 2,
-          "poi_id": "3957258135889959251",
-          "title": "武汉城建开元森泊度假乐园幻想岛",
-          "address": "湖北省武汉市蔡甸区中法武汉生态示范城生态城大道1号武汉城建开元森泊度假乐园森泊乐园2楼",
-          "category": "娱乐休闲:户外活动:游乐场",
-          "latitude": 30.536137,
-          "longitude": 114.128808
-        },
-        {
-          "index": 4,
-          "poi_id": "2813972926579358274",
-          "title": "欢乐广场",
-          "address": "湖北省武汉市蔡甸区城建开元森泊度假乐园",
-          "category": "旅游景点:城市广场",
-          "latitude": 30.537003,
-          "longitude": 114.130363
-        }
-      ],
-      "confidence": "medium",
-      "doubtful": true,
-      "reason": "活动写生态城大道1号开元森泊乐园，候选子设施同属该地址；腾讯未返回清晰的度假乐园主体POI，建议人工核对具体活动区域",
-      "location": "湖北省武汉市蔡甸区生态城大道1号",
-      "sample_title": "武汉开元森泊乐园中法夏至音乐日",
-      "decided_at": "2026-06-20T19:42:40.644Z"
-    },
-    {
-      "group_id": "3136a9b01cfe",
-      "event_uids": [
-        "xiaohongshu:6a335a2e000000001c025afd:03_1"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "GOODSLove X118"
-      ],
-      "poi_id": "3221667576617368627",
-      "poi_title": "GOODSLOVE(武汉X118店)",
-      "poi_address": "湖北省武汉市江岸区江汉路118号新世界百货(时尚广场店)F3",
-      "latitude": 30.582489,
-      "longitude": 114.290531,
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "3221667576617368627",
-          "title": "GOODSLOVE(武汉X118店)",
-          "address": "湖北省武汉市江岸区江汉路118号新世界百货(时尚广场店)F3",
-          "category": "购物:其它购物",
-          "latitude": 30.582489,
-          "longitude": 114.290531
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "活动写X118商场4楼L404-405且标题为剑网3主题餐厅xGOODSLOVE，候选为同商场GOODSLOVE店，店名与场地主体一致，仅楼层铺位有差异",
-      "location": "X118商场4楼L404-405号",
-      "sample_title": "剑网3主题餐厅xGOODSLOVE",
-      "decided_at": "2026-06-20T19:42:40.644Z"
-    },
-    {
-      "group_id": "82e04b88fb34",
-      "event_uids": [
-        "xiaohongshu:6a335a2e000000001c025afd:03_2"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "武汉杉杉奥特莱斯"
-      ],
-      "poi_id": "18334280124139978871",
-      "poi_title": "武汉杉杉奥特莱斯购物广场",
-      "poi_address": "湖北省武汉市汉阳区青枫路88号(地铁6号线江城大道站C口往东900米)",
-      "latitude": 30.491922,
-      "longitude": 114.214222,
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "18334280124139978871",
-          "title": "武汉杉杉奥特莱斯购物广场",
-          "address": "湖北省武汉市汉阳区青枫路88号(地铁6号线江城大道站C口往东900米)",
-          "category": "购物:综合商场:购物中心",
-          "latitude": 30.491922,
-          "longitude": 114.214222
-        },
-        {
-          "index": 1,
-          "poi_id": "13381227168917228628",
-          "title": "MO&CO(武汉杉杉奥特莱斯店)",
-          "address": "湖北省武汉市汉阳区沌口街青枫路88号一楼B166",
-          "category": "购物:服饰鞋包:服装",
-          "latitude": 30.491832,
-          "longitude": 114.213339
-        },
-        {
-          "index": 5,
-          "poi_id": "3100579744660283523",
-          "title": "德克士(武汉杉杉奥特莱斯店)",
-          "address": "湖北省武汉市汉阳区青枫路88号1楼C148-149号",
-          "category": "美食:小吃快餐",
-          "latitude": 30.49246,
-          "longitude": 114.213612
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "活动地点为武汉杉杉奥特莱斯，候选商场主体名称一致",
-      "location": "武汉杉杉奥特莱斯",
-      "sample_title": "湖北2026首届中式碳水节",
-      "decided_at": "2026-06-20T19:42:40.644Z"
-    },
-    {
-      "group_id": "f8ea9434f72f",
-      "event_uids": [
-        "xiaohongshu:6a335a2e000000001c025afd:04_1"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "武汉创意城"
-      ],
-      "poi_id": "14806153071985639861",
-      "poi_title": "银泰创意城",
-      "poi_address": "湖北省武汉市洪山区珞南街道珞喻路35号(街道口地铁站出入口旁)",
-      "latitude": 30.526416,
-      "longitude": 114.356581,
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "14806153071985639861",
-          "title": "银泰创意城",
-          "address": "湖北省武汉市洪山区珞南街道珞喻路35号(街道口地铁站出入口旁)",
-          "category": "购物:综合商场:购物中心",
-          "latitude": 30.526416,
-          "longitude": 114.356581
-        },
-        {
-          "index": 1,
-          "poi_id": "5908169518577928701",
-          "title": "创意天地",
-          "address": "湖北省武汉市洪山区野芷湖西路16号",
-          "category": "房产小区:产业园区",
-          "latitude": 30.470516,
-          "longitude": 114.322001
-        },
-        {
-          "index": 3,
-          "poi_id": "203009909608818295",
-          "title": "比格比萨(武汉银泰创意城店)",
-          "address": "湖北省武汉市洪山区珞喻路35号银泰创意城F7-7F006",
-          "category": "美食:西餐:比萨",
-          "latitude": 30.526556,
-          "longitude": 114.357176
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "活动写武汉创意城4楼舞台中厅，搜索结果中银泰创意城为对应商场主体，仅差楼层舞台",
-      "location": "武汉创意城4楼舞台中厅",
-      "sample_title": "七匹狼夹克专家端午限定活动",
-      "decided_at": "2026-06-20T19:42:40.644Z"
-    },
-    {
-      "group_id": "1607d4e3f250",
-      "event_uids": [
-        "xiaohongshu:6a335a2e000000001c025afd:07_1"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "武汉影像艺术中心"
-      ],
-      "poi_id": "36232195392945512",
-      "poi_title": "武汉影像艺术中心",
-      "poi_address": "湖北省武汉市江岸区大智无界空中小镇7号楼二楼(招商中心旁边)",
-      "latitude": 30.589629,
-      "longitude": 114.295098,
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "14747427541732180979",
-          "title": "壹笙影像(后湖艺术中心店)",
-          "address": "湖北省武汉市江岸区丹水池街道汉黄路32号良友红坊B3栋2楼(到店前务必电联)",
-          "category": "生活服务:摄影冲印",
-          "latitude": 30.667339,
-          "longitude": 114.329415
-        },
-        {
-          "index": 1,
-          "poi_id": "36232195392945512",
-          "title": "武汉影像艺术中心",
-          "address": "湖北省武汉市江岸区大智无界空中小镇7号楼二楼(招商中心旁边)",
-          "category": "文化场馆:展览馆",
-          "latitude": 30.589629,
-          "longitude": 114.295098
-        },
-        {
-          "index": 2,
-          "poi_id": "12348421509457681818",
-          "title": "立中堂民国影像艺术馆",
-          "address": "湖北省武汉市武昌区中华路街道斗级营126号楼徐荣廷公馆",
-          "category": "文化场馆:博物馆",
-          "latitude": 30.547092,
-          "longitude": 114.294951
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地点与候选武汉影像艺术中心名称完全一致，且为展览馆类目",
-      "location": "武汉影像艺术中心",
-      "sample_title": "「WU·生」毕业展",
-      "decided_at": "2026-06-20T19:42:40.644Z"
-    },
-    {
-      "group_id": "fac461e00af9",
-      "event_uids": [
-        "xiaohongshu:6a335a2e000000001c025afd:07_2"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "武汉美术馆 汉口馆"
-      ],
-      "poi_id": "11635050247341795033",
-      "poi_title": "武汉美术馆(汉口馆)",
-      "poi_address": "湖北省武汉市江岸区保华街2号(中山大道南京路口三角岛)",
-      "latitude": 30.583922,
-      "longitude": 114.293028,
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "11635050247341795033",
-          "title": "武汉美术馆(汉口馆)",
-          "address": "湖北省武汉市江岸区保华街2号(中山大道南京路口三角岛)",
-          "category": "文化场馆:美术馆",
-          "latitude": 30.583922,
-          "longitude": 114.293028
-        },
-        {
-          "index": 2,
-          "poi_id": "3577920757769497532",
-          "title": "武汉美术馆(汉口馆)-出入口",
-          "address": "湖北省武汉市江岸区中山大道与保华街交叉口正南方向52米左右",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 30.584484,
-          "longitude": 114.293372
-        },
-        {
-          "index": 5,
-          "poi_id": "2535266583648425016",
-          "title": "武汉美术馆汉口馆南门",
-          "address": "湖北省武汉市江岸区保华街2号",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 30.583724,
-          "longitude": 114.292942
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "活动地点写武汉美术馆汉口馆展厅，候选美术馆主体名称和类目一致，仅差展厅编号",
-      "location": "武汉美术馆（汉口馆）4/5/6展厅",
-      "sample_title": "承古开新——中国画展",
-      "decided_at": "2026-06-20T19:42:40.644Z"
-    },
-    {
-      "group_id": "9c87de9efd87",
-      "event_uids": [
-        "xiaohongshu:6a335a2e000000001c025afd:08_1"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "武汉客厅中国文化博览中心D馆"
-      ],
-      "poi_id": "17989106924756888691",
-      "poi_title": "武汉客厅中国文化博览中心-D馆",
-      "poi_address": "湖北省武汉市东西湖区金银潭大道与银潭路交叉口正西方向124米左右",
-      "latitude": 30.669972,
-      "longitude": 114.284452,
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "17989106924756888691",
-          "title": "武汉客厅中国文化博览中心-D馆",
-          "address": "湖北省武汉市东西湖区金银潭大道与银潭路交叉口正西方向124米左右",
-          "category": "文化场馆:展览馆",
-          "latitude": 30.669972,
-          "longitude": 114.284452
-        },
-        {
-          "index": 1,
-          "poi_id": "2275744198598981169",
-          "title": "ZS卡丁车俱乐部(汉口店)",
-          "address": "湖北省武汉市东西湖区武汉客厅·中国文化博览中心D馆1楼",
-          "category": "娱乐休闲:其它娱乐休闲",
-          "latitude": 30.66982,
-          "longitude": 114.284585
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地点明确到武汉客厅中国文化博览中心D馆，候选同名D馆展览馆完全一致",
-      "location": "武汉客厅中国文化博览中心D馆",
-      "sample_title": "武汉·第五届环形宇宙动漫游戏嘉年华",
-      "decided_at": "2026-06-20T19:42:40.644Z"
+      "reason": "候选江夏中央大公园名称与地点一致，地址位于武汉江夏区"
     },
     {
       "group_id": "94d8b072423b",
-      "event_uids": [
-        "xiaohongshu:6a335a2e000000001c025afd:08_2"
-      ],
+      "location": "武汉国际博览中心",
+      "sample_title": "武汉斗鱼嘉年华",
+      "event_uids": ["xiaohongshu:6a38e99f000000001702cd58:01_1"],
       "action": "match",
-      "search_keywords_tried": [
-        "武汉国际博览中心"
-      ],
+      "confidence": "high",
+      "doubtful": false,
+      "search_keywords_tried": ["武汉国际博览中心"],
       "poi_id": "4692537674916077905",
       "poi_title": "武汉国际博览中心",
       "poi_address": "湖北省武汉市汉阳区鹦鹉大道619号(国博中心北地铁站出入口步行150米)",
       "latitude": 30.50683,
       "longitude": 114.24195,
       "candidates": [
-        {
-          "index": 0,
-          "poi_id": "4692537674916077905",
-          "title": "武汉国际博览中心",
-          "address": "湖北省武汉市汉阳区鹦鹉大道619号(国博中心北地铁站出入口步行150米)",
-          "category": "文化场馆:展览馆",
-          "latitude": 30.50683,
-          "longitude": 114.24195
-        },
-        {
-          "index": 2,
-          "poi_id": "17228984428925810542",
-          "title": "武汉国际博览中心A2",
-          "address": "湖北省武汉市汉阳区江堤街道四新南路立交与国博大道交叉口正东方向345米左右",
-          "category": "文化场馆:展览馆",
-          "latitude": 30.505889,
-          "longitude": 114.23886
-        },
-        {
-          "index": 9,
-          "poi_id": "81455855554797714",
-          "title": "武汉国际博览中心B1馆",
-          "address": "湖北省武汉市汉阳区鹦鹉大道619号",
-          "category": "文化场馆:展览馆",
-          "latitude": 30.50931,
-          "longitude": 114.240787
-        }
+        {"index": 0, "poi_id": "4692537674916077905", "title": "武汉国际博览中心", "address": "湖北省武汉市汉阳区鹦鹉大道619号(国博中心北地铁站出入口步行150米)", "category": "文化场馆:展览馆", "latitude": 30.50683, "longitude": 114.24195},
+        {"index": 3, "poi_id": "3706919119297762112", "title": "武汉国际博览中心A馆", "address": "湖北省武汉市汉阳区鹦鹉大道619号", "category": "文化场馆:展览馆", "latitude": 30.505312, "longitude": 114.240178}
       ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "活动地点为武汉国际博览中心，候选会展场馆主体名称一致",
-      "location": "武汉国际博览中心",
-      "sample_title": "斗鱼嘉年华武汉站",
-      "decided_at": "2026-06-20T19:42:40.644Z"
+      "reason": "活动地点为武汉国际博览中心，候选会展场馆主体名称一致"
     },
     {
-      "group_id": "da8ddc6cce35",
-      "event_uids": [
-        "xiaohongshu:6a335a2e000000001c025afd:09_0"
+      "group_id": "7cf982987aaa",
+      "location": "武商集团三个商场",
+      "sample_title": "武汉&长沙中法夏至音乐日",
+      "event_uids": ["xiaohongshu:6a38e99f000000001702cd58:01_2"],
+      "action": "reject",
+      "confidence": "low",
+      "doubtful": false,
+      "search_keywords_tried": ["武商集团"],
+      "candidates": [
+        {"index": 0, "poi_id": "1889349889469629869", "title": "武商集团", "address": "湖北省武汉市江汉区解放大道690号武商MALLA座8层", "category": "公司企业:公司企业", "latitude": 30.579917, "longitude": 114.270797},
+        {"index": 5, "poi_id": "319017022657584982", "title": "麦记牛奶公司(武商奥莱店)", "address": "湖北省武汉市青山区和平大道959号武商城市奥莱B1", "category": "美食:冷饮店", "latitude": 30.626905, "longitude": 114.377232}
       ],
+      "reason": "地点写武商集团三个商场，属于多地点活动，不能绑定集团办公点或任一单店"
+    },
+    {
+      "group_id": "fc04dfe480c8",
+      "location": "武汉K11购物艺术中心馆L4",
+      "sample_title": "小满个展·武汉·华中首展",
+      "event_uids": ["xiaohongshu:6a38e99f000000001702cd58:02_0"],
       "action": "match",
-      "search_keywords_tried": [
-        "琴台大剧院"
+      "confidence": "high",
+      "doubtful": false,
+      "search_keywords_tried": ["武汉K11购物艺术中心"],
+      "poi_id": "7449037728839499585",
+      "poi_title": "武汉K11购物艺术中心",
+      "poi_address": "湖北省武汉市硚口区解放大道628号",
+      "latitude": 30.57862,
+      "longitude": 114.26537,
+      "candidates": [
+        {"index": 0, "poi_id": "7449037728839499585", "title": "武汉K11购物艺术中心", "address": "湖北省武汉市硚口区解放大道628号", "category": "购物:综合商场", "latitude": 30.57862, "longitude": 114.26537},
+        {"index": 2, "poi_id": "4191701533357508552", "title": "武汉K11购物艺术中心II馆", "address": "湖北省武汉市硚口区K11购物艺术中心", "category": "购物:综合商场", "latitude": 30.578833, "longitude": 114.266124}
       ],
+      "reason": "活动地点写武汉K11购物艺术中心L4，候选商场主体名称一致，仅楼层未精确"
+    },
+    {
+      "group_id": "845071abb571",
+      "location": "武汉恒隆广场东区L1中庭旁",
+      "sample_title": "三丽鸥「日晒海岛派对」围挡打卡",
+      "event_uids": ["xiaohongshu:6a38e99f000000001702cd58:02_1"],
+      "action": "match",
+      "confidence": "high",
+      "doubtful": false,
+      "search_keywords_tried": ["武汉恒隆广场"],
+      "poi_id": "12002464602372966897",
+      "poi_title": "武汉恒隆广场",
+      "poi_address": "湖北省武汉市硚口区京汉大道668号",
+      "latitude": 30.577863,
+      "longitude": 114.273756,
+      "candidates": [
+        {"index": 0, "poi_id": "12002464602372966897", "title": "武汉恒隆广场", "address": "湖北省武汉市硚口区京汉大道668号", "category": "购物:综合商场:购物中心", "latitude": 30.577863, "longitude": 114.273756}
+      ],
+      "reason": "东区L1中庭旁属于武汉恒隆广场内部位置，候选商场主体与地址一致"
+    },
+    {
+      "group_id": "bd1022b2ca94",
+      "location": "汉阳知音大道河之洲商业街",
+      "sample_title": "非标慢闪生活节——河之洲开街",
+      "event_uids": ["xiaohongshu:6a38e99f000000001702cd58:02_2"],
+      "action": "reject",
+      "confidence": "low",
+      "doubtful": false,
+      "search_keywords_tried": ["河之洲商业街"],
+      "candidates": [
+        {"index": 0, "poi_id": "7529939123036719185", "title": "河之洲商业街地面停车场", "address": "湖北省武汉市汉阳区梅家湖路与知音大道交叉口正东方向302米左右", "category": "汽车:停车场", "latitude": 30.569449, "longitude": 114.23086},
+        {"index": 1, "poi_id": "14203058827885391374", "title": "河之洲·河边艺术馆", "address": "湖北省武汉市汉阳区河之洲商业街S1栋1层03商铺", "category": "文化场馆:其它文化场馆", "latitude": 30.569217, "longitude": 114.228247}
+      ],
+      "reason": "搜索未返回河之洲商业街主体POI，候选为停车场、艺术馆或具体店铺，不能替代开街活动所在商业街主体"
+    },
+    {
+      "group_id": "591128b3c119",
+      "location": "靓靓蒸虾沙湖主题店与6家合作门店",
+      "sample_title": "魔兽世界&靓靓蒸虾联动",
+      "event_uids": ["xiaohongshu:6a38e99f000000001702cd58:03_0"],
+      "action": "reject",
+      "confidence": "low",
+      "doubtful": false,
+      "search_keywords_tried": ["靓靓蒸虾沙湖主题店"],
+      "candidates": [
+        {"index": 2, "poi_id": "14788075482546126376", "title": "沙湖", "address": "湖北省武汉市武昌区", "category": "地名地址:自然地名:湖泊", "latitude": 30.56576, "longitude": 114.33458},
+        {"index": 6, "poi_id": "6373430211402427894", "title": "沙湖公园", "address": "湖北省武汉市武昌区水果湖街道徐家棚街沙湖大道139号", "category": "旅游景点:公园", "latitude": 30.56692, "longitude": 114.33573}
+      ],
+      "reason": "地点包含沙湖主题店与6家合作门店，属于多门店活动；搜索也未命中唯一靓靓蒸虾沙湖主题店"
+    },
+    {
+      "group_id": "4be110721dd2",
+      "location": "Aesop伊索武商mall店&SKP店",
+      "sample_title": "伊索女性文学图书馆·武汉站",
+      "event_uids": ["xiaohongshu:6a38e99f000000001702cd58:03_1"],
+      "action": "reject",
+      "confidence": "low",
+      "doubtful": false,
+      "search_keywords_tried": ["Aesop伊索 武商MALL", "Aesop伊索 SKP"],
+      "candidates": [
+        {"index": 0, "poi_id": "14525692928109973431", "title": "Aesop伊索(武商MALL店)", "address": "湖北省武汉市江汉区解放大道690号武汉国际广场购物中心A1-1-2号商铺", "category": "购物:化妆品", "latitude": 30.580313, "longitude": 114.270311}
+      ],
+      "reason": "地点明确为武商MALL店与SKP店两个门店，无法唯一绑定一个POI"
+    },
+    {
+      "group_id": "47544fcc7e87",
+      "location": "湖北省武汉市户部巷发车",
+      "sample_title": "武昌古城观光巴士免费坐",
+      "event_uids": ["xiaohongshu:6a38e99f000000001702cd58:03_2"],
+      "action": "match",
+      "confidence": "medium",
+      "doubtful": false,
+      "search_keywords_tried": ["户部巷"],
+      "poi_id": "7161748051017523804",
+      "poi_title": "户部巷小吃一条街",
+      "poi_address": "湖北省武汉市武昌区解放路与自由路交叉口",
+      "latitude": 30.547851,
+      "longitude": 114.299428,
+      "candidates": [
+        {"index": 0, "poi_id": "7161748051017523804", "title": "户部巷小吃一条街", "address": "湖北省武汉市武昌区解放路与自由路交叉口", "category": "美食:其它美食", "latitude": 30.547851, "longitude": 114.299428},
+        {"index": 1, "poi_id": "13756807699671146588", "title": "户部巷", "address": "湖北省武汉市武昌区民主路", "category": "购物:商业步行街", "latitude": 30.546725, "longitude": 114.297711}
+      ],
+      "reason": "活动只说明观光巴士从户部巷发车，候选户部巷小吃一条街为该发车地标主体"
+    },
+    {
+      "group_id": "5761353b2fd0",
+      "location": "汉口北汉口镇",
+      "sample_title": "2026汉口北龙虾啤酒节",
+      "event_uids": ["xiaohongshu:6a38e99f000000001702cd58:04_0"],
+      "action": "reject",
+      "confidence": "low",
+      "doubtful": false,
+      "search_keywords_tried": ["汉口北汉口镇"],
+      "candidates": [
+        {"index": 3, "poi_id": "15279238280162079097", "title": "汉口北小镇", "address": "湖北省武汉市黄陂区滠口街道汉口北大道与滨湖侧路交叉口东南420米", "category": "房产小区:住宅区:住宅小区", "latitude": 30.70622, "longitude": 114.329755},
+        {"index": 6, "poi_id": "8429565516301003441", "title": "汉口镇戏码头", "address": "湖北省武汉市黄陂区汉口北大道88号汉口北国际商品交易中心T区", "category": "旅游景点:其它旅游景点", "latitude": 30.705415, "longitude": 114.329533},
+        {"index": 4, "poi_id": "13662033852923362670", "title": "武汉汉口北万国小镇", "address": "湖北省武汉市黄陂区冯民路与卓尔大道交叉口东北方向243米左右", "category": "购物:商业步行街", "latitude": 30.702665, "longitude": 114.326587}
+      ],
+      "reason": "汉口北汉口镇搜索出现汉口北小镇、万国小镇、汉口镇戏码头等多个相近主体，pending未给门牌或具体场馆，无法唯一确定"
+    },
+    {
+      "group_id": "c4906985c247",
+      "location": "沉湖湿地七壕保护站及附近",
+      "sample_title": "探寻蜻蜓奥秘，守护湿地生态",
+      "event_uids": ["xiaohongshu:6a38e99f000000001702cd58:04_1"],
+      "action": "reject",
+      "confidence": "low",
+      "doubtful": false,
+      "search_keywords_tried": ["沉湖湿地七壕保护站"],
+      "candidates": [
+        {"index": 0, "poi_id": "15702384622800340204", "title": "沉湖湿地七壕保护站", "address": "湖北省武汉市蔡甸区", "category": "机构团体:政府机关", "latitude": 30.298746, "longitude": 113.860487}
+      ],
+      "reason": "地点写七壕保护站及附近，属于范围型地址，活动可能在保护站周边湿地区域，不能只绑定保护站政府机关POI"
+    },
+    {
+      "group_id": "1f5c8fa9db97",
+      "location": "武商MALL中心广场",
+      "sample_title": "WSummer冰甜节",
+      "event_uids": ["xiaohongshu:6a38e99f000000001702cd58:04_2"],
+      "action": "match",
+      "confidence": "high",
+      "doubtful": false,
+      "search_keywords_tried": ["武商MALL中心广场"],
+      "poi_id": "10116732395552055977",
+      "poi_title": "武商MALL·中心广场",
+      "poi_address": "湖北省武汉市江汉区解放大道690号武汉国际广场",
+      "latitude": 30.57977,
+      "longitude": 114.270359,
+      "candidates": [
+        {"index": 0, "poi_id": "10116732395552055977", "title": "武商MALL·中心广场", "address": "湖北省武汉市江汉区解放大道690号武汉国际广场", "category": "旅游景点:城市广场", "latitude": 30.57977, "longitude": 114.270359}
+      ],
+      "reason": "候选名称与武商MALL中心广场完全一致，地址位于武汉国际广场"
+    },
+    {
+      "group_id": "b2895ef88a55",
+      "location": "武汉江汉关博物馆三楼交流展厅",
+      "sample_title": "江与城 共古今——长江文化滋养下的百年武汉",
+      "event_uids": ["xiaohongshu:6a38e99f000000001702cd58:05_0"],
+      "action": "match",
+      "confidence": "high",
+      "doubtful": false,
+      "search_keywords_tried": ["武汉江汉关博物馆"],
+      "poi_id": "5962534304302272539",
+      "poi_title": "江汉关博物馆",
+      "poi_address": "湖北省武汉市江汉区沿江大道129号",
+      "latitude": 30.576057,
+      "longitude": 114.297435,
+      "candidates": [
+        {"index": 0, "poi_id": "5962534304302272539", "title": "江汉关博物馆", "address": "湖北省武汉市江汉区沿江大道129号", "category": "文化场馆:博物馆", "latitude": 30.576057, "longitude": 114.297435}
+      ],
+      "reason": "三楼交流展厅位于江汉关博物馆内，候选博物馆主体和地址一致"
+    },
+    {
+      "group_id": "d8b30fe311cd",
+      "location": "武汉市文学艺术界联合会五楼艺术馆",
+      "sample_title": "梁敏通京剧脸谱艺术展",
+      "event_uids": ["xiaohongshu:6a38e99f000000001702cd58:05_1"],
+      "action": "match",
+      "confidence": "medium",
+      "doubtful": false,
+      "search_keywords_tried": ["武汉市文学艺术界联合会"],
+      "poi_id": "2194247025985685000",
+      "poi_title": "武汉市文学艺术界联合会",
+      "poi_address": "湖北省武汉市江岸区花桥街道解放公园路44号",
+      "latitude": 30.609998,
+      "longitude": 114.287928,
+      "candidates": [
+        {"index": 0, "poi_id": "2194247025985685000", "title": "武汉市文学艺术界联合会", "address": "湖北省武汉市江岸区花桥街道解放公园路44号", "category": "机构团体:社会团体", "latitude": 30.609998, "longitude": 114.287928},
+        {"index": 2, "poi_id": "5003195857203859558", "title": "武汉市文联办公大楼", "address": "湖北省武汉市江岸区建设大道951号(惠济二路地铁站J口步行250米)", "category": "房产小区:商务楼宇", "latitude": 30.609968, "longitude": 114.288022}
+      ],
+      "reason": "五楼艺术馆为武汉市文联内部空间，候选文联主体名称一致，地址明确"
+    },
+    {
+      "group_id": "4fc62c3b8874",
+      "location": "武汉当代艺术实验室",
+      "sample_title": "仲夏夜，时间暂时失效",
+      "event_uids": ["xiaohongshu:6a38e99f000000001702cd58:05_2"],
+      "action": "match",
+      "confidence": "high",
+      "doubtful": false,
+      "search_keywords_tried": ["武汉当代艺术实验室"],
+      "poi_id": "9532801333500945787",
+      "poi_title": "武汉当代艺术实验室",
+      "poi_address": "湖北省武汉市江汉区北湖街街道青年路308号花园道项一期三层b302室",
+      "latitude": 30.595754,
+      "longitude": 114.265594,
+      "candidates": [
+        {"index": 0, "poi_id": "9532801333500945787", "title": "武汉当代艺术实验室", "address": "湖北省武汉市江汉区北湖街街道青年路308号花园道项一期三层b302室", "category": "文化场馆:展览馆", "latitude": 30.595754, "longitude": 114.265594}
+      ],
+      "reason": "候选名称与活动地点完全一致，类目为展览馆"
+    },
+    {
+      "group_id": "d670e89ff952",
+      "location": "盘龙城遗址博物院一楼临展厅",
+      "sample_title": "《寻绎夏商》特展",
+      "event_uids": ["xiaohongshu:6a38e99f000000001702cd58:06_0"],
+      "action": "match",
+      "confidence": "high",
+      "doubtful": false,
+      "search_keywords_tried": ["盘龙城遗址博物院"],
+      "poi_id": "3025738798999537098",
+      "poi_title": "盘龙城遗址博物院",
+      "poi_address": "湖北省武汉市黄陂区盘龙大道1号盘龙城国家考古遗址公园",
+      "latitude": 30.697853,
+      "longitude": 114.263304,
+      "candidates": [
+        {"index": 0, "poi_id": "3025738798999537098", "title": "盘龙城遗址博物院", "address": "湖北省武汉市黄陂区盘龙大道1号盘龙城国家考古遗址公园", "category": "文化场馆:博物馆", "latitude": 30.697853, "longitude": 114.263304}
+      ],
+      "reason": "一楼临展厅位于盘龙城遗址博物院内，候选博物院主体一致"
+    },
+    {
+      "group_id": "fac461e00af9",
+      "location": "武汉美术馆（汉口馆）4/5/6展厅",
+      "sample_title": "承古开新——中国画展",
+      "event_uids": ["xiaohongshu:6a38e99f000000001702cd58:06_2"],
+      "action": "match",
+      "confidence": "high",
+      "doubtful": false,
+      "search_keywords_tried": ["武汉美术馆 汉口馆"],
+      "poi_id": "11635050247341795033",
+      "poi_title": "武汉美术馆(汉口馆)",
+      "poi_address": "湖北省武汉市江岸区保华街2号(中山大道南京路口三角岛)",
+      "latitude": 30.583922,
+      "longitude": 114.293028,
+      "candidates": [
+        {"index": 0, "poi_id": "11635050247341795033", "title": "武汉美术馆(汉口馆)", "address": "湖北省武汉市江岸区保华街2号(中山大道南京路口三角岛)", "category": "文化场馆:美术馆", "latitude": 30.583922, "longitude": 114.293028}
+      ],
+      "reason": "4/5/6展厅位于武汉美术馆汉口馆内，候选美术馆主体一致"
+    },
+    {
+      "group_id": "d756ba90194f",
+      "location": "武汉园博园",
+      "sample_title": "武汉·蔚蓝档案同人ONLY·楚韵龙华",
+      "event_uids": ["xiaohongshu:6a38e99f000000001702cd58:07_0"],
+      "action": "match",
+      "confidence": "high",
+      "doubtful": false,
+      "search_keywords_tried": ["武汉园博园"],
+      "poi_id": "11295476547832607854",
+      "poi_title": "武汉园博园",
+      "poi_address": "湖北省武汉市硚口区金南二路8号",
+      "latitude": 30.624586,
+      "longitude": 114.219392,
+      "candidates": [
+        {"index": 0, "poi_id": "11295476547832607854", "title": "武汉园博园", "address": "湖北省武汉市硚口区金南二路8号", "category": "旅游景点:国家级景点", "latitude": 30.624586, "longitude": 114.219392}
+      ],
+      "reason": "活动地点与武汉园博园POI名称一致"
+    },
+    {
+      "group_id": "0d74cb13b804",
+      "location": "武汉光谷国际网球中心（中央球场）",
+      "sample_title": "郭富城ICONIC世界巡回演唱会2026-武汉站",
+      "event_uids": ["xiaohongshu:6a38e99f000000001702cd58:07_1"],
+      "action": "match",
+      "confidence": "high",
+      "doubtful": false,
+      "search_keywords_tried": ["武汉光谷国际网球中心 中央球场"],
+      "poi_id": "2809895033500014891",
+      "poi_title": "光谷国际网球中心(中央球场)",
+      "poi_address": "湖北省武汉市江夏区佛祖岭一路",
+      "latitude": 30.473235,
+      "longitude": 114.461751,
+      "candidates": [
+        {"index": 0, "poi_id": "2809895033500014891", "title": "光谷国际网球中心(中央球场)", "address": "湖北省武汉市江夏区佛祖岭一路", "category": "运动健身:网球场", "latitude": 30.473235, "longitude": 114.461751}
+      ],
+      "reason": "候选中央球场名称与活动地点完全一致"
+    },
+    {
+      "group_id": "d98bd1b0466f",
+      "location": "武汉琴台大剧院",
+      "sample_title": "大型民族舞剧《醒·狮》",
+      "event_uids": ["xiaohongshu:6a38e99f000000001702cd58:07_2"],
+      "action": "match",
+      "confidence": "high",
+      "doubtful": false,
+      "search_keywords_tried": ["武汉琴台大剧院"],
       "poi_id": "2054636966946479774",
       "poi_title": "武汉琴台大剧院",
       "poi_address": "湖北省武汉市汉阳区晴川街道知音大道7号",
       "latitude": 30.561106,
       "longitude": 114.259086,
       "candidates": [
-        {
-          "index": 0,
-          "poi_id": "2054636966946479774",
-          "title": "武汉琴台大剧院",
-          "address": "湖北省武汉市汉阳区晴川街道知音大道7号",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 30.561106,
-          "longitude": 114.259086
-        },
-        {
-          "index": 3,
-          "poi_id": "7694744665222369143",
-          "title": "琴台大剧院音乐厅",
-          "address": "湖北省武汉市汉阳区晴川街道知音大道7号",
-          "category": "娱乐休闲:剧场音乐厅:音乐厅",
-          "latitude": 30.560614,
-          "longitude": 114.262756
-        },
-        {
-          "index": 5,
-          "poi_id": "3719980463012967433",
-          "title": "武汉琴台大剧院-售票厅",
-          "address": "湖北省武汉市汉阳区知音大道7号附二号",
-          "category": "生活服务:票务代售:其它票务代售",
-          "latitude": 30.561661,
-          "longitude": 114.260523
-        }
+        {"index": 0, "poi_id": "2054636966946479774", "title": "武汉琴台大剧院", "address": "湖北省武汉市汉阳区晴川街道知音大道7号", "category": "娱乐休闲:剧场音乐厅:剧场", "latitude": 30.561106, "longitude": 114.259086}
       ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "活动地点为琴台大剧院，候选武汉琴台大剧院名称、地址和剧场类目一致",
-      "location": "琴台大剧院",
-      "sample_title": "话剧《倾城之恋》五周年特别版(武汉站)",
-      "decided_at": "2026-06-20T19:42:40.644Z"
+      "reason": "候选名称与武汉琴台大剧院完全一致，剧场类目合理"
     },
     {
-      "group_id": "7023b15c72f9",
-      "event_uids": [
-        "xiaohongshu:6a335a2e000000001c025afd:09_1"
-      ],
+      "group_id": "3dc0c452d1d0",
+      "location": "银泰创意城",
+      "sample_title": "银泰百货×燕云十六声 限时联动",
+      "event_uids": ["xiaohongshu:6a38e99f000000001702cd58:08_1"],
       "action": "match",
-      "search_keywords_tried": [
-        "湖北剧院"
-      ],
-      "poi_id": "583600664672639388",
-      "poi_title": "湖北剧院",
-      "poi_address": "湖北省武汉市武昌区武昌阅马场西厂口1号",
-      "latitude": 30.540991,
-      "longitude": 114.304519,
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "583600664672639388",
-          "title": "湖北剧院",
-          "address": "湖北省武汉市武昌区武昌阅马场西厂口1号",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 30.540991,
-          "longitude": 114.304519
-        },
-        {
-          "index": 3,
-          "poi_id": "536606311195400649",
-          "title": "湖北剧院-小剧场",
-          "address": "湖北省武汉市武昌区体育街湖北剧院",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 30.540755,
-          "longitude": 114.304465
-        },
-        {
-          "index": 6,
-          "poi_id": "9865190864407612677",
-          "title": "壹方瓦舍-湖北剧院店",
-          "address": "湖北省武汉市武昌区武昌阅马场西厂口1号",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 30.540814,
-          "longitude": 114.304654
-        }
-      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "活动地点为湖北剧院，候选同名剧院主体和剧场类目一致",
-      "location": "湖北剧院",
-      "sample_title": "舞台剧《倩女幽魂之兰若浮生》",
-      "decided_at": "2026-06-20T19:42:40.644Z"
-    },
-    {
-      "group_id": "f4b85afcc818",
-      "event_uids": [
-        "xiaohongshu:6a335a2e000000001c025afd:09_2"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "喜梦盒 光谷"
-      ],
-      "poi_id": "14253390893158768820",
-      "poi_title": "喜梦盒·嗨戏剧演艺新空间(光谷店)",
-      "poi_address": "湖北省武汉市洪山区珞喻路766号光谷步行街悦心汇5楼",
-      "latitude": 30.506199,
-      "longitude": 114.403602,
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "14253390893158768820",
-          "title": "喜梦盒·嗨戏剧演艺新空间(光谷店)",
-          "address": "湖北省武汉市洪山区珞喻路766号光谷步行街悦心汇5楼",
-          "category": "旅游景点:其它旅游景点",
-          "latitude": 30.506199,
-          "longitude": 114.403602
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "活动地点与候选喜梦盒光谷店名称完全一致，地址为光谷步行街悦心汇5楼，符合演艺空间场地",
-      "location": "喜梦盒·嗨戏剧演艺新空间(光谷店)",
-      "sample_title": "环境式悬疑剧《暴雨将至2》",
-      "decided_at": "2026-06-20T19:42:40.644Z"
-    },
-    {
-      "group_id": "0a26cc4cdcba",
-      "event_uids": [
-        "xiaohongshu:6a335a2e000000001c025afd:10_1"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "银泰创意城"
-      ],
+      "search_keywords_tried": ["银泰创意城"],
       "poi_id": "14806153071985639861",
       "poi_title": "银泰创意城",
       "poi_address": "湖北省武汉市洪山区珞南街道珞喻路35号(街道口地铁站出入口旁)",
       "latitude": 30.526416,
       "longitude": 114.356581,
       "candidates": [
-        {
-          "index": 0,
-          "poi_id": "14806153071985639861",
-          "title": "银泰创意城",
-          "address": "湖北省武汉市洪山区珞南街道珞喻路35号(街道口地铁站出入口旁)",
-          "category": "购物:综合商场:购物中心",
-          "latitude": 30.526416,
-          "longitude": 114.356581
-        },
-        {
-          "index": 1,
-          "poi_id": "986509704279346939",
-          "title": "银泰创意城-1号门",
-          "address": "湖北省武汉市洪山区珞喻路35号银泰创意城F1",
-          "category": "室内及附属设施:通行设施类:正门",
-          "latitude": 30.526437,
-          "longitude": 114.35582
-        },
-        {
-          "index": 3,
-          "poi_id": "9216678665989721472",
-          "title": "乐高(银泰创意城店)",
-          "address": "湖北省武汉市洪山区珞喻路35号银泰创意城F1",
-          "category": "购物:母婴儿童",
-          "latitude": 30.525948,
-          "longitude": 114.357208
-        }
+        {"index": 0, "poi_id": "14806153071985639861", "title": "银泰创意城", "address": "湖北省武汉市洪山区珞南街道珞喻路35号(街道口地铁站出入口旁)", "category": "购物:综合商场:购物中心", "latitude": 30.526416, "longitude": 114.356581}
       ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "活动写银泰创意城1F中庭PINGU快闪店，候选银泰创意城商场主体一致，仅差楼层中庭和快闪店铺",
-      "location": "银泰创意城1F中庭PINGU快闪店",
-      "sample_title": "Pingu快闪",
-      "decided_at": "2026-06-20T19:42:40.644Z"
-    },
-    {
-      "group_id": "26d4f483e72f",
-      "event_uids": [
-        "xiaohongshu:6a2fb49500000000150255ed:08_1"
-      ],
-      "action": "reject",
-      "search_keywords_tried": [
-        "武昌 三道街38号"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "16889470807898484932",
-          "title": "武昌区三道街小学",
-          "address": "湖北省武汉市武昌区中华路街道三道街10号(近中华路派出所)",
-          "category": "教育学校:小学",
-          "latitude": 30.546475,
-          "longitude": 114.304192
-        }
-      ],
-      "reason": "地点只写武昌区三道街38号，搜索仅返回三道街10号小学，门牌和活动摄影展场馆主体均不一致",
-      "location": "武汉市武昌区三道街38号",
-      "sample_title": "《在场·重构》实验摄影巡回展第二站",
-      "decided_at": "2026-06-20T19:42:40.644Z"
+      "reason": "候选名称与活动地点一致，地址为洪山区珞喻路35号"
     }
   ]
 }

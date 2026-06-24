@@ -531,8 +531,7 @@ function expiredAtDaysFromNow(days, endOfDay = true) {
 }
 
 async function batchUpdateEventsExpiredAt(db, eventUids, options = {}) {
-  const { applyEventTime } = require("./review-db");
-  const { TIME_SOURCE_MANUAL } = require("./event-time-agent");
+  const { applyManualPushTime } = require("./review-db");
   const buzzEnv = resolveBuzzEnv(options);
   const client = createClientForEnv(options);
   const syncBuzz = options.sync_buzz !== false;
@@ -564,10 +563,10 @@ async function batchUpdateEventsExpiredAt(db, eventUids, options = {}) {
       continue;
     }
     try {
-      const applyResult = applyEventTime(db, eventUid, {
+      const applyResult = applyManualPushTime(db, eventUid, {
         start_at: startAt,
         expired_at: expiredAt,
-      }, { timeSource: TIME_SOURCE_MANUAL, force: true });
+      });
       const updatedEvent = applyResult.event;
       let buzzSync = null;
       const nowId = String(event.buzz_now_id || "").trim();

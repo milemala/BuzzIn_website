@@ -41,28 +41,97 @@ const DATE_RANGE_SEP_RE = "[-–—~～至]";
 /** 未来约 3 周内、带具体日期区间的节日/专题汇总（如「北京端午活动汇总6.19～6.21」） */
 const UPCOMING_DATED_LOOKAHEAD_MS = 21 * 24 * 60 * 60 * 1000;
 
+const DATE_RANGE_PATTERNS = [
+  { re: new RegExp(`[（(【\\[]?(\\d{1,2})月(\\d{1,2})日\\s*${DATE_RANGE_SEP_RE}\\s*(\\d{1,2})月(\\d{1,2})日[）)】\\]]?`, "g"), groups: [1, 2, 3, 4] },
+  { re: new RegExp(`[（(【\\[]?(\\d{1,2})月(\\d{1,2})日\\s*${DATE_RANGE_SEP_RE}\\s*(\\d{1,2})日[）)】\\]]?`, "g"), groups: [1, 2, 1, 3] },
+  { re: new RegExp(`[（(【\\[]?(\\d{1,2})\\.(\\d{1,2})\\s*${DATE_RANGE_SEP_RE}\\s*(\\d{1,2})\\.(\\d{1,2})[）)】\\]]?`, "g"), groups: [1, 2, 3, 4] },
+  { re: new RegExp(`[（(【\\[]?(\\d{1,2})\\.(\\d{1,2})\\s*${DATE_RANGE_SEP_RE}\\s*(\\d{1,2})(?!\\.\\d)[）)】\\]]?`, "g"), groups: [1, 2, 1, 3] },
+  { re: new RegExp(`(\\d{1,2})\\.(\\d{1,2})\\s*${DATE_RANGE_SEP_RE}\\s*(\\d{1,2})\\.(\\d{1,2})(?:\\s*$|[^\\d])`, "g"), groups: [1, 2, 3, 4] },
+];
+
+function normalizeDateRange(groups, match) {
+  return {
+    startMonth: Number(match[groups[0]]),
+    startDay: Number(match[groups[1]]),
+    endMonth: Number(match[groups[2]]),
+    endDay: Number(match[groups[3]]),
+    raw: match[0],
+  };
+}
+
+function isPlausibleDateRange(range) {
+  if (range.endMonth > range.startMonth) return true;
+  if (range.endMonth < range.startMonth) return true;
+  return range.endDay >= range.startDay;
+}
+
+function dedupeDateRanges(ranges) {
+  const seen = new Set();
+  const out = [];
+  for (const range of ranges) {
+    if (!isPlausibleDateRange(range)) continue;
+    const key = `${range.startMonth}.${range.startDay}-${range.endMonth}.${range.endDay}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(range);
+  }
+  return out;
+}
+
 /** 从标题里解析日期区间：6.8-6.14、（6.08-6.14）、6月8日-14日、(6.9-14) 等 */
 function parseTitleDateRange(title) {
-  const text = String(title || "");
-  const patterns = [
-    { re: new RegExp(`[（(【\\[]?(\\d{1,2})月(\\d{1,2})日\\s*${DATE_RANGE_SEP_RE}\\s*(\\d{1,2})月(\\d{1,2})日[）)】\\]]?`), groups: [1, 2, 3, 4] },
-    { re: new RegExp(`[（(【\\[]?(\\d{1,2})月(\\d{1,2})日\\s*${DATE_RANGE_SEP_RE}\\s*(\\d{1,2})日[）)】\\]]?`), groups: [1, 2, 1, 3] },
-    { re: new RegExp(`[（(【\\[]?(\\d{1,2})\\.(\\d{1,2})\\s*${DATE_RANGE_SEP_RE}\\s*(\\d{1,2})\\.(\\d{1,2})[）)】\\]]?`), groups: [1, 2, 3, 4] },
-    { re: new RegExp(`[（(【\\[]?(\\d{1,2})\\.(\\d{1,2})\\s*${DATE_RANGE_SEP_RE}\\s*(\\d{1,2})[）)】\\]]?`), groups: [1, 2, 1, 3] },
-    { re: new RegExp(`(\\d{1,2})\\.(\\d{1,2})\\s*${DATE_RANGE_SEP_RE}\\s*(\\d{1,2})\\.(\\d{1,2})(?:\\s*$|[^\\d])`), groups: [1, 2, 3, 4] },
-  ];
-  for (const { re, groups } of patterns) {
-    const m = text.match(re);
-    if (m) {
-      return {
-        startMonth: Number(m[groups[0]]),
-        startDay: Number(m[groups[1]]),
-        endMonth: Number(m[groups[2]]),
-        endDay: Number(m[groups[3]]),
-      };
+  const all = parseAllDateRanges(title);
+  return all[0] || null;
+}
+
+/** 从任意文本里找出全部日期区间（标题、正文、活动周期行等） */
+function parseAllDateRanges(text) {
+  const input = String(text || "");
+  const ranges = [];
+  for (const { re, groups } of DATE_RANGE_PATTERNS) {
+    re.lastIndex = 0;
+    let match;
+    while ((match = re.exec(input)) !== null) {
+      ranges.push(normalizeDateRange(groups, match));
     }
   }
-  return null;
+  return dedupeDateRanges(ranges);
+}
+
+function formatDateRangeShort(range) {
+  if (!range) return "";
+  return `${range.startMonth}.${range.startDay}-${range.endMonth}.${range.endDay}`;
+}
+
+function extractActivityPeriod(desc) {
+  const match = String(desc || "").match(/活动周期[：:]\s*([^\n]+)/);
+  return match ? match[1].trim() : null;
+}
+
+/**
+ * 详情页若出现明确日期区间且全部已过期（如 6.19-6.21），视为过期汇总帖。
+ * 无任何日期区间时不据此判过期（封面图上的日期需 Agent 读图判断）。
+ */
+function isRoundupContentExpired({ title, desc, period } = {}, refDate = new Date()) {
+  const periodLine = period || extractActivityPeriod(desc);
+  const ranges = dedupeDateRanges([
+    ...parseAllDateRanges(title),
+    ...parseAllDateRanges(desc),
+    ...parseAllDateRanges(periodLine),
+  ]);
+  if (!ranges.length) {
+    return { expired: false, ranges: [], reason: null };
+  }
+  const active = ranges.filter((range) => !isRangeExpired(range, refDate));
+  if (active.length) {
+    return { expired: false, ranges, reason: null };
+  }
+  const latest = ranges.slice().sort((a, b) => rangeEndTime(b, refDate) - rangeEndTime(a, refDate))[0];
+  return {
+    expired: true,
+    ranges,
+    reason: `详情日期已过期（${formatDateRangeShort(latest)}）`,
+  };
 }
 
 function dateInRange(range, refDate = new Date()) {
@@ -136,30 +205,35 @@ function isRangeExpired(range, refDate = new Date()) {
   return rangeEndTime(range, refDate) < refDate.getTime();
 }
 
-function pickBestCandidate(candidates, refDate = new Date()) {
+function sortRoundupCandidates(candidates, refDate = new Date()) {
   const withRange = candidates.map((n) => ({
     ...n,
     range: parseTitleDateRange(n.title),
   }));
 
-  const covering = withRange.find((n) => dateInRange(n.range, refDate));
-  if (covering) return covering;
+  const covering = withRange.filter((n) => dateInRange(n.range, refDate));
+  if (covering.length) return covering;
 
-  const nextWeek = withRange.find((n) => /下周/.test(n.title));
-  if (nextWeek) return nextWeek;
+  const nextWeek = withRange.filter((n) => /下周/.test(n.title));
+  if (nextWeek.length) return nextWeek;
 
   const active = withRange.filter((n) => !isRangeExpired(n.range, refDate));
-  if (!active.length) return null;
+  if (!active.length) return [];
 
   const withFutureRange = active.filter((n) => n.range && rangeStartTime(n.range, refDate) >= refDate.getTime());
   if (withFutureRange.length) {
-    return withFutureRange.sort((a, b) => rangeStartTime(a.range, refDate) - rangeStartTime(b.range, refDate))[0];
+    return withFutureRange.sort((a, b) => rangeStartTime(a.range, refDate) - rangeStartTime(b.range, refDate));
   }
 
   return active.sort((a, b) => {
     const score = (n) => (n.range ? n.range.startMonth * 100 + n.range.startDay : 0);
     return score(b) - score(a);
-  })[0];
+  });
+}
+
+function pickBestCandidate(candidates, refDate = new Date()) {
+  const sorted = sortRoundupCandidates(candidates, refDate);
+  return sorted[0] || null;
 }
 
 /**
@@ -169,31 +243,32 @@ function pickBestCandidate(candidates, refDate = new Date()) {
  * 3. 整月活动汇总
  * 4. 无合适新帖 → null
  */
-function pickWeeklyRoundupNote(notes, refDate = new Date(), options = {}) {
+function pickWeeklyRoundupNotes(notes, refDate = new Date(), options = {}) {
   const scraped = options.scrapedNoteIds instanceof Set
     ? options.scrapedNoteIds
     : new Set(options.scrapedNoteIds || []);
   const isNew = (note) => note.noteId && !scraped.has(note.noteId);
+  const out = [];
+  const seen = new Set();
 
-  const weekCandidates = notes.filter((n) => isNew(n) && isWeekRoundupTitle(n.title, refDate));
-  if (weekCandidates.length) {
-    const picked = pickBestCandidate(weekCandidates, refDate);
-    if (picked) return { ...picked, pickTier: "week" };
-  }
+  const addTier = (filterFn, tier) => {
+    const candidates = notes.filter((n) => isNew(n) && filterFn(n.title, refDate));
+    for (const candidate of sortRoundupCandidates(candidates, refDate)) {
+      if (seen.has(candidate.noteId)) continue;
+      seen.add(candidate.noteId);
+      out.push({ ...candidate, pickTier: tier });
+    }
+  };
 
-  const datedCandidates = notes.filter((n) => isNew(n) && isUpcomingDatedRoundupTitle(n.title, refDate));
-  if (datedCandidates.length) {
-    const picked = pickBestCandidate(datedCandidates, refDate);
-    if (picked) return { ...picked, pickTier: "dated" };
-  }
+  addTier(isWeekRoundupTitle, "week");
+  addTier(isUpcomingDatedRoundupTitle, "dated");
+  addTier(isMonthRoundupTitle, "month");
+  return out;
+}
 
-  const monthCandidates = notes.filter((n) => isNew(n) && isMonthRoundupTitle(n.title, refDate));
-  if (monthCandidates.length) {
-    const picked = pickBestCandidate(monthCandidates, refDate);
-    if (picked) return { ...picked, pickTier: "month" };
-  }
-
-  return null;
+function pickWeeklyRoundupNote(notes, refDate = new Date(), options = {}) {
+  const list = pickWeeklyRoundupNotes(notes, refDate, options);
+  return list[0] || null;
 }
 
 function parseNoteDetailFromHtml(html, noteId) {
@@ -236,14 +311,20 @@ module.exports = {
   WEEKLY_TITLE_RE,
   buildNoteExploreUrl,
   dateInRange,
+  extractActivityPeriod,
+  formatDateRangeShort,
   isMonthRoundupTitle,
+  isRangeExpired,
+  isRoundupContentExpired,
   isUpcomingDatedRoundupTitle,
   isWeekRoundupTitle,
   normalizeNoteCard,
+  parseAllDateRanges,
   parseEventsFromDesc,
   parseInitialState,
   parseNoteDetailFromHtml,
   parseProfileNotes,
   parseTitleDateRange,
   pickWeeklyRoundupNote,
+  pickWeeklyRoundupNotes,
 };

@@ -1,31 +1,203 @@
 {
   "city": "深圳",
   "source": "xiaohongshu",
-  "exported_at": "2026-06-20T19:54:53.654Z",
+  "exported_at": "2026-06-23T06:58:13.106Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 20,
   "doubtful_only": false,
-  "total_events": 2,
-  "group_count": 2,
-  "cache_hit_groups": 0,
+  "total_events": 20,
+  "group_count": 19,
+  "cache_hit_groups": 1,
   "groups": [
     {
-      "group_id": "269793e257ca",
-      "location": "深圳书城中心城、罗湖城、南山城",
-      "sample_title": "端午非遗文化嘉年华",
+      "group_id": "66e5d722b74e",
+      "location": "南山区西丽水库旁",
+      "sample_title": "西丽塔正式对外开放",
       "event_uids": [
-        "xiaohongshu:6a31121b000000001603d3d9:11_0"
+        "xiaohongshu:6a38a8e0000000001c0260ba:01_0"
       ],
       "event_count": 1
     },
     {
-      "group_id": "41e24ada3c0f",
-      "location": "G&G创意社区·南区C'est LA VIE",
-      "sample_title": "不完美中古市集",
+      "group_id": "4ffb16ae1c4f",
+      "location": "深圳人才公园北侧环形山坡+求贤阁亲水平台",
+      "sample_title": "巨型LABUBU空降南山",
       "event_uids": [
-        "xiaohongshu:6a31121b000000001603d3d9:15_0"
+        "xiaohongshu:6a38a8e0000000001c0260ba:01_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "5755fb9edb1c",
+      "location": "宝安区海雅缤纷城L1中庭",
+      "sample_title": "千人偷喝奶茶大赛",
+      "event_uids": [
+        "xiaohongshu:6a38a8e0000000001c0260ba:01_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "0985cc303ee8",
+      "location": "寿司郎深圳全门店",
+      "sample_title": "深圳全门店同步庆贺",
+      "event_uids": [
+        "xiaohongshu:6a38a8e0000000001c0260ba:01_3"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "a0bdef4851b7",
+      "location": "光明文化艺术中心美术馆",
+      "sample_title": "青，出于水 归于水——广州美术学院绘画艺术学院水彩画系青年教师联展",
+      "event_uids": [
+        "xiaohongshu:6a38a8e0000000001c0260ba:02_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "0ab3b0525c99",
+      "location": "南山区粤海街道后海中心路中建钢构大厦广场钢结构博物馆旁风凰茶馆（深圳湾店）",
+      "sample_title": "穷经纬之间——徐家艺三代精品展",
+      "event_uids": [
+        "xiaohongshu:6a38a8e0000000001c0260ba:02_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "43a2ef960ef7",
+      "location": "深圳湾一号广场南二期101号今格空间",
+      "sample_title": "「入象」第一回",
+      "event_uids": [
+        "xiaohongshu:6a38a8e0000000001c0260ba:02_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "2efa0743f896",
+      "location": "宝安区新安街道中洲华府一期7栋（合正艺术博物馆）",
+      "sample_title": "墨拓古韵——宝安历代碑刻拓片展",
+      "event_uids": [
+        "xiaohongshu:6a38a8e0000000001c0260ba:02_3"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "11d1cf7337ae",
+      "location": "深圳万象城二期中庭",
+      "sample_title": "Summer with the Wheeler's",
+      "event_uids": [
+        "xiaohongshu:6a38a8e0000000001c0260ba:03_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "40c1cb4f833c",
+      "location": "深圳市关山月美术馆二楼关山月专题陈列厅",
+      "sample_title": "别开新径——春睡同人艺术研究展",
+      "event_uids": [
+        "xiaohongshu:6a38a8e0000000001c0260ba:03_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "7e2e6963577a",
+      "location": "深圳美术馆三层12、13号展厅",
+      "sample_title": "深情托付——深圳美术馆新馆捐赠作品展",
+      "event_uids": [
+        "xiaohongshu:6a38a8e0000000001c0260ba:03_3"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "11107360214280099505",
+        "poi_title": "深圳美术馆",
+        "poi_address": "",
+        "latitude": 22.62493,
+        "longitude": 114.023767,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：深圳美术馆三层12、13号展厅 → 深圳美术馆（来源 event:xiaohongshu:6a2f6232000000000f01d285:02_3）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "7e2e6963577afd546632b8a4baceef8b0ac30d3e"
+      }
+    },
+    {
+      "group_id": "2599caeaba8c",
+      "location": "深圳市体育中心体育馆",
+      "sample_title": "天若有情1990—2026深圳时光演唱会",
+      "event_uids": [
+        "xiaohongshu:6a38a8e0000000001c0260ba:04_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "3205a2e90b7f",
+      "location": "深圳大运中心体育馆",
+      "sample_title": "2026陈慧娴40周年“Fabulous40”巡回演唱会-深圳站",
+      "event_uids": [
+        "xiaohongshu:6a38a8e0000000001c0260ba:04_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "0508cea84373",
+      "location": "深圳湾体育中心“春茧”体育馆",
+      "sample_title": "“一日即日日”2026·任素汐「小歌儿们的Live」",
+      "event_uids": [
+        "xiaohongshu:6a38a8e0000000001c0260ba:04_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "8cccfbbd1d7e",
+      "location": "深圳鹭湖艺术中心 大剧场",
+      "sample_title": "东方歌舞团演出季领军唱将演唱会《星耀东方》",
+      "event_uids": [
+        "xiaohongshu:6a38a8e0000000001c0260ba:04_3",
+        "xiaohongshu:6a38a8e0000000001c0260ba:05_3"
+      ],
+      "event_count": 2
+    },
+    {
+      "group_id": "e77c333d5a15",
+      "location": "深圳保利剧院",
+      "sample_title": "音乐剧《粉丝来信》中文版",
+      "event_uids": [
+        "xiaohongshu:6a38a8e0000000001c0260ba:05_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "6cdafad5adcf",
+      "location": "深圳滨海艺术中心·歌剧厅",
+      "sample_title": "当代舞《禾戏剧·大师之夜》",
+      "event_uids": [
+        "xiaohongshu:6a38a8e0000000001c0260ba:05_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "0fffa206db38",
+      "location": "深圳鹭湖艺术中心黑匣子剧场",
+      "sample_title": "仪式剧场《天地树》",
+      "event_uids": [
+        "xiaohongshu:6a38a8e0000000001c0260ba:05_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "21ab9a3c4b51",
+      "location": "深圳市宝安区体育中心体育馆",
+      "sample_title": "2026年李宁·广东省城市篮球超级联赛",
+      "event_uids": [
+        "xiaohongshu:6a38a8e0000000001c0260ba:06_0"
       ],
       "event_count": 1
     }

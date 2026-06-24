@@ -1,167 +1,404 @@
 {
   "city": "天津",
   "source": "xiaohongshu",
-  "updated_at": "2026-06-20T19:50:00.000Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-06-23T07:25:00.000Z",
+  "agent": "gpt-5.5",
   "decisions": [
     {
-      "group_id": "a939fd603f2d",
-      "location": "天津",
-      "sample_title": "天津免费观影",
-      "event_uids": [
-        "xiaohongshu:6a2fc966000000001100523b:00_0"
-      ],
-      "action": "reject",
-      "search_keywords_tried": [
-        "天津免费观影",
-        "公益放映 天津"
-      ],
-      "confidence": "low",
-      "doubtful": false,
-      "reason": "地址仅写天津市，无具体影院或门牌；搜索结果为观影民宿/酒店及多个分散公益电影放映点，无法对应唯一活动场馆",
-      "decided_at": "2026-06-20T19:50:00.000Z"
-    },
-    {
-      "group_id": "6bbf088a9c76",
-      "location": "MoviePark大岛影城（梅江）",
-      "sample_title": "MoviePark大岛影城公益放映",
-      "event_uids": [
-        "xiaohongshu:6a2fc966000000001100523b:06_0"
-      ],
+      "group_id": "1b7524d6ad44",
+      "location": "南开大悦城北侧",
+      "sample_title": "马路刨冰节",
+      "event_uids": ["xiaohongshu:6a38ca5e000000001101b0a8:01_0"],
       "action": "match",
-      "poi_id": "178423523244631838",
-      "poi_title": "Movie Park 大岛影城(大岛商业广场店)",
-      "poi_address": "天津市河西区友谊南路梅江大岛商业广场4层",
-      "latitude": 39.043513,
-      "longitude": 117.21915,
-      "search_keywords_tried": [
-        "MoviePark大岛影城",
-        "大岛影城"
+      "search_keywords_tried": ["南开大悦城"],
+      "poi_id": "17789725331619406015",
+      "poi_title": "天津大悦城(南开店)",
+      "poi_address": "天津市南开区南门外大街2-6号",
+      "latitude": 39.135079,
+      "longitude": 117.180051,
+      "candidates": [
+        {
+          "poi_id": "17789725331619406015",
+          "title": "天津大悦城(南开店)",
+          "address": "天津市南开区南门外大街2-6号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 39.135079,
+          "longitude": 117.180051
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "店名与河西区友谊南路梅江大岛商业广场4层地址一致"
+      "reason": "地点为南开大悦城北侧，POI为天津大悦城南开店主体，外侧位置属于主体附属范围。"
     },
     {
-      "group_id": "518517b6c4d5",
-      "location": "天津友谊南路梅江大岛商业广场4层（梅江会展中心对面）",
-      "sample_title": "MoviePark大岛影城",
-      "event_uids": [
-        "xiaohongshu:6a2fc966000000001100523b:07_0"
-      ],
+      "group_id": "a22a1bbca529",
+      "location": "天津智慧山·山丘广场",
+      "sample_title": "精酿的夏天",
+      "event_uids": ["xiaohongshu:6a38ca5e000000001101b0a8:01_1"],
       "action": "match",
-      "poi_id": "178423523244631838",
-      "poi_title": "Movie Park 大岛影城(大岛商业广场店)",
-      "poi_address": "天津市河西区友谊南路梅江大岛商业广场4层",
-      "latitude": 39.043513,
-      "longitude": 117.21915,
-      "search_keywords_tried": [
-        "大岛商业广场",
-        "大岛影城"
+      "search_keywords_tried": ["天津智慧山 山丘广场"],
+      "poi_id": "6283025611777516851",
+      "poi_title": "天津智慧山山丘广场",
+      "poi_address": "天津市西青区开华道20号",
+      "latitude": 39.092936,
+      "longitude": 117.121584,
+      "candidates": [
+        {
+          "poi_id": "6283025611777516851",
+          "title": "天津智慧山山丘广场",
+          "address": "天津市西青区开华道20号",
+          "category": "旅游景点:城市广场",
+          "latitude": 39.092936,
+          "longitude": 117.121584
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "友谊南路梅江大岛商业广场4层与POI门牌楼层一致"
+      "reason": "地点与POI名称完全一致。"
     },
     {
-      "group_id": "eaf3ecd30fcf",
-      "location": "天影朗香影城（和平）",
-      "sample_title": "天影朗香影城公益放映",
-      "event_uids": [
-        "xiaohongshu:6a2fc966000000001100523b:09_0"
-      ],
+      "group_id": "136f9eca1182",
+      "location": "天津天佑城1楼",
+      "sample_title": "二次元谷子市集",
+      "event_uids": ["xiaohongshu:6a38ca5e000000001101b0a8:01_2"],
       "action": "match",
-      "poi_id": "5774487510088985144",
-      "poi_title": "天影朗香国际影城(南京路店)",
-      "poi_address": "天津市和平区建设路88号小白楼朗香街B2层",
-      "latitude": 39.11537,
-      "longitude": 117.215114,
-      "search_keywords_tried": [
-        "天影朗香影城"
+      "search_keywords_tried": ["天津天佑城"],
+      "poi_id": "6420314403264414051",
+      "poi_title": "天佑城",
+      "poi_address": "天津市南开区南马路9号(西南角地铁站A口旁)",
+      "latitude": 39.138293,
+      "longitude": 117.172995,
+      "candidates": [
+        {
+          "poi_id": "6420314403264414051",
+          "title": "天佑城",
+          "address": "天津市南开区南马路9号(西南角地铁站A口旁)",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 39.138293,
+          "longitude": 117.172995
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "天影朗香影城和平店与建设路88号朗香街POI一致"
+      "reason": "天津天佑城主体命中，1楼为商场内楼层。"
     },
     {
-      "group_id": "f8d207e60bf0",
-      "location": "天津市和平区建设路88号朗香街负二层",
-      "sample_title": "天影朗香影城",
-      "event_uids": [
-        "xiaohongshu:6a2fc966000000001100523b:10_0"
-      ],
+      "group_id": "20f09bb2f1fa",
+      "location": "棉3创意街区 棉花营地",
+      "sample_title": "棉3玩具市集",
+      "event_uids": ["xiaohongshu:6a38ca5e000000001101b0a8:02_0"],
       "action": "match",
-      "poi_id": "5774487510088985144",
-      "poi_title": "天影朗香国际影城(南京路店)",
-      "poi_address": "天津市和平区建设路88号小白楼朗香街B2层",
-      "latitude": 39.11537,
-      "longitude": 117.215114,
-      "search_keywords_tried": [
-        "天影朗香影城"
+      "search_keywords_tried": ["棉3创意街区 棉花营地"],
+      "poi_id": "10955230015136912482",
+      "poi_title": "棉3创意街区",
+      "poi_address": "天津市河东区西台大街38号",
+      "latitude": 39.09126,
+      "longitude": 117.246965,
+      "candidates": [
+        {
+          "poi_id": "10955230015136912482",
+          "title": "棉3创意街区",
+          "address": "天津市河东区西台大街38号",
+          "category": "房产小区:产业园区",
+          "latitude": 39.09126,
+          "longitude": 117.246965
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": false,
+      "reason": "地点主体为棉3创意街区，棉花营地未搜到独立POI，按园区主体绑定。"
+    },
+    {
+      "group_id": "e18dbd191f6c",
+      "location": "棉3创意街区滑板广场",
+      "sample_title": "海河旧书市集",
+      "event_uids": ["xiaohongshu:6a38ca5e000000001101b0a8:02_1"],
+      "action": "match",
+      "search_keywords_tried": ["棉3创意街区滑板广场"],
+      "poi_id": "10955230015136912482",
+      "poi_title": "棉3创意街区",
+      "poi_address": "天津市河东区西台大街38号",
+      "latitude": 39.09126,
+      "longitude": 117.246965,
+      "candidates": [
+        {
+          "poi_id": "10955230015136912482",
+          "title": "棉3创意街区",
+          "address": "天津市河东区西台大街38号",
+          "category": "房产小区:产业园区",
+          "latitude": 39.09126,
+          "longitude": 117.246965
+        },
+        {
+          "poi_id": "17450441534152947932",
+          "title": "海河旧书市集",
+          "address": "天津市河东区棉3创意街区滑板广场",
+          "category": "购物:图书音像",
+          "latitude": 39.091088,
+          "longitude": 117.245947
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": false,
+      "reason": "滑板广场位于棉3创意街区内；候选中有活动临时POI，但绑定稳定园区主体更合适。"
+    },
+    {
+      "group_id": "06717a7206f9",
+      "location": "天津南开大悦城 北区3F 5号车库",
+      "sample_title": "荷漾·非遗市集",
+      "event_uids": ["xiaohongshu:6a38ca5e000000001101b0a8:02_2"],
+      "action": "match",
+      "search_keywords_tried": ["天津南开大悦城 5号车库"],
+      "poi_id": "17789725331619406015",
+      "poi_title": "天津大悦城(南开店)",
+      "poi_address": "天津市南开区南门外大街2-6号",
+      "latitude": 39.135079,
+      "longitude": 117.180051,
+      "candidates": [
+        {
+          "poi_id": "17789725331619406015",
+          "title": "天津大悦城(南开店)",
+          "address": "天津市南开区南门外大街2-6号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 39.135079,
+          "longitude": 117.180051
+        },
+        {
+          "poi_id": "15865196584925912869",
+          "title": "麦田广场5号车库",
+          "address": "天津市南开区南门外大街6号大悦城北区3F",
+          "category": "汽车:停车场",
+          "latitude": 39.1353,
+          "longitude": 117.18019
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "建设路88号朗香街B2层与天影朗香国际影城地址一致，仅楼层表述差异"
+      "reason": "地点为南开大悦城北区3F 5号车库，商场主体和楼层区域均能对上，按大悦城主体绑定。"
     },
     {
-      "group_id": "77166cb86726",
-      "location": "天津光明电影院（滨江道）",
-      "sample_title": "天津光明电影院公益放映",
-      "event_uids": [
-        "xiaohongshu:6a2fc966000000001100523b:12_0"
-      ],
+      "group_id": "f59cfdb80ccd",
+      "location": "光屿广场",
+      "sample_title": "光屿嘉年华",
+      "event_uids": ["xiaohongshu:6a38ca5e000000001101b0a8:03_0"],
       "action": "match",
-      "poi_id": "6116722996477713864",
-      "poi_title": "光明电影院(滨江道店)",
-      "poi_address": "天津市和平区滨江道143号(天津巧克力博物馆2楼)",
-      "latitude": 39.126587,
-      "longitude": 117.201405,
-      "search_keywords_tried": [
-        "天津光明电影院"
+      "search_keywords_tried": ["光屿广场", "天津 光屿", "光屿嘉年华", "光屿广场 天津", "天津光屿广场"],
+      "poi_id": "9130858100045942008",
+      "poi_title": "津铁商业·光屿城",
+      "poi_address": "天津市河西区乐园道与越秀路交口文化中心地下商业街",
+      "latitude": 39.089008,
+      "longitude": 117.207741,
+      "candidates": [
+        {
+          "poi_id": "9130858100045942008",
+          "title": "津铁商业·光屿城",
+          "address": "天津市河西区乐园道与越秀路交口文化中心地下商业街",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 39.089008,
+          "longitude": 117.207741
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "未搜到光屿广场精确POI，天津相关候选为津铁商业·光屿城，名称接近但广场/城表述不完全一致，建议人工核对。"
+    },
+    {
+      "group_id": "bb5994de60e4",
+      "location": "天津杉杉奥莱2号门",
+      "sample_title": "宠物时装周",
+      "event_uids": ["xiaohongshu:6a38ca5e000000001101b0a8:03_1"],
+      "action": "match",
+      "search_keywords_tried": ["天津杉杉奥莱"],
+      "poi_id": "8937066965099752974",
+      "poi_title": "杉杉奥特莱斯广场·天津",
+      "poi_address": "天津市西青区张家窝镇博航环路18号",
+      "latitude": 39.050918,
+      "longitude": 117.067316,
+      "candidates": [
+        {
+          "poi_id": "8937066965099752974",
+          "title": "杉杉奥特莱斯广场·天津",
+          "address": "天津市西青区张家窝镇博航环路18号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 39.050918,
+          "longitude": 117.067316
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "光明电影院滨江道店与和平区滨江道143号一致"
+      "reason": "天津杉杉奥莱主体命中，2号门为商场附属位置。"
     },
     {
-      "group_id": "3dbc75e0a42f",
-      "location": "天津和平区滨江道143号（劝业场对面）",
-      "sample_title": "天津光明电影院",
-      "event_uids": [
-        "xiaohongshu:6a2fc966000000001100523b:13_0"
-      ],
+      "group_id": "c0c092a02073",
+      "location": "天津（和平区）吉利大厦四层",
+      "sample_title": "“国潮逐梦·艺暖津城”爱心公益义卖",
+      "event_uids": ["xiaohongshu:6a38ca5e000000001101b0a8:03_2"],
       "action": "match",
-      "poi_id": "6116722996477713864",
-      "poi_title": "光明电影院(滨江道店)",
-      "poi_address": "天津市和平区滨江道143号(天津巧克力博物馆2楼)",
-      "latitude": 39.126587,
-      "longitude": 117.201405,
-      "search_keywords_tried": [
-        "天津光明电影院"
+      "search_keywords_tried": ["吉利大厦 和平区"],
+      "poi_id": "4425899594840547534",
+      "poi_title": "吉利大厦",
+      "poi_address": "天津市和平区南京路209号(营口道地铁站B1口旁)",
+      "latitude": 39.11867,
+      "longitude": 117.196,
+      "candidates": [
+        {
+          "poi_id": "4425899594840547534",
+          "title": "吉利大厦",
+          "address": "天津市和平区南京路209号(营口道地铁站B1口旁)",
+          "category": "房产小区:商务楼宇",
+          "latitude": 39.11867,
+          "longitude": 117.196
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "滨江道143号与光明电影院滨江道店门牌一致"
+      "reason": "地点为和平区吉利大厦四层，POI为同一区同名楼宇，楼层差异无需存疑。"
     },
     {
-      "group_id": "b45bdd729616",
-      "location": "天津二宫前广场（天津市河东区光华路与富民路交口）",
-      "sample_title": "二宫公益电影",
-      "event_uids": [
-        "xiaohongshu:6a2fc966000000001100523b:14_0"
-      ],
+      "group_id": "0120ee9e954c",
+      "location": "东丽区东丽湖东湖风景区",
+      "sample_title": "户外露营闯关主题青年交友活动",
+      "event_uids": ["xiaohongshu:6a38ca5e000000001101b0a8:04_0"],
       "action": "match",
-      "poi_id": "18066939367994262323",
-      "poi_title": "二宫公园",
-      "poi_address": "天津市河东区光华路2号新城市广场(近二宫足球场)",
-      "latitude": 39.104122,
-      "longitude": 117.251887,
-      "search_keywords_tried": [
-        "二宫前广场"
+      "search_keywords_tried": ["东丽湖东湖风景区"],
+      "poi_id": "10793385554656639752",
+      "poi_title": "天津东湖风景区·今夕东丽湖",
+      "poi_address": "天津市东丽区东丽湖街道东丽湖路",
+      "latitude": 39.178889,
+      "longitude": 117.479119,
+      "candidates": [
+        {
+          "poi_id": "10793385554656639752",
+          "title": "天津东湖风景区·今夕东丽湖",
+          "address": "天津市东丽区东丽湖街道东丽湖路",
+          "category": "娱乐休闲:户外活动:游乐场",
+          "latitude": 39.178889,
+          "longitude": 117.479119
+        },
+        {
+          "poi_id": "1489916872560974522",
+          "title": "东丽湖东湖风景区-游客服务中心",
+          "address": "天津市东丽区东丽湖街道东丽湖路东丽湖",
+          "category": "旅游景点:景点公园附属",
+          "latitude": 39.169685,
+          "longitude": 117.476577
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": false,
+      "reason": "地点为东丽湖东湖风景区，候选为同名景区/东丽湖主体，适合作为户外活动场地POI。"
+    },
+    {
+      "group_id": "6f45841f0422",
+      "location": "马场道117号天津外国语大学3号楼2层",
+      "sample_title": "津门德韵Citywalk",
+      "event_uids": ["xiaohongshu:6a38ca5e000000001101b0a8:04_1"],
+      "action": "match",
+      "search_keywords_tried": ["天津外国语大学3号楼"],
+      "poi_id": "17213765977016419196",
+      "poi_title": "天津外国语大学3号楼",
+      "poi_address": "天津市河西区桃园街道天津外国语大学马场道校区专家公寓",
+      "latitude": 39.10906,
+      "longitude": 117.207543,
+      "candidates": [
+        {
+          "poi_id": "17213765977016419196",
+          "title": "天津外国语大学3号楼",
+          "address": "天津市河西区桃园街道天津外国语大学马场道校区专家公寓",
+          "category": "教育学校:教育学校附属",
+          "latitude": 39.10906,
+          "longitude": 117.207543
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "二宫前广场露天放映与河东区光华路二宫公园主体一致，仅广场/公园表述差异"
+      "reason": "地点写马场道117号天津外国语大学3号楼2层，POI为天津外国语大学3号楼，楼层差异无需存疑。"
+    },
+    {
+      "group_id": "5a46879ea414",
+      "location": "天开园（体验馆5r/人）",
+      "sample_title": "南开区城市定向赛",
+      "event_uids": ["xiaohongshu:6a38ca5e000000001101b0a8:04_2"],
+      "action": "match",
+      "search_keywords_tried": ["天开园"],
+      "poi_id": "15412656768035893396",
+      "poi_title": "天开高教科创园核心区",
+      "poi_address": "天津市南开区大学道与科研西路交叉口东南方向47米左右",
+      "latitude": 39.105861,
+      "longitude": 117.152803,
+      "candidates": [
+        {
+          "poi_id": "15412656768035893396",
+          "title": "天开高教科创园核心区",
+          "address": "天津市南开区大学道与科研西路交叉口东南方向47米左右",
+          "category": "房产小区:产业园区",
+          "latitude": 39.105861,
+          "longitude": 117.152803
+        },
+        {
+          "poi_id": "8973123536445617607",
+          "title": "天开高教科创园·天大",
+          "address": "天津市南开区天津科技广场五号楼(科研东路与大学道交口)",
+          "category": "房产小区:产业园区",
+          "latitude": 39.105685,
+          "longitude": 117.153473
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "地点仅写天开园，候选有核心区和天大等园区分区；按南开区城市定向赛绑定核心区，但建议人工核对具体体验馆。"
+    },
+    {
+      "group_id": "5b9e33d4c6aa",
+      "location": "和平大悦城1F中庭",
+      "sample_title": "Kinbor × brunch brother限时快闪",
+      "event_uids": ["xiaohongshu:6a38ca5e000000001101b0a8:05_0"],
+      "action": "match",
+      "search_keywords_tried": ["和平大悦城"],
+      "poi_id": "16928339566555346098",
+      "poi_title": "和平大悦城",
+      "poi_address": "天津市和平区南京路189号",
+      "latitude": 39.117601,
+      "longitude": 117.19735,
+      "candidates": [
+        {
+          "poi_id": "16928339566555346098",
+          "title": "和平大悦城",
+          "address": "天津市和平区南京路189号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 39.117601,
+          "longitude": 117.19735
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "和平大悦城主体命中，1F中庭为商场内位置。"
+    },
+    {
+      "group_id": "f3aa18721814",
+      "location": "天津万象城",
+      "sample_title": "比美高F1快闪店",
+      "event_uids": ["xiaohongshu:6a38ca5e000000001101b0a8:05_1"],
+      "action": "match",
+      "search_keywords_tried": ["天津万象城"],
+      "poi_id": "6700761435410104226",
+      "poi_title": "天津万象城",
+      "poi_address": "天津市河西区乐园道9号",
+      "latitude": 39.090271,
+      "longitude": 117.213394,
+      "candidates": [
+        {
+          "poi_id": "6700761435410104226",
+          "title": "天津万象城",
+          "address": "天津市河西区乐园道9号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 39.090271,
+          "longitude": 117.213394
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地点与POI名称完全一致，快闪店楼层未影响主体绑定。"
     }
   ]
 }

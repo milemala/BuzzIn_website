@@ -1,22 +1,292 @@
 {
   "city": "上海",
   "source": "xiaohongshu",
-  "exported_at": "2026-06-20T19:44:00.464Z",
+  "exported_at": "2026-06-23T06:58:08.919Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 29,
   "doubtful_only": false,
-  "total_events": 1,
-  "group_count": 1,
-  "cache_hit_groups": 0,
+  "total_events": 29,
+  "group_count": 29,
+  "cache_hit_groups": 1,
   "groups": [
     {
-      "group_id": "cc4fdc8c5c1d",
-      "location": "老滧河C湖码头（游艇码头）",
-      "sample_title": "2026崇明城桥端午城心诚意 水岸市集",
+      "group_id": "a8d82c5cbbe1",
+      "location": "上海古猗园（主会场）",
+      "sample_title": "第十三届上海荷花睡莲展",
       "event_uids": [
-        "xiaohongshu:6a2fce3d000000001101dbd8:03_0"
+        "xiaohongshu:6a3909900000000016026c13:01_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "ddccfb8e1e82",
+      "location": "松江区新浜镇胡家埭村（导航搜索“新浜荷花园”）",
+      "sample_title": "2026松江新浜荷花节",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:01_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "e17d5d103331",
+      "location": "顾村公园",
+      "sample_title": "2026消夏赏荷活动",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:01_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "09cd2151a308",
+      "location": "麦可将文旅村",
+      "sample_title": "2026收藏绿色生活市集",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:02_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "4e6b8abecc73",
+      "location": "江湾里MEET678",
+      "sample_title": "大小孩夏日放风晚会",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:02_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "bce42c91c024",
+      "location": "蟠龙新天地·粮仓码头（近余德耀美术馆）",
+      "sample_title": "蟠龙水市夏日焕新——荷花市集",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:02_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "83f832231a01",
+      "location": "上海合生汇1号门厅",
+      "sample_title": "TearNaara奇想秘境主题快闪",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:03_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "c00fe1adc5ce",
+      "location": "五角场万达广场",
+      "sample_title": "FANTOWN世界杯豪门官方授权快闪",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:03_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "b35206819e0b",
+      "location": "百联又一城",
+      "sample_title": "TEDDYISLAND燃动夏日足球嘉年华",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:03_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "c04b3b102798",
+      "location": "徐行天地一楼",
+      "sample_title": "徐行镇第三届“蒲华塘之夜”夏季村晚",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:04_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "c440af9bd600",
+      "location": "西岸凤巢",
+      "sample_title": "HeyBlue Oasis城市绿洲水上乐园 西岸凤巢夏日玩水季",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:04_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "5bbb48156122",
+      "location": "曲水湿地",
+      "sample_title": "蟠龙新天地林涧涧溪开放",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:04_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "226483746665",
+      "location": "新天地湖滨路济南路交叉口（太平湖亲水平台）",
+      "sample_title": "新天地旋转木马焕新回归",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:05_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "12bb37e96396",
+      "location": "滴水湖庆典广场",
+      "sample_title": "“滴水湖畔·玉兰花开”影视主题音乐会",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:05_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "efd6493730d9",
+      "location": "莫比乌斯公园",
+      "sample_title": "“玉兰花开抓马街”嘉年华",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:05_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "73de300dcdaa",
+      "location": "上海市历史博物馆",
+      "sample_title": "传与承——哈萨克斯坦民俗文化展",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:06_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "0544ac49eecc",
+      "location": "上海Fotografiska影像艺术中心",
+      "sample_title": "苏文 北京银矿：档案合辑",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:06_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "28b8be549528",
+      "location": "上海博物馆东馆",
+      "sample_title": "暂得之乐——暂得楼捐赠明清瓷器展",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:06_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "5e1dcfa32d4a",
+      "location": "浦东美术馆",
+      "sample_title": "让·努维尔：若无艺术家，建筑亦无存",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:07_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "bb59be69fb8d",
+      "location": "Fotografiska影像艺术中心",
+      "sample_title": "黎晨驰：环品味的人",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:08_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "1c027f706dfc",
+      "location": "西岸穹顶艺术中心",
+      "sample_title": "“蚝式传奇”主题展",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:09_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "2e9f97a44266",
+      "location": "刘海粟美术馆",
+      "sample_title": "“青花+”艺术大展",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:10_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "d303e5eb556e",
+      "location": "上海外滩华尔道夫酒店·总会大楼（中山东一路2号）",
+      "sample_title": "AWHITE×艺术家温秋雯的联名艺术展",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:11_2"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "3689149344639091515",
+        "poi_title": "上海外滩华尔道夫酒店大门",
+        "poi_address": "",
+        "latitude": 31.23348,
+        "longitude": 121.489747,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：上海外滩华尔道夫酒店·总会大楼（中山东一路2号） → 上海外滩华尔道夫酒店大门（来源 event:xiaohongshu:6a26a11a00000000070139c2:12_2）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "d303e5eb556ef68b426377c8e9937fd89b1b4104"
+      }
+    },
+    {
+      "group_id": "36787ecf121f",
+      "location": "上海大剧院 大剧场",
+      "sample_title": "大型原创民族舞剧《花木兰》",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:12_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "11651510950b",
+      "location": "上海文化广场",
+      "sample_title": "话剧《青蛇》",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:12_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "93edd9bee8bd",
+      "location": "上海西岸大剧院",
+      "sample_title": "三宝音乐剧《雌雄》",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:12_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "533f444b2638",
+      "location": "上海话剧艺术中心",
+      "sample_title": "舞台剧《觉醒年代》",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:13_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "b9c3dd2b6394",
+      "location": "上海国际舞蹈中心",
+      "sample_title": "现代舞剧场《UTOPIA问世》",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:13_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "61053eb06891",
+      "location": "黄浦剧场",
+      "sample_title": "原创音乐剧《西尔莎号》",
+      "event_uids": [
+        "xiaohongshu:6a3909900000000016026c13:13_2"
       ],
       "event_count": 1
     }

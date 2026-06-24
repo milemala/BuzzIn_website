@@ -68,7 +68,6 @@ const {
   batchPublishMerchantBubbles,
   getMerchantBubbleState,
   publishCityBucketBubbles,
-  publishRandomTestMerchantBubble,
   rebuildRotationBuckets,
 } = require("../lib/merchant-bubble");
 const {
@@ -76,8 +75,10 @@ const {
   publicJobView,
   startGroupsBatchJob,
   startPublishBatchJob,
+  startPublishTestJob,
   countGroupTargets,
   countPublishTargets,
+  getPublishPlan,
 } = require("../lib/merchant-bubble-jobs");
 const { batchAutoPoi } = require("../lib/merchant-poi-batch");
 const { syncMerchantsFromBuzz } = require("../lib/buzz-merchant-sync");
@@ -995,7 +996,6 @@ async function handleApi(req, res, pathname) {
     try {
       const query = url.parse(req.url, true).query || {};
       const state = await getMerchantBubbleState(db, {
-        city: query.city || "",
         buzz_env: query.buzz_env,
       });
       sendJson(res, 200, { ok: true, ...state });
@@ -1013,7 +1013,6 @@ async function handleApi(req, res, pathname) {
         buzz_env: parseBuzzEnvFromRequest(req, body),
       });
       const state = await getMerchantBubbleState(db, {
-        city: body.city || "",
         buzz_env: parseBuzzEnvFromRequest(req, body),
       });
       sendJson(res, 200, { ok: true, ...state });
@@ -1100,8 +1099,9 @@ async function handleApi(req, res, pathname) {
         delayMs: body.delay_ms ?? 1200,
       };
       const total = countPublishTargets(db, options);
+      const plan = getPublishPlan(db, options).plan;
       const jobId = startPublishBatchJob(db, options);
-      sendJson(res, 200, { ok: true, job_id: jobId, total, kind: "publish" });
+      sendJson(res, 200, { ok: true, job_id: jobId, total, plan, kind: "publish" });
     } catch (error) {
       sendJson(res, 502, { ok: false, error: error.message });
     }
@@ -1124,8 +1124,9 @@ async function handleApi(req, res, pathname) {
         delayMs: body.delay_ms ?? 1200,
       };
       const total = countPublishTargets(db, options);
+      const plan = getPublishPlan(db, options).plan;
       const jobId = startPublishBatchJob(db, options);
-      sendJson(res, 200, { ok: true, job_id: jobId, total, kind: "publish" });
+      sendJson(res, 200, { ok: true, job_id: jobId, total, plan, kind: "publish" });
     } catch (error) {
       sendJson(res, 502, { ok: false, error: error.message });
     }
@@ -1167,15 +1168,17 @@ async function handleApi(req, res, pathname) {
   if (req.method === "POST" && pathname === "/api/merchant-bubbles/publish-test") {
     try {
       const body = JSON.parse((await readBody(req)) || "{}");
-      const report = await publishRandomTestMerchantBubble(db, {
+      const options = {
         buzz_env: parseBuzzEnvFromRequest(req, body),
         city: body.city || "北京",
         publish_user_id: body.publish_user_id,
         title_mode: body.title_mode || "per_merchant",
+        unified_content: body.unified_content || "",
         group_mode: body.group_mode || "create_new",
         now_type: body.now_type || 1,
-      });
-      sendJson(res, report.ok ? 200 : 502, { ok: report.ok, ...report });
+      };
+      const jobId = startPublishTestJob(db, options);
+      sendJson(res, 200, { ok: true, job_id: jobId, total: 1, kind: "publish_test" });
     } catch (error) {
       sendJson(res, 400, { ok: false, error: error.message });
     }

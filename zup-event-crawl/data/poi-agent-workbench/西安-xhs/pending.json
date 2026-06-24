@@ -1,22 +1,151 @@
 {
   "city": "西安",
   "source": "xiaohongshu",
-  "exported_at": "2026-06-20T19:44:01.041Z",
+  "exported_at": "2026-06-23T07:05:43.994Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 16,
   "doubtful_only": false,
-  "total_events": 1,
-  "group_count": 1,
+  "total_events": 16,
+  "group_count": 15,
   "cache_hit_groups": 0,
   "groups": [
     {
-      "group_id": "35816b955fbd",
-      "location": "临潼校区（校内）；老城根G park、西安DT51、西仓市集文创公园（校外）",
-      "sample_title": "西安美术学院本科生毕业展",
+      "group_id": "5543590d048c",
+      "location": "万象城L1南中庭",
+      "sample_title": "谢霆锋EvolutionNicLive快闪",
       "event_uids": [
-        "xiaohongshu:6a2fcfd000000000110150d2:06_1"
+        "xiaohongshu:6a38aeb0000000002101533b:02_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "a876c74f9adb",
+      "location": "大华1935 N2",
+      "sample_title": "大华1935萌宠运动会",
+      "event_uids": [
+        "xiaohongshu:6a38aeb0000000002101533b:02_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "40afd4a1507e",
+      "location": "曲江金辉广场",
+      "sample_title": "憨伯特「夏日乐淘淘跳蚤市集」",
+      "event_uids": [
+        "xiaohongshu:6a38aeb0000000002101533b:03_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "c0d17421afdc",
+      "location": "汉神购物广场",
+      "sample_title": "汉神购物广场沙漠绿洲计划",
+      "event_uids": [
+        "xiaohongshu:6a38aeb0000000002101533b:03_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "6e47a4c227c5",
+      "location": "西安市群众艺术馆",
+      "sample_title": "“指尖传韵·纸润长安”2026西安剪纸主题展",
+      "event_uids": [
+        "xiaohongshu:6a38aeb0000000002101533b:04_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "26840e3e28ac",
+      "location": "陕西省美术博物馆",
+      "sample_title": "秦声大韵·画见主角——戏曲主题美术作品展",
+      "event_uids": [
+        "xiaohongshu:6a38aeb0000000002101533b:04_1",
+        "xiaohongshu:6a38aeb0000000002101533b:06_0"
+      ],
+      "event_count": 2
+    },
+    {
+      "group_id": "73c5826ca317",
+      "location": "西安美术馆",
+      "sample_title": "“馈赠·富士用户影像局”西安站",
+      "event_uids": [
+        "xiaohongshu:6a38aeb0000000002101533b:05_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "98267d5940c8",
+      "location": "西安咸阳国际机场T5航站楼·博物馆层",
+      "sample_title": "国宝五千岁",
+      "event_uids": [
+        "xiaohongshu:6a38aeb0000000002101533b:05_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "d9774d29b306",
+      "location": "熙地港",
+      "sample_title": "熙引力艺术发光体·2026毕业设计作品展",
+      "event_uids": [
+        "xiaohongshu:6a38aeb0000000002101533b:06_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "d12c9fb67e87",
+      "location": "西安奥体中心体育场",
+      "sample_title": "EvolutionNicLive谢霆锋进化演唱会-西安站",
+      "event_uids": [
+        "xiaohongshu:6a38aeb0000000002101533b:07_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "2f51399de7a8",
+      "location": "西安沪灞保利大剧院",
+      "sample_title": "《我们的爱》给未来的自己流行金曲传递演唱会",
+      "event_uids": [
+        "xiaohongshu:6a38aeb0000000002101533b:07_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "95b885903c57",
+      "location": "陕西广电大剧院",
+      "sample_title": "新国风美学经典舞台剧《红楼梦》",
+      "event_uids": [
+        "xiaohongshu:6a38aeb0000000002101533b:07_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "17b8b06e7852",
+      "location": "西安人民剧院",
+      "sample_title": "曹禺经典话剧《雷雨》",
+      "event_uids": [
+        "xiaohongshu:6a38aeb0000000002101533b:08_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "1099abb7c476",
+      "location": "陕西大剧院-歌剧厅",
+      "sample_title": "俄罗斯莫斯科芭蕾舞团《天鹅湖》",
+      "event_uids": [
+        "xiaohongshu:6a38aeb0000000002101533b:08_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "1de15063634b",
+      "location": "开元大剧院-大剧场",
+      "sample_title": "同名电视剧改编 南京市话剧团《父母爱情》",
+      "event_uids": [
+        "xiaohongshu:6a38aeb0000000002101533b:08_2"
       ],
       "event_count": 1
     }

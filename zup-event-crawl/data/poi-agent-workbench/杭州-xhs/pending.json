@@ -1,22 +1,141 @@
 {
   "city": "杭州",
   "source": "xiaohongshu",
-  "exported_at": "2026-06-20T19:44:01.116Z",
+  "exported_at": "2026-06-23T07:07:19.217Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 15,
   "doubtful_only": false,
-  "total_events": 1,
-  "group_count": 1,
+  "total_events": 14,
+  "group_count": 14,
   "cache_hit_groups": 0,
   "groups": [
     {
-      "group_id": "c64d2a6452f2",
-      "location": "五里塘历史文化街区（三墩老街）",
-      "sample_title": "五里塘端午·躺粽计划",
+      "group_id": "4cff8f683330",
+      "location": "D59·蝴蝶谷 天台",
+      "sample_title": "不上班·摊玩日",
       "event_uids": [
-        "xiaohongshu:6a2f9bb90000000006031218:04_2"
+        "xiaohongshu:6a38df5f000000000800079f:01_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "f1a953e3dd4a",
+      "location": "杭州天目里15号楼6楼",
+      "sample_title": "中韩手帐市集",
+      "event_uids": [
+        "xiaohongshu:6a38df5f000000000800079f:01_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "4d3301bd0b02",
+      "location": "杭州·远洋乐堤港（B1中庭）",
+      "sample_title": "虫二记杭州手帐市集",
+      "event_uids": [
+        "xiaohongshu:6a38df5f000000000800079f:01_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "70f2f6648242",
+      "location": "西湖区三墩镇后陡门58号勤天小镇西侧",
+      "sample_title": "后陡门的夏主题市集",
+      "event_uids": [
+        "xiaohongshu:6a38df5f000000000800079f:02_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "4fb111a190ee",
+      "location": "杭州西湖六公园志愿军广场",
+      "sample_title": "湖畔暑期活动市集",
+      "event_uids": [
+        "xiaohongshu:6a38df5f000000000800079f:02_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "41c07e2712e2",
+      "location": "杭州平安悦坊广场",
+      "sample_title": "萌屿市集",
+      "event_uids": [
+        "xiaohongshu:6a38df5f000000000800079f:02_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "c8b2e3115942",
+      "location": "龙湖杭州丁桥天街1F连廊",
+      "sample_title": "儿童交换市集",
+      "event_uids": [
+        "xiaohongshu:6a38df5f000000000800079f:03_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "44d47bef7aa6",
+      "location": "杭州上城区中山A区二楼通福门集合空间",
+      "sample_title": "通福门鬼市",
+      "event_uids": [
+        "xiaohongshu:6a38df5f000000000800079f:03_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "1e121cc320a5",
+      "location": "杭州天目里",
+      "sample_title": "天目里首届gelato节",
+      "event_uids": [
+        "xiaohongshu:6a38df5f000000000800079f:03_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "7176cb85d91b",
+      "location": "阿里中心·未来（模拟空间）",
+      "sample_title": "青春市集",
+      "event_uids": [
+        "xiaohongshu:6a38df5f000000000800079f:04_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "277e697e768e",
+      "location": "杭州上城区体育中心",
+      "sample_title": "餐饮集市",
+      "event_uids": [
+        "xiaohongshu:6a38df5f000000000800079f:04_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "4a4d2b71b146",
+      "location": "杭州大厦C座广场",
+      "sample_title": "野雀好运嗨饮节",
+      "event_uids": [
+        "xiaohongshu:6a38df5f000000000800079f:04_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "10be2f415fec",
+      "location": "阿里开放园区（暂定）",
+      "sample_title": "杭州千人偷吃大赛",
+      "event_uids": [
+        "xiaohongshu:6a38df5f000000000800079f:05_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "80b2ccc6578c",
+      "location": "杭州恒大国际家居建材城",
+      "sample_title": "美的x玩具总动员巡展",
+      "event_uids": [
+        "xiaohongshu:6a38df5f000000000800079f:05_2"
       ],
       "event_count": 1
     }

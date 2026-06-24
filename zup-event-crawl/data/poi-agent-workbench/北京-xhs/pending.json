@@ -1,22 +1,187 @@
 {
   "city": "北京",
   "source": "xiaohongshu",
-  "exported_at": "2026-06-20T19:44:00.392Z",
+  "exported_at": "2026-06-23T06:58:02.085Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 20,
   "doubtful_only": false,
-  "total_events": 1,
-  "group_count": 1,
+  "total_events": 20,
+  "group_count": 19,
   "cache_hit_groups": 0,
   "groups": [
     {
-      "group_id": "dc951f112b26",
-      "location": "北京·平谷·马坊",
-      "sample_title": "北京世界爬行动物及用品展",
+      "group_id": "a975b94a4de1",
+      "location": "海淀区翠微百货B座南广场x一层中庭（室内外）",
+      "sample_title": "你好！冰冰节",
       "event_uids": [
-        "xiaohongshu:6a16bfb2000000003603144d:09_1"
+        "xiaohongshu:6a38f04e000000001700bb04:01_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "a454f654d4c1",
+      "location": "雪莲亮点文创园（室内二层），北京市东城区东四南大街15-17号",
+      "sample_title": "亮点周末市集",
+      "event_uids": [
+        "xiaohongshu:6a38f04e000000001700bb04:01_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "8ba60e28b424",
+      "location": "北京市朝阳区京投派（三元桥地铁站地下二层）",
+      "sample_title": "北京飞生手工集市之原创饰品集",
+      "event_uids": [
+        "xiaohongshu:6a38f04e000000001700bb04:02_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "b076ac3da8fc",
+      "location": "海淀西三旗万象汇4F休息区",
+      "sample_title": "北京盒子岛球星卡市集",
+      "event_uids": [
+        "xiaohongshu:6a38f04e000000001700bb04:03_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "70bc99119a63",
+      "location": "北京DT51西侧广场",
+      "sample_title": "法风沐夏市集",
+      "event_uids": [
+        "xiaohongshu:6a38f04e000000001700bb04:03_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "c9f10c424434",
+      "location": "顺义郎园Greens",
+      "sample_title": "北京超放飞艺术节",
+      "event_uids": [
+        "xiaohongshu:6a38f04e000000001700bb04:04_0",
+        "xiaohongshu:6a38f04e000000001700bb04:04_1"
+      ],
+      "event_count": 2
+    },
+    {
+      "group_id": "55bbee284ed0",
+      "location": "海淀区北京五棵松万达广场北侧长廊1号门前",
+      "sample_title": "首届恰巴塔长廊万物节",
+      "event_uids": [
+        "xiaohongshu:6a38f04e000000001700bb04:06_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "b95c8b0672ff",
+      "location": "海淀区魏公芳华里",
+      "sample_title": "国风文创市集",
+      "event_uids": [
+        "xiaohongshu:6a38f04e000000001700bb04:06_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "4c4ac60d39fa",
+      "location": "北京小西天艺术影院、百子湾艺术影院",
+      "sample_title": "中国电影资料馆艺术影院放映",
+      "event_uids": [
+        "xiaohongshu:6a38f04e000000001700bb04:07_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "b665cc2f803c",
+      "location": "北京百丽宫影城国贸店、北京英嘉国际影城、首都电影院西单店、完美世界影城、北京天幕新彩云影城",
+      "sample_title": "爱是永恒·中外电影名作展",
+      "event_uids": [
+        "xiaohongshu:6a38f04e000000001700bb04:07_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "3e0033cb0455",
+      "location": "海淀区北京BOM嘻番里3F",
+      "sample_title": "Lezhin第三届韩漫快闪",
+      "event_uids": [
+        "xiaohongshu:6a38f04e000000001700bb04:08_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "20bd9e144765",
+      "location": "西城区西单更新场B226",
+      "sample_title": "PPULBATU TXT主题快闪",
+      "event_uids": [
+        "xiaohongshu:6a38f04e000000001700bb04:08_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "9189ca19bca2",
+      "location": "三里屯太古里S8号楼一层S8-10a单元-Hirono小野POP UP",
+      "sample_title": "Hirono小野北京快闪",
+      "event_uids": [
+        "xiaohongshu:6a38f04e000000001700bb04:09_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "6125ec2a1460",
+      "location": "东城区北京apm首层中庭",
+      "sample_title": "玩具总动员5联名主题快闪",
+      "event_uids": [
+        "xiaohongshu:6a38f04e000000001700bb04:10_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "adbe57233841",
+      "location": "北京金融街购物中心B1",
+      "sample_title": "蜡笔小新宠物系列快闪",
+      "event_uids": [
+        "xiaohongshu:6a38f04e000000001700bb04:10_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "090fd2d74ee9",
+      "location": "大兴区北京荟聚1层西中庭",
+      "sample_title": "酷乐潮玩×布鲁可积木车快闪",
+      "event_uids": [
+        "xiaohongshu:6a38f04e000000001700bb04:11_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "a3de79a7ee0d",
+      "location": "东城区北京王府中環",
+      "sample_title": "泡泡玛特星星人主题展",
+      "event_uids": [
+        "xiaohongshu:6a38f04e000000001700bb04:11_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "d753db56283b",
+      "location": "朝阳区微博in店、朝阳大悦城店、石景山万达店、海淀区五道口店、大兴区西红门店",
+      "sample_title": "光与夜之恋×必胜客联名主题店",
+      "event_uids": [
+        "xiaohongshu:6a38f04e000000001700bb04:12_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "fbfd0c582df1",
+      "location": "北京市海淀区中关村科贸电子城店（线下店）",
+      "sample_title": "星穹铁道×绿联联名主题店",
+      "event_uids": [
+        "xiaohongshu:6a38f04e000000001700bb04:12_1"
       ],
       "event_count": 1
     }

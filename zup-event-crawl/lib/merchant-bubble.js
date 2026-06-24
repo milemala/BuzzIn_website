@@ -443,11 +443,14 @@ async function cleanupStaleBucketBubbles(db, stale, buzzEnv, options = {}) {
   return { results, cleaned, skipped };
 }
 
-function buildPerMerchantCopy(merchant) {
+const DEFAULT_PER_MERCHANT_CONTENT = "欢迎进群组局邀约，看看谁有空一起。";
+
+function buildPerMerchantCopy(merchant, options = {}) {
   const name = String(merchant.name || "").trim();
+  const content = String(options.unified_content || "").trim() || DEFAULT_PER_MERCHANT_CONTENT;
   return {
     now_title: name.slice(0, 128),
-    now_content: "欢迎进群组局邀约，看看谁有空一起。",
+    now_content: content,
   };
 }
 
@@ -455,7 +458,7 @@ function buildBubbleRecord(merchant, options = {}) {
   const publishUserId = String(options.publish_user_id || defaultPublishUserId(options)).trim();
   const titleMode = options.title_mode === "per_merchant" ? "per_merchant" : "unified";
   const copy = titleMode === "per_merchant"
-    ? buildPerMerchantCopy(merchant)
+    ? buildPerMerchantCopy(merchant, options)
     : {
       now_title: String(options.unified_title || "").trim(),
       now_content: String(options.unified_content || "").trim(),
@@ -486,8 +489,9 @@ function buildBubbleRecord(merchant, options = {}) {
 async function getMerchantBubbleState(db, options = {}) {
   const buzzEnv = resolveBuzzEnv(options);
   const stateOptions = { ...options, db };
-  const merchants = listImportedMerchants(db, importListOptions(options));
-  const activeUids = await loadActiveBubbleMerchantUids(db, options);
+  const viewOptions = fullStateOptions(options);
+  const merchants = listImportedMerchants(db, importListOptions(viewOptions));
+  const activeUids = await loadActiveBubbleMerchantUids(db, viewOptions);
   const byCity = groupMerchantsByCity(merchants);
   const state = loadRotationState(db, buzzEnv);
   const cities = [];
@@ -774,11 +778,16 @@ async function publishMerchantBubble(db, merchantUid, options = {}) {
     const nowId = await client.createNow(payload);
     if (!nowId) throw new Error("创建成功但未返回 now_id");
 
-    const updated = markMerchantBubbleResult(db, merchantUid, {
+    const bubblePatch = {
       bubble_now_id: nowId,
-      buzz_group_id: record.group_id,
       bubble_published_at: new Date().toISOString(),
-    }, buzzEnv);
+    };
+    // 临时新建群只挂在本条气泡上，不覆盖「批量创建商户群聊」写入的 buzz_group_id
+    if (groupMode === "use_merchant") {
+      bubblePatch.buzz_group_id = record.group_id;
+    }
+
+    const updated = markMerchantBubbleResult(db, merchantUid, bubblePatch, buzzEnv);
 
     return {
       ok: true,
@@ -1013,6 +1022,7 @@ async function publishRandomTestMerchantBubble(db, options = {}) {
     group_mode: options.group_mode || "create_new",
     now_type: options.now_type || 1,
   });
+  if (typeof options.onItem === "function") options.onItem(result);
 
   return {
     ...result,
@@ -1022,7 +1032,7 @@ async function publishRandomTestMerchantBubble(db, options = {}) {
     merchant_uid: merchant.merchant_uid,
     buzz_merchant_id: merchant.buzz_merchant_id,
     address: merchant.poi_address || merchant.address || "",
-    state: await getMerchantBubbleState(db, options),
+    state: await getMerchantBubbleState(db, fullStateOptions(options)),
   };
 }
 
@@ -1037,6 +1047,7 @@ module.exports = {
   batchPublishMerchantBubbles,
   buildBubbleRecord,
   buildPerMerchantCopy,
+  DEFAULT_PER_MERCHANT_CONTENT,
   createMerchantGroup,
   defaultPublishUserId,
   dissolveMerchantGroup,

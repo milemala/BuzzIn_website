@@ -4,6 +4,7 @@ const { buildIntroFromEventFields } = require("./xhs-event-intro");
 
 const BODY_SOURCE_PENDING = "pending";
 const BODY_SOURCE_AGENT = "agent";
+const BODY_SOURCE_MANUAL = "manual";
 const BODY_SOURCE_JS_FALLBACK = "js_fallback";
 /** 小红书合集 vision 提炼的介绍，入库时直写 body，不走 Agent */
 const BODY_SOURCE_XHS = "xhs_source";
@@ -23,8 +24,12 @@ function isXhsSourceBody(event) {
   return String(event?.body_source || "").trim() === BODY_SOURCE_XHS;
 }
 
+function isManualBody(event) {
+  return String(event?.body_source || "").trim() === BODY_SOURCE_MANUAL;
+}
+
 function isBodyPending(event) {
-  if (isAgentBody(event) || isXhsSourceBody(event)) return false;
+  if (isAgentBody(event) || isXhsSourceBody(event) || isManualBody(event)) return false;
   const source = String(event?.body_source || BODY_SOURCE_PENDING).trim();
   return source === BODY_SOURCE_PENDING || !String(event?.body || "").trim();
 }
@@ -58,6 +63,19 @@ function normalizeBodyText(text) {
     .trim();
 }
 
+function validateManualBody(body) {
+  const bodyText = normalizeBodyText(body);
+  const errors = [];
+  if (bodyText.length > BODY_HARD_MAX) {
+    errors.push(`介绍不超过 ${BODY_HARD_MAX} 字（当前 ${bodyText.length}）`);
+  }
+  return {
+    ok: errors.length === 0,
+    errors,
+    bodyText,
+  };
+}
+
 function validateBodyDecision(decision) {
   const errors = [];
   const eventUid = String(decision?.event_uid || "").trim();
@@ -87,13 +105,16 @@ module.exports = {
   BODY_PENDING_PLACEHOLDER,
   BODY_SOURCE_AGENT,
   BODY_SOURCE_JS_FALLBACK,
+  BODY_SOURCE_MANUAL,
   BODY_SOURCE_PENDING,
   BODY_SOURCE_XHS,
   buildPendingBodyFields,
   buildXhsBodyFields,
   isAgentBody,
   isBodyPending,
+  isManualBody,
   isXhsSourceBody,
   normalizeBodyText,
   validateBodyDecision,
+  validateManualBody,
 };

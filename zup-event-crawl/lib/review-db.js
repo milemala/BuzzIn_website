@@ -73,6 +73,8 @@ const EVENT_IMPORT_COLUMNS = [
   ["classification_source", "TEXT NOT NULL DEFAULT 'pending'"],
   ["body_source", "TEXT NOT NULL DEFAULT 'pending'"],
   ["time_source", "TEXT NOT NULL DEFAULT 'pending'"],
+  ["original_start_date", "TEXT"],
+  ["original_end_date", "TEXT"],
 ];
 
 function parsePoiCandidates(raw) {
@@ -203,6 +205,10 @@ function rowToEvent(row) {
     category: row.category,
     startDate: row.start_date,
     endDate: row.end_date,
+    originalStartDate: row.original_start_date || "",
+    originalEndDate: row.original_end_date || "",
+    original_start_date: row.original_start_date || "",
+    original_end_date: row.original_end_date || "",
     timeText: row.time_text,
     location: row.location,
     latitude: row.latitude,
@@ -248,6 +254,8 @@ function rowToEvent(row) {
     updatedAt: row.updated_at || null,
     start_at: resolveStartAt(row),
     expired_at: resolveExpiredAt(row),
+    original_start_at: String(row.original_start_date || "").trim(),
+    original_expired_at: String(row.original_end_date || "").trim(),
     import_ready: isImportReady(row),
     ...(() => {
       const coords = resolvePoiCoordinates(row);
@@ -560,6 +568,33 @@ function updateEventImportPrep(db, eventUid, patch, options = {}) {
     });
   }
 
+  if (patch.body !== undefined) {
+    const { BODY_SOURCE_MANUAL, validateManualBody } = require("./event-body-agent");
+    const check = validateManualBody(patch.body);
+    if (!check.ok) {
+      throw new Error(check.errors.join("；"));
+    }
+    db.prepare(`
+      UPDATE events SET
+        body = @body,
+        body_source = @body_source,
+        updated_at = @updated_at
+      WHERE event_uid = @event_uid
+    `).run({
+      event_uid: eventUid,
+      body: check.bodyText || null,
+      body_source: BODY_SOURCE_MANUAL,
+      updated_at: now,
+    });
+  }
+
+  if (patch.start_at !== undefined || patch.expired_at !== undefined) {
+    applyManualPushTime(db, eventUid, {
+      start_at: patch.start_at,
+      expired_at: patch.expired_at,
+    });
+  }
+
   return applyBuzzEnvToEvent(db, getEventByUid(db, eventUid), buzzEnv);
 }
 
@@ -769,12 +804,14 @@ function importPayload(db, payload, options = {}) {
       event_uid, source_id, source, source_name, source_position, source_url, source_list_page,
       city, district, title, category, start_date, end_date, time_text, location,
       latitude, longitude, image, image_original, fee, owner, counts, raw_detail_text, raw_detail_html, body, original_link,
-      score, suggested, review_reason, douban_event_type, classification_source, body_source, time_source, updated_at
+      score, suggested, review_reason, douban_event_type, classification_source, body_source, time_source,
+      original_start_date, original_end_date, updated_at
     ) VALUES (
       ?, ?, ?, ?, ?, ?, ?,
       ?, ?, ?, ?, ?, ?, ?, ?,
       ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-      ?, ?, ?, ?, ?, ?, ?, ?
+      ?, ?, ?, ?, ?, ?, ?,
+      ?, ?, ?
     )
     ON CONFLICT(event_uid) DO UPDATE SET
       source_id = excluded.source_id,
@@ -815,7 +852,7 @@ function importPayload(db, payload, options = {}) {
       raw_detail_text = excluded.raw_detail_text,
       raw_detail_html = excluded.raw_detail_html,
       body = CASE
-        WHEN events.body_source = 'agent' THEN events.body
+        WHEN events.body_source IN ('agent', 'manual') THEN events.body
         ELSE excluded.body
       END,
       original_link = excluded.original_link,
@@ -840,12 +877,24 @@ function importPayload(db, payload, options = {}) {
         ELSE excluded.classification_source
       END,
       body_source = CASE
-        WHEN events.body_source = 'agent' THEN events.body_source
+        WHEN events.body_source IN ('agent', 'manual') THEN events.body_source
         ELSE excluded.body_source
       END,
       time_source = CASE
         WHEN events.time_source IN ('agent', 'manual') THEN events.time_source
         ELSE excluded.time_source
+      END,
+      original_start_date = CASE
+        WHEN trim(COALESCE(events.original_start_date, '')) != '' THEN events.original_start_date
+        WHEN events.time_source IN ('agent', 'manual') THEN events.original_start_date
+        WHEN excluded.start_date IS NOT NULL AND trim(excluded.start_date) != '' THEN excluded.start_date
+        ELSE events.original_start_date
+      END,
+      original_end_date = CASE
+        WHEN trim(COALESCE(events.original_end_date, '')) != '' THEN events.original_end_date
+        WHEN events.time_source IN ('agent', 'manual') THEN events.original_end_date
+        WHEN excluded.end_date IS NOT NULL AND trim(excluded.end_date) != '' THEN excluded.end_date
+        ELSE events.original_end_date
       END,
       updated_at = excluded.updated_at
   `);
@@ -956,6 +1005,8 @@ function importPayload(db, payload, options = {}) {
           event.classification_source || "pending",
           event.body_source || "pending",
           event.time_source || "pending",
+          event.startDate || null,
+          event.endDate || null,
           new Date().toISOString()
         );
 
@@ -1177,6 +1228,7 @@ const EVENT_LIST_COLUMNS = `
   poi_title, poi_address, poi_candidates, poi_match_source, poi_agent_doubtful,
   poi_agent_reason, poi_agent_search_keyword, poi_updated_at, now_merchant_id,
   now_merchant_name, buzz_now_id, buzz_group_id, import_status, import_error, imported_at,
+  time_source, original_start_date, original_end_date,
   updated_at
 `.replace(/\s+/g, " ").trim();
 
@@ -1322,6 +1374,103 @@ function shouldSkipEventTimeApply(db, eventUid, options = {}) {
   return null;
 }
 
+function hasOriginalArchive(db, eventUid) {
+  const row = db.prepare(`
+    SELECT original_start_date, original_end_date FROM events WHERE event_uid = ?
+  `).get(eventUid);
+  if (!row) return false;
+  return Boolean(String(row.original_start_date || "").trim() && String(row.original_end_date || "").trim());
+}
+
+function seedOriginalTimeIfEmpty(db, eventUid, startAt, expiredAt) {
+  const row = db.prepare(`
+    SELECT original_start_date, original_end_date FROM events WHERE event_uid = ?
+  `).get(eventUid);
+  if (!row) return;
+  const origStart = String(row.original_start_date || "").trim();
+  const origEnd = String(row.original_end_date || "").trim();
+  if (origStart && origEnd) return;
+  const now = new Date().toISOString();
+  db.prepare(`
+    UPDATE events SET
+      original_start_date = CASE
+        WHEN original_start_date IS NULL OR trim(original_start_date) = '' THEN @original_start_date
+        ELSE original_start_date
+      END,
+      original_end_date = CASE
+        WHEN original_end_date IS NULL OR trim(original_end_date) = '' THEN @original_end_date
+        ELSE original_end_date
+      END,
+      updated_at = @updated_at
+    WHERE event_uid = @event_uid
+  `).run({
+    event_uid: eventUid,
+    original_start_date: startAt,
+    original_end_date: expiredAt,
+    updated_at: now,
+  });
+}
+
+function setOriginalEventTime(db, eventUid, startAt, expiredAt) {
+  const start = String(startAt || "").trim();
+  const end = String(expiredAt || "").trim();
+  if (!start || !end) {
+    throw new Error("原始开始/结束时间均不能为空");
+  }
+  const now = new Date().toISOString();
+  const result = db.prepare(`
+    UPDATE events SET
+      original_start_date = @original_start_date,
+      original_end_date = @original_end_date,
+      updated_at = @updated_at
+    WHERE event_uid = @event_uid
+  `).run({
+    event_uid: eventUid,
+    original_start_date: start,
+    original_end_date: end,
+    updated_at: now,
+  });
+  if (!result.changes) {
+    throw new Error(`活动不存在: ${eventUid}`);
+  }
+  return getEventByUid(db, eventUid);
+}
+
+function applyManualPushTime(db, eventUid, decision, options = {}) {
+  const { TIME_SOURCE_MANUAL, validateTimeDecision } = require("./event-time-agent");
+  const event = getEventByUid(db, eventUid);
+  if (!event) {
+    throw new Error(`活动不存在: ${eventUid}`);
+  }
+  const startAt = String(decision.start_at ?? resolveStartAt(event) ?? "").trim();
+  const expiredAt = String(decision.expired_at ?? resolveExpiredAt(event) ?? "").trim();
+  const check = validateTimeDecision({ event_uid: eventUid, start_at: startAt, expired_at: expiredAt });
+  if (!check.ok) {
+    throw new Error(check.errors.join("；"));
+  }
+  const now = new Date().toISOString();
+  const result = db.prepare(`
+    UPDATE events SET
+      start_date = @start_date,
+      end_date = @end_date,
+      time_source = @time_source,
+      updated_at = @updated_at
+    WHERE event_uid = @event_uid
+  `).run({
+    event_uid: eventUid,
+    start_date: startAt,
+    end_date: expiredAt,
+    time_source: TIME_SOURCE_MANUAL,
+    updated_at: now,
+  });
+  if (!result.changes) {
+    throw new Error(`活动不存在: ${eventUid}`);
+  }
+  const { syncEventDates } = require("./event-time-agent");
+  syncEventDates(db, eventUid, startAt, expiredAt);
+  return { event: getEventByUid(db, eventUid) };
+}
+
 function applyEventTime(db, eventUid, decision, options = {}) {
   const {
     TIME_SOURCE_AGENT,
@@ -1339,7 +1488,17 @@ function applyEventTime(db, eventUid, decision, options = {}) {
   }
   const timeSource = options.timeSource || TIME_SOURCE_AGENT;
   const now = new Date().toISOString();
-  const result = db.prepare(`
+  const writeOriginal = timeSource !== TIME_SOURCE_MANUAL && !hasOriginalArchive(db, eventUid);
+  const result = db.prepare(writeOriginal ? `
+    UPDATE events SET
+      start_date = @start_date,
+      end_date = @end_date,
+      original_start_date = @start_date,
+      original_end_date = @end_date,
+      time_source = @time_source,
+      updated_at = @updated_at
+    WHERE event_uid = @event_uid
+  ` : `
     UPDATE events SET
       start_date = @start_date,
       end_date = @end_date,
@@ -1402,6 +1561,9 @@ module.exports = {
   applyEventBody,
   applyEventClassification,
   applyEventTime,
+  applyManualPushTime,
+  setOriginalEventTime,
+  seedOriginalTimeIfEmpty,
   applyEventPoiSelection,
   syncEventPoiCoordinates,
   eventUidFor,

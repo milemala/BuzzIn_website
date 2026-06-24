@@ -20,8 +20,11 @@ const {
   fetchXhsProfileViaChrome,
 } = require("../lib/xiaohongshu-chrome-fetch");
 const {
+  buildNoteExploreUrl,
+  extractActivityPeriod,
+  isRoundupContentExpired,
   parseEventsFromDesc,
-  pickWeeklyRoundupNote,
+  pickWeeklyRoundupNotes,
 } = require("../lib/xiaohongshu-parse");
 const { loadScrapedXhsNoteIds } = require("../lib/xhs-scraped-notes");
 const {
@@ -44,6 +47,36 @@ function parseArgs(argv) {
   return options;
 }
 
+async function pickValidRoundupWithDetail(profileNotes, refDate, scrapedNoteIds, outRoot, fetchDetail) {
+  const candidates = pickWeeklyRoundupNotes(profileNotes, refDate, { scrapedNoteIds });
+  if (!candidates.length) return null;
+
+  for (const candidate of candidates) {
+    const noteDir = path.join(outRoot, candidate.noteId);
+    const cachedNotePath = path.join(noteDir, "note.json");
+    let detail;
+    if (fs.existsSync(cachedNotePath)) {
+      const note = JSON.parse(fs.readFileSync(cachedNotePath, "utf8"));
+      detail = { note, url: buildNoteExploreUrl(candidate.noteId, candidate.xsecToken) };
+    } else {
+      detail = await fetchDetail(candidate.noteId, candidate.xsecToken);
+    }
+
+    const period = extractActivityPeriod(detail.note.desc);
+    const check = isRoundupContentExpired({
+      title: detail.note.title || candidate.title,
+      desc: detail.note.desc,
+      period,
+    }, refDate);
+    if (check.expired) {
+      console.log(`   跳过（详情日期已过期）: ${candidate.title} — ${check.reason}`);
+      continue;
+    }
+    return { picked: candidate, detail };
+  }
+  return null;
+}
+
 async function scrapeXhsProfileWeekly(profileUrl, options = {}) {
   const rootDir = path.join(__dirname, "..");
   const city = options.city || "未标注城市";
@@ -60,12 +93,23 @@ async function scrapeXhsProfileWeekly(profileUrl, options = {}) {
     console.log(`   已抓过 ${scrapedNoteIds.size} 篇汇总帖，将跳过重复 noteId`);
   }
 
-  const picked = pickWeeklyRoundupNote(profile.notes, new Date(), { scrapedNoteIds });
-  if (!picked) {
+  const refDate = new Date();
+  const resolved = await pickValidRoundupWithDetail(
+    profile.notes,
+    refDate,
+    scrapedNoteIds,
+    outRoot,
+    fetchXhsNoteViaChrome,
+  );
+  if (!resolved) {
+    const hadCandidates = pickWeeklyRoundupNotes(profile.notes, refDate, { scrapedNoteIds }).length > 0;
     throw new Error(
-      `[${city}] 无新的合适汇总帖（已抓 ${scrapedNoteIds.size} 篇；个人页前 ${profile.notes.length} 条中无可选本周/节日/整月汇总）`,
+      hadCandidates
+        ? `[${city}] 个人页汇总帖详情日期均已过期，本批跳过（已抓 ${scrapedNoteIds.size} 篇）`
+        : `[${city}] 无新的合适汇总帖（已抓 ${scrapedNoteIds.size} 篇；个人页前 ${profile.notes.length} 条中无可选本周/节日/整月汇总）`,
     );
   }
+  const { picked, detail: prefetchedDetail } = resolved;
   const tierLabels = { week: "本周/下周汇总", dated: "节日/专题汇总", month: "整月汇总" };
   const tierLabel = tierLabels[picked.pickTier] || "活动汇总";
   console.log(`\n[${city}] 2/4 选中${tierLabel}: ${picked.title} (${picked.noteId})`);
@@ -81,7 +125,7 @@ async function scrapeXhsProfileWeekly(profileUrl, options = {}) {
     return { city, noteDir, picked, eventsFromText: summary.eventsFromText || [], skipped: true };
   }
 
-  const detail = await fetchXhsNoteViaChrome(picked.noteId, picked.xsecToken);
+  const detail = prefetchedDetail;
   fs.mkdirSync(noteDir, { recursive: true });
   fs.writeFileSync(path.join(noteDir, "note.json"), `${JSON.stringify(detail.note, null, 2)}\n`);
 
@@ -98,7 +142,7 @@ async function scrapeXhsProfileWeekly(profileUrl, options = {}) {
       title: picked.title,
       url: detail.url,
     },
-    period: (detail.note.desc.match(/活动周期：([^\n]+)/) || [])[1] || null,
+    period: extractActivityPeriod(detail.note.desc),
     eventsFromText,
     imageFiles: images.map((x) => path.relative(noteDir, x.file).split(path.sep).join("/")),
     scrapedAt: new Date().toISOString(),

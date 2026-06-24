@@ -112,6 +112,15 @@
     .info{display:grid;gap:5px;color:#494036;font-size:13px;line-height:1.45}
     .info div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .summary{margin-top:10px;color:#2f281f;font-size:13px;line-height:1.7;white-space:pre-wrap}
+    .body-field{margin-top:10px}
+    .body-field .body-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .body-field .body-head label{margin:0}
+    .body-field textarea{
+      width:100%;min-height:96px;border:1px solid var(--line);border-radius:6px;padding:8px 10px;background:#fff;
+      font:inherit;font-size:13px;line-height:1.65;color:#2f281f;resize:vertical
+    }
+    .body-field textarea:focus{outline:2px solid #d8c8a8;outline-offset:1px;border-color:#c8b89f}
+    .body-field .body-meta{font-size:11px;color:var(--muted);margin-top:4px}
     .reason{margin-top:10px;color:var(--muted);font-size:12px;line-height:1.5}
     .card-actions{display:flex;gap:8px;margin-top:12px;align-items:center;flex-wrap:wrap}
     .mini{height:31px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:0 10px;cursor:pointer;color:#302920}
@@ -122,6 +131,12 @@
     .batch-review-bar{display:none;align-items:center;gap:10px;flex-wrap:wrap;margin:-4px 0 14px;padding:10px 12px;background:#fffdf6;border:1px solid #e6ded0;border-radius:8px}
     .batch-review-bar.visible{display:flex}
     .batch-action-buttons{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .batch-expire-days{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#5c5348}
+    .batch-expire-days input{width:56px;padding:6px 8px;border:1px solid #d8cfc0;border-radius:6px;font-size:13px}
+    .import-time-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;margin-top:8px}
+    .import-time-grid label{font-size:12px;color:#6a6258;display:block;margin-bottom:4px}
+    .import-time-grid input{width:100%;padding:6px 8px;border:1px solid #d8cfc0;border-radius:6px;font-size:12px;font-family:inherit}
+    .import-time-original{font-size:12px;color:#6a6258;line-height:1.5;margin-top:6px}
     .batch-review-hint{color:var(--muted);font-size:13px}
     .link{margin-left:auto;color:#6b5b00;text-decoration:none;font-size:13px}
     .empty{padding:44px;text-align:center;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:8px}
@@ -148,6 +163,7 @@
     .import-field{display:grid;gap:4px}
     .import-field label{font-size:11px;font-weight:700;color:var(--muted)}
     .import-field select,.import-field input{height:32px;border:1px solid var(--line);border-radius:6px;padding:0 8px;background:#fff}
+    .import-field textarea{height:auto;min-height:96px;padding:8px 10px;line-height:1.65;resize:vertical}
     .import-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
     .import-ready-tag{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px;background:#e7f5ec;color:#197549}
     .import-ready-tag.no{background:#fde8e4;color:#ad382c}
@@ -382,9 +398,9 @@
       reject: "批量拒绝",
       import: "批量推送",
       deleteBuzz: "批量删后台",
-      shortenExpire: "批量把过期时间改为距离现在12天后",
+      shortenExpire: "批量改推送过期时间",
     };
-    const SHORTEN_EXPIRE_DAYS = 12;
+    const DEFAULT_BATCH_EXPIRE_DAYS = 12;
     const poiKeywords = {};
     const poiPreviews = {};
     let eventIndex = [];
@@ -495,7 +511,8 @@
       return parseStoredDateTime(event.start_at || event.startDate || event.start_date || "");
     }
 
-    function getEventExpiredAt(event) {
+    /** 推送过期时间（筛选项「过期超2周/1个月」等只看此字段，不看原始留档） */
+    function getEventPushExpiredAt(event) {
       return parseStoredDateTime(event.expired_at || event.endDate || event.end_date || "");
     }
 
@@ -506,7 +523,7 @@
     }
 
     function expiresAfterDaysFromNow(event, days) {
-      const expired = getEventExpiredAt(event);
+      const expired = getEventPushExpiredAt(event);
       if (!expired) return false;
       return expired.getTime() > Date.now() + days * MS_DAY;
     }
@@ -735,8 +752,8 @@
       return poiKeywords[uid] !== undefined ? poiKeywords[uid] : suggestPoiKeyword(event);
     }
 
-    async function saveImportPrep(uid, patch) {
-      setSaveState("保存推送字段...", "warn");
+    async function saveImportPrep(uid, patch, options = {}) {
+      setSaveState(options.savingMessage || "保存推送字段...", "warn");
       const response = await fetch(`/api/events/${encodeURIComponent(uid)}/import-prep`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -748,9 +765,49 @@
         return null;
       }
       upsertEvent(data.event);
-      setSaveState("已保存", "ok");
-      render();
+      setSaveState(options.savedMessage || "已保存", "ok");
+      if (!options.skipRender) render();
       return data.event;
+    }
+
+    async function saveEventBody(card, bodyField) {
+      if (!card || !bodyField) return null;
+      const uid = card.dataset.uid;
+      const value = bodyField.value;
+      const initial = bodyField.dataset.bodyInitial ?? "";
+      if (value === initial) return null;
+      const updated = await saveImportPrep(uid, { body: value }, {
+        skipRender: true,
+        savingMessage: "保存活动简介...",
+        savedMessage: "活动简介已保存",
+      });
+      if (updated) {
+        bodyField.dataset.bodyInitial = String(updated.body || value);
+      }
+      return updated;
+    }
+
+    async function saveEventPushTime(card) {
+      if (!card) return null;
+      const uid = card.dataset.uid;
+      const startField = card.querySelector("[data-import-field='start_at']");
+      const expireField = card.querySelector("[data-import-field='expired_at']");
+      if (!startField || !expireField) return null;
+      const startAt = String(startField.value || "").trim();
+      const expiredAt = String(expireField.value || "").trim();
+      const initialStart = String(startField.dataset.timeInitial ?? "").trim();
+      const initialExpire = String(expireField.dataset.timeInitial ?? "").trim();
+      if (startAt === initialStart && expiredAt === initialExpire) return null;
+      const updated = await saveImportPrep(uid, { start_at: startAt, expired_at: expiredAt }, {
+        skipRender: true,
+        savingMessage: "保存推送时间...",
+        savedMessage: "推送时间已保存",
+      });
+      if (updated) {
+        startField.dataset.timeInitial = String(updated.start_at || startAt);
+        expireField.dataset.timeInitial = String(updated.expired_at || expiredAt);
+      }
+      return updated;
     }
 
     async function applyPoi(uid, body) {
@@ -1605,6 +1662,13 @@
       }
     }
 
+    function readBatchExpireDays() {
+      const input = document.getElementById("batchExpireDaysInput");
+      const days = Number(String(input?.value || "").trim());
+      if (!Number.isFinite(days) || days < 0) return DEFAULT_BATCH_EXPIRE_DAYS;
+      return Math.floor(days);
+    }
+
     async function runBatchShortenExpire() {
       if (importBusy || reviewBusy) return;
       const eligible = getFilteredEvents();
@@ -1612,11 +1676,13 @@
         setSaveState("当前筛选下没有可操作的活动", "warn");
         return;
       }
+      const days = readBatchExpireDays();
       const importedCount = eligible.filter(isImportedEvent).length;
       const filterLabel = FILTER_LABELS[statusFilter] || statusFilter;
       const message = [
-        `将「${filterLabel}」筛选下 ${eligible.length} 条活动的过期时间改为「现在起 ${SHORTEN_EXPIRE_DAYS} 天后 23:59:59」。`,
-        importedCount ? `其中 ${importedCount} 条已推送，会同步更新 Buzz 后台 expired_at。` : "未推送的活动仅改本地时间。",
+        `将「${filterLabel}」筛选下 ${eligible.length} 条活动的推送过期时间改为「现在起 ${days} 天后 23:59:59」。`,
+        "原始留档时间不会改动。",
+        importedCount ? `其中 ${importedCount} 条已推送，会同步更新 Buzz 后台 expired_at。` : "未推送的活动仅改本地推送时间。",
         "",
         "确定继续？",
       ].join("\n");
@@ -1627,18 +1693,18 @@
 
       reviewBusy = true;
       const eventUids = eligible.map((event) => event.eventUid || event.event_uid || event.id);
-      setSaveState(`批量改过期时间中（${eventUids.length} 条）...`, "warn");
+      setSaveState(`批量改推送过期时间中（${eventUids.length} 条）...`, "warn");
       try {
         const response = await fetch(BuzzEnvUi.withBuzzEnv("/api/events/batch-expired-at"), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ event_uids: eventUids, days_from_now: SHORTEN_EXPIRE_DAYS }),
+          body: JSON.stringify({ event_uids: eventUids, days_from_now: days }),
         });
         const data = await response.json();
         if (!response.ok || !data.ok) throw new Error(data.error || "批量失败");
         await loadEvents();
         setSaveState(
-          `已改 ${data.updated} 条过期时间${data.buzz_updated ? `，同步 Buzz ${data.buzz_updated} 条` : ""}${data.fail ? `，失败 ${data.fail} 条` : ""}`,
+          `已改 ${data.updated} 条推送过期时间${data.buzz_updated ? `，同步 Buzz ${data.buzz_updated} 条` : ""}${data.fail ? `，失败 ${data.fail} 条` : ""}`,
           data.fail ? "warn" : "ok",
         );
         render();
@@ -2208,7 +2274,14 @@
                 <div>费用：${escapeHtml(event.fee || "待确认")}</div>
                 <div>发起：${escapeHtml(event.owner || "未知")}</div>
               </div>
-              <div class="summary">${escapeHtml(event.body || "")}</div>
+              <div class="import-field body-field">
+                <div class="body-head">
+                  <label for="body-${escapeHtml(uid)}">活动简介</label>
+                  <button class="mini" type="button" data-save-body>保存简介</button>
+                </div>
+                <textarea id="body-${escapeHtml(uid)}" data-import-field="body" data-body-initial="${escapeHtml(event.body || "")}" rows="4" maxlength="500" placeholder="填写活动介绍，失焦或点保存">${escapeHtml(event.body || "")}</textarea>
+                <div class="body-meta">最多 500 字 · 失焦或点「保存简介」</div>
+              </div>
               <div class="reason">${escapeHtml(event.reviewReason)}</div>
               <div class="import-block">
                 <h3>推送 Zup 准备</h3>
@@ -2226,8 +2299,22 @@
                     </select>
                   </div>
                   <div class="import-meta">
-                    推送时间：<strong>start_at</strong> ${escapeHtml(event.start_at || "—")}<br>
-                    <strong>expired_at</strong> ${escapeHtml(event.expired_at || "—")}
+                    <div class="import-time-original">
+                      原始留档：
+                      <strong>start</strong> ${escapeHtml(event.original_start_at || "—")}
+                      · <strong>end</strong> ${escapeHtml(event.original_expired_at || "—")}
+                    </div>
+                    <div class="import-time-grid">
+                      <div class="import-field">
+                        <label for="push-start-${escapeHtml(uid)}">推送 start_at</label>
+                        <input id="push-start-${escapeHtml(uid)}" type="text" data-import-field="start_at" data-time-initial="${escapeHtml(event.start_at || "")}" value="${escapeHtml(event.start_at || "")}" placeholder="2026-06-20 19:00:00">
+                      </div>
+                      <div class="import-field">
+                        <label for="push-expire-${escapeHtml(uid)}">推送 expired_at</label>
+                        <input id="push-expire-${escapeHtml(uid)}" type="text" data-import-field="expired_at" data-time-initial="${escapeHtml(event.expired_at || "")}" value="${escapeHtml(event.expired_at || "")}" placeholder="2026-07-05 23:59:59">
+                      </div>
+                    </div>
+                    <div class="body-meta">推送时间失焦自动保存；不改原始留档。</div>
                   </div>
                   <div class="import-meta">
                     ${event.location_poi_id
@@ -2287,11 +2374,14 @@
         : `当前「${filterLabel}」筛选下没有活动`;
 
       const busy = reviewBusy || importBusy;
-      buttonsEl.innerHTML = actions.map((action) => {
+      const expireControls = actions.includes("shortenExpire")
+        ? `<label class="batch-expire-days">距今天数<input id="batchExpireDaysInput" type="number" min="0" step="1" value="${DEFAULT_BATCH_EXPIRE_DAYS}" ${busy ? "disabled" : ""}></label>`
+        : "";
+      buttonsEl.innerHTML = `${expireControls}${actions.map((action) => {
         const label = BATCH_ACTION_LABELS[action] || action;
         const primary = action === "approve" || action === "import" || action === "shortenExpire";
         return `<button class="btn${primary ? " primary" : ""}" type="button" data-batch-action="${escapeHtml(action)}" ${busy || count === 0 ? "disabled" : ""}>${escapeHtml(label)}</button>`;
-      }).join("");
+      }).join("")}`;
     }
 
     function render() {
@@ -2458,6 +2548,14 @@
       const deleteBtn = event.target.closest("button[data-delete-buzz-uid]");
       if (deleteBtn) {
         deleteBuzzNow(deleteBtn.dataset.deleteBuzzUid, deleteBtn.dataset.deleteBuzzNowId);
+        return;
+      }
+
+      const saveBodyBtn = event.target.closest("button[data-save-body]");
+      if (saveBodyBtn) {
+        const card = saveBodyBtn.closest("article.card[data-uid]");
+        const bodyField = card?.querySelector("[data-import-field='body']");
+        if (card && bodyField) void saveEventBody(card, bodyField);
       }
     });
 
@@ -2470,13 +2568,25 @@
       saveImportPrep(card.dataset.uid, { now_type: Number(field.value) });
     });
 
-    listEl.addEventListener("blur", (event) => {
+    listEl.addEventListener("focusout", (event) => {
+      const bodyField = event.target.closest("[data-import-field='body']");
+      if (bodyField) {
+        const card = bodyField.closest("article.card[data-uid]");
+        if (card) void saveEventBody(card, bodyField);
+        return;
+      }
+      const timeField = event.target.closest("[data-import-field='start_at'], [data-import-field='expired_at']");
+      if (timeField) {
+        const card = timeField.closest("article.card[data-uid]");
+        if (card) void saveEventPushTime(card);
+        return;
+      }
       const field = event.target.closest("[data-import-field='publish_user_id']");
       if (!field) return;
       const card = field.closest("article.card[data-uid]");
       if (!card) return;
       saveImportPrep(card.dataset.uid, { publish_user_id: field.value.trim() });
-    }, true);
+    });
 
     listEl.addEventListener("input", (event) => {
       const input = event.target.closest("[data-poi-keyword]");

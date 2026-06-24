@@ -290,7 +290,7 @@ function appendParticipationToBody(body, event) {
 
 function enrichEventBody(event) {
   const source = String(event?.body_source || "").trim();
-  if (source === "agent" || source === "xhs_source") {
+  if (source === "agent" || source === "xhs_source" || source === "manual") {
     return String(event.body || "").trim();
   }
   return appendParticipationToBody(event.body, event);

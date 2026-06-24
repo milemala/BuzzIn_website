@@ -1,22 +1,141 @@
 {
   "city": "天津",
   "source": "xiaohongshu",
-  "exported_at": "2026-06-20T19:44:00.610Z",
+  "exported_at": "2026-06-23T06:58:10.735Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 14,
   "doubtful_only": false,
-  "total_events": 1,
-  "group_count": 1,
+  "total_events": 14,
+  "group_count": 14,
   "cache_hit_groups": 0,
   "groups": [
     {
-      "group_id": "a939fd603f2d",
-      "location": "天津",
-      "sample_title": "天津免费观影",
+      "group_id": "1b7524d6ad44",
+      "location": "南开大悦城北侧",
+      "sample_title": "马路刨冰节",
       "event_uids": [
-        "xiaohongshu:6a2fc966000000001100523b:00_0"
+        "xiaohongshu:6a38ca5e000000001101b0a8:01_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "a22a1bbca529",
+      "location": "天津智慧山·山丘广场",
+      "sample_title": "精酿的夏天",
+      "event_uids": [
+        "xiaohongshu:6a38ca5e000000001101b0a8:01_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "136f9eca1182",
+      "location": "天津天佑城1楼",
+      "sample_title": "二次元谷子市集",
+      "event_uids": [
+        "xiaohongshu:6a38ca5e000000001101b0a8:01_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "20f09bb2f1fa",
+      "location": "棉3创意街区 棉花营地",
+      "sample_title": "棉3玩具市集",
+      "event_uids": [
+        "xiaohongshu:6a38ca5e000000001101b0a8:02_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "e18dbd191f6c",
+      "location": "棉3创意街区滑板广场",
+      "sample_title": "海河旧书市集",
+      "event_uids": [
+        "xiaohongshu:6a38ca5e000000001101b0a8:02_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "06717a7206f9",
+      "location": "天津南开大悦城 北区3F 5号车库",
+      "sample_title": "荷漾·非遗市集",
+      "event_uids": [
+        "xiaohongshu:6a38ca5e000000001101b0a8:02_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "f59cfdb80ccd",
+      "location": "光屿广场",
+      "sample_title": "光屿嘉年华",
+      "event_uids": [
+        "xiaohongshu:6a38ca5e000000001101b0a8:03_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "bb5994de60e4",
+      "location": "天津杉杉奥莱2号门",
+      "sample_title": "宠物时装周",
+      "event_uids": [
+        "xiaohongshu:6a38ca5e000000001101b0a8:03_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "c0c092a02073",
+      "location": "天津（和平区）吉利大厦四层",
+      "sample_title": "“国潮逐梦·艺暖津城”爱心公益义卖",
+      "event_uids": [
+        "xiaohongshu:6a38ca5e000000001101b0a8:03_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "0120ee9e954c",
+      "location": "东丽区东丽湖东湖风景区",
+      "sample_title": "户外露营闯关主题青年交友活动",
+      "event_uids": [
+        "xiaohongshu:6a38ca5e000000001101b0a8:04_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "6f45841f0422",
+      "location": "马场道117号天津外国语大学3号楼2层",
+      "sample_title": "津门德韵Citywalk",
+      "event_uids": [
+        "xiaohongshu:6a38ca5e000000001101b0a8:04_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "5a46879ea414",
+      "location": "天开园（体验馆5r/人）",
+      "sample_title": "南开区城市定向赛",
+      "event_uids": [
+        "xiaohongshu:6a38ca5e000000001101b0a8:04_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "5b9e33d4c6aa",
+      "location": "和平大悦城1F中庭",
+      "sample_title": "Kinbor × brunch brother限时快闪",
+      "event_uids": [
+        "xiaohongshu:6a38ca5e000000001101b0a8:05_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "f3aa18721814",
+      "location": "天津万象城",
+      "sample_title": "比美高F1快闪店",
+      "event_uids": [
+        "xiaohongshu:6a38ca5e000000001101b0a8:05_1"
       ],
       "event_count": 1
     }

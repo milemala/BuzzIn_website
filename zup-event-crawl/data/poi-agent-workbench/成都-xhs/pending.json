@@ -1,40 +1,250 @@
 {
   "city": "成都",
   "source": "xiaohongshu",
-  "exported_at": "2026-06-20T19:54:53.720Z",
+  "exported_at": "2026-06-23T07:03:07.258Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 27,
   "doubtful_only": false,
-  "total_events": 3,
-  "group_count": 3,
+  "total_events": 27,
+  "group_count": 26,
   "cache_hit_groups": 0,
   "groups": [
     {
-      "group_id": "c3d08a1de9de",
-      "location": "新津南河两岸（新津区）",
-      "sample_title": "2026天府端午龙舟会",
+      "group_id": "496f9a9e05ba",
+      "location": "西源集1F内场（青羊区）",
+      "sample_title": "城西首届偷吃大赛",
       "event_uids": [
-        "xiaohongshu:6a2fb1ae000000001101e8df:06_0"
+        "xiaohongshu:6a38fa5d00000000160247d2:01_0",
+        "xiaohongshu:6a38fa5d00000000160247d2:01_1"
+      ],
+      "event_count": 2
+    },
+    {
+      "group_id": "9dabacf02424",
+      "location": "武侯吾悦广场（武侯区）",
+      "sample_title": "偷吃大赛（川渝老辈子版）",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:01_2"
       ],
       "event_count": 1
     },
     {
-      "group_id": "de26d17e3d83",
-      "location": "英盟当代艺术馆（武侯区）",
-      "sample_title": "交界地——2026届川音成都美术学院油画系研究生学术推荐展",
+      "group_id": "54af63b709ac",
+      "location": "成都量子介·木墨店（成华区）",
+      "sample_title": "双手做工·生活集",
       "event_uids": [
-        "xiaohongshu:6a3361de00000000200388ff:14_1"
+        "xiaohongshu:6a38fa5d00000000160247d2:02_0"
       ],
       "event_count": 1
     },
     {
-      "group_id": "642a60677c07",
-      "location": "四川大学美术馆（双流区）",
-      "sample_title": "四川大学美术馆青绿山水画巡展",
+      "group_id": "4b70cf45a13c",
+      "location": "成都COSMO 4楼CONER食堂（锦江区）",
+      "sample_title": "CONER街头发酵节",
       "event_uids": [
-        "xiaohongshu:6a2fb1ae000000001101e8df:13_1"
+        "xiaohongshu:6a38fa5d00000000160247d2:02_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "b8823486c714",
+      "location": "成都院子文化创意园（武侯区）",
+      "sample_title": "玉林摆摊计划",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:02_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "b58a613f3fc4",
+      "location": "成都龙湖上城天街L1中庭（金牛区）",
+      "sample_title": "vivo×《光·遇》「追光星屿」中庭快闪活动",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:03_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "40087dd1f649",
+      "location": "来福士广场b2中庭（武侯区）",
+      "sample_title": "千千许愿箱快闪活动",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:03_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "55a4989f6b56",
+      "location": "成都COSMO（锦江区）",
+      "sample_title": "脆脆鲨×原神联名快闪活动【脆脆鲨乐园】",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:04_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "e48b7e9c5fd8",
+      "location": "成都大悦城（武侯区）",
+      "sample_title": "银魂认真展·成都站",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:04_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "47a764b65c4e",
+      "location": "成都锦华路万达广场（锦江区）",
+      "sample_title": "无限暖暖×万达广场线下活动",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:04_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "86ebd0e0b00b",
+      "location": "中国西部博览城14-16号馆（天府新区）",
+      "sample_title": "2026鸿威·世宠博览会暨成都宠物展",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:05_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "8ced3f104970",
+      "location": "成都世纪城新国际会展中心2/3号馆（高新区）",
+      "sample_title": "第18届中国（成都）礼品及家居用品展览会暨文创旅游商品展",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:05_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "d43e90d229ba",
+      "location": "成都世纪城新国际会展中心6号馆（高新区）",
+      "sample_title": "第51届成都国际珠宝展",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:05_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "a3fb13e036fa",
+      "location": "明日巴适（高新区）",
+      "sample_title": "野趣森林主题活动",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:06_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "142c789968b1",
+      "location": "麓湖荒野之国（天府新区）",
+      "sample_title": "猫猫玩水岛",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:06_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "200ae9d1c6f0",
+      "location": "许燎源当代艺术馆一楼（锦江区）",
+      "sample_title": "第六届IDEA！想法叙事艺术展",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:07_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "7f42b3d3e491",
+      "location": "成都画院（青羊区）",
+      "sample_title": "山林野芳·灿然可观——姚思敏中国画展",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:07_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "ef310fef28b1",
+      "location": "A4美术馆（天府新区）",
+      "sample_title": "第二届Y+Project 3# 韩智同个展",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:08_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "4c8e2cfcf24c",
+      "location": "白夜花神诗空间（武侯区）",
+      "sample_title": "仿生花园·翟永明绘画作品展",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:08_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "99323e9e21ff",
+      "location": "四川大剧院·大剧场",
+      "sample_title": "歌无限∞石倚洁、龚爽、马小明 中国声乐作品专场音乐会",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:09_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "b7d35587bc05",
+      "location": "中演·成都大剧院·大剧场",
+      "sample_title": "中国国家话剧院 话剧《四世同堂》",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:09_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "0ffb395a6787",
+      "location": "四川省体育馆",
+      "sample_title": "2026陈洁仪 ATRIUM（心房）巡回演唱会-成都站",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:10_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "18e229c0159d",
+      "location": "成都五粮液文化体育中心综合体育馆",
+      "sample_title": "2026 ELLA陈嘉桦It’s Me（是我）艾拉主意巡回演唱会成都站",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:10_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "e019941794fc",
+      "location": "成都露天音乐公园",
+      "sample_title": "回春丹「大把时间璀璨」2026拉阔演唱会成都站",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:10_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "dcf1136c0af5",
+      "location": "CH8绿树演艺中心",
+      "sample_title": "王朝1982「东海听潮」全国巡回演唱会",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:10_3"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "ada68f5a7c3c",
+      "location": "东安湖大剧院·大剧场",
+      "sample_title": "李伟菘 李偲菘「代表作Forty For You」作品音乐会-成都站",
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:10_4"
       ],
       "event_count": 1
     }

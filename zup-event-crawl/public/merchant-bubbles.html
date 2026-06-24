@@ -80,6 +80,7 @@
     }
     .job-modal-panel h2{margin:0 0 6px;font-size:18px;font-weight:800}
     .job-modal-scope{margin:0 0 12px;color:var(--muted);font-size:13px;line-height:1.5}
+    .job-modal-plan{margin:0 0 12px;padding:10px 12px;border-radius:8px;background:#f7faf8;border:1px solid var(--line);font-size:12px;line-height:1.55;color:#314036}
     .job-progress-track{height:10px;border-radius:999px;background:#e8efe9;overflow:hidden;margin-bottom:12px}
     .job-progress-bar{height:100%;width:0;background:linear-gradient(90deg,#2a9d68,#3fbf7f);border-radius:999px;transition:width .35s ease}
     .job-progress-stats{display:grid;gap:6px;font-size:13px;color:#314036;line-height:1.45}
@@ -144,18 +145,18 @@
           <button type="button" data-mode="unified" class="active">统一文案</button>
           <button type="button" data-mode="per_merchant">按店名生成</button>
         </div>
-        <div class="sub-fields" id="unifiedFields">
+        <div class="sub-fields" id="unifiedTitleField">
           <div class="field" style="margin-top:0">
             <label for="unifiedTitle">统一标题</label>
             <input id="unifiedTitle" type="text" placeholder="例如：本周好店推荐">
           </div>
-          <div class="field">
-            <label for="unifiedContent">统一正文（可选）</label>
-            <textarea id="unifiedContent" placeholder="例如：发现身边宝藏小店，一起来坐坐。"></textarea>
-          </div>
+        </div>
+        <div class="field" id="unifiedContentField">
+          <label for="unifiedContent" id="unifiedContentLabel">统一正文（可选）</label>
+          <textarea id="unifiedContent" placeholder="例如：发现身边宝藏小店，一起来坐坐。"></textarea>
         </div>
         <p class="option-note" id="perMerchantNote" hidden>
-          <strong>按店名生成：</strong>标题 = 商户名；正文统一为「欢迎进群组局邀约，看看谁有空一起。」
+          <strong>按店名生成：</strong>标题 = 商户名；正文使用下方「统一正文」，留空则用默认「欢迎进群组局邀约，看看谁有空一起。」
         </p>
       </div>
 
@@ -182,7 +183,7 @@
         </select>
       </div>
       <div class="field">
-        <label for="cityFilter">限定城市（留空 = 全部城市）</label>
+        <label for="cityFilter">限定发布城市（留空 = 全部城市，不影响下方列表）</label>
         <input id="cityFilter" type="text" placeholder="例如：北京">
       </div>
 
@@ -206,6 +207,7 @@
     <div class="job-modal-panel" role="dialog" aria-modal="true" aria-labelledby="jobModalTitle">
       <h2 id="jobModalTitle">处理中</h2>
       <p class="job-modal-scope" id="jobModalScope"></p>
+      <p class="job-modal-plan" id="jobModalPlan" hidden></p>
       <div class="job-progress-track" aria-hidden="true">
         <div class="job-progress-bar" id="jobProgressBar"></div>
       </div>
@@ -226,8 +228,11 @@
     const resultEl = document.getElementById("result");
     const titleModeSeg = document.getElementById("titleModeSeg");
     const groupModeSeg = document.getElementById("groupModeSeg");
-    const unifiedFields = document.getElementById("unifiedFields");
+    const unifiedTitleField = document.getElementById("unifiedTitleField");
+    const unifiedContentLabel = document.getElementById("unifiedContentLabel");
+    const unifiedContentInput = document.getElementById("unifiedContent");
     const perMerchantNote = document.getElementById("perMerchantNote");
+    const DEFAULT_PER_MERCHANT_CONTENT = "欢迎进群组局邀约，看看谁有空一起。";
     const groupModeNote = document.getElementById("groupModeNote");
     let busy = false;
     let titleMode = "unified";
@@ -237,6 +242,7 @@
     const jobModalEl = document.getElementById("jobModal");
     const jobModalTitleEl = document.getElementById("jobModalTitle");
     const jobModalScopeEl = document.getElementById("jobModalScope");
+    const jobModalPlanEl = document.getElementById("jobModalPlan");
     const jobProgressBarEl = document.getElementById("jobProgressBar");
     const jobProgressStatsEl = document.getElementById("jobProgressStats");
     const jobProgressCurrentEl = document.getElementById("jobProgressCurrent");
@@ -256,6 +262,11 @@
         clearInterval(jobPollTimer);
         jobPollTimer = null;
       }
+    }
+
+    function formatPublishPlan(plan) {
+      if (!plan?.length) return "";
+      return plan.map((item) => `${item.city} 第 ${item.slot + 1} 组 ${item.count} 家`).join(" · ");
     }
 
     function renderJobLogs(logs) {
@@ -292,6 +303,15 @@
         ].join("");
       }
 
+      const planText = formatPublishPlan(job.meta?.plan);
+      if (planText) {
+        jobModalPlanEl.hidden = false;
+        jobModalPlanEl.textContent = `本批范围：${planText}`;
+      } else {
+        jobModalPlanEl.hidden = true;
+        jobModalPlanEl.textContent = "";
+      }
+
       if (job.status === "running") {
         jobProgressCurrentEl.innerHTML = job.current_name
           ? `<strong>正在处理</strong>${escapeHtml(job.current_name)}`
@@ -303,9 +323,18 @@
       if (job.status === "done") {
         const fail = job.fail_count || 0;
         jobModalTitleEl.textContent = fail ? `${title}完成（有失败）` : `${title}完成`;
-        const summary = job.kind === "groups"
-          ? `新建 ${job.created || 0} · 改名 ${job.renamed || 0} · 失败 ${fail}`
-          : `成功 ${job.ok_count || 0} · 失败 ${fail}`;
+        let summary = "";
+        if (job.kind === "groups") {
+          summary = `新建 ${job.created || 0} · 改名 ${job.renamed || 0} · 失败 ${fail}`;
+        } else if (job.kind === "publish_test" && job.summary) {
+          summary = [
+            job.summary.merchant_name || job.summary.name || "—",
+            job.summary.now_id ? `now_id ${job.summary.now_id}` : "",
+            fail ? `失败 ${fail}` : "发布成功",
+          ].filter(Boolean).join(" · ");
+        } else {
+          summary = `成功 ${job.ok_count || 0} · 失败 ${fail}`;
+        }
         jobProgressCurrentEl.innerHTML = `<strong>全部结束</strong>${escapeHtml(summary)}`;
         jobModalCloseEl.disabled = false;
       } else if (job.status === "error") {
@@ -315,11 +344,21 @@
       }
     }
 
-    function openJobModal({ title, scope }) {
+    function openJobModal({ title, scope, total = 0, plan = [] }) {
       jobModalTitleEl.textContent = `${title}中`;
       jobModalScopeEl.textContent = scope;
-      jobProgressBarEl.style.width = "0%";
-      jobProgressStatsEl.innerHTML = "";
+      jobProgressBarEl.style.width = total > 0 ? "0%" : "0%";
+      const planText = formatPublishPlan(plan);
+      if (planText) {
+        jobModalPlanEl.hidden = false;
+        jobModalPlanEl.textContent = `本批范围：${planText}`;
+      } else {
+        jobModalPlanEl.hidden = true;
+        jobModalPlanEl.textContent = "";
+      }
+      jobProgressStatsEl.innerHTML = total > 0
+        ? `<div>进度：<b>0 / ${total}</b></div><div>已用时间：<b>0 秒</b></div>`
+        : "";
       jobProgressCurrentEl.innerHTML = "<strong>准备开始…</strong>正在连接后台";
       jobLogEl.hidden = true;
       jobLogEl.innerHTML = "";
@@ -328,7 +367,7 @@
     }
 
     function closeJobModal() {
-      if (busy) return;
+      if (jobModalCloseEl.disabled) return;
       stopJobPoll();
       jobModalEl.hidden = true;
     }
@@ -347,7 +386,7 @@
       busy = true;
       setSaveState(`${title}中（${BuzzEnvUi.envLabel()}）...`, "warn");
       resultEl.textContent = "";
-      openJobModal({ title, scope });
+      openJobModal({ title, scope, total: 0, plan: [] });
       const startedAt = Date.now();
 
       try {
@@ -362,6 +401,14 @@
         }
 
         const jobId = startData.job_id;
+        if (startData.total) {
+          openJobModal({
+            title,
+            scope,
+            total: startData.total,
+            plan: startData.plan || [],
+          });
+        }
         const poll = async () => {
           try {
             const job = await fetchJob(jobId);
@@ -373,9 +420,20 @@
               } catch (loadError) {
                 console.warn(loadError);
               }
-              const summary = job.kind === "groups"
-                ? `成功 ${job.ok_count} · 失败 ${job.fail_count} · 新建 ${job.created} · 改名 ${job.renamed}`
-                : `成功 ${job.ok_count} · 失败 ${job.fail_count}`;
+              let summary = "";
+              if (job.kind === "groups") {
+                summary = `成功 ${job.ok_count} · 失败 ${job.fail_count} · 新建 ${job.created} · 改名 ${job.renamed}`;
+              } else if (job.kind === "publish_test" && job.summary) {
+                summary = [
+                  `商户：${job.summary.merchant_name || job.summary.name || "—"}`,
+                  job.summary.now_id ? `now_id：${job.summary.now_id}` : "",
+                  job.summary.picked_from ? `（从 ${job.summary.city || "北京"} ${job.summary.picked_from} 家中随机）` : "",
+                ].filter(Boolean).join("\n");
+              } else {
+                summary = `成功 ${job.ok_count} · 失败 ${job.fail_count}`;
+                const planText = formatPublishPlan(job.meta?.plan);
+                if (planText) summary += `\n${planText}`;
+              }
               resultEl.textContent = `${title}完成：${summary}`;
               setSaveState(`${title}完成`, job.fail_count ? "warn" : "ok");
               busy = false;
@@ -405,7 +463,9 @@
     }
 
     jobModalCloseEl.addEventListener("click", closeJobModal);
-    jobModalEl.querySelector(".job-modal-backdrop").addEventListener("click", closeJobModal);
+    jobModalEl.querySelector(".job-modal-backdrop").addEventListener("click", () => {
+      if (!jobModalCloseEl.disabled) closeJobModal();
+    });
 
     function setSelectedBucket(city, slot) {
       selectedBuckets.set(city, slot);
@@ -421,8 +481,14 @@
 
     function syncTitleModeUI() {
       const unified = titleMode === "unified";
-      unifiedFields.hidden = !unified;
+      unifiedTitleField.hidden = !unified;
       perMerchantNote.hidden = unified;
+      unifiedContentLabel.textContent = unified
+        ? "统一正文（可选）"
+        : "统一正文（每家店共用，留空用默认）";
+      unifiedContentInput.placeholder = unified
+        ? "例如：发现身边宝藏小店，一起来坐坐。"
+        : DEFAULT_PER_MERCHANT_CONTENT;
       titleModeSeg.querySelectorAll("button").forEach((btn) => {
         btn.classList.toggle("active", btn.dataset.mode === titleMode);
       });
@@ -532,10 +598,7 @@
     }
 
     async function loadState() {
-      const city = document.getElementById("cityFilter").value.trim();
-      const parts = [BuzzEnvUi.envQuery()];
-      if (city) parts.push(`city=${encodeURIComponent(city)}`);
-      const query = `?${parts.join("&")}`;
+      const query = `?${BuzzEnvUi.envQuery()}`;
       const response = await fetch(`/api/merchant-bubbles/state${query}`, { cache: "no-store" });
       const data = await response.json();
       if (!response.ok || !data.ok) throw new Error(data.error || "加载失败");
@@ -663,7 +726,7 @@
         });
         const data = await response.json();
         if (!response.ok || !data.ok) throw new Error(data.error || `${label}失败`);
-        renderState(data.state || data);
+        await loadState();
         const summary = data.plan?.length
           ? data.plan.map((item) => `${item.city} 第${item.slot + 1}组 ${item.count}家`).join(" · ")
           : "";
@@ -693,38 +756,20 @@
       if (!window.confirm(
         `在北京随机选 1 家已入库商户，发布 1 个测试气泡到 ${envLabel}？\n\n标题 = 店名，会临时新建群聊，3 天后过期。`,
       )) return;
-      if (!(await BuzzEnvUi.confirmProdAction("将写入正式环境"))) return;
-      busy = true;
-      setSaveState(`发布测试气泡中（${envLabel}）...`, "warn");
-      resultEl.textContent = "";
-      try {
-        const response = await fetch("/api/merchant-bubbles/publish-test", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(BuzzEnvUi.importBody({
-            publish_user_id: document.getElementById("publishUserId").value.trim()
-              || BuzzEnvUi.defaultPublishUserId(),
-          })),
-        });
-        const data = await response.json();
-        if (!response.ok || !data.ok) throw new Error(data.error || "发布测试气泡失败");
-        renderState(data.state || data);
-        resultEl.textContent = [
-          "测试气泡发布成功",
-          `商户：${data.merchant_name || data.name || "—"}`,
-          data.address ? `地址：${data.address}` : "",
-          `merchant_uid：${data.merchant_uid || "—"}`,
-          data.buzz_merchant_id ? `buzz_merchant_id：${data.buzz_merchant_id}` : "",
-          data.now_id ? `now_id：${data.now_id}` : "",
-          data.group_id ? `group_id：${data.group_id}` : "",
-          data.picked_from ? `（从北京 ${data.picked_from} 家已入库商户中随机抽取）` : "",
-        ].filter(Boolean).join("\n");
-        setSaveState(`测试气泡已发到：${data.merchant_name || data.name || "未知商户"}`, "ok");
-      } catch (error) {
-        setSaveState(error.message || "发布测试气泡失败", "error");
-      } finally {
-        busy = false;
-      }
+      const opts = currentOptions();
+      await runBatchJob({
+        title: "发布测试气泡",
+        scope: `北京 · 随机 1 家 · ${envLabel}`,
+        url: "/api/merchant-bubbles/publish-test",
+        body: {
+          publish_user_id: opts.publish_user_id,
+          title_mode: opts.title_mode,
+          unified_content: opts.unified_content,
+          group_mode: "create_new",
+          now_type: opts.now_type,
+          city: "北京",
+        },
+      });
     });
 
     document.getElementById("syncFromBuzzBtn").addEventListener("click", async () => {

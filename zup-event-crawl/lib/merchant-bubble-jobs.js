@@ -5,6 +5,7 @@ const {
   batchCreateMerchantGroups,
   batchPublishMerchantBubbles,
   publishCityBucketBubbles,
+  publishRandomTestMerchantBubble,
   pickMerchantsForCurrentSlot,
   getMerchantsInCityBucket,
 } = require("./merchant-bubble");
@@ -32,15 +33,33 @@ function countGroupTargets(db, options = {}) {
   return targets.length;
 }
 
-function countPublishTargets(db, options = {}) {
+function getPublishPlan(db, options = {}) {
   if (options.merchant_uids?.length) {
-    return listImportedMerchants(db, importListOptions(options)).length;
+    const merchants = listImportedMerchants(db, importListOptions(options));
+    return { merchants, plan: [], total: merchants.length };
   }
   if (options.city && options.slot != null && Number.isFinite(Number(options.slot))) {
-    return getMerchantsInCityBucket(db, options.city, Number(options.slot), options).merchants.length;
+    const pick = getMerchantsInCityBucket(db, options.city, Number(options.slot), options);
+    return {
+      merchants: pick.merchants,
+      total: pick.merchants.length,
+      plan: [{
+        city: pick.city,
+        slot: pick.slot,
+        count: pick.merchants.length,
+      }],
+    };
   }
   const pick = pickMerchantsForCurrentSlot(db, options);
-  return pick.merchants.length;
+  return {
+    merchants: pick.merchants,
+    plan: pick.plan || [],
+    total: pick.merchants.length,
+  };
+}
+
+function countPublishTargets(db, options = {}) {
+  return getPublishPlan(db, options).total;
 }
 
 function newJobId() {
@@ -199,10 +218,11 @@ function startGroupsBatchJob(db, options = {}) {
 }
 
 function startPublishBatchJob(db, options = {}) {
-  const total = countPublishTargets(db, options);
+  const { total, plan } = getPublishPlan(db, options);
   const job = createJob("publish", total, {
     city: options.city || "",
     slot: options.slot,
+    plan,
     buzz_env: normalizeBuzzEnv(options.buzz_env),
   });
   setImmediate(async () => {
@@ -223,11 +243,33 @@ function startPublishBatchJob(db, options = {}) {
   return job.id;
 }
 
+function startPublishTestJob(db, options = {}) {
+  const job = createJob("publish_test", 1, {
+    city: options.city || "北京",
+    buzz_env: normalizeBuzzEnv(options.buzz_env),
+  });
+  setImmediate(async () => {
+    try {
+      const report = await publishRandomTestMerchantBubble(db, {
+        ...options,
+        onItem: (result) => onBatchItem(job, result),
+        onPoolRotate: (rotation) => onPoolRotate(job, rotation),
+      });
+      completeJob(job, report);
+    } catch (error) {
+      failJob(job, error);
+    }
+  });
+  return job.id;
+}
+
 module.exports = {
   countGroupTargets,
   countPublishTargets,
   getJob,
+  getPublishPlan,
   publicJobView,
   startGroupsBatchJob,
   startPublishBatchJob,
+  startPublishTestJob,
 };
