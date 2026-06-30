@@ -1,25 +1,42 @@
 {
   "city": "郑州",
   "source": "douban",
-  "updated_at": "2026-06-21T02:40:00.000Z",
-  "agent": "cursor-composer",
+  "decided_at": "2026-06-29T03:25:35.278Z",
+  "agent": "cache-hit-auto",
   "decisions": [
     {
-      "group_id": "6c2026a16ec6",
-      "event_uids": ["douban:37762586", "douban:37791406"],
+      "group_id": "4b7b6ac9fe34",
       "action": "match",
-      "search_keywords_tried": ["金水区", "7LIVEHOUSE", "文化路和金水路交汇处东北角中原大舞台内2层", "LIVEHOUSE"],
-      "poi_id": "1755158220296960639",
-      "poi_title": "7LIVEHOUSE",
-      "poi_address": "河南省郑州市金水区文化路2号",
-      "latitude": 34.765107,
-      "longitude": 113.668046,
-      "confidence": "high",
+      "poi_id": "10949715273587582845",
+      "poi_title": "郑州大剧院",
+      "poi_address": "",
+      "latitude": 34.742346,
+      "longitude": 113.550694,
       "doubtful": false,
-      "reason": "场馆名7LIVEHOUSE与POI一致，金水区文化路中原大舞台内，与豆瓣中原大舞台内2层吻合",
-      "candidates": [
-        {"index": 0, "poi_id": "1755158220296960639", "title": "7LIVEHOUSE", "address": "河南省郑州市金水区文化路2号", "category": "娱乐休闲:酒吧", "latitude": 34.765107, "longitude": 113.668046},
-        {"index": 1, "poi_id": "4331002211384084939", "title": "中原文化大舞台剧场", "address": "河南省郑州市金水区经八路街道文化路和金水路交叉口东北角(近新通桥)", "category": "娱乐休闲:剧场音乐厅:剧场", "latitude": 34.765076, "longitude": 113.668147}
+      "reason": "地址映射库命中：郑州 中原区 郑州大剧院 丹水大道与雪松路交叉口西南角 → 郑州大剧院（来源 event:douban:37858752）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37734083",
+        "douban:37849218"
+      ]
+    },
+    {
+      "group_id": "82760422ff35",
+      "action": "match",
+      "poi_id": "15788701412219640069",
+      "poi_title": "河南省人民会堂",
+      "poi_address": "",
+      "latitude": 34.764414,
+      "longitude": 113.683659,
+      "doubtful": false,
+      "reason": "地址映射库命中：郑州 金水区 河南省人民会堂 花园路1号（紫荆山立交桥河南饭店对面） → 河南省人民会堂（来源 event:douban:37812110）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37689284"
       ]
     }
   ]

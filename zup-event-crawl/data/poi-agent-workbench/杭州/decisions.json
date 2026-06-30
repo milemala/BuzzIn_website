@@ -1,59 +1,658 @@
 {
   "city": "杭州",
   "source": "douban",
-  "updated_at": "2026-06-21T02:40:00.000Z",
-  "agent": "cursor-composer",
+  "decided_at": "2026-06-29T03:43:08.552Z",
+  "agent": "cursor-agent",
   "decisions": [
     {
-      "group_id": "a40bdd30a9e2",
-      "event_uids": ["douban:37886968"],
+      "group_id": "fd5610fc4086",
       "action": "match",
-      "search_keywords_tried": ["西湖区", "天目里", "目里空间", "西湖区 天目里 目里空间"],
-      "poi_id": "1215036647390070607",
-      "poi_title": "目里空间",
-      "poi_address": "浙江省杭州市西湖区天目山路398号天目里1F层",
-      "latitude": 30.26654,
-      "longitude": 120.098901,
+      "poi_id": "10523627004646949900",
+      "poi_title": "南宋御街",
+      "poi_address": "",
+      "latitude": 30.240411,
+      "longitude": 120.17106,
+      "doubtful": false,
+      "reason": "地址映射库命中：杭州 上城区 剧游君 南宋御街中山中路119号 → 南宋御街（来源 event:douban:37669962）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37669956"
+      ]
+    },
+    {
+      "group_id": "9508c5bc967f",
+      "action": "match",
+      "poi_id": "2734576158323804714",
+      "poi_title": "来福士广场(杭州来福士中心)",
+      "poi_address": "",
+      "latitude": 30.248728,
+      "longitude": 120.213051,
+      "doubtful": false,
+      "reason": "地址映射库命中：杭州 上城区 会说笑脱口秀-来福士总店 来福士中心7楼会说笑脱口秀剧场（江锦路地铁站b1口步行200米） → 来福士广场(杭州来福士中心)（来源 event:douban:36119908）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37548339",
+        "douban:37674942",
+        "douban:37679149"
+      ]
+    },
+    {
+      "group_id": "94e2c51b26c8",
+      "action": "match",
+      "poi_id": "12143758070068136163",
+      "poi_title": "金沙湖大剧院",
+      "poi_address": "",
+      "latitude": 30.308527,
+      "longitude": 120.320485,
+      "doubtful": false,
+      "reason": "地址映射库命中：杭州 钱塘区 金沙湖大剧院 金沙大道与怀柔巷交叉口 → 金沙湖大剧院（来源 event:douban:37834516）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37865854"
+      ]
+    },
+    {
+      "group_id": "94f739efcce3",
+      "action": "match",
+      "poi_id": "14485686461718363404",
+      "poi_title": "浙江省文化馆小剧场",
+      "poi_address": "",
+      "latitude": 30.260488,
+      "longitude": 120.16026,
+      "doubtful": false,
+      "reason": "地址映射库命中：杭州 拱墅区 浙江省文化馆小剧场 武林路77号 → 浙江省文化馆小剧场（来源 event:douban:37347354）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37674951",
+        "douban:37504398"
+      ]
+    },
+    {
+      "group_id": "e0648e009810",
+      "action": "match",
+      "poi_id": "2367245372667804721",
+      "poi_title": "四个二喜剧空间(滨江银泰店)",
+      "poi_address": "",
+      "latitude": 30.201282,
+      "longitude": 120.224384,
+      "doubtful": false,
+      "reason": "地址映射库命中：杭州 滨江区 四个二喜剧脱口秀-滨江银泰店 西兴街道滨江银泰D区6号门2楼(耐克楼上) → 四个二喜剧空间(滨江银泰店)（来源 event:douban:37204478）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37182989"
+      ]
+    },
+    {
+      "group_id": "fe034588644a",
+      "action": "match",
+      "poi_id": "2367245372667804721",
+      "poi_title": "四个二喜剧空间(滨江银泰店)",
+      "poi_address": "",
+      "latitude": 30.201282,
+      "longitude": 120.224384,
+      "doubtful": false,
+      "reason": "地址映射库命中：杭州 滨江区 四个二喜剧脱口秀-滨江银泰店 西兴街道滨江银泰D区6号门2楼 → 四个二喜剧空间(滨江银泰店)（来源 event:douban:37771808）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37757727"
+      ]
+    },
+    {
+      "group_id": "705a9aad75a7",
+      "action": "match",
+      "poi_id": "9058821148941476985",
+      "poi_title": "M511光影汇·想象力中心",
+      "poi_address": "",
+      "latitude": 30.270242,
+      "longitude": 120.115742,
+      "doubtful": false,
+      "reason": "地址映射库命中：杭州 西湖区 M511光影汇·想象力中心 西溪路511号M511光影汇 → M511光影汇·想象力中心（来源 event:douban:37796257）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37800598",
+        "douban:37845162",
+        "douban:37800608",
+        "douban:37845848"
+      ]
+    },
+    {
+      "group_id": "3dbea6f2ab45",
+      "action": "match",
+      "poi_id": "18044990494032808276",
+      "poi_title": "音旅琴行·黑白坊棋院(凤起路店)",
+      "poi_address": "",
+      "latitude": 30.264353,
+      "longitude": 120.177391,
+      "doubtful": false,
+      "reason": "地址映射库命中：杭州 拱墅区 音旅琴行-飞天国学馆 凤起路183-1号2F → 音旅琴行·黑白坊棋院(凤起路店)（来源 event:douban:36825662）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37473380"
+      ]
+    },
+    {
+      "group_id": "5059b12c6ea4",
+      "action": "match",
+      "poi_id": "6109606932565607999",
+      "poi_title": "灵隐元境",
+      "poi_address": "",
+      "latitude": 30.240044,
+      "longitude": 120.106928,
+      "doubtful": false,
+      "reason": "地址映射库命中：杭州 西湖区 灵隐元境 灵隐路40号 → 灵隐元境（来源 event:douban:37649276）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37647939"
+      ]
+    },
+    {
+      "group_id": "c99558417193",
+      "event_uids": [
+        "douban:37764697"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "杭州剧院",
+        "杭州剧院 体育场路"
+      ],
+      "poi_id": "15658566135752878727",
+      "poi_title": "杭州剧院",
+      "poi_address": "浙江省杭州市拱墅区武林广场29号",
+      "latitude": 30.271073,
+      "longitude": 120.161509,
+      "candidates": [
+        {
+          "poi_id": "15658566135752878727",
+          "title": "杭州剧院",
+          "address": "浙江省杭州市拱墅区武林广场29号"
+        },
+        {
+          "poi_id": "2943571701806141652",
+          "title": "杭州剧院-检票口",
+          "address": "浙江省杭州市拱墅区天水街道体育场路370号浙江文化大厦"
+        },
+        {
+          "poi_id": "9946920412017095092",
+          "title": "浙江文化大厦",
+          "address": "浙江省杭州市拱墅区天水街道体育场路370号(近杭州大剧院)"
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "场馆名目里空间与POI完全一致，西湖区天目里398号地址吻合",
-      "candidates": [
-        {"index": 0, "poi_id": "1215036647390070607", "title": "目里空间", "address": "浙江省杭州市西湖区天目山路398号天目里1F层", "category": "娱乐休闲:其它娱乐休闲", "latitude": 30.26654, "longitude": 120.098901}
-      ]
+      "reason": "POI名称杭州剧院，拱墅区武林广场29号与豆瓣体育场路武林广场29号一致"
     },
     {
-      "group_id": "82d2a9798ff6",
-      "event_uids": ["douban:37478378"],
+      "group_id": "699a6bfe85e2",
+      "event_uids": [
+        "douban:37782590"
+      ],
       "action": "match",
-      "search_keywords_tried": ["拱墅区", "艺术西湖·家", "莫干山路1165号月星家居B1层", "1165号月星家居B1层"],
-      "poi_id": "15134311907971572291",
-      "poi_title": "月星家居(杭州店)",
-      "poi_address": "浙江省杭州市拱墅区莫干山路1165号花园box1楼A088",
-      "latitude": 30.316049,
-      "longitude": 120.110691,
-      "confidence": "medium",
-      "doubtful": false,
-      "reason": "艺术西湖·家位于月星家居B1层，腾讯无该展馆店级POI，月星家居主体门牌1165号拱墅区一致",
+      "search_keywords_tried": [
+        "宝龙艺术中心 滨江"
+      ],
+      "poi_id": "5887822476380998224",
+      "poi_title": "100艺术馆·经典奥特曼主题展(杭州宝龙店)",
+      "poi_address": "浙江省杭州市滨江区滨盛路3867号杭州滨江宝龙城F5宝龙艺术中心(近3号门)",
+      "latitude": 30.186672,
+      "longitude": 120.167052,
       "candidates": [
-        {"index": 0, "poi_id": "15134311907971572291", "title": "月星家居(杭州店)", "address": "浙江省杭州市拱墅区莫干山路1165号花园box1楼A088", "category": "购物:家具家居建材:家具家居", "latitude": 30.316049, "longitude": 120.110691}
-      ]
+        {
+          "poi_id": "5887822476380998224",
+          "title": "100艺术馆·经典奥特曼主题展(杭州宝龙店)",
+          "address": "浙江省杭州市滨江区滨盛路3867号杭州滨江宝龙城F5宝龙艺术中心(近3号门)"
+        },
+        {
+          "poi_id": "14082813868509535945",
+          "title": "杭州宝龙艺术中心",
+          "address": "浙江省杭州市滨江区滨盛路3867号宝龙城市广场(滨江店)F5-M-F5-010"
+        },
+        {
+          "poi_id": "5873780446099333715",
+          "title": "杭州滨江宝龙城",
+          "address": "浙江省杭州市滨江区滨盛路3867号(诚业路地铁站C口步行340米)"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "滨江区滨盛路3867号宝龙艺术中心F5，与豆瓣地址完全一致"
     },
     {
-      "group_id": "eccc39b1db01",
-      "event_uids": ["douban:37496700"],
+      "group_id": "2c8f45a5ad33",
+      "event_uids": [
+        "douban:37674619"
+      ],
       "action": "match",
-      "search_keywords_tried": ["上城区", "川核灵境XR体验中心", "望江街道元谷杭港科技大厦5楼", "体验中心"],
-      "poi_id": "16313328767517425422",
-      "poi_title": "中国元谷·杭港科技大厦",
-      "poi_address": "浙江省杭州市上城区钱江路509号",
-      "latitude": 30.233531,
-      "longitude": 120.193612,
-      "confidence": "medium",
-      "doubtful": false,
-      "reason": "川核灵境XR体验中心位于元谷杭港科技大厦5楼，腾讯无该体验中心店级POI，楼宇主体上城区钱江路509号一致",
+      "search_keywords_tried": [
+        "笑海相声会馆 亚运公园"
+      ],
+      "poi_id": "12437921161335702627",
+      "poi_title": "笑海相声会馆-亚运公园店",
+      "poi_address": "浙江省杭州市拱墅区祥符街道学院北路999号运河亚运公园花令十二坊S-11-01商铺",
+      "latitude": 30.312854,
+      "longitude": 120.10366,
       "candidates": [
-        {"index": 0, "poi_id": "16313328767517425422", "title": "中国元谷·杭港科技大厦", "address": "浙江省杭州市上城区钱江路509号", "category": "房产小区:商务楼宇", "latitude": 30.233531, "longitude": 120.193612}
-      ]
+        {
+          "poi_id": "12437921161335702627",
+          "title": "笑海相声会馆-亚运公园店",
+          "address": "浙江省杭州市拱墅区祥符街道学院北路999号运河亚运公园花令十二坊S-11-01商铺"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "店名与拱墅区学院北路999号花令十二坊地址完全一致"
+    },
+    {
+      "group_id": "bb48a7afabc5",
+      "event_uids": [
+        "douban:37735925"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "杭州烂苹果乐园"
+      ],
+      "poi_id": "2653001419119241277",
+      "poi_title": "杭州乐园旅游区-烂苹果乐园",
+      "poi_address": "浙江省杭州市萧山区风情大道2555号休博园内(杭州乐园对面)",
+      "latitude": 30.164555,
+      "longitude": 120.242092,
+      "candidates": [
+        {
+          "poi_id": "2653001419119241277",
+          "title": "杭州乐园旅游区-烂苹果乐园",
+          "address": "浙江省杭州市萧山区风情大道2555号休博园内(杭州乐园对面)"
+        },
+        {
+          "poi_id": "10321513118903983335",
+          "title": "杭州乐园烂苹果乐园游客中心",
+          "address": "浙江省杭州市萧山区城厢街道烂苹果乐园内"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "萧山区风情大道2555号烂苹果乐园，名称与门牌一致"
+    },
+    {
+      "group_id": "cdf9b71109f0",
+      "event_uids": [
+        "douban:37742065"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "杭州乐园"
+      ],
+      "poi_id": "15635245650341560545",
+      "poi_title": "杭州乐园旅游区-杭州乐园",
+      "poi_address": "浙江省杭州市萧山区风情大道2555号",
+      "latitude": 30.160494,
+      "longitude": 120.245128,
+      "candidates": [
+        {
+          "poi_id": "15635245650341560545",
+          "title": "杭州乐园旅游区-杭州乐园",
+          "address": "浙江省杭州市萧山区风情大道2555号"
+        },
+        {
+          "poi_id": "854626725979103668",
+          "title": "宋城杭州乐园",
+          "address": "浙江省杭州市萧山区休博路"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "萧山区风情大道2555号杭州乐园，与豆瓣休博园内地址一致"
+    },
+    {
+      "group_id": "2e5823eea48a",
+      "event_uids": [
+        "douban:37647793"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "新天地太阳剧场"
+      ],
+      "poi_id": "2013661148246167728",
+      "poi_title": "杭州新天地太阳剧场",
+      "poi_address": "浙江省杭州市拱墅区东文街90号",
+      "latitude": 30.324875,
+      "longitude": 120.181696,
+      "candidates": [
+        {
+          "poi_id": "2013661148246167728",
+          "title": "杭州新天地太阳剧场",
+          "address": "浙江省杭州市拱墅区东文街90号"
+        },
+        {
+          "poi_id": "5125556854730814883",
+          "title": "鸟屿魔咖",
+          "address": "浙江省杭州市拱墅区新天地太阳剧场左侧"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "拱墅区东文街90号太阳剧场，与豆瓣新天地太阳魔法剧场同址（鸟屿魔咖为附属空间）"
+    },
+    {
+      "group_id": "a3dba7d4b510",
+      "event_uids": [
+        "douban:37481789"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "松果喜剧 in77"
+      ],
+      "poi_id": "2562425686394652608",
+      "poi_title": "松果喜剧(杭州湖滨银泰in77E区)",
+      "poi_address": "浙江省杭州市上城区延安路245号湖滨银泰in77-B区杭州湖滨银泰in77(E区)F2",
+      "latitude": 30.250952,
+      "longitude": 120.163634,
+      "candidates": [
+        {
+          "poi_id": "2562425686394652608",
+          "title": "松果喜剧(杭州湖滨银泰in77E区)",
+          "address": "浙江省杭州市上城区延安路245号湖滨银泰in77-B区杭州湖滨银泰in77(E区)F2"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "上城区湖滨银泰in77E区松果喜剧，店名与区划一致"
+    },
+    {
+      "group_id": "b594bf64d4a0",
+      "event_uids": [
+        "douban:37647191"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "开心麻花 远洋乐堤港",
+        "疯狂理发店 乐堤港"
+      ],
+      "poi_id": "2562564375192190663",
+      "poi_title": "杭州开心麻花喜剪吹沉浸剧场(疯狂理发店)",
+      "poi_address": "浙江省杭州市拱墅区小河街道远见大厦141-142号(远洋乐堤港C101室)",
+      "latitude": 30.306747,
+      "longitude": 120.141327,
+      "candidates": [
+        {
+          "poi_id": "2562564375192190663",
+          "title": "杭州开心麻花喜剪吹沉浸剧场(疯狂理发店)",
+          "address": "浙江省杭州市拱墅区小河街道远见大厦141-142号(远洋乐堤港C101室)"
+        },
+        {
+          "poi_id": "3036906093466235872",
+          "title": "远洋乐堤港",
+          "address": "浙江省杭州市拱墅区丽水路58号"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "拱墅区远洋乐堤港C区开心麻花疯狂理发店，店名与商场位置一致"
+    },
+    {
+      "group_id": "f8c9beb359e8",
+      "event_uids": [
+        "douban:37705752"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "开心麻花D空间 运河文化艺术中心",
+        "开心麻花D空间"
+      ],
+      "poi_id": "12890599965056029825",
+      "poi_title": "杭州开心麻花剧场",
+      "poi_address": "浙江省杭州市拱墅区热电路188号运河文化艺术中心L1-01",
+      "latitude": 30.301799,
+      "longitude": 120.127092,
+      "candidates": [
+        {
+          "poi_id": "12890599965056029825",
+          "title": "杭州开心麻花剧场",
+          "address": "浙江省杭州市拱墅区热电路188号运河文化艺术中心L1-01"
+        },
+        {
+          "poi_id": "13591209920603494639",
+          "title": "运河文化艺术中心",
+          "address": "浙江省杭州市拱墅区热电路188号1层L1-10"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "拱墅区热电路188号运河文化艺术中心开心麻花剧场，与豆瓣开心麻花D空间同主体"
+    },
+    {
+      "group_id": "184f13a839b0",
+      "event_uids": [
+        "douban:37066939"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "工联CC",
+        "开关SWITCH 工联CC"
+      ],
+      "poi_id": "14331437646385817608",
+      "poi_title": "惊悚鬼混沉浸式笑场《开关SWITCH》",
+      "poi_address": "浙江省杭州市上城区延安路292号工联CC6楼",
+      "latitude": 30.254474,
+      "longitude": 120.164466,
+      "candidates": [
+        {
+          "poi_id": "14331437646385817608",
+          "title": "惊悚鬼混沉浸式笑场《开关SWITCH》",
+          "address": "浙江省杭州市上城区延安路292号工联CC6楼"
+        },
+        {
+          "poi_id": "5457100276134425244",
+          "title": "工联CC",
+          "address": "浙江省杭州市上城区延安路292号"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "上城区延安路292号工联CC6楼，与豆瓣地址完全一致"
+    },
+    {
+      "group_id": "d117fafdd001",
+      "event_uids": [
+        "douban:37685283"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "浙江音乐厅"
+      ],
+      "poi_id": "12910066855958083747",
+      "poi_title": "浙江音乐厅",
+      "poi_address": "浙江省杭州市西湖区北山街道曙光路31号(近黄龙体育中心)",
+      "latitude": 30.266567,
+      "longitude": 120.145765,
+      "candidates": [
+        {
+          "poi_id": "12910066855958083747",
+          "title": "浙江音乐厅",
+          "address": "浙江省杭州市西湖区北山街道曙光路31号(近黄龙体育中心)"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "西湖区曙光路31号浙江音乐厅，名称与门牌一致"
+    },
+    {
+      "group_id": "6b2470740202",
+      "event_uids": [
+        "douban:37715757"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "金沙幻境XR空间站"
+      ],
+      "poi_id": "7506615130012999214",
+      "poi_title": "金沙幻境XR空间站",
+      "poi_address": "浙江省杭州市钱塘区下沙街道金沙湖步行街3号楼",
+      "latitude": 30.30576,
+      "longitude": 120.321228,
+      "candidates": [
+        {
+          "poi_id": "7506615130012999214",
+          "title": "金沙幻境XR空间站",
+          "address": "浙江省杭州市钱塘区下沙街道金沙湖步行街3号楼"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "钱塘区金沙步行街3号楼金沙幻境XR空间站，与豆瓣海达南路783号同址"
+    },
+    {
+      "group_id": "214c125b4a94",
+      "event_uids": [
+        "douban:37838789"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "文小艺西子音乐厅"
+      ],
+      "poi_id": "6024416885490071753",
+      "poi_title": "文小艺西子音乐厅",
+      "poi_address": "浙江省杭州市上城区丁兰街道同协路1279号西子智慧产业园3幢3层",
+      "latitude": 30.351413,
+      "longitude": 120.207419,
+      "candidates": [
+        {
+          "poi_id": "6024416885490071753",
+          "title": "文小艺西子音乐厅",
+          "address": "浙江省杭州市上城区丁兰街道同协路1279号西子智慧产业园3幢3层"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "上城区同协路1279号西子智慧产业园文小艺西子音乐厅，名称与地址一致"
+    },
+    {
+      "group_id": "892a4900cdaf",
+      "event_uids": [
+        "douban:37859691",
+        "douban:37859707"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "浙话艺术剧院 幕光里"
+      ],
+      "poi_id": "4058054413726796086",
+      "poi_title": "浙话艺术剧院·幕光里",
+      "poi_address": "浙江省杭州市拱墅区米市巷街道湖墅南路138号浙话艺术剧院内4楼·新空间小剧场",
+      "latitude": 30.27965,
+      "longitude": 120.155049,
+      "candidates": [
+        {
+          "poi_id": "4058054413726796086",
+          "title": "浙话艺术剧院·幕光里",
+          "address": "浙江省杭州市拱墅区米市巷街道湖墅南路138号浙话艺术剧院内4楼·新空间小剧场"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "拱墅区湖墅南路138号浙话艺术剧院幕光里，与豆瓣完全一致"
+    },
+    {
+      "group_id": "bb422eb4be27",
+      "event_uids": [
+        "douban:37758622"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "湘湖雅韵演艺中心"
+      ],
+      "poi_id": "1892944808263235493",
+      "poi_title": "湘湖雅韵演艺中心",
+      "poi_address": "浙江省杭州市萧山区闻堰街道风情大道湘湖国家旅游度假区内",
+      "latitude": 30.136807,
+      "longitude": 120.220517,
+      "candidates": [
+        {
+          "poi_id": "1892944808263235493",
+          "title": "湘湖雅韵演艺中心",
+          "address": "浙江省杭州市萧山区闻堰街道风情大道湘湖国家旅游度假区内"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "萧山区风情大道湘湖度假区内湘湖雅韵演艺中心，名称与区划一致"
+    },
+    {
+      "group_id": "152d38340abd",
+      "event_uids": [
+        "douban:37334982"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "C立方剧场 西湖文化广场"
+      ],
+      "poi_id": "2208813241394293147",
+      "poi_title": "杭州·C立方剧场",
+      "poi_address": "浙江省杭州市拱墅区西湖文化广场8号1层夹层6室",
+      "latitude": 30.277143,
+      "longitude": 120.163865,
+      "candidates": [
+        {
+          "poi_id": "2208813241394293147",
+          "title": "杭州·C立方剧场",
+          "address": "浙江省杭州市拱墅区西湖文化广场8号1层夹层6室"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "拱墅区西湖文化广场8号C立方剧场，名称与门牌完全一致"
+    },
+    {
+      "group_id": "06814ec89abb",
+      "event_uids": [
+        "douban:37685947"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "武林门码头",
+        "环城北路226号"
+      ],
+      "poi_id": "16544556990384646511",
+      "poi_title": "武林门码头",
+      "poi_address": "浙江省杭州市拱墅区武林商圈 环城北路208号",
+      "latitude": 30.27428,
+      "longitude": 120.164013,
+      "candidates": [
+        {
+          "poi_id": "16544556990384646511",
+          "title": "武林门码头",
+          "address": "浙江省杭州市拱墅区武林商圈 环城北路208号"
+        },
+        {
+          "poi_id": "2316114784903911097",
+          "title": "杭州运河夜游",
+          "address": "浙江省杭州市拱墅区环城北路208号武林门码头(杭州大厦D座旁边)"
+        },
+        {
+          "poi_id": "12862225705110637481",
+          "title": "运河有意思书房",
+          "address": "浙江省杭州市拱墅区天水街道环城北路226号武林门码头负一楼"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "拱墅区武林门码头，豆瓣写226号与POI208号同属武林门码头主体，夜游登船点一致"
     }
   ]
 }

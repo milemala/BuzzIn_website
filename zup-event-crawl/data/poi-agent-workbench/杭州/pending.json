@@ -1,22 +1,400 @@
 {
   "city": "杭州",
   "source": "douban",
-  "exported_at": "2026-06-23T01:41:07.934Z",
+  "exported_at": "2026-06-29T03:23:45.342Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 33,
   "doubtful_only": false,
-  "total_events": 1,
-  "group_count": 1,
-  "cache_hit_groups": 0,
+  "total_events": 33,
+  "group_count": 26,
+  "cache_hit_groups": 9,
   "groups": [
     {
-      "group_id": "6d4983b113ac",
-      "location": "杭州 西湖区 杭州西湖区学院路77号黄龙万科中心G座701",
-      "sample_title": "「端午绿豆糕DIY」- 限定端午造型绿豆糕 日语+手作 | 06.28 周日",
+      "group_id": "c99558417193",
+      "location": "杭州 拱墅区 杭州剧院 体育场路武林广场29号",
+      "sample_title": "话剧九人民国知识分子系列作品《对称性破缺》",
       "event_uids": [
-        "douban:37889309"
+        "douban:37764697"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "699a6bfe85e2",
+      "location": "杭州 滨江区 呼唤光的名字吧·经典奥特曼主题展 浦沿街道滨盛路3867号杭州滨江宝龙城F5宝龙艺术中心(近3号门)",
+      "sample_title": "呼唤光的名字吧·经典奥特曼主题展(杭州宝龙店)",
+      "event_uids": [
+        "douban:37782590"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "fd5610fc4086",
+      "location": "杭州 上城区 剧游君 南宋御街中山中路119号",
+      "sample_title": "剧本游《红梦系统》",
+      "event_uids": [
+        "douban:37669956"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "10523627004646949900",
+        "poi_title": "南宋御街",
+        "poi_address": "",
+        "latitude": 30.240411,
+        "longitude": 120.17106,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：杭州 上城区 剧游君 南宋御街中山中路119号 → 南宋御街（来源 event:douban:37669962）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "fd5610fc408681c44d11842239344cc39782c5d3"
+      }
+    },
+    {
+      "group_id": "2c8f45a5ad33",
+      "location": "杭州 拱墅区 笑海相声会馆-亚运公园店 学院北路999号运河亚运公园花令十二坊S-11-01商铺",
+      "sample_title": "笑海相声专场 |脱口秀PK相声拼盘|周五六日 |笑到“脱相”| 笑嗨喜剧VS笑海相声 | 脱口秀大烩|漫才|吐槽|喜剧",
+      "event_uids": [
+        "douban:37674619"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "bb48a7afabc5",
+      "location": "杭州 萧山区 杭州烂苹果乐园 风情大道2555号",
+      "sample_title": "【暑期特惠】杭州烂苹果乐园门票（凭身份证入场）",
+      "event_uids": [
+        "douban:37735925"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "cdf9b71109f0",
+      "location": "杭州 萧山区 杭州乐园 风情大道2555号休博园内（烂苹果乐园对面）",
+      "sample_title": "【凭身份证入场】杭州乐园门票",
+      "event_uids": [
+        "douban:37742065"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "9508c5bc967f",
+      "location": "杭州 上城区 会说笑脱口秀-来福士总店 来福士中心7楼会说笑脱口秀剧场（江锦路地铁站b1口步行200米）",
+      "sample_title": "会说笑喜剧 |喜单3卡司张无为单口喜剧主打秀《年少无为》",
+      "event_uids": [
+        "douban:37548339",
+        "douban:37674942",
+        "douban:37679149"
+      ],
+      "event_count": 3,
+      "cached_poi": {
+        "poi_id": "2734576158323804714",
+        "poi_title": "来福士广场(杭州来福士中心)",
+        "poi_address": "",
+        "latitude": 30.248728,
+        "longitude": 120.213051,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：杭州 上城区 会说笑脱口秀-来福士总店 来福士中心7楼会说笑脱口秀剧场（江锦路地铁站b1口步行200米） → 来福士广场(杭州来福士中心)（来源 event:douban:36119908）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "9508c5bc967fa1362960d013bbf98443cd6a5437"
+      }
+    },
+    {
+      "group_id": "2e5823eea48a",
+      "location": "杭州 拱墅区 新天地太阳魔法剧场 东文街90号新天地太阳剧场鸟屿魔咖",
+      "sample_title": "极强互动《一点即兴》即兴喜剧专场/你就是导演—太阳魔法剧场",
+      "event_uids": [
+        "douban:37647793"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "94e2c51b26c8",
+      "location": "杭州 钱塘区 金沙湖大剧院 金沙大道与怀柔巷交叉口",
+      "sample_title": "第三届钱塘国际戏剧嘉年华 | 《坏家伙》Musical Show",
+      "event_uids": [
+        "douban:37865854"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "12143758070068136163",
+        "poi_title": "金沙湖大剧院",
+        "poi_address": "",
+        "latitude": 30.308527,
+        "longitude": 120.320485,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：杭州 钱塘区 金沙湖大剧院 金沙大道与怀柔巷交叉口 → 金沙湖大剧院（来源 event:douban:37834516）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "94e2c51b26c8b2a899979d0d167ba675ff544f3d"
+      }
+    },
+    {
+      "group_id": "a3dba7d4b510",
+      "location": "杭州 上城区 松果喜剧 湖滨银泰in77E区二楼松果喜剧",
+      "sample_title": "【松果喜剧】开放麦盲盒秀@杭州湖滨银泰in77E区二楼",
+      "event_uids": [
+        "douban:37481789"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "b594bf64d4a0",
+      "location": "杭州 拱墅区 开心麻花喜剪吹沉浸剧场·疯狂理发店 远洋乐堤港C区101(凯宾斯基酒店对面),近地铁3号线大关站C2出口",
+      "sample_title": "杭州开心麻花喜剪吹沉浸剧场《疯狂理发店》",
+      "event_uids": [
+        "douban:37647191"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "f8c9beb359e8",
+      "location": "杭州 拱墅区 开心麻花D空间 热电路188号运河文化艺术中心二楼",
+      "sample_title": "开心麻花综艺同款原创爆笑新喜剧《鹅鹅鹅》",
+      "event_uids": [
+        "douban:37705752"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "184f13a839b0",
+      "location": "杭州 上城区 惊悚鬼混沉浸式笑场《开关SWITCH》 延安路292号工联CC6楼",
+      "sample_title": "【杭州必看】惊悚喜剧鬼混剧场《开关SWITCH》",
+      "event_uids": [
+        "douban:37066939"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "94f739efcce3",
+      "location": "杭州 拱墅区 浙江省文化馆小剧场 武林路77号",
+      "sample_title": "“维也纳三杰”莫扎特/贝多芬/海顿-古典名曲主题音乐会",
+      "event_uids": [
+        "douban:37674951",
+        "douban:37504398"
+      ],
+      "event_count": 2,
+      "cached_poi": {
+        "poi_id": "14485686461718363404",
+        "poi_title": "浙江省文化馆小剧场",
+        "poi_address": "",
+        "latitude": 30.260488,
+        "longitude": 120.16026,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：杭州 拱墅区 浙江省文化馆小剧场 武林路77号 → 浙江省文化馆小剧场（来源 event:douban:37347354）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "94f739efcce39c4ff01939ef5d07b01828ac9f46"
+      }
+    },
+    {
+      "group_id": "d117fafdd001",
+      "location": "杭州 西湖区 浙江音乐厅 北山街道曙光路31号(近黄龙体育中心)",
+      "sample_title": "《四月是你的谎言》钢琴小提琴唯美经典音乐会",
+      "event_uids": [
+        "douban:37685283"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "e0648e009810",
+      "location": "杭州 滨江区 四个二喜剧脱口秀-滨江银泰店 西兴街道滨江银泰D区6号门2楼(耐克楼上)",
+      "sample_title": "四个二喜剧|滨江脱口秀/即兴喜剧/新喜剧【免费停车2H】@滨江银泰每周五六日爆笑开演",
+      "event_uids": [
+        "douban:37182989"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2367245372667804721",
+        "poi_title": "四个二喜剧空间(滨江银泰店)",
+        "poi_address": "",
+        "latitude": 30.201282,
+        "longitude": 120.224384,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：杭州 滨江区 四个二喜剧脱口秀-滨江银泰店 西兴街道滨江银泰D区6号门2楼(耐克楼上) → 四个二喜剧空间(滨江银泰店)（来源 event:douban:37204478）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "e0648e009810d09f9b3a170cf8e1e49976ef98ae"
+      }
+    },
+    {
+      "group_id": "6b2470740202",
+      "location": "杭州 钱塘区 VR展《三体游戏：文明碎片》 下沙街道海达南路783号金沙步行街3号楼金沙幻境XR空间站",
+      "sample_title": "《三体游戏：文明碎片》沉浸式VR探索体验",
+      "event_uids": [
+        "douban:37715757"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "fe034588644a",
+      "location": "杭州 滨江区 四个二喜剧脱口秀-滨江银泰店 西兴街道滨江银泰D区6号门2楼",
+      "sample_title": "主打秀推荐| 奇奇怪怪的小周脱口秀《娘娘驾到》主打秀【免费停车2H】@滨江银泰四个二喜剧",
+      "event_uids": [
+        "douban:37757727"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2367245372667804721",
+        "poi_title": "四个二喜剧空间(滨江银泰店)",
+        "poi_address": "",
+        "latitude": 30.201282,
+        "longitude": 120.224384,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：杭州 滨江区 四个二喜剧脱口秀-滨江银泰店 西兴街道滨江银泰D区6号门2楼 → 四个二喜剧空间(滨江银泰店)（来源 event:douban:37771808）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "fe034588644a047d539067599fd5ef17ab34078e"
+      }
+    },
+    {
+      "group_id": "705a9aad75a7",
+      "location": "杭州 西湖区 M511光影汇·想象力中心 西溪路511号M511光影汇",
+      "sample_title": "【超低价】【西城区】福气脱口秀盲盒秀| 即兴喜剧互动拉满（杭州）",
+      "event_uids": [
+        "douban:37800598",
+        "douban:37845162",
+        "douban:37800608",
+        "douban:37845848"
+      ],
+      "event_count": 4,
+      "cached_poi": {
+        "poi_id": "9058821148941476985",
+        "poi_title": "M511光影汇·想象力中心",
+        "poi_address": "",
+        "latitude": 30.270242,
+        "longitude": 120.115742,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：杭州 西湖区 M511光影汇·想象力中心 西溪路511号M511光影汇 → M511光影汇·想象力中心（来源 event:douban:37796257）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "705a9aad75a74fa8fca7f48001dce10ecb4d493a"
+      }
+    },
+    {
+      "group_id": "214c125b4a94",
+      "location": "杭州 上城区 文小艺西子音乐厅 同协路1279号西子智慧产业园3幢3层",
+      "sample_title": "“匡神点弹 ”——匡俊宏吉他独奏音乐会",
+      "event_uids": [
+        "douban:37838789"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "892a4900cdaf",
+      "location": "杭州 拱墅区 浙话艺术剧院·幕光里 湖墅南路138号浙话艺术剧院内4楼·新空间小剧场",
+      "sample_title": "献给不愿平庸生活的你! 浪漫治愈《月亮与六便士》全场半价",
+      "event_uids": [
+        "douban:37859691",
+        "douban:37859707"
+      ],
+      "event_count": 2
+    },
+    {
+      "group_id": "3dbea6f2ab45",
+      "location": "杭州 拱墅区 音旅琴行-飞天国学馆 凤起路183-1号2F",
+      "sample_title": "《琴棋书画之中国围棋对弈》",
+      "event_uids": [
+        "douban:37473380"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "18044990494032808276",
+        "poi_title": "音旅琴行·黑白坊棋院(凤起路店)",
+        "poi_address": "",
+        "latitude": 30.264353,
+        "longitude": 120.177391,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：杭州 拱墅区 音旅琴行-飞天国学馆 凤起路183-1号2F → 音旅琴行·黑白坊棋院(凤起路店)（来源 event:douban:36825662）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "3dbea6f2ab45a5f2b0697788124631a0a0999892"
+      }
+    },
+    {
+      "group_id": "bb422eb4be27",
+      "location": "杭州 萧山区 【官方售票】湘湖雅韵·大型数智湖景演艺秀 风情大道杭州湘湖国家旅游度假区·湘湖雅韵演艺中心",
+      "sample_title": "【暑期特惠】湘湖雅韵·大型数智湖景演艺秀",
+      "event_uids": [
+        "douban:37758622"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "152d38340abd",
+      "location": "杭州 拱墅区 杭州·C立方剧场 西湖文化广场8号1层夹层6室",
+      "sample_title": "《白雪公主》经典梦幻儿童舞台剧",
+      "event_uids": [
+        "douban:37334982"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "5059b12c6ea4",
+      "location": "杭州 西湖区 灵隐元境 灵隐路40号",
+      "sample_title": "VR展《遇见东坡》沉浸式VR体验",
+      "event_uids": [
+        "douban:37647939"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "6109606932565607999",
+        "poi_title": "灵隐元境",
+        "poi_address": "",
+        "latitude": 30.240044,
+        "longitude": 120.106928,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：杭州 西湖区 灵隐元境 灵隐路40号 → 灵隐元境（来源 event:douban:37649276）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "5059b12c6ea48061ab0b1040daf7e65d4691efb9"
+      }
+    },
+    {
+      "group_id": "06814ec89abb",
+      "location": "杭州 拱墅区 钱塘江夜游 环城北路226号武林门码头",
+      "sample_title": "京杭大运河+钱塘江夜游（2.5小时）",
+      "event_uids": [
+        "douban:37685947"
       ],
       "event_count": 1
     }

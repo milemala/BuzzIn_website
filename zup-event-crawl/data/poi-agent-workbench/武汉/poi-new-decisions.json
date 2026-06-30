@@ -1,0 +1,26 @@
+{
+  "city": "武汉",
+  "source": "douban",
+  "decided_at": "2026-06-29T03:41:40.227Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "dfb721e3598d",
+      "action": "match",
+      "poi_id": "1269973832452280886",
+      "poi_title": "武汉临空港大剧院",
+      "poi_address": "湖北省武汉市东西湖区凌云路139号",
+      "latitude": 30.640462,
+      "longitude": 114.135027,
+      "doubtful": false,
+      "reason": "临空港大剧院主体一致，东西湖区同场馆，凌云路139号与临空港大道交叉口为同一剧院不同表述",
+      "search_keywords_tried": [
+        "武汉临空港大剧院"
+      ],
+      "event_uids": [
+        "douban:37828419",
+        "douban:37810040"
+      ]
+    }
+  ]
+}

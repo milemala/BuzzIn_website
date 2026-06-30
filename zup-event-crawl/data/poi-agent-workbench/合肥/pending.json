@@ -1,33 +1,129 @@
 {
   "city": "合肥",
   "source": "douban",
-  "exported_at": "2026-06-23T01:41:08.052Z",
+  "exported_at": "2026-06-29T03:23:54.456Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 8,
   "doubtful_only": false,
-  "total_events": 2,
-  "group_count": 2,
-  "cache_hit_groups": 0,
+  "total_events": 8,
+  "group_count": 5,
+  "cache_hit_groups": 4,
   "groups": [
     {
-      "group_id": "7c4ea48c699e",
-      "location": "合肥 合肥市政府",
-      "sample_title": "每周:野餐·观影·观星·深度对话/非盈利",
+      "group_id": "d40643538964",
+      "location": "合肥 蜀山区 合肥大剧院 天鹅湖路516号",
+      "sample_title": "爱·永恒—理查德·克莱德曼2026钢琴音乐会合肥站",
       "event_uids": [
-        "douban:37852029"
+        "douban:37704800",
+        "douban:37839990",
+        "douban:37735795"
+      ],
+      "event_count": 3,
+      "cached_poi": {
+        "poi_id": "2006381386252406525",
+        "poi_title": "合肥大剧院",
+        "poi_address": "",
+        "latitude": 31.815872,
+        "longitude": 117.224418,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：合肥 蜀山区 合肥大剧院 天鹅湖路516号 → 合肥大剧院（来源 event:douban:37716381）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "d406435389642e856af78e6df1da37848160a9e7"
+      }
+    },
+    {
+      "group_id": "92bae3a428bd",
+      "location": "合肥 蜀山区 哈啦子喜剧-之心城剧场 临湖社区管理委员会街道长江西路189号之心城购物中心7层18-2C胖哥俩肉蟹煲旁边",
+      "sample_title": "吴星辰脱口秀专场《小大人》·合肥站｜哈啦子喜剧",
+      "event_uids": [
+        "douban:37754055",
+        "douban:37239181"
+      ],
+      "event_count": 2,
+      "cached_poi": {
+        "poi_id": "8699188752722527019",
+        "poi_title": "哈啦子喜剧(之心城)",
+        "poi_address": "",
+        "latitude": 31.854057,
+        "longitude": 117.257838,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：合肥 蜀山区 哈啦子喜剧-之心城剧场 临湖社区管理委员会街道长江西路189号之心城购物中心7层18-2C胖哥俩肉蟹煲旁边 → 哈啦子喜剧(之心城)（来源 event:douban:37527726）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "92bae3a428bdc47906bdcccc960c958d65d3a018"
+      }
+    },
+    {
+      "group_id": "c740c8b5becc",
+      "location": "合肥 包河区 追笑喜剧空间-港汇广场七楼 潜山路与望江西路交叉口港汇广场7楼追笑喜剧",
+      "sample_title": "【合肥】《清凉一夏科学秀》丨周末溜娃丨小剧场超多互动丨科学秀暑期特别版丨夏日消暑新玩法丨地铁三号线洪岗站、京东电器7楼",
+      "event_uids": [
+        "douban:35413605"
       ],
       "event_count": 1
     },
     {
-      "group_id": "01b8181c4902",
-      "location": "合肥 包河区 万达广场(合肥包河店)",
-      "sample_title": "进化论CEO创业沙龙 | 创业者聚会 拓展人脉 链接资源！",
+      "group_id": "e9377918d00e",
+      "location": "合肥 包河区 安徽大剧院 芜湖路301号",
+      "sample_title": "俄罗斯莫斯科芭蕾舞团《天鹅湖》",
       "event_uids": [
-        "douban:37799225"
+        "douban:37754311"
       ],
-      "event_count": 1
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "1232056429360386943",
+        "poi_title": "安徽大剧院",
+        "poi_address": "",
+        "latitude": 31.852388,
+        "longitude": 117.287032,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：合肥 包河区 安徽大剧院 芜湖路301号 → 安徽大剧院（来源 event:douban:37817841）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "e9377918d00e344e4ca5429fba35a20d721621ce"
+      }
+    },
+    {
+      "group_id": "3aa370b85f07",
+      "location": "合肥 肥东县 肥东大剧院 瑶岗路与撮东路交叉路口往西南约150米，和睦湖公园东南侧约50米",
+      "sample_title": "明代卷王教你摆脱内卷！大型治愈系话剧《心光 - 王阳明传奇》龙场悟道",
+      "event_uids": [
+        "douban:37867495"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "15193364080442917279",
+        "poi_title": "肥东大剧院",
+        "poi_address": "",
+        "latitude": 31.84381,
+        "longitude": 117.486809,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：合肥 肥东县 肥东大剧院 瑶岗路与撮东路交叉路口往西南约150米，和睦湖公园东南侧约50米 → 肥东大剧院（来源 event:douban:37839361）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "3aa370b85f078f69e4b8b1ae773535f9f3c59bad"
+      }
     }
   ]
 }

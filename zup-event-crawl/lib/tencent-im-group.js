@@ -210,11 +210,51 @@ async function createGroupForMerchant(merchant, options = {}) {
   });
 }
 
+async function getGroupInfoBatch(groupIds, options = {}) {
+  const ids = [...new Set((groupIds || []).map((id) => String(id || "").trim()).filter(Boolean))];
+  if (!ids.length) return [];
+  const batchSize = Number(options.batchSize) > 0 ? Number(options.batchSize) : 50;
+  const results = [];
+  for (let i = 0; i < ids.length; i += batchSize) {
+    const slice = ids.slice(i, i + batchSize);
+    const body = { GroupIdList: slice };
+    if (options.memberInfo) {
+      body.ResponseFilter = {
+        GroupBaseInfoFilter: [
+          "MemberNum", "Name", "Owner_Account", "NextMsgSeq", "LastMsgTime", "CreateTime",
+        ],
+        MemberInfoFilter: ["Role", "JoinTime", "LastSendMsgTime", "MsgSeq"],
+      };
+    }
+    const payload = await imPost("group_open_http_svc/get_group_info", body);
+    for (const item of payload.GroupInfo || []) {
+      results.push(item);
+    }
+    if (options.delayMs > 0) {
+      await new Promise((resolve) => setTimeout(resolve, options.delayMs));
+    }
+  }
+  return results;
+}
+
+async function getGroupMessages(groupId, options = {}) {
+  const id = String(groupId || "").trim();
+  if (!id) return [];
+  const reqNum = Number(options.limit) > 0 ? Number(options.limit) : 20;
+  const payload = await imPost("group_open_http_svc/group_msg_get_simple", {
+    GroupId: id,
+    ReqMsgNumber: reqNum,
+  });
+  return payload.RspMsgList || [];
+}
+
 module.exports = {
   createGroup,
   createGroupForMerchant,
   createGroupForNow,
   destroyGroup,
+  getGroupInfoBatch,
+  getGroupMessages,
   importAccount,
   merchantGroupDisplayName,
   modifyGroupBaseInfo,

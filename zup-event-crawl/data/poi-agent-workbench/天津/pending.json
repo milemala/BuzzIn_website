@@ -1,22 +1,33 @@
 {
   "city": "天津",
   "source": "douban",
-  "exported_at": "2026-06-23T01:31:57.620Z",
+  "exported_at": "2026-06-29T03:23:50.305Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 5,
   "doubtful_only": false,
-  "total_events": 6,
-  "group_count": 6,
+  "total_events": 5,
+  "group_count": 5,
   "cache_hit_groups": 3,
   "groups": [
     {
+      "group_id": "164832be67e4",
+      "location": "天津 河东区 卫国道157号一品家园",
+      "sample_title": "壹贰零度社区：读书、电影、音乐、交流聚会",
+      "event_uids": [
+        "douban:37894708"
+      ],
+      "event_count": 1
+    },
+    {
       "group_id": "a900e7aeedc9",
       "location": "天津 河西区 天津大剧院 平江道58号增1号",
-      "sample_title": "“中银之声”2026天津音乐节|庆祝建党105周年—“党旗颂・赤子心”专场音乐会",
+      "sample_title": "爱·永恒——理查德·克莱德曼2026钢琴音乐会-天津站",
       "event_uids": [
-        "douban:37841577"
+        "douban:37707958"
       ],
       "event_count": 1,
       "cached_poi": {
@@ -28,7 +39,7 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：天津 河西区 天津大剧院 平江道58号增1号 → 天津大剧院（来源 event:douban:37751256）",
+        "reason": "地址映射库命中：天津 河西区 天津大剧院 平江道58号增1号 → 天津大剧院（来源 event:douban:37841577）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
@@ -37,79 +48,61 @@
       }
     },
     {
-      "group_id": "a5f9fc995642",
-      "location": "天津 和平区 群星剧院 烟台道82号",
-      "sample_title": "《光辉岁月·传奇经典》beyond 经典歌曲演唱会",
+      "group_id": "8b5ae8a00482",
+      "location": "天津 和平区 天津音乐厅 建设路与浙江路交叉口南20米（小白楼地铁站A口旁）",
+      "sample_title": "“中银之声2026天津音乐节”天津交响乐团2025-2026 音乐季“向党献礼”",
       "event_uids": [
-        "douban:37561509"
+        "douban:37843737"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "12573518917429878176",
-        "poi_title": "群星剧院",
+        "poi_id": "1534516290909584326",
+        "poi_title": "天津音乐厅",
         "poi_address": "",
-        "latitude": 39.118676,
-        "longitude": 117.205819,
+        "latitude": 39.115469,
+        "longitude": 117.215194,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：天津 和平区 群星剧院 烟台道82号 → 群星剧院（来源 event:douban:37091608）",
+        "reason": "地址映射库命中：天津 和平区 天津音乐厅 建设路与浙江路交叉口南20米（小白楼地铁站A口旁） → 天津音乐厅（来源 event:douban:37840882）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "a5f9fc9956427a37cc9f1d926c58fff3ef5da7fb"
+        "cache_key": "8b5ae8a00482388af7ce4e623580ea1efdfd21e8"
       }
     },
     {
-      "group_id": "66f418f312bf",
-      "location": "天津 西青区 智慧山·飞鸟剧场 开华道20号智慧山艺术中心2F",
-      "sample_title": "天津脱口秀·90分钟情绪出逃计划",
+      "group_id": "529efe307c34",
+      "location": "天津 和平区 津湾大剧院 解放北路与赤峰道交口津湾广场4号楼",
+      "sample_title": "新中式舞蹈秀《叹春风》",
       "event_uids": [
-        "douban:37677238"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "4f9b7427132a",
-      "location": "天津 滨海新区 滨海演艺中心 中央大道与大连东道交汇处西南侧",
-      "sample_title": "老舍经典话剧《骆驼祥子》",
-      "event_uids": [
-        "douban:37681441"
+        "douban:37825526"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "7738159007364714106",
-        "poi_title": "滨海演艺中心",
+        "poi_id": "11805831732686530903",
+        "poi_title": "津湾大剧院",
         "poi_address": "",
-        "latitude": 39.016031,
-        "longitude": 117.686405,
+        "latitude": 39.132447,
+        "longitude": 117.209419,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：天津 滨海新区 滨海演艺中心 中央大道与大连东道交汇处西南侧 → 滨海演艺中心（来源 event:douban:37722230）",
+        "reason": "地址映射库命中：天津 和平区 津湾大剧院 解放北路与赤峰道交口津湾广场4号楼 → 津湾大剧院（来源 event:douban:37772477）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "4f9b7427132a5c32069cc880252bdfa5c622a826"
+        "cache_key": "529efe307c343140824589bf2cddaed4d6c42d12"
       }
     },
     {
-      "group_id": "880be375bab0",
-      "location": "天津 河东区 二十年音乐现场 津塘路146号泰达津一产业公园4号楼西侧",
-      "sample_title": "zkaaai2026巡演",
+      "group_id": "6dfc5ab3d71a",
+      "location": "天津 南开区 天津奥林匹克中心体育馆 宾水西道393号",
+      "sample_title": "2026 Ella陈嘉桦It's Me艾拉主意巡回演唱会天津站",
       "event_uids": [
-        "douban:37681453"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "6df13511b784",
-      "location": "天津 河西区 天津滨湖剧院 马场街道环湖中路6号(招商银行旁)",
-      "sample_title": "老舍经典话剧《骆驼祥子》",
-      "event_uids": [
-        "douban:37696847"
+        "douban:37853138"
       ],
       "event_count": 1
     }

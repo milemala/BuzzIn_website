@@ -6,7 +6,7 @@ const { execFileSync } = require("child_process");
 const { exportClassificationPending } = require("./export-classification-pending");
 const { exportPoiPending } = require("./export-poi-pending");
 const { importPayload, openDatabase } = require("./review-db");
-const { loadContentDedupKeys, loadTitleLocationDedupIndex } = require("./event-content-dedup");
+const { loadContentDedupKeys, loadTitleLocationDedupIndex, createTitlePoiDedupGateFromDb } = require("./event-content-dedup");
 const { noteHasImportedEvents } = require("./xhs-scraped-notes");
 const {
   buildImportPayload,
@@ -61,20 +61,31 @@ async function importNoteEvents(noteDir, rootDir, options = {}) {
   const dbPath = options.dbPath || path.join(rootDir, "data", "review.db");
   let contentDedupKeys = options.contentDedupKeys;
   let titleLocationIndex = options.titleLocationIndex;
+  let titlePoiGate = options.titlePoiGate;
   if (!contentDedupKeys && fs.existsSync(dbPath)) {
     const db = openDatabase(dbPath);
     try {
       contentDedupKeys = loadContentDedupKeys(db, { source: "xiaohongshu" });
       titleLocationIndex = loadTitleLocationDedupIndex(db, { source: "xiaohongshu" });
+      if (!titlePoiGate) {
+        titlePoiGate = createTitlePoiDedupGateFromDb(db, { source: "xiaohongshu" });
+      }
     } finally {
       db.close();
     }
   }
 
-  const { extracted, reviewEvents, coverStats, skippedDuplicate, skippedTitleLocation } = await loadReviewEventsFromNote(
+  const {
+    extracted,
+    reviewEvents,
+    coverStats,
+    skippedDuplicate,
+    skippedTitleLocation,
+    skippedTitlePoi,
+  } = await loadReviewEventsFromNote(
     noteDir,
     rootDir,
-    { ...options, contentDedupKeys, titleLocationIndex, dbPath },
+    { ...options, contentDedupKeys, titleLocationIndex, titlePoiGate, dbPath },
   );
   if (!reviewEvents.length) {
     return {
@@ -144,6 +155,8 @@ async function importNoteEvents(noteDir, rootDir, options = {}) {
     eventCount: reviewEvents.length,
     coverStats,
     skippedDuplicate: skippedDuplicate || 0,
+    skippedTitleLocation: skippedTitleLocation || 0,
+    skippedTitlePoi: skippedTitlePoi || 0,
     classificationExport,
     poiExport,
   };

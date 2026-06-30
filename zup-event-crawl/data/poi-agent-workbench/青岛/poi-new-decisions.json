@@ -1,0 +1,25 @@
+{
+  "city": "青岛",
+  "source": "douban",
+  "decided_at": "2026-06-29T03:41:40.227Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "2281ad7f174e",
+      "action": "match",
+      "poi_id": "3052579427537840330",
+      "poi_title": "青岛凤凰之声大剧院",
+      "poi_address": "山东省青岛市黄岛区山东西海岸新区金沙滩路966号",
+      "latitude": 35.953194,
+      "longitude": 120.243229,
+      "doubtful": false,
+      "reason": "凤凰之声大剧院与金沙滩路966号地址完全一致",
+      "search_keywords_tried": [
+        "凤凰之声大剧院"
+      ],
+      "event_uids": [
+        "douban:37829192"
+      ]
+    }
+  ]
+}

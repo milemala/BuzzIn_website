@@ -1,0 +1,25 @@
+{
+  "city": "石家庄",
+  "source": "douban",
+  "decided_at": "2026-06-29T03:41:40.227Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "e57b9460bde0",
+      "action": "match",
+      "poi_id": "10803236537387149198",
+      "poi_title": "石家庄大剧院",
+      "poi_address": "河北省石家庄市裕华区塔南路175号",
+      "latitude": 38.005328,
+      "longitude": 114.542858,
+      "doubtful": false,
+      "reason": "石家庄大剧院主体一致，塔南路72号与175号同为大剧院园区不同出入口",
+      "search_keywords_tried": [
+        "石家庄大剧院"
+      ],
+      "event_uids": [
+        "douban:37841716"
+      ]
+    }
+  ]
+}

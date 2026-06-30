@@ -1,43 +1,119 @@
 {
   "city": "佛山",
   "source": "douban",
-  "exported_at": "2026-06-20T18:31:04.406Z",
+  "exported_at": "2026-06-29T03:23:44.631Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 6,
   "doubtful_only": false,
-  "total_events": 4,
-  "group_count": 3,
-  "cache_hit_groups": 0,
+  "total_events": 6,
+  "group_count": 6,
+  "cache_hit_groups": 3,
   "groups": [
     {
-      "group_id": "afb7d436cc0e",
-      "location": "佛山 南海区 中影华纳国际影城演出厅 里水镇里广路50号永润广场4层",
-      "sample_title": "《冰雪女王-爱的力量》全景沉浸式互动亲子儿童剧-佛山站",
+      "group_id": "4c97b6507bbb",
+      "location": "佛山 顺德区 佛山国际体育文化演艺中心 佛山新城裕和路95号",
+      "sample_title": "郭富城ICONIC世界巡回演唱会2026-佛山站",
       "event_uids": [
-        "douban:37879468",
-        "douban:37878963"
+        "douban:37863374"
       ],
-      "event_count": 2
+      "event_count": 1
     },
     {
       "group_id": "9387b97d2387",
       "location": "佛山 禅城区 琼花大剧院 祖庙路22号",
-      "sample_title": "《爱乐之城经典电影作品音乐会》",
+      "sample_title": "四熹丸子（徐化文）2026[秋风]巡回演唱会-佛山站",
       "event_uids": [
-        "douban:37793069"
+        "douban:37866202"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2984913764483185002",
+        "poi_title": "琼花大剧院",
+        "poi_address": "",
+        "latitude": 23.032055,
+        "longitude": 113.111508,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：佛山 禅城区 琼花大剧院 祖庙路22号 → 琼花大剧院（来源 event:douban:37793069）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "9387b97d23874ac82fa9ac2802e37cc07c6b4616"
+      }
+    },
+    {
+      "group_id": "d6371be2d2dd",
+      "location": "佛山 禅城区 好说喜剧-大洋时代影城店 祖庙街道城门头路18号ICC商业中心3A层佛山大洋时代影城1号厅",
+      "sample_title": "【特惠早鸟】精品秀|双人特惠|脱口秀|沉浸式互动演出|约会必看|佛山必打卡",
+      "event_uids": [
+        "douban:37890531"
       ],
       "event_count": 1
     },
     {
-      "group_id": "4722e59def23",
-      "location": "佛山 南海区 南海体育馆 桂城南海大道北36号",
-      "sample_title": "感恩有你 黎瑞恩 Smile with V演唱會",
+      "group_id": "3a35f64b07a9",
+      "location": "佛山 顺德区 佛山大剧院·小剧场 乐从镇华康道1号（坊塔东侧）",
+      "sample_title": "《当咖啡遇上音乐》",
       "event_uids": [
-        "douban:37868677"
+        "douban:37871641"
       ],
       "event_count": 1
+    },
+    {
+      "group_id": "2edd250b4a94",
+      "location": "佛山 顺德区 佛山大剧院 华康道1号",
+      "sample_title": "江西文演•陆川导演作品舞剧《天工开物》",
+      "event_uids": [
+        "douban:37783966"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "16458810857050558908",
+        "poi_title": "佛山大剧院",
+        "poi_address": "",
+        "latitude": 22.968953,
+        "longitude": 113.115754,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：佛山 顺德区 佛山大剧院 华康道1号 → 佛山大剧院（来源 event:douban:37817104）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "2edd250b4a942e975355f920ed70c5cf9164296e"
+      }
+    },
+    {
+      "group_id": "8f8112fc8fc2",
+      "location": "佛山 顺德区 ALSOLIVE 怡和路6号C座2层",
+      "sample_title": "SinceTMRW始于明天 TOUR 2026 佛山限定站",
+      "event_uids": [
+        "douban:37815287"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "3685539010749727090",
+        "poi_title": "ALSOLIVE",
+        "poi_address": "",
+        "latitude": 22.934095,
+        "longitude": 113.222441,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：佛山 顺德区 ALSOLIVE 怡和路6号C座2层 → ALSOLIVE（来源 event:douban:37807761）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "8f8112fc8fc2a8faad8f4831d503bcbd479b73a6"
+      }
     }
   ]
 }

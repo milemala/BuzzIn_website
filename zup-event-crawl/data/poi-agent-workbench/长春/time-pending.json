@@ -1,0 +1,98 @@
+{
+  "city": "长春",
+  "source": "douban",
+  "exported_at": "2026-06-29T03:23:50.612Z",
+  "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
+  "events": [
+    {
+      "event_uid": "douban:37824302",
+      "city": "长春",
+      "source": "douban",
+      "title": "“坂本龙一&久石让”沉浸式烛光音乐会·长春站",
+      "time_text": "06月19日 周五 15:30-17:00",
+      "current_start_date": "2026-06-19 15:30:00",
+      "current_end_date": "2026-06-19 17:00:00",
+      "current_start_at": "2026-06-19 15:30:00",
+      "current_expired_at": "2026-06-19 17:00:00",
+      "detail_excerpt": "入场方式说明\n约90分钟，（含中场休息15分钟）以现场为准\n以现场为准\n最低演出曲目\n主要演员\n无需预约\n“坂本龙一·久石让”经典作品音乐会\n在这个每个音符都承载深意的音符之夜，坂本龙一与久石让的音乐会不仅是一次视听盛宴，更是一次穿越时间和空间的心灵之旅。两位大师，像音乐中的茶与咖啡，各自你浓我淡，却同挤生命的美好。\n坂本龙一，作为新音乐的教父，他的作品常常简约而深邃，那些音符如浮云般轻盈，却又如大海般深邃，让人思索生活的真谛。无论是《圣诞快乐劳伦斯先生》中的音乐，还是与河合美代子合作的众多影像音乐，都让人沉醉在那看似简略却饱含哲思的旋律中。相比之下，久石让则宛如在童话世界中游走，他为《龙猫》、《千与千寻》等经典动画作品所创作的音乐，如涓涓细流，缓缓流淌于观众心头，编织出一个个梦幻而充满温情的故事。\n在坂本与久石让的作品中，我们能够看到两种不同的音乐理念。坂本龙一始终关注社会与生命的哲学思",
+      "suggestion": {
+        "start_at": "2026-06-19 15:30:00",
+        "expired_at": "2026-06-19 17:00:00",
+        "confidence": "high",
+        "reason": "豆瓣详情：06月19日 周五 15:30-17:00"
+      }
+    },
+    {
+      "event_uid": "douban:37836272",
+      "city": "长春",
+      "source": "douban",
+      "title": "致敬邓丽君“我只在乎你”经典金曲演唱会",
+      "time_text": "06月18日 周四 19:30-21:30",
+      "current_start_date": "2026-06-18 19:30:00",
+      "current_end_date": "2026-06-18 21:30:00",
+      "current_start_at": "2026-06-18 19:30:00",
+      "current_expired_at": "2026-06-18 21:30:00",
+      "detail_excerpt": "入场方式说明\n配送信息说明\n约90分钟（以现场为准）\n以现场为准\n最低演出曲目\n主要演员\n无需预约",
+      "suggestion": {
+        "start_at": "2026-06-18 19:30:00",
+        "expired_at": "2026-06-18 21:30:00",
+        "confidence": "high",
+        "reason": "豆瓣详情：06月18日 周四 19:30-21:30"
+      }
+    },
+    {
+      "event_uid": "douban:37811553",
+      "city": "长春",
+      "source": "douban",
+      "title": "【长春站】6月20日《红楼梦》新国风美学经典舞台剧【长春国际会议中心主会场 】",
+      "time_text": "06月20日 周六 15:00-20:50",
+      "current_start_date": "2026-06-20 15:00:00",
+      "current_end_date": "2026-06-20 20:50:00",
+      "current_start_at": "2026-06-20 15:00:00",
+      "current_expired_at": "2026-06-20 20:50:00",
+      "detail_excerpt": "以现场为准\n主要演员\n无需预约\n儿童说明\n特殊提示",
+      "suggestion": {
+        "start_at": "2026-06-20 15:00:00",
+        "expired_at": "2026-06-20 20:50:00",
+        "confidence": "high",
+        "reason": "豆瓣详情：06月20日 周六 15:00-20:50"
+      }
+    },
+    {
+      "event_uid": "douban:37840234",
+      "city": "长春",
+      "source": "douban",
+      "title": "2026向北银河左岸音乐节",
+      "time_text": "06月19日 周五 12:00 ~ 06月20日 周六 21:30",
+      "current_start_date": "2026-06-19 12:00:00",
+      "current_end_date": "2026-06-20 21:30:00",
+      "current_start_at": "2026-06-19 12:00:00",
+      "current_expired_at": "2026-06-20 21:30:00",
+      "detail_excerpt": "入场方式说明\n以现场为准\n最低演出曲目\n无需预约\n主要演员",
+      "suggestion": {
+        "start_at": "2026-06-19 12:00:00",
+        "expired_at": "2026-06-20 21:30:00",
+        "confidence": "high",
+        "reason": "豆瓣详情：06月19日 周五 12:00 ~ 06月20日 周六 21:30"
+      }
+    },
+    {
+      "event_uid": "douban:37855222",
+      "city": "长春",
+      "source": "douban",
+      "title": "「前后」2026饮马池巡演 长春站",
+      "time_text": "06月19日 周五 20:00-21:10",
+      "current_start_date": "2026-06-19 20:00:00",
+      "current_end_date": "2026-06-19 21:10:59",
+      "current_start_at": "2026-06-19 20:00:00",
+      "current_expired_at": "2026-06-19 21:10:59",
+      "detail_excerpt": "入场方式说明\n以现场为准\n主要演员\n无需预约",
+      "suggestion": {
+        "start_at": "2026-06-19 20:00:00",
+        "expired_at": "2026-06-19 21:10:59",
+        "confidence": "high",
+        "reason": "豆瓣详情：06月19日 周五 20:00-21:10"
+      }
+    }
+  ]
+}

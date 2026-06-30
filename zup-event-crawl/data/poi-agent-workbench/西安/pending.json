@@ -1,75 +1,103 @@
 {
   "city": "西安",
   "source": "douban",
-  "exported_at": "2026-06-23T01:32:00.778Z",
+  "exported_at": "2026-06-29T03:23:43.210Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 6,
   "doubtful_only": false,
-  "total_events": 4,
-  "group_count": 3,
-  "cache_hit_groups": 2,
+  "total_events": 6,
+  "group_count": 4,
+  "cache_hit_groups": 3,
   "groups": [
     {
-      "group_id": "10145d34ef32",
-      "location": "西安 雁塔区 陕西广电大剧院 长安南路336号，陕西广播电视台北80米",
-      "sample_title": "新国风美学经典舞台剧《红楼梦》",
+      "group_id": "479b9eb881de",
+      "location": "西安 雁塔区 西安音乐厅",
+      "sample_title": "《爱·大声告白》成都知更室内合唱团六周年专场音乐会·西安站",
       "event_uids": [
-        "douban:37826972"
+        "douban:37842759"
       ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "7854985022287789095",
-        "poi_title": "广电大剧院",
-        "poi_address": "",
-        "latitude": 34.21,
-        "longitude": 108.95,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：西安 雁塔区 陕西广电大剧院 长安南路336号，陕西广播电视台北80米 → 广电大剧院（来源 event:douban:37853545）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "10145d34ef322e2645ca4be479988db7b17605c3"
-      }
+      "event_count": 1
     },
     {
-      "group_id": "044ba8870e6e",
-      "location": "西安 雁塔区 陕西大剧院 雁塔南路",
-      "sample_title": "2026.6.28俄罗斯莫斯科芭蕾舞团《天鹅湖》",
+      "group_id": "9514e32143bb",
+      "location": "西安 雁塔区 西安音乐厅 雁南一路与雁塔南路十字向南200米路东",
+      "sample_title": "法国Grissini Project 格里西尼乐团「幻乐交织・光影新章」2026 巡回音乐会#",
       "event_uids": [
-        "douban:37737963",
-        "douban:37753711"
+        "douban:37764201",
+        "douban:37797632"
       ],
       "event_count": 2,
       "cached_poi": {
-        "poi_id": "8139344882893239294",
-        "poi_title": "陕西大剧院",
+        "poi_id": "10834092220146621823",
+        "poi_title": "西安音乐厅",
         "poi_address": "",
-        "latitude": 34.209825,
-        "longitude": 108.963086,
+        "latitude": 34.210006,
+        "longitude": 108.964957,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：西安 雁塔区 陕西大剧院 雁塔南路 → 陕西大剧院（来源 event:douban:37779903）",
+        "reason": "地址映射库命中：西安 雁塔区 西安音乐厅 雁南一路与雁塔南路十字向南200米路东 → 西安音乐厅（来源 event:douban:37781361）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "044ba8870e6ebb8a83acd6a9017d41e90dcf01d1"
+        "cache_key": "9514e32143bbc689283e79fa10570d3769c98f3a"
       }
     },
     {
-      "group_id": "d2c6c6254e9f",
-      "location": "西安 新城区 西演SPACE·福星现场 西一路282号易俗文化街区1号楼3F",
-      "sample_title": "碎梦飞跃「外面是夏天」2026巡演 西安站",
+      "group_id": "1736f8b5a7c1",
+      "location": "西安 新城区 西安人民剧院 北大街41号(近西华门)",
+      "sample_title": "开心麻花王牌爆笑大戏《乌龙山伯爵》",
       "event_uids": [
-        "douban:37789379"
+        "douban:37790477"
       ],
-      "event_count": 1
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2272725803867152528",
+        "poi_title": "西安人民剧院",
+        "poi_address": "",
+        "latitude": 34.262959,
+        "longitude": 108.947886,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：西安 新城区 西安人民剧院 北大街41号(近西华门) → 西安人民剧院（来源 event:douban:37756752）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "1736f8b5a7c1cc224c254d5d4bcbd9a50430bcf3"
+      }
+    },
+    {
+      "group_id": "1a93883572b5",
+      "location": "西安 未央区 荷苗艺术空间 凤城三路与太华北路交汇处四海唐人街",
+      "sample_title": "荷苗儿童亲子互动舞台剧《冰雪女王》",
+      "event_uids": [
+        "douban:37835875",
+        "douban:37716128"
+      ],
+      "event_count": 2,
+      "cached_poi": {
+        "poi_id": "143157847680471563",
+        "poi_title": "荷苗艺术空间",
+        "poi_address": "",
+        "latitude": 34.320584,
+        "longitude": 108.970156,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：西安 未央区 荷苗艺术空间 凤城三路与太华北路交汇处四海唐人街 → 荷苗艺术空间（来源 event:douban:37418830）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "1a93883572b5df47d2bda654dd2a2116ad5d6a7f"
+      }
     }
   ]
 }

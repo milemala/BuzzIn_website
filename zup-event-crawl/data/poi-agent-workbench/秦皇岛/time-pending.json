@@ -1,0 +1,26 @@
+{
+  "city": "秦皇岛",
+  "source": "douban",
+  "exported_at": "2026-06-29T03:23:46.348Z",
+  "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
+  "events": [
+    {
+      "event_uid": "douban:37827198",
+      "city": "秦皇岛",
+      "source": "douban",
+      "title": "【秦皇岛站】6月18日《红楼梦》新国风美学经典舞台剧【秦皇岛金棕榈国际电影城(文化广场店)】",
+      "time_text": "06月18日 周四 19:30-20:50",
+      "current_start_date": "2026-06-18 19:30:00",
+      "current_end_date": "2026-06-18 20:50:00",
+      "current_start_at": "2026-06-18 19:30:00",
+      "current_expired_at": "2026-06-18 20:50:00",
+      "detail_excerpt": "以现场为准\n主要演员\n无需预约\n儿童说明\n特殊提示",
+      "suggestion": {
+        "start_at": "2026-06-18 19:30:00",
+        "expired_at": "2026-06-18 20:50:00",
+        "confidence": "high",
+        "reason": "豆瓣详情：06月18日 周四 19:30-20:50"
+      }
+    }
+  ]
+}

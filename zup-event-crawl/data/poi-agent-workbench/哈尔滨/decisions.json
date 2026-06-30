@@ -1,110 +1,55 @@
 {
   "city": "哈尔滨",
   "source": "douban",
-  "updated_at": "2026-06-16T06:05:17.670Z",
+  "decided_at": "2026-06-29T03:42:44.560Z",
   "agent": "cursor-agent",
   "decisions": [
     {
-      "group_id": "07b38c99c9e2",
-      "event_uids": [
-        "douban:37889200"
-      ],
+      "group_id": "d3a92d2f6072",
       "action": "match",
-      "search_keywords_tried": [
-        "哈尔滨 猫样生活 砖街"
-      ],
-      "reason": "豆瓣猫样生活砖街1-1号与POI一致",
+      "poi_id": "4333966515111754663",
+      "poi_title": "乐乐大剧院(乐松广场)",
+      "poi_address": "",
+      "latitude": 45.719113,
+      "longitude": 126.650331,
       "doubtful": false,
-      "confidence": "high",
-      "candidates": [],
-      "poi_id": "12720175512517210996",
-      "poi_title": "猫样生活简餐咖啡书屋",
-      "poi_address": "黑龙江省哈尔滨市南岗区曲线街道砖街1-1号",
-      "latitude": 45.76,
-      "longitude": 126.63
-    },
-    {
-      "group_id": "c9905f7c5de0",
-      "event_uids": [
-        "douban:37716792"
-      ],
-      "action": "match",
+      "reason": "地址映射库命中：哈尔滨 香坊区 乐乐大剧院 三大动力路8号乐松购物广场3F层 → 乐乐大剧院(乐松广场)（来源 event:douban:37784688）",
       "search_keywords_tried": [
         "poi-address-cache"
       ],
-      "poi_id": "6732340391101466727",
-      "poi_title": "哈尔滨大剧院",
-      "poi_address": "",
-      "latitude": 45.809524,
-      "longitude": 126.585764,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：哈尔滨 松北区 哈尔滨大剧院 大剧院街1号 → 哈尔滨大剧院（来源 event:douban:37844463）",
-      "candidates": []
+      "event_uids": [
+        "douban:37180707",
+        "douban:36595295"
+      ]
     },
     {
-      "group_id": "8f9d932bf1cc",
-      "event_uids": [
-        "douban:37795196"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "哈尔滨 环球剧场"
-      ],
-      "poi_id": "15442688759833216709",
-      "poi_title": "环球剧场",
-      "poi_address": "黑龙江省哈尔滨市南岗区新春街道红旗大街301号国际会议中心院内",
-      "latitude": 45.753209,
-      "longitude": 126.698389,
-      "confidence": "high",
+      "group_id": "d72cb6c0c23e",
+      "action": "reject",
       "doubtful": false,
-      "reason": "三轮匹配（score 376）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "15442688759833216709",
-          "title": "环球剧场",
-          "address": "黑龙江省哈尔滨市南岗区新春街道红旗大街301号国际会议中心院内",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 45.753209,
-          "longitude": 126.698389
-        },
-        {
-          "index": 1,
-          "poi_id": "1721860794822222499",
-          "title": "龙江大舞台旗舰剧场",
-          "address": "黑龙江省哈尔滨市道外区宝宇天邑环球港A区9-1",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 45.780183,
-          "longitude": 126.635786
-        },
-        {
-          "index": 2,
-          "poi_id": "2724635279614675941",
-          "title": "冰城悠品酒店(国际会展中心环球剧场店)",
-          "address": "黑龙江省哈尔滨市南岗区新春街道长江路388号会展银座A座23楼",
-          "category": "酒店宾馆:酒店宾馆",
-          "latitude": 45.750495,
-          "longitude": 126.699672
-        },
-        {
-          "index": 3,
-          "poi_id": "11759106851403714712",
-          "title": "冰城优尚美民宿(国际会展环球剧场店)",
-          "address": "黑龙江省哈尔滨市南岗区新春街道长江路388号会展银座A座一楼",
-          "category": "酒店宾馆:其它酒店宾馆",
-          "latitude": 45.750493,
-          "longitude": 126.699644
-        },
-        {
-          "index": 4,
-          "poi_id": "5701855437055662834",
-          "title": "九格民宿(哈尔滨国际会展中心环球剧场店)",
-          "address": "黑龙江省哈尔滨市南岗区长江路388号会展银座A座",
-          "category": "酒店宾馆:经济型酒店",
-          "latitude": 45.750495,
-          "longitude": 126.699651
-        }
+      "reason": "中央大街为步行街地标过泛，世界杯拍摄活动无具体场馆门牌，无法唯一确定POI",
+      "search_keywords_tried": [
+        "中央大街"
+      ],
+      "event_uids": [
+        "douban:37891767"
+      ]
+    },
+    {
+      "group_id": "59623cd536b3",
+      "action": "match",
+      "poi_id": "15298562188923540811",
+      "poi_title": "哈尔滨工程大学启航剧场",
+      "poi_address": "黑龙江省哈尔滨市南岗区燎原街道南通大街145号哈尔滨工程大学文庙街与世昌路交叉口",
+      "latitude": 45.773897,
+      "longitude": 126.685298,
+      "doubtful": false,
+      "reason": "启航剧场名称与南通大街145号地址完全一致",
+      "search_keywords_tried": [
+        "哈尔滨工程大学启航剧场"
+      ],
+      "event_uids": [
+        "douban:37744391",
+        "douban:37724362"
       ]
     }
   ]

@@ -1,13 +1,15 @@
 {
   "city": "秦皇岛",
   "source": "douban",
-  "generated_at": "2026-06-16T05:25:40.182Z",
+  "generated_at": "2026-06-29T03:23:46.418Z",
+  "note": "可由 Agent 覆写低置信条目后 apply-event-time-decisions.js 入库",
   "decisions": [
     {
       "event_uid": "douban:37827198",
       "start_at": "2026-06-18 19:30:00",
       "expired_at": "2026-06-18 20:50:00",
-      "reason": "豆瓣详情：06月18日 周四 19:30-20:50"
+      "reason": "豆瓣详情：06月18日 周四 19:30-20:50",
+      "confidence": "high"
     }
   ],
   "failed": []

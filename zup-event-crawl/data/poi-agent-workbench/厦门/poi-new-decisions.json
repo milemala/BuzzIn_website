@@ -1,0 +1,44 @@
+{
+  "city": "厦门",
+  "source": "douban",
+  "decided_at": "2026-06-29T03:41:40.227Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "8e75360b413e",
+      "action": "match",
+      "poi_id": "7207792780084738334",
+      "poi_title": "中典宏基工业园",
+      "poi_address": "福建省厦门市湖里区禾山路1603号之2",
+      "latitude": 24.520089,
+      "longitude": 118.132162,
+      "doubtful": true,
+      "reason": "承汉武道馆无独立腾讯POI，活动在中典宏基工业园科技2号楼402，匹配至同园区主体，未能精确到402室",
+      "search_keywords_tried": [
+        "中典宏基工业园",
+        "承汉武道馆",
+        "承汉武道馆 中典宏基"
+      ],
+      "event_uids": [
+        "douban:37893094"
+      ]
+    },
+    {
+      "group_id": "8c398c835db5",
+      "action": "match",
+      "poi_id": "8262865254560072207",
+      "poi_title": "福南大会堂",
+      "poi_address": "福建省厦门市集美区集美街道嘉庚路12号",
+      "latitude": 24.567167,
+      "longitude": 118.095679,
+      "doubtful": false,
+      "reason": "福南大会堂与嘉庚路12号地址完全一致",
+      "search_keywords_tried": [
+        "福南大会堂"
+      ],
+      "event_uids": [
+        "douban:37734190"
+      ]
+    }
+  ]
+}

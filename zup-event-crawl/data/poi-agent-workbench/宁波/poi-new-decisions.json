@@ -1,0 +1,44 @@
+{
+  "city": "宁波",
+  "source": "douban",
+  "decided_at": "2026-06-29T03:41:40.227Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "32231858dcc4",
+      "action": "match",
+      "poi_id": "9553362055948194985",
+      "poi_title": "宁波逸夫剧院",
+      "poi_address": "浙江省宁波市海曙区解放南路187号(城隍庙地铁站A口步行110米)",
+      "latitude": 29.868324,
+      "longitude": 121.548136,
+      "doubtful": false,
+      "reason": "逸夫剧院与解放南路187号地址完全一致",
+      "search_keywords_tried": [
+        "逸夫剧院 解放南路187号"
+      ],
+      "event_uids": [
+        "douban:37811403"
+      ]
+    },
+    {
+      "group_id": "a9dcf2e9f4bb",
+      "action": "match",
+      "poi_id": "1853757960609319657",
+      "poi_title": "余姚大剧院",
+      "poi_address": "浙江省宁波市余姚市公共文化中心1号楼",
+      "latitude": 30.042758,
+      "longitude": 121.174411,
+      "doubtful": false,
+      "reason": "余姚大剧院位于公共文化中心1号楼，北姚江路1号与公共文化中心为同一文化综合体",
+      "search_keywords_tried": [
+        "余姚大剧院",
+        "余姚 公共文化中心"
+      ],
+      "event_uids": [
+        "douban:37826808",
+        "douban:37826791"
+      ]
+    }
+  ]
+}

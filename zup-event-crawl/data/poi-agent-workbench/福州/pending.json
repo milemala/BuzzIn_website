@@ -1,14 +1,118 @@
 {
   "city": "福州",
   "source": "douban",
-  "exported_at": "2026-06-23T01:31:39.824Z",
+  "exported_at": "2026-06-29T03:23:53.787Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 5,
   "doubtful_only": false,
-  "total_events": 0,
-  "group_count": 0,
-  "cache_hit_groups": 0,
-  "groups": []
+  "total_events": 5,
+  "group_count": 4,
+  "cache_hit_groups": 4,
+  "groups": [
+    {
+      "group_id": "045b517da03d",
+      "location": "福州 鼓楼区 肆笑喜剧脱口秀-东街口大洋店 东街街道八一七北路133号国际商厦五楼",
+      "sample_title": "【肆笑喜剧】7月11日刘振东脱口秀专场《我叫刘振东》@东街口大洋店",
+      "event_uids": [
+        "douban:37722969"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "3913059210110117538",
+        "poi_title": "肆笑喜剧-脱口秀剧场",
+        "poi_address": "",
+        "latitude": 26.084275,
+        "longitude": 119.300432,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：福州 鼓楼区 肆笑喜剧脱口秀-东街口大洋店 东街街道八一七北路133号国际商厦五楼 → 肆笑喜剧-脱口秀剧场（来源 event:douban:36940886）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "045b517da03d00c4ab547dd52f9704c84a8cac00"
+      }
+    },
+    {
+      "group_id": "a53fa3fed340",
+      "location": "福州 台江区 福立社喜剧-福州脱口秀 工业路万象九宜城5楼425号",
+      "sample_title": "【福立社喜剧】亲子爆笑互动科学秀《空气的力量》|科学科普@万象九宜城5楼店",
+      "event_uids": [
+        "douban:36751279",
+        "douban:37714555"
+      ],
+      "event_count": 2,
+      "cached_poi": {
+        "poi_id": "2312146045768955736",
+        "poi_title": "福立社喜剧-福州脱口秀",
+        "poi_address": "",
+        "latitude": 26.064798,
+        "longitude": 119.290562,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：福州 台江区 福立社喜剧-福州脱口秀 工业路万象九宜城5楼425号 → 福立社喜剧-福州脱口秀（来源 event:douban:36059959）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "a53fa3fed340bd30a6cec360c69087e507063829"
+      }
+    },
+    {
+      "group_id": "91f99d920107",
+      "location": "福州 晋安区 唯美客MAKERLIVE.三盛i33店 三盛i33城市广场2号楼",
+      "sample_title": "花墙FancyWall「This,That」十周年巡演 福州站",
+      "event_uids": [
+        "douban:37861575"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2192942275681814310",
+        "poi_title": "MAKER LIVE(唯美客i33店)",
+        "poi_address": "",
+        "latitude": 26.144737,
+        "longitude": 119.332266,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：福州 晋安区 唯美客MAKERLIVE.三盛i33店 三盛i33城市广场2号楼 → MAKER LIVE(唯美客i33店)（来源 event:douban:37721316）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "91f99d920107c7e17fd59fcd4066219bdbce48f1"
+      }
+    },
+    {
+      "group_id": "fd52e2e6ed10",
+      "location": "福州 闽侯县 福州大学城文化艺术中心 明德路与广兴路交叉路口往西南约200米（大学城体育中心南侧约100米）",
+      "sample_title": "7月4日《乃万「Selves们2.0」巡演》福州站",
+      "event_uids": [
+        "douban:37833669"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "8662280704169965551",
+        "poi_title": "福州大学城文化艺术中心",
+        "poi_address": "",
+        "latitude": 26.043108,
+        "longitude": 119.196125,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：福州 闽侯县 福州大学城文化艺术中心 明德路与广兴路交叉路口往西南约200米（大学城体育中心南侧约100米） → 福州大学城文化艺术中心（来源 event:douban:37849476）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "fd52e2e6ed10ad6e1691ff21aaef1cdc8b855514"
+      }
+    }
+  ]
 }

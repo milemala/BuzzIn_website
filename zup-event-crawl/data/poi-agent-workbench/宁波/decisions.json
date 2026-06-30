@@ -1,58 +1,61 @@
 {
   "city": "宁波",
   "source": "douban",
-  "updated_at": "2026-06-21T02:40:00.000Z",
-  "agent": "cursor-composer",
+  "decided_at": "2026-06-29T03:42:51.599Z",
+  "agent": "cursor-agent",
   "decisions": [
     {
       "group_id": "a28db87369e8",
-      "event_uids": ["douban:37847165"],
       "action": "match",
-      "search_keywords_tried": ["鄞州区", "宁波文化广场大剧院", "宁穿路1900号", "1900号", "鄞州区 宁波文化广场大剧院 宁穿路1900号"],
       "poi_id": "1921137803586066728",
       "poi_title": "宁波文化广场大剧院",
-      "poi_address": "浙江省宁波市鄞州区宁波文化广场内",
+      "poi_address": "",
       "latitude": 29.858222,
       "longitude": 121.619756,
-      "confidence": "high",
       "doubtful": false,
-      "reason": "宁波文化广场大剧院与POI一致，鄞州区宁穿路1900号文化广场内",
-      "candidates": [
-        {"index": 0, "poi_id": "1921137803586066728", "title": "宁波文化广场大剧院", "address": "浙江省宁波市鄞州区宁波文化广场内", "category": "娱乐休闲:剧场音乐厅:剧场", "latitude": 29.858222, "longitude": 121.619756}
+      "reason": "地址映射库命中：宁波 鄞州区 宁波文化广场大剧院 宁穿路1900号 → 宁波文化广场大剧院（来源 event:douban:37847165）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37814244",
+        "douban:37764669"
       ]
     },
     {
-      "group_id": "3d0c1f70336b",
-      "event_uids": ["douban:37574954"],
+      "group_id": "32231858dcc4",
       "action": "match",
-      "search_keywords_tried": ["江北区", "宁波大剧院", "大闸路1号", "近永丰北路", "1号(近永丰北路)", "江北区 宁波大剧院 大闸路1号"],
-      "poi_id": "18248039032734265627",
-      "poi_title": "宁波大剧院",
-      "poi_address": "浙江省宁波市江北区轨道交通6号线;轨道交通7号线",
-      "latitude": 29.891281,
-      "longitude": 121.548475,
-      "confidence": "high",
+      "poi_id": "9553362055948194985",
+      "poi_title": "宁波逸夫剧院",
+      "poi_address": "浙江省宁波市海曙区解放南路187号(城隍庙地铁站A口步行110米)",
+      "latitude": 29.868324,
+      "longitude": 121.548136,
       "doubtful": false,
-      "reason": "宁波大剧院与POI一致，江北区大闸路1号近永丰北路",
-      "candidates": [
-        {"index": 0, "poi_id": "18248039032734265627", "title": "宁波大剧院", "address": "浙江省宁波市江北区轨道交通6号线;轨道交通7号线", "category": "娱乐休闲:剧场音乐厅:剧场", "latitude": 29.891281, "longitude": 121.548475}
+      "reason": "逸夫剧院与解放南路187号地址完全一致",
+      "search_keywords_tried": [
+        "逸夫剧院 解放南路187号"
+      ],
+      "event_uids": [
+        "douban:37811403"
       ]
     },
     {
-      "group_id": "2bd69fdce335",
-      "event_uids": ["douban:37806891"],
+      "group_id": "a9dcf2e9f4bb",
       "action": "match",
-      "search_keywords_tried": ["北仑区", "博地影秀大剧院", "宝山路1296号", "1296号", "北仑区 博地影秀大剧院 宝山路1296号"],
-      "poi_id": "15033281056158654628",
-      "poi_title": "博地影秀大剧院",
-      "poi_address": "浙江省宁波市北仑区大碶街道宝山路1296号",
-      "latitude": 29.900818,
-      "longitude": 121.809075,
-      "confidence": "high",
+      "poi_id": "1853757960609319657",
+      "poi_title": "余姚大剧院",
+      "poi_address": "浙江省宁波市余姚市公共文化中心1号楼",
+      "latitude": 30.042758,
+      "longitude": 121.174411,
       "doubtful": false,
-      "reason": "博地影秀大剧院与POI一致，北仑区宝山路1296号",
-      "candidates": [
-        {"index": 0, "poi_id": "15033281056158654628", "title": "博地影秀大剧院", "address": "浙江省宁波市北仑区大碶街道宝山路1296号", "category": "娱乐休闲:剧场音乐厅:剧场", "latitude": 29.900818, "longitude": 121.809075}
+      "reason": "余姚大剧院位于公共文化中心1号楼，北姚江路1号与公共文化中心为同一文化综合体",
+      "search_keywords_tried": [
+        "余姚大剧院",
+        "余姚 公共文化中心"
+      ],
+      "event_uids": [
+        "douban:37826808",
+        "douban:37826791"
       ]
     }
   ]

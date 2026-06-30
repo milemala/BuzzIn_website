@@ -1,14 +1,135 @@
 {
   "city": "厦门",
   "source": "douban",
-  "exported_at": "2026-06-23T01:31:52.704Z",
+  "exported_at": "2026-06-29T03:23:51.435Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 6,
   "doubtful_only": false,
-  "total_events": 0,
-  "group_count": 0,
-  "cache_hit_groups": 0,
-  "groups": []
+  "total_events": 6,
+  "group_count": 6,
+  "cache_hit_groups": 4,
+  "groups": [
+    {
+      "group_id": "443813f048be",
+      "location": "厦门 思明区 闽南大戏院 会展北片区横三路(国际会议中心酒店北侧)",
+      "sample_title": "2026年7月4-5日 话剧九人民国知识分子戏剧《春逝》",
+      "event_uids": [
+        "douban:37824116"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "9553621768810285816",
+        "poi_title": "闽南大戏院·大剧场",
+        "poi_address": "",
+        "latitude": 24.474133,
+        "longitude": 118.189124,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：厦门 思明区 闽南大戏院 会展北片区横三路(国际会议中心酒店北侧) → 闽南大戏院·大剧场（来源 event:douban:37763257）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "443813f048be51bc4cead48c18d559365501f631"
+      }
+    },
+    {
+      "group_id": "fd57afd63305",
+      "location": "厦门 湖里区 帽子新空间剧场-帽子喜剧 金山街道金边路568号航空古地石广场A区G层G05-2室(A区进大堂下G层左侧)",
+      "sample_title": "一支麦·羊羽脱口秀互动专场《美梦一日游》全国巡演·厦门站｜大咖秀｜超长互动｜爆笑解压",
+      "event_uids": [
+        "douban:37849053"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "8979793825782082014",
+        "poi_title": "帽子新空间剧场-帽子喜剧(古地石店)",
+        "poi_address": "",
+        "latitude": 24.492736,
+        "longitude": 118.168446,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：厦门 湖里区 帽子新空间剧场-帽子喜剧 金山街道金边路568号航空古地石广场A区G层G05-2室(A区进大堂下G层左侧) → 帽子新空间剧场-帽子喜剧(古地石店)（来源 event:douban:37773144）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "fd57afd6330552412224117f61f2db6018e4ec1c"
+      }
+    },
+    {
+      "group_id": "8e75360b413e",
+      "location": "厦门 湖里区 中典宏基工业园 科技2号楼 402",
+      "sample_title": "厦门承汉武道馆开放日",
+      "event_uids": [
+        "douban:37893094"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "97ce15d71d93",
+      "location": "厦门 思明区 来疯喜剧场-SM三期四楼店 SM城市广场3期L4层402A铺",
+      "sample_title": "来疯喜剧｜南蝶斯卡新喜剧专场《挠痒痒》BETA版 7月26日 脱口秀@SM三期四楼",
+      "event_uids": [
+        "douban:37743999"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "15666993686218668101",
+        "poi_title": "来疯喜剧场 SM三期店",
+        "poi_address": "",
+        "latitude": 24.500808,
+        "longitude": 118.124382,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：厦门 思明区 来疯喜剧场-SM三期四楼店 SM城市广场3期L4层402A铺 → 来疯喜剧场 SM三期店（来源 event:douban:37705665）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "97ce15d71d9319dc631651aefcbb51d52ab60e63"
+      }
+    },
+    {
+      "group_id": "c1865321ee7c",
+      "location": "厦门 思明区 RealLive And Books 湖滨中路26号禾祥鑫天地B1层B115室",
+      "sample_title": "花墙FancyWall「This,That」十周年巡演 厦门站",
+      "event_uids": [
+        "douban:37842198"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "15613634814297343817",
+        "poi_title": "RealLive And Books",
+        "poi_address": "",
+        "latitude": 24.469177,
+        "longitude": 118.105614,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：厦门 思明区 RealLive And Books 湖滨中路26号禾祥鑫天地B1层B115室 → RealLive And Books（来源 event:douban:37727129）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "c1865321ee7c7654de2b0db2d8cad906cc2f9e4b"
+      }
+    },
+    {
+      "group_id": "8c398c835db5",
+      "location": "厦门 集美区 福南大会堂 嘉庚路12号",
+      "sample_title": "正版国漫2.5次元舞台剧《狐妖小红娘·第一部》",
+      "event_uids": [
+        "douban:37734190"
+      ],
+      "event_count": 1
+    }
+  ]
 }

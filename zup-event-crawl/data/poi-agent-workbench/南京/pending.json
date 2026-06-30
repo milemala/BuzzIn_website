@@ -1,83 +1,25 @@
 {
   "city": "南京",
   "source": "douban",
-  "exported_at": "2026-06-23T01:31:50.122Z",
+  "exported_at": "2026-06-29T03:23:41.141Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 6,
   "doubtful_only": false,
-  "total_events": 8,
-  "group_count": 6,
-  "cache_hit_groups": 5,
+  "total_events": 6,
+  "group_count": 5,
+  "cache_hit_groups": 4,
   "groups": [
-    {
-      "group_id": "7315f9401541",
-      "location": "南京 鼓楼区 幸福蓝海国际影城 -IMAX激光环宇城店（鼓楼区凤凰街道清凉门大街1号中海环宇城4层）",
-      "sample_title": "出奇制胜！重磅史诗之作《四渡》南京公映首日免费观影",
-      "event_uids": [
-        "douban:37891982"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "1742648908505199704",
-        "poi_title": "幸福蓝海国际影城(IMAX激光环宇城店)",
-        "poi_address": "",
-        "latitude": 32.044447,
-        "longitude": 118.753355,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：南京 鼓楼区 幸福蓝海国际影城 -IMAX激光环宇城店（鼓楼区凤凰街道清凉门大街1号中海环宇城4层） → 幸福蓝海国际影城(IMAX激光环宇城店)（来源 event:douban:37884701）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "7315f940154135bb00f8b422fe0f10bc78e55bfb"
-      }
-    },
-    {
-      "group_id": "d302c3bb6c0d",
-      "location": "南京 玄武区 梅园新村34号 小红梅",
-      "sample_title": "【金陵读书】《资治通鉴》讲读3：周纪",
-      "event_uids": [
-        "douban:37891803"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "c6f0d7e84980",
-      "location": "南京 玄武区 南京国民小剧场 洪武北路129号1913艺术街区",
-      "sample_title": "《梁祝》唯美经典名曲小提琴音乐会",
-      "event_uids": [
-        "douban:37847123",
-        "douban:37847133"
-      ],
-      "event_count": 2,
-      "cached_poi": {
-        "poi_id": "13900860064096979638",
-        "poi_title": "SOLO ONE 1913国民小剧场",
-        "poi_address": "",
-        "latitude": 32.046479,
-        "longitude": 118.788158,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：南京 玄武区 南京国民小剧场 洪武北路129号1913艺术街区 → SOLO ONE 1913国民小剧场（来源 event:douban:37348124）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "c6f0d7e849806543b1d8e7484b640d34c25595dd"
-      }
-    },
     {
       "group_id": "4f2c859af023",
       "location": "南京 建邺区 南京保利大剧院 邺城路6号(近青奥文化体育公园)",
-      "sample_title": "2026·舞剧展演系列·苏州芭蕾舞团·芭蕾舞剧《鹊之桥》",
+      "sample_title": "法国Grissini Project 格里西尼乐团「幻乐交织・光影新章」2026巡回音乐会",
       "event_uids": [
-        "douban:37802182",
-        "douban:37867618"
+        "douban:37766431",
+        "douban:37817135"
       ],
       "event_count": 2,
       "cached_poi": {
@@ -89,7 +31,7 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：南京 建邺区 南京保利大剧院 邺城路6号(近青奥文化体育公园) → 南京保利大剧院（来源 event:douban:37799041）",
+        "reason": "地址映射库命中：南京 建邺区 南京保利大剧院 邺城路6号(近青奥文化体育公园) → 南京保利大剧院（来源 event:douban:37820512）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
@@ -98,36 +40,36 @@
       }
     },
     {
-      "group_id": "cdfd2e958cf1",
-      "location": "南京 建邺区 江苏大剧院 梦都大街181号",
-      "sample_title": "庆祝中国共产党成立105周年——原创音乐剧《速记员》",
+      "group_id": "d302c3bb6c0d",
+      "location": "南京 玄武区 梅园新村34号 小红梅",
+      "sample_title": "【金陵读书】《资治通鉴》讲读4：周纪",
       "event_uids": [
-        "douban:37764351"
+        "douban:37894669"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "6981577208442308340",
-        "poi_title": "江苏大剧院",
+        "poi_id": "15910025293845104436",
+        "poi_title": "小红梅",
         "poi_address": "",
-        "latitude": 32.012298,
-        "longitude": 118.713942,
+        "latitude": 32.043093,
+        "longitude": 118.8023,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：南京 建邺区 江苏大剧院 梦都大街181号 → 江苏大剧院（来源 event:douban:37644104）",
+        "reason": "地址映射库命中：南京 玄武区 梅园新村34号 小红梅 → 小红梅（来源 event:douban:37891803）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "cdfd2e958cf18ed17427cdb1591a6d139d71a96d"
+        "cache_key": "d302c3bb6c0d49f7a46a86676abc3bb551e002a8"
       }
     },
     {
-      "group_id": "c72bfd5145fe",
-      "location": "南京 雨花台区 1701 Live House 安德门大街57号",
-      "sample_title": "【跃马成疯】 崔跃文 2026巡演 南京站",
+      "group_id": "fc1b586c1ea8",
+      "location": "南京 雨花台区 1701 Live House Max 安德门大街57号",
+      "sample_title": "A公馆 × 饮马池 【从头越】 联合专场（南京站）",
       "event_uids": [
-        "douban:37854956"
+        "douban:37814560"
       ],
       "event_count": 1,
       "cached_poi": {
@@ -139,13 +81,47 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：南京 雨花台区 1701 Live House 安德门大街57号 → 1701 LIVE HOUSE（来源 event:douban:37823465）",
+        "reason": "地址映射库命中：南京 雨花台区 1701 Live House Max 安德门大街57号 → 1701 LIVE HOUSE（来源 event:douban:37829407）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "c72bfd5145fec60c3e0dab510028cce64b496219"
+        "cache_key": "fc1b586c1ea893abe7581ca0381040e501e79c2f"
       }
+    },
+    {
+      "group_id": "cdfd2e958cf1",
+      "location": "南京 建邺区 江苏大剧院 梦都大街181号",
+      "sample_title": "南京市文旅消费政府补贴剧目 2026世界舞蹈剧场——佟丽娅领衔主演 舞蹈诗剧《在远方·在这里》",
+      "event_uids": [
+        "douban:37764643"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "6981577208442308340",
+        "poi_title": "江苏大剧院",
+        "poi_address": "",
+        "latitude": 32.012298,
+        "longitude": 118.713942,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：南京 建邺区 江苏大剧院 梦都大街181号 → 江苏大剧院（来源 event:douban:37820974）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "cdfd2e958cf18ed17427cdb1591a6d139d71a96d"
+      }
+    },
+    {
+      "group_id": "56c51fdc1a01",
+      "location": "南京 栖霞区 幸福蓝海国际影城演出厅-招商花园店 中山门大街699号花园城F3",
+      "sample_title": "南京站•【早鸟5折】“仙剑•归来”国风仙侠经典音乐会",
+      "event_uids": [
+        "douban:37867989"
+      ],
+      "event_count": 1
     }
   ]
 }

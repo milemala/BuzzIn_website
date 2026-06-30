@@ -1,69 +1,76 @@
 {
   "city": "青岛",
   "source": "douban",
-  "exported_at": "2026-06-20T18:31:04.607Z",
+  "exported_at": "2026-06-29T03:23:47.147Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 3,
   "doubtful_only": false,
-  "total_events": 6,
-  "group_count": 6,
-  "cache_hit_groups": 0,
+  "total_events": 3,
+  "group_count": 3,
+  "cache_hit_groups": 2,
   "groups": [
     {
-      "group_id": "a686949d0c11",
-      "location": "青岛 即墨区 山东青岛 中铁青岛世界博览城",
-      "sample_title": "2026青岛黄河流域跨境电商博览会",
+      "group_id": "2281ad7f174e",
+      "location": "青岛 黄岛区 凤凰之声大剧院 西海岸新区金沙滩路966号",
+      "sample_title": "亚洲大型全男班现代舞秀《无名之辈》",
       "event_uids": [
-        "douban:37530416"
+        "douban:37829192"
       ],
       "event_count": 1
     },
     {
-      "group_id": "a04e380208ce",
-      "location": "青岛 即墨区 青岛世界博览城（西海岸新区）",
-      "sample_title": "2026第五届中国·青岛外贸源头工厂暨跨境选品展览会",
+      "group_id": "bbd29ea160b4",
+      "location": "青岛 市南区 一支麦小剧场 香港中路69号麦凯乐青岛总店二层东南角",
+      "sample_title": "一支麦脱口秀 | 婷婷《T我说》个人互动专场 | 爆笑解压脱口秀&约会推荐",
       "event_uids": [
-        "douban:37796792"
+        "douban:37548449"
       ],
-      "event_count": 1
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "16379937920368861042",
+        "poi_title": "一支麦小剧场(香港中路店)",
+        "poi_address": "",
+        "latitude": 36.065839,
+        "longitude": 120.403136,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：青岛 市南区 一支麦小剧场 香港中路69号麦凯乐青岛总店二层东南角 → 一支麦小剧场(香港中路店)（来源 event:douban:37177374）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "bbd29ea160b4d57f8e3cd92eff36033e02477389"
+      }
     },
     {
-      "group_id": "3a123dc44977",
-      "location": "青岛 市南区 方所书店",
-      "sample_title": "我们终将找到自己：东来《她和她的决心》新书分享会",
+      "group_id": "5f308c3261cf",
+      "location": "青岛 市南区 龙马社黑匣子剧场 龙山路26号怡堡酒店内",
+      "sample_title": "沉浸式互动·悬疑话剧《宋美龄耳环丢了》",
       "event_uids": [
-        "douban:37889962"
+        "douban:37665516"
       ],
-      "event_count": 1
-    },
-    {
-      "group_id": "94dde3becd05",
-      "location": "青岛 市北区 Downtown_Live 宁海路18号中粮大悦城悦街广场B栋023号DowntownLive",
-      "sample_title": "花墙FancyWall「This,That」十周年巡演 青岛站",
-      "event_uids": [
-        "douban:37829941"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "4705f4bc8083",
-      "location": "青岛 李沧区 青岛市李沧剧院 兴城路39号",
-      "sample_title": "“廿念不忘”青曲社苗阜王声合作20周年巡演·青岛站",
-      "event_uids": [
-        "douban:37853913"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "44cc3a924b61",
-      "location": "青岛 崂山区 青岛DMC 演出现场 金家岭街道银川路3号国信体育中心M区G层底商",
-      "sample_title": "「前后」2026饮马池巡演 青岛站",
-      "event_uids": [
-        "douban:37855616"
-      ],
-      "event_count": 1
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "9998467331074209506",
+        "poi_title": "龙马社黑匣子剧场",
+        "poi_address": "",
+        "latitude": 36.065987,
+        "longitude": 120.333485,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：青岛 市南区 龙马社黑匣子剧场 龙山路26号怡堡酒店内 → 龙马社黑匣子剧场（来源 event:douban:37665713）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "5f308c3261cf79d44861d5dcf251e974b0e7234e"
+      }
     }
   ]
 }

@@ -1,1372 +1,265 @@
 {
   "city": "上海",
   "source": "douban",
-  "updated_at": "2026-06-20T18:40:44.673Z",
-  "agent": "cursor-composer",
+  "decided_at": "2026-06-29T03:42:03.873Z",
+  "agent": "cursor-agent",
   "decisions": [
     {
-      "group_id": "c654165d7236",
-      "event_uids": [
-        "douban:37891124"
-      ],
+      "group_id": "6d01add84db3",
+      "action": "match",
+      "poi_id": "52919750025520475",
+      "poi_title": "上海东方艺术中心",
+      "poi_address": "",
+      "latitude": 31.222824,
+      "longitude": 121.541307,
+      "doubtful": false,
+      "reason": "地址映射库命中：上海 浦东新区 上海东方艺术中心 丁香路425号(近世纪大道) → 上海东方艺术中心（来源 event:douban:37726808）",
       "search_keywords_tried": [
-        "浦东新区",
-        "上海图书馆东馆7楼阅读推广区",
-        "合欢路300号",
-        "上海图书馆东馆",
-        "300号）",
-        "浦东新区 上海图书馆东馆7楼阅读推广区"
+        "poi-address-cache"
       ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "浦东新区",
-          "address": "",
-          "category": "",
-          "latitude": 31.221461,
-          "longitude": 121.544346
-        },
-        {
-          "index": 0,
-          "poi_id": "5528072624503891635",
-          "title": "上海图书馆(东馆)",
-          "address": "上海市浦东新区花木街道合欢路300号",
-          "category": "文化场馆:图书馆",
-          "latitude": 31.219975,
-          "longitude": 121.547154
-        },
-        {
-          "index": 1,
-          "poi_id": "1557999187262550925",
-          "title": "上海图书馆东馆地下停车场",
-          "address": "上海市浦东新区合欢路300号上海图书馆(东馆)",
-          "category": "汽车:停车场",
-          "latitude": 31.219367,
-          "longitude": 121.54751
-        },
-        {
-          "index": 2,
-          "poi_id": "17028946143631759246",
-          "title": "上海市黄浦区图书馆",
-          "address": "上海市黄浦区福州路655号上海黄浦区图书馆大楼F1层",
-          "category": "文化场馆:图书馆",
-          "latitude": 31.232238,
-          "longitude": 121.478689
-        },
-        {
-          "index": 3,
-          "poi_id": "2994940258039578110",
-          "title": "图书馆大楼",
-          "address": "上海市黄浦区福州路655号(人民广场地铁站15号口步行360米)",
-          "category": "房产小区:商务楼宇",
-          "latitude": 31.232122,
-          "longitude": 121.478683
-        }
+      "event_uids": [
+        "douban:37859560",
+        "douban:37806231",
+        "douban:37645216",
+        "douban:37628278"
+      ]
+    },
+    {
+      "group_id": "34d7a50689c1",
+      "action": "match",
+      "poi_id": "10076962457668514442",
+      "poi_title": "凯迪拉克·上海音乐厅-东南门",
+      "poi_address": "",
+      "latitude": 31.22621,
+      "longitude": 121.478451,
+      "doubtful": false,
+      "reason": "地址映射库命中：上海 黄浦区 凯迪拉克-上海音乐厅 延安东路523号(近西藏南路) → 凯迪拉克·上海音乐厅-东南门（来源 event:douban:37796487）",
+      "search_keywords_tried": [
+        "poi-address-cache"
       ],
+      "event_uids": [
+        "douban:37863708"
+      ]
+    },
+    {
+      "group_id": "a45e0491e227",
+      "action": "match",
+      "poi_id": "14252119467906121381",
+      "poi_title": "嘉发大厦-A栋",
+      "poi_address": "",
+      "latitude": 31.23286,
+      "longitude": 121.464008,
+      "doubtful": false,
+      "reason": "地址映射库命中：上海 静安区 大田路129弄嘉发大厦A栋5D → 嘉发大厦-A栋（来源 event:douban:37891795）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37894469"
+      ]
+    },
+    {
+      "group_id": "7ff6c8f2e2b7",
+      "action": "match",
+      "poi_id": "5527323411719490889",
+      "poi_title": "Theatre YOUNG剧场",
+      "poi_address": "",
+      "latitude": 31.278051,
+      "longitude": 121.528544,
+      "doubtful": false,
+      "reason": "地址映射库命中：上海 杨浦区 YOUNG剧场 控江路1155号 → Theatre YOUNG剧场（来源 event:douban:37830355）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37873295"
+      ]
+    },
+    {
+      "group_id": "6b26e5ad3735",
+      "action": "match",
+      "poi_id": "5705623475713552211",
+      "poi_title": "交通银行前滩31演艺中心",
+      "poi_address": "",
+      "latitude": 31.15076,
+      "longitude": 121.484961,
+      "doubtful": false,
+      "reason": "地址映射库命中：上海 浦东新区 交通银行前滩31演艺中心 高青西路777号 → 交通银行前滩31演艺中心（来源 event:douban:37814494）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37792191"
+      ]
+    },
+    {
+      "group_id": "914bb27baf71",
+      "action": "match",
+      "poi_id": "8548731801045296785",
+      "poi_title": "喜联空间",
+      "poi_address": "",
+      "latitude": 31.220931,
+      "longitude": 121.477534,
+      "doubtful": false,
+      "reason": "地址映射库命中：上海 黄浦区 喜联空间·新天地 湖滨路168号无限极荟2楼 → 喜联空间（来源 event:douban:37150417）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37881272"
+      ]
+    },
+    {
+      "group_id": "b1702a6e010a",
+      "action": "match",
+      "poi_id": "4170847501144352500",
+      "poi_title": "八号桥-青春无限音乐厅",
+      "poi_address": "",
+      "latitude": 31.240046,
+      "longitude": 121.466476,
+      "doubtful": false,
+      "reason": "地址映射库命中：上海 黄浦区 八号桥-青春无限音乐厅 南苏州路1247号八号桥艺术空间3楼 → 八号桥-青春无限音乐厅（来源 event:douban:37617060）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37617059",
+        "douban:37886157",
+        "douban:37645045"
+      ]
+    },
+    {
+      "group_id": "a8fb06333364",
+      "action": "match",
+      "poi_id": "18300789276948473305",
+      "poi_title": "青春无限乐团烛光音乐会(上海广场店)",
+      "poi_address": "",
+      "latitude": 31.225171,
+      "longitude": 121.478115,
+      "doubtful": false,
+      "reason": "地址映射库命中：上海 黄浦区 青春无限乐团烛光音乐会-上海广场店 淮海中路138号上海广场2楼206A → 青春无限乐团烛光音乐会(上海广场店)（来源 event:douban:37763104）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37347039"
+      ]
+    },
+    {
+      "group_id": "d7e543086a50",
+      "action": "reject",
+      "doubtful": false,
+      "reason": "豆瓣仅写南浦大桥地铁站作为户外徒步集合点，非具体场馆主体，地址过泛无法对应唯一活动场地POI",
+      "search_keywords_tried": [
+        "南浦大桥地铁站"
+      ],
+      "event_uids": [
+        "douban:37439761"
+      ]
+    },
+    {
+      "group_id": "0c9e6c8d9474",
+      "action": "match",
+      "poi_id": "2750504190343357699",
+      "poi_title": "摩登天空(瑞虹天地店)",
+      "poi_address": "上海市虹口区瑞虹路188号瑞虹天地月亮湾309-310号",
+      "latitude": 31.264829,
+      "longitude": 121.498775,
+      "doubtful": false,
+      "reason": "Modern Sky LAB摩登天空上海，店名与瑞虹路188号月亮湾309-310号地址完全一致",
+      "search_keywords_tried": [
+        "Modern Sky LAB 摩登天空"
+      ],
+      "event_uids": [
+        "douban:37834617",
+        "douban:37844815"
+      ]
+    },
+    {
+      "group_id": "f4ba25ae115f",
+      "action": "match",
+      "poi_id": "10607727212696558593",
+      "poi_title": "久事·上海商城剧院",
+      "poi_address": "上海市静安区南京西路街道南京西路1376号4楼",
+      "latitude": 31.226747,
+      "longitude": 121.451897,
+      "doubtful": false,
+      "reason": "场馆名称与南京西路1376号4楼地址完全一致",
+      "search_keywords_tried": [
+        "久事上海商城剧院"
+      ],
+      "event_uids": [
+        "douban:37853950"
+      ]
+    },
+    {
+      "group_id": "d7eeabae5573",
+      "action": "match",
+      "poi_id": "716698760276036149",
+      "poi_title": "兰心大戏院",
+      "poi_address": "上海市黄浦区茂名南路57号",
+      "latitude": 31.221036,
+      "longitude": 121.460523,
+      "doubtful": false,
+      "reason": "兰心大戏院，黄浦区茂名南路57号与豆瓣地址一致",
+      "search_keywords_tried": [
+        "兰心大戏院"
+      ],
+      "event_uids": [
+        "douban:37876876"
+      ]
+    },
+    {
+      "group_id": "fc08b8cc5b2f",
       "action": "match",
       "poi_id": "5528072624503891635",
       "poi_title": "上海图书馆(东馆)",
       "poi_address": "上海市浦东新区花木街道合欢路300号",
       "latitude": 31.219975,
       "longitude": 121.547154,
-      "confidence": "high",
       "doubtful": false,
-      "reason": "馆名与合欢路300号一致，浦东新区匹配"
+      "reason": "豆瓣写迎春路300号应为合欢路300号笔误，上海图书馆东馆主体一致，仅1楼一号展厅未精确到腾讯店级POI",
+      "search_keywords_tried": [
+        "上海图书馆东馆"
+      ],
+      "event_uids": [
+        "douban:37887205",
+        "douban:37743227"
+      ]
     },
     {
-      "group_id": "2065067dffa1",
-      "event_uids": [
-        "douban:37889311"
-      ],
-      "search_keywords_tried": [
-        "浦东新区",
-        "龙阳路地铁站",
-        "浦东新区 龙阳路地铁站"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "浦东新区",
-          "address": "",
-          "category": "",
-          "latitude": 31.221461,
-          "longitude": 121.544346
-        },
-        {
-          "index": 0,
-          "poi_id": "10804313910827168281",
-          "title": "龙阳路[地铁站]",
-          "address": "地铁2号线,地铁7号线,磁浮线,地铁16号线,地铁18号线",
-          "category": "基础设施:交通设施:地铁站",
-          "latitude": 31.203616,
-          "longitude": 121.557743
-        },
-        {
-          "index": 1,
-          "poi_id": "10804864330354950590",
-          "title": "龙阳路地铁站[公交站]",
-          "address": "976路,浦东110路,1023路,989路,浦东11路,大桥六线,花木2路,624路,南龙专线,840路,浦东119路,南龙专线区间",
-          "category": "基础设施:交通设施:公交车站",
-          "latitude": 31.203163,
-          "longitude": 121.559313
-        },
-        {
-          "index": 2,
-          "poi_id": "1686913213954919577",
-          "title": "江西小炒(龙阳路地铁站店)",
-          "address": "上海市浦东新区花木街道白杨路562号",
-          "category": "美食:小吃快餐",
-          "latitude": 31.201462,
-          "longitude": 121.556117
-        },
-        {
-          "index": 3,
-          "poi_id": "15570641919056741639",
-          "title": "龙阳路-7口",
-          "address": "",
-          "category": "基础设施:交通设施:地铁站出入口",
-          "latitude": 31.203505,
-          "longitude": 121.557077
-        }
-      ],
+      "group_id": "e301289e1ed9",
       "action": "match",
-      "poi_id": "10804313910827168281",
-      "poi_title": "龙阳路[地铁站]",
-      "poi_address": "地铁2号线,地铁7号线,磁浮线,地铁16号线,地铁18号线",
-      "latitude": 31.203616,
-      "longitude": 121.557743,
-      "confidence": "medium",
-      "doubtful": true,
-      "reason": "活动集合点为龙阳路地铁站，匹配地铁站本体"
+      "poi_id": "8359144007685316449",
+      "poi_title": "1862时尚艺术中心",
+      "poi_address": "上海市浦东新区滨江大道1777号(陆家嘴滨江金融城内)",
+      "latitude": 31.244392,
+      "longitude": 121.514206,
+      "doubtful": false,
+      "reason": "场馆名称与滨江大道1777号地址完全一致",
+      "search_keywords_tried": [
+        "1862时尚艺术中心"
+      ],
+      "event_uids": [
+        "douban:37878786"
+      ]
     },
     {
-      "group_id": "8692c04ca1d7",
-      "event_uids": [
-        "douban:37489347",
-        "douban:37489404"
-      ],
-      "search_keywords_tried": [
-        "浦东新区",
-        "上海浦东新国博览中心",
-        "浦东新区 上海浦东新国博览中心"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "浦东新区",
-          "address": "",
-          "category": "",
-          "latitude": 31.221461,
-          "longitude": 121.544346
-        },
-        {
-          "index": 0,
-          "poi_id": "12456583024308103509",
-          "title": "E6(上海新国际博览中心)",
-          "address": "上海市浦东新区龙阳路2345号上海新国际博览中心F1",
-          "category": "文化场馆:展览馆",
-          "latitude": 31.210949,
-          "longitude": 121.569765
-        },
-        {
-          "index": 1,
-          "poi_id": "5956955471827757434",
-          "title": "上海新国际博览中心-W3号馆",
-          "address": "上海市浦东新区龙阳路2345号",
-          "category": "旅游景点:其它旅游景点",
-          "latitude": 31.209219,
-          "longitude": 121.564889
-        },
-        {
-          "index": 2,
-          "poi_id": "7555427207669744287",
-          "title": "E5(上海新国际博览中心)",
-          "address": "上海市浦东新区龙阳路2345号上海新国际博览中心F1",
-          "category": "文化场馆:展览馆",
-          "latitude": 31.210286,
-          "longitude": 121.569236
-        },
-        {
-          "index": 3,
-          "poi_id": "4540275704198343053",
-          "title": "上海新国际博览中心-W1号馆",
-          "address": "上海市浦东新区龙阳路2345号上海新国际博览中心F1",
-          "category": "文化场馆:其它文化场馆",
-          "latitude": 31.207959,
-          "longitude": 121.56508
-        }
-      ],
+      "group_id": "0fa005f87b7d",
       "action": "match",
-      "poi_id": "5290222778708464337",
-      "poi_title": "上海新国际博览中心",
-      "poi_address": "上海市浦东新区龙阳路2345号",
-      "latitude": 31.2095,
-      "longitude": 121.5632,
-      "confidence": "high",
+      "poi_id": "14675978706285386968",
+      "poi_title": "麦金侬酒店",
+      "poi_address": "上海市静安区北京西路1013号",
+      "latitude": 31.229822,
+      "longitude": 121.455887,
       "doubtful": false,
-      "reason": "豆瓣笔误「新国博览中心」即新国际博览中心，浦东新区龙阳路2345号"
-    },
-    {
-      "group_id": "ca227422fc26",
-      "event_uids": [
-        "douban:37879686"
-      ],
+      "reason": "麦金侬酒店《不眠之夜》剧场，店名与北京西路1013号地址完全一致",
       "search_keywords_tried": [
-        "长宁区",
-        "育音堂小镇",
-        "C厅",
-        "YUYINTOWN",
-        "CUBE",
-        "华阳路街道昭化路638号CPARK地下一层LG-21室育音堂小镇C厅",
-        "YUYINTOWN CUBE",
-        "CPARK"
+        "麦金侬酒店 不眠之夜"
       ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "长宁区",
-          "address": "",
-          "category": "",
-          "latitude": 31.220557,
-          "longitude": 121.424696
-        },
-        {
-          "index": 0,
-          "poi_id": "7528622883034367199",
-          "title": "育音堂小镇B厅",
-          "address": "上海市长宁区昭化路658号D栋地下一 层LG-14B室",
-          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
-          "latitude": 31.210327,
-          "longitude": 121.419686
-        },
-        {
-          "index": 1,
-          "poi_id": "7042815495979816288",
-          "title": "育音堂小镇C厅 YYTC",
-          "address": "上海市长宁区昭化路658号地下一层LG-21室",
-          "category": "娱乐休闲:剧场音乐厅:音乐厅",
-          "latitude": 31.210264,
-          "longitude": 121.420048
-        },
-        {
-          "index": 2,
-          "poi_id": "6674447953114383161",
-          "title": "育音堂小镇YUYINTOWN",
-          "address": "上海市长宁区华阳路街道昭化路638号CPARK地下一层LG-21室育音堂小镇C厅",
-          "category": "娱乐休闲:其它娱乐休闲",
-          "latitude": 31.210336,
-          "longitude": 121.419663
-        },
-        {
-          "index": 0,
-          "poi_id": "1886845176417972204",
-          "title": "浙c小馆",
-          "address": "上海市浦东新区峨山路111号-7",
-          "category": "美食:小吃快餐",
-          "latitude": 31.214792,
-          "longitude": 121.530586
-        }
-      ],
-      "action": "match",
-      "poi_id": "6674447953114383161",
-      "poi_title": "育音堂小镇YUYINTOWN",
-      "poi_address": "上海市长宁区华阳路街道昭化路638号CPARK地下一层LG-21室育音堂小镇C厅",
-      "latitude": 31.210336,
-      "longitude": 121.419663,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址昭化路638号LG-21室与育音堂小镇C厅完全一致，长宁区匹配"
-    },
-    {
-      "group_id": "6d01add84db3",
       "event_uids": [
-        "douban:37726808"
-      ],
-      "search_keywords_tried": [
-        "浦东新区",
-        "上海东方艺术中心",
-        "丁香路425号",
-        "近世纪大道",
-        "425号(近世纪大道)",
-        "浦东新区 上海东方艺术中心 丁香路425号"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "浦东新区",
-          "address": "",
-          "category": "",
-          "latitude": 31.221461,
-          "longitude": 121.544346
-        },
-        {
-          "index": 0,
-          "poi_id": "52919750025520475",
-          "title": "上海东方艺术中心",
-          "address": "上海市浦东新区丁香路425号",
-          "category": "文化场馆:文化宫",
-          "latitude": 31.222824,
-          "longitude": 121.541307
-        },
-        {
-          "index": 1,
-          "poi_id": "17076609617465868378",
-          "title": "上海东方艺术中心-正门",
-          "address": "上海市浦东新区丁香路",
-          "category": "室内及附属设施:通行设施类:外部门",
-          "latitude": 31.222606,
-          "longitude": 121.541801
-        },
-        {
-          "index": 2,
-          "poi_id": "10137882151829071760",
-          "title": "上海东方艺术中心·音乐厅",
-          "address": "上海市浦东新区丁香路425号(上海科技馆地铁站1号口步行460米)",
-          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
-          "latitude": 31.222564,
-          "longitude": 121.540956
-        },
-        {
-          "index": 3,
-          "poi_id": "5142342281115028501",
-          "title": "上海东方艺术中心·歌剧厅",
-          "address": "上海市浦东新区丁香路425号上海东方艺术中心",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 31.223232,
-          "longitude": 121.541864
-        }
-      ],
-      "action": "match",
-      "poi_id": "52919750025520475",
-      "poi_title": "上海东方艺术中心",
-      "poi_address": "上海市浦东新区丁香路425号",
-      "latitude": 31.222824,
-      "longitude": 121.541307,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "馆名与丁香路425号一致，浦东新区匹配"
-    },
-    {
-      "group_id": "f93ee46ab861",
-      "event_uids": [
-        "douban:37881793"
-      ],
-      "search_keywords_tried": [
-        "徐汇区",
-        "JZ",
-        "Club",
-        "爵士酒吧",
-        "衡山路八号水塔广场",
-        "JZ Club"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "徐汇区",
-          "address": "",
-          "category": "",
-          "latitude": 31.188334,
-          "longitude": 121.436307
-        },
-        {
-          "index": 0,
-          "poi_id": "2205049553910799452",
-          "title": "玖姿(新川路店)",
-          "address": "上海市浦东新区新川路640弄1-40号",
-          "category": "购物:服饰鞋包:服装",
-          "latitude": 31.191757,
-          "longitude": 121.69384
-        },
-        {
-          "index": 1,
-          "poi_id": "7225063696092965166",
-          "title": "玖姿(奉贤店)",
-          "address": "上海市奉贤区南桥镇南奉公路9615号",
-          "category": "购物:服饰鞋包:服装",
-          "latitude": 30.911043,
-          "longitude": 121.461478
-        },
-        {
-          "index": 2,
-          "poi_id": "272831271327289385",
-          "title": "玖姿(塔城路店)",
-          "address": "上海市嘉定区嘉定镇街道南下塘街与塔城路交汇处东北50米",
-          "category": "购物:服饰鞋包:服装",
-          "latitude": 31.382573,
-          "longitude": 121.253243
-        },
-        {
-          "index": 3,
-          "poi_id": "6029707285534121148",
-          "title": "JZ(西门大街店)",
-          "address": "上海市浦东新区惠南镇汇华路2弄1-14号华汇公寓",
-          "category": "购物:服饰鞋包:服装",
-          "latitude": 31.046617,
-          "longitude": 121.753258
-        }
-      ],
-      "action": "match",
-      "poi_id": "9870263170220680867",
-      "poi_title": "JZ Club(上海店)",
-      "poi_address": "上海市徐汇区衡山路8号水塔广场(衡山路地铁站3号口步行310米)",
-      "latitude": 31.206405,
-      "longitude": 121.447528,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "JZ Club爵士酒吧与衡山路八号水塔广场一致，徐汇区匹配"
-    },
-    {
-      "group_id": "692d90eb0ba9",
-      "event_uids": [
-        "douban:37870168"
-      ],
-      "search_keywords_tried": [
-        "黄浦区",
-        "魔脱喜剧-人民广场店",
-        "南京西路388号仙乐斯广场406——人民广场地铁站11号口步行360米",
-        "人民广场店",
-        "号仙乐斯广场",
-        "人民广场",
-        "388号仙乐斯广场406——人民广场地铁站11号口步行360米"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "黄浦区",
-          "address": "",
-          "category": "",
-          "latitude": 31.231661,
-          "longitude": 121.48442
-        },
-        {
-          "index": 0,
-          "poi_id": "14825805579239811628",
-          "title": "魔脱喜剧脱口秀(人民广场店)",
-          "address": "上海市黄浦区南京东路街道南京西路388号4楼406室",
-          "category": "娱乐休闲:其它娱乐休闲",
-          "latitude": 31.231316,
-          "longitude": 121.468775
-        },
-        {
-          "index": 0,
-          "poi_id": "1602374012804435248",
-          "title": "仙乐斯广场",
-          "address": "上海市黄浦区南京西路388号(近黄陂北路)",
-          "category": "购物:综合商场:购物中心",
-          "latitude": 31.231401,
-          "longitude": 121.469042
-        },
-        {
-          "index": 1,
-          "poi_id": "6699367657740147430",
-          "title": "仙乐斯广场写字楼",
-          "address": "上海市黄浦区南京西路388号(人民广场地铁站11号口步行360米)",
-          "category": "房产小区:商务楼宇",
-          "latitude": 31.23141,
-          "longitude": 121.469007
-        },
-        {
-          "index": 2,
-          "poi_id": "14820481781921443105",
-          "title": "天安中心",
-          "address": "上海市黄浦区南京西路338号",
-          "category": "房产小区:商务楼宇",
-          "latitude": 31.231925,
-          "longitude": 121.469616
-        }
-      ],
-      "action": "match",
-      "poi_id": "14825805579239811628",
-      "poi_title": "魔脱喜剧脱口秀(人民广场店)",
-      "poi_address": "上海市黄浦区南京东路街道南京西路388号4楼406室",
-      "latitude": 31.231316,
-      "longitude": 121.468775,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "店名与南京西路388号仙乐斯广场406室一致，黄浦区匹配"
-    },
-    {
-      "group_id": "5d2335a6780d",
-      "event_uids": [
-        "douban:37710415",
-        "douban:37874842"
-      ],
-      "search_keywords_tried": [
-        "虹口区",
-        "THE",
-        "PEARL",
-        "livehouse",
-        "珍珠剧场-上海",
-        "乍浦路471号",
-        "THE PEARL livehouse",
-        "珍珠剧场"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "虹口区",
-          "address": "",
-          "category": "",
-          "latitude": 31.264917,
-          "longitude": 121.504994
-        },
-        {
-          "index": 0,
-          "poi_id": "7068526972263867735",
-          "title": "上海红塔豪华精选酒店",
-          "address": "上海市浦东新区东方路889号",
-          "category": "酒店宾馆:酒店宾馆",
-          "latitude": 31.223751,
-          "longitude": 121.528428
-        },
-        {
-          "index": 1,
-          "poi_id": "226310748313410743",
-          "title": "Shanghai Wisdom Hostel Under the Tree",
-          "address": "上海市宝山区罗泾镇新川沙路529弄15号",
-          "category": "酒店宾馆:酒店宾馆",
-          "latitude": 31.477889,
-          "longitude": 121.343561
-        },
-        {
-          "index": 2,
-          "poi_id": "8054559178577916413",
-          "title": "the terrace(徐泾)",
-          "address": "上海市青浦区徐和路与联民路交叉口西南方向36米左右",
-          "category": "美食:西餐:其它西餐",
-          "latitude": 31.157174,
-          "longitude": 121.278802
-        },
-        {
-          "index": 3,
-          "poi_id": "14379075073714033581",
-          "title": "KOI The(恒基名人购物中心)",
-          "address": "上海市黄浦区外滩街道南京东路300号恒基名人中心L316室",
-          "category": "美食:冷饮店",
-          "latitude": 31.238071,
-          "longitude": 121.484354
-        }
-      ],
-      "action": "match",
-      "poi_id": "1785091379035755489",
-      "poi_title": "THE PEARL(乍浦路店)",
-      "poi_address": "上海市虹口区乍浦路471号",
-      "latitude": 31.252056,
-      "longitude": 121.486175,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "珍珠剧场即THE PEARL，乍浦路471号，虹口区匹配"
-    },
-    {
-      "group_id": "e0ffb15c3fe3",
-      "event_uids": [
-        "douban:37638759"
-      ],
-      "search_keywords_tried": [
-        "浦东新区",
-        "上海新国际博览中心",
-        "浦东新区 上海新国际博览中心"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "浦东新区",
-          "address": "",
-          "category": "",
-          "latitude": 31.221461,
-          "longitude": 121.544346
-        },
-        {
-          "index": 0,
-          "poi_id": "5290222778708464337",
-          "title": "上海新国际博览中心",
-          "address": "上海市浦东新区龙阳路2345号",
-          "category": "文化场馆:会展中心",
-          "latitude": 31.210593,
-          "longitude": 121.567086
-        },
-        {
-          "index": 1,
-          "poi_id": "3466506695216849483",
-          "title": "上海新国际博览中心(1号入口)",
-          "address": "上海市浦东新区兰花路与芳甸路交叉口正东方向236米左右",
-          "category": "室内及附属设施:通行设施类:外部门",
-          "latitude": 31.206439,
-          "longitude": 121.566198
-        },
-        {
-          "index": 2,
-          "poi_id": "12456583024308103509",
-          "title": "E6(上海新国际博览中心)",
-          "address": "上海市浦东新区龙阳路2345号上海新国际博览中心F1",
-          "category": "文化场馆:展览馆",
-          "latitude": 31.210949,
-          "longitude": 121.569765
-        },
-        {
-          "index": 3,
-          "poi_id": "7555427207669744287",
-          "title": "E5(上海新国际博览中心)",
-          "address": "上海市浦东新区龙阳路2345号上海新国际博览中心F1",
-          "category": "文化场馆:展览馆",
-          "latitude": 31.210286,
-          "longitude": 121.569236
-        }
-      ],
-      "action": "match",
-      "poi_id": "5290222778708464337",
-      "poi_title": "上海新国际博览中心",
-      "poi_address": "上海市浦东新区龙阳路2345号",
-      "latitude": 31.210593,
-      "longitude": 121.567086,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "馆名与地址完全一致，浦东新区匹配"
-    },
-    {
-      "group_id": "f9eee96d3cb0",
-      "event_uids": [
-        "douban:37715019"
-      ],
-      "search_keywords_tried": [
-        "徐汇区",
-        "YZ戏剧疗愈",
-        "嘉善路508号尚街园区1号楼509室",
-        "508号尚街园区1号楼509室"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "徐汇区",
-          "address": "",
-          "category": "",
-          "latitude": 31.188334,
-          "longitude": 121.436307
-        },
-        {
-          "index": 0,
-          "poi_id": "10058059984877948116",
-          "title": "尚街",
-          "address": "上海市徐汇区建国西路",
-          "category": "购物:商业步行街",
-          "latitude": 31.205352,
-          "longitude": 121.459424
-        },
-        {
-          "index": 1,
-          "poi_id": "1309454318530549545",
-          "title": "尚街Loft时尚生活园区",
-          "address": "上海市徐汇区嘉善路508号",
-          "category": "房产小区:产业园区",
-          "latitude": 31.204619,
-          "longitude": 121.459735
-        },
-        {
-          "index": 2,
-          "poi_id": "6435348544966901196",
-          "title": "楠火锅(嘉善路店)",
-          "address": "上海市徐汇区嘉善路508号尚街loft园区入口1楼",
-          "category": "美食:火锅",
-          "latitude": 31.204172,
-          "longitude": 121.460137
-        },
-        {
-          "index": 3,
-          "poi_id": "8010933672613771365",
-          "title": "新苑私房菜(尚街Loft时尚生活园区店)",
-          "address": "上海市徐汇区天平路街道嘉善路508号尚街Loft1号楼1层102室",
-          "category": "美食:中餐厅:其它中餐厅",
-          "latitude": 31.204451,
-          "longitude": 121.459832
-        }
-      ],
-      "action": "match",
-      "poi_id": "1309454318530549545",
-      "poi_title": "尚街Loft时尚生活园区",
-      "poi_address": "上海市徐汇区嘉善路508号",
-      "latitude": 31.204619,
-      "longitude": 121.459735,
-      "confidence": "medium",
-      "doubtful": false,
-      "reason": "YZ戏剧疗愈位于嘉善路508号1号楼509室，匹配园区楼宇本体，同楼不同室"
-    },
-    {
-      "group_id": "15b52edc647d",
-      "event_uids": [
-        "douban:37882367"
-      ],
-      "search_keywords_tried": [
-        "浦东新区",
-        "上海博物馆",
-        "东馆",
-        "浦东新区 上海博物馆"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "浦东新区",
-          "address": "",
-          "category": "",
-          "latitude": 31.221461,
-          "longitude": 121.544346
-        },
-        {
-          "index": 0,
-          "poi_id": "16735387838250613409",
-          "title": "上海博物馆(人民广场馆)",
-          "address": "上海市黄浦区人民大道201号",
-          "category": "文化场馆:博物馆",
-          "latitude": 31.228514,
-          "longitude": 121.475305
-        },
-        {
-          "index": 1,
-          "poi_id": "12583235804204926797",
-          "title": "上海博物馆(东馆)",
-          "address": "上海市浦东新区世纪大道1952号",
-          "category": "文化场馆:博物馆",
-          "latitude": 31.219918,
-          "longitude": 121.53876
-        },
-        {
-          "index": 2,
-          "poi_id": "10585224076627788422",
-          "title": "上海世博会博物馆",
-          "address": "上海市黄浦区蒙自路818号",
-          "category": "文化场馆:博物馆",
-          "latitude": 31.194437,
-          "longitude": 121.482161
-        },
-        {
-          "index": 3,
-          "poi_id": "8040070663151985535",
-          "title": "上海自然博物馆(上海科技馆分馆)",
-          "address": "上海市静安区北京西路510号",
-          "category": "文化场馆:博物馆",
-          "latitude": 31.234992,
-          "longitude": 121.46265
-        }
-      ],
-      "action": "match",
-      "poi_id": "12583235804204926797",
-      "poi_title": "上海博物馆(东馆)",
-      "poi_address": "上海市浦东新区世纪大道1952号",
-      "latitude": 31.219918,
-      "longitude": 121.53876,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "馆名上海博物馆东馆，浦东新区匹配"
-    },
-    {
-      "group_id": "b6f2bdec3401",
-      "event_uids": [
-        "douban:37890835"
-      ],
-      "search_keywords_tried": [
-        "闵行区",
-        "申长路1398弄1-4号虹桥阿里中心T2栋",
-        "号虹桥阿里中心",
-        "4号虹桥阿里中心T2栋",
-        "闵行区 申长路1398弄1-4号虹桥阿里中心T2栋"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "闵行区",
-          "address": "",
-          "category": "",
-          "latitude": 31.112834,
-          "longitude": 121.380857
-        },
-        {
-          "index": 0,
-          "poi_id": "3334248027102133530",
-          "title": "阿里中心·上海虹桥",
-          "address": "上海市闵行区申长路1398弄1-4号",
-          "category": "房产小区:商务楼宇",
-          "latitude": 31.205666,
-          "longitude": 121.313962
-        },
-        {
-          "index": 1,
-          "poi_id": "14846539634318656973",
-          "title": "阿里中心·上海虹桥-T1号楼",
-          "address": "上海市闵行区申长路1398弄1-4号",
-          "category": "房产小区:商务楼宇",
-          "latitude": 31.204947,
-          "longitude": 121.314294
-        },
-        {
-          "index": 2,
-          "poi_id": "10176299541631921540",
-          "title": "申长路1398弄1号楼",
-          "address": "上海市闵行区申长路1398弄1号楼",
-          "category": "房产小区:商务楼宇",
-          "latitude": 31.204961,
-          "longitude": 121.314235
-        },
-        {
-          "index": 3,
-          "poi_id": "1349033376132667327",
-          "title": "建国璞隐-上海虹桥国家会展中心店",
-          "address": "上海市闵行区申长路1398弄阿里T3座1-4号",
-          "category": "酒店宾馆:酒店宾馆",
-          "latitude": 31.206033,
-          "longitude": 121.31344
-        }
-      ],
-      "action": "match",
-      "poi_id": "4889840033909332019",
-      "poi_title": "阿里中心·上海虹桥-T2号楼",
-      "poi_address": "上海市闵行区阿里中心",
-      "latitude": 31.20532,
-      "longitude": 121.313671,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "虹桥阿里中心T2栋，申长路1398弄，闵行区匹配"
-    },
-    {
-      "group_id": "e802de6f7ecf",
-      "event_uids": [
-        "douban:37889681"
-      ],
-      "search_keywords_tried": [
-        "宝山区",
-        "智慧湾科创园",
-        "宝山区 智慧湾科创园"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "宝山区",
-          "address": "",
-          "category": "",
-          "latitude": 31.405242,
-          "longitude": 121.489431
-        },
-        {
-          "index": 0,
-          "poi_id": "1759459516188582856",
-          "title": "智慧湾创意产业园",
-          "address": "上海市宝山区蕰川路6号",
-          "category": "房产小区:产业园区",
-          "latitude": 31.344247,
-          "longitude": 121.433529
-        },
-        {
-          "index": 1,
-          "poi_id": "9764925150588345022",
-          "title": "交运智慧湾科创园",
-          "address": "上海市宝山区呼青路158号",
-          "category": "房产小区:产业园区",
-          "latitude": 31.344769,
-          "longitude": 121.440642
-        },
-        {
-          "index": 2,
-          "poi_id": "7079130862967447786",
-          "title": "星巴克(上海智慧湾科创园店)",
-          "address": "上海市宝山区蕰川路6号48号楼",
-          "category": "娱乐休闲:咖啡厅",
-          "latitude": 31.344987,
-          "longitude": 121.43326
-        },
-        {
-          "index": 3,
-          "poi_id": "9769984657506562290",
-          "title": "智慧湾科创园-54B",
-          "address": "上海市宝山区顾村镇联谊路350号",
-          "category": "房产小区:产业园区",
-          "latitude": 31.345447,
-          "longitude": 121.433329
-        }
-      ],
-      "action": "match",
-      "poi_id": "1759459516188582856",
-      "poi_title": "智慧湾创意产业园",
-      "poi_address": "上海市宝山区蕰川路6号",
-      "latitude": 31.344247,
-      "longitude": 121.433529,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "智慧湾科创园即智慧湾创意产业园，蕰川路6号，宝山区匹配"
-    },
-    {
-      "group_id": "d7e543086a50",
-      "event_uids": [
-        "douban:37889544"
-      ],
-      "search_keywords_tried": [
-        "黄浦区",
-        "南浦大桥地铁站",
-        "黄浦区 南浦大桥地铁站"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "黄浦区",
-          "address": "",
-          "category": "",
-          "latitude": 31.231661,
-          "longitude": 121.48442
-        },
-        {
-          "index": 0,
-          "poi_id": "10804646659395309041",
-          "title": "南浦大桥[地铁站]",
-          "address": "地铁4号线外圈",
-          "category": "基础设施:交通设施:地铁站",
-          "latitude": 31.208492,
-          "longitude": 121.499701
-        },
-        {
-          "index": 1,
-          "poi_id": "13838548467989265718",
-          "title": "唯庭酒店(上海外滩南浦大桥地铁站店)",
-          "address": "上海市黄浦区中山南路969号谷泰滨江大厦3F-6F",
-          "category": "酒店宾馆:酒店宾馆",
-          "latitude": 31.211941,
-          "longitude": 121.505803
-        },
-        {
-          "index": 2,
-          "poi_id": "2947330652558228215",
-          "title": "南浦大桥-3口",
-          "address": "",
-          "category": "基础设施:交通设施:地铁站出入口",
-          "latitude": 31.208851,
-          "longitude": 121.49986
-        },
-        {
-          "index": 3,
-          "poi_id": "11295982527243307607",
-          "title": "南浦大桥-1口",
-          "address": "",
-          "category": "基础设施:交通设施:地铁站出入口",
-          "latitude": 31.208387,
-          "longitude": 121.500752
-        }
-      ],
-      "action": "match",
-      "poi_id": "10804646659395309041",
-      "poi_title": "南浦大桥[地铁站]",
-      "poi_address": "地铁4号线外圈",
-      "latitude": 31.208492,
-      "longitude": 121.499701,
-      "confidence": "medium",
-      "doubtful": true,
-      "reason": "活动集合点为南浦大桥地铁站，匹配地铁站本体"
-    },
-    {
-      "group_id": "6b26e5ad3735",
-      "event_uids": [
-        "douban:37814494"
-      ],
-      "search_keywords_tried": [
-        "浦东新区",
-        "交通银行前滩31演艺中心",
-        "高青西路777号",
-        "演艺中心",
-        "777号"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "浦东新区",
-          "address": "",
-          "category": "",
-          "latitude": 31.221461,
-          "longitude": 121.544346
-        },
-        {
-          "index": 0,
-          "poi_id": "5705623475713552211",
-          "title": "交通银行前滩31演艺中心",
-          "address": "上海市浦东新区海阳西路666弄",
-          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
-          "latitude": 31.15076,
-          "longitude": 121.484961
-        },
-        {
-          "index": 1,
-          "poi_id": "16133749839580883268",
-          "title": "交通银行前滩31演艺中心1号",
-          "address": "上海市浦东新区高青西路777号交通银行前滩31演艺中心",
-          "category": "房产小区:房产小区附属",
-          "latitude": 31.150688,
-          "longitude": 121.484738
-        },
-        {
-          "index": 2,
-          "poi_id": "11768710161491256948",
-          "title": "交通银行前滩31演艺中心停车场-出入口",
-          "address": "上海市浦东新区高青西路777号交通银行前滩31演艺中心",
-          "category": "室内及附属设施:通行设施类:停车场出入口",
-          "latitude": 31.151512,
-          "longitude": 121.484309
-        },
-        {
-          "index": 3,
-          "poi_id": "17798662331861896080",
-          "title": "Manner Coffee(交通银行前滩31演艺中心店)",
-          "address": "上海市浦东新区三林镇(上海)自由贸易试验区海阳西路666弄15号2层02-09单元",
-          "category": "娱乐休闲:咖啡厅",
-          "latitude": 31.150976,
-          "longitude": 121.484204
-        }
-      ],
-      "action": "match",
-      "poi_id": "5705623475713552211",
-      "poi_title": "交通银行前滩31演艺中心",
-      "poi_address": "上海市浦东新区海阳西路666弄",
-      "latitude": 31.15076,
-      "longitude": 121.484961,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "演艺中心名称一致，高青西路777号属同一综合体，浦东新区匹配"
-    },
-    {
-      "group_id": "7ff6c8f2e2b7",
-      "event_uids": [
-        "douban:37830355"
-      ],
-      "search_keywords_tried": [
-        "杨浦区",
-        "YOUNG剧场",
-        "控江路1155号",
-        "YOUNG",
-        "1155号",
-        "杨浦区 YOUNG剧场 控江路1155号"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "杨浦区",
-          "address": "",
-          "category": "",
-          "latitude": 31.259588,
-          "longitude": 121.525409
-        },
-        {
-          "index": 0,
-          "poi_id": "5527323411719490889",
-          "title": "Theatre YOUNG剧场",
-          "address": "上海市杨浦区控江路1155号(黄兴路地铁站3号口步行110米)",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 31.278051,
-          "longitude": 121.528544
-        },
-        {
-          "index": 1,
-          "poi_id": "7571194421628434321",
-          "title": "yOUNG剧场-西1门",
-          "address": "上海市杨浦区控江路与靖宇南路交叉口正东方向84米左右",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 31.278228,
-          "longitude": 121.528276
-        },
-        {
-          "index": 2,
-          "poi_id": "974570777568901700",
-          "title": "YOUNG剧场停车场",
-          "address": "上海市杨浦区控江路1155号YOUNG剧场",
-          "category": "汽车:停车场",
-          "latitude": 31.27814,
-          "longitude": 121.528221
-        },
-        {
-          "index": 3,
-          "poi_id": "13786644946602637573",
-          "title": "YOUNG剧场-西三门",
-          "address": "上海市杨浦区控江路与靖宇南路交叉口东南方向112米左右",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 31.277908,
-          "longitude": 121.528448
-        }
-      ],
-      "action": "match",
-      "poi_id": "5527323411719490889",
-      "poi_title": "Theatre YOUNG剧场",
-      "poi_address": "上海市杨浦区控江路1155号(黄兴路地铁站3号口步行110米)",
-      "latitude": 31.278051,
-      "longitude": 121.528544,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "YOUNG剧场与控江路1155号一致，杨浦区匹配"
-    },
-    {
-      "group_id": "ea2c5a6a4980",
-      "event_uids": [
-        "douban:37359572"
-      ],
-      "search_keywords_tried": [
-        "黄浦区",
-        "星空间1997号·河岸剧场",
-        "外滩街道西藏南路1号大世界4楼",
-        "河岸剧场",
-        "1997号·河岸剧场外滩街道西藏南路1号大世界4楼"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "黄浦区",
-          "address": "",
-          "category": "",
-          "latitude": 31.231661,
-          "longitude": 121.48442
-        },
-        {
-          "index": 0,
-          "poi_id": "17118939230110341949",
-          "title": "星空间1997号·河岸剧场",
-          "address": "上海市黄浦区外滩街道西藏南路1号大世界4楼",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 31.228283,
-          "longitude": 121.47925
-        },
-        {
-          "index": 0,
-          "poi_id": "5373573384831562778",
-          "title": "星空间10号·MOriginal Box",
-          "address": "上海市黄浦区外滩街道西藏南路1号大世界4楼",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 31.228281,
-          "longitude": 121.479251
-        },
-        {
-          "index": 2,
-          "poi_id": "10705092580299315042",
-          "title": "大世界游乐中心(云南路美食街店)",
-          "address": "上海市黄浦区西藏南路1号",
-          "category": "娱乐休闲:其它娱乐休闲",
-          "latitude": 31.228282,
-          "longitude": 121.479526
-        },
-        {
-          "index": 3,
-          "poi_id": "3067461797017515352",
-          "title": "大世界演艺夜市",
-          "address": "上海市黄浦区外滩街道西藏南路一号大世界三楼E厅",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 31.227815,
-          "longitude": 121.479292
-        }
-      ],
-      "action": "match",
-      "poi_id": "17118939230110341949",
-      "poi_title": "星空间1997号·河岸剧场",
-      "poi_address": "上海市黄浦区外滩街道西藏南路1号大世界4楼",
-      "latitude": 31.228283,
-      "longitude": 121.47925,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "剧场名称与西藏南路1号大世界4楼完全一致，黄浦区匹配"
-    },
-    {
-      "group_id": "9c2111b001dc",
-      "event_uids": [
-        "douban:37486762"
-      ],
-      "search_keywords_tried": [
-        "徐汇区",
-        "衡山路880号",
-        "和集Coffee",
-        "Coffee",
-        "880号和集Coffee",
-        "跨行业社",
-        "徐汇区 衡山路880号 和集Coffee"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "徐汇区",
-          "address": "",
-          "category": "",
-          "latitude": 31.188334,
-          "longitude": 121.436307
-        },
-        {
-          "index": 0,
-          "poi_id": "9490221352734173990",
-          "title": "Hey Barista",
-          "address": "上海市徐汇区徐家汇街道衡山路880号",
-          "category": "购物:服饰鞋包",
-          "latitude": 31.196308,
-          "longitude": 121.439968
-        },
-        {
-          "index": 1,
-          "poi_id": "10697250808694911033",
-          "title": "衡山坊",
-          "address": "上海市徐汇区衡山路880号(徐家汇地铁站13号口步行250米)",
-          "category": "购物:商业步行街",
-          "latitude": 31.196132,
-          "longitude": 121.439646
-        },
-        {
-          "index": 0,
-          "poi_id": "6544574180841856195",
-          "title": "Manner Coffee(中海海上和集店)",
-          "address": "上海市杨浦区江浦路街道飞虹路788号1层108室",
-          "category": "娱乐休闲:咖啡厅",
-          "latitude": 31.268777,
-          "longitude": 121.515339
-        },
-        {
-          "index": 1,
-          "poi_id": "6060503116568083807",
-          "title": "和集咖啡(和胤788广场店)",
-          "address": "上海市普陀区长风新村街道金沙江路788号(近长风公园)和胤788广场F1",
-          "category": "娱乐休闲:咖啡厅",
-          "latitude": 31.232532,
-          "longitude": 121.398887
-        }
-      ],
-      "action": "reject",
-      "poi_id": "",
-      "poi_title": "",
-      "poi_address": "",
-      "latitude": null,
-      "longitude": null,
-      "confidence": "low",
-      "doubtful": false,
-      "reason": "衡山路880号无「和集Coffee」POI，仅有衡山坊等，无法确认活动场所"
-    },
-    {
-      "group_id": "3e3c61d78193",
-      "event_uids": [
-        "douban:37833475"
-      ],
-      "search_keywords_tried": [
-        "黄浦区",
-        "半笑空间",
-        "九江路501号1楼",
-        "501号1楼",
-        "黄浦区 半笑空间 九江路501号1楼"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "黄浦区",
-          "address": "",
-          "category": "",
-          "latitude": 31.231661,
-          "longitude": 121.48442
-        },
-        {
-          "index": 0,
-          "poi_id": "17204319762785386008",
-          "title": "半笑空间(南京东路店)",
-          "address": "上海市黄浦区汉口路422号德必外滩WE一层115室",
-          "category": "旅游景点:其它旅游景点",
-          "latitude": 31.235451,
-          "longitude": 121.482301
-        },
-        {
-          "index": 1,
-          "poi_id": "10064109302946805637",
-          "title": "半笑空间-生日快乐",
-          "address": "上海市黄浦区牛庄路658号中财中心大厦4层东401生日快乐",
-          "category": "娱乐休闲:其它娱乐休闲",
-          "latitude": 31.238151,
-          "longitude": 121.477366
-        },
-        {
-          "index": 2,
-          "poi_id": "17216326224513056104",
-          "title": "半笑空间-外滩店1号剧场",
-          "address": "上海市黄浦区汉口路398号华盛大厦2楼半笑空间",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 31.235289,
-          "longitude": 121.482746
-        },
-        {
-          "index": 0,
-          "poi_id": "166390811699429619",
-          "title": "DoBe Hub@德必外滩we",
-          "address": "上海市黄浦区九江路501号6楼",
-          "category": "公司企业:公司企业",
-          "latitude": 31.235399,
-          "longitude": 121.482126
-        }
-      ],
-      "action": "reject",
-      "poi_id": "",
-      "poi_title": "",
-      "poi_address": "",
-      "latitude": null,
-      "longitude": null,
-      "confidence": "low",
-      "doubtful": false,
-      "reason": "九江路501号无半笑空间POI，半笑空间门店在汉口路其他地址，场所不匹配"
-    },
-    {
-      "group_id": "8df48ae139f4",
-      "event_uids": [
-        "douban:37882603"
-      ],
-      "search_keywords_tried": [
-        "黄浦区",
-        "喜剧部落脱口秀",
-        "南京东路720号F4麦乐门脱口秀剧场",
-        "麦乐门脱口秀剧场",
-        "720号F4麦乐门脱口秀剧场"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "黄浦区",
-          "address": "",
-          "category": "",
-          "latitude": 31.231661,
-          "longitude": 121.48442
-        },
-        {
-          "index": 0,
-          "poi_id": "16300850716391730890",
-          "title": "Galaxy Comedy银河喜剧(静安大悦城店)",
-          "address": "上海市静安区上海静安大悦城北座4楼N404",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 31.244024,
-          "longitude": 121.471885
-        },
-        {
-          "index": 1,
-          "poi_id": "3340287799800033528",
-          "title": "尽情喜剧脱口秀",
-          "address": "上海市黄浦区湖滨路168号B1-W02,W03,W04单元",
-          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
-          "latitude": 31.220637,
-          "longitude": 121.477782
-        },
-        {
-          "index": 2,
-          "poi_id": "16832316829826494674",
-          "title": "肆笑喜剧脱口秀(北外滩来福士店)",
-          "address": "上海市虹口区东大名路999号北外滩来福士B1",
-          "category": "娱乐休闲:其它娱乐休闲",
-          "latitude": 31.252465,
-          "longitude": 121.507887
-        },
-        {
-          "index": 3,
-          "poi_id": "15732825486696464787",
-          "title": "Fancl艺术中心(艺海剧院)",
-          "address": "上海市静安区艺海大厦",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 31.235262,
-          "longitude": 121.452452
-        }
-      ],
-      "action": "match",
-      "poi_id": "18373679168215572239",
-      "poi_title": "麦乐门剧场",
-      "poi_address": "上海市黄浦区南京东路街道南京东路第一食品商店4楼",
-      "latitude": 31.235389,
-      "longitude": 121.476661,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "喜剧部落脱口秀在麦乐门剧场，南京东路720号第一食品商店4楼，黄浦区匹配"
+        "douban:36684770"
+      ]
     }
   ]
 }

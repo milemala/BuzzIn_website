@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>气泡群聊参与统计</title>
+  <link rel="stylesheet" href="/workspace-nav.css">
+  <link rel="stylesheet" href="/buzz-env-ui.css">
+  <style>
+    :root{
+      --bg:#f4f2fb;--panel:#fefeff;--text:#17151f;--muted:#6a6478;--line:#ddd8ea;
+      --green:#2a9d68;--red:#d95040;--ink:#121018;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+    button,input,select{font:inherit}
+    .top{background:rgba(244,242,251,.92);border-bottom:1px solid var(--line)}
+    .top-inner{max-width:1080px;margin:0 auto;padding:18px 20px}
+    h1{margin:0;font-size:22px;font-weight:800}
+    .meta{margin-top:5px;color:var(--muted);font-size:13px;line-height:1.55}
+    .save-state{display:inline-flex;align-items:center;height:24px;border-radius:999px;margin-top:8px;padding:0 9px;background:#ece8f5;color:#5f5770;font-size:12px;font-weight:700}
+    .save-state.ok{background:#e7f5ec;color:#197549}
+    .save-state.warn{background:#fff3c4;color:#806200}
+    .save-state.error{background:#fde8e4;color:#ad382c}
+    .wrap{max-width:1080px;margin:0 auto;padding:18px 20px 44px;display:grid;gap:14px}
+    .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+    .panel h2{margin:0 0 10px;font-size:15px;font-weight:800}
+    .filters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    .field{display:grid;gap:5px}
+    .field>label{font-size:12px;font-weight:700;color:var(--muted)}
+    .field input,.field select{width:100%;border:1px solid var(--line);border-radius:8px;background:#fff;padding:8px 10px}
+    .presets{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .presets button{height:32px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:0 12px;cursor:pointer;font-size:12px;font-weight:700;color:var(--muted)}
+    .presets button.active{background:#111;border-color:#111;color:#fff}
+    .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;align-items:center}
+    .btn{height:36px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:0 12px;cursor:pointer;color:var(--ink)}
+    .btn.primary{border-color:#111;background:#111;color:#fff}
+    .btn:disabled{opacity:.45;cursor:not-allowed}
+    .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    .stat{background:#f8f6fd;border:1px solid var(--line);border-radius:8px;padding:12px}
+    .stat b{display:block;font-size:24px;line-height:1.1}
+    .stat span{display:block;margin-top:4px;color:var(--muted);font-size:12px}
+    .hint{margin:0;color:var(--muted);font-size:12px;line-height:1.55}
+    .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:8px}
+    table{width:100%;border-collapse:collapse;font-size:13px}
+    th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    th{background:#f8f6fd;font-size:12px;color:var(--muted)}
+    tr:last-child td{border-bottom:0}
+    .title-cell{min-width:220px;font-weight:700}
+    .num{font-variant-numeric:tabular-nums;font-weight:800}
+    .num.positive{color:var(--green)}
+    .badge{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:999px;background:#ece8f5;color:#4f4760;font-size:11px;font-weight:800}
+    .badge.hot{background:#e7f5ec;color:#197549}
+    .empty{padding:28px 12px;text-align:center;color:var(--muted);font-size:13px}
+    .detail{margin-top:6px;font-size:12px;color:var(--muted);line-height:1.5}
+    @media (max-width: 860px){
+      .filters{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <nav class="workspace-nav" aria-label="工作区">
+        <a href="/">活动审核</a>
+        <a href="/merchants.html">商户审核</a>
+        <a href="/merchant-bubbles.html">商户气泡</a>
+        <a href="/bubble-group-activity.html" class="active">群聊统计</a>
+      </nav>
+      <div class="buzz-env-bar" id="buzzEnvBar"></div>
+      <h1>气泡群聊参与统计</h1>
+      <div class="meta">查询当前环境中<strong>未过期</strong>且挂了群聊的气泡，按天统计进群人数与发言人数（基于腾讯 IM 群成员与群消息）。</div>
+      <div class="save-state warn" id="saveState">请选择日期后查询</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="panel">
+      <h2>查询条件</h2>
+      <div class="filters">
+        <div class="field">
+          <label for="dateFrom">开始日期</label>
+          <input id="dateFrom" type="date">
+        </div>
+        <div class="field">
+          <label for="dateTo">结束日期</label>
+          <input id="dateTo" type="date">
+        </div>
+        <div class="field">
+          <label for="scopeSelect">气泡范围</label>
+          <select id="scopeSelect">
+            <option value="all">全部未过期气泡</option>
+            <option value="crawled">仅抓取入库活动</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="onlyActiveSelect">结果范围</label>
+          <select id="onlyActiveSelect">
+            <option value="true">仅显示有进群或发言</option>
+            <option value="false">显示全部气泡</option>
+          </select>
+        </div>
+      </div>
+      <div class="presets" id="datePresets">
+        <button type="button" data-preset="today">今天</button>
+        <button type="button" data-preset="yesterday">昨天</button>
+        <button type="button" data-preset="last7">近 7 天</button>
+        <button type="button" data-preset="sinceLaunch">上线以来</button>
+      </div>
+      <div class="actions">
+        <button class="btn primary" id="queryBtn" type="button">开始查询</button>
+        <span class="hint" id="rangeHint"></span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>汇总</h2>
+      <div class="stats" id="stats">
+        <div class="stat"><b>—</b><span>未过期气泡（有群聊）</span></div>
+        <div class="stat"><b>—</b><span>有用户进群</span></div>
+        <div class="stat"><b>—</b><span>有用户发言</span></div>
+        <div class="stat"><b>—</b><span>进群 / 发言人次</span></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>明细</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>活动标题</th>
+              <th>进群</th>
+              <th>发言</th>
+              <th>群成员</th>
+              <th>气泡 ID</th>
+              <th>过期时间</th>
+            </tr>
+          </thead>
+          <tbody id="resultBody">
+            <tr><td class="empty" colspan="6">尚未查询</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="/buzz-env-ui.js"></script>
+  <script>
+    const saveState = document.getElementById("saveState");
+    const statsEl = document.getElementById("stats");
+    const resultBody = document.getElementById("resultBody");
+    const dateFrom = document.getElementById("dateFrom");
+    const dateTo = document.getElementById("dateTo");
+    const scopeSelect = document.getElementById("scopeSelect");
+    const onlyActiveSelect = document.getElementById("onlyActiveSelect");
+    const queryBtn = document.getElementById("queryBtn");
+    const rangeHint = document.getElementById("rangeHint");
+    const datePresets = document.getElementById("datePresets");
+
+    function chinaDateString(date = new Date()) {
+      const offset = date.getTime() + date.getTimezoneOffset() * 60000 + 8 * 3600000;
+      const d = new Date(offset);
+      const y = d.getUTCFullYear();
+      const m = String(d.getUTCMonth() + 1).padStart(2, "0");
+      const day = String(d.getUTCDate()).padStart(2, "0");
+      return `${y}-${m}-${day}`;
+    }
+
+    function shiftDays(base, delta) {
+      const parts = base.split("-").map(Number);
+      const d = new Date(Date.UTC(parts[0], parts[1] - 1, parts[2]));
+      d.setUTCDate(d.getUTCDate() + delta);
+      return chinaDateString(d);
+    }
+
+    function setDateRange(from, to, presetKey) {
+      dateFrom.value = from;
+      dateTo.value = to;
+      datePresets.querySelectorAll("button").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.preset === presetKey);
+      });
+      rangeHint.textContent = `统计区间：${from} 至 ${to}（按北京时间自然日）`;
+    }
+
+    function initDates() {
+      const today = chinaDateString();
+      setDateRange(shiftDays(today, -6), today, "last7");
+    }
+
+    function setState(kind, text) {
+      saveState.className = `save-state ${kind}`;
+      saveState.textContent = text;
+    }
+
+    function renderStats(summary) {
+      statsEl.innerHTML = `
+        <div class="stat"><b>${summary.bubbles_total}</b><span>未过期气泡（有群聊）</span></div>
+        <div class="stat"><b>${summary.bubbles_with_join}</b><span>有用户进群</span></div>
+        <div class="stat"><b>${summary.bubbles_with_speak}</b><span>有用户发言</span></div>
+        <div class="stat"><b>${summary.join_user_count} / ${summary.speak_user_count}</b><span>进群 / 发言人次</span></div>
+      `;
+    }
+
+    function renderRows(items) {
+      if (!items.length) {
+        resultBody.innerHTML = `<tr><td class="empty" colspan="6">该时间段内没有进群或发言记录</td></tr>`;
+        return;
+      }
+      resultBody.innerHTML = items.map((item) => {
+        const joinClass = item.join_count > 0 ? "num positive" : "num";
+        const speakClass = item.speak_count > 0 ? "num positive" : "num";
+        const badge = item.speak_count > 0
+          ? '<span class="badge hot">有发言</span>'
+          : (item.join_count > 0 ? '<span class="badge">仅进群</span>' : "");
+        const joinDetail = item.joiners?.length
+          ? `<div class="detail">进群：${item.joiners.map((u) => `${u.user_id}（${u.join_date}）`).join("、")}</div>`
+          : "";
+        const speakDetail = item.speakers?.length
+          ? `<div class="detail">发言：${item.speakers.map((u) => `${u.user_id}（${u.message_count}条）`).join("、")}</div>`
+          : "";
+        return `
+          <tr>
+            <td class="title-cell">
+              ${escapeHtml(item.now_title || item.group_name || "未命名")}
+              ${badge}
+              ${joinDetail}
+              ${speakDetail}
+            </td>
+            <td><span class="${joinClass}">${item.join_count}</span></td>
+            <td><span class="${speakClass}">${item.speak_count}</span></td>
+            <td>${item.member_num}</td>
+            <td>${escapeHtml(item.now_id || "")}</td>
+            <td>${escapeHtml(item.expired_at || "")}</td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    async function runQuery() {
+      const from = dateFrom.value;
+      const to = dateTo.value || from;
+      if (!from) {
+        setState("error", "请选择开始日期");
+        return;
+      }
+      queryBtn.disabled = true;
+      setState("warn", "正在查询，未过期气泡较多时可能需要十几秒…");
+      try {
+        const params = new URLSearchParams({
+          buzz_env: BuzzEnvUi.getBuzzEnv(),
+          date_from: from,
+          date_to: to,
+          scope: scopeSelect.value,
+          only_active: onlyActiveSelect.value,
+        });
+        const response = await fetch(`/api/bubble-group-activity?${params.toString()}`, { cache: "no-store" });
+        const data = await response.json();
+        if (!response.ok || !data.ok) {
+          throw new Error(data.error || `HTTP ${response.status}`);
+        }
+        renderStats(data.summary || {});
+        renderRows(data.items || []);
+        const envLabel = BuzzEnvUi.envLabel();
+        setState("ok", `${envLabel} · ${data.range.date_from} 至 ${data.range.date_to} · 扫描 ${data.summary?.bubbles_scanned || 0} 个群聊`);
+      } catch (error) {
+        setState("error", error.message || "查询失败");
+      } finally {
+        queryBtn.disabled = false;
+      }
+    }
+
+    datePresets.addEventListener("click", (event) => {
+      const btn = event.target.closest("button[data-preset]");
+      if (!btn) return;
+      const today = chinaDateString();
+      const preset = btn.dataset.preset;
+      if (preset === "today") setDateRange(today, today, preset);
+      if (preset === "yesterday") {
+        const y = shiftDays(today, -1);
+        setDateRange(y, y, preset);
+      }
+      if (preset === "last7") setDateRange(shiftDays(today, -6), today, preset);
+      if (preset === "sinceLaunch") setDateRange("2026-06-22", today, preset);
+    });
+
+    dateFrom.addEventListener("change", () => {
+      datePresets.querySelectorAll("button").forEach((btn) => btn.classList.remove("active"));
+      rangeHint.textContent = `统计区间：${dateFrom.value} 至 ${dateTo.value || dateFrom.value}`;
+    });
+    dateTo.addEventListener("change", () => {
+      datePresets.querySelectorAll("button").forEach((btn) => btn.classList.remove("active"));
+      rangeHint.textContent = `统计区间：${dateFrom.value} 至 ${dateTo.value || dateFrom.value}`;
+    });
+
+    queryBtn.addEventListener("click", runQuery);
+    window.onBuzzEnvChanged = () => {
+      setState("warn", `环境已切换为 ${BuzzEnvUi.envLabel()}，请重新查询`);
+    };
+
+    initDates();
+    BuzzEnvUi.initBuzzEnvUi("#buzzEnvBar");
+  </script>
+</body>
+</html>

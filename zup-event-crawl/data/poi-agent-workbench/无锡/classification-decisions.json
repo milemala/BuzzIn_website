@@ -1,25 +1,26 @@
 {
   "city": "无锡",
-  "decided_at": "2026-06-20T18:30:10.628Z",
-  "agent": "cursor-composer",
+  "source": "douban",
+  "decided_at": "2026-06-29T03:38:24.128Z",
+  "agent": "cursor-agent",
   "decisions": [
     {
-      "event_uid": "douban:37770391",
+      "event_uid": "douban:37534041",
+      "suggested": true,
+      "category": "喜剧脱口秀",
+      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37770374",
       "suggested": true,
       "category": "音乐现场",
       "reason": "音乐会/演唱会/Live 等音乐演出"
     },
     {
-      "event_uid": "douban:37861930",
+      "event_uid": "douban:37851298",
       "suggested": true,
-      "category": "喜剧脱口秀",
-      "reason": "脱口秀/相声/喜剧，适合结伴观演"
-    },
-    {
-      "event_uid": "douban:37818534",
-      "suggested": true,
-      "category": "喜剧脱口秀",
-      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+      "category": "戏剧表演",
+      "reason": "话剧/音乐剧/舞剧等舞台演出"
     }
   ]
 }

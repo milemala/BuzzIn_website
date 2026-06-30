@@ -1,25 +1,26 @@
 {
   "city": "温州",
-  "decided_at": "2026-06-20T18:30:10.631Z",
-  "agent": "cursor-composer",
+  "source": "douban",
+  "decided_at": "2026-06-29T03:38:24.654Z",
+  "agent": "cursor-agent",
   "decisions": [
     {
-      "event_uid": "douban:37891544",
+      "event_uid": "douban:37656895",
       "suggested": true,
-      "category": "交友聚会",
-      "reason": "交友/桌游/派对等社交属性明显"
+      "category": "音乐现场",
+      "reason": "音乐会/演唱会/Live 等音乐演出"
     },
     {
-      "event_uid": "douban:37817639",
+      "event_uid": "douban:37800843",
       "suggested": true,
-      "category": "戏剧表演",
-      "reason": "话剧/音乐剧/舞剧等舞台演出"
+      "category": "音乐现场",
+      "reason": "音乐会/演唱会/Live 等音乐演出"
     },
     {
-      "event_uid": "douban:37854263",
+      "event_uid": "douban:37809615",
       "suggested": true,
-      "category": "戏剧表演",
-      "reason": "话剧/音乐剧/舞剧等舞台演出"
+      "category": "音乐现场",
+      "reason": "音乐会/演唱会/Live 等音乐演出"
     }
   ]
 }

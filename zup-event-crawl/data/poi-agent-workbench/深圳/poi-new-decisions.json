@@ -1,0 +1,83 @@
+{
+  "city": "深圳",
+  "source": "douban",
+  "decided_at": "2026-06-29T03:41:40.227Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "4b223026781e",
+      "action": "match",
+      "poi_id": "2391290718381281313",
+      "poi_title": "龙岗文化中心大剧院",
+      "poi_address": "广东省深圳市龙岗区龙翔大道8308号文化馆2层",
+      "latitude": 22.720561,
+      "longitude": 114.250434,
+      "doubtful": false,
+      "reason": "场馆名称与龙翔大道8308号地址完全一致",
+      "search_keywords_tried": [
+        "龙岗文化中心大剧院"
+      ],
+      "event_uids": [
+        "douban:37813777"
+      ]
+    },
+    {
+      "group_id": "258ec36c43de",
+      "action": "match",
+      "poi_id": "10583826479909675115",
+      "poi_title": "深圳市体育中心体育馆主馆",
+      "poi_address": "广东省深圳市福田区园岭街道体育中心笋岗西路2006号",
+      "latitude": 22.559538,
+      "longitude": 114.092028,
+      "doubtful": false,
+      "reason": "豆瓣写体育馆主馆，候选名称与笋岗西路2006号完全一致",
+      "search_keywords_tried": [
+        "深圳市体育中心体育馆"
+      ],
+      "event_uids": [
+        "douban:37831795"
+      ]
+    },
+    {
+      "group_id": "ee4a688682ca",
+      "action": "match",
+      "poi_id": "17604903991079200771",
+      "poi_title": "深圳保利剧院",
+      "poi_address": "广东省深圳市南山区后海滨路3013号",
+      "latitude": 22.516366,
+      "longitude": 113.938797,
+      "doubtful": false,
+      "reason": "场馆名称与后海滨路3013号地址完全一致",
+      "search_keywords_tried": [
+        "深圳保利剧院"
+      ],
+      "event_uids": [
+        "douban:37758880"
+      ]
+    },
+    {
+      "group_id": "8ab18e8dad17",
+      "action": "reject",
+      "doubtful": false,
+      "reason": "豆瓣写明华国际会议中心正门斜对面，为夜登南山户外徒步集合点，非会议中心本体，无法对应唯一活动场地POI",
+      "search_keywords_tried": [
+        "明华国际会议中心"
+      ],
+      "event_uids": [
+        "douban:37797324"
+      ]
+    },
+    {
+      "group_id": "53d1a73dd524",
+      "action": "reject",
+      "doubtful": false,
+      "reason": "岗厦北地铁站仅为桌游集合交通点，无具体场馆门牌，候选均为地铁口/周边商铺",
+      "search_keywords_tried": [
+        "岗厦北地铁站"
+      ],
+      "event_uids": [
+        "douban:37851990"
+      ]
+    }
+  ]
+}

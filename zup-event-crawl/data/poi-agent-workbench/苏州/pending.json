@@ -1,24 +1,119 @@
 {
   "city": "苏州",
   "source": "douban",
-  "exported_at": "2026-06-23T01:31:56.253Z",
+  "exported_at": "2026-06-29T03:23:47.683Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 6,
   "doubtful_only": false,
-  "total_events": 1,
-  "group_count": 1,
-  "cache_hit_groups": 0,
+  "total_events": 6,
+  "group_count": 4,
+  "cache_hit_groups": 4,
   "groups": [
     {
-      "group_id": "6b7d75e39ba3",
-      "location": "苏州 吴中区 苏州文化艺术中心 观枫街1号",
-      "sample_title": "中央芭蕾舞团经典芭蕾舞剧《红色娘子军》",
+      "group_id": "ef06b234c083",
+      "location": "苏州 姑苏区 苏州开明大戏院 观前街北局11号",
+      "sample_title": "久石让·宫崎骏动漫作品主题视听音乐会《千与千寻》",
       "event_uids": [
-        "douban:37764012"
+        "douban:37857135"
       ],
-      "event_count": 1
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "4690291939764768068",
+        "poi_title": "苏州开明大戏院(观前街店)",
+        "poi_address": "",
+        "latitude": 31.309343,
+        "longitude": 120.625342,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：苏州 姑苏区 苏州开明大戏院 观前街北局11号 → 苏州开明大戏院(观前街店)（来源 event:douban:37310679）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "ef06b234c08369d546a238d50786db1e45709259"
+      }
+    },
+    {
+      "group_id": "22328429da75",
+      "location": "苏州 虎丘区 众戏剧文化艺术空间 长江路狮山文化广场B1众戏剧文化艺术空间",
+      "sample_title": "狮山·放肆喜剧《喜剧盲盒秀》丨即兴喜剧丨脱口秀开放麦丨爆笑互动丨轻松快乐",
+      "event_uids": [
+        "douban:37582757",
+        "douban:37725675"
+      ],
+      "event_count": 2,
+      "cached_poi": {
+        "poi_id": "116162868958338799",
+        "poi_title": "众戏剧文化艺术空间",
+        "poi_address": "",
+        "latitude": 31.293474,
+        "longitude": 120.548244,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：苏州 虎丘区 众戏剧文化艺术空间 长江路狮山文化广场B1众戏剧文化艺术空间 → 众戏剧文化艺术空间（来源 event:douban:37770076）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "22328429da754d653376fc30b6c4195610c673f8"
+      }
+    },
+    {
+      "group_id": "23718b028bd0",
+      "location": "苏州 吴江区 苏州湾大剧院 东太湖大道12000号",
+      "sample_title": "新·国风舞剧《翎衣》",
+      "event_uids": [
+        "douban:37764970",
+        "douban:37695779"
+      ],
+      "event_count": 2,
+      "cached_poi": {
+        "poi_id": "11514486545186817455",
+        "poi_title": "苏州湾大剧院",
+        "poi_address": "",
+        "latitude": 31.132232,
+        "longitude": 120.585871,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：苏州 吴江区 苏州湾大剧院 东太湖大道12000号 → 苏州湾大剧院（来源 event:douban:37659777）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "23718b028bd03fb9d6b782019b5665bcd679e39a"
+      }
+    },
+    {
+      "group_id": "12c99b2b1b58",
+      "location": "苏州 姑苏区 长歌演艺空间 平江街道皮市街9-69号(开元里2楼)",
+      "sample_title": "【观前街】沉浸式互动剧《游园惊梦》| 悬疑推理+民国爱情+爆笑反转 @开心喜聚精品剧",
+      "event_uids": [
+        "douban:37819948"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2609393046642382812",
+        "poi_title": "长歌互动演艺空间·音乐酒馆",
+        "poi_address": "",
+        "latitude": 31.312516,
+        "longitude": 120.625079,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：苏州 姑苏区 长歌演艺空间 平江街道皮市街9-69号(开元里2楼) → 长歌互动演艺空间·音乐酒馆（来源 event:douban:37763412）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "12c99b2b1b5807ed825dee200e0f997ea78e5b4a"
+      }
     }
   ]
 }

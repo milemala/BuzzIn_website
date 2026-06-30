@@ -32,7 +32,11 @@ const {
   loadTitleLocationDedupIndex,
   collapseEventsByTitleLocation,
   createTitleLocationDedupGate,
+  createTitlePoiDedupGate,
+  findTitlePoiUnexpiredConflict,
   isEventBetterByEnd,
+  loadTitlePoiUnexpiredIndex,
+  makePoiAddressCacheResolver,
 } = require("./event-content-dedup");
 const { getComposedImagePath } = require("./composed-image");
 const {
@@ -347,6 +351,24 @@ function applyEventPoiSelection(db, eventUid, poi, options = {}) {
   const event = getEventByUid(db, eventUid);
   if (!event) {
     throw new Error(`活动不存在: ${eventUid}`);
+  }
+
+  const poiId = String(poi?.poi_id || "").trim();
+  const conflict = poiId
+    ? findTitlePoiUnexpiredConflict(db, eventUid, event.city, event.title, poiId)
+    : null;
+  if (conflict) {
+    const reason = `同名同POI已有未过期活动（${conflict.event_uid}）`;
+    db.prepare(`
+      UPDATE events SET review_reason = ?, updated_at = ? WHERE event_uid = ?
+    `).run(reason, now, eventUid);
+    upsertReviewDecision(db, eventUid, "rejected");
+    return {
+      skipped: true,
+      reason: "title_poi_duplicate",
+      incumbent_uid: conflict.event_uid,
+      event: getEventByUid(db, eventUid),
+    };
   }
 
   const matchSource = String(options.matchSource || "").trim();
@@ -927,12 +949,18 @@ function importPayload(db, payload, options = {}) {
     const titleLocationGate = shouldDedupContent
       ? createTitleLocationDedupGate(loadTitleLocationDedupIndex(db))
       : null;
+    const titlePoiGate = shouldDedupContent
+      ? createTitlePoiDedupGate(loadTitlePoiUnexpiredIndex(db), {
+        resolvePoiId: makePoiAddressCacheResolver(db),
+      })
+      : null;
     const batchContentKeys = new Set();
     const deleteEvent = db.prepare("DELETE FROM events WHERE event_uid = ?");
     const eventExistsStmt = db.prepare("SELECT 1 AS ok FROM events WHERE event_uid = ? LIMIT 1");
     const newImportUidsByCitySource = new Map();
     let skippedDuplicate = 0;
     let skippedTitleLocation = 0;
+    let skippedTitlePoi = 0;
     let replacedTitleLocation = 0;
     const rootDir = options.rootDir || path.join(__dirname, "..");
 
@@ -945,6 +973,7 @@ function importPayload(db, payload, options = {}) {
         : events;
 
       for (const event of cityEvents) {
+        let titlePoiDecision = null;
         if (shouldDedupContent) {
           const dedupKey = eventContentDedupKey({ ...event, city: event.city || city });
           if (existingContentKeys.has(dedupKey) || batchContentKeys.has(dedupKey)) {
@@ -959,9 +988,18 @@ function importPayload(db, payload, options = {}) {
           }
           if (tlDecision.deleteUid) {
             deleteEvent.run(tlDecision.deleteUid);
+            titlePoiGate?.releaseEvent(tlDecision.deleteUid);
             const coverPath = getComposedImagePath(tlDecision.deleteUid, rootDir);
             if (fs.existsSync(coverPath)) fs.unlinkSync(coverPath);
             replacedTitleLocation += 1;
+          }
+
+          if (titlePoiGate) {
+            titlePoiDecision = titlePoiGate.decide({ ...event, city: event.city || city }, city);
+            if (titlePoiDecision.action === "skip") {
+              skippedTitlePoi += 1;
+              continue;
+            }
           }
 
           batchContentKeys.add(dedupKey);
@@ -1010,6 +1048,10 @@ function importPayload(db, payload, options = {}) {
           new Date().toISOString()
         );
 
+        if (titlePoiGate && titlePoiDecision?.poiId) {
+          titlePoiGate.recordImported({ ...event, event_uid: eventUid }, city, titlePoiDecision.poiId);
+        }
+
         if (isNewImport) {
           const mapKey = `${city}\0${eventSource}`;
           if (!newImportUidsByCitySource.has(mapKey)) newImportUidsByCitySource.set(mapKey, []);
@@ -1039,6 +1081,9 @@ function importPayload(db, payload, options = {}) {
     }
     if (skippedTitleLocation > 0) {
       setMetaValue(db, "last_import_skipped_title_location", String(skippedTitleLocation));
+    }
+    if (skippedTitlePoi > 0) {
+      setMetaValue(db, "last_import_skipped_title_poi", String(skippedTitlePoi));
     }
     if (replacedTitleLocation > 0) {
       setMetaValue(db, "last_import_replaced_title_location", String(replacedTitleLocation));

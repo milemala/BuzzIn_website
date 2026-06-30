@@ -1,0 +1,38 @@
+{
+  "city": "哈尔滨",
+  "source": "douban",
+  "decided_at": "2026-06-29T03:41:40.227Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "d72cb6c0c23e",
+      "action": "reject",
+      "doubtful": false,
+      "reason": "中央大街为步行街地标过泛，世界杯拍摄活动无具体场馆门牌，无法唯一确定POI",
+      "search_keywords_tried": [
+        "中央大街"
+      ],
+      "event_uids": [
+        "douban:37891767"
+      ]
+    },
+    {
+      "group_id": "59623cd536b3",
+      "action": "match",
+      "poi_id": "15298562188923540811",
+      "poi_title": "哈尔滨工程大学启航剧场",
+      "poi_address": "黑龙江省哈尔滨市南岗区燎原街道南通大街145号哈尔滨工程大学文庙街与世昌路交叉口",
+      "latitude": 45.773897,
+      "longitude": 126.685298,
+      "doubtful": false,
+      "reason": "启航剧场名称与南通大街145号地址完全一致",
+      "search_keywords_tried": [
+        "哈尔滨工程大学启航剧场"
+      ],
+      "event_uids": [
+        "douban:37744391",
+        "douban:37724362"
+      ]
+    }
+  ]
+}

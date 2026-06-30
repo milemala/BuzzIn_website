@@ -1,31 +1,38 @@
 {
   "city": "宁波",
-  "decided_at": "2026-06-20T18:30:10.627Z",
-  "agent": "cursor-composer",
+  "source": "douban",
+  "decided_at": "2026-06-29T03:38:23.779Z",
+  "agent": "cursor-agent",
   "decisions": [
     {
-      "event_uid": "douban:37847165",
+      "event_uid": "douban:37764669",
+      "suggested": true,
+      "category": "喜剧脱口秀",
+      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37811403",
       "suggested": true,
       "category": "戏剧表演",
       "reason": "话剧/音乐剧/舞剧等舞台演出"
     },
     {
-      "event_uid": "douban:37574954",
+      "event_uid": "douban:37814244",
       "suggested": true,
       "category": "戏剧表演",
       "reason": "话剧/音乐剧/舞剧等舞台演出"
     },
     {
-      "event_uid": "douban:37806891",
+      "event_uid": "douban:37826791",
       "suggested": true,
       "category": "音乐现场",
       "reason": "音乐会/演唱会/Live 等音乐演出"
     },
     {
-      "event_uid": "douban:37805315",
+      "event_uid": "douban:37826808",
       "suggested": true,
-      "category": "喜剧脱口秀",
-      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+      "category": "音乐现场",
+      "reason": "音乐会/演唱会/Live 等音乐演出"
     }
   ]
 }

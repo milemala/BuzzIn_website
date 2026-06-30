@@ -75,6 +75,7 @@ npm start
 - http://127.0.0.1:8787/ （活动审核）
 - http://127.0.0.1:8787/merchants.html （商户审核）
 - http://127.0.0.1:8787/merchant-bubbles.html （商户气泡批量发布）
+- http://127.0.0.1:8787/bubble-group-activity.html （气泡群聊参与统计）
 
 **改 `lib/` 或 `scripts/server.js` 后请重启 `npm start`**，否则 API 仍跑旧代码。
 
@@ -225,6 +226,7 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 | GET | `/api/merchant-bubbles/state` | 商户气泡轮转状态 |
 | POST | `/api/merchant-bubbles/groups-batch` | 批量建群或同步群名 |
 | POST | `/api/merchant-bubbles/publish-batch` | 发布当前轮次 1/3 商户气泡 |
+| GET/POST | `/api/bubble-group-activity` | 未过期气泡群聊进群/发言统计（`date_from` / `date_to`，按天） |
 
 ### 活动审核台入库
 

@@ -1,24 +1,76 @@
 {
   "city": "福州",
   "source": "douban",
-  "updated_at": "2026-06-21T02:40:00.000Z",
-  "agent": "cursor-composer",
+  "decided_at": "2026-06-29T03:25:27.624Z",
+  "agent": "cache-hit-auto",
   "decisions": [
     {
-      "group_id": "14280814abbf",
-      "event_uids": ["douban:37763703"],
+      "group_id": "045b517da03d",
       "action": "match",
-      "search_keywords_tried": ["鼓楼区", "福建会堂", "华林路11号西湖宾馆福建会堂", "号西湖宾馆", "11号西湖宾馆福建会堂", "鼓楼区 福建会堂 华林路11号西湖宾馆福建会堂"],
-      "poi_id": "14133530576794798958",
-      "poi_title": "福建会堂",
-      "poi_address": "福建省福州市鼓楼区北后弄与北后街交叉口西南方向89米左右",
-      "latitude": 26.094631,
-      "longitude": 119.292455,
-      "confidence": "high",
+      "poi_id": "3913059210110117538",
+      "poi_title": "肆笑喜剧-脱口秀剧场",
+      "poi_address": "",
+      "latitude": 26.084275,
+      "longitude": 119.300432,
       "doubtful": false,
-      "reason": "福建会堂与POI一致，鼓楼区华林路11号西湖宾馆内",
-      "candidates": [
-        {"index": 0, "poi_id": "14133530576794798958", "title": "福建会堂", "address": "福建省福州市鼓楼区北后弄与北后街交叉口西南方向89米左右", "category": "文化场馆:会展中心", "latitude": 26.094631, "longitude": 119.292455}
+      "reason": "地址映射库命中：福州 鼓楼区 肆笑喜剧脱口秀-东街口大洋店 东街街道八一七北路133号国际商厦五楼 → 肆笑喜剧-脱口秀剧场（来源 event:douban:36940886）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37722969"
+      ]
+    },
+    {
+      "group_id": "a53fa3fed340",
+      "action": "match",
+      "poi_id": "2312146045768955736",
+      "poi_title": "福立社喜剧-福州脱口秀",
+      "poi_address": "",
+      "latitude": 26.064798,
+      "longitude": 119.290562,
+      "doubtful": false,
+      "reason": "地址映射库命中：福州 台江区 福立社喜剧-福州脱口秀 工业路万象九宜城5楼425号 → 福立社喜剧-福州脱口秀（来源 event:douban:36059959）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:36751279",
+        "douban:37714555"
+      ]
+    },
+    {
+      "group_id": "91f99d920107",
+      "action": "match",
+      "poi_id": "2192942275681814310",
+      "poi_title": "MAKER LIVE(唯美客i33店)",
+      "poi_address": "",
+      "latitude": 26.144737,
+      "longitude": 119.332266,
+      "doubtful": false,
+      "reason": "地址映射库命中：福州 晋安区 唯美客MAKERLIVE.三盛i33店 三盛i33城市广场2号楼 → MAKER LIVE(唯美客i33店)（来源 event:douban:37721316）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37861575"
+      ]
+    },
+    {
+      "group_id": "fd52e2e6ed10",
+      "action": "match",
+      "poi_id": "8662280704169965551",
+      "poi_title": "福州大学城文化艺术中心",
+      "poi_address": "",
+      "latitude": 26.043108,
+      "longitude": 119.196125,
+      "doubtful": false,
+      "reason": "地址映射库命中：福州 闽侯县 福州大学城文化艺术中心 明德路与广兴路交叉路口往西南约200米（大学城体育中心南侧约100米） → 福州大学城文化艺术中心（来源 event:douban:37849476）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37833669"
       ]
     }
   ]

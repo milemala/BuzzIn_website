@@ -1,219 +1,77 @@
 {
   "city": "西安",
   "source": "douban",
-  "updated_at": "2026-06-20T18:41:07.868Z",
-  "agent": "cursor-composer",
+  "decided_at": "2026-06-29T03:43:33.062Z",
+  "agent": "cursor-agent",
   "decisions": [
     {
       "group_id": "9514e32143bb",
-      "event_uids": [
-        "douban:37773001"
-      ],
       "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
       "poi_id": "10834092220146621823",
       "poi_title": "西安音乐厅",
       "poi_address": "",
       "latitude": 34.210006,
       "longitude": 108.964957,
-      "confidence": "high",
       "doubtful": false,
       "reason": "地址映射库命中：西安 雁塔区 西安音乐厅 雁南一路与雁塔南路十字向南200米路东 → 西安音乐厅（来源 event:douban:37781361）",
-      "candidates": []
-    },
-    {
-      "group_id": "044ba8870e6e",
-      "event_uids": [
-        "douban:37779896"
-      ],
-      "action": "match",
       "search_keywords_tried": [
         "poi-address-cache"
       ],
-      "poi_id": "8139344882893239294",
-      "poi_title": "陕西大剧院",
-      "poi_address": "",
-      "latitude": 34.209825,
-      "longitude": 108.963086,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：西安 雁塔区 陕西大剧院 雁塔南路 → 陕西大剧院（来源 event:douban:37779903）",
-      "candidates": []
-    },
-    {
-      "group_id": "361ecdccdf93",
       "event_uids": [
-        "douban:37887219"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "西安 陕西大剧院"
-      ],
-      "poi_id": "8139344882893239294",
-      "poi_title": "陕西大剧院",
-      "poi_address": "陕西省西安市雁塔区雁塔南路与雁南一路交汇处西南角",
-      "latitude": 34.209825,
-      "longitude": 108.963086,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 256）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "8139344882893239294",
-          "title": "陕西大剧院",
-          "address": "陕西省西安市雁塔区雁塔南路与雁南一路交汇处西南角",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 34.209825,
-          "longitude": 108.963086
-        },
-        {
-          "index": 1,
-          "poi_id": "9297694381717233844",
-          "title": "西安非遗大剧院",
-          "address": "陕西省西安市雁塔区大雁塔北广场音乐喷泉东侧3楼",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 34.220646,
-          "longitude": 108.965578
-        },
-        {
-          "index": 2,
-          "poi_id": "13460831657809271998",
-          "title": "西安索菲特人民大厦大剧院",
-          "address": "陕西省西安市新城区东新街319号(近新城广场)",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 34.265696,
-          "longitude": 108.957948
-        },
-        {
-          "index": 3,
-          "poi_id": "11368481084201109136",
-          "title": "西安广电大剧院",
-          "address": "陕西省西安市雁塔区芙蓉西路91号(大唐芙蓉园西门向南600米)",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 34.205803,
-          "longitude": 108.976021
-        },
-        {
-          "index": 4,
-          "poi_id": "9570691181675233941",
-          "title": "陕西大剧院-剧院碰头点",
-          "address": "陕西省西安市雁塔区丹青巷",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 34.210316,
-          "longitude": 108.963299
-        }
+        "douban:37764201",
+        "douban:37797632"
       ]
-    },
-    {
-      "group_id": "146320bcf759",
-      "event_uids": [
-        "douban:37757415"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "开元大剧院",
-        "凤城九路和开元路十字西南角"
-      ],
-      "poi_id": "16775142088628351623",
-      "poi_title": "开元大剧院",
-      "poi_address": "陕西省西安市未央区凤城九路与开元路十字西南角凤城九路34号",
-      "latitude": 34.346472,
-      "longitude": 108.952531,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "开元大剧院与未央区凤城九路十字西南角一致",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "16775142088628351623",
-          "title": "开元大剧院",
-          "address": "陕西省西安市未央区凤城九路与开元路十字西南角凤城九路34号",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 34.346472,
-          "longitude": 108.952531
-        }
-      ]
-    },
-    {
-      "group_id": "10145d34ef32",
-      "event_uids": [
-        "douban:37853545"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "7854985022287789095",
-      "poi_title": "广电大剧院",
-      "poi_address": "",
-      "latitude": 34.21,
-      "longitude": 108.95,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：西安 雁塔区 陕西广电大剧院 长安南路336号，陕西广播电视台北80米 → 广电大剧院（来源 event:douban:37681248）",
-      "candidates": []
     },
     {
       "group_id": "1736f8b5a7c1",
-      "event_uids": [
-        "douban:37756752"
-      ],
       "action": "match",
-      "search_keywords_tried": [
-        "西安人民剧院",
-        "北大街41号"
-      ],
       "poi_id": "2272725803867152528",
       "poi_title": "西安人民剧院",
-      "poi_address": "陕西省西安市新城区西一路街道北大街41号(近西华门)",
+      "poi_address": "",
       "latitude": 34.262959,
       "longitude": 108.947886,
-      "confidence": "high",
       "doubtful": false,
-      "reason": "剧院名称与新城区北大街41号一致",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "2272725803867152528",
-          "title": "西安人民剧院",
-          "address": "陕西省西安市新城区西一路街道北大街41号(近西华门)",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 34.262959,
-          "longitude": 108.947886
-        }
+      "reason": "地址映射库命中：西安 新城区 西安人民剧院 北大街41号(近西华门) → 西安人民剧院（来源 event:douban:37756752）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37790477"
       ]
     },
     {
-      "group_id": "1ba87d958264",
-      "event_uids": [
-        "douban:37856088"
-      ],
+      "group_id": "1a93883572b5",
       "action": "match",
-      "search_keywords_tried": [
-        "西安浐灞保利大剧院",
-        "金茂一路2168号"
-      ],
-      "poi_id": "5717632390196954225",
-      "poi_title": "西安浐灞保利大剧院",
-      "poi_address": "陕西省西安市灞桥区浐灞生态区金茂一路2168号",
-      "latitude": 34.315838,
-      "longitude": 109.043004,
-      "confidence": "high",
+      "poi_id": "143157847680471563",
+      "poi_title": "荷苗艺术空间",
+      "poi_address": "",
+      "latitude": 34.320584,
+      "longitude": 108.970156,
       "doubtful": false,
-      "reason": "大剧院与灞桥区金茂一路2168号一致",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "5717632390196954225",
-          "title": "西安浐灞保利大剧院",
-          "address": "陕西省西安市灞桥区浐灞生态区金茂一路2168号",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 34.315838,
-          "longitude": 109.043004
-        }
+      "reason": "地址映射库命中：西安 未央区 荷苗艺术空间 凤城三路与太华北路交汇处四海唐人街 → 荷苗艺术空间（来源 event:douban:37418830）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37835875",
+        "douban:37716128"
+      ]
+    },
+    {
+      "group_id": "479b9eb881de",
+      "action": "match",
+      "poi_id": "10834092220146621823",
+      "poi_title": "西安音乐厅",
+      "poi_address": "陕西省西安市雁塔区长延堡街道雁南一路与雁塔南路十字向南200米路东",
+      "latitude": 34.210006,
+      "longitude": 108.964957,
+      "doubtful": false,
+      "reason": "西安音乐厅与雁塔区豆瓣地址一致",
+      "search_keywords_tried": [
+        "西安音乐厅"
+      ],
+      "event_uids": [
+        "douban:37842759"
       ]
     }
   ]

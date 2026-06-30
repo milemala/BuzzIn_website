@@ -1,24 +1,58 @@
 {
   "city": "无锡",
   "source": "douban",
-  "updated_at": "2026-06-21T02:40:00.000Z",
-  "agent": "cursor-composer",
+  "decided_at": "2026-06-29T03:43:06.849Z",
+  "agent": "cursor-agent",
   "decisions": [
     {
-      "group_id": "7468dd712189",
-      "event_uids": ["douban:37861930"],
+      "group_id": "c5997e04a41a",
       "action": "match",
-      "search_keywords_tried": ["江阴", "江阴大剧院", "澄江中路128号", "128号", "江阴 江阴大剧院 澄江中路128号"],
-      "poi_id": "15642778966023224337",
-      "poi_title": "江阴大剧院",
-      "poi_address": "江苏省无锡市江阴市江阴高新技术产业开发区澄江中路128号",
-      "latitude": 31.92238,
-      "longitude": 120.29863,
-      "confidence": "high",
+      "poi_id": "2761693111356093735",
+      "poi_title": "无锡交响音乐厅",
+      "poi_address": "",
+      "latitude": 31.481164,
+      "longitude": 120.3666,
       "doubtful": false,
-      "reason": "江阴大剧院与POI一致，江阴市澄江中路128号",
-      "candidates": [
-        {"index": 0, "poi_id": "15642778966023224337", "title": "江阴大剧院", "address": "江苏省无锡市江阴市江阴高新技术产业开发区澄江中路128号", "category": "娱乐休闲:剧场音乐厅:剧场", "latitude": 31.92238, "longitude": 120.29863}
+      "reason": "地址映射库命中：无锡 新吴区 无锡交响音乐厅 净慧西道与清晏路交叉口 → 无锡交响音乐厅（来源 event:douban:37770391）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37770374"
+      ]
+    },
+    {
+      "group_id": "b44229cae89b",
+      "action": "match",
+      "poi_id": "9010067057749167094",
+      "poi_title": "大发喜剧脱口秀",
+      "poi_address": "",
+      "latitude": 31.558235,
+      "longitude": 120.315851,
+      "doubtful": false,
+      "reason": "地址映射库命中：无锡 梁溪区 大發喜剧脱口秀 南下塘169-1号 → 大发喜剧脱口秀（来源 event:douban:37674603）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37534041"
+      ]
+    },
+    {
+      "group_id": "bb82141fbe70",
+      "action": "match",
+      "poi_id": "9071228715760249436",
+      "poi_title": "无锡市人民大会堂",
+      "poi_address": "江苏省无锡市梁溪区永和路2号",
+      "latitude": 31.55463,
+      "longitude": 120.30449,
+      "doubtful": false,
+      "reason": "无锡市人民大会堂与永和路2号地址完全一致",
+      "search_keywords_tried": [
+        "无锡市人民大会堂"
+      ],
+      "event_uids": [
+        "douban:37851298"
       ]
     }
   ]

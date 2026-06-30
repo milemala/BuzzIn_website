@@ -1,24 +1,76 @@
 {
   "city": "无锡",
   "source": "douban",
-  "exported_at": "2026-06-20T18:31:05.285Z",
+  "exported_at": "2026-06-29T03:23:53.212Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 3,
   "doubtful_only": false,
-  "total_events": 1,
-  "group_count": 1,
-  "cache_hit_groups": 0,
+  "total_events": 3,
+  "group_count": 3,
+  "cache_hit_groups": 2,
   "groups": [
     {
-      "group_id": "7468dd712189",
-      "location": "无锡 江阴 江阴大剧院 澄江中路128号",
-      "sample_title": "[江阴]曹云金领衔《万象更新》听云轩相声专场—江阴站",
+      "group_id": "c5997e04a41a",
+      "location": "无锡 新吴区 无锡交响音乐厅 净慧西道与清晏路交叉口",
+      "sample_title": "“匡神点弹”——匡俊宏演奏一生必听的吉他金曲",
       "event_uids": [
-        "douban:37861930"
+        "douban:37770374"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2761693111356093735",
+        "poi_title": "无锡交响音乐厅",
+        "poi_address": "",
+        "latitude": 31.481164,
+        "longitude": 120.3666,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：无锡 新吴区 无锡交响音乐厅 净慧西道与清晏路交叉口 → 无锡交响音乐厅（来源 event:douban:37770391）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "c5997e04a41a0228fb9e6b4b8cb4711d31276e0e"
+      }
+    },
+    {
+      "group_id": "bb82141fbe70",
+      "location": "无锡 梁溪区 无锡市人民大会堂 永和路2号",
+      "sample_title": "新国风美学经典舞台剧《红楼梦》",
+      "event_uids": [
+        "douban:37851298"
       ],
       "event_count": 1
+    },
+    {
+      "group_id": "b44229cae89b",
+      "location": "无锡 梁溪区 大發喜剧脱口秀 南下塘169-1号",
+      "sample_title": "【特惠19.9元起】 大发喜剧拼盘秀-周六 19:30-南长街大发脱口秀-约会解压首选",
+      "event_uids": [
+        "douban:37534041"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "9010067057749167094",
+        "poi_title": "大发喜剧脱口秀",
+        "poi_address": "",
+        "latitude": 31.558235,
+        "longitude": 120.315851,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：无锡 梁溪区 大發喜剧脱口秀 南下塘169-1号 → 大发喜剧脱口秀（来源 event:douban:37674603）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "b44229cae89bf37935304bbb41f06dc96e0c6bb9"
+      }
     }
   ]
 }

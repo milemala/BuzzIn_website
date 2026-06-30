@@ -325,6 +325,48 @@ function formatBuzzDateTime(date) {
   return `${date.getFullYear()}-${pad2(date.getMonth() + 1)}-${pad2(date.getDate())} ${pad2(date.getHours())}:${pad2(date.getMinutes())}:${pad2(date.getSeconds())}`;
 }
 
+function localBubbleExpireTs(merchant) {
+  const publishedAt = parseBuzzDateTime(merchant.bubble_published_at);
+  if (publishedAt == null) return null;
+  return publishedAt + BUBBLE_EXPIRE_DAYS * 24 * 60 * 60 * 1000;
+}
+
+/** @returns {boolean|null} true=本地未过期 false=本地已过期 null=无发布时间需远程核实 */
+function isLocallyActiveBubble(merchant) {
+  if (!String(merchant.bubble_now_id || "").trim()) return false;
+  const expireTs = localBubbleExpireTs(merchant);
+  if (expireTs == null) return null;
+  return expireTs > Date.now();
+}
+
+async function verifyActiveBubblesRemotely(db, client, merchants, buzzEnv, options = {}) {
+  const concurrency = Number(options.concurrency) > 0 ? Number(options.concurrency) : 20;
+  const activeUids = new Set();
+  if (!merchants.length) return activeUids;
+
+  let index = 0;
+  async function worker() {
+    while (index < merchants.length) {
+      const current = merchants[index];
+      index += 1;
+      try {
+        const nowItem = await client.getNowById(current.bubble_now_id);
+        if (nowItem && !isNowExpired(nowItem.expired_at)) {
+          activeUids.add(current.merchant_uid);
+        } else if (!nowItem || isNowExpired(nowItem.expired_at)) {
+          clearMerchantBubbleLocal(db, current.merchant_uid, buzzEnv);
+        }
+      } catch {
+        // 查询失败时不清理本地，避免网络抖动误删
+      }
+    }
+  }
+
+  const workers = Math.min(concurrency, merchants.length);
+  await Promise.all(Array.from({ length: workers }, () => worker()));
+  return activeUids;
+}
+
 async function loadActiveBubbleMerchantUids(db, options = {}) {
   const buzzEnv = resolveBuzzEnv(options);
   const merchants = listImportedMerchants(db, importListOptions(options));
@@ -332,18 +374,20 @@ async function loadActiveBubbleMerchantUids(db, options = {}) {
   const activeUids = new Set();
   if (!withBubble.length) return activeUids;
 
-  const client = new BuzzAdminClient({ ...options, buzz_env: buzzEnv });
+  const needsRemote = [];
   for (const merchant of withBubble) {
-    try {
-      const nowItem = await client.getNowById(merchant.bubble_now_id);
-      if (nowItem && !isNowExpired(nowItem.expired_at)) {
-        activeUids.add(merchant.merchant_uid);
-      } else if (!nowItem || isNowExpired(nowItem.expired_at)) {
-        clearMerchantBubbleLocal(db, merchant.merchant_uid, buzzEnv);
-      }
-    } catch {
-      // 查询失败时不清理本地，避免网络抖动误删
+    const local = isLocallyActiveBubble(merchant);
+    if (local === true) {
+      activeUids.add(merchant.merchant_uid);
+      continue;
     }
+    needsRemote.push(merchant);
+  }
+
+  if (needsRemote.length) {
+    const client = new BuzzAdminClient({ ...options, buzz_env: buzzEnv });
+    const verified = await verifyActiveBubblesRemotely(db, client, needsRemote, buzzEnv, options);
+    for (const uid of verified) activeUids.add(uid);
   }
   return activeUids;
 }
@@ -361,6 +405,16 @@ async function listBubbleMerchantsInBucket(db, city, slotIndex, options = {}) {
 
     let nowItem = null;
     let fetchError = null;
+    const localActive = isLocallyActiveBubble(merchant);
+    if (localActive === true) {
+      targets.push({
+        merchant,
+        now_id: nowId,
+        now_item: null,
+      });
+      continue;
+    }
+
     try {
       nowItem = await client.getNowById(nowId);
     } catch (error) {

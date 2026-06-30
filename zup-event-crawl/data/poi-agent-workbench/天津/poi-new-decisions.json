@@ -1,0 +1,42 @@
+{
+  "city": "天津",
+  "source": "douban",
+  "decided_at": "2026-06-29T03:41:40.227Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "164832be67e4",
+      "action": "match",
+      "poi_id": "4479868763064494284",
+      "poi_title": "一品家园",
+      "poi_address": "天津市河东区卫国道157号与靖江路交口",
+      "latitude": 39.143733,
+      "longitude": 117.242846,
+      "doubtful": true,
+      "reason": "社区读书聚会在一品家园小区内举办，门牌卫国道157号一致，但POI为住宅小区非正式活动场馆",
+      "search_keywords_tried": [
+        "一品家园 卫国道157号"
+      ],
+      "event_uids": [
+        "douban:37894708"
+      ]
+    },
+    {
+      "group_id": "6dfc5ab3d71a",
+      "action": "match",
+      "poi_id": "5565656811542971188",
+      "poi_title": "天津奥林匹克中心体育馆",
+      "poi_address": "天津市南开区宾水西道393号",
+      "latitude": 39.077543,
+      "longitude": 117.178059,
+      "doubtful": false,
+      "reason": "演唱会场馆与宾水西道393号天津奥林匹克中心体育馆完全一致",
+      "search_keywords_tried": [
+        "天津奥林匹克中心体育馆"
+      ],
+      "event_uids": [
+        "douban:37853138"
+      ]
+    }
+  ]
+}

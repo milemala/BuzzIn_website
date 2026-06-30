@@ -1,22 +1,323 @@
 {
   "city": "北京",
   "source": "douban",
-  "exported_at": "2026-06-23T01:41:07.812Z",
+  "exported_at": "2026-06-29T03:23:36.847Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 20,
   "doubtful_only": false,
-  "total_events": 1,
-  "group_count": 1,
-  "cache_hit_groups": 0,
+  "total_events": 20,
+  "group_count": 18,
+  "cache_hit_groups": 9,
   "groups": [
     {
-      "group_id": "be0029701cc9",
-      "location": "北京 朝阳区 酒仙桥北路乙十号院D座",
-      "sample_title": "OpenSchool AI Claw Demo Day · 北京站",
+      "group_id": "6621c6dfeabb",
+      "location": "",
+      "sample_title": "真案改编，人性反转！《悬案》超前观剧会+主创交流",
       "event_uids": [
-        "douban:37889252"
+        "douban:37893928"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "2070e7888b4e",
+      "location": "北京 朝阳区 博纳国际影城(大郊亭IMAX店)",
+      "sample_title": "《四渡》北京首映礼（爆款多多观影团274期）",
+      "event_uids": [
+        "douban:37891491"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "0540d803bf33",
+      "location": "北京 朝阳区 爱笑喜剧三里屯1号厅 三里屯街道三里屯soho2号商场B1层下沉广场沉浸剧场(爱笑联盟沉浸剧场)",
+      "sample_title": "【辰星剧社】沉浸式黑色幽默喜剧《杀死那个按部就班的狗》(奋逗剧场)",
+      "event_uids": [
+        "douban:37627917"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2737977171120608097",
+        "poi_title": "下沉广场",
+        "poi_address": "",
+        "latitude": 39.898249,
+        "longitude": 116.505244,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：北京 朝阳区 爱笑喜剧三里屯1号厅 三里屯街道三里屯soho2号商场B1层下沉广场沉浸剧场(爱笑联盟沉浸剧场) → 下沉广场（来源 event:douban:37397742）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "0540d803bf33234c9ef28e877213e8d9550b6b56"
+      }
+    },
+    {
+      "group_id": "d378e2410426",
+      "location": "北京 西城区 国家大剧院-歌剧院 西长安街2号",
+      "sample_title": "国家大剧院原创民族歌剧《映山红》",
+      "event_uids": [
+        "douban:37865966"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "eb895341af2e",
+      "location": "北京 朝阳区 远洋国际中心E座",
+      "sample_title": "教育焦虑与破局之路",
+      "event_uids": [
+        "douban:37891831",
+        "douban:37892656"
+      ],
+      "event_count": 2,
+      "cached_poi": {
+        "poi_id": "16374944766863526832",
+        "poi_title": "远洋国际中心E座",
+        "poi_address": "",
+        "latitude": 39.915974,
+        "longitude": 116.491505,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：北京 朝阳区 远洋国际中心E座 → 远洋国际中心E座（来源 event:douban:37866542）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "eb895341af2e921306343a1496b990cfcfb1be2e"
+      }
+    },
+    {
+      "group_id": "d8d4a31b6cbb",
+      "location": "北京 西城区 天桥艺术中心 天桥南大街9号楼",
+      "sample_title": "外百老汇经典音乐剧中文版《长腿叔叔》北京驻演版",
+      "event_uids": [
+        "douban:37869557"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "17987642018513161306",
+        "poi_title": "天桥艺术中心·第五空间",
+        "poi_address": "",
+        "latitude": 39.88265,
+        "longitude": 116.398158,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：北京 西城区 天桥艺术中心 天桥南大街9号楼 → 天桥艺术中心·第五空间（来源 event:douban:37828283）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "d8d4a31b6cbbe1c69024d40e37a19780a7998d42"
+      }
+    },
+    {
+      "group_id": "0fcf860b70cc",
+      "location": "北京 海淀区 五棵松·爱乐汇艺术空间 复兴路69号五棵松万达广场6层爱乐汇艺术空间五棵松剧场",
+      "sample_title": "【毕业歌会】「致我们不散场的青春」毕业季专场交响演唱会",
+      "event_uids": [
+        "douban:37871528",
+        "douban:37879399"
+      ],
+      "event_count": 2,
+      "cached_poi": {
+        "poi_id": "18094129804566749180",
+        "poi_title": "爱乐汇艺术空间",
+        "poi_address": "",
+        "latitude": 39.9129,
+        "longitude": 116.276808,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：北京 海淀区 五棵松·爱乐汇艺术空间 复兴路69号五棵松万达广场6层爱乐汇艺术空间五棵松剧场 → 爱乐汇艺术空间（来源 event:douban:37678015）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "0fcf860b70cc0d1a4aa34a84b7e71e5c071a6ebf"
+      }
+    },
+    {
+      "group_id": "38e003938551",
+      "location": "北京 昌平区 百善镇百葛路9号院2号楼B1",
+      "sample_title": "诺奖作家石黑一雄小说《莫失莫忘》首次搬上舞台",
+      "event_uids": [
+        "douban:37894670"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "b058ab55739c",
+      "location": "北京 西城区 疆进酒·OMNI SPACE 天桥南大街9号天桥艺术中心地下一层B-103",
+      "sample_title": "「山风吹过乌云朵」象乐队新专辑巡演 北京站",
+      "event_uids": [
+        "douban:37876247"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "2855049a5f17",
+      "location": "北京 朝阳区 北京星幻动漫节 望京街道望京湖光中街8号一号楼西段一层,1129号(桔子酒店斜对面)",
+      "sample_title": "2026第六届北京星幻动漫节【北京漫展】",
+      "event_uids": [
+        "douban:37877151"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "f7eb42db869a",
+      "location": "北京 西城区 北京展览馆剧场 西直门外大街135号",
+      "sample_title": "童漠男脱口秀专场《寻找王医生·北下关特别版》丨笑果出品@北京",
+      "event_uids": [
+        "douban:37879055"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "7000785431726986367",
+        "poi_title": "北展剧场",
+        "poi_address": "",
+        "latitude": 39.941553,
+        "longitude": 116.344076,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：北京 西城区 北京展览馆剧场 西直门外大街135号 → 北展剧场（来源 event:douban:37619327）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "f7eb42db869ada45aa89f2b370e4b408b631233b"
+      }
+    },
+    {
+      "group_id": "64183a71e39e",
+      "location": "北京 东城区 北京人民艺术剧院-北京国际戏剧中心 王府井大街22号院内东南角",
+      "sample_title": "北京人民艺术剧院演出话剧：《屠夫》",
+      "event_uids": [
+        "douban:37879176"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "c36dd639691e",
+      "location": "北京 东城区 中山公园音乐堂 西长安街中山公园内",
+      "sample_title": "奥斯卡·罗曼耶卓钢琴独奏音乐会-北京站",
+      "event_uids": [
+        "douban:37846433"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "13730107606902970399",
+        "poi_title": "音乐堂",
+        "poi_address": "",
+        "latitude": 39.910912,
+        "longitude": 116.39567,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：北京 东城区 中山公园音乐堂 西长安街中山公园内 → 音乐堂（来源 event:douban:37810222）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "c36dd639691ebb9090308169e47943d276151677"
+      }
+    },
+    {
+      "group_id": "5e542631904a",
+      "location": "北京 朝阳区 国家体育馆 天辰东路9号",
+      "sample_title": "2026韦礼安「嗨韦，您好」演唱会-北京站",
+      "event_uids": [
+        "douban:37887621"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "6123793444050771349",
+        "poi_title": "国家体育馆",
+        "poi_address": "",
+        "latitude": 39.996238,
+        "longitude": 116.391001,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：北京 朝阳区 国家体育馆 天辰东路9号 → 国家体育馆（来源 event:douban:37744386）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "5e542631904a4f85e725ca567e66a3c532ac447c"
+      }
+    },
+    {
+      "group_id": "88957de3c2df",
+      "location": "北京 朝阳区 你好西藏小剧场 北四环东路118号北京西藏大厦A座二层",
+      "sample_title": "你好·西藏小剧场《天上阿里》“阿里季”沉浸式非遗歌舞演出",
+      "event_uids": [
+        "douban:37556115"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "41f542751ab0",
+      "location": "北京 昌平区 365剧场-天通苑文化艺术中心 太平庄中一街与立水桥北路交汇处东南侧,天通苑文化艺术中心四层",
+      "sample_title": "[阿那亚双奖]《白犀牛事件》——左邻右戏回天社区艺术生活季女性单元剧目",
+      "event_uids": [
+        "douban:37853265"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "269988739178533378",
+        "poi_title": "365影院(天通苑文化艺术中心4层)",
+        "poi_address": "",
+        "latitude": 40.070564,
+        "longitude": 116.417414,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：北京 昌平区 365剧场-天通苑文化艺术中心 太平庄中一街与立水桥北路交汇处东南侧,天通苑文化艺术中心四层 → 365影院(天通苑文化艺术中心4层)（来源 event:douban:37838847）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "41f542751ab099e6b1a8b070c8b99c569bbb9922"
+      }
+    },
+    {
+      "group_id": "41ea754c2e44",
+      "location": "北京 东城区 颜料会馆 青云胡同22号",
+      "sample_title": "全感官行进式悬疑沉浸话剧《宋美龄耳环丢了》",
+      "event_uids": [
+        "douban:37477442"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "10860338773118607569",
+        "poi_title": "颜料会馆",
+        "poi_address": "",
+        "latitude": 39.895492,
+        "longitude": 116.404704,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：北京 东城区 颜料会馆 青云胡同22号 → 颜料会馆（来源 event:douban:37818472）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "41ea754c2e44381dbf036b21ff2d124c17d15f22"
+      }
+    },
+    {
+      "group_id": "409b1ad22c3b",
+      "location": "北京 昌平区 GAME ON篮球羽毛球运动中心(天通苑店)",
+      "sample_title": "【昌平/海淀】周五晚羽毛球局招人啦！菜但爱玩，等你加入！",
+      "event_uids": [
+        "douban:37894483"
       ],
       "event_count": 1
     }

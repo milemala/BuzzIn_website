@@ -1,26 +1,206 @@
 {
   "city": "杭州",
   "source": "douban",
-  "decided_at": "2026-06-23T01:20:00.000Z",
+  "decided_at": "2026-06-29T03:38:24.201Z",
+  "agent": "cursor-agent",
   "decisions": [
-    {"event_uid": "douban:37889309", "suggested": false, "category": "其他", "reason": "日语机构获客手作体验课，偏培训课程"},
-    {"event_uid": "douban:37681017", "suggested": true, "category": "看展逛馆", "reason": "VR沉浸体验展"},
-    {"event_uid": "douban:37754834", "suggested": true, "category": "戏剧表演", "reason": "千岛湖大型水舞台演艺秀"},
-    {"event_uid": "douban:37824982", "suggested": true, "category": "喜剧脱口秀", "reason": "独角女性喜剧演出"},
-    {"event_uid": "douban:37649214", "suggested": true, "category": "看展逛馆", "reason": "沉浸式VR体验"},
-    {"event_uid": "douban:37649652", "suggested": true, "category": "遛娃亲子", "reason": "亲子儿童剧互动演出"},
-    {"event_uid": "douban:37796257", "suggested": true, "category": "喜剧脱口秀", "reason": "脱口秀盲盒秀"},
-    {"event_uid": "douban:37702693", "suggested": true, "category": "喜剧脱口秀", "reason": "互动喜剧脱口秀专场"},
-    {"event_uid": "douban:37866481", "suggested": true, "category": "音乐现场", "reason": "交响乐团古典音乐会"},
-    {"event_uid": "douban:37345492", "suggested": true, "category": "戏剧表演", "reason": "沉浸式戏剧演出"},
-    {"event_uid": "douban:37570597", "suggested": true, "category": "喜剧脱口秀", "reason": "脱口秀拼盘秀"},
-    {"event_uid": "douban:37649276", "suggested": true, "category": "看展逛馆", "reason": "诗词主题沉浸式VR体验"},
-    {"event_uid": "douban:37669296", "suggested": true, "category": "戏剧表演", "reason": "德寿宫沉浸式夜游演艺"},
-    {"event_uid": "douban:37719943", "suggested": true, "category": "遛娃亲子", "reason": "亲子沉浸式互动喜剧"},
-    {"event_uid": "douban:37835784", "suggested": true, "category": "戏剧表演", "reason": "沉浸式悬疑戏剧"},
-    {"event_uid": "douban:34815699", "suggested": true, "category": "遛娃亲子", "reason": "标题为少年儿童公园冰雪体验"},
-    {"event_uid": "douban:36842390", "suggested": true, "category": "喜剧脱口秀", "reason": "脱口秀开放麦练习场"},
-    {"event_uid": "douban:37233020", "suggested": true, "category": "戏剧表演", "reason": "古运河沉浸式夜游实景演艺"},
-    {"event_uid": "douban:37506872", "suggested": true, "category": "喜剧脱口秀", "reason": "即兴互动脱口秀秀"}
+    {
+      "event_uid": "douban:37066939",
+      "suggested": true,
+      "category": "喜剧脱口秀",
+      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37182989",
+      "suggested": true,
+      "category": "喜剧脱口秀",
+      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37334982",
+      "suggested": true,
+      "category": "遛娃亲子",
+      "reason": "明确面向亲子/儿童的活动"
+    },
+    {
+      "event_uid": "douban:37473380",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "看展、逛馆、观影放映类文化体验"
+    },
+    {
+      "event_uid": "douban:37481789",
+      "suggested": true,
+      "category": "喜剧脱口秀",
+      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37504398",
+      "suggested": true,
+      "category": "音乐现场",
+      "reason": "音乐会/演唱会/Live 等音乐演出"
+    },
+    {
+      "event_uid": "douban:37548339",
+      "suggested": true,
+      "category": "喜剧脱口秀",
+      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37647191",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "话剧/音乐剧/舞剧等舞台演出"
+    },
+    {
+      "event_uid": "douban:37647793",
+      "suggested": true,
+      "category": "喜剧脱口秀",
+      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37647939",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "看展、逛馆、观影放映类文化体验"
+    },
+    {
+      "event_uid": "douban:37669956",
+      "suggested": true,
+      "category": "交友聚会",
+      "reason": "交友/桌游/派对等社交属性明显"
+    },
+    {
+      "event_uid": "douban:37674619",
+      "suggested": true,
+      "category": "喜剧脱口秀",
+      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37674942",
+      "suggested": true,
+      "category": "喜剧脱口秀",
+      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37674951",
+      "suggested": true,
+      "category": "音乐现场",
+      "reason": "音乐会/演唱会/Live 等音乐演出"
+    },
+    {
+      "event_uid": "douban:37679149",
+      "suggested": true,
+      "category": "喜剧脱口秀",
+      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37685283",
+      "suggested": true,
+      "category": "音乐现场",
+      "reason": "音乐会/演唱会/Live 等音乐演出"
+    },
+    {
+      "event_uid": "douban:37685947",
+      "suggested": true,
+      "category": "其他",
+      "reason": "生活娱乐属性，可保留人工复核"
+    },
+    {
+      "event_uid": "douban:37705752",
+      "suggested": true,
+      "category": "喜剧脱口秀",
+      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37715757",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "看展、逛馆、观影放映类文化体验"
+    },
+    {
+      "event_uid": "douban:37735925",
+      "suggested": true,
+      "category": "其他",
+      "reason": "生活娱乐属性，可保留人工复核"
+    },
+    {
+      "event_uid": "douban:37742065",
+      "suggested": true,
+      "category": "其他",
+      "reason": "生活娱乐属性，可保留人工复核"
+    },
+    {
+      "event_uid": "douban:37757727",
+      "suggested": true,
+      "category": "喜剧脱口秀",
+      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37758622",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "话剧/音乐剧/舞剧等舞台演出"
+    },
+    {
+      "event_uid": "douban:37764697",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "话剧/音乐剧/舞剧等舞台演出"
+    },
+    {
+      "event_uid": "douban:37782590",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "看展、逛馆、观影放映类文化体验"
+    },
+    {
+      "event_uid": "douban:37800598",
+      "suggested": true,
+      "category": "喜剧脱口秀",
+      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37800608",
+      "suggested": true,
+      "category": "喜剧脱口秀",
+      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37838789",
+      "suggested": true,
+      "category": "音乐现场",
+      "reason": "音乐会/演唱会/Live 等音乐演出"
+    },
+    {
+      "event_uid": "douban:37845162",
+      "suggested": true,
+      "category": "喜剧脱口秀",
+      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37845848",
+      "suggested": true,
+      "category": "喜剧脱口秀",
+      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37859691",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "话剧/音乐剧/舞剧等舞台演出"
+    },
+    {
+      "event_uid": "douban:37859707",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "话剧/音乐剧/舞剧等舞台演出"
+    },
+    {
+      "event_uid": "douban:37865854",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "话剧/音乐剧/舞剧等舞台演出"
+    }
   ]
 }

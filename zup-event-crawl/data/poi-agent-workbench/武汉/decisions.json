@@ -1,814 +1,95 @@
 {
   "city": "武汉",
   "source": "douban",
-  "updated_at": "2026-06-20T18:41:07.868Z",
-  "agent": "cursor-composer",
+  "decided_at": "2026-06-29T03:43:20.630Z",
+  "agent": "cursor-agent",
   "decisions": [
     {
-      "group_id": "2e58c7d48bac",
-      "event_uids": [
-        "douban:37688024",
-        "douban:37798950"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "琴台大剧院",
-        "知音大道7号"
-      ],
-      "poi_id": "2054636966946479774",
-      "poi_title": "武汉琴台大剧院",
-      "poi_address": "湖北省武汉市汉阳区晴川街道知音大道7号",
-      "latitude": 30.561106,
-      "longitude": 114.259086,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "剧场名称与汉阳区知音大道7号一致",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "2054636966946479774",
-          "title": "武汉琴台大剧院",
-          "address": "湖北省武汉市汉阳区晴川街道知音大道7号",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 30.561106,
-          "longitude": 114.259086
-        }
-      ]
-    },
-    {
-      "group_id": "b46e104bcd4d",
-      "event_uids": [
-        "douban:37810517",
-        "douban:37783089"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "583600664672639388",
-      "poi_title": "湖北剧院",
-      "poi_address": "",
-      "latitude": 30.540991,
-      "longitude": 114.304519,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：武汉 武昌区 湖北剧院 武昌阅马场西厂口1号 → 湖北剧院（来源 event:douban:37651748）",
-      "candidates": []
-    },
-    {
-      "group_id": "1be0bd2a4d6c",
-      "event_uids": [
-        "douban:37839284",
-        "douban:37698096",
-        "douban:37698121"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "果然戏剧小剧场",
-        "水果湖街道烟霞路1号3层3006号"
-      ],
-      "poi_id": "14139564909759288142",
-      "poi_title": "果然戏剧小剧场",
-      "poi_address": "湖北省武汉市武昌区水果湖街道烟霞路1号汉街万达3层3006号",
-      "latitude": 30.558947,
-      "longitude": 114.332849,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "小剧场名称与武昌区烟霞路1号3层3006号一致",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "14139564909759288142",
-          "title": "果然戏剧小剧场",
-          "address": "湖北省武汉市武昌区水果湖街道烟霞路1号汉街万达3层3006号",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 30.558947,
-          "longitude": 114.332849
-        }
-      ]
-    },
-    {
-      "group_id": "21334f401c5e",
-      "event_uids": [
-        "douban:37844930"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "武汉 Live Hub剧场"
-      ],
-      "poi_id": "10486362332199347318",
-      "poi_title": "名创优品(湖北省武汉市龙湖友邻LIVE店)",
-      "poi_address": "湖北省武汉市江夏区佛祖岭街道高新六路武汉人民医院南侧100米武汉龙湖友邻live2F-20",
-      "latitude": 30.438628,
-      "longitude": 114.439947,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 91）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "6590413447047448561",
-          "title": "UP PARK HOOP LIVE MUSEUM 篮球文化空间",
-          "address": "湖北省武汉市硚口区六角亭街道京汉大道668号恒隆广场西座5层501A",
-          "category": "运动健身:篮球场",
-          "latitude": 30.577458,
-          "longitude": 114.272561
-        },
-        {
-          "index": 1,
-          "poi_id": "1450869614915425653",
-          "title": "ZAZOO LIVE(武汉天津路店)",
-          "address": "湖北省武汉市江岸区一元街道天津路24-36号一层A3",
-          "category": "娱乐休闲:酒吧",
-          "latitude": 30.585577,
-          "longitude": 114.296466
-        },
-        {
-          "index": 2,
-          "poi_id": "3624123854329349619",
-          "title": "度世界武汉音乐餐厅DOOOO LIVE",
-          "address": "湖北省武汉市江汉区新华街街道解放大道南国中心二期商业B-F05-001",
-          "category": "娱乐休闲:酒吧",
-          "latitude": 30.585521,
-          "longitude": 114.282637
-        },
-        {
-          "index": 3,
-          "poi_id": "3502468740587344904",
-          "title": "循叙Conly·Cycle live bar",
-          "address": "湖北省武汉市江岸区天津路56号",
-          "category": "娱乐休闲:酒吧",
-          "latitude": 30.585677,
-          "longitude": 114.296274
-        },
-        {
-          "index": 4,
-          "poi_id": "18151216076512803051",
-          "title": "offer酒馆 R&B live",
-          "address": "湖北省武汉市江岸区一元街道青岛路10号多牛世界1层12号场地",
-          "category": "娱乐休闲:酒吧",
-          "latitude": 30.58201,
-          "longitude": 114.297929
-        }
-      ]
-    },
-    {
-      "group_id": "4dff136c997a",
-      "event_uids": [
-        "douban:37859358"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "677742036877739247",
-      "poi_title": "银兴国际影城(光谷时尚城店)",
-      "poi_address": "",
-      "latitude": 30.477785,
-      "longitude": 114.386858,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：武汉 江夏区 银兴国际影城演出厅-光谷时尚城店 南湖大道南湖时尚城K3b-K4b4层 → 银兴国际影城(光谷时尚城店)（来源 event:douban:37765935）",
-      "candidates": []
-    },
-    {
-      "group_id": "9689bec4f4d0",
-      "event_uids": [
-        "douban:37850775"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "11629869144843677375",
-      "poi_title": "栖息地小剧场",
-      "poi_address": "",
-      "latitude": 30.577793,
-      "longitude": 114.273711,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：武汉 硚口区 栖息地小剧场 六角亭街道京汉大道668号恒隆广场[L315]号铺位 → 栖息地小剧场（来源 event:douban:37831327）",
-      "candidates": []
-    },
-    {
-      "group_id": "8c6a8115806a",
-      "event_uids": [
-        "douban:37601359",
-        "douban:37601882",
-        "douban:37712557",
-        "douban:37790401"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "3164520614827793622",
-      "poi_title": "武汉 · 笑嘛武汉脱口秀剧场",
-      "poi_address": "",
-      "latitude": 30.610716,
-      "longitude": 114.310656,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：武汉 江汉区 脱线喜剧空间-武商Mall·世贸 解放大道686号武商MALL·世贸7楼（2号门电梯直达） → 武汉 · 笑嘛武汉脱口秀剧场（来源 event:douban:37650864）",
-      "candidates": []
-    },
-    {
       "group_id": "567759bc19da",
-      "event_uids": [
-        "douban:37651007",
-        "douban:37811960"
-      ],
       "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
       "poi_id": "15155048852042783211",
       "poi_title": "然也剧场(武汉绿地·新田360店)",
       "poi_address": "",
       "latitude": 30.582832,
       "longitude": 114.322891,
-      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：武汉 武昌区 然也剧场 和平大道750号武汉绿地新田360商场2F → 然也剧场(武汉绿地·新田360店)（来源 event:douban:37596728）",
-      "candidates": []
-    },
-    {
-      "group_id": "e9a2ad07dc78",
-      "event_uids": [
-        "douban:37861671",
-        "douban:37336238"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "武汉 车里子演艺空间"
-      ],
-      "poi_id": "15258907714905318609",
-      "poi_title": "武汉车里子演艺空间",
-      "poi_address": "湖北省武汉市蔡甸区沌口武汉体育中心(东广场)",
-      "latitude": 30.503883,
-      "longitude": 114.172448,
-      "confidence": "medium",
-      "doubtful": true,
-      "reason": "POI 地址未包含活动地点门牌信息",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "15258907714905318609",
-          "title": "武汉车里子演艺空间",
-          "address": "湖北省武汉市蔡甸区沌口武汉体育中心(东广场)",
-          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
-          "latitude": 30.503883,
-          "longitude": 114.172448
-        }
-      ]
-    },
-    {
-      "group_id": "1763b35569d1",
-      "event_uids": [
-        "douban:37651593"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "武汉 人民网·梦幻灵境AI展演中心"
-      ],
-      "poi_id": "15124277610949191540",
-      "poi_title": "人民网梦幻灵境AI展演中心",
-      "poi_address": "湖北省武汉市武昌区杨园街8号",
-      "latitude": 30.59795,
-      "longitude": 114.3341,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 280）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "15124277610949191540",
-          "title": "人民网梦幻灵境AI展演中心",
-          "address": "湖北省武汉市武昌区杨园街8号",
-          "category": "教育学校:其它教育学校",
-          "latitude": 30.59795,
-          "longitude": 114.3341
-        },
-        {
-          "index": 1,
-          "poi_id": "14921526785333711484",
-          "title": "人民网梦幻灵境AI展演中心停车场",
-          "address": "湖北省武汉市武昌区四美塘路与武昌文化生态长廊交叉口西南方向375米左右",
-          "category": "汽车:停车场",
-          "latitude": 30.598532,
-          "longitude": 114.332729
-        }
-      ]
-    },
-    {
-      "group_id": "139a3edf1257",
-      "event_uids": [
-        "douban:37762509",
-        "douban:37810358"
-      ],
-      "action": "match",
+      "reason": "地址映射库命中：武汉 武昌区 然也剧场 和平大道750号武汉绿地新田360商场2F → 然也剧场(武汉绿地·新田360店)（来源 event:douban:37840984）",
       "search_keywords_tried": [
         "poi-address-cache"
       ],
-      "poi_id": "12541717362437199326",
-      "poi_title": "大笑喜剧脱口秀(江汉路店)",
-      "poi_address": "",
-      "latitude": 30.577458,
-      "longitude": 114.291056,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：武汉 江汉区 大笑脱口秀俱乐部-江汉路店 民生路176号江汉印象城B座四楼大笑脱口秀俱乐部 → 大笑喜剧脱口秀(江汉路店)（来源 event:douban:37806941）",
-      "candidates": []
-    },
-    {
-      "group_id": "348d1e5b3cf3",
       "event_uids": [
-        "douban:37843171"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "武汉 珞珈山剧院"
-      ],
-      "poi_id": "136658514454714907",
-      "poi_title": "珞珈山剧院-正门",
-      "poi_address": "湖北省武汉市洪山区珞狮路辅路",
-      "latitude": 30.528959,
-      "longitude": 114.353814,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 217）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "13448158781880148533",
-          "title": "珞珈山剧院聚橙院线",
-          "address": "湖北省武汉市洪山区珞狮路84号",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 30.529043,
-          "longitude": 114.353432
-        },
-        {
-          "index": 1,
-          "poi_id": "136658514454714907",
-          "title": "珞珈山剧院-正门",
-          "address": "湖北省武汉市洪山区珞狮路辅路",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 30.528959,
-          "longitude": 114.353814
-        },
-        {
-          "index": 2,
-          "poi_id": "13368402532441807311",
-          "title": "省歌舞剧院宿舍",
-          "address": "湖北省武汉市洪山区珞南街道珞狮路80号",
-          "category": "房产小区:住宅区:宿舍",
-          "latitude": 30.529464,
-          "longitude": 114.353426
-        },
-        {
-          "index": 3,
-          "poi_id": "13993461785582073493",
-          "title": "OPERA coffee咖啡剧场(书香门第店)",
-          "address": "湖北省武汉市洪山区珞狮路76附10号(街道口地铁站D口步行420米)",
-          "category": "娱乐休闲:咖啡厅",
-          "latitude": 30.529537,
-          "longitude": 114.353755
-        },
-        {
-          "index": 4,
-          "poi_id": "501186243079165704",
-          "title": "城市公共厕所(湖北省歌剧舞剧院珞珈山剧院)",
-          "address": "湖北省武汉市洪山区洪福巷与珞珈山路交叉口东南方向95米左右",
-          "category": "基础设施:公共设施:公共厕所",
-          "latitude": 30.5291,
-          "longitude": 114.35341
-        }
+        "douban:37853839",
+        "douban:37477968"
       ]
     },
     {
-      "group_id": "536fcd221342",
-      "event_uids": [
-        "douban:37651067"
-      ],
+      "group_id": "5abbd55beaaf",
       "action": "match",
+      "poi_id": "3164520614827793622",
+      "poi_title": "武汉 · 笑嘛武汉脱口秀剧场",
+      "poi_address": "",
+      "latitude": 30.610716,
+      "longitude": 114.310656,
+      "doubtful": false,
+      "reason": "地址映射库命中：武汉 江岸区 笑嘛武汉脱口秀剧场 永清街道天地壹方南馆5楼(百丽宫影院旁) → 武汉 · 笑嘛武汉脱口秀剧场（来源 event:douban:37517703）",
       "search_keywords_tried": [
         "poi-address-cache"
       ],
-      "poi_id": "9741677454961780130",
-      "poi_title": "大江剧场",
-      "poi_address": "",
-      "latitude": 30.602172,
-      "longitude": 114.260588,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：武汉 江汉区 大江剧场 常青街街道青年路299号华发中城商都9栋3楼 → 大江剧场（来源 event:douban:37711093）",
-      "candidates": []
-    },
-    {
-      "group_id": "1ccb4fd15404",
       "event_uids": [
-        "douban:37651106"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "武汉 左邻右社新汉派剧场"
-      ],
-      "reason": "豆瓣左邻右社新汉派剧场门牌与POI一致",
-      "doubtful": false,
-      "confidence": "high",
-      "candidates": [],
-      "poi_id": "14700556285505186738",
-      "poi_title": "左邻右社相声大会(江汉路店)",
-      "poi_address": "湖北省武汉市江岸区一元街道鄱阳街21号D-F7号楼4F",
-      "latitude": 30.58,
-      "longitude": 114.3
-    },
-    {
-      "group_id": "9a2eaae6b681",
-      "event_uids": [
-        "douban:37826863",
-        "douban:37713133"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "2771544391800578133",
-      "poi_title": "中南剧院",
-      "poi_address": "",
-      "latitude": 30.596531,
-      "longitude": 114.298,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：武汉 江岸区 武汉人艺中南剧场 球场街道京汉大道1001号(球场横街口，近三阳路口轻轨) → 中南剧院（来源 event:douban:37793284）",
-      "candidates": []
-    },
-    {
-      "group_id": "21fccbf33029",
-      "event_uids": [
-        "douban:37844940"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "13491261515871525289",
-      "poi_title": "VOX LiveHouse(武汉光谷步行街店)",
-      "poi_address": "",
-      "latitude": 30.501581,
-      "longitude": 114.407524,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：武汉 洪山区 VOX LIVEHOUSE 武昌光谷店 关山街道珞雄路光谷步行街意大利风情街5号楼负一层 → VOX LiveHouse(武汉光谷步行街店)（来源 event:douban:37797559）",
-      "candidates": []
-    },
-    {
-      "group_id": "1a50763d9ec2",
-      "event_uids": [
-        "douban:37650392"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "武汉 快活里剧场"
-      ],
-      "poi_id": "5597586078906276958",
-      "poi_title": "武汉快活里剧场",
-      "poi_address": "湖北省武汉市江岸区一元街道胜利街157号(中共中央旧址纪念馆旁)武汉说唱团",
-      "latitude": 30.587503,
-      "longitude": 114.298054,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 75）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "5597586078906276958",
-          "title": "武汉快活里剧场",
-          "address": "湖北省武汉市江岸区一元街道胜利街157号(中共中央旧址纪念馆旁)武汉说唱团",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 30.587503,
-          "longitude": 114.298054
-        }
+        "douban:37739449"
       ]
     },
     {
-      "group_id": "67cfc75beecf",
-      "event_uids": [
-        "douban:37672231"
-      ],
+      "group_id": "b46e104bcd4d",
       "action": "match",
-      "search_keywords_tried": [
-        "武汉 沿江大道1号"
-      ],
-      "poi_id": "7279928822313317864",
-      "poi_title": "沿江1号",
-      "poi_address": "湖北省武汉市江汉区沿江大道1号",
-      "latitude": 30.567292,
-      "longitude": 114.289361,
-      "confidence": "high",
+      "poi_id": "583600664672639388",
+      "poi_title": "湖北剧院",
+      "poi_address": "",
+      "latitude": 30.540991,
+      "longitude": 114.304519,
       "doubtful": false,
-      "reason": "三轮匹配（score 92）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "4080787046591215452",
-          "title": "格蕾摩尔婚宴中心",
-          "address": "湖北省武汉市江汉区沿江大道1号",
-          "category": "生活服务:婚庆服务",
-          "latitude": 30.566798,
-          "longitude": 114.28999
-        },
-        {
-          "index": 1,
-          "poi_id": "18146673576940388758",
-          "title": "中国民生银行武汉江岸支行",
-          "address": "湖北省武汉市江汉区民族街街道沿江大道1号沿江1号3区1层",
-          "category": "银行金融:银行",
-          "latitude": 30.566889,
-          "longitude": 114.288584
-        },
-        {
-          "index": 2,
-          "poi_id": "7279928822313317864",
-          "title": "沿江1号",
-          "address": "湖北省武汉市江汉区沿江大道1号",
-          "category": "房产小区:商务楼宇",
-          "latitude": 30.567292,
-          "longitude": 114.289361
-        },
-        {
-          "index": 3,
-          "poi_id": "3355798753315932747",
-          "title": "沿江一号MALL",
-          "address": "湖北省武汉市江汉区沿江大道1号",
-          "category": "购物:综合商场",
-          "latitude": 30.567283,
-          "longitude": 114.289353
-        },
-        {
-          "index": 4,
-          "poi_id": "7354529290250803855",
-          "title": "汉口江滩-兰陵门",
-          "address": "湖北省武汉市江岸区江滩大道1号汉口江滩",
-          "category": "旅游景点:其它旅游景点",
-          "latitude": 30.584249,
-          "longitude": 114.302022
-        }
-      ]
-    },
-    {
-      "group_id": "8d758d6e7c33",
-      "event_uids": [
-        "douban:37431981"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "武汉 昙华四季演艺剧场"
-      ],
-      "poi_id": "5067497020590442828",
-      "poi_title": "昙华四季演艺剧场",
-      "poi_address": "湖北省武汉市武昌区粮道街道粮道街昙华林三期人文小镇F8-2",
-      "latitude": 30.553011,
-      "longitude": 114.309914,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 268）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "5067497020590442828",
-          "title": "昙华四季演艺剧场",
-          "address": "湖北省武汉市武昌区粮道街道粮道街昙华林三期人文小镇F8-2",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 30.553011,
-          "longitude": 114.309914
-        }
-      ]
-    },
-    {
-      "group_id": "2df8340522f2",
-      "event_uids": [
-        "douban:37828519"
-      ],
-      "action": "match",
+      "reason": "地址映射库命中：武汉 武昌区 湖北剧院 武昌阅马场西厂口1号 → 湖北剧院（来源 event:douban:37751913）",
       "search_keywords_tried": [
         "poi-address-cache"
       ],
-      "poi_id": "3794597656865380312",
-      "poi_title": "联创艺空间1号·心境剧场",
+      "event_uids": [
+        "douban:37770005",
+        "douban:37857032"
+      ]
+    },
+    {
+      "group_id": "2e58c7d48bac",
+      "action": "match",
+      "poi_id": "2054636966946479774",
+      "poi_title": "武汉琴台大剧院",
       "poi_address": "",
-      "latitude": 30.549768,
-      "longitude": 114.298927,
-      "confidence": "high",
+      "latitude": 30.561106,
+      "longitude": 114.259086,
       "doubtful": false,
-      "reason": "地址映射库命中：武汉 武昌区 联创艺空间 中华路477-1号 → 联创艺空间1号·心境剧场（来源 event:douban:37792037）",
-      "candidates": []
+      "reason": "地址映射库命中：武汉 汉阳区 琴台大剧院 知音大道7号 → 武汉琴台大剧院（来源 event:douban:37798950）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37818147"
+      ]
     },
     {
       "group_id": "dfb721e3598d",
-      "event_uids": [
-        "douban:37838596",
-        "douban:36916408"
-      ],
       "action": "match",
-      "search_keywords_tried": [
-        "武汉临空港大剧院"
-      ],
       "poi_id": "1269973832452280886",
       "poi_title": "武汉临空港大剧院",
       "poi_address": "湖北省武汉市东西湖区凌云路139号",
       "latitude": 30.640462,
       "longitude": 114.135027,
-      "confidence": "high",
       "doubtful": false,
-      "reason": "三轮匹配（score 268）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "1269973832452280886",
-          "title": "武汉临空港大剧院",
-          "address": "湖北省武汉市东西湖区凌云路139号",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 30.640462,
-          "longitude": 114.135027
-        }
-      ]
-    },
-    {
-      "group_id": "bfcc1a1a5d31",
-      "event_uids": [
-        "douban:37714473"
-      ],
-      "action": "match",
+      "reason": "临空港大剧院主体一致，东西湖区同场馆，凌云路139号与临空港大道交叉口为同一剧院不同表述",
       "search_keywords_tried": [
-        "武汉 惊悚喜剧鬼混剧场"
+        "武汉临空港大剧院"
       ],
-      "poi_id": "8317121696675222971",
-      "poi_title": "惊悚喜剧鬼混剧场-开关SWITCH",
-      "poi_address": "湖北省武汉市洪山区悦心汇四楼A-DD4-06-1(尹三顺韩式烤肉旁边)",
-      "latitude": 30.506045,
-      "longitude": 114.402627,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 397）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "8317121696675222971",
-          "title": "惊悚喜剧鬼混剧场-开关SWITCH",
-          "address": "湖北省武汉市洪山区悦心汇四楼A-DD4-06-1(尹三顺韩式烤肉旁边)",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 30.506045,
-          "longitude": 114.402627
-        }
-      ]
-    },
-    {
-      "group_id": "e9c44f74cd7e",
       "event_uids": [
-        "douban:37765223"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "武汉天乐社吉庆街剧场 吉庆街4栋4楼武汉天乐社（与仟吉西饼吉庆街店同一栋楼）"
-      ],
-      "poi_id": "17444664762066346952",
-      "poi_title": "吉庆街",
-      "poi_address": "湖北省武汉市江岸区中山大道677号",
-      "latitude": 30.586043,
-      "longitude": 114.292841,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 294）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "17444664762066346952",
-          "title": "吉庆街",
-          "address": "湖北省武汉市江岸区中山大道677号",
-          "category": "购物:商业步行街",
-          "latitude": 30.586043,
-          "longitude": 114.292841
-        },
-        {
-          "index": 1,
-          "poi_id": "3311800461725803952",
-          "title": "星程酒店(武汉江汉路步行街吉庆街店)",
-          "address": "湖北省武汉市江岸区大智路26号",
-          "category": "酒店宾馆:星级酒店",
-          "latitude": 30.587687,
-          "longitude": 114.295089
-        },
-        {
-          "index": 2,
-          "poi_id": "5149718834357795699",
-          "title": "城市便捷酒店(武汉吉庆街大智路地铁站店)",
-          "address": "湖北省武汉市江岸区球场街道京汉大道889号(近地铁6号线大智路站G出口)",
-          "category": "酒店宾馆:经济型酒店",
-          "latitude": 30.591102,
-          "longitude": 114.293125
-        },
-        {
-          "index": 3,
-          "poi_id": "16703452935344336895",
-          "title": "楚宴·汉小园(吉庆街店)",
-          "address": "湖北省武汉市江岸区吉庆街165-1号",
-          "category": "美食:中餐厅:其它中餐厅",
-          "latitude": 30.587163,
-          "longitude": 114.29387
-        },
-        {
-          "index": 4,
-          "poi_id": "11184726112346256754",
-          "title": "吉庆街小区",
-          "address": "湖北省武汉市江岸区大智街道铭新街18号(吉庆街与汇通路交叉口东50米)",
-          "category": "房产小区:住宅区:住宅小区",
-          "latitude": 30.585302,
-          "longitude": 114.291431
-        }
-      ]
-    },
-    {
-      "group_id": "effc76dc8d23",
-      "event_uids": [
-        "douban:37818184"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "7694744665222369143",
-      "poi_title": "武汉琴台音乐厅",
-      "poi_address": "",
-      "latitude": 30.560614,
-      "longitude": 114.262756,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：武汉 汉阳区 琴台音乐厅 知音大道7号 → 武汉琴台音乐厅（来源 event:douban:37799147）",
-      "candidates": []
-    },
-    {
-      "group_id": "c06cbf535ff1",
-      "event_uids": [
-        "douban:37891167"
-      ],
-      "action": "reject",
-      "search_keywords_tried": [
-        "OVIS",
-        "洪山区神墩五路199号OVIS光谷康桥外籍人员子女学校"
-      ],
-      "confidence": "low",
-      "doubtful": false,
-      "reason": "豆瓣标注洪山区，腾讯 POI 位于江夏区神墩五路199号，区划不一致",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "16091492690056973774",
-          "title": "OVIS光谷康桥外籍人员子女学校",
-          "address": "湖北省武汉市江夏区神墩五路199号",
-          "category": "教育学校:其它教育学校",
-          "latitude": 30.473338,
-          "longitude": 114.515691
-        }
-      ]
-    },
-    {
-      "group_id": "8a8912b641a6",
-      "event_uids": [
-        "douban:37888730"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "东立国际32栋1楼106室",
-        "江岸区 东立国际32栋1楼106室"
-      ],
-      "poi_id": "6361730785150871745",
-      "poi_title": "东立国际3期-32栋",
-      "poi_address": "湖北省武汉市江岸区二七街道工农兵路152号东立国际",
-      "latitude": 30.623699,
-      "longitude": 114.310663,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "江岸区东立国际32栋，同楼不同楼层",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "6361730785150871745",
-          "title": "东立国际3期-32栋",
-          "address": "湖北省武汉市江岸区二七街道工农兵路152号东立国际",
-          "category": "房产小区:房产小区附属",
-          "latitude": 30.623699,
-          "longitude": 114.310663
-        },
-        {
-          "index": 1,
-          "poi_id": "7388015615508132160",
-          "title": "东立国际3期32栋1单元",
-          "address": "湖北省武汉市江岸区东立国际3期32栋",
-          "category": "房产小区:房产小区附属",
-          "latitude": 30.623834,
-          "longitude": 114.3108
-        }
+        "douban:37828419",
+        "douban:37810040"
       ]
     }
   ]

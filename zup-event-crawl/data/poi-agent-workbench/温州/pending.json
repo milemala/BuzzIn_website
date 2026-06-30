@@ -1,33 +1,60 @@
 {
   "city": "温州",
   "source": "douban",
-  "exported_at": "2026-06-20T18:31:05.220Z",
+  "exported_at": "2026-06-29T03:23:52.611Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 3,
   "doubtful_only": false,
-  "total_events": 2,
-  "group_count": 2,
-  "cache_hit_groups": 0,
+  "total_events": 3,
+  "group_count": 3,
+  "cache_hit_groups": 1,
   "groups": [
     {
-      "group_id": "3e8461de2e9a",
-      "location": "温州 鹿城区 下吕浦温迪路冬宁组团3幢108",
-      "sample_title": "在花园小房里来一次“非暴力沟通”成长读书会",
+      "group_id": "e989d08afdfc",
+      "location": "温州 瓯海区 瓯海奥体中心体育馆 商汇路华韵嘉园南侧约90米",
+      "sample_title": "「萨克斯之王 Kenny G」2026 世界巡演-温州站",
       "event_uids": [
-        "douban:37891544"
+        "douban:37800843"
       ],
       "event_count": 1
     },
     {
-      "group_id": "132bc796160e",
-      "location": "温州 鹿城区 INSPEIS意空间见-美美店 松台街道鹿城路42号4楼L401B",
-      "sample_title": "王羽烛《得闲饮茶》巡演 • 温州站 6.26 ERAN DROW BREWED LEISURE CHINA TOUR 2026 WENZHOU",
+      "group_id": "169f8d842407",
+      "location": "温州 鹿城区 盲堂 学院中路263号小坝坊17号楼1F",
+      "sample_title": "软柿子乐队《拖拖，你是一条狗》2026年巡演 温州站",
       "event_uids": [
-        "douban:37854263"
+        "douban:37656895"
       ],
       "event_count": 1
+    },
+    {
+      "group_id": "37a6d4ffccc0",
+      "location": "温州 鹿城区 温州大剧院 府东路466号",
+      "sample_title": "2026市民音乐会 琴弦上的舞步—维也纳交响乐团大提琴首席特梅什瓦里独奏音乐会",
+      "event_uids": [
+        "douban:37809615"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "10469979600925213444",
+        "poi_title": "温州大剧院",
+        "poi_address": "",
+        "latitude": 27.990555,
+        "longitude": 120.70253,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：温州 鹿城区 温州大剧院 府东路466号 → 温州大剧院（来源 event:douban:37817639）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "37a6d4ffccc0a48ea3fb5f8cf4c8d5ef72defeaa"
+      }
     }
   ]
 }

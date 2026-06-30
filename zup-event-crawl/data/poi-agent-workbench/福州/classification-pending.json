@@ -1,7 +1,7 @@
 {
   "city": "福州",
   "source": "douban",
-  "exported_at": "2026-06-23T01:31:39.685Z",
+  "exported_at": "2026-06-29T03:23:53.651Z",
   "note": "由 Cursor Agent 逐条判断 suggested（推荐/挡下）与 category。见 docs/event-classification-agent.md",
   "events": [
     {
@@ -125,6 +125,21 @@
       "current_reason": "脱口秀/相声/喜剧，适合结伴观演"
     },
     {
+      "event_uid": "douban:37722969",
+      "title": "【肆笑喜剧】7月11日刘振东脱口秀专场《我叫刘振东》@东街口大洋店",
+      "location": "福州 鼓楼区 肆笑喜剧脱口秀-东街口大洋店 东街街道八一七北路133号国际商厦五楼",
+      "fee": "158.00元",
+      "owner": "猫眼演出",
+      "time_text": "07月11日 周六 19:30-21:00",
+      "douban_event_type": "戏剧-其他",
+      "slide_category": "",
+      "body_excerpt": "",
+      "detail_excerpt": "以现场为准 最低演出曲目 主要演员 无需预约 儿童说明 16岁以下儿童谢绝入内 特殊提示",
+      "current_category": "待分类",
+      "current_suggested": true,
+      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+    },
+    {
       "event_uid": "douban:37716005",
       "title": "【福立社喜剧】脱口秀小剧场拼盘秀&个人专场：漫才专场(安全出口)@万象九宜城5楼店",
       "location": "福州 台江区 福立社喜剧-福州脱口秀 工业路万象九宜城5楼425号",
@@ -153,6 +168,21 @@
       "current_category": "喜剧脱口秀",
       "current_suggested": true,
       "current_reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:36751279",
+      "title": "【福立社喜剧】亲子爆笑互动科学秀《空气的力量》|科学科普@万象九宜城5楼店",
+      "location": "福州 台江区 福立社喜剧-福州脱口秀 工业路万象九宜城5楼425号",
+      "fee": "120.00元",
+      "owner": "猫眼演出",
+      "time_text": "07月04日 周六 13:30 ~ 07月11日 周六 15:00",
+      "douban_event_type": "亲子",
+      "slide_category": "",
+      "body_excerpt": "",
+      "detail_excerpt": "以现场为准 主要演员 无需预约 儿童说明 特殊提示 注意事项 ·12岁以下儿童，需在家长陪同下观看（都需要买票）。 ·宠物/有异味/易倾洒食物及饮品谢绝入内。 ·离场时带走随身物品及垃圾。 ·谢绝录像，但欢迎拍照！分享到朋友圈/微博/小红书！ ·放轻松大声笑！开心快乐最重要！",
+      "current_category": "待分类",
+      "current_suggested": true,
+      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
     },
     {
       "event_uid": "douban:37462740",
@@ -245,6 +275,21 @@
       "current_reason": "话剧/音乐剧/舞剧等舞台演出"
     },
     {
+      "event_uid": "douban:37861575",
+      "title": "花墙FancyWall「This,That」十周年巡演 福州站",
+      "location": "福州 晋安区 唯美客MAKERLIVE.三盛i33店 三盛i33城市广场2号楼",
+      "fee": "150.0元",
+      "owner": "猫眼演出",
+      "time_text": "07月05日 周日 20:00-22:00",
+      "douban_event_type": "戏剧-话剧",
+      "slide_category": "",
+      "body_excerpt": "",
+      "detail_excerpt": "入场方式说明 以现场为准 主要演员 无需预约",
+      "current_category": "待分类",
+      "current_suggested": true,
+      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+    },
+    {
       "event_uid": "douban:37789886",
       "title": "野星WildStar《野孩子的星空》-福州站",
       "location": "福州 台江区 回响之地·福州馆 苍霞路13号青年广场02-1铺",
@@ -288,6 +333,21 @@
       "current_category": "喜剧脱口秀",
       "current_suggested": true,
       "current_reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37714555",
+      "title": "【福立社喜剧】儿童必看|亲子互动《泡泡秀》@万象九宜城5楼店",
+      "location": "福州 台江区 福立社喜剧-福州脱口秀 工业路万象九宜城5楼425号",
+      "fee": "120.00元",
+      "owner": "猫眼演出",
+      "time_text": "07月18日 周六 13:30 ~ 07月25日 周六 14:30",
+      "douban_event_type": "亲子",
+      "slide_category": "",
+      "body_excerpt": "",
+      "detail_excerpt": "以现场为准 最低演出曲目 主要演员 无需预约 儿童说明 特殊提示 注意事项： ·宠物/有异味/易倾洒食物及饮品谢绝入内。 ·离场时带走随身物品及垃圾。 ·谢绝录像，但欢迎拍照！分享到朋友圈/微博/小红书！ ·放轻松大声笑！开心快乐最重要！",
+      "current_category": "待分类",
+      "current_suggested": true,
+      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
     },
     {
       "event_uid": "douban:37721316",
@@ -393,6 +453,21 @@
       "current_category": "喜剧脱口秀",
       "current_suggested": true,
       "current_reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37833669",
+      "title": "7月4日《乃万「Selves们2.0」巡演》福州站",
+      "location": "福州 闽侯县 福州大学城文化艺术中心 明德路与广兴路交叉路口往西南约200米（大学城体育中心南侧约100米）",
+      "fee": "180.0元起",
+      "owner": "猫眼演出",
+      "time_text": "07月04日 周六 19:30-21:30",
+      "douban_event_type": "音乐-演唱会",
+      "slide_category": "",
+      "body_excerpt": "",
+      "detail_excerpt": "入场方式说明 本场演出不限制身高，所有观众凭票入场。1米以下儿童需家长陪同，凭票入场。 约120分钟，具体演出时长以现场为准 最低演出曲目 以现场为准 主要演员 无需预约 1.早鸟折扣时间4月24日15:00至5月1日： 2.最低票价不享受任何优惠。 自营项目，演出票售出不退不换，请谨慎购买 自营项目 3.观众进入剧院请排队入场，按照演出票上的位置对号入座，请勿在演出期间换座。 8.演出票仅限观看当天当场次演出，逾期失效，建议您提前一小时进行取票、并按时入场，迟到观众需等一个小曲目结束后，于曲目间才能入场。 演出介绍 *具体演出信息以演出当天为准* 部分图片、资料来源于网络 如有侵权，请联系删除",
+      "current_category": "待分类",
+      "current_suggested": true,
+      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
     },
     {
       "event_uid": "douban:36940886",

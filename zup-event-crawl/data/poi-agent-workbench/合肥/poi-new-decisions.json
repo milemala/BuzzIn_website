@@ -1,0 +1,25 @@
+{
+  "city": "合肥",
+  "source": "douban",
+  "decided_at": "2026-06-29T03:41:40.227Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "c740c8b5becc",
+      "action": "match",
+      "poi_id": "3844383793227150543",
+      "poi_title": "追笑喜剧空间(京东超体7楼)",
+      "poi_address": "安徽省合肥市蜀山区南七街道港汇广场7楼(望江西路与潜山路东北角)",
+      "latitude": 31.832848,
+      "longitude": 117.23239,
+      "doubtful": true,
+      "reason": "追笑喜剧空间店名与港汇广场7楼地址一致，豆瓣写包河区、腾讯写蜀山区，属行政区划标注差异",
+      "search_keywords_tried": [
+        "追笑喜剧空间 港汇广场"
+      ],
+      "event_uids": [
+        "douban:35413605"
+      ]
+    }
+  ]
+}

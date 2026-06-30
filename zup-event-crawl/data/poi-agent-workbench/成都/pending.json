@@ -1,14 +1,352 @@
 {
   "city": "成都",
   "source": "douban",
-  "exported_at": "2026-06-23T01:31:34.588Z",
+  "exported_at": "2026-06-29T03:23:49.441Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 23,
   "doubtful_only": false,
-  "total_events": 0,
-  "group_count": 0,
-  "cache_hit_groups": 0,
-  "groups": []
+  "total_events": 23,
+  "group_count": 19,
+  "cache_hit_groups": 10,
+  "groups": [
+    {
+      "group_id": "8d49ab5cdabb",
+      "location": "成都 武侯区 成都城市音乐厅 一环路南一段45号",
+      "sample_title": "英国皇家爱乐乐团首席-蒋文瀚中提琴与肩式大提琴无伴奏音乐会",
+      "event_uids": [
+        "douban:37703472",
+        "douban:37768774"
+      ],
+      "event_count": 2,
+      "cached_poi": {
+        "poi_id": "17793737809543540578",
+        "poi_title": "成都城市音乐厅",
+        "poi_address": "",
+        "latitude": 30.636008,
+        "longitude": 104.079413,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：成都 武侯区 成都城市音乐厅 一环路南一段45号 → 成都城市音乐厅（来源 event:douban:37811192）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "8d49ab5cdabb5e2e8c373eff42a6dac1be2fc462"
+      }
+    },
+    {
+      "group_id": "afca87d4e4f8",
+      "location": "成都 武侯区 成都高新中演大剧院 天府四街688号",
+      "sample_title": "女性反乌托邦音乐剧《奇美拉》",
+      "event_uids": [
+        "douban:37767996"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "8600587344093749609",
+        "poi_title": "成都高新中演大剧院",
+        "poi_address": "",
+        "latitude": 30.544046,
+        "longitude": 104.051703,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：成都 武侯区 成都高新中演大剧院 天府四街688号 → 成都高新中演大剧院（来源 event:douban:37825310）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "afca87d4e4f8556476c70514c7e0cd16d4a794f2"
+      }
+    },
+    {
+      "group_id": "27847046b658",
+      "location": "成都 武侯区 武侯祠大街231号锦里古街12号莲花府邸",
+      "sample_title": "2026莲花好声音·新星歌手大赛【报名进行中】",
+      "event_uids": [
+        "douban:37892396"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "b77df371c7f2",
+      "location": "成都 锦江区 万达·锦华城(二环路东五段)",
+      "sample_title": "成都脱宅团2026年七月第1周社交计划",
+      "event_uids": [
+        "douban:37894508"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2305365833422175537",
+        "poi_title": "趣本屋",
+        "poi_address": "",
+        "latitude": 30.620228,
+        "longitude": 104.096836,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：成都 锦江区 万达·锦华城(二环路东五段) → 趣本屋（来源 event:douban:37891507）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "b77df371c7f260c311ef3e86f6c3ef6789ad5f39"
+      }
+    },
+    {
+      "group_id": "accea8f859c1",
+      "location": "成都 成华区 后仰喜剧-Discovery王府井店 二环路北四段33号王府井Discovery6栋二楼J6-2F-p002",
+      "sample_title": "【开放麦】后仰脱口秀|脱口秀/新喜剧开放麦（周一至周四）【王府井店2号馆】",
+      "event_uids": [
+        "douban:37769555",
+        "douban:37769234"
+      ],
+      "event_count": 2,
+      "cached_poi": {
+        "poi_id": "16715155867445544006",
+        "poi_title": "后仰喜剧(王府井Discovery店)",
+        "poi_address": "",
+        "latitude": 30.688627,
+        "longitude": 104.098845,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：成都 成华区 后仰喜剧-Discovery王府井店 二环路北四段33号王府井Discovery6栋二楼J6-2F-p002 → 后仰喜剧(王府井Discovery店)（来源 event:douban:37218931）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "accea8f859c169bab78be56b9f3c7014a30505fc"
+      }
+    },
+    {
+      "group_id": "517ec465ecce",
+      "location": "成都 双流区 南晶国际",
+      "sample_title": "拉康派·活人·地面研讨班",
+      "event_uids": [
+        "douban:37892944"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "b66936de4f36",
+      "location": "成都 锦江区 四川报业博物馆-天马行川马年徐悲鸿艺术特展 梓潼桥正街66号",
+      "sample_title": "天马行川——马年徐悲鸿艺术特展暨徐悲鸿入川90年悲鸿学派纪念大展",
+      "event_uids": [
+        "douban:37690460"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "27f6a720a0eb",
+      "location": "成都 武侯区 后仰喜剧-大魔方店 天府大道北段招商大魔方花园城1777号318号、319号b馆3楼",
+      "sample_title": "【开放麦】后仰喜剧 |新喜剧开放麦（周一、周二）【大魔方店】",
+      "event_uids": [
+        "douban:37717640"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "a67114538db3",
+      "location": "成都 锦江区 虾说剧场—肖干虾散打评书 红星路三十五号文化创意产业园A区(成都市)3栋1-1",
+      "sample_title": "肖干虾散打评书",
+      "event_uids": [
+        "douban:37647087"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "8935520120354833946",
+        "poi_title": "虾说剧场-肖干虾散打评书(红星路)",
+        "poi_address": "",
+        "latitude": 30.666238,
+        "longitude": 104.08794,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：成都 锦江区 虾说剧场—肖干虾散打评书 红星路三十五号文化创意产业园A区(成都市)3栋1-1 → 虾说剧场-肖干虾散打评书(红星路)（来源 event:douban:36965736）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "a67114538db3962f39c7a54f2d54d12b996868c2"
+      }
+    },
+    {
+      "group_id": "e22ac7d339ce",
+      "location": "成都 武侯区 故事之城VR大型空间-武侯大悦城冬中庭 簇锦街道武侯大悦城(武侯区大悦路518号)冬中庭3楼（3F 009）",
+      "sample_title": "故事之城VR大型空间",
+      "event_uids": [
+        "douban:37648234"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "ae5737dc288d",
+      "location": "成都 武侯区 AUV喜剧剧场 石羊街道天府大道北段1777号招商大魔方B馆四楼L4014-4016",
+      "sample_title": "AUV喜剧｜《喜人奇妙夜》卡司郭甲醛领衔即兴喜剧专场｜爆笑互动你就是导演",
+      "event_uids": [
+        "douban:37708985",
+        "douban:37682708",
+        "douban:37812898"
+      ],
+      "event_count": 3
+    },
+    {
+      "group_id": "ac409ea0a1f4",
+      "location": "成都 锦江区 笑古里-烟雨蓉城剧场 商业场街1号3层剧院(王府井百货隔壁楼)烟雨蓉城剧场",
+      "sample_title": "【成都必看】太古里春熙路｜致敬经典声动岁月金典永流传全场大合唱｜流行民谣摇滚｜流行金曲派对",
+      "event_uids": [
+        "douban:37786791"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "9376801705905655058",
+        "poi_title": "笑古里喜剧剧场",
+        "poi_address": "",
+        "latitude": 30.65836,
+        "longitude": 104.078775,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：成都 锦江区 笑古里-烟雨蓉城剧场 商业场街1号3层剧院(王府井百货隔壁楼)烟雨蓉城剧场 → 笑古里喜剧剧场（来源 event:douban:37648187）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "ac409ea0a1f469b131dea1eafd724dcc76f07bba"
+      }
+    },
+    {
+      "group_id": "1f5e34c77340",
+      "location": "成都 锦江区 趣耍剧场｜新派互动剧场 摩尔百货5楼趣耍剧场",
+      "sample_title": "【开心放松首选】爆笑无厘头互动喜剧《喜劫一空》｜四维互动沉浸体验｜情侣、朋友聚会首选！",
+      "event_uids": [
+        "douban:37839498"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "4cee8833f27d",
+      "location": "成都 武侯区 博新全宇宙沉浸式探索中心 盛华北路116号10栋附101-301",
+      "sample_title": "【成都】「巴黎1874·印象派之夜」沉浸式探索体验",
+      "event_uids": [
+        "douban:37670545"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "11355264698095238494",
+        "poi_title": "博新全宇宙沉浸式探索中心",
+        "poi_address": "",
+        "latitude": 30.559391,
+        "longitude": 104.050996,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：成都 武侯区 博新全宇宙沉浸式探索中心 盛华北路116号10栋附101-301 → 博新全宇宙沉浸式探索中心（来源 event:douban:37702652）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "4cee8833f27dfcbc6f7b98e73278d1a02339b831"
+      }
+    },
+    {
+      "group_id": "6f6868da83d8",
+      "location": "成都 锦江区 原气喜剧脱口秀剧场 春熙路茂业百货5楼原众演艺中心内",
+      "sample_title": "春熙路|原气喜剧爆笑脱口秀·即兴喜剧·互动秀·相亲游戏|茂业百货天天演",
+      "event_uids": [
+        "douban:37775232"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2548999866963956921",
+        "poi_title": "原众演艺中心-原气喜剧脱口秀剧场(春熙路店)",
+        "poi_address": "",
+        "latitude": 30.657477,
+        "longitude": 104.078792,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：成都 锦江区 原气喜剧脱口秀剧场 春熙路茂业百货5楼原众演艺中心内 → 原众演艺中心-原气喜剧脱口秀剧场(春熙路店)（来源 event:douban:37828930）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "6f6868da83d85346fc2ef587204a7eaaf1552718"
+      }
+    },
+    {
+      "group_id": "362db1990fdf",
+      "location": "成都 锦江区 哈哈曲艺社-东门市井店 菱窠西路9号锦江区哈哈茶铺",
+      "sample_title": "相声和新喜剧专场丨东门市井店丨哈哈曲艺社丨抢座先到先得丨旅游必打卡丨熊猫喜剧",
+      "event_uids": [
+        "douban:37581886"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "13360462380629293403",
+        "poi_title": "哈哈曲艺社-东门市井店",
+        "poi_address": "",
+        "latitude": 30.61832,
+        "longitude": 104.125001,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：成都 锦江区 哈哈曲艺社-东门市井店 菱窠西路9号锦江区哈哈茶铺 → 哈哈曲艺社-东门市井店（来源 event:douban:36341496）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "362db1990fdf3eed9e8dea415afbf4d9c7fc11d4"
+      }
+    },
+    {
+      "group_id": "6bec6f80c99c",
+      "location": "成都 锦江区 时光剧场-摩尔百货店 春熙路街道御街55号摩尔百货5楼(全季酒店门头进电梯上五楼)",
+      "sample_title": "爆笑互动大戏《海上大劫》本想干票大的， 结果全员翻船！乌龙劫案x荒诞反转x全场嗨爆",
+      "event_uids": [
+        "douban:37647640"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "10407239120368041323",
+        "poi_title": "摩尔百货(天府店)地下停车场",
+        "poi_address": "",
+        "latitude": 30.656852,
+        "longitude": 104.068666,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：成都 锦江区 时光剧场-摩尔百货店 春熙路街道御街55号摩尔百货5楼(全季酒店门头进电梯上五楼) → 摩尔百货(天府店)地下停车场（来源 event:douban:37681479）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "6bec6f80c99c1fbb7fd912b3b14c72d434959f4d"
+      }
+    },
+    {
+      "group_id": "1e391e601e99",
+      "location": "成都 锦江区 锦官驿老茶馆-吴清舟散打评书 锦官驿街1号水璟唐6栋1层1号",
+      "sample_title": "吴清舟散打评书（锦官驿专场）",
+      "event_uids": [
+        "douban:37671105"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "74eda283306c",
+      "location": "成都 锦江区 首部惊悚爆笑环境戏剧《开心聊斋·三生》-开心麻花9剧场 水碾河路48号5层（楼梯顶层）",
+      "sample_title": "开心麻花首部惊悚爆笑环境戏剧《开心聊斋·三生》",
+      "event_uids": [
+        "douban:37647205"
+      ],
+      "event_count": 1
+    }
+  ]
 }

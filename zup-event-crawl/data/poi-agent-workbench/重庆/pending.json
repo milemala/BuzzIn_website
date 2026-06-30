@@ -1,14 +1,92 @@
 {
   "city": "重庆",
   "source": "douban",
-  "exported_at": "2026-06-23T01:31:38.631Z",
+  "exported_at": "2026-06-29T03:23:43.864Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 3,
   "doubtful_only": false,
-  "total_events": 0,
-  "group_count": 0,
-  "cache_hit_groups": 0,
-  "groups": []
+  "total_events": 3,
+  "group_count": 3,
+  "cache_hit_groups": 3,
+  "groups": [
+    {
+      "group_id": "7d018236cd5e",
+      "location": "重庆 渝中区 重庆国泰艺术中心云瑚音乐厅 临江路3号",
+      "sample_title": "梦痕——意大利那不勒斯民谣组合音乐会",
+      "event_uids": [
+        "douban:37827001"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2322472542756439282",
+        "poi_title": "重庆国泰艺术中心云瑚音乐厅",
+        "poi_address": "",
+        "latitude": 29.560313,
+        "longitude": 106.577761,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：重庆 渝中区 重庆国泰艺术中心云瑚音乐厅 临江路3号 → 重庆国泰艺术中心云瑚音乐厅（来源 event:douban:37663618）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "7d018236cd5ea2467602fc231bb9a430f2804857"
+      }
+    },
+    {
+      "group_id": "5a34edd36a41",
+      "location": "重庆 渝中区 重庆国泰艺术中心云卫剧场-渝戏 临江路1号重庆国泰艺术中心云卫剧场",
+      "sample_title": "【重庆国泰艺术中心】国风经典儿童剧—《西游记之孙悟空三打白骨精》",
+      "event_uids": [
+        "douban:37097531"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "9924413222897895137",
+        "poi_title": "重庆国泰艺术中心云卫剧场-渝戏",
+        "poi_address": "",
+        "latitude": 29.560091,
+        "longitude": 106.577163,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：重庆 渝中区 重庆国泰艺术中心云卫剧场-渝戏 临江路1号重庆国泰艺术中心云卫剧场 → 重庆国泰艺术中心云卫剧场-渝戏（来源 event:douban:36881584）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "5a34edd36a414e9e832c71bc50f84b133704384a"
+      }
+    },
+    {
+      "group_id": "89514f152d05",
+      "location": "重庆 两江新区 坚果NUTS 演出现场 观音桥街道建新北路观音桥新壹街C馆F1层",
+      "sample_title": "碎梦飞跃「外面是夏天」2026巡演 重庆站",
+      "event_uids": [
+        "douban:37789420"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "9140399097731358382",
+        "poi_title": "坚果NUTS",
+        "poi_address": "",
+        "latitude": 29.582205,
+        "longitude": 106.52632,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：重庆 两江新区 坚果NUTS 演出现场 观音桥街道建新北路观音桥新壹街C馆F1层 → 坚果NUTS（来源 event:douban:37866708）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "89514f152d0554929995181b80c4e4959451c377"
+      }
+    }
+  ]
 }

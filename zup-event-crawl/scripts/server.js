@@ -82,6 +82,7 @@ const {
 } = require("../lib/merchant-bubble-jobs");
 const { batchAutoPoi } = require("../lib/merchant-poi-batch");
 const { syncMerchantsFromBuzz } = require("../lib/buzz-merchant-sync");
+const { queryBubbleGroupActivity } = require("../lib/bubble-group-activity");
 const {
   buildPoiKeyword,
   pickBestPoiForMerchant,
@@ -525,10 +526,19 @@ async function handleApi(req, res, pathname) {
         return;
       }
 
-      applyEventPoiSelection(db, eventUid, poi, {
+      const applyResult = applyEventPoiSelection(db, eventUid, poi, {
         candidates,
         matchSource: body.match_source || "manual",
       });
+      if (applyResult?.skipped) {
+        sendJson(res, 409, {
+          ok: false,
+          error: applyResult.event?.review_reason || "同名同POI已有未过期活动",
+          incumbent_uid: applyResult.incumbent_uid,
+          event: applyResult.event,
+        });
+        return;
+      }
       const updated = await syncEventMerchantByPoi(db, eventUid);
       sendJson(res, 200, { ok: true, event: updated, candidates });
     } catch (error) {
@@ -1193,6 +1203,33 @@ async function handleApi(req, res, pathname) {
       const state = getMerchantReviewState(db);
       const approved = getApprovedMerchants(db);
       sendJson(res, 200, { ok: true, updatedAt: state.updatedAt, approvedCount: approved.length });
+    } catch (error) {
+      sendJson(res, 400, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if ((req.method === "GET" || req.method === "POST") && pathname === "/api/bubble-group-activity") {
+    try {
+      const parsed = url.parse(req.url, true);
+      const body = req.method === "POST"
+        ? JSON.parse((await readBody(req)) || "{}")
+        : {};
+      const query = parsed.query || {};
+      const buzzEnv = parseBuzzEnvFromRequest(req, { ...query, ...body });
+      const dateFrom = String(body.date_from || query.date_from || "").trim();
+      const dateTo = String(body.date_to || query.date_to || "").trim();
+      const scope = String(body.scope || query.scope || "all").trim().toLowerCase();
+      const onlyActive = String(body.only_active ?? query.only_active ?? "true").trim().toLowerCase() !== "false";
+      const result = await queryBubbleGroupActivity({
+        buzz_env: buzzEnv,
+        date_from: dateFrom,
+        date_to: dateTo || dateFrom,
+        scope,
+        only_active: onlyActive,
+        db,
+      });
+      sendJson(res, 200, { ok: true, ...result });
     } catch (error) {
       sendJson(res, 400, { ok: false, error: error.message });
     }

@@ -1,0 +1,51 @@
+{
+  "city": "广州",
+  "source": "douban",
+  "decided_at": "2026-06-29T03:41:40.227Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "ffd7a48efd83",
+      "action": "reject",
+      "doubtful": false,
+      "reason": "敬梓里文创社区二期中山七路68号无独立腾讯 POI，候选为一期(敬梓里2号)或租户门店，无法唯一匹配二期主体",
+      "search_keywords_tried": [
+        "敬梓里文创社区",
+        "敬梓里文创社区二期 中山七路68号",
+        "敬梓里2期"
+      ],
+      "event_uids": [
+        "douban:37894322"
+      ]
+    },
+    {
+      "group_id": "54bdd1d50b05",
+      "action": "match",
+      "poi_id": "275053503382873673",
+      "poi_title": "友谊剧院",
+      "poi_address": "广东省广州市越秀区人民北路696号",
+      "latitude": 23.144969,
+      "longitude": 113.257679,
+      "doubtful": false,
+      "reason": "场馆名称与人民北路696号地址完全一致",
+      "search_keywords_tried": [
+        "友谊剧院"
+      ],
+      "event_uids": [
+        "douban:37745660"
+      ]
+    },
+    {
+      "group_id": "663afbd07afe",
+      "action": "reject",
+      "doubtful": false,
+      "reason": "珠江新城A1仅为呼伦贝尔徒步出发地铁站口，非活动主体场地，无法绑定具体场馆POI",
+      "search_keywords_tried": [
+        "珠江新城"
+      ],
+      "event_uids": [
+        "douban:37892845"
+      ]
+    }
+  ]
+}

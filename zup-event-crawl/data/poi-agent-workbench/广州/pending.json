@@ -1,14 +1,145 @@
 {
   "city": "广州",
   "source": "douban",
-  "exported_at": "2026-06-23T01:31:40.716Z",
+  "exported_at": "2026-06-29T03:23:38.431Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 8,
   "doubtful_only": false,
-  "total_events": 0,
-  "group_count": 0,
-  "cache_hit_groups": 0,
-  "groups": []
+  "total_events": 8,
+  "group_count": 7,
+  "cache_hit_groups": 4,
+  "groups": [
+    {
+      "group_id": "ba9b5a7cff03",
+      "location": "广州 越秀区 中山纪念堂·演出厅 东风中路299号",
+      "sample_title": "「萨克斯之王 Kenny G」2026 世界巡演-广州站",
+      "event_uids": [
+        "douban:37792289"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "11405468392197237654",
+        "poi_title": "中山纪念堂-演出厅",
+        "poi_address": "",
+        "latitude": 23.133746,
+        "longitude": 113.264908,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：广州 越秀区 中山纪念堂·演出厅 东风中路299号 → 中山纪念堂-演出厅（来源 event:douban:37724385）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "ba9b5a7cff03261a98aba01c3627c7d60992e545"
+      }
+    },
+    {
+      "group_id": "b82cca436242",
+      "location": "广州 越秀区 星海音乐厅 晴波路33号",
+      "sample_title": "周日音乐下午茶4 交响N次元",
+      "event_uids": [
+        "douban:37803055",
+        "douban:37892380"
+      ],
+      "event_count": 2,
+      "cached_poi": {
+        "poi_id": "10798684933118352428",
+        "poi_title": "星海音乐厅",
+        "poi_address": "",
+        "latitude": 23.107748,
+        "longitude": 113.305678,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：广州 越秀区 星海音乐厅 晴波路33号 → 星海音乐厅（来源 event:douban:37747873）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "b82cca436242f77dc9fc51e0708d80425e650f09"
+      }
+    },
+    {
+      "group_id": "ffd7a48efd83",
+      "location": "广州 荔湾区 中山七路68号敬梓里文创社区二期（西门口地铁站D口步行约6分钟）",
+      "sample_title": "听理立说第432期：立叔攒下的不同阶层人士生活观察报告",
+      "event_uids": [
+        "douban:37894322"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "54bdd1d50b05",
+      "location": "广州 越秀区 友谊剧院 人民北路696号",
+      "sample_title": "小奇 哈哈曹 徐浩伦谭湘文领衔《一起笑嘛！》巡演-笑果出品@广州",
+      "event_uids": [
+        "douban:37745660"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "88f5e771431c",
+      "location": "广州 天河区 体育东路南方证券大厦二楼觉咖啡",
+      "sample_title": "广州中年转型社交局｜12人高质量深度交流",
+      "event_uids": [
+        "douban:37893332"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "6884895873401208372",
+        "poi_title": "南方证券大厦",
+        "poi_address": "",
+        "latitude": 23.139127,
+        "longitude": 113.328952,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：广州 天河区 体育东路南方证券大厦二楼觉咖啡 → 南方证券大厦（来源 event:douban:37878516）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "88f5e771431c619257012a22499edfa84386fc5a"
+      }
+    },
+    {
+      "group_id": "a4eb73032056",
+      "location": "广州 天河区 南天广场龙庭阁2702",
+      "sample_title": "普通人可落地的成交能力｜广州实战销售力提升沙龙",
+      "event_uids": [
+        "douban:37893347"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "7900472676081068007",
+        "poi_title": "南天广场龙庭阁-南门",
+        "poi_address": "",
+        "latitude": 23.120099,
+        "longitude": 113.316404,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：广州 天河区 南天广场龙庭阁2702 → 南天广场龙庭阁-南门（来源 event:douban:37878543）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "a4eb73032056cb79f2aa19f410a0e280fe1a94f2"
+      }
+    },
+    {
+      "group_id": "663afbd07afe",
+      "location": "广州 天河区 珠江新城A1",
+      "sample_title": "2026步丈山河 • 呼伦贝尔大草原42KM徒步挑战计划",
+      "event_uids": [
+        "douban:37892845"
+      ],
+      "event_count": 1
+    }
+  ]
 }

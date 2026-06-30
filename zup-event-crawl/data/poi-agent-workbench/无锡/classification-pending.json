@@ -1,6 +1,7 @@
 {
   "city": "无锡",
-  "exported_at": "2026-06-10T17:28:50.051Z",
+  "source": "douban",
+  "exported_at": "2026-06-29T03:23:53.054Z",
   "note": "由 Cursor Agent 逐条判断 suggested（推荐/挡下）与 category。见 docs/event-classification-agent.md",
   "events": [
     {
@@ -11,11 +12,12 @@
       "owner": "猫眼演出",
       "time_text": "06月27日 周六 10:30-11:30",
       "douban_event_type": "亲子",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "经典名著改编的互动式皮影戏，《三打白骨精》《火焰山》等剧目轮番上演，传统皮影遇上现场互动，小朋友可以近距离感受国风光影魅力。演出约70分钟。 参加方式：请于猫眼 App 搜索本活动购票，票价39元起。",
       "detail_excerpt": "约70分钟（以现场为准） 最低演出曲目 以现场为准 主要演员 无需预约 儿童说明 特殊提示 剧目简介：",
-      "current_category": "待分类",
+      "current_category": "遛娃亲子",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "互动皮影戏儿童场，标题明确亲子向"
     },
     {
       "event_uid": "douban:37047366",
@@ -25,11 +27,12 @@
       "owner": "猫眼演出",
       "time_text": "06月14日 周日 10:30 ~ 06月28日 周日 11:30",
       "douban_event_type": "亲子",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "沉浸式互动儿童剧《磨蹭大王猪悠悠》，用爆笑情节帮孩子认识拖延习惯，台上台下互动多，适合带娃一起笑一起学。演出约70分钟。 参加方式：请于猫眼 App 搜索本活动购票。",
       "detail_excerpt": "约70分钟，以现场为准 最低演出曲目 以现场为准 主要演员 无需预约 儿童说明 特殊提示 让小朋友们不再磨蹭的“磨蹭大王”快来体验吧！",
-      "current_category": "待分类",
+      "current_category": "遛娃亲子",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "沉浸互动儿童剧，面向亲子家庭"
     },
     {
       "event_uid": "douban:37726712",
@@ -39,11 +42,12 @@
       "owner": "猫眼演出",
       "time_text": "06月12日 周五 19:38 ~ 06月26日 周五 21:38",
       "douban_event_type": "喜剧-相声",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "无锡本土相声喜剧演出「阿福喜乐会」，在南长街书码头听段子、看表演，轻松解压的晚间娱乐。演出约120分钟。 参加方式：请于猫眼 App 搜索本活动购票。",
       "detail_excerpt": "入场方式说明 约120分钟（以现场为准） 以现场为准 主要演员 无需预约",
-      "current_category": "待分类",
+      "current_category": "喜剧脱口秀",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "阿福喜乐会相声喜剧演出，适合结伴观演"
     },
     {
       "event_uid": "douban:37676721",
@@ -53,11 +57,12 @@
       "owner": "梵高高",
       "time_text": "2026年04月29日 ~ 2026年07月28日 每天 09:00 - 23:00",
       "douban_event_type": "聚会-交友",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "零基础也能上手的水彩、彩铅、油画棒、素描体验，在安静画室里慢慢涂涂抹抹，周末或工作日白天晚上都能约。适合想试试画画、又不想报正经培训班的朋友。 参加方式：需提前预约，请关注微信公众号「qianbiart」咨询报名，不接受空降。",
       "detail_excerpt": "还否记得孩提时对调色板的憧憬 你还否能忆起当年要成为小画家的希翼 无论你有绘画功底 或零基础 无论你想试试 或只是看看 我们都欢迎你 有人会问：我真的一点基础没有，可以画吗？ 答：当然可以的 喜欢绘画却又迟迟无从下笔的朋友，是不是一直在寻找可以习得画画技巧的机会？喜欢水彩，喜欢艺术的你也许从没学过画画，但只要你有兴趣，相信我，画画从来都不会开始的太晚。 适合人群：有无绘画基础均可，与其被拥挤在嘈杂的繁华闹市， 不如寻一处安静，悠闲的空间做一名安静的美女子亦或是安静的美男子呢？~~~ 素描课堂：素描是基础的基础，我们零基础素描基础知识讲解，如何画线、起稿，如何塑造明暗关系，从零开始教你如何画一幅完整的素描画。 彩铅课堂：最近肯定大家都被彩铅刷屏了，我们零基础讲解彩铅绘画的基础知识，彩铅绘画技法，彩色铅笔的运用，教你画一幅完美的彩铅画。 水彩课堂：老师会零基础讲解水彩绘画的工具运用、色彩知识、调色技法等，教你画一幅色彩艳丽的水彩画。我们学习的风格有水果、卡通、风景、人物等等，总有一款适合你。 为保证您的学习质量，需要提前预约报名哦！ 咨询老师 微信公众号：qianbiart 微博： http://weibo.com/234248699 活动时间： 上午9：00-晚上11：00（周内周末均可，时间自由哦） 活动地点：新区哥伦布广场梵空间 为保证您的学习质量，需要提前预约报名哦！不接受空降哦！所以加老师WX咨询吧",
-      "current_category": "待分类",
+      "current_category": "手作体验",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "零基础绘画体验课，偏休闲手作而非职业培训"
     },
     {
       "event_uid": "douban:36733627",
@@ -67,11 +72,12 @@
       "owner": "猫眼演出",
       "time_text": "06月14日 周日 19:30 ~ 06月28日 周日 21:00",
       "douban_event_type": "戏剧-其他",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "喜局社脱口秀开放麦，新面孔老演员同台试段子，票价亲民，适合想轻松听笑话、感受现场氛围的夜晚。约90分钟，18岁以下谢绝入场。 参加方式：请于猫眼 App 搜索本活动购票。",
       "detail_excerpt": "约90分钟左右，以现场为准 最低演出曲目 以现场为准 主要演员 无需预约 儿童说明 18岁以下禁止入内 特殊提示 18岁以下禁止入内。 演出中禁止录音录像",
-      "current_category": "待分类",
+      "current_category": "喜剧脱口秀",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "喜局社脱口秀开放麦"
     },
     {
       "event_uid": "douban:37708591",
@@ -81,11 +87,42 @@
       "owner": "猫眼演出",
       "time_text": "06月17日 周三 19:30 ~ 06月24日 周三 21:00",
       "douban_event_type": "喜剧-脱口秀",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "大发喜剧每周三开放麦试验场，周中下班来南长街听段子解压，新梗旧梗轮番上阵，提前半小时检票。未满16岁谢绝入场。 参加方式：请于猫眼 App 搜索本活动购票，8.8元起。",
       "detail_excerpt": "以现场为准 最低演出曲目 主要演员 无需预约 儿童说明 未满16岁禁止入内 特殊提示 开放麦有部分内容短期内会重复、不建议重复多次观看~未满16岁禁止入内，提前半个小时开始检票 关于大发喜剧：",
-      "current_category": "待分类",
+      "current_category": "喜剧脱口秀",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "大发喜剧周中开放麦"
+    },
+    {
+      "event_uid": "douban:37773783",
+      "title": "【重磅卡司】三阳广场全新剧场-大鹅喜剧精品专场｜套票超值优惠｜沉浸式爆笑体验",
+      "location": "无锡 梁溪区 WOOBOX艺术空间 崇安寺街道八佰伴七楼",
+      "fee": "58.00元起",
+      "owner": "猫眼演出",
+      "time_text": "06月19日 周五 16:30 ~ 08月22日 周六 21:00",
+      "douban_event_type": "喜剧-脱口秀",
+      "slide_category": "",
+      "body_excerpt": "【重磅卡司】三阳广场全新剧场-大鹅喜剧精品专场在WOOBOX艺术空间举办脱口秀专场。 可于猫眼购票，票价58元起。",
+      "detail_excerpt": "客服电话 13912363016 以现场为准 主要演员 无需预约 儿童说明 14岁以下谢绝入内 特殊提示 *14岁及以下谢绝入场 *演出开始前30分钟，检票入场",
+      "current_category": "喜剧脱口秀",
+      "current_suggested": true,
+      "current_reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:36550434",
+      "title": "互动式皮影戏《三打白骨精》或《火焰山》｜不同场次轮番上演| 经典创新|戏丸子@融创茂",
+      "location": "无锡 滨湖区 戏丸子亲子剧场 融创茂商场二楼2033（靠近1号门,海世界出口隔壁）",
+      "fee": "49.00元起",
+      "owner": "猫眼演出",
+      "time_text": "06月21日 周日 16:30 ~ 06月27日 周六 20:00",
+      "douban_event_type": "亲子",
+      "slide_category": "",
+      "body_excerpt": "戏丸子@融创茂在戏丸子亲子剧场举办活动。 可于猫眼购票，票价49元起。",
+      "detail_excerpt": "约60分钟，以现场为准 最低演出曲目 以现场为准 主要演员 无需预约 儿童说明 特殊提示",
+      "current_category": "戏剧表演",
+      "current_suggested": true,
+      "current_reason": "话剧/音乐剧/舞剧等舞台演出"
     },
     {
       "event_uid": "douban:36736702",
@@ -95,11 +132,12 @@
       "owner": "猫眼演出",
       "time_text": "06月13日 周六 19:00-20:00",
       "douban_event_type": "亲子",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "魔术师周孟带来《奇幻之夜》滑稽魔术秀，央视同款节目线下版，全程高能互动，大小朋友都能看得津津有味。约60分钟。 参加方式：请于猫眼 App 搜索本活动购票，59元起。",
       "detail_excerpt": "约60分钟，以现场为准 主要演员 以现场为准 无需预约 儿童说明 特殊提示",
-      "current_category": "待分类",
+      "current_category": "戏剧表演",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "央视同款魔术滑稽秀舞台演出"
     },
     {
       "event_uid": "douban:37741230",
@@ -109,8 +147,24 @@
       "owner": "猫眼演出",
       "time_text": "06月20日 周六 19:30 ~ 06月27日 周六 21:00",
       "douban_event_type": "戏剧-其他",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "大发喜剧全女阵容脱口秀专场《她的精彩世界》，女性视角的段子与故事，观众不限性别，约会解压两不误。约90分钟。 参加方式：请于猫眼 App 搜索本活动购票。",
       "detail_excerpt": "约为90分钟，以现场为准 最低演出曲目 以现场为准 主要演员 无需预约 儿童说明 未满16岁禁止入内 特殊提示 5月20日19:30-21:00",
+      "current_category": "喜剧脱口秀",
+      "current_suggested": true,
+      "current_reason": "大发喜剧女性专场脱口秀"
+    },
+    {
+      "event_uid": "douban:37770374",
+      "title": "“匡神点弹”——匡俊宏演奏一生必听的吉他金曲",
+      "location": "无锡 新吴区 无锡交响音乐厅 净慧西道与清晏路交叉口",
+      "fee": "50.0元起",
+      "owner": "猫眼演出",
+      "time_text": "07月04日 周六 19:30-21:30",
+      "douban_event_type": "音乐-音乐会",
+      "slide_category": "",
+      "body_excerpt": "",
+      "detail_excerpt": "约90分钟，以现场为准 最低演出曲目 以现场为准 主要演员 无需预约 儿童说明 1米以下儿童凭票入场 特殊提示",
       "current_category": "待分类",
       "current_suggested": true,
       "current_reason": "待 Agent 判断是否符合线下交友娱乐"
@@ -123,11 +177,12 @@
       "owner": "猫眼演出",
       "time_text": "06月11日 周四 19:30 ~ 06月30日 周二 21:00",
       "douban_event_type": "喜剧-脱口秀",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "市井喜剧在三阳广场T12的日常脱口秀，常有外地喜剧大咖空降，现场互动多、笑声密，适合朋友结伴解压。约90分钟。 参加方式：请于猫眼 App 搜索本活动购票，18.8元起。",
       "detail_excerpt": "约90分钟，以现场为准 主要演员 以现场为准 无需预约 儿童说明 16岁以下需要家长陪同入场，12岁以下禁止入内 特殊提示",
-      "current_category": "待分类",
+      "current_category": "喜剧脱口秀",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "市井喜剧脱口秀日常演出"
     },
     {
       "event_uid": "douban:37688452",
@@ -137,11 +192,12 @@
       "owner": "猫眼演出",
       "time_text": "06月13日 周六 10:30 ~ 06月20日 周六 11:30",
       "douban_event_type": "亲子",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "互动亲子科学实验秀《小小科学家的哈哈实验室》，孩子可上台体验趣味实验，把科学课搬进剧场，寓教于乐。约60分钟，1和2两部可连看。 参加方式：请于猫眼 App 搜索本活动购票，39元起。",
       "detail_excerpt": "约60分钟（以现场为准） 主要演员 以现场为准 无需预约 儿童说明 特殊提示 剧目简介：",
-      "current_category": "待分类",
+      "current_category": "遛娃亲子",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "互动亲子科学实验秀，标题明确亲子"
     },
     {
       "event_uid": "douban:37710461",
@@ -151,11 +207,12 @@
       "owner": "猫眼演出",
       "time_text": "06月21日 周日 10:30-11:30",
       "douban_event_type": "亲子",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "国潮风互动皮影戏《一园青菜成了精》，经典童谣搬上舞台，传统皮影加亲子互动，带孩子感受非遗新玩法。约70分钟。 参加方式：请于猫眼 App 搜索本活动购票，69元起。",
       "detail_excerpt": "约70分钟，以现场为准 主要演员 以现场为准 无需预约 儿童说明 特殊提示 剧目简介：",
-      "current_category": "待分类",
+      "current_category": "遛娃亲子",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "互动皮影戏亲子场，标题含亲子互动"
     },
     {
       "event_uid": "douban:37741240",
@@ -165,8 +222,24 @@
       "owner": "猫眼演出",
       "time_text": "06月13日 周六 19:30 ~ 06月27日 周六 21:00",
       "douban_event_type": "喜剧-脱口秀",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "大发喜剧南长街店常规脱口秀，每周三周六晚间开演，景区逛完顺路听一场，轻松好笑。约90分钟，未满16岁谢绝入场。 参加方式：请于猫眼 App 搜索本活动购票，19.9元起。",
       "detail_excerpt": "约90分钟，以现场为准 主要演员 以现场为准 无需预约 儿童说明 未满16岁禁止入场 特殊提示 每周三周六19：30-21：00 关于大发喜剧：",
+      "current_category": "喜剧脱口秀",
+      "current_suggested": true,
+      "current_reason": "大发喜剧脱口秀常规演出"
+    },
+    {
+      "event_uid": "douban:37851298",
+      "title": "新国风美学经典舞台剧《红楼梦》",
+      "location": "无锡 梁溪区 无锡市人民大会堂 永和路2号",
+      "fee": "98.0元起",
+      "owner": "猫眼演出",
+      "time_text": "07月03日 周五 19:30-20:45",
+      "douban_event_type": "戏剧-话剧",
+      "slide_category": "",
+      "body_excerpt": "",
+      "detail_excerpt": "入场方式说明 约75分钟（以现场为准） 以现场为准 主要演员 无需预约",
       "current_category": "待分类",
       "current_suggested": true,
       "current_reason": "待 Agent 判断是否符合线下交友娱乐"
@@ -179,8 +252,39 @@
       "owner": "猫眼演出",
       "time_text": "06月13日 周六 19:30 ~ 06月27日 周六 21:00",
       "douban_event_type": "戏剧-其他",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "喜局社大咖专场脱口秀，阵容因场次而异，拼盘秀演员可能重复，适合想听成熟段子的观众。约70～90分钟，18岁以下谢绝入场。 参加方式：请于猫眼 App 搜索本活动购票，票价以页面为准。",
       "detail_excerpt": "约70~90分钟，以现场为准 最低演出曲目 以现场为准 主要演员 无需预约 儿童说明 18岁以下禁止入内 特殊提示 18岁以下禁止入内。 演出过程中禁止录音录像 拼盘秀演员可能重复，不建议一个月内多次观看 当天演出具体阵容请看票务下方提示",
+      "current_category": "喜剧脱口秀",
+      "current_suggested": true,
+      "current_reason": "喜局社大咖专场脱口秀"
+    },
+    {
+      "event_uid": "douban:37819472",
+      "title": "“民乐之澄”零钱音乐会｜《红旗赞歌》室内乐音乐会-江阴站",
+      "location": "无锡 江阴 江阴音乐厅 环城北路270号",
+      "fee": "39.0元",
+      "owner": "猫眼演出",
+      "time_text": "06月18日 周四 19:30-21:00",
+      "douban_event_type": "音乐-音乐会",
+      "slide_category": "",
+      "body_excerpt": "《红旗赞歌》室内乐音乐会-江阴站在江阴音乐厅举办活动。 可于猫眼购票，票价39.0元。",
+      "detail_excerpt": "入场方式说明 约90分钟，以现场为准 最低演出曲目 以现场为准 主要演员 无需预约 零钱音乐会2026｜《红旗赞歌》室内乐音乐会 豫韵民乐颂红旗，经典弦歌献山河 太行巍巍，黄河汤汤 初心如磐，乐颂华章 中原大地的风拂过殷墟与河洛 拂过古刹与戏台 吹成这一曲滚烫的《红旗赞歌》 红旗猎猎映初心，民乐声声颂华章 在岁月的峥嵘长卷里，音乐是映照初心的红旗，是激荡家国情怀的乐章，它以铿锵音符铭记光辉历程，以悠扬弦韵诉说赤子丹心。从红色经典到民族华章，从激昂颂歌到深情吟唱，每一段旋律都是时代的礼赞，镌刻着关于信仰、坚守、奋进与荣光的永恒故事。 本次零钱音乐会2026以“红旗赞歌”为主题，让民族室内乐化作跨越时空的致敬，让中原丝竹奏响家国深情，让红色信仰，在每一个音符间澎湃回响。 【演出亮点】 红色主题·深情礼赞 以《红旗赞歌》为核心，精选家喻户晓的红色经典与时代旋律，用民乐重述家国记忆，旋律激昂、情感真挚，沉浸式感受信仰力量。 中原民乐·匠心演绎 河南民族乐团室内乐团倾力呈现，融合古筝、二胡、琵琶、唢呐等中原特色乐器，兼具传统韵味与当代审美，豫风豫韵独树一帜。 室内乐精品·小而美质感 精巧编制、细腻表达，摒弃宏大编制的距离感，近距离聆听乐器共鸣，听觉更纯粹、体验更沉浸。 零钱音乐会·亲民畅享 低票价、高水准，打破高雅音乐门槛，全家老少皆可轻松入场，用“零钱”解锁殿堂级民乐现场。 【演出曲目单】 第一篇章：烽火岁月 1. 民乐合奏：《十送红军》 2. 琵琶与箫：《映山红》 3. 民乐合奏：《游击队歌》 4. 民乐合奏：《八月桂花遍地开》 5. 民乐合奏：《红星歌》 第二篇章：江山多娇 6. 中阮与唢呐：《山丹丹花开红艳艳》 7. 琵琶与竹笛：《浏阳河》 8. 二胡与琵琶：《珊瑚颂》 9. 民乐合奏：《沂蒙山小调》 10. 民乐合奏：《红旗渠水绕太行》 第三篇章：时代华章 11. 唢呐独奏…",
+      "current_category": "音乐现场",
+      "current_suggested": true,
+      "current_reason": "音乐会/演唱会/Live 等音乐演出"
+    },
+    {
+      "event_uid": "douban:37534041",
+      "title": "【特惠19.9元起】 大发喜剧拼盘秀-周六 19:30-南长街大发脱口秀-约会解压首选",
+      "location": "无锡 梁溪区 大發喜剧脱口秀 南下塘169-1号",
+      "fee": "19.90元起",
+      "owner": "猫眼演出",
+      "time_text": "07月11日 周六 19:30 ~ 07月25日 周六 20:40",
+      "douban_event_type": "戏剧-其他",
+      "slide_category": "",
+      "body_excerpt": "",
+      "detail_excerpt": "以现场为准 主要演员 无需预约 儿童说明 未满16禁止入场 特殊提示",
       "current_category": "待分类",
       "current_suggested": true,
       "current_reason": "待 Agent 判断是否符合线下交友娱乐"
@@ -193,11 +297,27 @@
       "owner": "猫眼演出",
       "time_text": "06月12日 周五 19:30-21:30",
       "douban_event_type": "音乐-音乐会",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "法国格里西尼乐团带来「幻乐交织·光影新章」巡回音乐会，古典与现代表达交织，在交响音乐厅享受约90分钟的听觉盛宴。1米以下儿童谢绝入场。 参加方式：请于猫眼 App 搜索本活动购票，80元起。",
       "detail_excerpt": "约90分钟，以现场为准 最低演出曲目 以现场为准 主要演员 无需预约 儿童说明 本场演出1米以下儿童谢绝入场 特殊提示",
-      "current_category": "待分类",
+      "current_category": "音乐现场",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "格里西尼乐团巡回音乐会"
+    },
+    {
+      "event_uid": "douban:37770391",
+      "title": "德奥之声——吕思清小提琴独奏音乐会",
+      "location": "无锡 新吴区 无锡交响音乐厅 净慧西道与清晏路交叉口",
+      "fee": "180.0元起",
+      "owner": "猫眼演出",
+      "time_text": "06月27日 周六 19:30-21:30",
+      "douban_event_type": "音乐-音乐会",
+      "slide_category": "",
+      "body_excerpt": "",
+      "detail_excerpt": "约90分钟，以现场为准 最低演出曲目 以现场为准 主要演员 无需预约 儿童说明 1米以下儿童谢绝入场。 特殊提示",
+      "current_category": "音乐现场",
+      "current_suggested": true,
+      "current_reason": "音乐会/演唱会/Live 等音乐演出"
     },
     {
       "event_uid": "douban:37742036",
@@ -207,11 +327,42 @@
       "owner": "猫眼演出",
       "time_text": "06月27日 周六 16:00-21:00",
       "douban_event_type": "戏剧-其他",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "二狗旗下一支麦脱口秀「飞行计划」无锡站，巡演阵容因日而异，在影城演出厅里听全国卡司段子。16岁以下谢绝入场。 参加方式：请于猫眼 App 搜索本活动购票，108元起。",
       "detail_excerpt": "以现场为准 最低演出曲目 主要演员 无需预约 儿童说明 16岁以下儿童禁止入场 特殊提示 「苏皖浙」一支麦脱口秀巡演飞行计划｜无锡站 6月6日演员阵容：九亿脱口秀专场《趋同进化》、良辰（主持）",
-      "current_category": "待分类",
+      "current_category": "喜剧脱口秀",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "一支麦脱口秀巡演无锡站"
+    },
+    {
+      "event_uid": "douban:37777854",
+      "title": "英国名著女性觉醒经典话剧《简·爱》",
+      "location": "无锡 滨湖区 无锡大剧院 大剧院（蠡湖大道金石路口）",
+      "fee": "80.0元起",
+      "owner": "猫眼演出",
+      "time_text": "06月21日 周日 19:30-21:30",
+      "douban_event_type": "戏剧-话剧",
+      "slide_category": "",
+      "body_excerpt": "英国名著女性觉醒经典话剧《简·爱》在无锡大剧院举办话剧。 可于猫眼购票，票价80.0元起。",
+      "detail_excerpt": "入场方式说明 本场演出1米以下儿童凭票入场 约120分钟，以现场为准 主要演员 以现场为准 无需预约 1、本场演出可以使用会员折扣。演出票是进入剧场的唯一凭证，请妥善保管，遗失不补。",
+      "current_category": "戏剧表演",
+      "current_suggested": true,
+      "current_reason": "话剧/音乐剧/舞剧等舞台演出"
+    },
+    {
+      "event_uid": "douban:37861930",
+      "title": "[江阴]曹云金领衔《万象更新》听云轩相声专场—江阴站",
+      "location": "无锡 江阴 江阴大剧院 澄江中路128号",
+      "fee": "100.00元起",
+      "owner": "猫眼演出",
+      "time_text": "06月26日 周五 19:30-21:30",
+      "douban_event_type": "喜剧-相声",
+      "slide_category": "",
+      "body_excerpt": "",
+      "detail_excerpt": "入场方式说明 约120分钟（以现场为准） 以现场为准 主要演员 无需预约",
+      "current_category": "喜剧脱口秀",
+      "current_suggested": true,
+      "current_reason": "脱口秀/相声/喜剧，适合结伴观演"
     },
     {
       "event_uid": "douban:37770416",
@@ -221,11 +372,27 @@
       "owner": "猫眼演出",
       "time_text": "06月13日 周六 19:30-21:30",
       "douban_event_type": "音乐-音乐会",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "市民音乐会呈现「枫桥夜泊」唐代诗乐，上海北京女子国乐组合演绎经典诗词意境，约90分钟沉浸式国风听赏。1米以下儿童谢绝入场。 参加方式：请于猫眼 App 搜索本活动购票，30元起。",
       "detail_excerpt": "约90分钟，以现场为准 最低演出曲目 以现场为准 主要演员 无需预约 儿童说明 1米以下儿童谢绝入场 特殊提示",
-      "current_category": "待分类",
+      "current_category": "音乐现场",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "市民音乐会诗乐演出"
+    },
+    {
+      "event_uid": "douban:37796194",
+      "title": "开心麻花爆笑年度贺岁大戏《开心西游·女儿国》",
+      "location": "无锡 梁溪区 无锡市人民大会堂 永和路2号",
+      "fee": "100.0元起",
+      "owner": "猫眼演出",
+      "time_text": "06月19日 周五 19:30 ~ 06月20日 周六 19:30",
+      "douban_event_type": "戏剧-话剧",
+      "slide_category": "",
+      "body_excerpt": "开心麻花爆笑年度贺岁大戏《开心西游·女儿国》在无锡市人民大会堂举办脱口秀。 可于猫眼购票，票价100.0元起。",
+      "detail_excerpt": "入场方式说明 剧院演出1.2米以下儿童谢绝入场（儿童专场除外），1.2米以上儿童请在家长的带领下，凭票入场 以现场为准 主要演员 无需预约",
+      "current_category": "喜剧脱口秀",
+      "current_suggested": true,
+      "current_reason": "脱口秀/相声/喜剧，适合结伴观演"
     },
     {
       "event_uid": "douban:37810498",
@@ -235,11 +402,12 @@
       "owner": "猫眼演出",
       "time_text": "06月12日 周五 20:00-21:30",
       "douban_event_type": "戏剧-话剧",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "成都独立摇滚乐队碎梦飞跃「外面是夏天」巡演无锡站，失真与旋律交织的现场音墙，适合喜欢 Live 的乐迷赴约。演出约90分钟。 参加方式：请于猫眼 App 搜索本活动购票，130元。",
       "detail_excerpt": "入场方式说明 以现场为准 主要演员 无需预约 轻松明快的旋律下有着层次丰富的音墙推进，两条人声线跳跃交织又融为一体，这就是独属于碎梦飞跃的音乐风格。在失真朦胧的氛围中，拥有了好奇心、想象力和勇气，就拥有了新世界的入场券。 当舞台灯光熄灭，旧的名字与昨日一同消融。四个人各自关于音乐的共同想象在「碎梦飞跃」里得以实现，他们以超乎一般的默契，直率表达与记录着内心的声音，诉说着那些期许与想要跨越的愿望。 这支来自成都的四人独立摇滚乐队用他们扎实的音色与技术蓄力，带着桥下排练房里的琴声，即将在这个夏天开始他们的巡演。 他们坚信，这些诞生在客厅，卧室，浴缸或者抽屉里的歌曲被面对面演奏时，那些录音室里无法捕捉的“不完美”才会发生。这些无法被数字记录的瞬间，才是夏天最真实的记号。 期待在这个夏天经过你的城市，而你恰好计划赴约，和碎梦飞跃一起度过梦幻的夜晚。 「外面是夏天」 碎梦飞跃 2026 巡演 演出站次 5.18 凯里 雨棚俱乐部 5.19 贵阳 Kai Livehouse 5.21 曲靖 荒Cafe. 5.22 昆明 空格现场（新迎店） 5.25 石家庄 红糖LIVEHOUSE 5.27 桂林 纯洁友谊俱乐部 5.28 柳州 果酱现场GoJamLive 5.29 南宁 候朋现场 x BigCase 5.31 长沙 Riff 6.3 南昌 黑铁JAM馆 6.5 义乌 隔壁酒吧 6.7 宁波 灯塔音乐现场（U-PARK店） 6.11 杭州 酒球会 6.12 无锡 活塞LIVEHOUSE（惠山古镇店） 6.16 南京 1701 Egg Bar 6.17 徐州 2666 LIVEHOUSE 6.18 济南 新视中living剧场 6.25 天津 二十年音乐现场 6.26 北京 东市·OMNI CLUB 6.27 郑州 7LIVEHOUSE 6.28 西安 西演SPACE福星现场 7.3 重庆…",
-      "current_category": "待分类",
+      "current_category": "音乐现场",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "碎梦飞跃独立摇滚乐队巡演"
     },
     {
       "event_uid": "douban:37566240",
@@ -249,11 +417,12 @@
       "owner": "猫眼演出",
       "time_text": "06月13日 周六 19:30 ~ 06月26日 周五 21:00",
       "douban_event_type": "戏剧-其他",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "喜局社白语互动脱口秀秀《恋爱反ZHA中心》，话题贴近恋爱与社交，互动感强，约60分钟。18岁以下谢绝入场，场内禁止录音录像。 参加方式：请于猫眼 App 搜索本活动购票，61元起。",
       "detail_excerpt": "约60分钟左右，以现场为准 最低演出曲目 以现场为准 主要演员 无需预约 儿童说明 18岁以下禁止入内。 特殊提示 演出中禁止录音录像",
-      "current_category": "待分类",
+      "current_category": "喜剧脱口秀",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "喜局社白语互动脱口秀秀"
     },
     {
       "event_uid": "douban:37701670",
@@ -263,11 +432,12 @@
       "owner": "猫眼演出",
       "time_text": "06月13日 周六 19:30 ~ 06月27日 周六 21:00",
       "douban_event_type": "喜剧-脱口秀",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "大发喜剧南长街明星专场，汇聚喜单、脱Ta等节目卡司，景区夜游加脱口秀一站式搞定。约90分钟，16岁以下谢绝入场，提前半小时检票。 参加方式：请于猫眼 App 搜索本活动购票。",
       "detail_excerpt": "约90分钟，以现场为准 主要演员 以现场为准 无需预约 儿童说明 16岁以下禁止入内 特殊提示 提前半小时开始检票入内！ 关于大发喜剧：",
-      "current_category": "待分类",
+      "current_category": "喜剧脱口秀",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "大发喜剧明星卡司脱口秀"
     },
     {
       "event_uid": "douban:37719551",
@@ -277,11 +447,12 @@
       "owner": "猫眼演出",
       "time_text": "06月14日 周日 15:30-21:00",
       "douban_event_type": "亲子",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "古典文学启蒙亲子舞台剧《红楼春趣》，以红楼梦为灵感搬上舞台，带孩子走进名著世界。约80分钟无中场，1米以下儿童凭票入场。 参加方式：请于猫眼 App 搜索本活动购票，180元起。",
       "detail_excerpt": "约80分钟，无中场休息，以现场为准 主要演员 以现场为准 无需预约 儿童说明 1米以下儿童凭票入场 特殊提示 1、本场演出不可以使用会员折扣。演出票是进入剧场的唯一凭证，请妥善保管，遗失不补。",
-      "current_category": "待分类",
+      "current_category": "遛娃亲子",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "红楼梦亲子舞台剧，标题明确亲子向"
     },
     {
       "event_uid": "douban:37748109",
@@ -291,11 +462,27 @@
       "owner": "猫眼演出",
       "time_text": "06月11日 周四 19:30 ~ 06月12日 周五 21:30",
       "douban_event_type": "戏剧-舞剧",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "春晚完整版佟睿睿导演舞剧《龟兹》，以西域乐舞展现龟兹文化之美，视觉与肢体张力兼具。约115分钟，1米2以下谢绝入场。 参加方式：请于猫眼 App 搜索本活动购票，180元起。",
       "detail_excerpt": "约115分钟，以现场为准 主要演员 以现场为准 无需预约 儿童说明 本场演出1米2以下观众谢绝入场。 特殊提示 1、演出票是进入剧场的唯一凭证，请妥善保管，遗失不补。",
-      "current_category": "待分类",
+      "current_category": "戏剧表演",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "佟睿睿导演舞剧《龟兹》"
+    },
+    {
+      "event_uid": "douban:37650702",
+      "title": "互动亲子实验秀《小小科学家的哈哈实验室》 2和3轮番上演| 可上台体验| 1部剧=10节科学课 | 戏丸子@融创茂",
+      "location": "无锡 滨湖区 戏丸子亲子剧场 融创茂商场二楼2033（靠近1号门,海世界出口隔壁）",
+      "fee": "59.00元起",
+      "owner": "猫眼演出",
+      "time_text": "06月19日 周五 19:00 ~ 06月20日 周六 20:00",
+      "douban_event_type": "亲子",
+      "slide_category": "",
+      "body_excerpt": "戏丸子@融创茂在戏丸子亲子剧场举办活动。 可于猫眼购票，票价59元起。",
+      "detail_excerpt": "以现场为准 最低演出曲目 主要演员 无需预约 儿童说明 特殊提示",
+      "current_category": "戏剧表演",
+      "current_suggested": true,
+      "current_reason": "话剧/音乐剧/舞剧等舞台演出"
     },
     {
       "event_uid": "douban:37788043",
@@ -305,11 +492,27 @@
       "owner": "猫眼演出",
       "time_text": "06月13日 周六 19:30-21:10",
       "douban_event_type": "戏剧-话剧",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "原创话剧《好运设计有限公司》江阴站，讲述都市生活中的奇妙际遇，约100分钟。剧场内禁止饮食。 参加方式：请于猫眼 App 搜索本活动购票，50元起。",
       "detail_excerpt": "入场方式说明 约100分钟，实际以现场为准 最低演出曲目 以现场为准 主要演员 无需预约 *演出时长：约100分钟，实际以现场为准。 *剧场内禁止饮食，所有食品、饮品请勿带入场内。",
-      "current_category": "待分类",
+      "current_category": "戏剧表演",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "原创话剧《好运设计有限公司》"
+    },
+    {
+      "event_uid": "douban:37818534",
+      "title": "无锡人都看无锡本土互动秀《哈乱斗》来白相！—无锡喜局社",
+      "location": "无锡 梁溪区 喜局社喜剧 永乐东路255号永乐云筑万悦集B1",
+      "fee": "88.00元起",
+      "owner": "猫眼演出",
+      "time_text": "07月03日 周五 19:30 ~ 07月10日 周五 21:00",
+      "douban_event_type": "喜剧-脱口秀",
+      "slide_category": "",
+      "body_excerpt": "",
+      "detail_excerpt": "约90分钟 最低演出曲目 以现场为准 主要演员 无需预约 儿童说明 十八岁以下禁止入内 特殊提示 18岁以下禁止入内。 演出过程中禁止录音录像",
+      "current_category": "喜剧脱口秀",
+      "current_suggested": true,
+      "current_reason": "脱口秀/相声/喜剧，适合结伴观演"
     },
     {
       "event_uid": "douban:37702671",
@@ -319,11 +522,27 @@
       "owner": "猫眼演出",
       "time_text": "06月11日 周四 19:30 ~ 06月30日 周二 21:00",
       "douban_event_type": "喜剧-脱口秀",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "市井喜剧开放麦新演员练习场，段子新鲜、票价友好，适合周中想轻松一笑的观众。约90分钟，12岁以下谢绝入场。 参加方式：请于猫眼 App 搜索本活动购票，35元。",
       "detail_excerpt": "约90分钟，以现场为准 主要演员 以现场为准 无需预约 儿童说明 16岁以下需要家长陪同入场，12岁以下禁止入内 特殊提示",
-      "current_category": "待分类",
+      "current_category": "喜剧脱口秀",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "市井喜剧开放麦新演员练习场"
+    },
+    {
+      "event_uid": "douban:37770403",
+      "title": "闪耀的我们——李朕与武汉星河室内合唱团",
+      "location": "无锡 新吴区 无锡交响音乐厅 净慧西道与清晏路交叉口",
+      "fee": "180.0元起",
+      "owner": "猫眼演出",
+      "time_text": "06月19日 周五 19:30-21:30",
+      "douban_event_type": "音乐-音乐会",
+      "slide_category": "",
+      "body_excerpt": "闪耀的我们——李朕与武汉星河室内合唱团在无锡交响音乐厅举办活动。 可于猫眼购票，票价180.0元起。",
+      "detail_excerpt": "约90分钟，以现场为准 最低演出曲目 以现场为准 主要演员 无需预约 儿童说明 1米以下儿童谢绝入场 特殊提示",
+      "current_category": "音乐现场",
+      "current_suggested": true,
+      "current_reason": "音乐会/演唱会/Live 等音乐演出"
     },
     {
       "event_uid": "douban:37818559",
@@ -333,11 +552,12 @@
       "owner": "猫眼演出",
       "time_text": "06月18日 周四 19:30-21:00",
       "douban_event_type": "喜剧-脱口秀",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "安全出口漫才组合专场《赶趟》，日式漫才式喜剧双人演出，节奏快、包袱密。约70～90分钟，16岁以下谢绝入场。 参加方式：请于猫眼 App 搜索本活动购票，88元起。",
       "detail_excerpt": "约70~90分钟（以现场为准) 主要演员 以现场为准 无需预约 儿童说明 十六岁以下禁止入内 特殊提示 16岁以下禁止入内。 演出过程中禁止录音录像",
-      "current_category": "待分类",
+      "current_category": "喜剧脱口秀",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "喜局社漫才喜剧专场"
     },
     {
       "event_uid": "douban:37585438",
@@ -347,11 +567,27 @@
       "owner": "猫眼演出",
       "time_text": "06月27日 周六 15:30-21:00",
       "douban_event_type": "戏剧-其他",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "贤鱼个人单口喜剧专场《我打不赢爱情》，一整晚一个人的段子专场，情感话题犀利又好笑。约90分钟，18岁以下谢绝入场。 参加方式：请于猫眼 App 搜索本活动购票，84元起。",
       "detail_excerpt": "约90分钟 最低演出曲目 以现场为准 主要演员 无需预约 儿童说明 18岁以下禁止入内 特殊提示 18岁以下禁止入内。 演出过程中禁止录音录像",
-      "current_category": "待分类",
+      "current_category": "喜剧脱口秀",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "贤鱼个人单口喜剧专场"
+    },
+    {
+      "event_uid": "douban:37808833",
+      "title": "【试营业特惠】端午假期曲奇专场《不等秋后》｜市中心全新黑匣子小剧场",
+      "location": "无锡 梁溪区 WOOBOX艺术空间 崇安寺街道八佰伴七楼",
+      "fee": "58.00元起",
+      "owner": "猫眼演出",
+      "time_text": "06月19日 周五 16:30-21:00",
+      "douban_event_type": "喜剧-脱口秀",
+      "slide_category": "",
+      "body_excerpt": "市中心全新黑匣子小剧场在WOOBOX艺术空间举办脱口秀专场。 可于猫眼购票，票价58元起。",
+      "detail_excerpt": "以现场为准 主要演员 无需预约 儿童说明 14岁及以下谢绝入场 特殊提示 *14岁及以下谢绝入场 *演出开始前30分钟，检票入场",
+      "current_category": "喜剧脱口秀",
+      "current_suggested": true,
+      "current_reason": "脱口秀/相声/喜剧，适合结伴观演"
     },
     {
       "event_uid": "douban:37818872",
@@ -361,11 +597,12 @@
       "owner": "猫眼演出",
       "time_text": "06月17日 周三 19:30 ~ 06月18日 周四 21:30",
       "douban_event_type": "戏剧-话剧",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "音乐剧《大江东去》在无锡大剧院上演，史诗叙事与舞台音乐结合，约120分钟。1米以下儿童谢绝入场。 参加方式：请于猫眼 App 搜索本活动购票，80元起。",
       "detail_excerpt": "入场方式说明 1米以下儿童谢绝入场 约120分钟，以现场为准 主要演员 以现场为准 无需预约 1、演出票是进入剧场的唯一凭证，请妥善保管，遗失不补。",
-      "current_category": "待分类",
+      "current_category": "戏剧表演",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "音乐剧《大江东去》舞台演出"
     },
     {
       "event_uid": "douban:37759207",
@@ -375,11 +612,12 @@
       "owner": "猫眼演出",
       "time_text": "06月12日 周五 19:30-21:30",
       "douban_event_type": "喜剧-脱口秀",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "黄西带来最新脱口秀专场《DeepChat》，熟悉美式吐槽风格加本土观察，约80分钟。1米以下儿童凭票入场。 参加方式：请于猫眼 App 搜索本活动购票，80元起。",
       "detail_excerpt": "约80分钟，以现场为准 主要演员 以现场为准 无需预约 儿童说明 本场演出1米以下儿童凭票入场 特殊提示 1、演出票是进入剧场的唯一凭证，请妥善保管，遗失不补。",
-      "current_category": "待分类",
+      "current_category": "喜剧脱口秀",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "黄西脱口秀专场无锡站"
     },
     {
       "event_uid": "douban:36586402",
@@ -389,11 +627,12 @@
       "owner": "猫眼演出",
       "time_text": "06月13日 周六 19:30-21:00",
       "douban_event_type": "戏剧-其他",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "《脱口秀大会》卡司小黑个人互动秀《黑秀》，纯互动形式，台上台下你来我往，笑点密集。约90分钟，未满16岁谢绝入场。 参加方式：请于猫眼 App 搜索本活动购票，99元起。",
       "detail_excerpt": "约90分钟，以现场为准 主要演员 以现场为准 无需预约 儿童说明 未满16禁止入内 特殊提示 纯互动秀！纯互动秀！",
-      "current_category": "待分类",
+      "current_category": "喜剧脱口秀",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "小黑个人互动脱口秀专场"
     },
     {
       "event_uid": "douban:37860391",
@@ -403,11 +642,12 @@
       "owner": "猫眼演出",
       "time_text": "06月12日 周五 19:30-21:00",
       "douban_event_type": "戏剧-舞剧",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "东方女性传奇舞蹈诗剧《西施》江阴站，以舞蹈诗形式演绎历史人物传奇，约90分钟。 参加方式：请于猫眼 App 搜索本活动购票，100元起。",
       "detail_excerpt": "入场方式说明 约90分钟（以现场为准） 以现场为准 主要演员 无需预约",
-      "current_category": "待分类",
+      "current_category": "戏剧表演",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "舞蹈诗剧《西施》舞台演出"
     },
     {
       "event_uid": "douban:37674603",
@@ -417,11 +657,12 @@
       "owner": "猫眼演出",
       "time_text": "06月13日 周六 19:30 ~ 06月27日 周六 21:00",
       "douban_event_type": "喜剧-脱口秀",
-      "body_excerpt": "",
+      "slide_category": "",
+      "body_excerpt": "大发喜剧南长街明星专场，喜单、脱Ta等节目卡司轮番上阵，周末约会打卡首选。约90分钟，未满16岁谢绝入场，提前半小时检票。 参加方式：请于猫眼 App 搜索本活动购票，58元起。",
       "detail_excerpt": "约90分钟，以现场为准 主要演员 以现场为准 无需预约 儿童说明 未满16岁禁止入内 特殊提示 未满16岁禁止入内、提前半小时开始检票入场！！ 周年庆惊喜特价，开心过周末 关于大发喜剧：",
-      "current_category": "待分类",
+      "current_category": "喜剧脱口秀",
       "current_suggested": true,
-      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+      "current_reason": "大发喜剧明星专场脱口秀"
     }
   ]
 }

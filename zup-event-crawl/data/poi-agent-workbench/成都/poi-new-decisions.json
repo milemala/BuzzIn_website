@@ -1,0 +1,174 @@
+{
+  "city": "成都",
+  "source": "douban",
+  "decided_at": "2026-06-29T12:00:00.000Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "27847046b658",
+      "action": "match",
+      "poi_id": "17875317494203234851",
+      "poi_title": "莲花府邸音乐餐酒吧(锦里店)",
+      "poi_address": "四川省成都市武侯区浆洗街街道武侯祠大街231号锦里12号",
+      "latitude": 30.645786,
+      "longitude": 104.049848,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "武侯区锦里古街12号莲花府邸，POI名称含莲花府邸、地址武侯祠大街231号锦里12号与豆瓣一致",
+      "search_keywords_tried": [
+        "莲花府邸 锦里"
+      ],
+      "event_uids": [
+        "douban:37892396"
+      ]
+    },
+    {
+      "group_id": "517ec465ecce",
+      "action": "match",
+      "poi_id": "14851155327230721277",
+      "poi_title": "南晶国际南庭",
+      "poi_address": "四川省成都市武侯区天和西一街77号",
+      "latitude": 30.600578,
+      "longitude": 104.071658,
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "豆瓣标注双流区，腾讯POI南晶国际均在武侯区，场馆名一致，区划存疑",
+      "search_keywords_tried": [
+        "南晶国际",
+        "双流区 南晶国际"
+      ],
+      "event_uids": [
+        "douban:37892944"
+      ]
+    },
+    {
+      "group_id": "b66936de4f36",
+      "action": "match",
+      "poi_id": "18409659178596082102",
+      "poi_title": "四川报业博物馆",
+      "poi_address": "四川省成都市锦江区双栅子街与布后街交叉口正南方向47米左右",
+      "latitude": 30.660112,
+      "longitude": 104.081878,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "锦江区四川报业博物馆，POI名称与类目博物馆一致，与豆瓣展览场地一致",
+      "search_keywords_tried": [
+        "四川报业博物馆"
+      ],
+      "event_uids": [
+        "douban:37690460"
+      ]
+    },
+    {
+      "group_id": "27f6a720a0eb",
+      "action": "match",
+      "poi_id": "7139173397015426238",
+      "poi_title": "后仰喜剧(大魔方分店)",
+      "poi_address": "四川省成都市武侯区高新区天府大道北段1777号成都大魔方招商花园城L3",
+      "latitude": 30.573464,
+      "longitude": 104.070172,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "武侯区后仰喜剧大魔方店，POI名称含后仰喜剧大魔方、地址天府大道北段1777号大魔方与豆瓣一致",
+      "search_keywords_tried": [
+        "后仰喜剧 大魔方"
+      ],
+      "event_uids": [
+        "douban:37717640"
+      ]
+    },
+    {
+      "group_id": "e22ac7d339ce",
+      "action": "match",
+      "poi_id": "16527605833107426694",
+      "poi_title": "成都大悦城",
+      "poi_address": "四川省成都市武侯区大悦路518号",
+      "latitude": 30.626034,
+      "longitude": 104.011217,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "故事之城VR无店级POI，豆瓣写武侯大悦城大悦路518号冬中庭3楼，对齐商场主体成都大悦城",
+      "search_keywords_tried": [
+        "故事之城VR 武侯大悦城",
+        "故事之城VR"
+      ],
+      "event_uids": [
+        "douban:37648234"
+      ]
+    },
+    {
+      "group_id": "ae5737dc288d",
+      "action": "match",
+      "poi_id": "2378581386143908742",
+      "poi_title": "AUV喜剧剧场(大魔方店)",
+      "poi_address": "四川省成都市武侯区招商大魔方B馆四楼L4014-4016",
+      "latitude": 30.574024,
+      "longitude": 104.070882,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "武侯区招商大魔方B馆四楼L4014-4016，POI名称AUV喜剧剧场大魔方店、地址与豆瓣完全一致",
+      "search_keywords_tried": [
+        "AUV喜剧剧场"
+      ],
+      "event_uids": [
+        "douban:37708985",
+        "douban:37682708",
+        "douban:37812898"
+      ]
+    },
+    {
+      "group_id": "1f5e34c77340",
+      "action": "match",
+      "poi_id": "13715251142567790098",
+      "poi_title": "趣耍剧场|新派互动剧场(春熙路店)",
+      "poi_address": "四川省成都市锦江区春熙路街道摩尔百货5楼趣耍剧场",
+      "latitude": 30.656899,
+      "longitude": 104.068549,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "锦江区摩尔百货5楼趣耍剧场，POI名称含趣耍剧场、地址摩尔百货5楼与豆瓣一致",
+      "search_keywords_tried": [
+        "趣耍剧场 摩尔百货"
+      ],
+      "event_uids": [
+        "douban:37839498"
+      ]
+    },
+    {
+      "group_id": "1e391e601e99",
+      "action": "match",
+      "poi_id": "8770818252610994768",
+      "poi_title": "锦官驿老茶馆",
+      "poi_address": "四川省成都市锦江区锦官驿街道锦官驿街水璟唐",
+      "latitude": 30.644597,
+      "longitude": 104.085446,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "锦江区锦官驿街水璟唐，POI名称锦官驿老茶馆与豆瓣一致，仅室号未精确到腾讯店级POI",
+      "search_keywords_tried": [
+        "锦官驿老茶馆"
+      ],
+      "event_uids": [
+        "douban:37671105"
+      ]
+    },
+    {
+      "group_id": "74eda283306c",
+      "action": "match",
+      "poi_id": "6997293559698665872",
+      "poi_title": "开心麻花9剧场",
+      "poi_address": "四川省成都市锦江区牛市口街道水碾河路48号5层13号",
+      "latitude": 30.649115,
+      "longitude": 104.096811,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "锦江区水碾河路48号5层开心麻花9剧场，POI名称与地址与豆瓣完全一致",
+      "search_keywords_tried": [
+        "开心麻花9剧场"
+      ],
+      "event_uids": [
+        "douban:37647205"
+      ]
+    }
+  ]
+}

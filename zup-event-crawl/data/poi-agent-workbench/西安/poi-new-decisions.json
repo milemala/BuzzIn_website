@@ -1,0 +1,25 @@
+{
+  "city": "西安",
+  "source": "douban",
+  "decided_at": "2026-06-29T03:41:40.227Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "479b9eb881de",
+      "action": "match",
+      "poi_id": "10834092220146621823",
+      "poi_title": "西安音乐厅",
+      "poi_address": "陕西省西安市雁塔区长延堡街道雁南一路与雁塔南路十字向南200米路东",
+      "latitude": 34.210006,
+      "longitude": 108.964957,
+      "doubtful": false,
+      "reason": "西安音乐厅与雁塔区豆瓣地址一致",
+      "search_keywords_tried": [
+        "西安音乐厅"
+      ],
+      "event_uids": [
+        "douban:37842759"
+      ]
+    }
+  ]
+}

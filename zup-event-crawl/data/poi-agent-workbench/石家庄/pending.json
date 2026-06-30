@@ -1,40 +1,51 @@
 {
   "city": "石家庄",
   "source": "douban",
-  "exported_at": "2026-06-20T18:31:05.153Z",
+  "exported_at": "2026-06-29T03:23:52.057Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 4,
   "doubtful_only": false,
-  "total_events": 3,
-  "group_count": 3,
-  "cache_hit_groups": 0,
+  "total_events": 4,
+  "group_count": 2,
+  "cache_hit_groups": 1,
   "groups": [
     {
-      "group_id": "1d5448593305",
-      "location": "石家庄 长安区 国际庄大剧院 中山路繁华商业街勒泰中心五层",
-      "sample_title": "[石家庄站]老舍经典话剧《茶馆》定制版",
+      "group_id": "b1720c406f21",
+      "location": "石家庄 裕华区 河北省话剧院儿童剧场 富强大街20号",
+      "sample_title": "儿童剧《木偶奇遇记》",
       "event_uids": [
-        "douban:37820748"
+        "douban:37729318",
+        "douban:37498187",
+        "douban:37498229"
       ],
-      "event_count": 1
+      "event_count": 3,
+      "cached_poi": {
+        "poi_id": "1898510723239737524",
+        "poi_title": "河北省话剧院儿童剧场",
+        "poi_address": "",
+        "latitude": 38.031418,
+        "longitude": 114.522236,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：石家庄 裕华区 河北省话剧院儿童剧场 富强大街20号 → 河北省话剧院儿童剧场（来源 event:douban:37391282）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "b1720c406f21316e53d8673428edfa67010ddf96"
+      }
     },
     {
-      "group_id": "1936a226f46b",
-      "location": "石家庄 新华区 红糖LIVEHOUSE 湾里庙步行街水幕广场M08",
-      "sample_title": "大粉乐队十五周年「粉末登场」巡演 石家庄站",
+      "group_id": "e57b9460bde0",
+      "location": "石家庄 裕华区 石家庄大剧院 塔南路72号",
+      "sample_title": "《红梅绽放》——经典红色歌剧音乐会",
       "event_uids": [
-        "douban:37836593"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "a7ef5d72954d",
-      "location": "石家庄 桥西区 火柴梗喜剧中心-脱口秀·即兴·魔术 万象天成4楼火柴梗喜剧中心",
-      "sample_title": "《良言主打秀》冠军收割机 【喜剧之王单口季】人气卡司 I 全新内容 石家庄站",
-      "event_uids": [
-        "douban:37062947"
+        "douban:37841716"
       ],
       "event_count": 1
     }

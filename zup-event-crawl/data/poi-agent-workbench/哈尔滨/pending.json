@@ -1,14 +1,62 @@
 {
   "city": "哈尔滨",
   "source": "douban",
-  "exported_at": "2026-06-20T18:31:04.000Z",
+  "exported_at": "2026-06-29T03:23:40.442Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 5,
   "doubtful_only": false,
-  "total_events": 0,
-  "group_count": 0,
-  "cache_hit_groups": 0,
-  "groups": []
+  "total_events": 5,
+  "group_count": 3,
+  "cache_hit_groups": 1,
+  "groups": [
+    {
+      "group_id": "d72cb6c0c23e",
+      "location": "哈尔滨 道里区 中央大街",
+      "sample_title": "世界杯足球宝贝拍摄",
+      "event_uids": [
+        "douban:37891767"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "d3a92d2f6072",
+      "location": "哈尔滨 香坊区 乐乐大剧院 三大动力路8号乐松购物广场3F层",
+      "sample_title": "西游记之《大战红孩儿》沉浸式·互动儿童剧",
+      "event_uids": [
+        "douban:37180707",
+        "douban:36595295"
+      ],
+      "event_count": 2,
+      "cached_poi": {
+        "poi_id": "4333966515111754663",
+        "poi_title": "乐乐大剧院(乐松广场)",
+        "poi_address": "",
+        "latitude": 45.719113,
+        "longitude": 126.650331,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：哈尔滨 香坊区 乐乐大剧院 三大动力路8号乐松购物广场3F层 → 乐乐大剧院(乐松广场)（来源 event:douban:37784688）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "d3a92d2f607220203be62e2654384612d6ca4755"
+      }
+    },
+    {
+      "group_id": "59623cd536b3",
+      "location": "哈尔滨 南岗区 哈尔滨工程大学启航剧场 南通大街145号哈尔滨工程大学文庙街与世昌路交叉口",
+      "sample_title": "《依兰爱情故事》原唱｜「遥哪走」东北民谣代言人方天雷 2026巡演-哈尔滨站|嘉宾：宋瑀哲",
+      "event_uids": [
+        "douban:37744391",
+        "douban:37724362"
+      ],
+      "event_count": 2
+    }
+  ]
 }

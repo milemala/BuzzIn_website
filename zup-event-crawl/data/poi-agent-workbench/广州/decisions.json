@@ -1,833 +1,120 @@
 {
   "city": "广州",
   "source": "douban",
-  "updated_at": "2026-06-20T18:40:44.679Z",
-  "agent": "cursor-composer",
+  "decided_at": "2026-06-29T03:42:54.879Z",
+  "agent": "cursor-agent",
   "decisions": [
     {
-      "group_id": "0ee472cdfd9b",
-      "event_uids": [
-        "douban:37889389"
-      ],
-      "search_keywords_tried": [
-        "天河区",
-        "飞扬影城",
-        "正佳IMAX店",
-        "天河区天河南街道天河路228号正佳购物广场7楼",
-        "近体育中心",
-        "IMAX",
-        "号正佳购物广场",
-        "228号正佳购物广场7楼(近体育中心)）"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "天河区",
-          "address": "",
-          "category": "",
-          "latitude": 23.124817,
-          "longitude": 113.361597
-        },
-        {
-          "index": 0,
-          "poi_id": "7423936936358118654",
-          "title": "飞扬影城(天河城店)",
-          "address": "广东省广州市天河区天河路208号天河城F4",
-          "category": "娱乐休闲:电影院",
-          "latitude": 23.132735,
-          "longitude": 113.322685
-        },
-        {
-          "index": 1,
-          "poi_id": "6286510641616932030",
-          "title": "飞扬影城(北京路店)",
-          "address": "广东省广州市越秀区中山五路70号捷登都会6-8层",
-          "category": "娱乐休闲:电影院",
-          "latitude": 23.125933,
-          "longitude": 113.265906
-        },
-        {
-          "index": 2,
-          "poi_id": "12443005293188108606",
-          "title": "飞扬影城(正佳IMAX店)",
-          "address": "广东省广州市天河区天河路228号正佳广场F7",
-          "category": "娱乐休闲:电影院",
-          "latitude": 23.131553,
-          "longitude": 113.326985
-        },
-        {
-          "index": 3,
-          "poi_id": "5380121200452853885",
-          "title": "飞扬影城IMAX",
-          "address": "广东省广州市海珠区工业大道北106-108号(光大花园旁)乐峰广场L2-L2-S31",
-          "category": "娱乐休闲:电影院",
-          "latitude": 23.088153,
-          "longitude": 113.258784
-        }
-      ],
+      "group_id": "ba9b5a7cff03",
       "action": "match",
-      "poi_id": "12443005293188108606",
-      "poi_title": "飞扬影城(正佳IMAX店)",
-      "poi_address": "广东省广州市天河区天河路228号正佳广场F7",
-      "latitude": 23.131553,
-      "longitude": 113.326985,
-      "confidence": "high",
+      "poi_id": "11405468392197237654",
+      "poi_title": "中山纪念堂-演出厅",
+      "poi_address": "",
+      "latitude": 23.133746,
+      "longitude": 113.264908,
       "doubtful": false,
-      "reason": "影城名称与天河路228号正佳广场一致，天河区匹配"
+      "reason": "地址映射库命中：广州 越秀区 中山纪念堂·演出厅 东风中路299号 → 中山纪念堂-演出厅（来源 event:douban:37724385）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37792289"
+      ]
     },
     {
-      "group_id": "2bd799790dab",
-      "event_uids": [
-        "douban:37542063",
-        "douban:37572116"
-      ],
-      "search_keywords_tried": [
-        "海珠区",
-        "广州国际采购中心",
-        "海珠区 广州国际采购中心"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "海珠区",
-          "address": "",
-          "category": "",
-          "latitude": 23.084003,
-          "longitude": 113.317412
-        },
-        {
-          "index": 0,
-          "poi_id": "17033544310614466984",
-          "title": "广州国际采购中心",
-          "address": "广东省广州市海珠区琶洲大道东6-8号",
-          "category": "房产小区:商务楼宇",
-          "latitude": 23.099757,
-          "longitude": 113.371047
-        },
-        {
-          "index": 1,
-          "poi_id": "13743560903265669543",
-          "title": "广州国际采购中心西翼",
-          "address": "广东省广州市海珠区琶洲街道琶洲大道东6-8号广州国际采购中心",
-          "category": "房产小区:房产小区附属",
-          "latitude": 23.100425,
-          "longitude": 113.371728
-        },
-        {
-          "index": 2,
-          "poi_id": "2318141330676284466",
-          "title": "广州国际采购中心-2号展馆",
-          "address": "广东省广州市海珠区琶洲大道东6",
-          "category": "房产小区:房产小区附属",
-          "latitude": 23.099812,
-          "longitude": 113.37017
-        },
-        {
-          "index": 3,
-          "poi_id": "1047897685226311025",
-          "title": "广州国际采购中心东翼",
-          "address": "广东省广州市海珠区琶洲大道东6号",
-          "category": "房产小区:商务楼宇",
-          "latitude": 23.100034,
-          "longitude": 113.371945
-        }
-      ],
+      "group_id": "b82cca436242",
       "action": "match",
-      "poi_id": "17033544310614466984",
-      "poi_title": "广州国际采购中心",
-      "poi_address": "广东省广州市海珠区琶洲大道东6-8号",
-      "latitude": 23.099757,
-      "longitude": 113.371047,
-      "confidence": "high",
+      "poi_id": "10798684933118352428",
+      "poi_title": "星海音乐厅",
+      "poi_address": "",
+      "latitude": 23.107748,
+      "longitude": 113.305678,
       "doubtful": false,
-      "reason": "馆名与琶洲大道东6-8号一致，海珠区匹配"
+      "reason": "地址映射库命中：广州 越秀区 星海音乐厅 晴波路33号 → 星海音乐厅（来源 event:douban:37747873）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37803055",
+        "douban:37892380"
+      ]
     },
     {
-      "group_id": "034625f7514f",
-      "event_uids": [
-        "douban:37840917"
-      ],
-      "search_keywords_tried": [
-        "天河区",
-        "广州大剧院",
-        "珠江西路1号",
-        "海心沙广场",
-        "花城广场",
-        "第二少年宫",
-        "1号（海心沙广场花城广场第二少年宫）",
-        "天河区 广州大剧院 珠江西路1号"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "天河区",
-          "address": "",
-          "category": "",
-          "latitude": 23.124817,
-          "longitude": 113.361597
-        },
-        {
-          "index": 0,
-          "poi_id": "16691952640458783909",
-          "title": "广州大剧院",
-          "address": "广东省广州市天河区珠江西路1号(海心沙广场 花城广场 第二少年宫)",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 23.115028,
-          "longitude": 113.322489
-        },
-        {
-          "index": 1,
-          "poi_id": "15726976036007341705",
-          "title": "广州大剧院",
-          "address": "广东省广州市天河区名门大厦豪名阁正门旁(五羊邨地铁站B口步行220米)",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 23.119388,
-          "longitude": 113.315903
-        },
-        {
-          "index": 2,
-          "poi_id": "12499802003251076865",
-          "title": "博兰斯勒广州大剧院音乐厅",
-          "address": "广东省广州市天河区珠江西路1号广州大剧院实验剧场3楼",
-          "category": "娱乐休闲:剧场音乐厅:音乐厅",
-          "latitude": 23.115571,
-          "longitude": 113.322962
-        },
-        {
-          "index": 3,
-          "poi_id": "11705671970869315532",
-          "title": "广州大剧院地下停车场",
-          "address": "广东省广州市天河区华夏路广州大剧院(大剧院地铁站A口步行360米)",
-          "category": "汽车:停车场",
-          "latitude": 23.114504,
-          "longitude": 113.321522
-        }
-      ],
+      "group_id": "88f5e771431c",
       "action": "match",
-      "poi_id": "16691952640458783909",
-      "poi_title": "广州大剧院",
-      "poi_address": "广东省广州市天河区珠江西路1号(海心沙广场 花城广场 第二少年宫)",
-      "latitude": 23.115028,
-      "longitude": 113.322489,
-      "confidence": "high",
+      "poi_id": "6884895873401208372",
+      "poi_title": "南方证券大厦",
+      "poi_address": "",
+      "latitude": 23.139127,
+      "longitude": 113.328952,
       "doubtful": false,
-      "reason": "大剧院与珠江西路1号一致，天河区匹配（排除名门大厦同名误点）"
+      "reason": "地址映射库命中：广州 天河区 体育东路南方证券大厦二楼觉咖啡 → 南方证券大厦（来源 event:douban:37878516）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37893332"
+      ]
     },
     {
-      "group_id": "7c45a1a7302e",
-      "event_uids": [
-        "douban:37584246",
-        "douban:37584273",
-        "douban:37584300",
-        "douban:37584322",
-        "douban:37584331"
-      ],
-      "search_keywords_tried": [
-        "海珠区",
-        "广州琶洲保利世贸博览馆",
-        "海珠区 广州琶洲保利世贸博览馆"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "海珠区",
-          "address": "",
-          "category": "",
-          "latitude": 23.084003,
-          "longitude": 113.317412
-        },
-        {
-          "index": 0,
-          "poi_id": "11583431460719727697",
-          "title": "保利世贸博览馆",
-          "address": "广东省广州市海珠区新港东路1000号",
-          "category": "文化场馆:展览馆",
-          "latitude": 23.097304,
-          "longitude": 113.365585
-        },
-        {
-          "index": 1,
-          "poi_id": "14256227980459885166",
-          "title": "保利展览馆",
-          "address": "广东省广州市海珠区保利世贸中央大道PWTC保利世界贸易中心",
-          "category": "文化场馆:会展中心",
-          "latitude": 23.096538,
-          "longitude": 113.366916
-        },
-        {
-          "index": 2,
-          "poi_id": "4599004676919231936",
-          "title": "广州保利世贸博览馆(E5)",
-          "address": "广东省广州市海珠区保利世贸中央大道",
-          "category": "文化场馆:展览馆",
-          "latitude": 23.096896,
-          "longitude": 113.366406
-        },
-        {
-          "index": 3,
-          "poi_id": "3620286552718539729",
-          "title": "广州保利世贸博览馆E3门",
-          "address": "广东省广州市海珠区保利世贸中央大道",
-          "category": "室内及附属设施:通行设施类:外部门",
-          "latitude": 23.097342,
-          "longitude": 113.366503
-        }
-      ],
+      "group_id": "a4eb73032056",
       "action": "match",
-      "poi_id": "11583431460719727697",
-      "poi_title": "保利世贸博览馆",
-      "poi_address": "广东省广州市海珠区新港东路1000号",
-      "latitude": 23.097304,
-      "longitude": 113.365585,
-      "confidence": "high",
+      "poi_id": "7900472676081068007",
+      "poi_title": "南天广场龙庭阁-南门",
+      "poi_address": "",
+      "latitude": 23.120099,
+      "longitude": 113.316404,
       "doubtful": false,
-      "reason": "保利世贸博览馆，海珠区琶洲，名称一致"
-    },
-    {
-      "group_id": "ff9d76a560a8",
-      "event_uids": [
-        "douban:37890555"
-      ],
+      "reason": "地址映射库命中：广州 天河区 南天广场龙庭阁2702 → 南天广场龙庭阁-南门（来源 event:douban:37878543）",
       "search_keywords_tried": [
-        "天河区",
-        "兴盛路",
-        "天河区 兴盛路"
+        "poi-address-cache"
       ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "天河区",
-          "address": "",
-          "category": "",
-          "latitude": 23.124817,
-          "longitude": 113.361597
-        },
-        {
-          "index": 0,
-          "poi_id": "16433023900688728568",
-          "title": "兴盛路",
-          "address": "广东省广州市天河区",
-          "category": "地名地址:道路名",
-          "latitude": 23.120906,
-          "longitude": 113.329007
-        },
-        {
-          "index": 1,
-          "poi_id": "10316114246789718829",
-          "title": "兴盛街",
-          "address": "广东省广州市从化区",
-          "category": "地名地址:道路名",
-          "latitude": 23.58184,
-          "longitude": 113.712944
-        },
-        {
-          "index": 2,
-          "poi_id": "13865843053326549771",
-          "title": "兴盛路兴盛街",
-          "address": "广东省广州市南沙区",
-          "category": "地名地址:道路名",
-          "latitude": 22.809042,
-          "longitude": 113.396139
-        },
-        {
-          "index": 3,
-          "poi_id": "2592873509548099899",
-          "title": "兴盛街",
-          "address": "广东省广州市南沙区",
-          "category": "地名地址:道路名",
-          "latitude": 22.831234,
-          "longitude": 113.333755
-        }
-      ],
-      "action": "match",
-      "poi_id": "16433023900688728568",
-      "poi_title": "兴盛路",
-      "poi_address": "广东省广州市天河区",
-      "latitude": 23.120906,
-      "longitude": 113.329007,
-      "confidence": "medium",
-      "doubtful": true,
-      "reason": "活动集合点为天河区兴盛路，匹配道路POI"
+      "event_uids": [
+        "douban:37893347"
+      ]
     },
     {
       "group_id": "ffd7a48efd83",
-      "event_uids": [
-        "douban:37891186"
-      ],
-      "search_keywords_tried": [
-        "荔湾区",
-        "中山七路68号敬梓里文创社区二期",
-        "西门口地铁站D口步行约6分钟",
-        "号敬梓里文创社",
-        "68号敬梓里文创社区二期（西门口地铁站D口步行约6分钟）",
-        "荔湾区 中山七路68号敬梓里文创社区二期"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "荔湾区",
-          "address": "",
-          "category": "",
-          "latitude": 23.107123,
-          "longitude": 113.218998
-        },
-        {
-          "index": 0,
-          "poi_id": "3020981446283619228",
-          "title": "爱格音乐中心(西门口店)",
-          "address": "广东省广州市荔湾区中山七路68-1号敬梓里文创社区二期3楼318室",
-          "category": "教育学校:培训:音乐舞蹈",
-          "latitude": 23.125627,
-          "longitude": 113.252411
-        },
-        {
-          "index": 1,
-          "poi_id": "13187095707861371686",
-          "title": "萤火咖啡SOE咖啡(西门口路店)",
-          "address": "广东省广州市荔湾区中山七路68号-2敬梓里文创社区2期一楼大堂",
-          "category": "娱乐休闲:咖啡厅",
-          "latitude": 23.125743,
-          "longitude": 113.252455
-        },
-        {
-          "index": 0,
-          "poi_id": "8182721552075052282",
-          "title": "西门口-D口",
-          "address": "",
-          "category": "基础设施:交通设施:地铁站出入口",
-          "latitude": 23.125337,
-          "longitude": 113.255519
-        },
-        {
-          "index": 1,
-          "poi_id": "11966042792853925441",
-          "title": "西门口[地铁站]",
-          "address": "地铁1号线",
-          "category": "基础设施:交通设施:地铁站",
-          "latitude": 23.125211,
-          "longitude": 113.25592
-        }
-      ],
-      "action": "match",
-      "poi_id": "5004226067703989862",
-      "poi_title": "敬梓里文创社区",
-      "poi_address": "广东省广州市荔湾区光复北路与高第坊交叉口",
-      "latitude": 23.126282,
-      "longitude": 113.252466,
-      "confidence": "medium",
-      "doubtful": true,
-      "reason": "中山七路68号敬梓里文创社区二期，匹配敬梓里文创社区主体，荔湾区匹配"
-    },
-    {
-      "group_id": "7f0774f4102f",
-      "event_uids": [
-        "douban:37618828"
-      ],
-      "search_keywords_tried": [
-        "海珠区",
-        "广州琶洲-保利世贸博览馆",
-        "保利世贸博览馆",
-        "海珠区 广州琶洲-保利世贸博览馆"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "海珠区",
-          "address": "",
-          "category": "",
-          "latitude": 23.084003,
-          "longitude": 113.317412
-        },
-        {
-          "index": 0,
-          "poi_id": "11583431460719727697",
-          "title": "保利世贸博览馆",
-          "address": "广东省广州市海珠区新港东路1000号",
-          "category": "文化场馆:展览馆",
-          "latitude": 23.097304,
-          "longitude": 113.365585
-        },
-        {
-          "index": 1,
-          "poi_id": "14256227980459885166",
-          "title": "保利展览馆",
-          "address": "广东省广州市海珠区保利世贸中央大道PWTC保利世界贸易中心",
-          "category": "文化场馆:会展中心",
-          "latitude": 23.096538,
-          "longitude": 113.366916
-        },
-        {
-          "index": 2,
-          "poi_id": "4599004676919231936",
-          "title": "广州保利世贸博览馆(E5)",
-          "address": "广东省广州市海珠区保利世贸中央大道",
-          "category": "文化场馆:展览馆",
-          "latitude": 23.096896,
-          "longitude": 113.366406
-        },
-        {
-          "index": 3,
-          "poi_id": "3620286552718539729",
-          "title": "广州保利世贸博览馆E3门",
-          "address": "广东省广州市海珠区保利世贸中央大道",
-          "category": "室内及附属设施:通行设施类:外部门",
-          "latitude": 23.097342,
-          "longitude": 113.366503
-        }
-      ],
-      "action": "match",
-      "poi_id": "11583431460719727697",
-      "poi_title": "保利世贸博览馆",
-      "poi_address": "广东省广州市海珠区新港东路1000号",
-      "latitude": 23.097304,
-      "longitude": 113.365585,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "保利世贸博览馆，海珠区琶洲，名称一致"
-    },
-    {
-      "group_id": "566a61461098",
-      "event_uids": [
-        "douban:37623052",
-        "douban:37623080"
-      ],
-      "search_keywords_tried": [
-        "越秀区",
-        "琶洲大道东6-8号",
-        "8号",
-        "越秀区 琶洲大道东6-8号"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "越秀区",
-          "address": "",
-          "category": "",
-          "latitude": 23.128673,
-          "longitude": 113.267065
-        },
-        {
-          "index": 0,
-          "poi_id": "346212841383233837",
-          "title": "琶洲大道东-8号楼",
-          "address": "广东省广州市海珠区琶洲大道东琶洲大道东",
-          "category": "房产小区:房产小区附属",
-          "latitude": 23.09994,
-          "longitude": 113.371904
-        },
-        {
-          "index": 1,
-          "poi_id": "13743560903265669543",
-          "title": "广州国际采购中心西翼",
-          "address": "广东省广州市海珠区琶洲街道琶洲大道东6-8号广州国际采购中心",
-          "category": "房产小区:房产小区附属",
-          "latitude": 23.100425,
-          "longitude": 113.371728
-        },
-        {
-          "index": 2,
-          "poi_id": "17033544310614466984",
-          "title": "广州国际采购中心",
-          "address": "广东省广州市海珠区琶洲大道东6-8号",
-          "category": "房产小区:商务楼宇",
-          "latitude": 23.099757,
-          "longitude": 113.371047
-        },
-        {
-          "index": 3,
-          "poi_id": "6545336483745994437",
-          "title": "广州国际采购中心停车场(琶洲大道东)",
-          "address": "广东省广州市海珠区琶洲大道东6-8号(琶洲地铁站A口步行480米)",
-          "category": "汽车:停车场",
-          "latitude": 23.100716,
-          "longitude": 113.371591
-        }
-      ],
       "action": "reject",
-      "poi_id": "",
-      "poi_title": "",
-      "poi_address": "",
-      "latitude": null,
-      "longitude": null,
-      "confidence": "low",
       "doubtful": false,
-      "reason": "豆瓣标注越秀区，但琶洲大道东6-8号实际在海珠区，区划不一致"
+      "reason": "敬梓里文创社区二期中山七路68号无独立腾讯 POI，候选为一期(敬梓里2号)或租户门店，无法唯一匹配二期主体",
+      "search_keywords_tried": [
+        "敬梓里文创社区",
+        "敬梓里文创社区二期 中山七路68号",
+        "敬梓里2期"
+      ],
+      "event_uids": [
+        "douban:37894322"
+      ]
     },
     {
-      "group_id": "97b12786b1fc",
-      "event_uids": [
-        "douban:37622979"
-      ],
-      "search_keywords_tried": [
-        "海珠区",
-        "琶洲大道东6-8号",
-        "8号",
-        "海珠区 琶洲大道东6-8号"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "海珠区",
-          "address": "",
-          "category": "",
-          "latitude": 23.084003,
-          "longitude": 113.317412
-        },
-        {
-          "index": 0,
-          "poi_id": "346212841383233837",
-          "title": "琶洲大道东-8号楼",
-          "address": "广东省广州市海珠区琶洲大道东琶洲大道东",
-          "category": "房产小区:房产小区附属",
-          "latitude": 23.09994,
-          "longitude": 113.371904
-        },
-        {
-          "index": 1,
-          "poi_id": "13743560903265669543",
-          "title": "广州国际采购中心西翼",
-          "address": "广东省广州市海珠区琶洲街道琶洲大道东6-8号广州国际采购中心",
-          "category": "房产小区:房产小区附属",
-          "latitude": 23.100425,
-          "longitude": 113.371728
-        },
-        {
-          "index": 2,
-          "poi_id": "17033544310614466984",
-          "title": "广州国际采购中心",
-          "address": "广东省广州市海珠区琶洲大道东6-8号",
-          "category": "房产小区:商务楼宇",
-          "latitude": 23.099757,
-          "longitude": 113.371047
-        },
-        {
-          "index": 3,
-          "poi_id": "6545336483745994437",
-          "title": "广州国际采购中心停车场(琶洲大道东)",
-          "address": "广东省广州市海珠区琶洲大道东6-8号(琶洲地铁站A口步行480米)",
-          "category": "汽车:停车场",
-          "latitude": 23.100716,
-          "longitude": 113.371591
-        }
-      ],
+      "group_id": "54bdd1d50b05",
       "action": "match",
-      "poi_id": "17033544310614466984",
-      "poi_title": "广州国际采购中心",
-      "poi_address": "广东省广州市海珠区琶洲大道东6-8号",
-      "latitude": 23.099757,
-      "longitude": 113.371047,
-      "confidence": "high",
+      "poi_id": "275053503382873673",
+      "poi_title": "友谊剧院",
+      "poi_address": "广东省广州市越秀区人民北路696号",
+      "latitude": 23.144969,
+      "longitude": 113.257679,
       "doubtful": false,
-      "reason": "琶洲大道东6-8号即广州国际采购中心，海珠区匹配"
-    },
-    {
-      "group_id": "afa3bc191e95",
-      "event_uids": [
-        "douban:37844565"
-      ],
+      "reason": "场馆名称与人民北路696号地址完全一致",
       "search_keywords_tried": [
-        "番禺区",
-        "广州亚运城综合体育馆",
-        "石楼镇兴亚大道33号",
-        "地铁4号线海傍站",
-        "33号",
-        "4号线海傍站"
+        "友谊剧院"
       ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "番禺区",
-          "address": "",
-          "category": "",
-          "latitude": 22.93756,
-          "longitude": 113.383917
-        },
-        {
-          "index": 0,
-          "poi_id": "17582836609251215681",
-          "title": "广州亚运城综合体育馆",
-          "address": "广东省广州市番禺区石楼镇兴亚大道33号,地铁4号线海傍站",
-          "category": "运动健身:综合体育场馆",
-          "latitude": 22.941893,
-          "longitude": 113.484975
-        },
-        {
-          "index": 1,
-          "poi_id": "1994463850413986004",
-          "title": "新城亚运体育综合馆",
-          "address": "广东省广州市番禺区石楼镇兴亚大道33号",
-          "category": "运动健身:其它运动健身",
-          "latitude": 22.941822,
-          "longitude": 113.481982
-        },
-        {
-          "index": 2,
-          "poi_id": "14863810990530698323",
-          "title": "广州亚运城综合体育馆网球中心",
-          "address": "广东省广州市番禺区石楼镇兴亚大道33号亚运体育馆",
-          "category": "运动健身:网球场",
-          "latitude": 22.941608,
-          "longitude": 113.480919
-        },
-        {
-          "index": 3,
-          "poi_id": "15798350037662859435",
-          "title": "广州亚运城纪念馆",
-          "address": "广东省广州市番禺区石楼镇兴亚大道广州亚运城综合体育馆",
-          "category": "旅游景点:纪念馆",
-          "latitude": 22.941339,
-          "longitude": 113.4802
-        }
-      ],
-      "action": "match",
-      "poi_id": "17582836609251215681",
-      "poi_title": "广州亚运城综合体育馆",
-      "poi_address": "广东省广州市番禺区石楼镇兴亚大道33号,地铁4号线海傍站",
-      "latitude": 22.941893,
-      "longitude": 113.484975,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "体育馆名称与兴亚大道33号一致，番禺区匹配"
-    },
-    {
-      "group_id": "b7cc79809dca",
       "event_uids": [
-        "douban:37847819"
-      ],
-      "search_keywords_tried": [
-        "番禺区",
-        "广州大学城体育中心体育场",
-        "大学城内环东路208号",
-        "广州大学城体育中心",
-        "208号"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "番禺区",
-          "address": "",
-          "category": "",
-          "latitude": 22.93756,
-          "longitude": 113.383917
-        },
-        {
-          "index": 0,
-          "poi_id": "15923185438168399146",
-          "title": "广州大学城体育中心体育场",
-          "address": "广东省广州市番禺区大学城内环东路208号",
-          "category": "运动健身:综合体育场馆",
-          "latitude": 23.055403,
-          "longitude": 113.391511
-        },
-        {
-          "index": 1,
-          "poi_id": "15611670814710922368",
-          "title": "广州大学城体育中心体育场-北门",
-          "address": "广东省广州市番禺区大学城中大西路与大学城内环东路交叉口东南方向117米左右",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 23.056564,
-          "longitude": 113.39163
-        },
-        {
-          "index": 2,
-          "poi_id": "14767290696205679366",
-          "title": "广州大学城体育中心体育场-西门",
-          "address": "广东省广州市番禺区大学城内环东路208号广州大学城体育中心",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 23.054355,
-          "longitude": 113.390615
-        },
-        {
-          "index": 3,
-          "poi_id": "4028497157272386640",
-          "title": "广州大学城体育中心体育场-东门",
-          "address": "广东省广州市番禺区小谷围街道大学城内环东路208号广州大学城体育中心",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 23.055263,
-          "longitude": 113.392918
-        }
-      ],
-      "action": "match",
-      "poi_id": "15923185438168399146",
-      "poi_title": "广州大学城体育中心体育场",
-      "poi_address": "广东省广州市番禺区大学城内环东路208号",
-      "latitude": 23.055403,
-      "longitude": 113.391511,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "体育场名称与大学城内环东路208号一致，番禺区匹配"
+        "douban:37745660"
+      ]
     },
     {
       "group_id": "663afbd07afe",
-      "event_uids": [
-        "douban:37604326",
-        "douban:37731745",
-        "douban:37604334",
-        "douban:37605638",
-        "douban:37731778",
-        "douban:37732680",
-        "douban:37732697"
-      ],
-      "search_keywords_tried": [
-        "天河区",
-        "珠江新城A1",
-        "天河区 珠江新城A1"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "天河区",
-          "address": "",
-          "category": "",
-          "latitude": 23.124817,
-          "longitude": 113.361597
-        },
-        {
-          "index": 0,
-          "poi_id": "6196835048042088375",
-          "title": "珠江新城-A1口",
-          "address": "",
-          "category": "基础设施:交通设施:地铁站出入口",
-          "latitude": 23.120087,
-          "longitude": 113.320949
-        },
-        {
-          "index": 1,
-          "poi_id": "7239084413469431887",
-          "title": "天河区公安分局冼村派出所",
-          "address": "广东省广州市天河区冼村街道珠江新城华夏路33号",
-          "category": "机构团体:公检法机构",
-          "latitude": 23.122556,
-          "longitude": 113.320841
-        },
-        {
-          "index": 2,
-          "poi_id": "696818740000005282",
-          "title": "威珀斯酒店·珀萃美食餐厅",
-          "address": "广东省广州市天河区珠江新城金穗路5号佛奥广场2楼(珠江新城地铁A1出口前走500米)",
-          "category": "美食:自助餐",
-          "latitude": 23.124473,
-          "longitude": 113.318145
-        },
-        {
-          "index": 3,
-          "poi_id": "13964962671627451025",
-          "title": "梳乎茶餐厅(珠江新城店)",
-          "address": "广东省广州市天河区星汇园39号(金穗路60号202-2商铺)",
-          "category": "美食:茶餐厅",
-          "latitude": 23.122941,
-          "longitude": 113.320898
-        }
-      ],
       "action": "reject",
-      "poi_id": "",
-      "poi_title": "",
-      "poi_address": "",
-      "latitude": null,
-      "longitude": null,
-      "confidence": "low",
       "doubtful": false,
-      "reason": "「珠江新城A1」仅为地铁站出入口集合点，无明确活动场所POI"
+      "reason": "珠江新城A1仅为呼伦贝尔徒步出发地铁站口，非活动主体场地，无法绑定具体场馆POI",
+      "search_keywords_tried": [
+        "珠江新城"
+      ],
+      "event_uids": [
+        "douban:37892845"
+      ]
     }
   ]
 }

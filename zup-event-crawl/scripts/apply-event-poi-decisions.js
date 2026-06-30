@@ -118,13 +118,18 @@ async function main() {
           const searchKeywords = Array.isArray(decision.search_keywords_tried)
             ? decision.search_keywords_tried
             : [];
-          applyEventPoiSelection(db, eventUid, poi, {
+          const applyResult = applyEventPoiSelection(db, eventUid, poi, {
             candidates,
             matchSource: "agent",
             agentDoubtful: agentMeta.agent.doubtful,
             agentReason: agentMeta.agent.reason,
             agentSearchKeyword: String(searchKeywords[0] || "").trim(),
           });
+          if (applyResult?.skipped) {
+            summary.reject += 1;
+            console.log(`✗ 同名同POI重复 ${eventUid}（已有 ${applyResult.incumbent_uid}）`);
+            continue;
+          }
           await syncEventMerchantByPoi(db, eventUid);
           summary.match += 1;
           const event = getEventByUid(db, eventUid);

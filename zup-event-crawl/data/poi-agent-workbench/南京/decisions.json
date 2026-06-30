@@ -1,327 +1,93 @@
 {
   "city": "南京",
   "source": "douban",
-  "updated_at": "2026-06-20T18:41:07.868Z",
-  "agent": "cursor-composer",
+  "decided_at": "2026-06-29T03:42:27.113Z",
+  "agent": "cursor-agent",
   "decisions": [
     {
-      "group_id": "cdfd2e958cf1",
-      "event_uids": [
-        "douban:37737496",
-        "douban:37749489",
-        "douban:37737503",
-        "douban:37644104"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "6981577208442308340",
-      "poi_title": "江苏大剧院",
-      "poi_address": "",
-      "latitude": 32.012298,
-      "longitude": 118.713942,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：南京 建邺区 江苏大剧院 梦都大街181号 → 江苏大剧院（来源 event:douban:37820981）",
-      "candidates": []
-    },
-    {
-      "group_id": "0b7dad2952d9",
-      "event_uids": [
-        "douban:37878716"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "南京 八度空间"
-      ],
-      "poi_id": "7866811473442849733",
-      "poi_title": "八度空间(Infinite Art Space)",
-      "poi_address": "江苏省南京市建邺区雨润大街99号4号楼1楼南侧",
-      "latitude": 31.983071,
-      "longitude": 118.718237,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 117）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "7866811473442849733",
-          "title": "八度空间(Infinite Art Space)",
-          "address": "江苏省南京市建邺区雨润大街99号4号楼1楼南侧",
-          "category": "娱乐休闲:酒吧",
-          "latitude": 31.983071,
-          "longitude": 118.718237
-        }
-      ]
-    },
-    {
-      "group_id": "d302c3bb6c0d",
-      "event_uids": [
-        "douban:37888030"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "南京 梅园新村34号 小红梅"
-      ],
-      "poi_id": "15910025293845104436",
-      "poi_title": "小红梅",
-      "poi_address": "江苏省南京市玄武区梅园新村34号",
-      "latitude": 32.043093,
-      "longitude": 118.8023,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 126）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "15910025293845104436",
-          "title": "小红梅",
-          "address": "江苏省南京市玄武区梅园新村34号",
-          "category": "机构团体:政府机关",
-          "latitude": 32.043093,
-          "longitude": 118.8023
-        }
-      ]
-    },
-    {
-      "group_id": "c72bfd5145fe",
-      "event_uids": [
-        "douban:37844981",
-        "douban:37785130"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "2083361752843734485",
-      "poi_title": "1701 LIVE HOUSE",
-      "poi_address": "",
-      "latitude": 31.970603,
-      "longitude": 118.764462,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：南京 雨花台区 1701 Live House 安德门大街57号 → 1701 LIVE HOUSE（来源 event:douban:37823465）",
-      "candidates": []
-    },
-    {
-      "group_id": "423307b3f45c",
-      "event_uids": [
-        "douban:37778032"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "南京 Action studio戏剧餐吧 演出厅"
-      ],
-      "poi_id": "2645422068246229278",
-      "poi_title": "Action studio戏剧餐吧(金陵style浪漫中心店)",
-      "poi_address": "江苏省南京市玄武区锁金村街道龙蟠中路108号金陵style浪漫中心负一楼西庭院B131-A",
-      "latitude": 32.066386,
-      "longitude": 118.812946,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 385）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "2645422068246229278",
-          "title": "Action studio戏剧餐吧(金陵style浪漫中心店)",
-          "address": "江苏省南京市玄武区锁金村街道龙蟠中路108号金陵style浪漫中心负一楼西庭院B131-A",
-          "category": "美食:其它美食",
-          "latitude": 32.066386,
-          "longitude": 118.812946
-        },
-        {
-          "index": 1,
-          "poi_id": "14249356795338545698",
-          "title": "Action运动生活馆",
-          "address": "江苏省南京市玄武区全季酒店(南京仙林徐庄软件园店)西",
-          "category": "运动健身:健身中心",
-          "latitude": 32.098554,
-          "longitude": 118.885259
-        },
-        {
-          "index": 2,
-          "poi_id": "2504939168210039181",
-          "title": "Action影视工作室",
-          "address": "江苏省南京市秦淮区中山南路1号南京中心大厦4201",
-          "category": "教育学校:培训",
-          "latitude": 32.040936,
-          "longitude": 118.785023
-        }
-      ]
-    },
-    {
-      "group_id": "3a02db6038ed",
-      "event_uids": [
-        "douban:37683227",
-        "douban:37719785"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "6971078523199067955",
-      "poi_title": "南京文化艺术中心",
-      "poi_address": "",
-      "latitude": 32.044403,
-      "longitude": 118.787707,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：南京 玄武区 南京文化艺术中心 长江路101号 → 南京文化艺术中心（来源 event:douban:37690876）",
-      "candidates": []
-    },
-    {
       "group_id": "4f2c859af023",
-      "event_uids": [
-        "douban:37733941",
-        "douban:37799041"
-      ],
       "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
       "poi_id": "1642575190922527024",
       "poi_title": "南京保利大剧院",
       "poi_address": "",
       "latitude": 31.991479,
       "longitude": 118.708455,
-      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：南京 建邺区 南京保利大剧院 邺城路6号(近青奥文化体育公园) → 南京保利大剧院（来源 event:douban:37726843）",
-      "candidates": []
-    },
-    {
-      "group_id": "ec7c47d3493d",
-      "event_uids": [
-        "douban:37841545"
-      ],
-      "action": "match",
+      "reason": "地址映射库命中：南京 建邺区 南京保利大剧院 邺城路6号(近青奥文化体育公园) → 南京保利大剧院（来源 event:douban:37820512）",
       "search_keywords_tried": [
-        "南京 幸福蓝海国际影城演出厅"
+        "poi-address-cache"
       ],
-      "poi_id": "17869360857719979338",
-      "poi_title": "幸福蓝海国际影城演出厅-金鹰天地店",
-      "poi_address": "江苏省南京市江宁区秣陵街道双龙大道1688号江宁金鹰F4",
-      "latitude": 31.932659,
-      "longitude": 118.820856,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 406）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "2760385985427147088",
-          "title": "幸福蓝海国际影城演出厅",
-          "address": "江苏省南京市玄武区红山街道大壮观路69号招商花园城5楼幸福蓝海国际影城",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 32.093365,
-          "longitude": 118.820059
-        },
-        {
-          "index": 1,
-          "poi_id": "17869360857719979338",
-          "title": "幸福蓝海国际影城演出厅-金鹰天地店",
-          "address": "江苏省南京市江宁区秣陵街道双龙大道1688号江宁金鹰F4",
-          "category": "娱乐休闲:电影院",
-          "latitude": 31.932659,
-          "longitude": 118.820856
-        },
-        {
-          "index": 2,
-          "poi_id": "15040493605916760073",
-          "title": "幸福蓝海国际影城演出厅-招商花园店",
-          "address": "江苏省南京市栖霞区中山门大街699号花园城F3",
-          "category": "娱乐休闲:电影院",
-          "latitude": 32.05058,
-          "longitude": 118.895418
-        },
-        {
-          "index": 3,
-          "poi_id": "4108807950117806662",
-          "title": "幸福蓝海国际影城演出厅(南京金陵天地店)",
-          "address": "江苏省南京市建邺区中和路68号南京金陵天地5楼L552铺(商场1号门4号电梯厅直达)",
-          "category": "娱乐休闲:电影院",
-          "latitude": 31.974041,
-          "longitude": 118.713494
-        },
-        {
-          "index": 4,
-          "poi_id": "3395405279660232758",
-          "title": "幸福蓝海国际影城演出厅-招商花园城燕子矶店",
-          "address": "江苏省南京市栖霞区燕城大道1号招商花园城(燕子矶店)F4-401-1",
-          "category": "娱乐休闲:电影院",
-          "latitude": 32.122783,
-          "longitude": 118.833709
-        }
+      "event_uids": [
+        "douban:37766431",
+        "douban:37817135"
       ]
     },
     {
-      "group_id": "42cf43c01b1e",
-      "event_uids": [
-        "douban:37842914"
-      ],
+      "group_id": "d302c3bb6c0d",
       "action": "match",
-      "search_keywords_tried": [
-        "南京 八度空间"
-      ],
-      "poi_id": "7866811473442849733",
-      "poi_title": "八度空间(Infinite Art Space)",
-      "poi_address": "江苏省南京市建邺区雨润大街99号4号楼1楼南侧",
-      "latitude": 31.983071,
-      "longitude": 118.718237,
-      "confidence": "high",
+      "poi_id": "15910025293845104436",
+      "poi_title": "小红梅",
+      "poi_address": "",
+      "latitude": 32.043093,
+      "longitude": 118.8023,
       "doubtful": false,
-      "reason": "三轮匹配（score 111）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "7866811473442849733",
-          "title": "八度空间(Infinite Art Space)",
-          "address": "江苏省南京市建邺区雨润大街99号4号楼1楼南侧",
-          "category": "娱乐休闲:酒吧",
-          "latitude": 31.983071,
-          "longitude": 118.718237
-        }
+      "reason": "地址映射库命中：南京 玄武区 梅园新村34号 小红梅 → 小红梅（来源 event:douban:37891803）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37894669"
       ]
     },
     {
-      "group_id": "ce9d48ac2e03",
-      "event_uids": [
-        "douban:37867972"
-      ],
+      "group_id": "fc1b586c1ea8",
       "action": "match",
-      "search_keywords_tried": [
-        "幸福蓝海音乐剧场-荔枝广场店",
-        "幸福蓝海音乐剧场"
-      ],
-      "poi_id": "7175188136065039611",
-      "poi_title": "幸福蓝海国际影城(荔枝广场旗舰店)",
-      "poi_address": "江苏省南京市玄武区北京东路2号荔枝广场F8",
-      "latitude": 32.057524,
-      "longitude": 118.785538,
-      "confidence": "high",
+      "poi_id": "2083361752843734485",
+      "poi_title": "1701 LIVE HOUSE",
+      "poi_address": "",
+      "latitude": 31.970603,
+      "longitude": 118.764462,
       "doubtful": false,
-      "reason": "幸福蓝海音乐剧场位于荔枝广场内，同楼不同楼层",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "7175188136065039611",
-          "title": "幸福蓝海国际影城(荔枝广场旗舰店)",
-          "address": "江苏省南京市玄武区北京东路2号荔枝广场F8",
-          "category": "娱乐休闲:电影院",
-          "latitude": 32.057524,
-          "longitude": 118.785538
-        },
-        {
-          "index": 1,
-          "poi_id": "4365873924955267224",
-          "title": "荔枝广场",
-          "address": "江苏省南京市玄武区北京东路4号",
-          "category": "购物:综合商场",
-          "latitude": 32.057334,
-          "longitude": 118.785891
-        }
+      "reason": "地址映射库命中：南京 雨花台区 1701 Live House Max 安德门大街57号 → 1701 LIVE HOUSE（来源 event:douban:37829407）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37814560"
+      ]
+    },
+    {
+      "group_id": "cdfd2e958cf1",
+      "action": "match",
+      "poi_id": "6981577208442308340",
+      "poi_title": "江苏大剧院",
+      "poi_address": "",
+      "latitude": 32.012298,
+      "longitude": 118.713942,
+      "doubtful": false,
+      "reason": "地址映射库命中：南京 建邺区 江苏大剧院 梦都大街181号 → 江苏大剧院（来源 event:douban:37820974）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37764643"
+      ]
+    },
+    {
+      "group_id": "56c51fdc1a01",
+      "action": "match",
+      "poi_id": "15040493605916760073",
+      "poi_title": "幸福蓝海国际影城演出厅-招商花园店",
+      "poi_address": "江苏省南京市栖霞区中山门大街699号花园城F3",
+      "latitude": 32.05058,
+      "longitude": 118.895418,
+      "doubtful": false,
+      "reason": "演出厅与中山门大街699号花园城F3地址完全一致",
+      "search_keywords_tried": [
+        "幸福蓝海国际影城 招商花园城"
+      ],
+      "event_uids": [
+        "douban:37867989"
       ]
     }
   ]

@@ -1,0 +1,43 @@
+{
+  "city": "温州",
+  "source": "douban",
+  "decided_at": "2026-06-29T03:41:40.227Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "e989d08afdfc",
+      "action": "match",
+      "poi_id": "17066742749815360017",
+      "poi_title": "瓯海奥体中心体育馆",
+      "poi_address": "浙江省温州市瓯海区商汇路华韵嘉园南侧约90米",
+      "latitude": 27.958805,
+      "longitude": 120.615892,
+      "doubtful": false,
+      "reason": "瓯海奥体中心体育馆与商汇路地址描述完全一致",
+      "search_keywords_tried": [
+        "瓯海奥体中心体育馆"
+      ],
+      "event_uids": [
+        "douban:37800843"
+      ]
+    },
+    {
+      "group_id": "169f8d842407",
+      "action": "match",
+      "poi_id": "8968027432150271314",
+      "poi_title": "盲堂",
+      "poi_address": "浙江省温州市鹿城区学院中路263号小坝坊17号楼1F",
+      "latitude": 28.004654,
+      "longitude": 120.688404,
+      "doubtful": false,
+      "reason": "盲堂与学院中路263号小坝坊17号楼1F地址完全一致",
+      "search_keywords_tried": [
+        "盲堂 小坝坊",
+        "盲堂"
+      ],
+      "event_uids": [
+        "douban:37656895"
+      ]
+    }
+  ]
+}

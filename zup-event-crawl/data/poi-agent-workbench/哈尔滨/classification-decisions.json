@@ -1,19 +1,38 @@
 {
   "city": "哈尔滨",
-  "decided_at": "2026-06-20T18:30:10.625Z",
-  "agent": "cursor-composer",
+  "source": "douban",
+  "decided_at": "2026-06-29T03:38:23.625Z",
+  "agent": "cursor-agent",
   "decisions": [
     {
-      "event_uid": "douban:37716784",
+      "event_uid": "douban:36595295",
+      "suggested": true,
+      "category": "遛娃亲子",
+      "reason": "明确面向亲子/儿童的活动"
+    },
+    {
+      "event_uid": "douban:37180707",
+      "suggested": true,
+      "category": "遛娃亲子",
+      "reason": "明确面向亲子/儿童的活动"
+    },
+    {
+      "event_uid": "douban:37724362",
       "suggested": true,
       "category": "戏剧表演",
       "reason": "话剧/音乐剧/舞剧等舞台演出"
     },
     {
-      "event_uid": "douban:37795475",
+      "event_uid": "douban:37744391",
       "suggested": true,
       "category": "戏剧表演",
       "reason": "话剧/音乐剧/舞剧等舞台演出"
+    },
+    {
+      "event_uid": "douban:37891767",
+      "suggested": true,
+      "category": "交友聚会",
+      "reason": "交友/桌游/派对等社交属性明显"
     }
   ]
 }

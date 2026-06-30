@@ -17,8 +17,9 @@ const {
   isEventBetterByEnd,
   eventTitleLocationDedupKey,
   toTitleLocationIncumbent,
+  createTitlePoiDedupGateFromDb,
 } = require("./event-content-dedup");
-const { openDatabase } = require("./review-db");
+const { openDatabase, eventUidFor } = require("./review-db");
 
 const XHS_SOURCE = "xiaohongshu";
 const XHS_SOURCE_NAME = "小红书";
@@ -193,8 +194,10 @@ async function loadReviewEventsFromNote(noteDir, rootDir, options = {}) {
   const batchTitleLocationWinners = options.batchTitleLocationWinners instanceof Map
     ? options.batchTitleLocationWinners
     : new Map();
+  const titlePoiGate = options.titlePoiGate || null;
   let skippedDuplicate = 0;
   let skippedTitleLocation = 0;
+  let skippedTitlePoi = 0;
 
   let position = 1;
   for (const event of events) {
@@ -226,6 +229,7 @@ async function loadReviewEventsFromNote(noteDir, rootDir, options = {}) {
         for (let i = reviewEvents.length - 1; i >= 0; i -= 1) {
           if (eventTitleLocationDedupKey(reviewEvents[i]) !== titleLocationKey) continue;
           if (isEventBetterByEnd(reviewEvents[i], reviewEvent)) continue;
+          titlePoiGate?.releaseEvent(eventUidFor(reviewEvents[i]));
           reviewEvents.splice(i, 1);
           break;
         }
@@ -235,6 +239,18 @@ async function loadReviewEventsFromNote(noteDir, rootDir, options = {}) {
         xhsNoteId: reviewEvent.xhsNoteId,
         xhsIndex: reviewEvent.xhsIndex,
       });
+    }
+
+    let titlePoiDecision = null;
+    if (titlePoiGate) {
+      titlePoiDecision = titlePoiGate.decide(reviewEvent, reviewEvent.city);
+      if (titlePoiDecision.action === "skip") {
+        skippedTitlePoi += 1;
+        if (options.log !== false) {
+          console.log(`  跳过同名同POI(未过期): ${reviewEvent.title}`);
+        }
+        continue;
+      }
     }
 
     contentKeys.add(dedupKey);
@@ -255,9 +271,23 @@ async function loadReviewEventsFromNote(noteDir, rootDir, options = {}) {
     delete reviewEvent.xhsPosterRelative;
     delete reviewEvent.xhsSourceImageRelative;
     reviewEvents.push(reviewEvent);
+    if (titlePoiGate && titlePoiDecision?.poiId) {
+      titlePoiGate.recordImported(
+        { ...reviewEvent, event_uid: eventUidFor(reviewEvent) },
+        reviewEvent.city,
+        titlePoiDecision.poiId,
+      );
+    }
   }
 
-  return { extracted, reviewEvents, coverStats, skippedDuplicate, skippedTitleLocation };
+  return {
+    extracted,
+    reviewEvents,
+    coverStats,
+    skippedDuplicate,
+    skippedTitleLocation,
+    skippedTitlePoi,
+  };
 }
 
 async function loadAllXhsReviewEvents(rootDir, options = {}) {
@@ -265,9 +295,19 @@ async function loadAllXhsReviewEvents(rootDir, options = {}) {
   const noteDirs = listXhsNoteDirs(xhsRoot, options.city || null);
   const allEvents = [];
   const byCity = {};
-  const totals = { poster: 0, text: 0, fail: 0, notes: 0, events: 0, skippedDuplicate: 0, skippedTitleLocation: 0 };
+  const totals = {
+    poster: 0,
+    text: 0,
+    fail: 0,
+    notes: 0,
+    events: 0,
+    skippedDuplicate: 0,
+    skippedTitleLocation: 0,
+    skippedTitlePoi: 0,
+  };
   let contentDedupKeys = options.contentDedupKeys;
   let titleLocationIndex = options.titleLocationIndex;
+  let titlePoiGate = options.titlePoiGate;
   const batchTitleLocationWinners = new Map();
   if (!contentDedupKeys && options.dbPath && fs.existsSync(options.dbPath)) {
     const db = openDatabase(options.dbPath);
@@ -280,6 +320,12 @@ async function loadAllXhsReviewEvents(rootDir, options = {}) {
         city: options.city || undefined,
         source: XHS_SOURCE,
       });
+      if (!titlePoiGate) {
+        titlePoiGate = createTitlePoiDedupGateFromDb(db, {
+          city: options.city || undefined,
+          source: XHS_SOURCE,
+        });
+      }
     } finally {
       db.close();
     }
@@ -290,15 +336,29 @@ async function loadAllXhsReviewEvents(rootDir, options = {}) {
     if (options.log !== false) {
       console.log(`\n读取 ${item.city} / ${path.basename(item.noteDir)}`);
     }
-    const { extracted, reviewEvents, coverStats, skippedDuplicate, skippedTitleLocation } = await loadReviewEventsFromNote(
+    const {
+      extracted,
+      reviewEvents,
+      coverStats,
+      skippedDuplicate,
+      skippedTitleLocation,
+      skippedTitlePoi,
+    } = await loadReviewEventsFromNote(
       item.noteDir,
       rootDir,
-      { ...options, contentDedupKeys, titleLocationIndex, batchTitleLocationWinners },
+      {
+        ...options,
+        contentDedupKeys,
+        titleLocationIndex,
+        batchTitleLocationWinners,
+        titlePoiGate,
+      },
     );
     totals.notes += 1;
     totals.events += reviewEvents.length;
     totals.skippedDuplicate += skippedDuplicate || 0;
     totals.skippedTitleLocation += skippedTitleLocation || 0;
+    totals.skippedTitlePoi += skippedTitlePoi || 0;
     totals.poster += coverStats.poster;
     totals.text += coverStats.text;
     totals.fail += coverStats.fail;
@@ -313,7 +373,9 @@ async function loadAllXhsReviewEvents(rootDir, options = {}) {
     allEvents.push(...reviewEvents);
     if (options.log !== false) {
       const dupHint = skippedDuplicate ? ` · 跳过重复 ${skippedDuplicate}` : "";
-      console.log(`  ${reviewEvents.length} 条 · 海报封面 ${coverStats.poster} · 文字封面 ${coverStats.text} · 失败 ${coverStats.fail}${dupHint}`);
+      const tlHint = skippedTitleLocation ? ` · 跳过标题+地点 ${skippedTitleLocation}` : "";
+      const tpHint = skippedTitlePoi ? ` · 跳过同名同POI ${skippedTitlePoi}` : "";
+      console.log(`  ${reviewEvents.length} 条 · 海报封面 ${coverStats.poster} · 文字封面 ${coverStats.text} · 失败 ${coverStats.fail}${dupHint}${tlHint}${tpHint}`);
     }
   }
 
@@ -322,6 +384,9 @@ async function loadAllXhsReviewEvents(rootDir, options = {}) {
   }
   if (totals.skippedTitleLocation && options.log !== false) {
     console.log(`标题+地点去重：共跳过 ${totals.skippedTitleLocation} 条（保留结束时间更晚）`);
+  }
+  if (totals.skippedTitlePoi && options.log !== false) {
+    console.log(`同名同POI去重：共跳过 ${totals.skippedTitlePoi} 条（库内已有未过期）`);
   }
 
   return { allEvents, byCity, totals, noteDirs };

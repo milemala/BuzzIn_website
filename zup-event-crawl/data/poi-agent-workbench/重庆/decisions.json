@@ -1,530 +1,58 @@
 {
   "city": "重庆",
   "source": "douban",
-  "updated_at": "2026-06-20T18:41:07.868Z",
-  "agent": "cursor-composer",
+  "decided_at": "2026-06-29T03:25:37.642Z",
+  "agent": "cache-hit-auto",
   "decisions": [
     {
-      "group_id": "3c1645e17c6b",
-      "event_uids": [
-        "douban:37886136"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "重庆CGV影城（来福士IMAX）"
-      ],
-      "poi_id": "1967616658415122998",
-      "poi_title": "CGV影城(重庆来福士IMAX店)",
-      "poi_address": "重庆市渝中区接圣街8号重庆来福士购物中心L3",
-      "latitude": 29.563808,
-      "longitude": 106.588173,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 300）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "1967616658415122998",
-          "title": "CGV影城(重庆来福士IMAX店)",
-          "address": "重庆市渝中区接圣街8号重庆来福士购物中心L3",
-          "category": "娱乐休闲:电影院",
-          "latitude": 29.563808,
-          "longitude": 106.588173
-        }
-      ]
-    },
-    {
-      "group_id": "4530d6882e9a",
-      "event_uids": [
-        "douban:37663733",
-        "douban:37836649",
-        "douban:37819282"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "重庆劳动文化宫大剧院"
-      ],
-      "poi_id": "13278289810545590255",
-      "poi_title": "重庆劳动文化宫大剧院",
-      "poi_address": "重庆市渝中区两路口街道中山二路174号(第一片区)重庆市劳动人民文化宫大剧院",
-      "latitude": 29.556488,
-      "longitude": 106.55219,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 341）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "13278289810545590255",
-          "title": "重庆劳动文化宫大剧院",
-          "address": "重庆市渝中区两路口街道中山二路174号(第一片区)重庆市劳动人民文化宫大剧院",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 29.556488,
-          "longitude": 106.55219
-        }
-      ]
-    },
-    {
-      "group_id": "38531c194210",
-      "event_uids": [
-        "douban:37854906"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "重庆星幻动漫节",
-        "重庆 鲁溉路星耀天地1栋501室"
-      ],
-      "poi_id": "1238539359405457549",
-      "poi_title": "星耀天地",
-      "poi_address": "重庆市两江新区天澜大道11号",
-      "latitude": 29.58789,
-      "longitude": 106.572186,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 101）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "18186417780585474281",
-          "title": "享派·重庆一站式轰趴·团建生日(星耀店)",
-          "address": "重庆市两江新区鲁溉路星耀天地1栋501室",
-          "category": "娱乐休闲:其它娱乐休闲",
-          "latitude": 29.589107,
-          "longitude": 106.571436
-        },
-        {
-          "index": 1,
-          "poi_id": "17127412613226393685",
-          "title": "重庆市江北区五里店街道星耀天地21栋",
-          "address": "重庆市两江新区鲁溉路星耀天地",
-          "category": "房产小区:房产小区附属",
-          "latitude": 29.588723,
-          "longitude": 106.571653
-        },
-        {
-          "index": 2,
-          "poi_id": "1238539359405457549",
-          "title": "星耀天地",
-          "address": "重庆市两江新区天澜大道11号",
-          "category": "房产小区:住宅区:住宅小区",
-          "latitude": 29.58789,
-          "longitude": 106.572186
-        },
-        {
-          "index": 3,
-          "poi_id": "5725125791003024266",
-          "title": "星耀天地-16栋",
-          "address": "重庆市两江新区天澜大道星耀天地",
-          "category": "房产小区:房产小区附属",
-          "latitude": 29.58925,
-          "longitude": 106.572957
-        },
-        {
-          "index": 4,
-          "poi_id": "7899142502146341645",
-          "title": "重庆星耀天地",
-          "address": "重庆市两江新区北滨二路与天澜大道交叉口西南方向238米左右",
-          "category": "房产小区:住宅区:住宅小区",
-          "latitude": 29.588235,
-          "longitude": 106.572479
-        }
-      ]
-    },
-    {
-      "group_id": "30c139a799bd",
-      "event_uids": [
-        "douban:37879817"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "重庆两江新区观音桥"
-      ],
-      "poi_id": "16738002125267524458",
-      "poi_title": "观音桥-4口",
-      "poi_address": "",
-      "latitude": 29.57403,
-      "longitude": 106.53218,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 72）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "2838613728480184180",
-          "title": "重庆市两江新区人民政府观音桥街道办事处",
-          "address": "重庆市两江新区洋河一路66号新华协信中心",
-          "category": "机构团体:政府机关",
-          "latitude": 29.579975,
-          "longitude": 106.530853
-        },
-        {
-          "index": 1,
-          "poi_id": "1969200835426359610",
-          "title": "重庆观音桥假日酒店",
-          "address": "重庆市两江新区五红路96号",
-          "category": "酒店宾馆:星级酒店",
-          "latitude": 29.585463,
-          "longitude": 106.547179
-        },
-        {
-          "index": 2,
-          "poi_id": "2687892982248507947",
-          "title": "重庆江北区观音桥派出所",
-          "address": "重庆市两江新区塔坪42号",
-          "category": "机构团体:公检法机构",
-          "latitude": 29.576814,
-          "longitude": 106.539214
-        },
-        {
-          "index": 3,
-          "poi_id": "6094922384195451986",
-          "title": "重庆江北观音桥",
-          "address": "重庆市两江新区",
-          "category": "地名地址:热点区域:商圈类",
-          "latitude": 29.572495,
-          "longitude": 106.533516
-        },
-        {
-          "index": 4,
-          "poi_id": "4604136353629083736",
-          "title": "重庆两江假日酒店",
-          "address": "重庆市两江新区建新北路38号",
-          "category": "酒店宾馆:星级酒店",
-          "latitude": 29.582791,
-          "longitude": 106.52838
-        }
-      ]
-    },
-    {
-      "group_id": "d5a5f8e1865b",
-      "event_uids": [
-        "douban:37879828"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "重庆渝中区解放碑"
-      ],
-      "poi_id": "4151814087662718097",
-      "poi_title": "解放碑(商圈)",
-      "poi_address": "重庆市渝中区",
-      "latitude": 29.556728,
-      "longitude": 106.57688,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 87）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "4151814087662718097",
-          "title": "解放碑(商圈)",
-          "address": "重庆市渝中区",
-          "category": "地名地址:热点区域:商圈类",
-          "latitude": 29.556728,
-          "longitude": 106.57688
-        },
-        {
-          "index": 1,
-          "poi_id": "7434039584682347629",
-          "title": "重庆渝中区解放碑派出所",
-          "address": "重庆市渝中区大同巷15号(临江门地铁站3号口步行400米)",
-          "category": "机构团体:公检法机构",
-          "latitude": 29.556402,
-          "longitude": 106.571831
-        },
-        {
-          "index": 2,
-          "poi_id": "8429672066111117789",
-          "title": "解放碑步行街",
-          "address": "重庆市渝中区重庆时代广场附近",
-          "category": "购物:商业步行街",
-          "latitude": 29.557301,
-          "longitude": 106.575654
-        },
-        {
-          "index": 3,
-          "poi_id": "16008351426202308444",
-          "title": "重庆渝中区解放碑营业厅",
-          "address": "重庆市渝中区五一路171号附1号解放碑营业厅",
-          "category": "生活服务:通讯服务:中国电信营业厅",
-          "latitude": 29.557335,
-          "longitude": 106.579661
-        },
-        {
-          "index": 4,
-          "poi_id": "12779390148489315779",
-          "title": "人民解放纪念碑",
-          "address": "重庆市渝中区民族路177号",
-          "category": "旅游景点:纪念馆",
-          "latitude": 29.557185,
-          "longitude": 106.5769
-        }
-      ]
-    },
-    {
-      "group_id": "333e4907e865",
-      "event_uids": [
-        "douban:37879834"
-      ],
-      "action": "reject",
-      "search_keywords_tried": [
-        "南岸区",
-        "重庆市南岸区南坪"
-      ],
-      "confidence": "low",
-      "doubtful": false,
-      "reason": "仅标注南岸区南坪片区，无具体场馆，候选均为政府机关/商场等无关 POI",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "4098943566303534104",
-          "title": "重庆南坪万达广场",
-          "address": "重庆市南岸区江南大道8号",
-          "category": "购物:综合商场:购物中心",
-          "latitude": 29.525918,
-          "longitude": 106.569041
-        },
-        {
-          "index": 1,
-          "poi_id": "10102772806560611811",
-          "title": "重庆市南岸区图书馆(南坪馆区)",
-          "address": "重庆市南岸区南城大道199号南岸文化艺术中心4_5楼",
-          "category": "文化场馆:图书馆",
-          "latitude": 29.522518,
-          "longitude": 106.562703
-        }
-      ]
-    },
-    {
-      "group_id": "2c7cc8bebe29",
-      "event_uids": [
-        "douban:37821847"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "重庆国泰艺术中心"
-      ],
-      "poi_id": "2757525303885205232",
-      "poi_title": "重庆国泰艺术中心",
-      "poi_address": "重庆市渝中区临江路1号",
-      "latitude": 29.560093,
-      "longitude": 106.577223,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 274）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "2757525303885205232",
-          "title": "重庆国泰艺术中心",
-          "address": "重庆市渝中区临江路1号",
-          "category": "文化场馆:其它文化场馆",
-          "latitude": 29.560093,
-          "longitude": 106.577223
-        },
-        {
-          "index": 1,
-          "poi_id": "436790455692286748",
-          "title": "国泰艺术中心美术馆",
-          "address": "重庆市渝中区临江路重庆国泰艺术中心5层",
-          "category": "文化场馆:美术馆",
-          "latitude": 29.56,
-          "longitude": 106.57672
-        },
-        {
-          "index": 2,
-          "poi_id": "6906208089819787237",
-          "title": "重庆国泰艺术中心大剧场(解放碑步行街)",
-          "address": "重庆市渝中区临江路(临江门地铁站2号口步行330米)",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 29.560354,
-          "longitude": 106.577162
-        },
-        {
-          "index": 3,
-          "poi_id": "13255421496862274575",
-          "title": "重庆国泰艺术中心(演职人员入口)",
-          "address": "重庆市渝中区解放碑临江路3号重庆国泰艺术中心",
-          "category": "室内及附属设施:通行设施类:外部门",
-          "latitude": 29.559671,
-          "longitude": 106.577289
-        },
-        {
-          "index": 4,
-          "poi_id": "2322472542756439282",
-          "title": "重庆国泰艺术中心云瑚音乐厅",
-          "address": "重庆市渝中区临江路1号国泰艺术中心(临江门地铁站1号口步行310米)",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 29.560313,
-          "longitude": 106.577761
-        }
-      ]
-    },
-    {
-      "group_id": "eb03845060f1",
-      "event_uids": [
-        "douban:37849487",
-        "douban:37703521",
-        "douban:37703666",
-        "douban:37731579",
-        "douban:37863134"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "6745060521296666657",
-      "poi_title": "重庆大剧院",
-      "poi_address": "",
-      "latitude": 29.570032,
-      "longitude": 106.581396,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：重庆 两江新区 重庆大剧院 江北嘴北城文华街东路（朝天门对面） → 重庆大剧院（来源 event:douban:37847287）",
-      "candidates": []
-    },
-    {
-      "group_id": "6853c8fa696a",
-      "event_uids": [
-        "douban:37864222"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "12707263913865052557",
-      "poi_title": "施光南大剧院",
-      "poi_address": "",
-      "latitude": 29.537709,
-      "longitude": 106.586296,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：重庆 南岸区 施光南大剧院 海棠溪街道烟雨路7号 → 施光南大剧院（来源 event:douban:37864708）",
-      "candidates": []
-    },
-    {
       "group_id": "7d018236cd5e",
-      "event_uids": [
-        "douban:37831659"
-      ],
       "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
       "poi_id": "2322472542756439282",
       "poi_title": "重庆国泰艺术中心云瑚音乐厅",
       "poi_address": "",
       "latitude": 29.560313,
       "longitude": 106.577761,
-      "confidence": "high",
       "doubtful": false,
       "reason": "地址映射库命中：重庆 渝中区 重庆国泰艺术中心云瑚音乐厅 临江路3号 → 重庆国泰艺术中心云瑚音乐厅（来源 event:douban:37663618）",
-      "candidates": []
-    },
-    {
-      "group_id": "e6d49349796d",
-      "event_uids": [
-        "douban:37679820"
-      ],
-      "action": "match",
       "search_keywords_tried": [
         "poi-address-cache"
       ],
-      "poi_id": "7353731142225238148",
-      "poi_title": "笑扯剧场(沙坪坝店)",
-      "poi_address": "",
-      "latitude": 29.554228,
-      "longitude": 106.45914,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：重庆 沙坪坝区 笑扯剧场 北站东路188号附3号龙湖重庆金沙天街A馆3F（笑扯剧场） → 笑扯剧场(沙坪坝店)（来源 event:douban:37800037）",
-      "candidates": []
-    },
-    {
-      "group_id": "d22b8bd2a8fd",
       "event_uids": [
-        "douban:37823292",
-        "douban:37792793"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "重庆 重演金源艺术中心"
-      ],
-      "poi_id": "11195844075393282365",
-      "poi_title": "重演金源艺术中心",
-      "poi_address": "重庆市两江新区金源路5号方特科幻主题公园环境4D(4号馆)D-1001号",
-      "latitude": 29.558755,
-      "longitude": 106.526184,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "三轮匹配（score 286）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "11195844075393282365",
-          "title": "重演金源艺术中心",
-          "address": "重庆市两江新区金源路5号方特科幻主题公园环境4D(4号馆)D-1001号",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 29.558755,
-          "longitude": 106.526184
-        },
-        {
-          "index": 1,
-          "poi_id": "11341767147968283241",
-          "title": "铂源高端美容皮肤中心",
-          "address": "重庆市两江新区金源路5号方特科幻主题公园环境4D(4号馆)D-1001号重演金源艺术中心",
-          "category": "生活服务:美容美发:美容SPA",
-          "latitude": 29.558966,
-          "longitude": 106.526218
-        }
+        "douban:37827001"
       ]
     },
     {
-      "group_id": "c85b1b609e82",
-      "event_uids": [
-        "douban:37720538",
-        "douban:37720541"
-      ],
+      "group_id": "5a34edd36a41",
       "action": "match",
+      "poi_id": "9924413222897895137",
+      "poi_title": "重庆国泰艺术中心云卫剧场-渝戏",
+      "poi_address": "",
+      "latitude": 29.560091,
+      "longitude": 106.577163,
+      "doubtful": false,
+      "reason": "地址映射库命中：重庆 渝中区 重庆国泰艺术中心云卫剧场-渝戏 临江路1号重庆国泰艺术中心云卫剧场 → 重庆国泰艺术中心云卫剧场-渝戏（来源 event:douban:36881584）",
       "search_keywords_tried": [
         "poi-address-cache"
       ],
-      "poi_id": "1957204529531340506",
-      "poi_title": "旅行箱喜剧|脱口秀剧场",
-      "poi_address": "",
-      "latitude": 29.593318,
-      "longitude": 106.521911,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：重庆 两江新区 旅行箱喜剧|脱口秀剧场 龙溪街道红锦大道89号新光里+SKLP四楼C区 → 旅行箱喜剧|脱口秀剧场（来源 event:douban:37729166）",
-      "candidates": []
+      "event_uids": [
+        "douban:37097531"
+      ]
     },
     {
-      "group_id": "0f0209254eae",
-      "event_uids": [
-        "douban:37885846"
-      ],
+      "group_id": "89514f152d05",
       "action": "match",
-      "search_keywords_tried": [
-        "重庆爱乐工厂"
-      ],
-      "poi_id": "1073283805602343470",
-      "poi_title": "重庆爱乐工厂",
-      "poi_address": "重庆市两江新区紫园路292号(唐家院子地铁站出口)",
-      "latitude": 29.59838,
-      "longitude": 106.539811,
-      "confidence": "high",
+      "poi_id": "9140399097731358382",
+      "poi_title": "坚果NUTS",
+      "poi_address": "",
+      "latitude": 29.582205,
+      "longitude": 106.52632,
       "doubtful": false,
-      "reason": "爱乐工厂与紫园路292号一致，五楼演奏厅为同楼不同层",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "1073283805602343470",
-          "title": "重庆爱乐工厂",
-          "address": "重庆市两江新区紫园路292号(唐家院子地铁站出口)",
-          "category": "教育学校:培训:音乐舞蹈",
-          "latitude": 29.59838,
-          "longitude": 106.539811
-        }
+      "reason": "地址映射库命中：重庆 两江新区 坚果NUTS 演出现场 观音桥街道建新北路观音桥新壹街C馆F1层 → 坚果NUTS（来源 event:douban:37866708）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37789420"
       ]
     }
   ]

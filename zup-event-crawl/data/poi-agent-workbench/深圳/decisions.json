@@ -1,912 +1,135 @@
 {
   "city": "深圳",
   "source": "douban",
-  "updated_at": "2026-06-20T18:40:44.681Z",
-  "agent": "cursor-composer",
+  "decided_at": "2026-06-29T03:43:24.233Z",
+  "agent": "cursor-agent",
   "decisions": [
     {
-      "group_id": "ccff87f32835",
-      "event_uids": [
-        "douban:37550355"
-      ],
-      "search_keywords_tried": [
-        "福田区",
-        "深圳会展中心",
-        "福田区 深圳会展中心"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "福田区",
-          "address": "",
-          "category": "",
-          "latitude": 22.520922,
-          "longitude": 114.055198
-        },
-        {
-          "index": 0,
-          "poi_id": "12305997467125174323",
-          "title": "深圳会展中心",
-          "address": "广东省深圳市福田区福华三路与金田路交叉口西南角",
-          "category": "文化场馆:会展中心",
-          "latitude": 22.530799,
-          "longitude": 114.059889
-        },
-        {
-          "index": 1,
-          "poi_id": "9646233729095183382",
-          "title": "深圳会展中心-地下停车场入口",
-          "address": "广东省深圳市福田区中心五路与福华三路交叉口正南方向79米左右",
-          "category": "室内及附属设施:通行设施类:停车场入口",
-          "latitude": 22.531901,
-          "longitude": 114.061135
-        },
-        {
-          "index": 2,
-          "poi_id": "8449375488160277883",
-          "title": "深圳会展中心-北2门",
-          "address": "广东省深圳市福田区福田街道福华三路111号深圳会展中心",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 22.532412,
-          "longitude": 114.059291
-        },
-        {
-          "index": 3,
-          "poi_id": "11990030567785315101",
-          "title": "会展中心[地铁站]",
-          "address": "地铁1号线(罗宝线),地铁4号线(龙华线)",
-          "category": "基础设施:交通设施:地铁站",
-          "latitude": 22.53476,
-          "longitude": 114.061095
-        }
-      ],
+      "group_id": "c23a4b9a1baa",
       "action": "match",
-      "poi_id": "12305997467125174323",
-      "poi_title": "深圳会展中心",
-      "poi_address": "广东省深圳市福田区福华三路与金田路交叉口西南角",
-      "latitude": 22.530799,
-      "longitude": 114.059889,
-      "confidence": "high",
+      "poi_id": "15281668256543917083",
+      "poi_title": "ROOTS HOUSE(华侨城店)",
+      "poi_address": "",
+      "latitude": 22.537591,
+      "longitude": 113.992029,
       "doubtful": false,
-      "reason": "会展中心名称一致，福田区匹配"
+      "reason": "地址映射库命中：深圳 南山区 华侨城创意园E3栋101C ROOTS HOUSE → ROOTS HOUSE(华侨城店)（来源 event:douban:37889600）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37894418"
+      ]
     },
     {
-      "group_id": "9d477b72189c",
-      "event_uids": [
-        "douban:37884385"
-      ],
+      "group_id": "7be61bdd975e",
+      "action": "match",
+      "poi_id": "2462313919833142162",
+      "poi_title": "来疯喜剧脱口秀俱乐部(上梅林卓悦汇店)",
+      "poi_address": "",
+      "latitude": 22.570031,
+      "longitude": 114.060644,
+      "doubtful": false,
+      "reason": "地址映射库命中：深圳 福田区 来疯喜剧场-上梅林卓悦汇店 中康路126号卓悦汇L2-19b(八合里旁边)来疯喜剧场 → 来疯喜剧脱口秀俱乐部(上梅林卓悦汇店)（来源 event:douban:37709077）",
       "search_keywords_tried": [
-        "福田区",
-        "深圳市体育中心体育馆主馆",
-        "福田区 深圳市体育中心体育馆主馆"
+        "poi-address-cache"
       ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "福田区",
-          "address": "",
-          "category": "",
-          "latitude": 22.520922,
-          "longitude": 114.055198
-        },
-        {
-          "index": 0,
-          "poi_id": "10583826479909675115",
-          "title": "深圳市体育中心体育馆主馆",
-          "address": "广东省深圳市福田区园岭街道体育中心笋岗西路2006号",
-          "category": "运动健身:综合体育场馆",
-          "latitude": 22.559538,
-          "longitude": 114.092028
-        },
-        {
-          "index": 1,
-          "poi_id": "2340316408290809873",
-          "title": "深圳世界大学生运动会体育中心-主体育馆",
-          "address": "广东省深圳市龙岗区龙城街道黄阁路99号",
-          "category": "运动健身:综合体育场馆",
-          "latitude": 22.698212,
-          "longitude": 114.21698
-        },
-        {
-          "index": 2,
-          "poi_id": "3867619532353844631",
-          "title": "盐田体育中心主馆",
-          "address": "广东省深圳市盐田区环梅路70盐田体育中心",
-          "category": "运动健身:综合体育场馆",
-          "latitude": 22.599079,
-          "longitude": 114.303317
-        },
-        {
-          "index": 0,
-          "poi_id": "14825863340728705858",
-          "title": "深圳市体育中心-体育馆",
-          "address": "广东省深圳市福田区体育中心笋岗西路2006号",
-          "category": "运动健身:综合体育场馆",
-          "latitude": 22.557134,
-          "longitude": 114.093752
-        }
+      "event_uids": [
+        "douban:37709082"
+      ]
+    },
+    {
+      "group_id": "34b27f8854ae",
+      "action": "match",
+      "poi_id": "262628701006936448",
+      "poi_title": "安徽大厦",
+      "poi_address": "",
+      "latitude": 22.536255,
+      "longitude": 114.031628,
+      "doubtful": false,
+      "reason": "地址映射库命中：深圳 福田区 安徽大厦 → 安徽大厦（来源 event:douban:37864999）",
+      "search_keywords_tried": [
+        "poi-address-cache"
       ],
+      "event_uids": [
+        "douban:37893372",
+        "douban:37893109"
+      ]
+    },
+    {
+      "group_id": "4b223026781e",
+      "action": "match",
+      "poi_id": "2391290718381281313",
+      "poi_title": "龙岗文化中心大剧院",
+      "poi_address": "广东省深圳市龙岗区龙翔大道8308号文化馆2层",
+      "latitude": 22.720561,
+      "longitude": 114.250434,
+      "doubtful": false,
+      "reason": "场馆名称与龙翔大道8308号地址完全一致",
+      "search_keywords_tried": [
+        "龙岗文化中心大剧院"
+      ],
+      "event_uids": [
+        "douban:37813777"
+      ]
+    },
+    {
+      "group_id": "258ec36c43de",
       "action": "match",
       "poi_id": "10583826479909675115",
       "poi_title": "深圳市体育中心体育馆主馆",
       "poi_address": "广东省深圳市福田区园岭街道体育中心笋岗西路2006号",
       "latitude": 22.559538,
       "longitude": 114.092028,
-      "confidence": "high",
       "doubtful": false,
-      "reason": "主馆名称与笋岗西路2006号一致，福田区匹配"
+      "reason": "豆瓣写体育馆主馆，候选名称与笋岗西路2006号完全一致",
+      "search_keywords_tried": [
+        "深圳市体育中心体育馆"
+      ],
+      "event_uids": [
+        "douban:37831795"
+      ]
     },
     {
-      "group_id": "0beff1f1ed92",
-      "event_uids": [
-        "douban:37890306"
-      ],
-      "search_keywords_tried": [
-        "宝安区",
-        "深圳荣大感光",
-        "宝安区 深圳荣大感光"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "宝安区",
-          "address": "",
-          "category": "",
-          "latitude": 22.554986,
-          "longitude": 113.883831
-        },
-        {
-          "index": 0,
-          "poi_id": "15345527140787216496",
-          "title": "容大感光",
-          "address": "广东省深圳市宝安区福海街道新田大道71-1号宝安桃花源科技创新园福永分园",
-          "category": "公司企业:公司企业",
-          "latitude": 22.686695,
-          "longitude": 113.83052
-        }
-      ],
+      "group_id": "ee4a688682ca",
       "action": "match",
-      "poi_id": "15345527140787216496",
-      "poi_title": "容大感光",
-      "poi_address": "广东省深圳市宝安区福海街道新田大道71-1号宝安桃花源科技创新园福永分园",
-      "latitude": 22.686695,
-      "longitude": 113.83052,
-      "confidence": "medium",
-      "doubtful": true,
-      "reason": "「荣大感光」应为容大感光笔误，宝安区福海街道唯一匹配企业"
-    },
-    {
-      "group_id": "548e6bd46676",
-      "event_uids": [
-        "douban:37891578"
-      ],
-      "search_keywords_tried": [
-        "福田区",
-        "下沙文化广场",
-        "福田区 下沙文化广场"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "福田区",
-          "address": "",
-          "category": "",
-          "latitude": 22.520922,
-          "longitude": 114.055198
-        },
-        {
-          "index": 0,
-          "poi_id": "10527526167942220214",
-          "title": "下沙文化广场",
-          "address": "广东省深圳市福田区沙头街道下沙博物馆南侧",
-          "category": "旅游景点:城市广场",
-          "latitude": 22.52582,
-          "longitude": 114.02597
-        },
-        {
-          "index": 1,
-          "poi_id": "5711080777382603458",
-          "title": "下沙文化广场地下停车场",
-          "address": "广东省深圳市福田区滨河大道9299-16号(下沙地铁站B口步行370米)",
-          "category": "汽车:停车场",
-          "latitude": 22.52632,
-          "longitude": 114.025165
-        },
-        {
-          "index": 2,
-          "poi_id": "11152686225483185949",
-          "title": "下沙文化广场-北门",
-          "address": "广东省深圳市福田区沙头街道下沙博物馆南侧下沙文化广场",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 22.5265,
-          "longitude": 114.025436
-        },
-        {
-          "index": 3,
-          "poi_id": "10326915739347223537",
-          "title": "汇充电(下沙文化广场)",
-          "address": "广东省深圳市福田区下沙村停车场负一层",
-          "category": "汽车:加油站:充电站",
-          "latitude": 22.525755,
-          "longitude": 114.026033
-        }
-      ],
-      "action": "match",
-      "poi_id": "10527526167942220214",
-      "poi_title": "下沙文化广场",
-      "poi_address": "广东省深圳市福田区沙头街道下沙博物馆南侧",
-      "latitude": 22.52582,
-      "longitude": 114.02597,
-      "confidence": "high",
+      "poi_id": "17604903991079200771",
+      "poi_title": "深圳保利剧院",
+      "poi_address": "广东省深圳市南山区后海滨路3013号",
+      "latitude": 22.516366,
+      "longitude": 113.938797,
       "doubtful": false,
-      "reason": "广场名称一致，福田区匹配"
+      "reason": "场馆名称与后海滨路3013号地址完全一致",
+      "search_keywords_tried": [
+        "深圳保利剧院"
+      ],
+      "event_uids": [
+        "douban:37758880"
+      ]
     },
     {
-      "group_id": "014bcdbe2d7c",
-      "event_uids": [
-        "douban:37891584"
-      ],
-      "search_keywords_tried": [
-        "福田区",
-        "创新科技广场一期B座1207A",
-        "创新科技广场",
-        "福田区 创新科技广场一期B座1207A"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "福田区",
-          "address": "",
-          "category": "",
-          "latitude": 22.520922,
-          "longitude": 114.055198
-        },
-        {
-          "index": 0,
-          "poi_id": "7843574369769529601",
-          "title": "创新科技广场一期B座",
-          "address": "广东省深圳市福田区泰然四路25号",
-          "category": "房产小区:商务楼宇",
-          "latitude": 22.534098,
-          "longitude": 114.031701
-        },
-        {
-          "index": 1,
-          "poi_id": "18237943268632040938",
-          "title": "创新科技广场一期A座",
-          "address": "广东省深圳市福田区泰然四路29号",
-          "category": "房产小区:商务楼宇",
-          "latitude": 22.53375,
-          "longitude": 114.030887
-        },
-        {
-          "index": 2,
-          "poi_id": "1204037564975684118",
-          "title": "破浪鲸心理能力提升中心",
-          "address": "广东省深圳市福田区创新科技广场一期B座1207A",
-          "category": "医疗保健:其它医疗保健",
-          "latitude": 22.534007,
-          "longitude": 114.031539
-        },
-        {
-          "index": 3,
-          "poi_id": "7202647196196650950",
-          "title": "创新科技广场1期A座停车场",
-          "address": "广东省深圳市福田区泰然四路与科技广场路交叉口西南方向47米左右",
-          "category": "汽车:停车场",
-          "latitude": 22.534283,
-          "longitude": 114.03119
-        }
-      ],
-      "action": "match",
-      "poi_id": "7843574369769529601",
-      "poi_title": "创新科技广场一期B座",
-      "poi_address": "广东省深圳市福田区泰然四路25号",
-      "latitude": 22.534098,
-      "longitude": 114.031701,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "活动位于一期B座1207A，匹配楼宇B座本体，同楼不同室"
-    },
-    {
-      "group_id": "25a14e445e49",
-      "event_uids": [
-        "douban:37856427"
-      ],
-      "search_keywords_tried": [
-        "光明区",
-        "茅洲河体育艺术中心·剧场",
-        "公明北环大道633号茅洲河体育艺术中心文化和图书中心2栋403",
-        "茅洲河体育艺术中心",
-        "号茅洲河体育艺术中心",
-        "文化和图书中心",
-        "633号茅洲河体育艺术中心文化和图书中心2栋403"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "光明区",
-          "address": "",
-          "category": "",
-          "latitude": 22.74875,
-          "longitude": 113.936059
-        },
-        {
-          "index": 0,
-          "poi_id": "16641430184239154767",
-          "title": "茅洲河体育艺术中心·剧场",
-          "address": "广东省深圳市光明区公明北环大道与凤飞路交叉口东南方向130米左右",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 22.793295,
-          "longitude": 113.901361
-        },
-        {
-          "index": 0,
-          "poi_id": "18122959080115267360",
-          "title": "茅洲河体育艺术中心",
-          "address": "广东省深圳市光明区公明北环大道篮球场是在室内的",
-          "category": "文化场馆:其它文化场馆",
-          "latitude": 22.793095,
-          "longitude": 113.901612
-        },
-        {
-          "index": 1,
-          "poi_id": "15822126137594912350",
-          "title": "茅洲河体育艺术中心羽毛球馆",
-          "address": "广东省深圳市光明区公明街道公明北环大道633号茅洲河体育艺术中心体育中心1栋三楼301",
-          "category": "运动健身:羽毛球馆",
-          "latitude": 22.792459,
-          "longitude": 113.90213
-        },
-        {
-          "index": 2,
-          "poi_id": "11265521963986545067",
-          "title": "茅洲河体育艺术中心篮球馆",
-          "address": "广东省深圳市光明区公明街道公明北环大道633号茅洲河体育艺术中心体育中心1栋110",
-          "category": "运动健身:篮球场",
-          "latitude": 22.79231,
-          "longitude": 113.902116
-        }
-      ],
-      "action": "match",
-      "poi_id": "16641430184239154767",
-      "poi_title": "茅洲河体育艺术中心·剧场",
-      "poi_address": "广东省深圳市光明区公明北环大道与凤飞路交叉口东南方向130米左右",
-      "latitude": 22.793295,
-      "longitude": 113.901361,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "剧场名称与光明区茅洲河体育艺术中心一致，亲子剧演出场地"
-    },
-    {
-      "group_id": "cd5b6e4a4fcd",
-      "event_uids": [
-        "douban:37888988"
-      ],
-      "search_keywords_tried": [
-        "光明区",
-        "光明区 光明区"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "光明区",
-          "address": "",
-          "category": "",
-          "latitude": 22.74875,
-          "longitude": 113.936059
-        },
-        {
-          "index": 0,
-          "poi_id": "12970090568184540982",
-          "title": "光明区红花山体育中心",
-          "address": "广东省深圳市光明区兴发路35号",
-          "category": "运动健身:综合体育场馆",
-          "latitude": 22.775998,
-          "longitude": 113.905663
-        },
-        {
-          "index": 1,
-          "poi_id": "15639215482002159678",
-          "title": "光明区群众体育中心",
-          "address": "广东省深圳市光明区光侨路3115号",
-          "category": "运动健身:综合体育场馆",
-          "latitude": 22.74895,
-          "longitude": 113.948485
-        },
-        {
-          "index": 2,
-          "poi_id": "3541653620058049291",
-          "title": "深圳市光明区人民医院住院部",
-          "address": "广东省深圳市光明区马田街道松白路4253号深圳理工大学总医院(西院区)",
-          "category": "医疗保健:其它医疗保健",
-          "latitude": 22.763787,
-          "longitude": 113.901166
-        },
-        {
-          "index": 3,
-          "poi_id": "8126764777003485468",
-          "title": "光明城站",
-          "address": "广东省深圳市光明区凤凰街道茶林路8号",
-          "category": "基础设施:交通设施:火车站",
-          "latitude": 22.732743,
-          "longitude": 113.954517
-        }
-      ],
+      "group_id": "8ab18e8dad17",
       "action": "reject",
-      "poi_id": "",
-      "poi_title": "",
-      "poi_address": "",
-      "latitude": null,
-      "longitude": null,
-      "confidence": "low",
       "doubtful": false,
-      "reason": "地点仅写「光明区」，无具体场馆或门牌，无法可靠匹配"
+      "reason": "豆瓣写明华国际会议中心正门斜对面，为夜登南山户外徒步集合点，非会议中心本体，无法对应唯一活动场地POI",
+      "search_keywords_tried": [
+        "明华国际会议中心"
+      ],
+      "event_uids": [
+        "douban:37797324"
+      ]
     },
     {
-      "group_id": "3ed45cb08908",
-      "event_uids": [
-        "douban:37845647"
-      ],
-      "search_keywords_tried": [
-        "南山区",
-        "华侨城文化创意园",
-        "跨职业社",
-        "南山区 华侨城文化创意园"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "南山区",
-          "address": "",
-          "category": "",
-          "latitude": 22.533191,
-          "longitude": 113.930478
-        },
-        {
-          "index": 0,
-          "poi_id": "9923591074141051114",
-          "title": "华侨城创意文化园",
-          "address": "广东省深圳市南山区锦绣北街2号",
-          "category": "房产小区:产业园区",
-          "latitude": 22.538321,
-          "longitude": 113.994017
-        },
-        {
-          "index": 1,
-          "poi_id": "5821443138395476148",
-          "title": "华侨城创意文化园[公交站]",
-          "address": "M486路",
-          "category": "基础设施:交通设施:公交车站",
-          "latitude": 22.538144,
-          "longitude": 113.991789
-        },
-        {
-          "index": 2,
-          "poi_id": "7329328430652261291",
-          "title": "华侨城创意文化园北区B区",
-          "address": "广东省深圳市南山区沙河街道香山东街合众文化东北40米",
-          "category": "房产小区:产业园区",
-          "latitude": 22.53934,
-          "longitude": 113.993683
-        },
-        {
-          "index": 3,
-          "poi_id": "6670191845502209267",
-          "title": "华侨城创意文化园F2",
-          "address": "广东省深圳市南山区沙河街道锦绣北街",
-          "category": "房产小区:房产小区附属",
-          "latitude": 22.536882,
-          "longitude": 113.993642
-        }
-      ],
-      "action": "match",
-      "poi_id": "9923591074141051114",
-      "poi_title": "华侨城创意文化园",
-      "poi_address": "广东省深圳市南山区锦绣北街2号",
-      "latitude": 22.538321,
-      "longitude": 113.994017,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "华侨城文化创意园即华侨城创意文化园，南山区匹配"
-    },
-    {
-      "group_id": "ad4ef29523b6",
-      "event_uids": [
-        "douban:37891332"
-      ],
-      "search_keywords_tried": [
-        "南山区",
-        "粤海文体中心",
-        "南山区 粤海文体中心"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "南山区",
-          "address": "",
-          "category": "",
-          "latitude": 22.533191,
-          "longitude": 113.930478
-        },
-        {
-          "index": 0,
-          "poi_id": "2081539260108391594",
-          "title": "粤海街道文体中心",
-          "address": "广东省深圳市南山区科技南路与高新南十一道交叉口东南方向92米左右",
-          "category": "文化场馆:其它文化场馆",
-          "latitude": 22.523677,
-          "longitude": 113.950549
-        },
-        {
-          "index": 1,
-          "poi_id": "13689153804147310293",
-          "title": "粤海文体中心健身游泳",
-          "address": "广东省深圳市南山区科技南路与高新南十一道交叉口东南方向85米左右",
-          "category": "运动健身:游泳馆",
-          "latitude": 22.523836,
-          "longitude": 113.950682
-        },
-        {
-          "index": 2,
-          "poi_id": "17001299364631518125",
-          "title": "古德菲力健身(粤海文体中心店)",
-          "address": "广东省深圳市南山区科技南路粤海文体中心",
-          "category": "运动健身:健身中心",
-          "latitude": 22.523732,
-          "longitude": 113.950668
-        },
-        {
-          "index": 3,
-          "poi_id": "5080996378843929268",
-          "title": "UPT网球-粤海文体中心店",
-          "address": "广东省深圳市南山区粤海街道高新南环路1号粤海街道文体中心11楼1101",
-          "category": "运动健身:网球场",
-          "latitude": 22.523697,
-          "longitude": 113.950673
-        }
-      ],
-      "action": "match",
-      "poi_id": "2081539260108391594",
-      "poi_title": "粤海街道文体中心",
-      "poi_address": "广东省深圳市南山区科技南路与高新南十一道交叉口东南方向92米左右",
-      "latitude": 22.523677,
-      "longitude": 113.950549,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "粤海文体中心即粤海街道文体中心，南山区科技南路，排除琼宇路另一培训点"
-    },
-    {
-      "group_id": "e2b0c7634f5e",
-      "event_uids": [
-        "douban:37891343"
-      ],
-      "search_keywords_tried": [
-        "南山区",
-        "粤海街道文体中心",
-        "慢半拍匹克球社",
-        "南山区 粤海街道文体中心"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "南山区",
-          "address": "",
-          "category": "",
-          "latitude": 22.533191,
-          "longitude": 113.930478
-        },
-        {
-          "index": 0,
-          "poi_id": "2081539260108391594",
-          "title": "粤海街道文体中心",
-          "address": "广东省深圳市南山区科技南路与高新南十一道交叉口东南方向92米左右",
-          "category": "文化场馆:其它文化场馆",
-          "latitude": 22.523677,
-          "longitude": 113.950549
-        },
-        {
-          "index": 1,
-          "poi_id": "13034257823642571074",
-          "title": "布吉文体中心",
-          "address": "广东省深圳市龙岗区政清路6号游泳中心",
-          "category": "文化场馆:文化宫",
-          "latitude": 22.609495,
-          "longitude": 114.127971
-        },
-        {
-          "index": 2,
-          "poi_id": "5361790091234396181",
-          "title": "高新区文体中心",
-          "address": "广东省深圳市南山区粤海街道高新中二道10号",
-          "category": "文化场馆:文化宫",
-          "latitude": 22.547035,
-          "longitude": 113.940377
-        },
-        {
-          "index": 3,
-          "poi_id": "16149107337328495899",
-          "title": "大沙河文体中心",
-          "address": "广东省深圳市南山区桃源街道龙珠一路17号(西丽国际溜冰俱乐部附近)",
-          "category": "文化场馆:其它文化场馆",
-          "latitude": 22.572917,
-          "longitude": 113.956561
-        }
-      ],
-      "action": "match",
-      "poi_id": "2081539260108391594",
-      "poi_title": "粤海街道文体中心",
-      "poi_address": "广东省深圳市南山区科技南路与高新南十一道交叉口东南方向92米左右",
-      "latitude": 22.523677,
-      "longitude": 113.950549,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "粤海街道文体中心名称一致，南山区匹配，匹克球活动在同楼"
-    },
-    {
-      "group_id": "8428576f4c51",
-      "event_uids": [
-        "douban:37605641"
-      ],
-      "search_keywords_tried": [
-        "龙岗区",
-        "龙岗六约",
-        "龙岗区 龙岗六约"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "龙岗区",
-          "address": "",
-          "category": "",
-          "latitude": 22.720889,
-          "longitude": 114.246884
-        },
-        {
-          "index": 0,
-          "poi_id": "6096839199636517092",
-          "title": "六约公园",
-          "address": "广东省深圳市龙岗区礼耕路49号(六约展鹏幼儿园对面)",
-          "category": "旅游景点:公园",
-          "latitude": 22.635246,
-          "longitude": 114.187704
-        },
-        {
-          "index": 1,
-          "poi_id": "4420007307028817598",
-          "title": "六约村",
-          "address": "广东省深圳市龙岗区横岗街道",
-          "category": "地名地址:行政地名",
-          "latitude": 22.640322,
-          "longitude": 114.187968
-        },
-        {
-          "index": 2,
-          "poi_id": "11990074574074404261",
-          "title": "六约[地铁站]",
-          "address": "地铁3号线(龙岗线)",
-          "category": "基础设施:交通设施:地铁站",
-          "latitude": 22.634371,
-          "longitude": 114.180706
-        },
-        {
-          "index": 3,
-          "poi_id": "140313863577003975",
-          "title": "六约-C口",
-          "address": "",
-          "category": "基础设施:交通设施:地铁站出入口",
-          "latitude": 22.63474,
-          "longitude": 114.18063
-        }
-      ],
+      "group_id": "53d1a73dd524",
       "action": "reject",
-      "poi_id": "",
-      "poi_title": "",
-      "poi_address": "",
-      "latitude": null,
-      "longitude": null,
-      "confidence": "low",
       "doubtful": false,
-      "reason": "仅写「龙岗六约」集合出发，无具体场馆门牌，候选多为地铁站/村落"
-    },
-    {
-      "group_id": "ea599b8f1150",
-      "event_uids": [
-        "douban:37862498"
-      ],
+      "reason": "岗厦北地铁站仅为桌游集合交通点，无具体场馆门牌，候选均为地铁口/周边商铺",
       "search_keywords_tried": [
-        "南山区",
-        "西丽大学城平山一路287号201第三空间主题酒吧",
-        "第三空间主题酒吧",
-        "287号201第三空间主题酒吧"
+        "岗厦北地铁站"
       ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "南山区",
-          "address": "",
-          "category": "",
-          "latitude": 22.533191,
-          "longitude": 113.930478
-        },
-        {
-          "index": 0,
-          "poi_id": "9944489743423073988",
-          "title": "第三空间主题酒吧.Bistro.Bar",
-          "address": "广东省深圳市南山区平山一路平山村287号201",
-          "category": "娱乐休闲:酒吧",
-          "latitude": 22.585976,
-          "longitude": 113.967949
-        },
-        {
-          "index": 1,
-          "poi_id": "10508596608903128775",
-          "title": "第三空间",
-          "address": "广东省深圳市南山区平山一路与平山二路交叉口西北方向239米左右",
-          "category": "房产小区:其它房产小区",
-          "latitude": 22.585951,
-          "longitude": 113.967901
-        },
-        {
-          "index": 2,
-          "poi_id": "9873589743646050135",
-          "title": "第三空间餐吧.xukecoffee",
-          "address": "广东省深圳市南山区平山一路平山村287号",
-          "category": "娱乐休闲:咖啡厅",
-          "latitude": 22.585992,
-          "longitude": 113.967907
-        },
-        {
-          "index": 3,
-          "poi_id": "17756777940241704998",
-          "title": "大学城",
-          "address": "广东省深圳市南山区塘兴路与学苑大道交叉口东南方向134米左右",
-          "category": "房产小区:产业园区",
-          "latitude": 22.589664,
-          "longitude": 113.987722
-        }
-      ],
-      "action": "match",
-      "poi_id": "9944489743423073988",
-      "poi_title": "第三空间主题酒吧.Bistro.Bar",
-      "poi_address": "广东省深圳市南山区平山一路平山村287号201",
-      "latitude": 22.585976,
-      "longitude": 113.967949,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "酒吧名称与平山一路287号201完全一致，南山区匹配"
-    },
-    {
-      "group_id": "58ea347eb3e0",
       "event_uids": [
-        "douban:37853896"
-      ],
-      "search_keywords_tried": [
-        "福田区",
-        "中国凤凰大厦",
-        "福田区 中国凤凰大厦"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "福田区",
-          "address": "",
-          "category": "",
-          "latitude": 22.520922,
-          "longitude": 114.055198
-        },
-        {
-          "index": 0,
-          "poi_id": "802384910009455792",
-          "title": "中国凤凰大厦",
-          "address": "广东省深圳市福田区深南大道2008号",
-          "category": "房产小区:商务楼宇",
-          "latitude": 22.541218,
-          "longitude": 114.064865
-        },
-        {
-          "index": 1,
-          "poi_id": "12585561194972177835",
-          "title": "中国凤凰大厦/2栋",
-          "address": "广东省深圳市福田区莲花街道深南大道2008号中国凤凰大厦",
-          "category": "房产小区:房产小区附属",
-          "latitude": 22.541386,
-          "longitude": 114.06525
-        },
-        {
-          "index": 2,
-          "poi_id": "13399585686739573909",
-          "title": "中国凤凰大厦3栋",
-          "address": "广东省深圳市福田区",
-          "category": "房产小区:房产小区附属",
-          "latitude": 22.541408,
-          "longitude": 114.064581
-        },
-        {
-          "index": 3,
-          "poi_id": "16857623552986046961",
-          "title": "中国凤凰大厦地下停车场",
-          "address": "广东省深圳市福田区深南大道2008号中国凤凰大厦",
-          "category": "汽车:停车场",
-          "latitude": 22.541555,
-          "longitude": 114.064312
-        }
-      ],
-      "action": "match",
-      "poi_id": "802384910009455792",
-      "poi_title": "中国凤凰大厦",
-      "poi_address": "广东省深圳市福田区深南大道2008号",
-      "latitude": 22.541218,
-      "longitude": 114.064865,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "大厦名称与深南大道2008号一致，福田区匹配"
-    },
-    {
-      "group_id": "e54f024b9348",
-      "event_uids": [
-        "douban:37858605"
-      ],
-      "search_keywords_tried": [
-        "南山区",
-        "荔香公园",
-        "南山区 荔香公园"
-      ],
-      "candidates": [
-        {
-          "index": 0,
-          "title": "南山区",
-          "address": "",
-          "category": "",
-          "latitude": 22.533191,
-          "longitude": 113.930478
-        },
-        {
-          "index": 0,
-          "poi_id": "4505206724967696322",
-          "title": "荔香公园",
-          "address": "广东省深圳市南山区南光路145-8对面",
-          "category": "旅游景点:公园",
-          "latitude": 22.53611,
-          "longitude": 113.92953
-        },
-        {
-          "index": 1,
-          "poi_id": "11990869964100733390",
-          "title": "荔香公园[公交站]",
-          "address": "M372路,21路,M435路,M527路,81路,M364路,369路,42路,M200路,320路,204路,P590路,323路,高峰专线95路,B627路",
-          "category": "基础设施:交通设施:公交车站",
-          "latitude": 22.539755,
-          "longitude": 113.92691
-        },
-        {
-          "index": 2,
-          "poi_id": "1730853540400104579",
-          "title": "荔香公园(北门)停车场",
-          "address": "广东省深圳市南山区深南大道荔香公园(北门)",
-          "category": "汽车:停车场",
-          "latitude": 22.539192,
-          "longitude": 113.927948
-        },
-        {
-          "index": 3,
-          "poi_id": "10026145692376680872",
-          "title": "荔香公园停车场-西门",
-          "address": "广东省深圳市南山区南头街道深南大道南侧荔香公园",
-          "category": "室内及附属设施:通行设施类:门/出入口",
-          "latitude": 22.535855,
-          "longitude": 113.927828
-        }
-      ],
-      "action": "match",
-      "poi_id": "4505206724967696322",
-      "poi_title": "荔香公园",
-      "poi_address": "广东省深圳市南山区南光路145-8对面",
-      "latitude": 22.53611,
-      "longitude": 113.92953,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "公园名称一致，南山区匹配"
+        "douban:37851990"
+      ]
     }
   ]
 }

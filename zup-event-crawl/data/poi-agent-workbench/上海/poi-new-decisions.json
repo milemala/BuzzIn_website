@@ -1,0 +1,94 @@
+{
+  "city": "上海",
+  "source": "douban",
+  "decided_at": "2026-06-29T12:00:00.000Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "d7e543086a50",
+      "action": "reject",
+      "doubtful": false,
+      "reason": "豆瓣仅写南浦大桥地铁站作为户外徒步集合点，非具体场馆主体，地址过泛无法对应唯一活动场地POI",
+      "search_keywords_tried": ["南浦大桥地铁站"],
+      "event_uids": ["douban:37439761"]
+    },
+    {
+      "group_id": "0c9e6c8d9474",
+      "action": "match",
+      "poi_id": "2750504190343357699",
+      "poi_title": "摩登天空(瑞虹天地店)",
+      "poi_address": "上海市虹口区瑞虹路188号瑞虹天地月亮湾309-310号",
+      "latitude": 31.264829,
+      "longitude": 121.498775,
+      "doubtful": false,
+      "reason": "Modern Sky LAB摩登天空上海，店名与瑞虹路188号月亮湾309-310号地址完全一致",
+      "search_keywords_tried": ["Modern Sky LAB 摩登天空"],
+      "event_uids": ["douban:37834617", "douban:37844815"]
+    },
+    {
+      "group_id": "f4ba25ae115f",
+      "action": "match",
+      "poi_id": "10607727212696558593",
+      "poi_title": "久事·上海商城剧院",
+      "poi_address": "上海市静安区南京西路街道南京西路1376号4楼",
+      "latitude": 31.226747,
+      "longitude": 121.451897,
+      "doubtful": false,
+      "reason": "场馆名称与南京西路1376号4楼地址完全一致",
+      "search_keywords_tried": ["久事上海商城剧院"],
+      "event_uids": ["douban:37853950"]
+    },
+    {
+      "group_id": "d7eeabae5573",
+      "action": "match",
+      "poi_id": "716698760276036149",
+      "poi_title": "兰心大戏院",
+      "poi_address": "上海市黄浦区茂名南路57号",
+      "latitude": 31.221036,
+      "longitude": 121.460523,
+      "doubtful": false,
+      "reason": "兰心大戏院，黄浦区茂名南路57号与豆瓣地址一致",
+      "search_keywords_tried": ["兰心大戏院"],
+      "event_uids": ["douban:37876876"]
+    },
+    {
+      "group_id": "fc08b8cc5b2f",
+      "action": "match",
+      "poi_id": "5528072624503891635",
+      "poi_title": "上海图书馆(东馆)",
+      "poi_address": "上海市浦东新区花木街道合欢路300号",
+      "latitude": 31.219975,
+      "longitude": 121.547154,
+      "doubtful": false,
+      "reason": "豆瓣写迎春路300号应为合欢路300号笔误，上海图书馆东馆主体一致，仅1楼一号展厅未精确到腾讯店级POI",
+      "search_keywords_tried": ["上海图书馆东馆"],
+      "event_uids": ["douban:37887205", "douban:37743227"]
+    },
+    {
+      "group_id": "e301289e1ed9",
+      "action": "match",
+      "poi_id": "8359144007685316449",
+      "poi_title": "1862时尚艺术中心",
+      "poi_address": "上海市浦东新区滨江大道1777号(陆家嘴滨江金融城内)",
+      "latitude": 31.244392,
+      "longitude": 121.514206,
+      "doubtful": false,
+      "reason": "场馆名称与滨江大道1777号地址完全一致",
+      "search_keywords_tried": ["1862时尚艺术中心"],
+      "event_uids": ["douban:37878786"]
+    },
+    {
+      "group_id": "0fa005f87b7d",
+      "action": "match",
+      "poi_id": "14675978706285386968",
+      "poi_title": "麦金侬酒店",
+      "poi_address": "上海市静安区北京西路1013号",
+      "latitude": 31.229822,
+      "longitude": 121.455887,
+      "doubtful": false,
+      "reason": "麦金侬酒店《不眠之夜》剧场，店名与北京西路1013号地址完全一致",
+      "search_keywords_tried": ["麦金侬酒店 不眠之夜"],
+      "event_uids": ["douban:36684770"]
+    }
+  ]
+}

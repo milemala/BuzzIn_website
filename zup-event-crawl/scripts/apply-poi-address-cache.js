@@ -81,13 +81,18 @@ async function applyEvents(db, options) {
       console.log(`[dry-run] ${row.title?.slice(0, 36)} → ${poi.title}`);
       continue;
     }
-    applyEventPoiSelection(db, row.event_uid, poi, {
+    const applyResult = applyEventPoiSelection(db, row.event_uid, poi, {
       candidates: [poi],
       matchSource: "cache",
       agentDoubtful: false,
       agentReason: `地址映射库命中：${cached.address_text}`,
       agentSearchKeyword: "poi-address-cache",
     });
+    if (applyResult?.skipped) {
+      miss += 1;
+      console.log(`✗ 同名同POI重复 ${row.event_uid}（已有 ${applyResult.incumbent_uid}）`);
+      continue;
+    }
     await syncEventMerchantByPoi(db, row.event_uid);
     recordPoiAddressCacheHit(db, cached.cache_key);
     hit += 1;

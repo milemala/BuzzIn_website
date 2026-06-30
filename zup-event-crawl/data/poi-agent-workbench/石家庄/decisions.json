@@ -1,58 +1,43 @@
 {
   "city": "石家庄",
   "source": "douban",
-  "updated_at": "2026-06-21T02:40:00.000Z",
-  "agent": "cursor-composer",
+  "decided_at": "2026-06-29T03:43:30.981Z",
+  "agent": "cursor-agent",
   "decisions": [
     {
-      "group_id": "1d5448593305",
-      "event_uids": ["douban:37820748"],
+      "group_id": "b1720c406f21",
       "action": "match",
-      "search_keywords_tried": ["长安区", "国际庄大剧院", "中山路繁华商业街勒泰中心五层", "中山路繁华商业街勒泰中心", "长安区 国际庄大剧院 中山路繁华商业街勒泰中心五层"],
-      "poi_id": "15123759518473647245",
-      "poi_title": "勒泰国际庄大剧院(勒泰中心店)",
-      "poi_address": "河北省石家庄市长安区中山东路39号勒泰中心F5-F507",
-      "latitude": 38.04562,
-      "longitude": 114.507065,
-      "confidence": "high",
+      "poi_id": "1898510723239737524",
+      "poi_title": "河北省话剧院儿童剧场",
+      "poi_address": "",
+      "latitude": 38.031418,
+      "longitude": 114.522236,
       "doubtful": false,
-      "reason": "国际庄大剧院即勒泰国际庄大剧院，长安区勒泰中心F5",
-      "candidates": [
-        {"index": 0, "poi_id": "15123759518473647245", "title": "勒泰国际庄大剧院(勒泰中心店)", "address": "河北省石家庄市长安区中山东路39号勒泰中心F5-F507", "category": "娱乐休闲:剧场音乐厅:剧场", "latitude": 38.04562, "longitude": 114.507065}
+      "reason": "地址映射库命中：石家庄 裕华区 河北省话剧院儿童剧场 富强大街20号 → 河北省话剧院儿童剧场（来源 event:douban:37391282）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37729318",
+        "douban:37498187",
+        "douban:37498229"
       ]
     },
     {
-      "group_id": "1936a226f46b",
-      "event_uids": ["douban:37836593"],
+      "group_id": "e57b9460bde0",
       "action": "match",
-      "search_keywords_tried": ["新华区", "红糖LIVEHOUSE", "湾里庙步行街水幕广场M08", "LIVEHOUSE", "M08", "湾里庙步行街水幕广场"],
-      "poi_id": "532037913248001448",
-      "poi_title": "星光艺术空间&红糖LIVEHOUSE",
-      "poi_address": "河北省石家庄市新华区湾里庙步行街水幕广场M08",
-      "latitude": 38.044978,
-      "longitude": 114.487492,
-      "confidence": "high",
+      "poi_id": "10803236537387149198",
+      "poi_title": "石家庄大剧院",
+      "poi_address": "河北省石家庄市裕华区塔南路175号",
+      "latitude": 38.005328,
+      "longitude": 114.542858,
       "doubtful": false,
-      "reason": "红糖LIVEHOUSE与POI一致，新华区湾里庙步行街水幕广场M08",
-      "candidates": [
-        {"index": 0, "poi_id": "532037913248001448", "title": "星光艺术空间&红糖LIVEHOUSE", "address": "河北省石家庄市新华区湾里庙步行街水幕广场M08", "category": "娱乐休闲:其它娱乐休闲", "latitude": 38.044978, "longitude": 114.487492}
-      ]
-    },
-    {
-      "group_id": "a7ef5d72954d",
-      "event_uids": ["douban:37062947"],
-      "action": "match",
-      "search_keywords_tried": ["桥西区", "火柴梗喜剧中心-脱口秀·即兴·魔术", "万象天成4楼火柴梗喜剧中心", "火柴梗喜剧中心", "楼火柴梗喜剧中心"],
-      "poi_id": "18229620176419144850",
-      "poi_title": "火柴梗喜剧中心(石家庄旗舰店)",
-      "poi_address": "河北省石家庄市桥西区裕华西路15号万象天成F4-419",
-      "latitude": 38.03621,
-      "longitude": 114.480084,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "火柴梗喜剧中心与POI一致，桥西区万象天成F4",
-      "candidates": [
-        {"index": 0, "poi_id": "18229620176419144850", "title": "火柴梗喜剧中心(石家庄旗舰店)", "address": "河北省石家庄市桥西区裕华西路15号万象天成F4-419", "category": "娱乐休闲:剧场音乐厅:剧场", "latitude": 38.03621, "longitude": 114.480084}
+      "reason": "石家庄大剧院主体一致，塔南路72号与175号同为大剧院园区不同出入口",
+      "search_keywords_tried": [
+        "石家庄大剧院"
+      ],
+      "event_uids": [
+        "douban:37841716"
       ]
     }
   ]

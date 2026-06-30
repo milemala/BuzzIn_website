@@ -1,58 +1,111 @@
 {
   "city": "厦门",
   "source": "douban",
-  "updated_at": "2026-06-21T02:40:00.000Z",
-  "agent": "cursor-composer",
+  "decided_at": "2026-06-29T03:42:30.694Z",
+  "agent": "cursor-agent",
   "decisions": [
     {
-      "group_id": "1c91ee01d660",
-      "event_uids": ["douban:37889538"],
-      "action": "match",
-      "search_keywords_tried": ["思明区", "DVLN", "PaRK退化公园", "DVLN PaRK", "思明区 DVLN PaRK退化公园"],
-      "poi_id": "9496923326509444926",
-      "poi_title": "退化公园",
-      "poi_address": "福建省厦门市思明区开元街道斗西路156号祥和广场6楼",
-      "latitude": 24.463285,
-      "longitude": 118.086661,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "DVLN PaRK退化公园即退化公园，思明区斗西路156号祥和广场6楼",
-      "candidates": [
-        {"index": 0, "poi_id": "9496923326509444926", "title": "退化公园", "address": "福建省厦门市思明区开元街道斗西路156号祥和广场6楼", "category": "旅游景点:公园", "latitude": 24.463285, "longitude": 118.086661}
-      ]
-    },
-    {
       "group_id": "443813f048be",
-      "event_uids": ["douban:37763257"],
       "action": "match",
-      "search_keywords_tried": ["思明区", "闽南大戏院", "会展北片区横三路", "国际会议中心酒店北侧", "国际会议中心酒店", "思明区 闽南大戏院 会展北片区横三路"],
       "poi_id": "9553621768810285816",
       "poi_title": "闽南大戏院·大剧场",
-      "poi_address": "福建省厦门市思明区展鸿路81-89号厦门星河COCO ParkF1",
+      "poi_address": "",
       "latitude": 24.474133,
       "longitude": 118.189124,
-      "confidence": "high",
       "doubtful": false,
-      "reason": "闽南大戏院大剧场与豆瓣场馆一致，思明区展鸿路81-89号",
-      "candidates": [
-        {"index": 0, "poi_id": "9553621768810285816", "title": "闽南大戏院·大剧场", "address": "福建省厦门市思明区展鸿路81-89号厦门星河COCO ParkF1", "category": "娱乐休闲:剧场音乐厅:剧场", "latitude": 24.474133, "longitude": 118.189124}
+      "reason": "地址映射库命中：厦门 思明区 闽南大戏院 会展北片区横三路(国际会议中心酒店北侧) → 闽南大戏院·大剧场（来源 event:douban:37763257）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37824116"
       ]
     },
     {
-      "group_id": "bab5fd743389",
-      "event_uids": ["douban:37868157"],
+      "group_id": "fd57afd63305",
       "action": "match",
-      "search_keywords_tried": ["思明区", "厦门歌舞剧院", "公园西路12号", "12号", "思明区 厦门歌舞剧院 公园西路12号"],
-      "poi_id": "11446041478914815267",
-      "poi_title": "厦门市歌舞剧院",
-      "poi_address": "福建省厦门市思明区公园西路12号",
-      "latitude": 24.45876,
-      "longitude": 118.088472,
-      "confidence": "high",
+      "poi_id": "8979793825782082014",
+      "poi_title": "帽子新空间剧场-帽子喜剧(古地石店)",
+      "poi_address": "",
+      "latitude": 24.492736,
+      "longitude": 118.168446,
       "doubtful": false,
-      "reason": "厦门歌舞剧院与厦门市歌舞剧院为同一场馆，思明区公园西路12号",
-      "candidates": [
-        {"index": 0, "poi_id": "11446041478914815267", "title": "厦门市歌舞剧院", "address": "福建省厦门市思明区公园西路12号", "category": "娱乐休闲:剧场音乐厅:剧场", "latitude": 24.45876, "longitude": 118.088472}
+      "reason": "地址映射库命中：厦门 湖里区 帽子新空间剧场-帽子喜剧 金山街道金边路568号航空古地石广场A区G层G05-2室(A区进大堂下G层左侧) → 帽子新空间剧场-帽子喜剧(古地石店)（来源 event:douban:37773144）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37849053"
+      ]
+    },
+    {
+      "group_id": "97ce15d71d93",
+      "action": "match",
+      "poi_id": "15666993686218668101",
+      "poi_title": "来疯喜剧场 SM三期店",
+      "poi_address": "",
+      "latitude": 24.500808,
+      "longitude": 118.124382,
+      "doubtful": false,
+      "reason": "地址映射库命中：厦门 思明区 来疯喜剧场-SM三期四楼店 SM城市广场3期L4层402A铺 → 来疯喜剧场 SM三期店（来源 event:douban:37705665）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37743999"
+      ]
+    },
+    {
+      "group_id": "c1865321ee7c",
+      "action": "match",
+      "poi_id": "15613634814297343817",
+      "poi_title": "RealLive And Books",
+      "poi_address": "",
+      "latitude": 24.469177,
+      "longitude": 118.105614,
+      "doubtful": false,
+      "reason": "地址映射库命中：厦门 思明区 RealLive And Books 湖滨中路26号禾祥鑫天地B1层B115室 → RealLive And Books（来源 event:douban:37727129）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "event_uids": [
+        "douban:37842198"
+      ]
+    },
+    {
+      "group_id": "8e75360b413e",
+      "action": "match",
+      "poi_id": "7207792780084738334",
+      "poi_title": "中典宏基工业园",
+      "poi_address": "福建省厦门市湖里区禾山路1603号之2",
+      "latitude": 24.520089,
+      "longitude": 118.132162,
+      "doubtful": true,
+      "reason": "承汉武道馆无独立腾讯POI，活动在中典宏基工业园科技2号楼402，匹配至同园区主体，未能精确到402室",
+      "search_keywords_tried": [
+        "中典宏基工业园",
+        "承汉武道馆",
+        "承汉武道馆 中典宏基"
+      ],
+      "event_uids": [
+        "douban:37893094"
+      ]
+    },
+    {
+      "group_id": "8c398c835db5",
+      "action": "match",
+      "poi_id": "8262865254560072207",
+      "poi_title": "福南大会堂",
+      "poi_address": "福建省厦门市集美区集美街道嘉庚路12号",
+      "latitude": 24.567167,
+      "longitude": 118.095679,
+      "doubtful": false,
+      "reason": "福南大会堂与嘉庚路12号地址完全一致",
+      "search_keywords_tried": [
+        "福南大会堂"
+      ],
+      "event_uids": [
+        "douban:37734190"
       ]
     }
   ]

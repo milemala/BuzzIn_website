@@ -1,65 +1,88 @@
 {
   "city": "上海",
   "source": "douban",
-  "exported_at": "2026-06-23T01:15:46.279Z",
+  "exported_at": "2026-06-29T03:23:37.450Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 22,
   "doubtful_only": false,
-  "total_events": 17,
-  "group_count": 12,
-  "cache_hit_groups": 5,
+  "total_events": 22,
+  "group_count": 15,
+  "cache_hit_groups": 8,
   "groups": [
     {
-      "group_id": "8fbbf4637527",
-      "location": "上海 黄浦区 上海市黄浦区福州路465号上海书城福州路店6F",
-      "sample_title": "人心里是藏有闪光的宝石的——《幸福藏在上升的气泡里》新书分享会",
+      "group_id": "6d01add84db3",
+      "location": "上海 浦东新区 上海东方艺术中心 丁香路425号(近世纪大道)",
+      "sample_title": "柏林爱乐十二把大提琴音乐会",
       "event_uids": [
-        "douban:37890201"
+        "douban:37859560",
+        "douban:37806231",
+        "douban:37645216",
+        "douban:37628278"
       ],
-      "event_count": 1
+      "event_count": 4,
+      "cached_poi": {
+        "poi_id": "52919750025520475",
+        "poi_title": "上海东方艺术中心",
+        "poi_address": "",
+        "latitude": 31.222824,
+        "longitude": 121.541307,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：上海 浦东新区 上海东方艺术中心 丁香路425号(近世纪大道) → 上海东方艺术中心（来源 event:douban:37726808）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "6d01add84db3bb890acc7203d89763227db397ec"
+      }
     },
     {
-      "group_id": "8ea0d79a2b12",
-      "location": "上海 黄浦区 博悦汇影城(BFC外滩金融中心店)黄浦区中山东二路600号外滩金融中心北区B1层",
-      "sample_title": "出奇制胜！重磅史诗之作《四渡》上海公映首日免费观影",
+      "group_id": "34d7a50689c1",
+      "location": "上海 黄浦区 凯迪拉克-上海音乐厅 延安东路523号(近西藏南路)",
+      "sample_title": "唐·库普曼与阿姆斯特丹巴洛克乐团音乐会",
       "event_uids": [
-        "douban:37892018"
+        "douban:37863708"
       ],
-      "event_count": 1
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "10076962457668514442",
+        "poi_title": "凯迪拉克·上海音乐厅-东南门",
+        "poi_address": "",
+        "latitude": 31.22621,
+        "longitude": 121.478451,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：上海 黄浦区 凯迪拉克-上海音乐厅 延安东路523号(近西藏南路) → 凯迪拉克·上海音乐厅-东南门（来源 event:douban:37796487）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "34d7a50689c1852b20005f109ee5009a7ab514c2"
+      }
     },
     {
-      "group_id": "25cb840c465c",
-      "location": "上海 长宁区 延安西路1262号7号楼",
-      "sample_title": "加书亚×沙青青|我与世界隔着一场旅行",
+      "group_id": "d7e543086a50",
+      "location": "上海 黄浦区 南浦大桥地铁站",
+      "sample_title": "探寻隐秘小众的衢山岛，沙滩风车王国（上海2天）",
       "event_uids": [
-        "douban:37892275"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "d2082745a968",
-      "location": "上海 静安区 福民会馆",
-      "sample_title": "上海活动招募｜“再见，再遇见”旧物交换故事会",
-      "event_uids": [
-        "douban:37891175"
+        "douban:37439761"
       ],
       "event_count": 1
     },
     {
       "group_id": "a45e0491e227",
       "location": "上海 静安区 大田路129弄嘉发大厦A栋5D",
-      "sample_title": "电影之夜：《大开眼戒》——欲望、幻想与关系中的隐藏人生",
+      "sample_title": "电影之夜：《向光而行》——关于意义、死亡和爱的讨论",
       "event_uids": [
-        "douban:37891643",
-        "douban:37891651",
-        "douban:37891660",
-        "douban:37891778",
-        "douban:37891785",
-        "douban:37891795"
+        "douban:37894469"
       ],
-      "event_count": 6,
+      "event_count": 1,
       "cached_poi": {
         "poi_id": "14252119467906121381",
         "poi_title": "嘉发大厦-A栋",
@@ -69,7 +92,7 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：上海 静安区 大田路129弄嘉发大厦A栋5D → 嘉发大厦-A栋（来源 event:douban:37884017）",
+        "reason": "地址映射库命中：上海 静安区 大田路129弄嘉发大厦A栋5D → 嘉发大厦-A栋（来源 event:douban:37891795）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
@@ -78,113 +101,151 @@
       }
     },
     {
-      "group_id": "c8348a11462f",
-      "location": "上海 闵行区 联明路555号文创园5幢105",
-      "sample_title": "茶遇知己 香海安心|书斋下午茶与海谈心",
+      "group_id": "0c9e6c8d9474",
+      "location": "上海 虹口区 Modern Sky LAB 摩登天空上海 瑞虹路188号瑞虹天地月亮湾309-310号",
+      "sample_title": "美国独立摇滚乐队DIIV上海专场",
       "event_uids": [
-        "douban:37891719"
+        "douban:37834617",
+        "douban:37844815"
       ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "4105257615610063886",
-        "poi_title": "启示望远文创园",
-        "poi_address": "",
-        "latitude": 31.143743,
-        "longitude": 121.345218,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：上海 闵行区 联明路555号文创园5幢105 → 启示望远文创园（来源 event:douban:37878857）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "c8348a11462fae3dda2bf06a27299aae1aced0bc"
-      }
+      "event_count": 2
     },
     {
-      "group_id": "f0b6b159ec0c",
-      "location": "上海 长宁区 凯旋路1205号2号楼2楼N室",
-      "sample_title": "Inspirer播客夜：#职场创伤修复局",
+      "group_id": "f4ba25ae115f",
+      "location": "上海 静安区 久事·上海商城剧院 南京西路1376号4楼",
+      "sample_title": "“声声不息”港台金曲榜 经典电影歌曲演唱会“笑傲江湖 英雄本色 一生所爱”",
       "event_uids": [
-        "douban:37891866"
+        "douban:37853950"
       ],
       "event_count": 1
     },
     {
-      "group_id": "cf7d3d8d67c5",
-      "location": "上海 青浦区 造梦盒子专业家庭音乐剧院 崧泽大道2229弄66号天空万科广场L3造梦盒子家庭音乐剧剧场",
-      "sample_title": "造梦科学剧场 -《星球制造工厂》大型亲子互动玩学科学剧场",
+      "group_id": "7ff6c8f2e2b7",
+      "location": "上海 杨浦区 YOUNG剧场 控江路1155号",
+      "sample_title": "超级玩家光影对决 加拿大Video Phase剧团作品《流明风暴》",
       "event_uids": [
-        "douban:37612148"
+        "douban:37873295"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "6846764937704657944",
-        "poi_title": "造梦盒子·专业家庭音乐剧院(天空万科广场店)",
+        "poi_id": "5527323411719490889",
+        "poi_title": "Theatre YOUNG剧场",
         "poi_address": "",
-        "latitude": 31.177315,
-        "longitude": 121.253521,
+        "latitude": 31.278051,
+        "longitude": 121.528544,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：上海 青浦区 造梦盒子专业家庭音乐剧院 崧泽大道2229弄66号天空万科广场L3造梦盒子家庭音乐剧剧场 → 造梦盒子·专业家庭音乐剧院(天空万科广场店)（来源 event:douban:37600008）",
+        "reason": "地址映射库命中：上海 杨浦区 YOUNG剧场 控江路1155号 → Theatre YOUNG剧场（来源 event:douban:37830355）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "cf7d3d8d67c51512994cf048ce55c81a943c7b98"
+        "cache_key": "7ff6c8f2e2b7d0fb3a93091c89f73662cd5a9095"
       }
     },
     {
-      "group_id": "302ea4be6316",
-      "location": "上海 黄浦区 上海大剧院·中剧场",
-      "sample_title": "一个人的古典 双弦纪——蒋文瀚中提琴与肩式大提琴无伴奏音乐会",
+      "group_id": "6b26e5ad3735",
+      "location": "上海 浦东新区 交通银行前滩31演艺中心 高青西路777号",
+      "sample_title": "「萨克斯之王 Kenny G」2026 世界巡演 - 上海站",
       "event_uids": [
-        "douban:37765213"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "cf0f51ba3193",
-      "location": "上海 静安区 银河喜剧脱口秀-静安大悦城店 静安大悦城北座4楼N404室",
-      "sample_title": "『爆笑互动』【静安大悦城】『陈靓 · 上海话脱口秀专场』《献靓版海派情话》丨银河喜剧丨",
-      "event_uids": [
-        "douban:37705585"
+        "douban:37792191"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "16300850716391730890",
-        "poi_title": "Galaxy Comedy银河喜剧(静安大悦城店)",
+        "poi_id": "5705623475713552211",
+        "poi_title": "交通银行前滩31演艺中心",
         "poi_address": "",
-        "latitude": 31.244024,
-        "longitude": 121.471885,
+        "latitude": 31.15076,
+        "longitude": 121.484961,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：上海 静安区 银河喜剧脱口秀-静安大悦城店 静安大悦城北座4楼N404室 → Galaxy Comedy银河喜剧(静安大悦城店)（来源 event:douban:36381649）",
+        "reason": "地址映射库命中：上海 浦东新区 交通银行前滩31演艺中心 高青西路777号 → 交通银行前滩31演艺中心（来源 event:douban:37814494）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "cf0f51ba3193bcc40afe8c719cbbde4f7ace989f"
+        "cache_key": "6b26e5ad373533cb24123d65864b77c0da87a8b3"
       }
     },
     {
-      "group_id": "a2e633bc8e4c",
-      "location": "上海 黄浦区 星空间129号·夭蛾剧场 外滩街道西藏南路1号大世界4楼",
-      "sample_title": "原创沉浸式荒诞音乐剧《破墙》",
+      "group_id": "d7eeabae5573",
+      "location": "上海 黄浦区 兰心大戏院 瑞金二路街道茂名南路57号(近长乐路)",
+      "sample_title": "《爱乐之城》电影金曲精选音乐会",
       "event_uids": [
-        "douban:37604500"
+        "douban:37876876"
       ],
       "event_count": 1
+    },
+    {
+      "group_id": "fc08b8cc5b2f",
+      "location": "上海 浦东新区 书房中的文艺复兴——10至17世纪的西方抄写、印刷与装帧艺术特展 花木街道迎春路300号上海图书馆东馆1楼一号展厅",
+      "sample_title": "书房中的文艺复兴——10至17世纪的西方抄写、印刷与装帧艺术特展",
+      "event_uids": [
+        "douban:37887205",
+        "douban:37743227"
+      ],
+      "event_count": 2
+    },
+    {
+      "group_id": "914bb27baf71",
+      "location": "上海 黄浦区 喜联空间·新天地 湖滨路168号无限极荟2楼",
+      "sample_title": "奇迹之路——黯声合唱团亚洲首演（一）丨上海夏季音乐节",
+      "event_uids": [
+        "douban:37881272"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "8548731801045296785",
+        "poi_title": "喜联空间",
+        "poi_address": "",
+        "latitude": 31.220931,
+        "longitude": 121.477534,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：上海 黄浦区 喜联空间·新天地 湖滨路168号无限极荟2楼 → 喜联空间（来源 event:douban:37150417）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "914bb27baf717f29fb49febbf66fbb2c89368dcc"
+      }
+    },
+    {
+      "group_id": "b1702a6e010a",
+      "location": "上海 黄浦区 八号桥-青春无限音乐厅 南苏州路1247号八号桥艺术空间3楼",
+      "sample_title": "奇妙嘿夜烛光音乐会最伟大的作品流行曲目情人节音乐会专场",
+      "event_uids": [
+        "douban:37617059",
+        "douban:37886157",
+        "douban:37645045"
+      ],
+      "event_count": 3,
+      "cached_poi": {
+        "poi_id": "4170847501144352500",
+        "poi_title": "八号桥-青春无限音乐厅",
+        "poi_address": "",
+        "latitude": 31.240046,
+        "longitude": 121.466476,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：上海 黄浦区 八号桥-青春无限音乐厅 南苏州路1247号八号桥艺术空间3楼 → 八号桥-青春无限音乐厅（来源 event:douban:37617060）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "b1702a6e010a37073a3d2e03302805d435c87a64"
+      }
     },
     {
       "group_id": "a8fb06333364",
       "location": "上海 黄浦区 青春无限乐团烛光音乐会-上海广场店 淮海中路138号上海广场2楼206A",
-      "sample_title": "【钢琴&大提琴】奇妙嘿夜烛光音乐会“海上钢琴师”主题演奏",
+      "sample_title": "【钢琴&大提琴】青春无限乐团烛光音乐会权力的游戏&诀别书曲目演出",
       "event_uids": [
-        "douban:37763104"
+        "douban:37347039"
       ],
       "event_count": 1,
       "cached_poi": {
@@ -196,13 +257,31 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：上海 黄浦区 青春无限乐团烛光音乐会-上海广场店 淮海中路138号上海广场2楼206A → 青春无限乐团烛光音乐会(上海广场店)（来源 event:douban:37264854）",
+        "reason": "地址映射库命中：上海 黄浦区 青春无限乐团烛光音乐会-上海广场店 淮海中路138号上海广场2楼206A → 青春无限乐团烛光音乐会(上海广场店)（来源 event:douban:37763104）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
         "cache_key": "a8fb0633336469815bb6ea55a2a213fe2613cda1"
       }
+    },
+    {
+      "group_id": "e301289e1ed9",
+      "location": "上海 浦东新区 1862时尚艺术中心 滨江大道1777号",
+      "sample_title": "年度驻演●MR沉浸式戏剧《太虚幻境》",
+      "event_uids": [
+        "douban:37878786"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "0fa005f87b7d",
+      "location": "上海 静安区 麦金侬酒店 -《不眠之夜》剧场 北京西路1013号,近江宁路",
+      "sample_title": "[今夏八月 载誉收官]上海·浸入式戏剧经典之作《不眠之夜》特别版-【驻演十年 千人千梦】",
+      "event_uids": [
+        "douban:36684770"
+      ],
+      "event_count": 1
     }
   ]
 }

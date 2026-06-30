@@ -1,0 +1,119 @@
+{
+  "city": "北京",
+  "source": "douban",
+  "decided_at": "2026-06-29T04:00:00.000Z",
+  "agent": "cursor-agent",
+  "decisions": [
+    {
+      "group_id": "6621c6dfeabb",
+      "action": "reject",
+      "reason": "活动无具体地址，无法唯一确定 POI",
+      "search_keywords_tried": ["悬案 观剧会"],
+      "event_uids": ["douban:37893928"]
+    },
+    {
+      "group_id": "2070e7888b4e",
+      "action": "match",
+      "poi_id": "3802290267771821719",
+      "poi_title": "博纳国际影城(大郊亭IMAX旗舰店)",
+      "poi_address": "北京市朝阳区东四环中路189号芳圆里ID Mall购物中心L5",
+      "latitude": 39.890911,
+      "longitude": 116.488041,
+      "doubtful": false,
+      "reason": "豆瓣地址博纳国际影城(大郊亭IMAX店)与搜索结果大郊亭旗舰店一致",
+      "search_keywords_tried": ["博纳国际影城大郊亭"],
+      "event_uids": ["douban:37891491"]
+    },
+    {
+      "group_id": "d378e2410426",
+      "action": "match",
+      "poi_id": "8245552135134442295",
+      "poi_title": "国家大剧院歌剧院",
+      "poi_address": "北京市西城区西长安街2号",
+      "latitude": 39.904662,
+      "longitude": 116.389741,
+      "doubtful": false,
+      "reason": "场馆名与地址完全匹配",
+      "search_keywords_tried": ["国家大剧院歌剧院"],
+      "event_uids": ["douban:37865966"]
+    },
+    {
+      "group_id": "38e003938551",
+      "action": "match",
+      "poi_id": "8912906542415240023",
+      "poi_title": "百葛路9号院-2号楼",
+      "poi_address": "北京市昌平区高教园北三街百葛路9号院",
+      "latitude": 40.170395,
+      "longitude": 116.318873,
+      "doubtful": true,
+      "reason": "豆瓣写2号楼B1演出空间，POI为同门牌2号楼主体，楼层精度不足",
+      "search_keywords_tried": ["百葛路9号院"],
+      "event_uids": ["douban:37894670"]
+    },
+    {
+      "group_id": "b058ab55739c",
+      "action": "match",
+      "poi_id": "2533675818566955788",
+      "poi_title": "疆进酒·OMNI SPACE(演出场馆·北京天桥店)",
+      "poi_address": "北京市西城区北京天桥艺术中心b103",
+      "latitude": 39.882452,
+      "longitude": 116.398044,
+      "doubtful": false,
+      "reason": "疆进酒 OMNI SPACE 与天桥艺术中心B-103一致",
+      "search_keywords_tried": ["疆进酒 OMNI SPACE"],
+      "event_uids": ["douban:37876247"]
+    },
+    {
+      "group_id": "2855049a5f17",
+      "action": "match",
+      "poi_id": "14464456136692467073",
+      "poi_title": "玉华台饭庄·淮扬菜·烤鸭(望京店)",
+      "poi_address": "北京市朝阳区望京街道湖光中街8号1号楼1层1133号-1145号",
+      "latitude": 39.996119,
+      "longitude": 116.461121,
+      "doubtful": true,
+      "reason": "漫展地址为湖光中街8号1号楼西段一层1129号，POI为同楼1号楼商铺，铺位号不同但楼宇主体一致",
+      "search_keywords_tried": ["北京星幻动漫节", "望京湖光中街8号"],
+      "event_uids": ["douban:37877151"]
+    },
+    {
+      "group_id": "64183a71e39e",
+      "action": "match",
+      "poi_id": "7839096945141200229",
+      "poi_title": "北京人民艺术剧院-北京国际戏剧中心(曹禺剧场)",
+      "poi_address": "北京市东城区东华门街道北京国际戏剧中心",
+      "latitude": 39.921459,
+      "longitude": 116.412533,
+      "doubtful": false,
+      "reason": "人艺国际戏剧中心王府井大街22号与豆瓣地址一致",
+      "search_keywords_tried": ["北京人民艺术剧院"],
+      "event_uids": ["douban:37879176"]
+    },
+    {
+      "group_id": "88957de3c2df",
+      "action": "match",
+      "poi_id": "14465274921021813186",
+      "poi_title": "你好西藏小剧场",
+      "poi_address": "北京市朝阳区北四环东路118号北京西藏大厦A座二层",
+      "latitude": 39.987865,
+      "longitude": 116.413891,
+      "doubtful": false,
+      "reason": "剧场名称与门牌完全匹配",
+      "search_keywords_tried": ["你好西藏小剧场"],
+      "event_uids": ["douban:37556115"]
+    },
+    {
+      "group_id": "409b1ad22c3b",
+      "action": "match",
+      "poi_id": "5370191083602916467",
+      "poi_title": "卓酷箱包GAMEON篮球羽毛球运动中心天通苑北店",
+      "poi_address": "北京市昌平区立汤路天通苑北地铁站西北",
+      "latitude": 40.08482,
+      "longitude": 116.412388,
+      "doubtful": false,
+      "reason": "GAME ON篮球羽毛球运动中心天通苑店与搜索结果店名一致，仅差北/无北后缀",
+      "search_keywords_tried": ["GAME ON篮球羽毛球天通苑"],
+      "event_uids": ["douban:37894483"]
+    }
+  ]
+}

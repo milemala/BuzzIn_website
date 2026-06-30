@@ -1,19 +1,64 @@
 {
   "city": "石家庄",
   "source": "douban",
-  "generated_at": "2026-06-16T05:25:40.770Z",
+  "generated_at": "2026-06-29T03:23:51.842Z",
+  "note": "可由 Agent 覆写低置信条目后 apply-event-time-decisions.js 入库",
   "decisions": [
+    {
+      "event_uid": "douban:37498187",
+      "start_at": "2026-07-11 10:00:00",
+      "expired_at": "2026-07-12 11:00:00",
+      "reason": "豆瓣详情：07月11日 周六 10:00 ~ 07月12日 周日 11:00",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "douban:37498229",
+      "start_at": "2026-07-04 10:00:00",
+      "expired_at": "2026-07-05 11:00:00",
+      "reason": "豆瓣详情：07月04日 周六 10:00 ~ 07月05日 周日 11:00",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "douban:37721308",
+      "start_at": "2026-06-12 19:30:00",
+      "expired_at": "2026-06-12 21:00:00",
+      "reason": "豆瓣详情：06月12日 周五 19:30-21:00",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "douban:37729318",
+      "start_at": "2026-07-25 10:00:00",
+      "expired_at": "2026-07-26 11:00:00",
+      "reason": "豆瓣详情：07月25日 周六 10:00 ~ 07月26日 周日 11:00",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "douban:37792580",
+      "start_at": "2026-06-12 19:30:00",
+      "expired_at": "2026-06-12 21:00:00",
+      "reason": "豆瓣详情：06月12日 周五 19:30-21:00",
+      "confidence": "high"
+    },
     {
       "event_uid": "douban:37832175",
       "start_at": "2026-06-19 15:00:00",
       "expired_at": "2026-06-19 20:15:00",
-      "reason": "豆瓣详情：06月19日 周五 15:00-20:15"
+      "reason": "豆瓣详情：06月19日 周五 15:00-20:15",
+      "confidence": "high"
     },
     {
-      "event_uid": "douban:37448319",
-      "start_at": "2026-06-20 15:00:00",
-      "expired_at": "2026-06-27 16:10:00",
-      "reason": "豆瓣详情：06月20日 周六 15:00 ~ 06月27日 周六 16:10"
+      "event_uid": "douban:37841716",
+      "start_at": "2026-07-01 19:30:00",
+      "expired_at": "2026-07-01 21:00:00",
+      "reason": "豆瓣详情：07月01日 周三 19:30-21:00",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "douban:37852969",
+      "start_at": "2026-06-11 20:00:00",
+      "expired_at": "2026-06-11 22:00:00",
+      "reason": "豆瓣详情：06月11日 周四 20:00-22:00",
+      "confidence": "high"
     }
   ],
   "failed": []

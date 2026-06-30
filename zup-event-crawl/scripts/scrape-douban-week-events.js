@@ -29,6 +29,7 @@ const {
   isEventBetterByEnd,
   eventTitleLocationDedupKey,
   toTitleLocationIncumbent,
+  createTitlePoiDedupGateFromDb,
 } = require("../lib/event-content-dedup");
 
 const root = path.join(__dirname, "..");
@@ -220,6 +221,17 @@ function loadExistingTitleLocationIndexForCity(filePath, targetCity, source = "d
   } finally {
     db.close();
   }
+}
+
+function loadExistingTitlePoiGateForCity(filePath, targetCity, source = "douban") {
+  if (!isDatabaseTarget(filePath) || !fs.existsSync(filePath)) {
+    return { gate: null, db: null };
+  }
+  const db = openDatabase(filePath);
+  return {
+    gate: createTitlePoiDedupGateFromDb(db, { city: targetCity, source }),
+    db,
+  };
 }
 
 function readExistingPayload(filePath) {
@@ -498,6 +510,8 @@ async function main() {
   const existingIds = loadExistingDoubanIds(output);
   const existingContentKeys = loadExistingContentKeysForCity(output, city, "douban");
   const existingTitleLocationIndex = loadExistingTitleLocationIndexForCity(output, city, "douban");
+  const { gate: titlePoiGate, db: titlePoiDb } = loadExistingTitlePoiGateForCity(output, city, "douban");
+  try {
   const batchContentKeys = new Set();
   const batchTitleLocationWinners = new Map();
   const candidateMap = await loadListCandidates();
@@ -508,6 +522,7 @@ async function main() {
     skippedExisting: 0,
     skippedDuplicate: 0,
     skippedTitleLocation: 0,
+    skippedTitlePoi: 0,
     skippedExcluded: 0,
     detailFailed: 0,
     composeOk: 0,
@@ -625,14 +640,34 @@ async function main() {
       if (batchIncumbent && isEventBetterByEnd(event, batchIncumbent)) {
         const loserId = batchIncumbent.id;
         const loserIdx = detailed.findIndex((item) => item.id === loserId);
-        if (loserIdx >= 0) detailed.splice(loserIdx, 1);
+        if (loserIdx >= 0) {
+          titlePoiGate?.releaseEvent(eventUidFor(detailed[loserIdx]));
+          detailed.splice(loserIdx, 1);
+        }
       }
       batchTitleLocationWinners.set(titleLocationKey, toTitleLocationIncumbent(event, city));
+    }
+
+    let titlePoiDecision = null;
+    if (titlePoiGate) {
+      titlePoiDecision = titlePoiGate.decide(event, city);
+      if (titlePoiDecision.action === "skip") {
+        counters.skippedTitlePoi += 1;
+        console.log(`Skip title+poi unexpired ${event.title}`);
+        continue;
+      }
     }
 
     batchContentKeys.add(contentKey);
 
     detailed.push(event);
+    if (titlePoiGate && titlePoiDecision?.poiId) {
+      titlePoiGate.recordImported(
+        { ...event, event_uid: eventUidFor(event) },
+        city,
+        titlePoiDecision.poiId,
+      );
+    }
   }
 
   const ordered = sortMode === "score"
@@ -642,8 +677,11 @@ async function main() {
   writeCityResults(events);
   await autoPoiImportedEvents(events);
   console.log(`Wrote ${events.length} new ${city} events to ${output} (${mode})`);
-  console.log(`List ${counters.listTotal} · skipped existing ${counters.skippedExisting} · skipped duplicate ${counters.skippedDuplicate} · skipped title+location ${counters.skippedTitleLocation} · skipped excluded ${counters.skippedExcluded} · detail failed ${counters.detailFailed} · 4:3 composed ${counters.composeOk} · compose failed ${counters.composeFail}`);
+  console.log(`List ${counters.listTotal} · skipped existing ${counters.skippedExisting} · skipped duplicate ${counters.skippedDuplicate} · skipped title+location ${counters.skippedTitleLocation} · skipped title+poi ${counters.skippedTitlePoi} · skipped excluded ${counters.skippedExcluded} · detail failed ${counters.detailFailed} · 4:3 composed ${counters.composeOk} · compose failed ${counters.composeFail}`);
   console.log(events.map((event) => `${event.sourcePosition}. ${event.score} ${event.category} ${event.title}`).join("\n"));
+  } finally {
+    titlePoiDb?.close();
+  }
 }
 
 main().catch((error) => {
