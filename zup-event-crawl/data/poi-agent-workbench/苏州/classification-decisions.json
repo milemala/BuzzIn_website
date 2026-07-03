@@ -1,26 +1,98 @@
 {
   "city": "苏州",
   "source": "douban",
-  "decided_at": "2026-06-29T03:38:24.871Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-07-02T12:00:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
+    {
+      "event_uid": "douban:37857135",
+      "suggested": true,
+      "category": "音乐现场",
+      "reason": "音乐会/演唱会/Live 等音乐演出"
+    },
+    {
+      "event_uid": "douban:37698176",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "伦敦西区原版音乐剧《玛蒂尔达》"
+    },
+    {
+      "event_uid": "douban:37770076",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "付二脱口秀专场"
+    },
+    {
+      "event_uid": "douban:37882461",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "明代荆藩金银器博物馆特展"
+    },
+    {
+      "event_uid": "douban:37874621",
+      "suggested": true,
+      "category": "交友聚会",
+      "reason": "英语沙龙俱乐部，口语练习交友"
+    },
+    {
+      "event_uid": "douban:37874618",
+      "suggested": true,
+      "category": "交友聚会",
+      "reason": "零基础免费英语角，语言社交"
+    },
+    {
+      "event_uid": "douban:37882358",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "风雅江南宫廷美学特展"
+    },
+    {
+      "event_uid": "douban:37659874",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "虹·美术馆「集光鬃影」艺术展"
+    },
+    {
+      "event_uid": "douban:37820371",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "刘志成个展《消弭永固时刻》"
+    },
+    {
+      "event_uid": "douban:37820389",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "喵趣横生猫咪文化漫游展"
+    },
+    {
+      "event_uid": "douban:37724665",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "H+美术馆双展联票"
+    },
+    {
+      "event_uid": "douban:37660211",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "三体时空漫游沉浸式科幻体验展"
+    },
     {
       "event_uid": "douban:37582757",
       "suggested": true,
-      "category": "喜剧脱口秀",
-      "reason": "脱口秀/相声/喜剧，适合结伴观演"
-    },
-    {
-      "event_uid": "douban:37695779",
-      "suggested": true,
       "category": "戏剧表演",
-      "reason": "话剧/音乐剧/舞剧等舞台演出"
+      "reason": "脱口秀/相声/喜剧，适合结伴观演"
     },
     {
       "event_uid": "douban:37725675",
       "suggested": true,
-      "category": "喜剧脱口秀",
+      "category": "戏剧表演",
       "reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37830298",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "沈清互动脱口秀专场《清道夫》"
     },
     {
       "event_uid": "douban:37764970",
@@ -31,14 +103,26 @@
     {
       "event_uid": "douban:37819948",
       "suggested": true,
-      "category": "喜剧脱口秀",
+      "category": "戏剧表演",
       "reason": "脱口秀/相声/喜剧，适合结伴观演"
     },
     {
-      "event_uid": "douban:37857135",
+      "event_uid": "douban:37695779",
       "suggested": true,
-      "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
+      "category": "戏剧表演",
+      "reason": "话剧/音乐剧/舞剧等舞台演出"
+    },
+    {
+      "event_uid": "douban:37716085",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "秦潮觉醒沉浸式VR探索体验"
+    },
+    {
+      "event_uid": "douban:37207840",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "柳三便单口喜剧专场《嗡》"
     }
   ]
 }

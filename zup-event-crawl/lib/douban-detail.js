@@ -214,7 +214,7 @@ function inferSummaryFromTitle(event, maxLength = 220) {
   else if (/观影|电影|影展/.test(title)) formatLabel = "观影活动";
   else if (/展览|美术馆|博物馆/.test(title)) formatLabel = "展览";
   else if (/沙龙|分享会|签售|新书/.test(title)) formatLabel = "沙龙分享";
-  else if (category === "喜剧脱口秀") formatLabel = "脱口秀";
+  else if (category === "戏剧表演" && /脱口秀|相声|喜剧|开放麦/i.test(title)) formatLabel = "脱口秀";
 
   if (isAdvanced && formatLabel) formatLabel += "进阶场";
   else if (isSpecial && formatLabel) formatLabel += "专场";

@@ -1,8 +1,8 @@
 {
   "city": "深圳",
   "source": "xiaohongshu",
-  "decided_at": "2026-06-23T07:12:49.740Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-07-02T12:00:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
       "event_uid": "xiaohongshu:6a38a8e0000000001c0260ba:01_0",
@@ -11,22 +11,34 @@
       "reason": "适合同城用户线下结伴逛玩体验"
     },
     {
-      "event_uid": "xiaohongshu:6a38a8e0000000001c0260ba:01_1",
-      "suggested": true,
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:01_0",
+      "suggested": false,
       "category": "其他",
-      "reason": "市集、快闪、节庆或趣味活动，适合线下结伴参与"
+      "reason": "国际春季茶产业博览会，700+展商B2B贸易展，偏行业招商"
     },
     {
-      "event_uid": "xiaohongshu:6a38a8e0000000001c0260ba:01_2",
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:01_1",
       "suggested": true,
-      "category": "其他",
-      "reason": "市集、快闪、节庆或趣味活动，适合线下结伴参与"
+      "category": "音乐现场",
+      "reason": "欢乐谷夏浪狂欢节含艺人演出与电音泼水，主题乐园音乐狂欢"
     },
     {
-      "event_uid": "xiaohongshu:6a38a8e0000000001c0260ba:01_3",
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:01_2",
       "suggested": true,
       "category": "其他",
-      "reason": "适合同城用户线下结伴逛玩体验"
+      "reason": "湾区精酿啤酒节40+厂牌，夏夜看球结伴畅饮"
+    },
+    {
+      "event_uid": "xiaohongshu:6a2f6232000000000f01d285:00_3",
+      "suggested": true,
+      "category": "户外活动",
+      "reason": "美丽乡村龙舟超级邀请赛，免费观赛含非遗市集，端午结伴体验"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:01_3",
+      "suggested": false,
+      "category": "其他",
+      "reason": "全球高端食品及优质农产品博览会，B2B行业展销会非结伴娱乐"
     },
     {
       "event_uid": "xiaohongshu:6a38a8e0000000001c0260ba:02_0",
@@ -35,10 +47,28 @@
       "reason": "适合同城用户线下结伴逛玩体验"
     },
     {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:02_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "清平古墟夏日公益露天放映，免费观影结伴纳凉"
+    },
+    {
+      "event_uid": "xiaohongshu:6a2f6232000000000f01d285:01_1",
+      "suggested": true,
+      "category": "市集",
+      "reason": "PPULBATU角色周边快闪市集"
+    },
+    {
       "event_uid": "xiaohongshu:6a38a8e0000000001c0260ba:02_1",
       "suggested": true,
       "category": "看展逛馆",
       "reason": "适合同城用户线下结伴逛玩体验"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:02_1",
+      "suggested": true,
+      "category": "其他",
+      "reason": "锦绣中华民族狂欢节，泼水傣迪与火把节沉浸式体验"
     },
     {
       "event_uid": "xiaohongshu:6a38a8e0000000001c0260ba:02_2",
@@ -47,16 +77,28 @@
       "reason": "适合同城用户线下结伴逛玩体验"
     },
     {
-      "event_uid": "xiaohongshu:6a38a8e0000000001c0260ba:02_3",
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:02_2",
       "suggested": true,
-      "category": "看展逛馆",
-      "reason": "适合同城用户线下结伴逛玩体验"
+      "category": "其他",
+      "reason": "甩人字拖趣味投掷大赛，零门槛报名竞技结伴娱乐"
     },
     {
-      "event_uid": "xiaohongshu:6a38a8e0000000001c0260ba:03_0",
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:02_3",
+      "suggested": false,
+      "category": "其他",
+      "reason": "深圳国际渔业博览会，渔业科技B2B行业展，偏产业对接"
+    },
+    {
+      "event_uid": "xiaohongshu:6a2f6232000000000f01d285:02_0",
       "suggested": true,
       "category": "看展逛馆",
-      "reason": "适合同城用户线下结伴逛玩体验"
+      "reason": "PINGU 45周年南极奇境全球艺术展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:03_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "深圳图书馆党史主题文献展，免费公开观展"
     },
     {
       "event_uid": "xiaohongshu:6a38a8e0000000001c0260ba:03_1",
@@ -65,64 +107,142 @@
       "reason": "适合同城用户线下结伴逛玩体验"
     },
     {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:03_1",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "萧娴书法艺术展，深圳美术馆免费书法观展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a2f6232000000000f01d285:02_2",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "海关缉私局书画文物珍品特展"
+    },
+    {
       "event_uid": "xiaohongshu:6a38a8e0000000001c0260ba:03_3",
       "suggested": true,
       "category": "看展逛馆",
       "reason": "适合同城用户线下结伴逛玩体验"
     },
     {
-      "event_uid": "xiaohongshu:6a38a8e0000000001c0260ba:04_0",
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:03_2",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "林墉苏华书画作品展，何香凝美术馆免费观展"
+    },
+    {
+      "event_uid": "xiaohongshu:69d874fc000000002200d292:12_0",
+      "suggested": true,
+      "category": "市集",
+      "reason": "小小市集，亲子主题快闪活动"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:03_3",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "佘海晴户外装置艺术展，光明文化艺术中心免费观展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a2f6232000000000f01d285:03_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "儿童画作品特展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a31121b000000001603d3d9:12_2",
+      "suggested": true,
+      "category": "市集",
+      "reason": "小小甜市多甜品市集"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:04_0",
       "suggested": true,
       "category": "音乐现场",
-      "reason": "适合同城用户线下结伴逛玩体验"
+      "reason": "动力火车一路向前巡回演唱会，大型现场演出"
     },
     {
-      "event_uid": "xiaohongshu:6a38a8e0000000001c0260ba:04_1",
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:04_1",
       "suggested": true,
       "category": "音乐现场",
-      "reason": "适合同城用户线下结伴逛玩体验"
+      "reason": "郎朗乐境音乐会，大型古典音乐现场"
     },
     {
-      "event_uid": "xiaohongshu:6a38a8e0000000001c0260ba:04_2",
+      "event_uid": "xiaohongshu:6a31121b000000001603d3d9:13_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "凯布朗利博物馆大洋洲艺术珍品展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:04_2",
       "suggested": true,
       "category": "音乐现场",
-      "reason": "适合同城用户线下结伴逛玩体验"
+      "reason": "张新成新程巡回演唱会，大型现场演出"
     },
     {
-      "event_uid": "xiaohongshu:6a38a8e0000000001c0260ba:04_3",
+      "event_uid": "xiaohongshu:6a31121b000000001603d3d9:13_1",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "建立新美术粤港画坛史料展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:04_3",
+      "suggested": true,
+      "category": "音乐现场",
+      "reason": "深圳交响乐团盛宗亮与贝多芬音乐会，古典音乐现场"
+    },
+    {
+      "event_uid": "xiaohongshu:6a31121b000000001603d3d9:13_2",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "当代青年综合材料创作邀请展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:05_0",
       "suggested": true,
       "category": "戏剧表演",
-      "reason": "适合同城用户线下结伴逛玩体验"
+      "reason": "杨丽萍舞蹈剧场十面埋伏，专业舞剧现场演出"
     },
     {
-      "event_uid": "xiaohongshu:6a38a8e0000000001c0260ba:05_0",
+      "event_uid": "xiaohongshu:6a31121b000000001603d3d9:14_3",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "PINGU 45周年南极奇境艺术展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:05_2",
       "suggested": true,
       "category": "戏剧表演",
-      "reason": "适合同城用户线下结伴逛玩体验"
+      "reason": "话剧下一站再见咯，小型话剧现场演出"
     },
     {
-      "event_uid": "xiaohongshu:6a38a8e0000000001c0260ba:05_1",
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:05_3",
       "suggested": true,
-      "category": "戏剧表演",
-      "reason": "适合同城用户线下结伴逛玩体验"
+      "category": "音乐现场",
+      "reason": "意大利音乐家马伊沃音乐会，小型现场音乐演出"
     },
     {
-      "event_uid": "xiaohongshu:6a38a8e0000000001c0260ba:05_2",
+      "event_uid": "xiaohongshu:6a31121b000000001603d3d9:15_2",
       "suggested": true,
-      "category": "戏剧表演",
-      "reason": "适合同城用户线下结伴逛玩体验"
+      "category": "市集",
+      "reason": "PPULBATU角色周边快闪"
     },
     {
-      "event_uid": "xiaohongshu:6a38a8e0000000001c0260ba:05_3",
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:06_0",
       "suggested": true,
-      "category": "戏剧表演",
-      "reason": "适合同城用户线下结伴逛玩体验"
+      "category": "户外活动",
+      "reason": "广东省城市篮球超级联赛，球迷结伴观赛助威"
     },
     {
-      "event_uid": "xiaohongshu:6a38a8e0000000001c0260ba:06_0",
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:07_0",
       "suggested": true,
-      "category": "其他",
-      "reason": "适合同城用户线下结伴逛玩体验"
+      "category": "户外活动",
+      "reason": "广东省城市足球超级联赛，球迷结伴观赛助威"
+    },
+    {
+      "event_uid": "xiaohongshu:6a31121b000000001603d3d9:16_3",
+      "suggested": true,
+      "category": "户外活动",
+      "reason": "洪湖公园荷花赏，户外赏荷"
     }
   ]
 }

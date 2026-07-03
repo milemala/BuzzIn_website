@@ -1,14 +1,98 @@
 {
   "city": "南京",
   "source": "xiaohongshu",
-  "exported_at": "2026-06-20T19:44:01.184Z",
+  "exported_at": "2026-06-30T08:22:33.980Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
-  "export_mode": "unmatched",
+  "export_mode": "new_import_unmatched",
   "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 9,
   "doubtful_only": false,
-  "total_events": 0,
-  "group_count": 0,
+  "total_events": 9,
+  "group_count": 9,
   "cache_hit_groups": 0,
-  "groups": []
+  "groups": [
+    {
+      "group_id": "8b1aa4b15cba",
+      "location": "金鹰新街口店B座L4中庭",
+      "sample_title": "金陵手帐市集",
+      "event_uids": [
+        "xiaohongshu:6a422a2500000000160272f6:01_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "2e12059222fb",
+      "location": "金鹰新街口店AB座户外连廊",
+      "sample_title": "微醺夜市",
+      "event_uids": [
+        "xiaohongshu:6a422a2500000000160272f6:01_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "cc56a74a1de3",
+      "location": "南京市鼓楼区清凉门大街1号南京环宇城1楼中庭",
+      "sample_title": "上元手帐市集",
+      "event_uids": [
+        "xiaohongshu:6a422a2500000000160272f6:01_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "c78bd49e66d0",
+      "location": "南京百家湖·太阳城广场",
+      "sample_title": "百家湖啤酒节美食市集",
+      "event_uids": [
+        "xiaohongshu:6a422a2500000000160272f6:02_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "1cc9d5349faf",
+      "location": "弘阳广场",
+      "sample_title": "江北首届Gelato冰淇淋节",
+      "event_uids": [
+        "xiaohongshu:6a422a2500000000160272f6:02_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "8a64a1925712",
+      "location": "玄武花园城",
+      "sample_title": "南京荷花市集",
+      "event_uids": [
+        "xiaohongshu:6a422a2500000000160272f6:02_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "908abf48e376",
+      "location": "仙林可一书店一楼广场",
+      "sample_title": "南京仙林夏日夜市",
+      "event_uids": [
+        "xiaohongshu:6a422a2500000000160272f6:03_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "12a1badf6ddb",
+      "location": "南京金象城",
+      "sample_title": "南京北岸首届金象汉堡节",
+      "event_uids": [
+        "xiaohongshu:6a422a2500000000160272f6:03_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "ef07f2e12ca1",
+      "location": "南京市景枫中心B1中庭",
+      "sample_title": "轻松小熊主题快闪",
+      "event_uids": [
+        "xiaohongshu:6a422a2500000000160272f6:03_2"
+      ],
+      "event_count": 1
+    }
+  ]
 }

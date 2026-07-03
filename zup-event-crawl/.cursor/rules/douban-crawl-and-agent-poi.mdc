@@ -12,7 +12,7 @@ alwaysApply: false
 
 0. [`docs/event-crawl-master-workflow.md`](../docs/event-crawl-master-workflow.md) — **总流程与 JS/Agent 分工**
 1. [`docs/event-time-agent.md`](../docs/event-time-agent.md) — 入库时间（抓取后第一步）
-2. [`docs/event-classification-agent.md`](../docs/event-classification-agent.md) — 推荐/挡下 + 分类
+2. [`docs/event-classification-agent.md`](../docs/event-classification-agent.md) — 推荐/挡下流程；**判类细则**见 [`classification-agent-prompt.md`](../docs/classification-agent-prompt.md)
 3. [`docs/event-body-agent.md`](../docs/event-body-agent.md) — 活动介绍 body
 4. [`docs/event-poi-agent-workflow.md`](../docs/event-poi-agent-workflow.md) — POI 匹配
 
@@ -73,7 +73,7 @@ node scripts/apply-event-time-decisions.js --city=<中文城市名>
 node scripts/export-events-for-classification.js --city=<中文城市名> --refresh
 ```
 
-读 `classification-pending.json`，逐条写 `classification-decisions.json`（`suggested` + `category` + `reason`），挡下行业展会/贸易展等无趣活动。
+读 `classification-pending.json`，逐条写 `classification-decisions.json`（`suggested` + `category` + `reason`）。**分类标准**见 [`docs/classification-agent-prompt.md`](../docs/classification-agent-prompt.md)。
 
 ```bash
 node scripts/apply-event-classification-decisions.js --city=<中文城市名>

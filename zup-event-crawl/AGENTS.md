@@ -17,6 +17,8 @@
 | 豆瓣 | [`.cursor/rules/douban-crawl-and-agent-poi.mdc`](.cursor/rules/douban-crawl-and-agent-poi.mdc) | time → classification → body → POI |
 | 小红书 | [`.cursor/rules/xhs-crawl-and-review-import.mdc`](.cursor/rules/xhs-crawl-and-review-import.mdc) | xiaohongshu-review-workflow + classification / POI |
 
+**活动分类标准（现行）**：[`docs/classification-agent-prompt.md`](docs/classification-agent-prompt.md) + 校验 [`lib/event-classification.js`](lib/event-classification.js) `EVENT_CATEGORIES`。
+
 官网 H5 原型在仓库 `events/`，不在此目录。
 
 ---

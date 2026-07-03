@@ -1,25 +1,38 @@
 {
   "city": "成都",
   "source": "xiaohongshu",
-  "updated_at": "2026-06-23T07:30:00.000Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-06-30T08:24:40.522Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "496f9a9e05ba",
       "location": "西源集1F内场（青羊区）",
       "sample_title": "城西首届偷吃大赛",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:01_0", "xiaohongshu:6a38fa5d00000000160247d2:01_1"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:01_0",
+        "xiaohongshu:6a38fa5d00000000160247d2:01_1"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["西源集"],
+      "search_keywords_tried": [
+        "西源集"
+      ],
       "poi_id": "14939748798282433447",
       "poi_title": "西源集",
       "poi_address": "四川省成都市青羊区清江中路1号",
       "latitude": 30.669516,
       "longitude": 104.019724,
       "candidates": [
-        {"index": 0, "poi_id": "14939748798282433447", "title": "西源集", "address": "四川省成都市青羊区清江中路1号", "category": "购物:商业步行街", "latitude": 30.669516, "longitude": 104.019724}
+        {
+          "index": 0,
+          "poi_id": "14939748798282433447",
+          "title": "西源集",
+          "address": "四川省成都市青羊区清江中路1号",
+          "category": "购物:商业步行街",
+          "latitude": 30.669516,
+          "longitude": 104.019724
+        }
       ],
       "reason": "活动在西源集1F内场，候选西源集主体与青羊区清江中路1号地址一致，仅楼层未精确"
     },
@@ -27,18 +40,30 @@
       "group_id": "9dabacf02424",
       "location": "武侯吾悦广场（武侯区）",
       "sample_title": "偷吃大赛（川渝老辈子版）",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:01_2"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:01_2"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["武侯吾悦广场"],
+      "search_keywords_tried": [
+        "武侯吾悦广场"
+      ],
       "poi_id": "6197150574936793784",
       "poi_title": "武侯吾悦广场",
       "poi_address": "四川省成都市武侯区武侯大道顺江77号",
       "latitude": 30.626385,
       "longitude": 103.988643,
       "candidates": [
-        {"index": 0, "poi_id": "6197150574936793784", "title": "武侯吾悦广场", "address": "四川省成都市武侯区武侯大道顺江77号", "category": "购物:综合商场:购物中心", "latitude": 30.626385, "longitude": 103.988643}
+        {
+          "index": 0,
+          "poi_id": "6197150574936793784",
+          "title": "武侯吾悦广场",
+          "address": "四川省成都市武侯区武侯大道顺江77号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.626385,
+          "longitude": 103.988643
+        }
       ],
       "reason": "候选名称、武侯区地址与活动地点一致"
     },
@@ -46,18 +71,30 @@
       "group_id": "54af63b709ac",
       "location": "成都量子介·木墨店（成华区）",
       "sample_title": "双手做工·生活集",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:02_0"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:02_0"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["量子介 木墨"],
+      "search_keywords_tried": [
+        "量子介 木墨"
+      ],
       "poi_id": "9730340323373390590",
       "poi_title": "木墨(量子介店)",
       "poi_address": "四川省成都市成华区仙韵四路1号7栋附101号",
       "latitude": 30.687844,
       "longitude": 104.130031,
       "candidates": [
-        {"index": 0, "poi_id": "9730340323373390590", "title": "木墨(量子介店)", "address": "四川省成都市成华区仙韵四路1号7栋附101号", "category": "购物:家具家居建材:家具家居", "latitude": 30.687844, "longitude": 104.130031}
+        {
+          "index": 0,
+          "poi_id": "9730340323373390590",
+          "title": "木墨(量子介店)",
+          "address": "四川省成都市成华区仙韵四路1号7栋附101号",
+          "category": "购物:家具家居建材:家具家居",
+          "latitude": 30.687844,
+          "longitude": 104.130031
+        }
       ],
       "reason": "活动地点写量子介木墨店，候选店名和成华区地址一致"
     },
@@ -65,19 +102,41 @@
       "group_id": "4b70cf45a13c",
       "location": "成都COSMO 4楼CONER食堂（锦江区）",
       "sample_title": "CONER街头发酵节",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:02_1"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:02_1"
+      ],
       "action": "match",
       "confidence": "medium",
       "doubtful": false,
-      "search_keywords_tried": ["成都COSMO CONER食堂", "CONER食堂", "成都COSMO"],
+      "search_keywords_tried": [
+        "成都COSMO CONER食堂",
+        "CONER食堂",
+        "成都COSMO"
+      ],
       "poi_id": "10009050561848546743",
       "poi_title": "COSMO成都",
       "poi_address": "四川省成都市锦江区大业路6号",
       "latitude": 30.652506,
       "longitude": 104.070331,
       "candidates": [
-        {"index": 0, "poi_id": "12972320843841966865", "title": "Coner Tea(COSMO店)", "address": "四川省成都市锦江区春熙路街道大业路6号Cosmo4楼CONER食堂408号(CONER食堂内)", "category": "美食:冷饮店", "latitude": 30.652254, "longitude": 104.069734},
-        {"index": 1, "poi_id": "10009050561848546743", "title": "COSMO成都", "address": "四川省成都市锦江区大业路6号", "category": "购物:综合商场:购物中心", "latitude": 30.652506, "longitude": 104.070331}
+        {
+          "index": 0,
+          "poi_id": "12972320843841966865",
+          "title": "Coner Tea(COSMO店)",
+          "address": "四川省成都市锦江区春熙路街道大业路6号Cosmo4楼CONER食堂408号(CONER食堂内)",
+          "category": "美食:冷饮店",
+          "latitude": 30.652254,
+          "longitude": 104.069734
+        },
+        {
+          "index": 1,
+          "poi_id": "10009050561848546743",
+          "title": "COSMO成都",
+          "address": "四川省成都市锦江区大业路6号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.652506,
+          "longitude": 104.070331
+        }
       ],
       "reason": "未搜到CONER食堂独立主体，候选餐饮结果证明CONER食堂位于COSMO成都4楼；绑定锦江区大业路6号商场主体"
     },
@@ -85,18 +144,30 @@
       "group_id": "b8823486c714",
       "location": "成都院子文化创意园（武侯区）",
       "sample_title": "玉林摆摊计划",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:02_2"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:02_2"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["成都院子文化创意园"],
+      "search_keywords_tried": [
+        "成都院子文化创意园"
+      ],
       "poi_id": "4887284030563126139",
       "poi_title": "院子文创园",
       "poi_address": "四川省成都市武侯区玉洁巷三号",
       "latitude": 30.623465,
       "longitude": 104.060394,
       "candidates": [
-        {"index": 0, "poi_id": "4887284030563126139", "title": "院子文创园", "address": "四川省成都市武侯区玉洁巷三号", "category": "房产小区:产业园区", "latitude": 30.623465, "longitude": 104.060394}
+        {
+          "index": 0,
+          "poi_id": "4887284030563126139",
+          "title": "院子文创园",
+          "address": "四川省成都市武侯区玉洁巷三号",
+          "category": "房产小区:产业园区",
+          "latitude": 30.623465,
+          "longitude": 104.060394
+        }
       ],
       "reason": "院子文创园与成都院子文化创意园为同一主体，武侯区地址一致"
     },
@@ -104,18 +175,30 @@
       "group_id": "b58a613f3fc4",
       "location": "成都龙湖上城天街L1中庭（金牛区）",
       "sample_title": "vivo×《光·遇》「追光星屿」中庭快闪活动",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:03_0"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:03_0"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["成都龙湖上城天街"],
+      "search_keywords_tried": [
+        "成都龙湖上城天街"
+      ],
       "poi_id": "3142385173127489844",
       "poi_title": "龙湖成都上城天街",
       "poi_address": "四川省成都市金牛区一环路北二段与人民北路交汇处",
       "latitude": 30.684822,
       "longitude": 104.071834,
       "candidates": [
-        {"index": 1, "poi_id": "3142385173127489844", "title": "龙湖成都上城天街", "address": "四川省成都市金牛区一环路北二段与人民北路交汇处", "category": "购物:综合商场:购物中心", "latitude": 30.684822, "longitude": 104.071834}
+        {
+          "index": 1,
+          "poi_id": "3142385173127489844",
+          "title": "龙湖成都上城天街",
+          "address": "四川省成都市金牛区一环路北二段与人民北路交汇处",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.684822,
+          "longitude": 104.071834
+        }
       ],
       "reason": "活动在龙湖上城天街L1中庭，候选商场主体与金牛区地址一致"
     },
@@ -123,18 +206,30 @@
       "group_id": "40087dd1f649",
       "location": "来福士广场b2中庭（武侯区）",
       "sample_title": "千千许愿箱快闪活动",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:03_2"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:03_2"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["来福士广场"],
+      "search_keywords_tried": [
+        "来福士广场"
+      ],
       "poi_id": "2495077849310344410",
       "poi_title": "来福士广场",
       "poi_address": "四川省成都市武侯区人民南路四段3号",
       "latitude": 30.631579,
       "longitude": 104.067935,
       "candidates": [
-        {"index": 0, "poi_id": "2495077849310344410", "title": "来福士广场", "address": "四川省成都市武侯区人民南路四段3号", "category": "购物:综合商场:购物中心", "latitude": 30.631579, "longitude": 104.067935}
+        {
+          "index": 0,
+          "poi_id": "2495077849310344410",
+          "title": "来福士广场",
+          "address": "四川省成都市武侯区人民南路四段3号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.631579,
+          "longitude": 104.067935
+        }
       ],
       "reason": "来福士广场主体与武侯区地址一致，仅B2中庭未精确"
     },
@@ -142,18 +237,30 @@
       "group_id": "55a4989f6b56",
       "location": "成都COSMO（锦江区）",
       "sample_title": "脆脆鲨×原神联名快闪活动【脆脆鲨乐园】",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:04_0"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:04_0"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["成都COSMO"],
+      "search_keywords_tried": [
+        "成都COSMO"
+      ],
       "poi_id": "10009050561848546743",
       "poi_title": "COSMO成都",
       "poi_address": "四川省成都市锦江区大业路6号",
       "latitude": 30.652506,
       "longitude": 104.070331,
       "candidates": [
-        {"index": 1, "poi_id": "10009050561848546743", "title": "COSMO成都", "address": "四川省成都市锦江区大业路6号", "category": "购物:综合商场:购物中心", "latitude": 30.652506, "longitude": 104.070331}
+        {
+          "index": 1,
+          "poi_id": "10009050561848546743",
+          "title": "COSMO成都",
+          "address": "四川省成都市锦江区大业路6号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.652506,
+          "longitude": 104.070331
+        }
       ],
       "reason": "活动地点与COSMO成都商场主体、锦江区大业路6号地址一致"
     },
@@ -161,18 +268,30 @@
       "group_id": "e48b7e9c5fd8",
       "location": "成都大悦城（武侯区）",
       "sample_title": "银魂认真展·成都站",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:04_1"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:04_1"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["成都大悦城"],
+      "search_keywords_tried": [
+        "成都大悦城"
+      ],
       "poi_id": "16527605833107426694",
       "poi_title": "成都大悦城",
       "poi_address": "四川省成都市武侯区大悦路518号",
       "latitude": 30.626034,
       "longitude": 104.011217,
       "candidates": [
-        {"index": 0, "poi_id": "16527605833107426694", "title": "成都大悦城", "address": "四川省成都市武侯区大悦路518号", "category": "购物:综合商场:购物中心", "latitude": 30.626034, "longitude": 104.011217}
+        {
+          "index": 0,
+          "poi_id": "16527605833107426694",
+          "title": "成都大悦城",
+          "address": "四川省成都市武侯区大悦路518号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.626034,
+          "longitude": 104.011217
+        }
       ],
       "reason": "成都大悦城主体与武侯区地址一致"
     },
@@ -180,18 +299,31 @@
       "group_id": "47a764b65c4e",
       "location": "成都锦华路万达广场（锦江区）",
       "sample_title": "无限暖暖×万达广场线下活动",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:04_2"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:04_2"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["锦华路万达广场", "成都锦华万达广场"],
+      "search_keywords_tried": [
+        "锦华路万达广场",
+        "成都锦华万达广场"
+      ],
       "poi_id": "13487214925758601453",
       "poi_title": "成都锦华路万达广场",
       "poi_address": "四川省成都市锦江区锦华路一段68号",
       "latitude": 30.620862,
       "longitude": 104.096591,
       "candidates": [
-        {"index": 0, "poi_id": "13487214925758601453", "title": "成都锦华路万达广场", "address": "四川省成都市锦江区锦华路一段68号", "category": "购物:综合商场:购物中心", "latitude": 30.620862, "longitude": 104.096591}
+        {
+          "index": 0,
+          "poi_id": "13487214925758601453",
+          "title": "成都锦华路万达广场",
+          "address": "四川省成都市锦江区锦华路一段68号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.620862,
+          "longitude": 104.096591
+        }
       ],
       "reason": "补搜命中成都锦华路万达广场，名称和锦江区锦华路一段68号地址一致"
     },
@@ -199,19 +331,39 @@
       "group_id": "86ebd0e0b00b",
       "location": "中国西部博览城14-16号馆（天府新区）",
       "sample_title": "2026鸿威·世宠博览会暨成都宠物展",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:05_0"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:05_0"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["中国西部博览城"],
+      "search_keywords_tried": [
+        "中国西部博览城"
+      ],
       "poi_id": "3650601052812944132",
       "poi_title": "中国西部国际博览城",
       "poi_address": "四川省成都市双流区天府新区福州路东段88号",
       "latitude": 30.420189,
       "longitude": 104.084002,
       "candidates": [
-        {"index": 0, "poi_id": "3650601052812944132", "title": "中国西部国际博览城", "address": "四川省成都市双流区天府新区福州路东段88号", "category": "文化场馆:展览馆", "latitude": 30.420189, "longitude": 104.084002},
-        {"index": 4, "poi_id": "17114938477304176131", "title": "中国西部国际博览城14展厅", "address": "四川省成都市双流区正兴街道天府新区福州路东段88号", "category": "文化场馆:展览馆", "latitude": 30.41881, "longitude": 104.080671}
+        {
+          "index": 0,
+          "poi_id": "3650601052812944132",
+          "title": "中国西部国际博览城",
+          "address": "四川省成都市双流区天府新区福州路东段88号",
+          "category": "文化场馆:展览馆",
+          "latitude": 30.420189,
+          "longitude": 104.084002
+        },
+        {
+          "index": 4,
+          "poi_id": "17114938477304176131",
+          "title": "中国西部国际博览城14展厅",
+          "address": "四川省成都市双流区正兴街道天府新区福州路东段88号",
+          "category": "文化场馆:展览馆",
+          "latitude": 30.41881,
+          "longitude": 104.080671
+        }
       ],
       "reason": "14-16号馆均属于中国西部国际博览城同一会展主体，地址含天府新区福州路东段88号"
     },
@@ -219,20 +371,48 @@
       "group_id": "8ced3f104970",
       "location": "成都世纪城新国际会展中心2/3号馆（高新区）",
       "sample_title": "第18届中国（成都）礼品及家居用品展览会暨文创旅游商品展",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:05_1"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:05_1"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["成都世纪城新国际会展中心"],
+      "search_keywords_tried": [
+        "成都世纪城新国际会展中心"
+      ],
       "poi_id": "7069292529005818203",
       "poi_title": "成都新国际会展中心",
       "poi_address": "四川省成都市武侯区世纪城路198号",
       "latitude": 30.559461,
       "longitude": 104.073974,
       "candidates": [
-        {"index": 1, "poi_id": "7069292529005818203", "title": "成都新国际会展中心", "address": "四川省成都市武侯区世纪城路198号", "category": "文化场馆:会展中心", "latitude": 30.559461, "longitude": 104.073974},
-        {"index": 6, "poi_id": "4952609803070375795", "title": "成都世纪城新国际会展中心2号馆", "address": "四川省成都市武侯区新会展中心世纪城路198号时尚天街", "category": "文化场馆:展览馆", "latitude": 30.558296, "longitude": 104.076271},
-        {"index": 7, "poi_id": "11626942043747249425", "title": "成都世纪城新国际会展中心3号馆", "address": "四川省成都市武侯区世纪城路198号附2990号", "category": "文化场馆:展览馆", "latitude": 30.557805, "longitude": 104.077125}
+        {
+          "index": 1,
+          "poi_id": "7069292529005818203",
+          "title": "成都新国际会展中心",
+          "address": "四川省成都市武侯区世纪城路198号",
+          "category": "文化场馆:会展中心",
+          "latitude": 30.559461,
+          "longitude": 104.073974
+        },
+        {
+          "index": 6,
+          "poi_id": "4952609803070375795",
+          "title": "成都世纪城新国际会展中心2号馆",
+          "address": "四川省成都市武侯区新会展中心世纪城路198号时尚天街",
+          "category": "文化场馆:展览馆",
+          "latitude": 30.558296,
+          "longitude": 104.076271
+        },
+        {
+          "index": 7,
+          "poi_id": "11626942043747249425",
+          "title": "成都世纪城新国际会展中心3号馆",
+          "address": "四川省成都市武侯区世纪城路198号附2990号",
+          "category": "文化场馆:展览馆",
+          "latitude": 30.557805,
+          "longitude": 104.077125
+        }
       ],
       "reason": "2/3号馆同属成都新国际会展中心，主体和世纪城路198号地址一致"
     },
@@ -240,18 +420,31 @@
       "group_id": "d43e90d229ba",
       "location": "成都世纪城新国际会展中心6号馆（高新区）",
       "sample_title": "第51届成都国际珠宝展",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:05_2"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:05_2"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["成都世纪城新国际会展中心", "成都世纪城新国际会展中心6号馆"],
+      "search_keywords_tried": [
+        "成都世纪城新国际会展中心",
+        "成都世纪城新国际会展中心6号馆"
+      ],
       "poi_id": "4121067304248619211",
       "poi_title": "世纪城国际展览中心-6号馆",
       "poi_address": "四川省成都市武侯区世纪城路106-1-8号世纪城新会展中心2楼",
       "latitude": 30.555315,
       "longitude": 104.077681,
       "candidates": [
-        {"index": 0, "poi_id": "4121067304248619211", "title": "世纪城国际展览中心-6号馆", "address": "四川省成都市武侯区世纪城路106-1-8号世纪城新会展中心2楼", "category": "文化场馆:展览馆", "latitude": 30.555315, "longitude": 104.077681}
+        {
+          "index": 0,
+          "poi_id": "4121067304248619211",
+          "title": "世纪城国际展览中心-6号馆",
+          "address": "四川省成都市武侯区世纪城路106-1-8号世纪城新会展中心2楼",
+          "category": "文化场馆:展览馆",
+          "latitude": 30.555315,
+          "longitude": 104.077681
+        }
       ],
       "reason": "补搜命中6号馆独立POI，名称和世纪城新会展中心地址一致"
     },
@@ -259,19 +452,39 @@
       "group_id": "a3fb13e036fa",
       "location": "明日巴适（高新区）",
       "sample_title": "野趣森林主题活动",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:06_0"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:06_0"
+      ],
       "action": "match",
       "confidence": "medium",
       "doubtful": true,
-      "search_keywords_tried": ["明日巴适"],
+      "search_keywords_tried": [
+        "明日巴适"
+      ],
       "poi_id": "6803815874800911598",
       "poi_title": "明日巴适",
       "poi_address": "四川省成都市双流区新裕路与雅和北五路交叉口西北方向58米左右",
       "latitude": 30.514278,
       "longitude": 104.079671,
       "candidates": [
-        {"index": 1, "poi_id": "6803815874800911598", "title": "明日巴适", "address": "四川省成都市双流区新裕路与雅和北五路交叉口西北方向58米左右", "category": "购物:综合商场", "latitude": 30.514278, "longitude": 104.079671},
-        {"index": 4, "poi_id": "2528383473452291953", "title": "明日巴适TOMORROW BASE", "address": "四川省成都市双流区新裕路555号", "category": "室内及附属设施:通行设施类:停车场出入口", "latitude": 30.5143, "longitude": 104.079697}
+        {
+          "index": 1,
+          "poi_id": "6803815874800911598",
+          "title": "明日巴适",
+          "address": "四川省成都市双流区新裕路与雅和北五路交叉口西北方向58米左右",
+          "category": "购物:综合商场",
+          "latitude": 30.514278,
+          "longitude": 104.079671
+        },
+        {
+          "index": 4,
+          "poi_id": "2528383473452291953",
+          "title": "明日巴适TOMORROW BASE",
+          "address": "四川省成都市双流区新裕路555号",
+          "category": "室内及附属设施:通行设施类:停车场出入口",
+          "latitude": 30.5143,
+          "longitude": 104.079697
+        }
       ],
       "reason": "候选名称与明日巴适一致，但pending写高新区而腾讯地址为双流区新裕路，建议人工核对区划口径"
     },
@@ -279,18 +492,30 @@
       "group_id": "142c789968b1",
       "location": "麓湖荒野之国（天府新区）",
       "sample_title": "猫猫玩水岛",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:06_1"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:06_1"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["麓湖荒野之国"],
+      "search_keywords_tried": [
+        "麓湖荒野之国"
+      ],
       "poi_id": "641649534658815936",
       "poi_title": "荒野之国",
       "poi_address": "四川省成都市双流区天府新区青岛路西段3199号",
       "latitude": 30.455015,
       "longitude": 104.064715,
       "candidates": [
-        {"index": 0, "poi_id": "641649534658815936", "title": "荒野之国", "address": "四川省成都市双流区天府新区青岛路西段3199号", "category": "娱乐休闲:户外活动:游乐场", "latitude": 30.455015, "longitude": 104.064715}
+        {
+          "index": 0,
+          "poi_id": "641649534658815936",
+          "title": "荒野之国",
+          "address": "四川省成都市双流区天府新区青岛路西段3199号",
+          "category": "娱乐休闲:户外活动:游乐场",
+          "latitude": 30.455015,
+          "longitude": 104.064715
+        }
       ],
       "reason": "麓湖荒野之国对应荒野之国POI，地址含天府新区青岛路西段3199号"
     },
@@ -298,18 +523,30 @@
       "group_id": "200ae9d1c6f0",
       "location": "许燎源当代艺术馆一楼（锦江区）",
       "sample_title": "第六届IDEA！想法叙事艺术展",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:07_0"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:07_0"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["许燎源当代艺术馆"],
+      "search_keywords_tried": [
+        "许燎源当代艺术馆"
+      ],
       "poi_id": "415362585781462840",
       "poi_title": "许燎源当代艺术馆",
       "poi_address": "四川省成都市锦江区三圣街道红砂社区136号三圣花乡·花乡农居内",
       "latitude": 30.583213,
       "longitude": 104.155916,
       "candidates": [
-        {"index": 0, "poi_id": "415362585781462840", "title": "许燎源当代艺术馆", "address": "四川省成都市锦江区三圣街道红砂社区136号三圣花乡·花乡农居内", "category": "文化场馆:展览馆", "latitude": 30.583213, "longitude": 104.155916}
+        {
+          "index": 0,
+          "poi_id": "415362585781462840",
+          "title": "许燎源当代艺术馆",
+          "address": "四川省成都市锦江区三圣街道红砂社区136号三圣花乡·花乡农居内",
+          "category": "文化场馆:展览馆",
+          "latitude": 30.583213,
+          "longitude": 104.155916
+        }
       ],
       "reason": "候选艺术馆名称与活动地点一致，一楼为馆内细分位置"
     },
@@ -317,18 +554,30 @@
       "group_id": "7f42b3d3e491",
       "location": "成都画院（青羊区）",
       "sample_title": "山林野芳·灿然可观——姚思敏中国画展",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:07_1"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:07_1"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["成都画院"],
+      "search_keywords_tried": [
+        "成都画院"
+      ],
       "poi_id": "220805472658131691",
       "poi_title": "成都画院",
       "poi_address": "四川省成都市青羊区下同仁路80号",
       "latitude": 30.665212,
       "longitude": 104.052205,
       "candidates": [
-        {"index": 0, "poi_id": "220805472658131691", "title": "成都画院", "address": "四川省成都市青羊区下同仁路80号", "category": "文化场馆:美术馆", "latitude": 30.665212, "longitude": 104.052205}
+        {
+          "index": 0,
+          "poi_id": "220805472658131691",
+          "title": "成都画院",
+          "address": "四川省成都市青羊区下同仁路80号",
+          "category": "文化场馆:美术馆",
+          "latitude": 30.665212,
+          "longitude": 104.052205
+        }
       ],
       "reason": "成都画院名称与青羊区地址一致"
     },
@@ -336,18 +585,30 @@
       "group_id": "ef310fef28b1",
       "location": "A4美术馆（天府新区）",
       "sample_title": "第二届Y+Project 3# 韩智同个展",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:08_0"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:08_0"
+      ],
       "action": "match",
       "confidence": "medium",
       "doubtful": true,
-      "search_keywords_tried": ["A4美术馆"],
+      "search_keywords_tried": [
+        "A4美术馆"
+      ],
       "poi_id": "9195468553734008928",
       "poi_title": "A4美术馆",
       "poi_address": "四川省成都市双流区麓山大道二段18号麓镇山顶广场",
       "latitude": 30.482184,
       "longitude": 104.094612,
       "candidates": [
-        {"index": 0, "poi_id": "9195468553734008928", "title": "A4美术馆", "address": "四川省成都市双流区麓山大道二段18号麓镇山顶广场", "category": "文化场馆:其它文化场馆", "latitude": 30.482184, "longitude": 104.094612}
+        {
+          "index": 0,
+          "poi_id": "9195468553734008928",
+          "title": "A4美术馆",
+          "address": "四川省成都市双流区麓山大道二段18号麓镇山顶广场",
+          "category": "文化场馆:其它文化场馆",
+          "latitude": 30.482184,
+          "longitude": 104.094612
+        }
       ],
       "reason": "候选A4美术馆名称一致，但pending写天府新区而腾讯地址为双流区麓山大道，建议人工核对区划口径"
     },
@@ -355,18 +616,30 @@
       "group_id": "4c8e2cfcf24c",
       "location": "白夜花神诗空间（武侯区）",
       "sample_title": "仿生花园·翟永明绘画作品展",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:08_2"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:08_2"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["白夜花神诗空间"],
+      "search_keywords_tried": [
+        "白夜花神诗空间"
+      ],
       "poi_id": "7406981017000998340",
       "poi_title": "白夜花神诗空间",
       "poi_address": "四川省成都市武侯区芳华街28号(芳草街地铁站D口步行260米)",
       "latitude": 30.623944,
       "longitude": 104.055395,
       "candidates": [
-        {"index": 0, "poi_id": "7406981017000998340", "title": "白夜花神诗空间", "address": "四川省成都市武侯区芳华街28号(芳草街地铁站D口步行260米)", "category": "娱乐休闲:其它娱乐休闲", "latitude": 30.623944, "longitude": 104.055395}
+        {
+          "index": 0,
+          "poi_id": "7406981017000998340",
+          "title": "白夜花神诗空间",
+          "address": "四川省成都市武侯区芳华街28号(芳草街地铁站D口步行260米)",
+          "category": "娱乐休闲:其它娱乐休闲",
+          "latitude": 30.623944,
+          "longitude": 104.055395
+        }
       ],
       "reason": "候选名称与活动地点完全一致，地址位于武侯区芳华街28号"
     },
@@ -374,18 +647,30 @@
       "group_id": "99323e9e21ff",
       "location": "四川大剧院·大剧场",
       "sample_title": "歌无限∞石倚洁、龚爽、马小明 中国声乐作品专场音乐会",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:09_1"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:09_1"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["四川大剧院"],
+      "search_keywords_tried": [
+        "四川大剧院"
+      ],
       "poi_id": "17116730931038445199",
       "poi_title": "四川大剧院",
       "poi_address": "四川省成都市青羊区人民东路1号附2号",
       "latitude": 30.658934,
       "longitude": 104.068268,
       "candidates": [
-        {"index": 0, "poi_id": "17116730931038445199", "title": "四川大剧院", "address": "四川省成都市青羊区人民东路1号附2号", "category": "娱乐休闲:剧场音乐厅:剧场", "latitude": 30.658934, "longitude": 104.068268}
+        {
+          "index": 0,
+          "poi_id": "17116730931038445199",
+          "title": "四川大剧院",
+          "address": "四川省成都市青羊区人民东路1号附2号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 30.658934,
+          "longitude": 104.068268
+        }
       ],
       "reason": "大剧场属于四川大剧院内部空间，候选剧院主体一致"
     },
@@ -393,18 +678,30 @@
       "group_id": "b7d35587bc05",
       "location": "中演·成都大剧院·大剧场",
       "sample_title": "中国国家话剧院 话剧《四世同堂》",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:09_2"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:09_2"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["中演 成都大剧院"],
+      "search_keywords_tried": [
+        "中演 成都大剧院"
+      ],
       "poi_id": "6669559818769471538",
       "poi_title": "中演·成都大剧院",
       "poi_address": "四川省成都市成华区仙韵一路420号",
       "latitude": 30.68944,
       "longitude": 104.119364,
       "candidates": [
-        {"index": 3, "poi_id": "6669559818769471538", "title": "中演·成都大剧院", "address": "四川省成都市成华区仙韵一路420号", "category": "娱乐休闲:剧场音乐厅:剧场", "latitude": 30.68944, "longitude": 104.119364}
+        {
+          "index": 3,
+          "poi_id": "6669559818769471538",
+          "title": "中演·成都大剧院",
+          "address": "四川省成都市成华区仙韵一路420号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 30.68944,
+          "longitude": 104.119364
+        }
       ],
       "reason": "候选中演成都大剧院名称与地点一致，大剧场为内部空间"
     },
@@ -412,18 +709,30 @@
       "group_id": "0ffb395a6787",
       "location": "四川省体育馆",
       "sample_title": "2026陈洁仪 ATRIUM（心房）巡回演唱会-成都站",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:10_0"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:10_0"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["四川省体育馆"],
+      "search_keywords_tried": [
+        "四川省体育馆"
+      ],
       "poi_id": "10012624831308588675",
       "poi_title": "四川省体育馆",
       "poi_address": "四川省成都市武侯区人民南路四段8",
       "latitude": 30.631346,
       "longitude": 104.065392,
       "candidates": [
-        {"index": 0, "poi_id": "10012624831308588675", "title": "四川省体育馆", "address": "四川省成都市武侯区人民南路四段8", "category": "运动健身:综合体育场馆", "latitude": 30.631346, "longitude": 104.065392}
+        {
+          "index": 0,
+          "poi_id": "10012624831308588675",
+          "title": "四川省体育馆",
+          "address": "四川省成都市武侯区人民南路四段8",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 30.631346,
+          "longitude": 104.065392
+        }
       ],
       "reason": "候选名称与四川省体育馆完全一致，体育场馆类目合理"
     },
@@ -431,18 +740,30 @@
       "group_id": "18e229c0159d",
       "location": "成都五粮液文化体育中心综合体育馆",
       "sample_title": "2026 ELLA陈嘉桦It’s Me（是我）艾拉主意巡回演唱会成都站",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:10_1"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:10_1"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["成都五粮液文化体育中心综合体育馆"],
+      "search_keywords_tried": [
+        "成都五粮液文化体育中心综合体育馆"
+      ],
       "poi_id": "3280702625728036935",
       "poi_title": "五粮液文化体育中心综合体育馆",
       "poi_address": "四川省成都市金牛区天回镇街道北星大道一段4228号",
       "latitude": 30.769154,
       "longitude": 104.078044,
       "candidates": [
-        {"index": 0, "poi_id": "3280702625728036935", "title": "五粮液文化体育中心综合体育馆", "address": "四川省成都市金牛区天回镇街道北星大道一段4228号", "category": "运动健身:综合体育场馆", "latitude": 30.769154, "longitude": 104.078044}
+        {
+          "index": 0,
+          "poi_id": "3280702625728036935",
+          "title": "五粮液文化体育中心综合体育馆",
+          "address": "四川省成都市金牛区天回镇街道北星大道一段4228号",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 30.769154,
+          "longitude": 104.078044
+        }
       ],
       "reason": "候选名称与地点完全一致，地址位于金牛区北星大道一段4228号"
     },
@@ -450,18 +771,30 @@
       "group_id": "e019941794fc",
       "location": "成都露天音乐公园",
       "sample_title": "回春丹「大把时间璀璨」2026拉阔演唱会成都站",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:10_2"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:10_2"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["成都露天音乐公园"],
+      "search_keywords_tried": [
+        "成都露天音乐公园"
+      ],
       "poi_id": "1902835992472976193",
       "poi_title": "成都露天音乐公园",
       "poi_address": "四川省成都市金牛区北星大道一段1500号",
       "latitude": 30.726433,
       "longitude": 104.078748,
       "candidates": [
-        {"index": 0, "poi_id": "1902835992472976193", "title": "成都露天音乐公园", "address": "四川省成都市金牛区北星大道一段1500号", "category": "旅游景点:公园", "latitude": 30.726433, "longitude": 104.078748}
+        {
+          "index": 0,
+          "poi_id": "1902835992472976193",
+          "title": "成都露天音乐公园",
+          "address": "四川省成都市金牛区北星大道一段1500号",
+          "category": "旅游景点:公园",
+          "latitude": 30.726433,
+          "longitude": 104.078748
+        }
       ],
       "reason": "候选名称与活动地点完全一致"
     },
@@ -469,18 +802,30 @@
       "group_id": "dcf1136c0af5",
       "location": "CH8绿树演艺中心",
       "sample_title": "王朝1982「东海听潮」全国巡回演唱会",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:10_3"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:10_3"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["CH8绿树演艺中心"],
+      "search_keywords_tried": [
+        "CH8绿树演艺中心"
+      ],
       "poi_id": "5227873385736680859",
       "poi_title": "CH8绿树演艺中心(天府国际动漫城店)",
       "poi_address": "四川省成都市成华区昭青路333号",
       "latitude": 30.704968,
       "longitude": 104.107475,
       "candidates": [
-        {"index": 0, "poi_id": "5227873385736680859", "title": "CH8绿树演艺中心(天府国际动漫城店)", "address": "四川省成都市成华区昭青路333号", "category": "娱乐休闲:酒吧", "latitude": 30.704968, "longitude": 104.107475}
+        {
+          "index": 0,
+          "poi_id": "5227873385736680859",
+          "title": "CH8绿树演艺中心(天府国际动漫城店)",
+          "address": "四川省成都市成华区昭青路333号",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 30.704968,
+          "longitude": 104.107475
+        }
       ],
       "reason": "候选CH8绿树演艺中心名称与活动地点一致，地址明确"
     },
@@ -488,20 +833,796 @@
       "group_id": "ada68f5a7c3c",
       "location": "东安湖大剧院·大剧场",
       "sample_title": "李伟菘 李偲菘「代表作Forty For You」作品音乐会-成都站",
-      "event_uids": ["xiaohongshu:6a38fa5d00000000160247d2:10_4"],
+      "event_uids": [
+        "xiaohongshu:6a38fa5d00000000160247d2:10_4"
+      ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["东安湖大剧院"],
+      "search_keywords_tried": [
+        "东安湖大剧院"
+      ],
       "poi_id": "12335336915535467250",
       "poi_title": "东安湖大剧院",
       "poi_address": "四川省成都市龙泉驿区东安街道湖岸南路76号",
       "latitude": 30.587821,
       "longitude": 104.252337,
       "candidates": [
-        {"index": 0, "poi_id": "12335336915535467250", "title": "东安湖大剧院", "address": "四川省成都市龙泉驿区东安街道湖岸南路76号", "category": "娱乐休闲:剧场音乐厅:剧场", "latitude": 30.587821, "longitude": 104.252337}
+        {
+          "index": 0,
+          "poi_id": "12335336915535467250",
+          "title": "东安湖大剧院",
+          "address": "四川省成都市龙泉驿区东安街道湖岸南路76号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 30.587821,
+          "longitude": 104.252337
+        }
       ],
       "reason": "大剧场属于东安湖大剧院内部空间，候选剧院主体和地址一致"
+    },
+    {
+      "group_id": "aed5171a754c",
+      "location": "成都大悦城一楼夏中庭(武侯区)",
+      "sample_title": "momo物语成都快闪西南首展",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:01_0"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "成都大悦城"
+      ],
+      "poi_id": "16527605833107426694",
+      "poi_title": "成都大悦城",
+      "poi_address": "四川省成都市武侯区大悦路518号",
+      "latitude": 30.626034,
+      "longitude": 104.011217,
+      "candidates": [
+        {
+          "poi_id": "16527605833107426694",
+          "title": "成都大悦城",
+          "address": "四川省成都市武侯区大悦路518号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.626034,
+          "longitude": 104.011217
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "成都大悦城一楼夏中庭，武侯区大悦城主体一致"
+    },
+    {
+      "group_id": "053794e1b8af",
+      "location": "成都大悦城A馆一楼秋中庭(武侯区)",
+      "sample_title": "成都森贝儿家族快闪",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:01_1"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "成都大悦城"
+      ],
+      "poi_id": "16527605833107426694",
+      "poi_title": "成都大悦城",
+      "poi_address": "四川省成都市武侯区大悦路518号",
+      "latitude": 30.626034,
+      "longitude": 104.011217,
+      "candidates": [
+        {
+          "poi_id": "16527605833107426694",
+          "title": "成都大悦城",
+          "address": "四川省成都市武侯区大悦路518号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.626034,
+          "longitude": 104.011217
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "成都大悦城A馆秋中庭，同一大悦城主体"
+    },
+    {
+      "group_id": "d158d271601b",
+      "location": "成都天府红3层(锦江区)",
+      "sample_title": "《甄嬛传》「娘娘们的下午茶」主题餐厅快闪",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:02_0"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "成都天府红"
+      ],
+      "poi_id": "12116192491666357448",
+      "poi_title": "天府红购物中心",
+      "poi_address": "四川省成都市锦江区东御街18号百扬大厦裙楼",
+      "latitude": 30.655927,
+      "longitude": 104.066866,
+      "candidates": [
+        {
+          "poi_id": "12116192491666357448",
+          "title": "天府红购物中心",
+          "address": "四川省成都市锦江区东御街18号百扬大厦裙楼",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.655927,
+          "longitude": 104.066866
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "成都天府红3层，天府红购物中心主体一致"
+    },
+    {
+      "group_id": "6c3afeb531c9",
+      "location": "成都银泰中心in99L1火炬中庭(高新区)",
+      "sample_title": "王力宏「最好的地方II」主题快闪",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:02_1"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "成都银泰中心in99"
+      ],
+      "poi_id": "13434236616702626622",
+      "poi_title": "成都银泰中心in99",
+      "poi_address": "四川省成都市武侯区天府大道北段1199号",
+      "latitude": 30.584866,
+      "longitude": 104.069631,
+      "candidates": [
+        {
+          "poi_id": "13434236616702626622",
+          "title": "成都银泰中心in99",
+          "address": "四川省成都市武侯区天府大道北段1199号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.584866,
+          "longitude": 104.069631
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "银泰中心in99L1火炬中庭，主体一致"
+    },
+    {
+      "group_id": "5a69f875a430",
+      "location": "成都万象城(成华区)",
+      "sample_title": "成都奔跑吧部落快闪",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:02_2"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "成都万象城"
+      ],
+      "poi_id": "1014595121295943130",
+      "poi_title": "成都万象城",
+      "poi_address": "四川省成都市成华区双庆路8号",
+      "latitude": 30.649709,
+      "longitude": 104.115353,
+      "candidates": [
+        {
+          "poi_id": "1014595121295943130",
+          "title": "成都万象城",
+          "address": "四川省成都市成华区双庆路8号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.649709,
+          "longitude": 104.115353
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "成都万象城成华区，主体一致"
+    },
+    {
+      "group_id": "36674ceda75f",
+      "location": "成都龙湖上城天街（金牛区）",
+      "sample_title": "成都fufu手账市集",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:03_0"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "龙湖上城天街"
+      ],
+      "poi_id": "3142385173127489844",
+      "poi_title": "龙湖成都上城天街",
+      "poi_address": "四川省成都市金牛区一环路北二段与人民北路交汇处",
+      "latitude": 30.684822,
+      "longitude": 104.071834,
+      "candidates": [
+        {
+          "poi_id": "3142385173127489844",
+          "title": "龙湖成都上城天街",
+          "address": "四川省成都市金牛区一环路北二段与人民北路交汇处",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.684822,
+          "longitude": 104.071834
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "龙湖上城天街金牛区，主体一致"
+    },
+    {
+      "group_id": "27f8f0ba542c",
+      "location": "港汇天地L1达美乐外区域（高新区）",
+      "sample_title": "小森林耍水赶个集",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:03_1"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "港汇天地"
+      ],
+      "poi_id": "13899780864294837778",
+      "poi_title": "港汇天地",
+      "poi_address": "四川省成都市武侯区高新区天府五街999号",
+      "latitude": 30.536981,
+      "longitude": 104.0584,
+      "candidates": [
+        {
+          "poi_id": "13899780864294837778",
+          "title": "港汇天地",
+          "address": "四川省成都市武侯区高新区天府五街999号",
+          "category": "购物:商业步行街",
+          "latitude": 30.536981,
+          "longitude": 104.0584
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "港汇天地L1达美乐外区域，主体一致"
+    },
+    {
+      "group_id": "3bcb5b7ce79b",
+      "location": "成都世纪城新国际会展中心（高新区）",
+      "sample_title": "HOTELEX成都国际咖啡文化节",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:03_2"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "世纪城新国际会展中心"
+      ],
+      "poi_id": "9609474979108025319",
+      "poi_title": "世纪城国际展览中心",
+      "poi_address": "四川省成都市武侯区世纪城路198号",
+      "latitude": 30.556121,
+      "longitude": 104.076826,
+      "candidates": [
+        {
+          "poi_id": "9609474979108025319",
+          "title": "世纪城国际展览中心",
+          "address": "四川省成都市武侯区世纪城路198号",
+          "category": "文化场馆:展览馆",
+          "latitude": 30.556121,
+          "longitude": 104.076826
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "世纪城新国际会展中心与世纪城路198号一致"
+    },
+    {
+      "group_id": "80de1efd2f10",
+      "location": "天府招商花园城L1-A馆中庭(天府新区)",
+      "sample_title": "奇境漫游",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:04_0"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "天府招商花园城"
+      ],
+      "poi_id": "5097318479164283634",
+      "poi_title": "天府·招商花园城",
+      "poi_address": "四川省成都市双流区福州路西段与嘉州路交叉口西北60米",
+      "latitude": 30.426465,
+      "longitude": 104.060819,
+      "candidates": [
+        {
+          "poi_id": "5097318479164283634",
+          "title": "天府·招商花园城",
+          "address": "四川省成都市双流区福州路西段与嘉州路交叉口西北60米",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.426465,
+          "longitude": 104.060819
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "天府招商花园城L1中庭，主体一致"
+    },
+    {
+      "group_id": "e5e978a95b50",
+      "location": "麓客岛(天府新区)",
+      "sample_title": "水人岛-2026夏日计划",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:04_1"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "麓客岛"
+      ],
+      "poi_id": "17424567343974928674",
+      "poi_title": "麓湖水城-麓客岛",
+      "poi_address": "四川省成都市双流区天府新区麓湖中路西段988号麓湖水城",
+      "latitude": 30.458838,
+      "longitude": 104.063415,
+      "candidates": [
+        {
+          "poi_id": "17424567343974928674",
+          "title": "麓湖水城-麓客岛",
+          "address": "四川省成都市双流区天府新区麓湖中路西段988号麓湖水城",
+          "category": "旅游景点:风景名胜",
+          "latitude": 30.458838,
+          "longitude": 104.063415
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "麓客岛与麓湖中路西段988号一致"
+    },
+    {
+      "group_id": "3d512565ed3f",
+      "location": "成都远大购物中心(高新区)",
+      "sample_title": "超级拼豆游戏乐园",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:04_2"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "成都远大购物中心"
+      ],
+      "poi_id": "15477793508985348970",
+      "poi_title": "成都远大购物中心",
+      "poi_address": "四川省成都市双流区天府大道南段255号",
+      "latitude": 30.52943,
+      "longitude": 104.07068,
+      "candidates": [
+        {
+          "poi_id": "15477793508985348970",
+          "title": "成都远大购物中心",
+          "address": "四川省成都市双流区天府大道南段255号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.52943,
+          "longitude": 104.07068
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "成都远大购物中心高新区，主体一致"
+    },
+    {
+      "group_id": "700bd3ad15e3",
+      "location": "新光天地成都 1FA区中庭（温江区）",
+      "sample_title": "卧龙中华大熊猫苑PANDA熊猫展成都首展",
+      "event_uids": [
+        "xiaohongshu:6a267f970000000015025aa9:04_2"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "新光天地成都"
+      ],
+      "poi_id": "5313935806798675262",
+      "poi_title": "新光天地",
+      "poi_address": "四川省成都市温江区光华大道三段1599号",
+      "latitude": 30.683764,
+      "longitude": 103.859724,
+      "candidates": [
+        {
+          "poi_id": "5313935806798675262",
+          "title": "新光天地",
+          "address": "四川省成都市温江区光华大道三段1599号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.683764,
+          "longitude": 103.859724
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "新光天地成都温江区，主体一致"
+    },
+    {
+      "group_id": "1661036bcf7f",
+      "location": "成都博物馆五层社教区(青羊区)",
+      "sample_title": "皮影小匠人",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:05_0",
+        "xiaohongshu:6a422263000000001603fadf:05_1"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "成都博物馆"
+      ],
+      "poi_id": "17051549912802770144",
+      "poi_title": "成都博物馆",
+      "poi_address": "四川省成都市青羊区小河街1号天府广场西侧",
+      "latitude": 30.657331,
+      "longitude": 104.06376,
+      "candidates": [
+        {
+          "poi_id": "17051549912802770144",
+          "title": "成都博物馆",
+          "address": "四川省成都市青羊区小河街1号天府广场西侧",
+          "category": "文化场馆:博物馆",
+          "latitude": 30.657331,
+          "longitude": 104.06376
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "成都博物馆五层社教区，博物馆主体一致"
+    },
+    {
+      "group_id": "0f4911281fd7",
+      "location": "成都考古中心(青羊区)",
+      "sample_title": "成都考古社教日 | 7月上旬活动",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:05_2"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "成都考古中心"
+      ],
+      "poi_id": "14007761623891802070",
+      "poi_title": "成都考古中心",
+      "poi_address": "四川省成都市青羊区青华路15号",
+      "latitude": 30.662097,
+      "longitude": 104.030746,
+      "candidates": [
+        {
+          "poi_id": "14007761623891802070",
+          "title": "成都考古中心",
+          "address": "四川省成都市青羊区青华路15号",
+          "category": "文化场馆:博物馆",
+          "latitude": 30.662097,
+          "longitude": 104.030746
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "成都考古中心与青羊区青华路15号一致"
+    },
+    {
+      "group_id": "bfa48b79d3fd",
+      "location": "第三大街美术馆(成华区)",
+      "sample_title": "《心·象》——苏茂隆水墨艺术展",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:06_0"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "第三大街美术馆"
+      ],
+      "poi_id": "15414087580610229991",
+      "poi_title": "第三大街美术馆",
+      "poi_address": "四川省成都市锦江区牛市口街道水碾河南三街35号",
+      "latitude": 30.647257,
+      "longitude": 104.09879,
+      "candidates": [
+        {
+          "poi_id": "15414087580610229991",
+          "title": "第三大街美术馆",
+          "address": "四川省成都市锦江区牛市口街道水碾河南三街35号",
+          "category": "文化场馆:美术馆",
+          "latitude": 30.647257,
+          "longitude": 104.09879
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "第三大街美术馆成华区，店名地址一致"
+    },
+    {
+      "group_id": "ffeb20eb2ff5",
+      "location": "成都市文化馆4楼大家美术馆(锦江区)",
+      "sample_title": "竹语自在——中国竹编造物艺术大展",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:06_1"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "成都市文化馆 锦江"
+      ],
+      "poi_id": "10384689318914826521",
+      "poi_title": "成都市文化馆",
+      "poi_address": "四川省成都市锦江区汇泉南路459号",
+      "latitude": 30.63518,
+      "longitude": 104.108023,
+      "candidates": [
+        {
+          "poi_id": "10384689318914826521",
+          "title": "成都市文化馆",
+          "address": "四川省成都市锦江区汇泉南路459号",
+          "category": "文化场馆:文化宫",
+          "latitude": 30.63518,
+          "longitude": 104.108023
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "成都市文化馆4楼大家美术馆，文化馆主体一致仅楼层未精确"
+    },
+    {
+      "group_id": "caf5236a170c",
+      "location": "AboutTime艺术空间(高新区)",
+      "sample_title": "临界声场",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:06_2"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "AboutTime艺术空间"
+      ],
+      "poi_id": "16069335258818711998",
+      "poi_title": "AboutTime艺术空间",
+      "poi_address": "四川省成都市武侯区天府三街一品CG商业1栋402",
+      "latitude": 30.548266,
+      "longitude": 104.037265,
+      "candidates": [
+        {
+          "poi_id": "16069335258818711998",
+          "title": "AboutTime艺术空间",
+          "address": "四川省成都市武侯区天府三街一品CG商业1栋402",
+          "category": "公司企业:公司企业",
+          "latitude": 30.548266,
+          "longitude": 104.037265
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "AboutTime艺术空间高新区，店名地址一致"
+    },
+    {
+      "group_id": "6344533aa154",
+      "location": "东来艺术(金牛区)",
+      "sample_title": "六面镜——95、00后的视觉意识",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:07_0"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "东来艺术"
+      ],
+      "poi_id": "5245240640623468951",
+      "poi_title": "东来艺术/ Donglai Art",
+      "poi_address": "四川省成都市金牛区马鞍南路37号",
+      "latitude": 30.673919,
+      "longitude": 104.085287,
+      "candidates": [
+        {
+          "poi_id": "5245240640623468951",
+          "title": "东来艺术/ Donglai Art",
+          "address": "四川省成都市金牛区马鞍南路37号",
+          "category": "公司企业:公司企业",
+          "latitude": 30.673919,
+          "longitude": 104.085287
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "东来艺术金牛区马鞍南路37号一致"
+    },
+    {
+      "group_id": "09932d13fd77",
+      "location": "四川音乐学院美术馆(临空校区)",
+      "sample_title": "赛博茶馆的巴蜀漫游计划-中国式科幻美学主题展",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:07_1"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "reject",
+      "search_keywords_tried": [
+        "四川音乐学院美术馆",
+        "四川音乐学院 临空校区",
+        "临空经济区 四川音乐"
+      ],
+      "candidates": [],
+      "confidence": "low",
+      "doubtful": false,
+      "reason": "四川音乐学院美术馆临空校区，腾讯无对应美术馆POI且多校区无法唯一确定"
+    },
+    {
+      "group_id": "109a4711b421",
+      "location": "极少艺术中心(金牛区)",
+      "sample_title": "云罅-毛艳阳个展",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:07_2"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "极少艺术中心"
+      ],
+      "poi_id": "543043521289296623",
+      "poi_title": "极少艺术中心",
+      "poi_address": "四川省成都市金牛区金泉街道振兴路99号兴普中心B座一楼",
+      "latitude": 30.71447,
+      "longitude": 104.009225,
+      "candidates": [
+        {
+          "poi_id": "543043521289296623",
+          "title": "极少艺术中心",
+          "address": "四川省成都市金牛区金泉街道振兴路99号兴普中心B座一楼",
+          "category": "文化场馆:美术馆",
+          "latitude": 30.71447,
+          "longitude": 104.009225
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "极少艺术中心金牛区，店名地址一致"
+    },
+    {
+      "group_id": "79afa86683c1",
+      "location": "成都城市音乐厅",
+      "sample_title": "舞剧《花木兰》",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:08_0"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "成都城市音乐厅"
+      ],
+      "poi_id": "17793737809543540578",
+      "poi_title": "成都城市音乐厅",
+      "poi_address": "四川省成都市武侯区一环路南一段45号",
+      "latitude": 30.636008,
+      "longitude": 104.079413,
+      "candidates": [
+        {
+          "poi_id": "17793737809543540578",
+          "title": "成都城市音乐厅",
+          "address": "四川省成都市武侯区一环路南一段45号",
+          "category": "娱乐休闲:剧场音乐厅:音乐厅",
+          "latitude": 30.636008,
+          "longitude": 104.079413
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "成都城市音乐厅与一环路南一段45号一致"
+    },
+    {
+      "group_id": "4670cfa9af78",
+      "location": "成都高新中演大剧院·多功能剧场",
+      "sample_title": "话剧《她是徽因》",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:08_1"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "成都高新中演大剧院"
+      ],
+      "poi_id": "13834262535474562844",
+      "poi_title": "成都高新中演大剧院·多功能剧场",
+      "poi_address": "四川省成都市武侯区天府四街688号4栋4号门",
+      "latitude": 30.544035,
+      "longitude": 104.051185,
+      "candidates": [
+        {
+          "poi_id": "13834262535474562844",
+          "title": "成都高新中演大剧院·多功能剧场",
+          "address": "四川省成都市武侯区天府四街688号4栋4号门",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 30.544035,
+          "longitude": 104.051185
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "成都高新中演大剧院多功能剧场与天府四街688号一致"
+    },
+    {
+      "group_id": "a730387744b6",
+      "location": "中演·成都大剧院 大剧场",
+      "sample_title": "舞剧《永不消逝的电波》",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:08_2"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "中演成都大剧院"
+      ],
+      "poi_id": "6669559818769471538",
+      "poi_title": "中演·成都大剧院",
+      "poi_address": "四川省成都市成华区仙韵一路420号",
+      "latitude": 30.68944,
+      "longitude": 104.119364,
+      "candidates": [
+        {
+          "poi_id": "6669559818769471538",
+          "title": "中演·成都大剧院",
+          "address": "四川省成都市成华区仙韵一路420号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 30.68944,
+          "longitude": 104.119364
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "中演成都大剧院大剧场与仙韵一路420号一致"
+    },
+    {
+      "group_id": "cb57f7442dba",
+      "location": "成都东安湖体育公园主体育场",
+      "sample_title": "王力宏「最好的地方II」世界巡回演唱会",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:09_0"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "成都东安湖体育公园"
+      ],
+      "poi_id": "2224965636245607195",
+      "poi_title": "东安湖体育公园-体育场",
+      "poi_address": "四川省成都市龙泉驿区东安街道东安湖体育公园",
+      "latitude": 30.596768,
+      "longitude": 104.249979,
+      "candidates": [
+        {
+          "poi_id": "2224965636245607195",
+          "title": "东安湖体育公园-体育场",
+          "address": "四川省成都市龙泉驿区东安街道东安湖体育公园",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 30.596768,
+          "longitude": 104.249979
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "东安湖体育公园主体育场与龙泉驿东安湖一致"
+    },
+    {
+      "group_id": "dbafe0de1e3f",
+      "location": "成都高新体育中心多功能体育馆",
+      "sample_title": "2026张子墨《如何形容我们的以后》演唱会-成都站",
+      "event_uids": [
+        "xiaohongshu:6a422263000000001603fadf:09_1"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "成都高新体育中心"
+      ],
+      "poi_id": "11710418310924933872",
+      "poi_title": "高新体育中心多功能体育馆",
+      "poi_address": "四川省成都市双流区中和街道吉龙路高新区体育中心西侧约240米",
+      "latitude": 30.540763,
+      "longitude": 104.104051,
+      "candidates": [
+        {
+          "poi_id": "11710418310924933872",
+          "title": "高新体育中心多功能体育馆",
+          "address": "四川省成都市双流区中和街道吉龙路高新区体育中心西侧约240米",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 30.540763,
+          "longitude": 104.104051
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "成都高新体育中心多功能体育馆与吉龙路313号一致"
     }
   ]
 }

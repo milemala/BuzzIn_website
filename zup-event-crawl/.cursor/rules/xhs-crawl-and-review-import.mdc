@@ -31,7 +31,7 @@ alwaysApply: false
 3. [`docs/xiaohongshu-vision-agent.md`](../docs/xiaohongshu-vision-agent.md) — Agent 读图与 posterBox
 4. [`docs/xiaohongshu-poster-crop-rules.md`](../docs/xiaohongshu-poster-crop-rules.md) — **海报裁切精度定稿（标框前必读）**
 4. [`docs/xiaohongshu-weekly-crawl.md`](../docs/xiaohongshu-weekly-crawl.md) — 抓取与目录约定
-4. [`docs/event-classification-agent.md`](../docs/event-classification-agent.md) — 入库后分类
+4. [`docs/event-classification-agent.md`](../docs/event-classification-agent.md) — 入库后分类流程；**判类细则**见 [`classification-agent-prompt.md`](../docs/classification-agent-prompt.md)
 5. [`docs/event-poi-agent-workflow.md`](../docs/event-poi-agent-workflow.md) — **入库后 POI（Agent 定搜词、读候选、写 decisions）**
 
 账号清单：`data/xhs-city-accounts.json`
@@ -112,7 +112,7 @@ node scripts/export-events-for-classification.js --city=<城市> --source=xiaoho
 node scripts/apply-event-classification-decisions.js --city=<城市> --source=xiaohongshu
 ```
 
-规则：[`docs/event-classification-agent.md`](../docs/event-classification-agent.md)
+规则：[`docs/classification-agent-prompt.md`](../docs/classification-agent-prompt.md)（[`event-classification-agent.md`](../docs/event-classification-agent.md) 为流程说明）
 
 ### 8. POI 匹配（分类后同会话必做）
 

@@ -1,13 +1,15 @@
 # 活动分类与推荐/挡下：Cursor 大模型判断
 
-> **新开会话必读**：抓取后「推荐 / 挡下」与「类型」不再由 JS 正则打分，由 Agent 读 `classification-pending.json` 写 `classification-decisions.json` 入库。
+> **新开会话必读**：抓取后「推荐 / 挡下」与「类型」由 **Agent** 读 `classification-pending.json` 写 `classification-decisions.json` 入库。
+>
+> **分类标准（单一事实来源）**：[`classification-agent-prompt.md`](classification-agent-prompt.md) — 10 类展示分类、展会规则、废弃类名、输出格式。**后续判类只按该文档执行。**
 
 ## 目标
 
 Zup 要的是 **线下交友、娱乐、体验** 类同城活动，不要：
 
-- 行业展会、博览会、贸易展（如跨境电商展、工业展）
-- B2B 峰会、论坛、招商会、培训课程、招聘
+- 纯 B2B 行业展会、博览会、贸易展（如跨境电商展、工业展）
+- B2B 峰会、论坛、招商会、系统培训课程、招聘
 - 纯商业获客、与「找人一起玩」无关的会场活动
 
 同时要给出 **准确的展示分类**（不用豆瓣原始类型）。
@@ -21,7 +23,7 @@ Zup 要的是 **线下交友、娱乐、体验** 类同城活动，不要：
     ↓
 导出 export-events-for-classification.js → classification-pending.json
     ↓
-【大模型】逐条判断 suggested + category + reason
+【大模型】逐条判断 suggested + category + reason（细则见 classification-agent-prompt.md）
     ↓
 写入 classification-decisions.json → apply-event-classification-decisions.js
     ↓
@@ -34,19 +36,26 @@ Zup 要的是 **线下交友、娱乐、体验** 类同城活动，不要：
 
 ## 展示分类（`category`）
 
-只能取以下之一（写入 `decisions.json`）：
+只能取 [`lib/event-classification.js`](../lib/event-classification.js) 中 `EVENT_CATEGORIES` 之一：
 
-| 分类 | 适用 |
-|------|------|
-| **喜剧脱口秀** | 脱口秀、相声、喜剧、开放麦、即兴、Sketch |
-| **戏剧表演** | 话剧、音乐剧、舞剧、歌剧、沉浸式剧场、魔术 |
-| **音乐现场** | 音乐会、演唱会、Live、爵士、乐队 |
-| **看展逛馆** | 美术馆、博物馆、艺术展、影展、观影放映、沉浸探索展 |
-| **户外运动** | 徒步、骑行、露营、Citywalk、飞盘等 |
-| **手作体验** | 钩织、陶艺、绘画、市集 DIY |
-| **交友聚会** | 交友、桌游、派对、沙龙、读书会、心理小组 |
-| **遛娃亲子** | **仅**标题/豆瓣类型明确亲子向（不要用票务「儿童说明」判断） |
-| **其他** | 以上都不贴切但仍适合推荐时 |
+| 分类 | 适用（摘要） |
+|------|----------------|
+| **约饭** | 纯约饭局（抓取极少；App 用户自发） |
+| **戏剧表演** | 脱口秀、话剧、魔术、舞台剧、沉浸式夜游剧 |
+| **音乐现场** | 演唱会、音乐会、音乐节、Live |
+| **市集** | 快闪、集市、啤酒节、动漫节/漫展/同人only、嘉年华；**公众可逛的博览会**（茶博会、食博会、咖啡文化节等） |
+| **体育运动** | 球类、竞技、体育赛事 |
+| **户外活动** | 徒步、露营、溯溪、Citywalk、登塔观景 |
+| **主题沙龙** | 读书会、破圈/跨职业/创业者交流、销售力沙龙、品鉴体验、绘画/演讲/舞蹈体验社交、桌游交友局 |
+| **看展逛馆** | 博物馆/美术馆、特展、VR 沉浸展、**艺术博览会** |
+| **遛娃亲子** | 亲子乐园、动物园、明确少儿向 |
+| **其他** | 纯 B2B 行业展、门票产品、明星见面会、商拍/演员招募、系统培训课程 |
+
+**展会**：公众可逛 → **市集** 或 **看展逛馆**；纯 B2B 招商 → **其他** + `suggested: false`。详见 [`classification-agent-prompt.md`](classification-agent-prompt.md)。
+
+> **已废弃（勿用）**：Coffee Chat、小酌、交友聚会、疗愈成长、社交、展览、手作体验 等旧名；`normalizeCategory` 会自动映射到现行类。
+
+> **禁止**用 `batch-classify-all-events.js` / `remap-active-event-categories.js`（已废弃）。
 
 > **注意**：票务详情里的「儿童说明」「家庭票」不是亲子活动信号，不要据此标 **遛娃亲子**。
 
@@ -63,29 +72,22 @@ Zup 要的是 **线下交友、娱乐、体验** 类同城活动，不要：
 
 ### 应挡下（`suggested: false`）示例
 
-- `2026第12届深圳跨境电商贸易展…`
-- `直通海外市场｜深圳国际跨境电商展`
-- 行业博览会、展销会、贸易周、峰会、论坛、私董会
-- 创业培训、职业技能课、认证课（抓取阶段已硬拦「课程」类，但仍需 Agent 复核边缘案例）
-- 招商、产业对接、B2B 展会
+- 跨境电商贸易展、工业自动化展、智慧监狱展等 **纯 B2B**
+- 创业培训、职业技能系统课、会员产品售卖
+- 商拍/演员招募、宠物乐园门票
 
 ### 应推荐（`suggested: true`）示例
 
 - 脱口秀、开放麦、喜剧演出
-- 美术馆展览、沉浸式剧场
-- 交友局、桌游、徒步、Citywalk
-- 手作体验、市集（偏逛玩而非纯招商）
+- 美术馆展览、艺术博览会、沉浸式剧场
+- 破圈社交、桌游、徒步、Citywalk
+- 公众博览会、动漫节、同人 only、啤酒节/市集
 
 ### 判断依据
 
-读每条导出的：
+读每条导出的：`title`、`location`、`fee`、`owner`、`time_text`、`douban_event_type`（仅供参考）、`slide_category`（仅供参考）、`body_excerpt`、`detail_excerpt`。
 
-- `title`、`location`、`fee`、`owner`、`time_text`
-- `douban_event_type`（豆瓣页类型，**仅供参考**）
-- `slide_category`（小红书合集 slide 上的分类标签，**仅供参考**）
-- `body_excerpt`、`detail_excerpt`
-
-**不要**只看豆瓣类型；**不要**用 JS `scoreEvent` 正则。
+**不要**只看豆瓣类型；**不要**用 JS `inferCategory` 批量写库。
 
 ---
 
@@ -101,13 +103,13 @@ Zup 要的是 **线下交友、娱乐、体验** 类同城活动，不要：
       "event_uid": "douban:37595508",
       "suggested": false,
       "category": "其他",
-      "reason": "跨境电商贸易展会，偏行业招商，不适合线下交友娱乐"
+      "reason": "跨境电商贸易展会，偏行业招商"
     },
     {
       "event_uid": "douban:37884967",
       "suggested": true,
-      "category": "社交",
-      "reason": "自我成长主题线下沙龙，偏小型社交聚会"
+      "category": "主题沙龙",
+      "reason": "自我成长主题线下沙龙，小型交流聚会"
     }
   ]
 }
@@ -148,17 +150,19 @@ Agent 入库后 `classification_source` 变为 `agent`，重抓同条活动**不
 
 | 脚本 | 作用 |
 |------|------|
-| `export-events-for-classification.js` | 导出待分类活动；`--source=xiaohongshu` / `--all-cities`；小红书入库后也会自动导出 |
+| `export-active-events-for-classification.js` | **未过期全量**导出（强制重分类）；`--city=` / 默认全城 |
+| `export-events-for-classification.js` | 仅导出尚未 agent 分类的活动 |
 | `apply-event-classification-decisions.js` | decisions → review.db；小红书加 `--source=xiaohongshu` |
+| `apply-all-classification-decisions.js` | 批量 apply 所有城 workbench 下的 decisions |
 
 ---
 
 ## 新会话检查清单
 
-- [ ] 已读本文「应挡下 / 应推荐」
+- [ ] 已读 [`classification-agent-prompt.md`](classification-agent-prompt.md)
 - [ ] 抓取后已跑 `export-events-for-classification.js`
 - [ ] 每条 `event_uid` 与 pending 文件一致
-- [ ] `category` 在允许列表内
+- [ ] `category` 在 `EVENT_CATEGORIES` 允许列表内
 - [ ] `reason` 写清挡下或推荐原因
 - [ ] 已跑 `apply-event-classification-decisions.js`
 - [ ] 再继续 POI 流程

@@ -370,8 +370,6 @@
       expire_over_2w: "过期超2周",
       expire_over_1m: "过期超1个月",
       all: "全部",
-      imported: "已推送",
-      suggested: "推荐",
       "classification-pending": "待分类",
       approved: "已通过",
       rejected: "已拒绝",
@@ -409,12 +407,12 @@
     let filterMetrics = null;
 
     const STATUS_FILTER_KEYS = [
-      "all", "imported", "suggested", "classification-pending", "rule-blocked",
+      "all", "classification-pending", "rule-blocked",
       "approved", "rejected", "pending", "pending_incomplete", "import_ready", "no_poi", "poi_doubtful", "expired",
       "imported_not_expired",
       "start_over_1w", "start_over_2w", "start_over_4w", "expire_over_2w", "expire_over_1m",
     ];
-    const IMPORTED_WIDE_SCOPE_FILTERS = new Set(["imported", "imported_not_expired"]);
+    const REMOVED_STATUS_FILTERS = new Set(["imported", "suggested"]);
 
     const sourceMeta = document.getElementById("sourceMeta");
     const listEl = document.getElementById("list");
@@ -1499,11 +1497,6 @@
 
         if (expired) {
           if (sourceMatch) expiredScoped.push(event);
-          if (sourceMatch) {
-            for (const key of IMPORTED_WIDE_SCOPE_FILTERS) {
-              if (matchesStatusFilter(event, key)) statusCounts[key] += 1;
-            }
-          }
           continue;
         }
 
@@ -1863,13 +1856,6 @@
       return isImportedEvent(event) && !isBuzzExpired(event);
     }
 
-    function getImportedWideScopedEvents() {
-      return [
-        ...(filterMetrics?.baseScoped || []),
-        ...(filterMetrics?.expiredScoped || []),
-      ];
-    }
-
     function getCityKey(event) {
       return event.city || "未知城市";
     }
@@ -1923,9 +1909,7 @@
     function matchesStatusFilter(event, filter) {
       if (filter === "all") return true;
       const status = getStatus(event);
-      if (filter === "imported") return isImportedEvent(event);
       if (filter === "import_ready") return isPendingImportEvent(event);
-      if (filter === "suggested") return isSuggested(event) && !isClassificationPending(event);
       if (filter === "classification-pending") {
         return status === "pending" && isClassificationPending(event);
       }
@@ -1997,14 +1981,12 @@
     function getFilteredEvents() {
       const scoped = statusFilter === "expired"
         ? (filterMetrics?.expiredScoped || [])
-        : IMPORTED_WIDE_SCOPE_FILTERS.has(statusFilter)
-        ? getImportedWideScopedEvents()
         : (filterMetrics?.baseScoped || []);
       const needle = searchTerm.trim().toLowerCase();
       const filtered = [];
 
       for (const event of scoped) {
-        if (statusFilter !== "expired" && !IMPORTED_WIDE_SCOPE_FILTERS.has(statusFilter) && isExpired(event)) continue;
+        if (statusFilter !== "expired" && isExpired(event)) continue;
         if (!matchesStatusFilter(event, statusFilter)) continue;
         if (categoryFilter !== "all" && event.category !== categoryFilter) continue;
         if (dateFilter !== "all" && !eventOccursOnDate(event, dateFilter)) continue;
@@ -2034,6 +2016,10 @@
 
     function normalizeDependentFilters() {
       let changed = false;
+      if (REMOVED_STATUS_FILTERS.has(statusFilter)) {
+        statusFilter = "all";
+        changed = true;
+      }
       if (cityFilter !== "all" && cityReviewTotal(cityFilter) === 0) {
         cityFilter = "all";
         changed = true;
@@ -2072,8 +2058,6 @@
       const statusCounts = filterMetrics?.statusCounts || {};
       const filters = [
         { key: "all", label: "全部" },
-        { key: "imported", label: "已推送" },
-        { key: "suggested", label: "推荐" },
         { key: "classification-pending", label: "待分类" },
         { key: "rule-blocked", label: "挡下待处理" },
         { key: "approved", label: "已通过" },

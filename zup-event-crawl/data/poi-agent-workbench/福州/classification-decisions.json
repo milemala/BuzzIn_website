@@ -1,14 +1,44 @@
 {
   "city": "福州",
   "source": "douban",
-  "decided_at": "2026-06-29T03:38:24.797Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-07-02T12:00:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
+    {
+      "event_uid": "douban:37772958",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "福建博物院海昏侯考古特展"
+    },
+    {
+      "event_uid": "douban:37799151",
+      "suggested": false,
+      "category": "其他",
+      "reason": "CEO创业沙龙，B2B创业招商"
+    },
+    {
+      "event_uid": "douban:37722969",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
     {
       "event_uid": "douban:36751279",
       "suggested": true,
-      "category": "喜剧脱口秀",
+      "category": "戏剧表演",
       "reason": "脱口秀/相声/喜剧，适合结伴观演"
+    },
+    {
+      "event_uid": "douban:37861575",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "话剧/音乐剧/舞剧等舞台演出"
+    },
+    {
+      "event_uid": "douban:37856040",
+      "suggested": true,
+      "category": "其他",
+      "reason": "宠物夏季游泳体验，宠物向"
     },
     {
       "event_uid": "douban:37714555",
@@ -17,10 +47,22 @@
       "reason": "明确面向亲子/儿童的活动"
     },
     {
-      "event_uid": "douban:37722969",
+      "event_uid": "douban:37692057",
       "suggested": true,
-      "category": "喜剧脱口秀",
-      "reason": "脱口秀/相声/喜剧，适合结伴观演"
+      "category": "其他",
+      "reason": "汪宠星乐园宠物社交体验"
+    },
+    {
+      "event_uid": "douban:37658828",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "唐朝诡事录VR国潮沉浸剧场"
+    },
+    {
+      "event_uid": "douban:37753910",
+      "suggested": true,
+      "category": "其他",
+      "reason": "狗咖撸狗体验，宠物向"
     },
     {
       "event_uid": "douban:37833669",
@@ -29,10 +71,10 @@
       "reason": "音乐会/演唱会/Live 等音乐演出"
     },
     {
-      "event_uid": "douban:37861575",
+      "event_uid": "douban:37674156",
       "suggested": true,
-      "category": "戏剧表演",
-      "reason": "话剧/音乐剧/舞剧等舞台演出"
+      "category": "其他",
+      "reason": "汪宠星乐园门票，宠物体验"
     }
   ]
 }

@@ -1,25 +1,134 @@
 {
-  "city": "重庆-xhs",
-  "source": "douban",
-  "decided_at": "2026-06-29T03:25:39.690Z",
-  "agent": "cache-hit-auto",
+  "city": "重庆",
+  "source": "xiaohongshu",
+  "decided_at": "2026-06-30T08:30:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "5385e8adba2c",
+      "group_id": "ee20de396275",
+      "location": "一奥天地B1层室内（B/C门进，manner咖啡楼梯下来）",
+      "sample_title": "二手中古集市",
+      "event_uids": [
+        "xiaohongshu:6a3a6d2d000000001700ae57:07_0"
+      ],
       "action": "match",
-      "poi_id": "2822944281155206055",
-      "poi_title": "中央公园光环花园城B馆",
-      "poi_address": "",
-      "latitude": 29.722869,
-      "longitude": 106.590729,
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：中央公园光环花园城B馆LG2层中庭 → 中央公园光环花园城B馆（来源 event:xiaohongshu:6a22bc9200000000080245d6:13_1）",
+      "search_keywords_tried": [
+        "一奥天地"
+      ],
+      "poi_id": "3084339780973573635",
+      "poi_title": "一奥天地",
+      "poi_address": "重庆市两江新区金渝大道87号",
+      "latitude": 29.64488,
+      "longitude": 106.567447,
+      "reason": "B1层活动在一奥天地商场内，对齐金渝大道87号商场主体",
+      "candidates": []
+    },
+    {
+      "group_id": "b1356333373f",
+      "location": "龙美术馆重庆馆",
+      "sample_title": "山是山——萬亨作品展",
+      "event_uids": [
+        "xiaohongshu:6a3a6d2d000000001700ae57:10_1"
+      ],
+      "action": "match",
+      "confidence": "high",
+      "doubtful": false,
+      "search_keywords_tried": [
+        "龙美术馆重庆馆"
+      ],
+      "poi_id": "14227355650711538314",
+      "poi_title": "龙美术馆(重庆分馆)",
+      "poi_address": "重庆市两江新区五里店江北嘴聚贤岩广场9号重庆国华金融中心1-3层",
+      "latitude": 29.568724,
+      "longitude": 106.573686,
+      "reason": "候选龙美术馆重庆分馆与龙美术馆重庆馆名称一致",
+      "candidates": []
+    },
+    {
+      "group_id": "407e1af53e50",
+      "location": "重庆美术馆1号厅",
+      "sample_title": "多彩巴蜀——第五届巴蜀文旅走廊美术作品展",
+      "event_uids": [
+        "xiaohongshu:6a3a6d2d000000001700ae57:12_0"
+      ],
+      "action": "match",
+      "confidence": "high",
+      "doubtful": false,
       "search_keywords_tried": [
         "poi-address-cache"
       ],
+      "poi_id": "436790455692286748",
+      "poi_title": "重庆美术馆",
+      "poi_address": "重庆市渝中区临江路重庆国泰艺术中心5层",
+      "latitude": 29.56,
+      "longitude": 106.57672,
+      "reason": "地址映射库命中：重庆美术馆1号厅 → 重庆美术馆",
+      "candidates": []
+    },
+    {
+      "group_id": "a1baec92f6e2",
+      "location": "重庆美术馆2-5号厅",
+      "sample_title": "全国名家画重庆美术作品邀请展",
       "event_uids": [
-        "xiaohongshu:6a328d09000000000800244d:16_1"
-      ]
+        "xiaohongshu:6a3a6d2d000000001700ae57:12_1"
+      ],
+      "action": "match",
+      "confidence": "high",
+      "doubtful": false,
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "436790455692286748",
+      "poi_title": "重庆美术馆",
+      "poi_address": "重庆市渝中区临江路重庆国泰艺术中心5层",
+      "latitude": 29.56,
+      "longitude": 106.57672,
+      "reason": "地址映射库命中：重庆美术馆2-5号厅 → 重庆美术馆",
+      "candidates": []
+    },
+    {
+      "group_id": "842a7e6ceebc",
+      "location": "巴渝民俗博物馆",
+      "sample_title": "匠心守护——可移动文物保护修复技艺展",
+      "event_uids": [
+        "xiaohongshu:6a3a6d2d000000001700ae57:13_0"
+      ],
+      "action": "match",
+      "confidence": "high",
+      "doubtful": false,
+      "search_keywords_tried": [
+        "巴渝民俗博物馆"
+      ],
+      "poi_id": "8446007048203144690",
+      "poi_title": "重庆巴渝民俗博物馆",
+      "poi_address": "重庆市两江新区双龙大道97号(碧津地铁站1号口步行450米)",
+      "latitude": 29.711126,
+      "longitude": 106.629638,
+      "reason": "候选重庆巴渝民俗博物馆与双龙大道97号地址一致",
+      "candidates": []
+    },
+    {
+      "group_id": "bc92037e19ab",
+      "location": "重庆美术馆7号展览厅（方隅艺术空间）",
+      "sample_title": "岚岚作品展",
+      "event_uids": [
+        "xiaohongshu:6a3a6d2d000000001700ae57:13_1"
+      ],
+      "action": "match",
+      "confidence": "high",
+      "doubtful": false,
+      "search_keywords_tried": [
+        "重庆美术馆"
+      ],
+      "poi_id": "436790455692286748",
+      "poi_title": "重庆美术馆",
+      "poi_address": "重庆市渝中区临江路重庆国泰艺术中心5层",
+      "latitude": 29.56,
+      "longitude": 106.57672,
+      "reason": "7号展览厅在重庆美术馆内，方隅艺术空间为馆内空间，对齐重庆美术馆主体",
+      "candidates": []
     }
   ]
 }

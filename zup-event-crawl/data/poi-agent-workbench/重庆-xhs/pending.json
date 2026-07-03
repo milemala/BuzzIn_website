@@ -1,139 +1,101 @@
 {
   "city": "重庆",
   "source": "xiaohongshu",
-  "exported_at": "2026-06-23T07:08:33.042Z",
+  "exported_at": "2026-06-30T08:22:34.629Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 33,
+  "last_import_new_uids": 23,
   "doubtful_only": false,
-  "total_events": 12,
-  "group_count": 12,
-  "cache_hit_groups": 1,
+  "total_events": 6,
+  "group_count": 6,
+  "cache_hit_groups": 2,
   "groups": [
     {
-      "group_id": "8dd60d1d594e",
-      "location": "华岩旅游风景区",
-      "sample_title": "华岩旅游区荷花节",
+      "group_id": "ee20de396275",
+      "location": "一奥天地B1层室内（B/C门进，manner咖啡楼梯下来）",
+      "sample_title": "二手中古集市",
       "event_uids": [
-        "xiaohongshu:6a328d09000000000800244d:01_1"
+        "xiaohongshu:6a3a6d2d000000001700ae57:07_0"
       ],
       "event_count": 1
     },
     {
-      "group_id": "8c700881f671",
-      "location": "陶然居渝味360碗国潮美食街区",
-      "sample_title": "鸿恩寺打铁花",
+      "group_id": "b1356333373f",
+      "location": "龙美术馆重庆馆",
+      "sample_title": "山是山——萬亨作品展",
       "event_uids": [
-        "xiaohongshu:6a328d09000000000800244d:02_0"
+        "xiaohongshu:6a3a6d2d000000001700ae57:10_1"
       ],
       "event_count": 1
     },
     {
-      "group_id": "7fd9d1cb6004",
-      "location": "金佛山景区",
-      "sample_title": "金佛山景区免门票",
+      "group_id": "407e1af53e50",
+      "location": "重庆美术馆1号厅",
+      "sample_title": "多彩巴蜀——第五届巴蜀文旅走廊美术作品展",
       "event_uids": [
-        "xiaohongshu:6a328d09000000000800244d:04_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "8a894d7be961",
-      "location": "四川美术学院虎溪校区/黄桷坪校区",
-      "sample_title": "川美青年艺术创意市集",
-      "event_uids": [
-        "xiaohongshu:6a328d09000000000800244d:06_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "98959165a490",
-      "location": "四川美术学院两个校区",
-      "sample_title": "2026川美毕业展",
-      "event_uids": [
-        "xiaohongshu:6a328d09000000000800244d:11_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "bbd3f24eac21",
-      "location": "西南大学博物馆（二楼、三楼）；西南大学美术学院（美术馆）",
-      "sample_title": "西南大学美术学院毕业作品展",
-      "event_uids": [
-        "xiaohongshu:6a328d09000000000800244d:11_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "e814394b7769",
-      "location": "重庆旁观者设计博物馆",
-      "sample_title": "醒书展",
-      "event_uids": [
-        "xiaohongshu:6a328d09000000000800244d:12_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "6274fd2c825f",
-      "location": "重庆中国三峡博物馆四楼临展厅D",
-      "sample_title": "月港流韵——漳州市博物馆藏明清外销瓷",
-      "event_uids": [
-        "xiaohongshu:6a328d09000000000800244d:13_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "0312baa7f889",
-      "location": "居仁礼美术馆",
-      "sample_title": "缙云闻松",
-      "event_uids": [
-        "xiaohongshu:6a328d09000000000800244d:14_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "469be6cd7d8f",
-      "location": "重庆巴渝民俗博物馆",
-      "sample_title": "匠心守护——可移动文物保护修复技艺展",
-      "event_uids": [
-        "xiaohongshu:6a328d09000000000800244d:14_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "5385e8adba2c",
-      "location": "中央公园光环花园城B馆LG2层中庭",
-      "sample_title": "KKV海绵宝宝路人鱼限定快闪",
-      "event_uids": [
-        "xiaohongshu:6a328d09000000000800244d:16_1"
+        "xiaohongshu:6a3a6d2d000000001700ae57:12_0"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "2822944281155206055",
-        "poi_title": "中央公园光环花园城B馆",
+        "poi_id": "436790455692286748",
+        "poi_title": "重庆美术馆",
         "poi_address": "",
-        "latitude": 29.722869,
-        "longitude": 106.590729,
+        "latitude": 29.56,
+        "longitude": 106.57672,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：中央公园光环花园城B馆LG2层中庭 → 中央公园光环花园城B馆（来源 event:xiaohongshu:6a22bc9200000000080245d6:13_1）",
+        "reason": "地址映射库命中：重庆美术馆1号厅 → 重庆美术馆（来源 event:xiaohongshu:6a22bc9200000000080245d6:11_0）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "5385e8adba2cd8d1d1e4362533f377b48b48d453"
+        "cache_key": "407e1af53e508ec3a2f8103615bc6636f0416b57"
       }
     },
     {
-      "group_id": "94b00351a590",
-      "location": "财富MALL一楼A中庭（商场服务台旁）",
-      "sample_title": "利莫里亚海神一周年主题痛楼",
+      "group_id": "a1baec92f6e2",
+      "location": "重庆美术馆2-5号厅",
+      "sample_title": "全国名家画重庆美术作品邀请展",
       "event_uids": [
-        "xiaohongshu:6a328d09000000000800244d:17_0"
+        "xiaohongshu:6a3a6d2d000000001700ae57:12_1"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "436790455692286748",
+        "poi_title": "重庆美术馆",
+        "poi_address": "",
+        "latitude": 29.56,
+        "longitude": 106.57672,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：重庆美术馆2-5号厅 → 重庆美术馆（来源 event:xiaohongshu:6a22bc9200000000080245d6:11_1）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "a1baec92f6e23afbec7bd8463aef0881d85ca8eb"
+      }
+    },
+    {
+      "group_id": "842a7e6ceebc",
+      "location": "巴渝民俗博物馆",
+      "sample_title": "匠心守护——可移动文物保护修复技艺展",
+      "event_uids": [
+        "xiaohongshu:6a3a6d2d000000001700ae57:13_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "bc92037e19ab",
+      "location": "重庆美术馆7号展览厅（方隅艺术空间）",
+      "sample_title": "岚岚作品展",
+      "event_uids": [
+        "xiaohongshu:6a3a6d2d000000001700ae57:13_1"
       ],
       "event_count": 1
     }

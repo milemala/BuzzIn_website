@@ -1,9 +1,33 @@
 {
   "city": "石家庄",
   "source": "douban",
-  "decided_at": "2026-06-29T03:38:24.724Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-07-02T12:00:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
+    {
+      "event_uid": "douban:37676709",
+      "suggested": true,
+      "category": "交友聚会",
+      "reason": "零基础绘画体验，小型艺术社交"
+    },
+    {
+      "event_uid": "douban:37405170",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "BaoBao来了治愈系沉浸艺术展"
+    },
+    {
+      "event_uid": "douban:37476938",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "小橘&狒狒双拼脱口秀专场"
+    },
+    {
+      "event_uid": "douban:37729318",
+      "suggested": true,
+      "category": "遛娃亲子",
+      "reason": "明确面向亲子/儿童的活动"
+    },
     {
       "event_uid": "douban:37498187",
       "suggested": true,
@@ -17,16 +41,10 @@
       "reason": "明确面向亲子/儿童的活动"
     },
     {
-      "event_uid": "douban:37729318",
+      "event_uid": "douban:37062947",
       "suggested": true,
-      "category": "遛娃亲子",
-      "reason": "明确面向亲子/儿童的活动"
-    },
-    {
-      "event_uid": "douban:37841716",
-      "suggested": true,
-      "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
+      "category": "戏剧表演",
+      "reason": "良言单口喜剧主打秀"
     }
   ]
 }

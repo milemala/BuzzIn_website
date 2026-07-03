@@ -1,8 +1,8 @@
 {
-  "city": "深圳-xhs",
-  "source": "douban",
-  "decided_at": "2026-06-29T03:25:23.871Z",
-  "agent": "cache-hit-auto",
+  "city": "深圳",
+  "source": "xiaohongshu",
+  "decided_at": "2026-06-30T08:24:40.522Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "7e2e6963577a",
@@ -20,6 +20,676 @@
       "event_uids": [
         "xiaohongshu:6a38a8e0000000001c0260ba:03_3"
       ]
+    },
+    {
+      "group_id": "5b805807f377",
+      "location": "深圳会展中心（福田）",
+      "sample_title": "2026中国（深圳）国际春季茶产业博览会",
+      "event_uids": [
+        "xiaohongshu:6a41dc7b0000000016024263:01_0",
+        "xiaohongshu:6a41dc7b0000000016024263:02_3"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳会展中心"
+      ],
+      "poi_id": "12305997467125174323",
+      "poi_title": "深圳会展中心",
+      "poi_address": "广东省深圳市福田区福华三路与金田路交叉口西南角",
+      "latitude": 22.530799,
+      "longitude": 114.059889,
+      "candidates": [
+        {
+          "poi_id": "12305997467125174323",
+          "title": "深圳会展中心",
+          "address": "广东省深圳市福田区福华三路与金田路交叉口西南角",
+          "category": "文化场馆:会展中心",
+          "latitude": 22.530799,
+          "longitude": 114.059889
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "深圳会展中心（福田）与POI一致"
+    },
+    {
+      "group_id": "5a2e8efdaaf2",
+      "location": "深圳欢乐谷",
+      "sample_title": "深圳欢乐谷夏浪狂欢节首发预告",
+      "event_uids": [
+        "xiaohongshu:6a41dc7b0000000016024263:01_1"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳欢乐谷"
+      ],
+      "poi_id": "6825891094570608451",
+      "poi_title": "欢乐谷",
+      "poi_address": "广东省深圳市南山区华侨城侨城西街(世界之窗对面)",
+      "latitude": 22.541652,
+      "longitude": 113.980509,
+      "candidates": [
+        {
+          "poi_id": "6825891094570608451",
+          "title": "欢乐谷",
+          "address": "广东省深圳市南山区华侨城侨城西街(世界之窗对面)",
+          "category": "娱乐休闲:户外活动:游乐场",
+          "latitude": 22.541652,
+          "longitude": 113.980509
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "深圳欢乐谷与南山区华侨城地址一致"
+    },
+    {
+      "group_id": "8b5ae2c530ca",
+      "location": "深圳宝安BREWTOWN啤酒小镇",
+      "sample_title": "「叹啤」湾区精酿啤酒节",
+      "event_uids": [
+        "xiaohongshu:6a41dc7b0000000016024263:01_2"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "BREWTOWN啤酒小镇"
+      ],
+      "poi_id": "2556340056751928819",
+      "poi_title": "深圳BREWTOWN啤酒小镇",
+      "poi_address": "广东省深圳市宝安区新安街道润科路华润雪花科创城",
+      "latitude": 22.582181,
+      "longitude": 113.922668,
+      "candidates": [
+        {
+          "poi_id": "2556340056751928819",
+          "title": "深圳BREWTOWN啤酒小镇",
+          "address": "广东省深圳市宝安区新安街道润科路华润雪花科创城",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 22.582181,
+          "longitude": 113.922668
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "宝安BREWTOWN啤酒小镇店名地址一致"
+    },
+    {
+      "group_id": "61bc96634908",
+      "location": "深汕特别合作区赤河广场(赤河圆墩段)",
+      "sample_title": "2026年深汕特别合作区美丽乡村龙舟超级邀请赛",
+      "event_uids": [
+        "xiaohongshu:6a2f6232000000000f01d285:00_3"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "赤河广场 深汕"
+      ],
+      "poi_id": "2199030863275",
+      "poi_title": "赤河广场[公交站]",
+      "poi_address": "深汕高峰39路,深汕高峰46路,深汕8路,深汕2路",
+      "latitude": 22.83432,
+      "longitude": 115.053266,
+      "candidates": [
+        {
+          "poi_id": "2199030863275",
+          "title": "赤河广场[公交站]",
+          "address": "深汕高峰39路,深汕高峰46路,深汕8路,深汕2路",
+          "category": "基础设施:交通设施:公交车站",
+          "latitude": 22.83432,
+          "longitude": 115.053266
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "深汕赤河广场无独立广场POI，赤河广场公交站与活动地址一致"
+    },
+    {
+      "group_id": "ae385b63ab4e",
+      "location": "深圳会展中心（福田）1、6、7、9号馆",
+      "sample_title": "2026全球高端食品及优质农产品(深圳)博览会",
+      "event_uids": [
+        "xiaohongshu:6a41dc7b0000000016024263:01_3"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳会展中心"
+      ],
+      "poi_id": "12305997467125174323",
+      "poi_title": "深圳会展中心",
+      "poi_address": "广东省深圳市福田区福华三路与金田路交叉口西南角",
+      "latitude": 22.530799,
+      "longitude": 114.059889,
+      "candidates": [
+        {
+          "poi_id": "12305997467125174323",
+          "title": "深圳会展中心",
+          "address": "广东省深圳市福田区福华三路与金田路交叉口西南角",
+          "category": "文化场馆:会展中心",
+          "latitude": 22.530799,
+          "longitude": 114.059889
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "深圳会展中心1/6/7/9号馆，会展中心主体一致"
+    },
+    {
+      "group_id": "b6f73e97ab7b",
+      "location": "清平古墟影视文化园 清平学堂",
+      "sample_title": "清平古墟夏日公益放映季",
+      "event_uids": [
+        "xiaohongshu:6a41dc7b0000000016024263:02_0"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "清平古墟影视文化园"
+      ],
+      "poi_id": "3354760500698428431",
+      "poi_title": "清平古墟影视文化园",
+      "poi_address": "广东省深圳市宝安区永兴路与瑞丰路交叉口东北方向108米左右",
+      "latitude": 22.738175,
+      "longitude": 113.828573,
+      "candidates": [
+        {
+          "poi_id": "3354760500698428431",
+          "title": "清平古墟影视文化园",
+          "address": "广东省深圳市宝安区永兴路与瑞丰路交叉口东北方向108米左右",
+          "category": "房产小区:产业园区",
+          "latitude": 22.738175,
+          "longitude": 113.828573
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "清平古墟影视文化园清平学堂，园区主体一致"
+    },
+    {
+      "group_id": "b6d4fe469c64",
+      "location": "锦绣中华民俗村",
+      "sample_title": "锦绣中华民俗村夏浪民族狂欢节",
+      "event_uids": [
+        "xiaohongshu:6a41dc7b0000000016024263:02_1"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "锦绣中华民俗村"
+      ],
+      "poi_id": "18327773919637012927",
+      "poi_title": "锦绣中华·中国民俗文化村",
+      "poi_address": "广东省深圳市南山区深南大道9003号",
+      "latitude": 22.531061,
+      "longitude": 113.988341,
+      "candidates": [
+        {
+          "poi_id": "18327773919637012927",
+          "title": "锦绣中华·中国民俗文化村",
+          "address": "广东省深圳市南山区深南大道9003号",
+          "category": "旅游景点:风景名胜",
+          "latitude": 22.531061,
+          "longitude": 113.988341
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "锦绣中华民俗村与深南大道9003号一致"
+    },
+    {
+      "group_id": "df4b0ca93e71",
+      "location": "海雅缤纷城L1中庭",
+      "sample_title": "甩人字拖大赛",
+      "event_uids": [
+        "xiaohongshu:6a41dc7b0000000016024263:02_2"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "海雅缤纷城"
+      ],
+      "poi_id": "1998786292183125618",
+      "poi_title": "海雅缤纷城",
+      "poi_address": "广东省深圳市宝安区建安一路99号",
+      "latitude": 22.55979,
+      "longitude": 113.906095,
+      "candidates": [
+        {
+          "poi_id": "1998786292183125618",
+          "title": "海雅缤纷城",
+          "address": "广东省深圳市宝安区建安一路99号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 22.55979,
+          "longitude": 113.906095
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "海雅缤纷城L1中庭，商场主体一致"
+    },
+    {
+      "group_id": "6839dc66f754",
+      "location": "深圳图书馆(中心馆)",
+      "sample_title": "百年初心如炬，万里浩气长存——庆祝中国共产党成立105周年暨纪念中国工农红军长征胜利90周年主题文献推荐展",
+      "event_uids": [
+        "xiaohongshu:6a41dc7b0000000016024263:03_0"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳图书馆",
+        "深圳图书馆 中心馆"
+      ],
+      "poi_id": "9060713234658206452",
+      "poi_title": "深圳图书馆",
+      "poi_address": "广东省深圳市福田区福中一路2001号",
+      "latitude": 22.54597,
+      "longitude": 114.05735,
+      "candidates": [
+        {
+          "poi_id": "9060713234658206452",
+          "title": "深圳图书馆",
+          "address": "广东省深圳市福田区福中一路2001号",
+          "category": "文化场馆:图书馆",
+          "latitude": 22.54597,
+          "longitude": 114.05735
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "深圳图书馆(中心馆)与福中一路2001号一致"
+    },
+    {
+      "group_id": "52658039dcdc",
+      "location": "深圳美术馆二层6、7号展厅",
+      "sample_title": "道登天门——萧娴书法艺术展",
+      "event_uids": [
+        "xiaohongshu:6a41dc7b0000000016024263:03_1"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳美术馆"
+      ],
+      "poi_id": "11107360214280099505",
+      "poi_title": "深圳美术馆",
+      "poi_address": "广东省深圳市龙华区腾龙路与中梅路交叉口东北250米",
+      "latitude": 22.62493,
+      "longitude": 114.023767,
+      "candidates": [
+        {
+          "poi_id": "11107360214280099505",
+          "title": "深圳美术馆",
+          "address": "广东省深圳市龙华区腾龙路与中梅路交叉口东北250米",
+          "category": "文化场馆:美术馆",
+          "latitude": 22.62493,
+          "longitude": 114.023767
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "深圳美术馆二层展厅，美术馆主体一致仅展厅楼层未精确"
+    },
+    {
+      "group_id": "08e14e03e46e",
+      "location": "何香凝美术馆（7-8展厅）",
+      "sample_title": "笔墨同心·林墉、苏华作品展",
+      "event_uids": [
+        "xiaohongshu:6a41dc7b0000000016024263:03_2"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "何香凝美术馆"
+      ],
+      "poi_id": "490687880930357936",
+      "poi_title": "何香凝美术馆",
+      "poi_address": "广东省深圳市南山区华侨城深南大道9013号",
+      "latitude": 22.533169,
+      "longitude": 113.981627,
+      "candidates": [
+        {
+          "poi_id": "490687880930357936",
+          "title": "何香凝美术馆",
+          "address": "广东省深圳市南山区华侨城深南大道9013号",
+          "category": "文化场馆:美术馆",
+          "latitude": 22.533169,
+          "longitude": 113.981627
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "何香凝美术馆7-8展厅，美术馆主体一致"
+    },
+    {
+      "group_id": "f4d12126bf3a",
+      "location": "光明文化艺术中心·光明之眼水池、艺术聚落水池",
+      "sample_title": "浮光与露珠——佘海晴装置特别展",
+      "event_uids": [
+        "xiaohongshu:6a41dc7b0000000016024263:03_3"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "光明文化艺术中心"
+      ],
+      "poi_id": "1171483199111679361",
+      "poi_title": "光明文化艺术中心",
+      "poi_address": "广东省深圳市光明区观光路与创投路交叉口东北角",
+      "latitude": 22.745702,
+      "longitude": 113.936997,
+      "candidates": [
+        {
+          "poi_id": "1171483199111679361",
+          "title": "光明文化艺术中心",
+          "address": "广东省深圳市光明区观光路与创投路交叉口东北角",
+          "category": "文化场馆:其它文化场馆",
+          "latitude": 22.745702,
+          "longitude": 113.936997
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "光明文化艺术中心水池区域，主体一致"
+    },
+    {
+      "group_id": "23ac697a901c",
+      "location": "深圳市体育中心体育馆(主馆)",
+      "sample_title": "2026动力火车「一路向前」巡回演唱会-深圳站",
+      "event_uids": [
+        "xiaohongshu:6a41dc7b0000000016024263:04_0"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳市体育中心体育馆"
+      ],
+      "poi_id": "10583826479909675115",
+      "poi_title": "深圳市体育中心-体育馆主馆",
+      "poi_address": "广东省深圳市福田区园岭街道体育中心笋岗西路2006号",
+      "latitude": 22.559538,
+      "longitude": 114.092028,
+      "candidates": [
+        {
+          "poi_id": "10583826479909675115",
+          "title": "深圳市体育中心-体育馆主馆",
+          "address": "广东省深圳市福田区园岭街道体育中心笋岗西路2006号",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 22.559538,
+          "longitude": 114.092028
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "深圳市体育中心体育馆主馆与笋岗西路2006号一致"
+    },
+    {
+      "group_id": "21ab9a3c4b51",
+      "location": "深圳市宝安区体育中心体育馆",
+      "sample_title": "深圳·郎朗·乐境音乐会",
+      "event_uids": [
+        "xiaohongshu:6a41dc7b0000000016024263:04_1"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "宝安区体育中心体育馆"
+      ],
+      "poi_id": "1397848181108730434",
+      "poi_title": "宝安体育馆",
+      "poi_address": "广东省深圳市宝安区新湖路2112号(宝体地铁站A口步行210米)",
+      "latitude": 22.560407,
+      "longitude": 113.884005,
+      "candidates": [
+        {
+          "poi_id": "1397848181108730434",
+          "title": "宝安体育馆",
+          "address": "广东省深圳市宝安区新湖路2112号(宝体地铁站A口步行210米)",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 22.560407,
+          "longitude": 113.884005
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "宝安区体育中心体育馆与宝安体育馆新湖路2112号一致"
+    },
+    {
+      "group_id": "b36bc0b8beed",
+      "location": "深圳湾体育中心「春茧」体育馆",
+      "sample_title": "2026张新成巡回演唱会「新程NewJourney」-深圳站",
+      "event_uids": [
+        "xiaohongshu:6a41dc7b0000000016024263:04_2"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳湾体育中心 春茧"
+      ],
+      "poi_id": "4578609209535664869",
+      "poi_title": "深圳湾体育中心\"春茧\"体育馆",
+      "poi_address": "广东省深圳市南山区滨海大道3001号",
+      "latitude": 22.517891,
+      "longitude": 113.949146,
+      "candidates": [
+        {
+          "poi_id": "4578609209535664869",
+          "title": "深圳湾体育中心\"春茧\"体育馆",
+          "address": "广东省深圳市南山区滨海大道3001号",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 22.517891,
+          "longitude": 113.949146
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "深圳湾体育中心春茧体育馆与滨海大道3001号一致"
+    },
+    {
+      "group_id": "1a3d9934bb23",
+      "location": "深圳音乐厅",
+      "sample_title": "深圳交响乐团2025/2026音乐季 盛宗亮与贝多芬的时空对话",
+      "event_uids": [
+        "xiaohongshu:6a41dc7b0000000016024263:04_3"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳音乐厅"
+      ],
+      "poi_id": "11086256307884622999",
+      "poi_title": "深圳音乐厅",
+      "poi_address": "广东省深圳市福田区福中一路2016号",
+      "latitude": 22.547417,
+      "longitude": 114.057183,
+      "candidates": [
+        {
+          "poi_id": "11086256307884622999",
+          "title": "深圳音乐厅",
+          "address": "广东省深圳市福田区福中一路2016号",
+          "category": "娱乐休闲:剧场音乐厅:音乐厅",
+          "latitude": 22.547417,
+          "longitude": 114.057183
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "深圳音乐厅与福中一路2016号一致"
+    },
+    {
+      "group_id": "e77c333d5a15",
+      "location": "深圳保利剧院",
+      "sample_title": "杨丽萍作品·舞蹈剧场《十面埋伏》",
+      "event_uids": [
+        "xiaohongshu:6a41dc7b0000000016024263:05_0"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳保利剧院"
+      ],
+      "poi_id": "17604903991079200771",
+      "poi_title": "深圳保利剧院",
+      "poi_address": "广东省深圳市南山区后海滨路3013号",
+      "latitude": 22.516366,
+      "longitude": 113.938797,
+      "candidates": [
+        {
+          "poi_id": "17604903991079200771",
+          "title": "深圳保利剧院",
+          "address": "广东省深圳市南山区后海滨路3013号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 22.516366,
+          "longitude": 113.938797
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "深圳保利剧院与后海滨路3013号一致"
+    },
+    {
+      "group_id": "2414144ce5a7",
+      "location": "南山文体中心聚橙剧院 大剧院",
+      "sample_title": "话剧《三家巷》",
+      "event_uids": [
+        "xiaohongshu:6a41dc7b0000000016024263:05_1"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "南山文体中心聚橙剧院"
+      ],
+      "poi_id": "5231327464381028818",
+      "poi_title": "南山文体中心聚橙剧院 大剧院",
+      "poi_address": "广东省深圳市南山区南头街道红花园社区南山文体中心1-4楼北侧大剧院",
+      "latitude": 22.536276,
+      "longitude": 113.922747,
+      "candidates": [
+        {
+          "poi_id": "5231327464381028818",
+          "title": "南山文体中心聚橙剧院 大剧院",
+          "address": "广东省深圳市南山区南头街道红花园社区南山文体中心1-4楼北侧大剧院",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 22.536276,
+          "longitude": 113.922747
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "南山文体中心聚橙剧院大剧院与POI一致"
+    },
+    {
+      "group_id": "99d2fc438b93",
+      "location": "深圳市南山区文化馆",
+      "sample_title": "话剧《下一站，再见咯》",
+      "event_uids": [
+        "xiaohongshu:6a41dc7b0000000016024263:05_2"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "南山区文化馆"
+      ],
+      "poi_id": "2200170177389188516",
+      "poi_title": "深圳市南山区文化馆",
+      "poi_address": "广东省深圳市南山区艺园路19号",
+      "latitude": 22.541594,
+      "longitude": 113.927593,
+      "candidates": [
+        {
+          "poi_id": "2200170177389188516",
+          "title": "深圳市南山区文化馆",
+          "address": "广东省深圳市南山区艺园路19号",
+          "category": "文化场馆:文化宫",
+          "latitude": 22.541594,
+          "longitude": 113.927593
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "深圳市南山区文化馆与艺园路19号一致"
+    },
+    {
+      "group_id": "3e0d1c5c25d3",
+      "location": "龙岗国际艺术中心",
+      "sample_title": "「意式浓缩」意大利音乐家马伊沃音乐会",
+      "event_uids": [
+        "xiaohongshu:6a41dc7b0000000016024263:05_3"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "龙岗国际艺术中心"
+      ],
+      "poi_id": "2715962234217552241",
+      "poi_title": "龙岗国际艺术中心",
+      "poi_address": "广东省深圳市龙岗区坂田街道贝尔路4号(贝尔路地铁站D口步行350米)",
+      "latitude": 22.6411,
+      "longitude": 114.063366,
+      "candidates": [
+        {
+          "poi_id": "2715962234217552241",
+          "title": "龙岗国际艺术中心",
+          "address": "广东省深圳市龙岗区坂田街道贝尔路4号(贝尔路地铁站D口步行350米)",
+          "category": "文化场馆:文化宫",
+          "latitude": 22.6411,
+          "longitude": 114.063366
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "龙岗国际艺术中心与贝尔路4号一致"
+    },
+    {
+      "group_id": "2028d7961f3d",
+      "location": "待定",
+      "sample_title": "2026年李宁·广东省城市篮球超级联赛",
+      "event_uids": [
+        "xiaohongshu:6a41dc7b0000000016024263:06_0"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "reject",
+      "search_keywords_tried": [
+        "待定"
+      ],
+      "candidates": [],
+      "confidence": "low",
+      "doubtful": false,
+      "reason": "活动地点为待定，无法对应唯一POI"
+    },
+    {
+      "group_id": "ee6f152b43fd",
+      "location": "深圳青少年足球训练基地",
+      "sample_title": "2026年冠旭电子cleer·广东省城市足球超级联赛",
+      "event_uids": [
+        "xiaohongshu:6a41dc7b0000000016024263:07_0"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "深圳青少年足球训练基地"
+      ],
+      "poi_id": "1694546982847860480",
+      "poi_title": "深圳青少年足球训练基地",
+      "poi_address": "广东省深圳市光明区浦园路李松蓢学校西北侧约150米",
+      "latitude": 22.804611,
+      "longitude": 113.890164,
+      "candidates": [
+        {
+          "poi_id": "1694546982847860480",
+          "title": "深圳青少年足球训练基地",
+          "address": "广东省深圳市光明区浦园路李松蓢学校西北侧约150米",
+          "category": "运动健身:足球场",
+          "latitude": 22.804611,
+          "longitude": 113.890164
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "深圳青少年足球训练基地与光明区地址一致"
     }
   ]
 }

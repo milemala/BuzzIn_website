@@ -1,8 +1,8 @@
 {
   "city": "南京",
   "source": "xiaohongshu",
-  "updated_at": "2026-06-14T17:31:53.156Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-06-30T08:24:40.522Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "19d196f14d99",
@@ -1939,6 +1939,286 @@
       "poi_address": "江苏省南京市江宁区汤山街道汤山大道18号",
       "latitude": 32.033234,
       "longitude": 119.049603
+    },
+    {
+      "group_id": "8b1aa4b15cba",
+      "location": "金鹰新街口店B座L4中庭",
+      "sample_title": "金陵手帐市集",
+      "event_uids": [
+        "xiaohongshu:6a422a2500000000160272f6:01_0"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "金鹰国际购物中心 新街口"
+      ],
+      "poi_id": "6424288659800373486",
+      "poi_title": "金鹰国际购物中心(新街口店)",
+      "poi_address": "江苏省南京市秦淮区汉中路89号南京国际购物中心A座6层",
+      "latitude": 32.041539,
+      "longitude": 118.779924,
+      "candidates": [
+        {
+          "poi_id": "6424288659800373486",
+          "title": "金鹰国际购物中心(新街口店)",
+          "address": "江苏省南京市秦淮区汉中路89号南京国际购物中心A座6层",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 32.041539,
+          "longitude": 118.779924
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地点写金鹰新街口店B座中庭，POI为新街口店购物中心主体一致，仅楼层中庭未精确"
+    },
+    {
+      "group_id": "2e12059222fb",
+      "location": "金鹰新街口店AB座户外连廊",
+      "sample_title": "微醺夜市",
+      "event_uids": [
+        "xiaohongshu:6a422a2500000000160272f6:01_1"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "金鹰国际购物中心 新街口"
+      ],
+      "poi_id": "6424288659800373486",
+      "poi_title": "金鹰国际购物中心(新街口店)",
+      "poi_address": "江苏省南京市秦淮区汉中路89号南京国际购物中心A座6层",
+      "latitude": 32.041539,
+      "longitude": 118.779924,
+      "candidates": [
+        {
+          "poi_id": "6424288659800373486",
+          "title": "金鹰国际购物中心(新街口店)",
+          "address": "江苏省南京市秦淮区汉中路89号南京国际购物中心A座6层",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 32.041539,
+          "longitude": 118.779924
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "金鹰新街口店AB座户外连廊，同一购物中心主体"
+    },
+    {
+      "group_id": "cc56a74a1de3",
+      "location": "南京市鼓楼区清凉门大街1号南京环宇城1楼中庭",
+      "sample_title": "上元手帐市集",
+      "event_uids": [
+        "xiaohongshu:6a422a2500000000160272f6:01_2"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "南京环宇城"
+      ],
+      "poi_id": "8657125501900478269",
+      "poi_title": "环宇城",
+      "poi_address": "江苏省南京市鼓楼区清凉门大街1号",
+      "latitude": 32.04467,
+      "longitude": 118.752803,
+      "candidates": [
+        {
+          "poi_id": "8657125501900478269",
+          "title": "环宇城",
+          "address": "江苏省南京市鼓楼区清凉门大街1号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 32.04467,
+          "longitude": 118.752803
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "店名环宇城与鼓楼区清凉门大街1号地址一致"
+    },
+    {
+      "group_id": "c78bd49e66d0",
+      "location": "南京百家湖·太阳城广场",
+      "sample_title": "百家湖啤酒节美食市集",
+      "event_uids": [
+        "xiaohongshu:6a422a2500000000160272f6:02_0"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "21世纪太阳城",
+        "太阳城广场 百家湖"
+      ],
+      "poi_id": "4378556411355584360",
+      "poi_title": "21世纪太阳城",
+      "poi_address": "江苏省南京市江宁区双龙大道1539号",
+      "latitude": 31.927312,
+      "longitude": 118.824337,
+      "candidates": [
+        {
+          "poi_id": "4378556411355584360",
+          "title": "21世纪太阳城",
+          "address": "江苏省南京市江宁区双龙大道1539号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 31.927312,
+          "longitude": 118.824337
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "百家湖太阳城广场即21世纪太阳城购物中心"
+    },
+    {
+      "group_id": "1cc9d5349faf",
+      "location": "弘阳广场",
+      "sample_title": "江北首届Gelato冰淇淋节",
+      "event_uids": [
+        "xiaohongshu:6a422a2500000000160272f6:02_1"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "弘阳广场"
+      ],
+      "poi_id": "1059271376810068732",
+      "poi_title": "弘阳广场",
+      "poi_address": "江苏省南京市浦口区大桥北路48号",
+      "latitude": 32.139075,
+      "longitude": 118.72437,
+      "candidates": [
+        {
+          "poi_id": "1059271376810068732",
+          "title": "弘阳广场",
+          "address": "江苏省南京市浦口区大桥北路48号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 32.139075,
+          "longitude": 118.72437
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "弘阳广场与浦口区大桥北路48号一致"
+    },
+    {
+      "group_id": "8a64a1925712",
+      "location": "玄武花园城",
+      "sample_title": "南京荷花市集",
+      "event_uids": [
+        "xiaohongshu:6a422a2500000000160272f6:02_2"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "玄武花园城"
+      ],
+      "poi_id": "1786544645035337876",
+      "poi_title": "南京玄武花园城",
+      "poi_address": "江苏省南京市玄武区大壮观路69号",
+      "latitude": 32.093473,
+      "longitude": 118.819423,
+      "candidates": [
+        {
+          "poi_id": "1786544645035337876",
+          "title": "南京玄武花园城",
+          "address": "江苏省南京市玄武区大壮观路69号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 32.093473,
+          "longitude": 118.819423
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "玄武花园城与玄武区大壮观路69号一致"
+    },
+    {
+      "group_id": "908abf48e376",
+      "location": "仙林可一书店一楼广场",
+      "sample_title": "南京仙林夏日夜市",
+      "event_uids": [
+        "xiaohongshu:6a422a2500000000160272f6:03_0"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "可一书店 仙林"
+      ],
+      "poi_id": "10287454589636305220",
+      "poi_title": "仙林可一书店",
+      "poi_address": "江苏省南京市栖霞区仙林街道杉湖东路9号负二层",
+      "latitude": 32.100215,
+      "longitude": 118.930769,
+      "candidates": [
+        {
+          "poi_id": "10287454589636305220",
+          "title": "仙林可一书店",
+          "address": "江苏省南京市栖霞区仙林街道杉湖东路9号负二层",
+          "category": "购物:图书音像",
+          "latitude": 32.100215,
+          "longitude": 118.930769
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "仙林可一书店店名地址一致"
+    },
+    {
+      "group_id": "12a1badf6ddb",
+      "location": "南京金象城",
+      "sample_title": "南京北岸首届金象汉堡节",
+      "event_uids": [
+        "xiaohongshu:6a422a2500000000160272f6:03_1"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "金象城"
+      ],
+      "poi_id": "13721983782943113588",
+      "poi_title": "金象城购物中心",
+      "poi_address": "江苏省南京市浦口区江山路6号",
+      "latitude": 32.127142,
+      "longitude": 118.735277,
+      "candidates": [
+        {
+          "poi_id": "13721983782943113588",
+          "title": "金象城购物中心",
+          "address": "江苏省南京市浦口区江山路6号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 32.127142,
+          "longitude": 118.735277
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "南京金象城与浦口江山路6号一致"
+    },
+    {
+      "group_id": "ef07f2e12ca1",
+      "location": "南京市景枫中心B1中庭",
+      "sample_title": "轻松小熊主题快闪",
+      "event_uids": [
+        "xiaohongshu:6a422a2500000000160272f6:03_2"
+      ],
+      "decided_at": "2026-06-30T08:24:40.522Z",
+      "action": "match",
+      "search_keywords_tried": [
+        "景枫中心"
+      ],
+      "poi_id": "15823801814523826050",
+      "poi_title": "景枫中心",
+      "poi_address": "江苏省南京市江宁区双龙大道1698号",
+      "latitude": 31.93002,
+      "longitude": 118.819999,
+      "candidates": [
+        {
+          "poi_id": "15823801814523826050",
+          "title": "景枫中心",
+          "address": "江苏省南京市江宁区双龙大道1698号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 31.93002,
+          "longitude": 118.819999
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "景枫中心与江宁双龙大道1698号一致，仅B1中庭未精确"
     }
   ]
 }

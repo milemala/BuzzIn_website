@@ -1,14 +1,14 @@
 {
   "city": "温州",
   "source": "douban",
-  "decided_at": "2026-06-29T03:38:24.654Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-07-02T12:00:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "event_uid": "douban:37656895",
-      "suggested": true,
-      "category": "音乐现场",
-      "reason": "音乐会/演唱会/Live 等音乐演出"
+      "event_uid": "douban:37799306",
+      "suggested": false,
+      "category": "其他",
+      "reason": "CEO创业沙龙，B2B创业招商"
     },
     {
       "event_uid": "douban:37800843",
@@ -21,6 +21,12 @@
       "suggested": true,
       "category": "音乐现场",
       "reason": "音乐会/演唱会/Live 等音乐演出"
+    },
+    {
+      "event_uid": "douban:36917521",
+      "suggested": true,
+      "category": "遛娃亲子",
+      "reason": "无界宇宙航天亲子探索空间"
     }
   ]
 }
