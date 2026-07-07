@@ -127,7 +127,7 @@ node scripts/run-xhs-weekly-pipeline.js --city=北京,上海,广州
 node scripts/run-xhs-weekly-pipeline.js --skip-scrape --city=上海
 ```
 
-输出在 `data/scrape-cache/xhs/<城市>/<笔记ID>/`。海报由 Agent 逐张读图标框、裁切、验收后入库；有海报 → 4:3 封面，无海报 → 文字封面。
+输出在 `data/scrape-cache/xhs/<城市>/<笔记ID>/`。第一次抓取就必须按交付质量切图：Agent 逐张读原图确认坐标系，逐场找独立矩形主视觉，四边贴海报本体，重点量准下行 `y` 和右栏 `x`；边界不清楚宁可走文字封面。`extract` 后必须直接抽查 `posters/*.jpg` 成品图，坏图回原图返修并重新 `extract`，抽查通过后才入库；有海报 → 4:3 封面，无海报 → 文字封面。用户反馈切坏时，先清旧 `posterBox`，不要在坏坐标上局部修补。
 
 **一站式**：对 Agent 说「抓取成都豆瓣活动」或「处理上海小红书一周活动」即可，用户不跑脚本。
 
