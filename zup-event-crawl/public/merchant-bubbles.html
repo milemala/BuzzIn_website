@@ -110,7 +110,7 @@
       </nav>
       <div class="buzz-env-bar" id="buzzEnvBar"></div>
       <h1>商户气泡批量发布</h1>
-      <div class="meta">基于已入库商户，按城市随机三分组轮转发布。气泡默认 <strong>3 天后过期</strong>；商户群聊名称 = 完整店名（含分店括号）。</div>
+      <div class="meta">基于已入库商户，按城市随机<strong>至少 3 组</strong>轮转发布（单组超过 <strong>40</strong> 家时自动加组）。发布新一轮时，该城市<strong>上一组</strong>气泡自动过期；新建气泡后台兜底过期 <strong>3 天</strong>。商户群聊名称 = 完整店名（含分店括号）。</div>
       <div class="save-state warn" id="saveState">加载中...</div>
     </div>
   </header>
@@ -124,12 +124,12 @@
         <button class="btn" id="publishTestBtn" type="button">发布1个测试气泡</button>
       </div>
       <p class="hint" style="margin-top:8px">将 Buzz 后台已有商户写入审核台并标记为已入库。若与本地商户 <strong>POI 相同但 merchant_id 不同</strong>，会删除审核台本地旧记录（不删后台商户）。</p>
-      <p class="hint" style="margin-top:6px">「发布1个测试气泡」会在<strong>北京</strong>已入库商户中随机选 1 家发布，标题用店名，并临时新建群聊（不影响三分组轮转）。</p>
+      <p class="hint" style="margin-top:6px">「发布1个测试气泡」会在<strong>北京</strong>已入库商户中随机选 1 家发布，标题用店名，并临时新建群聊（不影响分组轮转）。</p>
     </section>
 
     <section class="panel">
       <h2>发布设置</h2>
-      <p class="hint">每次发布仅选中各城市当前轮次的那 1/3 商户。发布完成后自动轮到下一组。</p>
+      <p class="hint">每次发布仅选中各城市当前轮次的那一组商户。发布完成后自动轮到下一组。</p>
 
       <div class="field">
         <label for="publishUserId">发布者 user_id</label>
@@ -157,7 +157,7 @@
           <textarea id="unifiedContent" placeholder="例如：发现身边宝藏小店，一起来坐坐。"></textarea>
         </div>
         <p class="option-note" id="perMerchantNote" hidden>
-          <strong>按店名生成：</strong>标题 = 商户名；正文使用下方「统一正文」，留空则用默认「欢迎进群组局邀约，看看谁有空一起。」
+          <strong>按店名生成：</strong>标题 = 商户名；正文使用下方「统一正文」，留空则用默认「附近的小伙伴们可以约起来了～ / 欢迎进群组局，来认识几个新朋友吧～」
         </p>
       </div>
 
@@ -189,7 +189,7 @@
       </div>
 
       <div class="actions">
-        <button class="btn" id="rebuildBtn" type="button">重新随机三分组</button>
+        <button class="btn" id="rebuildBtn" type="button">重新随机分组</button>
         <button class="btn" id="createGroupsBtn" type="button">批量创建商户群聊</button>
         <button class="btn primary" id="publishBtn" type="button">发布本批气泡</button>
       </div>
@@ -233,7 +233,7 @@
     const unifiedContentLabel = document.getElementById("unifiedContentLabel");
     const unifiedContentInput = document.getElementById("unifiedContent");
     const perMerchantNote = document.getElementById("perMerchantNote");
-    const DEFAULT_PER_MERCHANT_CONTENT = "欢迎进群组局邀约，看看谁有空一起。";
+    const DEFAULT_PER_MERCHANT_CONTENT = "附近的小伙伴们可以约起来了～\n欢迎进群组局，来认识几个新朋友吧～";
     const groupModeNote = document.getElementById("groupModeNote");
     let busy = false;
     let titleMode = "unified";
@@ -684,7 +684,7 @@
           `${city} 第 ${slot + 1} 组共 ${count} 家。若部分商户尚无群聊，发布可能失败。继续？`,
         )) return;
         if (!window.confirm(
-          `为 ${city} 第 ${slot + 1} 组（${count} 家）发布气泡？\n发布后该城市将轮到第 ${((slot + 1) % 3) + 1} 组。`,
+          `为 ${city} 第 ${slot + 1} 组（${count} 家）发布气泡？\n该城市上一组未过期气泡会先自动设为过期；发布后轮到下一组。`,
         )) return;
         await runBatchJob({
           title: "分组发布",
@@ -747,7 +747,7 @@
     }
 
     document.getElementById("rebuildBtn").addEventListener("click", () => {
-      if (!window.confirm("重新随机三分组？各城市商户会重新洗牌分组。")) return;
+      if (!window.confirm("重新随机分组？各城市商户会重新洗牌：至少 3 组，单组超过 40 家时自动加组。")) return;
       runAction("重新分组", "/api/merchant-bubbles/rebuild-buckets", { city: currentOptions().city });
     });
 
@@ -828,10 +828,10 @@
           if (!window.confirm("部分商户还没有群聊。建议先点「批量创建商户群聊」。仍要继续发布吗？")) return;
         }
       }
-      if (!window.confirm("发布本批气泡？将按各城市当前轮次的 1/3 商户发布，过期时间为 3 天后。")) return;
+      if (!window.confirm("发布本批气泡？将按各城市当前轮次的一组商户发布；各城市上一组未过期气泡会先自动设为过期。")) return;
       await runBatchJob({
         title: "批量发布",
-        scope: `${opts.city || "全部城市"} · 当前轮次 1/3 · ${BuzzEnvUi.envLabel()}`,
+        scope: `${opts.city || "全部城市"} · 当前轮次 · ${BuzzEnvUi.envLabel()}`,
         url: "/api/merchant-bubbles/publish-batch",
         body: opts,
       });

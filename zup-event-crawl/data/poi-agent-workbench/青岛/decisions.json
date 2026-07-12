@@ -1,59 +1,53 @@
 {
   "city": "青岛",
   "source": "douban",
-  "decided_at": "2026-06-29T03:43:36.003Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-07-10T12:05:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "bbd29ea160b4",
+      "group_id": "d5b4ae46f503",
+      "event_uids": ["douban:37899747"],
       "action": "match",
+      "search_keywords_tried": ["万达影城 CBD万达广场"],
+      "poi_id": "11303032333620011499",
+      "poi_title": "万达影城(CBD万达广场IMAX店)",
+      "poi_address": "山东省青岛市市北区徐州路与龙城路交叉口东南方向81米左右",
+      "latitude": 36.088856,
+      "longitude": 120.378339,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "青岛CBD万达广场万达影城与活动影院一致",
+      "candidates": []
+    },
+    {
+      "group_id": "df008ea8a036",
+      "event_uids": ["douban:37899110"],
+      "action": "match",
+      "search_keywords_tried": ["横店电影城 市南区 青岛"],
+      "poi_id": "3569222361434195357",
+      "poi_title": "横店电影城(中山路店)",
+      "poi_address": "山东省青岛市市南区中山路67号悦喜客来购物广场F4",
+      "latitude": 36.067392,
+      "longitude": 120.319888,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "市南区横店电影城中山店即中山路店，区划与店名一致",
+      "candidates": []
+    },
+    {
+      "group_id": "bbd29ea160b4",
+      "event_uids": ["douban:37823679", "douban:37776895", "douban:37267226"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "16379937920368861042",
       "poi_title": "一支麦小剧场(香港中路店)",
       "poi_address": "",
       "latitude": 36.065839,
       "longitude": 120.403136,
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：青岛 市南区 一支麦小剧场 香港中路69号麦凯乐青岛总店二层东南角 → 一支麦小剧场(香港中路店)（来源 event:douban:37177374）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37548449"
-      ]
-    },
-    {
-      "group_id": "5f308c3261cf",
-      "action": "match",
-      "poi_id": "9998467331074209506",
-      "poi_title": "龙马社黑匣子剧场",
-      "poi_address": "",
-      "latitude": 36.065987,
-      "longitude": 120.333485,
-      "doubtful": false,
-      "reason": "地址映射库命中：青岛 市南区 龙马社黑匣子剧场 龙山路26号怡堡酒店内 → 龙马社黑匣子剧场（来源 event:douban:37665713）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37665516"
-      ]
-    },
-    {
-      "group_id": "2281ad7f174e",
-      "action": "match",
-      "poi_id": "3052579427537840330",
-      "poi_title": "青岛凤凰之声大剧院",
-      "poi_address": "山东省青岛市黄岛区山东西海岸新区金沙滩路966号",
-      "latitude": 35.953194,
-      "longitude": 120.243229,
-      "doubtful": false,
-      "reason": "凤凰之声大剧院与金沙滩路966号地址完全一致",
-      "search_keywords_tried": [
-        "凤凰之声大剧院"
-      ],
-      "event_uids": [
-        "douban:37829192"
-      ]
+      "reason": "地址映射库命中香港中路69号一支麦小剧场",
+      "candidates": []
     }
   ]
 }

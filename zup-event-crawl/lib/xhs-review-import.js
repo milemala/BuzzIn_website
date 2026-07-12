@@ -15,8 +15,10 @@ const {
   loadContentDedupKeys,
   loadTitleLocationDedupIndex,
   isEventBetterByEnd,
+  isEventUnexpired,
   eventTitleLocationDedupKey,
   toTitleLocationIncumbent,
+  pickUnexpiredTitleLocationIncumbent,
   createTitlePoiDedupGateFromDb,
 } = require("./event-content-dedup");
 const { openDatabase, eventUidFor } = require("./review-db");
@@ -213,19 +215,20 @@ async function loadReviewEventsFromNote(noteDir, rootDir, options = {}) {
 
     const titleLocationKey = eventTitleLocationDedupKey(reviewEvent);
     if (titleLocationKey) {
-      const dbIncumbent = titleLocationIndex.get(titleLocationKey);
-      const batchIncumbent = batchTitleLocationWinners.get(titleLocationKey);
-      const incumbent = dbIncumbent && batchIncumbent
-        ? (isEventBetterByEnd(batchIncumbent, dbIncumbent) ? batchIncumbent : dbIncumbent)
-        : (batchIncumbent || dbIncumbent);
-      if (incumbent && !isEventBetterByEnd(reviewEvent, incumbent)) {
+      const incumbent = pickUnexpiredTitleLocationIncumbent(
+        titleLocationIndex.get(titleLocationKey),
+        batchTitleLocationWinners.get(titleLocationKey),
+      );
+      if (incumbent && isEventUnexpired(reviewEvent) && !isEventBetterByEnd(reviewEvent, incumbent)) {
         skippedTitleLocation += 1;
         if (options.log !== false) {
           console.log(`  跳过较早结束(标题+地点): ${reviewEvent.title}`);
         }
         continue;
       }
-      if (batchIncumbent && isEventBetterByEnd(reviewEvent, batchIncumbent)) {
+      if (batchTitleLocationWinners.has(titleLocationKey)
+        && isEventUnexpired(reviewEvent)
+        && isEventBetterByEnd(reviewEvent, batchTitleLocationWinners.get(titleLocationKey))) {
         for (let i = reviewEvents.length - 1; i >= 0; i -= 1) {
           if (eventTitleLocationDedupKey(reviewEvents[i]) !== titleLocationKey) continue;
           if (isEventBetterByEnd(reviewEvents[i], reviewEvent)) continue;
@@ -234,11 +237,13 @@ async function loadReviewEventsFromNote(noteDir, rootDir, options = {}) {
           break;
         }
       }
-      batchTitleLocationWinners.set(titleLocationKey, {
-        ...toTitleLocationIncumbent(reviewEvent, reviewEvent.city),
-        xhsNoteId: reviewEvent.xhsNoteId,
-        xhsIndex: reviewEvent.xhsIndex,
-      });
+      if (isEventUnexpired(reviewEvent)) {
+        batchTitleLocationWinners.set(titleLocationKey, {
+          ...toTitleLocationIncumbent(reviewEvent, reviewEvent.city),
+          xhsNoteId: reviewEvent.xhsNoteId,
+          xhsIndex: reviewEvent.xhsIndex,
+        });
+      }
     }
 
     let titlePoiDecision = null;
@@ -253,7 +258,9 @@ async function loadReviewEventsFromNote(noteDir, rootDir, options = {}) {
       }
     }
 
-    contentKeys.add(dedupKey);
+    if (isEventUnexpired(reviewEvent)) {
+      contentKeys.add(dedupKey);
+    }
     position += 1;
     try {
       const cover = await attachCoverImages(reviewEvent, noteDir, rootDir, options);

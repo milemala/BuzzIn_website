@@ -1,25 +1,22 @@
 {
   "city": "长春",
   "source": "douban",
-  "updated_at": "2026-06-21T02:40:00.000Z",
+  "decided_at": "2026-07-06T10:55:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "fc1b0bdf1a62",
-      "event_uids": ["douban:37783204"],
+      "event_uids": ["douban:37826653"],
       "action": "match",
-      "search_keywords_tried": ["南关区", "长春国际会议中心·主会场", "会展大街100号", "长春国际会议中心", "100号", "南关区 长春国际会议中心·主会场 会展大街100号"],
+      "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "8056389127559213550",
       "poi_title": "长春国际会议中心·主会场",
-      "poi_address": "吉林省长春市南关区会展街道会展大街100号北海路会展中心北五号门",
+      "poi_address": "",
       "latitude": 43.839353,
       "longitude": 125.400154,
       "confidence": "high",
       "doubtful": false,
-      "reason": "场馆名与POI完全一致，南关区会展大街100号",
-      "candidates": [
-        {"index": 0, "poi_id": "8056389127559213550", "title": "长春国际会议中心·主会场", "address": "吉林省长春市南关区会展街道会展大街100号北海路会展中心北五号门", "category": "文化场馆:会展中心", "latitude": 43.839353, "longitude": 125.400154}
-      ]
+      "reason": "地址映射库命中：南关区长春国际会议中心主会场会展大街100号"
     }
   ]
 }

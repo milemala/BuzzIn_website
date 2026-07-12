@@ -1,120 +1,92 @@
 {
   "city": "广州",
   "source": "douban",
-  "decided_at": "2026-06-29T03:42:54.879Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-07-10T11:30:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "ba9b5a7cff03",
+      "group_id": "ee0a9b8561c8",
+      "event_uids": ["douban:37898903"],
       "action": "match",
-      "poi_id": "11405468392197237654",
-      "poi_title": "中山纪念堂-演出厅",
-      "poi_address": "",
-      "latitude": 23.133746,
-      "longitude": 113.264908,
+      "search_keywords_tried": ["广州飞扬影城正佳IMAX"],
+      "poi_id": "12443005293188108606",
+      "poi_title": "飞扬影城(正佳IMAX店)",
+      "poi_address": "广东省广州市天河区天河路228号正佳广场F7",
+      "latitude": 23.131553,
+      "longitude": 113.326985,
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：广州 越秀区 中山纪念堂·演出厅 东风中路299号 → 中山纪念堂-演出厅（来源 event:douban:37724385）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37792289"
-      ]
+      "reason": "店名与天河区正佳广场7楼飞扬影城IMAX店一致"
     },
     {
-      "group_id": "b82cca436242",
+      "group_id": "db8e467aaa0c",
+      "event_uids": ["douban:37899168"],
       "action": "match",
-      "poi_id": "10798684933118352428",
-      "poi_title": "星海音乐厅",
-      "poi_address": "",
-      "latitude": 23.107748,
-      "longitude": 113.305678,
+      "search_keywords_tried": ["悦榕路65号"],
+      "poi_id": "9571758272825285419",
+      "poi_title": "广州33美术馆",
+      "poi_address": "广东省广州市黄埔区联和街道悦榕路65号",
+      "latitude": 23.187715,
+      "longitude": 113.430006,
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：广州 越秀区 星海音乐厅 晴波路33号 → 星海音乐厅（来源 event:douban:37747873）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37803055",
-        "douban:37892380"
-      ]
+      "reason": "黄埔区悦榕路65号与33美术馆地址一致，活动为馆内读书分享会"
+    },
+    {
+      "group_id": "b7177f41cfc0",
+      "event_uids": ["douban:37899109"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "4914978108905275120",
+      "poi_title": "中泰国际广场A座",
+      "poi_address": "",
+      "latitude": 23.149591,
+      "longitude": 113.323085,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：林和西路中泰国际A座9楼 → 中泰国际广场A座，仅差楼层"
+    },
+    {
+      "group_id": "283699d2b7ec",
+      "event_uids": ["douban:37582591"],
+      "action": "match",
+      "search_keywords_tried": ["西瓜剧场 江南西"],
+      "poi_id": "1728119171453113961",
+      "poi_title": "西瓜剧场",
+      "poi_address": "广东省广州市海珠区南园二街5号,2号线江南西地铁站C出口步行约300米",
+      "latitude": 23.098557,
+      "longitude": 113.276205,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "店名与海珠区南园二街5号西瓜剧场一致"
+    },
+    {
+      "group_id": "237cbbe0e0ec",
+      "event_uids": ["douban:37890850"],
+      "action": "match",
+      "search_keywords_tried": ["我图 体育东路86号"],
+      "poi_id": "3736210738180227436",
+      "poi_title": "我们的图书馆(富丽花苑店)",
+      "poi_address": "广东省广州市天河区天河南街道体育东路86号2楼204铺",
+      "latitude": 23.1305,
+      "longitude": 113.329334,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "主办方「我们的图书馆」即我图，体育东路86号204铺与活动地址一致；映射库K11命中有误已纠正"
     },
     {
       "group_id": "88f5e771431c",
+      "event_uids": ["douban:37878556"],
       "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "6884895873401208372",
       "poi_title": "南方证券大厦",
       "poi_address": "",
       "latitude": 23.139127,
       "longitude": 113.328952,
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：广州 天河区 体育东路南方证券大厦二楼觉咖啡 → 南方证券大厦（来源 event:douban:37878516）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37893332"
-      ]
-    },
-    {
-      "group_id": "a4eb73032056",
-      "action": "match",
-      "poi_id": "7900472676081068007",
-      "poi_title": "南天广场龙庭阁-南门",
-      "poi_address": "",
-      "latitude": 23.120099,
-      "longitude": 113.316404,
-      "doubtful": false,
-      "reason": "地址映射库命中：广州 天河区 南天广场龙庭阁2702 → 南天广场龙庭阁-南门（来源 event:douban:37878543）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37893347"
-      ]
-    },
-    {
-      "group_id": "ffd7a48efd83",
-      "action": "reject",
-      "doubtful": false,
-      "reason": "敬梓里文创社区二期中山七路68号无独立腾讯 POI，候选为一期(敬梓里2号)或租户门店，无法唯一匹配二期主体",
-      "search_keywords_tried": [
-        "敬梓里文创社区",
-        "敬梓里文创社区二期 中山七路68号",
-        "敬梓里2期"
-      ],
-      "event_uids": [
-        "douban:37894322"
-      ]
-    },
-    {
-      "group_id": "54bdd1d50b05",
-      "action": "match",
-      "poi_id": "275053503382873673",
-      "poi_title": "友谊剧院",
-      "poi_address": "广东省广州市越秀区人民北路696号",
-      "latitude": 23.144969,
-      "longitude": 113.257679,
-      "doubtful": false,
-      "reason": "场馆名称与人民北路696号地址完全一致",
-      "search_keywords_tried": [
-        "友谊剧院"
-      ],
-      "event_uids": [
-        "douban:37745660"
-      ]
-    },
-    {
-      "group_id": "663afbd07afe",
-      "action": "reject",
-      "doubtful": false,
-      "reason": "珠江新城A1仅为呼伦贝尔徒步出发地铁站口，非活动主体场地，无法绑定具体场馆POI",
-      "search_keywords_tried": [
-        "珠江新城"
-      ],
-      "event_uids": [
-        "douban:37892845"
-      ]
+      "reason": "地址映射库命中：体育东路南方证券大厦二楼觉咖啡 → 南方证券大厦，仅差楼层铺位"
     }
   ]
 }

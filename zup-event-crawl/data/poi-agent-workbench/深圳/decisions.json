@@ -1,135 +1,158 @@
 {
   "city": "深圳",
   "source": "douban",
-  "decided_at": "2026-06-29T03:43:24.233Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-07-10T11:35:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "c23a4b9a1baa",
-      "action": "match",
-      "poi_id": "15281668256543917083",
-      "poi_title": "ROOTS HOUSE(华侨城店)",
-      "poi_address": "",
-      "latitude": 22.537591,
-      "longitude": 113.992029,
-      "doubtful": false,
-      "reason": "地址映射库命中：深圳 南山区 华侨城创意园E3栋101C ROOTS HOUSE → ROOTS HOUSE(华侨城店)（来源 event:douban:37889600）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
+      "group_id": "30b8ec43428f",
       "event_uids": [
-        "douban:37894418"
-      ]
+        "douban:37898441"
+      ],
+      "action": "match",
+      "poi_id": "6487992874640479746",
+      "poi_title": "联娱影城(福田京基KK ONE店)",
+      "poi_address": "广东省深圳市福田区滨河大道9289号KKONE时尚潮流购物中心L4",
+      "latitude": 22.528288,
+      "longitude": 114.027404,
+      "doubtful": false,
+      "reason": "福田区联娱影城京基KKone店名与豆瓣一致",
+      "search_keywords_tried": [
+        "联娱影城 京基KKone"
+      ],
+      "confidence": "high"
     },
     {
-      "group_id": "7be61bdd975e",
-      "action": "match",
-      "poi_id": "2462313919833142162",
-      "poi_title": "来疯喜剧脱口秀俱乐部(上梅林卓悦汇店)",
-      "poi_address": "",
-      "latitude": 22.570031,
-      "longitude": 114.060644,
-      "doubtful": false,
-      "reason": "地址映射库命中：深圳 福田区 来疯喜剧场-上梅林卓悦汇店 中康路126号卓悦汇L2-19b(八合里旁边)来疯喜剧场 → 来疯喜剧脱口秀俱乐部(上梅林卓悦汇店)（来源 event:douban:37709077）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
+      "group_id": "8a6e9adc872e",
       "event_uids": [
-        "douban:37709082"
-      ]
-    },
-    {
-      "group_id": "34b27f8854ae",
-      "action": "match",
-      "poi_id": "262628701006936448",
-      "poi_title": "安徽大厦",
-      "poi_address": "",
-      "latitude": 22.536255,
-      "longitude": 114.031628,
-      "doubtful": false,
-      "reason": "地址映射库命中：深圳 福田区 安徽大厦 → 安徽大厦（来源 event:douban:37864999）",
-      "search_keywords_tried": [
-        "poi-address-cache"
+        "douban:37898540"
       ],
-      "event_uids": [
-        "douban:37893372",
-        "douban:37893109"
-      ]
-    },
-    {
-      "group_id": "4b223026781e",
-      "action": "match",
-      "poi_id": "2391290718381281313",
-      "poi_title": "龙岗文化中心大剧院",
-      "poi_address": "广东省深圳市龙岗区龙翔大道8308号文化馆2层",
-      "latitude": 22.720561,
-      "longitude": 114.250434,
-      "doubtful": false,
-      "reason": "场馆名称与龙翔大道8308号地址完全一致",
-      "search_keywords_tried": [
-        "龙岗文化中心大剧院"
-      ],
-      "event_uids": [
-        "douban:37813777"
-      ]
-    },
-    {
-      "group_id": "258ec36c43de",
-      "action": "match",
-      "poi_id": "10583826479909675115",
-      "poi_title": "深圳市体育中心体育馆主馆",
-      "poi_address": "广东省深圳市福田区园岭街道体育中心笋岗西路2006号",
-      "latitude": 22.559538,
-      "longitude": 114.092028,
-      "doubtful": false,
-      "reason": "豆瓣写体育馆主馆，候选名称与笋岗西路2006号完全一致",
-      "search_keywords_tried": [
-        "深圳市体育中心体育馆"
-      ],
-      "event_uids": [
-        "douban:37831795"
-      ]
-    },
-    {
-      "group_id": "ee4a688682ca",
-      "action": "match",
-      "poi_id": "17604903991079200771",
-      "poi_title": "深圳保利剧院",
-      "poi_address": "广东省深圳市南山区后海滨路3013号",
-      "latitude": 22.516366,
-      "longitude": 113.938797,
-      "doubtful": false,
-      "reason": "场馆名称与后海滨路3013号地址完全一致",
-      "search_keywords_tried": [
-        "深圳保利剧院"
-      ],
-      "event_uids": [
-        "douban:37758880"
-      ]
-    },
-    {
-      "group_id": "8ab18e8dad17",
       "action": "reject",
-      "doubtful": false,
-      "reason": "豆瓣写明华国际会议中心正门斜对面，为夜登南山户外徒步集合点，非会议中心本体，无法对应唯一活动场地POI",
+      "reason": "详情为小红书线上展演，前海深港合作区地址过泛无法对应唯一线下POI",
       "search_keywords_tried": [
-        "明华国际会议中心"
+        "前海深港合作区"
       ],
-      "event_uids": [
-        "douban:37797324"
-      ]
+      "confidence": "high"
     },
     {
-      "group_id": "53d1a73dd524",
-      "action": "reject",
-      "doubtful": false,
-      "reason": "岗厦北地铁站仅为桌游集合交通点，无具体场馆门牌，候选均为地铁口/周边商铺",
-      "search_keywords_tried": [
-        "岗厦北地铁站"
-      ],
+      "group_id": "3c358bc170af",
       "event_uids": [
-        "douban:37851990"
-      ]
+        "douban:37899089"
+      ],
+      "action": "match",
+      "poi_id": "10859155267087343154",
+      "poi_title": "金地梅陇镇",
+      "poi_address": "广东省深圳市龙华区民安路136号",
+      "latitude": 22.630612,
+      "longitude": 114.032527,
+      "doubtful": false,
+      "reason": "豆瓣龙华区金地梅陇镇与POI住宅小区主体一致，仅差具体聊天地点",
+      "search_keywords_tried": [
+        "金地梅陇镇"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "group_id": "151868bf1448",
+      "event_uids": [
+        "douban:37895395"
+      ],
+      "action": "match",
+      "poi_id": "16766038513149208802",
+      "poi_title": "泰然工贸园-213栋",
+      "poi_address": "",
+      "latitude": 22.532026,
+      "longitude": 114.02526,
+      "doubtful": false,
+      "reason": "地址映射库命中：深圳 福田区 泰然工贸园213栋5楼 → 泰然工贸园-213栋（来源 event:douban:37883621）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "confidence": "high"
+    },
+    {
+      "group_id": "be7873efaa12",
+      "event_uids": [
+        "douban:37898132"
+      ],
+      "action": "match",
+      "poi_id": "524726888809961165",
+      "poi_title": "观筑艺术空间",
+      "poi_address": "广东省深圳市南山区沙河街道 锦绣北街2号华侨城创意文化园B10栋02铺",
+      "latitude": 22.539471,
+      "longitude": 113.993636,
+      "doubtful": false,
+      "reason": "南山区观筑艺术空间店名与豆瓣一致",
+      "search_keywords_tried": [
+        "观筑艺术空间"
+      ],
+      "confidence": "high"
+    },
+    {
+      "group_id": "36722d457098",
+      "event_uids": [
+        "douban:37898232"
+      ],
+      "action": "match",
+      "poi_id": "18185713332639949230",
+      "poi_title": "MOCICI天空冥想(荣超经贸中心店)",
+      "poi_address": "广东省深圳市福田区莲花街道金田路4028号荣超经贸中心4801号",
+      "latitude": 22.544153,
+      "longitude": 114.063756,
+      "doubtful": false,
+      "reason": "豆瓣荣超经贸中心4801室天空冥想馆与POI门牌4801号一致",
+      "search_keywords_tried": [
+        "荣超经贸中心"
+      ],
+      "confidence": "high"
+    },
+    {
+      "group_id": "b60056fa5cc0",
+      "event_uids": [
+        "douban:37898531"
+      ],
+      "action": "reject",
+      "reason": "豆瓣写龙岗区盐田地铁站集合，区划矛盾且仅地铁集合点无法对应唯一场馆POI",
+      "search_keywords_tried": [
+        "盐田地铁站"
+      ],
+      "confidence": "high"
+    },
+    {
+      "group_id": "f790bd3962cd",
+      "event_uids": [
+        "douban:37898796"
+      ],
+      "action": "match",
+      "poi_id": "16279202223895750320",
+      "poi_title": "安徽大厦创展中心",
+      "poi_address": "广东省深圳市福田区深南大道6007号",
+      "latitude": 22.536221,
+      "longitude": 114.031584,
+      "doubtful": false,
+      "reason": "福田区安徽大厦创展中心楼宇主体与豆瓣一致，仅差室内运动场馆铺位",
+      "search_keywords_tried": [
+        "安徽大厦创展中心"
+      ],
+      "confidence": "high"
+    },
+    {
+      "group_id": "32d6b270b25f",
+      "event_uids": [
+        "douban:37899376"
+      ],
+      "action": "match",
+      "poi_id": "1928560869740938180",
+      "poi_title": "深圳国际商会大厦A座",
+      "poi_address": "",
+      "latitude": 22.537074,
+      "longitude": 114.05127,
+      "doubtful": false,
+      "reason": "地址映射库命中：深圳 福田区 国际商会大厦A座 → 深圳国际商会大厦A座（来源 event:douban:37856970）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "confidence": "high"
     }
   ]
 }

@@ -1,93 +1,101 @@
 {
   "city": "广州",
   "source": "douban",
-  "exported_at": "2026-06-29T03:23:38.431Z",
+  "exported_at": "2026-07-10T11:27:02.086Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 8,
+  "last_import_new_uids": 6,
   "doubtful_only": false,
-  "total_events": 8,
-  "group_count": 7,
-  "cache_hit_groups": 4,
+  "total_events": 6,
+  "group_count": 6,
+  "cache_hit_groups": 3,
   "groups": [
     {
-      "group_id": "ba9b5a7cff03",
-      "location": "广州 越秀区 中山纪念堂·演出厅 东风中路299号",
-      "sample_title": "「萨克斯之王 Kenny G」2026 世界巡演-广州站",
+      "group_id": "ee0a9b8561c8",
+      "location": "广州 天河区 广州飞扬影城-正佳IMAX店（天河区天河路228号正佳购物广场7楼）",
+      "sample_title": "回来了，终于回来了！周星驰喜剧新作《功夫女足》广州公映日免费观影",
       "event_uids": [
-        "douban:37792289"
+        "douban:37898903"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "db8e467aaa0c",
+      "location": "广州 黄埔区 悦榕路65号7楼",
+      "sample_title": "“不懂哲学的艺术家不是一个好作家：《基弗：日志1998-1999》分享会",
+      "event_uids": [
+        "douban:37899168"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "b7177f41cfc0",
+      "location": "广州 天河区 林和西路中泰国际A座9楼",
+      "sample_title": "用绘画放松情绪，用叙事聆听内心 | 叙事绘画疗愈体验读书会",
+      "event_uids": [
+        "douban:37899109"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "11405468392197237654",
-        "poi_title": "中山纪念堂-演出厅",
+        "poi_id": "4914978108905275120",
+        "poi_title": "中泰国际广场A座",
         "poi_address": "",
-        "latitude": 23.133746,
-        "longitude": 113.264908,
+        "latitude": 23.149591,
+        "longitude": 113.323085,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：广州 越秀区 中山纪念堂·演出厅 东风中路299号 → 中山纪念堂-演出厅（来源 event:douban:37724385）",
+        "reason": "地址映射库命中：广州 天河区 林和西路中泰国际A座9楼 → 中泰国际广场A座（来源 event:douban:37884967）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "ba9b5a7cff03261a98aba01c3627c7d60992e545"
+        "cache_key": "b7177f41cfc0f7a266fccb83a40f3ca8736d273f"
       }
     },
     {
-      "group_id": "b82cca436242",
-      "location": "广州 越秀区 星海音乐厅 晴波路33号",
-      "sample_title": "周日音乐下午茶4 交响N次元",
+      "group_id": "283699d2b7ec",
+      "location": "广州 海珠区 西瓜剧场 前进路南园二街5号（江南西地铁站C出口）",
+      "sample_title": "三脚猪喜剧 | 残酷开放麦：观众举牌决定演员讲多久",
       "event_uids": [
-        "douban:37803055",
-        "douban:37892380"
+        "douban:37582591"
       ],
-      "event_count": 2,
+      "event_count": 1
+    },
+    {
+      "group_id": "237cbbe0e0ec",
+      "location": "广州 天河区 广东 广州 我图--天河区体育东路86号204（邮编：510620）",
+      "sample_title": "我图周末阿瓦隆",
+      "event_uids": [
+        "douban:37890850"
+      ],
+      "event_count": 1,
       "cached_poi": {
-        "poi_id": "10798684933118352428",
-        "poi_title": "星海音乐厅",
+        "poi_id": "7841443980837936417",
+        "poi_title": "广州K11购物艺术中心",
         "poi_address": "",
-        "latitude": 23.107748,
-        "longitude": 113.305678,
+        "latitude": 23.118213,
+        "longitude": 113.326371,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：广州 越秀区 星海音乐厅 晴波路33号 → 星海音乐厅（来源 event:douban:37747873）",
+        "reason": "地址映射库命中：广州 天河区 广东 广州 我图--天河区体育东路86号204（邮编：510620） → 广州K11购物艺术中心（来源 event:douban:37890778）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "b82cca436242f77dc9fc51e0708d80425e650f09"
+        "cache_key": "237cbbe0e0ecf01511801fc2216350d454449364"
       }
-    },
-    {
-      "group_id": "ffd7a48efd83",
-      "location": "广州 荔湾区 中山七路68号敬梓里文创社区二期（西门口地铁站D口步行约6分钟）",
-      "sample_title": "听理立说第432期：立叔攒下的不同阶层人士生活观察报告",
-      "event_uids": [
-        "douban:37894322"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "54bdd1d50b05",
-      "location": "广州 越秀区 友谊剧院 人民北路696号",
-      "sample_title": "小奇 哈哈曹 徐浩伦谭湘文领衔《一起笑嘛！》巡演-笑果出品@广州",
-      "event_uids": [
-        "douban:37745660"
-      ],
-      "event_count": 1
     },
     {
       "group_id": "88f5e771431c",
       "location": "广州 天河区 体育东路南方证券大厦二楼觉咖啡",
-      "sample_title": "广州中年转型社交局｜12人高质量深度交流",
+      "sample_title": "每周二广州线下｜12人中年破圈社交局",
       "event_uids": [
-        "douban:37893332"
+        "douban:37878556"
       ],
       "event_count": 1,
       "cached_poi": {
@@ -99,47 +107,13 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：广州 天河区 体育东路南方证券大厦二楼觉咖啡 → 南方证券大厦（来源 event:douban:37878516）",
+        "reason": "地址映射库命中：广州 天河区 体育东路南方证券大厦二楼觉咖啡 → 南方证券大厦（来源 event:douban:37893332）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
         "cache_key": "88f5e771431c619257012a22499edfa84386fc5a"
       }
-    },
-    {
-      "group_id": "a4eb73032056",
-      "location": "广州 天河区 南天广场龙庭阁2702",
-      "sample_title": "普通人可落地的成交能力｜广州实战销售力提升沙龙",
-      "event_uids": [
-        "douban:37893347"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "7900472676081068007",
-        "poi_title": "南天广场龙庭阁-南门",
-        "poi_address": "",
-        "latitude": 23.120099,
-        "longitude": 113.316404,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：广州 天河区 南天广场龙庭阁2702 → 南天广场龙庭阁-南门（来源 event:douban:37878543）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "a4eb73032056cb79f2aa19f410a0e280fe1a94f2"
-      }
-    },
-    {
-      "group_id": "663afbd07afe",
-      "location": "广州 天河区 珠江新城A1",
-      "sample_title": "2026步丈山河 • 呼伦贝尔大草原42KM徒步挑战计划",
-      "event_uids": [
-        "douban:37892845"
-      ],
-      "event_count": 1
     }
   ]
 }

@@ -1,256 +1,183 @@
 {
   "city": "武汉",
   "source": "xiaohongshu",
-  "exported_at": "2026-06-30T08:22:34.264Z",
+  "exported_at": "2026-07-10T12:24:35.539Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 26,
+  "last_import_new_uids": 24,
   "doubtful_only": false,
-  "total_events": 25,
-  "group_count": 25,
-  "cache_hit_groups": 1,
+  "total_events": 16,
+  "group_count": 15,
+  "cache_hit_groups": 2,
   "groups": [
     {
-      "group_id": "528108877ba8",
-      "location": "武汉·武商梦时代",
-      "sample_title": "《光·遇》七周年线下嘉年华",
+      "group_id": "8f47f6d1f04b",
+      "location": "蔡甸张湾街官塘村乌梅山特1号",
+      "sample_title": "江滩夏日限定-横渡长江博物馆夜游",
       "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:01_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "99fe470aca7d",
-      "location": "武昌万象城L3樱花唱诗",
-      "sample_title": "食评街小学第二届偷吃小赛",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:01_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "b2c9ce934b62",
-      "location": "黄鹏路88号听涛景区内",
-      "sample_title": "东湖听涛泳场限时免费开放",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:01_2"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "377687c73ead",
-      "location": "武汉欧亚达家居(徐东店)",
-      "sample_title": "武汉倪妮线下见面会",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:02_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "d35da347ff80",
-      "location": "鄂州灵玲野生动物王国对面",
-      "sample_title": "鄂州银河左岸音乐节",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:02_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "b70c20e50aa9",
-      "location": "潮流盒子·武汉x118",
-      "sample_title": "X118首届全国Cosplay挑战赛",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:02_2"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "2b08900a80b1",
-      "location": "武汉汉街万达&菱角湖万达广场",
-      "sample_title": "无限暖暖×万达广场线下活动",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:03_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "026dae02958d",
-      "location": "武汉欢乐谷",
-      "sample_title": "武汉欢乐谷潮流红人派对",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:03_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "1f153983d7f3",
-      "location": "Aesop伊索武汉SKP店",
-      "sample_title": "伊索女性文学图书馆·武汉站",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:03_2"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "5520295af065",
-      "location": "街道口新华书店（城市书房）三楼放映室",
-      "sample_title": "新华之光·光影铸魂红色公益观影活动",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:04_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "88726a3a3eeb",
-      "location": "江汉路潮流盒子·武汉X118 / 7楼",
-      "sample_title": "《灵笼》线下主题展-华中首展",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:04_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "0b76e581951c",
-      "location": "东湖之眼广场",
-      "sample_title": "武汉首届甩拖鞋大赛",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:04_2"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "11ce2b7faaa5",
-      "location": "武汉大学万林艺术博物馆",
-      "sample_title": "云冈石窟特展",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:05_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "a79e9f453027",
-      "location": "洪山区野芷湖西路创意天地03创意工坊101",
-      "sample_title": "车泊远个展：胡不归",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:05_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "0c31f7d33faf",
-      "location": "湖北美术馆负一层特展厅（昙华林）",
-      "sample_title": "\"深蓝·高虹\"个展",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:05_2"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "d670e89ff952",
-      "location": "盘龙城遗址博物院一楼临展厅",
-      "sample_title": "《寻绎夏商》特展",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:06_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "ebd0b6ba4da6",
-      "location": "湖北省美术院美术馆3号厅",
-      "sample_title": "天葩吐奇芬",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:06_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "fac461e00af9",
-      "location": "武汉美术馆（汉口馆）4/5/6展厅",
-      "sample_title": "承古开新——中国画展",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:06_2"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "a1eb84f0f600",
-      "location": "知音号游船",
-      "sample_title": "武汉·星烙·JOJO同人only4.0",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:07_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "c4050d426e1c",
-      "location": "MJG复古艺廊(近江汉路)",
-      "sample_title": "武汉·无期迷途同人only3.0",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:07_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "08a963c9a856",
-      "location": "武汉园博园时光艺术厅",
-      "sample_title": "武汉·约会大作战only同人",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:07_2"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "f01be7e14cf7",
-      "location": "武汉恒隆广场",
-      "sample_title": "三丽鸥家族\"日晒海岛派对\"华中首展",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:08_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "3dc0c452d1d0",
-      "location": "银泰创意城",
-      "sample_title": "银泰百货 x 燕云十六声 限时联动",
-      "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:08_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "fb43511625ec",
-      "location": "MAISON191（东湖风景区沙湾村191号）",
-      "sample_title": "雷霆丑猫·个展",
-      "event_uids": [
-        "xiaohongshu:6a2fb49500000000150255ed:08_2"
+        "xiaohongshu:6a4f4e110000000016027768:01_0"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "2007916592136996331",
-        "poi_title": "Maison191画廊咖啡",
+        "poi_id": "226146012630106839",
+        "poi_title": "武汉野生动物王国",
         "poi_address": "",
-        "latitude": 30.533761,
-        "longitude": 114.39434,
+        "latitude": 30.555489,
+        "longitude": 113.947196,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：MAISON191（东湖风景区沙湾村191号） → Maison191画廊咖啡（来源 event:xiaohongshu:6a26780c0000000021020f6d:06_0）",
+        "reason": "地址映射库命中：蔡甸张湾街官塘村乌梅山特1号 → 武汉野生动物王国（来源 event:xiaohongshu:6a4b70e60000000015024f33:01_0）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "fb43511625ec465c392a962aed54f334832c2799"
+        "cache_key": "8f47f6d1f04bd3c8f0b0457b2807b14253adaf96"
       }
     },
     {
-      "group_id": "068ae9f367e7",
-      "location": "武商梦时代·5楼B区梦之眼",
-      "sample_title": "thatskyshop光遇官方周边快闪店",
+      "group_id": "aa769bb56067",
+      "location": "江汉区青年路373号武汉博物馆",
+      "sample_title": "武汉博物馆江城非遗「夜市」",
       "event_uids": [
-        "xiaohongshu:6a42415900000000170289a7:08_2"
+        "xiaohongshu:6a4f4e110000000016027768:01_1"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "12248476031736664809",
+        "poi_title": "武汉博物馆",
+        "poi_address": "",
+        "latitude": 30.61148,
+        "longitude": 114.256479,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：江汉区青年路373号武汉博物馆 → 武汉博物馆（来源 event:xiaohongshu:6a4b70e60000000015024f33:01_1）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "aa769bb5606781ca8b1b7b9231cac7b85c0bab69"
+      }
+    },
+    {
+      "group_id": "91974fb1eff2",
+      "location": "武汉中山公园",
+      "sample_title": "中山公园夏季夜游开放",
+      "event_uids": [
+        "xiaohongshu:6a4f4e110000000016027768:02_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "ea50e5865bf9",
+      "location": "武汉保利广场L2利郎店铺前",
+      "sample_title": "「邻里闲置接头局」(闲置物品市集)",
+      "event_uids": [
+        "xiaohongshu:6a4f4e110000000016027768:02_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "32118a929033",
+      "location": "武汉K11购物艺术中心馆L3",
+      "sample_title": "中国奇谭造梦奇境艺术展",
+      "event_uids": [
+        "xiaohongshu:6a4f4e110000000016027768:02_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "cbe24719906c",
+      "location": "凯德西城广场(古田二路)",
+      "sample_title": "硚口区星空音乐会",
+      "event_uids": [
+        "xiaohongshu:6a4f4e110000000016027768:04_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "68b3f8af2ab8",
+      "location": "东湖风景区东湖绿道九女墩",
+      "sample_title": "东湖音乐小站Live",
+      "event_uids": [
+        "xiaohongshu:6a4f4e110000000016027768:04_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "a07ba76addac",
+      "location": "东湖吹笛景区(马鞍山森林公园)",
+      "sample_title": "马鞍山森林公园·紫薇花",
+      "event_uids": [
+        "xiaohongshu:6a4f4e110000000016027768:05_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "1b2c866d4b4a",
+      "location": "武昌区杨园街道临江大道725号",
+      "sample_title": "武昌铁机路江滩·向日葵",
+      "event_uids": [
+        "xiaohongshu:6a4f4e110000000016027768:05_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "a511b46c1971",
+      "location": "沙湖公园C区",
+      "sample_title": "沙湖公园·荷花",
+      "event_uids": [
+        "xiaohongshu:6a4f4e110000000016027768:05_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "d2ca94d16ca9",
+      "location": "武汉美术馆（汉口馆）1/2/3号厅",
+      "sample_title": "李传真劳动者主题作品展",
+      "event_uids": [
+        "xiaohongshu:6a4f4e110000000016027768:06_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "83600e3bd344",
+      "location": "武汉体育中心体育馆",
+      "sample_title": "武汉·二次元度假哈啤节",
+      "event_uids": [
+        "xiaohongshu:6a4f4e110000000016027768:07_0",
+        "xiaohongshu:6a4f4e110000000016027768:07_2"
+      ],
+      "event_count": 2
+    },
+    {
+      "group_id": "e4d026146f10",
+      "location": "武汉人艺中南剧场·话剧剧场",
+      "sample_title": "话剧《金瓶外传》",
+      "event_uids": [
+        "xiaohongshu:6a4f4e110000000016027768:07_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "98de1fc65a95",
+      "location": "武汉潮流盒子X118一楼中庭",
+      "sample_title": "山林未远，夏荫同栖明日方舟快闪",
+      "event_uids": [
+        "xiaohongshu:6a4f4e110000000016027768:08_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "167eac4ea982",
+      "location": "武汉天地新天地广场",
+      "sample_title": "Coach书写真我故事快闪",
+      "event_uids": [
+        "xiaohongshu:6a4f4e110000000016027768:08_2"
       ],
       "event_count": 1
     }

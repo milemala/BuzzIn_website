@@ -1,108 +1,83 @@
 {
   "city": "天津",
   "source": "douban",
-  "exported_at": "2026-06-29T03:23:50.305Z",
+  "exported_at": "2026-07-10T11:53:43.013Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 5,
+  "last_import_new_uids": 4,
   "doubtful_only": false,
-  "total_events": 5,
-  "group_count": 5,
-  "cache_hit_groups": 3,
+  "total_events": 4,
+  "group_count": 4,
+  "cache_hit_groups": 2,
   "groups": [
     {
-      "group_id": "164832be67e4",
-      "location": "天津 河东区 卫国道157号一品家园",
-      "sample_title": "壹贰零度社区：读书、电影、音乐、交流聚会",
+      "group_id": "d04a4380c61d",
+      "location": "天津 和平区 SFC上影影城(天津天河城IMAX店) 和平区小白楼街和平路263号天津天河城第八层809商铺",
+      "sample_title": "回来了，终于回来了！周星驰喜剧新作《功夫女足》天津公映日免费观影",
       "event_uids": [
-        "douban:37894708"
+        "douban:37898886"
       ],
       "event_count": 1
     },
     {
-      "group_id": "a900e7aeedc9",
-      "location": "天津 河西区 天津大剧院 平江道58号增1号",
-      "sample_title": "爱·永恒——理查德·克莱德曼2026钢琴音乐会-天津站",
+      "group_id": "4e27a008ce1b",
+      "location": "天津 河西区 光华剧院 挂甲寺街道南北大街2号围堤道口(近凯德MALL购物中心)",
+      "sample_title": "天津儿艺 | 儿童剧《木偶奇遇记》",
       "event_uids": [
-        "douban:37707958"
+        "douban:37859177"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "5192144685254939370",
-        "poi_title": "天津大剧院",
+        "poi_id": "14694096430531753900",
+        "poi_title": "光华剧院",
         "poi_address": "",
-        "latitude": 39.087342,
-        "longitude": 117.216161,
+        "latitude": 39.096859,
+        "longitude": 117.238196,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：天津 河西区 天津大剧院 平江道58号增1号 → 天津大剧院（来源 event:douban:37841577）",
+        "reason": "地址映射库命中：天津 河西区 光华剧院 挂甲寺街道南北大街2号围堤道口(近凯德MALL购物中心) → 光华剧院（来源 event:douban:37567318）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "a900e7aeedc9f641376d05c9ced0b92791c8d298"
+        "cache_key": "4e27a008ce1b3d21203df55723e092510e99a67b"
       }
     },
     {
-      "group_id": "8b5ae8a00482",
-      "location": "天津 和平区 天津音乐厅 建设路与浙江路交叉口南20米（小白楼地铁站A口旁）",
-      "sample_title": "“中银之声2026天津音乐节”天津交响乐团2025-2026 音乐季“向党献礼”",
+      "group_id": "4f9b7427132a",
+      "location": "天津 滨海新区 滨海演艺中心 中央大道与大连东道交汇处西南侧",
+      "sample_title": "加拿大原版全场互动亲子剧《你是演奏家2》",
       "event_uids": [
-        "douban:37843737"
+        "douban:37860365"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "1534516290909584326",
-        "poi_title": "天津音乐厅",
+        "poi_id": "7738159007364714106",
+        "poi_title": "滨海演艺中心",
         "poi_address": "",
-        "latitude": 39.115469,
-        "longitude": 117.215194,
+        "latitude": 39.016031,
+        "longitude": 117.686405,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：天津 和平区 天津音乐厅 建设路与浙江路交叉口南20米（小白楼地铁站A口旁） → 天津音乐厅（来源 event:douban:37840882）",
+        "reason": "地址映射库命中：天津 滨海新区 滨海演艺中心 中央大道与大连东道交汇处西南侧 → 滨海演艺中心（来源 event:douban:37681441）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "8b5ae8a00482388af7ce4e623580ea1efdfd21e8"
+        "cache_key": "4f9b7427132a5c32069cc880252bdfa5c622a826"
       }
     },
     {
-      "group_id": "529efe307c34",
-      "location": "天津 和平区 津湾大剧院 解放北路与赤峰道交口津湾广场4号楼",
-      "sample_title": "新中式舞蹈秀《叹春风》",
+      "group_id": "62f59cf3b276",
+      "location": "天津 南开区 海河剧院 水上公园街道卫津南路8号(近八里台立交桥、八里台文化广场)",
+      "sample_title": "锐锐脱口秀专场《爱,来不来2.0》｜快乐共暖@天津",
       "event_uids": [
-        "douban:37825526"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "11805831732686530903",
-        "poi_title": "津湾大剧院",
-        "poi_address": "",
-        "latitude": 39.132447,
-        "longitude": 117.209419,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：天津 和平区 津湾大剧院 解放北路与赤峰道交口津湾广场4号楼 → 津湾大剧院（来源 event:douban:37772477）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "529efe307c343140824589bf2cddaed4d6c42d12"
-      }
-    },
-    {
-      "group_id": "6dfc5ab3d71a",
-      "location": "天津 南开区 天津奥林匹克中心体育馆 宾水西道393号",
-      "sample_title": "2026 Ella陈嘉桦It's Me艾拉主意巡回演唱会天津站",
-      "event_uids": [
-        "douban:37853138"
+        "douban:37804868"
       ],
       "event_count": 1
     }

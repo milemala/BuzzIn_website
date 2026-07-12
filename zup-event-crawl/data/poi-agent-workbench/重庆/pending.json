@@ -1,91 +1,118 @@
 {
   "city": "重庆",
   "source": "douban",
-  "exported_at": "2026-06-29T03:23:43.864Z",
+  "exported_at": "2026-07-10T11:47:12.660Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 3,
+  "last_import_new_uids": 6,
   "doubtful_only": false,
-  "total_events": 3,
-  "group_count": 3,
+  "total_events": 6,
+  "group_count": 6,
   "cache_hit_groups": 3,
   "groups": [
     {
-      "group_id": "7d018236cd5e",
-      "location": "重庆 渝中区 重庆国泰艺术中心云瑚音乐厅 临江路3号",
-      "sample_title": "梦痕——意大利那不勒斯民谣组合音乐会",
+      "group_id": "f39b66670d03",
+      "location": "重庆 渝中区 CGV影城(重庆来福士店)",
+      "sample_title": "285期《群星闪耀时》西安超前免费观影",
       "event_uids": [
-        "douban:37827001"
+        "douban:37899154"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "efb10d5a9c52",
+      "location": "重庆 九龙坡区 龙湖西街星座A座21-12",
+      "sample_title": "外出聚会：露营、爬山、探风景、吃美食｜移动茶摊：江边、山上、天台",
+      "event_uids": [
+        "douban:37890730"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "2322472542756439282",
-        "poi_title": "重庆国泰艺术中心云瑚音乐厅",
+        "poi_id": "15874814400996978135",
+        "poi_title": "西街星座A座",
         "poi_address": "",
-        "latitude": 29.560313,
-        "longitude": 106.577761,
+        "latitude": 29.511395,
+        "longitude": 106.517588,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：重庆 渝中区 重庆国泰艺术中心云瑚音乐厅 临江路3号 → 重庆国泰艺术中心云瑚音乐厅（来源 event:douban:37663618）",
+        "reason": "地址映射库命中：重庆 九龙坡区 龙湖西街星座A座21-12 → 西街星座A座（来源 event:douban:37676673）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "7d018236cd5ea2467602fc231bb9a430f2804857"
+        "cache_key": "efb10d5a9c526d74e649ca59eaccff02b381638a"
       }
     },
     {
-      "group_id": "5a34edd36a41",
-      "location": "重庆 渝中区 重庆国泰艺术中心云卫剧场-渝戏 临江路1号重庆国泰艺术中心云卫剧场",
-      "sample_title": "【重庆国泰艺术中心】国风经典儿童剧—《西游记之孙悟空三打白骨精》",
+      "group_id": "f952aff395d4",
+      "location": "重庆 两江新区 重庆市两江新区观音桥",
+      "sample_title": "重庆徒步郊游青年每周六周边郊游逛山，放松自我健康休闲活动开始",
       "event_uids": [
-        "douban:37097531"
+        "douban:37879844"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "139fda4186ae",
+      "location": "重庆 九龙坡区 CKG48星梦剧院 奥体路一号喜盈门范城五楼",
+      "sample_title": "重庆偶像女子团体CKG48剧场公演演出",
+      "event_uids": [
+        "douban:37735659"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "d760ff44e846",
+      "location": "重庆 两江新区 MAO Livehouse重庆 红旗河沟 龙湖新壹街A馆-B1-Zlab",
+      "sample_title": "张泽 2026“张嘴就来”BEATBOX 巡演重庆站BBOX",
+      "event_uids": [
+        "douban:37821277"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "9924413222897895137",
-        "poi_title": "重庆国泰艺术中心云卫剧场-渝戏",
+        "poi_id": "2875387476666423445",
+        "poi_title": "MAO Livehouse(观音桥龙湖新壹街店)",
         "poi_address": "",
-        "latitude": 29.560091,
-        "longitude": 106.577163,
+        "latitude": 29.581458,
+        "longitude": 106.525486,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：重庆 渝中区 重庆国泰艺术中心云卫剧场-渝戏 临江路1号重庆国泰艺术中心云卫剧场 → 重庆国泰艺术中心云卫剧场-渝戏（来源 event:douban:36881584）",
+        "reason": "地址映射库命中：重庆 两江新区 MAO Livehouse重庆 红旗河沟 龙湖新壹街A馆-B1-Zlab → MAO Livehouse(观音桥龙湖新壹街店)（来源 event:douban:37759314）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "5a34edd36a414e9e832c71bc50f84b133704384a"
+        "cache_key": "d760ff44e8464f88e4a0fe17d72c2175659aed64"
       }
     },
     {
-      "group_id": "89514f152d05",
-      "location": "重庆 两江新区 坚果NUTS 演出现场 观音桥街道建新北路观音桥新壹街C馆F1层",
-      "sample_title": "碎梦飞跃「外面是夏天」2026巡演 重庆站",
+      "group_id": "eb03845060f1",
+      "location": "重庆 两江新区 重庆大剧院 江北嘴北城文华街东路（朝天门对面）",
+      "sample_title": "美国WEESING原版授权亲子互动奇幻音乐剧之《音乐屋里的迷案》（小剧场）",
       "event_uids": [
-        "douban:37789420"
+        "douban:37847278"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "9140399097731358382",
-        "poi_title": "坚果NUTS",
+        "poi_id": "6745060521296666657",
+        "poi_title": "重庆大剧院",
         "poi_address": "",
-        "latitude": 29.582205,
-        "longitude": 106.52632,
+        "latitude": 29.570032,
+        "longitude": 106.581396,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：重庆 两江新区 坚果NUTS 演出现场 观音桥街道建新北路观音桥新壹街C馆F1层 → 坚果NUTS（来源 event:douban:37866708）",
+        "reason": "地址映射库命中：重庆 两江新区 重庆大剧院 江北嘴北城文华街东路（朝天门对面） → 重庆大剧院（来源 event:douban:37806192）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "89514f152d0554929995181b80c4e4959451c377"
+        "cache_key": "eb03845060f10633e1e9b63902906bab47be5ab0"
       }
     }
   ]

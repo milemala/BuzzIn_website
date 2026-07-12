@@ -1,62 +1,51 @@
 {
   "city": "宁波",
   "source": "douban",
-  "exported_at": "2026-06-29T03:23:42.593Z",
+  "exported_at": "2026-07-10T11:46:55.067Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 5,
+  "last_import_new_uids": 2,
   "doubtful_only": false,
-  "total_events": 5,
-  "group_count": 3,
+  "total_events": 2,
+  "group_count": 2,
   "cache_hit_groups": 1,
   "groups": [
     {
-      "group_id": "32231858dcc4",
-      "location": "宁波 海曙区 逸夫剧院 解放南路187号",
-      "sample_title": "新国风美学经典舞台剧《红楼梦》（宁波逸夫剧院）",
+      "group_id": "a9dcf2e9f4bb",
+      "location": "宁波 余姚 余姚大剧院 北姚江路1号",
+      "sample_title": "经典文学著作改编课本剧《八十天环游地球》",
       "event_uids": [
-        "douban:37811403"
+        "douban:37778643"
       ],
-      "event_count": 1
-    },
-    {
-      "group_id": "a28db87369e8",
-      "location": "宁波 鄞州区 宁波文化广场大剧院 宁穿路1900号",
-      "sample_title": "【2026“茧·声”演出季】俄罗斯莫斯科芭蕾舞团《天鹅湖》",
-      "event_uids": [
-        "douban:37814244",
-        "douban:37764669"
-      ],
-      "event_count": 2,
+      "event_count": 1,
       "cached_poi": {
-        "poi_id": "1921137803586066728",
-        "poi_title": "宁波文化广场大剧院",
+        "poi_id": "1853757960609319657",
+        "poi_title": "余姚大剧院",
         "poi_address": "",
-        "latitude": 29.858222,
-        "longitude": 121.619756,
+        "latitude": 30.042758,
+        "longitude": 121.174411,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：宁波 鄞州区 宁波文化广场大剧院 宁穿路1900号 → 宁波文化广场大剧院（来源 event:douban:37847165）",
+        "reason": "地址映射库命中：宁波 余姚 余姚大剧院 北姚江路1号 → 余姚大剧院（来源 event:douban:37859645）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "a28db87369e8489f9ebcc1299a42b0574b03300b"
+        "cache_key": "a9dcf2e9f4bb83d25d66f1ed4004d77cd0f1facf"
       }
     },
     {
-      "group_id": "a9dcf2e9f4bb",
-      "location": "宁波 余姚 余姚大剧院 北姚江路1号",
-      "sample_title": "ACG《好想大声说爱你》动漫金曲主题演唱会",
+      "group_id": "a2db636d36e9",
+      "location": "宁波 鄞州区 177Live音乐现场 甬江大道177号",
+      "sample_title": "【宁波】枯木逢春【时间褶皱的旅人】2026巡演-宁波站",
       "event_uids": [
-        "douban:37826808",
-        "douban:37826791"
+        "douban:37856544"
       ],
-      "event_count": 2
+      "event_count": 1
     }
   ]
 }

@@ -1,60 +1,57 @@
 {
   "city": "温州",
   "source": "douban",
-  "decided_at": "2026-06-29T03:43:29.392Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-07-06T10:55:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "37a6d4ffccc0",
+      "group_id": "7fcf25d8ec25",
+      "event_uids": ["douban:37897637"],
       "action": "match",
-      "poi_id": "10469979600925213444",
-      "poi_title": "温州大剧院",
-      "poi_address": "",
-      "latitude": 27.990555,
-      "longitude": 120.70253,
-      "doubtful": false,
-      "reason": "地址映射库命中：温州 鹿城区 温州大剧院 府东路466号 → 温州大剧院（来源 event:douban:37817639）",
-      "search_keywords_tried": [
-        "poi-address-cache"
+      "search_keywords_tried": ["瓯海区博物馆"],
+      "poi_id": "9292344224655222667",
+      "poi_title": "温州市瓯海区博物馆",
+      "poi_address": "浙江省温州市瓯海区瓯海大道行政服务中心10号楼",
+      "latitude": 27.964957,
+      "longitude": 120.613492,
+      "candidates": [
+        {"poi_id": "9292344224655222667", "title": "温州市瓯海区博物馆", "address": "浙江省温州市瓯海区瓯海大道行政服务中心10号楼", "category": "文化场馆:博物馆"}
       ],
-      "event_uids": [
-        "douban:37809615"
-      ]
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "豆瓣瓯海区博物馆与POI温州市瓯海区博物馆区划店名一致"
     },
     {
-      "group_id": "e989d08afdfc",
+      "group_id": "bb994f40519b",
+      "event_uids": ["douban:37847906", "douban:37848659", "douban:37801349"],
       "action": "match",
-      "poi_id": "17066742749815360017",
-      "poi_title": "瓯海奥体中心体育馆",
-      "poi_address": "浙江省温州市瓯海区商汇路华韵嘉园南侧约90米",
-      "latitude": 27.958805,
-      "longitude": 120.615892,
-      "doubtful": false,
-      "reason": "瓯海奥体中心体育馆与商汇路地址描述完全一致",
-      "search_keywords_tried": [
-        "瓯海奥体中心体育馆"
+      "search_keywords_tried": ["温州高新文化广场", "龙祥路1111号"],
+      "poi_id": "2080727425376033704",
+      "poi_title": "温州高新文化广场大剧院",
+      "poi_address": "浙江省温州市龙湾区龙祥路1111号温州高新文化广场",
+      "latitude": 27.93656,
+      "longitude": 120.813822,
+      "candidates": [
+        {"poi_id": "2080727425376033704", "title": "温州高新文化广场大剧院", "address": "浙江省温州市龙湾区龙祥路1111号温州高新文化广场", "category": "娱乐休闲:剧场音乐厅:剧场"},
+        {"poi_id": "8913727099204750947", "title": "温州高新文化广场", "address": "浙江省温州市龙湾区龙翔路2885号", "category": "旅游景点:城市广场"}
       ],
-      "event_uids": [
-        "douban:37800843"
-      ]
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "演唱会活动，龙湾区龙祥路1111号与高新文化广场大剧院一致，主体与豆瓣温州高新文化广场吻合"
     },
     {
       "group_id": "169f8d842407",
+      "event_uids": ["douban:37865656"],
       "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "8968027432150271314",
       "poi_title": "盲堂",
-      "poi_address": "浙江省温州市鹿城区学院中路263号小坝坊17号楼1F",
+      "poi_address": "",
       "latitude": 28.004654,
       "longitude": 120.688404,
+      "confidence": "high",
       "doubtful": false,
-      "reason": "盲堂与学院中路263号小坝坊17号楼1F地址完全一致",
-      "search_keywords_tried": [
-        "盲堂 小坝坊",
-        "盲堂"
-      ],
-      "event_uids": [
-        "douban:37656895"
-      ]
+      "reason": "地址映射库命中：鹿城区盲堂学院中路263号小坝坊17号楼1F"
     }
   ]
 }

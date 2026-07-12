@@ -1,214 +1,505 @@
 {
   "city": "深圳",
   "source": "xiaohongshu",
-  "exported_at": "2026-06-30T08:22:34.121Z",
+  "exported_at": "2026-07-10T12:34:33.421Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 24,
+  "last_import_new_uids": 50,
   "doubtful_only": false,
-  "total_events": 23,
-  "group_count": 22,
-  "cache_hit_groups": 0,
+  "total_events": 50,
+  "group_count": 47,
+  "cache_hit_groups": 4,
   "groups": [
     {
-      "group_id": "5b805807f377",
-      "location": "深圳会展中心（福田）",
-      "sample_title": "2026中国（深圳）国际春季茶产业博览会",
+      "group_id": "e571003fa539",
+      "location": "南山区欢乐海岸码头小舞台",
+      "sample_title": "2026「声无界·圳当潮」LIVE嘉年华 毕业季·青春歌会",
       "event_uids": [
-        "xiaohongshu:6a41dc7b0000000016024263:01_0",
-        "xiaohongshu:6a41dc7b0000000016024263:02_3"
+        "xiaohongshu:6a4f493f0000000007010a1e:01_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "44f9a7cdf6d2",
+      "location": "南头古城 竹园广场",
+      "sample_title": "南山周末音乐会",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:02_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "fcdf0b70152f",
+      "location": "南山区大沙河生态长廊",
+      "sample_title": "华为坤灵·2026年大沙河国际龙舟邀请赛",
+      "event_uids": [
+        "xiaohongshu:6a2f6232000000000f01d285:00_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "1c09e6682145",
+      "location": "南山区华侨城创意文化园北区",
+      "sample_title": "「HOLA SUMMER! 后浪一夏」T街创意市集",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:03_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "0f04ef507f6e",
+      "location": "深圳湾万象城C区 户外街区",
+      "sample_title": "BAY MARKET湾区球迷嘉年华",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:03_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "5e2e1d2460e8",
+      "location": "深圳湾万象城A区L1层户外草坪",
+      "sample_title": "TWOI WERWER Shenzhen Pop-up",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:03_2"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "1303165007300903976",
+        "poi_title": "深圳湾万象城",
+        "poi_address": "",
+        "latitude": 22.515835,
+        "longitude": 113.946295,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：深圳湾万象城A区L1层户外草坪 → 深圳湾万象城（来源 event:xiaohongshu:6a4b0fe20000000022015242:01_1）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "5e2e1d2460e8cd0cd36691392273a481d3f6ded8"
+      }
+    },
+    {
+      "group_id": "3d1a58cf3b34",
+      "location": "G&G创意社区",
+      "sample_title": "千禧器物市集",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:04_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "14ac934476e3",
+      "location": "南山·益田假日广场B1层苹果广场",
+      "sample_title": "Click Market 曝光集社·夏日运动市集",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:04_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "766eef6a3535",
+      "location": "K11 ECOAST-南馆RF层",
+      "sample_title": "「海滨酒市·足球狂欢季」",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:04_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "21d89bcbbba2",
+      "location": "前海石公园、海上世界明华轮、望海路&太子路",
+      "sample_title": "和平精英夏日探险派对·深圳站",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:05_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "2f2800d362a3",
+      "location": "深圳前海壹方城L1星辰街",
+      "sample_title": "ZO&FRIENDS | UNIWALK 限时快闪",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:06_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "7509cfb908b7",
+      "location": "宝安区·海雅缤纷城L1层中庭",
+      "sample_title": "扇风赶猪争霸赛",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:06_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "f50025728719",
+      "location": "深圳大悦城LG层1号门喷泉广场",
+      "sample_title": "「抹法大师」抹茶&冰淇淋节",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:06_2"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "8809684765114756733",
+        "poi_title": "深圳大悦城购物中心",
+        "poi_address": "",
+        "latitude": 22.569069,
+        "longitude": 113.902505,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：深圳大悦城LG层1号门喷泉广场 → 深圳大悦城购物中心（来源 event:xiaohongshu:6a4b0fe20000000022015242:01_0）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "f500257287193ed05bf826cd501e6954f04fe67b"
+      }
+    },
+    {
+      "group_id": "3400605cc5a1",
+      "location": "深圳大悦城",
+      "sample_title": "HELLO KITTY夏日甜心派对",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:07_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "632136d80dcf",
+      "location": "深圳大悦城L1层沐光中庭",
+      "sample_title": "TAEYANG 'QUINTESSENCE' 深圳官方快闪",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:07_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "ccb1d47c6c8e",
+      "location": "宝安天虹购物中心L1奈雪门前外广场",
+      "sample_title": "宝安天虹泼水狂欢节",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:07_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "ee5020ca8b85",
+      "location": "华强北茂业天地",
+      "sample_title": "广东首届「电竞粤超」城市巡回赛 终极收官之战",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:08_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "9d7dab697b98",
+      "location": "福田星河COCO Park二期",
+      "sample_title": "许嵩痛楼&歌会",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:09_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "df9ec5aa0f7a",
+      "location": "福田区卓悦中心北区中央大街",
+      "sample_title": "深圳首家！迪士尼商店快闪",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:09_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "c7ab63481869",
+      "location": "福田区中洲湾广场",
+      "sample_title": "麒麟一番榨七城巡游",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:09_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "99a843112a48",
+      "location": "深圳书城中心城及书吧",
+      "sample_title": "夏日乐读季·哈小浪陪你趣阅一夏",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:10_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "6a6ece83a2cf",
+      "location": "深圳龙华星河COCO City 二楼",
+      "sample_title": "纽扣手帐集市",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:10_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "b7acdb63c155",
+      "location": "深圳龙华星河iCO L1东广场",
+      "sample_title": "POP汽水节",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:10_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "50d847b924ec",
+      "location": "深圳地铁全线（16条线路、351座车站、42586块屏幕）",
+      "sample_title": "奥特曼痛城",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:11_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "1f6fca004db3",
+      "location": "万象食家中庭",
+      "sample_title": "万象食家麦当劳四小福见面会",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:11_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "67a5139c4fa7",
+      "location": "万象食家街区",
+      "sample_title": "迪卡侬水上运动市集",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:11_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "2aaba3a32dec",
+      "location": "龙岗万达广场B1层中庭（壹品健身店旁）",
+      "sample_title": "扭扭车大赛",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:12_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "cc35e77fa9c1",
+      "location": "深圳仁恒梦中心B1层地铁通道旁",
+      "sample_title": "仁恒梦中心拼豆大赛",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:12_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "070677aa596c",
+      "location": "深圳龙岗星河CoCo Park L1南门",
+      "sample_title": "「热野逐夏」主题装置",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:12_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "f2d048f9569c",
+      "location": "深圳美术馆一层1、2号展厅",
+      "sample_title": "「团结促发展，奋斗谱新篇」深圳市政协主题书画展",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:13_0"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "11107360214280099505",
+        "poi_title": "深圳美术馆",
+        "poi_address": "",
+        "latitude": 22.62493,
+        "longitude": 114.023767,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：深圳美术馆一层1、2号展厅 → 深圳美术馆（来源 event:xiaohongshu:6a4b0fe20000000022015242:03_0）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "f2d048f9569ca2fe68e77deceaef53ab40797d18"
+      }
+    },
+    {
+      "group_id": "f30de68291ad",
+      "location": "深圳美术馆三层10、11号展厅",
+      "sample_title": "青年视界——2026深圳青年美术大展",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:13_1"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "11107360214280099505",
+        "poi_title": "深圳美术馆",
+        "poi_address": "",
+        "latitude": 22.62493,
+        "longitude": 114.023767,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：深圳美术馆三层10、11号展厅 → 深圳美术馆（来源 event:xiaohongshu:6a4b0fe20000000022015242:03_1）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "f30de68291ada0f8984393a464882d8b849acb3c"
+      }
+    },
+    {
+      "group_id": "21fa7aebb05e",
+      "location": "湾厦文化艺术中心",
+      "sample_title": "只有一张侧面的主角",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:13_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "42d2af808753",
+      "location": "深圳图书馆北馆成人区3F观影厅",
+      "sample_title": "免费观影《1917》",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:14_0",
+        "xiaohongshu:6a4f493f0000000007010a1e:14_1"
       ],
       "event_count": 2
     },
     {
-      "group_id": "5a2e8efdaaf2",
-      "location": "深圳欢乐谷",
-      "sample_title": "深圳欢乐谷夏浪狂欢节首发预告",
+      "group_id": "84c5f3abea40",
+      "location": "深圳图书馆北馆少儿区1F洞洞剧场",
+      "sample_title": "免费观影《潜艇总动员：环游地球80天》",
       "event_uids": [
-        "xiaohongshu:6a41dc7b0000000016024263:01_1"
+        "xiaohongshu:6a4f493f0000000007010a1e:14_2"
       ],
       "event_count": 1
     },
     {
-      "group_id": "8b5ae2c530ca",
-      "location": "深圳宝安BREWTOWN啤酒小镇",
-      "sample_title": "「叹啤」湾区精酿啤酒节",
+      "group_id": "c957bb6e467a",
+      "location": "深圳图书馆中心馆五楼聚艺厅",
+      "sample_title": "免费观影《刺杀小说家》",
       "event_uids": [
-        "xiaohongshu:6a41dc7b0000000016024263:01_2"
+        "xiaohongshu:6a4f493f0000000007010a1e:14_3"
       ],
       "event_count": 1
     },
     {
-      "group_id": "61bc96634908",
-      "location": "深汕特别合作区赤河广场(赤河圆墩段)",
-      "sample_title": "2026年深汕特别合作区美丽乡村龙舟超级邀请赛",
+      "group_id": "c6559458c49b",
+      "location": "深圳图书馆中心馆少儿服务区多功能活动室",
+      "sample_title": "免费观影《魔发奇缘》",
       "event_uids": [
-        "xiaohongshu:6a2f6232000000000f01d285:00_3"
+        "xiaohongshu:6a4f493f0000000007010a1e:14_4"
       ],
       "event_count": 1
     },
     {
-      "group_id": "ae385b63ab4e",
-      "location": "深圳会展中心（福田）1、6、7、9号馆",
-      "sample_title": "2026全球高端食品及优质农产品(深圳)博览会",
+      "group_id": "862aabe41e8f",
+      "location": "宝安区图书馆新安街道分馆报告厅",
+      "sample_title": "免费观影《怪兽大学》",
       "event_uids": [
-        "xiaohongshu:6a41dc7b0000000016024263:01_3"
+        "xiaohongshu:6a4f493f0000000007010a1e:15_0"
       ],
       "event_count": 1
     },
     {
-      "group_id": "b6f73e97ab7b",
-      "location": "清平古墟影视文化园 清平学堂",
-      "sample_title": "清平古墟夏日公益放映季",
+      "group_id": "b433c8f232ec",
+      "location": "宝安1990分馆一楼多功能厅",
+      "sample_title": "免费观影《爱宠大机密2》",
       "event_uids": [
-        "xiaohongshu:6a41dc7b0000000016024263:02_0"
+        "xiaohongshu:6a4f493f0000000007010a1e:15_1",
+        "xiaohongshu:6a4f493f0000000007010a1e:15_6"
+      ],
+      "event_count": 2
+    },
+    {
+      "group_id": "6d13ed91e108",
+      "location": "宝安区图书馆航城街道分馆",
+      "sample_title": "免费观影《龙猫》",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:15_2",
+        "xiaohongshu:6a4f493f0000000007010a1e:16_1"
+      ],
+      "event_count": 2
+    },
+    {
+      "group_id": "0274c0b78daa",
+      "location": "宝安区图书馆福海街道分馆二楼玩具馆",
+      "sample_title": "免费观影《疯狂原始人》",
+      "event_uids": [
+        "xiaohongshu:6a4f493f0000000007010a1e:15_3"
       ],
       "event_count": 1
     },
     {
-      "group_id": "b6d4fe469c64",
-      "location": "锦绣中华民俗村",
-      "sample_title": "锦绣中华民俗村夏浪民族狂欢节",
+      "group_id": "28c91b7b5ea8",
+      "location": "宝安区图书馆新桥街道分馆三楼活动室",
+      "sample_title": "免费观影《超人总动员》",
       "event_uids": [
-        "xiaohongshu:6a41dc7b0000000016024263:02_1"
+        "xiaohongshu:6a4f493f0000000007010a1e:15_4"
       ],
       "event_count": 1
     },
     {
-      "group_id": "df4b0ca93e71",
-      "location": "海雅缤纷城L1中庭",
-      "sample_title": "甩人字拖大赛",
+      "group_id": "981746340e10",
+      "location": "宝安区图书馆福海街道分馆二楼玩具房",
+      "sample_title": "免费观影《精灵旅社》",
       "event_uids": [
-        "xiaohongshu:6a41dc7b0000000016024263:02_2"
+        "xiaohongshu:6a4f493f0000000007010a1e:15_5"
       ],
       "event_count": 1
     },
     {
-      "group_id": "6839dc66f754",
-      "location": "深圳图书馆(中心馆)",
-      "sample_title": "百年初心如炬，万里浩气长存——庆祝中国共产党成立105周年暨纪念中国工农红军长征胜利90周年主题文献推荐展",
+      "group_id": "c9a3c37a5cbb",
+      "location": "宝安区图书馆新安街道分馆报告厅、航城街道分馆",
+      "sample_title": "免费观影《怪兽电力公司》",
       "event_uids": [
-        "xiaohongshu:6a41dc7b0000000016024263:03_0"
+        "xiaohongshu:6a4f493f0000000007010a1e:16_0"
       ],
       "event_count": 1
     },
     {
-      "group_id": "52658039dcdc",
-      "location": "深圳美术馆二层6、7号展厅",
-      "sample_title": "道登天门——萧娴书法艺术展",
+      "group_id": "b20ec6d349c3",
+      "location": "宝安区图书馆松岗街道楼岗社区阅读中心",
+      "sample_title": "免费观影《加菲猫》",
       "event_uids": [
-        "xiaohongshu:6a41dc7b0000000016024263:03_1"
+        "xiaohongshu:6a4f493f0000000007010a1e:16_2"
       ],
       "event_count": 1
     },
     {
-      "group_id": "08e14e03e46e",
-      "location": "何香凝美术馆（7-8展厅）",
-      "sample_title": "笔墨同心·林墉、苏华作品展",
+      "group_id": "aaa63938d466",
+      "location": "宝安区图书馆沙井街道马安山（锦胜）阅读中心",
+      "sample_title": "免费观影《超能陆战队》",
       "event_uids": [
-        "xiaohongshu:6a41dc7b0000000016024263:03_2"
+        "xiaohongshu:6a4f493f0000000007010a1e:16_3"
       ],
       "event_count": 1
     },
     {
-      "group_id": "f4d12126bf3a",
-      "location": "光明文化艺术中心·光明之眼水池、艺术聚落水池",
-      "sample_title": "浮光与露珠——佘海晴装置特别展",
+      "group_id": "9974812e34e2",
+      "location": "宝安区图书馆报告厅2",
+      "sample_title": "免费观影《熊出没·原始时代》",
       "event_uids": [
-        "xiaohongshu:6a41dc7b0000000016024263:03_3"
+        "xiaohongshu:6a4f493f0000000007010a1e:16_4"
       ],
       "event_count": 1
     },
     {
-      "group_id": "23ac697a901c",
-      "location": "深圳市体育中心体育馆(主馆)",
-      "sample_title": "2026动力火车「一路向前」巡回演唱会-深圳站",
+      "group_id": "7d2cf47615c4",
+      "location": "盐田区图书馆三楼视听播放室",
+      "sample_title": "免费观影《拆弹专家》",
       "event_uids": [
-        "xiaohongshu:6a41dc7b0000000016024263:04_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "21ab9a3c4b51",
-      "location": "深圳市宝安区体育中心体育馆",
-      "sample_title": "深圳·郎朗·乐境音乐会",
-      "event_uids": [
-        "xiaohongshu:6a41dc7b0000000016024263:04_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "b36bc0b8beed",
-      "location": "深圳湾体育中心「春茧」体育馆",
-      "sample_title": "2026张新成巡回演唱会「新程NewJourney」-深圳站",
-      "event_uids": [
-        "xiaohongshu:6a41dc7b0000000016024263:04_2"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "1a3d9934bb23",
-      "location": "深圳音乐厅",
-      "sample_title": "深圳交响乐团2025/2026音乐季 盛宗亮与贝多芬的时空对话",
-      "event_uids": [
-        "xiaohongshu:6a41dc7b0000000016024263:04_3"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "e77c333d5a15",
-      "location": "深圳保利剧院",
-      "sample_title": "杨丽萍作品·舞蹈剧场《十面埋伏》",
-      "event_uids": [
-        "xiaohongshu:6a41dc7b0000000016024263:05_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "2414144ce5a7",
-      "location": "南山文体中心聚橙剧院 大剧院",
-      "sample_title": "话剧《三家巷》",
-      "event_uids": [
-        "xiaohongshu:6a41dc7b0000000016024263:05_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "99d2fc438b93",
-      "location": "深圳市南山区文化馆",
-      "sample_title": "话剧《下一站，再见咯》",
-      "event_uids": [
-        "xiaohongshu:6a41dc7b0000000016024263:05_2"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "3e0d1c5c25d3",
-      "location": "龙岗国际艺术中心",
-      "sample_title": "「意式浓缩」意大利音乐家马伊沃音乐会",
-      "event_uids": [
-        "xiaohongshu:6a41dc7b0000000016024263:05_3"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "2028d7961f3d",
-      "location": "待定",
-      "sample_title": "2026年李宁·广东省城市篮球超级联赛",
-      "event_uids": [
-        "xiaohongshu:6a41dc7b0000000016024263:06_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "ee6f152b43fd",
-      "location": "深圳青少年足球训练基地",
-      "sample_title": "2026年冠旭电子cleer·广东省城市足球超级联赛",
-      "event_uids": [
-        "xiaohongshu:6a41dc7b0000000016024263:07_0"
+        "xiaohongshu:6a4f493f0000000007010a1e:16_5"
       ],
       "event_count": 1
     }

@@ -241,6 +241,10 @@ function buildBuzzPayload(record) {
     now_title: truncateRunes(record.now_title, MAX_TITLE_LEN),
     now_type: record.now_type,
   };
+  const contentType = Number(record.content_type);
+  if (Number.isInteger(contentType)) {
+    payload.content_type = contentType;
+  }
   const nowContent = truncateRunes(record.now_content, MAX_CONTENT_LEN);
   if (nowContent) payload.now_content = nowContent;
   if (record.now_merchant_id) payload.now_merchant_id = record.now_merchant_id;

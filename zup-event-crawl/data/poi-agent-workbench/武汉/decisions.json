@@ -1,96 +1,23 @@
 {
   "city": "武汉",
   "source": "douban",
-  "decided_at": "2026-06-29T03:43:20.630Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-07-10T11:52:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "567759bc19da",
+      "group_id": "2b30d4154f20",
+      "event_uids": ["douban:37898876", "douban:37898669"],
       "action": "match",
-      "poi_id": "15155048852042783211",
-      "poi_title": "然也剧场(武汉绿地·新田360店)",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "6207246753619447771",
+      "poi_title": "武商梦时代摩尔影城(IMAX激光店)",
       "poi_address": "",
-      "latitude": 30.582832,
-      "longitude": 114.322891,
+      "latitude": 30.528455,
+      "longitude": 114.340348,
+      "candidates": [],
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：武汉 武昌区 然也剧场 和平大道750号武汉绿地新田360商场2F → 然也剧场(武汉绿地·新田360店)（来源 event:douban:37840984）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37853839",
-        "douban:37477968"
-      ]
-    },
-    {
-      "group_id": "5abbd55beaaf",
-      "action": "match",
-      "poi_id": "3164520614827793622",
-      "poi_title": "武汉 · 笑嘛武汉脱口秀剧场",
-      "poi_address": "",
-      "latitude": 30.610716,
-      "longitude": 114.310656,
-      "doubtful": false,
-      "reason": "地址映射库命中：武汉 江岸区 笑嘛武汉脱口秀剧场 永清街道天地壹方南馆5楼(百丽宫影院旁) → 武汉 · 笑嘛武汉脱口秀剧场（来源 event:douban:37517703）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37739449"
-      ]
-    },
-    {
-      "group_id": "b46e104bcd4d",
-      "action": "match",
-      "poi_id": "583600664672639388",
-      "poi_title": "湖北剧院",
-      "poi_address": "",
-      "latitude": 30.540991,
-      "longitude": 114.304519,
-      "doubtful": false,
-      "reason": "地址映射库命中：武汉 武昌区 湖北剧院 武昌阅马场西厂口1号 → 湖北剧院（来源 event:douban:37751913）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37770005",
-        "douban:37857032"
-      ]
-    },
-    {
-      "group_id": "2e58c7d48bac",
-      "action": "match",
-      "poi_id": "2054636966946479774",
-      "poi_title": "武汉琴台大剧院",
-      "poi_address": "",
-      "latitude": 30.561106,
-      "longitude": 114.259086,
-      "doubtful": false,
-      "reason": "地址映射库命中：武汉 汉阳区 琴台大剧院 知音大道7号 → 武汉琴台大剧院（来源 event:douban:37798950）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37818147"
-      ]
-    },
-    {
-      "group_id": "dfb721e3598d",
-      "action": "match",
-      "poi_id": "1269973832452280886",
-      "poi_title": "武汉临空港大剧院",
-      "poi_address": "湖北省武汉市东西湖区凌云路139号",
-      "latitude": 30.640462,
-      "longitude": 114.135027,
-      "doubtful": false,
-      "reason": "临空港大剧院主体一致，东西湖区同场馆，凌云路139号与临空港大道交叉口为同一剧院不同表述",
-      "search_keywords_tried": [
-        "武汉临空港大剧院"
-      ],
-      "event_uids": [
-        "douban:37828419",
-        "douban:37810040"
-      ]
+      "reason": "地址映射库命中：武商梦时代摩尔影城 IMAX激光店，武昌区武珞路628号"
     }
   ]
 }

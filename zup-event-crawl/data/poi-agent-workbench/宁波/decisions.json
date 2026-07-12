@@ -1,62 +1,44 @@
 {
   "city": "宁波",
   "source": "douban",
-  "decided_at": "2026-06-29T03:42:51.599Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-07-10T11:52:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "a28db87369e8",
-      "action": "match",
-      "poi_id": "1921137803586066728",
-      "poi_title": "宁波文化广场大剧院",
-      "poi_address": "",
-      "latitude": 29.858222,
-      "longitude": 121.619756,
-      "doubtful": false,
-      "reason": "地址映射库命中：宁波 鄞州区 宁波文化广场大剧院 宁穿路1900号 → 宁波文化广场大剧院（来源 event:douban:37847165）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37814244",
-        "douban:37764669"
-      ]
-    },
-    {
-      "group_id": "32231858dcc4",
-      "action": "match",
-      "poi_id": "9553362055948194985",
-      "poi_title": "宁波逸夫剧院",
-      "poi_address": "浙江省宁波市海曙区解放南路187号(城隍庙地铁站A口步行110米)",
-      "latitude": 29.868324,
-      "longitude": 121.548136,
-      "doubtful": false,
-      "reason": "逸夫剧院与解放南路187号地址完全一致",
-      "search_keywords_tried": [
-        "逸夫剧院 解放南路187号"
-      ],
-      "event_uids": [
-        "douban:37811403"
-      ]
-    },
-    {
       "group_id": "a9dcf2e9f4bb",
+      "event_uids": ["douban:37778643"],
       "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "1853757960609319657",
       "poi_title": "余姚大剧院",
-      "poi_address": "浙江省宁波市余姚市公共文化中心1号楼",
+      "poi_address": "",
       "latitude": 30.042758,
       "longitude": 121.174411,
+      "candidates": [],
+      "confidence": "high",
       "doubtful": false,
-      "reason": "余姚大剧院位于公共文化中心1号楼，北姚江路1号与公共文化中心为同一文化综合体",
-      "search_keywords_tried": [
-        "余姚大剧院",
-        "余姚 公共文化中心"
+      "reason": "地址映射库命中：宁波 余姚 余姚大剧院 北姚江路1号 → 余姚大剧院"
+    },
+    {
+      "group_id": "a2db636d36e9",
+      "event_uids": ["douban:37856544"],
+      "action": "match",
+      "search_keywords_tried": ["177Live音乐现场 甬江大道"],
+      "poi_id": "10342501663277004663",
+      "poi_title": "177live音乐现场",
+      "poi_address": "浙江省宁波市鄞州区东胜街道甬江大道177号iPN渔轮厂",
+      "latitude": 29.87983,
+      "longitude": 121.566351,
+      "candidates": [
+        {
+          "poi_id": "10342501663277004663",
+          "title": "177live音乐现场",
+          "address": "浙江省宁波市鄞州区东胜街道甬江大道177号iPN渔轮厂"
+        }
       ],
-      "event_uids": [
-        "douban:37826808",
-        "douban:37826791"
-      ]
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "鄞州区甬江大道177号177Live音乐现场，与活动地址一致"
     }
   ]
 }

@@ -1,145 +1,32 @@
 {
   "city": "沈阳",
   "source": "douban",
-  "updated_at": "2026-06-20T18:41:07.868Z",
+  "decided_at": "2026-07-10T11:32:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "c61c055fc1cb",
-      "event_uids": [
-        "douban:37815435"
-      ],
+      "group_id": "6f88f8031215",
+      "event_uids": ["douban:37899445"],
       "action": "match",
-      "search_keywords_tried": [
-        "原料库-大悦城店",
-        "小东路8号大悦城E馆601"
-      ],
-      "poi_id": "6553359225048812354",
-      "poi_title": "原料库(沈阳大悦城E馆店)",
-      "poi_address": "辽宁省沈阳市大东区万泉街道小东路8号大悦城E馆601",
-      "latitude": 41.801874,
-      "longitude": 123.468802,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "原料库与大东区小东路8号大悦城E馆601一致",
+      "search_keywords_tried": ["魔方小镇城市书房 江楠影城"],
+      "poi_id": "9220833629164485147",
+      "poi_title": "魔方城市书房(北行店)",
+      "poi_address": "辽宁省沈阳市皇姑区长江街60号中乾大厦5楼(江楠影城旁)",
+      "latitude": 41.824333,
+      "longitude": 123.412316,
       "candidates": [
-        {
-          "index": 0,
-          "poi_id": "6553359225048812354",
-          "title": "原料库(沈阳大悦城E馆店)",
-          "address": "辽宁省沈阳市大东区万泉街道小东路8号大悦城E馆601",
-          "category": "娱乐休闲:酒吧",
-          "latitude": 41.801874,
-          "longitude": 123.468802
-        }
-      ]
-    },
-    {
-      "group_id": "caf74ae20ca4",
-      "event_uids": [
-        "douban:37743139"
+        {"poi_id": "4902097385790152939", "title": "江楠影城", "address": "辽宁省沈阳市皇姑区长江街58号"},
+        {"poi_id": "9220833629164485147", "title": "魔方城市书房(北行店)", "address": "辽宁省沈阳市皇姑区长江街60号中乾大厦5楼(江楠影城旁)"}
       ],
-      "action": "match",
-      "search_keywords_tried": [
-        "沈阳 美帝奇×1905音乐现场"
-      ],
-      "poi_id": "17257880341531416883",
-      "poi_title": "美帝奇×1905音乐现场(兴华北街店)",
-      "poi_address": "辽宁省沈阳市铁西区兴华北街8号1905文化创意园",
-      "latitude": 41.812654,
-      "longitude": 123.382444,
       "confidence": "high",
       "doubtful": false,
-      "reason": "三轮匹配（score 129）",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "17257880341531416883",
-          "title": "美帝奇×1905音乐现场(兴华北街店)",
-          "address": "辽宁省沈阳市铁西区兴华北街8号1905文化创意园",
-          "category": "娱乐休闲:酒吧",
-          "latitude": 41.812654,
-          "longitude": 123.382444
-        }
-      ]
-    },
-    {
-      "group_id": "05bbd767f5c2",
-      "event_uids": [
-        "douban:37843485"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "10800878540961739366",
-      "poi_title": "中华剧场",
-      "poi_address": "",
-      "latitude": 41.788504,
-      "longitude": 123.405054,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：沈阳 和平区 中华剧场 太原街街道南京南街3号(联营公司南侧) → 中华剧场（来源 event:douban:37845867）",
-      "candidates": []
-    },
-    {
-      "group_id": "a13048ddb4be",
-      "event_uids": [
-        "douban:36788512"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "18359079856412506499",
-      "poi_title": "玖伍剧场(玖伍文化城店)",
-      "poi_address": "",
-      "latitude": 41.79293,
-      "longitude": 123.402288,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：沈阳 和平区 潜伏风云-玖伍沉浸式剧场 太原北街95号玖伍文化城6F → 玖伍剧场(玖伍文化城店)（来源 event:douban:37674964）",
-      "candidates": []
-    },
-    {
-      "group_id": "389ed6011b03",
-      "event_uids": [
-        "douban:37783124"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "盛京大剧院",
-        "沈水路518号"
-      ],
-      "poi_id": "14733440405124475096",
-      "poi_title": "盛京大剧院",
-      "poi_address": "辽宁省沈阳市沈河区沈水路518号",
-      "latitude": 41.75427,
-      "longitude": 123.445216,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "大剧院与沈河区沈水路518号一致",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "14733440405124475096",
-          "title": "盛京大剧院",
-          "address": "辽宁省沈阳市沈河区沈水路518号",
-          "category": "娱乐休闲:剧场音乐厅:剧场",
-          "latitude": 41.75427,
-          "longitude": 123.445216
-        }
-      ]
+      "reason": "皇姑区长江街北行店，中乾大厦5楼江楠影城旁，与活动地址五楼魔方小镇城市书房主体一致，仅店名简写差异"
     },
     {
       "group_id": "08059a540115",
-      "event_uids": [
-        "douban:37680306"
-      ],
+      "event_uids": ["douban:37449035"],
       "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
+      "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "806701961020494316",
       "poi_title": "四季有戏方城剧场(盛京大家庭店)",
       "poi_address": "",
@@ -147,38 +34,7 @@
       "longitude": 123.454138,
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：沈阳 沈河区 四季有戏-中街·盛京大家庭店 中街路115号盛京大家庭广场区G层G005 → 四季有戏方城剧场(盛京大家庭店)（来源 event:douban:37526249）",
-      "candidates": []
-    },
-    {
-      "group_id": "6e4b68d9fd81",
-      "event_uids": [
-        "douban:37672446"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "三生制药体育馆",
-        "浑南中路32号"
-      ],
-      "poi_id": "8327331189272780185",
-      "poi_title": "三生制药体育馆",
-      "poi_address": "辽宁省沈阳市浑南区五三街道浑南中路32号",
-      "latitude": 41.739943,
-      "longitude": 123.458641,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "体育馆名称与浑南区浑南中路32号一致",
-      "candidates": [
-        {
-          "index": 0,
-          "poi_id": "8327331189272780185",
-          "title": "三生制药体育馆",
-          "address": "辽宁省沈阳市浑南区五三街道浑南中路32号",
-          "category": "运动健身:综合体育场馆",
-          "latitude": 41.739943,
-          "longitude": 123.458641
-        }
-      ]
+      "reason": "地址映射库命中：沈河区中街路115号盛京大家庭G层G005与四季有戏方城剧场(盛京大家庭店)一致"
     }
   ]
 }

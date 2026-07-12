@@ -1,68 +1,48 @@
 {
   "city": "郑州",
   "source": "douban",
-  "exported_at": "2026-06-29T03:23:48.856Z",
+  "exported_at": "2026-07-10T11:46:54.113Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 3,
+  "last_import_new_uids": 7,
   "doubtful_only": false,
-  "total_events": 3,
-  "group_count": 2,
-  "cache_hit_groups": 2,
+  "total_events": 7,
+  "group_count": 3,
+  "cache_hit_groups": 0,
   "groups": [
     {
-      "group_id": "4b7b6ac9fe34",
-      "location": "郑州 中原区 郑州大剧院 丹水大道与雪松路交叉口西南角",
-      "sample_title": "【郑州】步惊云脱口秀专场《母老虎》｜三好姐妹@郑州",
+      "group_id": "58efae1d83ee",
+      "location": "郑州 二七区 奥斯卡升龙国际影城",
+      "sample_title": "283期《群星闪耀时》郑州超前免费观影",
       "event_uids": [
-        "douban:37734083",
-        "douban:37849218"
+        "douban:37899127"
       ],
-      "event_count": 2,
-      "cached_poi": {
-        "poi_id": "10949715273587582845",
-        "poi_title": "郑州大剧院",
-        "poi_address": "",
-        "latitude": 34.742346,
-        "longitude": 113.550694,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：郑州 中原区 郑州大剧院 丹水大道与雪松路交叉口西南角 → 郑州大剧院（来源 event:douban:37858752）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "4b7b6ac9fe34730408cf816c673b7adf53604c29"
-      }
+      "event_count": 1
     },
     {
-      "group_id": "82760422ff35",
-      "location": "郑州 金水区 河南省人民会堂 花园路1号（紫荆山立交桥河南饭店对面）",
-      "sample_title": "正版国漫2.5次元舞台剧《狐妖小红娘·第二部》",
+      "group_id": "a21977b25fb8",
+      "location": "郑州 中原区 郑州国际会展中心",
+      "sample_title": "企阳2026郑州餐饮展|郑州火锅展|食材展会",
       "event_uids": [
-        "douban:37689284"
+        "douban:37459424",
+        "douban:37459445",
+        "douban:37459476",
+        "douban:37832345"
       ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "15788701412219640069",
-        "poi_title": "河南省人民会堂",
-        "poi_address": "",
-        "latitude": 34.764414,
-        "longitude": 113.683659,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：郑州 金水区 河南省人民会堂 花园路1号（紫荆山立交桥河南饭店对面） → 河南省人民会堂（来源 event:douban:37812110）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "82760422ff35ffe7381d9290f53634e898e4e23d"
-      }
+      "event_count": 4
+    },
+    {
+      "group_id": "ca02a0d5701d",
+      "location": "郑州 新郑 中原国际会展中心（航空港区）",
+      "sample_title": "企阳2026第十一届郑州餐饮业博览会",
+      "event_uids": [
+        "douban:37463552",
+        "douban:37460886"
+      ],
+      "event_count": 2
     }
   ]
 }

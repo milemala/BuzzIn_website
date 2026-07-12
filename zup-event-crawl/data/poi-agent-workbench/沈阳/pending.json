@@ -1,16 +1,51 @@
 {
   "city": "沈阳",
   "source": "douban",
-  "exported_at": "2026-06-29T03:23:39.929Z",
+  "exported_at": "2026-07-10T11:27:03.752Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 0,
+  "last_import_new_uids": 2,
   "doubtful_only": false,
-  "total_events": 0,
-  "group_count": 0,
-  "cache_hit_groups": 0,
-  "groups": []
+  "total_events": 2,
+  "group_count": 2,
+  "cache_hit_groups": 1,
+  "groups": [
+    {
+      "group_id": "6f88f8031215",
+      "location": "沈阳 皇姑区 沈阳市皇姑区长江街 江楠影城（北行店）五楼 魔方小镇城市书房",
+      "sample_title": "沈阳英语角",
+      "event_uids": [
+        "douban:37899445"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "08059a540115",
+      "location": "沈阳 沈河区 四季有戏-中街·盛京大家庭店 中街路115号盛京大家庭广场区G层G005",
+      "sample_title": "（大家庭店）【盛夏暑期演出季交互式儿童剧】《狮子王之荣耀王座》四季有戏方城剧场",
+      "event_uids": [
+        "douban:37449035"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "806701961020494316",
+        "poi_title": "四季有戏方城剧场(盛京大家庭店)",
+        "poi_address": "",
+        "latitude": 41.800242,
+        "longitude": 123.454138,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：沈阳 沈河区 四季有戏-中街·盛京大家庭店 中街路115号盛京大家庭广场区G层G005 → 四季有戏方城剧场(盛京大家庭店)（来源 event:douban:37526249）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "08059a5401157ec6837fa48d0124f7408b00c174"
+      }
+    }
+  ]
 }

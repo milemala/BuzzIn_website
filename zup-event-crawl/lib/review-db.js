@@ -35,6 +35,7 @@ const {
   createTitlePoiDedupGate,
   findTitlePoiUnexpiredConflict,
   isEventBetterByEnd,
+  isEventUnexpired,
   loadTitlePoiUnexpiredIndex,
   makePoiAddressCacheResolver,
 } = require("./event-content-dedup");
@@ -1002,7 +1003,9 @@ function importPayload(db, payload, options = {}) {
             }
           }
 
-          batchContentKeys.add(dedupKey);
+          if (isEventUnexpired({ ...event, city: event.city || city })) {
+            batchContentKeys.add(dedupKey);
+          }
         }
 
         importedCount += 1;

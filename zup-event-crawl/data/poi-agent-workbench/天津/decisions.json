@@ -1,93 +1,72 @@
 {
   "city": "天津",
   "source": "douban",
-  "decided_at": "2026-06-29T03:42:48.517Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-07-10T12:00:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "a900e7aeedc9",
+      "group_id": "d04a4380c61d",
+      "event_uids": ["douban:37898886"],
       "action": "match",
-      "poi_id": "5192144685254939370",
-      "poi_title": "天津大剧院",
+      "search_keywords_tried": ["SFC上影影城天津天河城"],
+      "poi_id": "17697442673876052758",
+      "poi_title": "上影国际影城(天河城店)",
+      "poi_address": "天津市和平区和平路263号天津天河城购物中心F8",
+      "latitude": 39.127264,
+      "longitude": 117.204748,
+      "candidates": [
+        {"poi_id": "17697442673876052758", "title": "上影国际影城(天河城店)", "address": "天津市和平区和平路263号天津天河城购物中心F8", "category": "娱乐休闲:电影院"}
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "SFC上影影城天津天河城IMAX店与上影国际影城天河城店主体一致，和平区和平路263号天河城"
+    },
+    {
+      "group_id": "4e27a008ce1b",
+      "event_uids": ["douban:37859177"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "14694096430531753900",
+      "poi_title": "光华剧院",
       "poi_address": "",
-      "latitude": 39.087342,
-      "longitude": 117.216161,
+      "latitude": 39.096859,
+      "longitude": 117.238196,
+      "candidates": [],
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：天津 河西区 天津大剧院 平江道58号增1号 → 天津大剧院（来源 event:douban:37841577）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37707958"
-      ]
+      "reason": "地址映射库命中：光华剧院与河西区围堤道口地址一致"
     },
     {
-      "group_id": "8b5ae8a00482",
+      "group_id": "4f9b7427132a",
+      "event_uids": ["douban:37860365"],
       "action": "match",
-      "poi_id": "1534516290909584326",
-      "poi_title": "天津音乐厅",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "7738159007364714106",
+      "poi_title": "滨海演艺中心",
       "poi_address": "",
-      "latitude": 39.115469,
-      "longitude": 117.215194,
+      "latitude": 39.016031,
+      "longitude": 117.686405,
+      "candidates": [],
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：天津 和平区 天津音乐厅 建设路与浙江路交叉口南20米（小白楼地铁站A口旁） → 天津音乐厅（来源 event:douban:37840882）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37843737"
-      ]
+      "reason": "地址映射库命中：滨海演艺中心与滨海新区地址一致"
     },
     {
-      "group_id": "529efe307c34",
+      "group_id": "62f59cf3b276",
+      "event_uids": ["douban:37804868"],
       "action": "match",
-      "poi_id": "11805831732686530903",
-      "poi_title": "津湾大剧院",
-      "poi_address": "",
-      "latitude": 39.132447,
-      "longitude": 117.209419,
+      "search_keywords_tried": ["海河剧院"],
+      "poi_id": "9212091907595044725",
+      "poi_title": "海河剧院",
+      "poi_address": "天津市南开区卫津南路8号(近八里台立交桥,八里台文化广场)",
+      "latitude": 39.098844,
+      "longitude": 117.178506,
+      "candidates": [
+        {"poi_id": "9212091907595044725", "title": "海河剧院", "address": "天津市南开区卫津南路8号(近八里台立交桥,八里台文化广场)", "category": "娱乐休闲:剧场音乐厅:剧场"}
+      ],
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：天津 和平区 津湾大剧院 解放北路与赤峰道交口津湾广场4号楼 → 津湾大剧院（来源 event:douban:37772477）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37825526"
-      ]
-    },
-    {
-      "group_id": "164832be67e4",
-      "action": "match",
-      "poi_id": "4479868763064494284",
-      "poi_title": "一品家园",
-      "poi_address": "天津市河东区卫国道157号与靖江路交口",
-      "latitude": 39.143733,
-      "longitude": 117.242846,
-      "doubtful": true,
-      "reason": "社区读书聚会在一品家园小区内举办，门牌卫国道157号一致，但POI为住宅小区非正式活动场馆",
-      "search_keywords_tried": [
-        "一品家园 卫国道157号"
-      ],
-      "event_uids": [
-        "douban:37894708"
-      ]
-    },
-    {
-      "group_id": "6dfc5ab3d71a",
-      "action": "match",
-      "poi_id": "5565656811542971188",
-      "poi_title": "天津奥林匹克中心体育馆",
-      "poi_address": "天津市南开区宾水西道393号",
-      "latitude": 39.077543,
-      "longitude": 117.178059,
-      "doubtful": false,
-      "reason": "演唱会场馆与宾水西道393号天津奥林匹克中心体育馆完全一致",
-      "search_keywords_tried": [
-        "天津奥林匹克中心体育馆"
-      ],
-      "event_uids": [
-        "douban:37853138"
-      ]
+      "reason": "店名海河剧院与南开区卫津南路8号门牌完全一致"
     }
   ]
 }

@@ -1,128 +1,42 @@
 {
   "city": "武汉",
   "source": "douban",
-  "exported_at": "2026-06-29T03:23:41.856Z",
+  "exported_at": "2026-07-10T11:46:55.091Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 8,
+  "last_import_new_uids": 2,
   "doubtful_only": false,
-  "total_events": 8,
-  "group_count": 5,
-  "cache_hit_groups": 4,
+  "total_events": 2,
+  "group_count": 1,
+  "cache_hit_groups": 1,
   "groups": [
     {
-      "group_id": "567759bc19da",
-      "location": "武汉 武昌区 然也剧场 和平大道750号武汉绿地新田360商场2F",
-      "sample_title": "《坂本龙一&久石让》世界名曲浪漫烛光钢琴音乐会",
+      "group_id": "2b30d4154f20",
+      "location": "武汉 武昌区 武商梦时代摩尔影城- IMAX激光店（武昌区武珞路628号武商梦时代广场B馆六层B608、B707）",
+      "sample_title": "回来了，终于回来了！周星驰喜剧新作《功夫女足》武汉公映日免费观影",
       "event_uids": [
-        "douban:37853839",
-        "douban:37477968"
+        "douban:37898876",
+        "douban:37898669"
       ],
       "event_count": 2,
       "cached_poi": {
-        "poi_id": "15155048852042783211",
-        "poi_title": "然也剧场(武汉绿地·新田360店)",
+        "poi_id": "6207246753619447771",
+        "poi_title": "武商梦时代摩尔影城(IMAX激光店)",
         "poi_address": "",
-        "latitude": 30.582832,
-        "longitude": 114.322891,
+        "latitude": 30.528455,
+        "longitude": 114.340348,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：武汉 武昌区 然也剧场 和平大道750号武汉绿地新田360商场2F → 然也剧场(武汉绿地·新田360店)（来源 event:douban:37840984）",
+        "reason": "地址映射库命中：武汉 武昌区 武商梦时代摩尔影城- IMAX激光店（武昌区武珞路628号武商梦时代广场B馆六层B608、B707） → 武商梦时代摩尔影城(IMAX激光店)（来源 event:douban:37892088）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "567759bc19dab57660b16038b899988e32aff58f"
-      }
-    },
-    {
-      "group_id": "5abbd55beaaf",
-      "location": "武汉 江岸区 笑嘛武汉脱口秀剧场 永清街道天地壹方南馆5楼(百丽宫影院旁)",
-      "sample_title": "沈清脱口秀互动专场《清道夫》丨《喜单》热门卡司丨武汉脱口秀必打卡",
-      "event_uids": [
-        "douban:37739449"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "3164520614827793622",
-        "poi_title": "武汉 · 笑嘛武汉脱口秀剧场",
-        "poi_address": "",
-        "latitude": 30.610716,
-        "longitude": 114.310656,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：武汉 江岸区 笑嘛武汉脱口秀剧场 永清街道天地壹方南馆5楼(百丽宫影院旁) → 武汉 · 笑嘛武汉脱口秀剧场（来源 event:douban:37517703）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "5abbd55beaafeee0aa77cb3d8e7777a7844c5bb8"
-      }
-    },
-    {
-      "group_id": "dfb721e3598d",
-      "location": "武汉 东西湖区 武汉临空港大剧院 东西湖临空港开发区临空港大道与金北一路交叉口东北200米",
-      "sample_title": "第二届临空港流行音乐嘉年华--海阔天空·致敬BEYOND金曲演唱会",
-      "event_uids": [
-        "douban:37828419",
-        "douban:37810040"
-      ],
-      "event_count": 2
-    },
-    {
-      "group_id": "b46e104bcd4d",
-      "location": "武汉 武昌区 湖北剧院 武昌阅马场西厂口1号",
-      "sample_title": "俄罗斯莫斯科芭蕾舞团《天鹅湖》",
-      "event_uids": [
-        "douban:37770005",
-        "douban:37857032"
-      ],
-      "event_count": 2,
-      "cached_poi": {
-        "poi_id": "583600664672639388",
-        "poi_title": "湖北剧院",
-        "poi_address": "",
-        "latitude": 30.540991,
-        "longitude": 114.304519,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：武汉 武昌区 湖北剧院 武昌阅马场西厂口1号 → 湖北剧院（来源 event:douban:37751913）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "b46e104bcd4db88535f1d703bf24615f41f39530"
-      }
-    },
-    {
-      "group_id": "2e58c7d48bac",
-      "location": "武汉 汉阳区 琴台大剧院 知音大道7号",
-      "sample_title": "舞剧《孔子》武汉站",
-      "event_uids": [
-        "douban:37818147"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "2054636966946479774",
-        "poi_title": "武汉琴台大剧院",
-        "poi_address": "",
-        "latitude": 30.561106,
-        "longitude": 114.259086,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：武汉 汉阳区 琴台大剧院 知音大道7号 → 武汉琴台大剧院（来源 event:douban:37798950）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "2e58c7d48bacb9ab5f8476d251598d95144f1594"
+        "cache_key": "2b30d4154f20c176ad933841aa705d936bed4285"
       }
     }
   ]

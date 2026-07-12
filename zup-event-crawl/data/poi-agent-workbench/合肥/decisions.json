@@ -1,96 +1,82 @@
 {
   "city": "合肥",
   "source": "douban",
-  "decided_at": "2026-06-29T03:42:36.068Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-07-06T10:55:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "d40643538964",
+      "group_id": "7c129026065f",
+      "event_uids": ["douban:37897596"],
       "action": "match",
-      "poi_id": "2006381386252406525",
-      "poi_title": "合肥大剧院",
-      "poi_address": "",
-      "latitude": 31.815872,
-      "longitude": 117.224418,
-      "doubtful": false,
-      "reason": "地址映射库命中：合肥 蜀山区 合肥大剧院 天鹅湖路516号 → 合肥大剧院（来源 event:douban:37716381）",
-      "search_keywords_tried": [
-        "poi-address-cache"
+      "search_keywords_tried": ["安徽博物院"],
+      "poi_id": "9921325524233076545",
+      "poi_title": "安徽博物院蜀山馆",
+      "poi_address": "安徽省合肥市蜀山区怀宁路87号",
+      "latitude": 31.802045,
+      "longitude": 117.220209,
+      "candidates": [
+        {"poi_id": "9921325524233076545", "title": "安徽博物院蜀山馆", "address": "安徽省合肥市蜀山区怀宁路87号", "category": "文化场馆:博物馆"},
+        {"poi_id": "13397257584264678417", "title": "安徽博物院(庐阳馆)", "address": "安徽省合肥市庐阳区安庆路268号", "category": "文化场馆:博物馆"}
       ],
-      "event_uids": [
-        "douban:37704800",
-        "douban:37839990",
-        "douban:37735795"
-      ]
-    },
-    {
-      "group_id": "92bae3a428bd",
-      "action": "match",
-      "poi_id": "8699188752722527019",
-      "poi_title": "哈啦子喜剧(之心城)",
-      "poi_address": "",
-      "latitude": 31.854057,
-      "longitude": 117.257838,
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：合肥 蜀山区 哈啦子喜剧-之心城剧场 临湖社区管理委员会街道长江西路189号之心城购物中心7层18-2C胖哥俩肉蟹煲旁边 → 哈啦子喜剧(之心城)（来源 event:douban:37527726）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37754055",
-        "douban:37239181"
-      ]
+      "reason": "豆瓣标注蜀山区安徽博物院，与蜀山馆区划一致；庐阳馆为旧馆不在蜀山区"
     },
     {
       "group_id": "e9377918d00e",
+      "event_uids": ["douban:37778561", "douban:37802208"],
       "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "1232056429360386943",
       "poi_title": "安徽大剧院",
       "poi_address": "",
       "latitude": 31.852388,
       "longitude": 117.287032,
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：合肥 包河区 安徽大剧院 芜湖路301号 → 安徽大剧院（来源 event:douban:37817841）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37754311"
-      ]
+      "reason": "地址映射库命中：包河区安徽大剧院芜湖路301号"
+    },
+    {
+      "group_id": "c0b85172542b",
+      "event_uids": ["douban:37589278"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "7565514584472375990",
+      "poi_title": "来看剧场",
+      "poi_address": "",
+      "latitude": 31.793743,
+      "longitude": 117.327695,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：包河区来看剧场贡街罍+村二楼"
     },
     {
       "group_id": "3aa370b85f07",
+      "event_uids": ["douban:37833215"],
       "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "15193364080442917279",
       "poi_title": "肥东大剧院",
       "poi_address": "",
       "latitude": 31.84381,
       "longitude": 117.486809,
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：合肥 肥东县 肥东大剧院 瑶岗路与撮东路交叉路口往西南约150米，和睦湖公园东南侧约50米 → 肥东大剧院（来源 event:douban:37839361）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37867495"
-      ]
+      "reason": "地址映射库命中：肥东县肥东大剧院瑶岗路与撮东路交叉口"
     },
     {
-      "group_id": "c740c8b5becc",
+      "group_id": "d40643538964",
+      "event_uids": ["douban:37847981"],
       "action": "match",
-      "poi_id": "3844383793227150543",
-      "poi_title": "追笑喜剧空间(京东超体7楼)",
-      "poi_address": "安徽省合肥市蜀山区南七街道港汇广场7楼(望江西路与潜山路东北角)",
-      "latitude": 31.832848,
-      "longitude": 117.23239,
-      "doubtful": true,
-      "reason": "追笑喜剧空间店名与港汇广场7楼地址一致，豆瓣写包河区、腾讯写蜀山区，属行政区划标注差异",
-      "search_keywords_tried": [
-        "追笑喜剧空间 港汇广场"
-      ],
-      "event_uids": [
-        "douban:35413605"
-      ]
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "2006381386252406525",
+      "poi_title": "合肥大剧院",
+      "poi_address": "",
+      "latitude": 31.815872,
+      "longitude": 117.224418,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：蜀山区合肥大剧院天鹅湖路516号"
     }
   ]
 }

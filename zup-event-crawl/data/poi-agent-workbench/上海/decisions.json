@@ -1,48 +1,68 @@
 {
   "city": "上海",
   "source": "douban",
-  "decided_at": "2026-06-29T03:42:03.873Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-07-10T11:35:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "6d01add84db3",
+      "group_id": "642caa0a905a",
+      "event_uids": ["douban:37898460"],
       "action": "match",
-      "poi_id": "52919750025520475",
-      "poi_title": "上海东方艺术中心",
-      "poi_address": "",
-      "latitude": 31.222824,
-      "longitude": 121.541307,
+      "poi_id": "4540108774215426802",
+      "poi_title": "金逸影城(凯德虹口激光IMAX店)",
+      "poi_address": "上海市虹口区西江湾路388号凯德龙之梦(虹口店)F6",
+      "latitude": 31.271176,
+      "longitude": 121.477216,
       "doubtful": false,
-      "reason": "地址映射库命中：上海 浦东新区 上海东方艺术中心 丁香路425号(近世纪大道) → 上海东方艺术中心（来源 event:douban:37726808）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37859560",
-        "douban:37806231",
-        "douban:37645216",
-        "douban:37628278"
-      ]
+      "reason": "活动详情写明凯德虹口激光IMAX店，与候选影院一致",
+      "search_keywords_tried": ["金逸影城凯德虹口"],
+      "confidence": "high"
     },
     {
-      "group_id": "34d7a50689c1",
+      "group_id": "9c2111b001dc",
+      "event_uids": ["douban:37896326"],
       "action": "match",
-      "poi_id": "10076962457668514442",
-      "poi_title": "凯迪拉克·上海音乐厅-东南门",
-      "poi_address": "",
-      "latitude": 31.22621,
-      "longitude": 121.478451,
+      "poi_id": "10697250808694911033",
+      "poi_title": "衡山坊",
+      "poi_address": "上海市徐汇区衡山路880号(徐家汇地铁站13号口步行250米)",
+      "latitude": 31.196132,
+      "longitude": 121.439646,
       "doubtful": false,
-      "reason": "地址映射库命中：上海 黄浦区 凯迪拉克-上海音乐厅 延安东路523号(近西藏南路) → 凯迪拉克·上海音乐厅-东南门（来源 event:douban:37796487）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37863708"
-      ]
+      "reason": "豆瓣衡山路880号和集Coffee，腾讯无店级POI，门牌与衡山坊主体一致",
+      "search_keywords_tried": ["和集Coffee衡山路880", "和集咖啡", "衡山路880号"],
+      "confidence": "medium"
+    },
+    {
+      "group_id": "c8e3da4b11e1",
+      "event_uids": ["douban:37732364", "douban:37867350"],
+      "action": "match",
+      "poi_id": "2868361964880583690",
+      "poi_title": "上海文化广场",
+      "poi_address": "上海市黄浦区复兴中路597号",
+      "latitude": 31.212301,
+      "longitude": 121.462493,
+      "doubtful": false,
+      "reason": "复兴中路597号上海文化广场与活动地址一致",
+      "search_keywords_tried": ["上海文化广场"],
+      "confidence": "high"
+    },
+    {
+      "group_id": "c8348a11462f",
+      "event_uids": ["douban:37899348", "douban:37899387"],
+      "action": "match",
+      "poi_id": "4105257615610063886",
+      "poi_title": "启示望远文创园",
+      "poi_address": "",
+      "latitude": 31.143743,
+      "longitude": 121.345218,
+      "doubtful": false,
+      "reason": "地址映射库命中：联明路555号文创园5幢105",
+      "search_keywords_tried": ["poi-address-cache"],
+      "confidence": "high"
     },
     {
       "group_id": "a45e0491e227",
+      "event_uids": ["douban:37899893", "douban:37899908"],
       "action": "match",
       "poi_id": "14252119467906121381",
       "poi_title": "嘉发大厦-A栋",
@@ -50,216 +70,205 @@
       "latitude": 31.23286,
       "longitude": 121.464008,
       "doubtful": false,
-      "reason": "地址映射库命中：上海 静安区 大田路129弄嘉发大厦A栋5D → 嘉发大厦-A栋（来源 event:douban:37891795）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37894469"
-      ]
+      "reason": "地址映射库命中：大田路129弄嘉发大厦A栋5D",
+      "search_keywords_tried": ["poi-address-cache"],
+      "confidence": "high"
     },
     {
-      "group_id": "7ff6c8f2e2b7",
+      "group_id": "045e9c2b17e8",
+      "event_uids": ["douban:37881197", "douban:37881165"],
       "action": "match",
-      "poi_id": "5527323411719490889",
-      "poi_title": "Theatre YOUNG剧场",
+      "poi_id": "14987562979168640294",
+      "poi_title": "捷豹上海交响音乐厅",
       "poi_address": "",
-      "latitude": 31.278051,
-      "longitude": 121.528544,
+      "latitude": 31.211524,
+      "longitude": 121.451652,
       "doubtful": false,
-      "reason": "地址映射库命中：上海 杨浦区 YOUNG剧场 控江路1155号 → Theatre YOUNG剧场（来源 event:douban:37830355）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37873295"
-      ]
+      "reason": "地址映射库命中：复兴中路1380号捷豹上海交响音乐厅",
+      "search_keywords_tried": ["poi-address-cache"],
+      "confidence": "high"
     },
     {
-      "group_id": "6b26e5ad3735",
+      "group_id": "e0ffb15c3fe3",
+      "event_uids": ["douban:37588221"],
       "action": "match",
-      "poi_id": "5705623475713552211",
-      "poi_title": "交通银行前滩31演艺中心",
+      "poi_id": "5290222778708464337",
+      "poi_title": "上海新国际博览中心",
+      "poi_address": "上海市浦东新区龙阳路2345号",
+      "latitude": 31.210593,
+      "longitude": 121.567086,
+      "doubtful": false,
+      "reason": "智慧会议室展览会场地为新国际博览中心",
+      "search_keywords_tried": ["上海新国际博览中心"],
+      "confidence": "high"
+    },
+    {
+      "group_id": "e077c35c29c8",
+      "event_uids": ["douban:37668298"],
+      "action": "match",
+      "poi_id": "5290222778708464337",
+      "poi_title": "上海新国际博览中心",
+      "poi_address": "上海市浦东新区龙阳路2345号",
+      "latitude": 31.210593,
+      "longitude": 121.567086,
+      "doubtful": false,
+      "reason": "压铸展N1-N4馆位于新国际博览中心主体",
+      "search_keywords_tried": ["上海新国际博览中心"],
+      "confidence": "high"
+    },
+    {
+      "group_id": "ca227422fc26",
+      "event_uids": ["douban:37885097"],
+      "action": "match",
+      "poi_id": "6674447953114383161",
+      "poi_title": "育音堂小镇YUYINTOWN",
       "poi_address": "",
-      "latitude": 31.15076,
-      "longitude": 121.484961,
+      "latitude": 31.210336,
+      "longitude": 121.419663,
       "doubtful": false,
-      "reason": "地址映射库命中：上海 浦东新区 交通银行前滩31演艺中心 高青西路777号 → 交通银行前滩31演艺中心（来源 event:douban:37814494）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37792191"
-      ]
+      "reason": "地址映射库命中：昭化路638号育音堂小镇C厅",
+      "search_keywords_tried": ["poi-address-cache"],
+      "confidence": "high"
     },
     {
-      "group_id": "914bb27baf71",
+      "group_id": "f050a4d42602",
+      "event_uids": ["douban:37745497", "douban:37863369", "douban:37788252"],
       "action": "match",
-      "poi_id": "8548731801045296785",
-      "poi_title": "喜联空间",
+      "poi_id": "15696576218127323146",
+      "poi_title": "上海话剧艺术中心-艺术剧院(话剧大厦店)",
       "poi_address": "",
-      "latitude": 31.220931,
-      "longitude": 121.477534,
+      "latitude": 31.213714,
+      "longitude": 121.44114,
       "doubtful": false,
-      "reason": "地址映射库命中：上海 黄浦区 喜联空间·新天地 湖滨路168号无限极荟2楼 → 喜联空间（来源 event:douban:37150417）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37881272"
-      ]
+      "reason": "地址映射库命中：安福路288号上海话剧艺术中心",
+      "search_keywords_tried": ["poi-address-cache"],
+      "confidence": "high"
     },
     {
-      "group_id": "b1702a6e010a",
+      "group_id": "c9bfe70219fd",
+      "event_uids": ["douban:37896125"],
       "action": "match",
-      "poi_id": "4170847501144352500",
-      "poi_title": "八号桥-青春无限音乐厅",
+      "poi_id": "10834671763111488247",
+      "poi_title": "和平影都(来福士广场店)",
+      "poi_address": "上海市黄浦区西藏中路268号来福士广场F2",
+      "latitude": 31.232923,
+      "longitude": 121.476188,
+      "doubtful": false,
+      "reason": "ING剧场位于和平影都6楼，和平影都主体与候选一致",
+      "search_keywords_tried": ["和平影都", "和平影都西藏中路290", "一台好戏星空间", "ING剧场"],
+      "confidence": "high"
+    },
+    {
+      "group_id": "93ff83dfba05",
+      "event_uids": ["douban:36913374"],
+      "action": "match",
+      "poi_id": "9306060919838666850",
+      "poi_title": "JAZZ at Lincoln Center Shanghai",
+      "poi_address": "上海市黄浦区南京东路139号4楼401-402",
+      "latitude": 31.238054,
+      "longitude": 121.486988,
+      "doubtful": false,
+      "reason": "林肯爵士乐上海中心南京东路139号4楼与候选一致",
+      "search_keywords_tried": ["林肯爵士乐上海中心"],
+      "confidence": "high"
+    },
+    {
+      "group_id": "c8bf659b1ea0",
+      "event_uids": ["douban:37879281"],
+      "action": "match",
+      "poi_id": "7751370155275530590",
+      "poi_title": "中华艺术宫",
+      "poi_address": "上海市浦东新区上南路205号",
+      "latitude": 31.18438,
+      "longitude": 121.494724,
+      "doubtful": false,
+      "reason": "马王堆文物展位于上南路205号中华艺术宫",
+      "search_keywords_tried": ["中华艺术宫"],
+      "confidence": "high"
+    },
+    {
+      "group_id": "9f8e3dbb6b2d",
+      "event_uids": ["douban:37698704"],
+      "action": "match",
+      "poi_id": "16601175661901634745",
+      "poi_title": "日月光中心-写字楼",
       "poi_address": "",
-      "latitude": 31.240046,
-      "longitude": 121.466476,
+      "latitude": 31.20583,
+      "longitude": 121.468507,
       "doubtful": false,
-      "reason": "地址映射库命中：上海 黄浦区 八号桥-青春无限音乐厅 南苏州路1247号八号桥艺术空间3楼 → 八号桥-青春无限音乐厅（来源 event:douban:37617060）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37617059",
-        "douban:37886157",
-        "douban:37645045"
-      ]
+      "reason": "地址映射库命中：徐家汇路618号日月光中心暴风岛体验馆",
+      "search_keywords_tried": ["poi-address-cache"],
+      "confidence": "high"
     },
     {
-      "group_id": "a8fb06333364",
+      "group_id": "f83d021e2926",
+      "event_uids": ["douban:37784890"],
       "action": "match",
-      "poi_id": "18300789276948473305",
-      "poi_title": "青春无限乐团烛光音乐会(上海广场店)",
+      "poi_id": "2213532323557188148",
+      "poi_title": "上海一支麦小剧场(淮海中路店)",
+      "poi_address": "上海市黄浦区淮海中路939号巴黎春天(淮海店)F3",
+      "latitude": 31.216551,
+      "longitude": 121.459408,
+      "doubtful": false,
+      "reason": "淮海中路939号巴黎春天一支麦小剧场与活动一致",
+      "search_keywords_tried": ["一支麦小剧场"],
+      "confidence": "high"
+    },
+    {
+      "group_id": "ad8d4e71b9e7",
+      "event_uids": ["douban:37833480"],
+      "action": "match",
+      "poi_id": "17216326224513056104",
+      "poi_title": "半笑空间-外滩店1号剧场",
       "poi_address": "",
-      "latitude": 31.225171,
-      "longitude": 121.478115,
+      "latitude": 31.235289,
+      "longitude": 121.482746,
       "doubtful": false,
-      "reason": "地址映射库命中：上海 黄浦区 青春无限乐团烛光音乐会-上海广场店 淮海中路138号上海广场2楼206A → 青春无限乐团烛光音乐会(上海广场店)（来源 event:douban:37763104）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37347039"
-      ]
+      "reason": "地址映射库命中：汉口路398号华盛大厦半笑空间",
+      "search_keywords_tried": ["poi-address-cache"],
+      "confidence": "high"
     },
     {
-      "group_id": "d7e543086a50",
-      "action": "reject",
-      "doubtful": false,
-      "reason": "豆瓣仅写南浦大桥地铁站作为户外徒步集合点，非具体场馆主体，地址过泛无法对应唯一活动场地POI",
-      "search_keywords_tried": [
-        "南浦大桥地铁站"
-      ],
-      "event_uids": [
-        "douban:37439761"
-      ]
-    },
-    {
-      "group_id": "0c9e6c8d9474",
+      "group_id": "6d01add84db3",
+      "event_uids": ["douban:37856877"],
       "action": "match",
-      "poi_id": "2750504190343357699",
-      "poi_title": "摩登天空(瑞虹天地店)",
-      "poi_address": "上海市虹口区瑞虹路188号瑞虹天地月亮湾309-310号",
-      "latitude": 31.264829,
-      "longitude": 121.498775,
+      "poi_id": "52919750025520475",
+      "poi_title": "上海东方艺术中心",
+      "poi_address": "",
+      "latitude": 31.222824,
+      "longitude": 121.541307,
       "doubtful": false,
-      "reason": "Modern Sky LAB摩登天空上海，店名与瑞虹路188号月亮湾309-310号地址完全一致",
-      "search_keywords_tried": [
-        "Modern Sky LAB 摩登天空"
-      ],
-      "event_uids": [
-        "douban:37834617",
-        "douban:37844815"
-      ]
+      "reason": "地址映射库命中：丁香路425号上海东方艺术中心",
+      "search_keywords_tried": ["poi-address-cache"],
+      "confidence": "high"
     },
     {
-      "group_id": "f4ba25ae115f",
+      "group_id": "2b90faab40c0",
+      "event_uids": ["douban:37876492"],
       "action": "match",
-      "poi_id": "10607727212696558593",
-      "poi_title": "久事·上海商城剧院",
-      "poi_address": "上海市静安区南京西路街道南京西路1376号4楼",
-      "latitude": 31.226747,
-      "longitude": 121.451897,
+      "poi_id": "6589873532820127969",
+      "poi_title": "上海大剧院",
+      "poi_address": "",
+      "latitude": 31.229393,
+      "longitude": 121.471826,
       "doubtful": false,
-      "reason": "场馆名称与南京西路1376号4楼地址完全一致",
-      "search_keywords_tried": [
-        "久事上海商城剧院"
-      ],
-      "event_uids": [
-        "douban:37853950"
-      ]
+      "reason": "地址映射库命中：人民大道300号上海大剧院",
+      "search_keywords_tried": ["poi-address-cache"],
+      "confidence": "high"
     },
     {
-      "group_id": "d7eeabae5573",
+      "group_id": "8545517a6a6a",
+      "event_uids": ["douban:37884307"],
       "action": "match",
-      "poi_id": "716698760276036149",
-      "poi_title": "兰心大戏院",
-      "poi_address": "上海市黄浦区茂名南路57号",
-      "latitude": 31.221036,
-      "longitude": 121.460523,
+      "poi_id": "6589873532820127969",
+      "poi_title": "上海大剧院",
+      "poi_address": "上海市黄浦区人民大道300号",
+      "latitude": 31.229393,
+      "longitude": 121.471826,
       "doubtful": false,
-      "reason": "兰心大戏院，黄浦区茂名南路57号与豆瓣地址一致",
-      "search_keywords_tried": [
-        "兰心大戏院"
-      ],
-      "event_uids": [
-        "douban:37876876"
-      ]
-    },
-    {
-      "group_id": "fc08b8cc5b2f",
-      "action": "match",
-      "poi_id": "5528072624503891635",
-      "poi_title": "上海图书馆(东馆)",
-      "poi_address": "上海市浦东新区花木街道合欢路300号",
-      "latitude": 31.219975,
-      "longitude": 121.547154,
-      "doubtful": false,
-      "reason": "豆瓣写迎春路300号应为合欢路300号笔误，上海图书馆东馆主体一致，仅1楼一号展厅未精确到腾讯店级POI",
-      "search_keywords_tried": [
-        "上海图书馆东馆"
-      ],
-      "event_uids": [
-        "douban:37887205",
-        "douban:37743227"
-      ]
-    },
-    {
-      "group_id": "e301289e1ed9",
-      "action": "match",
-      "poi_id": "8359144007685316449",
-      "poi_title": "1862时尚艺术中心",
-      "poi_address": "上海市浦东新区滨江大道1777号(陆家嘴滨江金融城内)",
-      "latitude": 31.244392,
-      "longitude": 121.514206,
-      "doubtful": false,
-      "reason": "场馆名称与滨江大道1777号地址完全一致",
-      "search_keywords_tried": [
-        "1862时尚艺术中心"
-      ],
-      "event_uids": [
-        "douban:37878786"
-      ]
-    },
-    {
-      "group_id": "0fa005f87b7d",
-      "action": "match",
-      "poi_id": "14675978706285386968",
-      "poi_title": "麦金侬酒店",
-      "poi_address": "上海市静安区北京西路1013号",
-      "latitude": 31.229822,
-      "longitude": 121.455887,
-      "doubtful": false,
-      "reason": "麦金侬酒店《不眠之夜》剧场，店名与北京西路1013号地址完全一致",
-      "search_keywords_tried": [
-        "麦金侬酒店 不眠之夜"
-      ],
-      "event_uids": [
-        "douban:36684770"
-      ]
+      "reason": "上海大剧院大剧场位于上海大剧院主体内",
+      "search_keywords_tried": ["上海大剧院"],
+      "confidence": "high"
     }
   ]
 }

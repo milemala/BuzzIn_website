@@ -1,59 +1,80 @@
 {
   "city": "重庆",
   "source": "douban",
-  "decided_at": "2026-06-29T03:25:37.642Z",
-  "agent": "cache-hit-auto",
+  "decided_at": "2026-07-10T12:05:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "7d018236cd5e",
+      "group_id": "f39b66670d03",
       "action": "match",
-      "poi_id": "2322472542756439282",
-      "poi_title": "重庆国泰艺术中心云瑚音乐厅",
-      "poi_address": "",
-      "latitude": 29.560313,
-      "longitude": 106.577761,
+      "poi_id": "1967616658415122998",
+      "poi_title": "CGV影城(重庆来福士IMAX店)",
+      "poi_address": "重庆市渝中区接圣街8号重庆来福士购物中心L3",
+      "latitude": 29.563808,
+      "longitude": 106.588173,
       "doubtful": false,
-      "reason": "地址映射库命中：重庆 渝中区 重庆国泰艺术中心云瑚音乐厅 临江路3号 → 重庆国泰艺术中心云瑚音乐厅（来源 event:douban:37663618）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37827001"
-      ]
+      "reason": "CGV影城重庆来福士IMAX店与渝中区来福士店地址一致",
+      "search_keywords_tried": ["CGV影城 来福士"],
+      "event_uids": ["douban:37899154"]
     },
     {
-      "group_id": "5a34edd36a41",
+      "group_id": "efb10d5a9c52",
       "action": "match",
-      "poi_id": "9924413222897895137",
-      "poi_title": "重庆国泰艺术中心云卫剧场-渝戏",
-      "poi_address": "",
-      "latitude": 29.560091,
-      "longitude": 106.577163,
+      "poi_id": "15874814400996978135",
+      "poi_title": "西街星座A座",
+      "poi_address": "重庆市九龙坡区龙湖西街星座A座",
+      "latitude": 29.511395,
+      "longitude": 106.517588,
       "doubtful": false,
-      "reason": "地址映射库命中：重庆 渝中区 重庆国泰艺术中心云卫剧场-渝戏 临江路1号重庆国泰艺术中心云卫剧场 → 重庆国泰艺术中心云卫剧场-渝戏（来源 event:douban:36881584）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37097531"
-      ]
+      "reason": "地址映射库命中：西街星座A座与龙湖西街星座A座21-12楼宇主体一致",
+      "search_keywords_tried": ["poi-address-cache"],
+      "event_uids": ["douban:37890730"]
     },
     {
-      "group_id": "89514f152d05",
+      "group_id": "f952aff395d4",
+      "action": "reject",
+      "reason": "集合地点仅写重庆市两江新区观音桥，地址过泛无法唯一确定POI",
+      "search_keywords_tried": ["观音桥 两江新区"],
+      "event_uids": ["douban:37879844"]
+    },
+    {
+      "group_id": "139fda4186ae",
       "action": "match",
-      "poi_id": "9140399097731358382",
-      "poi_title": "坚果NUTS",
-      "poi_address": "",
-      "latitude": 29.582205,
-      "longitude": 106.52632,
+      "poi_id": "17770238017592914169",
+      "poi_title": "CKG48星梦剧院(喜盈门·范城店)",
+      "poi_address": "重庆市九龙坡区奥体路1号喜盈门·范城L5层L513号",
+      "latitude": 29.528152,
+      "longitude": 106.511308,
       "doubtful": false,
-      "reason": "地址映射库命中：重庆 两江新区 坚果NUTS 演出现场 观音桥街道建新北路观音桥新壹街C馆F1层 → 坚果NUTS（来源 event:douban:37866708）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37789420"
-      ]
+      "reason": "CKG48星梦剧院与奥体路一号喜盈门范城五楼地址一致",
+      "search_keywords_tried": ["CKG48星梦剧院"],
+      "event_uids": ["douban:37735659"]
+    },
+    {
+      "group_id": "d760ff44e846",
+      "action": "match",
+      "poi_id": "2875387476666423445",
+      "poi_title": "MAO Livehouse(观音桥龙湖新壹街店)",
+      "poi_address": "重庆市两江新区龙湖新壹街A馆-B1-Zlab",
+      "latitude": 29.581458,
+      "longitude": 106.525486,
+      "doubtful": false,
+      "reason": "地址映射库命中：MAO Livehouse与红旗河沟龙湖新壹街地址一致",
+      "search_keywords_tried": ["poi-address-cache"],
+      "event_uids": ["douban:37821277"]
+    },
+    {
+      "group_id": "eb03845060f1",
+      "action": "match",
+      "poi_id": "6745060521296666657",
+      "poi_title": "重庆大剧院",
+      "poi_address": "重庆市两江新区江北嘴北城文华街东路",
+      "latitude": 29.570032,
+      "longitude": 106.581396,
+      "doubtful": false,
+      "reason": "地址映射库命中：重庆大剧院与江北嘴北城文华街东路地址一致",
+      "search_keywords_tried": ["poi-address-cache"],
+      "event_uids": ["douban:37847278"]
     }
   ]
 }

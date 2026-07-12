@@ -1,35 +1,46 @@
 {
   "city": "青岛",
   "source": "douban",
-  "exported_at": "2026-06-29T03:23:47.147Z",
+  "exported_at": "2026-07-10T11:49:14.920Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 3,
+  "last_import_new_uids": 5,
   "doubtful_only": false,
-  "total_events": 3,
+  "total_events": 5,
   "group_count": 3,
-  "cache_hit_groups": 2,
+  "cache_hit_groups": 1,
   "groups": [
     {
-      "group_id": "2281ad7f174e",
-      "location": "青岛 黄岛区 凤凰之声大剧院 西海岸新区金沙滩路966号",
-      "sample_title": "亚洲大型全男班现代舞秀《无名之辈》",
+      "group_id": "d5b4ae46f503",
+      "location": "青岛 万达影城(青岛CBD万达广场店)",
+      "sample_title": "288期 《群星闪耀时》青岛超前免费观影",
       "event_uids": [
-        "douban:37829192"
+        "douban:37899747"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "df008ea8a036",
+      "location": "青岛 市南区 横店电影城(中山店)",
+      "sample_title": "282期《群星闪耀时》青岛超前免费观影",
+      "event_uids": [
+        "douban:37899110"
       ],
       "event_count": 1
     },
     {
       "group_id": "bbd29ea160b4",
       "location": "青岛 市南区 一支麦小剧场 香港中路69号麦凯乐青岛总店二层东南角",
-      "sample_title": "一支麦脱口秀 | 婷婷《T我说》个人互动专场 | 爆笑解压脱口秀&约会推荐",
+      "sample_title": "一支麦脱口秀 | 天一《荒地的新衣》脱口秀专场 | 爆笑解压脱口秀&约会推荐",
       "event_uids": [
-        "douban:37548449"
+        "douban:37823679",
+        "douban:37776895",
+        "douban:37267226"
       ],
-      "event_count": 1,
+      "event_count": 3,
       "cached_poi": {
         "poi_id": "16379937920368861042",
         "poi_title": "一支麦小剧场(香港中路店)",
@@ -39,37 +50,12 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：青岛 市南区 一支麦小剧场 香港中路69号麦凯乐青岛总店二层东南角 → 一支麦小剧场(香港中路店)（来源 event:douban:37177374）",
+        "reason": "地址映射库命中：青岛 市南区 一支麦小剧场 香港中路69号麦凯乐青岛总店二层东南角 → 一支麦小剧场(香港中路店)（来源 event:douban:37548449）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
         "cache_key": "bbd29ea160b4d57f8e3cd92eff36033e02477389"
-      }
-    },
-    {
-      "group_id": "5f308c3261cf",
-      "location": "青岛 市南区 龙马社黑匣子剧场 龙山路26号怡堡酒店内",
-      "sample_title": "沉浸式互动·悬疑话剧《宋美龄耳环丢了》",
-      "event_uids": [
-        "douban:37665516"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "9998467331074209506",
-        "poi_title": "龙马社黑匣子剧场",
-        "poi_address": "",
-        "latitude": 36.065987,
-        "longitude": 120.333485,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：青岛 市南区 龙马社黑匣子剧场 龙山路26号怡堡酒店内 → 龙马社黑匣子剧场（来源 event:douban:37665713）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "5f308c3261cf79d44861d5dcf251e974b0e7234e"
       }
     }
   ]

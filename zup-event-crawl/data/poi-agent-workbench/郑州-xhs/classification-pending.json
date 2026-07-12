@@ -1,39 +1,7 @@
 {
   "city": "郑州",
   "source": "xiaohongshu",
-  "scope": "active_only",
-  "exported_at": "2026-07-02T08:29:51.943Z",
-  "note": "未过期活动全量重分类：Agent 读 title/body/location 判断 suggested + category",
-  "events": [
-    {
-      "event_uid": "xiaohongshu:6a0ece80000000003501e67c:08_1",
-      "title": "蛙声一片",
-      "location": "中原锦艺城",
-      "fee": "免费",
-      "owner": "郑州周末去哪",
-      "time_text": "5月20日-8月2日",
-      "douban_event_type": "",
-      "slide_category": "展览",
-      "body_excerpt": "郑州锦艺城蛙声一片免费新展上线，巨型萌蛙打卡治愈又出片，荷塘故事会、蛙蛙寻宝等趣味活动轮番登场，打卡还能解锁多重福利",
-      "detail_excerpt": "分类：展览 费用：免费 时间：5月20日-8月2日 地址：中原锦艺城 介绍：郑州锦艺城蛙声一片免费新展上线，巨型萌蛙打卡治愈又出片，荷塘故事会、蛙蛙寻宝等趣味活动轮番登场，打卡还能解锁多重福利 来源账号：郑州周末去哪 合集标题：全部免费！郑州本周末可做的 26 件事✨ 来源笔记：https://www.xiaohongshu.com/explore/6a0ece80000000003501e67c?xsec_token=AB6qDTjEpg24ACo1Hqn4q6BhDLTuKv-gxTp0kZ9aLqRm8%3D&xsec_source=pc_user 原 slide：6a0ece80000000003501e67c/images/08.webp 裁切海报：6a0ece80000000003501e67c/posters/08_slot1.jpg",
-      "current_category": "户外活动",
-      "current_suggested": true,
-      "current_reason": "商场免费治愈系蛙主题展，含互动打卡与趣味活动"
-    },
-    {
-      "event_uid": "xiaohongshu:6a0ece80000000003501e67c:10_0",
-      "title": "两周中原列国青铜展",
-      "location": "郑州博物馆1层5展厅",
-      "fee": "免费",
-      "owner": "郑州周末去哪",
-      "time_text": "5月18日-8月31日",
-      "douban_event_type": "",
-      "slide_category": "展览",
-      "body_excerpt": "河南首个根脉文明青铜展，200余件两周青铜重器重磅亮相郑博，四大主题板块解码礼乐文明，全景呈现中原华夏融合归一脉络",
-      "detail_excerpt": "分类：展览 费用：免费 时间：5月18日-8月31日 地址：郑州博物馆1层5展厅 介绍：河南首个根脉文明青铜展，200余件两周青铜重器重磅亮相郑博，四大主题板块解码礼乐文明，全景呈现中原华夏融合归一脉络 来源账号：郑州周末去哪 合集标题：全部免费！郑州本周末可做的 26 件事✨ 来源笔记：https://www.xiaohongshu.com/explore/6a0ece80000000003501e67c?xsec_token=AB6qDTjEpg24ACo1Hqn4q6BhDLTuKv-gxTp0kZ9aLqRm8%3D&xsec_source=pc_user 原 slide：6a0ece80000000003501e67c/images/10.webp 裁切海报：6a0ece80000000003501e67c/posters/10_slot0.jpg",
-      "current_category": "看展逛馆",
-      "current_suggested": true,
-      "current_reason": "郑州博物馆两周青铜文物特展，博物馆逛展"
-    }
-  ]
+  "exported_at": "2026-07-10T12:41:08.036Z",
+  "note": "由 Cursor Agent 逐条判断 suggested（推荐/挡下）与 category。见 docs/event-classification-agent.md",
+  "events": []
 }

@@ -1,0 +1,26 @@
+{
+  "city": "福州",
+  "source": "douban",
+  "decided_at": "2026-07-10T12:00:00.000Z",
+  "agent": "cursor-composer",
+  "decisions": [
+    {
+      "group_id": "a53fa3fed340",
+      "action": "match",
+      "poi_id": "2312146045768955736",
+      "poi_title": "福立社喜剧-福州脱口秀",
+      "poi_address": "",
+      "latitude": 26.064798,
+      "longitude": 119.290562,
+      "doubtful": false,
+      "reason": "福立社喜剧万象九宜城5楼店名与工业路万象九宜城5楼425号地址一致",
+      "search_keywords_tried": [
+        "福立社喜剧 万象九宜城"
+      ],
+      "event_uids": [
+        "douban:37658594",
+        "douban:37763396"
+      ]
+    }
+  ]
+}

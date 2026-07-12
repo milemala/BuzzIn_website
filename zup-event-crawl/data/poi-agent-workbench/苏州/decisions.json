@@ -1,78 +1,53 @@
 {
   "city": "苏州",
   "source": "douban",
-  "decided_at": "2026-06-29T03:25:30.250Z",
-  "agent": "cache-hit-auto",
+  "decided_at": "2026-07-10T12:05:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "ef06b234c083",
+      "group_id": "8c262da44201",
+      "event_uids": ["douban:37521624"],
       "action": "match",
-      "poi_id": "4690291939764768068",
-      "poi_title": "苏州开明大戏院(观前街店)",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "3559717419426757852",
+      "poi_title": "苏州市第二工人文化宫",
       "poi_address": "",
-      "latitude": 31.309343,
-      "longitude": 120.625342,
+      "latitude": 31.382311,
+      "longitude": 120.596462,
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：苏州 姑苏区 苏州开明大戏院 观前街北局11号 → 苏州开明大戏院(观前街店)（来源 event:douban:37310679）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37857135"
-      ]
+      "reason": "地址映射库命中玉成路219号第二工人文化宫",
+      "candidates": []
     },
     {
-      "group_id": "22328429da75",
+      "group_id": "a6b9b2e66c4a",
+      "event_uids": ["douban:37855541"],
       "action": "match",
-      "poi_id": "116162868958338799",
-      "poi_title": "众戏剧文化艺术空间",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "18444336822554355830",
+      "poi_title": "开心麻花运河剧场",
       "poi_address": "",
-      "latitude": 31.293474,
-      "longitude": 120.548244,
+      "latitude": 31.309624,
+      "longitude": 120.604756,
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：苏州 虎丘区 众戏剧文化艺术空间 长江路狮山文化广场B1众戏剧文化艺术空间 → 众戏剧文化艺术空间（来源 event:douban:37770076）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37582757",
-        "douban:37725675"
-      ]
+      "reason": "地址映射库命中金门路33号开心麻花运河剧场",
+      "candidates": []
     },
     {
       "group_id": "23718b028bd0",
+      "event_uids": ["douban:37673856"],
       "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "11514486545186817455",
       "poi_title": "苏州湾大剧院",
       "poi_address": "",
       "latitude": 31.132232,
       "longitude": 120.585871,
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：苏州 吴江区 苏州湾大剧院 东太湖大道12000号 → 苏州湾大剧院（来源 event:douban:37659777）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37764970",
-        "douban:37695779"
-      ]
-    },
-    {
-      "group_id": "12c99b2b1b58",
-      "action": "match",
-      "poi_id": "2609393046642382812",
-      "poi_title": "长歌互动演艺空间·音乐酒馆",
-      "poi_address": "",
-      "latitude": 31.312516,
-      "longitude": 120.625079,
-      "doubtful": false,
-      "reason": "地址映射库命中：苏州 姑苏区 长歌演艺空间 平江街道皮市街9-69号(开元里2楼) → 长歌互动演艺空间·音乐酒馆（来源 event:douban:37763412）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37819948"
-      ]
+      "reason": "地址映射库命中东太湖大道12000号苏州湾大剧院",
+      "candidates": []
     }
   ]
 }

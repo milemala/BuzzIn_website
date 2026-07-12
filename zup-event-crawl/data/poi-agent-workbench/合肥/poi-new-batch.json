@@ -1,0 +1,62 @@
+{
+  "city": "合肥",
+  "source": "douban",
+  "decided_at": "2026-07-10T12:00:00.000Z",
+  "agent": "cursor-composer",
+  "decisions": [
+    {
+      "group_id": "92bae3a428bd",
+      "action": "match",
+      "poi_id": "8699188752722527019",
+      "poi_title": "哈啦子喜剧(之心城)",
+      "poi_address": "",
+      "latitude": 31.854057,
+      "longitude": 117.257838,
+      "doubtful": false,
+      "reason": "哈啦子喜剧之心城剧场与长江西路189号之心城7层地址一致",
+      "search_keywords_tried": [
+        "哈啦子喜剧 之心城"
+      ],
+      "event_uids": [
+        "douban:37714376",
+        "douban:37030051",
+        "douban:37631752"
+      ]
+    },
+    {
+      "group_id": "e9377918d00e",
+      "action": "match",
+      "poi_id": "1232056429360386943",
+      "poi_title": "安徽大剧院",
+      "poi_address": "",
+      "latitude": 31.852388,
+      "longitude": 117.287032,
+      "doubtful": false,
+      "reason": "安徽大剧院与芜湖路301号地址一致",
+      "search_keywords_tried": [
+        "安徽大剧院"
+      ],
+      "event_uids": [
+        "douban:37862144",
+        "douban:37817830"
+      ]
+    },
+    {
+      "group_id": "4c05499e047c",
+      "action": "match",
+      "poi_id": "12489696708234009723",
+      "poi_title": "包河凤凰剧院",
+      "poi_address": "",
+      "latitude": 31.809199,
+      "longitude": 117.285777,
+      "doubtful": false,
+      "reason": "包河凤凰剧院与徽州大道1418号地址一致",
+      "search_keywords_tried": [
+        "包河凤凰剧院"
+      ],
+      "event_uids": [
+        "douban:37786998"
+      ]
+    }
+  ]
+}

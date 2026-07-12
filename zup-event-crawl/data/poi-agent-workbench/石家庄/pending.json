@@ -1,51 +1,49 @@
 {
   "city": "石家庄",
   "source": "douban",
-  "exported_at": "2026-06-29T03:23:52.057Z",
+  "exported_at": "2026-07-10T11:53:43.609Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 4,
+  "last_import_new_uids": 2,
   "doubtful_only": false,
-  "total_events": 4,
+  "total_events": 2,
   "group_count": 2,
   "cache_hit_groups": 1,
   "groups": [
     {
-      "group_id": "b1720c406f21",
-      "location": "石家庄 裕华区 河北省话剧院儿童剧场 富强大街20号",
-      "sample_title": "儿童剧《木偶奇遇记》",
+      "group_id": "79463ddd745b",
+      "location": "石家庄 桥西区 河北省艺术中心 裕华西路13号(东里地铁站B东南口步行370米)",
+      "sample_title": "萨格勒布轻音乐团夏季电影逍遥音乐会",
       "event_uids": [
-        "douban:37729318",
-        "douban:37498187",
-        "douban:37498229"
+        "douban:37853537"
       ],
-      "event_count": 3,
+      "event_count": 1,
       "cached_poi": {
-        "poi_id": "1898510723239737524",
-        "poi_title": "河北省话剧院儿童剧场",
+        "poi_id": "223872818676009218",
+        "poi_title": "河北艺术中心",
         "poi_address": "",
-        "latitude": 38.031418,
-        "longitude": 114.522236,
+        "latitude": 38.036248,
+        "longitude": 114.481621,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：石家庄 裕华区 河北省话剧院儿童剧场 富强大街20号 → 河北省话剧院儿童剧场（来源 event:douban:37391282）",
+        "reason": "地址映射库命中：石家庄 桥西区 河北省艺术中心 裕华西路13号(东里地铁站B东南口步行370米) → 河北艺术中心（来源 event:douban:37762965）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "b1720c406f21316e53d8673428edfa67010ddf96"
+        "cache_key": "79463ddd745b0c5641d34bafed620f6d91a0d721"
       }
     },
     {
-      "group_id": "e57b9460bde0",
-      "location": "石家庄 裕华区 石家庄大剧院 塔南路72号",
-      "sample_title": "《红梅绽放》——经典红色歌剧音乐会",
+      "group_id": "aee34db0d72b",
+      "location": "石家庄 长安区 上客喜剧-脱口秀西餐酒吧猫咖 建北街道和平东161号织音1953园区完美人生S1028-S1033",
+      "sample_title": "织音1953 | 上客喜剧 | 爆笑明星脱口秀",
       "event_uids": [
-        "douban:37841716"
+        "douban:37682735"
       ],
       "event_count": 1
     }

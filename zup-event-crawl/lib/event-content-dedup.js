@@ -99,6 +99,12 @@ function pickEventWithLatestEnd(events) {
   return [...events].sort((a, b) => compareEventsByEndDesc(b, a))[0];
 }
 
+/** 多个候选里取未过期、结束最晚的一条（用于标题+地点去重） */
+function pickUnexpiredTitleLocationIncumbent(...candidates) {
+  const unexpired = candidates.filter(Boolean).filter((row) => isEventUnexpired(row));
+  return pickEventWithLatestEnd(unexpired);
+}
+
 function toTitleLocationIncumbent(event, city = "") {
   return {
     event_uid: event.event_uid || event.eventUid || null,
@@ -116,7 +122,7 @@ function loadContentDedupKeys(db, options = {}) {
   if (!db) return keys;
 
   let sql = `
-    SELECT city, title, location, time_text
+    SELECT city, title, location, time_text, start_date, end_date
     FROM events
     WHERE 1=1
   `;
@@ -132,6 +138,7 @@ function loadContentDedupKeys(db, options = {}) {
 
   const rows = db.prepare(sql).all(...params);
   for (const row of rows) {
+    if (!isEventUnexpired(row)) continue;
     keys.add(eventContentDedupKey(row));
   }
   return keys;
@@ -159,6 +166,7 @@ function loadTitleLocationDedupIndex(db, options = {}) {
 
   const rows = db.prepare(sql).all(...params);
   for (const row of rows) {
+    if (!isEventUnexpired(row)) continue;
     const key = eventTitleLocationDedupKey(row);
     if (!key) continue;
     const prev = map.get(key);
@@ -173,13 +181,26 @@ function collapseEventsByTitleLocation(events, city = "") {
   const winners = new Map();
   const noKey = [];
   for (const event of events) {
-    const key = eventTitleLocationDedupKey({ ...event, city: event.city || city });
+    const eventCity = event.city || city;
+    const eventRow = { ...event, city: eventCity };
+    const key = eventTitleLocationDedupKey(eventRow);
     if (!key) {
       noKey.push(event);
       continue;
     }
     const prev = winners.get(key);
-    if (!prev || isEventBetterByEnd(event, prev)) {
+    if (!prev) {
+      winners.set(key, event);
+      continue;
+    }
+    const prevRow = { ...prev, city: eventCity };
+    const prevUnexpired = isEventUnexpired(prevRow);
+    const curUnexpired = isEventUnexpired(eventRow);
+    if (!prevUnexpired && curUnexpired) {
+      winners.set(key, event);
+    } else if (prevUnexpired && curUnexpired && isEventBetterByEnd(event, prev)) {
+      winners.set(key, event);
+    } else if (!prevUnexpired && !curUnexpired && isEventBetterByEnd(event, prev)) {
       winners.set(key, event);
     }
   }
@@ -250,18 +271,18 @@ function createTitlePoiDedupGate(initialIndex = new Map(), options = {}) {
 
   function decide(event, city = "") {
     const eventCity = event.city || city;
-    const poiId = resolvePoiId({ ...event, city: eventCity }, city);
+    const eventRow = { ...event, city: eventCity };
+    const poiId = resolvePoiId(eventRow, city);
     if (!poiId) return { action: "import" };
 
     const key = eventTitlePoiDedupKey({
-      ...event,
-      city: eventCity,
+      ...eventRow,
       location_poi_id: poiId,
     });
     if (!key) return { action: "import" };
 
     const incumbent = index.get(key);
-    if (incumbent) {
+    if (incumbent && isEventUnexpired(incumbent)) {
       skipped += 1;
       return { action: "skip", poiId, incumbent };
     }
@@ -306,13 +327,24 @@ function createTitleLocationDedupGate(initialIndex = new Map()) {
   let replaced = 0;
 
   function decide(event, city = "") {
-    const key = eventTitleLocationDedupKey({ ...event, city: event.city || city });
+    const eventCity = event.city || city;
+    const eventRow = { ...event, city: eventCity };
+    const key = eventTitleLocationDedupKey(eventRow);
     if (!key) return { action: "import" };
 
     const incumbent = index.get(key);
-    if (!incumbent) {
-      index.set(key, toTitleLocationIncumbent(event, city));
+    const incomingUnexpired = isEventUnexpired(eventRow);
+
+    if (!incumbent || !isEventUnexpired(incumbent)) {
+      if (incomingUnexpired) {
+        index.set(key, toTitleLocationIncumbent(event, city));
+      }
       return { action: "import" };
+    }
+
+    if (!incomingUnexpired) {
+      skipped += 1;
+      return { action: "skip" };
     }
 
     if (isEventBetterByEnd(event, incumbent)) {
@@ -372,6 +404,7 @@ module.exports = {
   loadTitlePoiUnexpiredIndex,
   makePoiAddressCacheResolver,
   pickEventWithLatestEnd,
+  pickUnexpiredTitleLocationIncumbent,
   toTitleLocationIncumbent,
   toTitlePoiIncumbent,
   normalizeDedupText,

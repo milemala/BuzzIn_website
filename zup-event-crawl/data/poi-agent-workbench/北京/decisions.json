@@ -1,11 +1,180 @@
 {
   "city": "北京",
   "source": "douban",
-  "decided_at": "2026-06-29T03:42:19.115Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-07-10T11:28:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
+      "group_id": "460690ea2233",
+      "event_uids": ["douban:37898995"],
+      "action": "match",
+      "poi_id": "10664047048488212173",
+      "poi_title": "CGV星星国际影城(颐堤港ScreenX店)",
+      "poi_address": "北京市朝阳区酒仙桥路18号(将台路口)颐堤港L4",
+      "latitude": 39.970556,
+      "longitude": 116.49181,
+      "doubtful": false,
+      "reason": "活动地址颐堤港CGV影城与候选一致",
+      "search_keywords_tried": ["CGV星星国际影城颐堤港"],
+      "confidence": "high"
+    },
+    {
+      "group_id": "d996a25e3251",
+      "event_uids": ["douban:37898759"],
+      "action": "match",
+      "poi_id": "8209305921378879658",
+      "poi_title": "卢米埃影城(长楹天街IMAX激光店)",
+      "poi_address": "北京市朝阳区常通路4号院龙湖长楹天街F5",
+      "latitude": 39.92515,
+      "longitude": 116.602734,
+      "doubtful": false,
+      "reason": "卢米埃长楹天街店与活动详情一致",
+      "search_keywords_tried": ["卢米埃影城长楹天街"],
+      "confidence": "high"
+    },
+    {
+      "group_id": "3630be5e46e0",
+      "event_uids": ["douban:37898298"],
+      "action": "match",
+      "poi_id": "7212968289607923303",
+      "poi_title": "三联韬奋书店(美术馆店)",
+      "poi_address": "北京市东城区美术馆东街22号",
+      "latitude": 39.926156,
+      "longitude": 116.411296,
+      "doubtful": false,
+      "reason": "美术馆东街22号三联韬奋书店",
+      "search_keywords_tried": ["三联韬奋书店美术馆东街"],
+      "confidence": "high"
+    },
+    {
+      "group_id": "590cfa18e560",
+      "event_uids": ["douban:37898749"],
+      "action": "match",
+      "poi_id": "2254541393071174760",
+      "poi_title": "万达影城(CBD万达广场IMAX店)",
+      "poi_address": "北京市朝阳区建国路93号B座三层(大连银行西侧)",
+      "latitude": 39.909148,
+      "longitude": 116.470606,
+      "doubtful": false,
+      "reason": "万达影城CBD店与活动一致",
+      "search_keywords_tried": ["万达影城CBD万达广场"],
+      "confidence": "high"
+    },
+    {
+      "group_id": "e8b5cb4f141f",
+      "event_uids": ["douban:37898591"],
+      "action": "match",
+      "poi_id": "1769184695216011863",
+      "poi_title": "做書书店",
+      "poi_address": "北京市东城区隆福寺东院1号院EL3-08(中国书店正上方)",
+      "latitude": 39.924975,
+      "longitude": 116.415361,
+      "doubtful": false,
+      "reason": "隆福寺东院做書书店与活动地址一致",
+      "search_keywords_tried": ["做書书店隆福寺"],
+      "confidence": "high"
+    },
+    {
+      "group_id": "209c4d273db9",
+      "event_uids": ["douban:37899728"],
+      "action": "match",
+      "poi_id": "9593931669897574411",
+      "poi_title": "英皇电影城(英皇集团中心IMAX店)",
+      "poi_address": "北京市朝阳区建外街道",
+      "latitude": 39.907509,
+      "longitude": 116.445051,
+      "doubtful": false,
+      "reason": "英皇电影城英皇集团中心店",
+      "search_keywords_tried": ["英皇电影城英皇集团中心"],
+      "confidence": "high"
+    },
+    {
+      "group_id": "1fcf6d39edf0",
+      "event_uids": ["douban:37898896"],
+      "action": "match",
+      "poi_id": "9806604663099195747",
+      "poi_title": "宏恩观",
+      "poi_address": "北京市东城区豆腐池胡同",
+      "latitude": 39.944071,
+      "longitude": 116.396058,
+      "doubtful": false,
+      "reason": "古法健身活动在宏恩观举办",
+      "search_keywords_tried": ["宏恩观"],
+      "confidence": "high"
+    },
+    {
+      "group_id": "3b85fcb11115",
+      "event_uids": ["douban:37898343"],
+      "action": "match",
+      "poi_id": "2103020138448622562",
+      "poi_title": "RDV RENDEZ-VOUS(SKP店)",
+      "poi_address": "北京市朝阳区建国路87号北京SKP4层",
+      "latitude": 39.910,
+      "longitude": 116.478,
+      "doubtful": false,
+      "reason": "SKP 4F RENDEZ-VOUS与活动地址一致",
+      "search_keywords_tried": ["RDV RENDEZ-VOUS SKP店"],
+      "confidence": "high"
+    },
+    {
+      "group_id": "99160b004a71",
+      "event_uids": ["douban:37898529"],
+      "action": "match",
+      "poi_id": "12725503435337817571",
+      "poi_title": "凯德MALL(西直门店)",
+      "poi_address": "北京市西城区西直门外大街1号西环广场内",
+      "latitude": 39.941601,
+      "longitude": 116.352826,
+      "doubtful": false,
+      "reason": "凯德MALL西直门店主体，DT-X为场内空间",
+      "search_keywords_tried": ["凯德MALL西直门"],
+      "confidence": "high"
+    },
+    {
+      "group_id": "b185dceef689",
+      "event_uids": ["douban:37863237"],
+      "action": "match",
+      "poi_id": "9571321068325203195",
+      "poi_title": "国图艺术中心售票处",
+      "poi_address": "",
+      "latitude": 39.944253,
+      "longitude": 116.324218,
+      "doubtful": false,
+      "reason": "地址映射库命中国图艺术中心",
+      "search_keywords_tried": ["poi-address-cache"],
+      "confidence": "high"
+    },
+    {
+      "group_id": "08e32e04a545",
+      "event_uids": ["douban:37899022"],
+      "action": "match",
+      "poi_id": "14092149868572383460",
+      "poi_title": "平安国际金融中心",
+      "poi_address": "北京市朝阳区新源南路1号",
+      "latitude": 39.949873,
+      "longitude": 116.459206,
+      "doubtful": false,
+      "reason": "平安国际金融中心B座与楼宇主体一致",
+      "search_keywords_tried": ["平安国际金融中心"],
+      "confidence": "high"
+    },
+    {
+      "group_id": "ff9b902b53fd",
+      "event_uids": ["douban:37870719"],
+      "action": "match",
+      "poi_id": "5348548783387875092",
+      "poi_title": "798艺术区小柯剧场",
+      "poi_address": "北京市朝阳区751DPARK北京时尚设计广场B座酒仙桥路2号798艺术区",
+      "latitude": 39.984412,
+      "longitude": 116.498026,
+      "doubtful": false,
+      "reason": "小柯剧场798艺术区内",
+      "search_keywords_tried": ["798艺术区小柯剧场"],
+      "confidence": "high"
+    },
+    {
       "group_id": "0540d803bf33",
+      "event_uids": ["douban:37347186"],
       "action": "match",
       "poi_id": "2737977171120608097",
       "poi_title": "下沉广场",
@@ -13,51 +182,13 @@
       "latitude": 39.898249,
       "longitude": 116.505244,
       "doubtful": false,
-      "reason": "地址映射库命中：北京 朝阳区 爱笑喜剧三里屯1号厅 三里屯街道三里屯soho2号商场B1层下沉广场沉浸剧场(爱笑联盟沉浸剧场) → 下沉广场（来源 event:douban:37397742）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37627917"
-      ]
-    },
-    {
-      "group_id": "eb895341af2e",
-      "action": "match",
-      "poi_id": "16374944766863526832",
-      "poi_title": "远洋国际中心E座",
-      "poi_address": "",
-      "latitude": 39.915974,
-      "longitude": 116.491505,
-      "doubtful": false,
-      "reason": "地址映射库命中：北京 朝阳区 远洋国际中心E座 → 远洋国际中心E座（来源 event:douban:37866542）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37891831",
-        "douban:37892656"
-      ]
-    },
-    {
-      "group_id": "d8d4a31b6cbb",
-      "action": "match",
-      "poi_id": "17987642018513161306",
-      "poi_title": "天桥艺术中心·第五空间",
-      "poi_address": "",
-      "latitude": 39.88265,
-      "longitude": 116.398158,
-      "doubtful": false,
-      "reason": "地址映射库命中：北京 西城区 天桥艺术中心 天桥南大街9号楼 → 天桥艺术中心·第五空间（来源 event:douban:37828283）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37869557"
-      ]
+      "reason": "地址映射库命中三里屯SOHO下沉广场沉浸剧场",
+      "search_keywords_tried": ["poi-address-cache"],
+      "confidence": "high"
     },
     {
       "group_id": "0fcf860b70cc",
+      "event_uids": ["douban:37680068"],
       "action": "match",
       "poi_id": "18094129804566749180",
       "poi_title": "爱乐汇艺术空间",
@@ -65,247 +196,51 @@
       "latitude": 39.9129,
       "longitude": 116.276808,
       "doubtful": false,
-      "reason": "地址映射库命中：北京 海淀区 五棵松·爱乐汇艺术空间 复兴路69号五棵松万达广场6层爱乐汇艺术空间五棵松剧场 → 爱乐汇艺术空间（来源 event:douban:37678015）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37871528",
-        "douban:37879399"
-      ]
+      "reason": "地址映射库命中五棵松爱乐汇艺术空间",
+      "search_keywords_tried": ["poi-address-cache"],
+      "confidence": "high"
     },
     {
-      "group_id": "f7eb42db869a",
+      "group_id": "ed6d81e86c8f",
+      "event_uids": ["douban:37877403"],
       "action": "match",
-      "poi_id": "7000785431726986367",
-      "poi_title": "北展剧场",
-      "poi_address": "",
-      "latitude": 39.941553,
-      "longitude": 116.344076,
+      "poi_id": "4433785705513272150",
+      "poi_title": "国家大剧院-戏剧场",
+      "poi_address": "北京市西城区西长安街2号国家大剧院",
+      "latitude": 39.904,
+      "longitude": 116.390,
       "doubtful": false,
-      "reason": "地址映射库命中：北京 西城区 北京展览馆剧场 西直门外大街135号 → 北展剧场（来源 event:douban:37619327）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37879055"
-      ]
+      "reason": "国家大剧院戏剧场西城区，非通州北京艺术中心",
+      "search_keywords_tried": ["国家大剧院戏剧场西长安街"],
+      "confidence": "high"
     },
     {
-      "group_id": "c36dd639691e",
+      "group_id": "89ba1f26d6e1",
+      "event_uids": ["douban:37898510"],
       "action": "match",
-      "poi_id": "13730107606902970399",
-      "poi_title": "音乐堂",
-      "poi_address": "",
-      "latitude": 39.910912,
-      "longitude": 116.39567,
+      "poi_id": "2047647920626644338",
+      "poi_title": "里外Livewhy·酒吧",
+      "poi_address": "北京市朝阳区团结湖团结新里Together,4-F04(找北酒馆南侧)",
+      "latitude": 39.928678,
+      "longitude": 116.469658,
       "doubtful": false,
-      "reason": "地址映射库命中：北京 东城区 中山公园音乐堂 西长安街中山公园内 → 音乐堂（来源 event:douban:37810222）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37846433"
-      ]
+      "reason": "里外livewhy专辑首发场地",
+      "search_keywords_tried": ["里外Livewhy"],
+      "confidence": "high"
     },
     {
-      "group_id": "5e542631904a",
+      "group_id": "440dad98bf86",
+      "event_uids": ["douban:37872116"],
       "action": "match",
-      "poi_id": "6123793444050771349",
-      "poi_title": "国家体育馆",
-      "poi_address": "",
-      "latitude": 39.996238,
-      "longitude": 116.391001,
+      "poi_id": "13914509979927920314",
+      "poi_title": "中华世纪坛",
+      "poi_address": "北京市海淀区复兴路甲9号中华世纪坛·纪念广场(近军事博物馆之间)",
+      "latitude": 39.910644,
+      "longitude": 116.321337,
       "doubtful": false,
-      "reason": "地址映射库命中：北京 朝阳区 国家体育馆 天辰东路9号 → 国家体育馆（来源 event:douban:37744386）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37887621"
-      ]
-    },
-    {
-      "group_id": "41f542751ab0",
-      "action": "match",
-      "poi_id": "269988739178533378",
-      "poi_title": "365影院(天通苑文化艺术中心4层)",
-      "poi_address": "",
-      "latitude": 40.070564,
-      "longitude": 116.417414,
-      "doubtful": false,
-      "reason": "地址映射库命中：北京 昌平区 365剧场-天通苑文化艺术中心 太平庄中一街与立水桥北路交汇处东南侧,天通苑文化艺术中心四层 → 365影院(天通苑文化艺术中心4层)（来源 event:douban:37838847）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37853265"
-      ]
-    },
-    {
-      "group_id": "41ea754c2e44",
-      "action": "match",
-      "poi_id": "10860338773118607569",
-      "poi_title": "颜料会馆",
-      "poi_address": "",
-      "latitude": 39.895492,
-      "longitude": 116.404704,
-      "doubtful": false,
-      "reason": "地址映射库命中：北京 东城区 颜料会馆 青云胡同22号 → 颜料会馆（来源 event:douban:37818472）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37477442"
-      ]
-    },
-    {
-      "group_id": "6621c6dfeabb",
-      "action": "reject",
-      "reason": "活动无具体地址，无法唯一确定 POI",
-      "search_keywords_tried": [
-        "悬案 观剧会"
-      ],
-      "event_uids": [
-        "douban:37893928"
-      ]
-    },
-    {
-      "group_id": "2070e7888b4e",
-      "action": "match",
-      "poi_id": "3802290267771821719",
-      "poi_title": "博纳国际影城(大郊亭IMAX旗舰店)",
-      "poi_address": "北京市朝阳区东四环中路189号芳圆里ID Mall购物中心L5",
-      "latitude": 39.890911,
-      "longitude": 116.488041,
-      "doubtful": false,
-      "reason": "豆瓣地址博纳国际影城(大郊亭IMAX店)与搜索结果大郊亭旗舰店一致",
-      "search_keywords_tried": [
-        "博纳国际影城大郊亭"
-      ],
-      "event_uids": [
-        "douban:37891491"
-      ]
-    },
-    {
-      "group_id": "d378e2410426",
-      "action": "match",
-      "poi_id": "8245552135134442295",
-      "poi_title": "国家大剧院歌剧院",
-      "poi_address": "北京市西城区西长安街2号",
-      "latitude": 39.904662,
-      "longitude": 116.389741,
-      "doubtful": false,
-      "reason": "场馆名与地址完全匹配",
-      "search_keywords_tried": [
-        "国家大剧院歌剧院"
-      ],
-      "event_uids": [
-        "douban:37865966"
-      ]
-    },
-    {
-      "group_id": "38e003938551",
-      "action": "match",
-      "poi_id": "8912906542415240023",
-      "poi_title": "百葛路9号院-2号楼",
-      "poi_address": "北京市昌平区高教园北三街百葛路9号院",
-      "latitude": 40.170395,
-      "longitude": 116.318873,
-      "doubtful": true,
-      "reason": "豆瓣写2号楼B1演出空间，POI为同门牌2号楼主体，楼层精度不足",
-      "search_keywords_tried": [
-        "百葛路9号院"
-      ],
-      "event_uids": [
-        "douban:37894670"
-      ]
-    },
-    {
-      "group_id": "b058ab55739c",
-      "action": "match",
-      "poi_id": "2533675818566955788",
-      "poi_title": "疆进酒·OMNI SPACE(演出场馆·北京天桥店)",
-      "poi_address": "北京市西城区北京天桥艺术中心b103",
-      "latitude": 39.882452,
-      "longitude": 116.398044,
-      "doubtful": false,
-      "reason": "疆进酒 OMNI SPACE 与天桥艺术中心B-103一致",
-      "search_keywords_tried": [
-        "疆进酒 OMNI SPACE"
-      ],
-      "event_uids": [
-        "douban:37876247"
-      ]
-    },
-    {
-      "group_id": "2855049a5f17",
-      "action": "match",
-      "poi_id": "14464456136692467073",
-      "poi_title": "玉华台饭庄·淮扬菜·烤鸭(望京店)",
-      "poi_address": "北京市朝阳区望京街道湖光中街8号1号楼1层1133号-1145号",
-      "latitude": 39.996119,
-      "longitude": 116.461121,
-      "doubtful": true,
-      "reason": "漫展地址为湖光中街8号1号楼西段一层1129号，POI为同楼1号楼商铺，铺位号不同但楼宇主体一致",
-      "search_keywords_tried": [
-        "北京星幻动漫节",
-        "望京湖光中街8号"
-      ],
-      "event_uids": [
-        "douban:37877151"
-      ]
-    },
-    {
-      "group_id": "64183a71e39e",
-      "action": "match",
-      "poi_id": "7839096945141200229",
-      "poi_title": "北京人民艺术剧院-北京国际戏剧中心(曹禺剧场)",
-      "poi_address": "北京市东城区东华门街道北京国际戏剧中心",
-      "latitude": 39.921459,
-      "longitude": 116.412533,
-      "doubtful": false,
-      "reason": "人艺国际戏剧中心王府井大街22号与豆瓣地址一致",
-      "search_keywords_tried": [
-        "北京人民艺术剧院"
-      ],
-      "event_uids": [
-        "douban:37879176"
-      ]
-    },
-    {
-      "group_id": "88957de3c2df",
-      "action": "match",
-      "poi_id": "14465274921021813186",
-      "poi_title": "你好西藏小剧场",
-      "poi_address": "北京市朝阳区北四环东路118号北京西藏大厦A座二层",
-      "latitude": 39.987865,
-      "longitude": 116.413891,
-      "doubtful": false,
-      "reason": "剧场名称与门牌完全匹配",
-      "search_keywords_tried": [
-        "你好西藏小剧场"
-      ],
-      "event_uids": [
-        "douban:37556115"
-      ]
-    },
-    {
-      "group_id": "409b1ad22c3b",
-      "action": "match",
-      "poi_id": "5370191083602916467",
-      "poi_title": "卓酷箱包GAMEON篮球羽毛球运动中心天通苑北店",
-      "poi_address": "北京市昌平区立汤路天通苑北地铁站西北",
-      "latitude": 40.08482,
-      "longitude": 116.412388,
-      "doubtful": false,
-      "reason": "GAME ON篮球羽毛球运动中心天通苑店与搜索结果店名一致，仅差北/无北后缀",
-      "search_keywords_tried": [
-        "GAME ON篮球羽毛球天通苑"
-      ],
-      "event_uids": [
-        "douban:37894483"
-      ]
+      "reason": "美景宫花绘特展在中华世纪坛一层展厅",
+      "search_keywords_tried": ["中华世纪坛"],
+      "confidence": "high"
     }
   ]
 }

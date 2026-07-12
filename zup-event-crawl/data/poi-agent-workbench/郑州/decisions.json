@@ -1,43 +1,75 @@
 {
   "city": "郑州",
-  "source": "douban",
-  "decided_at": "2026-06-29T03:25:35.278Z",
-  "agent": "cache-hit-auto",
+  "decided_at": "2026-07-10T12:10:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "4b7b6ac9fe34",
+      "group_id": "58efae1d83ee",
+      "event_uids": ["douban:37899127"],
       "action": "match",
-      "poi_id": "10949715273587582845",
-      "poi_title": "郑州大剧院",
-      "poi_address": "",
-      "latitude": 34.742346,
-      "longitude": 113.550694,
-      "doubtful": false,
-      "reason": "地址映射库命中：郑州 中原区 郑州大剧院 丹水大道与雪松路交叉口西南角 → 郑州大剧院（来源 event:douban:37858752）",
-      "search_keywords_tried": [
-        "poi-address-cache"
+      "search_keywords_tried": ["奥斯卡升龙国际影城"],
+      "poi_id": "1527860716687616616",
+      "poi_title": "奥斯卡影城(升龙国际店)",
+      "poi_address": "河南省郑州市二七区升龙商业广场A区2层2033",
+      "latitude": 34.725166,
+      "longitude": 113.63975,
+      "candidates": [
+        {
+          "poi_id": "1527860716687616616",
+          "title": "奥斯卡影城(升龙国际店)",
+          "address": "河南省郑州市二七区升龙商业广场A区2层2033"
+        }
       ],
-      "event_uids": [
-        "douban:37734083",
-        "douban:37849218"
-      ]
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "奥斯卡升龙国际影城与二七区升龙商业广场店一致"
     },
     {
-      "group_id": "82760422ff35",
+      "group_id": "a21977b25fb8",
+      "event_uids": ["douban:37459424", "douban:37459445", "douban:37459476", "douban:37832345"],
       "action": "match",
-      "poi_id": "15788701412219640069",
-      "poi_title": "河南省人民会堂",
-      "poi_address": "",
-      "latitude": 34.764414,
-      "longitude": 113.683659,
-      "doubtful": false,
-      "reason": "地址映射库命中：郑州 金水区 河南省人民会堂 花园路1号（紫荆山立交桥河南饭店对面） → 河南省人民会堂（来源 event:douban:37812110）",
-      "search_keywords_tried": [
-        "poi-address-cache"
+      "search_keywords_tried": ["郑州国际会展中心", "中原国际会展中心 航空港"],
+      "poi_id": "10109574534665772495",
+      "poi_title": "中原国际会展中心（郑州航空港）",
+      "poi_address": "河南省郑州市中牟县郑州航空港区荆州路",
+      "latitude": 34.497157,
+      "longitude": 113.919521,
+      "candidates": [
+        {
+          "poi_id": "10109574534665772495",
+          "title": "中原国际会展中心（郑州航空港）",
+          "address": "河南省郑州市中牟县郑州航空港区荆州路"
+        },
+        {
+          "poi_id": "14494537554398553575",
+          "title": "郑州国际会展中心",
+          "address": "河南省郑州市金水区商务内环路中央公园1号"
+        }
       ],
-      "event_uids": [
-        "douban:37689284"
-      ]
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "详情均写郑州中原国际会展中心，对应航空港新馆而非金水旧馆"
+    },
+    {
+      "group_id": "ca02a0d5701d",
+      "event_uids": ["douban:37463552", "douban:37460886"],
+      "action": "match",
+      "search_keywords_tried": ["中原国际会展中心 航空港"],
+      "poi_id": "10109574534665772495",
+      "poi_title": "中原国际会展中心（郑州航空港）",
+      "poi_address": "河南省郑州市中牟县郑州航空港区荆州路",
+      "latitude": 34.497157,
+      "longitude": 113.919521,
+      "candidates": [
+        {
+          "poi_id": "10109574534665772495",
+          "title": "中原国际会展中心（郑州航空港）",
+          "address": "河南省郑州市中牟县郑州航空港区荆州路"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址明确为航空港区中原国际会展中心"
     }
   ]
 }

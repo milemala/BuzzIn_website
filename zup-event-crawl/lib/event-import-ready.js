@@ -1,8 +1,27 @@
 "use strict";
 
+const { normalizeCategory } = require("./event-classification");
+
 const DEFAULT_PUBLISH_USER_ID = "854508330";
 const DEFAULT_NOW_TYPE = 3;
 const VALID_NOW_TYPES = new Set([1, 2, 3]);
+
+/** 审核台 category → Zup content_type（POST /api/v1/now/content/type/list，2026-07 后台 seq）
+ *  审核台 9 类对应后台；1约饭/2Coffee Chat/3小酌 为 App 用户自发，抓取侧不用。
+ */
+const CATEGORY_TO_CONTENT_TYPE = Object.freeze({
+  戏剧表演: 9,
+  音乐现场: 7,
+  市集: 10,
+  户外活动: 6,
+  体育运动: 4,
+  主题沙龙: 5,
+  看展逛馆: 8,
+  遛娃亲子: 11,
+  其他: 0,
+});
+
+const DEFAULT_CONTENT_TYPE = 0;
 
 function pad2(n) {
   return String(n).padStart(2, "0");
@@ -108,6 +127,12 @@ function resolveNowTypeForImport(event) {
   return suggestNowType(event);
 }
 
+function resolveContentType(event) {
+  const category = normalizeCategory(event?.category);
+  if (!category || category === "待分类") return DEFAULT_CONTENT_TYPE;
+  return CATEGORY_TO_CONTENT_TYPE[category] ?? DEFAULT_CONTENT_TYPE;
+}
+
 function parsePoiCandidates(event) {
   const raw = event.poi_candidates;
   if (Array.isArray(raw)) return raw;
@@ -202,6 +227,7 @@ function buildImportRecord(event, options = {}) {
     now_title: String(event.title || "").slice(0, 128),
     now_content: buildImportContent(event),
     now_type: resolveNowTypeForImport(event),
+    content_type: resolveContentType(event),
     images,
     group_id: "",
     location_poi_id: event.location_poi_id || "",
@@ -224,6 +250,8 @@ function buildPoiKeywordForEvent(event) {
 }
 
 module.exports = {
+  CATEGORY_TO_CONTENT_TYPE,
+  DEFAULT_CONTENT_TYPE,
   DEFAULT_NOW_TYPE,
   DEFAULT_PUBLISH_USER_ID,
   VALID_NOW_TYPES,
@@ -238,6 +266,7 @@ module.exports = {
   isImportReady,
   normalizeNowType,
   resolveNowTypeForImport,
+  resolveContentType,
   resolveExpiredAt,
   resolveNowMerchantId,
   resolvePoiCoordinates,

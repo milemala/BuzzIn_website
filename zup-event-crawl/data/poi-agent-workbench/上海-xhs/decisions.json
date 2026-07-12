@@ -1,7 +1,7 @@
 {
   "city": "上海",
   "source": "xiaohongshu",
-  "decided_at": "2026-06-30T08:25:11.228Z",
+  "decided_at": "2026-07-07T02:21:05.574Z",
   "agent": "cursor-composer",
   "decisions": [
     {
@@ -2090,6 +2090,825 @@
           "longitude": 121.505143
         }
       ]
+    },
+    {
+      "group_id": "346e6248cac8",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:01_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "大宁公园"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "大宁公园，POI广中西路288号一致",
+      "poi_id": "11626357113079402475",
+      "poi_title": "大宁公园",
+      "poi_address": "上海市静安区广中西路288号",
+      "latitude": 31.275763,
+      "longitude": 121.4431,
+      "candidates": []
+    },
+    {
+      "group_id": "3fd91f934e92",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:01_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "古华公园"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "古华公园即古华园，奉贤区解放中路220号一致",
+      "poi_id": "5947628036675670041",
+      "poi_title": "古华园",
+      "poi_address": "上海市奉贤区解放中路220号",
+      "latitude": 30.917803,
+      "longitude": 121.464632,
+      "candidates": []
+    },
+    {
+      "group_id": "4a557f13dfa7",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:01_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海海湾国家森林公园"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "海湾国家森林公园，POI随塘河路1677号一致",
+      "poi_id": "766138969643302952",
+      "poi_title": "上海海湾国家森林公园",
+      "poi_address": "上海市奉贤区随塘河路1677号",
+      "latitude": 30.860756,
+      "longitude": 121.69053,
+      "candidates": []
+    },
+    {
+      "group_id": "35eddc24e53b",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:02_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "大宁国际商业广场"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "大宁国际商业广场，POI共和新路1988号一致",
+      "poi_id": "10116478005529956881",
+      "poi_title": "大宁国际商业广场",
+      "poi_address": "上海市静安区共和新路1988号",
+      "latitude": 31.274107,
+      "longitude": 121.45228,
+      "candidates": []
+    },
+    {
+      "group_id": "921d83ad07a1",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:02_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "汇智国际商业中心"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "张江汇智国际商业中心，POI金科路3057号一致",
+      "poi_id": "7121359234129911274",
+      "poi_title": "汇智国际商业中心",
+      "poi_address": "上海市浦东新区金科路3057号",
+      "latitude": 31.203356,
+      "longitude": 121.601539,
+      "candidates": []
+    },
+    {
+      "group_id": "4c9131646ce9",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:02_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "外滩枫径"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "外滩枫径即BFC外滩枫径步行街，主体一致",
+      "poi_id": "18370727242931826569",
+      "poi_title": "BFC外滩枫径周末步行街(枫泾路)",
+      "poi_address": "上海市黄浦区枫泾路28号北区2层01部位",
+      "latitude": 31.226545,
+      "longitude": 121.497652,
+      "candidates": []
+    },
+    {
+      "group_id": "4a7a37593c52",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:03_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "花米庄行景区"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "花米庄行景区，POI南庄路4399号一致",
+      "poi_id": "17559298311379131861",
+      "poi_title": "花米庄行",
+      "poi_address": "上海市奉贤区庄行镇南庄路4399号",
+      "latitude": 30.885009,
+      "longitude": 121.400619,
+      "candidates": []
+    },
+    {
+      "group_id": "3e0ec6a05860",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:03_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "仓城郎园Bridge"
+      ],
+      "confidence": "medium",
+      "doubtful": false,
+      "reason": "仓城郎园Bridge唯一候选，名称与地址一致",
+      "poi_id": "10424837129017633292",
+      "poi_title": "仓城·郎园Bridge",
+      "poi_address": "上海市松江区中山西路与松江中山西路交叉口正东方向42米左右",
+      "latitude": 31.00625,
+      "longitude": 121.209481,
+      "candidates": []
+    },
+    {
+      "group_id": "a6d14e228f7f",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:03_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海力波1987"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "上海力波啤酒节举办地力波1987创意园，主体一致",
+      "poi_id": "1220060182426690016",
+      "poi_title": "力波1987",
+      "poi_address": "上海市闵行区益梅路91号",
+      "latitude": 31.132589,
+      "longitude": 121.411816,
+      "candidates": []
+    },
+    {
+      "group_id": "050c70347d63",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:04_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "蟠龙天地"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "蟠龙水市位于蟠龙天地粮仓码头，POI蟠龙新天地主体一致",
+      "poi_id": "7440194880654570571",
+      "poi_title": "蟠龙新天地",
+      "poi_address": "上海市青浦区蟠鼎路123弄8号",
+      "latitude": 31.189172,
+      "longitude": 121.27593,
+      "candidates": []
+    },
+    {
+      "group_id": "18d0ae6cbaa9",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:04_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "龙湖上海闵行天街"
+      ],
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "歌手赛分三场于龙湖天街/仲盛/浦江郊野公园，先绑首场颛桥龙湖天街",
+      "poi_id": "2371217481484680966",
+      "poi_title": "龙湖上海闵行天街",
+      "poi_address": "上海市闵行区江川路街道剑川路1000号",
+      "latitude": 31.025704,
+      "longitude": 121.415226,
+      "candidates": []
+    },
+    {
+      "group_id": "99301579a911",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:04_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "Gate M西岸梦中心"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "GATE M电影节主场地西岸梦中心，POI龙腾大道2266号一致",
+      "poi_id": "9104458829010226033",
+      "poi_title": "GATE M西岸梦中心",
+      "poi_address": "上海市徐汇区龙腾大道2266号",
+      "latitude": 31.161192,
+      "longitude": 121.46547,
+      "candidates": []
+    },
+    {
+      "group_id": "32289502ddba",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:05_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "大橘邻里岳阳店"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "松江大橘邻里岳阳店，POI荣乐中路8号一致",
+      "poi_id": "8611276000435303046",
+      "poi_title": "大橘邻里(岳阳店)",
+      "poi_address": "上海市松江区荣乐中路8号",
+      "latitude": 31.018248,
+      "longitude": 121.241334,
+      "candidates": []
+    },
+    {
+      "group_id": "6163d1389e0b",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:05_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：外滩源圆明园路步行街及划船俱乐部 → 博物院广场（来源 event:xiaohongshu:6a424a1f000000001502758e:07_1）",
+      "poi_id": "17040623385101610403",
+      "poi_title": "博物院广场",
+      "poi_address": "",
+      "latitude": 31.244,
+      "longitude": 121.489,
+      "candidates": []
+    },
+    {
+      "group_id": "0e177ef478dc",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:06_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "EKA天物"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "EKA天物，POI金桥路535号一致",
+      "poi_id": "1388499709539232911",
+      "poi_title": "EKA·天物",
+      "poi_address": "上海市浦东新区金桥路535号",
+      "latitude": 31.263048,
+      "longitude": 121.576763,
+      "candidates": []
+    },
+    {
+      "group_id": "11349f672013",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:06_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "豫园商城",
+        "BFC外滩金融中心"
+      ],
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "大豫园文化片区跨豫园商城与BFC，先绑豫园商城方浜中路265号",
+      "poi_id": "14904974918109848641",
+      "poi_title": "豫园商城",
+      "poi_address": "上海市黄浦区方浜中路265号",
+      "latitude": 31.226433,
+      "longitude": 121.491244,
+      "candidates": []
+    },
+    {
+      "group_id": "e5a5591ad239",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:06_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "TOP中央公园"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "TOP中央公园，POI永登路279号一致",
+      "poi_id": "8939397059046556251",
+      "poi_title": "TOP中央公园",
+      "poi_address": "上海市普陀区永登路279号",
+      "latitude": 31.273708,
+      "longitude": 121.370363,
+      "candidates": []
+    },
+    {
+      "group_id": "221bfea88701",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:07_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "创智天地广场"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "创智天地广场，POI淞沪路270号一致",
+      "poi_id": "3145309633524793553",
+      "poi_title": "创智天地广场",
+      "poi_address": "上海市杨浦区淞沪路270号(江湾体育场地铁站9号口旁)",
+      "latitude": 31.30609,
+      "longitude": 121.51305,
+      "candidates": []
+    },
+    {
+      "group_id": "6498ab07071e",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:07_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "张园"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "静安张园，POI茂名北路258号一致",
+      "poi_id": "10376770507729156024",
+      "poi_title": "张园",
+      "poi_address": "上海市静安区茂名北路258号",
+      "latitude": 31.228076,
+      "longitude": 121.460536,
+      "candidates": []
+    },
+    {
+      "group_id": "3a86999b9db9",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:07_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海荟聚"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "上海荟聚，POI金钟路788号一致",
+      "poi_id": "1225771295461381764",
+      "poi_title": "上海荟聚",
+      "poi_address": "上海市长宁区金钟路788号",
+      "latitude": 31.22177,
+      "longitude": 121.356822,
+      "candidates": []
+    },
+    {
+      "group_id": "d78ffb5efbdf",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:07_3"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "虹桥路1438",
+        "高岛屋百货"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "EVA主题餐厅位于虹桥路1438号高岛屋百货4楼，POI一致",
+      "poi_id": "9558220350514388482",
+      "poi_title": "高岛屋百货",
+      "poi_address": "上海市长宁区虹桥路1438号",
+      "latitude": 31.197356,
+      "longitude": 121.4031,
+      "candidates": []
+    },
+    {
+      "group_id": "46ce5ef77eee",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:08_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海城市草坪音乐广场"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "上海城市草坪音乐广场，POI延安东路523号一致",
+      "poi_id": "5112418798205548982",
+      "poi_title": "音乐广场",
+      "poi_address": "上海市黄浦区南京东路街道延安东路523号(近西藏中路)",
+      "latitude": 31.22694,
+      "longitude": 121.47769,
+      "candidates": []
+    },
+    {
+      "group_id": "88dda4e12844",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:08_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "滴水湖"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "滴水湖码头活动，POI环湖北一路26号一致",
+      "poi_id": "1714528141350615095",
+      "poi_title": "滴水湖码头",
+      "poi_address": "上海市浦东新区环湖北一路26号",
+      "latitude": 30.907513,
+      "longitude": 121.934456,
+      "candidates": []
+    },
+    {
+      "group_id": "a6804c59b122",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:08_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "前滩31"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "前滩31大草坪嘉年华，POI前滩31海阳西路666弄一致",
+      "poi_id": "14329024087475801771",
+      "poi_title": "前滩31",
+      "poi_address": "上海市浦东新区海阳西路666弄",
+      "latitude": 31.150796,
+      "longitude": 121.48433,
+      "candidates": []
+    },
+    {
+      "group_id": "7888b036cc44",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:09_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "吴淞口国际邮轮港"
+      ],
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "宝山滨江欢乐季跨邮轮港/海上世界/炮台湾等多点，先绑邮轮度假区核心吴淞口国际邮轮港",
+      "poi_id": "1258636712488613695",
+      "poi_title": "上海吴淞口国际邮轮港",
+      "poi_address": "上海市宝山区宝杨路1号",
+      "latitude": 31.409594,
+      "longitude": 121.50869,
+      "candidates": []
+    },
+    {
+      "group_id": "e7199ba5bbdc",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:09_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "长宁来福士"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "长宁来福士，POI长宁路1139号一致",
+      "poi_id": "9963734898151626537",
+      "poi_title": "上海长宁来福士广场",
+      "poi_address": "上海市长宁区长宁路1139号",
+      "latitude": 31.216412,
+      "longitude": 121.414895,
+      "candidates": []
+    },
+    {
+      "group_id": "887f426da50a",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:10_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "滴水湖"
+      ],
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "临港光影秀沿滴水湖环湖景观带，无独立POI，绑滴水湖主体",
+      "poi_id": "17930691270814698325",
+      "poi_title": "滴水湖",
+      "poi_address": "上海市浦东新区南汇新城镇星空之境海绵公园内",
+      "latitude": 30.89741,
+      "longitude": 121.94092,
+      "candidates": []
+    },
+    {
+      "group_id": "0c484452af7d",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:10_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "滴水湖"
+      ],
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "滴水湖下沉式广场悦动舞台无独立POI，绑滴水湖主体",
+      "poi_id": "17930691270814698325",
+      "poi_title": "滴水湖",
+      "poi_address": "上海市浦东新区南汇新城镇星空之境海绵公园内",
+      "latitude": 30.89741,
+      "longitude": 121.94092,
+      "candidates": []
+    },
+    {
+      "group_id": "e66b66565d48",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:11_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海博物馆人民广场"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "上海博物馆人民广场馆，POI人民大道201号一致",
+      "poi_id": "16735387838250613409",
+      "poi_title": "上海博物馆(人民广场馆)",
+      "poi_address": "上海市黄浦区人民大道201号",
+      "latitude": 31.228514,
+      "longitude": 121.475305,
+      "candidates": []
+    },
+    {
+      "group_id": "79b9b2ba6700",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:11_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海世博会博物馆"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "世博会博物馆，POI蒙自路818号一致",
+      "poi_id": "10585224076627788422",
+      "poi_title": "上海世博会博物馆",
+      "poi_address": "上海市黄浦区蒙自路818号",
+      "latitude": 31.194437,
+      "longitude": 121.482161,
+      "candidates": []
+    },
+    {
+      "group_id": "7c8fabb27ff6",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:11_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海当代艺术博物馆"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "PSA上海当代艺术博物馆，POI苗江路678号一致",
+      "poi_id": "16427539605938785867",
+      "poi_title": "上海当代艺术博物馆",
+      "poi_address": "上海市黄浦区苗江路678号",
+      "latitude": 31.201176,
+      "longitude": 121.498525,
+      "candidates": []
+    },
+    {
+      "group_id": "505e09c6b9cc",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:12_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "刘海粟美术馆"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "刘海粟美术馆分馆，POI铜川路1869号一致",
+      "poi_id": "8394815748401081737",
+      "poi_title": "刘海粟美术馆(铜川路分馆)",
+      "poi_address": "上海市普陀区铜川路1869号(真光路地铁站2号口步行90米)",
+      "latitude": 31.252933,
+      "longitude": 121.384909,
+      "candidates": []
+    },
+    {
+      "group_id": "2d08329f3848",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:12_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海油罐艺术中心"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "上海油罐艺术中心，POI龙腾大道2380号一致",
+      "poi_id": "1713838050169381277",
+      "poi_title": "油罐艺术公园",
+      "poi_address": "上海市徐汇区龙腾大道2380号",
+      "latitude": 31.164515,
+      "longitude": 121.464302,
+      "candidates": []
+    },
+    {
+      "group_id": "6bf62fd4ff26",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:12_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海图书馆东馆"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "上图东馆一号展厅，POI合欢路300号一致",
+      "poi_id": "5528072624503891635",
+      "poi_title": "上海图书馆(东馆)",
+      "poi_address": "上海市浦东新区花木街道合欢路300号",
+      "latitude": 31.219975,
+      "longitude": 121.547154,
+      "candidates": []
+    },
+    {
+      "group_id": "ca1db53bc82d",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:14_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海博物馆东馆"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "上海博物馆东馆，POI世纪大道1952号一致",
+      "poi_id": "12583235804204926797",
+      "poi_title": "上海博物馆(东馆)",
+      "poi_address": "上海市浦东新区世纪大道1952号",
+      "latitude": 31.219918,
+      "longitude": 121.53876,
+      "candidates": []
+    },
+    {
+      "group_id": "96b0154e642f",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:14_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "中国近现代新闻出版博物馆"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "新闻出版博物馆，POI周家嘴路3678号一致",
+      "poi_id": "4720298806797995815",
+      "poi_title": "中国近现代新闻出版博物馆",
+      "poi_address": "上海市杨浦区定海路街道周家嘴路3678号",
+      "latitude": 31.278462,
+      "longitude": 121.543638,
+      "candidates": []
+    },
+    {
+      "group_id": "53a8e09e1990",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:14_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海市历史博物馆"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "历史博物馆西三楼展，POI南京西路325号一致",
+      "poi_id": "1381287723848569740",
+      "poi_title": "上海市历史博物馆",
+      "poi_address": "上海市黄浦区南京西路325号",
+      "latitude": 31.23097,
+      "longitude": 121.47093,
+      "candidates": []
+    },
+    {
+      "group_id": "93edd9bee8bd",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:16_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海西岸大剧院"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "西岸大剧院，POI龙腾大道2290号一致",
+      "poi_id": "2198531495687242211",
+      "poi_title": "上海西岸大剧院",
+      "poi_address": "上海市徐汇区龙腾大道2290号GateM西岸梦中心F1",
+      "latitude": 31.163516,
+      "longitude": 121.465665,
+      "candidates": []
+    },
+    {
+      "group_id": "11651510950b",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:16_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海文化广场"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "上海文化广场剧场，POI复兴中路597号一致",
+      "poi_id": "2868361964880583690",
+      "poi_title": "上海文化广场",
+      "poi_address": "上海市黄浦区复兴中路597号",
+      "latitude": 31.212301,
+      "longitude": 121.462493,
+      "candidates": []
+    },
+    {
+      "group_id": "b9c3dd2b6394",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:16_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海国际舞蹈中心"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "上海国际舞蹈中心，POI虹桥路1650号一致",
+      "poi_id": "13595737998992201929",
+      "poi_title": "上海国际舞蹈中心·大剧场",
+      "poi_address": "上海市长宁区虹桥街道虹桥路1650号上海国际舞蹈中心2号楼",
+      "latitude": 31.199393,
+      "longitude": 121.395258,
+      "candidates": []
+    },
+    {
+      "group_id": "45aca70d945f",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:17_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "茉莉花剧场"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "茉莉花剧场，POI北海路251号一致",
+      "poi_id": "7821050578208579278",
+      "poi_title": "上海茉莉花剧场",
+      "poi_address": "上海市黄浦区北海路251号(云南中路)",
+      "latitude": 31.230067,
+      "longitude": 121.47847,
+      "candidates": []
+    },
+    {
+      "group_id": "406170f9db5c",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:17_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "YOUNG剧场"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "YOUNG剧场，POI控江路1155号一致",
+      "poi_id": "5527323411719490889",
+      "poi_title": "Theatre YOUNG剧场",
+      "poi_address": "上海市杨浦区控江路1155号(黄兴路地铁站3号口步行110米)",
+      "latitude": 31.278051,
+      "longitude": 121.528544,
+      "candidates": []
+    },
+    {
+      "group_id": "9b2b2fa77097",
+      "event_uids": [
+        "xiaohongshu:6a4b86a4000000001602434b:17_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "北外滩友邦大剧院"
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "北外滩友邦大剧院，POI东大名路889号一致",
+      "poi_id": "9895111819536696934",
+      "poi_title": "北外滩友邦大剧院",
+      "poi_address": "上海市虹口区东大名路889号(提篮桥地铁站3号口步行120米)",
+      "latitude": 31.251265,
+      "longitude": 121.505028,
+      "candidates": []
     }
   ]
 }

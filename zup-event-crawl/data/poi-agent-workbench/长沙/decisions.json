@@ -1,42 +1,64 @@
 {
   "city": "长沙",
-  "source": "douban",
-  "updated_at": "2026-06-21T02:40:00.000Z",
+  "decided_at": "2026-07-10T12:10:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "e46ca9707fb2",
-      "event_uids": ["douban:37754597", "douban:37844965"],
+      "group_id": "17792e473c63",
+      "event_uids": ["douban:37898987"],
       "action": "match",
-      "search_keywords_tried": ["雨花区", "MAO", "Livehouse-长沙沙湾店", "劳动东路268号吉联MALL外1楼", "MAO Livehouse-", "MALL", "长沙沙湾店", "268号吉联MALL外1楼"],
-      "poi_id": "8307073103579978611",
-      "poi_title": "MAO Livehouse长沙(沙湾店)",
-      "poi_address": "湖南省长沙市雨花区劳动东路268号吉联MALL外1楼",
-      "latitude": 28.156679,
-      "longitude": 113.047394,
+      "search_keywords_tried": ["英皇电影城 国金中心"],
+      "poi_id": "18199681522010330747",
+      "poi_title": "英皇电影城(长沙国金中心店)",
+      "poi_address": "湖南省长沙市芙蓉区解放西路188号长沙IFSL5",
+      "latitude": 28.19232,
+      "longitude": 112.976873,
+      "candidates": [
+        {
+          "poi_id": "18199681522010330747",
+          "title": "英皇电影城(长沙国金中心店)",
+          "address": "湖南省长沙市芙蓉区解放西路188号长沙IFSL5"
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "场馆名店名地址完全一致，雨花区劳动东路268号吉联MALL外1楼",
-      "candidates": [
-        {"index": 0, "poi_id": "8307073103579978611", "title": "MAO Livehouse长沙(沙湾店)", "address": "湖南省长沙市雨花区劳动东路268号吉联MALL外1楼", "category": "娱乐休闲:酒吧", "latitude": 28.156679, "longitude": 113.047394}
-      ]
+      "reason": "店名与解放西路188号国金中心地址一致"
     },
     {
-      "group_id": "8485bc49c2a7",
-      "event_uids": ["douban:37795387"],
+      "group_id": "0e9c2d645d25",
+      "event_uids": ["douban:37844780"],
       "action": "match",
-      "search_keywords_tried": ["岳麓区", "长沙达丰空间", "银盆岭街道银盆岭路228号长沙保利时光汇5楼", "228号长沙保利时光汇5楼"],
-      "poi_id": "1988189536632641418",
-      "poi_title": "达丰空间(保利时光汇店)",
-      "poi_address": "湖南省长沙市岳麓区银盆岭街道银盆岭路228号长沙保利时光汇5楼",
-      "latitude": 28.225434,
-      "longitude": 112.960614,
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "2554153063398531721",
+      "poi_title": "湖南大剧院",
+      "poi_address": "",
+      "latitude": 28.189747,
+      "longitude": 112.997792,
+      "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "达丰空间保利时光汇店名地址完全一致，岳麓区银盆岭路228号5楼",
+      "reason": "地址映射库命中：韶山路139号湖南大剧院"
+    },
+    {
+      "group_id": "2a0385fd5c0a",
+      "event_uids": ["douban:37836966"],
+      "action": "match",
+      "search_keywords_tried": ["红节奏LIVEHOUSE 中山路"],
+      "poi_id": "10086422564088592870",
+      "poi_title": "红节奏live house",
+      "poi_address": "湖南省长沙市芙蓉区中山路249号3楼",
+      "latitude": 28.199891,
+      "longitude": 112.978193,
       "candidates": [
-        {"index": 0, "poi_id": "1988189536632641418", "title": "达丰空间(保利时光汇店)", "address": "湖南省长沙市岳麓区银盆岭街道银盆岭路228号长沙保利时光汇5楼", "category": "娱乐休闲:其它娱乐休闲", "latitude": 28.225434, "longitude": 112.960614}
-      ]
+        {
+          "poi_id": "10086422564088592870",
+          "title": "红节奏live house",
+          "address": "湖南省长沙市芙蓉区中山路249号3楼"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "店名与中山路249号地址完全一致"
     }
   ]
 }

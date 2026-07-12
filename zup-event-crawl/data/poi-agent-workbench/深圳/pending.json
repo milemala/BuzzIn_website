@@ -1,7 +1,7 @@
 {
   "city": "深圳",
   "source": "douban",
-  "exported_at": "2026-06-29T03:23:39.283Z",
+  "exported_at": "2026-07-10T11:27:10.793Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
@@ -10,129 +10,121 @@
   "last_import_new_uids": 9,
   "doubtful_only": false,
   "total_events": 9,
-  "group_count": 8,
-  "cache_hit_groups": 3,
+  "group_count": 9,
+  "cache_hit_groups": 2,
   "groups": [
     {
-      "group_id": "4b223026781e",
-      "location": "深圳 龙岗区 龙岗文化中心大剧院 龙岗中心城龙翔大道8308号",
-      "sample_title": "《梦痕——意大利那不勒斯民谣组合音乐会》",
+      "group_id": "30b8ec43428f",
+      "location": "深圳 福田区 联娱影城（福田京基KKone店）",
+      "sample_title": "这团火永不熄灭《功夫女足》特别观影场｜奇妙观影团·深圳站",
       "event_uids": [
-        "douban:37813777"
+        "douban:37898441"
       ],
       "event_count": 1
     },
     {
-      "group_id": "258ec36c43de",
-      "location": "深圳 福田区 深圳市体育中心体育馆主馆 体育中心笋岗西路2006号",
-      "sample_title": "2026动力火车“一路向前”巡回演唱会-深圳站",
+      "group_id": "8a6e9adc872e",
+      "location": "深圳 南山区 前海深港合作区",
+      "sample_title": "境域和鸣~多维艺术交互音乐展演",
       "event_uids": [
-        "douban:37831795"
+        "douban:37898540"
       ],
       "event_count": 1
     },
     {
-      "group_id": "c23a4b9a1baa",
-      "location": "深圳 南山区 华侨城创意园E3栋101C ROOTS HOUSE",
-      "sample_title": "爵士即兴日 7/3&7/17",
+      "group_id": "3c358bc170af",
+      "location": "深圳 龙华区 金地梅陇镇",
+      "sample_title": "深圳coffee chat 打破信息茧房",
       "event_uids": [
-        "douban:37894418"
+        "douban:37899089"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "151868bf1448",
+      "location": "深圳 福田区 泰然工贸园213栋5楼",
+      "sample_title": "零基础摇摆舞夜校丨7.15-8.5每周三四节swing！开式闭式的基本切换",
+      "event_uids": [
+        "douban:37895395"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "15281668256543917083",
-        "poi_title": "ROOTS HOUSE(华侨城店)",
+        "poi_id": "16766038513149208802",
+        "poi_title": "泰然工贸园-213栋",
         "poi_address": "",
-        "latitude": 22.537591,
-        "longitude": 113.992029,
+        "latitude": 22.532026,
+        "longitude": 114.02526,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：深圳 南山区 华侨城创意园E3栋101C ROOTS HOUSE → ROOTS HOUSE(华侨城店)（来源 event:douban:37889600）",
+        "reason": "地址映射库命中：深圳 福田区 泰然工贸园213栋5楼 → 泰然工贸园-213栋（来源 event:douban:37883621）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "c23a4b9a1baa4cf181125dfd5710cf87c70136e5"
+        "cache_key": "151868bf1448bcc85443cdf07b6e531c8fd5c593"
       }
     },
     {
-      "group_id": "ee4a688682ca",
-      "location": "深圳 南山区 深圳保利剧院 后海滨路3013号（后海地铁站E口旁）",
-      "sample_title": "小奇 哈哈曹 徐浩伦谭湘文领衔《一起笑嘛！》巡演-笑果出品@深圳",
+      "group_id": "be7873efaa12",
+      "location": "深圳 南山区 观筑艺术空间",
+      "sample_title": "7.10摇摆舞舞会：零基础教学，还有自由即兴时刻！",
       "event_uids": [
-        "douban:37758880"
+        "douban:37898132"
       ],
       "event_count": 1
     },
     {
-      "group_id": "7be61bdd975e",
-      "location": "深圳 福田区 来疯喜剧场-上梅林卓悦汇店 中康路126号卓悦汇L2-19b(八合里旁边)来疯喜剧场",
-      "sample_title": "来疯喜剧丨琥珀新喜剧内测版 《今夜听她说》@上梅林卓悦汇店-周末假期爆笑喜剧演出丨要和闺蜜一起看的爆笑互动喜剧专场",
+      "group_id": "36722d457098",
+      "location": "深圳 福田区 荣超经贸中心4801室天空冥想馆楼上 （市民中心地铁站）",
+      "sample_title": "7.12正念沙龙：找到关系沟通中的盲点和亮点，突破以往旧有的人际关系",
       "event_uids": [
-        "douban:37709082"
+        "douban:37898232"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "b60056fa5cc0",
+      "location": "深圳 龙岗区 盐田区地铁站集合",
+      "sample_title": "7.11山海出游丨Citywalk世界第三大港唯美夜景，微醺夜话桌游轻松社交",
+      "event_uids": [
+        "douban:37898531"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "f790bd3962cd",
+      "location": "深圳 福田区 安徽大厦创展中心",
+      "sample_title": "7.11【射箭&冰壶体验】室内·拉弓定心投壶谋略，一站式玩转两种运动",
+      "event_uids": [
+        "douban:37898796"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "32d6b270b25f",
+      "location": "深圳 福田区 国际商会大厦A座",
+      "sample_title": "7.13芳香×OH卡沙龙：年中复盘、六维度画布探索、下半年钱景方向",
+      "event_uids": [
+        "douban:37899376"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "2462313919833142162",
-        "poi_title": "来疯喜剧脱口秀俱乐部(上梅林卓悦汇店)",
+        "poi_id": "1928560869740938180",
+        "poi_title": "深圳国际商会大厦A座",
         "poi_address": "",
-        "latitude": 22.570031,
-        "longitude": 114.060644,
+        "latitude": 22.537074,
+        "longitude": 114.05127,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：深圳 福田区 来疯喜剧场-上梅林卓悦汇店 中康路126号卓悦汇L2-19b(八合里旁边)来疯喜剧场 → 来疯喜剧脱口秀俱乐部(上梅林卓悦汇店)（来源 event:douban:37709077）",
+        "reason": "地址映射库命中：深圳 福田区 国际商会大厦A座 → 深圳国际商会大厦A座（来源 event:douban:37856970）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "7be61bdd975e4199f37245a64e1986ed09a33ab1"
+        "cache_key": "32d6b270b25ff361fe06ec146c5f8d0fbe19c0a7"
       }
-    },
-    {
-      "group_id": "8ab18e8dad17",
-      "location": "深圳 南山区 明华国际会议中心正门斜对面",
-      "sample_title": "2026年夜登南山 每周二固定活动",
-      "event_uids": [
-        "douban:37797324"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "34b27f8854ae",
-      "location": "深圳 福田区 安徽大厦",
-      "sample_title": "7.11沟通技巧沙龙：掌握让人舒服的说话艺术，带你走出沟通困局",
-      "event_uids": [
-        "douban:37893372",
-        "douban:37893109"
-      ],
-      "event_count": 2,
-      "cached_poi": {
-        "poi_id": "262628701006936448",
-        "poi_title": "安徽大厦",
-        "poi_address": "",
-        "latitude": 22.536255,
-        "longitude": 114.031628,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：深圳 福田区 安徽大厦 → 安徽大厦（来源 event:douban:37864999）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "34b27f8854ae47654fa1b19951633f62796167ef"
-      }
-    },
-    {
-      "group_id": "53d1a73dd524",
-      "location": "深圳 福田区 岗厦北地铁站",
-      "sample_title": "5.5桌游局：除了狼德州阿瓦隆白蔷薇险恶疑航，还有毛线游戏",
-      "event_uids": [
-        "douban:37851990"
-      ],
-      "event_count": 1
     }
   ]
 }

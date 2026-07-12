@@ -1,112 +1,65 @@
 {
   "city": "厦门",
   "source": "douban",
-  "decided_at": "2026-06-29T03:42:30.694Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-07-10T12:00:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "443813f048be",
-      "action": "match",
-      "poi_id": "9553621768810285816",
-      "poi_title": "闽南大戏院·大剧场",
-      "poi_address": "",
-      "latitude": 24.474133,
-      "longitude": 118.189124,
+      "group_id": "f008965e8e21",
+      "event_uids": ["douban:37899590"],
+      "action": "reject",
+      "search_keywords_tried": ["联发文创口岸", "暗的光放映室"],
+      "confidence": "low",
       "doubtful": false,
-      "reason": "地址映射库命中：厦门 思明区 闽南大戏院 会展北片区横三路(国际会议中心酒店北侧) → 闽南大戏院·大剧场（来源 event:douban:37763257）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37824116"
-      ]
+      "reason": "活动仅写联发文创口岸，暗的光放映室无独立POI；文创园区地址过泛无法唯一确定"
     },
     {
-      "group_id": "fd57afd63305",
+      "group_id": "96b230cab6d6",
+      "event_uids": ["douban:37455295"],
       "action": "match",
-      "poi_id": "8979793825782082014",
-      "poi_title": "帽子新空间剧场-帽子喜剧(古地石店)",
-      "poi_address": "",
-      "latitude": 24.492736,
-      "longitude": 118.168446,
-      "doubtful": false,
-      "reason": "地址映射库命中：厦门 湖里区 帽子新空间剧场-帽子喜剧 金山街道金边路568号航空古地石广场A区G层G05-2室(A区进大堂下G层左侧) → 帽子新空间剧场-帽子喜剧(古地石店)（来源 event:douban:37773144）",
-      "search_keywords_tried": [
-        "poi-address-cache"
+      "search_keywords_tried": ["帽子新空间剧场航空古地石"],
+      "poi_id": "13073332259896031485",
+      "poi_title": "帽子新空间剧场(帽子戏法·古地石店)",
+      "poi_address": "福建省厦门市湖里区金山街道金边路568号航空古地石广场A区G层G05室(A区进大堂下G层左侧)",
+      "latitude": 24.4929,
+      "longitude": 118.168153,
+      "candidates": [
+        {"poi_id": "13073332259896031485", "title": "帽子新空间剧场(帽子戏法·古地石店)", "address": "福建省厦门市湖里区金山街道金边路568号航空古地石广场A区G层G05室(A区进大堂下G层左侧)", "category": "娱乐休闲:剧场音乐厅:剧场"},
+        {"poi_id": "8979793825782082014", "title": "帽子新空间剧场-帽子喜剧(古地石店)", "address": "福建省厦门市湖里区金边路568号航空古地石广场A区G层G05-2室(A区进大堂下G层左侧)", "category": "室内及附属设施:通行设施类"}
       ],
-      "event_uids": [
-        "douban:37849053"
-      ]
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "帽子新空间剧场与航空古地石广场G层地址一致，仅差G05/G05-2室号精度"
     },
     {
       "group_id": "97ce15d71d93",
+      "event_uids": ["douban:37526710"],
       "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "15666993686218668101",
       "poi_title": "来疯喜剧场 SM三期店",
       "poi_address": "",
       "latitude": 24.500808,
       "longitude": 118.124382,
+      "candidates": [],
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：厦门 思明区 来疯喜剧场-SM三期四楼店 SM城市广场3期L4层402A铺 → 来疯喜剧场 SM三期店（来源 event:douban:37705665）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37743999"
-      ]
+      "reason": "地址映射库命中：来疯喜剧场SM三期四楼店与思明区SM三期地址一致"
     },
     {
-      "group_id": "c1865321ee7c",
+      "group_id": "443813f048be",
+      "event_uids": ["douban:37828313"],
       "action": "match",
-      "poi_id": "15613634814297343817",
-      "poi_title": "RealLive And Books",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "9553621768810285816",
+      "poi_title": "闽南大戏院·大剧场",
       "poi_address": "",
-      "latitude": 24.469177,
-      "longitude": 118.105614,
+      "latitude": 24.474133,
+      "longitude": 118.189124,
+      "candidates": [],
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：厦门 思明区 RealLive And Books 湖滨中路26号禾祥鑫天地B1层B115室 → RealLive And Books（来源 event:douban:37727129）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37842198"
-      ]
-    },
-    {
-      "group_id": "8e75360b413e",
-      "action": "match",
-      "poi_id": "7207792780084738334",
-      "poi_title": "中典宏基工业园",
-      "poi_address": "福建省厦门市湖里区禾山路1603号之2",
-      "latitude": 24.520089,
-      "longitude": 118.132162,
-      "doubtful": true,
-      "reason": "承汉武道馆无独立腾讯POI，活动在中典宏基工业园科技2号楼402，匹配至同园区主体，未能精确到402室",
-      "search_keywords_tried": [
-        "中典宏基工业园",
-        "承汉武道馆",
-        "承汉武道馆 中典宏基"
-      ],
-      "event_uids": [
-        "douban:37893094"
-      ]
-    },
-    {
-      "group_id": "8c398c835db5",
-      "action": "match",
-      "poi_id": "8262865254560072207",
-      "poi_title": "福南大会堂",
-      "poi_address": "福建省厦门市集美区集美街道嘉庚路12号",
-      "latitude": 24.567167,
-      "longitude": 118.095679,
-      "doubtful": false,
-      "reason": "福南大会堂与嘉庚路12号地址完全一致",
-      "search_keywords_tried": [
-        "福南大会堂"
-      ],
-      "event_uids": [
-        "douban:37734190"
-      ]
+      "reason": "地址映射库命中：闽南大戏院与思明区会展北横三路地址一致"
     }
   ]
 }

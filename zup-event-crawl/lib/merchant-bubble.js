@@ -23,9 +23,15 @@ const {
   poolEnabled,
   resolvePublishUserId: resolvePoolPublishUserId,
 } = require("./publish-user-pool");
+const {
+  resolveMerchantBubbleContentType,
+  resolveMerchantTypeNameForBubble,
+} = require("./merchant-bubble-content-type");
 
 const ROTATION_META_PREFIX = "merchant_bubble_rotation";
-const BUCKET_COUNT = 3;
+/** 每个城市至少分 3 组；单组超过 MAX_BUCKET_SIZE 时自动增加组数 */
+const MIN_BUCKET_COUNT = 3;
+const MAX_BUCKET_SIZE = 40;
 const BUBBLE_EXPIRE_DAYS = 3;
 
 function pad2(n) {
@@ -156,24 +162,55 @@ function groupMerchantsByCity(merchants) {
   return groups;
 }
 
-function splitIntoBuckets(merchantUids) {
-  const buckets = [[], [], []];
+function computeBucketCount(merchantCount) {
+  const total = Math.max(0, Number(merchantCount) || 0);
+  if (total === 0) return MIN_BUCKET_COUNT;
+  return Math.max(MIN_BUCKET_COUNT, Math.ceil(total / MAX_BUCKET_SIZE));
+}
+
+function cityBucketCount(cityState) {
+  const fromBuckets = Array.isArray(cityState?.buckets) ? cityState.buckets.length : 0;
+  const stored = Number(cityState?.bucket_count);
+  if (fromBuckets > 0) return fromBuckets;
+  if (Number.isFinite(stored) && stored > 0) return stored;
+  return 1;
+}
+
+function cityBucketsNeedRebuild(current, merchantUids) {
+  if (!current?.buckets?.length) return true;
+  const requiredCount = computeBucketCount(merchantUids.length);
+  if (current.buckets.length !== requiredCount) return true;
+  return current.buckets.some((bucket) => bucket.length > MAX_BUCKET_SIZE);
+}
+
+function splitIntoBuckets(merchantUids, bucketCount) {
+  const count = Math.max(1, bucketCount || computeBucketCount(merchantUids.length));
+  const buckets = Array.from({ length: count }, () => []);
   merchantUids.forEach((uid, index) => {
-    buckets[index % BUCKET_COUNT].push(uid);
+    buckets[index % count].push(uid);
   });
   return buckets;
+}
+
+function buildCityRotation(merchantUids, options = {}) {
+  const bucketCount = computeBucketCount(merchantUids.length);
+  const shuffled = shuffleInPlace([...merchantUids]);
+  const slot = options.preserveSlot === true
+    ? Math.max(0, Number(options.slot) || 0) % bucketCount
+    : 0;
+  return {
+    slot,
+    bucket_count: bucketCount,
+    buckets: splitIntoBuckets(shuffled, bucketCount),
+  };
 }
 
 function ensureCityRotation(state, city, merchantUids, options = {}) {
   const reshuffle = options.reshuffle === true;
   const current = state[city];
   const uidSet = new Set(merchantUids);
-  if (!current || reshuffle) {
-    const shuffled = shuffleInPlace([...merchantUids]);
-    state[city] = {
-      slot: 0,
-      buckets: splitIntoBuckets(shuffled),
-    };
+  if (!current || reshuffle || cityBucketsNeedRebuild(current, merchantUids)) {
+    state[city] = buildCityRotation(merchantUids);
     return state[city];
   }
 
@@ -189,7 +226,17 @@ function ensureCityRotation(state, city, merchantUids, options = {}) {
   }
 
   current.buckets = current.buckets.map((bucket) => bucket.filter((uid) => uidSet.has(uid)));
-  current.slot = Number(current.slot) % BUCKET_COUNT;
+  current.bucket_count = current.buckets.length;
+  if (cityBucketsNeedRebuild(current, merchantUids)) {
+    state[city] = buildCityRotation(merchantUids, {
+      preserveSlot: true,
+      slot: current.slot,
+    });
+    return state[city];
+  }
+
+  const bucketCount = cityBucketCount(current);
+  current.slot = Number(current.slot) % bucketCount;
   if (!Number.isFinite(current.slot) || current.slot < 0) current.slot = 0;
   return current;
 }
@@ -236,14 +283,15 @@ function pickMerchantsForCurrentSlot(db, options = {}) {
       city,
       list.map((item) => item.merchant_uid),
     );
-    const bucketIndex = cityState.slot % BUCKET_COUNT;
+    const bucketIndex = cityState.slot % cityBucketCount(cityState);
     const uidSet = new Set(cityState.buckets[bucketIndex] || []);
     const cityMerchants = list.filter((item) => uidSet.has(item.merchant_uid));
     selected.push(...cityMerchants);
+    const bucketCount = cityBucketCount(cityState);
     plan.push({
       city,
       slot: bucketIndex,
-      next_slot: (bucketIndex + 1) % BUCKET_COUNT,
+      next_slot: (bucketIndex + 1) % bucketCount,
       count: cityMerchants.length,
       merchant_uids: cityMerchants.map((item) => item.merchant_uid),
     });
@@ -259,7 +307,8 @@ function advanceRotationSlots(db, cities, buzzEnv = "test") {
   const targetCities = cities?.length ? cities : Object.keys(state);
   for (const city of targetCities) {
     if (!state[city]) continue;
-    state[city].slot = (Number(state[city].slot || 0) + 1) % BUCKET_COUNT;
+    const bucketCount = cityBucketCount(state[city]);
+    state[city].slot = (Number(state[city].slot || 0) + 1) % bucketCount;
   }
   saveRotationState(db, state, env);
   return state;
@@ -269,7 +318,8 @@ function advanceCityRotationAfterBucket(db, city, publishedSlot, buzzEnv = "test
   const env = normalizeBuzzEnv(buzzEnv);
   const state = loadRotationState(db, env);
   if (!state[city]) return state;
-  state[city].slot = (Number(publishedSlot) + 1) % BUCKET_COUNT;
+  const bucketCount = cityBucketCount(state[city]);
+  state[city].slot = (Number(publishedSlot) + 1) % bucketCount;
   saveRotationState(db, state, env);
   return state;
 }
@@ -291,7 +341,8 @@ function getMerchantsInCityBucket(db, city, slotIndex, options = {}) {
   );
   saveRotationState(db, state, buzzEnv);
   const slot = Number(slotIndex);
-  if (!Number.isFinite(slot) || slot < 0 || slot >= BUCKET_COUNT) {
+  const bucketCount = cityBucketCount(cityState);
+  if (!Number.isFinite(slot) || slot < 0 || slot >= bucketCount) {
     throw new Error(`分组序号无效: ${slotIndex}`);
   }
   const uidSet = new Set(cityState.buckets[slot] || []);
@@ -370,7 +421,7 @@ async function verifyActiveBubblesRemotely(db, client, merchants, buzzEnv, optio
 async function loadActiveBubbleMerchantUids(db, options = {}) {
   const buzzEnv = resolveBuzzEnv(options);
   const merchants = listImportedMerchants(db, importListOptions(options));
-  const withBubble = merchants.filter((item) => item.bubble_now_id);
+  const withBubble = merchants.filter((item) => String(item.bubble_now_id || "").trim());
   const activeUids = new Set();
   if (!withBubble.length) return activeUids;
 
@@ -379,6 +430,10 @@ async function loadActiveBubbleMerchantUids(db, options = {}) {
     const local = isLocallyActiveBubble(merchant);
     if (local === true) {
       activeUids.add(merchant.merchant_uid);
+      continue;
+    }
+    if (local === false) {
+      clearMerchantBubbleLocal(db, merchant.merchant_uid, buzzEnv);
       continue;
     }
     needsRemote.push(merchant);
@@ -403,9 +458,15 @@ async function listBubbleMerchantsInBucket(db, city, slotIndex, options = {}) {
     const nowId = String(merchant.bubble_now_id || "").trim();
     if (!nowId) continue;
 
-    let nowItem = null;
-    let fetchError = null;
     const localActive = isLocallyActiveBubble(merchant);
+    if (localActive === false) {
+      stale.push({
+        merchant,
+        now_id: nowId,
+        reason: "expired",
+      });
+      continue;
+    }
     if (localActive === true) {
       targets.push({
         merchant,
@@ -414,6 +475,9 @@ async function listBubbleMerchantsInBucket(db, city, slotIndex, options = {}) {
       });
       continue;
     }
+
+    let nowItem = null;
+    let fetchError = null;
 
     try {
       nowItem = await client.getNowById(nowId);
@@ -453,6 +517,106 @@ function clearMerchantBubbleLocal(db, merchantUid, buzzEnv) {
     bubble_now_id: "",
     bubble_published_at: null,
   }, buzzEnv);
+}
+
+async function expireActiveBubbleForMerchant(db, merchant, options = {}) {
+  const buzzEnv = resolveBuzzEnv(options);
+  const nowId = String(merchant.bubble_now_id || "").trim();
+  if (!nowId) {
+    return {
+      ok: true,
+      skipped: true,
+      merchant_uid: merchant.merchant_uid,
+      name: merchant.name,
+    };
+  }
+  if (isLocallyActiveBubble(merchant) === false) {
+    clearMerchantBubbleLocal(db, merchant.merchant_uid, buzzEnv);
+    return {
+      ok: true,
+      skipped: true,
+      merchant_uid: merchant.merchant_uid,
+      name: merchant.name,
+      note: "本地已过期",
+    };
+  }
+  const client = options.client || new BuzzAdminClient({ ...options, buzz_env: buzzEnv });
+  options.client = client;
+  try {
+    await client.updateNow(nowId, { expired_at: nowDateTime() });
+    clearMerchantBubbleLocal(db, merchant.merchant_uid, buzzEnv);
+    return {
+      ok: true,
+      expired: true,
+      merchant_uid: merchant.merchant_uid,
+      name: merchant.name,
+      now_id: nowId,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      merchant_uid: merchant.merchant_uid,
+      name: merchant.name,
+      now_id: nowId,
+      error: error.message,
+    };
+  }
+}
+
+async function expireActiveBubblesForMerchants(db, merchants, options = {}) {
+  const results = [];
+  let ok = 0;
+  let fail = 0;
+  let skipped = 0;
+  for (const merchant of merchants) {
+    const result = await expireActiveBubbleForMerchant(db, merchant, options);
+    results.push(result);
+    if (result.ok && result.expired) ok += 1;
+    else if (result.ok && result.skipped) skipped += 1;
+    else fail += 1;
+    if (options.delayMs !== 0 && options.delayMs != null) {
+      await sleep(options.delayMs);
+    }
+  }
+  return { total: merchants.length, ok, fail, skipped, results };
+}
+
+async function expirePreviousCityBucketBubbles(db, city, publishingSlot, options = {}) {
+  const cityName = String(city || "").trim();
+  if (!cityName) throw new Error("缺少城市");
+  const slot = Number(publishingSlot);
+  if (!Number.isFinite(slot)) throw new Error("缺少分组序号");
+
+  const buzzEnv = resolveBuzzEnv(options);
+  const merchants = listImportedMerchants(db, importListOptions({ ...options, city: cityName }));
+  const cityMerchants = merchants.filter((item) => {
+    const itemCity = String(item.city || "未分类").trim() || "未分类";
+    return itemCity === cityName;
+  });
+  const state = loadRotationState(db, buzzEnv);
+  ensureCityRotation(
+    state,
+    cityName,
+    cityMerchants.map((item) => item.merchant_uid),
+  );
+  saveRotationState(db, state, buzzEnv);
+  const bucketCount = cityBucketCount(state[cityName]);
+  const previousSlot = (slot - 1 + bucketCount) % bucketCount;
+  const pick = getMerchantsInCityBucket(db, cityName, previousSlot, options);
+  const toExpire = pick.merchants.filter((item) => String(item.bubble_now_id || "").trim());
+
+  const report = await expireActiveBubblesForMerchants(db, toExpire, {
+    ...options,
+    delayMs: options.expire_delay_ms ?? 150,
+  });
+
+  return {
+    city: cityName,
+    publishing_slot: slot,
+    previous_slot: previousSlot,
+    candidates: toExpire.length,
+    ...report,
+  };
 }
 
 function staleBubbleNote(entry) {
@@ -497,7 +661,7 @@ async function cleanupStaleBucketBubbles(db, stale, buzzEnv, options = {}) {
   return { results, cleaned, skipped };
 }
 
-const DEFAULT_PER_MERCHANT_CONTENT = "欢迎进群组局邀约，看看谁有空一起。";
+const DEFAULT_PER_MERCHANT_CONTENT = "附近的小伙伴们可以约起来了～\n欢迎进群组局，来认识几个新朋友吧～";
 
 function buildPerMerchantCopy(merchant, options = {}) {
   const name = String(merchant.name || "").trim();
@@ -522,12 +686,17 @@ function buildBubbleRecord(merchant, options = {}) {
     throw new Error("缺少气泡标题");
   }
 
+  const contentType = resolveMerchantBubbleContentType(merchant, options.merchant_types);
+  const merchantTypeName = resolveMerchantTypeNameForBubble(merchant, options.merchant_types);
+
   return {
     user_id: publishUserId,
     publish_user_id: publishUserId,
     now_title: copy.now_title,
     now_content: copy.now_content,
     now_type: Number(options.now_type) || 1,
+    content_type: contentType,
+    merchant_type_name: merchantTypeName,
     now_merchant_id: merchant.buzz_merchant_id,
     location_poi_id: merchant.address_poi_id || "",
     location_name: merchant.poi_title || merchant.name || "",
@@ -556,12 +725,14 @@ async function getMerchantBubbleState(db, options = {}) {
       city,
       list.map((item) => item.merchant_uid),
     );
-    const bucketIndex = cityState.slot % BUCKET_COUNT;
+    const bucketCount = cityBucketCount(cityState);
+    const bucketIndex = cityState.slot % bucketCount;
     cities.push({
       city,
       total: list.length,
+      bucket_count: bucketCount,
       current_slot: bucketIndex,
-      next_slot: (bucketIndex + 1) % BUCKET_COUNT,
+      next_slot: (bucketIndex + 1) % bucketCount,
       buckets: cityState.buckets.map((uids, index) => ({
         index,
         count: uids.length,
@@ -776,6 +947,18 @@ async function batchDissolveMerchantGroups(db, options = {}) {
   };
 }
 
+async function ensureMerchantTypes(options = {}) {
+  if (Array.isArray(options.merchant_types) && options.merchant_types.length) {
+    return options.merchant_types;
+  }
+  const buzzEnv = resolveBuzzEnv(options);
+  const client = options.client || new BuzzAdminClient({ ...options, buzz_env: buzzEnv });
+  const types = await client.listMerchantTypes();
+  options.merchant_types = types;
+  options.client = client;
+  return types;
+}
+
 async function publishMerchantBubble(db, merchantUid, options = {}) {
   const buzzEnv = resolveBuzzEnv(options);
   const merchant = merchantInEnv(db, merchantUid, options);
@@ -801,15 +984,23 @@ async function publishMerchantBubble(db, merchantUid, options = {}) {
     : String(options.publish_user_id || defaultPublishUserId({ ...options, db })).trim();
 
   try {
-    const record = buildBubbleRecord(merchant, { ...options, publish_user_id: publishUserId });
+    await ensureMerchantTypes({ ...options, buzz_env: buzzEnv, client });
+    if (!options.skip_expire_previous) {
+      const refreshed = merchantInEnv(db, merchantUid, options);
+      if (refreshed && String(refreshed.bubble_now_id || "").trim() && isLocallyActiveBubble(refreshed) !== false) {
+        await expireActiveBubbleForMerchant(db, refreshed, { ...options, client });
+      }
+    }
+    const merchantForPublish = merchantInEnv(db, merchantUid, options) || merchant;
+    const record = buildBubbleRecord(merchantForPublish, { ...options, publish_user_id: publishUserId });
 
     if (groupMode === "use_merchant") {
-      if (!merchant.buzz_group_id) {
+      if (!merchantForPublish.buzz_group_id) {
         throw new Error("商户尚无群聊，请先批量创建商户群聊");
       }
-      record.group_id = merchant.buzz_group_id;
+      record.group_id = merchantForPublish.buzz_group_id;
     } else {
-      const groupId = await createGroupForMerchantWithPool(merchant, {
+      const groupId = await createGroupForMerchantWithPool(merchantForPublish, {
         ...options,
         owner: publishUserId,
         publish_user_id: publishUserId,
@@ -850,6 +1041,8 @@ async function publishMerchantBubble(db, merchantUid, options = {}) {
       name: merchant.name,
       now_id: nowId,
       group_id: record.group_id,
+      content_type: record.content_type,
+      merchant_type_name: record.merchant_type_name,
       merchant: updated,
     };
   } catch (error) {
@@ -866,12 +1059,27 @@ async function publishMerchantBubble(db, merchantUid, options = {}) {
 async function batchPublishMerchantBubbles(db, options = {}) {
   const buzzEnv = resolveBuzzEnv(options);
   ensurePoolContext(db, options);
+  await ensureMerchantTypes({ ...options, buzz_env: buzzEnv });
+  const client = options.client || new BuzzAdminClient({ ...options, buzz_env: buzzEnv });
+  options.client = client;
+
   const pick = options.merchant_uids?.length
     ? {
       merchants: listImportedMerchants(db, importListOptions(options)),
       plan: [],
     }
     : pickMerchantsForCurrentSlot(db, options);
+
+  const expiredPrevious = [];
+  if (!options.skip_expire_previous_batch && !options.merchant_uids?.length && !Number.isFinite(Number(options.slot))) {
+    const seenCities = new Set();
+    for (const item of pick.plan || []) {
+      if (!item.city || seenCities.has(item.city)) continue;
+      seenCities.add(item.city);
+      const report = await expirePreviousCityBucketBubbles(db, item.city, item.slot, options);
+      expiredPrevious.push(report);
+    }
+  }
 
   const merchants = pick.merchants;
   const results = [];
@@ -899,6 +1107,7 @@ async function batchPublishMerchantBubbles(db, options = {}) {
     fail,
     buzz_env: buzzEnv,
     plan: pick.plan,
+    expired_previous: expiredPrevious,
     results,
     state: await getMerchantBubbleState(db, fullStateOptions(options)),
   };
@@ -911,10 +1120,17 @@ function sleep(ms) {
 async function publishCityBucketBubbles(db, options = {}) {
   const buzzEnv = resolveBuzzEnv(options);
   ensurePoolContext(db, options);
+  await ensureMerchantTypes({ ...options, buzz_env: buzzEnv });
+  const client = options.client || new BuzzAdminClient({ ...options, buzz_env: buzzEnv });
+  options.client = client;
   const city = String(options.city || "").trim();
   if (!city) throw new Error("缺少城市");
   const slot = Number(options.slot);
   if (!Number.isFinite(slot)) throw new Error("缺少分组序号");
+
+  const expiredPrevious = options.skip_expire_previous_batch
+    ? null
+    : await expirePreviousCityBucketBubbles(db, city, slot, options);
 
   const pick = getMerchantsInCityBucket(db, city, slot, options);
   const results = [];
@@ -936,6 +1152,9 @@ async function publishCityBucketBubbles(db, options = {}) {
     advanceCityRotationAfterBucket(db, city, slot, buzzEnv);
   }
 
+  const state = loadRotationState(db, buzzEnv);
+  const bucketCount = cityBucketCount(state[city]);
+
   return {
     total: pick.merchants.length,
     ok,
@@ -943,7 +1162,8 @@ async function publishCityBucketBubbles(db, options = {}) {
     buzz_env: buzzEnv,
     city,
     slot,
-    next_slot: (slot + 1) % BUCKET_COUNT,
+    next_slot: (slot + 1) % bucketCount,
+    expired_previous: expiredPrevious,
     results,
     state: await getMerchantBubbleState(db, fullStateOptions(options)),
   };
@@ -1021,6 +1241,7 @@ async function batchExpireBucketBubbles(db, options = {}) {
     const { merchant, now_id: nowId } = target;
     try {
       await pick.client.updateNow(nowId, { expired_at: expiredAt });
+      clearMerchantBubbleLocal(db, merchant.merchant_uid, buzzEnv);
       results.push({
         ok: true,
         merchant_uid: merchant.merchant_uid,
@@ -1061,6 +1282,95 @@ async function batchExpireBucketBubbles(db, options = {}) {
   };
 }
 
+function clearAllLocalBubbleRecords(db, buzzEnv) {
+  const env = normalizeBuzzEnv(buzzEnv);
+  const now = new Date().toISOString();
+  const result = db.prepare(`
+    UPDATE buzz_imports
+    SET bubble_now_id = '', bubble_published_at = NULL, updated_at = @updated_at
+    WHERE entity_kind = 'merchant' AND buzz_env = @buzz_env AND bubble_now_id != ''
+  `).run({ buzz_env: env, updated_at: now });
+  return Number(result.changes) || 0;
+}
+
+async function expireAllActiveMerchantBubbles(db, options = {}) {
+  const buzzEnv = resolveBuzzEnv(options);
+  const client = options.client || new BuzzAdminClient({ ...options, buzz_env: buzzEnv });
+  const merchants = listImportedMerchants(db, importListOptions(options));
+  const withBubble = merchants.filter((item) => String(item.bubble_now_id || "").trim());
+  const expiredAt = nowDateTime();
+  const results = [];
+  let ok = 0;
+  let fail = 0;
+  let skipped = 0;
+
+  for (const merchant of withBubble) {
+    const nowId = String(merchant.bubble_now_id || "").trim();
+    try {
+      const nowItem = await client.getNowById(nowId);
+      if (!nowItem) {
+        clearMerchantBubbleLocal(db, merchant.merchant_uid, buzzEnv);
+        skipped += 1;
+        results.push({
+          ok: true,
+          skipped: true,
+          merchant_uid: merchant.merchant_uid,
+          name: merchant.name,
+          now_id: nowId,
+          note: "后台已不存在，已清理本地记录",
+        });
+        continue;
+      }
+      if (isNowExpired(nowItem.expired_at)) {
+        clearMerchantBubbleLocal(db, merchant.merchant_uid, buzzEnv);
+        skipped += 1;
+        results.push({
+          ok: true,
+          skipped: true,
+          merchant_uid: merchant.merchant_uid,
+          name: merchant.name,
+          now_id: nowId,
+          note: "已是过期状态，已清理本地记录",
+        });
+        continue;
+      }
+      await client.updateNow(nowId, { expired_at: expiredAt });
+      clearMerchantBubbleLocal(db, merchant.merchant_uid, buzzEnv);
+      ok += 1;
+      results.push({
+        ok: true,
+        merchant_uid: merchant.merchant_uid,
+        name: merchant.name,
+        now_id: nowId,
+        expired_at: expiredAt,
+      });
+    } catch (error) {
+      fail += 1;
+      results.push({
+        ok: false,
+        merchant_uid: merchant.merchant_uid,
+        name: merchant.name,
+        now_id: nowId,
+        error: error.message,
+      });
+    }
+    if (options.delayMs !== 0) {
+      await sleep(options.delayMs ?? 200);
+    }
+  }
+
+  return {
+    total: withBubble.length,
+    ok,
+    fail,
+    skipped,
+    buzz_env: buzzEnv,
+    expired_at: expiredAt,
+    results,
+    state: await getMerchantBubbleState(db, fullStateOptions(options)),
+  };
+}
+
 async function publishRandomTestMerchantBubble(db, options = {}) {
   const city = String(options.city || "北京").trim() || "北京";
   const merchants = listImportedMerchants(db, importListOptions({ ...options, city }));
@@ -1075,6 +1385,8 @@ async function publishRandomTestMerchantBubble(db, options = {}) {
     title_mode: options.title_mode || "per_merchant",
     group_mode: options.group_mode || "create_new",
     now_type: options.now_type || 1,
+    skip_expire_previous: true,
+    skip_expire_previous_batch: true,
   });
   if (typeof options.onItem === "function") options.onItem(result);
 
@@ -1091,7 +1403,10 @@ async function publishRandomTestMerchantBubble(db, options = {}) {
 }
 
 module.exports = {
-  BUCKET_COUNT,
+  BUCKET_COUNT: MIN_BUCKET_COUNT,
+  MIN_BUCKET_COUNT,
+  MAX_BUCKET_SIZE,
+  computeBucketCount,
   advanceCityRotationAfterBucket,
   advanceRotationSlots,
   batchCreateMerchantGroups,
@@ -1101,10 +1416,12 @@ module.exports = {
   batchPublishMerchantBubbles,
   buildBubbleRecord,
   buildPerMerchantCopy,
+  clearAllLocalBubbleRecords,
   DEFAULT_PER_MERCHANT_CONTENT,
   createMerchantGroup,
   defaultPublishUserId,
   dissolveMerchantGroup,
+  expireAllActiveMerchantBubbles,
   getMerchantBubbleState,
   getMerchantsInCityBucket,
   isNowExpired,

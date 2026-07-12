@@ -1,44 +1,32 @@
 {
   "city": "石家庄",
   "source": "douban",
-  "decided_at": "2026-06-29T03:43:30.981Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-07-10T12:00:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "b1720c406f21",
+      "group_id": "79463ddd745b",
+      "event_uids": ["douban:37853537"],
       "action": "match",
-      "poi_id": "1898510723239737524",
-      "poi_title": "河北省话剧院儿童剧场",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "223872818676009218",
+      "poi_title": "河北艺术中心",
       "poi_address": "",
-      "latitude": 38.031418,
-      "longitude": 114.522236,
+      "latitude": 38.036248,
+      "longitude": 114.481621,
+      "candidates": [],
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：石家庄 裕华区 河北省话剧院儿童剧场 富强大街20号 → 河北省话剧院儿童剧场（来源 event:douban:37391282）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37729318",
-        "douban:37498187",
-        "douban:37498229"
-      ]
+      "reason": "地址映射库命中：河北省艺术中心与桥西区裕华西路13号一致"
     },
     {
-      "group_id": "e57b9460bde0",
-      "action": "match",
-      "poi_id": "10803236537387149198",
-      "poi_title": "石家庄大剧院",
-      "poi_address": "河北省石家庄市裕华区塔南路175号",
-      "latitude": 38.005328,
-      "longitude": 114.542858,
+      "group_id": "aee34db0d72b",
+      "event_uids": ["douban:37682735"],
+      "action": "reject",
+      "search_keywords_tried": ["上客喜剧织音1953", "上客喜剧", "完美人生织音1953", "脱口秀西餐酒吧猫咖织音1953"],
+      "confidence": "low",
       "doubtful": false,
-      "reason": "石家庄大剧院主体一致，塔南路72号与175号同为大剧院园区不同出入口",
-      "search_keywords_tried": [
-        "石家庄大剧院"
-      ],
-      "event_uids": [
-        "douban:37841716"
-      ]
+      "reason": "腾讯POI无「上客喜剧」独立点位，织音1953园区内仅铺位号S1028-S1033，无法唯一匹配"
     }
   ]
 }

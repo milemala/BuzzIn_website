@@ -1,16 +1,60 @@
 {
   "city": "长沙",
   "source": "douban",
-  "exported_at": "2026-06-29T03:23:48.249Z",
+  "exported_at": "2026-07-10T11:46:54.099Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 0,
+  "last_import_new_uids": 3,
   "doubtful_only": false,
-  "total_events": 0,
-  "group_count": 0,
-  "cache_hit_groups": 0,
-  "groups": []
+  "total_events": 3,
+  "group_count": 3,
+  "cache_hit_groups": 1,
+  "groups": [
+    {
+      "group_id": "17792e473c63",
+      "location": "长沙 芙蓉区 英皇电影城-长沙国金中心店（芙蓉区解放西路188号长沙国金中心商场六层）",
+      "sample_title": "回来了，终于回来了！周星驰喜剧新作《功夫女足》长沙公映日免费观影",
+      "event_uids": [
+        "douban:37898987"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "0e9c2d645d25",
+      "location": "长沙 芙蓉区 湖南大剧院 韶山路139号",
+      "sample_title": "话剧《宝岛一村》专属版",
+      "event_uids": [
+        "douban:37844780"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2554153063398531721",
+        "poi_title": "湖南大剧院",
+        "poi_address": "",
+        "latitude": 28.189747,
+        "longitude": 112.997792,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：长沙 芙蓉区 湖南大剧院 韶山路139号 → 湖南大剧院（来源 event:douban:37760748）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "0e9c2d645d25c4dc831e8bab5bf1bb182579aada"
+      }
+    },
+    {
+      "group_id": "2a0385fd5c0a",
+      "location": "长沙 芙蓉区 红节奏LIVEHOUSE 定王台街道中山路249号",
+      "sample_title": "郁一凡「花期」巡回演唱会 长沙站",
+      "event_uids": [
+        "douban:37836966"
+      ],
+      "event_count": 1
+    }
+  ]
 }

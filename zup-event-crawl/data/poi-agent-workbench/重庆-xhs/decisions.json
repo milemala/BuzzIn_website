@@ -1,15 +1,121 @@
 {
   "city": "重庆",
   "source": "xiaohongshu",
-  "decided_at": "2026-06-30T08:30:00.000Z",
+  "decided_at": "2026-07-10T12:35:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "ee20de396275",
-      "location": "一奥天地B1层室内（B/C门进，manner咖啡楼梯下来）",
+      "group_id": "7866c71b5752",
+      "location": "两江四岸核心区低空空域（朝天门、江北嘴、南滨路为较好观赏区）",
+      "sample_title": "无人机表演",
+      "event_uids": [
+        "xiaohongshu:6a4c4b0b000000001503e817:01_0"
+      ],
+      "action": "match",
+      "confidence": "medium",
+      "doubtful": false,
+      "search_keywords_tried": [
+        "朝天门",
+        "江北嘴"
+      ],
+      "poi_id": "8062474575857811777",
+      "poi_title": "江北嘴江滩公园",
+      "poi_address": "重庆市两江新区江北城街道北滨一路重庆大剧院东侧",
+      "latitude": 29.567497,
+      "longitude": 106.57564,
+      "reason": "活动推荐江北嘴观赏，江北嘴江滩公园为两江四岸核心观景点",
+      "candidates": []
+    },
+    {
+      "group_id": "e0e6d15fbad6",
+      "location": "重庆九街东区广场",
+      "sample_title": "重庆九街首届偷吃大赛",
+      "event_uids": [
+        "xiaohongshu:6a4c4b0b000000001503e817:02_0"
+      ],
+      "action": "match",
+      "confidence": "high",
+      "doubtful": false,
+      "search_keywords_tried": [
+        "重庆九街"
+      ],
+      "poi_id": "2452454035969369621",
+      "poi_title": "九街广场",
+      "poi_address": "重庆市两江新区九街高屋附近",
+      "latitude": 29.579556,
+      "longitude": 106.544331,
+      "reason": "九街广场与九街东区广场为同一片区露天广场",
+      "candidates": []
+    },
+    {
+      "group_id": "768261ee48d9",
+      "location": "重庆喜盈门范城 L1·1号舞台",
+      "sample_title": "偷吃王者争霸赛",
+      "event_uids": [
+        "xiaohongshu:6a4c4b0b000000001503e817:02_1"
+      ],
+      "action": "match",
+      "confidence": "high",
+      "doubtful": false,
+      "search_keywords_tried": [
+        "喜盈门范城"
+      ],
+      "poi_id": "8188426408843772670",
+      "poi_title": "喜盈门·范城",
+      "poi_address": "重庆市九龙坡区奥体路1号(袁家岗轻轨站旁)",
+      "latitude": 29.528,
+      "longitude": 106.511348,
+      "reason": "候选喜盈门·范城与活动场馆完全一致",
+      "candidates": []
+    },
+    {
+      "group_id": "eb305c09ff02",
+      "location": "重庆首创奥特莱斯东门",
+      "sample_title": "首创奥特莱斯剥玉米大赛",
+      "event_uids": [
+        "xiaohongshu:6a4c4b0b000000001503e817:03_0"
+      ],
+      "action": "match",
+      "confidence": "high",
+      "doubtful": false,
+      "search_keywords_tried": [
+        "首创奥特莱斯"
+      ],
+      "poi_id": "9922953463783399732",
+      "poi_title": "首创奥特莱斯(重庆店)",
+      "poi_address": "重庆市巴南区福鹿大道1999号",
+      "latitude": 29.459737,
+      "longitude": 106.622524,
+      "reason": "重庆首创奥特莱斯巴南店主商场，东门为其出入口",
+      "candidates": []
+    },
+    {
+      "group_id": "201b01fff2f1",
+      "location": "T CITY桃源天地B1舞台",
+      "sample_title": "桃源天地嗑瓜子大赛",
+      "event_uids": [
+        "xiaohongshu:6a4c4b0b000000001503e817:03_1"
+      ],
+      "action": "match",
+      "confidence": "high",
+      "doubtful": false,
+      "search_keywords_tried": [
+        "桃源天地"
+      ],
+      "poi_id": "3199867627745002939",
+      "poi_title": "T CITY桃源天地",
+      "poi_address": "重庆市两江新区桃源大道66号",
+      "latitude": 29.738124,
+      "longitude": 106.629642,
+      "reason": "候选T CITY桃源天地与活动商场完全一致",
+      "candidates": []
+    },
+    {
+      "group_id": "224ccea9ca9e",
+      "location": "渝北一奥天地B1层室内（B/C门进，manner咖啡楼梯下来）",
       "sample_title": "二手中古集市",
       "event_uids": [
-        "xiaohongshu:6a3a6d2d000000001700ae57:07_0"
+        "xiaohongshu:6a4c4b0b000000001503e817:04_0"
       ],
       "action": "match",
       "confidence": "high",
@@ -22,112 +128,177 @@
       "poi_address": "重庆市两江新区金渝大道87号",
       "latitude": 29.64488,
       "longitude": 106.567447,
-      "reason": "B1层活动在一奥天地商场内，对齐金渝大道87号商场主体",
+      "reason": "候选一奥天地与渝北一奥天地为同一购物中心",
       "candidates": []
     },
     {
-      "group_id": "b1356333373f",
-      "location": "龙美术馆重庆馆",
-      "sample_title": "山是山——萬亨作品展",
+      "group_id": "6896cc8f77d7",
+      "location": "重庆协信星光时代广场B1中庭",
+      "sample_title": "JayMe园游会＋歌友会",
       "event_uids": [
-        "xiaohongshu:6a3a6d2d000000001700ae57:10_1"
+        "xiaohongshu:6a4c4b0b000000001503e817:06_0"
       ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
       "search_keywords_tried": [
-        "龙美术馆重庆馆"
+        "协信星光时代广场",
+        "星光时代广场 南坪"
       ],
-      "poi_id": "14227355650711538314",
-      "poi_title": "龙美术馆(重庆分馆)",
-      "poi_address": "重庆市两江新区五里店江北嘴聚贤岩广场9号重庆国华金融中心1-3层",
-      "latitude": 29.568724,
-      "longitude": 106.573686,
-      "reason": "候选龙美术馆重庆分馆与龙美术馆重庆馆名称一致",
+      "poi_id": "11825251250884158017",
+      "poi_title": "协信·星光时代广场(南坪店)",
+      "poi_address": "重庆市南岸区江南大道28号4F层014B号",
+      "latitude": 29.522658,
+      "longitude": 106.571689,
+      "reason": "南坪协信星光时代广场与活动场馆一致",
       "candidates": []
     },
     {
-      "group_id": "407e1af53e50",
-      "location": "重庆美术馆1号厅",
-      "sample_title": "多彩巴蜀——第五届巴蜀文旅走廊美术作品展",
+      "group_id": "c6041f2d553b",
+      "location": "杨家坪步行街",
+      "sample_title": "野歌会&不夜重庆生活季",
       "event_uids": [
-        "xiaohongshu:6a3a6d2d000000001700ae57:12_0"
+        "xiaohongshu:6a4c4b0b000000001503e817:06_1"
       ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
       "search_keywords_tried": [
-        "poi-address-cache"
+        "杨家坪步行街"
       ],
-      "poi_id": "436790455692286748",
-      "poi_title": "重庆美术馆",
-      "poi_address": "重庆市渝中区临江路重庆国泰艺术中心5层",
-      "latitude": 29.56,
-      "longitude": 106.57672,
-      "reason": "地址映射库命中：重庆美术馆1号厅 → 重庆美术馆",
+      "poi_id": "15382259145299466551",
+      "poi_title": "杨家坪步行街",
+      "poi_address": "重庆市九龙坡区杨家坪正街(杨家坪地铁站5号口步行250米)",
+      "latitude": 29.510032,
+      "longitude": 106.515274,
+      "reason": "候选杨家坪步行街与活动地址完全一致",
       "candidates": []
     },
     {
-      "group_id": "a1baec92f6e2",
-      "location": "重庆美术馆2-5号厅",
-      "sample_title": "全国名家画重庆美术作品邀请展",
+      "group_id": "f6d7086c20d0",
+      "location": "中央公园光环花园城B馆L1世界树",
+      "sample_title": "巨树雨林清凉季",
       "event_uids": [
-        "xiaohongshu:6a3a6d2d000000001700ae57:12_1"
+        "xiaohongshu:6a4c4b0b000000001503e817:07_0"
       ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
       "search_keywords_tried": [
-        "poi-address-cache"
+        "光环购物公园"
       ],
-      "poi_id": "436790455692286748",
-      "poi_title": "重庆美术馆",
-      "poi_address": "重庆市渝中区临江路重庆国泰艺术中心5层",
-      "latitude": 29.56,
-      "longitude": 106.57672,
-      "reason": "地址映射库命中：重庆美术馆2-5号厅 → 重庆美术馆",
+      "poi_id": "10602833768122208702",
+      "poi_title": "重庆光环购物公园",
+      "poi_address": "重庆市两江新区湖彩路118号(重光地铁站1号口步行)",
+      "latitude": 29.649411,
+      "longitude": 106.529186,
+      "reason": "光环花园城即重庆光环购物公园，世界树为其内展陈",
       "candidates": []
     },
     {
-      "group_id": "842a7e6ceebc",
-      "location": "巴渝民俗博物馆",
-      "sample_title": "匠心守护——可移动文物保护修复技艺展",
+      "group_id": "d30a53511635",
+      "location": "重庆时代广场",
+      "sample_title": "Cool Pingu企遇·酷玩山城",
       "event_uids": [
-        "xiaohongshu:6a3a6d2d000000001700ae57:13_0"
+        "xiaohongshu:6a4c4b0b000000001503e817:07_1"
       ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
       "search_keywords_tried": [
-        "巴渝民俗博物馆"
+        "重庆时代广场"
       ],
-      "poi_id": "8446007048203144690",
-      "poi_title": "重庆巴渝民俗博物馆",
-      "poi_address": "重庆市两江新区双龙大道97号(碧津地铁站1号口步行450米)",
-      "latitude": 29.711126,
-      "longitude": 106.629638,
-      "reason": "候选重庆巴渝民俗博物馆与双龙大道97号地址一致",
+      "poi_id": "11576655546751398396",
+      "poi_title": "重庆时代广场",
+      "poi_address": "重庆市渝中区解放碑邹容路100号",
+      "latitude": 29.558155,
+      "longitude": 106.57699,
+      "reason": "候选重庆时代广场与活动地址完全一致",
       "candidates": []
     },
     {
-      "group_id": "bc92037e19ab",
-      "location": "重庆美术馆7号展览厅（方隅艺术空间）",
-      "sample_title": "岚岚作品展",
+      "group_id": "845aeae7bac1",
+      "location": "方圆LIVE B1层（秘境花园）",
+      "sample_title": "怪奇物语重庆站",
       "event_uids": [
-        "xiaohongshu:6a3a6d2d000000001700ae57:13_1"
+        "xiaohongshu:6a4c4b0b000000001503e817:08_0"
+      ],
+      "action": "match",
+      "confidence": "medium",
+      "doubtful": false,
+      "search_keywords_tried": [
+        "方圆LIVE",
+        "方圆LIVE 观音桥"
+      ],
+      "poi_id": "543737244613405173",
+      "poi_title": "GOODSLOVE(重庆方圆LIVE店)",
+      "poi_address": "重庆市两江新区观音桥街道建新北路二支路1号方圆LIVE-B1层B1036号",
+      "latitude": 29.573688,
+      "longitude": 106.530663,
+      "reason": "候选位于建新北路二支路1号方圆LIVE B1层，与活动楼层一致",
+      "candidates": []
+    },
+    {
+      "group_id": "5512e059c7d2",
+      "location": "瑞器RICHAUS/G层",
+      "sample_title": "RICHPAW限定宠物度假快闪",
+      "event_uids": [
+        "xiaohongshu:6a4c4b0b000000001503e817:08_1"
       ],
       "action": "match",
       "confidence": "high",
       "doubtful": false,
       "search_keywords_tried": [
-        "重庆美术馆"
+        "瑞器RICHAUS"
       ],
-      "poi_id": "436790455692286748",
-      "poi_title": "重庆美术馆",
-      "poi_address": "重庆市渝中区临江路重庆国泰艺术中心5层",
-      "latitude": 29.56,
-      "longitude": 106.57672,
-      "reason": "7号展览厅在重庆美术馆内，方隅艺术空间为馆内空间，对齐重庆美术馆主体",
+      "poi_id": "17051455499607913556",
+      "poi_title": "瑞器RICHAUS",
+      "poi_address": "重庆市两江新区金州大道平和路5号F4栋",
+      "latitude": 29.647311,
+      "longitude": 106.501863,
+      "reason": "候选瑞器RICHAUS与活动场馆完全一致",
+      "candidates": []
+    },
+    {
+      "group_id": "8b890f39fd1b",
+      "location": "大愚美术馆",
+      "sample_title": "穿过（__）去拥抱你",
+      "event_uids": [
+        "xiaohongshu:6a4c4b0b000000001503e817:09_0"
+      ],
+      "action": "match",
+      "confidence": "high",
+      "doubtful": false,
+      "search_keywords_tried": [
+        "大愚美术馆"
+      ],
+      "poi_id": "8354697605433276919",
+      "poi_title": "大愚美术馆",
+      "poi_address": "重庆市两江新区秋成大道158号龙湖重庆公园天街F3",
+      "latitude": 29.721827,
+      "longitude": 106.574205,
+      "reason": "候选大愚美术馆与活动场馆完全一致",
+      "candidates": []
+    },
+    {
+      "group_id": "3da5780be80d",
+      "location": "重庆中国三峡博物馆四楼临展C厅",
+      "sample_title": "尺素文心——明清名人书札展",
+      "event_uids": [
+        "xiaohongshu:6a4c4b0b000000001503e817:10_0"
+      ],
+      "action": "match",
+      "confidence": "high",
+      "doubtful": false,
+      "search_keywords_tried": [
+        "重庆中国三峡博物馆"
+      ],
+      "poi_id": "8213064061767453738",
+      "poi_title": "重庆中国三峡博物馆",
+      "poi_address": "重庆市渝中区人民路236号",
+      "latitude": 29.56208,
+      "longitude": 106.55034,
+      "reason": "候选重庆中国三峡博物馆与活动场馆一致，临展C厅在其四楼",
       "candidates": []
     }
   ]

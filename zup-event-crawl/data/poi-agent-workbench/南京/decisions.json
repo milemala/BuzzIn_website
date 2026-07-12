@@ -1,94 +1,44 @@
 {
   "city": "南京",
   "source": "douban",
-  "decided_at": "2026-06-29T03:42:27.113Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-07-10T11:52:00.000Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "4f2c859af023",
+      "group_id": "d4a71f6b17a1",
+      "event_uids": ["douban:37898919", "douban:37898708"],
       "action": "match",
-      "poi_id": "1642575190922527024",
-      "poi_title": "南京保利大剧院",
-      "poi_address": "",
-      "latitude": 31.991479,
-      "longitude": 118.708455,
-      "doubtful": false,
-      "reason": "地址映射库命中：南京 建邺区 南京保利大剧院 邺城路6号(近青奥文化体育公园) → 南京保利大剧院（来源 event:douban:37820512）",
-      "search_keywords_tried": [
-        "poi-address-cache"
+      "search_keywords_tried": ["幸福蓝海国际影城 环宇城"],
+      "poi_id": "1742648908505199704",
+      "poi_title": "幸福蓝海国际影城(IMAX激光环宇城店)",
+      "poi_address": "江苏省南京市鼓楼区清凉门大街1号中海环宇城F4(商场2号门1号电梯厅直达)",
+      "latitude": 32.044447,
+      "longitude": 118.753355,
+      "candidates": [
+        {
+          "poi_id": "1742648908505199704",
+          "title": "幸福蓝海国际影城(IMAX激光环宇城店)",
+          "address": "江苏省南京市鼓楼区清凉门大街1号中海环宇城F4(商场2号门1号电梯厅直达)"
+        }
       ],
-      "event_uids": [
-        "douban:37766431",
-        "douban:37817135"
-      ]
-    },
-    {
-      "group_id": "d302c3bb6c0d",
-      "action": "match",
-      "poi_id": "15910025293845104436",
-      "poi_title": "小红梅",
-      "poi_address": "",
-      "latitude": 32.043093,
-      "longitude": 118.8023,
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：南京 玄武区 梅园新村34号 小红梅 → 小红梅（来源 event:douban:37891803）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37894669"
-      ]
-    },
-    {
-      "group_id": "fc1b586c1ea8",
-      "action": "match",
-      "poi_id": "2083361752843734485",
-      "poi_title": "1701 LIVE HOUSE",
-      "poi_address": "",
-      "latitude": 31.970603,
-      "longitude": 118.764462,
-      "doubtful": false,
-      "reason": "地址映射库命中：南京 雨花台区 1701 Live House Max 安德门大街57号 → 1701 LIVE HOUSE（来源 event:douban:37829407）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37814560"
-      ]
+      "reason": "鼓楼区中海环宇城四楼IMAX激光店，与活动地址一致"
     },
     {
       "group_id": "cdfd2e958cf1",
+      "event_uids": ["douban:37749752"],
       "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "6981577208442308340",
       "poi_title": "江苏大剧院",
       "poi_address": "",
       "latitude": 32.012298,
       "longitude": 118.713942,
+      "candidates": [],
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：南京 建邺区 江苏大剧院 梦都大街181号 → 江苏大剧院（来源 event:douban:37820974）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "douban:37764643"
-      ]
-    },
-    {
-      "group_id": "56c51fdc1a01",
-      "action": "match",
-      "poi_id": "15040493605916760073",
-      "poi_title": "幸福蓝海国际影城演出厅-招商花园店",
-      "poi_address": "江苏省南京市栖霞区中山门大街699号花园城F3",
-      "latitude": 32.05058,
-      "longitude": 118.895418,
-      "doubtful": false,
-      "reason": "演出厅与中山门大街699号花园城F3地址完全一致",
-      "search_keywords_tried": [
-        "幸福蓝海国际影城 招商花园城"
-      ],
-      "event_uids": [
-        "douban:37867989"
-      ]
+      "reason": "地址映射库命中：南京 建邺区 江苏大剧院 梦都大街181号 → 江苏大剧院"
     }
   ]
 }

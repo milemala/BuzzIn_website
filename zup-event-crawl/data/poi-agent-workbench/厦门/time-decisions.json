@@ -1,161 +1,35 @@
 {
   "city": "厦门",
   "source": "douban",
-  "generated_at": "2026-06-29T03:23:51.225Z",
+  "generated_at": "2026-07-10T11:53:43.012Z",
   "note": "可由 Agent 覆写低置信条目后 apply-event-time-decisions.js 入库",
   "decisions": [
     {
-      "event_uid": "douban:37530897",
-      "start_at": "2026-07-26 19:30:00",
-      "expired_at": "2026-07-26 21:00:00",
-      "reason": "豆瓣详情：07月26日 周日 19:30-21:00",
+      "event_uid": "douban:37455295",
+      "start_at": "2026-09-06 19:30:00",
+      "expired_at": "2026-09-06 21:00:00",
+      "reason": "豆瓣详情：09月06日 周日 19:30-21:00",
       "confidence": "high"
     },
     {
-      "event_uid": "douban:37692255",
-      "start_at": "2026-06-19 19:30:00",
-      "expired_at": "2026-06-20 21:30:00",
-      "reason": "豆瓣详情：06月19日 周五 19:30 ~ 06月20日 周六 21:30",
+      "event_uid": "douban:37526710",
+      "start_at": "2026-07-11 14:00:00",
+      "expired_at": "2026-07-26 15:30:00",
+      "reason": "豆瓣详情：07月11日 周六 14:00 ~ 07月26日 周日 15:30",
       "confidence": "high"
     },
     {
-      "event_uid": "douban:37705665",
-      "start_at": "2026-07-11 19:30:00",
-      "expired_at": "2026-07-11 21:00:00",
-      "reason": "豆瓣详情：07月11日 周六 19:30-21:00",
+      "event_uid": "douban:37828313",
+      "start_at": "2026-07-17 19:30:00",
+      "expired_at": "2026-07-18 21:30:00",
+      "reason": "豆瓣详情：07月17日 周五 19:30 ~ 07月18日 周六 21:30",
       "confidence": "high"
     },
     {
-      "event_uid": "douban:37723681",
-      "start_at": "2026-06-12 20:00:00",
-      "expired_at": "2026-06-12 21:30:00",
-      "reason": "豆瓣详情：06月12日 周五 20:00-21:30",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37727129",
-      "start_at": "2026-06-26 20:00:00",
-      "expired_at": "2026-06-26 21:40:00",
-      "reason": "豆瓣详情：06月26日 周五 20:00-21:40",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37734190",
-      "start_at": "2026-07-05 15:30:00",
-      "expired_at": "2026-07-05 17:30:00",
-      "reason": "豆瓣详情：07月05日 周日 15:30-17:30",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37743999",
-      "start_at": "2026-07-26 19:30:00",
-      "expired_at": "2026-07-26 21:00:00",
-      "reason": "豆瓣详情：07月26日 周日 19:30-21:00",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37763257",
-      "start_at": "2026-06-24 19:30:00",
-      "expired_at": "2026-06-24 21:30:00",
-      "reason": "豆瓣详情：06月24日 周三 19:30-21:30",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37772865",
-      "start_at": "2026-08-16 19:30:00",
-      "expired_at": "2026-08-16 21:00:00",
-      "reason": "豆瓣详情：08月16日 周日 19:30-21:00",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37773144",
-      "start_at": "2026-08-02 19:30:00",
-      "expired_at": "2026-08-02 21:00:00",
-      "reason": "豆瓣详情：08月02日 周日 19:30-21:00",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37799167",
-      "start_at": "2026-04-08 14:30:00",
-      "expired_at": "2026-07-05 17:30:00",
-      "reason": "豆瓣详情：2026年04月08日 ~ 2026年07月05日 每周三,六,日 14:30 - 17:30",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37802194",
-      "start_at": "2026-06-11 20:00:00",
-      "expired_at": "2026-06-12 22:00:00",
-      "reason": "豆瓣详情：06月11日 周四 20:00 ~ 06月12日 周五 22:00",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37824116",
-      "start_at": "2026-07-04 19:30:00",
-      "expired_at": "2026-07-05 21:30:00",
-      "reason": "豆瓣详情：07月04日 周六 19:30 ~ 07月05日 周日 21:30",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37835898",
-      "start_at": "2026-06-20 19:30:00",
-      "expired_at": "2026-06-20 21:20:00",
-      "reason": "豆瓣详情：06月20日 周六 19:30-21:20",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37841210",
-      "start_at": "2026-06-27 20:00:00",
-      "expired_at": "2026-06-27 22:00:00",
-      "reason": "豆瓣详情：06月27日 周六 20:00-22:00",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37842187",
-      "start_at": "2026-06-20 20:00:00",
-      "expired_at": "2026-06-20 21:30:00",
-      "reason": "豆瓣详情：06月20日 周六 20:00-21:30",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37842198",
-      "start_at": "2026-07-03 20:00:00",
-      "expired_at": "2026-07-03 22:00:59",
-      "reason": "豆瓣详情：07月03日 周五 20:00-22:00",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37849053",
-      "start_at": "2026-07-05 19:30:00",
-      "expired_at": "2026-07-05 21:00:00",
-      "reason": "豆瓣详情：07月05日 周日 19:30-21:00",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37855389",
-      "start_at": "2026-06-27 19:30:00",
-      "expired_at": "2026-06-27 21:00:00",
-      "reason": "豆瓣详情：06月27日 周六 19:30-21:00",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37868157",
-      "start_at": "2026-06-27 16:00:00",
-      "expired_at": "2026-06-28 21:00:00",
-      "reason": "豆瓣详情：06月27日 周六 16:00 ~ 06月28日 周日 21:00",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37889538",
-      "start_at": "2026-06-26 19:30:00",
-      "expired_at": "2026-06-28 21:40:00",
-      "reason": "豆瓣详情：06月26日 周五 19:30-21:40 / 06月27日 周六 19:30-21:40 / 06月28日 周日 19:30-21:40",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37893094",
-      "start_at": "2026-06-28 10:30:00",
-      "expired_at": "2026-07-26 18:00:00",
-      "reason": "豆瓣详情：06月28日 周日 10:30-18:00 / 07月26日 周日 10:30-18:00",
+      "event_uid": "douban:37899590",
+      "start_at": "2026-07-16 19:30:00",
+      "expired_at": "2026-07-21 21:30:00",
+      "reason": "豆瓣详情：07月16日 周四 19:30-21:30 / 07月21日 周二 19:30-21:30",
       "confidence": "high"
     }
   ],

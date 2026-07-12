@@ -27,8 +27,10 @@ const {
   loadContentDedupKeys,
   loadTitleLocationDedupIndex,
   isEventBetterByEnd,
+  isEventUnexpired,
   eventTitleLocationDedupKey,
   toTitleLocationIncumbent,
+  pickUnexpiredTitleLocationIncumbent,
   createTitlePoiDedupGateFromDb,
 } = require("../lib/event-content-dedup");
 
@@ -627,17 +629,17 @@ async function main() {
 
     const titleLocationKey = eventTitleLocationDedupKey(event);
     if (titleLocationKey) {
-      const dbIncumbent = existingTitleLocationIndex.get(titleLocationKey);
-      const batchIncumbent = batchTitleLocationWinners.get(titleLocationKey);
-      const incumbent = dbIncumbent && batchIncumbent
-        ? (isEventBetterByEnd(batchIncumbent, dbIncumbent) ? batchIncumbent : dbIncumbent)
-        : (batchIncumbent || dbIncumbent);
-      if (incumbent && !isEventBetterByEnd(event, incumbent)) {
+      const incumbent = pickUnexpiredTitleLocationIncumbent(
+        existingTitleLocationIndex.get(titleLocationKey),
+        batchTitleLocationWinners.get(titleLocationKey),
+      );
+      if (incumbent && isEventUnexpired(event) && !isEventBetterByEnd(event, incumbent)) {
         counters.skippedTitleLocation += 1;
         console.log(`Skip older title+location ${event.title}`);
         continue;
       }
-      if (batchIncumbent && isEventBetterByEnd(event, batchIncumbent)) {
+      const batchIncumbent = batchTitleLocationWinners.get(titleLocationKey);
+      if (batchIncumbent && isEventUnexpired(event) && isEventBetterByEnd(event, batchIncumbent)) {
         const loserId = batchIncumbent.id;
         const loserIdx = detailed.findIndex((item) => item.id === loserId);
         if (loserIdx >= 0) {
@@ -645,7 +647,9 @@ async function main() {
           detailed.splice(loserIdx, 1);
         }
       }
-      batchTitleLocationWinners.set(titleLocationKey, toTitleLocationIncumbent(event, city));
+      if (isEventUnexpired(event)) {
+        batchTitleLocationWinners.set(titleLocationKey, toTitleLocationIncumbent(event, city));
+      }
     }
 
     let titlePoiDecision = null;
@@ -658,7 +662,9 @@ async function main() {
       }
     }
 
-    batchContentKeys.add(contentKey);
+    if (isEventUnexpired(event)) {
+      batchContentKeys.add(contentKey);
+    }
 
     detailed.push(event);
     if (titlePoiGate && titlePoiDecision?.poiId) {

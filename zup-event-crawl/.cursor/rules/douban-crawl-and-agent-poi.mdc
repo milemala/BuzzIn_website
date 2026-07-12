@@ -18,6 +18,12 @@ alwaysApply: false
 
 **不要依赖聊天记忆。**
 
+## 无新入库 · 不碰历史
+
+批量抓豆瓣时，某城 **`Wrote 0 new`** 或抓取日志显示列表项均为已抓跳过 → **跳过该城**，不跑 `prepare-city-poi-for-agent --skip-scrape`，不重 apply 时间/分类/body/POI。
+
+仅 **本轮 `append-city` 新写入** 的活动走一条龙（export 带 `--new-import-only`）。用户另说「补 POI」等才可动历史 backlog。
+
 ## POI 铁律（Agent 全程主导）
 
 **搜词、读候选、match/reject/doubtful 判定必须由 Cursor Agent 在对话里完成**，不得交给 JS 自动规则：

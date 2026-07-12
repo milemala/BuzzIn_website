@@ -1,101 +1,141 @@
 {
   "city": "重庆",
   "source": "xiaohongshu",
-  "exported_at": "2026-06-30T08:22:34.629Z",
+  "exported_at": "2026-07-10T12:30:11.116Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 23,
+  "last_import_new_uids": 15,
   "doubtful_only": false,
-  "total_events": 6,
-  "group_count": 6,
-  "cache_hit_groups": 2,
+  "total_events": 14,
+  "group_count": 14,
+  "cache_hit_groups": 0,
   "groups": [
     {
-      "group_id": "ee20de396275",
-      "location": "一奥天地B1层室内（B/C门进，manner咖啡楼梯下来）",
+      "group_id": "7866c71b5752",
+      "location": "两江四岸核心区低空空域（朝天门、江北嘴、南滨路为较好观赏区）",
+      "sample_title": "无人机表演",
+      "event_uids": [
+        "xiaohongshu:6a4c4b0b000000001503e817:01_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "e0e6d15fbad6",
+      "location": "重庆九街东区广场",
+      "sample_title": "重庆九街首届偷吃大赛",
+      "event_uids": [
+        "xiaohongshu:6a4c4b0b000000001503e817:02_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "768261ee48d9",
+      "location": "重庆喜盈门范城 L1·1号舞台",
+      "sample_title": "偷吃王者争霸赛",
+      "event_uids": [
+        "xiaohongshu:6a4c4b0b000000001503e817:02_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "eb305c09ff02",
+      "location": "重庆首创奥特莱斯东门",
+      "sample_title": "首创奥特莱斯剥玉米大赛",
+      "event_uids": [
+        "xiaohongshu:6a4c4b0b000000001503e817:03_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "201b01fff2f1",
+      "location": "T CITY桃源天地B1舞台",
+      "sample_title": "桃源天地嗑瓜子大赛",
+      "event_uids": [
+        "xiaohongshu:6a4c4b0b000000001503e817:03_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "224ccea9ca9e",
+      "location": "渝北一奥天地B1层室内（B/C门进，manner咖啡楼梯下来）",
       "sample_title": "二手中古集市",
       "event_uids": [
-        "xiaohongshu:6a3a6d2d000000001700ae57:07_0"
+        "xiaohongshu:6a4c4b0b000000001503e817:04_0"
       ],
       "event_count": 1
     },
     {
-      "group_id": "b1356333373f",
-      "location": "龙美术馆重庆馆",
-      "sample_title": "山是山——萬亨作品展",
+      "group_id": "6896cc8f77d7",
+      "location": "重庆协信星光时代广场B1中庭",
+      "sample_title": "JayMe园游会＋歌友会",
       "event_uids": [
-        "xiaohongshu:6a3a6d2d000000001700ae57:10_1"
+        "xiaohongshu:6a4c4b0b000000001503e817:06_0"
       ],
       "event_count": 1
     },
     {
-      "group_id": "407e1af53e50",
-      "location": "重庆美术馆1号厅",
-      "sample_title": "多彩巴蜀——第五届巴蜀文旅走廊美术作品展",
+      "group_id": "c6041f2d553b",
+      "location": "杨家坪步行街",
+      "sample_title": "野歌会&不夜重庆生活季",
       "event_uids": [
-        "xiaohongshu:6a3a6d2d000000001700ae57:12_0"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "436790455692286748",
-        "poi_title": "重庆美术馆",
-        "poi_address": "",
-        "latitude": 29.56,
-        "longitude": 106.57672,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：重庆美术馆1号厅 → 重庆美术馆（来源 event:xiaohongshu:6a22bc9200000000080245d6:11_0）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "407e1af53e508ec3a2f8103615bc6636f0416b57"
-      }
-    },
-    {
-      "group_id": "a1baec92f6e2",
-      "location": "重庆美术馆2-5号厅",
-      "sample_title": "全国名家画重庆美术作品邀请展",
-      "event_uids": [
-        "xiaohongshu:6a3a6d2d000000001700ae57:12_1"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "436790455692286748",
-        "poi_title": "重庆美术馆",
-        "poi_address": "",
-        "latitude": 29.56,
-        "longitude": 106.57672,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：重庆美术馆2-5号厅 → 重庆美术馆（来源 event:xiaohongshu:6a22bc9200000000080245d6:11_1）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "a1baec92f6e23afbec7bd8463aef0881d85ca8eb"
-      }
-    },
-    {
-      "group_id": "842a7e6ceebc",
-      "location": "巴渝民俗博物馆",
-      "sample_title": "匠心守护——可移动文物保护修复技艺展",
-      "event_uids": [
-        "xiaohongshu:6a3a6d2d000000001700ae57:13_0"
+        "xiaohongshu:6a4c4b0b000000001503e817:06_1"
       ],
       "event_count": 1
     },
     {
-      "group_id": "bc92037e19ab",
-      "location": "重庆美术馆7号展览厅（方隅艺术空间）",
-      "sample_title": "岚岚作品展",
+      "group_id": "f6d7086c20d0",
+      "location": "中央公园光环花园城B馆L1世界树",
+      "sample_title": "巨树雨林清凉季",
       "event_uids": [
-        "xiaohongshu:6a3a6d2d000000001700ae57:13_1"
+        "xiaohongshu:6a4c4b0b000000001503e817:07_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "d30a53511635",
+      "location": "重庆时代广场",
+      "sample_title": "Cool Pingu企遇·酷玩山城",
+      "event_uids": [
+        "xiaohongshu:6a4c4b0b000000001503e817:07_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "845aeae7bac1",
+      "location": "方圆LIVE B1层（秘境花园）",
+      "sample_title": "怪奇物语重庆站",
+      "event_uids": [
+        "xiaohongshu:6a4c4b0b000000001503e817:08_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "5512e059c7d2",
+      "location": "瑞器RICHAUS/G层",
+      "sample_title": "RICHPAW限定宠物度假快闪",
+      "event_uids": [
+        "xiaohongshu:6a4c4b0b000000001503e817:08_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "8b890f39fd1b",
+      "location": "大愚美术馆",
+      "sample_title": "穿过（__）去拥抱你",
+      "event_uids": [
+        "xiaohongshu:6a4c4b0b000000001503e817:09_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "3da5780be80d",
+      "location": "重庆中国三峡博物馆四楼临展C厅",
+      "sample_title": "尺素文心——明清名人书札展",
+      "event_uids": [
+        "xiaohongshu:6a4c4b0b000000001503e817:10_0"
       ],
       "event_count": 1
     }

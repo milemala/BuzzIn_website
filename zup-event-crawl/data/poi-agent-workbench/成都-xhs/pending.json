@@ -1,241 +1,308 @@
 {
   "city": "成都",
   "source": "xiaohongshu",
-  "exported_at": "2026-06-30T08:22:34.193Z",
+  "exported_at": "2026-07-10T12:31:01.756Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 26,
+  "last_import_new_uids": 34,
   "doubtful_only": false,
-  "total_events": 26,
-  "group_count": 25,
-  "cache_hit_groups": 0,
+  "total_events": 29,
+  "group_count": 29,
+  "cache_hit_groups": 2,
   "groups": [
     {
-      "group_id": "aed5171a754c",
-      "location": "成都大悦城一楼夏中庭(武侯区)",
-      "sample_title": "momo物语成都快闪西南首展",
+      "group_id": "1a7e6e2a0af7",
+      "location": "成都远大购物中心A馆1F中庭（高新区）",
+      "sample_title": "成都远大拼豆大赛",
       "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:01_0"
+        "xiaohongshu:6a4f79c7000000001003e1a8:01_0"
       ],
       "event_count": 1
     },
     {
-      "group_id": "053794e1b8af",
-      "location": "成都大悦城A馆一楼秋中庭(武侯区)",
+      "group_id": "29f8d6bdc65f",
+      "location": "成都王府井科华店L1-2号厅（武侯区）",
+      "sample_title": "王府井首届偷吃大赛",
+      "event_uids": [
+        "xiaohongshu:6a4f79c7000000001003e1a8:01_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "cce60df1948c",
+      "location": "蜀都万达广场（郫都区）",
+      "sample_title": "蜀都万达杯首届抹黑大赛",
+      "event_uids": [
+        "xiaohongshu:6a4f79c7000000001003e1a8:02_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "e28be8940e2f",
+      "location": "成都保利广场L1大中庭（新都区）",
+      "sample_title": "吃冰大赛、嗑瓜子大赛、偷西瓜大赛",
+      "event_uids": [
+        "xiaohongshu:6a4f79c7000000001003e1a8:02_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "b622206ad035",
+      "location": "双流万达广场1F连廊（双流区）",
+      "sample_title": "嗑瓜子但不吃大赛",
+      "event_uids": [
+        "xiaohongshu:6a4f79c7000000001003e1a8:03_0"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "10591035286778062599",
+        "poi_title": "成都双流万达广场",
+        "poi_address": "",
+        "latitude": 30.596173,
+        "longitude": 103.926839,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：双流万达广场1F连廊（双流区） → 成都双流万达广场（来源 event:xiaohongshu:6a2fb1ae000000001101e8df:01_1）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "b622206ad03562a8c1df29ce440b658ee158e323"
+      }
+    },
+    {
+      "group_id": "2e513b0f5b3e",
+      "location": "九栖巷·旷野广场（温江区）",
+      "sample_title": "捏纸泡泡小赛、欢乐斗地主小赛",
+      "event_uids": [
+        "xiaohongshu:6a4f79c7000000001003e1a8:03_1"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "16606925304389937988",
+        "poi_title": "九栖巷C-PARK APM",
+        "poi_address": "",
+        "latitude": 30.669511,
+        "longitude": 103.843359,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：九栖巷·旷野广场（温江区） → 九栖巷C-PARK APM（来源 event:xiaohongshu:6a4b67c70000000022019d80:02_2）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "2e513b0f5b3e0a2e7d15668ced3d8ea02c88f674"
+      }
+    },
+    {
+      "group_id": "ef03dd692d93",
+      "location": "保利时光里北里（高新区）",
+      "sample_title": "掂啊！岭南饮食节",
+      "event_uids": [
+        "xiaohongshu:6a4f79c7000000001003e1a8:04_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "ebfb66403a17",
+      "location": "成都锦江大融城·3号门-4号门外广场（锦江区）",
+      "sample_title": "巨浪暴风DJ派对+水枪大战",
+      "event_uids": [
+        "xiaohongshu:6a4f79c7000000001003e1a8:05_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "1a2371e3d74e",
+      "location": "后花园爱琴海购物中心（郫都区）",
+      "sample_title": "首届泡泡节",
+      "event_uids": [
+        "xiaohongshu:6a4f79c7000000001003e1a8:05_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "037af90deac1",
+      "location": "东郊记忆东山音乐广场（成华区）",
+      "sample_title": "国风巡游快闪",
+      "event_uids": [
+        "xiaohongshu:6a4f79c7000000001003e1a8:06_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "aae250fe8a41",
+      "location": "中海右岸环宇坊（双流区）",
+      "sample_title": "西瓜狂欢节",
+      "event_uids": [
+        "xiaohongshu:6a4f79c7000000001003e1a8:06_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "6daaef7b9649",
+      "location": "天府人文艺术图书馆报告厅（负一楼）",
+      "sample_title": "成都图书馆系列活动",
+      "event_uids": [
+        "xiaohongshu:6a4f79c7000000001003e1a8:07_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "badd2a037431",
+      "location": "天府红1楼中庭（锦江区）",
+      "sample_title": "明日方舟×红山森林动物园快闪",
+      "event_uids": [
+        "xiaohongshu:6a4f79c7000000001003e1a8:08_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "5bf552705767",
+      "location": "成都大悦城A馆一楼秋中庭（武侯区）",
       "sample_title": "成都森贝儿家族快闪",
       "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:01_1"
+        "xiaohongshu:6a4f79c7000000001003e1a8:09_1"
       ],
       "event_count": 1
     },
     {
-      "group_id": "d158d271601b",
-      "location": "成都天府红3层(锦江区)",
-      "sample_title": "《甄嬛传》「娘娘们的下午茶」主题餐厅快闪",
+      "group_id": "4da63a096f41",
+      "location": "成都大悦城1层公园里（武侯区）",
+      "sample_title": "数码宝贝 Forever Young 快闪店-成都站",
       "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:02_0"
+        "xiaohongshu:6a4f79c7000000001003e1a8:09_2"
       ],
       "event_count": 1
     },
     {
-      "group_id": "6c3afeb531c9",
-      "location": "成都银泰中心in99L1火炬中庭(高新区)",
-      "sample_title": "王力宏「最好的地方II」主题快闪",
+      "group_id": "7a645257614a",
+      "location": "成都龙泉驿吾悦广场1F中庭（龙泉驿区）",
+      "sample_title": "HiPingu夏日季主题快闪西南首站",
       "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:02_1"
+        "xiaohongshu:6a4f79c7000000001003e1a8:09_3"
       ],
       "event_count": 1
     },
     {
-      "group_id": "5a69f875a430",
-      "location": "成都万象城(成华区)",
+      "group_id": "f153da05ab9e",
+      "location": "成都万象城（成华区）",
       "sample_title": "成都奔跑吧部落快闪",
       "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:02_2"
+        "xiaohongshu:6a4f79c7000000001003e1a8:09_4"
       ],
       "event_count": 1
     },
     {
-      "group_id": "36674ceda75f",
-      "location": "成都龙湖上城天街（金牛区）",
-      "sample_title": "成都fufu手账市集",
+      "group_id": "dd39c855f927",
+      "location": "成都IFS（锦江区）",
+      "sample_title": "「大梦想家SNOOPY航海时代」全国首展",
       "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:03_0"
+        "xiaohongshu:6a4f79c7000000001003e1a8:09_5"
       ],
       "event_count": 1
     },
     {
-      "group_id": "27f8f0ba542c",
-      "location": "港汇天地L1达美乐外区域（高新区）",
-      "sample_title": "小森林耍水赶个集",
+      "group_id": "59b2ce86015c",
+      "location": "成都银泰中心in99 L1东中庭&ing巷（高新区）",
+      "sample_title": "马克图布x玩具总动员产品主题快闪西南首站",
       "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:03_1"
+        "xiaohongshu:6a4f79c7000000001003e1a8:09_6"
       ],
       "event_count": 1
     },
     {
-      "group_id": "3bcb5b7ce79b",
-      "location": "成都世纪城新国际会展中心（高新区）",
-      "sample_title": "HOTELEX成都国际咖啡文化节",
+      "group_id": "d113e08255ec",
+      "location": "武侯区文化馆十楼美术展馆（武侯区）",
+      "sample_title": "「自然之趣·共赴成长」2026武侯区暑期少儿艺术展",
       "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:03_2"
+        "xiaohongshu:6a4f79c7000000001003e1a8:10_1"
       ],
       "event_count": 1
     },
     {
-      "group_id": "80de1efd2f10",
-      "location": "天府招商花园城L1-A馆中庭(天府新区)",
-      "sample_title": "奇境漫游",
+      "group_id": "e203f28bbe10",
+      "location": "成都画院琴台艺术馆（青羊区）",
+      "sample_title": "心游自然——马媛媛、曹境花鸟画作品展",
       "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:04_0"
+        "xiaohongshu:6a4f79c7000000001003e1a8:11_0"
       ],
       "event_count": 1
     },
     {
-      "group_id": "e5e978a95b50",
-      "location": "麓客岛(天府新区)",
-      "sample_title": "水人岛-2026夏日计划",
+      "group_id": "e857a867c2d9",
+      "location": "合江亭下沉广场（锦江区）",
+      "sample_title": "锦江听涛·江畔音乐会",
       "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:04_1"
+        "xiaohongshu:6a4f79c7000000001003e1a8:12_0"
       ],
       "event_count": 1
     },
     {
-      "group_id": "3d512565ed3f",
-      "location": "成都远大购物中心(高新区)",
-      "sample_title": "超级拼豆游戏乐园",
+      "group_id": "9375af279021",
+      "location": "中演·成都大剧院露天剧场（成华区）",
+      "sample_title": "楠瓜派对星光live音乐会",
       "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:04_2"
+        "xiaohongshu:6a4f79c7000000001003e1a8:12_1"
       ],
       "event_count": 1
     },
     {
-      "group_id": "700bd3ad15e3",
-      "location": "新光天地成都 1FA区中庭（温江区）",
-      "sample_title": "卧龙中华大熊猫苑PANDA熊猫展成都首展",
+      "group_id": "d993e234e5d6",
+      "location": "东安湖公园·银沙滩（龙泉驿区）",
+      "sample_title": "东安湖沙滩音乐季",
       "event_uids": [
-        "xiaohongshu:6a267f970000000015025aa9:04_2"
+        "xiaohongshu:6a4f79c7000000001003e1a8:13_0"
       ],
       "event_count": 1
     },
     {
-      "group_id": "1661036bcf7f",
-      "location": "成都博物馆五层社教区(青羊区)",
-      "sample_title": "皮影小匠人",
+      "group_id": "a6564c335575",
+      "location": "城投·凤栖东山三号观景台（龙泉驿区）",
+      "sample_title": "318山顶音乐会",
       "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:05_0",
-        "xiaohongshu:6a422263000000001603fadf:05_1"
-      ],
-      "event_count": 2
-    },
-    {
-      "group_id": "0f4911281fd7",
-      "location": "成都考古中心(青羊区)",
-      "sample_title": "成都考古社教日 | 7月上旬活动",
-      "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:05_2"
+        "xiaohongshu:6a4f79c7000000001003e1a8:13_1"
       ],
       "event_count": 1
     },
     {
-      "group_id": "bfa48b79d3fd",
-      "location": "第三大街美术馆(成华区)",
-      "sample_title": "《心·象》——苏茂隆水墨艺术展",
+      "group_id": "2408df22feec",
+      "location": "成都锦江大融城·4号门外峡谷聚场（锦江区）",
+      "sample_title": "「杰伦青春音乐舱」周杰伦主题歌友会",
       "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:06_0"
+        "xiaohongshu:6a4f79c7000000001003e1a8:14_0"
       ],
       "event_count": 1
     },
     {
-      "group_id": "ffeb20eb2ff5",
-      "location": "成都市文化馆4楼大家美术馆(锦江区)",
-      "sample_title": "竹语自在——中国竹编造物艺术大展",
+      "group_id": "780127bdaa62",
+      "location": "成都青羊万达广场·一楼中庭（青羊区）",
+      "sample_title": "青羊街头声浪",
       "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:06_1"
+        "xiaohongshu:6a4f79c7000000001003e1a8:14_1"
       ],
       "event_count": 1
     },
     {
-      "group_id": "caf5236a170c",
-      "location": "AboutTime艺术空间(高新区)",
-      "sample_title": "临界声场",
+      "group_id": "050226c6bf3f",
+      "location": "龙湖成都滨江天街·L1主中庭（成华区）",
+      "sample_title": "蔡依林2026巡演官方快闪-成都站",
       "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:06_2"
+        "xiaohongshu:6a4f79c7000000001003e1a8:15_0"
       ],
       "event_count": 1
     },
     {
-      "group_id": "6344533aa154",
-      "location": "东来艺术(金牛区)",
-      "sample_title": "六面镜——95、00后的视觉意识",
+      "group_id": "f798d65b7336",
+      "location": "凯德广场·金牛1号门外（金牛区）",
+      "sample_title": "黄子韬2026巡回演唱会「未来纪元」成都快闪店",
       "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:07_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "09932d13fd77",
-      "location": "四川音乐学院美术馆(临空校区)",
-      "sample_title": "赛博茶馆的巴蜀漫游计划-中国式科幻美学主题展",
-      "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:07_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "109a4711b421",
-      "location": "极少艺术中心(金牛区)",
-      "sample_title": "云罅-毛艳阳个展",
-      "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:07_2"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "79afa86683c1",
-      "location": "成都城市音乐厅",
-      "sample_title": "舞剧《花木兰》",
-      "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:08_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "4670cfa9af78",
-      "location": "成都高新中演大剧院·多功能剧场",
-      "sample_title": "话剧《她是徽因》",
-      "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:08_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "a730387744b6",
-      "location": "中演·成都大剧院 大剧场",
-      "sample_title": "舞剧《永不消逝的电波》",
-      "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:08_2"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "cb57f7442dba",
-      "location": "成都东安湖体育公园主体育场",
-      "sample_title": "王力宏「最好的地方II」世界巡回演唱会",
-      "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:09_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "dbafe0de1e3f",
-      "location": "成都高新体育中心多功能体育馆",
-      "sample_title": "2026张子墨《如何形容我们的以后》演唱会-成都站",
-      "event_uids": [
-        "xiaohongshu:6a422263000000001603fadf:09_1"
+        "xiaohongshu:6a4f79c7000000001003e1a8:15_1"
       ],
       "event_count": 1
     }
