@@ -1,72 +1,67 @@
 {
   "city": "天津",
-  "source": "douban",
-  "decided_at": "2026-07-10T12:00:00.000Z",
+  "decided_at": "2026-07-13T09:50:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "d04a4380c61d",
-      "event_uids": ["douban:37898886"],
+      "group_id": "2c7f3e208010",
+      "event_uids": ["douban:37900392"],
       "action": "match",
-      "search_keywords_tried": ["SFC上影影城天津天河城"],
+      "search_keywords_tried": ["SFC上影影城天河城店"],
       "poi_id": "17697442673876052758",
       "poi_title": "上影国际影城(天河城店)",
       "poi_address": "天津市和平区和平路263号天津天河城购物中心F8",
       "latitude": 39.127264,
       "longitude": 117.204748,
-      "candidates": [
-        {"poi_id": "17697442673876052758", "title": "上影国际影城(天河城店)", "address": "天津市和平区和平路263号天津天河城购物中心F8", "category": "娱乐休闲:电影院"}
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "SFC上影影城天津天河城IMAX店与上影国际影城天河城店主体一致，和平区和平路263号天河城"
-    },
-    {
-      "group_id": "4e27a008ce1b",
-      "event_uids": ["douban:37859177"],
-      "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "14694096430531753900",
-      "poi_title": "光华剧院",
-      "poi_address": "",
-      "latitude": 39.096859,
-      "longitude": 117.238196,
       "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：光华剧院与河西区围堤道口地址一致"
+      "reason": "同一影城不同命名（SFC上影影城=上影国际影城），地址天河城263号完全一致"
+    },
+    {
+      "group_id": "6551918b967e",
+      "event_uids": ["douban:37753360"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "3246965086466095161",
+      "poi_title": "中华剧院",
+      "poi_address": "天津 河西区 中华剧院 平江道56号（隆昌路口）",
+      "latitude": 39.085219,
+      "longitude": 117.217489,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中，与豆瓣地址完全一致"
+    },
+    {
+      "group_id": "32a9418b22b1",
+      "event_uids": ["douban:37760112"],
+      "action": "match",
+      "search_keywords_tried": ["大麦66LiveHouse"],
+      "poi_id": "1855733576527756238",
+      "poi_title": "大麦·66LiveHouse(棉3创意街区店)",
+      "poi_address": "天津市河东区海河东路棉3创意街区1921艺术中心",
+      "latitude": 39.090894,
+      "longitude": 117.24578,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "场馆名与地址与豆瓣完全一致"
     },
     {
       "group_id": "4f9b7427132a",
-      "event_uids": ["douban:37860365"],
+      "event_uids": ["douban:37860349"],
       "action": "match",
       "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "7738159007364714106",
       "poi_title": "滨海演艺中心",
-      "poi_address": "",
+      "poi_address": "天津 滨海新区 滨海演艺中心 中央大道与大连东道交汇处西南侧",
       "latitude": 39.016031,
       "longitude": 117.686405,
       "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：滨海演艺中心与滨海新区地址一致"
-    },
-    {
-      "group_id": "62f59cf3b276",
-      "event_uids": ["douban:37804868"],
-      "action": "match",
-      "search_keywords_tried": ["海河剧院"],
-      "poi_id": "9212091907595044725",
-      "poi_title": "海河剧院",
-      "poi_address": "天津市南开区卫津南路8号(近八里台立交桥,八里台文化广场)",
-      "latitude": 39.098844,
-      "longitude": 117.178506,
-      "candidates": [
-        {"poi_id": "9212091907595044725", "title": "海河剧院", "address": "天津市南开区卫津南路8号(近八里台立交桥,八里台文化广场)", "category": "娱乐休闲:剧场音乐厅:剧场"}
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "店名海河剧院与南开区卫津南路8号门牌完全一致"
+      "reason": "地址映射库命中，与豆瓣地址完全一致"
     }
   ]
 }

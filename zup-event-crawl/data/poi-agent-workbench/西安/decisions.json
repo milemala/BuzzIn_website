@@ -1,73 +1,43 @@
 {
   "city": "西安",
-  "source": "douban",
-  "decided_at": "2026-07-10T12:05:00.000Z",
+  "decided_at": "2026-07-13T01:40:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "411d7feec3ea",
+      "group_id": "1736f8b5a7c1",
+      "event_uids": ["douban:37829127"],
       "action": "match",
-      "poi_id": "2559884302134323844",
-      "poi_title": "博纳国际影城(西安大悦城IMAX店)",
-      "poi_address": "陕西省西安市雁塔区慈恩西路66号西安大悦城L3-L3-40",
-      "latitude": 34.216952,
-      "longitude": 108.961478,
-      "doubtful": false,
-      "reason": "博纳国际影城西安大悦城IMAX店与豆瓣慈恩路777号大悦城L3-40商铺一致",
-      "search_keywords_tried": ["博纳国际影城 西安大悦城"],
-      "event_uids": ["douban:37898964"]
-    },
-    {
-      "group_id": "73adfe4931e1",
-      "action": "match",
-      "poi_id": "1385144449549774251",
-      "poi_title": "华夏优加荟RealD巨幕影城(西安大都荟店)",
-      "poi_address": "陕西省西安市雁塔区科技路大都荟南广场潮界B1层005号",
-      "latitude": 34.236947,
-      "longitude": 108.893467,
-      "doubtful": false,
-      "reason": "华夏优加荟RealD巨幕影城西安大都荟店与豆瓣地址一致",
-      "search_keywords_tried": ["华夏优加荟影城 大都荟"],
-      "event_uids": ["douban:37899142"]
-    },
-    {
-      "group_id": "4dbe009c64d4",
-      "action": "match",
-      "poi_id": "6273627831737617716",
-      "poi_title": "西演SPACE-创意谷展演中心-MINI剧场",
-      "poi_address": "陕西省西安市雁塔区雁翔路3369号曲江创意谷B2层",
-      "latitude": 34.21309,
-      "longitude": 109.011952,
-      "doubtful": false,
-      "reason": "MINI剧场与豆瓣西演SPACE创意谷展演中心雁翔路3369号一致",
-      "search_keywords_tried": ["西演SPACE 创意谷展演中心"],
-      "event_uids": ["douban:37817655"]
-    },
-    {
-      "group_id": "9514e32143bb",
-      "action": "match",
-      "poi_id": "10834092220146621823",
-      "poi_title": "西安音乐厅",
-      "poi_address": "陕西省西安市雁塔区长延堡街道雁南一路与雁塔南路十字向南200米路东",
-      "latitude": 34.210006,
-      "longitude": 108.964957,
-      "doubtful": false,
-      "reason": "地址映射库命中：西安音乐厅与雁南一路地址一致",
       "search_keywords_tried": ["poi-address-cache"],
-      "event_uids": ["douban:37855848"]
+      "poi_id": "2272725803867152528",
+      "poi_title": "西安人民剧院",
+      "poi_address": "",
+      "latitude": 34.262959,
+      "longitude": 108.947886,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：西安 新城区 西安人民剧院 北大街41号(近西华门) → 西安人民剧院"
     },
     {
-      "group_id": "6ae8b4c8c9f5",
+      "group_id": "727b7cc3960c",
+      "event_uids": ["douban:37798719"],
       "action": "match",
-      "poi_id": "17743495564176793131",
-      "poi_title": "西演SPACE-塞斯拾陆",
-      "poi_address": "陕西省西安市新城区太华南路251号1935室小剧场集群壹剧场",
-      "latitude": 34.285138,
-      "longitude": 108.975094,
+      "search_keywords_tried": ["西演SPACE-易俗大剧院"],
+      "poi_id": "10380370024523924958",
+      "poi_title": "西演SPACE·易俗大剧院",
+      "poi_address": "陕西省西安市新城区案板街26号(近西一路)",
+      "latitude": 34.261464,
+      "longitude": 108.949597,
+      "candidates": [
+        {
+          "poi_id": "10380370024523924958",
+          "title": "西演SPACE·易俗大剧院",
+          "address": "陕西省西安市新城区案板街26号(近西一路)"
+        }
+      ],
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：西演SPACE塞斯拾陆与太华南路251号一致",
-      "search_keywords_tried": ["poi-address-cache"],
-      "event_uids": ["douban:37759044"]
+      "reason": "地址（新城区案板街26号近西一路）与POI完全一致"
     }
   ]
 }

@@ -1,142 +1,70 @@
 {
   "city": "成都",
   "source": "douban",
-  "exported_at": "2026-07-10T11:46:54.160Z",
+  "exported_at": "2026-07-13T01:31:56.527Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 14,
+  "last_import_new_uids": 7,
   "doubtful_only": false,
-  "total_events": 14,
-  "group_count": 9,
-  "cache_hit_groups": 5,
+  "total_events": 7,
+  "group_count": 6,
+  "cache_hit_groups": 3,
   "groups": [
     {
-      "group_id": "49e2dc3f2bbc",
-      "location": "成都 锦江区 承光影界(COSMO店)",
-      "sample_title": "这团火永不熄灭《功夫女足》特别观影场｜奇妙观影团·成都站",
+      "group_id": "b77df371c7f2",
+      "location": "成都 锦江区 万达·锦华城(二环路东五段)",
+      "sample_title": "成都脱宅团2026年七月第3周社交计划",
       "event_uids": [
-        "douban:37898424"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "f702b858aee8",
-      "location": "成都 锦江区 英皇电影城-IFS国金中心IMAX激光店 (锦江区红星路三段1号成都国际金融中心商场地上六层L614号商铺)",
-      "sample_title": "乱世争雄！追光动画新作《三国第一部：争洛阳》成都公映首日免费观影",
-      "event_uids": [
-        "douban:37898691"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "9b07e72d4134",
-      "location": "成都 武侯区 高新区 天府大道北段 成都SKP 2F SKP RENDEZ-VOUS",
-      "sample_title": "程婧波×张静：至青春展览沙龙——「审美是长期主义」",
-      "event_uids": [
-        "douban:37899940"
+        "douban:37900409"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "17023754650301140809",
-        "poi_title": "RDV RENDEZ-VOUS(SKP店)",
+        "poi_id": "2305365833422175537",
+        "poi_title": "趣本屋",
         "poi_address": "",
-        "latitude": 30.571117,
-        "longitude": 104.068993,
+        "latitude": 30.620228,
+        "longitude": 104.096836,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：成都 武侯区 高新区 天府大道北段 成都SKP 2F SKP RENDEZ-VOUS → RDV RENDEZ-VOUS(SKP店)（来源 event:douban:37897841）",
+        "reason": "地址映射库命中：成都 锦江区 万达·锦华城(二环路东五段) → 趣本屋（来源 event:douban:37897659）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "9b07e72d4134e4f6296bcebb8f66efe4aa6eadd6"
-      }
-    },
-    {
-      "group_id": "5fd6f8c66f71",
-      "location": "成都 青羊区 铂金商务领馆2号楼6楼219",
-      "sample_title": "诺贝尔文学奖系列读书会",
-      "event_uids": [
-        "douban:37898286",
-        "douban:37898276",
-        "douban:37895177",
-        "douban:37895128"
-      ],
-      "event_count": 4,
-      "cached_poi": {
-        "poi_id": "15374406080854015915",
-        "poi_title": "铂金商务领馆2号楼",
-        "poi_address": "",
-        "latitude": 30.670916,
-        "longitude": 104.064172,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：成都 青羊区 铂金商务领馆2号楼6楼219 → 铂金商务领馆2号楼（来源 event:douban:37885178）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "5fd6f8c66f7114de4970d51c0f8c0dcabbfb92d4"
-      }
-    },
-    {
-      "group_id": "afca87d4e4f8",
-      "location": "成都 武侯区 成都高新中演大剧院 天府四街688号",
-      "sample_title": "佟丽娅领衔主演 舞蹈诗剧《在远方·在这里》",
-      "event_uids": [
-        "douban:37694856"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "8600587344093749609",
-        "poi_title": "成都高新中演大剧院",
-        "poi_address": "",
-        "latitude": 30.544046,
-        "longitude": 104.051703,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：成都 武侯区 成都高新中演大剧院 天府四街688号 → 成都高新中演大剧院（来源 event:douban:37767996）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "afca87d4e4f8556476c70514c7e0cd16d4a794f2"
+        "cache_key": "b77df371c7f260c311ef3e86f6c3ef6789ad5f39"
       }
     },
     {
       "group_id": "b8250429a857",
       "location": "成都 锦江区 四川省成都市锦江区东大街上东大街段246号",
-      "sample_title": "第八届机器学习、模式识别与智能系统国际会议 (MLPRIS 2026)",
+      "sample_title": "第六届人力资源管理与企业管理国际研讨会 (CHREM 2026)",
       "event_uids": [
-        "douban:37823711",
-        "douban:37834571",
-        "douban:37879019"
+        "douban:37845535"
       ],
-      "event_count": 3
+      "event_count": 1
     },
     {
-      "group_id": "4cd57749b40e",
-      "location": "成都 锦江区 几米绘本VR剧场-《我的世界都是你》VR戏剧体验 东湖街道二环路东五段313号几米绘本VR剧场（东湖公园内）",
-      "sample_title": "几米绘本VR剧场：《我的世界都是你》VR戏剧体验",
+      "group_id": "328a40adfb0f",
+      "location": "成都 成华区 CGT48星梦剧院 建设南支路4号东郊记忆园区中央大道Z1-1-6A、6B",
+      "sample_title": "CGT48星梦剧院公演（CGT48 TEAM GII《手牵手》)",
       "event_uids": [
-        "douban:36816564"
+        "douban:37700007"
       ],
       "event_count": 1
     },
     {
       "group_id": "8cbd1c72926f",
       "location": "成都 锦江区 成都一支麦小剧场 春熙路南段群光广场1栋11楼",
-      "sample_title": "【成都一支麦喜剧】春熙路喜剧之夜-大咖秀羊羽个人互动专场【美梦一日游】｜脱口秀｜超长互动｜约会推荐",
+      "sample_title": "【成都】【成都一支麦】——春熙路喜剧之夜-大咖秀｜【喜剧之王单口季】卡司｜海宇单口喜剧专场【退化小论】",
       "event_uids": [
-        "douban:36838914"
+        "douban:37435722",
+        "douban:37849378"
       ],
-      "event_count": 1,
+      "event_count": 2,
       "cached_poi": {
         "poi_id": "13594744069834774905",
         "poi_title": "一支麦小剧场(成都群光广场店)",
@@ -146,7 +74,7 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：成都 锦江区 成都一支麦小剧场 春熙路南段群光广场1栋11楼 → 一支麦小剧场(成都群光广场店)（来源 event:douban:37598500）",
+        "reason": "地址映射库命中：成都 锦江区 成都一支麦小剧场 春熙路南段群光广场1栋11楼 → 一支麦小剧场(成都群光广场店)（来源 event:douban:36838914）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
@@ -155,29 +83,38 @@
       }
     },
     {
-      "group_id": "accea8f859c1",
-      "location": "成都 成华区 后仰喜剧-Discovery王府井店 二环路北四段33号王府井Discovery6栋二楼J6-2F-p002",
-      "sample_title": "后仰喜剧｜【即兴喜剧秀】一场没有剧本的极致欢乐体验-2号馆",
+      "group_id": "ae5737dc288d",
+      "location": "成都 武侯区 AUV喜剧剧场 石羊街道天府大道北段1777号招商大魔方B馆四楼L4014-4016",
+      "sample_title": "AUV喜剧|开放麦盲盒·周三｜新喜剧、脱口秀|新演员/新节目",
       "event_uids": [
-        "douban:37859292"
+        "douban:37501030"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "16715155867445544006",
-        "poi_title": "后仰喜剧(王府井Discovery店)",
+        "poi_id": "2378581386143908742",
+        "poi_title": "AUV喜剧剧场(大魔方店)",
         "poi_address": "",
-        "latitude": 30.688627,
-        "longitude": 104.098845,
+        "latitude": 30.574024,
+        "longitude": 104.070882,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：成都 成华区 后仰喜剧-Discovery王府井店 二环路北四段33号王府井Discovery6栋二楼J6-2F-p002 → 后仰喜剧(王府井Discovery店)（来源 event:douban:37769234）",
+        "reason": "地址映射库命中：成都 武侯区 AUV喜剧剧场 石羊街道天府大道北段1777号招商大魔方B馆四楼L4014-4016 → AUV喜剧剧场(大魔方店)（来源 event:douban:37812898）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "accea8f859c169bab78be56b9f3c7014a30505fc"
+        "cache_key": "ae5737dc288d3a8ab8f871fb20f04fa624616553"
       }
+    },
+    {
+      "group_id": "0e258bc19fd4",
+      "location": "成都 成华区 ARTE全沉浸式美术馆·成都 建设南支路4号东郊记忆园区1号楼",
+      "sample_title": "ARTE MUSEUM成都国际数字艺术馆",
+      "event_uids": [
+        "douban:37648482"
+      ],
+      "event_count": 1
     }
   ]
 }

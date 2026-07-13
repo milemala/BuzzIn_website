@@ -1,35 +1,14 @@
 {
   "city": "厦门",
   "source": "douban",
-  "generated_at": "2026-07-10T11:53:43.012Z",
+  "generated_at": "2026-07-13T01:27:35.512Z",
   "note": "可由 Agent 覆写低置信条目后 apply-event-time-decisions.js 入库",
   "decisions": [
     {
-      "event_uid": "douban:37455295",
-      "start_at": "2026-09-06 19:30:00",
-      "expired_at": "2026-09-06 21:00:00",
-      "reason": "豆瓣详情：09月06日 周日 19:30-21:00",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37526710",
-      "start_at": "2026-07-11 14:00:00",
-      "expired_at": "2026-07-26 15:30:00",
-      "reason": "豆瓣详情：07月11日 周六 14:00 ~ 07月26日 周日 15:30",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37828313",
-      "start_at": "2026-07-17 19:30:00",
-      "expired_at": "2026-07-18 21:30:00",
-      "reason": "豆瓣详情：07月17日 周五 19:30 ~ 07月18日 周六 21:30",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37899590",
-      "start_at": "2026-07-16 19:30:00",
-      "expired_at": "2026-07-21 21:30:00",
-      "reason": "豆瓣详情：07月16日 周四 19:30-21:30 / 07月21日 周二 19:30-21:30",
+      "event_uid": "douban:37841554",
+      "start_at": "2026-07-19 19:30:00",
+      "expired_at": "2026-07-19 21:30:00",
+      "reason": "豆瓣详情：07月19日 周日 19:30-21:30",
       "confidence": "high"
     }
   ],

@@ -1,48 +1,67 @@
 {
   "city": "郑州",
   "source": "douban",
-  "exported_at": "2026-07-10T11:46:54.113Z",
+  "exported_at": "2026-07-13T01:32:36.456Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 7,
+  "last_import_new_uids": 2,
   "doubtful_only": false,
-  "total_events": 7,
-  "group_count": 3,
-  "cache_hit_groups": 0,
+  "total_events": 2,
+  "group_count": 2,
+  "cache_hit_groups": 2,
   "groups": [
     {
-      "group_id": "58efae1d83ee",
-      "location": "郑州 二七区 奥斯卡升龙国际影城",
-      "sample_title": "283期《群星闪耀时》郑州超前免费观影",
+      "group_id": "91a478f848e2",
+      "location": "郑州 管城回族区 小皇后大剧院 紫辰路9号",
+      "sample_title": "《笑傲江湖 · 一生所爱》武侠经典作品音乐会",
       "event_uids": [
-        "douban:37899127"
+        "douban:37812123"
       ],
-      "event_count": 1
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2212880197566482970",
+        "poi_title": "小皇后大剧院(河南文化大厦店)",
+        "poi_address": "",
+        "latitude": 34.714243,
+        "longitude": 113.688471,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：郑州 管城回族区 小皇后大剧院 紫辰路9号 → 小皇后大剧院(河南文化大厦店)（来源 event:douban:37835014）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "91a478f848e2b296cebbd705ece5f97336d19709"
+      }
     },
     {
-      "group_id": "a21977b25fb8",
-      "location": "郑州 中原区 郑州国际会展中心",
-      "sample_title": "企阳2026郑州餐饮展|郑州火锅展|食材展会",
+      "group_id": "f95fcaca1868",
+      "location": "郑州 管城回族区 7LIVEHOUSE+ 海汇港2号楼5楼7LIVEHOUSE+",
+      "sample_title": "SinceTMRW始于明天 TOUR 2026 郑州站",
       "event_uids": [
-        "douban:37459424",
-        "douban:37459445",
-        "douban:37459476",
-        "douban:37832345"
+        "douban:37816779"
       ],
-      "event_count": 4
-    },
-    {
-      "group_id": "ca02a0d5701d",
-      "location": "郑州 新郑 中原国际会展中心（航空港区）",
-      "sample_title": "企阳2026第十一届郑州餐饮业博览会",
-      "event_uids": [
-        "douban:37463552",
-        "douban:37460886"
-      ],
-      "event_count": 2
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "9808637794160405571",
+        "poi_title": "7LIVEHOUSE+",
+        "poi_address": "",
+        "latitude": 34.752036,
+        "longitude": 113.769736,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：郑州 管城回族区 7LIVEHOUSE+ 海汇港2号楼5楼7LIVEHOUSE+ → 7LIVEHOUSE+（来源 event:douban:37857573）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "f95fcaca18681be708fe65ee1c75e7ef948e0ef1"
+      }
     }
   ]
 }

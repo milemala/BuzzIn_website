@@ -1,75 +1,37 @@
 {
   "city": "郑州",
-  "decided_at": "2026-07-10T12:10:00.000Z",
+  "decided_at": "2026-07-13T01:40:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "58efae1d83ee",
-      "event_uids": ["douban:37899127"],
+      "group_id": "91a478f848e2",
+      "event_uids": ["douban:37812123"],
       "action": "match",
-      "search_keywords_tried": ["奥斯卡升龙国际影城"],
-      "poi_id": "1527860716687616616",
-      "poi_title": "奥斯卡影城(升龙国际店)",
-      "poi_address": "河南省郑州市二七区升龙商业广场A区2层2033",
-      "latitude": 34.725166,
-      "longitude": 113.63975,
-      "candidates": [
-        {
-          "poi_id": "1527860716687616616",
-          "title": "奥斯卡影城(升龙国际店)",
-          "address": "河南省郑州市二七区升龙商业广场A区2层2033"
-        }
-      ],
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "2212880197566482970",
+      "poi_title": "小皇后大剧院(河南文化大厦店)",
+      "poi_address": "",
+      "latitude": 34.714243,
+      "longitude": 113.688471,
+      "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "奥斯卡升龙国际影城与二七区升龙商业广场店一致"
+      "reason": "地址映射库命中：郑州 管城回族区 小皇后大剧院 紫辰路9号 → 小皇后大剧院(河南文化大厦店)"
     },
     {
-      "group_id": "a21977b25fb8",
-      "event_uids": ["douban:37459424", "douban:37459445", "douban:37459476", "douban:37832345"],
+      "group_id": "f95fcaca1868",
+      "event_uids": ["douban:37816779"],
       "action": "match",
-      "search_keywords_tried": ["郑州国际会展中心", "中原国际会展中心 航空港"],
-      "poi_id": "10109574534665772495",
-      "poi_title": "中原国际会展中心（郑州航空港）",
-      "poi_address": "河南省郑州市中牟县郑州航空港区荆州路",
-      "latitude": 34.497157,
-      "longitude": 113.919521,
-      "candidates": [
-        {
-          "poi_id": "10109574534665772495",
-          "title": "中原国际会展中心（郑州航空港）",
-          "address": "河南省郑州市中牟县郑州航空港区荆州路"
-        },
-        {
-          "poi_id": "14494537554398553575",
-          "title": "郑州国际会展中心",
-          "address": "河南省郑州市金水区商务内环路中央公园1号"
-        }
-      ],
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "9808637794160405571",
+      "poi_title": "7LIVEHOUSE+",
+      "poi_address": "",
+      "latitude": 34.752036,
+      "longitude": 113.769736,
+      "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "详情均写郑州中原国际会展中心，对应航空港新馆而非金水旧馆"
-    },
-    {
-      "group_id": "ca02a0d5701d",
-      "event_uids": ["douban:37463552", "douban:37460886"],
-      "action": "match",
-      "search_keywords_tried": ["中原国际会展中心 航空港"],
-      "poi_id": "10109574534665772495",
-      "poi_title": "中原国际会展中心（郑州航空港）",
-      "poi_address": "河南省郑州市中牟县郑州航空港区荆州路",
-      "latitude": 34.497157,
-      "longitude": 113.919521,
-      "candidates": [
-        {
-          "poi_id": "10109574534665772495",
-          "title": "中原国际会展中心（郑州航空港）",
-          "address": "河南省郑州市中牟县郑州航空港区荆州路"
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址明确为航空港区中原国际会展中心"
+      "reason": "地址映射库命中：郑州 管城回族区 7LIVEHOUSE+ 海汇港2号楼5楼 → 7LIVEHOUSE+"
     }
   ]
 }

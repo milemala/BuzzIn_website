@@ -1,171 +1,92 @@
 {
   "city": "成都",
-  "decided_at": "2026-07-10T12:10:00.000Z",
+  "decided_at": "2026-07-13T09:50:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "49e2dc3f2bbc",
-      "event_uids": ["douban:37898424"],
-      "action": "match",
-      "search_keywords_tried": ["承光影界 COSMO"],
-      "poi_id": "789782191115138472",
-      "poi_title": "承光影界(COSMO店)",
-      "poi_address": "四川省成都市锦江区春熙路街道大业路6号1栋4层",
-      "latitude": 30.652431,
-      "longitude": 104.069618,
-      "candidates": [
-        {
-          "poi_id": "789782191115138472",
-          "title": "承光影界(COSMO店)",
-          "address": "四川省成都市锦江区春熙路街道大业路6号1栋4层"
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "店名与COSMO店地址完全一致"
-    },
-    {
-      "group_id": "f702b858aee8",
-      "event_uids": ["douban:37898691"],
-      "action": "match",
-      "search_keywords_tried": ["英皇电影城 IFS国金中心"],
-      "poi_id": "5788093214469601580",
-      "poi_title": "英皇电影城(IFS国金中心IMAX激光店)",
-      "poi_address": "四川省成都市锦江区红星路三段1号成都国际金融中心地上商场六层L614号商铺",
-      "latitude": 30.654837,
-      "longitude": 104.082271,
-      "candidates": [
-        {
-          "poi_id": "5788093214469601580",
-          "title": "英皇电影城(IFS国金中心IMAX激光店)",
-          "address": "四川省成都市锦江区红星路三段1号成都国际金融中心地上商场六层L614号商铺"
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "店名与IFS国金中心六层地址一致"
-    },
-    {
-      "group_id": "9b07e72d4134",
-      "event_uids": ["douban:37899940"],
+      "group_id": "b77df371c7f2",
+      "event_uids": ["douban:37900409"],
       "action": "match",
       "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "17023754650301140809",
-      "poi_title": "RDV RENDEZ-VOUS(SKP店)",
-      "poi_address": "",
-      "latitude": 30.571117,
-      "longitude": 104.068993,
+      "poi_id": "2305365833422175537",
+      "poi_title": "趣本屋",
+      "poi_address": "成都 锦江区 万达·锦华城(二环路东五段)",
+      "latitude": 30.620228,
+      "longitude": 104.096836,
       "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：成都SKP 2F SKP RENDEZ-VOUS"
-    },
-    {
-      "group_id": "5fd6f8c66f71",
-      "event_uids": ["douban:37898286", "douban:37898276", "douban:37895177", "douban:37895128"],
-      "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "15374406080854015915",
-      "poi_title": "铂金商务领馆2号楼",
-      "poi_address": "",
-      "latitude": 30.670916,
-      "longitude": 104.064172,
-      "candidates": [],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：铂金商务领馆2号楼6楼219"
-    },
-    {
-      "group_id": "afca87d4e4f8",
-      "event_uids": ["douban:37694856"],
-      "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "8600587344093749609",
-      "poi_title": "成都高新中演大剧院",
-      "poi_address": "",
-      "latitude": 30.544046,
-      "longitude": 104.051703,
-      "candidates": [],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：天府四街688号成都高新中演大剧院"
+      "reason": "地址映射库命中，与豆瓣地址完全一致"
     },
     {
       "group_id": "b8250429a857",
-      "event_uids": ["douban:37823711", "douban:37834571", "douban:37879019"],
-      "action": "match",
+      "event_uids": ["douban:37845535"],
+      "action": "reject",
       "search_keywords_tried": ["东大街上东大街段246号"],
-      "poi_id": "12353505886374539536",
-      "poi_title": "成都新良大酒店",
-      "poi_address": "四川省成都市锦江区成都东大街上东大街段246号,距春熙路太古里步行2分钟.离地铁2号线步行3-5分钟",
-      "latitude": 30.654012,
-      "longitude": 104.073879,
-      "candidates": [
-        {
-          "poi_id": "12353505886374539536",
-          "title": "成都新良大酒店",
-          "address": "四川省成都市锦江区成都东大街上东大街段246号"
-        },
-        {
-          "poi_id": "17678367517225211085",
-          "title": "新良大厦",
-          "address": "四川省成都市锦江区春熙路街道东大街上东大街段246号"
-        }
-      ],
-      "confidence": "medium",
-      "doubtful": true,
-      "reason": "门牌246号一致，学术会议通常在新良大酒店举办，但POI为酒店非独立会议中心"
+      "candidates": [],
+      "reason": "豆瓣仅给出街道门牌号未写场馆名，同地址有新良大酒店/新良大厦/多家公司候选，无法唯一确定会议具体场馆"
     },
     {
-      "group_id": "4cd57749b40e",
-      "event_uids": ["douban:36816564"],
+      "group_id": "328a40adfb0f",
+      "event_uids": ["douban:37700007"],
       "action": "match",
-      "search_keywords_tried": ["几米绘本VR剧场 东湖公园"],
-      "poi_id": "12932456456317655965",
-      "poi_title": "几米绘本VR剧场",
-      "poi_address": "四川省成都市锦江区二环路东五段299号东湖公园内(西北角)",
-      "latitude": 30.619682,
-      "longitude": 104.08636,
-      "candidates": [
-        {
-          "poi_id": "12932456456317655965",
-          "title": "几米绘本VR剧场",
-          "address": "四川省成都市锦江区二环路东五段299号东湖公园内(西北角)"
-        }
-      ],
+      "search_keywords_tried": ["CGT48星梦剧院"],
+      "poi_id": "11280662193288884145",
+      "poi_title": "CGT48星梦剧院",
+      "poi_address": "四川省成都市成华区建设南支路东郊记忆中央大道1号楼",
+      "latitude": 30.668658,
+      "longitude": 104.122678,
+      "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "店名与东湖公园内几米绘本VR剧场一致"
+      "reason": "场馆名与地址与豆瓣完全一致"
     },
     {
       "group_id": "8cbd1c72926f",
-      "event_uids": ["douban:36838914"],
+      "event_uids": ["douban:37435722", "douban:37849378"],
       "action": "match",
       "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "13594744069834774905",
       "poi_title": "一支麦小剧场(成都群光广场店)",
-      "poi_address": "",
+      "poi_address": "成都 锦江区 成都一支麦小剧场 春熙路南段群光广场1栋11楼",
       "latitude": 30.65404,
       "longitude": 104.076767,
       "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：群光广场1栋11楼一支麦小剧场"
+      "reason": "地址映射库命中，与豆瓣地址完全一致"
     },
     {
-      "group_id": "accea8f859c1",
-      "event_uids": ["douban:37859292"],
+      "group_id": "ae5737dc288d",
+      "event_uids": ["douban:37501030"],
       "action": "match",
       "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "16715155867445544006",
-      "poi_title": "后仰喜剧(王府井Discovery店)",
-      "poi_address": "",
-      "latitude": 30.688627,
-      "longitude": 104.098845,
+      "poi_id": "2378581386143908742",
+      "poi_title": "AUV喜剧剧场(大魔方店)",
+      "poi_address": "成都 武侯区 AUV喜剧剧场 石羊街道天府大道北段1777号招商大魔方B馆四楼L4014-4016",
+      "latitude": 30.574024,
+      "longitude": 104.070882,
       "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：王府井Discovery6栋二楼后仰喜剧"
+      "reason": "地址映射库命中，与豆瓣地址完全一致"
+    },
+    {
+      "group_id": "0e258bc19fd4",
+      "event_uids": ["douban:37648482"],
+      "action": "match",
+      "search_keywords_tried": ["ARTE MUSEUM", "ARTE全沉浸式美术馆"],
+      "poi_id": "13168065296676263536",
+      "poi_title": "ARTE 全沉浸式美术馆·成都",
+      "poi_address": "四川省成都市成华区跳蹬河街道建设南支路4号东郊记忆园区1号楼",
+      "latitude": 30.668436,
+      "longitude": 104.121719,
+      "candidates": [
+        {"poi_id": "5313149578283899675", "title": "ARTE MUSEUM成都国际数字艺术馆", "address": "四川省成都市成华区建设南支路4号东郊记忆园区1号楼"}
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "场馆名与豆瓣location字段「ARTE全沉浸式美术馆·成都」完全一致，地址亦一致"
     }
   ]
 }

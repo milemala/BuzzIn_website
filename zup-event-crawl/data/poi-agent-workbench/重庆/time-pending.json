@@ -1,115 +1,61 @@
 {
   "city": "重庆",
   "source": "douban",
-  "exported_at": "2026-07-10T11:47:12.354Z",
+  "exported_at": "2026-07-13T01:27:33.665Z",
   "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
   "events": [
     {
-      "event_uid": "douban:37899154",
+      "event_uid": "douban:37862568",
       "city": "重庆",
       "source": "douban",
-      "title": "285期《群星闪耀时》西安超前免费观影",
-      "time_text": "07月12日 周日 14:00-18:30",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "《群星闪耀时》重庆超前免费观影\n观影日期：7月12日（周日）\n签到时间：13:30-14:30\n观影+映后：14:30-16:45（映后仅拍大合影）\n观影地点：CGV影城（来福士店）--重庆市渝中区来福士广场3F\n报名链接： https://p.baominggon gju.com/share?eid=6a 4cbb614a4b1d4e495d95 86&referer=odVL4 1Pl8Iw-5lp-nmmK30eTa 7L4\n报名链接： https://p.baominggongju.com/share?eid=6a4cbb614a4b1d4e495d9586&referer=odVL41Pl8Iw-5lp-nmmK30eTa7L4",
-      "suggestion": {
-        "start_at": "2026-07-12 14:00:00",
-        "expired_at": "2026-07-12 18:30:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月12日 周日 14:00-18:30"
-      }
-    },
-    {
-      "event_uid": "douban:37890730",
-      "city": "重庆",
-      "source": "douban",
-      "title": "外出聚会：露营、爬山、探风景、吃美食｜移动茶摊：江边、山上、天台",
-      "time_text": "06月29日 周一 15:00-21:00 ...",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "（验证：“外出”）\n五月剥橘子小酒屋\n茶·酒饮·简餐·聚会·一间温情小居酒屋\n＿＿＿＿＿＿\nTime：15:30-24:00（预约开放）\n地址：杨家坪龙湖西街星座A座21-12\n每周日或周一是橘屋的休店日\n所以老橘有时间出去放风\n会根据天气情况和兴致安排\n有时候是茶摊儿\n有时候会安排外出聚会\n兴致好的时候会去各种大家想去的地方\n接受许愿\n可见豆瓣主页动态或微信朋友圈了解往期出游\n关于茶摊儿\n大多时候是九滨路江边（因为近）\n夏天天台也常去\n湖边、山上、天台、公园等\n关于外出聚会\n徒步、爬山、探风景、吃美食、看电影\n根据老橘的出行偏好\n开心随性的方式顺带大家玩\n人是活的 快乐不是预设出来的\n希望大家能一起迸发能量和创造美好回忆\n建议加微信及时获取出摊儿或外出预告\n外出相册： https://douc.cc/11Wxx2\n还有更多外出视频存档\n喜欢可点进豆瓣主页或微信了解橘屋\n豆瓣审核专用\n每周",
-      "suggestion": {
-        "start_at": "2026-06-29 15:00:00",
-        "expired_at": "2026-09-21 21:00:00",
-        "confidence": "high",
-        "reason": "豆瓣 itemprop startDate/endDate"
-      }
-    },
-    {
-      "event_uid": "douban:37879844",
-      "city": "重庆",
-      "source": "douban",
-      "title": "重庆徒步郊游青年每周六周边郊游逛山，放松自我健康休闲活动开始",
-      "time_text": "2026年06月20日 ~ 2026年09月12日 每周六 08:00 - 18:00",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "参加活动风雨无阻、守时守约、听从指挥、严禁变卦。\n在繁忙的都市上班生活中，我们忙于三点一线的生活线，生活圈子和眼界狭小而孤陋，业余生活也始终围绕手机、电脑、睡懒觉转悠。慢慢的，身体差了，赘肉长了，各种毛病都出来了。终于我们慢慢开始培养有氧运动的习惯，在遵循必要活动规则的情形下，腾出每周六的时间走向主城周边，每次都走不同的路线。通过活动，大家还养成了集体意识、听从指挥、守时守约等好习惯。\n每次活动时间：每周六8点---18点\n集合地点：重庆主城范围。\n活动费用以AA为主，约100元左右。\n本活动人员以青壮年的朋友居多，是现实中主城周边每周六的纯有氧休闲郊游活动，坚决拒绝任何商业或单身交友内容！主旨在于籍此健康休闲丰富自身业余文化生活，打造科学休闲新模式。欢迎喜欢有规则的正规集体、周六时间特别多、听从指挥、经常能参加、集体意识强、富有生活情趣的青年朋友们加入。联系QQ群：29547921（加的",
-      "suggestion": {
-        "start_at": "2026-06-20 08:00:00",
-        "expired_at": "2026-09-12 18:00:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：2026年06月20日 ~ 2026年09月12日 每周六 08:00 - 18:00"
-      }
-    },
-    {
-      "event_uid": "douban:37735659",
-      "city": "重庆",
-      "source": "douban",
-      "title": "重庆偶像女子团体CKG48剧场公演演出",
-      "time_text": "07月11日 周六 14:00 ~ 07月12日 周日 17:00",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "150分钟左右（以现场为准）\n最低演出曲目\n以现场为准\n主要演员\n无需预约\n儿童说明\n1.2米以下儿童免票，1.2米以上儿童需持票入场。\n特殊提示\nCKG48，中国内地流行乐女子组合，是SNH48的官方姐妹团，成立于2017年10月27日，分为 CKG48 Team C、CKG48 Team K两支队伍\n2017年6月2日，\"我心翱翔\"SNH48 GROUP第四届偶像年度人气总决选启动仪式在上海举行，现场宣布CKG48一期生招募启动。2019年1月19日，与姐妹团SNH48、BEJ48、GNZ48、SHY48在广州体育馆共同举办SNH48 GROUP第五届年度金曲大赏演唱会，同时宣布CKG48 Team C、CKG48 Team K解散，现有成员将部分移籍至SNH48 GROUP的其他队伍 ;3月，该团恢复团体活动 。",
-      "suggestion": {
-        "start_at": "2026-07-11 14:00:00",
-        "expired_at": "2026-07-12 17:00:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月11日 周六 14:00 ~ 07月12日 周日 17:00"
-      }
-    },
-    {
-      "event_uid": "douban:37821277",
-      "city": "重庆",
-      "source": "douban",
-      "title": "张泽 2026“张嘴就来”BEATBOX 巡演重庆站BBOX",
-      "time_text": "07月17日 周五 20:00-21:50",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "以现场为准\n主要演员\n无需预约\n儿童说明\n特殊提示\n每一位观众朋友都可以在演出结束后合影，不设VIP。",
-      "suggestion": {
-        "start_at": "2026-07-17 20:00:00",
-        "expired_at": "2026-07-17 21:50:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月17日 周五 20:00-21:50"
-      }
-    },
-    {
-      "event_uid": "douban:37847278",
-      "city": "重庆",
-      "source": "douban",
-      "title": "美国WEESING原版授权亲子互动奇幻音乐剧之《音乐屋里的迷案》（小剧场）",
-      "time_text": "07月14日 周二 19:30 ~ 07月15日 周三 21:30",
+      "title": "英国NYMT音乐剧团原版授权全英文青少年音乐剧《Superhero超能学校》（中剧场）",
+      "time_text": "07月19日 周日 19:30 ~ 07月20日 周一 21:30",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
       "detail_excerpt": "入场方式说明\n以现场为准\n主要演员\n无需预约\n如遇特殊情况，另行通知，感谢您的配合！\n2、本场演出食品、饮料、水、鲜花、相机、宠物、摄像机谢绝带入场内。\n6、演出票仅限观看当天当场次演出，逾期失效，请提前取票、按时入场，部分演出迟到观众需在场外等候，待幕间听从工作人员安排进场。",
       "suggestion": {
-        "start_at": "2026-07-14 19:30:00",
-        "expired_at": "2026-07-15 21:30:00",
+        "start_at": "2026-07-19 19:30:00",
+        "expired_at": "2026-07-20 21:30:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月14日 周二 19:30 ~ 07月15日 周三 21:30"
+        "reason": "豆瓣详情：07月19日 周日 19:30 ~ 07月20日 周一 21:30"
+      }
+    },
+    {
+      "event_uid": "douban:37850379",
+      "city": "重庆",
+      "source": "douban",
+      "title": "[早鸟票6折起]360°沉浸环绕式烛光音乐会·第25弹 拉德斯基进行曲×蓝色多瑙河——施特劳斯家族浪漫唯美烛光音乐会",
+      "time_text": "07月18日 周六 19:30-20:45",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "入场方式说明\n1米以下儿童谢绝入场，1米以上儿童需持票入场\n约75分钟（以现场为准）\n以现场为准\n最低演出曲目\n主要演员\n无需预约",
+      "suggestion": {
+        "start_at": "2026-07-18 19:30:00",
+        "expired_at": "2026-07-18 20:45:00",
+        "confidence": "high",
+        "reason": "豆瓣详情：07月18日 周六 19:30-20:45"
+      }
+    },
+    {
+      "event_uid": "douban:37834435",
+      "city": "重庆",
+      "source": "douban",
+      "title": "《文艺复兴·重回非主流时代》威仔&格子兮演唱会-重庆站",
+      "time_text": "07月18日 周六 19:30-21:00",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "入场方式说明\n90分钟，以现场为准\n最低演出曲目\n以现场为准\n主要演员\n无需预约",
+      "suggestion": {
+        "start_at": "2026-07-18 19:30:00",
+        "expired_at": "2026-07-18 21:00:00",
+        "confidence": "high",
+        "reason": "豆瓣详情：07月18日 周六 19:30-21:00"
       }
     }
   ]

@@ -1,7 +1,7 @@
 {
   "city": "石家庄",
   "source": "douban",
-  "exported_at": "2026-07-10T11:53:43.609Z",
+  "exported_at": "2026-07-13T01:32:36.675Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
@@ -11,14 +11,39 @@
   "doubtful_only": false,
   "total_events": 2,
   "group_count": 2,
-  "cache_hit_groups": 1,
+  "cache_hit_groups": 2,
   "groups": [
+    {
+      "group_id": "1936a226f46b",
+      "location": "石家庄 新华区 红糖LIVEHOUSE 湾里庙步行街水幕广场M08",
+      "sample_title": "SinceTMRW始于明天 TOUR 2026 石家庄站",
+      "event_uids": [
+        "douban:37815802"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "532037913248001448",
+        "poi_title": "星光艺术空间&红糖LIVEHOUSE",
+        "poi_address": "",
+        "latitude": 38.044978,
+        "longitude": 114.487492,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：石家庄 新华区 红糖LIVEHOUSE 湾里庙步行街水幕广场M08 → 星光艺术空间&红糖LIVEHOUSE（来源 event:douban:37836593）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "1936a226f46bbfae99c44d42775c534e7393b4ef"
+      }
+    },
     {
       "group_id": "79463ddd745b",
       "location": "石家庄 桥西区 河北省艺术中心 裕华西路13号(东里地铁站B东南口步行370米)",
-      "sample_title": "萨格勒布轻音乐团夏季电影逍遥音乐会",
+      "sample_title": "乐季闭幕音乐会“卧虎藏龙”",
       "event_uids": [
-        "douban:37853537"
+        "douban:37781049"
       ],
       "event_count": 1,
       "cached_poi": {
@@ -30,22 +55,13 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：石家庄 桥西区 河北省艺术中心 裕华西路13号(东里地铁站B东南口步行370米) → 河北艺术中心（来源 event:douban:37762965）",
+        "reason": "地址映射库命中：石家庄 桥西区 河北省艺术中心 裕华西路13号(东里地铁站B东南口步行370米) → 河北艺术中心（来源 event:douban:37853537）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
         "cache_key": "79463ddd745b0c5641d34bafed620f6d91a0d721"
       }
-    },
-    {
-      "group_id": "aee34db0d72b",
-      "location": "石家庄 长安区 上客喜剧-脱口秀西餐酒吧猫咖 建北街道和平东161号织音1953园区完美人生S1028-S1033",
-      "sample_title": "织音1953 | 上客喜剧 | 爆笑明星脱口秀",
-      "event_uids": [
-        "douban:37682735"
-      ],
-      "event_count": 1
     }
   ]
 }

@@ -1,21 +1,21 @@
 {
   "city": "石家庄",
   "source": "douban",
-  "generated_at": "2026-07-10T11:53:43.339Z",
+  "generated_at": "2026-07-13T01:27:35.764Z",
   "note": "可由 Agent 覆写低置信条目后 apply-event-time-decisions.js 入库",
   "decisions": [
     {
-      "event_uid": "douban:37682735",
-      "start_at": "2026-07-10 20:00:00",
-      "expired_at": "2026-07-12 21:00:00",
-      "reason": "豆瓣详情：07月10日 周五 20:00 ~ 07月12日 周日 21:00",
+      "event_uid": "douban:37781049",
+      "start_at": "2026-07-18 19:30:00",
+      "expired_at": "2026-07-18 21:00:00",
+      "reason": "豆瓣详情：07月18日 周六 19:30-21:00",
       "confidence": "high"
     },
     {
-      "event_uid": "douban:37853537",
-      "start_at": "2026-07-17 19:30:00",
-      "expired_at": "2026-07-17 21:00:00",
-      "reason": "豆瓣详情：07月17日 周五 19:30-21:00",
+      "event_uid": "douban:37815802",
+      "start_at": "2026-07-19 20:00:00",
+      "expired_at": "2026-07-19 22:00:00",
+      "reason": "豆瓣详情：07月19日 周日 20:00-22:00",
       "confidence": "high"
     }
   ],

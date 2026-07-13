@@ -1,119 +1,28 @@
 {
   "city": "长沙",
-  "source": "xiaohongshu",
-  "generated_at": "2026-07-10T12:40:00.256Z",
+  "source": "douban",
+  "generated_at": "2026-07-13T01:27:34.686Z",
   "note": "可由 Agent 覆写低置信条目后 apply-event-time-decisions.js 入库",
   "decisions": [
     {
-      "event_uid": "xiaohongshu:6a21383a000000000702ad60:01_0",
-      "start_at": "2026-06-07 00:00:00",
-      "expired_at": "2026-06-07 23:59:59",
-      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
-      "confidence": "medium"
-    },
-    {
-      "event_uid": "xiaohongshu:6a21383a000000000702ad60:01_1",
-      "start_at": "2026-06-10 00:00:00",
-      "expired_at": "2026-06-10 23:59:59",
-      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
-      "confidence": "medium"
-    },
-    {
-      "event_uid": "xiaohongshu:6a21383a000000000702ad60:02_0",
-      "start_at": "2026-06-07 00:00:00",
-      "expired_at": "2026-06-07 23:59:59",
-      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
-      "confidence": "medium"
-    },
-    {
-      "event_uid": "xiaohongshu:6a21383a000000000702ad60:02_1",
-      "start_at": "2026-06-07 00:00:00",
-      "expired_at": "2026-06-07 23:59:59",
-      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
-      "confidence": "medium"
-    },
-    {
-      "event_uid": "xiaohongshu:6a21383a000000000702ad60:03_0",
-      "start_at": "2026-06-08 00:00:00",
-      "expired_at": "2026-06-08 23:59:59",
-      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
-      "confidence": "medium"
-    },
-    {
-      "event_uid": "xiaohongshu:6a21383a000000000702ad60:03_1",
-      "start_at": "2026-06-07 00:00:00",
-      "expired_at": "2026-06-07 23:59:59",
-      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
-      "confidence": "medium"
-    },
-    {
-      "event_uid": "xiaohongshu:6a21383a000000000702ad60:04_0",
-      "start_at": "2026-06-16 00:00:00",
-      "expired_at": "2026-07-12 23:59:59",
-      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "event_uid": "douban:37820466",
+      "start_at": "2026-07-19 19:30:00",
+      "expired_at": "2026-07-19 21:30:00",
+      "reason": "豆瓣详情：07月19日 周日 19:30-21:30",
       "confidence": "high"
     },
     {
-      "event_uid": "xiaohongshu:6a21383a000000000702ad60:04_1",
-      "start_at": "2026-06-06 00:00:00",
-      "expired_at": "2026-06-28 23:59:59",
-      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "event_uid": "douban:37832262",
+      "start_at": "2026-07-18 19:30:00",
+      "expired_at": "2026-07-18 21:30:00",
+      "reason": "豆瓣详情：07月18日 周六 19:30-21:30",
       "confidence": "high"
     },
     {
-      "event_uid": "xiaohongshu:6a21383a000000000702ad60:05_0",
-      "start_at": "2026-06-25 00:00:00",
-      "expired_at": "2026-06-25 23:59:59",
-      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
-      "confidence": "medium"
-    },
-    {
-      "event_uid": "xiaohongshu:6a21383a000000000702ad60:05_1",
-      "start_at": "2026-06-05 00:00:00",
-      "expired_at": "2026-06-05 23:59:59",
-      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
-      "confidence": "medium"
-    },
-    {
-      "event_uid": "xiaohongshu:6a21383a000000000702ad60:06_0",
-      "start_at": "2026-06-05 00:00:00",
-      "expired_at": "2026-08-30 23:59:59",
-      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "xiaohongshu:6a21383a000000000702ad60:06_1",
-      "start_at": "2026-06-07 00:00:00",
-      "expired_at": "2026-08-16 23:59:59",
-      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "xiaohongshu:6a21383a000000000702ad60:07_0",
-      "start_at": "2026-05-30 00:00:00",
-      "expired_at": "2026-06-30 23:59:59",
-      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "xiaohongshu:6a21383a000000000702ad60:07_1",
-      "start_at": "2026-04-18 13:00:00",
-      "expired_at": "2026-07-10 18:30:00",
-      "reason": "按 time_text 解析",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "xiaohongshu:6a21383a000000000702ad60:08_0",
-      "start_at": "2026-06-20 00:00:00",
-      "expired_at": "2026-06-21 23:59:59",
-      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "xiaohongshu:6a21383a000000000702ad60:08_1",
-      "start_at": "2026-06-20 10:00:00",
-      "expired_at": "2026-06-20 18:00:00",
-      "reason": "按 time_text 解析",
+      "event_uid": "douban:37885287",
+      "start_at": "2026-07-18 19:30:00",
+      "expired_at": "2026-07-19 22:30:00",
+      "reason": "豆瓣详情：07月18日 周六 19:30-22:30 / 07月19日 周日 19:30-22:30",
       "confidence": "high"
     }
   ],

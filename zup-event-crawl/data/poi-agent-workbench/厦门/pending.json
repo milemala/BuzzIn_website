@@ -1,67 +1,24 @@
 {
   "city": "厦门",
   "source": "douban",
-  "exported_at": "2026-07-10T11:53:43.233Z",
+  "exported_at": "2026-07-13T01:32:36.604Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 4,
+  "last_import_new_uids": 1,
   "doubtful_only": false,
-  "total_events": 4,
-  "group_count": 4,
-  "cache_hit_groups": 2,
+  "total_events": 1,
+  "group_count": 1,
+  "cache_hit_groups": 1,
   "groups": [
-    {
-      "group_id": "f008965e8e21",
-      "location": "厦门 联发文创口岸",
-      "sample_title": "暗的光盲盒放映｜虚境狂欢",
-      "event_uids": [
-        "douban:37899590"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "96b230cab6d6",
-      "location": "厦门 湖里区 帽子新空间剧场 金山街道金边路568号航空古地石广场A区G层G05-2室(A区进大堂下G层左侧)",
-      "sample_title": "付航、毛豆推荐｜赵聪明脱口秀专场《出关》单口喜剧·大咖秀｜爆笑解压｜约会必备｜组团开心",
-      "event_uids": [
-        "douban:37455295"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "97ce15d71d93",
-      "location": "厦门 思明区 来疯喜剧场-SM三期四楼店 SM城市广场3期L4层402A铺",
-      "sample_title": "来疯喜剧 | 闽南语互动场 厦门必打卡 即兴场景演绎 全程闽南语互动沉浸式体验 7月11/18/26日@SM三期四楼",
-      "event_uids": [
-        "douban:37526710"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "15666993686218668101",
-        "poi_title": "来疯喜剧场 SM三期店",
-        "poi_address": "",
-        "latitude": 24.500808,
-        "longitude": 118.124382,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：厦门 思明区 来疯喜剧场-SM三期四楼店 SM城市广场3期L4层402A铺 → 来疯喜剧场 SM三期店（来源 event:douban:37595811）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "97ce15d71d9319dc631651aefcbb51d52ab60e63"
-      }
-    },
     {
       "group_id": "443813f048be",
       "location": "厦门 思明区 闽南大戏院 会展北片区横三路(国际会议中心酒店北侧)",
-      "sample_title": "2026年7月17-18日 上海话剧艺术中心 舞台剧《觉醒年代》",
+      "sample_title": "2026年7月19日 奥斯卡·罗曼耶卓（O叔）钢琴独奏音乐会",
       "event_uids": [
-        "douban:37828313"
+        "douban:37841554"
       ],
       "event_count": 1,
       "cached_poi": {
@@ -73,7 +30,7 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：厦门 思明区 闽南大戏院 会展北片区横三路(国际会议中心酒店北侧) → 闽南大戏院·大剧场（来源 event:douban:37786985）",
+        "reason": "地址映射库命中：厦门 思明区 闽南大戏院 会展北片区横三路(国际会议中心酒店北侧) → 闽南大戏院·大剧场（来源 event:douban:37828313）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],

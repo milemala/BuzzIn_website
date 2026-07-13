@@ -1,7 +1,7 @@
 {
   "city": "天津",
   "source": "douban",
-  "exported_at": "2026-07-10T11:53:43.013Z",
+  "exported_at": "2026-07-13T01:31:56.646Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
@@ -14,45 +14,54 @@
   "cache_hit_groups": 2,
   "groups": [
     {
-      "group_id": "d04a4380c61d",
-      "location": "天津 和平区 SFC上影影城(天津天河城IMAX店) 和平区小白楼街和平路263号天津天河城第八层809商铺",
-      "sample_title": "回来了，终于回来了！周星驰喜剧新作《功夫女足》天津公映日免费观影",
+      "group_id": "2c7f3e208010",
+      "location": "天津 和平区 SFC上影影城天河城店",
+      "sample_title": "天津《恐怖游轮》线下观影专场｜人手正版官方周边",
       "event_uids": [
-        "douban:37898886"
+        "douban:37900392"
       ],
       "event_count": 1
     },
     {
-      "group_id": "4e27a008ce1b",
-      "location": "天津 河西区 光华剧院 挂甲寺街道南北大街2号围堤道口(近凯德MALL购物中心)",
-      "sample_title": "天津儿艺 | 儿童剧《木偶奇遇记》",
+      "group_id": "6551918b967e",
+      "location": "天津 河西区 中华剧院 平江道56号（隆昌路口）",
+      "sample_title": "加拿大全场互动亲子剧《你是演奏家2》",
       "event_uids": [
-        "douban:37859177"
+        "douban:37753360"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "14694096430531753900",
-        "poi_title": "光华剧院",
+        "poi_id": "3246965086466095161",
+        "poi_title": "中华剧院",
         "poi_address": "",
-        "latitude": 39.096859,
-        "longitude": 117.238196,
+        "latitude": 39.085219,
+        "longitude": 117.217489,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：天津 河西区 光华剧院 挂甲寺街道南北大街2号围堤道口(近凯德MALL购物中心) → 光华剧院（来源 event:douban:37567318）",
+        "reason": "地址映射库命中：天津 河西区 中华剧院 平江道56号（隆昌路口） → 中华剧院（来源 event:douban:37640894）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "4e27a008ce1b3d21203df55723e092510e99a67b"
+        "cache_key": "6551918b967ee9524e8251316098a26cc8428a11"
       }
+    },
+    {
+      "group_id": "32a9418b22b1",
+      "location": "天津 河东区 大麦·66-LiveHouse 演出现场 海河东路棉3创意街区1921艺术中心",
+      "sample_title": "2026 舞动精灵Groove Coverage出道25周年 天津演唱会",
+      "event_uids": [
+        "douban:37760112"
+      ],
+      "event_count": 1
     },
     {
       "group_id": "4f9b7427132a",
       "location": "天津 滨海新区 滨海演艺中心 中央大道与大连东道交汇处西南侧",
-      "sample_title": "加拿大原版全场互动亲子剧《你是演奏家2》",
+      "sample_title": "大型经典诗词舞台剧《诗词盛典·才华少年》",
       "event_uids": [
-        "douban:37860365"
+        "douban:37860349"
       ],
       "event_count": 1,
       "cached_poi": {
@@ -64,22 +73,13 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：天津 滨海新区 滨海演艺中心 中央大道与大连东道交汇处西南侧 → 滨海演艺中心（来源 event:douban:37681441）",
+        "reason": "地址映射库命中：天津 滨海新区 滨海演艺中心 中央大道与大连东道交汇处西南侧 → 滨海演艺中心（来源 event:douban:37860365）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
         "cache_key": "4f9b7427132a5c32069cc880252bdfa5c622a826"
       }
-    },
-    {
-      "group_id": "62f59cf3b276",
-      "location": "天津 南开区 海河剧院 水上公园街道卫津南路8号(近八里台立交桥、八里台文化广场)",
-      "sample_title": "锐锐脱口秀专场《爱,来不来2.0》｜快乐共暖@天津",
-      "event_uids": [
-        "douban:37804868"
-      ],
-      "event_count": 1
     }
   ]
 }

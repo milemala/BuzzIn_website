@@ -1,12 +1,26 @@
 {
   "city": "石家庄",
-  "source": "douban",
-  "decided_at": "2026-07-10T12:00:00.000Z",
+  "decided_at": "2026-07-13T01:40:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
+      "group_id": "1936a226f46b",
+      "event_uids": ["douban:37815802"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "532037913248001448",
+      "poi_title": "星光艺术空间&红糖LIVEHOUSE",
+      "poi_address": "",
+      "latitude": 38.044978,
+      "longitude": 114.487492,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：石家庄 新华区 红糖LIVEHOUSE 湾里庙步行街水幕广场M08 → 星光艺术空间&红糖LIVEHOUSE"
+    },
+    {
       "group_id": "79463ddd745b",
-      "event_uids": ["douban:37853537"],
+      "event_uids": ["douban:37781049"],
       "action": "match",
       "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "223872818676009218",
@@ -17,16 +31,7 @@
       "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：河北省艺术中心与桥西区裕华西路13号一致"
-    },
-    {
-      "group_id": "aee34db0d72b",
-      "event_uids": ["douban:37682735"],
-      "action": "reject",
-      "search_keywords_tried": ["上客喜剧织音1953", "上客喜剧", "完美人生织音1953", "脱口秀西餐酒吧猫咖织音1953"],
-      "confidence": "low",
-      "doubtful": false,
-      "reason": "腾讯POI无「上客喜剧」独立点位，织音1953园区内仅铺位号S1028-S1033，无法唯一匹配"
+      "reason": "地址映射库命中：石家庄 桥西区 河北省艺术中心 裕华西路13号 → 河北艺术中心"
     }
   ]
 }

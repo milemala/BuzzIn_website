@@ -1,64 +1,58 @@
 {
   "city": "长沙",
-  "decided_at": "2026-07-10T12:10:00.000Z",
+  "decided_at": "2026-07-13T01:40:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "17792e473c63",
-      "event_uids": ["douban:37898987"],
-      "action": "match",
-      "search_keywords_tried": ["英皇电影城 国金中心"],
-      "poi_id": "18199681522010330747",
-      "poi_title": "英皇电影城(长沙国金中心店)",
-      "poi_address": "湖南省长沙市芙蓉区解放西路188号长沙IFSL5",
-      "latitude": 28.19232,
-      "longitude": 112.976873,
-      "candidates": [
-        {
-          "poi_id": "18199681522010330747",
-          "title": "英皇电影城(长沙国金中心店)",
-          "address": "湖南省长沙市芙蓉区解放西路188号长沙IFSL5"
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "店名与解放西路188号国金中心地址一致"
-    },
-    {
-      "group_id": "0e9c2d645d25",
-      "event_uids": ["douban:37844780"],
+      "group_id": "a6f40c865d21",
+      "event_uids": ["douban:37820466"],
       "action": "match",
       "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "2554153063398531721",
-      "poi_title": "湖南大剧院",
+      "poi_id": "13348260499578885956",
+      "poi_title": "长沙音乐厅",
       "poi_address": "",
-      "latitude": 28.189747,
-      "longitude": 112.997792,
+      "latitude": 28.242921,
+      "longitude": 112.979271,
       "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：韶山路139号湖南大剧院"
+      "reason": "地址映射库命中：长沙 开福区 长沙音乐厅 湘江北路滨江文化园 → 长沙音乐厅"
     },
     {
-      "group_id": "2a0385fd5c0a",
-      "event_uids": ["douban:37836966"],
+      "group_id": "a33392755057",
+      "event_uids": ["douban:37885287"],
       "action": "match",
-      "search_keywords_tried": ["红节奏LIVEHOUSE 中山路"],
-      "poi_id": "10086422564088592870",
-      "poi_title": "红节奏live house",
-      "poi_address": "湖南省长沙市芙蓉区中山路249号3楼",
-      "latitude": 28.199891,
-      "longitude": 112.978193,
+      "search_keywords_tried": ["贺龙体育场"],
+      "poi_id": "7623808843368916509",
+      "poi_title": "贺龙体育场",
+      "poi_address": "湖南省长沙市天心区芙蓉中路二段188长沙贺龙体育中心",
+      "latitude": 28.177848,
+      "longitude": 112.982586,
       "candidates": [
         {
-          "poi_id": "10086422564088592870",
-          "title": "红节奏live house",
-          "address": "湖南省长沙市芙蓉区中山路249号3楼"
+          "poi_id": "7623808843368916509",
+          "title": "贺龙体育场",
+          "address": "湖南省长沙市天心区芙蓉中路二段188长沙贺龙体育中心"
         }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "店名与中山路249号地址完全一致"
+      "reason": "地址（天心区芙蓉中路188号）与POI完全一致"
+    },
+    {
+      "group_id": "bbeec5fe7de6",
+      "event_uids": ["douban:37832262"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "778045471434447270",
+      "poi_title": "梅溪湖国际文化艺术中心大剧院-入口",
+      "poi_address": "",
+      "latitude": 28.195469,
+      "longitude": 112.907104,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：长沙 岳麓区 梅溪湖国际文化艺术中心大剧院 → 梅溪湖国际文化艺术中心大剧院-入口"
     }
   ]
 }

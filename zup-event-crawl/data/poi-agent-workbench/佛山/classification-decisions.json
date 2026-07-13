@@ -1,14 +1,26 @@
 {
   "city": "佛山",
   "source": "douban",
-  "decided_at": "2026-07-10T12:00:00.000Z",
+  "decided_at": "2026-07-13T01:30:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "event_uid": "douban:37891049",
+      "event_uid": "douban:37759739",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "女性反乌托邦音乐剧，琼花大剧院购票演出的舞台剧"
+    },
+    {
+      "event_uid": "douban:37880392",
       "suggested": true,
       "category": "音乐现场",
-      "reason": "浙派非遗古琴专场音乐会，公众购票观演"
+      "reason": "钢琴家独奏音乐会，佛山大剧院购票演出"
+    },
+    {
+      "event_uid": "douban:37893089",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "单口喜剧专场，金马剧院购票观演"
     }
   ]
 }

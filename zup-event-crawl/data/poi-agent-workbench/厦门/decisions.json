@@ -1,54 +1,11 @@
 {
   "city": "厦门",
-  "source": "douban",
-  "decided_at": "2026-07-10T12:00:00.000Z",
+  "decided_at": "2026-07-13T01:40:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "f008965e8e21",
-      "event_uids": ["douban:37899590"],
-      "action": "reject",
-      "search_keywords_tried": ["联发文创口岸", "暗的光放映室"],
-      "confidence": "low",
-      "doubtful": false,
-      "reason": "活动仅写联发文创口岸，暗的光放映室无独立POI；文创园区地址过泛无法唯一确定"
-    },
-    {
-      "group_id": "96b230cab6d6",
-      "event_uids": ["douban:37455295"],
-      "action": "match",
-      "search_keywords_tried": ["帽子新空间剧场航空古地石"],
-      "poi_id": "13073332259896031485",
-      "poi_title": "帽子新空间剧场(帽子戏法·古地石店)",
-      "poi_address": "福建省厦门市湖里区金山街道金边路568号航空古地石广场A区G层G05室(A区进大堂下G层左侧)",
-      "latitude": 24.4929,
-      "longitude": 118.168153,
-      "candidates": [
-        {"poi_id": "13073332259896031485", "title": "帽子新空间剧场(帽子戏法·古地石店)", "address": "福建省厦门市湖里区金山街道金边路568号航空古地石广场A区G层G05室(A区进大堂下G层左侧)", "category": "娱乐休闲:剧场音乐厅:剧场"},
-        {"poi_id": "8979793825782082014", "title": "帽子新空间剧场-帽子喜剧(古地石店)", "address": "福建省厦门市湖里区金边路568号航空古地石广场A区G层G05-2室(A区进大堂下G层左侧)", "category": "室内及附属设施:通行设施类"}
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "帽子新空间剧场与航空古地石广场G层地址一致，仅差G05/G05-2室号精度"
-    },
-    {
-      "group_id": "97ce15d71d93",
-      "event_uids": ["douban:37526710"],
-      "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "15666993686218668101",
-      "poi_title": "来疯喜剧场 SM三期店",
-      "poi_address": "",
-      "latitude": 24.500808,
-      "longitude": 118.124382,
-      "candidates": [],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：来疯喜剧场SM三期四楼店与思明区SM三期地址一致"
-    },
-    {
       "group_id": "443813f048be",
-      "event_uids": ["douban:37828313"],
+      "event_uids": ["douban:37841554"],
       "action": "match",
       "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "9553621768810285816",
@@ -59,7 +16,7 @@
       "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：闽南大戏院与思明区会展北横三路地址一致"
+      "reason": "地址映射库命中：厦门 思明区 闽南大戏院 会展北片区横三路 → 闽南大戏院·大剧场"
     }
   ]
 }

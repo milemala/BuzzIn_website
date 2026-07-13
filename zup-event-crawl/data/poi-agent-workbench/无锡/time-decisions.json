@@ -1,21 +1,14 @@
 {
   "city": "无锡",
   "source": "douban",
-  "generated_at": "2026-07-10T11:53:33.243Z",
+  "generated_at": "2026-07-13T01:27:36.092Z",
   "note": "可由 Agent 覆写低置信条目后 apply-event-time-decisions.js 入库",
   "decisions": [
     {
-      "event_uid": "douban:37770366",
-      "start_at": "2026-07-12 19:30:00",
-      "expired_at": "2026-07-12 21:30:00",
-      "reason": "豆瓣详情：07月12日 周日 19:30-21:30",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37827379",
-      "start_at": "2026-07-14 19:30:00",
-      "expired_at": "2026-07-14 21:30:00",
-      "reason": "豆瓣详情：07月14日 周二 19:30-21:30",
+      "event_uid": "douban:37770356",
+      "start_at": "2026-07-19 19:30:00",
+      "expired_at": "2026-07-19 21:30:00",
+      "reason": "豆瓣详情：07月19日 周日 19:30-21:30",
       "confidence": "high"
     }
   ],

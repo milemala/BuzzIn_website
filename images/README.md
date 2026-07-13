@@ -23,17 +23,17 @@
 
 ## 功能截图
 
-1. map-view.jpg
-- 基于 Mapbox 样式的地图界面
-- 添加了动态聚会点标记
-- 使用暗色主题提升质感
+1. screenshots/首页地图.png
+- 展示首页地图上的 NOW 气泡、商户和附近活动入口
 
-2. chat-view.jpg
-- 现代化的聊天界面设计
-- 包含快速回复按钮
-- 使用柔和的色彩方案
+2. screenshots/NOW气泡.png
+- 展示 NOW 详情、报名、签到和加入群聊
 
-3. create-event.jpg
-- 简洁的活动创建表单
-- 包含位置选择和时间设置
-- 强调易用性的界面设计 
+3. screenshots/NOW气泡2.png
+- 展示现场氛围、商品和评论互动
+
+4. screenshots/商户页.png
+- 展示认证商户主页、商品和历史 NOW
+
+5. screenshots/同行伙伴.png
+- 展示附近活跃伙伴列表

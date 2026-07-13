@@ -1,158 +1,99 @@
 {
   "city": "深圳",
-  "source": "douban",
-  "decided_at": "2026-07-10T11:35:00.000Z",
+  "decided_at": "2026-07-13T02:00:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "30b8ec43428f",
-      "event_uids": [
-        "douban:37898441"
-      ],
+      "group_id": "7be61bdd975e",
+      "event_uids": ["douban:37757335"],
       "action": "match",
-      "poi_id": "6487992874640479746",
-      "poi_title": "联娱影城(福田京基KK ONE店)",
-      "poi_address": "广东省深圳市福田区滨河大道9289号KKONE时尚潮流购物中心L4",
-      "latitude": 22.528288,
-      "longitude": 114.027404,
-      "doubtful": false,
-      "reason": "福田区联娱影城京基KKone店名与豆瓣一致",
-      "search_keywords_tried": [
-        "联娱影城 京基KKone"
-      ],
-      "confidence": "high"
-    },
-    {
-      "group_id": "8a6e9adc872e",
-      "event_uids": [
-        "douban:37898540"
-      ],
-      "action": "reject",
-      "reason": "详情为小红书线上展演，前海深港合作区地址过泛无法对应唯一线下POI",
-      "search_keywords_tried": [
-        "前海深港合作区"
-      ],
-      "confidence": "high"
-    },
-    {
-      "group_id": "3c358bc170af",
-      "event_uids": [
-        "douban:37899089"
-      ],
-      "action": "match",
-      "poi_id": "10859155267087343154",
-      "poi_title": "金地梅陇镇",
-      "poi_address": "广东省深圳市龙华区民安路136号",
-      "latitude": 22.630612,
-      "longitude": 114.032527,
-      "doubtful": false,
-      "reason": "豆瓣龙华区金地梅陇镇与POI住宅小区主体一致，仅差具体聊天地点",
-      "search_keywords_tried": [
-        "金地梅陇镇"
-      ],
-      "confidence": "medium"
-    },
-    {
-      "group_id": "151868bf1448",
-      "event_uids": [
-        "douban:37895395"
-      ],
-      "action": "match",
-      "poi_id": "16766038513149208802",
-      "poi_title": "泰然工贸园-213栋",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "2462313919833142162",
+      "poi_title": "来疯喜剧脱口秀俱乐部(上梅林卓悦汇店)",
       "poi_address": "",
-      "latitude": 22.532026,
-      "longitude": 114.02526,
+      "latitude": 22.570031,
+      "longitude": 114.060644,
+      "candidates": [],
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：深圳 福田区 泰然工贸园213栋5楼 → 泰然工贸园-213栋（来源 event:douban:37883621）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "confidence": "high"
+      "reason": "地址映射库命中，直接沿用"
     },
     {
-      "group_id": "be7873efaa12",
-      "event_uids": [
-        "douban:37898132"
-      ],
+      "group_id": "c23a4b9a1baa",
+      "event_uids": ["douban:37894612"],
       "action": "match",
-      "poi_id": "524726888809961165",
-      "poi_title": "观筑艺术空间",
-      "poi_address": "广东省深圳市南山区沙河街道 锦绣北街2号华侨城创意文化园B10栋02铺",
-      "latitude": 22.539471,
-      "longitude": 113.993636,
-      "doubtful": false,
-      "reason": "南山区观筑艺术空间店名与豆瓣一致",
-      "search_keywords_tried": [
-        "观筑艺术空间"
-      ],
-      "confidence": "high"
-    },
-    {
-      "group_id": "36722d457098",
-      "event_uids": [
-        "douban:37898232"
-      ],
-      "action": "match",
-      "poi_id": "18185713332639949230",
-      "poi_title": "MOCICI天空冥想(荣超经贸中心店)",
-      "poi_address": "广东省深圳市福田区莲花街道金田路4028号荣超经贸中心4801号",
-      "latitude": 22.544153,
-      "longitude": 114.063756,
-      "doubtful": false,
-      "reason": "豆瓣荣超经贸中心4801室天空冥想馆与POI门牌4801号一致",
-      "search_keywords_tried": [
-        "荣超经贸中心"
-      ],
-      "confidence": "high"
-    },
-    {
-      "group_id": "b60056fa5cc0",
-      "event_uids": [
-        "douban:37898531"
-      ],
-      "action": "reject",
-      "reason": "豆瓣写龙岗区盐田地铁站集合，区划矛盾且仅地铁集合点无法对应唯一场馆POI",
-      "search_keywords_tried": [
-        "盐田地铁站"
-      ],
-      "confidence": "high"
-    },
-    {
-      "group_id": "f790bd3962cd",
-      "event_uids": [
-        "douban:37898796"
-      ],
-      "action": "match",
-      "poi_id": "16279202223895750320",
-      "poi_title": "安徽大厦创展中心",
-      "poi_address": "广东省深圳市福田区深南大道6007号",
-      "latitude": 22.536221,
-      "longitude": 114.031584,
-      "doubtful": false,
-      "reason": "福田区安徽大厦创展中心楼宇主体与豆瓣一致，仅差室内运动场馆铺位",
-      "search_keywords_tried": [
-        "安徽大厦创展中心"
-      ],
-      "confidence": "high"
-    },
-    {
-      "group_id": "32d6b270b25f",
-      "event_uids": [
-        "douban:37899376"
-      ],
-      "action": "match",
-      "poi_id": "1928560869740938180",
-      "poi_title": "深圳国际商会大厦A座",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "15281668256543917083",
+      "poi_title": "ROOTS HOUSE(华侨城店)",
       "poi_address": "",
-      "latitude": 22.537074,
-      "longitude": 114.05127,
+      "latitude": 22.537591,
+      "longitude": 113.992029,
+      "candidates": [],
+      "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：深圳 福田区 国际商会大厦A座 → 深圳国际商会大厦A座（来源 event:douban:37856970）",
-      "search_keywords_tried": [
-        "poi-address-cache"
+      "reason": "地址映射库命中，直接沿用"
+    },
+    {
+      "group_id": "701fbd09a0d5",
+      "event_uids": ["douban:37900554"],
+      "action": "match",
+      "search_keywords_tried": ["俞兴根中医诊所"],
+      "poi_id": "5289897809632340363",
+      "poi_title": "深圳俞兴根中医(综合)诊所",
+      "poi_address": "广东省深圳市福田区莲花路北侧1110号雨田村南门牌坊入左侧雨雨楼1楼3号",
+      "latitude": 22.560089,
+      "longitude": 114.055682,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "店名与豆瓣地点完全一致，唯一候选"
+    },
+    {
+      "group_id": "7d7be3205105",
+      "event_uids": ["douban:37705411"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "18093005889884925272",
+      "poi_title": "青春无限乐团烛光音乐会(南山店)",
+      "poi_address": "",
+      "latitude": 22.551405,
+      "longitude": 113.980215,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中，直接沿用"
+    },
+    {
+      "group_id": "e780bd4e13a4",
+      "event_uids": ["douban:37730283"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "9365954080090963047",
+      "poi_title": "新空间剧场(福田岗厦店)",
+      "poi_address": "",
+      "latitude": 22.534258,
+      "longitude": 114.06758,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中，直接沿用"
+    },
+    {
+      "group_id": "dbc768c3fa0e",
+      "event_uids": ["douban:37827552"],
+      "action": "match",
+      "search_keywords_tried": ["塘朗山"],
+      "poi_id": "4263510528657419348",
+      "poi_title": "塘朗山公园-龙珠门",
+      "poi_address": "广东省深圳市南山区桃源街道龙珠六路尽头处塘朗山公园",
+      "latitude": 22.563989,
+      "longitude": 113.982188,
+      "candidates": [
+        {"poi_id": "7332204721305123253", "title": "塘朗山郊野公园", "address": "广东省深圳市南山区龙珠大道龙珠六路"}
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "原文明确写集合地点为塘朗山龙珠门，候选中该门禁点名称完全一致"
     }
   ]
 }

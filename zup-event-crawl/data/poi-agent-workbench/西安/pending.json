@@ -1,94 +1,51 @@
 {
   "city": "西安",
   "source": "douban",
-  "exported_at": "2026-07-10T11:47:08.172Z",
+  "exported_at": "2026-07-13T01:32:36.234Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 5,
+  "last_import_new_uids": 2,
   "doubtful_only": false,
-  "total_events": 5,
-  "group_count": 5,
-  "cache_hit_groups": 2,
+  "total_events": 2,
+  "group_count": 2,
+  "cache_hit_groups": 1,
   "groups": [
     {
-      "group_id": "411d7feec3ea",
-      "location": "西安 雁塔区 雁塔区慈恩路777号西安曲江大悦城购物中心L3-40号商铺",
-      "sample_title": "回来了，终于回来了！周星驰喜剧新作《功夫女足》西安公映日免费观影",
+      "group_id": "1736f8b5a7c1",
+      "location": "西安 新城区 西安人民剧院 北大街41号(近西华门)",
+      "sample_title": "《山那边·见一面》镐天原创音乐作品演唱会",
       "event_uids": [
-        "douban:37898964"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "73adfe4931e1",
-      "location": "西安 雁塔区 华夏优加荟影城(西安大都荟店)",
-      "sample_title": "284期《群星闪耀时》西安超前免费观影",
-      "event_uids": [
-        "douban:37899142"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "4dbe009c64d4",
-      "location": "西安 雁塔区 西演SPACE-创意谷展演中心-MINI剧场 雁翔路3369号",
-      "sample_title": "SinceTMRW始于明天 TOUR 2026 西安站",
-      "event_uids": [
-        "douban:37817655"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "9514e32143bb",
-      "location": "西安 雁塔区 西安音乐厅 雁南一路与雁塔南路十字向南200米路东",
-      "sample_title": "【声厂呈现】英国新爵士浪潮 GoGo Penguin 2026西安站",
-      "event_uids": [
-        "douban:37855848"
+        "douban:37829127"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "10834092220146621823",
-        "poi_title": "西安音乐厅",
+        "poi_id": "2272725803867152528",
+        "poi_title": "西安人民剧院",
         "poi_address": "",
-        "latitude": 34.210006,
-        "longitude": 108.964957,
+        "latitude": 34.262959,
+        "longitude": 108.947886,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：西安 雁塔区 西安音乐厅 雁南一路与雁塔南路十字向南200米路东 → 西安音乐厅（来源 event:douban:37797632）",
+        "reason": "地址映射库命中：西安 新城区 西安人民剧院 北大街41号(近西华门) → 西安人民剧院（来源 event:douban:37790477）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "9514e32143bbc689283e79fa10570d3769c98f3a"
+        "cache_key": "1736f8b5a7c1cc224c254d5d4bcbd9a50430bcf3"
       }
     },
     {
-      "group_id": "6ae8b4c8c9f5",
-      "location": "西安 新城区 西演SPACE-塞斯拾陆 太华南路251号1935室小剧场集群壹剧场",
-      "sample_title": "2026 舞动精灵Groove Coverage出道25周年西安演唱会",
+      "group_id": "727b7cc3960c",
+      "location": "西安 新城区 西演SPACE-易俗大剧院 西一路街道案板街26号(近西一路)",
+      "sample_title": "米小圈智趣成长儿童剧《米小圈之李白白不白》",
       "event_uids": [
-        "douban:37759044"
+        "douban:37798719"
       ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "17743495564176793131",
-        "poi_title": "西演SPACE-塞斯拾陆",
-        "poi_address": "",
-        "latitude": 34.285138,
-        "longitude": 108.975094,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：西安 新城区 西演SPACE-塞斯拾陆 太华南路251号1935室小剧场集群壹剧场 → 西演SPACE-塞斯拾陆（来源 event:douban:37856076）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "6ae8b4c8c9f57e83f654cfe289ace7d5f337abea"
-      }
+      "event_count": 1
     }
   ]
 }

@@ -1,286 +1,59 @@
 {
   "city": "上海",
   "source": "douban",
-  "exported_at": "2026-07-10T11:24:30.506Z",
+  "exported_at": "2026-07-13T01:34:23.126Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 25,
+  "last_import_new_uids": 13,
   "doubtful_only": false,
-  "total_events": 25,
-  "group_count": 19,
-  "cache_hit_groups": 9,
+  "total_events": 13,
+  "group_count": 11,
+  "cache_hit_groups": 4,
   "groups": [
     {
-      "group_id": "642caa0a905a",
-      "location": "上海 虹口区 金逸影城(上海龙之梦IMAX店)",
-      "sample_title": "这团火永不熄灭《功夫女足》特别观影场｜奇妙观影团·上海站",
+      "group_id": "396eee411af9",
+      "location": "上海 静安区 Shanghai Time静安别墅老洋房艺术空间 南京西路1025弄静安别墅",
+      "sample_title": "《老洋房里的上海灵魂》---静安别墅国际艺术展,老洋房下午茶",
       "event_uids": [
-        "douban:37898460"
+        "douban:37420412"
       ],
       "event_count": 1
     },
     {
-      "group_id": "9c2111b001dc",
-      "location": "上海 徐汇区 衡山路880号 和集Coffee",
-      "sample_title": "一起来听创业们的实战分享",
+      "group_id": "2065067dffa1",
+      "location": "上海 浦东新区 龙阳路地铁站",
+      "sample_title": "相约清新小城安吉，探寻高山峡谷瀑布群，清凉避暑",
       "event_uids": [
-        "douban:37896326"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "c8e3da4b11e1",
-      "location": "上海 黄浦区 上海文化广场 复兴中路597号",
-      "sample_title": "邹静之编剧 张国立X王刚X张铁林 主演 龙马社原创话剧《断金》",
-      "event_uids": [
-        "douban:37732364",
-        "douban:37867350"
-      ],
-      "event_count": 2
-    },
-    {
-      "group_id": "c8348a11462f",
-      "location": "上海 闵行区 联明路555号文创园5幢105",
-      "sample_title": "闻弦知音，静养伏藏｜古筝生活疗愈沙龙",
-      "event_uids": [
-        "douban:37899348",
-        "douban:37899387"
+        "douban:37896044",
+        "douban:37889514"
       ],
       "event_count": 2,
       "cached_poi": {
-        "poi_id": "4105257615610063886",
-        "poi_title": "启示望远文创园",
+        "poi_id": "10804313910827168281",
+        "poi_title": "龙阳路[地铁站]",
         "poi_address": "",
-        "latitude": 31.143743,
-        "longitude": 121.345218,
+        "latitude": 31.203616,
+        "longitude": 121.557743,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：上海 闵行区 联明路555号文创园5幢105 → 启示望远文创园（来源 event:douban:37897973）",
+        "reason": "地址映射库命中：上海 浦东新区 龙阳路地铁站 → 龙阳路[地铁站]（来源 event:douban:37895943）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "c8348a11462fae3dda2bf06a27299aae1aced0bc"
-      }
-    },
-    {
-      "group_id": "a45e0491e227",
-      "location": "上海 静安区 大田路129弄嘉发大厦A栋5D",
-      "sample_title": "读书会：《麦田里的守望者》",
-      "event_uids": [
-        "douban:37899893",
-        "douban:37899908"
-      ],
-      "event_count": 2,
-      "cached_poi": {
-        "poi_id": "14252119467906121381",
-        "poi_title": "嘉发大厦-A栋",
-        "poi_address": "",
-        "latitude": 31.23286,
-        "longitude": 121.464008,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：上海 静安区 大田路129弄嘉发大厦A栋5D → 嘉发大厦-A栋（来源 event:douban:37895336）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "a45e0491e22749a56626986517640222049d9554"
-      }
-    },
-    {
-      "group_id": "045e9c2b17e8",
-      "location": "上海 徐汇区 捷豹上海交响音乐厅 湖南路街道复兴中路1380号(近宝庆路)",
-      "sample_title": "北境微光——科隆弦乐演奏家丨上海夏季音乐节",
-      "event_uids": [
-        "douban:37881197",
-        "douban:37881165"
-      ],
-      "event_count": 2,
-      "cached_poi": {
-        "poi_id": "14987562979168640294",
-        "poi_title": "捷豹上海交响音乐厅",
-        "poi_address": "",
-        "latitude": 31.211524,
-        "longitude": 121.451652,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：上海 徐汇区 捷豹上海交响音乐厅 湖南路街道复兴中路1380号(近宝庆路) → 捷豹上海交响音乐厅（来源 event:douban:37882996）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "045e9c2b17e8f4ce44ad0da7512e148cbdc95beb"
-      }
-    },
-    {
-      "group_id": "e0ffb15c3fe3",
-      "location": "上海 浦东新区 上海新国际博览中心",
-      "sample_title": "MEET-2026第五届上海国际智慧会议室展览会",
-      "event_uids": [
-        "douban:37588221"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "e077c35c29c8",
-      "location": "上海 浦东新区 上海新国际博览中心N1-N4馆",
-      "sample_title": "上海国际压铸暨有色铸造展CHINA DIECASTING",
-      "event_uids": [
-        "douban:37668298"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "ca227422fc26",
-      "location": "上海 长宁区 育音堂小镇 C厅 YUYINTOWN CUBE 华阳路街道昭化路638号CPARK地下一层LG-21室育音堂小镇C厅",
-      "sample_title": "So Ready呈现 | 哥伦比亚实验电子声音艺术家 Lucrecia Dalt 首度来华 上海站",
-      "event_uids": [
-        "douban:37885097"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "6674447953114383161",
-        "poi_title": "育音堂小镇YUYINTOWN",
-        "poi_address": "",
-        "latitude": 31.210336,
-        "longitude": 121.419663,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：上海 长宁区 育音堂小镇 C厅 YUYINTOWN CUBE 华阳路街道昭化路638号CPARK地下一层LG-21室育音堂小镇C厅 → 育音堂小镇YUYINTOWN（来源 event:douban:37874862）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "ca227422fc261e031147ab6e9ab28ae8276ebed3"
-      }
-    },
-    {
-      "group_id": "f050a4d42602",
-      "location": "上海 徐汇区 上海话剧艺术中心 湖南路街道安福路288号(近武康路)",
-      "sample_title": "话剧《我们成为的她》",
-      "event_uids": [
-        "douban:37745497",
-        "douban:37863369",
-        "douban:37788252"
-      ],
-      "event_count": 3,
-      "cached_poi": {
-        "poi_id": "15696576218127323146",
-        "poi_title": "上海话剧艺术中心-艺术剧院(话剧大厦店)",
-        "poi_address": "",
-        "latitude": 31.213714,
-        "longitude": 121.44114,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：上海 徐汇区 上海话剧艺术中心 湖南路街道安福路288号(近武康路) → 上海话剧艺术中心-艺术剧院(话剧大厦店)（来源 event:douban:37861339）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "f050a4d426029959a1db593a43eeed59e6355fb6"
-      }
-    },
-    {
-      "group_id": "c9bfe70219fd",
-      "location": "上海 黄浦区 ING剧场·一台好戏星空间1739号 南京东路街道西藏中路290号和平影都6楼",
-      "sample_title": "双女主环境式悬疑音乐剧《白爪草》",
-      "event_uids": [
-        "douban:37896125"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "93ff83dfba05",
-      "location": "上海 黄浦区 林肯爵士乐上海中心 Jazz at Lincoln Center Shanghai 南京东路139号4楼401一402",
-      "sample_title": "南京路必打卡 | 玩库沉浸式亲子钢琴音乐剧《拆钢琴2·耳朵的秘密》",
-      "event_uids": [
-        "douban:36913374"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "c8bf659b1ea0",
-      "location": "上海 浦东新区 马王堆汉墓文物大展一千金之家 上南路205号中华艺术宫",
-      "sample_title": "马王堆汉墓文物大展-千金之家（需预约）",
-      "event_uids": [
-        "douban:37879281"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "9f8e3dbb6b2d",
-      "location": "上海 黄浦区 暴风岛沉浸式体验馆-打浦桥店 徐家汇路618号日月光中心五楼",
-      "sample_title": "【古风玄幻】《寒鸦镇》沉浸式剧场【视觉奇观】【玄幻氛围】【机关互动】",
-      "event_uids": [
-        "douban:37698704"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "16601175661901634745",
-        "poi_title": "日月光中心-写字楼",
-        "poi_address": "",
-        "latitude": 31.20583,
-        "longitude": 121.468507,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：上海 黄浦区 暴风岛沉浸式体验馆-打浦桥店 徐家汇路618号日月光中心五楼 → 日月光中心-写字楼（来源 event:douban:37317849）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "9f8e3dbb6b2d34863ca8e83c3983c70db4d5c1d6"
-      }
-    },
-    {
-      "group_id": "f83d021e2926",
-      "location": "上海 黄浦区 一支麦小剧场 瑞金二路街道淮海中路939号巴黎春天3楼",
-      "sample_title": "【二狗推荐】一支麦爆笑脱口秀拼盘 | 上海站",
-      "event_uids": [
-        "douban:37784890"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "ad8d4e71b9e7",
-      "location": "上海 黄浦区 半笑空间 外滩街道汉口路398号华盛大厦2楼",
-      "sample_title": "《天黑请闭眼》|惊悚喜剧｜悬疑话剧｜沉浸式小剧场进阶版｜密室体验感｜多重反转｜惊天真相",
-      "event_uids": [
-        "douban:37833480"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "17216326224513056104",
-        "poi_title": "半笑空间-外滩店1号剧场",
-        "poi_address": "",
-        "latitude": 31.235289,
-        "longitude": 121.482746,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：上海 黄浦区 半笑空间 外滩街道汉口路398号华盛大厦2楼 → 半笑空间-外滩店1号剧场（来源 event:douban:37681087）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "ad8d4e71b9e7964b5bd355d0a8d7c8365e8a0160"
+        "cache_key": "2065067dffa15b3a05ba24ba8089d6e315550a73"
       }
     },
     {
       "group_id": "6d01add84db3",
       "location": "上海 浦东新区 上海东方艺术中心 丁香路425号(近世纪大道)",
-      "sample_title": "丹麦皇家芭蕾舞团明星舞者之夜",
+      "sample_title": "巴黎圣母院首席管风琴大师 奥利维耶·拉特利演奏会",
       "event_uids": [
-        "douban:37856877"
+        "douban:37772626"
       ],
       "event_count": 1,
       "cached_poi": {
@@ -292,7 +65,7 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：上海 浦东新区 上海东方艺术中心 丁香路425号(近世纪大道) → 上海东方艺术中心（来源 event:douban:37628278）",
+        "reason": "地址映射库命中：上海 浦东新区 上海东方艺术中心 丁香路425号(近世纪大道) → 上海东方艺术中心（来源 event:douban:37856877）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
@@ -301,38 +74,109 @@
       }
     },
     {
-      "group_id": "2b90faab40c0",
-      "location": "上海 黄浦区 上海大剧院 南京东路街道人民大道300号(近人民广场)",
-      "sample_title": "《陈镇威与朋友们:纽约明星-芭蕾之夜》",
+      "group_id": "fd70db5d51b9",
+      "location": "上海 普陀区 星在文化中心 梦想剧场 宜昌路179号1F",
+      "sample_title": "Daisy the Great｜纽约独立流行新锐, 仲夏夜的脆弱与伟大, 2026首轮内地巡演 上海站",
       "event_uids": [
-        "douban:37876492"
+        "douban:37888397"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "8adf9ebf6ab2",
+      "location": "上海 浦东新区 银城中路501号 上海中心大厦52楼朵云",
+      "sample_title": "祝你拥有一个无所事事的夏天——《所有的路都在轮子底下》新书分享会",
+      "event_uids": [
+        "douban:37900031"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "d2082745a968",
+      "location": "上海 静安区 福民会馆",
+      "sample_title": "7.18上海活动丨Vibe Coding入门分享会",
+      "event_uids": [
+        "douban:37900022"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "a45e0491e227",
+      "location": "上海 静安区 大田路129弄嘉发大厦A栋5D",
+      "sample_title": "电影之夜：《酒精计划》——在成年生活中寻找幸福",
+      "event_uids": [
+        "douban:37900524"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "6589873532820127969",
-        "poi_title": "上海大剧院",
+        "poi_id": "14252119467906121381",
+        "poi_title": "嘉发大厦-A栋",
         "poi_address": "",
-        "latitude": 31.229393,
-        "longitude": 121.471826,
+        "latitude": 31.23286,
+        "longitude": 121.464008,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：上海 黄浦区 上海大剧院 南京东路街道人民大道300号(近人民广场) → 上海大剧院（来源 event:douban:37387530）",
+        "reason": "地址映射库命中：上海 静安区 大田路129弄嘉发大厦A栋5D → 嘉发大厦-A栋（来源 event:douban:37899908）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "2b90faab40c0805a86d0f116c6937c56fd8675d0"
+        "cache_key": "a45e0491e22749a56626986517640222049d9554"
       }
     },
     {
-      "group_id": "8545517a6a6a",
-      "location": "上海 黄浦区 上海大剧院·大剧场",
-      "sample_title": "陈镇威与朋友们——纽约芭蕾明星之夜",
+      "group_id": "7ff6c8f2e2b7",
+      "location": "上海 杨浦区 YOUNG剧场 控江路1155号",
+      "sample_title": "壁画活化 乐舞天籁《乐动敦煌 盛世妙音》乐 · 舞 · 诗 · 画 国际巡演 上海站",
       "event_uids": [
-        "douban:37884307"
+        "douban:37805494"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "5527323411719490889",
+        "poi_title": "Theatre YOUNG剧场",
+        "poi_address": "",
+        "latitude": 31.278051,
+        "longitude": 121.528544,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：上海 杨浦区 YOUNG剧场 控江路1155号 → Theatre YOUNG剧场（来源 event:douban:37873295）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "7ff6c8f2e2b7d0fb3a93091c89f73662cd5a9095"
+      }
+    },
+    {
+      "group_id": "1484f24366ce",
+      "location": "上海 浦东新区 东育路500弄1-9号前滩太古里石区3楼MOViE MOViE影城；虹口区东大名路999号北外滩来福士3楼百丽宫影城",
+      "sample_title": "「 时光的拓片 」2026北马其顿电影展 —— 上海站",
+      "event_uids": [
+        "douban:37900547"
       ],
       "event_count": 1
+    },
+    {
+      "group_id": "42a52439daab",
+      "location": "上海 静安区 上海艺海剧院 江宁路街道江宁路466号(近武定路)",
+      "sample_title": "音乐剧《Growl 狼嚎》",
+      "event_uids": [
+        "douban:37824023"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "440ae65c7afe",
+      "location": "上海 普陀区 星在文化中心 未来剧场 宜昌路179号2F",
+      "sample_title": "闪千手呈现｜异域迷幻律动 Altın Gün 2026 上海专场",
+      "event_uids": [
+        "douban:37881520",
+        "douban:37471175"
+      ],
+      "event_count": 2
     }
   ]
 }

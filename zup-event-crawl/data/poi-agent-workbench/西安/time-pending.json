@@ -1,97 +1,43 @@
 {
   "city": "西安",
   "source": "douban",
-  "exported_at": "2026-07-10T11:47:07.832Z",
+  "exported_at": "2026-07-13T01:27:33.439Z",
   "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
   "events": [
     {
-      "event_uid": "douban:37898964",
+      "event_uid": "douban:37829127",
       "city": "西安",
       "source": "douban",
-      "title": "回来了，终于回来了！周星驰喜剧新作《功夫女足》西安公映日免费观影",
-      "time_text": "07月11日 周六 15:00-16:46",
+      "title": "《山那边·见一面》镐天原创音乐作品演唱会",
+      "time_text": "07月18日 周六 19:58-22:28",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
-      "detail_excerpt": "Hi～这是我们的第1561期观影活动，本次活动现场可领取：豆瓣Top250影迷典藏系列徽章一枚\n一支穿云箭，千军万马球场见！由周星驰执导并编剧，张小斐、迪丽热巴、张艺兴领衔主演，刘嘉玲、佐藤健特别出演，艾米、雪野、蔡思贝、胡予安、倪好特别介绍出演，赵丽娜、欧阳靖、张继聪、欧阳万成友情出演的喜剧新作《功夫女足》西安公映首日免费观影来啦！破浪邀你第一时间走进影院，畅淋漓地大笑一场，见证功夫与足球碰撞出的全新火花。\n电影讲述了“至尊无敌杯”开赛在即，一众顶尖球队即将展开一场前所未有的巅峰对决！而此时的功夫女足队员们开局直接拿了地狱难度剧本？！对手各个身怀绝技，外界也在层层施压，赛场诡计一环套一环……她们能否靠功夫在绿茵场上逆风翻盘？我们拭目以待！\n以往周星驰导演的作品大多围绕小人物展开，故事剧情充满奇思妙想，用天马行空的方式展现导演细致入微的观察与思考。想必此次新作也将聚焦足球与功夫的奇妙碰撞，",
+      "detail_excerpt": "约150分钟，实际演出时长以现场为准\n最低演出曲目\n以现场为准\n主要演员\n无需预约\n儿童说明\n1.2米以下儿童谢绝入场，1.2米以上儿童需持票入场\n特殊提示\n《山那边·见一面》镐天原创音乐作品演唱会",
       "suggestion": {
-        "start_at": "2026-07-11 15:00:00",
-        "expired_at": "2026-07-11 16:46:00",
+        "start_at": "2026-07-18 19:58:00",
+        "expired_at": "2026-07-18 22:28:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月11日 周六 15:00-16:46"
+        "reason": "豆瓣详情：07月18日 周六 19:58-22:28"
       }
     },
     {
-      "event_uid": "douban:37899142",
+      "event_uid": "douban:37798719",
       "city": "西安",
       "source": "douban",
-      "title": "284期《群星闪耀时》西安超前免费观影",
-      "time_text": "07月12日 周日 14:00-18:30",
+      "title": "米小圈智趣成长儿童剧《米小圈之李白白不白》",
+      "time_text": "07月18日 周六 15:30-21:00",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
-      "detail_excerpt": "《群星闪耀时》西安超前免费观影\n观影日期：7月12日（周日）\n签到时间：13:30-14:30\n观影+映后：14:30-16:45（映后仅拍大合影）\n观影地点：华夏优加荟RealD影城（西安大都荟店）--西安雁塔区高新科技路高新大都荟南广场，星巴克扶梯至B2层，华夏优加荟\n报名链接： https://p.baominggon gju.com/share?eid=6a 4cba67b84e643d6b0335 2d&referer=odVL4 1Pl8Iw-5lp-nmmK30eTa 7L4\n报名链接： https://p.baominggongju.com/share?eid=6a4cba67b84e643d6b03352d&referer=odVL41Pl8Iw-5lp-nmmK30eTa7L4",
+      "detail_excerpt": "入场方式说明\n约60分钟（以现场为准）\n以现场为准\n主要演员\n无需预约",
       "suggestion": {
-        "start_at": "2026-07-12 14:00:00",
-        "expired_at": "2026-07-12 18:30:00",
+        "start_at": "2026-07-18 15:30:00",
+        "expired_at": "2026-07-18 21:00:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月12日 周日 14:00-18:30"
-      }
-    },
-    {
-      "event_uid": "douban:37817655",
-      "city": "西安",
-      "source": "douban",
-      "title": "SinceTMRW始于明天 TOUR 2026 西安站",
-      "time_text": "07月15日 周三 20:00-22:00",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "入场方式说明\n1.2米以下儿童谢绝入场，1.2米以上儿童需持票入场\n以现场为准\n主要演员\n无需预约",
-      "suggestion": {
-        "start_at": "2026-07-15 20:00:00",
-        "expired_at": "2026-07-15 22:00:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月15日 周三 20:00-22:00"
-      }
-    },
-    {
-      "event_uid": "douban:37855848",
-      "city": "西安",
-      "source": "douban",
-      "title": "【声厂呈现】英国新爵士浪潮 GoGo Penguin 2026西安站",
-      "time_text": "07月17日 周五 20:00-21:00",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "入场方式说明\n约180分钟（无中场）\n主要演员\n以现场为准\n无需预约\n4. 本场演出谢绝携带食品、饮料或制塑料瓶装水入场（饮料包含但不限于有色、含糖、含气的各类碳酸饮料、苏打水、气泡水、果汁、茶饮、乳制品等）如有饮用水需求，请您自备水杯，在剧院前台寻求帮助；",
-      "suggestion": {
-        "start_at": "2026-07-17 20:00:00",
-        "expired_at": "2026-07-17 21:00:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月17日 周五 20:00-21:00"
-      }
-    },
-    {
-      "event_uid": "douban:37759044",
-      "city": "西安",
-      "source": "douban",
-      "title": "2026 舞动精灵Groove Coverage出道25周年西安演唱会",
-      "time_text": "07月15日 周三 20:00-21:30",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "演出票一经售出，不退不换\n以现场为准\n主要演员\n无需预约\n特殊提示\nVIP观众权益：\n本场演出约90分钟，将通过Live表演（舞动精灵乐团成员DJ Novus与歌手Mell共同表演）和DJ秀表演（舞动精灵乐团成员DJ Novus个人表演）交替进行，具体安排如下：\n35分钟Live表演 + 20分钟DJ秀表演 + 35分钟Live表演\n（*注：舞动精灵乐团Groove Coverage是由乐团核心人物DJ Novus组建，与歌手Mell共同组成的一支电子音乐组合）\n巡演排期与城市\n此次巡演，乐团将对经典曲目进行完整演绎，还将根据粉丝的热切呼声，为每一站特别定制歌单，并呈现此前未曾演唱的全新限定歌曲，带来独一无二的现场体验。\n同时，视觉效果也将全面升级，配合充满情感张力的千禧年复古设计，打造热烈而富有怀旧感的氛围，让每一位观众都能在音乐与视觉的双重冲击中，重新找回属于自己的青春记忆。期待各地的",
-      "suggestion": {
-        "start_at": "2026-07-15 20:00:00",
-        "expired_at": "2026-07-15 21:30:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月15日 周三 20:00-21:30"
+        "reason": "豆瓣详情：07月18日 周六 15:30-21:00"
       }
     }
   ]

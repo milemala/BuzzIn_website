@@ -1,11 +1,38 @@
 {
   "city": "苏州",
   "source": "douban",
-  "decided_at": "2026-07-10T12:00:00.000Z",
+  "decided_at": "2026-07-13T09:30:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
-    {"event_uid": "douban:37521624", "suggested": true, "category": "音乐现场", "reason": "梁祝小提琴经典名曲音乐会"},
-    {"event_uid": "douban:37855541", "suggested": true, "category": "戏剧表演", "reason": "新中式舞蹈秀叹春风演出"},
-    {"event_uid": "douban:37673856", "suggested": true, "category": "戏剧表演", "reason": "老舍经典话剧茶馆演出"}
+    {
+      "event_uid": "douban:37673357",
+      "suggested": true,
+      "category": "音乐现场",
+      "reason": "手碟/低音提琴等乐器沉浸式室内音乐会"
+    },
+    {
+      "event_uid": "douban:37771897",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "温情互动人偶话剧演出"
+    },
+    {
+      "event_uid": "douban:37856460",
+      "suggested": true,
+      "category": "音乐现场",
+      "reason": "枯木逢春乐队巡演苏州站"
+    },
+    {
+      "event_uid": "douban:37673869",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "老舍经典话剧《骆驼祥子》巡演"
+    },
+    {
+      "event_uid": "douban:37582749",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "法国经典舞台喜剧演出"
+    }
   ]
 }

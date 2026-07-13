@@ -1,145 +1,42 @@
 {
   "city": "杭州",
   "source": "douban",
-  "exported_at": "2026-07-10T11:49:14.462Z",
+  "exported_at": "2026-07-13T01:32:20.694Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 12,
+  "last_import_new_uids": 14,
   "doubtful_only": false,
-  "total_events": 12,
-  "group_count": 11,
-  "cache_hit_groups": 5,
+  "total_events": 14,
+  "group_count": 12,
+  "cache_hit_groups": 8,
   "groups": [
     {
-      "group_id": "003498369f81",
-      "location": "杭州 杭州百美汇影城（LUXE嘉里中心店）",
-      "sample_title": "这团火永不熄灭《功夫女足》特别观影场｜奇妙观影团·杭州站",
+      "group_id": "8012036477ca",
+      "location": "杭州 萧山区 市心北路2000号ITC归谷国际中心F5杭州全球青年人才中心",
+      "sample_title": "夏日，气泡，爱与幸福主义——《幸福藏在上升的气泡里》新书分享会",
       "event_uids": [
-        "douban:37898415"
+        "douban:37898654"
       ],
       "event_count": 1
     },
     {
-      "group_id": "f0650b8b38a9",
-      "location": "杭州 拱墅区 片羽书店（杭州市拱墅区学院北路999号运河体育公园S-02-02）",
-      "sample_title": "不用手机，我们可以走多远——《关机：离线流浪中国134天》分享会",
+      "group_id": "40e25ac7f5d7",
+      "location": "杭州 西湖区 浙江图书馆之江馆区（之江文化中心）",
+      "sample_title": "《雨天的书》阅读分享会",
       "event_uids": [
-        "douban:37898099"
+        "douban:37893368"
       ],
       "event_count": 1
-    },
-    {
-      "group_id": "1fcda61c56ee",
-      "location": "杭州 钱塘区 火车东站西广场",
-      "sample_title": "徒步“华东第一虐”千八！3天2夜暴走38KM，去征服浙南之巅",
-      "event_uids": [
-        "douban:37894608"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "05689f4a6dd3",
-      "location": "杭州 拱墅区 3号线香积寺地铁站附近--Waterloo",
-      "sample_title": "盲盒读书会 | 夜杭chat：欲望机器的解域、药物黑客与量子还乡",
-      "event_uids": [
-        "douban:37899007",
-        "douban:37898456"
-      ],
-      "event_count": 2,
-      "cached_poi": {
-        "poi_id": "2199031223519",
-        "poi_title": "香积寺[地铁站]",
-        "poi_address": "",
-        "latitude": 30.300204,
-        "longitude": 120.148587,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：杭州 拱墅区 3号线香积寺地铁站附近--Waterloo → 香积寺[地铁站]（来源 event:douban:37895925）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "05689f4a6dd3b2ce222be4e1d8254afbeee3c53f"
-      }
-    },
-    {
-      "group_id": "4b23b493cb71",
-      "location": "杭州 西湖区 西湖",
-      "sample_title": "在西湖看一场电影吧",
-      "event_uids": [
-        "douban:37895346"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "705a9aad75a7",
-      "location": "杭州 西湖区 M511光影汇·想象力中心 西溪路511号M511光影汇",
-      "sample_title": "[超低价] 【吐槽大会编剧推荐】《她的多重宇宙》福气脱口秀互动喜剧（杭州）",
-      "event_uids": [
-        "douban:37800800"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "9058821148941476985",
-        "poi_title": "M511光影汇·想象力中心",
-        "poi_address": "",
-        "latitude": 30.270242,
-        "longitude": 120.115742,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：杭州 西湖区 M511光影汇·想象力中心 西溪路511号M511光影汇 → M511光影汇·想象力中心（来源 event:douban:37845848）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "705a9aad75a74fa8fca7f48001dce10ecb4d493a"
-      }
-    },
-    {
-      "group_id": "a90f4eb180dc",
-      "location": "杭州 拱墅区 LiveShop Uni由你现场 文晖街道武林之星博览中心2号楼2-0",
-      "sample_title": "【演出延期 开演时间待定】Chainhaha「三粒种子」2026巡演·杭州站",
-      "event_uids": [
-        "douban:37863618"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "cdf9b71109f0",
-      "location": "杭州 萧山区 杭州乐园 风情大道2555号休博园内（烂苹果乐园对面）",
-      "sample_title": "【暑期特惠】杭州乐园门票（凭身份证入场）",
-      "event_uids": [
-        "douban:37735022"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "15635245650341560545",
-        "poi_title": "杭州乐园旅游区-杭州乐园",
-        "poi_address": "",
-        "latitude": 30.160494,
-        "longitude": 120.245128,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：杭州 萧山区 杭州乐园 风情大道2555号休博园内（烂苹果乐园对面） → 杭州乐园旅游区-杭州乐园（来源 event:douban:37742065）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "cdf9b71109f020285cd06c7d043fe729b57d7e6a"
-      }
     },
     {
       "group_id": "d117fafdd001",
       "location": "杭州 西湖区 浙江音乐厅 北山街道曙光路31号(近黄龙体育中心)",
-      "sample_title": "《夜的钢琴曲》石进钢琴音乐会 杭州站",
+      "sample_title": "肆意幻想·梁祝与浮士德｜2026李嗣易小提琴巡回独奏音乐会",
       "event_uids": [
-        "douban:37769939"
+        "douban:37785201"
       ],
       "event_count": 1,
       "cached_poi": {
@@ -151,7 +48,7 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：杭州 西湖区 浙江音乐厅 北山街道曙光路31号(近黄龙体育中心) → 浙江音乐厅（来源 event:douban:37685283）",
+        "reason": "地址映射库命中：杭州 西湖区 浙江音乐厅 北山街道曙光路31号(近黄龙体育中心) → 浙江音乐厅（来源 event:douban:37769939）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
@@ -160,11 +57,36 @@
       }
     },
     {
+      "group_id": "0b4232fbabec",
+      "location": "杭州 西湖区 杭州延安路528号标力大厦B座15楼",
+      "sample_title": "「タコ焼き」- 章鱼小丸子，就决定是你啦 | 7.19 日曜日",
+      "event_uids": [
+        "douban:37894776"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "23930873321709565",
+        "poi_title": "标力大厦B座",
+        "poi_address": "",
+        "latitude": 30.26779,
+        "longitude": 120.164193,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：杭州 西湖区 杭州延安路528号标力大厦B座15楼 → 标力大厦B座（来源 event:douban:37881683）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "0b4232fbabec675cf7e4d0b6ea4275204a932e90"
+      }
+    },
+    {
       "group_id": "5059b12c6ea4",
       "location": "杭州 西湖区 灵隐元境 灵隐路40号",
-      "sample_title": "《时空迷局 恐龙危机》沉浸式VR体验",
+      "sample_title": "《太空奥德赛》沉浸互动式VR体验",
       "event_uids": [
-        "douban:37649296"
+        "douban:37649307"
       ],
       "event_count": 1,
       "cached_poi": {
@@ -176,7 +98,7 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：杭州 西湖区 灵隐元境 灵隐路40号 → 灵隐元境（来源 event:douban:37647939）",
+        "reason": "地址映射库命中：杭州 西湖区 灵隐元境 灵隐路40号 → 灵隐元境（来源 event:douban:37649296）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
@@ -185,11 +107,147 @@
       }
     },
     {
-      "group_id": "bc7f289a968d",
-      "location": "杭州 临平区 笑仰剧场 南苑街道迎宾路501号余之城南区L4",
-      "sample_title": "即兴亲子魔术—魔法觉醒",
+      "group_id": "bb48a7afabc5",
+      "location": "杭州 萧山区 杭州烂苹果乐园 风情大道2555号",
+      "sample_title": "【凭身份证入场】杭州烂苹果乐园门票",
       "event_uids": [
-        "douban:37666559"
+        "douban:37742053"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2653001419119241277",
+        "poi_title": "杭州乐园旅游区-烂苹果乐园",
+        "poi_address": "",
+        "latitude": 30.164555,
+        "longitude": 120.242092,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：杭州 萧山区 杭州烂苹果乐园 风情大道2555号 → 杭州乐园旅游区-烂苹果乐园（来源 event:douban:37735925）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "bb48a7afabc5d0fcb5cb7f33d51fb665b9c73f4c"
+      }
+    },
+    {
+      "group_id": "5cf896dd4b23",
+      "location": "杭州 拱墅区 浙话艺术剧院 湖墅南路138号",
+      "sample_title": "正版国漫首部2.5次元真人舞台剧《一人之下》第一部",
+      "event_uids": [
+        "douban:37763963"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "94f739efcce3",
+      "location": "杭州 拱墅区 浙江省文化馆小剧场 武林路77号",
+      "sample_title": "致敬经典·吉他/钢琴弹唱“民谣之夜”live现场演唱会",
+      "event_uids": [
+        "douban:37823845",
+        "douban:37554141",
+        "douban:37784128"
+      ],
+      "event_count": 3,
+      "cached_poi": {
+        "poi_id": "14485686461718363404",
+        "poi_title": "浙江省文化馆小剧场",
+        "poi_address": "",
+        "latitude": 30.260488,
+        "longitude": 120.16026,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：杭州 拱墅区 浙江省文化馆小剧场 武林路77号 → 浙江省文化馆小剧场（来源 event:douban:37672148）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "94f739efcce39c4ff01939ef5d07b01828ac9f46"
+      }
+    },
+    {
+      "group_id": "f8c9beb359e8",
+      "location": "杭州 拱墅区 开心麻花D空间 热电路188号运河文化艺术中心二楼",
+      "sample_title": "开心麻花|新喜剧开放麦",
+      "event_uids": [
+        "douban:37648284"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "12890599965056029825",
+        "poi_title": "杭州开心麻花剧场",
+        "poi_address": "",
+        "latitude": 30.301799,
+        "longitude": 120.127092,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：杭州 拱墅区 开心麻花D空间 热电路188号运河文化艺术中心二楼 → 杭州开心麻花剧场（来源 event:douban:37705752）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "f8c9beb359e83273d976e4bb2fee3be704896882"
+      }
+    },
+    {
+      "group_id": "fd5610fc4086",
+      "location": "杭州 上城区 剧游君 南宋御街中山中路119号",
+      "sample_title": "剧本游《宋商记》",
+      "event_uids": [
+        "douban:37669941"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "10523627004646949900",
+        "poi_title": "南宋御街",
+        "poi_address": "",
+        "latitude": 30.240411,
+        "longitude": 120.17106,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：杭州 上城区 剧游君 南宋御街中山中路119号 → 南宋御街（来源 event:douban:37669956）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "fd5610fc408681c44d11842239344cc39782c5d3"
+      }
+    },
+    {
+      "group_id": "9508c5bc967f",
+      "location": "杭州 上城区 会说笑脱口秀-来福士总店 来福士中心7楼会说笑脱口秀剧场（江锦路地铁站b1口步行200米）",
+      "sample_title": "会说笑喜剧 | Strong单口喜剧专场《真诚认真老实》",
+      "event_uids": [
+        "douban:37705379"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2734576158323804714",
+        "poi_title": "来福士广场(杭州来福士中心)",
+        "poi_address": "",
+        "latitude": 30.248728,
+        "longitude": 120.213051,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：杭州 上城区 会说笑脱口秀-来福士总店 来福士中心7楼会说笑脱口秀剧场（江锦路地铁站b1口步行200米） → 来福士广场(杭州来福士中心)（来源 event:douban:37679149）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "9508c5bc967fa1362960d013bbf98443cd6a5437"
+      }
+    },
+    {
+      "group_id": "6a9e1897f147",
+      "location": "杭州 拱墅区 银河迪厅沉浸式戏剧剧场 大福清巷青春坊32幢",
+      "sample_title": "杭州沉浸式悬疑戏剧 ｜《法外狂徒》｜爆款热销｜谋杀死亡线索｜烧脑反转",
+      "event_uids": [
+        "douban:37809981"
       ],
       "event_count": 1
     }

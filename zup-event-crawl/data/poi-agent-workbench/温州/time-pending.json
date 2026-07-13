@@ -1,25 +1,43 @@
 {
   "city": "温州",
   "source": "douban",
-  "exported_at": "2026-07-10T11:53:32.718Z",
+  "exported_at": "2026-07-13T01:27:35.841Z",
   "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
   "events": [
     {
-      "event_uid": "douban:37899739",
+      "event_uid": "douban:37897501",
       "city": "温州",
       "source": "douban",
-      "title": "286期《群星闪耀时》温州超前免费观影",
-      "time_text": "07月13日 周一 19:00-22:00",
+      "title": "第278期 | 7月18日，《幸福的建筑》读书交流",
+      "time_text": "07月18日 周六 14:00-17:00",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
-      "detail_excerpt": "《群星闪耀时》温州超前免费观影\n活动日期：7月13日（周一）\n签到时间：18:30-19:30\n放映+映后：19:30-21:45（映后仅拍大合影）\n观影地点：博悦汇影城--浙江省温州市鹿城区南汇街道府东路333号温州印象城6楼\n报名链接： https://p.baominggon gju.com/share?eid=6a 4cbf9a821655d5c93614 24&referer=odVL4 1Pl8Iw-5lp-nmmK30eTa 7L4\n报名链接： https://p.baominggongju.com/share?eid=6a4cbf9a821655d5c9361424&referer=odVL41Pl8Iw-5lp-nmmK30eTa7L4",
+      "detail_excerpt": "7月18日（周六），乐清市图书馆二楼文化驿站，我先分享《幸福的建筑》读书心得，然后与书友们一起探讨如何通过空间营造、布置和整理，感受并创造幸福[呲牙][握手][玫瑰]活动免费～～\n活动免费，欢迎报名~~\n领读人的微信/手机号码：13588086696",
       "suggestion": {
-        "start_at": "2026-07-13 19:00:00",
-        "expired_at": "2026-07-13 22:00:00",
+        "start_at": "2026-07-18 14:00:00",
+        "expired_at": "2026-07-18 17:00:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月13日 周一 19:00-22:00"
+        "reason": "豆瓣详情：07月18日 周六 14:00-17:00"
+      }
+    },
+    {
+      "event_uid": "douban:37827902",
+      "city": "温州",
+      "source": "douban",
+      "title": "圆谷正版授权奥特曼系列舞台剧《奥特传奇第3部外星生物来袭》",
+      "time_text": "07月18日 周六 15:00-16:15",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "入场方式说明\n约75分钟（含中场休息10分钟），以现场为准\n主要演员\n以现场为准\n无需预约\n5.现场需至剧院1F票务中心处换取纸质票；\n6.请准时入场，迟到观众需在工作人员指引下有序进场；\n7.演出时长约75分钟（含中场休息10分钟），具体以现场为准。\n-------------------------------------",
+      "suggestion": {
+        "start_at": "2026-07-18 15:00:00",
+        "expired_at": "2026-07-18 16:15:00",
+        "confidence": "high",
+        "reason": "豆瓣详情：07月18日 周六 15:00-16:15"
       }
     }
   ]

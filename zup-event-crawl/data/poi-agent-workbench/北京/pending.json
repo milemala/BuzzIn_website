@@ -1,216 +1,126 @@
 {
   "city": "北京",
   "source": "douban",
-  "exported_at": "2026-07-10T11:22:14.647Z",
+  "exported_at": "2026-07-13T01:34:23.045Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 17,
+  "last_import_new_uids": 7,
   "doubtful_only": false,
-  "total_events": 17,
-  "group_count": 17,
+  "total_events": 7,
+  "group_count": 7,
   "cache_hit_groups": 3,
   "groups": [
     {
-      "group_id": "460690ea2233",
-      "location": "北京 朝阳区 CGV影城-颐堤港ScreenX店(朝阳区酒仙桥路18号颐堤港4层)",
-      "sample_title": "回来了，终于回来了！周星驰喜剧新作《功夫女足》北京公映日免费观影",
+      "group_id": "f7eb42db869a",
+      "location": "北京 西城区 北京展览馆剧场 西直门外大街135号",
+      "sample_title": "且听天命《黑神话：悟空》音乐会",
       "event_uids": [
-        "douban:37898995"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "d996a25e3251",
-      "location": "北京 朝阳区 卢米埃影城(长楹天街东区店)",
-      "sample_title": "《群星闪耀时》北京观影·映后互动【贤Movie600期】",
-      "event_uids": [
-        "douban:37898759"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "3630be5e46e0",
-      "location": "北京 东城区 美术馆东街22号三联韬奋书店",
-      "sample_title": "建筑师的武侠梦——《天书奇谭》新书发布会",
-      "event_uids": [
-        "douban:37898298"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "590cfa18e560",
-      "location": "北京 朝阳区 万达影城cbd",
-      "sample_title": "《群星闪耀时》北京观影·映后互动【贤Movie599期】",
-      "event_uids": [
-        "douban:37898749"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "e8b5cb4f141f",
-      "location": "北京 西城区 北京市东城区隆福寺东院1号院3层EL3-08号做書",
-      "sample_title": "不被枯竭之地吞没——《水在水中》新书分享（北京Vol.2）",
-      "event_uids": [
-        "douban:37898591"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "209c4d273db9",
-      "location": "北京 朝阳区 英皇电影城(北京英皇中心店)",
-      "sample_title": "287期《群星闪耀时》北京超前免费观影",
-      "event_uids": [
-        "douban:37899728"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "1fcf6d39edf0",
-      "location": "北京 西城区 宏恩观",
-      "sample_title": "周六一起古法健身&咖啡",
-      "event_uids": [
-        "douban:37898896"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "3b85fcb11115",
-      "location": "北京 朝阳区 北京SKP 4F SKP RENDEZ-VOUS",
-      "sample_title": "戴思杰 × 张杨 × 余雅琴：跳出时间的人 —— 《唐卡画师》新书分享会",
-      "event_uids": [
-        "douban:37898343"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "99160b004a71",
-      "location": "北京 西城区 西城区西直门外大街1号 凯德MALL·西直门 B1F DT-X RENDEZ-VOUS",
-      "sample_title": "李维明：考古学者李维明的写生之旅@DT-X",
-      "event_uids": [
-        "douban:37898529"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "b185dceef689",
-      "location": "北京 海淀区 国图艺术中心 中关村南大街33号",
-      "sample_title": "缤纷国图2026暑期演出季 流过心底的声音——北京川流室内合唱团经典歌曲音乐会",
-      "event_uids": [
-        "douban:37863237"
+        "douban:37842904"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "9571321068325203195",
-        "poi_title": "国图艺术中心售票处",
+        "poi_id": "7000785431726986367",
+        "poi_title": "北展剧场",
         "poi_address": "",
-        "latitude": 39.944253,
-        "longitude": 116.324218,
+        "latitude": 39.941553,
+        "longitude": 116.344076,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：北京 海淀区 国图艺术中心 中关村南大街33号 → 国图艺术中心售票处（来源 event:douban:37685844）",
+        "reason": "地址映射库命中：北京 西城区 北京展览馆剧场 西直门外大街135号 → 北展剧场（来源 event:douban:37879055）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "b185dceef689a4e0cfea044fd9a935da376fa4fd"
+        "cache_key": "f7eb42db869ada45aa89f2b370e4b408b631233b"
       }
     },
     {
-      "group_id": "08e32e04a545",
-      "location": "北京 朝阳区 平安国际金融中心B座5层",
-      "sample_title": "青山书法社，周末有约",
+      "group_id": "5a636102d4bd",
+      "location": "北京 东城区 Blue Note Beijing 前门东大街23号BlueNoteBeijing",
+      "sample_title": "7.19 Project Project: Space Tour｜放映计划：太空巡演",
       "event_uids": [
-        "douban:37899022"
+        "douban:37886347"
       ],
       "event_count": 1
     },
     {
-      "group_id": "ff9b902b53fd",
-      "location": "北京 朝阳区 小柯剧场 大山子798艺术中心院内751动力广场(近DPARK火车头广场)",
-      "sample_title": "小柯音乐剧《校园民谣》",
+      "group_id": "42548cd8eba7",
+      "location": "北京 西城区 幸会聚场",
+      "sample_title": "豆瓣8.9高分原创小剧场话剧《龟裂》即将于北京上演",
       "event_uids": [
-        "douban:37870719"
+        "douban:37898021"
       ],
       "event_count": 1
     },
     {
-      "group_id": "0540d803bf33",
-      "location": "北京 朝阳区 爱笑喜剧三里屯1号厅 三里屯街道三里屯soho2号商场B1层下沉广场沉浸剧场(爱笑联盟沉浸剧场)",
-      "sample_title": "三里屯太古里|综艺卡司|爆笑脱口秀吐槽专场名大咖|解压打卡|即兴互动精品秀",
+      "group_id": "4751a217ee93",
+      "location": "北京 东城区 磁场剧场NT剧场 南锣鼓巷福祥胡同5号四合院",
+      "sample_title": "《错位时空》沉浸式惊悚魔幻之夜 | 魔术盗梦催眠通灵 | 参与感拉满的互动体验 | 磁场喜剧&南锣鼓巷",
       "event_uids": [
-        "douban:37347186"
+        "douban:37703042"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "2737977171120608097",
-        "poi_title": "下沉广场",
+        "poi_id": "1538483370261171775",
+        "poi_title": "磁场剧场NT剧场",
         "poi_address": "",
-        "latitude": 39.898249,
-        "longitude": 116.505244,
+        "latitude": 39.934372,
+        "longitude": 116.40257,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：北京 朝阳区 爱笑喜剧三里屯1号厅 三里屯街道三里屯soho2号商场B1层下沉广场沉浸剧场(爱笑联盟沉浸剧场) → 下沉广场（来源 event:douban:37627917）",
+        "reason": "地址映射库命中：北京 东城区 磁场剧场NT剧场 南锣鼓巷福祥胡同5号四合院 → 磁场剧场NT剧场（来源 event:douban:37809086）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "0540d803bf33234c9ef28e877213e8d9550b6b56"
+        "cache_key": "4751a217ee93864d8c91a25db1e6bdc2eb678414"
       }
     },
     {
-      "group_id": "0fcf860b70cc",
-      "location": "北京 海淀区 五棵松·爱乐汇艺术空间 复兴路69号五棵松万达广场6层爱乐汇艺术空间五棵松剧场",
-      "sample_title": "【蓝色多瑙河圆舞曲】纪念“小约翰·施特劳斯”经典作品交响音乐会",
+      "group_id": "ac707fe24587",
+      "location": "北京 东城区 前炒面胡同49号可能有书",
+      "sample_title": "7.11-8.30可能有展览 | “少年新知的夏天”",
       "event_uids": [
-        "douban:37680068"
+        "douban:37900416"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "18094129804566749180",
-        "poi_title": "爱乐汇艺术空间",
+        "poi_id": "10671848573001900872",
+        "poi_title": "可能有书",
         "poi_address": "",
-        "latitude": 39.9129,
-        "longitude": 116.276808,
+        "latitude": 39.922623,
+        "longitude": 116.418264,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：北京 海淀区 五棵松·爱乐汇艺术空间 复兴路69号五棵松万达广场6层爱乐汇艺术空间五棵松剧场 → 爱乐汇艺术空间（来源 event:douban:37681155）",
+        "reason": "地址映射库命中：北京 东城区 前炒面胡同49号可能有书 → 可能有书（来源 event:douban:37888970）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "0fcf860b70cc0d1a4aa34a84b7e71e5c071a6ebf"
+        "cache_key": "ac707fe24587667bd83d350aa9512d31488dc0da"
       }
     },
     {
-      "group_id": "ed6d81e86c8f",
-      "location": "北京 西城区 国家大剧院-戏剧场 西长安街2号国家大剧院",
-      "sample_title": "国家大剧院原创喜歌剧《三打白骨精》",
+      "group_id": "1c67cbc2df78",
+      "location": "北京 朝阳区 开心麻花A88剧场 酒仙桥北路9号恒通国际创新园C9A",
+      "sample_title": "【年度爆剧】开心麻花大型宫廷舞台剧《甄嬛传》沉浸版",
       "event_uids": [
-        "douban:37877403"
+        "douban:37814505"
       ],
       "event_count": 1
     },
     {
-      "group_id": "89ba1f26d6e1",
-      "location": "北京 朝阳区 里外livewhy",
-      "sample_title": "纯情三百年 没发霉MFmachine专辑首发专场派对",
+      "group_id": "0df005465d7e",
+      "location": "北京 昌平区 小站公园STATIONPARK一层·可能有书-什么美术馆",
+      "sample_title": "7.11-8.30可能有展览 | “少年新知的夏天”",
       "event_uids": [
-        "douban:37898510"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "440dad98bf86",
-      "location": "北京 海淀区 中华世纪坛一层专题展厅-百年芳心 从瓦尔德米勒到克里姆特：奥地利美景宫花绘真迹展 羊坊店街道复兴路甲9号",
-      "sample_title": "百年芳心 从瓦尔德米勒到克里姆特：奥地利美景宫花绘真迹展",
-      "event_uids": [
-        "douban:37872116"
+        "douban:37900424"
       ],
       "event_count": 1
     }

@@ -1,76 +1,27 @@
 {
   "city": "苏州",
   "source": "douban",
-  "exported_at": "2026-07-10T11:49:15.374Z",
+  "exported_at": "2026-07-13T01:31:56.728Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 3,
+  "last_import_new_uids": 5,
   "doubtful_only": false,
-  "total_events": 3,
-  "group_count": 3,
+  "total_events": 5,
+  "group_count": 4,
   "cache_hit_groups": 3,
   "groups": [
     {
-      "group_id": "8c262da44201",
-      "location": "苏州 相城区 苏州市第二工人文化宫 玉成路219号",
-      "sample_title": "《梁祝》唯美经典名曲小提琴音乐会",
-      "event_uids": [
-        "douban:37521624"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "3559717419426757852",
-        "poi_title": "苏州市第二工人文化宫",
-        "poi_address": "",
-        "latitude": 31.382311,
-        "longitude": 120.596462,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：苏州 相城区 苏州市第二工人文化宫 玉成路219号 → 苏州市第二工人文化宫（来源 event:douban:37768425）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "8c262da4420162ec3d48e4c3414ef8e59531567d"
-      }
-    },
-    {
-      "group_id": "a6b9b2e66c4a",
-      "location": "苏州 姑苏区 开心麻花运河剧场 金门路33号",
-      "sample_title": "新中式舞蹈秀《叹春风》-苏州站",
-      "event_uids": [
-        "douban:37855541"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "18444336822554355830",
-        "poi_title": "开心麻花运河剧场",
-        "poi_address": "",
-        "latitude": 31.309624,
-        "longitude": 120.604756,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：苏州 姑苏区 开心麻花运河剧场 金门路33号 → 开心麻花运河剧场（来源 event:douban:37817979）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "a6b9b2e66c4a5f1027b7f53d9b9de65cce800bfd"
-      }
-    },
-    {
       "group_id": "23718b028bd0",
       "location": "苏州 吴江区 苏州湾大剧院 东太湖大道12000号",
-      "sample_title": "京味儿大戏-老舍经典话剧《茶馆》苏州站",
+      "sample_title": "耳畔SPA——手中的世界沉浸式室内音乐会",
       "event_uids": [
-        "douban:37673856"
+        "douban:37673357",
+        "douban:37673869"
       ],
-      "event_count": 1,
+      "event_count": 2,
       "cached_poi": {
         "poi_id": "11514486545186817455",
         "poi_title": "苏州湾大剧院",
@@ -80,12 +31,71 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：苏州 吴江区 苏州湾大剧院 东太湖大道12000号 → 苏州湾大剧院（来源 event:douban:37832467）",
+        "reason": "地址映射库命中：苏州 吴江区 苏州湾大剧院 东太湖大道12000号 → 苏州湾大剧院（来源 event:douban:37673856）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
         "cache_key": "23718b028bd03fb9d6b782019b5665bcd679e39a"
+      }
+    },
+    {
+      "group_id": "ef06b234c083",
+      "location": "苏州 姑苏区 苏州开明大戏院 观前街北局11号",
+      "sample_title": "温情互动人偶剧《奶奶的诗》",
+      "event_uids": [
+        "douban:37771897"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "4690291939764768068",
+        "poi_title": "苏州开明大戏院(观前街店)",
+        "poi_address": "",
+        "latitude": 31.309343,
+        "longitude": 120.625342,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：苏州 姑苏区 苏州开明大戏院 观前街北局11号 → 苏州开明大戏院(观前街店)（来源 event:douban:37857135）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "ef06b234c08369d546a238d50786db1e45709259"
+      }
+    },
+    {
+      "group_id": "bb3ac37c672a",
+      "location": "苏州 虎丘区 苏州市· 山丘展演空间 新庆东路32号鑫邻里2栋3层",
+      "sample_title": "【苏州】枯木逢春【时间褶皱的旅人】2026巡演-苏州站",
+      "event_uids": [
+        "douban:37856460"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "22328429da75",
+      "location": "苏州 虎丘区 众戏剧文化艺术空间 长江路狮山文化广场B1众戏剧文化艺术空间",
+      "sample_title": "狮山·法国经典舞台喜剧《一个绝望的人》丨轻松欢笑丨沉浸悬疑丨放肆喜剧",
+      "event_uids": [
+        "douban:37582749"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "116162868958338799",
+        "poi_title": "众戏剧文化艺术空间",
+        "poi_address": "",
+        "latitude": 31.293474,
+        "longitude": 120.548244,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：苏州 虎丘区 众戏剧文化艺术空间 长江路狮山文化广场B1众戏剧文化艺术空间 → 众戏剧文化艺术空间（来源 event:douban:37725675）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "22328429da754d653376fc30b6c4195610c673f8"
       }
     }
   ]

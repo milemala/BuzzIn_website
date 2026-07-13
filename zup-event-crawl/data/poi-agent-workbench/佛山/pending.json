@@ -1,24 +1,74 @@
 {
   "city": "佛山",
   "source": "douban",
-  "exported_at": "2026-07-10T11:47:13.098Z",
+  "exported_at": "2026-07-13T01:32:36.308Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 1,
+  "last_import_new_uids": 3,
   "doubtful_only": false,
-  "total_events": 1,
-  "group_count": 1,
-  "cache_hit_groups": 0,
+  "total_events": 3,
+  "group_count": 3,
+  "cache_hit_groups": 2,
   "groups": [
     {
-      "group_id": "d1edc03ceaf0",
-      "location": "佛山 顺德区 顺德演艺中心音乐厅 碧水路德胜文化广场",
-      "sample_title": "[新桐继响---浙韵元音]非遗古琴专场音乐会",
+      "group_id": "9387b97d2387",
+      "location": "佛山 禅城区 琼花大剧院 祖庙路22号",
+      "sample_title": "女性反乌托邦音乐剧《奇美拉》",
       "event_uids": [
-        "douban:37891049"
+        "douban:37759739"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2984913764483185002",
+        "poi_title": "琼花大剧院",
+        "poi_address": "",
+        "latitude": 23.032055,
+        "longitude": 113.111508,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：佛山 禅城区 琼花大剧院 祖庙路22号 → 琼花大剧院（来源 event:douban:37869336）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "9387b97d23874ac82fa9ac2802e37cc07c6b4616"
+      }
+    },
+    {
+      "group_id": "2edd250b4a94",
+      "location": "佛山 顺德区 佛山大剧院 华康道1号",
+      "sample_title": "“鑫”乐之旅——2026钢琴家田佳鑫独奏音乐会",
+      "event_uids": [
+        "douban:37880392"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "16458810857050558908",
+        "poi_title": "佛山大剧院",
+        "poi_address": "",
+        "latitude": 22.968953,
+        "longitude": 113.115754,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：佛山 顺德区 佛山大剧院 华康道1号 → 佛山大剧院（来源 event:douban:37807173）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "2edd250b4a942e975355f920ed70c5cf9164296e"
+      }
+    },
+    {
+      "group_id": "874c5de3f7ee",
+      "location": "佛山 禅城区 金马剧院 同济路57号(近同济广场)",
+      "sample_title": "杨波单口喜剧专场《一波三折》-佛山站",
+      "event_uids": [
+        "douban:37893089"
       ],
       "event_count": 1
     }

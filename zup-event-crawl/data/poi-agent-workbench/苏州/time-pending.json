@@ -1,61 +1,97 @@
 {
   "city": "苏州",
   "source": "douban",
-  "exported_at": "2026-07-10T11:49:15.066Z",
+  "exported_at": "2026-07-13T01:27:34.395Z",
   "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
   "events": [
     {
-      "event_uid": "douban:37521624",
+      "event_uid": "douban:37673357",
       "city": "苏州",
       "source": "douban",
-      "title": "《梁祝》唯美经典名曲小提琴音乐会",
-      "time_text": "08月23日 周日 14:00 ~ 09月13日 周日 15:00",
+      "title": "耳畔SPA——手中的世界沉浸式室内音乐会",
+      "time_text": "07月18日 周六 19:30-20:30",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
-      "detail_excerpt": "60分钟（以现场为准）\n最低演出曲目\n以现场为准\n主要演员\n无需预约\n儿童说明\n特殊提示",
+      "detail_excerpt": "约90分钟（含15分钟中场休息）以现场为准\n最低演出曲目\n以现场为准\n主要演员\n无需预约\n儿童说明\n特殊提示\n耳畔SPA——手中的世界沉浸式室内音乐会\n早鸟优惠\n早鸟时间：2月1日 10:00--2月15日 23:59\n一、剧目介绍\n声行乐团由国内各领域实力音乐演奏家跨界组成，乐团融合了手碟的空灵清澈，低音提琴的低沉豪迈，吉他的清亮洒脱，带您领略古典弦乐/现代打击乐与流行的结合，中低高音之间相互衬托，动静相宜，无论从视觉、听觉以及感观上都能碰撞出精彩的火花，更加融合展现出自然音乐与世界音乐的多样性。正是这种多元化的声音组合，使得声行乐团在业内独树一帜，为您呈现音乐的无限可能。\n二、演出简介\n我们将手碟、 低音提琴、吉他、箱鼓、印第安笛、吟唱等多种声场相互结合，希望通过声（声音）与生（生命）之间的共通链接， 通过音乐的传感疗愈，让我们找到一种探索自我与内在灵魂沟通的方式， 希望可以引领听者沉",
       "suggestion": {
-        "start_at": "2026-08-23 14:00:00",
-        "expired_at": "2026-09-13 15:00:00",
+        "start_at": "2026-07-18 19:30:00",
+        "expired_at": "2026-07-18 20:30:00",
         "confidence": "high",
-        "reason": "豆瓣详情：08月23日 周日 14:00 ~ 09月13日 周日 15:00"
+        "reason": "豆瓣详情：07月18日 周六 19:30-20:30"
       }
     },
     {
-      "event_uid": "douban:37855541",
+      "event_uid": "douban:37771897",
       "city": "苏州",
       "source": "douban",
-      "title": "新中式舞蹈秀《叹春风》-苏州站",
-      "time_text": "07月16日 周四 19:30 ~ 07月17日 周五 20:50",
+      "title": "温情互动人偶剧《奶奶的诗》",
+      "time_text": "07月18日 周六 19:30-20:30",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
-      "detail_excerpt": "入场方式说明\n1.2米以下儿童谢绝入场，1.2米以上儿童凭票入场，建议16周岁以上人群观看。\n以现场为准\n主要演员\n无需预约",
+      "detail_excerpt": "儿童说明\n儿童一律凭票入场，建议3岁及以上人士观看。\n特殊提示\n本场演出全长约 60分钟，无中场休息。（请以现场为准）\n主要演员\n以现场为准\n无需预约\n演出时间：\n2026年7月18日 周六 19:30\n演出地点:\n开明大戏院 大剧场\n演出类型:\n话剧\n票价：\n￥200/150/100\n优惠政策：\n全票档享8折优惠\n双人票特惠：\n双人套票享6.5折优惠\nNotice to audience\n本场演出全长约 60分钟，无中场休息。\nDuration: approximately 60 minutes, no intermission.",
       "suggestion": {
-        "start_at": "2026-07-16 19:30:00",
-        "expired_at": "2026-07-17 20:50:00",
+        "start_at": "2026-07-18 19:30:00",
+        "expired_at": "2026-07-18 20:30:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月16日 周四 19:30 ~ 07月17日 周五 20:50"
+        "reason": "豆瓣详情：07月18日 周六 19:30-20:30"
       }
     },
     {
-      "event_uid": "douban:37673856",
+      "event_uid": "douban:37856460",
       "city": "苏州",
       "source": "douban",
-      "title": "京味儿大戏-老舍经典话剧《茶馆》苏州站",
-      "time_text": "07月17日 周五 19:30-20:30",
+      "title": "【苏州】枯木逢春【时间褶皱的旅人】2026巡演-苏州站",
+      "time_text": "07月18日 周六 19:30-22:00",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
-      "detail_excerpt": "约110分钟（以实际演出为准）\n主要演员\n以现场为准\n无需预约\n儿童说明\n特殊提示\n京味儿大戏-老舍经典话剧《茶馆》苏州站\n演出时间：\n2026年7月17日 周五 19:30\n早鸟优惠",
+      "detail_excerpt": "入场方式说明\n以现场为准\n主要演员\n无需预约",
       "suggestion": {
-        "start_at": "2026-07-17 19:30:00",
-        "expired_at": "2026-07-17 20:30:00",
+        "start_at": "2026-07-18 19:30:00",
+        "expired_at": "2026-07-18 22:00:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月17日 周五 19:30-20:30"
+        "reason": "豆瓣详情：07月18日 周六 19:30-22:00"
+      }
+    },
+    {
+      "event_uid": "douban:37673869",
+      "city": "苏州",
+      "source": "douban",
+      "title": "老舍经典话剧《骆驼祥子》苏州站",
+      "time_text": "07月18日 周六 19:30 ~ 07月19日 周日 15:30",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "约130分钟（以现场为准）\n主要演员\n以现场为准\n无需预约\n儿童说明\n特殊提示\n老舍经典话剧《骆驼祥子》苏州站\n演出时间：\n2026年7月18日 周六 19:30\n2026年7月19日 周日 14:30\n早鸟优惠",
+      "suggestion": {
+        "start_at": "2026-07-18 19:30:00",
+        "expired_at": "2026-07-19 15:30:00",
+        "confidence": "high",
+        "reason": "豆瓣详情：07月18日 周六 19:30 ~ 07月19日 周日 15:30"
+      }
+    },
+    {
+      "event_uid": "douban:37582749",
+      "city": "苏州",
+      "source": "douban",
+      "title": "狮山·法国经典舞台喜剧《一个绝望的人》丨轻松欢笑丨沉浸悬疑丨放肆喜剧",
+      "time_text": "07月31日 周五 19:30-20:45",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "入场方式说明\n以现场为准\n主要演员\n无需预约\n剧场路线图附在文末",
+      "suggestion": {
+        "start_at": "2026-07-31 19:30:00",
+        "expired_at": "2026-07-31 20:45:00",
+        "confidence": "high",
+        "reason": "豆瓣详情：07月31日 周五 19:30-20:45"
       }
     }
   ]

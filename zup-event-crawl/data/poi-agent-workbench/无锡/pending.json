@@ -1,27 +1,26 @@
 {
   "city": "无锡",
   "source": "douban",
-  "exported_at": "2026-07-10T11:53:33.462Z",
+  "exported_at": "2026-07-13T01:32:36.812Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 2,
+  "last_import_new_uids": 1,
   "doubtful_only": false,
-  "total_events": 2,
+  "total_events": 1,
   "group_count": 1,
   "cache_hit_groups": 1,
   "groups": [
     {
       "group_id": "c5997e04a41a",
       "location": "无锡 新吴区 无锡交响音乐厅 净慧西道与清晏路交叉口",
-      "sample_title": "海派筝声—邓翊群筝乐作品创演独奏音乐会（无锡站）",
+      "sample_title": "荷兰浪漫吉他二重奏",
       "event_uids": [
-        "douban:37770366",
-        "douban:37827379"
+        "douban:37770356"
       ],
-      "event_count": 2,
+      "event_count": 1,
       "cached_poi": {
         "poi_id": "2761693111356093735",
         "poi_title": "无锡交响音乐厅",
@@ -31,7 +30,7 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：无锡 新吴区 无锡交响音乐厅 净慧西道与清晏路交叉口 → 无锡交响音乐厅（来源 event:douban:37770374）",
+        "reason": "地址映射库命中：无锡 新吴区 无锡交响音乐厅 净慧西道与清晏路交叉口 → 无锡交响音乐厅（来源 event:douban:37827379）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],

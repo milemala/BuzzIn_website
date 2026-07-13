@@ -1,22 +1,22 @@
 {
   "city": "无锡",
-  "source": "douban",
-  "decided_at": "2026-07-06T10:55:00.000Z",
+  "decided_at": "2026-07-13T01:40:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "f3d25447ea3a",
-      "event_uids": ["douban:37830187"],
+      "group_id": "c5997e04a41a",
+      "event_uids": ["douban:37770356"],
       "action": "match",
       "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "18373871647542107691",
-      "poi_title": "无锡大剧院·歌剧厅",
+      "poi_id": "2761693111356093735",
+      "poi_title": "无锡交响音乐厅",
       "poi_address": "",
-      "latitude": 31.514424,
-      "longitude": 120.278924,
+      "latitude": 31.481164,
+      "longitude": 120.3666,
+      "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：滨湖区无锡大剧院蠡湖大道金石路口"
+      "reason": "地址映射库命中：无锡 新吴区 无锡交响音乐厅 净慧西道与清晏路交叉口 → 无锡交响音乐厅"
     }
   ]
 }

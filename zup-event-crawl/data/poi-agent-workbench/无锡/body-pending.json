@@ -1,6 +1,6 @@
 {
   "city": "无锡",
-  "exported_at": "2026-07-10T11:53:33.391Z",
+  "exported_at": "2026-07-13T01:30:30.649Z",
   "note": "由 Cursor Agent 逐条撰写完整 body（活动介绍 + 参加方式）。见 docs/event-body-agent.md",
   "events": [
     {
@@ -28,8 +28,8 @@
       "suggested": true,
       "douban_event_type": "戏剧-话剧",
       "detail_text": "入场方式说明 本场演出1米以下儿童谢绝入场 约120分钟，以现场为准 主要演员 以现场为准 无需预约 1、本场演出可以使用会员折扣。演出票是进入剧场的唯一凭证，请妥善保管，遗失不补。",
-      "current_body": "",
-      "current_body_source": "pending"
+      "current_body": "老舍经典话剧《骆驼祥子》在无锡大剧院举办话剧。\n\n可于猫眼购票，票价100.0元起。",
+      "current_body_source": "js_fallback"
     },
     {
       "event_uid": "douban:37047366",
@@ -108,12 +108,12 @@
       "fee": "180.0元起",
       "owner": "猫眼演出",
       "time_text": "07月12日 周日 19:30-21:30",
-      "category": "待分类",
+      "category": "音乐现场",
       "suggested": true,
       "douban_event_type": "音乐-音乐会",
       "detail_text": "约90分钟，以现场为准 最低演出曲目 以现场为准 主要演员 无需预约 儿童说明 1米以下儿童谢绝入场 特殊提示",
-      "current_body": "",
-      "current_body_source": "pending"
+      "current_body": "海派筝声—邓翊群筝乐作品创演独奏音乐会（无锡站）在无锡交响音乐厅举办活动。\n\n可于猫眼购票，票价180.0元起。",
+      "current_body_source": "js_fallback"
     },
     {
       "event_uid": "douban:37773783",
@@ -242,6 +242,20 @@
       "current_body_source": "agent"
     },
     {
+      "event_uid": "douban:37770356",
+      "title": "荷兰浪漫吉他二重奏",
+      "location": "无锡 新吴区 无锡交响音乐厅 净慧西道与清晏路交叉口",
+      "fee": "80.0元起",
+      "owner": "猫眼演出",
+      "time_text": "07月19日 周日 19:30-21:30",
+      "category": "音乐现场",
+      "suggested": true,
+      "douban_event_type": "音乐-音乐会",
+      "detail_text": "约90分钟，以现场为准 最低演出曲目 以现场为准 主要演员 无需预约 儿童说明 1米以下儿童谢绝入场。 特殊提示",
+      "current_body": "",
+      "current_body_source": "pending"
+    },
+    {
       "event_uid": "douban:37851298",
       "title": "新国风美学经典舞台剧《红楼梦》",
       "location": "无锡 梁溪区 无锡市人民大会堂 永和路2号",
@@ -290,12 +304,12 @@
       "fee": "50.0元起",
       "owner": "猫眼演出",
       "time_text": "07月14日 周二 19:30-21:30",
-      "category": "待分类",
+      "category": "音乐现场",
       "suggested": true,
       "douban_event_type": "音乐-音乐会",
       "detail_text": "入场方式说明 本场演出1米以下儿童谢绝入场 约90分钟，以现场为准 最低演出曲目 以现场为准 主要演员 无需预约",
-      "current_body": "",
-      "current_body_source": "pending"
+      "current_body": "弗拉基米尔·维什涅夫斯基钢琴独奏音乐会在无锡交响音乐厅举办活动。\n\n可于猫眼购票，票价50.0元起。",
+      "current_body_source": "js_fallback"
     },
     {
       "event_uid": "douban:37534041",

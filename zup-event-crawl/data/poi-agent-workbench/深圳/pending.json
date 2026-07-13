@@ -1,130 +1,135 @@
 {
   "city": "深圳",
   "source": "douban",
-  "exported_at": "2026-07-10T11:27:10.793Z",
+  "exported_at": "2026-07-13T01:32:20.611Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 9,
+  "last_import_new_uids": 6,
   "doubtful_only": false,
-  "total_events": 9,
-  "group_count": 9,
-  "cache_hit_groups": 2,
+  "total_events": 6,
+  "group_count": 6,
+  "cache_hit_groups": 4,
   "groups": [
     {
-      "group_id": "30b8ec43428f",
-      "location": "深圳 福田区 联娱影城（福田京基KKone店）",
-      "sample_title": "这团火永不熄灭《功夫女足》特别观影场｜奇妙观影团·深圳站",
+      "group_id": "7be61bdd975e",
+      "location": "深圳 福田区 来疯喜剧场-上梅林卓悦汇店 中康路126号卓悦汇L2-19b(八合里旁边)来疯喜剧场",
+      "sample_title": "来疯喜剧丨【返场】姚远潮汕语喜剧专场《潮汕喜剧2.0》@上梅林卓悦汇-《给阿嬷的情书》出演全网视频播放量过亿 7月18日",
       "event_uids": [
-        "douban:37898441"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "8a6e9adc872e",
-      "location": "深圳 南山区 前海深港合作区",
-      "sample_title": "境域和鸣~多维艺术交互音乐展演",
-      "event_uids": [
-        "douban:37898540"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "3c358bc170af",
-      "location": "深圳 龙华区 金地梅陇镇",
-      "sample_title": "深圳coffee chat 打破信息茧房",
-      "event_uids": [
-        "douban:37899089"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "151868bf1448",
-      "location": "深圳 福田区 泰然工贸园213栋5楼",
-      "sample_title": "零基础摇摆舞夜校丨7.15-8.5每周三四节swing！开式闭式的基本切换",
-      "event_uids": [
-        "douban:37895395"
+        "douban:37757335"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "16766038513149208802",
-        "poi_title": "泰然工贸园-213栋",
+        "poi_id": "2462313919833142162",
+        "poi_title": "来疯喜剧脱口秀俱乐部(上梅林卓悦汇店)",
         "poi_address": "",
-        "latitude": 22.532026,
-        "longitude": 114.02526,
+        "latitude": 22.570031,
+        "longitude": 114.060644,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：深圳 福田区 泰然工贸园213栋5楼 → 泰然工贸园-213栋（来源 event:douban:37883621）",
+        "reason": "地址映射库命中：深圳 福田区 来疯喜剧场-上梅林卓悦汇店 中康路126号卓悦汇L2-19b(八合里旁边)来疯喜剧场 → 来疯喜剧脱口秀俱乐部(上梅林卓悦汇店)（来源 event:douban:37709082）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "151868bf1448bcc85443cdf07b6e531c8fd5c593"
+        "cache_key": "7be61bdd975e4199f37245a64e1986ed09a33ab1"
       }
     },
     {
-      "group_id": "be7873efaa12",
-      "location": "深圳 南山区 观筑艺术空间",
-      "sample_title": "7.10摇摆舞舞会：零基础教学，还有自由即兴时刻！",
+      "group_id": "c23a4b9a1baa",
+      "location": "深圳 南山区 华侨城创意园E3栋101C ROOTS HOUSE",
+      "sample_title": "演出预告 | 7/18 留念",
       "event_uids": [
-        "douban:37898132"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "36722d457098",
-      "location": "深圳 福田区 荣超经贸中心4801室天空冥想馆楼上 （市民中心地铁站）",
-      "sample_title": "7.12正念沙龙：找到关系沟通中的盲点和亮点，突破以往旧有的人际关系",
-      "event_uids": [
-        "douban:37898232"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "b60056fa5cc0",
-      "location": "深圳 龙岗区 盐田区地铁站集合",
-      "sample_title": "7.11山海出游丨Citywalk世界第三大港唯美夜景，微醺夜话桌游轻松社交",
-      "event_uids": [
-        "douban:37898531"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "f790bd3962cd",
-      "location": "深圳 福田区 安徽大厦创展中心",
-      "sample_title": "7.11【射箭&冰壶体验】室内·拉弓定心投壶谋略，一站式玩转两种运动",
-      "event_uids": [
-        "douban:37898796"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "32d6b270b25f",
-      "location": "深圳 福田区 国际商会大厦A座",
-      "sample_title": "7.13芳香×OH卡沙龙：年中复盘、六维度画布探索、下半年钱景方向",
-      "event_uids": [
-        "douban:37899376"
+        "douban:37894612"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "1928560869740938180",
-        "poi_title": "深圳国际商会大厦A座",
+        "poi_id": "15281668256543917083",
+        "poi_title": "ROOTS HOUSE(华侨城店)",
         "poi_address": "",
-        "latitude": 22.537074,
-        "longitude": 114.05127,
+        "latitude": 22.537591,
+        "longitude": 113.992029,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：深圳 福田区 国际商会大厦A座 → 深圳国际商会大厦A座（来源 event:douban:37856970）",
+        "reason": "地址映射库命中：深圳 南山区 华侨城创意园E3栋101C ROOTS HOUSE → ROOTS HOUSE(华侨城店)（来源 event:douban:37891556）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "32d6b270b25ff361fe06ec146c5f8d0fbe19c0a7"
+        "cache_key": "c23a4b9a1baa4cf181125dfd5710cf87c70136e5"
       }
+    },
+    {
+      "group_id": "701fbd09a0d5",
+      "location": "深圳 福田区 深圳俞兴根中医(综合)诊所（有人员引导至广棠示元研究院）",
+      "sample_title": "《道德经》读书会",
+      "event_uids": [
+        "douban:37900554"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "7d7be3205105",
+      "location": "深圳 南山区 青春无限乐团烛光音乐会音乐厅 沙河街道侨发路侨城坊1栋1层主会场",
+      "sample_title": "奇妙嘿夜烛光音乐会“突然好想你”“晴天”“权力的游戏”曲目三重奏演奏",
+      "event_uids": [
+        "douban:37705411"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "18093005889884925272",
+        "poi_title": "青春无限乐团烛光音乐会(南山店)",
+        "poi_address": "",
+        "latitude": 22.551405,
+        "longitude": 113.980215,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：深圳 南山区 青春无限乐团烛光音乐会音乐厅 沙河街道侨发路侨城坊1栋1层主会场 → 青春无限乐团烛光音乐会(南山店)（来源 event:douban:37655838）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "7d7be32051050df794eb5ffb8c30bfedf7298a55"
+      }
+    },
+    {
+      "group_id": "e780bd4e13a4",
+      "location": "深圳 福田区 新空间剧场 福田街道兆邦基金融大厦503A",
+      "sample_title": "【深圳必看|双人特惠】限定滚烫的乐队|金曲合唱|粤语经典|超绝氛围",
+      "event_uids": [
+        "douban:37730283"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "9365954080090963047",
+        "poi_title": "新空间剧场(福田岗厦店)",
+        "poi_address": "",
+        "latitude": 22.534258,
+        "longitude": 114.06758,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：深圳 福田区 新空间剧场 福田街道兆邦基金融大厦503A → 新空间剧场(福田岗厦店)（来源 event:douban:37761116）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "e780bd4e13a4755065a20a7862d430061e40fd97"
+      }
+    },
+    {
+      "group_id": "dbc768c3fa0e",
+      "location": "深圳 南山区 塘朗山",
+      "sample_title": "深圳周末徒步|约周边短途旅行 休闲周末 山河湖海",
+      "event_uids": [
+        "douban:37827552"
+      ],
+      "event_count": 1
     }
   ]
 }

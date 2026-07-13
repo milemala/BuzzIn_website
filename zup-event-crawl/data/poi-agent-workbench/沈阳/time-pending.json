@@ -1,43 +1,25 @@
 {
   "city": "沈阳",
   "source": "douban",
-  "exported_at": "2026-07-10T11:27:03.428Z",
+  "exported_at": "2026-07-13T01:27:32.791Z",
   "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
   "events": [
     {
-      "event_uid": "douban:37899445",
+      "event_uid": "douban:37849434",
       "city": "沈阳",
       "source": "douban",
-      "title": "沈阳英语角",
-      "time_text": "06月28日 周日 18:00-19:30 ...",
+      "title": "《四熹丸子（徐化文）2026[秋风]巡回演唱会 》",
+      "time_text": "07月18日 周六 19:00-21:00",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
-      "detail_excerpt": "【活动时间】每周日晚6:00-7:30\n【活动地点】皇姑区长江街江楠影城（北行店）五楼魔方小镇城市书房\n【注意事项】\n1.因活动占用场地，请参加的朋友在店里任意消费，谢谢配合。英语角本身免费。\n2.本活动不面向儿童，请带孩子的家长勿扰。\n【活动详情】\n1.自由聊天，每人都有发言机会，口语水平不限。\n2.无论你是大学生、职场达人、或是单纯的英语爱好者，我们都欢迎你，一起练口语，收获快乐的经历。\n3.如有意参加，扫描下方二维码了解更多详情，并注明“豆瓣英语角”，谢绝空降。",
+      "detail_excerpt": "入场方式说明\n本场演出1米以下儿童谢绝入场 1米以上儿童凭票入场\n以现场为准\n最低演出曲目\n主要演员\n无需预约\n《四熹丸子（徐化文）2026[秋风]巡回演唱会 》（合作演出）\n艺术家& 团体\n项目简介\n1、请勿将食品、饮料、口香糖、提包以及照相、摄像录音器材带入场内；\n3、准时入场，请对号入座；迟到的观众，请在厅外等候，待幕间休息时安静入场。",
       "suggestion": {
-        "start_at": "2026-06-28 18:00:00",
-        "expired_at": "2026-09-20 19:30:00",
+        "start_at": "2026-07-18 19:00:00",
+        "expired_at": "2026-07-18 21:00:00",
         "confidence": "high",
-        "reason": "豆瓣 itemprop startDate/endDate"
-      }
-    },
-    {
-      "event_uid": "douban:37449035",
-      "city": "沈阳",
-      "source": "douban",
-      "title": "（大家庭店）【盛夏暑期演出季交互式儿童剧】《狮子王之荣耀王座》四季有戏方城剧场",
-      "time_text": "07月11日 周六 17:30-18:30",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "约60分钟（以现场为准）\n主要演员\n以现场为准\n无需预约\n儿童说明\n特殊提示",
-      "suggestion": {
-        "start_at": "2026-07-11 17:30:00",
-        "expired_at": "2026-07-11 18:30:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月11日 周六 17:30-18:30"
+        "reason": "豆瓣详情：07月18日 周六 19:00-21:00"
       }
     }
   ]

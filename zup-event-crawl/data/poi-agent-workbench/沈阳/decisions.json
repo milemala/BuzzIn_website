@@ -1,40 +1,22 @@
 {
   "city": "沈阳",
-  "source": "douban",
-  "decided_at": "2026-07-10T11:32:00.000Z",
+  "decided_at": "2026-07-13T01:40:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "6f88f8031215",
-      "event_uids": ["douban:37899445"],
-      "action": "match",
-      "search_keywords_tried": ["魔方小镇城市书房 江楠影城"],
-      "poi_id": "9220833629164485147",
-      "poi_title": "魔方城市书房(北行店)",
-      "poi_address": "辽宁省沈阳市皇姑区长江街60号中乾大厦5楼(江楠影城旁)",
-      "latitude": 41.824333,
-      "longitude": 123.412316,
-      "candidates": [
-        {"poi_id": "4902097385790152939", "title": "江楠影城", "address": "辽宁省沈阳市皇姑区长江街58号"},
-        {"poi_id": "9220833629164485147", "title": "魔方城市书房(北行店)", "address": "辽宁省沈阳市皇姑区长江街60号中乾大厦5楼(江楠影城旁)"}
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "皇姑区长江街北行店，中乾大厦5楼江楠影城旁，与活动地址五楼魔方小镇城市书房主体一致，仅店名简写差异"
-    },
-    {
-      "group_id": "08059a540115",
-      "event_uids": ["douban:37449035"],
+      "group_id": "389ed6011b03",
+      "event_uids": ["douban:37849434"],
       "action": "match",
       "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "806701961020494316",
-      "poi_title": "四季有戏方城剧场(盛京大家庭店)",
+      "poi_id": "14733440405124475096",
+      "poi_title": "盛京大剧院",
       "poi_address": "",
-      "latitude": 41.800242,
-      "longitude": 123.454138,
+      "latitude": 41.75427,
+      "longitude": 123.445216,
+      "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：沈河区中街路115号盛京大家庭G层G005与四季有戏方城剧场(盛京大家庭店)一致"
+      "reason": "地址映射库命中：沈阳 沈河区 盛京大剧院 沈水路518号 → 盛京大剧院"
     }
   ]
 }
