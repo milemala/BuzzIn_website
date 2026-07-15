@@ -1,13 +1,17 @@
 {
   "city": "天津",
-  "decided_at": "2026-07-13T09:50:00.000Z",
+  "decided_at": "2026-07-13T14:43:13.358Z",
   "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "2c7f3e208010",
-      "event_uids": ["douban:37900392"],
+      "event_uids": [
+        "douban:37900392"
+      ],
       "action": "match",
-      "search_keywords_tried": ["SFC上影影城天河城店"],
+      "search_keywords_tried": [
+        "SFC上影影城天河城店"
+      ],
       "poi_id": "17697442673876052758",
       "poi_title": "上影国际影城(天河城店)",
       "poi_address": "天津市和平区和平路263号天津天河城购物中心F8",
@@ -20,9 +24,13 @@
     },
     {
       "group_id": "6551918b967e",
-      "event_uids": ["douban:37753360"],
+      "event_uids": [
+        "douban:37753360"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "3246965086466095161",
       "poi_title": "中华剧院",
       "poi_address": "天津 河西区 中华剧院 平江道56号（隆昌路口）",
@@ -35,9 +43,13 @@
     },
     {
       "group_id": "32a9418b22b1",
-      "event_uids": ["douban:37760112"],
+      "event_uids": [
+        "douban:37760112"
+      ],
       "action": "match",
-      "search_keywords_tried": ["大麦66LiveHouse"],
+      "search_keywords_tried": [
+        "大麦66LiveHouse"
+      ],
       "poi_id": "1855733576527756238",
       "poi_title": "大麦·66LiveHouse(棉3创意街区店)",
       "poi_address": "天津市河东区海河东路棉3创意街区1921艺术中心",
@@ -50,9 +62,13 @@
     },
     {
       "group_id": "4f9b7427132a",
-      "event_uids": ["douban:37860349"],
+      "event_uids": [
+        "douban:37860349"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "7738159007364714106",
       "poi_title": "滨海演艺中心",
       "poi_address": "天津 滨海新区 滨海演艺中心 中央大道与大连东道交汇处西南侧",
@@ -62,6 +78,31 @@
       "confidence": "high",
       "doubtful": false,
       "reason": "地址映射库命中，与豆瓣地址完全一致"
+    },
+    {
+      "group_id": "0c48a70e164b",
+      "event_uids": [
+        "douban:37901159"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "金逸影城南开大悦城"
+      ],
+      "poi_id": "12890437453066619890",
+      "poi_title": "金逸影城(大悦城IMAX激光店)",
+      "poi_address": "天津市南开区南门外大街2-6号大悦城F4-4F-13|4F-15",
+      "latitude": 39.134632,
+      "longitude": 117.179998,
+      "candidates": [
+        {
+          "poi_id": "12890437453066619890",
+          "title": "金逸影城(大悦城IMAX激光店)",
+          "address": "天津市南开区南门外大街2-6号大悦城F4-4F-13|4F-15"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "影院与南开大悦城四楼地址一致"
     }
   ]
 }

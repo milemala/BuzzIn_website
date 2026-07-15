@@ -1,56 +1,21 @@
 {
   "city": "北京",
   "source": "douban",
-  "generated_at": "2026-07-13T01:27:31.927Z",
+  "generated_at": "2026-07-13T14:41:11.379Z",
   "note": "可由 Agent 覆写低置信条目后 apply-event-time-decisions.js 入库",
   "decisions": [
     {
-      "event_uid": "douban:37703042",
-      "start_at": "2026-07-13 19:30:00",
-      "expired_at": "2026-07-31 21:00:00",
-      "reason": "豆瓣详情：07月13日 周一 19:30 ~ 07月31日 周五 21:00",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37814505",
-      "start_at": "2026-07-15 19:30:00",
-      "expired_at": "2026-08-30 14:30:00",
-      "reason": "豆瓣详情：07月15日 周三 19:30 ~ 08月30日 周日 14:30",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37842904",
+      "event_uid": "douban:37879752",
       "start_at": "2026-07-18 19:30:00",
-      "expired_at": "2026-07-18 21:00:00",
-      "reason": "豆瓣详情：07月18日 周六 19:30-21:00",
+      "expired_at": "2026-07-18 21:30:59",
+      "reason": "豆瓣详情：07月18日 周六 19:30-21:30",
       "confidence": "high"
     },
     {
-      "event_uid": "douban:37886347",
-      "start_at": "2026-07-19 19:30:00",
-      "expired_at": "2026-07-19 21:00:00",
-      "reason": "豆瓣详情：07月19日 周日 19:30-21:00",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37898021",
-      "start_at": "2026-07-18 15:00:00",
-      "expired_at": "2026-07-19 16:30:00",
-      "reason": "豆瓣详情：07月18日 周六 15:00-16:30 / 07月18日 周六 19:30-21:00 / 07月19日 周日 15:00-16:30",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37900416",
-      "start_at": "2026-07-11 00:00:00",
-      "expired_at": "2026-08-30 21:30:00",
-      "reason": "豆瓣详情：2026年07月11日 ~ 2026年08月30日 每天 00:00 - 21:30",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37900424",
-      "start_at": "2026-07-11 00:00:00",
-      "expired_at": "2026-08-30 21:30:00",
-      "reason": "豆瓣详情：2026年07月11日 ~ 2026年08月30日 每天 00:00 - 21:30",
+      "event_uid": "douban:37900879",
+      "start_at": "2026-07-15 14:10:00",
+      "expired_at": "2026-07-15 15:58:00",
+      "reason": "豆瓣详情：07月15日 周三 14:10-15:58",
       "confidence": "high"
     }
   ],

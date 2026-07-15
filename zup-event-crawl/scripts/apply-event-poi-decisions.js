@@ -20,6 +20,7 @@ const {
 } = require("../lib/review-db");
 
 const { poiDecisionsPath } = require("../lib/export-poi-pending");
+const { resolveTencentPoiCoords } = require("../lib/poi-coords-resolve");
 
 const root = path.join(__dirname, "..");
 const defaultDb = path.join(root, "data", "review.db");
@@ -106,12 +107,27 @@ async function main() {
             continue;
           }
 
+          let latitude = decision.latitude ?? null;
+          let longitude = decision.longitude ?? null;
+          if (latitude == null || longitude == null) {
+            const eventForCity = getEventByUid(db, eventUid);
+            const coords = await resolveTencentPoiCoords({
+              city: payload.city || eventForCity?.city || options.city,
+              poi_id: decision.poi_id,
+              poi_title: decision.poi_title,
+              poi_address: decision.poi_address,
+            });
+            if (coords) {
+              latitude = coords.latitude;
+              longitude = coords.longitude;
+            }
+          }
           const poi = {
             poi_id: decision.poi_id,
             title: decision.poi_title || "",
             address: decision.poi_address || "",
-            latitude: decision.latitude ?? null,
-            longitude: decision.longitude ?? null,
+            latitude,
+            longitude,
           };
           const candidates = Array.isArray(decision.candidates) ? decision.candidates : [];
           const agentMeta = buildAgentMeta({ ...decision, decided_at: payload.decided_at });

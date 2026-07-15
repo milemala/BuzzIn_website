@@ -1,13 +1,17 @@
 {
   "city": "成都",
-  "decided_at": "2026-07-13T09:50:00.000Z",
+  "decided_at": "2026-07-13T14:43:13.358Z",
   "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "b77df371c7f2",
-      "event_uids": ["douban:37900409"],
+      "event_uids": [
+        "douban:37900409"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "2305365833422175537",
       "poi_title": "趣本屋",
       "poi_address": "成都 锦江区 万达·锦华城(二环路东五段)",
@@ -20,17 +24,25 @@
     },
     {
       "group_id": "b8250429a857",
-      "event_uids": ["douban:37845535"],
+      "event_uids": [
+        "douban:37845535"
+      ],
       "action": "reject",
-      "search_keywords_tried": ["东大街上东大街段246号"],
+      "search_keywords_tried": [
+        "东大街上东大街段246号"
+      ],
       "candidates": [],
       "reason": "豆瓣仅给出街道门牌号未写场馆名，同地址有新良大酒店/新良大厦/多家公司候选，无法唯一确定会议具体场馆"
     },
     {
       "group_id": "328a40adfb0f",
-      "event_uids": ["douban:37700007"],
+      "event_uids": [
+        "douban:37700007"
+      ],
       "action": "match",
-      "search_keywords_tried": ["CGT48星梦剧院"],
+      "search_keywords_tried": [
+        "CGT48星梦剧院"
+      ],
       "poi_id": "11280662193288884145",
       "poi_title": "CGT48星梦剧院",
       "poi_address": "四川省成都市成华区建设南支路东郊记忆中央大道1号楼",
@@ -43,9 +55,14 @@
     },
     {
       "group_id": "8cbd1c72926f",
-      "event_uids": ["douban:37435722", "douban:37849378"],
+      "event_uids": [
+        "douban:37435722",
+        "douban:37849378"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "13594744069834774905",
       "poi_title": "一支麦小剧场(成都群光广场店)",
       "poi_address": "成都 锦江区 成都一支麦小剧场 春熙路南段群光广场1栋11楼",
@@ -58,9 +75,13 @@
     },
     {
       "group_id": "ae5737dc288d",
-      "event_uids": ["douban:37501030"],
+      "event_uids": [
+        "douban:37501030"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "2378581386143908742",
       "poi_title": "AUV喜剧剧场(大魔方店)",
       "poi_address": "成都 武侯区 AUV喜剧剧场 石羊街道天府大道北段1777号招商大魔方B馆四楼L4014-4016",
@@ -73,20 +94,92 @@
     },
     {
       "group_id": "0e258bc19fd4",
-      "event_uids": ["douban:37648482"],
+      "event_uids": [
+        "douban:37648482"
+      ],
       "action": "match",
-      "search_keywords_tried": ["ARTE MUSEUM", "ARTE全沉浸式美术馆"],
+      "search_keywords_tried": [
+        "ARTE MUSEUM",
+        "ARTE全沉浸式美术馆"
+      ],
       "poi_id": "13168065296676263536",
       "poi_title": "ARTE 全沉浸式美术馆·成都",
       "poi_address": "四川省成都市成华区跳蹬河街道建设南支路4号东郊记忆园区1号楼",
       "latitude": 30.668436,
       "longitude": 104.121719,
       "candidates": [
-        {"poi_id": "5313149578283899675", "title": "ARTE MUSEUM成都国际数字艺术馆", "address": "四川省成都市成华区建设南支路4号东郊记忆园区1号楼"}
+        {
+          "poi_id": "5313149578283899675",
+          "title": "ARTE MUSEUM成都国际数字艺术馆",
+          "address": "四川省成都市成华区建设南支路4号东郊记忆园区1号楼"
+        }
       ],
       "confidence": "high",
       "doubtful": false,
       "reason": "场馆名与豆瓣location字段「ARTE全沉浸式美术馆·成都」完全一致，地址亦一致"
+    },
+    {
+      "group_id": "326dc8c7c651",
+      "event_uids": [
+        "douban:37901145"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "中影紫荆环球中心"
+      ],
+      "poi_id": "8563528716255735678",
+      "poi_title": "中影紫荆国际影城4K激光IMAX(环球中心旗舰店)",
+      "poi_address": "四川省成都市武侯区天府大道北段1700号2栋1单元401号4FB01A商铺",
+      "latitude": 30.56926,
+      "longitude": 104.064829,
+      "candidates": [
+        {
+          "poi_id": "8563528716255735678",
+          "title": "中影紫荆国际影城4K激光IMAX(环球中心旗舰店)",
+          "address": "四川省成都市武侯区天府大道北段1700号2栋1单元401号4FB01A商铺"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "影院与环球中心旗舰店地址一致"
+    },
+    {
+      "group_id": "ae5469a44b0e",
+      "event_uids": [
+        "douban:37689412"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "12873058663482291414",
+      "poi_title": "发伢剧场(苏宁店)",
+      "poi_address": "",
+      "latitude": 30.601068,
+      "longitude": 104.06599,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：苏宁广场发伢剧场"
+    },
+    {
+      "group_id": "8d49ab5cdabb",
+      "event_uids": [
+        "douban:37817562"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "17793737809543540578",
+      "poi_title": "成都城市音乐厅",
+      "poi_address": "",
+      "latitude": 30.636008,
+      "longitude": 104.079413,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：一环路南一段45号城市音乐厅"
     }
   ]
 }

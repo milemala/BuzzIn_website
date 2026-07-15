@@ -1,7 +1,7 @@
 {
   "city": "厦门",
   "source": "douban",
-  "exported_at": "2026-07-13T01:32:36.604Z",
+  "exported_at": "2026-07-13T14:41:16.189Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
@@ -14,28 +14,28 @@
   "cache_hit_groups": 1,
   "groups": [
     {
-      "group_id": "443813f048be",
-      "location": "厦门 思明区 闽南大戏院 会展北片区横三路(国际会议中心酒店北侧)",
-      "sample_title": "2026年7月19日 奥斯卡·罗曼耶卓（O叔）钢琴独奏音乐会",
+      "group_id": "b9ff6bec5b9e",
+      "location": "厦门 思明区 散步去Champochic(中山路店)",
+      "sample_title": "《我那些奇奇怪怪的朋友们》｜艺术家代田柚月Yuzuki Shirota个展",
       "event_uids": [
-        "douban:37841554"
+        "douban:37900945"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "9553621768810285816",
-        "poi_title": "闽南大戏院·大剧场",
+        "poi_id": "9354332035420960328",
+        "poi_title": "散步去Champochic(中山路店)",
         "poi_address": "",
-        "latitude": 24.474133,
-        "longitude": 118.189124,
+        "latitude": 24.455796,
+        "longitude": 118.084983,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：厦门 思明区 闽南大戏院 会展北片区横三路(国际会议中心酒店北侧) → 闽南大戏院·大剧场（来源 event:douban:37828313）",
+        "reason": "地址映射库命中：厦门 思明区 散步去Champochic(中山路店) → 散步去Champochic(中山路店)（来源 event:douban:37895096）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "443813f048be51bc4cead48c18d559365501f631"
+        "cache_key": "b9ff6bec5b9eebb1e2c6400f03418d29ed875051"
       }
     }
   ]

@@ -1,13 +1,18 @@
 {
   "city": "南京",
-  "decided_at": "2026-07-13T01:40:00.000Z",
+  "decided_at": "2026-07-13T14:43:13.358Z",
   "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "9953b1e5d0f6",
-      "event_uids": ["douban:37899541"],
+      "event_uids": [
+        "douban:37899541"
+      ],
       "action": "match",
-      "search_keywords_tried": ["方所书店", "方所"],
+      "search_keywords_tried": [
+        "方所书店",
+        "方所"
+      ],
       "poi_id": "1867994213661814224",
       "poi_title": "方所(JLC金陵中環店)",
       "poi_address": "江苏省南京市秦淮区王府大街29号JLC金陵中环西区L5-15&16",
@@ -26,9 +31,13 @@
     },
     {
       "group_id": "cdfd2e958cf1",
-      "event_uids": ["douban:37807045"],
+      "event_uids": [
+        "douban:37807045"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "6981577208442308340",
       "poi_title": "江苏大剧院",
       "poi_address": "",
@@ -41,9 +50,13 @@
     },
     {
       "group_id": "8028fa755dbf",
-      "event_uids": ["douban:37862364"],
+      "event_uids": [
+        "douban:37862364"
+      ],
       "action": "match",
-      "search_keywords_tried": ["稻香演艺中心"],
+      "search_keywords_tried": [
+        "稻香演艺中心"
+      ],
       "poi_id": "704805059711045083",
       "poi_title": "稻香演艺中心(西城路店)",
       "poi_address": "江苏省南京市建邺区西城路277号",
@@ -59,6 +72,31 @@
       "confidence": "high",
       "doubtful": false,
       "reason": "地址（建邺区西城路277号）与POI完全一致"
+    },
+    {
+      "group_id": "d4a71f6b17a1",
+      "event_uids": [
+        "douban:37901134"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "幸福蓝海环宇城"
+      ],
+      "poi_id": "1742648908505199704",
+      "poi_title": "幸福蓝海国际影城(IMAX激光环宇城店)",
+      "poi_address": "江苏省南京市鼓楼区清凉门大街1号中海环宇城F4",
+      "latitude": 32.044447,
+      "longitude": 118.753355,
+      "candidates": [
+        {
+          "poi_id": "1742648908505199704",
+          "title": "幸福蓝海国际影城(IMAX激光环宇城店)",
+          "address": "江苏省南京市鼓楼区清凉门大街1号中海环宇城F4"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "影院与中海环宇城四楼地址一致"
     }
   ]
 }

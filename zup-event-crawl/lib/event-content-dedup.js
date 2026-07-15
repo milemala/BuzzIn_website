@@ -10,6 +10,64 @@ function normalizeDedupText(value) {
     .toLowerCase();
 }
 
+/** 去营销词/标点后的标题，用于疑似同名判断 */
+function fuzzyNormalizeEventTitle(title) {
+  return String(title || "")
+    .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, "")
+    .replace(/[【】\[\]()（）「」『』《》<>""'':：·•|｜！!？?…—\-–~～/\\、,.，。；;]/g, "")
+    .replace(/\d{1,2}[./月]\d{1,2}(日)?/g, "")
+    .replace(/\d{4}年/g, "")
+    .replace(/(免费|限时|重磅|必看|必逛|打卡|攻略|合集|汇总|指南|收藏|马住|速码|冲就完了|冲|来袭|来啦|回归|上新|首开|首展|限定|别错过|不容错过|吐血整理|懒人收藏版)/g, "")
+    .replace(/\s+/g, "")
+    .toLowerCase();
+}
+
+function extractTitleTokens(title) {
+  const norm = fuzzyNormalizeEventTitle(title);
+  const tokens = new Set();
+  for (const match of norm.matchAll(/[\u4e00-\u9fa5]{2,}/gu)) tokens.add(match[0]);
+  for (const match of norm.matchAll(/[a-z0-9]{2,}/gi)) tokens.add(match[0].toLowerCase());
+  return [...tokens];
+}
+
+function titleTokenJaccard(a, b) {
+  const left = new Set(extractTitleTokens(a));
+  const right = new Set(extractTitleTokens(b));
+  if (!left.size || !right.size) return 0;
+  let inter = 0;
+  for (const token of left) {
+    if (right.has(token)) inter += 1;
+  }
+  const union = left.size + right.size - inter;
+  return union ? inter / union : 0;
+}
+
+/** 疑似同一活动标题（非仅完全同名） */
+function eventTitlesLikelySame(a, b) {
+  const left = fuzzyNormalizeEventTitle(a);
+  const right = fuzzyNormalizeEventTitle(b);
+  if (!left || !right) return false;
+  if (left === right) return true;
+  const minLen = Math.min(left.length, right.length);
+  if (minLen >= 4 && (left.includes(right) || right.includes(left))) return true;
+  return titleTokenJaccard(a, b) >= 0.72;
+}
+
+function findFuzzyIncumbentByTitlePoi(index, event, city = "", poiId = "") {
+  const eventCity = normalizeDedupText(event.city || city);
+  const title = event.title;
+  const resolvedPoiId = String(poiId || "").trim();
+  if (!title || !resolvedPoiId) return null;
+
+  for (const incumbent of index.values()) {
+    if (normalizeDedupText(incumbent.city) !== eventCity) continue;
+    if (String(incumbent.location_poi_id || "").trim() !== resolvedPoiId) continue;
+    if (!eventTitlesLikelySame(title, incumbent.title)) continue;
+    if (isEventUnexpired(incumbent)) return incumbent;
+  }
+  return null;
+}
+
 /** 名称 + 地址 + 时间（同城）作为内容去重键 */
 function eventContentDedupKey(event) {
   const city = normalizeDedupText(event.city);
@@ -255,6 +313,14 @@ function findTitlePoiUnexpiredConflict(db, eventUid, city, title, poiId) {
     if (!isEventUnexpired(row)) continue;
     return row;
   }
+
+  for (const row of rows) {
+    if (normalizeDedupText(row.city) !== normalizeDedupText(city)) continue;
+    if (String(row.location_poi_id || "").trim() !== String(poiId).trim()) continue;
+    if (!eventTitlesLikelySame(title, row.title)) continue;
+    if (!isEventUnexpired(row)) continue;
+    return row;
+  }
   return null;
 }
 
@@ -281,7 +347,7 @@ function createTitlePoiDedupGate(initialIndex = new Map(), options = {}) {
     });
     if (!key) return { action: "import" };
 
-    const incumbent = index.get(key);
+    const incumbent = index.get(key) || findFuzzyIncumbentByTitlePoi(index, eventRow, eventCity, poiId);
     if (incumbent && isEventUnexpired(incumbent)) {
       skipped += 1;
       return { action: "skip", poiId, incumbent };
@@ -395,8 +461,11 @@ module.exports = {
   eventContentDedupKey,
   eventTitleLocationDedupKey,
   eventTitlePoiDedupKey,
+  eventTitlesLikelySame,
   filterEventsByContentDedup,
+  findFuzzyIncumbentByTitlePoi,
   findTitlePoiUnexpiredConflict,
+  fuzzyNormalizeEventTitle,
   isEventBetterByEnd,
   isEventUnexpired,
   loadContentDedupKeys,

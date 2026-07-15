@@ -1,13 +1,17 @@
 {
   "city": "杭州",
-  "decided_at": "2026-07-13T02:00:00.000Z",
+  "decided_at": "2026-07-13T14:43:13.358Z",
   "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "8012036477ca",
-      "event_uids": ["douban:37898654"],
+      "event_uids": [
+        "douban:37898654"
+      ],
       "action": "match",
-      "search_keywords_tried": ["杭州全球青年人才中心"],
+      "search_keywords_tried": [
+        "杭州全球青年人才中心"
+      ],
       "poi_id": "1891790239626570168",
       "poi_title": "杭州全球青年人才中心",
       "poi_address": "浙江省杭州市萧山区市心北路2000号ITC归谷国际中心B座5楼",
@@ -20,9 +24,13 @@
     },
     {
       "group_id": "40e25ac7f5d7",
-      "event_uids": ["douban:37893368"],
+      "event_uids": [
+        "douban:37893368"
+      ],
       "action": "match",
-      "search_keywords_tried": ["浙江图书馆之江馆"],
+      "search_keywords_tried": [
+        "浙江图书馆之江馆"
+      ],
       "poi_id": "15820043383586955002",
       "poi_title": "浙江图书馆(之江馆区)",
       "poi_address": "浙江省杭州市西湖区文景路与枫桦路交叉口之江文化中心",
@@ -35,9 +43,13 @@
     },
     {
       "group_id": "d117fafdd001",
-      "event_uids": ["douban:37785201"],
+      "event_uids": [
+        "douban:37785201"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "12910066855958083747",
       "poi_title": "浙江音乐厅",
       "poi_address": "",
@@ -50,9 +62,13 @@
     },
     {
       "group_id": "0b4232fbabec",
-      "event_uids": ["douban:37894776"],
+      "event_uids": [
+        "douban:37894776"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "23930873321709565",
       "poi_title": "标力大厦B座",
       "poi_address": "",
@@ -65,9 +81,13 @@
     },
     {
       "group_id": "5059b12c6ea4",
-      "event_uids": ["douban:37649307"],
+      "event_uids": [
+        "douban:37649307"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "6109606932565607999",
       "poi_title": "灵隐元境",
       "poi_address": "",
@@ -80,9 +100,13 @@
     },
     {
       "group_id": "bb48a7afabc5",
-      "event_uids": ["douban:37742053"],
+      "event_uids": [
+        "douban:37742053"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "2653001419119241277",
       "poi_title": "杭州乐园旅游区-烂苹果乐园",
       "poi_address": "",
@@ -95,41 +119,38 @@
     },
     {
       "group_id": "5cf896dd4b23",
-      "event_uids": ["douban:37763963"],
+      "event_uids": [
+        "douban:37763963"
+      ],
       "action": "match",
-      "search_keywords_tried": ["浙话艺术剧院"],
+      "search_keywords_tried": [
+        "浙话艺术剧院"
+      ],
       "poi_id": "3707522872993218642",
       "poi_title": "浙话艺术剧院-西南门",
       "poi_address": "浙江省杭州市拱墅区米市巷街道湖墅南路136-138号浙话艺术剧院",
       "latitude": 30.279358,
       "longitude": 120.15484,
       "candidates": [
-        {"poi_id": "4058054413726796086", "title": "浙话艺术剧院·幕光里", "address": "浙江省杭州市拱墅区米市巷街道湖墅南路138号浙话艺术剧院内4楼·新空间小剧场"}
+        {
+          "poi_id": "4058054413726796086",
+          "title": "浙话艺术剧院·幕光里",
+          "address": "浙江省杭州市拱墅区米市巷街道湖墅南路138号浙话艺术剧院内4楼·新空间小剧场"
+        }
       ],
       "confidence": "medium",
       "doubtful": false,
       "reason": "地址与豆瓣湖墅南路138号浙话艺术剧院完全一致；腾讯地图无剧院主厅独立POI，取建筑门禁点代表剧院主体，未见更精确店级POI"
     },
     {
-      "group_id": "94f739efcce3",
-      "event_uids": ["douban:37823845", "douban:37554141", "douban:37784128"],
-      "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "14485686461718363404",
-      "poi_title": "浙江省文化馆小剧场",
-      "poi_address": "",
-      "latitude": 30.260488,
-      "longitude": 120.16026,
-      "candidates": [],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中，直接沿用"
-    },
-    {
       "group_id": "f8c9beb359e8",
-      "event_uids": ["douban:37648284"],
+      "event_uids": [
+        "douban:37648284"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "12890599965056029825",
       "poi_title": "杭州开心麻花剧场",
       "poi_address": "",
@@ -142,9 +163,13 @@
     },
     {
       "group_id": "fd5610fc4086",
-      "event_uids": ["douban:37669941"],
+      "event_uids": [
+        "douban:37669941"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "10523627004646949900",
       "poi_title": "南宋御街",
       "poi_address": "",
@@ -157,9 +182,13 @@
     },
     {
       "group_id": "9508c5bc967f",
-      "event_uids": ["douban:37705379"],
+      "event_uids": [
+        "douban:37705379"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "2734576158323804714",
       "poi_title": "来福士广场(杭州来福士中心)",
       "poi_address": "",
@@ -172,10 +201,61 @@
     },
     {
       "group_id": "6a9e1897f147",
-      "event_uids": ["douban:37809981"],
+      "event_uids": [
+        "douban:37809981"
+      ],
       "action": "reject",
-      "search_keywords_tried": ["银河迪厅沉浸式戏剧剧场", "银河迪厅", "青春坊32幢", "大福清巷"],
+      "search_keywords_tried": [
+        "银河迪厅沉浸式戏剧剧场",
+        "银河迪厅",
+        "青春坊32幢",
+        "大福清巷"
+      ],
       "reason": "多次搜索均无法找到该沉浸式戏剧剧场的店级POI，青春坊32幢/大福清巷地址下候选均为住宅、酒店、酒吧等无关类目，无法唯一确定场馆"
+    },
+    {
+      "group_id": "271a89a2453a",
+      "event_uids": [
+        "douban:37803636"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "浙江胜利剧院"
+      ],
+      "poi_id": "13012372997075673346",
+      "poi_title": "胜利剧院(电影院)",
+      "poi_address": "浙江省杭州市上城区延安路285号",
+      "latitude": 30.256228,
+      "longitude": 120.163582,
+      "candidates": [
+        {
+          "poi_id": "13012372997075673346",
+          "title": "胜利剧院(电影院)",
+          "address": "浙江省杭州市上城区延安路285号"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "胜利剧院与上城区延安路门牌一致（279/285同院）"
+    },
+    {
+      "group_id": "94f739efcce3",
+      "event_uids": [
+        "douban:37703821"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "14485686461718363404",
+      "poi_title": "浙江省文化馆小剧场",
+      "poi_address": "",
+      "latitude": 30.260488,
+      "longitude": 120.16026,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：武林路77号浙江省文化馆小剧场"
     }
   ]
 }

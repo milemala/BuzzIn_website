@@ -156,6 +156,12 @@
     .back-top:hover{border-color:#c8b89f}
     .import-block{margin-top:12px;padding:12px;border:1px solid var(--line);border-radius:8px;background:#f7f6f2}
     .import-block h3{margin:0 0 8px;font-size:13px;font-weight:800;color:#3a342c}
+    .classification-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;margin-top:8px}
+    .classification-grid .classification-reason{grid-column:1/-1}
+    .classification-status{margin-top:8px;font-size:12px;line-height:1.45;color:var(--muted)}
+    .classification-status.warn{color:#806200}
+    .classification-status.error{color:#ad382c}
+    .classification-status.ok{color:#197549}
     .import-row{display:grid;gap:8px;font-size:13px}
     .import-meta{color:var(--muted);font-size:12px;line-height:1.45;word-break:break-all}
     .entity-id{font-size:11px;color:var(--muted);line-height:1.45;word-break:break-all}
@@ -321,7 +327,7 @@
 
   <script src="/buzz-env-ui.js"></script>
   <script>
-    let payload = { events: [], cities: [], cityMeta: {}, sourcePages: {}, dateWindow: [] };
+    let payload = { events: [], cities: [], cityMeta: {}, sourcePages: {}, dateWindow: [], eventCategories: [] };
     const stateKey = "zup-crawl-review-v1";
     let reviewState = JSON.parse(localStorage.getItem(stateKey) || "{}");
     let serverSaveEnabled = false;
@@ -351,11 +357,11 @@
     let reviewBusy = false;
     const BATCH_REVIEW_STATUS_FILTERS = new Set([
       "pending", "pending_incomplete", "no_poi", "poi_doubtful", "rule-blocked",
-      "start_over_1w", "start_over_2w", "start_over_4w",
+      "start_over_1w", "start_over_2w", "start_over_3w", "start_over_4w",
     ]);
     const BATCH_ACTION_FILTERS = new Set([
       ...BATCH_REVIEW_STATUS_FILTERS,
-      "import_ready", "expire_over_2w", "expire_over_1m",
+      "import_ready", "expire_over_2w", "expire_over_1m", "expire_over_2m",
     ]);
     const FILTER_LABELS = {
       pending: "待定",
@@ -363,12 +369,14 @@
       no_poi: "未匹配 POI",
       poi_doubtful: "POI 存疑",
       "rule-blocked": "挡下待处理",
-      start_over_1w: "距离开始1周以上",
-      start_over_2w: "距离开始2周以上",
-      start_over_4w: "距离开始4周以上",
+      start_over_1w: "1周以后才开始",
+      start_over_2w: "2周以后才开始",
+      start_over_3w: "3周以后才开始",
+      start_over_4w: "4周及以后才开始",
       import_ready: "待推送",
       expire_over_2w: "过期超2周",
       expire_over_1m: "过期超1个月",
+      expire_over_2m: "过期超2个月",
       all: "全部",
       "classification-pending": "待分类",
       approved: "已通过",
@@ -378,7 +386,7 @@
     };
     const BATCH_REVIEW_FILTER_LABELS = FILTER_LABELS;
     const MS_DAY = 24 * 60 * 60 * 1000;
-    const START_DISTANCE_FILTERS = new Set(["start_over_1w", "start_over_2w", "start_over_4w"]);
+    const START_DISTANCE_FILTERS = new Set(["start_over_1w", "start_over_2w", "start_over_3w", "start_over_4w"]);
     const BATCH_ACTIONS_BY_FILTER = {
       pending: ["approve", "reject"],
       pending_incomplete: ["approve", "reject"],
@@ -387,10 +395,12 @@
       "rule-blocked": ["approve", "reject"],
       start_over_1w: ["approve", "reject", "import", "deleteBuzz"],
       start_over_2w: ["approve", "reject", "import", "deleteBuzz"],
+      start_over_3w: ["approve", "reject", "import", "deleteBuzz"],
       start_over_4w: ["approve", "reject", "import", "deleteBuzz"],
       import_ready: ["import", "deleteBuzz"],
       expire_over_2w: ["shortenExpire"],
       expire_over_1m: ["shortenExpire"],
+      expire_over_2m: ["shortenExpire"],
     };
     const BATCH_ACTION_LABELS = {
       approve: "批量通过",
@@ -410,7 +420,7 @@
       "all", "classification-pending", "rule-blocked",
       "approved", "rejected", "pending", "pending_incomplete", "import_ready", "no_poi", "poi_doubtful", "expired",
       "imported_not_expired",
-      "start_over_1w", "start_over_2w", "start_over_4w", "expire_over_2w", "expire_over_1m",
+      "start_over_1w", "start_over_2w", "start_over_3w", "start_over_4w", "expire_over_2w", "expire_over_1m", "expire_over_2m",
     ];
     const REMOVED_STATUS_FILTERS = new Set(["imported", "suggested"]);
 
@@ -471,6 +481,140 @@
         : `<span class="chip classify-blocked">已挡下</span>`;
     }
 
+    const EVENT_CATEGORIES_FALLBACK = [
+      "约饭", "戏剧表演", "音乐现场", "市集", "体育运动", "户外活动",
+      "主题沙龙", "看展逛馆", "遛娃亲子", "其他",
+    ];
+
+    function getEventCategories() {
+      const list = Array.isArray(payload.eventCategories) ? payload.eventCategories : EVENT_CATEGORIES_FALLBACK;
+      return list.filter(Boolean);
+    }
+
+    function normalizeEventCategoryForSelect(event) {
+      const cat = String(event.category || "").trim();
+      return getEventCategories().includes(cat) ? cat : "";
+    }
+
+    function classificationSuggestedValue(event) {
+      if (isClassificationPending(event)) return "true";
+      return event.suggested === true || event.suggested === 1 ? "true" : "false";
+    }
+
+    function renderClassificationBlock(event) {
+      const uid = event.eventUid || event.event_uid || event.id;
+      const categories = getEventCategories();
+      const currentCategory = normalizeEventCategoryForSelect(event);
+      const suggestedVal = classificationSuggestedValue(event);
+      const reason = String(event.reviewReason || event.review_reason || "").trim();
+      const placeholder = `<option value="" disabled ${currentCategory ? "" : "selected"}>选择类型</option>`;
+      const categoryOptions = categories.map((cat) => `
+        <option value="${escapeHtml(cat)}" ${cat === currentCategory ? "selected" : ""}>${escapeHtml(cat)}</option>
+      `).join("");
+      return `
+        <div class="import-block classification-block">
+          <h3>手动分类</h3>
+          <div class="classification-grid">
+            <div class="import-field">
+              <label for="class-cat-${escapeHtml(uid)}">活动类型</label>
+              <select id="class-cat-${escapeHtml(uid)}" data-classification-field="category" data-classification-initial="${escapeHtml(currentCategory)}">
+                ${placeholder}${categoryOptions}
+              </select>
+            </div>
+            <div class="import-field">
+              <label for="class-sug-${escapeHtml(uid)}">判定</label>
+              <select id="class-sug-${escapeHtml(uid)}" data-classification-field="suggested" data-classification-initial="${suggestedVal}">
+                <option value="true" ${suggestedVal === "true" ? "selected" : ""}>推荐</option>
+                <option value="false" ${suggestedVal === "false" ? "selected" : ""}>挡下</option>
+              </select>
+            </div>
+            <div class="import-field classification-reason">
+              <label for="class-reason-${escapeHtml(uid)}">理由</label>
+              <input id="class-reason-${escapeHtml(uid)}" type="text" data-classification-field="reason" data-classification-initial="${escapeHtml(reason)}" value="${escapeHtml(reason)}" placeholder="简要说明分类依据" maxlength="200">
+            </div>
+          </div>
+          <div class="import-actions">
+            <button class="mini" type="button" data-save-classification>保存分类</button>
+          </div>
+          <div class="classification-status" data-classification-status hidden></div>
+        </div>
+      `;
+    }
+
+    function setClassificationStatus(card, message, type = "") {
+      const el = card?.querySelector("[data-classification-status]");
+      if (!el) return;
+      if (!message) {
+        el.hidden = true;
+        el.textContent = "";
+        el.className = "classification-status";
+        return;
+      }
+      el.hidden = false;
+      el.textContent = message;
+      el.className = `classification-status ${type || ""}`.trim();
+    }
+
+    async function saveEventClassification(card) {
+      if (!card) return null;
+      const uid = card.dataset.uid;
+      const categoryField = card.querySelector("[data-classification-field='category']");
+      const suggestedField = card.querySelector("[data-classification-field='suggested']");
+      const reasonField = card.querySelector("[data-classification-field='reason']");
+      const saveBtn = card.querySelector("button[data-save-classification]");
+      if (!categoryField || !suggestedField || !reasonField) return null;
+
+      const category = String(categoryField.value || "").trim();
+      const suggested = suggestedField.value === "true";
+      const reason = String(reasonField.value || "").trim() || "审核台手动分类";
+      if (!category) {
+        const message = "请先选择活动类型";
+        setClassificationStatus(card, message, "warn");
+        setSaveState(message, "warn");
+        categoryField.focus();
+        return null;
+      }
+
+      if (saveBtn) saveBtn.disabled = true;
+      setClassificationStatus(card, "保存中...", "warn");
+      setSaveState("保存分类...", "warn");
+      try {
+        const response = await fetch(`/api/events/${encodeURIComponent(uid)}/classification`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ category, suggested, reason }),
+        });
+        let data = {};
+        try {
+          data = await response.json();
+        } catch (parseError) {
+          throw new Error(response.status === 404
+            ? "分类接口不可用，请重启审核服务后重试"
+            : "保存失败，服务返回异常");
+        }
+        if (!response.ok || !data.ok) {
+          throw new Error(data.error || (response.status === 404
+            ? "分类接口不可用，请重启审核服务后重试"
+            : "保存失败"));
+        }
+        upsertEvent(data.event);
+        categoryField.dataset.classificationInitial = category;
+        suggestedField.dataset.classificationInitial = suggested ? "true" : "false";
+        reasonField.dataset.classificationInitial = reason;
+        setClassificationStatus(card, "分类已保存", "ok");
+        setSaveState("分类已保存", "ok");
+        render();
+        return data.event;
+      } catch (error) {
+        const message = error.message || "保存分类失败";
+        setClassificationStatus(card, message, "error");
+        setSaveState(message, "error");
+        return null;
+      } finally {
+        if (saveBtn) saveBtn.disabled = false;
+      }
+    }
+
     function setStatusFilter(next) {
       statusFilter = next;
       statusFilterEl.querySelectorAll("button").forEach((item) => {
@@ -519,6 +663,30 @@
       const start = getEventStartAt(event);
       if (!start) return false;
       return start.getTime() > Date.now() + days * MS_DAY;
+    }
+
+    /** 开始时间在 (afterDays, beforeDays) 周内，如 1周以后才开始 = 大于1周、小于2周 */
+    function startsBetweenWeeks(event, afterDays, beforeDays) {
+      const start = getEventStartAt(event);
+      if (!start) return false;
+      const daysFromNow = (start.getTime() - Date.now()) / MS_DAY;
+      if (daysFromNow <= afterDays) return false;
+      if (daysFromNow >= beforeDays) return false;
+      return true;
+    }
+
+    function startsAtOrAfterWeeks(event, weeks) {
+      const start = getEventStartAt(event);
+      if (!start) return false;
+      return start.getTime() >= Date.now() + weeks * 7 * MS_DAY;
+    }
+
+    function matchesStartWeekFilter(event, filter) {
+      if (filter === "start_over_1w") return startsBetweenWeeks(event, 7, 14);
+      if (filter === "start_over_2w") return startsBetweenWeeks(event, 14, 21);
+      if (filter === "start_over_3w") return startsBetweenWeeks(event, 21, 28);
+      if (filter === "start_over_4w") return startsAtOrAfterWeeks(event, 4);
+      return false;
     }
 
     function expiresAfterDaysFromNow(event, days) {
@@ -1924,11 +2092,13 @@
       if (filter === "pending_incomplete") return isReviewPendingIncomplete(event);
       if (filter === "expired") return isExpired(event);
       if (filter === "imported_not_expired") return isImportedNotExpired(event);
-      if (filter === "start_over_1w") return startsAfterDays(event, 7);
-      if (filter === "start_over_2w") return startsAfterDays(event, 14);
-      if (filter === "start_over_4w") return startsAfterDays(event, 28);
+      if (filter === "start_over_1w") return matchesStartWeekFilter(event, "start_over_1w");
+      if (filter === "start_over_2w") return matchesStartWeekFilter(event, "start_over_2w");
+      if (filter === "start_over_3w") return matchesStartWeekFilter(event, "start_over_3w");
+      if (filter === "start_over_4w") return matchesStartWeekFilter(event, "start_over_4w");
       if (filter === "expire_over_2w") return matchesExpireOverFilter(event, 14);
       if (filter === "expire_over_1m") return matchesExpireOverFilter(event, 30);
+      if (filter === "expire_over_2m") return matchesExpireOverFilter(event, 60);
       if (["approved", "rejected"].includes(filter)) return status === filter;
       return true;
     }
@@ -2065,11 +2235,13 @@
         { key: "pending", label: "待定" },
         { key: "pending_incomplete", label: "待完善" },
         { key: "import_ready", label: "待推送" },
-        { key: "start_over_1w", label: "距离开始1周以上" },
-        { key: "start_over_2w", label: "距离开始2周以上" },
-        { key: "start_over_4w", label: "距离开始4周以上" },
+        { key: "start_over_1w", label: "1周以后才开始" },
+        { key: "start_over_2w", label: "2周以后才开始" },
+        { key: "start_over_3w", label: "3周以后才开始" },
+        { key: "start_over_4w", label: "4周及以后才开始" },
         { key: "expire_over_2w", label: "过期超2周" },
         { key: "expire_over_1m", label: "过期超1个月" },
+        { key: "expire_over_2m", label: "过期超2个月" },
         { key: "no_poi", label: "未匹配 POI" },
         { key: "poi_doubtful", label: "POI 存疑" },
         { key: "expired", label: "已过期" },
@@ -2268,6 +2440,7 @@
                 <div class="body-meta">最多 500 字 · 失焦或点「保存简介」</div>
               </div>
               <div class="reason">${escapeHtml(event.reviewReason)}</div>
+              ${renderClassificationBlock(event)}
               <div class="import-block">
                 <h3>推送 Zup 准备</h3>
                 <div class="import-row">
@@ -2479,17 +2652,27 @@
     }, { passive: true });
 
     listEl.addEventListener("click", (event) => {
-      const button = event.target.closest("button[data-next]");
+      const clickEl = event.target instanceof Element ? event.target : event.target?.parentElement;
+      if (!clickEl) return;
+
+      const saveClassBtn = clickEl.closest("button[data-save-classification]");
+      if (saveClassBtn) {
+        const card = saveClassBtn.closest("article.card[data-uid]");
+        if (card) void saveEventClassification(card);
+        return;
+      }
+
+      const button = clickEl.closest("button[data-next]");
       if (button) {
       setStatus(button.dataset.id, button.dataset.next);
         return;
       }
 
-      const card = event.target.closest("article.card[data-uid]");
+      const card = clickEl.closest("article.card[data-uid]");
       if (!card) return;
       const uid = card.dataset.uid;
 
-      const poiBtn = event.target.closest("button[data-poi-action]");
+      const poiBtn = clickEl.closest("button[data-poi-action]");
       if (poiBtn) {
         const action = poiBtn.dataset.poiAction;
         if (action === "refresh") {
@@ -2502,7 +2685,7 @@
         return;
       }
 
-      const previewBtn = event.target.closest("button[data-poi-preview-index]");
+      const previewBtn = clickEl.closest("button[data-poi-preview-index]");
       if (previewBtn) {
         const list = poiPreviews[uid] || [];
         const poi = list[Number(previewBtn.dataset.poiPreviewIndex)];
@@ -2518,25 +2701,25 @@
         return;
       }
 
-      const candBtn = event.target.closest("button[data-poi-index]");
+      const candBtn = clickEl.closest("button[data-poi-index]");
       if (candBtn) {
         applyPoi(uid, { candidate_index: Number(candBtn.dataset.poiIndex) });
         return;
       }
 
-      const importBtn = event.target.closest("button[data-import-uid]");
+      const importBtn = clickEl.closest("button[data-import-uid]");
       if (importBtn && !importBtn.disabled) {
         importSingleEvent(importBtn.dataset.importUid);
         return;
       }
 
-      const deleteBtn = event.target.closest("button[data-delete-buzz-uid]");
+      const deleteBtn = clickEl.closest("button[data-delete-buzz-uid]");
       if (deleteBtn) {
         deleteBuzzNow(deleteBtn.dataset.deleteBuzzUid, deleteBtn.dataset.deleteBuzzNowId);
         return;
       }
 
-      const saveBodyBtn = event.target.closest("button[data-save-body]");
+      const saveBodyBtn = clickEl.closest("button[data-save-body]");
       if (saveBodyBtn) {
         const card = saveBodyBtn.closest("article.card[data-uid]");
         const bodyField = card?.querySelector("[data-import-field='body']");

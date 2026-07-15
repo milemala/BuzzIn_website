@@ -1,139 +1,189 @@
 {
   "city": "天津",
   "source": "xiaohongshu",
-  "exported_at": "2026-07-07T02:18:59.514Z",
+  "exported_at": "2026-07-14T00:59:33.929Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 12,
+  "last_import_new_uids": 22,
   "doubtful_only": false,
-  "total_events": 12,
-  "group_count": 12,
-  "cache_hit_groups": 1,
+  "total_events": 22,
+  "group_count": 19,
+  "cache_hit_groups": 0,
   "groups": [
     {
-      "group_id": "abd816cac0b7",
-      "location": "天津市红桥区大丰路25-29号 陆家嘴中心1层",
+      "group_id": "b0961db74cc6",
+      "location": "天津智慧山北塔·那山LIFE 1-2F（地铁3号线华苑站B口，步行1.4km）",
+      "sample_title": "大脑出逃艺术小市",
+      "event_uids": [
+        "xiaohongshu:6a54a354000000000f032100:01_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "7afa81b236ef",
+      "location": "天津陆家嘴中心1层（地铁1号线西北角站）",
       "sample_title": "天津手帐集市",
       "event_uids": [
-        "xiaohongshu:6a3e3f56000000000f030562:01_0"
+        "xiaohongshu:6a54a354000000000f032100:01_1"
       ],
       "event_count": 1
     },
     {
-      "group_id": "ac37d5c1a345",
-      "location": "天津梅江印象城",
-      "sample_title": "天津首届超级冰甜节",
+      "group_id": "9e81f8cc40ea",
+      "location": "天津东丽万达户外广场（地铁11号线至东丽文体中心A口）",
+      "sample_title": "GuangGuang夏日面包节",
       "event_uids": [
-        "xiaohongshu:6a3e3f56000000000f030562:01_1"
+        "xiaohongshu:6a54a354000000000f032100:01_2"
       ],
       "event_count": 1
     },
     {
-      "group_id": "f9b343fe9aea",
-      "location": "待定",
-      "sample_title": "天津甜品节",
+      "group_id": "db28ba2634c3",
+      "location": "天津杉杉奥特莱斯2号门外草坪（地铁3号线至南站D口）",
+      "sample_title": "天津杉杉奥莱·33假日集",
       "event_uids": [
-        "xiaohongshu:6a3e3f56000000000f030562:02_0"
+        "xiaohongshu:6a54a354000000000f032100:02_0"
       ],
       "event_count": 1
     },
     {
-      "group_id": "8fa3031fd8bc",
-      "location": "国家会展中心S10馆",
-      "sample_title": "趣宠狂欢节萌宠市集",
+      "group_id": "e13f92776f4b",
+      "location": "迪空间·新能源汽车科普馆（地铁2号线东南角站C口）",
+      "sample_title": "海河之夜消夏晚会",
       "event_uids": [
-        "xiaohongshu:6a3e3f56000000000f030562:02_1"
+        "xiaohongshu:6a54a354000000000f032100:02_1"
       ],
       "event_count": 1
     },
     {
-      "group_id": "7dc866f627d4",
-      "location": "智慧山北塔·那山LIFE 1F-2F",
-      "sample_title": "大脑出逃·艺术小市",
+      "group_id": "d1e5592b4696",
+      "location": "天津津一PARK（地铁9号线一号桥站A口）",
+      "sample_title": "津一park公园节",
       "event_uids": [
-        "xiaohongshu:6a3e3f56000000000f030562:03_0"
+        "xiaohongshu:6a54a354000000000f032100:02_2"
       ],
       "event_count": 1
     },
     {
-      "group_id": "6db628f366db",
-      "location": "乘云广场户外广场",
-      "sample_title": "精酿啤酒巡饮计划",
+      "group_id": "b6fe257e590d",
+      "location": "天津津一Park（地铁9号线一号桥站A口）",
+      "sample_title": "好玩「亚」微醺市集",
       "event_uids": [
-        "xiaohongshu:6a3e3f56000000000f030562:03_1"
+        "xiaohongshu:6a54a354000000000f032100:03_0"
       ],
       "event_count": 1
     },
     {
-      "group_id": "4826c15b558f",
-      "location": "天津国家会展中心S2馆",
-      "sample_title": "天津国际咖啡烘焙展市集",
-      "event_uids": [
-        "xiaohongshu:6a3e3f56000000000f030562:04_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "0e9f0bdcad8d",
-      "location": "津一PARK",
-      "sample_title": "津一PARK公园节",
-      "event_uids": [
-        "xiaohongshu:6a3e3f56000000000f030562:04_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "1c6135508539",
-      "location": "天津嘉里中心L1",
-      "sample_title": "菌子熟了 见手青了",
-      "event_uids": [
-        "xiaohongshu:6a3e3f56000000000f030562:05_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "c605ff607e2b",
-      "location": "东疆亲海公园北1门南350米",
-      "sample_title": "日出东疆·海风市集",
-      "event_uids": [
-        "xiaohongshu:6a3e3f56000000000f030562:05_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "20f09bb2f1fa",
-      "location": "棉3创意街区 棉花营地",
+      "group_id": "3dfc1d4effde",
+      "location": "棉3创意街区·棉花营地（观光3路公交车在棉3创意街区站下车）",
       "sample_title": "棉3玩具市集",
       "event_uids": [
-        "xiaohongshu:6a3e3f56000000000f030562:06_0"
+        "xiaohongshu:6a54a354000000000f032100:03_1"
       ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "10955230015136912482",
-        "poi_title": "棉3创意街区",
-        "poi_address": "",
-        "latitude": 39.09126,
-        "longitude": 117.246965,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：棉3创意街区 棉花营地 → 棉3创意街区（来源 event:xiaohongshu:6a38ca5e000000001101b0a8:02_0）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "20f09bb2f1fa00e19f2e82c91520102995bf48cf"
-      }
+      "event_count": 1
     },
     {
-      "group_id": "044bd201d8db",
-      "location": "棉3创意街区 滑板广场",
+      "group_id": "28f4db1b3931",
+      "location": "棉3创意街区·滑板广场（观光3路公交车在棉3创意街区站）",
       "sample_title": "海河旧书市集",
       "event_uids": [
-        "xiaohongshu:6a3e3f56000000000f030562:06_1"
+        "xiaohongshu:6a54a354000000000f032100:03_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "298aaa7ed2d4",
+      "location": "智慧山山丘广场（地铁3号线在华苑站B口下车）",
+      "sample_title": "花路音乐会特别专场",
+      "event_uids": [
+        "xiaohongshu:6a54a354000000000f032100:04_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "f4e8c56de3e1",
+      "location": "智慧山北塔·那山life（地铁3号线华苑站B口，步行1.4km）",
+      "sample_title": "大脑出逃首届抽象小赛",
+      "event_uids": [
+        "xiaohongshu:6a54a354000000000f032100:04_1",
+        "xiaohongshu:6a54a354000000000f032100:04_2"
+      ],
+      "event_count": 2
+    },
+    {
+      "group_id": "5314bd970634",
+      "location": "天津东丽万达广场（地铁11号线至东丽文体中心A口）",
+      "sample_title": "发光音乐节",
+      "event_uids": [
+        "xiaohongshu:6a54a354000000000f032100:05_0",
+        "xiaohongshu:6a54a354000000000f032100:05_1",
+        "xiaohongshu:6a54a354000000000f032100:06_0"
+      ],
+      "event_count": 3
+    },
+    {
+      "group_id": "e869f40d46bd",
+      "location": "天津宁河吾悦广场（458路公交至宁河吾悦广场站）",
+      "sample_title": "零食偷吃大赛",
+      "event_uids": [
+        "xiaohongshu:6a54a354000000000f032100:05_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "e9d840357042",
+      "location": "天津贵和购物中心 B1层西中庭（地铁3号线至天塔站D口）",
+      "sample_title": "天津贵和 X 若来造物社手作体验",
+      "event_uids": [
+        "xiaohongshu:6a54a354000000000f032100:06_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "47f90200c985",
+      "location": "天津和平吉利大厦2f（地铁3号线至营口道站B1口）",
+      "sample_title": "恶之环快闪",
+      "event_uids": [
+        "xiaohongshu:6a54a354000000000f032100:07_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "91cddccdaa68",
+      "location": "天津大悦城北区1F自然天地（地铁2/7号线鼓楼站B口直达）",
+      "sample_title": "奔跑吧部落快闪店",
+      "event_uids": [
+        "xiaohongshu:6a54a354000000000f032100:07_1"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "b5b92586d024",
+      "location": "天津大悦城北区F（近MUJI）（地铁2号线鼓楼站B口）",
+      "sample_title": "小小谷弩咪快闪店",
+      "event_uids": [
+        "xiaohongshu:6a54a354000000000f032100:07_2"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "7bde297eddc5",
+      "location": "天津大悦城北区4F 巴奴公区（地铁2号线鼓楼站B口）",
+      "sample_title": "古古不气主题快闪 · 2026央美青年艺术家IP展",
+      "event_uids": [
+        "xiaohongshu:6a54a354000000000f032100:08_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "4142ebe9541e",
+      "location": "天津大悦城北区一层麦田广场（地铁2号线鼓楼站B口）",
+      "sample_title": "BKT巨人艺术展",
+      "event_uids": [
+        "xiaohongshu:6a54a354000000000f032100:08_1"
       ],
       "event_count": 1
     }

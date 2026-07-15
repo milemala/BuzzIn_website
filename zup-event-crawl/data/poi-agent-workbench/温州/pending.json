@@ -1,7 +1,7 @@
 {
   "city": "温州",
   "source": "douban",
-  "exported_at": "2026-07-13T01:32:36.742Z",
+  "exported_at": "2026-07-13T14:41:16.661Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
@@ -11,41 +11,25 @@
   "doubtful_only": false,
   "total_events": 2,
   "group_count": 2,
-  "cache_hit_groups": 1,
+  "cache_hit_groups": 0,
   "groups": [
     {
-      "group_id": "6834f87cdd73",
-      "location": "温州 乐清 乐清市图书馆二楼文化驿站",
-      "sample_title": "第278期 | 7月18日，《幸福的建筑》读书交流",
+      "group_id": "f8400159338e",
+      "location": "温州 洞头区 温州伴·度假酒店",
+      "sample_title": "归乡与抵达——《欢迎再来》作者见面&读书分享会",
       "event_uids": [
-        "douban:37897501"
+        "douban:37900886"
       ],
       "event_count": 1
     },
     {
-      "group_id": "bb994f40519b",
-      "location": "温州 龙湾区 温州高新文化广场 龙祥路1111号",
-      "sample_title": "圆谷正版授权奥特曼系列舞台剧《奥特传奇第3部外星生物来袭》",
+      "group_id": "c1e58a31fb9c",
+      "location": "温州 鹿城区 学院中路小坝坊15栋 桃青民宿（温州学院路店）",
+      "sample_title": "他乡与故乡——《欢迎再来》作者见面&文学共读",
       "event_uids": [
-        "douban:37827902"
+        "douban:37900897"
       ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "2080727425376033704",
-        "poi_title": "温州高新文化广场大剧院",
-        "poi_address": "",
-        "latitude": 27.93656,
-        "longitude": 120.813822,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：温州 龙湾区 温州高新文化广场 龙祥路1111号 → 温州高新文化广场大剧院（来源 event:douban:37801349）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "bb994f40519b8b6f9f9ac5805c749954c25582a0"
-      }
+      "event_count": 1
     }
   ]
 }

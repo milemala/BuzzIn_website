@@ -1,241 +1,43 @@
 {
   "city": "上海",
   "source": "douban",
-  "exported_at": "2026-07-13T01:27:32.047Z",
+  "exported_at": "2026-07-13T14:41:11.929Z",
   "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
   "events": [
     {
-      "event_uid": "douban:37420412",
+      "event_uid": "douban:37900688",
       "city": "上海",
       "source": "douban",
-      "title": "《老洋房里的上海灵魂》---静安别墅国际艺术展,老洋房下午茶",
-      "time_text": "07月18日 周六 00:00 ~ 07月31日 周五 23:59",
+      "title": "即兴表演工作坊：直面失败",
+      "time_text": "07月19日 周日 13:00-15:00",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
-      "detail_excerpt": "以现场为准\n最低演出曲目\n主要演员\n需至少提前一日扫码预约（+）\n儿童说明\n特殊提示\n静安别墅承载着老上海的风云往事，那时候这里往来着诸多名门望族和社会名流，蔡元培、于右任、郑小秋等文化名人和电影明星都曾在此居住；电影《色戒》也曾在这里取景。\n在静安别墅的老洋房里，时光悄然流转，将我们带入一场跨越历史与当下的艺术之旅。“老洋房里的上海灵魂”，以国际视野重新解读上海的独特韵味，邀请来自英国、法国、西班牙、俄罗斯等国的艺术家，与海派名家共同谱写一曲跨越时空的“上海腔调”。从20-30年代被誉为“东方巴黎”的黄金年代，到如今“繁花似锦”的国际化大都市，上海的风华从未褪色，反而在时光的淬炼中愈发璀璨。\n洋房时光 包场感受\n上海懂经的顶流玩法\n当阳光洒进复古钢窗\n我们端着咖啡在艺术品和旧时光里穿行\n邀好友私享静安别墅里隐藏的海派艺术时光吧！\n看展时间约1小时，以实际预约场次为准，\n（包场票上午、下午",
+      "detail_excerpt": "我们每周都有不同主题的英语社交活动，欢迎加入我们Club一起玩！\n由于场地限制，及考虑到每位参与者应享受的环境与互动，\n本活动不接受空降，如果有兴趣参与，请务必要提前预约报名。\n联系 请备注：豆瓣活动\n如果本次发布的活动已经举办完成，你可以联系我们了解近期即将举办的活动哦\nImprov Workshop: Facing Failure\n即兴表演工作坊：直面失败\nHosted by Andreas (Standup Comedian, TEDx Public Speaking Coach)\nWhat if becoming more confident didn't start with succeeding? But with becoming comfortable failing? Why do so many people avoid speaking up, trying some",
       "suggestion": {
-        "start_at": "2026-07-18 00:00:00",
-        "expired_at": "2026-07-31 23:59:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月18日 周六 00:00 ~ 07月31日 周五 23:59"
-      }
-    },
-    {
-      "event_uid": "douban:37896044",
-      "city": "上海",
-      "source": "douban",
-      "title": "相约清新小城安吉，探寻高山峡谷瀑布群，清凉避暑",
-      "time_text": "07月18日 周六 07:30-20:00 ...",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "活动日期：全年多期，公众号查看，\n微信公众号：互友旅行活动\n小程序：互友旅行圈，\n每周末组织不同活动，周边游，长线，同城活动都有\n咨询方式 电话微信： 胖虎huzhuwang105 小美huzhuwang102\n从上海一路向西，\n有一个清新小城叫做安吉。\n这里层峦叠嶂、翠竹绵延，\n被誉为气净、水净、土净的“三净之地”，\n是绝佳的周末出游和洗肺之地。\n这里除了漫山遍野的青青竹海，\n还深藏着江南非常壮观的瀑布之地、\n也有江浙沪罕见瀑布群。\n由于瀑布众多，故名“百瀑”。\n这里既有三折重叠，落差为60多米的“长龙飞瀑”，\n又有彩虹横卧的“ 虹贯龙瀑门”，\n瀑瀑相连，一步一景。\n被称为“浙江的黄果树瀑布”。\n​\n这里夏季天气异常凉爽，宁静幽雅，\n有十里不打伞之奇、峡谷无蚊之妙；\n进入景区沿途两岸千米高山对峙，森林茂密，\n路边飞瀑流泉，可见悬崖叠障，奇峰林立，\n瞬间迎面而翠竹连绵。\n集奇、特、险、幽、",
-      "suggestion": {
-        "start_at": "2026-07-18 07:30:00",
-        "expired_at": "2026-10-11 20:00:00",
-        "confidence": "high",
-        "reason": "豆瓣 itemprop startDate/endDate"
-      }
-    },
-    {
-      "event_uid": "douban:37889514",
-      "city": "上海",
-      "source": "douban",
-      "title": "走进荻港旧时光，金盖山轻徒步（一日线）",
-      "time_text": "07月18日 周六 08:00-19:00 ...",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "活动日期：全年多期，公众号查看，\n微信公众号：互友旅行活动\n每周末组织不同活动，周边游，长线，同城活动都有\n咨询方式 电话微信： 胖虎huzhuwang105 小美huzhuwang102\n在著名的江南六小镇之外，我终于又找到一处，也许是更好的。它叫荻港村，在浙江湖州市和孚镇……说‘更好’，是因为荻港村更古朴、更完美、更幽雅，原汁原味，实属难得……荻港村是个绝版。”\n——老舍之子舒乙《江南最好的小镇》\n荻港位于浙江省湖州市和孚镇，\n因河港纵横，荻芦丛生而得名，\n自古就有“苕溪渔隐”之称。\n悠悠京杭大运河穿村而过，\n这个藏在水网交织中的千年古村，\n没有乌镇的名气，却多了份原生态的烟火气。\n青石板路、斑驳廊棚、摇橹船划过菱香河道，\n仿佛闯入一幅水墨画卷。\n这里还是“桑基鱼塘”起源地，渔耕文化活化石！\n“水巷穿桥过，人家尽枕河”，\n狄港像被时光遗忘的旧梦。\n走进荻港古村，\n嘉庆御赐“玉清赞化”金",
-      "suggestion": {
-        "start_at": "2026-07-18 08:00:00",
-        "expired_at": "2026-10-10 19:00:00",
-        "confidence": "high",
-        "reason": "豆瓣 itemprop startDate/endDate"
-      }
-    },
-    {
-      "event_uid": "douban:37772626",
-      "city": "上海",
-      "source": "douban",
-      "title": "巴黎圣母院首席管风琴大师 奥利维耶·拉特利演奏会",
-      "time_text": "07月18日 周六 19:30-21:30",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "以现场为准\n主要演员\n无需预约\n儿童说明\n1米以下儿童谢绝入场，1米以上儿童需持票入场\n特殊提示\n*迟到或中途离场的观众，仅可在中场休息或曲目间入场。具体以现场为准。\n曲目 Program\n苏珊娜·范·索尔特 | 七首舞曲\nSuzanne van Soldt | Sept Danses\n巴托克 | 罗马尼亚民间舞曲（安德烈·依佐尔改编）\nBartok | Romanian Folk Dances (arr. André Isoir)\n迪特里希·布克斯特胡德 | D小调帕萨卡利亚，作品161\nDietrich Buxtehude | Passacaglia in D minor, BuxWV 161\n巴赫 | A小调管风琴协奏曲，作品593\nBach | Organ Concerto in A minor, BWV 593\n亚历山大·吉尔芒 | 终曲，选自《第一奏鸣曲》\nGuilmant |",
-      "suggestion": {
-        "start_at": "2026-07-18 19:30:00",
-        "expired_at": "2026-07-18 21:30:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月18日 周六 19:30-21:30"
-      }
-    },
-    {
-      "event_uid": "douban:37888397",
-      "city": "上海",
-      "source": "douban",
-      "title": "Daisy the Great｜纽约独立流行新锐, 仲夏夜的脆弱与伟大, 2026首轮内地巡演 上海站",
-      "time_text": "07月18日 周六 20:00-22:00",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "入场方式说明\n以现场为准\n主要演员\n无需预约",
-      "suggestion": {
-        "start_at": "2026-07-18 20:00:00",
-        "expired_at": "2026-07-18 22:00:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月18日 周六 20:00-22:00"
-      }
-    },
-    {
-      "event_uid": "douban:37900031",
-      "city": "上海",
-      "source": "douban",
-      "title": "祝你拥有一个无所事事的夏天——《所有的路都在轮子底下》新书分享会",
-      "time_text": "07月19日 周日 19:00-20:30",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "毕业之后，我们失去了暑假，夏天成为一种奢侈品。\n只有极少数人还有暑假，还有无所事事的夏天，比如任教于华东师范大学的甫跃辉。\n2023年夏天，他完成了一场漫长的骑行：7月9日至8月10日，用时33天，全程3600公里，从上海骑回云南老家。\n他途经浙江、安徽、湖北、湖南、贵州，有了许多新的发现：长江的落日、洱海的雨雾，捕鱼的鸬鹚、晒太阳的彩色小蛇，路上的蝉鸣、夜里的狗吠……也遇见了许多朋友：教他补胎的老板、送西瓜的小哥、卖馄饨的夫妻，请他评理的小孩……\n在湖北，卖西瓜的小伙子问他：“你干这么没意义的事，有什么意义？”\n甫跃辉那时无法回答，或许今后也无法回答。但所有的事情都需要有意义吗？\n相比意义，人有时候需要的是无所事事。夏天，尤其如此。\n躲开高温，躲开人流，在凉爽的夜晚，吹着风，做一些自己的想做的事情。\n7月19日（周日）19点，我们邀请甫跃辉来到上海朵云书院，分享自己在39岁那年夏天，骑行",
-      "suggestion": {
-        "start_at": "2026-07-19 19:00:00",
-        "expired_at": "2026-07-19 20:30:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月19日 周日 19:00-20:30"
-      }
-    },
-    {
-      "event_uid": "douban:37900022",
-      "city": "上海",
-      "source": "douban",
-      "title": "7.18上海活动丨Vibe Coding入门分享会",
-      "time_text": "07月18日 周六 14:00-16:00",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "总听说 Vibe Coding，但你是否还在疑惑这到底是什么？\n有人说，即使不会写代码，依然可以制作网站和小工具；也有人认为，这将是未来人人都应掌握的技能。\n那么，Vibe Coding 到底能做些什么？我们又该如何入门？\n7月18日，青年聚场邀请资深前端开发工程师和大家一起聊聊Vibe Coding。\n不用担心听不懂，我们会从最基础的内容开始，带大家了解：\n✨ 什么是 Vibe Coding？\n✨ Vibe Coding逻辑是什么？\n✨ 常用工具有哪些？\n✨ 一个零基础新手，可以怎么迈出第一步？\n📅 时间： 7 月 18 日 14:00\n👥 人数：10-15 人（小规模交流）\n活动流程\n14:00–14:15｜签到 & 认识新朋友\n14:15–15:20｜Vibe Coding 分享\n15:20–15:50｜Q&A 提问交流\n15:50 起｜自由讨论\n这里没有考试，也没有标准答案。\n",
-      "suggestion": {
-        "start_at": "2026-07-18 14:00:00",
-        "expired_at": "2026-07-18 16:00:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月18日 周六 14:00-16:00"
-      }
-    },
-    {
-      "event_uid": "douban:37900524",
-      "city": "上海",
-      "source": "douban",
-      "title": "电影之夜：《酒精计划》——在成年生活中寻找幸福",
-      "time_text": "07月18日 周六 19:00-21:00",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "我们每周都有不同主题的英语社交活动，欢迎加入我们Club一起玩！\n由于场地限制，及考虑到每位参与者应享受的环境与互动，\n本活动不接受空降，如果有兴趣参与，请务必要提前预约报名。\n联系 请备注：豆瓣活动\n如果本次发布的活动已经举办完成，你可以联系我们了解近期即将举办的活动哦\nWatch & Talk: Another Round - Finding Happiness In Adult Life\n电影之夜：《酒精计划》——在成年生活中寻找幸福\nHosted by Davie( Screenwriter, Popcorn Founder)\nWhat does it really mean to be happy once the excitement of youth has faded? Is adulthood about responsibility, routine and sacri",
-      "suggestion": {
-        "start_at": "2026-07-18 19:00:00",
-        "expired_at": "2026-07-18 21:00:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月18日 周六 19:00-21:00"
-      }
-    },
-    {
-      "event_uid": "douban:37805494",
-      "city": "上海",
-      "source": "douban",
-      "title": "壁画活化 乐舞天籁《乐动敦煌 盛世妙音》乐 · 舞 · 诗 · 画 国际巡演 上海站",
-      "time_text": "07月14日 周二 19:30 ~ 07月19日 周日 15:00",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "入场方式说明\n以现场为准\n最低演出曲目\n主要演员\n无需预约",
-      "suggestion": {
-        "start_at": "2026-07-14 19:30:00",
+        "start_at": "2026-07-19 13:00:00",
         "expired_at": "2026-07-19 15:00:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月14日 周二 19:30 ~ 07月19日 周日 15:00"
+        "reason": "豆瓣详情：07月19日 周日 13:00-15:00"
       }
     },
     {
-      "event_uid": "douban:37900547",
+      "event_uid": "douban:37900856",
       "city": "上海",
       "source": "douban",
-      "title": "「 时光的拓片 」2026北马其顿电影展 —— 上海站",
-      "time_text": "07月10日 周五 19:00-21:05 ...",
+      "title": "离开潮汕的我们，如何面对自己的故乡——《出潮入海》新书分享会",
+      "time_text": "07月19日 周日 13:30-15:30",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
-      "detail_excerpt": "时间：\n2026年7月10日—20日\n地点：\n北外滩来福士百丽宫影城杜比影院厅，虹口区东大名路999号3楼21、37A室（联系电话：021-65683335）\nMOViE MOViE影城IMAX厅、2号厅，浦东新区东育路500弄1-9号前滩太古里石区3楼（联系电话：021-58665503）\n票价：\n普通厅 / 杜比影院\n会员：70元 / 非会员：77元\nIMAX厅\n会员：89元 / 非会员：96元\n百老汇影城官方app / 小程序、淘票票、猫眼\n2026年7月10日至20日，「时光的拓片」2026年北马其顿电影展将在上海百丽宫影城（北外滩来福士店）和MOViE MOViE影城（前滩太古里店）举行。本届影展由北马其顿共和国驻华大使馆、中国－欧盟电影节、北京百老汇电影中心联合举办，上海站由百丽宫影城（北外滩来福士店）、MOViE MOViE影城、欧中影佳（海南）国际文化传播有限公司承办，芭莎",
+      "detail_excerpt": "报名见活动详情。\n潮汕，这片“省尾国角”的土地，自古便是内陆叙事与海洋叙事的交会点。当新一代潮汕人不再像先辈那样“下南洋”，而是走向上海、北京、伦敦、美国，甚至科幻想象中的遥远星系——离开之后，我们如何面对自己的来处？\n7月19日（周日）13:30，本次活动特邀两位潮汕籍嘉宾——非虚构作家李梓新、著名科幻作家陈楸帆与澎湃新闻“文学花边”工作室主理人罗昕做客上海图书馆东馆，展开一场关于潮汕的对谈。\n李梓新十九岁离开潮州，四十岁后赴英求学，在《出潮入海》中用细腻的笔触追溯抽纱、食物、方言与记忆，探寻自身的“潮汕性”；陈楸帆则将英歌舞、宗祠文化融入科幻世界，在“英歌沸腾”系列中让少女梅影在遥远的“潮星”上借助传统之力完成成长与觉醒。\n两人一个以非虚构直面记忆，一个以科幻眺望未来，却共同回应着同一个命题：故乡如何被携带、被转化、被重新讲述？\n扫码报名\n嘉宾介绍\n陈楸帆，广东汕头人，九三学社成员，现",
       "suggestion": {
-        "start_at": "2026-07-10 19:00:00",
-        "expired_at": "2026-07-20 21:08:00",
+        "start_at": "2026-07-19 13:30:00",
+        "expired_at": "2026-07-19 15:30:00",
         "confidence": "high",
-        "reason": "豆瓣 itemprop startDate/endDate"
-      }
-    },
-    {
-      "event_uid": "douban:37824023",
-      "city": "上海",
-      "source": "douban",
-      "title": "音乐剧《Growl 狼嚎》",
-      "time_text": "07月18日 周六 19:30 ~ 07月19日 周日 21:30",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "入场方式说明\n以现场为准\n主要演员\n无需预约",
-      "suggestion": {
-        "start_at": "2026-07-18 19:30:00",
-        "expired_at": "2026-07-19 21:30:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月18日 周六 19:30 ~ 07月19日 周日 21:30"
-      }
-    },
-    {
-      "event_uid": "douban:37881520",
-      "city": "上海",
-      "source": "douban",
-      "title": "闪千手呈现｜异域迷幻律动 Altın Gün 2026 上海专场",
-      "time_text": "07月19日 周日 20:30-22:00",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "入场方式说明\n以现场为准\n主要演员\n无需预约",
-      "suggestion": {
-        "start_at": "2026-07-19 20:30:00",
-        "expired_at": "2026-07-19 22:00:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月19日 周日 20:30-22:00"
-      }
-    },
-    {
-      "event_uid": "douban:37471175",
-      "city": "上海",
-      "source": "douban",
-      "title": "强沉浸式末日灾难音乐剧《末日迷途》",
-      "time_text": "07月19日 周日 20:30-22:00",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "入场方式说明\n以现场为准\n主要演员\n无需预约",
-      "suggestion": {
-        "start_at": "2026-07-19 20:30:00",
-        "expired_at": "2026-07-19 22:00:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月19日 周日 20:30-22:00"
+        "reason": "豆瓣详情：07月19日 周日 13:30-15:30"
       }
     }
   ]

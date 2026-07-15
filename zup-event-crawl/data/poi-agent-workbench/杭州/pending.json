@@ -1,155 +1,35 @@
 {
   "city": "杭州",
   "source": "douban",
-  "exported_at": "2026-07-13T01:32:20.694Z",
+  "exported_at": "2026-07-13T14:41:14.760Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 14,
+  "last_import_new_uids": 2,
   "doubtful_only": false,
-  "total_events": 14,
-  "group_count": 12,
-  "cache_hit_groups": 8,
+  "total_events": 2,
+  "group_count": 2,
+  "cache_hit_groups": 1,
   "groups": [
     {
-      "group_id": "8012036477ca",
-      "location": "杭州 萧山区 市心北路2000号ITC归谷国际中心F5杭州全球青年人才中心",
-      "sample_title": "夏日，气泡，爱与幸福主义——《幸福藏在上升的气泡里》新书分享会",
+      "group_id": "271a89a2453a",
+      "location": "杭州 上城区 浙江胜利剧院 延安路279号",
+      "sample_title": "【杭州】不选座·向阿加莎致敬 · 外百老汇推理悬疑剧《谋杀派对》",
       "event_uids": [
-        "douban:37898654"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "40e25ac7f5d7",
-      "location": "杭州 西湖区 浙江图书馆之江馆区（之江文化中心）",
-      "sample_title": "《雨天的书》阅读分享会",
-      "event_uids": [
-        "douban:37893368"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "d117fafdd001",
-      "location": "杭州 西湖区 浙江音乐厅 北山街道曙光路31号(近黄龙体育中心)",
-      "sample_title": "肆意幻想·梁祝与浮士德｜2026李嗣易小提琴巡回独奏音乐会",
-      "event_uids": [
-        "douban:37785201"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "12910066855958083747",
-        "poi_title": "浙江音乐厅",
-        "poi_address": "",
-        "latitude": 30.266567,
-        "longitude": 120.145765,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：杭州 西湖区 浙江音乐厅 北山街道曙光路31号(近黄龙体育中心) → 浙江音乐厅（来源 event:douban:37769939）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "d117fafdd001cb32f76021a130811d9913cd734f"
-      }
-    },
-    {
-      "group_id": "0b4232fbabec",
-      "location": "杭州 西湖区 杭州延安路528号标力大厦B座15楼",
-      "sample_title": "「タコ焼き」- 章鱼小丸子，就决定是你啦 | 7.19 日曜日",
-      "event_uids": [
-        "douban:37894776"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "23930873321709565",
-        "poi_title": "标力大厦B座",
-        "poi_address": "",
-        "latitude": 30.26779,
-        "longitude": 120.164193,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：杭州 西湖区 杭州延安路528号标力大厦B座15楼 → 标力大厦B座（来源 event:douban:37881683）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "0b4232fbabec675cf7e4d0b6ea4275204a932e90"
-      }
-    },
-    {
-      "group_id": "5059b12c6ea4",
-      "location": "杭州 西湖区 灵隐元境 灵隐路40号",
-      "sample_title": "《太空奥德赛》沉浸互动式VR体验",
-      "event_uids": [
-        "douban:37649307"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "6109606932565607999",
-        "poi_title": "灵隐元境",
-        "poi_address": "",
-        "latitude": 30.240044,
-        "longitude": 120.106928,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：杭州 西湖区 灵隐元境 灵隐路40号 → 灵隐元境（来源 event:douban:37649296）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "5059b12c6ea48061ab0b1040daf7e65d4691efb9"
-      }
-    },
-    {
-      "group_id": "bb48a7afabc5",
-      "location": "杭州 萧山区 杭州烂苹果乐园 风情大道2555号",
-      "sample_title": "【凭身份证入场】杭州烂苹果乐园门票",
-      "event_uids": [
-        "douban:37742053"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "2653001419119241277",
-        "poi_title": "杭州乐园旅游区-烂苹果乐园",
-        "poi_address": "",
-        "latitude": 30.164555,
-        "longitude": 120.242092,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：杭州 萧山区 杭州烂苹果乐园 风情大道2555号 → 杭州乐园旅游区-烂苹果乐园（来源 event:douban:37735925）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "bb48a7afabc5d0fcb5cb7f33d51fb665b9c73f4c"
-      }
-    },
-    {
-      "group_id": "5cf896dd4b23",
-      "location": "杭州 拱墅区 浙话艺术剧院 湖墅南路138号",
-      "sample_title": "正版国漫首部2.5次元真人舞台剧《一人之下》第一部",
-      "event_uids": [
-        "douban:37763963"
+        "douban:37803636"
       ],
       "event_count": 1
     },
     {
       "group_id": "94f739efcce3",
       "location": "杭州 拱墅区 浙江省文化馆小剧场 武林路77号",
-      "sample_title": "致敬经典·吉他/钢琴弹唱“民谣之夜”live现场演唱会",
+      "sample_title": "《LALALAND爱乐之城》浪漫经典流行名曲主题音乐会",
       "event_uids": [
-        "douban:37823845",
-        "douban:37554141",
-        "douban:37784128"
+        "douban:37703821"
       ],
-      "event_count": 3,
+      "event_count": 1,
       "cached_poi": {
         "poi_id": "14485686461718363404",
         "poi_title": "浙江省文化馆小剧场",
@@ -159,97 +39,13 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：杭州 拱墅区 浙江省文化馆小剧场 武林路77号 → 浙江省文化馆小剧场（来源 event:douban:37672148）",
+        "reason": "地址映射库命中：杭州 拱墅区 浙江省文化馆小剧场 武林路77号 → 浙江省文化馆小剧场（来源 event:douban:37784128）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
         "cache_key": "94f739efcce39c4ff01939ef5d07b01828ac9f46"
       }
-    },
-    {
-      "group_id": "f8c9beb359e8",
-      "location": "杭州 拱墅区 开心麻花D空间 热电路188号运河文化艺术中心二楼",
-      "sample_title": "开心麻花|新喜剧开放麦",
-      "event_uids": [
-        "douban:37648284"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "12890599965056029825",
-        "poi_title": "杭州开心麻花剧场",
-        "poi_address": "",
-        "latitude": 30.301799,
-        "longitude": 120.127092,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：杭州 拱墅区 开心麻花D空间 热电路188号运河文化艺术中心二楼 → 杭州开心麻花剧场（来源 event:douban:37705752）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "f8c9beb359e83273d976e4bb2fee3be704896882"
-      }
-    },
-    {
-      "group_id": "fd5610fc4086",
-      "location": "杭州 上城区 剧游君 南宋御街中山中路119号",
-      "sample_title": "剧本游《宋商记》",
-      "event_uids": [
-        "douban:37669941"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "10523627004646949900",
-        "poi_title": "南宋御街",
-        "poi_address": "",
-        "latitude": 30.240411,
-        "longitude": 120.17106,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：杭州 上城区 剧游君 南宋御街中山中路119号 → 南宋御街（来源 event:douban:37669956）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "fd5610fc408681c44d11842239344cc39782c5d3"
-      }
-    },
-    {
-      "group_id": "9508c5bc967f",
-      "location": "杭州 上城区 会说笑脱口秀-来福士总店 来福士中心7楼会说笑脱口秀剧场（江锦路地铁站b1口步行200米）",
-      "sample_title": "会说笑喜剧 | Strong单口喜剧专场《真诚认真老实》",
-      "event_uids": [
-        "douban:37705379"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "2734576158323804714",
-        "poi_title": "来福士广场(杭州来福士中心)",
-        "poi_address": "",
-        "latitude": 30.248728,
-        "longitude": 120.213051,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：杭州 上城区 会说笑脱口秀-来福士总店 来福士中心7楼会说笑脱口秀剧场（江锦路地铁站b1口步行200米） → 来福士广场(杭州来福士中心)（来源 event:douban:37679149）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "9508c5bc967fa1362960d013bbf98443cd6a5437"
-      }
-    },
-    {
-      "group_id": "6a9e1897f147",
-      "location": "杭州 拱墅区 银河迪厅沉浸式戏剧剧场 大福清巷青春坊32幢",
-      "sample_title": "杭州沉浸式悬疑戏剧 ｜《法外狂徒》｜爆款热销｜谋杀死亡线索｜烧脑反转",
-      "event_uids": [
-        "douban:37809981"
-      ],
-      "event_count": 1
     }
   ]
 }

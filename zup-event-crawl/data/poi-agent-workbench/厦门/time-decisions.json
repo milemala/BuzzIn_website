@@ -1,14 +1,14 @@
 {
   "city": "厦门",
   "source": "douban",
-  "generated_at": "2026-07-13T01:27:35.512Z",
+  "generated_at": "2026-07-13T14:41:15.955Z",
   "note": "可由 Agent 覆写低置信条目后 apply-event-time-decisions.js 入库",
   "decisions": [
     {
-      "event_uid": "douban:37841554",
-      "start_at": "2026-07-19 19:30:00",
-      "expired_at": "2026-07-19 21:30:00",
-      "reason": "豆瓣详情：07月19日 周日 19:30-21:30",
+      "event_uid": "douban:37900945",
+      "start_at": "2026-07-18 13:00:00",
+      "expired_at": "2026-08-16 19:30:00",
+      "reason": "豆瓣 itemprop startDate/endDate",
       "confidence": "high"
     }
   ],

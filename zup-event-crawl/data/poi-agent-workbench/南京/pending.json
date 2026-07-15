@@ -1,58 +1,24 @@
 {
   "city": "南京",
   "source": "douban",
-  "exported_at": "2026-07-13T01:32:36.092Z",
+  "exported_at": "2026-07-13T14:41:13.761Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 3,
+  "last_import_new_uids": 1,
   "doubtful_only": false,
-  "total_events": 3,
-  "group_count": 3,
-  "cache_hit_groups": 1,
+  "total_events": 1,
+  "group_count": 1,
+  "cache_hit_groups": 0,
   "groups": [
     {
-      "group_id": "9953b1e5d0f6",
-      "location": "南京 秦淮区 王府大街29号金陵中环广场西区L5层A-L5-15、16号方所书店",
-      "sample_title": "幸福是无数小小回忆的总和——《幸福藏在上升的气泡里》新书分享会",
+      "group_id": "d4a71f6b17a1",
+      "location": "南京 鼓楼区 南京幸福蓝海国际影城-IMAX激光环宇城店（鼓楼区中海环宇城四楼）",
+      "sample_title": "温暖治愈，夏日必看！章若楠、金靖领衔主演《想你了》南京免费观影",
       "event_uids": [
-        "douban:37899541"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "cdfd2e958cf1",
-      "location": "南京 建邺区 江苏大剧院 梦都大街181号",
-      "sample_title": "周末音乐会——郭志恒弹谈：巴赫赋格的艺术（二）",
-      "event_uids": [
-        "douban:37807045"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "6981577208442308340",
-        "poi_title": "江苏大剧院",
-        "poi_address": "",
-        "latitude": 32.012298,
-        "longitude": 118.713942,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：南京 建邺区 江苏大剧院 梦都大街181号 → 江苏大剧院（来源 event:douban:37749752）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "cdfd2e958cf18ed17427cdb1591a6d139d71a96d"
-      }
-    },
-    {
-      "group_id": "8028fa755dbf",
-      "location": "南京 建邺区 稻香演艺中心 西城路277号",
-      "sample_title": "【都市醉汉】Vansdaddy个人巡演-南京站",
-      "event_uids": [
-        "douban:37862364"
+        "douban:37901134"
       ],
       "event_count": 1
     }

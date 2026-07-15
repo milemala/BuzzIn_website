@@ -1,21 +1,14 @@
 {
   "city": "武汉",
   "source": "douban",
-  "generated_at": "2026-07-13T01:27:33.342Z",
+  "generated_at": "2026-07-13T14:41:14.002Z",
   "note": "可由 Agent 覆写低置信条目后 apply-event-time-decisions.js 入库",
   "decisions": [
     {
-      "event_uid": "douban:37817602",
-      "start_at": "2026-07-18 19:30:00",
-      "expired_at": "2026-07-18 21:30:00",
-      "reason": "豆瓣详情：07月18日 周六 19:30-21:30",
-      "confidence": "high"
-    },
-    {
-      "event_uid": "douban:37857065",
-      "start_at": "2026-07-19 10:30:00",
-      "expired_at": "2026-07-19 12:00:00",
-      "reason": "豆瓣详情：07月19日 周日 10:30-12:00",
+      "event_uid": "douban:37901128",
+      "start_at": "2026-07-17 19:30:00",
+      "expired_at": "2026-07-17 21:17:00",
+      "reason": "豆瓣详情：07月17日 周五 19:30-21:17",
       "confidence": "high"
     }
   ],

@@ -1,111 +1,24 @@
 {
   "city": "上海",
   "source": "douban",
-  "exported_at": "2026-07-13T01:34:23.126Z",
+  "exported_at": "2026-07-13T14:41:12.279Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 13,
+  "last_import_new_uids": 2,
   "doubtful_only": false,
-  "total_events": 13,
-  "group_count": 11,
-  "cache_hit_groups": 4,
+  "total_events": 2,
+  "group_count": 2,
+  "cache_hit_groups": 1,
   "groups": [
-    {
-      "group_id": "396eee411af9",
-      "location": "上海 静安区 Shanghai Time静安别墅老洋房艺术空间 南京西路1025弄静安别墅",
-      "sample_title": "《老洋房里的上海灵魂》---静安别墅国际艺术展,老洋房下午茶",
-      "event_uids": [
-        "douban:37420412"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "2065067dffa1",
-      "location": "上海 浦东新区 龙阳路地铁站",
-      "sample_title": "相约清新小城安吉，探寻高山峡谷瀑布群，清凉避暑",
-      "event_uids": [
-        "douban:37896044",
-        "douban:37889514"
-      ],
-      "event_count": 2,
-      "cached_poi": {
-        "poi_id": "10804313910827168281",
-        "poi_title": "龙阳路[地铁站]",
-        "poi_address": "",
-        "latitude": 31.203616,
-        "longitude": 121.557743,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：上海 浦东新区 龙阳路地铁站 → 龙阳路[地铁站]（来源 event:douban:37895943）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "2065067dffa15b3a05ba24ba8089d6e315550a73"
-      }
-    },
-    {
-      "group_id": "6d01add84db3",
-      "location": "上海 浦东新区 上海东方艺术中心 丁香路425号(近世纪大道)",
-      "sample_title": "巴黎圣母院首席管风琴大师 奥利维耶·拉特利演奏会",
-      "event_uids": [
-        "douban:37772626"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "52919750025520475",
-        "poi_title": "上海东方艺术中心",
-        "poi_address": "",
-        "latitude": 31.222824,
-        "longitude": 121.541307,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：上海 浦东新区 上海东方艺术中心 丁香路425号(近世纪大道) → 上海东方艺术中心（来源 event:douban:37856877）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "6d01add84db3bb890acc7203d89763227db397ec"
-      }
-    },
-    {
-      "group_id": "fd70db5d51b9",
-      "location": "上海 普陀区 星在文化中心 梦想剧场 宜昌路179号1F",
-      "sample_title": "Daisy the Great｜纽约独立流行新锐, 仲夏夜的脆弱与伟大, 2026首轮内地巡演 上海站",
-      "event_uids": [
-        "douban:37888397"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "8adf9ebf6ab2",
-      "location": "上海 浦东新区 银城中路501号 上海中心大厦52楼朵云",
-      "sample_title": "祝你拥有一个无所事事的夏天——《所有的路都在轮子底下》新书分享会",
-      "event_uids": [
-        "douban:37900031"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "d2082745a968",
-      "location": "上海 静安区 福民会馆",
-      "sample_title": "7.18上海活动丨Vibe Coding入门分享会",
-      "event_uids": [
-        "douban:37900022"
-      ],
-      "event_count": 1
-    },
     {
       "group_id": "a45e0491e227",
       "location": "上海 静安区 大田路129弄嘉发大厦A栋5D",
-      "sample_title": "电影之夜：《酒精计划》——在成年生活中寻找幸福",
+      "sample_title": "即兴表演工作坊：直面失败",
       "event_uids": [
-        "douban:37900524"
+        "douban:37900688"
       ],
       "event_count": 1,
       "cached_poi": {
@@ -117,7 +30,7 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：上海 静安区 大田路129弄嘉发大厦A栋5D → 嘉发大厦-A栋（来源 event:douban:37899908）",
+        "reason": "地址映射库命中：上海 静安区 大田路129弄嘉发大厦A栋5D → 嘉发大厦-A栋（来源 event:douban:37900524）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
@@ -126,57 +39,13 @@
       }
     },
     {
-      "group_id": "7ff6c8f2e2b7",
-      "location": "上海 杨浦区 YOUNG剧场 控江路1155号",
-      "sample_title": "壁画活化 乐舞天籁《乐动敦煌 盛世妙音》乐 · 舞 · 诗 · 画 国际巡演 上海站",
+      "group_id": "6770df3a29eb",
+      "location": "上海 浦东新区 上海图书馆东馆上海市合欢路300号 7楼阅读推广区",
+      "sample_title": "离开潮汕的我们，如何面对自己的故乡——《出潮入海》新书分享会",
       "event_uids": [
-        "douban:37805494"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "5527323411719490889",
-        "poi_title": "Theatre YOUNG剧场",
-        "poi_address": "",
-        "latitude": 31.278051,
-        "longitude": 121.528544,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：上海 杨浦区 YOUNG剧场 控江路1155号 → Theatre YOUNG剧场（来源 event:douban:37873295）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "7ff6c8f2e2b7d0fb3a93091c89f73662cd5a9095"
-      }
-    },
-    {
-      "group_id": "1484f24366ce",
-      "location": "上海 浦东新区 东育路500弄1-9号前滩太古里石区3楼MOViE MOViE影城；虹口区东大名路999号北外滩来福士3楼百丽宫影城",
-      "sample_title": "「 时光的拓片 」2026北马其顿电影展 —— 上海站",
-      "event_uids": [
-        "douban:37900547"
+        "douban:37900856"
       ],
       "event_count": 1
-    },
-    {
-      "group_id": "42a52439daab",
-      "location": "上海 静安区 上海艺海剧院 江宁路街道江宁路466号(近武定路)",
-      "sample_title": "音乐剧《Growl 狼嚎》",
-      "event_uids": [
-        "douban:37824023"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "440ae65c7afe",
-      "location": "上海 普陀区 星在文化中心 未来剧场 宜昌路179号2F",
-      "sample_title": "闪千手呈现｜异域迷幻律动 Altın Gün 2026 上海专场",
-      "event_uids": [
-        "douban:37881520",
-        "douban:37471175"
-      ],
-      "event_count": 2
     }
   ]
 }

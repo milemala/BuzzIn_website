@@ -1,13 +1,17 @@
 {
   "city": "广州",
-  "decided_at": "2026-07-13T02:00:00.000Z",
+  "decided_at": "2026-07-13T14:43:13.358Z",
   "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "533b350dbd70",
-      "event_uids": ["douban:37488358"],
+      "event_uids": [
+        "douban:37488358"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "7628196013227478872",
       "poi_title": "野生神奇剧场",
       "poi_address": "",
@@ -20,17 +24,29 @@
     },
     {
       "group_id": "82f35d63204d",
-      "event_uids": ["douban:37404074"],
+      "event_uids": [
+        "douban:37404074"
+      ],
       "action": "match",
-      "search_keywords_tried": ["珠影壹号新空间"],
+      "search_keywords_tried": [
+        "珠影壹号新空间"
+      ],
       "poi_id": "8041038153744528791",
       "poi_title": "广州·时光剧场(珠影壹号新空间A馆)",
       "poi_address": "广东省广州市海珠区新港中路珠影壹号新空间内A馆",
       "latitude": 23.094247,
       "longitude": 113.318782,
       "candidates": [
-        {"poi_id": "8041038153744528791", "title": "广州·时光剧场(珠影壹号新空间A馆)", "address": "广东省广州市海珠区新港中路珠影壹号新空间内A馆"},
-        {"poi_id": "11114147893533852748", "title": "广州·男巫剧场(珠影壹号新空间B馆)", "address": "广东省广州市海珠区新港中路珠影壹号新空间B馆"}
+        {
+          "poi_id": "8041038153744528791",
+          "title": "广州·时光剧场(珠影壹号新空间A馆)",
+          "address": "广东省广州市海珠区新港中路珠影壹号新空间内A馆"
+        },
+        {
+          "poi_id": "11114147893533852748",
+          "title": "广州·男巫剧场(珠影壹号新空间B馆)",
+          "address": "广东省广州市海珠区新港中路珠影壹号新空间B馆"
+        }
       ],
       "confidence": "high",
       "doubtful": false,
@@ -38,9 +54,13 @@
     },
     {
       "group_id": "0c9d14a695ad",
-      "event_uids": ["douban:37566660"],
+      "event_uids": [
+        "douban:37566660"
+      ],
       "action": "match",
-      "search_keywords_tried": ["天河城8A"],
+      "search_keywords_tried": [
+        "天河城8A"
+      ],
       "poi_id": "10975019065238304089",
       "poi_title": "阿波罗尼亚·一台好戏小剧场(北京路天河城店)",
       "poi_address": "广东省广州市越秀区北京路168号天河城8A层8A01(原粤海仰忠汇)",
@@ -53,9 +73,14 @@
     },
     {
       "group_id": "4d8a611a2d92",
-      "event_uids": ["douban:37897748"],
+      "event_uids": [
+        "douban:37897748"
+      ],
       "action": "match",
-      "search_keywords_tried": ["广州轻纺交易园星巴克", "轻纺交易园"],
+      "search_keywords_tried": [
+        "广州轻纺交易园星巴克",
+        "轻纺交易园"
+      ],
       "poi_id": "10757543110915349674",
       "poi_title": "星巴克(新港82店)",
       "poi_address": "广东省广州市海珠区新港西路82号物业大门建筑第二层GL201-204和第三层GL301-304单元",
@@ -68,10 +93,85 @@
     },
     {
       "group_id": "663afbd07afe",
-      "event_uids": ["douban:37732859", "douban:37732903"],
+      "event_uids": [
+        "douban:37732859",
+        "douban:37732903"
+      ],
       "action": "reject",
-      "search_keywords_tried": ["珠江新城A1"],
+      "search_keywords_tried": [
+        "珠江新城A1"
+      ],
       "reason": "豆瓣写珠江新城A1仅为跟团游集合地铁口（候选为地铁站出入口/公安局等无关地标），实际活动地点在河源连平、梅州阴那山、肇庆等外市远郊，无法对应唯一场馆主体"
+    },
+    {
+      "group_id": "d0c36ffe3d25",
+      "event_uids": [
+        "douban:37901114"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "金逸影城海珠城"
+      ],
+      "poi_id": "17380272633988744489",
+      "poi_title": "金逸影城(广州海珠城激光IMAX店)",
+      "poi_address": "广东省广州市海珠区江南大道中180号富力海珠商业广场B区七层703室",
+      "latitude": 23.095426,
+      "longitude": 113.274446,
+      "candidates": [
+        {
+          "poi_id": "17380272633988744489",
+          "title": "金逸影城(广州海珠城激光IMAX店)",
+          "address": "广东省广州市海珠区江南大道中180号富力海珠商业广场B区七层703室"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "海珠城IMAX店与江南大道中180号地址一致"
+    },
+    {
+      "group_id": "c3173e143452",
+      "event_uids": [
+        "douban:37900481"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "中北科创中心"
+      ],
+      "poi_id": "5507034337970019585",
+      "poi_title": "中北科创中心",
+      "poi_address": "广东省广州市番禺区南村镇万博一路奥园三座",
+      "latitude": 23.007565,
+      "longitude": 113.34527,
+      "candidates": [
+        {
+          "poi_id": "5507034337970019585",
+          "title": "中北科创中心",
+          "address": "广东省广州市番禺区南村镇万博一路奥园三座"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "楼宇主体一致，活动201室仅差楼层"
+    },
+    {
+      "group_id": "237cbbe0e0ec",
+      "event_uids": [
+        "douban:37900695",
+        "douban:37900707"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "3736210738180227436",
+      "poi_title": "我们的图书馆(富丽花苑店)",
+      "poi_address": "",
+      "latitude": 23.1305,
+      "longitude": 113.329334,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：体育东路86号204我图"
     }
   ]
 }

@@ -1351,6 +1351,7 @@ function getEventsPayload(db, options = {}) {
   }
 
   const dateWindow = buildDateWindowFromEvents(events);
+  const { EVENT_CATEGORIES } = require("./event-classification");
   const note = getMetaValue(db, "note", DEFAULT_NOTE);
   const generatedAt = cityImportRows.reduce((latest, row) => {
     if (!latest) return row.generatedAt || null;
@@ -1367,6 +1368,7 @@ function getEventsPayload(db, options = {}) {
     note,
     cityMeta,
     buzz_env: buzzEnv,
+    eventCategories: [...EVENT_CATEGORIES],
     events,
   };
 }

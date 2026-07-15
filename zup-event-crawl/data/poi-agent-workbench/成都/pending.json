@@ -1,120 +1,76 @@
 {
   "city": "成都",
   "source": "douban",
-  "exported_at": "2026-07-13T01:31:56.527Z",
+  "exported_at": "2026-07-13T14:41:15.261Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 7,
+  "last_import_new_uids": 3,
   "doubtful_only": false,
-  "total_events": 7,
-  "group_count": 6,
-  "cache_hit_groups": 3,
+  "total_events": 3,
+  "group_count": 3,
+  "cache_hit_groups": 2,
   "groups": [
     {
-      "group_id": "b77df371c7f2",
-      "location": "成都 锦江区 万达·锦华城(二环路东五段)",
-      "sample_title": "成都脱宅团2026年七月第3周社交计划",
+      "group_id": "326dc8c7c651",
+      "location": "成都 武侯区 中影紫荆国际影城4K激光IMAX-环球中心旗舰店（武侯区天府大道北段1700号环球购物中心(东区)A馆4楼）",
+      "sample_title": "温暖治愈，夏日必看！章若楠、金靖领衔主演《想你了》成都免费观影",
       "event_uids": [
-        "douban:37900409"
+        "douban:37901145"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "ae5469a44b0e",
+      "location": "成都 武侯区 发伢剧场 天府大道北段8号苏宁广场B2-6层（商场内6楼605）",
+      "sample_title": "格林童话音乐儿童剧《小红帽》与大灰狼斗智斗勇",
+      "event_uids": [
+        "douban:37689412"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "2305365833422175537",
-        "poi_title": "趣本屋",
+        "poi_id": "12873058663482291414",
+        "poi_title": "发伢剧场(苏宁店)",
         "poi_address": "",
-        "latitude": 30.620228,
-        "longitude": 104.096836,
+        "latitude": 30.601068,
+        "longitude": 104.06599,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：成都 锦江区 万达·锦华城(二环路东五段) → 趣本屋（来源 event:douban:37897659）",
+        "reason": "地址映射库命中：成都 武侯区 发伢剧场 天府大道北段8号苏宁广场B2-6层（商场内6楼605） → 发伢剧场(苏宁店)（来源 event:douban:37478357）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "b77df371c7f260c311ef3e86f6c3ef6789ad5f39"
+        "cache_key": "ae5469a44b0e720c35e2dde3b841e4f35263acd2"
       }
     },
     {
-      "group_id": "b8250429a857",
-      "location": "成都 锦江区 四川省成都市锦江区东大街上东大街段246号",
-      "sample_title": "第六届人力资源管理与企业管理国际研讨会 (CHREM 2026)",
+      "group_id": "8d49ab5cdabb",
+      "location": "成都 武侯区 成都城市音乐厅 一环路南一段45号",
+      "sample_title": "英国名著女性觉醒经典话剧《简·爱》",
       "event_uids": [
-        "douban:37845535"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "328a40adfb0f",
-      "location": "成都 成华区 CGT48星梦剧院 建设南支路4号东郊记忆园区中央大道Z1-1-6A、6B",
-      "sample_title": "CGT48星梦剧院公演（CGT48 TEAM GII《手牵手》)",
-      "event_uids": [
-        "douban:37700007"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "8cbd1c72926f",
-      "location": "成都 锦江区 成都一支麦小剧场 春熙路南段群光广场1栋11楼",
-      "sample_title": "【成都】【成都一支麦】——春熙路喜剧之夜-大咖秀｜【喜剧之王单口季】卡司｜海宇单口喜剧专场【退化小论】",
-      "event_uids": [
-        "douban:37435722",
-        "douban:37849378"
-      ],
-      "event_count": 2,
-      "cached_poi": {
-        "poi_id": "13594744069834774905",
-        "poi_title": "一支麦小剧场(成都群光广场店)",
-        "poi_address": "",
-        "latitude": 30.65404,
-        "longitude": 104.076767,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：成都 锦江区 成都一支麦小剧场 春熙路南段群光广场1栋11楼 → 一支麦小剧场(成都群光广场店)（来源 event:douban:36838914）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "8cbd1c72926fb116d394aa0ed66daff1c473ccb7"
-      }
-    },
-    {
-      "group_id": "ae5737dc288d",
-      "location": "成都 武侯区 AUV喜剧剧场 石羊街道天府大道北段1777号招商大魔方B馆四楼L4014-4016",
-      "sample_title": "AUV喜剧|开放麦盲盒·周三｜新喜剧、脱口秀|新演员/新节目",
-      "event_uids": [
-        "douban:37501030"
+        "douban:37817562"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "2378581386143908742",
-        "poi_title": "AUV喜剧剧场(大魔方店)",
+        "poi_id": "17793737809543540578",
+        "poi_title": "成都城市音乐厅",
         "poi_address": "",
-        "latitude": 30.574024,
-        "longitude": 104.070882,
+        "latitude": 30.636008,
+        "longitude": 104.079413,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：成都 武侯区 AUV喜剧剧场 石羊街道天府大道北段1777号招商大魔方B馆四楼L4014-4016 → AUV喜剧剧场(大魔方店)（来源 event:douban:37812898）",
+        "reason": "地址映射库命中：成都 武侯区 成都城市音乐厅 一环路南一段45号 → 成都城市音乐厅（来源 event:douban:37835431）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "ae5737dc288d3a8ab8f871fb20f04fa624616553"
+        "cache_key": "8d49ab5cdabb5e2e8c373eff42a6dac1be2fc462"
       }
-    },
-    {
-      "group_id": "0e258bc19fd4",
-      "location": "成都 成华区 ARTE全沉浸式美术馆·成都 建设南支路4号东郊记忆园区1号楼",
-      "sample_title": "ARTE MUSEUM成都国际数字艺术馆",
-      "event_uids": [
-        "douban:37648482"
-      ],
-      "event_count": 1
     }
   ]
 }

@@ -1,13 +1,17 @@
 {
   "city": "北京",
-  "decided_at": "2026-07-13T01:55:00.000Z",
+  "decided_at": "2026-07-13T14:43:13.358Z",
   "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "f7eb42db869a",
-      "event_uids": ["douban:37842904"],
+      "event_uids": [
+        "douban:37842904"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "7000785431726986367",
       "poi_title": "北展剧场",
       "poi_address": "",
@@ -20,16 +24,24 @@
     },
     {
       "group_id": "5a636102d4bd",
-      "event_uids": ["douban:37886347"],
+      "event_uids": [
+        "douban:37886347"
+      ],
       "action": "match",
-      "search_keywords_tried": ["Blue Note Beijing"],
+      "search_keywords_tried": [
+        "Blue Note Beijing"
+      ],
       "poi_id": "15817194606053799347",
       "poi_title": "Blue Note Beijing",
       "poi_address": "北京市东城区前门东大街23号B1",
       "latitude": 39.901087,
       "longitude": 116.401415,
       "candidates": [
-        {"poi_id": "15817194606053799347", "title": "Blue Note Beijing", "address": "北京市东城区前门东大街23号B1"}
+        {
+          "poi_id": "15817194606053799347",
+          "title": "Blue Note Beijing",
+          "address": "北京市东城区前门东大街23号B1"
+        }
       ],
       "confidence": "high",
       "doubtful": false,
@@ -37,16 +49,24 @@
     },
     {
       "group_id": "42548cd8eba7",
-      "event_uids": ["douban:37898021"],
+      "event_uids": [
+        "douban:37898021"
+      ],
       "action": "match",
-      "search_keywords_tried": ["幸会聚场"],
+      "search_keywords_tried": [
+        "幸会聚场"
+      ],
       "poi_id": "12443761141134602762",
       "poi_title": "幸会聚场",
       "poi_address": "北京市西城区广安门外街道莲花池东路16号天宁1号文化科技创新园32号",
       "latitude": 39.895344,
       "longitude": 116.345246,
       "candidates": [
-        {"poi_id": "12443761141134602762", "title": "幸会聚场", "address": "北京市西城区广安门外街道莲花池东路16号天宁1号文化科技创新园32号"}
+        {
+          "poi_id": "12443761141134602762",
+          "title": "幸会聚场",
+          "address": "北京市西城区广安门外街道莲花池东路16号天宁1号文化科技创新园32号"
+        }
       ],
       "confidence": "high",
       "doubtful": false,
@@ -54,9 +74,13 @@
     },
     {
       "group_id": "4751a217ee93",
-      "event_uids": ["douban:37703042"],
+      "event_uids": [
+        "douban:37703042"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "1538483370261171775",
       "poi_title": "磁场剧场NT剧场",
       "poi_address": "",
@@ -69,9 +93,13 @@
     },
     {
       "group_id": "ac707fe24587",
-      "event_uids": ["douban:37900416"],
+      "event_uids": [
+        "douban:37900416"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "10671848573001900872",
       "poi_title": "可能有书",
       "poi_address": "",
@@ -84,16 +112,24 @@
     },
     {
       "group_id": "1c67cbc2df78",
-      "event_uids": ["douban:37814505"],
+      "event_uids": [
+        "douban:37814505"
+      ],
       "action": "match",
-      "search_keywords_tried": ["开心麻花A88剧场"],
+      "search_keywords_tried": [
+        "开心麻花A88剧场"
+      ],
       "poi_id": "6968181914085547366",
       "poi_title": "开心麻花A88剧场",
       "poi_address": "北京市朝阳区酒仙桥北路9号恒通国际创新园C9A",
       "latitude": 39.990122,
       "longitude": 116.492866,
       "candidates": [
-        {"poi_id": "6968181914085547366", "title": "开心麻花A88剧场", "address": "北京市朝阳区酒仙桥北路9号恒通国际创新园C9A"}
+        {
+          "poi_id": "6968181914085547366",
+          "title": "开心麻花A88剧场",
+          "address": "北京市朝阳区酒仙桥北路9号恒通国际创新园C9A"
+        }
       ],
       "confidence": "high",
       "doubtful": false,
@@ -101,20 +137,79 @@
     },
     {
       "group_id": "0df005465d7e",
-      "event_uids": ["douban:37900424"],
+      "event_uids": [
+        "douban:37900424"
+      ],
       "action": "match",
-      "search_keywords_tried": ["小站公园STATIONPARK", "可能有书 小站公园"],
+      "search_keywords_tried": [
+        "小站公园STATIONPARK",
+        "可能有书 小站公园"
+      ],
       "poi_id": "1939408088025723043",
       "poi_title": "可能有书(回南北路店)",
       "poi_address": "北京市昌平区回南北路北京小站公园STATION PARK",
       "latitude": 40.089848,
       "longitude": 116.350298,
       "candidates": [
-        {"poi_id": "1939408088025723043", "title": "可能有书(回南北路店)", "address": "北京市昌平区回南北路北京小站公园STATION PARK"}
+        {
+          "poi_id": "1939408088025723043",
+          "title": "可能有书(回南北路店)",
+          "address": "北京市昌平区回南北路北京小站公园STATION PARK"
+        }
       ],
       "confidence": "high",
       "doubtful": false,
       "reason": "腾讯有店级POI「可能有书(回南北路店)」，区划(昌平区)与商场(小站公园STATIONPARK)均一致"
+    },
+    {
+      "group_id": "66c38f426b93",
+      "event_uids": [
+        "douban:37900879"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "英皇电影城三里屯"
+      ],
+      "poi_id": "10916598351297727590",
+      "poi_title": "英皇电影城(北京三里屯太古里店)",
+      "poi_address": "北京市朝阳区三里屯街道19号院太古里商业南区地下停车场及商业区-2至-1层",
+      "latitude": 39.934324,
+      "longitude": 116.45426,
+      "candidates": [
+        {
+          "poi_id": "10916598351297727590",
+          "title": "英皇电影城(北京三里屯太古里店)",
+          "address": "北京市朝阳区三里屯街道19号院太古里商业南区地下停车场及商业区-2至-1层"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "影院店名与朝阳区三里屯地址一致"
+    },
+    {
+      "group_id": "6f65d04f29b5",
+      "event_uids": [
+        "douban:37879752"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "山谷居民livehouse"
+      ],
+      "poi_id": "4746079592675195767",
+      "poi_title": "山谷居民(月亮河·七星公馆店)",
+      "poi_address": "北京市通州区新华街道芙蓉西路月亮河城堡公寓503号楼6号底商",
+      "latitude": 39.920153,
+      "longitude": 116.677977,
+      "candidates": [
+        {
+          "poi_id": "4746079592675195767",
+          "title": "山谷居民(月亮河·七星公馆店)",
+          "address": "北京市通州区新华街道芙蓉西路月亮河城堡公寓503号楼6号底商"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "店名与月亮河城堡公寓503号楼底商完全一致"
     }
   ]
 }

@@ -1,791 +1,398 @@
 {
   "city": "成都",
   "source": "xiaohongshu",
-  "decided_at": "2026-07-10T12:35:00.000Z",
+  "decided_at": "2026-07-14T01:15:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "1a7e6e2a0af7",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:01_0"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "成都远大购物中心"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "成都远大购物中心A馆1F中庭",
-      "poi_id": "15477793508985348970",
-      "poi_title": "成都远大购物中心",
-      "poi_address": "四川省成都市双流区天府大道南段255号",
-      "latitude": 30.52943,
-      "longitude": 104.07068,
-      "candidates": [
-        {
-          "poi_id": "15477793508985348970",
-          "title": "成都远大购物中心",
-          "address": "四川省成都市双流区天府大道南段255号",
-          "latitude": 30.52943,
-          "longitude": 104.07068
-        }
-      ]
-    },
-    {
-      "group_id": "29f8d6bdc65f",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:01_1"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "成都王府井科华店"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "王府井科华店L1-2号厅",
-      "poi_id": "5748249408945838972",
-      "poi_title": "王府井购物中心(科华店)",
-      "poi_address": "四川省成都市武侯区科华中路2号",
-      "latitude": 30.618882,
-      "longitude": 104.075852,
-      "candidates": [
-        {
-          "poi_id": "5748249408945838972",
-          "title": "王府井购物中心(科华店)",
-          "address": "四川省成都市武侯区科华中路2号",
-          "latitude": 30.618882,
-          "longitude": 104.075852
-        }
-      ]
-    },
-    {
-      "group_id": "cce60df1948c",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:02_0"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "蜀都万达 郫都"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "蜀都万达广场郫都区",
-      "poi_id": "868545830234130949",
-      "poi_title": "成都蜀都万达广场",
-      "poi_address": "四川省成都市郫都区望丛东路139号",
-      "latitude": 30.807513,
-      "longitude": 103.907463,
-      "candidates": [
-        {
-          "poi_id": "868545830234130949",
-          "title": "成都蜀都万达广场",
-          "address": "四川省成都市郫都区望丛东路139号",
-          "latitude": 30.807513,
-          "longitude": 103.907463
-        }
-      ]
-    },
-    {
-      "group_id": "e28be8940e2f",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:02_1"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "成都保利广场"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "成都保利广场L1大中庭新都区",
-      "poi_id": "1875972218170347671",
-      "poi_title": "成都保利广场",
-      "poi_address": "四川省成都市新都区大天路700号",
-      "latitude": 30.757185,
-      "longitude": 104.074005,
-      "candidates": [
-        {
-          "poi_id": "1875972218170347671",
-          "title": "成都保利广场",
-          "address": "四川省成都市新都区大天路700号",
-          "latitude": 30.757185,
-          "longitude": 104.074005
-        }
-      ]
-    },
-    {
-      "group_id": "b622206ad035",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:03_0"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "映射库命中双流万达",
-      "poi_id": "10591035286778062599",
-      "poi_title": "成都双流万达广场",
-      "poi_address": "",
-      "latitude": 30.596173,
-      "longitude": 103.926839,
-      "candidates": [
-        {
-          "poi_id": "10591035286778062599",
-          "title": "成都双流万达广场",
-          "address": "",
-          "latitude": 30.596173,
-          "longitude": 103.926839
-        }
-      ]
-    },
-    {
       "group_id": "2e513b0f5b3e",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:03_1"
-      ],
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:01_0"],
       "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "映射库命中九栖巷",
+      "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "16606925304389937988",
       "poi_title": "九栖巷C-PARK APM",
       "poi_address": "",
       "latitude": 30.669511,
       "longitude": 103.843359,
-      "candidates": [
-        {
-          "poi_id": "16606925304389937988",
-          "title": "九栖巷C-PARK APM",
-          "address": "",
-          "latitude": 30.669511,
-          "longitude": 103.843359
-        }
-      ]
-    },
-    {
-      "group_id": "ef03dd692d93",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:04_0"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "保利时光里"
-      ],
+      "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "保利时光里北里",
-      "poi_id": "2522659691855862046",
-      "poi_title": "成都保利时光里",
-      "poi_address": "四川省成都市武侯区吉瑞二路99号",
-      "latitude": 30.555855,
-      "longitude": 104.062669,
-      "candidates": [
-        {
-          "poi_id": "2522659691855862046",
-          "title": "成都保利时光里",
-          "address": "四川省成都市武侯区吉瑞二路99号",
-          "latitude": 30.555855,
-          "longitude": 104.062669
-        }
-      ]
+      "reason": "地址映射库命中，九栖巷旷野广场与九栖巷C-PARK APM主体一致"
     },
     {
-      "group_id": "ebfb66403a17",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:05_0"
-      ],
+      "group_id": "854b1afbf5cb",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:01_1"],
       "action": "match",
-      "search_keywords_tried": [
-        "锦江大融城"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "锦江大融城3-4号门外广场",
-      "poi_id": "2630702062505945562",
-      "poi_title": "成都锦江大融城",
-      "poi_address": "四川省成都市锦江区喜树街35号",
-      "latitude": 30.605295,
-      "longitude": 104.15563,
-      "candidates": [
-        {
-          "poi_id": "2630702062505945562",
-          "title": "成都锦江大融城",
-          "address": "四川省成都市锦江区喜树街35号",
-          "latitude": 30.605295,
-          "longitude": 104.15563
-        }
-      ]
-    },
-    {
-      "group_id": "1a2371e3d74e",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:05_1"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "后花园爱琴海"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "后花园爱琴海购物中心",
-      "poi_id": "12244819366362871448",
-      "poi_title": "成都后花园爱琴海购物中心",
-      "poi_address": "四川省成都市郫都区国宁东路919号",
-      "latitude": 30.736641,
-      "longitude": 103.99267,
-      "candidates": [
-        {
-          "poi_id": "12244819366362871448",
-          "title": "成都后花园爱琴海购物中心",
-          "address": "四川省成都市郫都区国宁东路919号",
-          "latitude": 30.736641,
-          "longitude": 103.99267
-        }
-      ]
-    },
-    {
-      "group_id": "037af90deac1",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:06_0"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "东郊记忆"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "东郊记忆东山音乐广场",
-      "poi_id": "861821739433281717",
-      "poi_title": "东郊记忆",
-      "poi_address": "四川省成都市成华区建设南支路1号",
-      "latitude": 30.668742,
-      "longitude": 104.122911,
-      "candidates": [
-        {
-          "poi_id": "861821739433281717",
-          "title": "东郊记忆",
-          "address": "四川省成都市成华区建设南支路1号",
-          "latitude": 30.668742,
-          "longitude": 104.122911
-        }
-      ]
-    },
-    {
-      "group_id": "aae250fe8a41",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:06_1"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "中海右岸环宇坊"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "中海右岸环宇坊",
-      "poi_id": "3145774253380229713",
-      "poi_title": "中海右岸环宇坊",
-      "poi_address": "四川省成都市双流区剑南大道南段2688号",
-      "latitude": 30.492762,
-      "longitude": 104.033031,
-      "candidates": [
-        {
-          "poi_id": "3145774253380229713",
-          "title": "中海右岸环宇坊",
-          "address": "四川省成都市双流区剑南大道南段2688号",
-          "latitude": 30.492762,
-          "longitude": 104.033031
-        }
-      ]
-    },
-    {
-      "group_id": "6daaef7b9649",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:07_1"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "天府人文艺术图书馆"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "天府人文艺术图书馆报告厅",
-      "poi_id": "5006834103519984676",
-      "poi_title": "天府人文艺术图书馆",
-      "poi_address": "四川省成都市金牛区金牛坝路520号",
-      "latitude": 30.711188,
-      "longitude": 104.019709,
-      "candidates": [
-        {
-          "poi_id": "5006834103519984676",
-          "title": "天府人文艺术图书馆",
-          "address": "四川省成都市金牛区金牛坝路520号",
-          "latitude": 30.711188,
-          "longitude": 104.019709
-        }
-      ]
-    },
-    {
-      "group_id": "badd2a037431",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:08_0"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "天府红"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "天府红1楼中庭",
-      "poi_id": "12116192491666357448",
-      "poi_title": "天府红购物中心",
-      "poi_address": "四川省成都市锦江区东御街18号",
-      "latitude": 30.655927,
-      "longitude": 104.066866,
-      "candidates": [
-        {
-          "poi_id": "12116192491666357448",
-          "title": "天府红购物中心",
-          "address": "四川省成都市锦江区东御街18号",
-          "latitude": 30.655927,
-          "longitude": 104.066866
-        }
-      ]
-    },
-    {
-      "group_id": "5bf552705767",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:09_1"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "成都大悦城"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "大悦城A馆秋中庭",
-      "poi_id": "16527605833107426694",
-      "poi_title": "成都大悦城",
-      "poi_address": "四川省成都市武侯区大悦路518号",
-      "latitude": 30.626034,
-      "longitude": 104.011217,
-      "candidates": [
-        {
-          "poi_id": "16527605833107426694",
-          "title": "成都大悦城",
-          "address": "四川省成都市武侯区大悦路518号",
-          "latitude": 30.626034,
-          "longitude": 104.011217
-        }
-      ]
-    },
-    {
-      "group_id": "4da63a096f41",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:09_2"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "成都大悦城"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "大悦城1层公园里",
-      "poi_id": "16527605833107426694",
-      "poi_title": "成都大悦城",
-      "poi_address": "四川省成都市武侯区大悦路518号",
-      "latitude": 30.626034,
-      "longitude": 104.011217,
-      "candidates": [
-        {
-          "poi_id": "16527605833107426694",
-          "title": "成都大悦城",
-          "address": "四川省成都市武侯区大悦路518号",
-          "latitude": 30.626034,
-          "longitude": 104.011217
-        }
-      ]
-    },
-    {
-      "group_id": "7a645257614a",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:09_3"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "龙泉驿吾悦广场"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "龙泉驿吾悦广场1F",
-      "poi_id": "16621520202908022073",
-      "poi_title": "吾悦广场(成都龙泉驿店)",
-      "poi_address": "四川省成都市龙泉驿区桃都大道888号",
-      "latitude": 30.578081,
-      "longitude": 104.240907,
-      "candidates": [
-        {
-          "poi_id": "16621520202908022073",
-          "title": "吾悦广场(成都龙泉驿店)",
-          "address": "四川省成都市龙泉驿区桃都大道888号",
-          "latitude": 30.578081,
-          "longitude": 104.240907
-        }
-      ]
-    },
-    {
-      "group_id": "f153da05ab9e",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:09_4"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "成都万象城"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "成都万象城",
-      "poi_id": "1014595121295943130",
-      "poi_title": "成都万象城",
-      "poi_address": "四川省成都市成华区双庆路8号",
-      "latitude": 30.649709,
-      "longitude": 104.115353,
-      "candidates": [
-        {
-          "poi_id": "1014595121295943130",
-          "title": "成都万象城",
-          "address": "四川省成都市成华区双庆路8号",
-          "latitude": 30.649709,
-          "longitude": 104.115353
-        }
-      ]
-    },
-    {
-      "group_id": "dd39c855f927",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:09_5"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "成都IFS"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "成都IFS",
-      "poi_id": "8458086479713458043",
-      "poi_title": "成都IFS",
-      "poi_address": "四川省成都市锦江区红星路三段1号",
-      "latitude": 30.654925,
-      "longitude": 104.081488,
-      "candidates": [
-        {
-          "poi_id": "8458086479713458043",
-          "title": "成都IFS",
-          "address": "四川省成都市锦江区红星路三段1号",
-          "latitude": 30.654925,
-          "longitude": 104.081488
-        }
-      ]
-    },
-    {
-      "group_id": "59b2ce86015c",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:09_6"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "银泰中心in99"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "银泰中心in99 L1",
+      "search_keywords_tried": ["成都银泰中心in99"],
       "poi_id": "13434236616702626622",
       "poi_title": "成都银泰中心in99",
       "poi_address": "四川省成都市武侯区天府大道北段1199号",
       "latitude": 30.584866,
       "longitude": 104.069631,
-      "candidates": [
-        {
-          "poi_id": "13434236616702626622",
-          "title": "成都银泰中心in99",
-          "address": "四川省成都市武侯区天府大道北段1199号",
-          "latitude": 30.584866,
-          "longitude": 104.069631
-        }
-      ]
-    },
-    {
-      "group_id": "d113e08255ec",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:10_1"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "成都市武侯区文化馆"
-      ],
+      "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "武侯区文化馆十楼",
-      "poi_id": "918227557094649469",
-      "poi_title": "成都市武侯区文化馆",
-      "poi_address": "四川省成都市武侯区九兴大道137号",
-      "latitude": 30.623472,
-      "longitude": 104.033655,
-      "candidates": [
-        {
-          "poi_id": "918227557094649469",
-          "title": "成都市武侯区文化馆",
-          "address": "四川省成都市武侯区九兴大道137号",
-          "latitude": 30.623472,
-          "longitude": 104.033655
-        }
-      ]
+      "reason": "ing巷为银泰中心in99内街区，商场主体与高新区地址一致"
     },
     {
-      "group_id": "e203f28bbe10",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:11_0"
-      ],
+      "group_id": "69cb58b80ad2",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:01_2"],
       "action": "match",
-      "search_keywords_tried": [
-        "成都画院琴台艺术馆"
-      ],
+      "search_keywords_tried": ["天府红购物中心"],
+      "poi_id": "12116192491666357448",
+      "poi_title": "天府红购物中心",
+      "poi_address": "四川省成都市锦江区东御街18号百扬大厦裙楼",
+      "latitude": 30.655927,
+      "longitude": 104.066866,
+      "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "成都画院琴台艺术馆",
-      "poi_id": "12966447108186644439",
-      "poi_title": "成都画院琴台艺术馆",
-      "poi_address": "四川省成都市青羊区琴台路205号",
-      "latitude": 30.661187,
-      "longitude": 104.046633,
-      "candidates": [
-        {
-          "poi_id": "12966447108186644439",
-          "title": "成都画院琴台艺术馆",
-          "address": "四川省成都市青羊区琴台路205号",
-          "latitude": 30.661187,
-          "longitude": 104.046633
-        }
-      ]
+      "reason": "店名与锦江区地址一致，7F中庭仅差楼层精度"
     },
     {
-      "group_id": "e857a867c2d9",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:12_0"
-      ],
+      "group_id": "c09af3cf2a30",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:02_0"],
       "action": "match",
-      "search_keywords_tried": [
-        "合江亭"
-      ],
+      "search_keywords_tried": ["成都银泰城"],
+      "poi_id": "7388019673198600166",
+      "poi_title": "成都大源银泰城",
+      "poi_address": "四川省成都市武侯区益州大道中段1999号",
+      "latitude": 30.54139,
+      "longitude": 104.058127,
+      "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "合江亭下沉广场",
-      "poi_id": "3708636201120848098",
-      "poi_title": "合江亭",
-      "poi_address": "四川省成都市锦江区滨江东路9号",
-      "latitude": 30.64295,
-      "longitude": 104.083627,
-      "candidates": [
-        {
-          "poi_id": "3708636201120848098",
-          "title": "合江亭",
-          "address": "四川省成都市锦江区滨江东路9号",
-          "latitude": 30.64295,
-          "longitude": 104.083627
-        }
-      ]
+      "reason": "成都银泰城即大源银泰城，2号中庭仅差中庭精度"
     },
     {
-      "group_id": "9375af279021",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:12_1"
-      ],
+      "group_id": "1a7e6e2a0af7",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:02_1"],
       "action": "match",
-      "search_keywords_tried": [
-        "成都大剧院露天剧场"
-      ],
+      "search_keywords_tried": ["成都远大购物中心"],
+      "poi_id": "15477793508985348970",
+      "poi_title": "成都远大购物中心",
+      "poi_address": "四川省成都市双流区天府大道南段255号",
+      "latitude": 30.52943,
+      "longitude": 104.07068,
+      "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "中演·成都大剧院露天剧场",
-      "poi_id": "6669559818769471538",
-      "poi_title": "中演·成都大剧院",
-      "poi_address": "四川省成都市成华区仙韵一路420号",
-      "latitude": 30.689533,
-      "longitude": 104.119663,
-      "candidates": [
-        {
-          "poi_id": "6669559818769471538",
-          "title": "中演·成都大剧院",
-          "address": "四川省成都市成华区仙韵一路420号",
-          "latitude": 30.689533,
-          "longitude": 104.119663
-        }
-      ]
+      "reason": "店名与高新区远大购物中心一致，A馆1F中庭仅差楼层"
     },
     {
-      "group_id": "d993e234e5d6",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:13_0"
-      ],
+      "group_id": "52f0725eec7d",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:02_2"],
       "action": "match",
-      "search_keywords_tried": [
-        "东安湖银沙滩"
-      ],
+      "search_keywords_tried": ["青白江万达广场"],
+      "poi_id": "193667321769866190",
+      "poi_title": "成都青白江万达广场",
+      "poi_address": "四川省成都市青白江区政府南路8号",
+      "latitude": 30.877645,
+      "longitude": 104.254779,
+      "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "东安湖公园银沙滩",
-      "poi_id": "6081359127009523432",
-      "poi_title": "东安湖银沙滩",
-      "poi_address": "四川省成都市龙泉驿区桃都大道中段",
-      "latitude": 30.582087,
-      "longitude": 104.231943,
-      "candidates": [
-        {
-          "poi_id": "6081359127009523432",
-          "title": "东安湖银沙滩",
-          "address": "四川省成都市龙泉驿区桃都大道中段",
-          "latitude": 30.582087,
-          "longitude": 104.231943
-        }
-      ]
+      "reason": "青白江万达广场店名区划一致，1楼中庭仅差楼层"
     },
     {
-      "group_id": "a6564c335575",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:13_1"
-      ],
+      "group_id": "1953c811bf7e",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:03_0"],
       "action": "match",
-      "search_keywords_tried": [
-        "凤栖东山"
-      ],
+      "search_keywords_tried": ["成都三利广场"],
+      "poi_id": "1857433872534395694",
+      "poi_title": "三利广场",
+      "poi_address": "四川省成都市双流区天府新区华阳街道天府大道南段2034号1栋附139,140号",
+      "latitude": 30.492492,
+      "longitude": 104.069178,
+      "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "凤栖东山三号观景台",
-      "poi_id": "2924121283884184744",
-      "poi_title": "城投·凤栖东山",
-      "poi_address": "四川省成都市龙泉驿区318国道",
-      "latitude": 30.557519,
-      "longitude": 104.308588,
-      "candidates": [
-        {
-          "poi_id": "2924121283884184744",
-          "title": "城投·凤栖东山",
-          "address": "四川省成都市龙泉驿区318国道",
-          "latitude": 30.557519,
-          "longitude": 104.308588
-        }
-      ]
+      "reason": "789街区为三利广场商业区，B1中庭仅差楼层精度"
     },
     {
-      "group_id": "2408df22feec",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:14_0"
-      ],
+      "group_id": "4ba3e4af0553",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:03_1"],
       "action": "match",
-      "search_keywords_tried": [
-        "锦江大融城"
-      ],
+      "search_keywords_tried": ["犀浦万达广场"],
+      "poi_id": "2573000468840525661",
+      "poi_title": "成都犀浦万达广场",
+      "poi_address": "四川省成都市郫都区泰山大道1号",
+      "latitude": 30.761958,
+      "longitude": 103.962363,
+      "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "锦江大融城4号门外",
+      "reason": "犀浦万达广场店名与郫都区地址一致"
+    },
+    {
+      "group_id": "ef127a34cd17",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:03_2"],
+      "action": "match",
+      "search_keywords_tried": ["锦江大融城"],
       "poi_id": "2630702062505945562",
       "poi_title": "成都锦江大融城",
       "poi_address": "四川省成都市锦江区喜树街35号",
       "latitude": 30.605295,
       "longitude": 104.15563,
-      "candidates": [
-        {
-          "poi_id": "2630702062505945562",
-          "title": "成都锦江大融城",
-          "address": "四川省成都市锦江区喜树街35号",
-          "latitude": 30.605295,
-          "longitude": 104.15563
-        }
-      ]
-    },
-    {
-      "group_id": "780127bdaa62",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:14_1"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "青羊万达广场"
-      ],
+      "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "青羊万达广场一楼中庭",
-      "poi_id": "8910956230953329168",
-      "poi_title": "成都青羊万达广场",
-      "poi_address": "四川省成都市青羊区日月大道一段978号",
-      "latitude": 30.675869,
-      "longitude": 103.973317,
-      "candidates": [
-        {
-          "poi_id": "8910956230953329168",
-          "title": "成都青羊万达广场",
-          "address": "四川省成都市青羊区日月大道一段978号",
-          "latitude": 30.675869,
-          "longitude": 103.973317
-        }
-      ]
+      "reason": "锦江大融城店名与锦江区地址一致，L1中庭仅差楼层"
     },
     {
-      "group_id": "050226c6bf3f",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:15_0"
-      ],
+      "group_id": "81903a92187e",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:04_0"],
       "action": "match",
-      "search_keywords_tried": [
-        "龙湖滨江天街"
-      ],
+      "search_keywords_tried": ["天府红购物中心"],
+      "poi_id": "12116192491666357448",
+      "poi_title": "天府红购物中心",
+      "poi_address": "四川省成都市锦江区东御街18号百扬大厦裙楼",
+      "latitude": 30.655927,
+      "longitude": 104.066866,
+      "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "龙湖滨江天街L1主中庭",
-      "poi_id": "3139074167968125747",
-      "poi_title": "龙湖成都滨江天街",
-      "poi_address": "四川省成都市成华区杉板桥路",
-      "latitude": 30.666041,
-      "longitude": 104.124954,
-      "candidates": [
-        {
-          "poi_id": "3139074167968125747",
-          "title": "龙湖成都滨江天街",
-          "address": "四川省成都市成华区杉板桥路",
-          "latitude": 30.666041,
-          "longitude": 104.124954
-        }
-      ]
+      "reason": "天府红购物中心1F，商场主体与锦江区地址一致"
     },
     {
-      "group_id": "f798d65b7336",
-      "event_uids": [
-        "xiaohongshu:6a4f79c7000000001003e1a8:15_1"
-      ],
+      "group_id": "26e265b2169f",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:04_1"],
       "action": "match",
-      "search_keywords_tried": [
-        "凯德广场金牛"
-      ],
+      "search_keywords_tried": ["东郊记忆"],
+      "poi_id": "861821739433281717",
+      "poi_title": "东郊记忆",
+      "poi_address": "四川省成都市成华区建设南支路1号",
+      "latitude": 30.668742,
+      "longitude": 104.122911,
+      "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "凯德广场金牛1号门外",
-      "poi_id": "18404891094953333198",
-      "poi_title": "凯德广场(金牛店)",
-      "poi_address": "四川省成都市金牛区交大路183号",
-      "latitude": 30.703218,
-      "longitude": 104.044574,
-      "candidates": [
-        {
-          "poi_id": "18404891094953333198",
-          "title": "凯德广场(金牛店)",
-          "address": "四川省成都市金牛区交大路183号",
-          "latitude": 30.703218,
-          "longitude": 104.044574
-        }
-      ]
+      "reason": "中央大道41号为东郊记忆园区内地址，园区主体一致"
+    },
+    {
+      "group_id": "39c56a8888b4",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:05_2"],
+      "action": "match",
+      "search_keywords_tried": ["成都保利广场"],
+      "poi_id": "1875972218170347671",
+      "poi_title": "成都保利广场",
+      "poi_address": "四川省成都市新都区大天路700号",
+      "latitude": 30.757185,
+      "longitude": 104.074005,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "成都保利广场与新都区大天路700号一致，L1中庭仅差楼层"
+    },
+    {
+      "group_id": "d24d5bf6f707",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:06_0"],
+      "action": "match",
+      "search_keywords_tried": ["中国西部国际博览城"],
+      "poi_id": "3650601052812944132",
+      "poi_title": "中国西部国际博览城",
+      "poi_address": "四川省成都市双流区天府新区福州路东段88号",
+      "latitude": 30.420189,
+      "longitude": 104.084002,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "场馆全称与天府新区地址一致"
+    },
+    {
+      "group_id": "3bcb5b7ce79b",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:06_1"],
+      "action": "match",
+      "search_keywords_tried": ["成都世纪城新国际会展中心"],
+      "poi_id": "7069292529005818203",
+      "poi_title": "成都新国际会展中心",
+      "poi_address": "四川省成都市武侯区世纪城路198号",
+      "latitude": 30.559461,
+      "longitude": 104.073974,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "世纪城新国际会展中心即世纪城路198号会展中心"
+    },
+    {
+      "group_id": "5856221570bf",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:06_2"],
+      "action": "match",
+      "search_keywords_tried": ["中国西部国际博览城"],
+      "poi_id": "3650601052812944132",
+      "poi_title": "中国西部国际博览城",
+      "poi_address": "四川省成都市双流区天府新区福州路东段88号",
+      "latitude": 30.420189,
+      "longitude": 104.084002,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "西部国际博览城与天府新区地址一致"
+    },
+    {
+      "group_id": "c53b705b9ed1",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:07_0"],
+      "action": "match",
+      "search_keywords_tried": ["成都自然博物馆"],
+      "poi_id": "1096506489349581869",
+      "poi_title": "成都自然博物馆成都理工大学博物馆",
+      "poi_address": "四川省成都市成华区成华大道十里店路",
+      "latitude": 30.678085,
+      "longitude": 104.144161,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "成都自然博物馆与成华区十里店路馆址一致"
+    },
+    {
+      "group_id": "1df01547a348",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:07_2"],
+      "action": "match",
+      "search_keywords_tried": ["四川美术馆"],
+      "poi_id": "9692495677333983599",
+      "poi_title": "四川美术馆",
+      "poi_address": "四川省成都市青羊区人民西路6号",
+      "latitude": 30.658724,
+      "longitude": 104.061829,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "3、4展厅为四川美术馆内展厅，馆主体与青羊区地址一致"
+    },
+    {
+      "group_id": "32e62d45139f",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:08_0"],
+      "action": "match",
+      "search_keywords_tried": ["四川福宝美术馆"],
+      "poi_id": "9709975711853841682",
+      "poi_title": "鲁能四川福宝美术馆",
+      "poi_address": "四川省成都市成华区槐庭路339号",
+      "latitude": 30.644727,
+      "longitude": 104.134053,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "四川福宝美术馆即鲁能四川福宝美术馆，成华区槐庭路339号"
+    },
+    {
+      "group_id": "c02334dfe52a",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:08_1"],
+      "action": "match",
+      "search_keywords_tried": ["成都SKP"],
+      "poi_id": "1113265266536282798",
+      "poi_title": "成都SKP商场",
+      "poi_address": "四川省成都市武侯区桂溪街道天府大道北段辅路成都高新技术产业开发区(南区)",
+      "latitude": 30.568456,
+      "longitude": 104.070376,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "成都SKP 2F画展，商场主体与高新区地址一致"
+    },
+    {
+      "group_id": "75e2f1b7a11f",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:09_0"],
+      "action": "match",
+      "search_keywords_tried": ["成都高新中演大剧院"],
+      "poi_id": "8600587344093749609",
+      "poi_title": "成都高新中演大剧院",
+      "poi_address": "四川省成都市武侯区成都高新区天府四街688号4栋",
+      "latitude": 30.544046,
+      "longitude": 104.051703,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "大剧场为高新中演大剧院内厅，店名地址一致"
+    },
+    {
+      "group_id": "a730387744b6",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:09_1"],
+      "action": "match",
+      "search_keywords_tried": ["中演成都大剧院"],
+      "poi_id": "6669559818769471538",
+      "poi_title": "中演·成都大剧院",
+      "poi_address": "四川省成都市成华区仙韵一路420号",
+      "latitude": 30.689533,
+      "longitude": 104.119663,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "中演·成都大剧院大剧场，店名与成华区地址一致"
+    },
+    {
+      "group_id": "4f454950a256",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:09_2"],
+      "action": "match",
+      "search_keywords_tried": ["成都城市音乐厅"],
+      "poi_id": "17793737809543540578",
+      "poi_title": "成都城市音乐厅",
+      "poi_address": "四川省成都市武侯区一环路南一段45号",
+      "latitude": 30.635804,
+      "longitude": 104.079899,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "歌剧厅为城市音乐厅内厅，店名地址一致"
+    },
+    {
+      "group_id": "d8372a642f61",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:10_0"],
+      "action": "match",
+      "search_keywords_tried": ["东安湖体育公园多功能体育馆"],
+      "poi_id": "9627263349020396559",
+      "poi_title": "成都东安湖体育公园多功能体育馆",
+      "poi_address": "四川省成都市龙泉驿区东安湖体育公园",
+      "latitude": 30.60044,
+      "longitude": 104.246605,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "多功能体育馆店名与东安湖体育公园地址一致"
+    },
+    {
+      "group_id": "78037e11a23c",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:10_1"],
+      "action": "match",
+      "search_keywords_tried": ["五粮液文化体育中心"],
+      "poi_id": "3280702625728036935",
+      "poi_title": "五粮液文化体育中心综合体育馆",
+      "poi_address": "四川省成都市金牛区天回镇街道北星大道一段4228号",
+      "latitude": 30.769154,
+      "longitude": 104.078044,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "综合体育馆与五粮液文化体育中心地址一致"
+    },
+    {
+      "group_id": "cb57f7442dba",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:10_2"],
+      "action": "match",
+      "search_keywords_tried": ["东安湖体育公园主体育场"],
+      "poi_id": "2224965636245607195",
+      "poi_title": "东安湖体育公园-体育场",
+      "poi_address": "四川省成都市龙泉驿区东安街道东安湖体育公园",
+      "latitude": 30.596768,
+      "longitude": 104.249979,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "主体育场与东安湖体育公园体育场POI一致"
+    },
+    {
+      "group_id": "24b8fc964c42",
+      "event_uids": ["xiaohongshu:6a5498f50000000021016983:10_3"],
+      "action": "match",
+      "search_keywords_tried": ["成华区群团服务中心"],
+      "poi_id": "6968859344416075515",
+      "poi_title": "成都市成华区群团服务中心",
+      "poi_address": "四川省成都市成华区东秀一路139号",
+      "latitude": 30.661124,
+      "longitude": 104.117111,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "4楼影音室为群团服务中心内场地，主体与成华区东秀一路一致"
     }
   ]
 }

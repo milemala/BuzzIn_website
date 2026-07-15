@@ -1,126 +1,33 @@
 {
   "city": "北京",
   "source": "douban",
-  "exported_at": "2026-07-13T01:34:23.045Z",
+  "exported_at": "2026-07-13T14:41:11.765Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 7,
+  "last_import_new_uids": 2,
   "doubtful_only": false,
-  "total_events": 7,
-  "group_count": 7,
-  "cache_hit_groups": 3,
+  "total_events": 2,
+  "group_count": 2,
+  "cache_hit_groups": 0,
   "groups": [
     {
-      "group_id": "f7eb42db869a",
-      "location": "北京 西城区 北京展览馆剧场 西直门外大街135号",
-      "sample_title": "且听天命《黑神话：悟空》音乐会",
+      "group_id": "66c38f426b93",
+      "location": "北京 朝阳区 英皇电影城(北京三里屯店)朝阳区三里屯路19号院12幢楼-2至-1层",
+      "sample_title": "温暖治愈，夏日必看！《想你了》约你看个电影+章若楠金靖等主创映后",
       "event_uids": [
-        "douban:37842904"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "7000785431726986367",
-        "poi_title": "北展剧场",
-        "poi_address": "",
-        "latitude": 39.941553,
-        "longitude": 116.344076,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：北京 西城区 北京展览馆剧场 西直门外大街135号 → 北展剧场（来源 event:douban:37879055）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "f7eb42db869ada45aa89f2b370e4b408b631233b"
-      }
-    },
-    {
-      "group_id": "5a636102d4bd",
-      "location": "北京 东城区 Blue Note Beijing 前门东大街23号BlueNoteBeijing",
-      "sample_title": "7.19 Project Project: Space Tour｜放映计划：太空巡演",
-      "event_uids": [
-        "douban:37886347"
+        "douban:37900879"
       ],
       "event_count": 1
     },
     {
-      "group_id": "42548cd8eba7",
-      "location": "北京 西城区 幸会聚场",
-      "sample_title": "豆瓣8.9高分原创小剧场话剧《龟裂》即将于北京上演",
+      "group_id": "6f65d04f29b5",
+      "location": "北京 通州区 山谷居民livehouse 月亮河城堡公寓503号楼6号底商",
+      "sample_title": "尚东峰2026「去往浪漫的一天」新专辑巡演 北京场",
       "event_uids": [
-        "douban:37898021"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "4751a217ee93",
-      "location": "北京 东城区 磁场剧场NT剧场 南锣鼓巷福祥胡同5号四合院",
-      "sample_title": "《错位时空》沉浸式惊悚魔幻之夜 | 魔术盗梦催眠通灵 | 参与感拉满的互动体验 | 磁场喜剧&南锣鼓巷",
-      "event_uids": [
-        "douban:37703042"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "1538483370261171775",
-        "poi_title": "磁场剧场NT剧场",
-        "poi_address": "",
-        "latitude": 39.934372,
-        "longitude": 116.40257,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：北京 东城区 磁场剧场NT剧场 南锣鼓巷福祥胡同5号四合院 → 磁场剧场NT剧场（来源 event:douban:37809086）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "4751a217ee93864d8c91a25db1e6bdc2eb678414"
-      }
-    },
-    {
-      "group_id": "ac707fe24587",
-      "location": "北京 东城区 前炒面胡同49号可能有书",
-      "sample_title": "7.11-8.30可能有展览 | “少年新知的夏天”",
-      "event_uids": [
-        "douban:37900416"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "10671848573001900872",
-        "poi_title": "可能有书",
-        "poi_address": "",
-        "latitude": 39.922623,
-        "longitude": 116.418264,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：北京 东城区 前炒面胡同49号可能有书 → 可能有书（来源 event:douban:37888970）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "ac707fe24587667bd83d350aa9512d31488dc0da"
-      }
-    },
-    {
-      "group_id": "1c67cbc2df78",
-      "location": "北京 朝阳区 开心麻花A88剧场 酒仙桥北路9号恒通国际创新园C9A",
-      "sample_title": "【年度爆剧】开心麻花大型宫廷舞台剧《甄嬛传》沉浸版",
-      "event_uids": [
-        "douban:37814505"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "0df005465d7e",
-      "location": "北京 昌平区 小站公园STATIONPARK一层·可能有书-什么美术馆",
-      "sample_title": "7.11-8.30可能有展览 | “少年新知的夏天”",
-      "event_uids": [
-        "douban:37900424"
+        "douban:37879752"
       ],
       "event_count": 1
     }

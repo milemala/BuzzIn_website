@@ -1,5 +1,5 @@
 {
-  "_comment": "小红书一周活动汇总账号清单。标准流程见 docs/xiaohongshu-review-workflow.md；一键执行 node scripts/run-xhs-weekly-pipeline.js",
+  "_comment": "小红书一周活动汇总账号清单。同一城市可配置多个账号，抓取时逐个账号各选一篇新汇总帖。标准流程见 docs/xiaohongshu-review-workflow.md",
   "_workflow": {
     "pipeline": "node scripts/run-xhs-weekly-pipeline.js",
     "docs": [
@@ -16,14 +16,29 @@
       "note": "北京周末去哪"
     },
     {
+      "city": "北京",
+      "profileUrl": "https://www.xiaohongshu.com/user/profile/65d60dd60000000005031d59?xsec_token=ABMHmaeQdiZRLZpmm76sXjIXccJWDYnd7zl1Jt5su-x4k%3D&xsec_source=pc_search",
+      "note": "北京漫游指南"
+    },
+    {
       "city": "广州",
       "profileUrl": "https://www.xiaohongshu.com/user/profile/640596380000000029014f51?xsec_token=AByIZ6407M-2akJsGFuMhW5DmIdfF9PMtnVtTF0Xxn8m4%3D&xsec_source=pc_search",
       "note": "广州周末去哪"
     },
     {
+      "city": "广州",
+      "profileUrl": "https://www.xiaohongshu.com/user/profile/64dc3a470000000001010391?xsec_token=ABd8mWYMfR7qPcrN7cXk9Crv7CkEsJR6S84Hgdj-sjYvc%3D&xsec_source=pc_search",
+      "note": "周末研究所-广州"
+    },
+    {
       "city": "上海",
       "profileUrl": "https://www.xiaohongshu.com/user/profile/66610546000000000d025599?xsec_token=ABA720UTT1zdQuSgwiLeEfjvcFSimhB1keI_jmdiupHd4%3D&xsec_source=pc_search",
       "note": "上海周末去哪"
+    },
+    {
+      "city": "上海",
+      "profileUrl": "https://www.xiaohongshu.com/user/profile/6054b1df0000000001003f72?xsec_token=ABIMdBWSE8vAWqV_P7lHgfvYAQ2EZaJeIiNwweSP4RUug%3D&xsec_source=pc_search",
+      "note": "上海漫游指南"
     },
     {
       "city": "天津",
@@ -36,9 +51,19 @@
       "note": "深圳周末去哪"
     },
     {
+      "city": "深圳",
+      "profileUrl": "https://www.xiaohongshu.com/user/profile/623034460000000021020c06?xsec_token=ABKsD5e-oKxBBVpqlVmwhx4z00_E4OT8Kmtf5uDBv-Qyw%3D&xsec_source=pc_search",
+      "note": "周末研究所-深圳"
+    },
+    {
       "city": "成都",
       "profileUrl": "https://www.xiaohongshu.com/user/profile/64828697000000002503442c?xsec_token=ABc70mBpFbipUoYt2HSEJL7qIOONI40xuszcSzzG66o9Q%3D&xsec_source=pc_search",
       "note": "成都周末去哪"
+    },
+    {
+      "city": "成都",
+      "profileUrl": "https://www.xiaohongshu.com/user/profile/67c9949d000000000a03ed5b?xsec_token=ABpv4hg_mVaeWXYO998x7u0cQ77qFg9c-pEoSqn-KBY2Y%3D&xsec_source=pc_search",
+      "note": "周末研究所-成都"
     },
     {
       "city": "武汉",
@@ -49,6 +74,11 @@
       "city": "长沙",
       "profileUrl": "https://www.xiaohongshu.com/user/profile/672c05f8000000000800bc5f?xsec_token=ABrR_Op5jN_vFl10if7v5PKbLAFyFzLQ6uP7jymYiy9Y0%3D&xsec_source=pc_search",
       "note": "长沙周末去哪"
+    },
+    {
+      "city": "长沙",
+      "profileUrl": "https://www.xiaohongshu.com/user/profile/6481e46e0000000025034c1b?xsec_token=AByQ9AUpquWAkYYpPnP5y2iHMGmmVV_WRFea5Guegihcc%3D&xsec_source=pc_search",
+      "note": "周末研究所-长沙"
     },
     {
       "city": "郑州",
@@ -74,6 +104,11 @@
       "city": "重庆",
       "profileUrl": "https://www.xiaohongshu.com/user/profile/5ff1d51e00000000010068f9?xsec_token=ABlBWs9vz-t9iy27NrjA6ZVmKmmTdFLXn3KC8fvMM3FhY%3D&xsec_source=pc_search",
       "note": "重庆周末去哪"
+    },
+    {
+      "city": "重庆",
+      "profileUrl": "https://www.xiaohongshu.com/user/profile/62692e4900000000100066a5?xsec_token=AB79JWlI22kID2pVZydtiB34OdbbvPpbrC2zeQXxGbqO0%3D&xsec_source=pc_search",
+      "note": "周末研究所-重庆"
     }
   ]
 }

@@ -1,13 +1,17 @@
 {
   "city": "厦门",
-  "decided_at": "2026-07-13T01:40:00.000Z",
+  "decided_at": "2026-07-13T14:43:13.358Z",
   "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "443813f048be",
-      "event_uids": ["douban:37841554"],
+      "event_uids": [
+        "douban:37841554"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "9553621768810285816",
       "poi_title": "闽南大戏院·大剧场",
       "poi_address": "",
@@ -17,6 +21,25 @@
       "confidence": "high",
       "doubtful": false,
       "reason": "地址映射库命中：厦门 思明区 闽南大戏院 会展北片区横三路 → 闽南大戏院·大剧场"
+    },
+    {
+      "group_id": "b9ff6bec5b9e",
+      "event_uids": [
+        "douban:37900945"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "9354332035420960328",
+      "poi_title": "散步去Champochic(中山路店)",
+      "poi_address": "",
+      "latitude": 24.455796,
+      "longitude": 118.084983,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：散步去中山路店"
     }
   ]
 }

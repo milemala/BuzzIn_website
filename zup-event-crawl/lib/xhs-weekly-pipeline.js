@@ -59,76 +59,76 @@ function runExtractScript(noteDir, rootDir) {
 
 async function importNoteEvents(noteDir, rootDir, options = {}) {
   const dbPath = options.dbPath || path.join(rootDir, "data", "review.db");
+  const db = fs.existsSync(dbPath) ? openDatabase(dbPath) : null;
   let contentDedupKeys = options.contentDedupKeys;
   let titleLocationIndex = options.titleLocationIndex;
   let titlePoiGate = options.titlePoiGate;
-  if (!contentDedupKeys && fs.existsSync(dbPath)) {
-    const db = openDatabase(dbPath);
-    try {
+
+  try {
+    if (db && !contentDedupKeys) {
       contentDedupKeys = loadContentDedupKeys(db, { source: "xiaohongshu" });
       titleLocationIndex = loadTitleLocationDedupIndex(db, { source: "xiaohongshu" });
       if (!titlePoiGate) {
         titlePoiGate = createTitlePoiDedupGateFromDb(db, { source: "xiaohongshu" });
       }
-    } finally {
-      db.close();
     }
-  }
 
-  const {
-    extracted,
-    reviewEvents,
-    coverStats,
-    skippedDuplicate,
-    skippedTitleLocation,
-    skippedTitlePoi,
-  } = await loadReviewEventsFromNote(
-    noteDir,
-    rootDir,
-    { ...options, contentDedupKeys, titleLocationIndex, titlePoiGate, dbPath },
-  );
-  if (!reviewEvents.length) {
-    return {
-      status: skippedDuplicate ? "skip_all_duplicate" : "skip_no_events",
-      city: extracted.city,
-      noteDir,
+    const {
+      extracted,
+      reviewEvents,
       coverStats,
-      skippedDuplicate: skippedDuplicate || 0,
-    };
-  }
+      skippedDuplicate,
+      skippedTitleLocation,
+      skippedTitlePoi,
+    } = await loadReviewEventsFromNote(
+      noteDir,
+      rootDir,
+      { ...options, contentDedupKeys, titleLocationIndex, titlePoiGate, dbPath, db },
+    );
+    if (!reviewEvents.length) {
+      return {
+        status: skippedDuplicate ? "skip_all_duplicate" : "skip_no_events",
+        city: extracted.city,
+        noteDir,
+        coverStats,
+        skippedDuplicate: skippedDuplicate || 0,
+      };
+    }
 
-  const payload = buildImportPayload({
-    allEvents: reviewEvents,
-    byCity: {
-      [extracted.city || "未知城市"]: {
-        events: reviewEvents,
-        sourcePage: extracted.sourceUrl || null,
+    const payload = buildImportPayload({
+      allEvents: reviewEvents,
+      byCity: {
+        [extracted.city || "未知城市"]: {
+          events: reviewEvents,
+          sourcePage: extracted.sourceUrl || null,
+        },
       },
-    },
-    totals: {
-      notes: 1,
-      events: reviewEvents.length,
-      poster: coverStats.poster,
-      text: coverStats.text,
-      fail: coverStats.fail,
-    },
-    noteDirs: [{ noteDir }],
-  });
+      totals: {
+        notes: 1,
+        events: reviewEvents.length,
+        poster: coverStats.poster,
+        text: coverStats.text,
+        fail: coverStats.fail,
+      },
+      noteDirs: [{ noteDir }],
+    });
 
-  if (options.dryRun) {
-    return {
-      status: "dry_run",
-      city: extracted.city,
-      noteDir,
-      eventCount: reviewEvents.length,
-      coverStats,
-    };
-  }
+    if (options.dryRun) {
+      return {
+        status: "dry_run",
+        city: extracted.city,
+        noteDir,
+        eventCount: reviewEvents.length,
+        coverStats,
+      };
+    }
 
-  const db = openDatabase(dbPath);
-  let classificationExport = null;
-  let poiExport = null;
-  try {
+    if (!db) {
+      throw new Error(`找不到数据库: ${dbPath}`);
+    }
+
+    let classificationExport = null;
+    let poiExport = null;
     importPayload(db, payload, { mode: "append-city" });
     if (extracted.city) {
       classificationExport = exportClassificationPending(db, {
@@ -144,22 +144,22 @@ async function importNoteEvents(noteDir, rootDir, options = {}) {
         newImportOnly: true,
       });
     }
-  } finally {
-    db.close();
-  }
 
-  return {
-    status: "imported",
-    city: extracted.city,
-    noteDir,
-    eventCount: reviewEvents.length,
-    coverStats,
-    skippedDuplicate: skippedDuplicate || 0,
-    skippedTitleLocation: skippedTitleLocation || 0,
-    skippedTitlePoi: skippedTitlePoi || 0,
-    classificationExport,
-    poiExport,
-  };
+    return {
+      status: "imported",
+      city: extracted.city,
+      noteDir,
+      eventCount: reviewEvents.length,
+      coverStats,
+      skippedDuplicate: skippedDuplicate || 0,
+      skippedTitleLocation: skippedTitleLocation || 0,
+      skippedTitlePoi: skippedTitlePoi || 0,
+      classificationExport,
+      poiExport,
+    };
+  } finally {
+    db?.close();
+  }
 }
 
 async function importAllReadyNotes(rootDir, options = {}) {

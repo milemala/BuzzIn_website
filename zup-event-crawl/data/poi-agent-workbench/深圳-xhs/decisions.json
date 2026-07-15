@@ -1,819 +1,265 @@
 {
   "city": "深圳",
   "source": "xiaohongshu",
-  "decided_at": "2026-07-10T12:37:08.621Z",
-  "agent": "cursor-composer",
+  "decided_at": "2026-07-14T10:53:00.000+08:00",
   "decisions": [
     {
-      "group_id": "e571003fa539",
-      "action": "match",
-      "poi_id": "6333896253349288057",
-      "poi_title": "欢乐海岸",
-      "poi_address": "广东省深圳市南山区滨海大道2008号",
-      "latitude": 22.523421,
-      "longitude": 113.987961,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「南山区欢乐海岸码头小舞台」匹配「欢乐海岸」",
-      "search_keywords_tried": [
-        "南山区欢乐海岸码头小舞台"
-      ],
+      "group_id": "57b644df6dcd",
       "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:01_0"
-      ]
+        "xiaohongshu:6a3f4bc6000000001602434d:01_0"
+      ],
+      "action": "match",
+      "poi_id": "16488346481948009299",
+      "poi_title": "GARAGE超级车库",
+      "poi_address": "广东省深圳市南山区粤海街道保利文化广场Kaledo嘉乐道B1层超级车库",
+      "reason": "西蒙神奇车库展在嘉乐道B1超级车库，与GARAGE超级车库 POI 一致"
     },
     {
-      "group_id": "44f9a7cdf6d2",
-      "action": "match",
-      "poi_id": "1475004446835353780",
-      "poi_title": "南头古城",
-      "poi_address": "广东省深圳市南山区中山东街与中山南街交叉口东150",
-      "latitude": 22.543758,
-      "longitude": 113.920546,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「南头古城 竹园广场」匹配「南头古城」",
-      "search_keywords_tried": [
-        "南头古城 竹园广场"
-      ],
+      "group_id": "8908a1e96043",
       "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:02_0"
-      ]
+        "xiaohongshu:6a3f4bc6000000001602434d:02_0"
+      ],
+      "action": "match",
+      "poi_id": "12305997467125174323",
+      "poi_title": "深圳会展中心",
+      "poi_address": "广东省深圳市福田区福华三路与金田路交叉口西南角",
+      "reason": "CAFEEX咖啡展在福田会展中心2号馆"
     },
     {
-      "group_id": "1c09e6682145",
-      "action": "match",
-      "poi_id": "9923591074141051114",
-      "poi_title": "华侨城创意文化园",
-      "poi_address": "广东省深圳市南山区锦绣北街2号",
-      "latitude": 22.538321,
-      "longitude": 113.994017,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「南山区华侨城创意文化园北区」匹配「华侨城创意文化园」",
-      "search_keywords_tried": [
-        "南山区华侨城创意文化园北区"
-      ],
+      "group_id": "ccf3cd56f879",
       "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:03_0"
-      ]
+        "xiaohongshu:6a3f4bc6000000001602434d:03_0"
+      ],
+      "action": "match",
+      "poi_id": "12305997467125174323",
+      "poi_title": "深圳会展中心",
+      "poi_address": "广东省深圳市福田区福华三路与金田路交叉口西南角",
+      "reason": "深圳动漫节在福田会展中心1号馆"
     },
     {
-      "group_id": "0f04ef507f6e",
-      "action": "match",
-      "poi_id": "1303165007300903976",
-      "poi_title": "深圳湾万象城",
-      "poi_address": "广东省深圳市南山区科苑南路2888号",
-      "latitude": 22.515835,
-      "longitude": 113.946295,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「深圳湾万象城C区 户外街区」匹配「深圳湾万象城」",
-      "search_keywords_tried": [
-        "深圳湾万象城C区 户外街区"
-      ],
+      "group_id": "a0bdef4851b7",
       "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:03_1"
-      ]
+        "xiaohongshu:6a3f4bc6000000001602434d:04_0"
+      ],
+      "action": "match",
+      "poi_id": "3281856013968246909",
+      "poi_title": "光明文化艺术中心美术馆",
+      "poi_address": "广东省深圳市光明区观光路光明文化艺术中心",
+      "reason": "NOVA艺术季在光明文化艺术中心美术馆"
     },
     {
-      "group_id": "5e2e1d2460e8",
-      "action": "match",
-      "poi_id": "1303165007300903976",
-      "poi_title": "深圳湾万象城",
-      "poi_address": "",
-      "latitude": 22.515835,
-      "longitude": 113.946295,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：深圳湾万象城A区L1层户外草坪 → 深圳湾万象城（来源 event:xiaohongshu:6a4b0fe20000000022015242:01_1）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
+      "group_id": "5a2e8efdaaf2",
       "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:03_2"
-      ]
+        "xiaohongshu:6a3f4bc6000000001602434d:05_0"
+      ],
+      "action": "match",
+      "poi_id": "6825891094570608451",
+      "poi_title": "欢乐谷",
+      "poi_address": "广东省深圳市南山区华侨城侨城西街(世界之窗对面)",
+      "reason": "夏浪音乐节在深圳欢乐谷举办"
     },
     {
-      "group_id": "3d1a58cf3b34",
-      "action": "match",
-      "poi_id": "10653910945312324350",
-      "poi_title": "G&G创意社区",
-      "poi_address": "广东省深圳市南山区荔园路9号",
-      "latitude": 22.492098,
-      "longitude": 113.918601,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「G&G创意社区」匹配「G&G创意社区」",
-      "search_keywords_tried": [
-        "G&G创意社区"
-      ],
+      "group_id": "2b68185bf339",
       "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:04_0"
-      ]
+        "xiaohongshu:6a3f4bc6000000001602434d:07_0"
+      ],
+      "action": "reject",
+      "reason": "地址仅写南山后海，且活动为深圳六大打卡点位全城巡展，无法确定具体商场或场馆 POI"
     },
     {
-      "group_id": "14ac934476e3",
-      "action": "match",
-      "poi_id": "10446676152075868881",
-      "poi_title": "益田假日广场",
-      "poi_address": "广东省深圳市南山区深南大道9028号",
-      "latitude": 22.537564,
-      "longitude": 113.975165,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「南山·益田假日广场B1层苹果广场」匹配「益田假日广场」",
-      "search_keywords_tried": [
-        "南山·益田假日广场B1层苹果广场"
-      ],
+      "group_id": "9d83f4905a0e",
       "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:04_1"
-      ]
+        "xiaohongshu:6a3f4bc6000000001602434d:11_0"
+      ],
+      "action": "match",
+      "poi_id": "10898530272480732343",
+      "poi_title": "深圳世界之窗",
+      "poi_address": "广东省深圳市南山区深南大道9037号",
+      "reason": "WoW潮音嘉年华在世界之窗罗马假日广场舞台"
     },
     {
-      "group_id": "766eef6a3535",
-      "action": "match",
-      "poi_id": "11912694594093216641",
-      "poi_title": "K11 ECOAST",
-      "poi_address": "广东省深圳市南山区太子湾路56号、61号",
-      "latitude": 22.471777,
-      "longitude": 113.914047,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「K11 ECOAST-南馆RF层」匹配「K11 ECOAST」",
-      "search_keywords_tried": [
-        "K11 ECOAST-南馆RF层"
-      ],
+      "group_id": "113519361614",
       "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:04_2"
-      ]
+        "xiaohongshu:6a3f4bc6000000001602434d:12_0"
+      ],
+      "action": "match",
+      "poi_id": "17117613421981017601",
+      "poi_title": "深圳万象天地",
+      "poi_address": "广东省深圳市南山区粤海街道深南大道9668号华润城万象天地L1",
+      "reason": "限时快闪在万象天地LG86铺位"
     },
     {
-      "group_id": "21d89bcbbba2",
-      "action": "match",
-      "poi_id": "4686244374987830563",
-      "poi_title": "前海石公园",
-      "poi_address": "广东省深圳市南山区金岸中街",
-      "latitude": 22.526986,
-      "longitude": 113.890183,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「前海石公园、海上世界明华轮、望海路&太子路」匹配「前海石公园」",
-      "search_keywords_tried": [
-        "前海石公园"
-      ],
+      "group_id": "b1aeb9956ae9",
       "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:05_0"
-      ]
-    },
-    {
-      "group_id": "2f2800d362a3",
+        "xiaohongshu:6a3f4bc6000000001602434d:13_0"
+      ],
       "action": "match",
       "poi_id": "12523086159025204657",
       "poi_title": "深圳前海壹方城",
       "poi_address": "广东省深圳市宝安区新湖路99号",
-      "latitude": 22.552196,
-      "longitude": 113.887809,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「深圳前海壹方城L1星辰街」匹配「深圳前海壹方城」",
-      "search_keywords_tried": [
-        "深圳前海壹方城L1星辰街"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:06_0"
-      ]
+      "reason": "主题快闪店在前海壹方城B2捣谷岛谷前"
     },
     {
-      "group_id": "7509cfb908b7",
+      "group_id": "3205a2e90b7f",
+      "event_uids": [
+        "xiaohongshu:6a545cb200000000070257d3:05_0"
+      ],
       "action": "match",
-      "poi_id": "1998786292183125618",
-      "poi_title": "海雅缤纷城",
-      "poi_address": "广东省深圳市宝安区建安一路99号",
-      "latitude": 22.55979,
-      "longitude": 113.906095,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「宝安区·海雅缤纷城L1层中庭」匹配「海雅缤纷城」",
+      "poi_id": "2340316408290809873",
+      "poi_title": "深圳大运中心体育馆",
+      "poi_address": "广东省深圳市龙岗区龙城街道黄阁路99号",
+      "latitude": 22.698212,
+      "longitude": 114.21698,
       "search_keywords_tried": [
-        "宝安区·海雅缤纷城L1层中庭"
+        "深圳大运中心体育馆"
       ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:06_1"
-      ]
+      "reason": "候选名称与活动场馆完全一致。"
     },
     {
-      "group_id": "f50025728719",
+      "group_id": "957962c536ab",
+      "event_uids": [
+        "xiaohongshu:6a545cb200000000070257d3:05_1"
+      ],
       "action": "match",
-      "poi_id": "8809684765114756733",
-      "poi_title": "深圳大悦城购物中心",
-      "poi_address": "",
-      "latitude": 22.569069,
-      "longitude": 113.902505,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：深圳大悦城LG层1号门喷泉广场 → 深圳大悦城购物中心（来源 event:xiaohongshu:6a4b0fe20000000022015242:01_0）",
+      "poi_id": "12750720158413736793",
+      "poi_title": "深圳国际会展中心20号馆",
+      "poi_address": "广东省深圳市宝安区展城路1号深圳宝安会展中心(宝安新馆)F3",
+      "latitude": 22.705656,
+      "longitude": 113.774786,
       "search_keywords_tried": [
-        "poi-address-cache"
+        "深圳国际会展中心20号馆"
       ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:06_2"
-      ]
+      "reason": "候选名称精确到活动所写20号馆。"
     },
     {
-      "group_id": "3400605cc5a1",
+      "group_id": "3e0d1c5c25d3",
+      "event_uids": [
+        "xiaohongshu:6a545cb200000000070257d3:05_2"
+      ],
       "action": "match",
-      "poi_id": "8809684765114756733",
-      "poi_title": "深圳大悦城购物中心",
-      "poi_address": "广东省深圳市宝安区前进一路与创业二路交汇处",
-      "latitude": 22.569069,
-      "longitude": 113.902505,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「深圳大悦城」匹配「深圳大悦城购物中心」",
+      "poi_id": "2715962234217552241",
+      "poi_title": "龙岗国际艺术中心",
+      "poi_address": "广东省深圳市龙岗区坂田街道贝尔路4号",
+      "latitude": 22.6411,
+      "longitude": 114.063366,
       "search_keywords_tried": [
-        "深圳大悦城"
+        "龙岗国际艺术中心"
       ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:07_0"
-      ]
+      "reason": "候选名称与活动场馆完全一致。"
     },
     {
-      "group_id": "632136d80dcf",
+      "group_id": "f23f37d18483",
+      "event_uids": [
+        "xiaohongshu:6a545cb200000000070257d3:05_3",
+        "xiaohongshu:6a545cb200000000070257d3:07_2"
+      ],
       "action": "match",
-      "poi_id": "8809684765114756733",
-      "poi_title": "深圳大悦城购物中心",
-      "poi_address": "广东省深圳市宝安区前进一路与创业二路交汇处",
-      "latitude": 22.569069,
-      "longitude": 113.902505,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「深圳大悦城L1层沐光中庭」匹配「深圳大悦城购物中心」",
+      "poi_id": "9942700699047189252",
+      "poi_title": "深圳戏院",
+      "poi_address": "广东省深圳市罗湖区新园路1号",
+      "latitude": 22.545407,
+      "longitude": 114.116537,
       "search_keywords_tried": [
-        "深圳大悦城L1层沐光中庭"
+        "深圳戏院"
       ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:07_1"
-      ]
+      "reason": "一号厅属于深圳戏院，选择场馆主POI。"
     },
     {
-      "group_id": "ccb1d47c6c8e",
+      "group_id": "39309e45f841",
+      "event_uids": [
+        "xiaohongshu:6a545cb200000000070257d3:06_0",
+        "xiaohongshu:6a545cb200000000070257d3:06_3"
+      ],
       "action": "match",
-      "poi_id": "510651698656825680",
-      "poi_title": "合正·汇一城",
-      "poi_address": "广东省深圳市宝安区西乡大道276号",
-      "latitude": 22.575516,
-      "longitude": 113.864167,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「宝安天虹购物中心L1奈雪门前外广场」匹配「合正·汇一城」",
+      "poi_id": "9942700699047189252",
+      "poi_title": "深圳戏院",
+      "poi_address": "广东省深圳市罗湖区新园路1号",
+      "latitude": 22.545407,
+      "longitude": 114.116537,
       "search_keywords_tried": [
-        "宝安天虹购物中心L1奈雪门前外广场"
+        "深圳戏院"
       ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:07_2"
-      ]
+      "reason": "候选名称与活动场馆完全一致。"
     },
     {
-      "group_id": "ee5020ca8b85",
+      "group_id": "404db4fb3333",
+      "event_uids": [
+        "xiaohongshu:6a545cb200000000070257d3:06_1"
+      ],
       "action": "match",
-      "poi_id": "10105330109727880746",
-      "poi_title": "茂业天地",
-      "poi_address": "广东省深圳市福田区华强北路2009号",
-      "latitude": 22.545665,
-      "longitude": 114.086213,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「华强北茂业天地」匹配「茂业天地」",
+      "poi_id": "591571925866032738",
+      "poi_title": "深圳大剧院",
+      "poi_address": "广东省深圳市罗湖区深南东路5018号",
+      "latitude": 22.542288,
+      "longitude": 114.10554,
       "search_keywords_tried": [
-        "华强北茂业天地"
+        "深圳大剧院"
       ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:08_0"
-      ]
+      "reason": "候选名称与活动场馆完全一致。"
     },
     {
-      "group_id": "9d7dab697b98",
+      "group_id": "b10abcc75c01",
+      "event_uids": [
+        "xiaohongshu:6a545cb200000000070257d3:06_2"
+      ],
       "action": "match",
-      "poi_id": "8755665027655198999",
-      "poi_title": "福田星河COCO Park 2期",
-      "poi_address": "广东省深圳市福田区福华三路269号",
-      "latitude": 22.531654,
-      "longitude": 114.054131,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「福田星河COCO Park二期」匹配「福田星河COCO Park 2期」",
+      "poi_id": "11086256307884622999",
+      "poi_title": "深圳音乐厅",
+      "poi_address": "广东省深圳市福田区福中一路2016号",
+      "latitude": 22.547417,
+      "longitude": 114.057183,
       "search_keywords_tried": [
-        "福田星河COCO Park二期"
+        "深圳音乐厅"
       ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:09_0"
-      ]
+      "reason": "演奏大厅属于深圳音乐厅，选择场馆主POI。"
     },
     {
-      "group_id": "df9ec5aa0f7a",
+      "group_id": "d12c0db00b95",
+      "event_uids": [
+        "xiaohongshu:6a545cb200000000070257d3:07_0"
+      ],
       "action": "match",
-      "poi_id": "7528067942916172743",
-      "poi_title": "卓悦中心",
-      "poi_address": "广东省深圳市福田区福华一路348号",
-      "latitude": 22.536471,
-      "longitude": 114.065061,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「福田区卓悦中心北区中央大街」匹配「卓悦中心」",
+      "poi_id": "1171483199111679361",
+      "poi_title": "光明文化艺术中心",
+      "poi_address": "广东省深圳市光明区观光路与创投路交叉口东北角",
+      "latitude": 22.745702,
+      "longitude": 113.936997,
       "search_keywords_tried": [
-        "福田区卓悦中心北区中央大街"
+        "光明文化艺术中心"
       ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:09_1"
-      ]
+      "reason": "大剧场属于光明文化艺术中心，选择场馆主POI。"
     },
     {
-      "group_id": "c7ab63481869",
+      "group_id": "6a30d5527025",
+      "event_uids": [
+        "xiaohongshu:6a545cb200000000070257d3:07_1"
+      ],
       "action": "match",
-      "poi_id": "16458547628259717281",
-      "poi_title": "中洲湾C Future City",
-      "poi_address": "广东省深圳市福田区滨河大道9283号",
-      "latitude": 22.527448,
-      "longitude": 114.028845,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「福田区中洲湾广场」匹配「中洲湾C Future City」",
+      "poi_id": "1476105906918446072",
+      "poi_title": "鹭湖艺术中心",
+      "poi_address": "广东省深圳市龙华区观湖街道松轩社区平安路19号",
+      "latitude": 22.702846,
+      "longitude": 114.066607,
       "search_keywords_tried": [
-        "福田区中洲湾广场"
+        "鹭湖艺术中心"
       ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:09_2"
-      ]
+      "reason": "候选名称与活动场馆完全一致。"
     },
     {
-      "group_id": "99a843112a48",
+      "group_id": "9f72526a765a",
+      "event_uids": [
+        "xiaohongshu:6a545cb200000000070257d3:09_0"
+      ],
       "action": "match",
-      "poi_id": "1111964509902706984",
-      "poi_title": "深圳书城·中心城",
-      "poi_address": "广东省深圳市福田区福中一路2014号",
-      "latitude": 22.546497,
-      "longitude": 114.059624,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「深圳书城中心城及书吧」匹配「深圳书城·中心城」",
+      "poi_id": "682916544627806843",
+      "poi_title": "广东潮州卫生健康职业学院",
+      "poi_address": "广东省潮州市湘桥区中山大道",
+      "latitude": 23.638815,
+      "longitude": 116.769041,
       "search_keywords_tried": [
-        "深圳书城中心城及书吧"
+        "广东潮州卫生健康职业学院"
       ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:10_0"
-      ]
-    },
-    {
-      "group_id": "6a6ece83a2cf",
-      "action": "match",
-      "poi_id": "2534018732532722325",
-      "poi_title": "星河COCO City(民治店)",
-      "poi_address": "广东省深圳市龙华区梅龙大道2号",
-      "latitude": 22.602898,
-      "longitude": 114.046713,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「深圳龙华星河COCO City 二楼」匹配「星河COCO City(民治店)」",
-      "search_keywords_tried": [
-        "深圳龙华星河COCO City 二楼"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:10_1"
-      ]
-    },
-    {
-      "group_id": "b7acdb63c155",
-      "action": "match",
-      "poi_id": "18410393328777573693",
-      "poi_title": "龙华星河iCO",
-      "poi_address": "广东省深圳市龙华区东环二路8号",
-      "latitude": 22.656331,
-      "longitude": 114.03723,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「深圳龙华星河iCO L1东广场」匹配「龙华星河iCO」",
-      "search_keywords_tried": [
-        "深圳龙华星河iCO L1东广场"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:10_2"
-      ]
-    },
-    {
-      "group_id": "50d847b924ec",
-      "action": "reject",
-      "reason": "全城地铁多线多站，无法匹配单一POI",
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:11_0"
-      ]
-    },
-    {
-      "group_id": "1f6fca004db3",
-      "action": "match",
-      "poi_id": "13425669067061032863",
-      "poi_title": "深圳万象食家",
-      "poi_address": "广东省深圳市罗湖区梅园路71号",
-      "latitude": 22.561758,
-      "longitude": 114.110575,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「万象食家中庭」匹配「深圳万象食家」",
-      "search_keywords_tried": [
-        "万象食家中庭"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:11_1"
-      ]
-    },
-    {
-      "group_id": "67a5139c4fa7",
-      "action": "match",
-      "poi_id": "13425669067061032863",
-      "poi_title": "深圳万象食家",
-      "poi_address": "广东省深圳市罗湖区梅园路71号",
-      "latitude": 22.561758,
-      "longitude": 114.110575,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「万象食家街区」匹配「深圳万象食家」",
-      "search_keywords_tried": [
-        "万象食家街区"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:11_2"
-      ]
-    },
-    {
-      "group_id": "2aaba3a32dec",
-      "action": "match",
-      "poi_id": "14876140772817130654",
-      "poi_title": "深圳龙岗万达广场",
-      "poi_address": "广东省深圳市龙岗区平湖街道禾花社区华南二道1号",
-      "latitude": 22.674768,
-      "longitude": 114.131137,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「龙岗万达广场B1层中庭（壹品健身店旁）」匹配「深圳龙岗万达广场」",
-      "search_keywords_tried": [
-        "龙岗万达广场B1层中庭（壹品健身店旁）"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:12_0"
-      ]
-    },
-    {
-      "group_id": "cc35e77fa9c1",
-      "action": "match",
-      "poi_id": "1759407209891692900",
-      "poi_title": "仁恒梦中心",
-      "poi_address": "广东省深圳市龙岗区龙城街道回龙埔社区仁恒梦创广场A座3904",
-      "latitude": 22.729815,
-      "longitude": 114.224713,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「深圳仁恒梦中心B1层地铁通道旁」匹配「仁恒梦中心」",
-      "search_keywords_tried": [
-        "深圳仁恒梦中心B1层地铁通道旁"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:12_1"
-      ]
-    },
-    {
-      "group_id": "070677aa596c",
-      "action": "match",
-      "poi_id": "5628878134365802777",
-      "poi_title": "COCO Park(龙岗店)",
-      "poi_address": "广东省深圳市龙岗区爱南路666号",
-      "latitude": 22.691022,
-      "longitude": 114.228401,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「深圳龙岗星河CoCo Park L1南门」匹配「COCO Park(龙岗店)」",
-      "search_keywords_tried": [
-        "深圳龙岗星河CoCo Park L1南门"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:12_2"
-      ]
-    },
-    {
-      "group_id": "f2d048f9569c",
-      "action": "match",
-      "poi_id": "11107360214280099505",
-      "poi_title": "深圳美术馆",
-      "poi_address": "",
-      "latitude": 22.62493,
-      "longitude": 114.023767,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：深圳美术馆一层1、2号展厅 → 深圳美术馆（来源 event:xiaohongshu:6a4b0fe20000000022015242:03_0）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:13_0"
-      ]
-    },
-    {
-      "group_id": "f30de68291ad",
-      "action": "match",
-      "poi_id": "11107360214280099505",
-      "poi_title": "深圳美术馆",
-      "poi_address": "",
-      "latitude": 22.62493,
-      "longitude": 114.023767,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：深圳美术馆三层10、11号展厅 → 深圳美术馆（来源 event:xiaohongshu:6a4b0fe20000000022015242:03_1）",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:13_1"
-      ]
-    },
-    {
-      "group_id": "21fa7aebb05e",
-      "action": "reject",
-      "reason": "腾讯POI未找到湾厦文化艺术中心",
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:13_2"
-      ]
-    },
-    {
-      "group_id": "42d2af808753",
-      "action": "match",
-      "poi_id": "9676588372991435778",
-      "poi_title": "深圳图书馆北馆",
-      "poi_address": "广东省深圳市龙华区民治街道中梅路润达圆庭南3街1号201正南方向80米",
-      "latitude": 22.62419,
-      "longitude": 114.022728,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「深圳图书馆北馆成人区3F观影厅」匹配「深圳图书馆北馆」",
-      "search_keywords_tried": [
-        "深圳图书馆北馆成人区3F观影厅"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:14_0",
-        "xiaohongshu:6a4f493f0000000007010a1e:14_1"
-      ]
-    },
-    {
-      "group_id": "84c5f3abea40",
-      "action": "match",
-      "poi_id": "9676588372991435778",
-      "poi_title": "深圳图书馆北馆",
-      "poi_address": "广东省深圳市龙华区民治街道中梅路润达圆庭南3街1号201正南方向80米",
-      "latitude": 22.62419,
-      "longitude": 114.022728,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「深圳图书馆北馆少儿区1F洞洞剧场」匹配「深圳图书馆北馆」",
-      "search_keywords_tried": [
-        "深圳图书馆北馆少儿区1F洞洞剧场"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:14_2"
-      ]
-    },
-    {
-      "group_id": "c957bb6e467a",
-      "action": "match",
-      "poi_id": "9060713234658206452",
-      "poi_title": "深圳图书馆",
-      "poi_address": "广东省深圳市福田区福中一路2001号",
-      "latitude": 22.54597,
-      "longitude": 114.05735,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「深圳图书馆中心馆五楼聚艺厅」匹配「深圳图书馆」",
-      "search_keywords_tried": [
-        "深圳图书馆中心馆五楼聚艺厅"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:14_3"
-      ]
-    },
-    {
-      "group_id": "c6559458c49b",
-      "action": "match",
-      "poi_id": "9060713234658206452",
-      "poi_title": "深圳图书馆",
-      "poi_address": "广东省深圳市福田区福中一路2001号",
-      "latitude": 22.54597,
-      "longitude": 114.05735,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「深圳图书馆中心馆少儿服务区多功能活动室」匹配「深圳图书馆」",
-      "search_keywords_tried": [
-        "深圳图书馆中心馆少儿服务区多功能活动室"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:14_4"
-      ]
-    },
-    {
-      "group_id": "862aabe41e8f",
-      "action": "match",
-      "poi_id": "10711144194503948228",
-      "poi_title": "宝安图书馆(新安街道分馆)",
-      "poi_address": "广东省深圳市宝安区新安文体中心2层",
-      "latitude": 22.577534,
-      "longitude": 113.924389,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「宝安区图书馆新安街道分馆报告厅」匹配「宝安图书馆(新安街道分馆)」",
-      "search_keywords_tried": [
-        "宝安区图书馆新安街道分馆报告厅"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:15_0"
-      ]
-    },
-    {
-      "group_id": "b433c8f232ec",
-      "action": "match",
-      "poi_id": "6549319157319221742",
-      "poi_title": "宝安图书馆1990分馆",
-      "poi_address": "广东省深圳市宝安区宝安4区新安二路74号文化馆",
-      "latitude": 22.559169,
-      "longitude": 113.910694,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「宝安1990分馆一楼多功能厅」匹配「宝安图书馆1990分馆」",
-      "search_keywords_tried": [
-        "宝安1990分馆一楼多功能厅"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:15_1",
-        "xiaohongshu:6a4f493f0000000007010a1e:15_6"
-      ]
-    },
-    {
-      "group_id": "6d13ed91e108",
-      "action": "match",
-      "poi_id": "10156661086540065407",
-      "poi_title": "宝安图书馆(航城街道分馆)",
-      "poi_address": "广东省深圳市宝安区航城学校对面领航文体中心",
-      "latitude": 22.610782,
-      "longitude": 113.853176,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「宝安区图书馆航城街道分馆」匹配「宝安图书馆(航城街道分馆)」",
-      "search_keywords_tried": [
-        "宝安区图书馆航城街道分馆"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:15_2",
-        "xiaohongshu:6a4f493f0000000007010a1e:16_1"
-      ]
-    },
-    {
-      "group_id": "0274c0b78daa",
-      "action": "match",
-      "poi_id": "11790351206599104219",
-      "poi_title": "宝安图书馆(福海街道分馆)",
-      "poi_address": "广东省深圳市宝安区福海街道桥和路300号",
-      "latitude": 22.688705,
-      "longitude": 113.793824,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「宝安区图书馆福海街道分馆二楼玩具馆」匹配「宝安图书馆(福海街道分馆)」",
-      "search_keywords_tried": [
-        "宝安区图书馆福海街道分馆二楼玩具馆"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:15_3"
-      ]
-    },
-    {
-      "group_id": "28c91b7b5ea8",
-      "action": "match",
-      "poi_id": "3159484074177657712",
-      "poi_title": "宝安图书馆(新桥街道分馆)",
-      "poi_address": "广东省深圳市宝安区新桥街道中心路36号新桥文化艺术中心东楼三、四楼",
-      "latitude": 22.726061,
-      "longitude": 113.829904,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「宝安区图书馆新桥街道分馆三楼活动室」匹配「宝安图书馆(新桥街道分馆)」",
-      "search_keywords_tried": [
-        "宝安区图书馆新桥街道分馆三楼活动室"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:15_4"
-      ]
-    },
-    {
-      "group_id": "981746340e10",
-      "action": "match",
-      "poi_id": "11790351206599104219",
-      "poi_title": "宝安图书馆(福海街道分馆)",
-      "poi_address": "广东省深圳市宝安区福海街道桥和路300号",
-      "latitude": 22.688705,
-      "longitude": 113.793824,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「宝安区图书馆福海街道分馆二楼玩具房」匹配「宝安图书馆(福海街道分馆)」",
-      "search_keywords_tried": [
-        "宝安区图书馆福海街道分馆二楼玩具房"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:15_5"
-      ]
-    },
-    {
-      "group_id": "c9a3c37a5cbb",
-      "action": "match",
-      "poi_id": "10711144194503948228",
-      "poi_title": "宝安图书馆(新安街道分馆)",
-      "poi_address": "广东省深圳市宝安区新安文体中心2层",
-      "latitude": 22.577534,
-      "longitude": 113.924389,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「宝安区图书馆新安街道分馆报告厅、航城街道分馆」匹配「宝安图书馆(新安街道分馆)」",
-      "search_keywords_tried": [
-        "宝安区图书馆新安街道分馆报告厅"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:16_0"
-      ]
-    },
-    {
-      "group_id": "b20ec6d349c3",
-      "action": "match",
-      "poi_id": "10105658304649101965",
-      "poi_title": "楼岗社区阅读中心",
-      "poi_address": "广东省深圳市宝安区松岗街道埔边北一街前进公社一栋2楼",
-      "latitude": 22.76706,
-      "longitude": 113.857793,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「宝安区图书馆松岗街道楼岗社区阅读中心」匹配「楼岗社区阅读中心」",
-      "search_keywords_tried": [
-        "宝安区图书馆松岗街道楼岗社区阅读中心"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:16_2"
-      ]
-    },
-    {
-      "group_id": "aaa63938d466",
-      "action": "match",
-      "poi_id": "1239759005350952660",
-      "poi_title": "宝读书房·马安山锦胜阅读中心",
-      "poi_address": "广东省深圳市宝安区锦胜财富广场裙楼1层",
-      "latitude": 22.712091,
-      "longitude": 113.817281,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「宝安区图书馆沙井街道马安山（锦胜）阅读中心」匹配「宝读书房·马安山锦胜阅读中心」",
-      "search_keywords_tried": [
-        "宝安区图书馆沙井街道马安山（锦胜）阅读中"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:16_3"
-      ]
-    },
-    {
-      "group_id": "9974812e34e2",
-      "action": "match",
-      "poi_id": "9279236050266640461",
-      "poi_title": "宝安图书馆",
-      "poi_address": "广东省深圳市宝安区宝兴路1号",
-      "latitude": 22.548709,
-      "longitude": 113.882838,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「宝安区图书馆报告厅2」匹配「宝安图书馆」",
-      "search_keywords_tried": [
-        "宝安区图书馆报告厅2"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:16_4"
-      ]
-    },
-    {
-      "group_id": "7d2cf47615c4",
-      "action": "match",
-      "poi_id": "14855071688757442367",
-      "poi_title": "深圳市盐田区图书馆(新馆)",
-      "poi_address": "广东省深圳市盐田区海山街道深盐路2128号",
-      "latitude": 22.555651,
-      "longitude": 114.236708,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址「盐田区图书馆三楼视听播放室」匹配「深圳市盐田区图书馆(新馆)」",
-      "search_keywords_tried": [
-        "盐田区图书馆三楼视听播放室"
-      ],
-      "event_uids": [
-        "xiaohongshu:6a4f493f0000000007010a1e:16_5"
-      ]
+      "reason": "活动场地为该学院足球场，选择学院主POI。"
     }
   ]
 }

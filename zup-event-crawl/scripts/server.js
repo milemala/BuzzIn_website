@@ -8,6 +8,7 @@ const url = require("url");
 const zlib = require("zlib");
 const {
   applyDefaultImportPrepToActiveEvents,
+  applyEventClassification,
   applyEventPoiSelection,
   countApprovedActiveEvents,
   getApprovedEvents,
@@ -633,6 +634,25 @@ async function handleApi(req, res, pathname) {
       sendJson(res, 200, { ok: true, ...report });
     } catch (error) {
       sendJson(res, 502, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  const eventClassificationMatch = pathname.match(/^\/api\/events\/([^/]+)\/classification$/);
+  if (req.method === "POST" && eventClassificationMatch) {
+    try {
+      const eventUid = decodeURIComponent(eventClassificationMatch[1]);
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const suggestedRaw = body.suggested;
+      const decision = {
+        category: body.category,
+        suggested: suggestedRaw === true || suggestedRaw === 1 || suggestedRaw === "true",
+        reason: String(body.reason || "").trim() || "审核台手动分类",
+      };
+      const updated = applyEventClassification(db, eventUid, decision);
+      sendJson(res, 200, { ok: true, event: updated });
+    } catch (error) {
+      sendJson(res, 400, { ok: false, error: error.message });
     }
     return;
   }

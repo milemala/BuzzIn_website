@@ -1,13 +1,17 @@
 {
   "city": "温州",
-  "decided_at": "2026-07-13T01:40:00.000Z",
+  "decided_at": "2026-07-13T14:43:13.358Z",
   "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "6834f87cdd73",
-      "event_uids": ["douban:37897501"],
+      "event_uids": [
+        "douban:37897501"
+      ],
       "action": "match",
-      "search_keywords_tried": ["乐清市图书馆"],
+      "search_keywords_tried": [
+        "乐清市图书馆"
+      ],
       "poi_id": "1789800686811564803",
       "poi_title": "乐清市图书馆",
       "poi_address": "浙江省温州市乐清市城东街道伯乐东路890号",
@@ -26,9 +30,13 @@
     },
     {
       "group_id": "bb994f40519b",
-      "event_uids": ["douban:37827902"],
+      "event_uids": [
+        "douban:37827902"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "2080727425376033704",
       "poi_title": "温州高新文化广场大剧院",
       "poi_address": "",
@@ -38,6 +46,56 @@
       "confidence": "high",
       "doubtful": false,
       "reason": "地址映射库命中：温州 龙湾区 温州高新文化广场 龙祥路1111号 → 温州高新文化广场大剧院"
+    },
+    {
+      "group_id": "f8400159338e",
+      "event_uids": [
+        "douban:37900886"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "伴度假酒店洞头"
+      ],
+      "poi_id": "3056958102962360262",
+      "poi_title": "温州伴·度假酒店",
+      "poi_address": "浙江省温州市洞头区沙岙路234号.235号.236号",
+      "latitude": 27.818542,
+      "longitude": 121.105457,
+      "candidates": [
+        {
+          "poi_id": "3056958102962360262",
+          "title": "温州伴·度假酒店",
+          "address": "浙江省温州市洞头区沙岙路234号.235号.236号"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "度假酒店与洞头沙岙路地址一致"
+    },
+    {
+      "group_id": "c1e58a31fb9c",
+      "event_uids": [
+        "douban:37900897"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "桃青民宿小坝坊"
+      ],
+      "poi_id": "7658913006861998822",
+      "poi_title": "桃青民宿(温州学院路店)",
+      "poi_address": "浙江省温州市鹿城区学院中路小坝坊15栋",
+      "latitude": 28.004254,
+      "longitude": 120.688255,
+      "candidates": [
+        {
+          "poi_id": "7658913006861998822",
+          "title": "桃青民宿(温州学院路店)",
+          "address": "浙江省温州市鹿城区学院中路小坝坊15栋"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "民宿店名与小坝坊15栋地址完全一致"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "city": "北京",
   "source": "xiaohongshu",
-  "exported_at": "2026-07-07T02:18:59.228Z",
+  "exported_at": "2026-07-14T00:57:47.012Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
@@ -10,87 +10,67 @@
   "last_import_new_uids": 16,
   "doubtful_only": false,
   "total_events": 16,
-  "group_count": 16,
-  "cache_hit_groups": 0,
+  "group_count": 15,
+  "cache_hit_groups": 3,
   "groups": [
     {
-      "group_id": "f53042c9a994",
-      "location": "国家会议中心二期4号展厅",
-      "sample_title": "北京手账市集",
+      "group_id": "5573c29dfe95",
+      "location": "朝阳区·国家会议中心二期4号展厅",
+      "sample_title": "北京手帐市集",
       "event_uids": [
-        "xiaohongshu:6a4b8f23000000001c0248ed:01_0"
+        "xiaohongshu:6a547c1e000000000f01dff5:01_1"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "1365151917676297777",
+        "poi_title": "国家会议中心二期",
+        "poi_address": "",
+        "latitude": 40.004502,
+        "longitude": 116.38909,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：朝阳区·国家会议中心二期4号展厅 → 国家会议中心二期（来源 event:xiaohongshu:6a437273000000001502576e:01_0）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "5573c29dfe95aef01d689a70f18f5fd80dcb04c5"
+      }
+    },
+    {
+      "group_id": "9ce4f9a147f0",
+      "location": "朝阳区·THE BOX朝外",
+      "sample_title": "碰杯大会市集",
+      "event_uids": [
+        "xiaohongshu:6a547c1e000000000f01dff5:02_0"
       ],
       "event_count": 1
     },
     {
-      "group_id": "181ad5edbe9c",
-      "location": "北京财富购物中心西门",
-      "sample_title": "ShakeHub 鸡尾酒节",
+      "group_id": "be0bc4b018ad",
+      "location": "通州区·湾里汀云小镇树桥广场",
+      "sample_title": "湾里首届吃冰节",
       "event_uids": [
-        "xiaohongshu:6a4b8f23000000001c0248ed:01_1"
+        "xiaohongshu:6a547c1e000000000f01dff5:02_1"
       ],
       "event_count": 1
     },
     {
-      "group_id": "f80f2c2a71ad",
-      "location": "首创郎园 Station 中央车站",
-      "sample_title": "车站咖啡节",
+      "group_id": "20c0d09a7856",
+      "location": "朝阳西店记忆FUNSTOWN",
+      "sample_title": "开瓶独立精酿节",
       "event_uids": [
-        "xiaohongshu:6a4b8f23000000001c0248ed:02_0"
+        "xiaohongshu:6a547c1e000000000f01dff5:03_1"
       ],
       "event_count": 1
     },
     {
-      "group_id": "46038b574600",
-      "location": "东城·纳福胡同13号北平机器（纳福店）",
-      "sample_title": "三兔二手跳蚤市集",
+      "group_id": "81e737200da9",
+      "location": "丰台区·北京西铁营万达广场",
+      "sample_title": "微醺甜品节",
       "event_uids": [
-        "xiaohongshu:6a4b8f23000000001c0248ed:03_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "d277c82f1eb7",
-      "location": "朝阳区·西店记忆·黑糖广场",
-      "sample_title": "有机周末·草地日落市集",
-      "event_uids": [
-        "xiaohongshu:6a4b8f23000000001c0248ed:04_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "9b3d7300c99f",
-      "location": "朝阳公园微博IN广场",
-      "sample_title": "国际微醺好食节",
-      "event_uids": [
-        "xiaohongshu:6a4b8f23000000001c0248ed:04_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "464ff1360bcf",
-      "location": "奥森北园花田野趣",
-      "sample_title": "奥森葵花展",
-      "event_uids": [
-        "xiaohongshu:6a4b8f23000000001c0248ed:05_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "782c47af13d0",
-      "location": "亮马河国际风情水岸",
-      "sample_title": "亮马河游船5周年",
-      "event_uids": [
-        "xiaohongshu:6a4b8f23000000001c0248ed:05_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "9b7d1fb17a05",
-      "location": "悠唐购物中心二期1层中庭",
-      "sample_title": "有趣人类儿童跳蚤市集",
-      "event_uids": [
-        "xiaohongshu:6a4b8f23000000001c0248ed:06_0"
+        "xiaohongshu:6a547c1e000000000f01dff5:04_0"
       ],
       "event_count": 1
     },
@@ -99,61 +79,121 @@
       "location": "北京市东城区龙潭中湖公园",
       "sample_title": "摩天轮市集",
       "event_uids": [
-        "xiaohongshu:6a4b8f23000000001c0248ed:06_1"
+        "xiaohongshu:6a547c1e000000000f01dff5:04_1"
       ],
       "event_count": 1
+    },
+    {
+      "group_id": "94a7e4ee6322",
+      "location": "西城区·北京西单大悦城",
+      "sample_title": "小黄人与大怪兽快闪",
+      "event_uids": [
+        "xiaohongshu:6a547c1e000000000f01dff5:07_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "adbe57233841",
+      "location": "北京金融街购物中心B1",
+      "sample_title": "蜡笔小新宠物系列快闪",
+      "event_uids": [
+        "xiaohongshu:6a547c1e000000000f01dff5:07_1"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "1541277091779078951",
+        "poi_title": "北京金融街购物中心",
+        "poi_address": "",
+        "latitude": 39.915556,
+        "longitude": 116.361872,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：北京金融街购物中心B1 → 北京金融街购物中心（来源 event:xiaohongshu:6a38f04e000000001700bb04:10_1）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "adbe57233841af6fa97f15d3fe3a8a07d4058d45"
+      }
+    },
+    {
+      "group_id": "bb9cbb6ca4a5",
+      "location": "大兴区·北京荟聚·1楼西中庭",
+      "sample_title": "哈利·波特快闪",
+      "event_uids": [
+        "xiaohongshu:6a547c1e000000000f01dff5:08_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "a28770e18de0",
+      "location": "北京朝阳合生汇一层中庭",
+      "sample_title": "yuy小玉快闪",
+      "event_uids": [
+        "xiaohongshu:6a547c1e000000000f01dff5:08_1"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "6235769294450965737",
+        "poi_title": "北京朝阳合生汇",
+        "poi_address": "",
+        "latitude": 39.893974,
+        "longitude": 116.479225,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：北京朝阳合生汇一层中庭 → 北京朝阳合生汇（来源 event:xiaohongshu:6a437273000000001502576e:10_1）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "a28770e18de0928f23048dd112b1954f6b49151c"
+      }
+    },
+    {
+      "group_id": "f09d19ebdc3c",
+      "location": "北京西单大悦城1F东大堂",
+      "sample_title": "JOJO的奇妙冒险快闪",
+      "event_uids": [
+        "xiaohongshu:6a547c1e000000000f01dff5:09_0"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "067824790c3e",
+      "location": "朝阳区·朝阳大悦城B1",
+      "sample_title": "得力轻松小熊主题快闪",
+      "event_uids": [
+        "xiaohongshu:6a547c1e000000000f01dff5:09_1",
+        "xiaohongshu:6a547c1e000000000f01dff5:11_1"
+      ],
+      "event_count": 2
     },
     {
       "group_id": "b9b17627e0f6",
       "location": "西城区·西单更新场B126",
-      "sample_title": "SEVENTEEN 韩团快闪",
+      "sample_title": "SEVENTEEN韩团快闪",
       "event_uids": [
-        "xiaohongshu:6a4b8f23000000001c0248ed:08_0"
+        "xiaohongshu:6a547c1e000000000f01dff5:10_0"
       ],
       "event_count": 1
     },
     {
-      "group_id": "7ada165caa07",
-      "location": "三里屯太古里S8号楼一层 S8-10a单元-Hirono小野 POP UP",
-      "sample_title": "Hirono 小野北京快闪",
+      "group_id": "b9700d48ae3c",
+      "location": "朝阳公园内微博IN二层2001号次元波板糖主题店",
+      "sample_title": "时光代理人主题餐厅",
       "event_uids": [
-        "xiaohongshu:6a4b8f23000000001c0248ed:09_0"
+        "xiaohongshu:6a547c1e000000000f01dff5:10_1"
       ],
       "event_count": 1
     },
     {
-      "group_id": "4ae850afb8f8",
-      "location": "798艺术区B06空间",
-      "sample_title": "MOLLY 二十周年特展",
+      "group_id": "6692e46891fc",
+      "location": "西城区·西单大悦城B1圆厅",
+      "sample_title": "青蛙王子波仔喜事屋快闪店",
       "event_uids": [
-        "xiaohongshu:6a4b8f23000000001c0248ed:09_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "46f1cac46ab6",
-      "location": "北京朝阳合生汇 一层中庭",
-      "sample_title": "yuy小玉快闪",
-      "event_uids": [
-        "xiaohongshu:6a4b8f23000000001c0248ed:10_1"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "cbaa62683be4",
-      "location": "北京西单大悦城 1F 东大堂",
-      "sample_title": "JOJO的奇妙冒险快闪",
-      "event_uids": [
-        "xiaohongshu:6a4b8f23000000001c0248ed:11_0"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "378fc76b73c0",
-      "location": "朝阳区·西店记忆园区D6",
-      "sample_title": "纸地有声快闪",
-      "event_uids": [
-        "xiaohongshu:6a4b8f23000000001c0248ed:11_1"
+        "xiaohongshu:6a547c1e000000000f01dff5:11_0"
       ],
       "event_count": 1
     }

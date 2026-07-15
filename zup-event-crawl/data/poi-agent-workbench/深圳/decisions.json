@@ -1,13 +1,17 @@
 {
   "city": "深圳",
-  "decided_at": "2026-07-13T02:00:00.000Z",
+  "decided_at": "2026-07-13T14:43:13.358Z",
   "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "7be61bdd975e",
-      "event_uids": ["douban:37757335"],
+      "event_uids": [
+        "douban:37757335"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "2462313919833142162",
       "poi_title": "来疯喜剧脱口秀俱乐部(上梅林卓悦汇店)",
       "poi_address": "",
@@ -20,9 +24,13 @@
     },
     {
       "group_id": "c23a4b9a1baa",
-      "event_uids": ["douban:37894612"],
+      "event_uids": [
+        "douban:37894612"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "15281668256543917083",
       "poi_title": "ROOTS HOUSE(华侨城店)",
       "poi_address": "",
@@ -35,9 +43,13 @@
     },
     {
       "group_id": "701fbd09a0d5",
-      "event_uids": ["douban:37900554"],
+      "event_uids": [
+        "douban:37900554"
+      ],
       "action": "match",
-      "search_keywords_tried": ["俞兴根中医诊所"],
+      "search_keywords_tried": [
+        "俞兴根中医诊所"
+      ],
       "poi_id": "5289897809632340363",
       "poi_title": "深圳俞兴根中医(综合)诊所",
       "poi_address": "广东省深圳市福田区莲花路北侧1110号雨田村南门牌坊入左侧雨雨楼1楼3号",
@@ -50,9 +62,13 @@
     },
     {
       "group_id": "7d7be3205105",
-      "event_uids": ["douban:37705411"],
+      "event_uids": [
+        "douban:37705411"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "18093005889884925272",
       "poi_title": "青春无限乐团烛光音乐会(南山店)",
       "poi_address": "",
@@ -65,9 +81,13 @@
     },
     {
       "group_id": "e780bd4e13a4",
-      "event_uids": ["douban:37730283"],
+      "event_uids": [
+        "douban:37730283"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "9365954080090963047",
       "poi_title": "新空间剧场(福田岗厦店)",
       "poi_address": "",
@@ -80,20 +100,147 @@
     },
     {
       "group_id": "dbc768c3fa0e",
-      "event_uids": ["douban:37827552"],
+      "event_uids": [
+        "douban:37827552"
+      ],
       "action": "match",
-      "search_keywords_tried": ["塘朗山"],
+      "search_keywords_tried": [
+        "塘朗山"
+      ],
       "poi_id": "4263510528657419348",
       "poi_title": "塘朗山公园-龙珠门",
       "poi_address": "广东省深圳市南山区桃源街道龙珠六路尽头处塘朗山公园",
       "latitude": 22.563989,
       "longitude": 113.982188,
       "candidates": [
-        {"poi_id": "7332204721305123253", "title": "塘朗山郊野公园", "address": "广东省深圳市南山区龙珠大道龙珠六路"}
+        {
+          "poi_id": "7332204721305123253",
+          "title": "塘朗山郊野公园",
+          "address": "广东省深圳市南山区龙珠大道龙珠六路"
+        }
       ],
       "confidence": "high",
       "doubtful": false,
       "reason": "原文明确写集合地点为塘朗山龙珠门，候选中该门禁点名称完全一致"
+    },
+    {
+      "group_id": "5ea2990d0b67",
+      "event_uids": [
+        "douban:37901175"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "寰映影城中航城君尚"
+      ],
+      "poi_id": "11642275460979824811",
+      "poi_title": "寰映影城(福田中航城君尚购物中心激光IMAX店)",
+      "poi_address": "广东省深圳市福田区中航路1号中航城君尚购物中心L4-L428",
+      "latitude": 22.542502,
+      "longitude": 114.08407,
+      "candidates": [
+        {
+          "poi_id": "11642275460979824811",
+          "title": "寰映影城(福田中航城君尚购物中心激光IMAX店)",
+          "address": "广东省深圳市福田区中航路1号中航城君尚购物中心L4-L428"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "影院与中航城君尚四楼地址一致"
+    },
+    {
+      "group_id": "be7873efaa12",
+      "event_uids": [
+        "douban:37900952"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "观筑艺术空间华侨城"
+      ],
+      "poi_id": "524726888809961165",
+      "poi_title": "观筑艺术空间",
+      "poi_address": "广东省深圳市南山区沙河街道 锦绣北街2号华侨城创意文化园B10栋02铺",
+      "latitude": 22.539471,
+      "longitude": 113.993636,
+      "candidates": [
+        {
+          "poi_id": "524726888809961165",
+          "title": "观筑艺术空间",
+          "address": "广东省深圳市南山区沙河街道 锦绣北街2号华侨城创意文化园B10栋02铺"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "店名与华侨城创意文化园地址唯一匹配"
+    },
+    {
+      "group_id": "ae7073a95e9e",
+      "event_uids": [
+        "douban:37900720"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "安徽大厦车公庙"
+      ],
+      "poi_id": "262628701006936448",
+      "poi_title": "安徽大厦",
+      "poi_address": "广东省深圳市福田区沙头街道深南大道6007号",
+      "latitude": 22.536255,
+      "longitude": 114.031628,
+      "candidates": [
+        {
+          "poi_id": "262628701006936448",
+          "title": "安徽大厦",
+          "address": "广东省深圳市福田区沙头街道深南大道6007号"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "楼宇主体一致，活动13楼仅差楼层"
+    },
+    {
+      "group_id": "f451f871809b",
+      "event_uids": [
+        "douban:37900733"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "荣超经贸中心"
+      ],
+      "poi_id": "4107971988374362235",
+      "poi_title": "荣超经贸中心",
+      "poi_address": "广东省深圳市福田区金田路4028号",
+      "latitude": 22.54404,
+      "longitude": 114.063637,
+      "candidates": [
+        {
+          "poi_id": "4107971988374362235",
+          "title": "荣超经贸中心",
+          "address": "广东省深圳市福田区金田路4028号"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "楼宇主体一致，4801室仅差楼层"
+    },
+    {
+      "group_id": "6f83ad8999f0",
+      "event_uids": [
+        "douban:37900748"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "3575825143035739176",
+      "poi_title": "科兴科学园-A栋",
+      "poi_address": "",
+      "latitude": 22.716412,
+      "longitude": 114.026782,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：科兴科技园a1栋"
     }
   ]
 }

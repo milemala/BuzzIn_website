@@ -1,209 +1,185 @@
 {
   "city": "天津",
   "source": "xiaohongshu",
-  "decided_at": "2026-07-07T02:45:00.000Z",
-  "agent": "cursor-composer",
+  "decided_at": "2026-07-14T01:10:00.000Z",
   "decisions": [
     {
-      "group_id": "abd816cac0b7",
-      "event_uids": ["xiaohongshu:6a3e3f56000000000f030562:01_0"],
+      "group_id": "b0961db74cc6",
+      "event_uids": ["xiaohongshu:6a54a354000000000f032100:01_0"],
       "action": "match",
-      "search_keywords_tried": ["陆家嘴中心"],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "红桥区大丰路25-29号陆家嘴中心1层，POI天津陆家嘴中心一致",
-      "poi_id": "5051348781459406994",
-      "poi_title": "天津陆家嘴中心",
-      "poi_address": "天津市红桥区北马路与大丰路交叉口东北角",
-      "latitude": 39.147512,
-      "longitude": 117.172138,
-      "candidates": [
-        {"poi_id": "5051348781459406994", "title": "天津陆家嘴中心", "address": "天津市红桥区北马路与大丰路交叉口东北角", "category": "购物:综合商场:购物中心", "latitude": 39.147512, "longitude": 117.172138},
-        {"poi_id": "3234248066904253275", "title": "陆家嘴地产(天津陆家嘴中心店)", "address": "天津市红桥区大丰路25-29号", "category": "生活服务:中介机构", "latitude": 39.147241, "longitude": 117.172421}
-      ]
-    },
-    {
-      "group_id": "ac37d5c1a345",
-      "event_uids": ["xiaohongshu:6a3e3f56000000000f030562:01_1"],
-      "action": "match",
-      "search_keywords_tried": ["天津梅江印象城"],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "天津梅江印象城超级冰甜节，POI主体一致",
-      "poi_id": "3030984718541482517",
-      "poi_title": "天津梅江印象城",
-      "poi_address": "天津市西青区经济技术开发区友谊南路111号",
-      "latitude": 39.026272,
-      "longitude": 117.218721,
-      "candidates": [
-        {"poi_id": "3030984718541482517", "title": "天津梅江印象城", "address": "天津市西青区经济技术开发区友谊南路111号", "category": "购物:综合商场:购物中心", "latitude": 39.026272, "longitude": 117.218721}
-      ]
-    },
-    {
-      "group_id": "f9b343fe9aea",
-      "event_uids": ["xiaohongshu:6a3e3f56000000000f030562:02_0"],
-      "action": "reject",
-      "search_keywords_tried": ["待定"],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "活动地址为待定，无法匹配POI"
-    },
-    {
-      "group_id": "8fa3031fd8bc",
-      "event_uids": ["xiaohongshu:6a3e3f56000000000f030562:02_1"],
-      "action": "match",
-      "search_keywords_tried": ["国家会展中心"],
-      "confidence": "high",
-      "doubtful": true,
-      "reason": "国家会展中心S10馆，POI绑定会展中心主体，馆内展厅精度差异",
-      "poi_id": "1425740155330078329",
-      "poi_title": "国家会展中心(天津)",
-      "poi_address": "天津市津南区国展大道888号",
-      "latitude": 39.026703,
-      "longitude": 117.380497,
-      "candidates": [
-        {"poi_id": "1425740155330078329", "title": "国家会展中心(天津)", "address": "天津市津南区国展大道888号", "category": "文化场馆:会展中心", "latitude": 39.026703, "longitude": 117.380497},
-        {"poi_id": "3047442428400738215", "title": "国家会展中心(天津)二期", "address": "天津市津南区咸水沽镇国展大道889号", "category": "文化场馆:会展中心", "latitude": 39.029009, "longitude": 117.388615}
-      ]
-    },
-    {
-      "group_id": "7dc866f627d4",
-      "event_uids": ["xiaohongshu:6a3e3f56000000000f030562:03_0"],
-      "action": "match",
-      "search_keywords_tried": ["智慧山那山LIFE"],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "智慧山北塔那山LIFE，POI完全一致",
       "poi_id": "1409436503792712057",
       "poi_title": "智慧山北塔·那山LIFE",
       "poi_address": "天津市西青区工华道1号",
-      "latitude": 39.093256,
-      "longitude": 117.121377,
-      "candidates": [
-        {"poi_id": "1409436503792712057", "title": "智慧山北塔·那山LIFE", "address": "天津市西青区工华道1号", "category": "房产小区:其它房产小区", "latitude": 39.093256, "longitude": 117.121377}
-      ]
+      "reason": "活动地址与智慧山北塔·那山LIFE POI 一致"
     },
     {
-      "group_id": "6db628f366db",
-      "event_uids": ["xiaohongshu:6a3e3f56000000000f030562:03_1"],
+      "group_id": "7afa81b236ef",
+      "event_uids": ["xiaohongshu:6a54a354000000000f032100:01_1"],
       "action": "match",
-      "search_keywords_tried": ["乘云广场"],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "乘云广场户外广场，POI城运乘云广场一致",
-      "poi_id": "4543792465268331683",
-      "poi_title": "城运乘云广场",
-      "poi_address": "天津市和平区浙江路1号英式风情区5号院1-6楼(大光明桥)",
-      "latitude": 39.118355,
-      "longitude": 117.215163,
-      "candidates": [
-        {"poi_id": "4543792465268331683", "title": "城运乘云广场", "address": "天津市和平区浙江路1号英式风情区5号院1-6楼(大光明桥)", "category": "其它", "latitude": 39.118355, "longitude": 117.215163}
-      ]
+      "poi_id": "5051348781459406994",
+      "poi_title": "天津陆家嘴中心",
+      "poi_address": "天津市红桥区北马路与大丰路交叉口东北角",
+      "reason": "手帐集市在陆家嘴中心1层，绑定商场主体"
     },
     {
-      "group_id": "4826c15b558f",
-      "event_uids": ["xiaohongshu:6a3e3f56000000000f030562:04_0"],
+      "group_id": "9e81f8cc40ea",
+      "event_uids": ["xiaohongshu:6a54a354000000000f032100:01_2"],
       "action": "match",
-      "search_keywords_tried": ["国家会展中心"],
-      "confidence": "high",
-      "doubtful": true,
-      "reason": "国家会展中心S2馆咖啡烘焙展，POI绑定会展中心主体",
-      "poi_id": "1425740155330078329",
-      "poi_title": "国家会展中心(天津)",
-      "poi_address": "天津市津南区国展大道888号",
-      "latitude": 39.026703,
-      "longitude": 117.380497,
-      "candidates": [
-        {"poi_id": "1425740155330078329", "title": "国家会展中心(天津)", "address": "天津市津南区国展大道888号", "category": "文化场馆:会展中心", "latitude": 39.026703, "longitude": 117.380497}
-      ]
+      "poi_id": "8835435793165923551",
+      "poi_title": "天津东丽万达广场",
+      "poi_address": "天津市东丽区先锋东路与外环东路交叉口东南角",
+      "reason": "户外广场属东丽万达广场场内"
     },
     {
-      "group_id": "0e9f0bdcad8d",
-      "event_uids": ["xiaohongshu:6a3e3f56000000000f030562:04_1"],
+      "group_id": "db28ba2634c3",
+      "event_uids": ["xiaohongshu:6a54a354000000000f032100:02_0"],
       "action": "match",
-      "search_keywords_tried": ["津一PARK"],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "津一PARK公园节，POI主体一致",
+      "poi_id": "8937066965099752974",
+      "poi_title": "杉杉奥特莱斯广场·天津",
+      "poi_address": "天津市西青区张家窝镇博航环路18号",
+      "reason": "2号门外草坪在杉杉奥特莱斯广场内"
+    },
+    {
+      "group_id": "e13f92776f4b",
+      "event_uids": ["xiaohongshu:6a54a354000000000f032100:02_1"],
+      "action": "match",
+      "poi_id": "2405897601602862872",
+      "poi_title": "比亚迪迪空间·新能源汽车科普馆",
+      "poi_address": "天津市和平区兴安路合生国际大厦",
+      "reason": "活动地址与迪空间科普馆 POI 一致"
+    },
+    {
+      "group_id": "d1e5592b4696",
+      "event_uids": ["xiaohongshu:6a54a354000000000f032100:02_2"],
+      "action": "match",
       "poi_id": "8637069087467213378",
       "poi_title": "津一PARK",
       "poi_address": "天津市河东区津塘路146号",
-      "latitude": 39.093083,
-      "longitude": 117.278902,
-      "candidates": [
-        {"poi_id": "8637069087467213378", "title": "津一PARK", "address": "天津市河东区津塘路146号", "category": "房产小区:产业园区", "latitude": 39.093083, "longitude": 117.278902}
-      ]
+      "reason": "公园节在津一PARK园区内"
     },
     {
-      "group_id": "1c6135508539",
-      "event_uids": ["xiaohongshu:6a3e3f56000000000f030562:05_0"],
+      "group_id": "b6fe257e590d",
+      "event_uids": ["xiaohongshu:6a54a354000000000f032100:03_0"],
       "action": "match",
-      "search_keywords_tried": ["天津嘉里中心"],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "天津嘉里中心L1云南市集，POI嘉里汇商场主体一致",
-      "poi_id": "14534229829055007663",
-      "poi_title": "嘉里汇",
-      "poi_address": "天津市河东区六纬路238号(大王庄地铁站C口旁)",
-      "latitude": 39.127342,
-      "longitude": 117.216952,
-      "candidates": [
-        {"poi_id": "14534229829055007663", "title": "嘉里汇", "address": "天津市河东区六纬路238号(大王庄地铁站C口旁)", "category": "购物:综合商场", "latitude": 39.127342, "longitude": 117.216952},
-        {"poi_id": "2055412913151103296", "title": "天津嘉里中心", "address": "天津市河东区六纬路天津嘉里中心", "category": "房产小区:房产小区附属", "latitude": 39.127232, "longitude": 117.216933}
-      ]
+      "poi_id": "8637069087467213378",
+      "poi_title": "津一PARK",
+      "poi_address": "天津市河东区津塘路146号",
+      "reason": "微醺市集在津一Park，与津一PARK主体一致"
     },
     {
-      "group_id": "c605ff607e2b",
-      "event_uids": ["xiaohongshu:6a3e3f56000000000f030562:05_1"],
+      "group_id": "3dfc1d4effde",
+      "event_uids": ["xiaohongshu:6a54a354000000000f032100:03_1"],
       "action": "match",
-      "search_keywords_tried": ["东疆亲海公园"],
-      "confidence": "high",
-      "doubtful": true,
-      "reason": "东疆亲海公园北1门南350米海风市集，POI绑定东疆亲海公园主体",
-      "poi_id": "17790128978474634817",
-      "poi_title": "东疆亲海公园",
-      "poi_address": "天津市滨海新区观澜路与陕西道交叉口东",
-      "latitude": 39.032382,
-      "longitude": 117.818231,
-      "candidates": [
-        {"poi_id": "17790128978474634817", "title": "东疆亲海公园", "address": "天津市滨海新区观澜路与陕西道交叉口东", "category": "旅游景点:省级景点", "latitude": 39.032382, "longitude": 117.818231},
-        {"poi_id": "15211770876107176944", "title": "东疆亲海公园云帆广场", "address": "天津市滨海新区中交·C谷东北100米(观澜路东)", "category": "旅游景点:城市广场", "latitude": 39.028144, "longitude": 117.819156}
-      ]
-    },
-    {
-      "group_id": "20f09bb2f1fa",
-      "event_uids": ["xiaohongshu:6a3e3f56000000000f030562:06_0"],
-      "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：棉3创意街区棉花营地 → 棉3创意街区",
       "poi_id": "10955230015136912482",
       "poi_title": "棉3创意街区",
-      "poi_address": "",
-      "latitude": 39.09126,
-      "longitude": 117.246965,
-      "candidates": [
-        {"poi_id": "10955230015136912482", "title": "棉3创意街区", "address": "", "category": "", "latitude": 39.09126, "longitude": 117.246965}
-      ]
+      "poi_address": "天津市河东区西台大街38号",
+      "reason": "棉花营地属棉3创意街区内"
     },
     {
-      "group_id": "044bd201d8db",
-      "event_uids": ["xiaohongshu:6a3e3f56000000000f030562:06_1"],
+      "group_id": "28f4db1b3931",
+      "event_uids": ["xiaohongshu:6a54a354000000000f032100:03_2"],
       "action": "match",
-      "search_keywords_tried": ["棉3创意街区"],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "棉3创意街区滑板广场旧书市集，园区主体棉3创意街区一致",
       "poi_id": "10955230015136912482",
       "poi_title": "棉3创意街区",
-      "poi_address": "",
-      "latitude": 39.09126,
-      "longitude": 117.246965,
-      "candidates": [
-        {"poi_id": "10955230015136912482", "title": "棉3创意街区", "address": "", "category": "", "latitude": 39.09126, "longitude": 117.246965},
-        {"poi_id": "17450441534152947932", "title": "海河旧书市集", "address": "天津市河东区棉3创意街区滑板广场", "category": "购物:图书音像", "latitude": 39.091088, "longitude": 117.245947}
-      ]
+      "poi_address": "天津市河东区西台大街38号",
+      "reason": "滑板广场在棉3创意街区内"
+    },
+    {
+      "group_id": "298aaa7ed2d4",
+      "event_uids": ["xiaohongshu:6a54a354000000000f032100:04_0"],
+      "action": "match",
+      "poi_id": "6283025611777516851",
+      "poi_title": "天津智慧山山丘广场",
+      "poi_address": "天津市西青区开华道20号",
+      "reason": "花路音乐会在智慧山山丘广场举办"
+    },
+    {
+      "group_id": "f4e8c56de3e1",
+      "event_uids": [
+        "xiaohongshu:6a54a354000000000f032100:04_1",
+        "xiaohongshu:6a54a354000000000f032100:04_2"
+      ],
+      "action": "match",
+      "poi_id": "1409436503792712057",
+      "poi_title": "智慧山北塔·那山LIFE",
+      "poi_address": "天津市西青区工华道1号",
+      "reason": "抽象小赛在那山life，与智慧山北塔·那山LIFE一致"
+    },
+    {
+      "group_id": "5314bd970634",
+      "event_uids": [
+        "xiaohongshu:6a54a354000000000f032100:05_0",
+        "xiaohongshu:6a54a354000000000f032100:05_1",
+        "xiaohongshu:6a54a354000000000f032100:06_0"
+      ],
+      "action": "match",
+      "poi_id": "8835435793165923551",
+      "poi_title": "天津东丽万达广场",
+      "poi_address": "天津市东丽区先锋东路与外环东路交叉口东南角",
+      "reason": "发光音乐节在东丽万达广场"
+    },
+    {
+      "group_id": "e869f40d46bd",
+      "event_uids": ["xiaohongshu:6a54a354000000000f032100:05_2"],
+      "action": "match",
+      "poi_id": "1243644024167476130",
+      "poi_title": "天津宁河吾悦广场",
+      "poi_address": "天津市宁河区光明路58号",
+      "reason": "零食偷吃大赛在宁河吾悦广场"
+    },
+    {
+      "group_id": "e9d840357042",
+      "event_uids": ["xiaohongshu:6a54a354000000000f032100:06_1"],
+      "action": "match",
+      "poi_id": "13925865714622718531",
+      "poi_title": "天津贵和购物中心",
+      "poi_address": "天津市南开区水上公园街道水上公园北道与水上公园东路交叉口东南角绿荫广场1、2号",
+      "reason": "手作体验在贵和购物中心B1西中庭"
+    },
+    {
+      "group_id": "47f90200c985",
+      "event_uids": ["xiaohongshu:6a54a354000000000f032100:07_0"],
+      "action": "match",
+      "poi_id": "11667743350114712825",
+      "poi_title": "吉利大厦写字楼",
+      "poi_address": "天津市和平区南营门街道南京路209号",
+      "reason": "恶之环快闪在和平吉利大厦2F"
+    },
+    {
+      "group_id": "91cddccdaa68",
+      "event_uids": ["xiaohongshu:6a54a354000000000f032100:07_1"],
+      "action": "match",
+      "poi_id": "11854150162741014791",
+      "poi_title": "大悦城北区",
+      "poi_address": "天津市南开区南门外大街2号大悦城",
+      "reason": "奔跑吧部落快闪在大悦城北区1F自然天地"
+    },
+    {
+      "group_id": "b5b92586d024",
+      "event_uids": ["xiaohongshu:6a54a354000000000f032100:07_2"],
+      "action": "match",
+      "poi_id": "11854150162741014791",
+      "poi_title": "大悦城北区",
+      "poi_address": "天津市南开区南门外大街2号大悦城",
+      "reason": "小小谷弩咪快闪在大悦城北区"
+    },
+    {
+      "group_id": "7bde297eddc5",
+      "event_uids": ["xiaohongshu:6a54a354000000000f032100:08_0"],
+      "action": "match",
+      "poi_id": "11854150162741014791",
+      "poi_title": "大悦城北区",
+      "poi_address": "天津市南开区南门外大街2号大悦城",
+      "reason": "古古不气主题快闪在大悦城北区4F巴奴公区"
+    },
+    {
+      "group_id": "4142ebe9541e",
+      "event_uids": ["xiaohongshu:6a54a354000000000f032100:08_1"],
+      "action": "match",
+      "poi_id": "11854150162741014791",
+      "poi_title": "大悦城北区",
+      "poi_address": "天津市南开区南门外大街2号大悦城",
+      "reason": "BKT巨人艺术展在大悦城北区一层麦田广场"
     }
   ]
 }

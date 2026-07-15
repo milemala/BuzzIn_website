@@ -1,20 +1,29 @@
 {
   "city": "上海",
-  "decided_at": "2026-07-13T01:55:00.000Z",
+  "decided_at": "2026-07-13T14:43:13.358Z",
   "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "396eee411af9",
-      "event_uids": ["douban:37420412"],
+      "event_uids": [
+        "douban:37420412"
+      ],
       "action": "match",
-      "search_keywords_tried": ["静安别墅", "Shanghai Time 静安别墅"],
+      "search_keywords_tried": [
+        "静安别墅",
+        "Shanghai Time 静安别墅"
+      ],
       "poi_id": "7198088040773825858",
       "poi_title": "静安别墅",
       "poi_address": "上海市静安区南京西路1025弄1-198号",
       "latitude": 31.227535,
       "longitude": 121.458353,
       "candidates": [
-        {"poi_id": "7198088040773825858", "title": "静安别墅", "address": "上海市静安区南京西路1025弄1-198号"}
+        {
+          "poi_id": "7198088040773825858",
+          "title": "静安别墅",
+          "address": "上海市静安区南京西路1025弄1-198号"
+        }
       ],
       "confidence": "high",
       "doubtful": false,
@@ -22,9 +31,14 @@
     },
     {
       "group_id": "2065067dffa1",
-      "event_uids": ["douban:37896044", "douban:37889514"],
+      "event_uids": [
+        "douban:37896044",
+        "douban:37889514"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "10804313910827168281",
       "poi_title": "龙阳路[地铁站]",
       "poi_address": "",
@@ -37,9 +51,13 @@
     },
     {
       "group_id": "6d01add84db3",
-      "event_uids": ["douban:37772626"],
+      "event_uids": [
+        "douban:37772626"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "52919750025520475",
       "poi_title": "上海东方艺术中心",
       "poi_address": "",
@@ -52,18 +70,34 @@
     },
     {
       "group_id": "fd70db5d51b9",
-      "event_uids": ["douban:37888397"],
+      "event_uids": [
+        "douban:37888397"
+      ],
       "action": "match",
-      "search_keywords_tried": ["星在文化中心"],
+      "search_keywords_tried": [
+        "星在文化中心"
+      ],
       "poi_id": "7431113328795110183",
       "poi_title": "恺悦.星在文化中心-梦想剧场",
       "poi_address": "上海市普陀区宜昌路179号星在文化中心1楼",
       "latitude": 31.248947,
       "longitude": 121.440019,
       "candidates": [
-        {"poi_id": "7431113328795110183", "title": "恺悦.星在文化中心-梦想剧场", "address": "上海市普陀区宜昌路179号星在文化中心1楼"},
-        {"poi_id": "2809750477294413560", "title": "星在文化中心", "address": "上海市普陀区宜昌路179号(浅水湾文化艺术中心)"},
-        {"poi_id": "3484386760022640711", "title": "星在文化中心·未来剧场", "address": "上海市普陀区宜昌路179号2楼"}
+        {
+          "poi_id": "7431113328795110183",
+          "title": "恺悦.星在文化中心-梦想剧场",
+          "address": "上海市普陀区宜昌路179号星在文化中心1楼"
+        },
+        {
+          "poi_id": "2809750477294413560",
+          "title": "星在文化中心",
+          "address": "上海市普陀区宜昌路179号(浅水湾文化艺术中心)"
+        },
+        {
+          "poi_id": "3484386760022640711",
+          "title": "星在文化中心·未来剧场",
+          "address": "上海市普陀区宜昌路179号2楼"
+        }
       ],
       "confidence": "high",
       "doubtful": false,
@@ -71,16 +105,24 @@
     },
     {
       "group_id": "8adf9ebf6ab2",
-      "event_uids": ["douban:37900031"],
+      "event_uids": [
+        "douban:37900031"
+      ],
       "action": "match",
-      "search_keywords_tried": ["朵云书院 上海中心"],
+      "search_keywords_tried": [
+        "朵云书院 上海中心"
+      ],
       "poi_id": "3099559083310773490",
       "poi_title": "朵云书院·旗舰店",
       "poi_address": "上海市浦东新区陆家嘴银城中路501号上海中心大厦52楼",
       "latitude": 31.233654,
       "longitude": 121.505341,
       "candidates": [
-        {"poi_id": "3099559083310773490", "title": "朵云书院·旗舰店", "address": "上海市浦东新区陆家嘴银城中路501号上海中心大厦52楼"}
+        {
+          "poi_id": "3099559083310773490",
+          "title": "朵云书院·旗舰店",
+          "address": "上海市浦东新区陆家嘴银城中路501号上海中心大厦52楼"
+        }
       ],
       "confidence": "high",
       "doubtful": false,
@@ -88,41 +130,38 @@
     },
     {
       "group_id": "d2082745a968",
-      "event_uids": ["douban:37900022"],
+      "event_uids": [
+        "douban:37900022"
+      ],
       "action": "match",
-      "search_keywords_tried": ["福民会馆"],
+      "search_keywords_tried": [
+        "福民会馆"
+      ],
       "poi_id": "11412690939697110071",
       "poi_title": "福民会馆",
       "poi_address": "上海市静安区富民路197弄69号(近巨鹿路)",
       "latitude": 31.219221,
       "longitude": 121.451604,
       "candidates": [
-        {"poi_id": "11412690939697110071", "title": "福民会馆", "address": "上海市静安区富民路197弄69号(近巨鹿路)"}
+        {
+          "poi_id": "11412690939697110071",
+          "title": "福民会馆",
+          "address": "上海市静安区富民路197弄69号(近巨鹿路)"
+        }
       ],
       "confidence": "high",
       "doubtful": false,
       "reason": "店名唯一匹配，区划(静安区)一致"
     },
     {
-      "group_id": "a45e0491e227",
-      "event_uids": ["douban:37900524"],
-      "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "14252119467906121381",
-      "poi_title": "嘉发大厦-A栋",
-      "poi_address": "",
-      "latitude": 31.23286,
-      "longitude": 121.464008,
-      "candidates": [],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：大田路129弄嘉发大厦A栋，历史已通过活动确认"
-    },
-    {
       "group_id": "7ff6c8f2e2b7",
-      "event_uids": ["douban:37805494"],
+      "event_uids": [
+        "douban:37805494"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
       "poi_id": "5527323411719490889",
       "poi_title": "Theatre YOUNG剧场",
       "poi_address": "",
@@ -135,16 +174,24 @@
     },
     {
       "group_id": "1484f24366ce",
-      "event_uids": ["douban:37900547"],
+      "event_uids": [
+        "douban:37900547"
+      ],
       "action": "match",
-      "search_keywords_tried": ["MOViE MOViE影城 前滩太古里"],
+      "search_keywords_tried": [
+        "MOViE MOViE影城 前滩太古里"
+      ],
       "poi_id": "8499338989458981345",
       "poi_title": "MOViE MOViE 影城(前滩太古里店)",
       "poi_address": "上海市浦东新区东育路500弄1-9号前滩太古里L3",
       "latitude": 31.152216,
       "longitude": 121.482616,
       "candidates": [
-        {"poi_id": "8499338989458981345", "title": "MOViE MOViE 影城(前滩太古里店)", "address": "上海市浦东新区东育路500弄1-9号前滩太古里L3"}
+        {
+          "poi_id": "8499338989458981345",
+          "title": "MOViE MOViE 影城(前滩太古里店)",
+          "address": "上海市浦东新区东育路500弄1-9号前滩太古里L3"
+        }
       ],
       "confidence": "medium",
       "doubtful": true,
@@ -152,17 +199,29 @@
     },
     {
       "group_id": "42a52439daab",
-      "event_uids": ["douban:37824023"],
+      "event_uids": [
+        "douban:37824023"
+      ],
       "action": "match",
-      "search_keywords_tried": ["上海艺海剧院"],
+      "search_keywords_tried": [
+        "上海艺海剧院"
+      ],
       "poi_id": "15732825486696464787",
       "poi_title": "Fancl艺术中心(艺海剧院)",
       "poi_address": "上海市静安区艺海大厦",
       "latitude": 31.235262,
       "longitude": 121.452452,
       "candidates": [
-        {"poi_id": "15732825486696464787", "title": "Fancl艺术中心(艺海剧院)", "address": "上海市静安区艺海大厦"},
-        {"poi_id": "468166393152943453", "title": "艺海剧院停车场", "address": "上海市静安区江宁路466号艺海剧院"}
+        {
+          "poi_id": "15732825486696464787",
+          "title": "Fancl艺术中心(艺海剧院)",
+          "address": "上海市静安区艺海大厦"
+        },
+        {
+          "poi_id": "468166393152943453",
+          "title": "艺海剧院停车场",
+          "address": "上海市静安区江宁路466号艺海剧院"
+        }
       ],
       "confidence": "high",
       "doubtful": false,
@@ -170,21 +229,78 @@
     },
     {
       "group_id": "440ae65c7afe",
-      "event_uids": ["douban:37881520", "douban:37471175"],
+      "event_uids": [
+        "douban:37881520",
+        "douban:37471175"
+      ],
       "action": "match",
-      "search_keywords_tried": ["星在文化中心"],
+      "search_keywords_tried": [
+        "星在文化中心"
+      ],
       "poi_id": "3484386760022640711",
       "poi_title": "星在文化中心·未来剧场",
       "poi_address": "上海市普陀区宜昌路179号2楼",
       "latitude": 31.248934,
       "longitude": 121.440094,
       "candidates": [
-        {"poi_id": "3484386760022640711", "title": "星在文化中心·未来剧场", "address": "上海市普陀区宜昌路179号2楼"},
-        {"poi_id": "2809750477294413560", "title": "星在文化中心", "address": "上海市普陀区宜昌路179号(浅水湾文化艺术中心)"}
+        {
+          "poi_id": "3484386760022640711",
+          "title": "星在文化中心·未来剧场",
+          "address": "上海市普陀区宜昌路179号2楼"
+        },
+        {
+          "poi_id": "2809750477294413560",
+          "title": "星在文化中心",
+          "address": "上海市普陀区宜昌路179号(浅水湾文化艺术中心)"
+        }
       ],
       "confidence": "high",
       "doubtful": false,
       "reason": "腾讯有厅级POI「未来剧场」（2楼），与豆瓣「星在文化中心 未来剧场 宜昌路179号2F」精确对应"
+    },
+    {
+      "group_id": "a45e0491e227",
+      "event_uids": [
+        "douban:37900688"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "14252119467906121381",
+      "poi_title": "嘉发大厦-A栋",
+      "poi_address": "",
+      "latitude": 31.23286,
+      "longitude": 121.464008,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：大田路129弄嘉发大厦A栋5D"
+    },
+    {
+      "group_id": "6770df3a29eb",
+      "event_uids": [
+        "douban:37900856"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "上海图书馆东馆"
+      ],
+      "poi_id": "5528072624503891635",
+      "poi_title": "上海图书馆(东馆)",
+      "poi_address": "上海市浦东新区花木街道合欢路300号",
+      "latitude": 31.219975,
+      "longitude": 121.547154,
+      "candidates": [
+        {
+          "poi_id": "5528072624503891635",
+          "title": "上海图书馆(东馆)",
+          "address": "上海市浦东新区花木街道合欢路300号"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "场馆名与合欢路300号东馆地址一致"
     }
   ]
 }

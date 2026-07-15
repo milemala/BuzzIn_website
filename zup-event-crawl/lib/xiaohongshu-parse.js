@@ -33,8 +33,8 @@ const WEEKLY_TITLE_RE =
   /(?:本周|这周|下周|一周|周末).{0,30}(?:活动汇总|活动合集|活动指南|可做的?\d*件事)|(?:活动汇总|活动合集).{0,30}(?:本周|这周|下周|一周|周末)|(?:本周|这周).{0,10}\d+件事/;
 
 const THIS_OR_NEXT_WEEK_RE = /本周|这周|下周|一周|周末|本周末/;
-const ROUNDUP_KEYWORD_RE = /活动汇总|活动合集|活动指南|活动清单|可做的?\d*件事|一周活动|活动合集/;
-const MONTH_ROUNDUP_RE = /活动汇总|活动清单|活动合集|市集活动|活动攻略|值得一去|活动指南|展览排期|新展/;
+const ROUNDUP_KEYWORD_RE = /活动汇总|活动合集|活动指南|活动清单|可做的?\d*件事|一周活动|漫游指南|看展指南|展览指南|新展指南|狠想去打卡|值得一去|活动大合集|周末活动/;
+const MONTH_ROUNDUP_RE = /活动汇总|活动清单|活动合集|市集活动|活动攻略|值得一去|活动指南|展览排期|新展|漫游指南|看展指南|展览指南|新展指南|狠想去|精选\d+场|精选\d+个/;
 const FESTIVAL_ROUNDUP_RE = /端午|清明|五一|国庆|中秋|元旦|圣诞|跨年|假期|节庆|节日/;
 const DATE_RANGE_SEP_RE = "[-–—~～至]";
 
@@ -145,13 +145,16 @@ function dateInRange(range, refDate = new Date()) {
 
 function isWeekRoundupTitle(title, refDate = new Date()) {
   const text = String(title || "");
-  if (!THIS_OR_NEXT_WEEK_RE.test(text)) return false;
   const range = parseTitleDateRange(text);
   if (range && isRangeExpired(range, refDate)) return false;
-  return WEEKLY_TITLE_RE.test(text)
-    || ROUNDUP_KEYWORD_RE.test(text)
-    || range != null
-    || /件事/.test(text);
+  if (THIS_OR_NEXT_WEEK_RE.test(text)) {
+    return WEEKLY_TITLE_RE.test(text)
+      || ROUNDUP_KEYWORD_RE.test(text)
+      || range != null
+      || /件事/.test(text);
+  }
+  if (/漫游指南|周末.*指南/.test(text) && range != null) return true;
+  return false;
 }
 
 const CN_MONTHS = { 一: 1, 二: 2, 三: 3, 四: 4, 五: 5, 六: 6, 七: 7, 八: 8, 九: 9, 十: 10, 十一: 11, 十二: 12 };
@@ -170,8 +173,16 @@ function isMonthRoundupTitle(title, refDate = new Date()) {
   if (/本周|这周|下周/.test(text)) return false;
   const range = parseTitleDateRange(text);
   if (range && isRangeExpired(range, refDate)) return false;
-  if (!MONTH_ROUNDUP_RE.test(text)) return false;
+  if (!MONTH_ROUNDUP_RE.test(text) && !/漫游指南|看展指南|新展指南/.test(text)) return false;
   return titleMentionsCurrentMonth(text, refDate);
+}
+
+function isKeywordRoundupTitle(title, refDate = new Date()) {
+  const text = String(title || "");
+  if (/本周|这周|下周/.test(text)) return false;
+  const range = parseTitleDateRange(text);
+  if (range && isRangeExpired(range, refDate)) return false;
+  return /活动汇总|活动合集|活动指南|IP快闪.*汇总|快闪活动汇总|大IP快闪/.test(text);
 }
 
 function isUpcomingDatedRoundupTitle(title, refDate = new Date()) {
@@ -263,6 +274,7 @@ function pickWeeklyRoundupNotes(notes, refDate = new Date(), options = {}) {
   addTier(isWeekRoundupTitle, "week");
   addTier(isUpcomingDatedRoundupTitle, "dated");
   addTier(isMonthRoundupTitle, "month");
+  addTier(isKeywordRoundupTitle, "keyword");
   return out;
 }
 
