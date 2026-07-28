@@ -9,7 +9,7 @@ BuzzInMap_website/
 ├─ index.html                 # 首页（产品叙事 + 下载）
 ├─ match-card.html            # AI 智能撮合完整交互 Demo
 ├─ match-entry-home.html      # 假 App 首页 · Match 入口三态动画 Demo
-├─ demo/profile-proxy/        # 建档本地代理（智谱 Chat API）
+├─ demo/profile-proxy/        # AI 首次建档参考实现（单 Agent + 智谱，见目录内 README）
 ├─ docs/ai-match-profile.md   # AI 建档说明与提示词入口
 ├─ merchant.html              # 商户入驻说明页
 ├─ guide.html                 # 用户手册
@@ -45,7 +45,7 @@ cp .env.example .env   # 填入 ZHIPU_API_KEY
 npm start
 ```
 
-浏览器打开 http://localhost:8787/match-card.html ，点「编辑我的信息」即可与大模型多轮建档。详见 [`docs/ai-match-profile.md`](docs/ai-match-profile.md)。
+浏览器打开 http://localhost:8788/match-card.html ，点「编辑我的信息」即可与大模型多轮建档（端口默认 8788，避免与活动审核台 8787 冲突）。详见 [`docs/ai-match-profile.md`](docs/ai-match-profile.md)。
 
 ## 页面说明
 
@@ -67,7 +67,8 @@ npm start
   - 配置卡：顶栏「撮合配置 | 编辑我的信息」；活动「此刻想组局 · 最多 3 种」；期望对象分两行（性别 / 情感状态）。
   - 多活动并行：选几种活动就开几个匹配任务；顶部任务条切换，各自独立寻找 / 结果 / 等待成局。
   - 重新匹配：先询问原因，结束后回到待匹配（若还有其他任务则继续其他任务）；需再次轻触星芒才会开新匹配。
-  - 昵称/年龄/性别/定位等视为注册已有；首次资料由 AI 五问对话收集（职业、怎么玩、社交状态、局偏好、想认识的人）。
+  - 昵称/年龄/性别/定位等视为注册已有；组局类型与希望匹配性别为每次匹配前的临时配置，不进 AI 建档。
+  - 首次建档为**单 Agent**：每轮返回 `assistant_reply`（给用户）+ `profile_update`（后台画像）；聊天体验优先于凑字段；结束由业务层控制。
   - 建档真实 LLM：本地代理 [`demo/profile-proxy`](demo/profile-proxy) + 智谱 API；说明见 [`docs/ai-match-profile.md`](docs/ai-match-profile.md)。
   - 完整路径：AI 建档 → 选活动与期望 → 开撮合 →（多任务）寻找 → 匹配 → 等待确认 → 群聊。
 
@@ -107,6 +108,22 @@ npm start
 - 产品对外口径以 `参考资料/` 中的 BP / 鲸准文案为准，首页保持用户可读的短句表达。
 
 ## 最近更新
+
+### 2026年7月 - 精简建档 Demo 目录（后端参考）
+- **变更**: 删除废弃的 `prompts/conversation.js`、`prompts/extractor.js`；补充 `demo/profile-proxy/README.md` 作为后端对齐说明。
+- **文件**: `demo/profile-proxy/`、`docs/ai-match-profile.md`、`README.md`
+
+### 2026年7月 - AI 建档改回单 Agent
+- **变更**: 取消 Conversation/Extractor 双调用；单 Prompt 每轮同时返回 `assistant_reply` + `profile_update`；聊天体验优先于凑字段。
+- **文件**: `demo/profile-proxy/system-prompt.js`、`server.js`、`docs/ai-match-profile.md`、`match-card.html`、`README.md`
+
+### 2026年7月 - AI 建档双 Agent 重构
+- **变更**: 对话与抽画像拆分；业务层控制结束；画像改为社交风格/目的/活动风格等长期维度（不再问卷式五问与职业采集）。
+- **文件**: `demo/profile-proxy/`、`match-card.html`、`docs/ai-match-profile.md`、`README.md`
+
+### 2026年7月 - AI 建档提示词工程（长期画像边界）
+- **变更**: 明确「注册已有 / 每次临时需求 / 长期画像」三层边界；强化建档对话 UX 与不配合策略；更新 system prompt 与说明文档。
+- **文件**: `demo/profile-proxy/system-prompt.js`、`docs/ai-match-profile.md`、`README.md`
 
 ### 2026年7月 - Match 入口三态动画 Demo
 - **变更**: 新增假 App 首页 H5，并排展示 Match 入口「匹配前 / 匹配中 / 已匹配」三种循环动画。

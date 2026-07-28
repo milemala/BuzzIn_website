@@ -4,9 +4,10 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const { PROFILE_SYSTEM_PROMPT } = require('./system-prompt');
+const schema = require('./profile-schema');
 
 const ROOT = path.resolve(__dirname, '../..');
-const PORT = Number(process.env.PORT || 8787);
+const PORT = Number(process.env.PORT || 8788);
 const ZHIPU_URL = 'https://open.bigmodel.cn/api/paas/v4/chat/completions';
 const MODEL = process.env.ZHIPU_MODEL || 'glm-4-flash';
 
@@ -15,8 +16,6 @@ loadEnv(path.join(ROOT, '.env'));
 
 const API_KEY = process.env.ZHIPU_API_KEY || '';
 const DATA_DIR = path.join(__dirname, 'data', 'chats');
-
-/** @type {Map<string, { messages: Array<{role:string,content:string}>, draft: object, transcript: Array<object>, createdAt: string, updatedAt: string, status: string }>} */
 const sessions = new Map();
 
 function ensureDataDir() {
@@ -39,17 +38,21 @@ function buildMarkdown(record) {
   lines.push('- 创建：' + (record.createdAt || ''));
   lines.push('- 更新：' + (record.updatedAt || ''));
   lines.push('- 状态：' + (record.status || 'in_progress'));
+  lines.push('- 用户轮次：' + (record.userTurns || 0));
+  lines.push('- 低质量连续：' + (record.lowQualityStreak || 0));
+  if (record.endDecision) {
+    lines.push('- 结束原因：' + (record.endDecision.reasons || []).join(', '));
+  }
   lines.push('');
   lines.push('## 对话');
   lines.push('');
   (record.transcript || []).forEach((t) => {
-    const who = t.role === 'user' ? '我' : 'AI';
-    lines.push('**' + who + '** · ' + (t.at || ''));
+    lines.push('**' + (t.role === 'user' ? '我' : 'AI') + '** · ' + (t.at || ''));
     lines.push('');
     lines.push(t.text || '');
     lines.push('');
   });
-  lines.push('## 档案草稿');
+  lines.push('## 画像草稿');
   lines.push('');
   lines.push('```json');
   lines.push(JSON.stringify(record.draft || {}, null, 2));
@@ -69,7 +72,11 @@ function persistSession(sessionId, session) {
       status: session.status || 'in_progress',
       draft: session.draft,
       transcript: session.transcript || [],
-      messages: session.messages || []
+      messages: session.messages || [],
+      userTurns: session.userTurns || 0,
+      lowQualityStreak: session.lowQualityStreak || 0,
+      endDecision: session.endDecision || null,
+      architecture: 'single_agent'
     };
     fs.writeFileSync(paths.json, JSON.stringify(record, null, 2) + '\n', 'utf8');
     fs.writeFileSync(paths.md, buildMarkdown(record), 'utf8');
@@ -87,6 +94,7 @@ function listSavedChats() {
     .map((f) => {
       try {
         const j = JSON.parse(fs.readFileSync(path.join(DATA_DIR, f), 'utf8'));
+        const high = schema.countHighConfidence(j.draft || {});
         return {
           sessionId: j.sessionId,
           file: f,
@@ -94,8 +102,9 @@ function listSavedChats() {
           updatedAt: j.updatedAt,
           status: j.status,
           intro: (j.draft && j.draft.intro) || '',
-          occupation: (j.draft && (j.draft.occupation || j.draft.occupation_category)) || '',
-          turns: (j.transcript || []).length
+          highFields: high.count,
+          turns: (j.transcript || []).length,
+          architecture: j.architecture || 'legacy'
         };
       } catch (_) {
         return null;
@@ -115,71 +124,23 @@ function appendTranscript(session, role, text) {
   if (!session.transcript) session.transcript = [];
   const cleaned = String(text || '').trim();
   if (!cleaned) return;
-  // 跳过内部开场指令，不进可读对话
-  if (role === 'user' && /^请按规则开场/.test(cleaned)) return;
-  if (role === 'user' && /^请先按规则开场/.test(cleaned)) {
-    const m = cleaned.match(/我的话：([\s\S]+)$/);
-    if (m) {
-      session.transcript.push({ role: 'user', text: m[1].trim(), at: new Date().toISOString() });
-    }
-    return;
-  }
+  if (role === 'user' && /^【业务指令】/.test(cleaned)) return;
   if (role === 'user' && /^格式错误：/.test(cleaned)) return;
+  if (role === 'user' && /^用户刚打开/.test(cleaned)) return;
   session.transcript.push({ role, text: cleaned, at: new Date().toISOString() });
 }
 
 function loadEnv(file) {
   if (!fs.existsSync(file)) return;
-  const text = fs.readFileSync(file, 'utf8');
-  text.split(/\r?\n/).forEach((line) => {
+  fs.readFileSync(file, 'utf8').split(/\r?\n/).forEach((line) => {
     const m = line.match(/^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)$/);
     if (!m) return;
-    const key = m[1];
     let val = m[2].trim();
     if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
       val = val.slice(1, -1);
     }
-    if (process.env[key] === undefined) process.env[key] = val;
+    if (process.env[m[1]] === undefined) process.env[m[1]] = val;
   });
-}
-
-function emptyDraft() {
-  return {
-    occupation_category: '',
-    occupation: '',
-    interests: [],
-    social_style: null,
-    group_preference: null,
-    preferred_people: null,
-    intro: ''
-  };
-}
-
-function mergeDraft(draft, updates) {
-  if (!updates || typeof updates !== 'object') return draft;
-  const next = Object.assign({}, draft);
-  if (typeof updates.occupation_category === 'string' && updates.occupation_category.trim()) {
-    next.occupation_category = updates.occupation_category.trim();
-  }
-  if (typeof updates.occupation === 'string' && updates.occupation.trim()) {
-    next.occupation = updates.occupation.trim();
-  }
-  if (Array.isArray(updates.interests) && updates.interests.length) {
-    next.interests = updates.interests;
-  }
-  if (updates.social_style && typeof updates.social_style === 'object') {
-    next.social_style = updates.social_style;
-  }
-  if (updates.group_preference && typeof updates.group_preference === 'object') {
-    next.group_preference = updates.group_preference;
-  }
-  if (updates.preferred_people && typeof updates.preferred_people === 'object') {
-    next.preferred_people = updates.preferred_people;
-  }
-  if (typeof updates.intro === 'string' && updates.intro.trim()) {
-    next.intro = updates.intro.trim();
-  }
-  return next;
 }
 
 function extractJson(text) {
@@ -193,11 +154,7 @@ function extractJson(text) {
   return JSON.parse(s);
 }
 
-function draftContext(draft) {
-  return '当前档案草稿（JSON）：\n' + JSON.stringify(draft, null, 2);
-}
-
-async function callZhipu(messages) {
+async function callZhipu(messages, opts) {
   if (!API_KEY) {
     const err = new Error('缺少 ZHIPU_API_KEY，请在 demo/profile-proxy/.env 配置');
     err.status = 500;
@@ -212,8 +169,8 @@ async function callZhipu(messages) {
     body: JSON.stringify({
       model: MODEL,
       messages,
-      temperature: 0.4,
-      max_tokens: 1200,
+      temperature: opts && opts.temperature != null ? opts.temperature : 0.65,
+      max_tokens: opts && opts.max_tokens != null ? opts.max_tokens : 900,
       response_format: { type: 'json_object' }
     })
   });
@@ -241,14 +198,168 @@ function getOrCreateSession(sessionId, reset) {
     const now = new Date().toISOString();
     sessions.set(sessionId, {
       messages: [],
-      draft: emptyDraft(),
+      draft: schema.emptyDraft(),
       transcript: [],
       createdAt: now,
       updatedAt: now,
-      status: 'in_progress'
+      status: 'in_progress',
+      userTurns: 0,
+      lowQualityStreak: 0,
+      pendingWrapUp: false,
+      endDecision: null
     });
   }
   return sessions.get(sessionId);
+}
+
+function buildSystem(session, phase) {
+  const cover = schema.coverageSummary(session.draft);
+  return [
+    PROFILE_SYSTEM_PROMPT,
+    '',
+    '【本轮】phase=' + phase
+      + ' turns=' + (session.userTurns || 0) + '/' + schema.END_POLICY.maxUserTurns
+      + ' low_streak=' + (session.lowQualityStreak || 0)
+      + ' high_fields=' + schema.countHighConfidence(session.draft).count,
+    '当前画像摘要：' + (cover.known.length ? cover.known.slice(0, 5).join('；') : '还很少'),
+    '提醒：聊天体验优先；禁止复述用户原话；profile_update 只写本轮新确认的字段。'
+  ].join('\n');
+}
+
+function lastUserText(session) {
+  const list = session.transcript || [];
+  for (let i = list.length - 1; i >= 0; i -= 1) {
+    if (list[i].role === 'user') return String(list[i].text || '').trim();
+  }
+  return '';
+}
+
+function isEchoReply(assistantText, userText) {
+  const a = String(assistantText || '').trim();
+  const u = String(userText || '').trim();
+  if (!a || !u) return false;
+  if (a === u) return true;
+  if (u.length >= 4 && (a === u + '？' || a === u + '?' || a === u + '。')) return true;
+  if (u.length >= 6 && a.length <= u.length + 6 && a.indexOf(u) === 0) return true;
+  return false;
+}
+
+function pickReply(parsed) {
+  return String(
+    (parsed && (parsed.assistant_reply || parsed.assistant_message)) || ''
+  ).trim();
+}
+
+async function runAgent(session, phase, opts) {
+  const system = buildSystem(session, phase);
+  const apiMessages = [{ role: 'system', content: system }].concat(session.messages);
+  let result = await callZhipu(apiMessages, { temperature: 0.65, max_tokens: 900 });
+  let parsed;
+  try {
+    parsed = extractJson(result.content);
+  } catch (_) {
+    const retry = await callZhipu(apiMessages.concat([
+      { role: 'assistant', content: result.content },
+      {
+        role: 'user',
+        content: '格式错误。请只输出一个 JSON，含 assistant_reply、quick_replies、profile_update、user_signal、safety。'
+      }
+    ]), { temperature: 0.4, max_tokens: 900 });
+    result = retry;
+    parsed = extractJson(retry.content);
+  }
+
+  let reply = pickReply(parsed);
+  const userText = (opts && opts.userText) || lastUserText(session);
+
+  if (!reply || isEchoReply(reply, userText)) {
+    try {
+      const fixed = await callZhipu(apiMessages.concat([
+        { role: 'assistant', content: result.content },
+        {
+          role: 'user',
+          content: '你刚才复述了我的话或回复无效。请重新输出 JSON：用自己的话短回应；continue 时给一个带例子的短问题；wrap_up 则只收束。禁止重复我的原话。'
+        }
+      ]), { temperature: 0.5, max_tokens: 700 });
+      parsed = extractJson(fixed.content);
+      result = fixed;
+      reply = pickReply(parsed);
+    } catch (_) { /* fallthrough */ }
+  }
+
+  if (!reply || isEchoReply(reply, userText)) {
+    reply = phase === 'wrap_up'
+      ? '好，我大概有数了。以后按你的感觉帮你找更合适的朋友和局。'
+      : '明白。你更喜欢安静慢慢聊，还是热闹一点？比如咖啡 / 小酒吧。';
+    parsed.quick_replies = phase === 'wrap_up' ? [] : ['偏安静', '偏热闹', '都可以'];
+  }
+
+  const profileUpdate = parsed.profile_update || parsed.slot_updates || {};
+  session.draft = schema.mergeProfile(session.draft, profileUpdate);
+  if (phase === 'wrap_up') {
+    if (!session.draft.intro || /暂无|未填|不了解|信息不足/.test(session.draft.intro)) {
+      session.draft.intro = schema.fallbackIntro(session.draft);
+    }
+  }
+
+  session.messages.push({ role: 'assistant', content: reply });
+  appendTranscript(session, 'assistant', reply);
+
+  return {
+    reply,
+    quick_replies: Array.isArray(parsed.quick_replies) ? parsed.quick_replies.slice(0, 4) : [],
+    profile_update: profileUpdate,
+    user_signal: parsed.user_signal || 'normal',
+    safety: parsed.safety || { level: 'ok', note: '' },
+    usage: result.usage,
+    model: result.model
+  };
+}
+
+function applyUserSignal(session, signal) {
+  const s = String(signal || 'normal');
+  if (s === 'low_quality') session.lowQualityStreak += 1;
+  else session.lowQualityStreak = 0;
+  return {
+    askedEnd: s === 'ask_end',
+    unsafe: s === 'unsafe'
+  };
+}
+
+function prunePreviousAssistant(session) {
+  const msgs = session.messages || [];
+  const idxs = [];
+  for (let i = 0; i < msgs.length; i += 1) {
+    if (msgs[i].role === 'assistant') idxs.push(i);
+  }
+  if (idxs.length >= 2) msgs.splice(idxs[idxs.length - 2], 1);
+
+  const tr = session.transcript || [];
+  const tIdxs = [];
+  for (let i = 0; i < tr.length; i += 1) {
+    if (tr[i].role === 'assistant') tIdxs.push(i);
+  }
+  if (tIdxs.length >= 2) tr.splice(tIdxs[tIdxs.length - 2], 1);
+}
+
+function finishPayload(sessionId, session, out, action, phase, decision, saved) {
+  return {
+    ok: true,
+    sessionId,
+    model: out.model || MODEL,
+    usage: out.usage,
+    assistant_reply: out.reply,
+    assistant_message: out.reply,
+    quick_replies: out.quick_replies,
+    profile_update: out.profile_update || {},
+    action,
+    phase,
+    profile_draft: session.draft,
+    intro: session.draft.intro || '',
+    end_decision: decision,
+    safety: out.safety,
+    savedTo: saved ? path.relative(ROOT, saved.json) : null
+  };
 }
 
 async function handleProfileChat(body) {
@@ -257,180 +368,117 @@ async function handleProfileChat(body) {
   const userMessage = body.userMessage == null ? null : String(body.userMessage);
   const session = getOrCreateSession(sessionId, reset);
 
-  if (body.profileDraft && typeof body.profileDraft === 'object') {
-    // 前端草稿只作补充；空字段不得覆盖服务端已收集内容
-    session.draft = mergeDraft(session.draft, body.profileDraft);
-  }
-
-  const system = PROFILE_SYSTEM_PROMPT + '\n\n' + draftContext(session.draft);
-
+  // 开场
   if (!session.messages.length) {
     session.messages.push({
       role: 'user',
       content: userMessage && userMessage.trim()
-        ? ('请先按规则开场，再根据我的这句话继续。我的话：' + userMessage.trim())
-        : '请按规则开场，并自然进入 Q1。'
+        ? ('用户刚打开并说：' + userMessage.trim() + '\n请按开场规则回复，并更新 profile_update（若有）。')
+        : '用户刚打开聊天。请按开场规则：说明想了解他以便推荐合适朋友/局，立刻给带例子的短问题 + quick_replies。'
     });
     if (userMessage && userMessage.trim()) {
+      session.userTurns += 1;
       appendTranscript(session, 'user', userMessage.trim());
     }
-  } else if (userMessage && userMessage.trim()) {
-    session.messages.push({ role: 'user', content: userMessage.trim() });
-    appendTranscript(session, 'user', userMessage.trim());
-  } else {
+
+    const opened = await runAgent(session, 'continue', {
+      userText: userMessage && userMessage.trim() ? userMessage.trim() : ''
+    });
+    if (userMessage && userMessage.trim()) applyUserSignal(session, opened.user_signal);
+
+    session.updatedAt = new Date().toISOString();
+    const saved = persistSession(sessionId, session);
+    return finishPayload(sessionId, session, opened, 'continue', 'continue', null, saved);
+  }
+
+  if (!userMessage || !userMessage.trim()) {
     const err = new Error('缺少 userMessage');
     err.status = 400;
     throw err;
   }
 
-  const apiMessages = [{ role: 'system', content: system }].concat(session.messages);
-  let result = await callZhipu(apiMessages);
-  let parsed;
-  try {
-    parsed = extractJson(result.content);
-  } catch (firstErr) {
-    // 模型偶发输出纯文本：追加纠错再试一次
-    session.messages.push({ role: 'assistant', content: result.content });
+  const text = userMessage.trim();
+  session.userTurns += 1;
+  session.messages.push({ role: 'user', content: text });
+  appendTranscript(session, 'user', text);
+
+  let phase = session.pendingWrapUp ? 'wrap_up' : 'continue';
+  if (phase === 'wrap_up') {
     session.messages.push({
       role: 'user',
-      content: '格式错误：你刚才没有输出合法 JSON。请重新输出，只给一个 JSON 对象，包含 assistant_message、slot_updates、next_question、quick_replies、action、intro、safety。不要其它文字。'
+      content: '【业务指令】可以结束了，请自然收束，并在 profile_update.intro 写短介绍。'
     });
-    const retryMessages = [{ role: 'system', content: system }].concat(session.messages);
-    result = await callZhipu(retryMessages);
-    try {
-      parsed = extractJson(result.content);
-    } catch (e) {
-      const err = new Error('无法解析模型 JSON：' + e.message + ' | raw=' + String(result.content).slice(0, 300));
-      err.status = 502;
-      throw err;
-    }
   }
 
-  session.messages.push({ role: 'assistant', content: result.content });
-  parsed = ensureQuestionText(parsed);
-  session.draft = mergeDraft(session.draft, parsed.slot_updates || {});
-  if (parsed.intro) session.draft.intro = String(parsed.intro);
-  appendTranscript(session, 'assistant', parsed.assistant_message || '');
+  let out = await runAgent(session, phase, { userText: text });
+  const signalInfo = applyUserSignal(session, out.user_signal);
 
-  if (parsed.action === 'handoff_summary' || parsed.next_question === 'done') {
-    const introBad = !session.draft.intro
-      || /未填|没有填写|信息不足|还不了解|暂无|什么都没|都没填|信息为空/.test(session.draft.intro);
-    if (introBad) {
-      session.draft.intro = fallbackIntro(session.draft);
+  if ((out.safety && out.safety.level === 'unsafe') || signalInfo.unsafe) {
+    session.updatedAt = new Date().toISOString();
+    const saved = persistSession(sessionId, session);
+    return finishPayload(sessionId, session, out, 'hard_block', phase, session.endDecision, saved);
+  }
+
+  const decision = schema.evaluateEnd({
+    userTurns: session.userTurns,
+    lowQualityStreak: session.lowQualityStreak,
+    draft: session.draft,
+    userAskedToEnd: signalInfo.askedEnd
+  });
+  session.endDecision = decision;
+
+  // 本轮还在聊，但业务判定该结束 → 再收束一次（仅结束时多一次）
+  if (phase === 'continue' && decision.shouldEnd) {
+    session.messages.push({
+      role: 'user',
+      content: '【业务指令】当前信息已足够，请自然结束，并在 profile_update.intro 写短介绍。不要再提新问题。'
+    });
+    const wrap = await runAgent(session, 'wrap_up', { userText: text });
+    prunePreviousAssistant(session);
+    out = wrap;
+    phase = 'wrap_up';
+  }
+
+  if (phase === 'wrap_up') {
+    if (!session.draft.intro || /暂无|未填|不了解|信息不足/.test(session.draft.intro)) {
+      session.draft.intro = schema.fallbackIntro(session.draft);
     }
-    let msg = String(parsed.assistant_message || '').trim();
-    if (!/介绍|看看|确认/.test(msg)) {
-      msg = (msg ? msg.replace(/[。！!?？]*$/, '') + '。' : '') + '我帮你整理成一段介绍，你看看要不要改。';
-    }
-    parsed.assistant_message = msg;
-    parsed.action = 'handoff_summary';
-    parsed.next_question = 'done';
     session.status = 'completed';
-    // 若最后一条 AI 文案被改过，同步可读 transcript
-    if (session.transcript && session.transcript.length) {
-      const last = session.transcript[session.transcript.length - 1];
-      if (last.role === 'assistant') last.text = msg;
-    }
+    session.pendingWrapUp = false;
+    session.updatedAt = new Date().toISOString();
+    const saved = persistSession(sessionId, session);
+    return finishPayload(sessionId, session, out, 'handoff_summary', 'wrap_up', decision, saved);
   }
 
   session.updatedAt = new Date().toISOString();
   const saved = persistSession(sessionId, session);
-
-  return {
-    ok: true,
-    sessionId,
-    model: result.model,
-    usage: result.usage,
-    assistant_message: parsed.assistant_message || '',
-    slot_updates: parsed.slot_updates || {},
-    profile_draft: session.draft,
-    next_question: parsed.next_question || 'q1',
-    quick_replies: Array.isArray(parsed.quick_replies) ? parsed.quick_replies.slice(0, 5) : [],
-    action: parsed.action || 'ask_next',
-    intro: session.draft.intro || '',
-    safety: parsed.safety || { level: 'ok', note: '' },
-    savedTo: saved ? path.relative(ROOT, saved.json) : null
-  };
+  return finishPayload(sessionId, session, out, 'continue', 'continue', decision, saved);
 }
 
-function fallbackIntro(d) {
-  const role = [d.occupation_category, d.occupation].filter(Boolean).join('·')
-    || d.occupation
-    || d.occupation_category
-    || '在这座城市生活';
-  const tags = (d.interests || []).map((i) => (i && i.tag) || i).filter(Boolean).slice(0, 4);
-  const tagText = tags.length ? tags.join('、') : '';
-  const pace = d.social_style
-    ? (d.social_style.warmup_speed <= 0.4 ? '偏慢热' : (d.social_style.initiative >= 0.65 ? '爱带气氛' : ''))
-    : '';
-  const group = d.group_preference
-    ? ({
-      small: '更爱小局聊天',
-      medium: '喜欢小圈子热闹一点',
-      large: '不介意人多热闹',
-      any: ''
-    }[d.group_preference.preferred_size] || '')
-    : '';
-  const bits = [];
-  bits.push(role);
-  if (tagText) bits.push('平时喜欢' + tagText);
-  if (pace) bits.push(pace);
-  if (group) bits.push(group);
-  bits.push('想认识同频的人一起出门');
-  return bits.join('，').replace(/，+/g, '，') + '。';
-}
-
-const QUESTION_FALLBACKS = {
-  q1: '你现在主要是做什么的？比如互联网、金融、学生、自由职业，都可以随便说。',
-  q2: '平时有空的时候，你一般喜欢干嘛？比如喝一杯、探店、运动、看展、听现场、桌游、户外……想到什么说什么。',
-  q3: '跟刚认识的人一起玩时，你一般是哪种？比较能带气氛、熟了才放得开、喜欢听别人聊，还是都看情况？',
-  q4: '如果让我帮你攒局，你更喜欢什么感觉的？比如两三个人随便聊、小圈子热闹点、大家一起玩点什么，或者人多一点都行？',
-  q5: '最后一个，你通常会更愿意认识什么样的人？比如聊得来、有趣、同龄、同行、兴趣一样、能带你玩……没特别要求也可以。'
-};
-
-const DEFAULT_QUICK = {
-  q3: ['能带气氛', '慢热型', '比较随和', '偏安静', '看人看场合'],
-  q4: ['两三个人小聊', '小圈子热闹点', '有事干不尬聊', '人多一点也行'],
-  q5: ['聊得来就好', '有趣主动一点', '同龄同好', '没特别要求']
-};
-
-function ensureQuestionText(parsed) {
-  const q = parsed.next_question;
-  const action = parsed.action || 'ask_next';
-  if (!QUESTION_FALLBACKS[q]) return parsed;
-  if (action === 'handoff_summary' || action === 'hard_block' || action === 'soft_end') return parsed;
-  let msg = String(parsed.assistant_message || '').trim();
-  const fallback = QUESTION_FALLBACKS[q];
-  // 只要正文里还没出现该问的核心问句，就补上标准问法（模型常只寒暄不提问）
-  const alreadyHas = msg.includes(fallback) || (q === 'q1' && /做什么的/.test(msg))
-    || (q === 'q2' && /喜欢干嘛|有空的时候/.test(msg))
-    || (q === 'q3' && /刚认识|哪种/.test(msg))
-    || (q === 'q4' && /攒局|什么感觉/.test(msg))
-    || (q === 'q5' && /什么样的人|愿意认识/.test(msg));
-  if (!alreadyHas) {
-    msg = msg ? (msg.replace(/[。！!?？～~]*$/, '') + '。' + fallback) : fallback;
-  }
-  parsed.assistant_message = msg;
-  if ((!parsed.quick_replies || !parsed.quick_replies.length) && DEFAULT_QUICK[q]) {
-    parsed.quick_replies = DEFAULT_QUICK[q].slice();
-  }
-  return parsed;
+function mergeDraftCompat(draft, updates) {
+  if (!updates || typeof updates !== 'object') return draft;
+  let next = draft && draft.version === 'v2' ? Object.assign({}, draft) : schema.emptyDraft();
+  if (typeof updates.intro === 'string' && updates.intro.trim()) next.intro = updates.intro.trim();
+  schema.PROFILE_FIELDS.forEach((key) => {
+    if (updates[key]) next[key] = schema.normalizeField(updates[key]);
+  });
+  next.version = 'v2';
+  return next;
 }
 
 function sendJson(res, status, obj) {
-  const body = JSON.stringify(obj);
   res.writeHead(status, {
     'Content-Type': 'application/json; charset=utf-8',
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Methods': 'GET,POST,OPTIONS'
   });
-  res.end(body);
+  res.end(JSON.stringify(obj));
 }
 
 function contentType(filePath) {
   const ext = path.extname(filePath).toLowerCase();
-  const map = {
+  return ({
     '.html': 'text/html; charset=utf-8',
     '.js': 'application/javascript; charset=utf-8',
     '.css': 'text/css; charset=utf-8',
@@ -442,8 +490,7 @@ function contentType(filePath) {
     '.svg': 'image/svg+xml',
     '.ico': 'image/x-icon',
     '.woff2': 'font/woff2'
-  };
-  return map[ext] || 'application/octet-stream';
+  })[ext] || 'application/octet-stream';
 }
 
 function serveStatic(req, res) {
@@ -504,7 +551,9 @@ const server = http.createServer(async (req, res) => {
       model: MODEL,
       sessions: sessions.size,
       savedChats: listSavedChats().length,
-      dataDir: path.relative(ROOT, DATA_DIR)
+      dataDir: path.relative(ROOT, DATA_DIR),
+      architecture: 'single_agent',
+      endPolicy: schema.END_POLICY
     });
     return;
   }
@@ -531,7 +580,6 @@ const server = http.createServer(async (req, res) => {
       const sessionId = String(body.sessionId || '');
       const session = sessions.get(sessionId);
       if (!session) {
-        // 内存没有时，尝试给已落盘记录打标
         const existing = loadSavedChat(sessionId);
         if (!existing) {
           sendJson(res, 404, { ok: false, error: 'session not found' });
@@ -539,7 +587,8 @@ const server = http.createServer(async (req, res) => {
         }
         existing.status = 'confirmed';
         existing.updatedAt = new Date().toISOString();
-        if (body.profileDraft) existing.draft = mergeDraft(existing.draft || emptyDraft(), body.profileDraft);
+        if (body.profileDraft) existing.draft = mergeDraftCompat(existing.draft || schema.emptyDraft(), body.profileDraft);
+        if (body.intro) existing.draft.intro = String(body.intro);
         ensureDataDir();
         const paths = sessionPaths(sessionId);
         fs.writeFileSync(paths.json, JSON.stringify(existing, null, 2) + '\n', 'utf8');
@@ -549,7 +598,7 @@ const server = http.createServer(async (req, res) => {
       }
       session.status = 'confirmed';
       session.updatedAt = new Date().toISOString();
-      if (body.profileDraft) session.draft = mergeDraft(session.draft, body.profileDraft);
+      if (body.profileDraft) session.draft = mergeDraftCompat(session.draft, body.profileDraft);
       if (body.intro) session.draft.intro = String(body.intro);
       const saved = persistSession(sessionId, session);
       sendJson(res, 200, { ok: true, savedTo: saved ? path.relative(ROOT, saved.json) : null });
@@ -565,6 +614,7 @@ const server = http.createServer(async (req, res) => {
       const out = await handleProfileChat(body);
       sendJson(res, 200, out);
     } catch (e) {
+      console.error('[profile-proxy]', e);
       sendJson(res, e.status || 500, { ok: false, error: e.message || String(e) });
     }
     return;
@@ -579,9 +629,7 @@ const server = http.createServer(async (req, res) => {
 });
 
 function flushAllSessions() {
-  for (const [id, session] of sessions.entries()) {
-    persistSession(id, session);
-  }
+  for (const [id, session] of sessions.entries()) persistSession(id, session);
 }
 
 process.on('SIGINT', () => {
@@ -596,6 +644,7 @@ process.on('SIGTERM', () => {
 ensureDataDir();
 server.listen(PORT, () => {
   console.log('[profile-proxy] http://localhost:' + PORT + '/match-card.html');
+  console.log('[profile-proxy] architecture=single_agent');
   console.log('[profile-proxy] chats saved under ' + DATA_DIR);
   console.log('[profile-proxy] model=' + MODEL + ' key=' + (API_KEY ? 'yes' : 'MISSING'));
 });

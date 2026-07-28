@@ -1935,7 +1935,7 @@
             <div class="ai-avatar">AI</div>
             <div class="ai-head-copy">
                 <h2 id="profileTitle">先认识你一下</h2>
-                <p id="profileSubtitle">随便聊几句就好，以后找搭子、凑局会更准。</p>
+                <p id="profileSubtitle">像朋友随便聊聊，以后帮你找更合适的搭子。</p>
             </div>
             <button class="profile-close" id="closeProfileBtn" type="button" aria-label="关闭">×</button>
         </div>
@@ -1948,7 +1948,7 @@
         <div class="ai-pane" id="profileSummaryPane">
             <div class="summary-card">
                 <div class="intro-text" id="profileIntroText"></div>
-                <p class="intro-note">以上由 AI 根据对话整理。职业可改；其它偏好已记住，不在这里单独展示。</p>
+                <p class="intro-note">以上由对话整理而成，可直接改介绍。下方是我读到的长期偏好，不全也没关系。</p>
                 <div id="profileSummaryList"></div>
             </div>
             <div class="sheet-actions">
@@ -2164,21 +2164,35 @@
     ];
     var DESIRED_REL = ['单身', '恋爱中', '已婚', '不限'];
 
-    /** 本地建档代理（智谱）；需先启动 demo/profile-proxy */
-    var PROFILE_API_BASE = (location.port === '8787')
+    /** 本地建档代理（智谱）；需先启动 demo/profile-proxy（默认 8788，避开审核台 8787） */
+    var PROFILE_API_BASE = (location.port === '8788' || location.port === '8787')
         ? ''
-        : 'http://localhost:8787';
+        : 'http://localhost:8788';
+
+    var emptyField = function() {
+        return { value: null, confidence: 0, evidence: [] };
+    };
 
     var emptyProfile = function() {
         return {
-            occupation_category: '',
-            occupation: '',
-            interests: [],
-            social_style: null,
-            group_preference: null,
-            preferred_people: null,
+            version: 'v2',
+            social_purpose: emptyField(),
+            social_style: emptyField(),
+            chat_topics: emptyField(),
+            activity_style: emptyField(),
+            schedule_preference: emptyField(),
+            boundaries: emptyField(),
             intro: ''
         };
+    };
+
+    var PROFILE_FIELD_LABELS = {
+        social_purpose: '希望遇见',
+        social_style: '社交人格',
+        chat_topics: '聊天偏好',
+        activity_style: '活动风格',
+        schedule_preference: '作息偏好',
+        boundaries: '底线'
     };
 
     var appState = {
@@ -2197,8 +2211,7 @@
         activeTaskId: null,
         profile: emptyProfile(),
         profileSessionId: '',
-        chatBusy: false,
-        profileNextQuestion: 'q1'
+        chatBusy: false
     };
 
     var TASK_STATUS_LABEL = {
@@ -2490,50 +2503,46 @@
         $('profileSummaryPane').classList.toggle('active', id === 'summary');
         $('profileTitle').textContent = id === 'summary' ? '这是你的个人介绍' : '先认识你一下';
         $('profileSubtitle').textContent = id === 'summary'
-            ? '我整理成一段介绍。职业可单独改，其它偏好已记住。'
-            : '随便聊几句就好，以后找搭子、凑局会更准。';
+            ? '我按刚才的聊天整理了一段，你可以改。'
+            : '像朋友随便聊聊，以后帮你找更合适的搭子。';
     }
 
     function newProfileSessionId() {
         return 'p_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
     }
 
-    function interestTags(profile) {
-        return (profile.interests || []).map(function(i) {
-            return typeof i === 'string' ? i : (i && i.tag);
-        }).filter(Boolean);
+    function formatProfileValue(v) {
+        if (v == null || v === '') return '';
+        if (typeof v === 'string') return v;
+        if (typeof v === 'object') {
+            if (Array.isArray(v.likes) || Array.isArray(v.dislikes)) {
+                var likes = (v.likes || []).slice(0, 3);
+                var dislikes = (v.dislikes || []).slice(0, 2);
+                var bits = [];
+                if (likes.length) bits.push('爱聊' + likes.join('、'));
+                if (dislikes.length) bits.push('少聊' + dislikes.join('、'));
+                return bits.join('；');
+            }
+            var boundaryBits = [];
+            if (v.smoking_nearby === 'ok') boundaryBits.push('不介意旁人抽烟');
+            else if (v.smoking_nearby === 'no') boundaryBits.push('介意旁人抽烟');
+            else if (v.smoking_nearby === 'depends') boundaryBits.push('抽烟看情况');
+            if (v.drinking === 'yes') boundaryBits.push('可喝酒');
+            else if (v.drinking === 'no') boundaryBits.push('不喝酒');
+            else if (v.drinking === 'sometimes') boundaryBits.push('喝酒看情况');
+            if (boundaryBits.length) return boundaryBits.join(' · ');
+            try { return JSON.stringify(v); } catch (e) { return String(v); }
+        }
+        return String(v);
     }
 
-    function socialStyleLabel(s) {
-        if (!s) return '未填';
-        var parts = [];
-        if (s.warmup_speed <= 0.4) parts.push('偏慢热');
-        else if (s.warmup_speed >= 0.7) parts.push('熟得快');
-        if (s.initiative >= 0.65) parts.push('能带气氛');
-        else if (s.initiative <= 0.35) parts.push('不太主动');
-        if (s.talkativeness >= 0.65) parts.push('话多');
-        else if (s.talkativeness <= 0.35) parts.push('偏安静');
-        return parts.length ? parts.join(' · ') : '看情况';
-    }
-
-    function groupPrefLabel(g) {
-        if (!g) return '未填';
-        var sizeMap = { small: '小局', medium: '中等局', large: '人大一点', any: '人数随意' };
-        var styleMap = { conversation: '偏聊天', activity: '偏有事干', mixed: '聊天/活动都行' };
-        var energy = typeof g.energy_level === 'number'
-            ? (g.energy_level >= 0.65 ? '偏热闹' : (g.energy_level <= 0.4 ? '偏安静' : '能量适中'))
-            : '';
-        return [sizeMap[g.preferred_size] || g.preferred_size, styleMap[g.interaction_style] || g.interaction_style, energy]
-            .filter(Boolean).join(' · ');
-    }
-
-    function preferredPeopleLabel(p) {
-        if (!p) return '未填';
-        var bits = (p.traits || []).slice();
-        if (p.age_similarity === 'preferred' || p.age_similarity === 'required') bits.push('年龄差不多');
-        if (p.shared_interests === 'important') bits.push('共同爱好重要');
-        else if (p.shared_interests === 'nice_to_have') bits.push('有共同爱好更好');
-        return bits.length ? bits.join('、') : '没特别要求';
+    function profileHasSignal(profile) {
+        if (!profile) return false;
+        if (profile.intro && !/暂无|未填|不了解|信息不足/.test(profile.intro)) return true;
+        return Object.keys(PROFILE_FIELD_LABELS).some(function(key) {
+            var f = profile[key];
+            return f && f.value != null && Number(f.confidence || 0) >= 0.45;
+        });
     }
 
     function startProfileChat(force) {
@@ -2543,7 +2552,6 @@
             appState.profile = emptyProfile();
         }
         appState.profileSessionId = newProfileSessionId();
-        appState.profileNextQuestion = 'q1';
         $('profileChat').innerHTML = '';
         $('profileComposer').innerHTML = '';
         callProfileAgent({ reset: true, userMessage: null });
@@ -2575,12 +2583,16 @@
     function applyProfileDraft(draft) {
         if (!draft || typeof draft !== 'object') return;
         var p = appState.profile;
-        if (draft.occupation_category != null) p.occupation_category = draft.occupation_category || '';
-        if (draft.occupation != null) p.occupation = draft.occupation || '';
-        if (Array.isArray(draft.interests)) p.interests = draft.interests;
-        if (draft.social_style) p.social_style = draft.social_style;
-        if (draft.group_preference) p.group_preference = draft.group_preference;
-        if (draft.preferred_people) p.preferred_people = draft.preferred_people;
+        if (draft.version) p.version = draft.version;
+        Object.keys(PROFILE_FIELD_LABELS).forEach(function(key) {
+            if (draft[key] && typeof draft[key] === 'object') {
+                p[key] = {
+                    value: draft[key].value == null ? null : draft[key].value,
+                    confidence: Number(draft[key].confidence) || 0,
+                    evidence: Array.isArray(draft[key].evidence) ? draft[key].evidence : []
+                };
+            }
+        });
         if (draft.intro) p.intro = draft.intro;
     }
 
@@ -2614,17 +2626,17 @@
                 return;
             }
             applyProfileDraft(data.profile_draft);
-            appState.profileNextQuestion = data.next_question || appState.profileNextQuestion;
-            if (data.assistant_message) appendBubble('ai', data.assistant_message);
+            var aiText = data.assistant_reply || data.assistant_message;
+            if (aiText) appendBubble('ai', aiText);
 
             if (data.action === 'hard_block') {
                 renderComposerError('这条先跳过，换个话题继续也可以。');
                 return;
             }
-            if (data.action === 'handoff_summary' || data.next_question === 'done') {
+            if (data.action === 'handoff_summary') {
                 applyProfileDraft(data.profile_draft);
                 if (data.intro) appState.profile.intro = data.intro;
-                if (!appState.profile.intro || /未填|没有填写|信息不足|还不了解|暂无|都没填/.test(appState.profile.intro)) {
+                if (!appState.profile.intro || /暂无|未填|不了解|信息不足/.test(appState.profile.intro)) {
                     appState.profile.intro = buildIntroFromFields();
                 }
                 setTimeout(showProfileSummary, 420);
@@ -2694,70 +2706,77 @@
 
     function buildIntroFromFields() {
         var p = appState.profile;
-        var role = [p.occupation_category, p.occupation].filter(Boolean).join('·')
-            || p.occupation
-            || p.occupation_category
-            || '在这座城市生活';
-        var tags = interestTags(p).slice(0, 4);
-        var bits = [role];
-        if (tags.length) bits.push('平时喜欢' + tags.join('、'));
-        if (p.social_style) {
-            if (p.social_style.warmup_speed <= 0.4) bits.push('偏慢热');
-            else if (p.social_style.initiative >= 0.65) bits.push('爱带气氛');
+        var bits = [];
+        ['social_style', 'activity_style', 'social_purpose'].forEach(function(key) {
+            var f = p[key];
+            if (f && f.value != null && Number(f.confidence || 0) >= 0.45) {
+                var text = formatProfileValue(f.value);
+                if (text) bits.push(text);
+            }
+        });
+        var topics = p.chat_topics;
+        if (topics && topics.value && Number(topics.confidence || 0) >= 0.45) {
+            var topicText = formatProfileValue(topics.value);
+            if (topicText) bits.push(topicText);
         }
-        if (p.group_preference) {
-            var sizeMap = { small: '更爱小局聊天', medium: '喜欢小圈子热闹一点', large: '不介意人多热闹' };
-            if (sizeMap[p.group_preference.preferred_size]) bits.push(sizeMap[p.group_preference.preferred_size]);
-        }
-        bits.push('想认识同频的人一起出门');
-        return bits.join('，') + '。';
+        if (!bits.length) return '在这座城市找同频搭子，随性一点也没关系，边玩边认识。';
+        return bits.slice(0, 4).join('，') + '。想认识合得来的人一起出门。';
     }
 
     function buildIntro() {
         var p = appState.profile;
-        if (p.intro && !/未填|没有填写|信息不足|还不了解|暂无|都没填/.test(p.intro)) return p.intro;
+        if (p.intro && !/暂无|未填|不了解|信息不足|没有填写|还不了解/.test(p.intro)) return p.intro;
         return buildIntroFromFields();
     }
 
     function showProfileSummary() {
         showProfilePane('summary');
-        if (!appState.profile.intro || /未填|没有填写|信息不足|还不了解|暂无|都没填/.test(appState.profile.intro)) {
+        if (!appState.profile.intro || /暂无|未填|不了解|信息不足/.test(appState.profile.intro)) {
             appState.profile.intro = buildIntroFromFields();
         }
         $('profileIntroText').textContent = appState.profile.intro;
 
-        // 总结页只展示可改的职业；兴趣/社交/局偏好等长期档案不单独列出
-        var rows = [
-            { key: 'occupation', label: '职业/状态', type: 'text' }
-        ];
-        $('profileSummaryList').innerHTML = rows.map(function(r) {
-            return '<div class="summary-item" data-key="' + r.key + '">' +
-                '<label>' + r.label + '</label>' +
-                '<div class="val"></div>' +
-                '<button class="edit-btn" type="button">修改</button>' +
-                '<div class="edit-box"></div>' +
-            '</div>';
-        }).join('');
+        var rows = Object.keys(PROFILE_FIELD_LABELS).map(function(key) {
+            var f = appState.profile[key];
+            if (!f || f.value == null || Number(f.confidence || 0) < 0.45) return null;
+            var text = formatProfileValue(f.value);
+            if (!text) return null;
+            return { key: key, label: PROFILE_FIELD_LABELS[key], text: text };
+        }).filter(Boolean);
 
-        Array.from($('profileSummaryList').children).forEach(function(item, i) {
-            var r = rows[i];
-            var val = [appState.profile.occupation_category, appState.profile.occupation].filter(Boolean).join(' · ') || '未填';
-            item.querySelector('.val').textContent = val;
-            item.querySelector('.edit-btn').addEventListener('click', function() {
-                beginEditSummaryItem(item, r);
+        if (!rows.length) {
+            $('profileSummaryList').innerHTML = '<p class="intro-note" style="margin:12px 0 0">还没读到很明确的偏好，也没关系，以后边玩边补。</p>';
+            return;
+        }
+
+        $('profileSummaryList').innerHTML = rows.map(function(r) {
+            return '<div class="summary-item">' +
+                '<label>' + escapeHtml(r.label) + '</label>' +
+                '<div class="val">' + escapeHtml(r.text) + '</div>' +
+            '</div>';
+        }).join('') +
+            '<div class="summary-item" data-key="intro">' +
+                '<label>个人介绍</label>' +
+                '<div class="val">' + escapeHtml(appState.profile.intro) + '</div>' +
+                '<button class="edit-btn" type="button" id="editIntroBtn">修改介绍</button>' +
+                '<div class="edit-box" id="editIntroBox"></div>' +
+            '</div>';
+
+        var editBtn = $('editIntroBtn');
+        if (editBtn) {
+            editBtn.addEventListener('click', function() {
+                beginEditIntro();
             });
-        });
+        }
     }
 
-    function beginEditSummaryItem(item, meta) {
-        Array.from($('profileSummaryList').querySelectorAll('.summary-item')).forEach(function(el) {
-            el.classList.remove('editing');
-            el.querySelector('.edit-box').innerHTML = '';
-        });
+    function beginEditIntro() {
+        var box = $('editIntroBox');
+        var item = box && box.parentElement;
+        if (!box || !item) return;
         item.classList.add('editing');
-        var box = item.querySelector('.edit-box');
-        var current = appState.profile.occupation || '';
-        box.innerHTML = '<input id="editField" value="' + String(current || '').replace(/"/g, '&quot;') + '">';
+        box.innerHTML = '<textarea id="editField" rows="4" style="width:100%;box-sizing:border-box;border-radius:12px;padding:10px;border:1px solid rgba(255,255,255,.18);background:rgba(0,0,0,.2);color:inherit;font:inherit">' +
+            escapeHtml(appState.profile.intro || '') + '</textarea>';
         var actions = document.createElement('div');
         actions.className = 'edit-actions';
         actions.innerHTML = '<button class="save" type="button">保存</button><button class="cancel" type="button">取消</button>';
@@ -2769,20 +2788,18 @@
         actions.querySelector('.save').addEventListener('click', function() {
             var next = $('editField').value.trim();
             if (!next) {
-                showToast('内容不能为空');
+                showToast('介绍不能为空');
                 return;
             }
-            appState.profile.occupation = next;
-            appState.profile.intro = buildIntroFromFields();
+            appState.profile.intro = next;
             showProfileSummary();
         });
     }
 
     function confirmProfile() {
         var p = appState.profile;
-        var hasSignal = !!(p.occupation || p.occupation_category || interestTags(p).length || p.social_style || p.group_preference);
-        if (!hasSignal) {
-            showToast('好像还没聊到有效信息，再聊聊或重新聊聊');
+        if (!profileHasSignal(p)) {
+            showToast('好像还没聊到多少，再聊几句或重新聊聊也行');
             return;
         }
         p.intro = buildIntro();
@@ -2790,7 +2807,6 @@
         var shouldStartMatch = appState.pendingAfterSetup;
         appState.pendingAfterSetup = false;
 
-        // 把确认结果写回本地对话存档
         fetch(PROFILE_API_BASE + '/api/profile-chat-confirm', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -2803,7 +2819,7 @@
 
         closeProfile();
         if (shouldStartMatch) {
-            showToast('资料已保存，开始匹配');
+            showToast('已记下你的感觉，开始匹配');
             appState.switchOn = true;
             startSearching();
         } else {
@@ -3240,12 +3256,22 @@
             return '<i class="' + (i < count ? 'on' : '') + '"></i>';
         }).join('');
 
-        var roleLabel = appState.profile.occupation || appState.profile.occupation_category || '我';
+        var styleField = appState.profile.social_style;
+        var activityField = appState.profile.activity_style;
+        var roleLabel = (styleField && styleField.value)
+            ? formatProfileValue(styleField.value)
+            : ((activityField && activityField.value) ? formatProfileValue(activityField.value) : '我');
+        var tagBits = [];
+        if (activityField && activityField.value) tagBits.push(formatProfileValue(activityField.value));
+        if (appState.profile.chat_topics && appState.profile.chat_topics.value) {
+            var likes = (appState.profile.chat_topics.value.likes || []).slice(0, 1);
+            if (likes.length) tagBits.push(likes[0]);
+        }
         var me = {
             name: '我', age: 26, emoji: '🙂',
             color: 'linear-gradient(145deg,#6b6230,#3a3518)',
             job: roleLabel,
-            tags: interestTags(appState.profile).slice(0, 2).concat(['已提交意向']).slice(0, 3),
+            tags: tagBits.slice(0, 2).concat(['已提交意向']).slice(0, 3),
             score: 100, km: '0km'
         };
         $('waitingMembers').innerHTML =
