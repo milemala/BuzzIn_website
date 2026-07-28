@@ -1,13 +1,21 @@
 {
   "city": "青岛",
   "source": "douban",
-  "decided_at": "2026-07-10T12:00:00.000Z",
+  "decided_at": "2026-07-26T12:10:00.000Z",
   "agent": "cursor-composer",
+  "note": "仅本轮 getLastImportNewUids 2 条",
   "decisions": [
-    {"event_uid": "douban:37899747", "suggested": true, "category": "主题沙龙", "reason": "群星闪耀时超前免费观影活动"},
-    {"event_uid": "douban:37899110", "suggested": true, "category": "主题沙龙", "reason": "群星闪耀时超前免费观影活动"},
-    {"event_uid": "douban:37823679", "suggested": true, "category": "戏剧表演", "reason": "一支麦天一脱口秀专场演出"},
-    {"event_uid": "douban:37776895", "suggested": true, "category": "戏剧表演", "reason": "一支麦赵聪明脱口秀专场演出"},
-    {"event_uid": "douban:37267226", "suggested": true, "category": "戏剧表演", "reason": "一支麦往事脱口秀专场演出"}
+    {
+      "event_uid": "douban:37834448",
+      "suggested": true,
+      "category": "音乐现场",
+      "reason": "钢琴独奏音乐会，现场演出"
+    },
+    {
+      "event_uid": "douban:37852355",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "曹云金相声专场，舞台喜剧演出"
+    }
   ]
 }

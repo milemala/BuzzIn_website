@@ -1,22 +1,143 @@
 {
   "city": "福州",
-  "source": "douban",
-  "decided_at": "2026-07-06T10:55:00.000Z",
+  "decided_at": "2026-07-26T12:20:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "14280814abbf",
-      "event_uids": ["douban:37826949"],
+      "event_uids": ["douban:37866610"],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "search_keywords_tried": ["福建会堂"],
       "poi_id": "14133530576794798958",
       "poi_title": "福建会堂",
-      "poi_address": "",
+      "poi_address": "福建省福州市鼓楼区华林路11号西湖宾馆",
       "latitude": 26.094631,
       "longitude": 119.292455,
+      "candidates": [
+        {
+          "poi_id": "14133530576794798958",
+          "title": "福建会堂",
+          "address": "福建省福州市鼓楼区华林路11号西湖宾馆",
+          "category": "文化场馆:会展中心",
+          "latitude": 26.094631,
+          "longitude": 119.292455
+        },
+        {
+          "poi_id": "7641178272455089960",
+          "title": "福建会堂-南大门",
+          "address": "福建省福州市鼓楼区华林路11号福建会堂",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 26.094178,
+          "longitude": 119.292306
+        },
+        {
+          "poi_id": "6738730132824795592",
+          "title": "福建会堂停车场",
+          "address": "福建省福州市鼓楼区华林路11号福建会堂",
+          "category": "汽车:停车场",
+          "latitude": 26.094447,
+          "longitude": 119.292591
+        },
+        {
+          "poi_id": "4927331350467466286",
+          "title": "福建会堂-出入口",
+          "address": "福建省福州市鼓楼区华大街道湖滨路福建会堂",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 26.09457,
+          "longitude": 119.292358
+        },
+        {
+          "poi_id": "10493168947887448961",
+          "title": "福建会堂-西北门",
+          "address": "福建省福州市鼓楼区华林路11号福建会堂",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 26.094898,
+          "longitude": 119.292079
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：鼓楼区福建会堂华林路11号西湖宾馆福建会堂"
+      "reason": "福建会堂与鼓楼区华林路11号西湖宾馆地址一致"
+    },
+    {
+      "group_id": "a53fa3fed340",
+      "event_uids": ["douban:37588595"],
+      "action": "match",
+      "search_keywords_tried": ["福立社喜剧 万象九宜城"],
+      "poi_id": "2312146045768955736",
+      "poi_title": "福立社喜剧-福州脱口秀",
+      "poi_address": "福建省福州市台江区工业路万象九宜城5楼425号",
+      "latitude": 26.064798,
+      "longitude": 119.290562,
+      "candidates": [
+        {
+          "poi_id": "2312146045768955736",
+          "title": "福立社喜剧-福州脱口秀",
+          "address": "福建省福州市台江区工业路万象九宜城5楼425号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 26.064798,
+          "longitude": 119.290562
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "福立社喜剧与台江区万象九宜城5楼425号地址完全一致"
+    },
+    {
+      "group_id": "045b517da03d",
+      "event_uids": ["douban:37592621", "douban:37584232"],
+      "action": "match",
+      "search_keywords_tried": ["肆笑喜剧 东街口大洋"],
+      "poi_id": "3913059210110117538",
+      "poi_title": "肆笑喜剧-脱口秀剧场",
+      "poi_address": "福建省福州市鼓楼区东街街道八一七北路133号大洋百货5层03",
+      "latitude": 26.084275,
+      "longitude": 119.300432,
+      "candidates": [
+        {
+          "poi_id": "3913059210110117538",
+          "title": "肆笑喜剧-脱口秀剧场",
+          "address": "福建省福州市鼓楼区东街街道八一七北路133号大洋百货5层03",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 26.084275,
+          "longitude": 119.300432
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "肆笑喜剧东街口大洋店与八一七北路133号国际商厦/大洋百货五楼一致"
+    },
+    {
+      "group_id": "226ffbe258c7",
+      "event_uids": ["douban:37778255"],
+      "action": "match",
+      "search_keywords_tried": ["帽子戏法 寰映影城融侨", "寰映影城 融侨"],
+      "poi_id": "14706441236976138924",
+      "poi_title": "万达影城(福州寰映影城融侨店)",
+      "poi_address": "福建省福州市仓山区燎原路136号融侨水都花园五区B栋二,三层寰映影城",
+      "latitude": 26.049298,
+      "longitude": 119.280825,
+      "candidates": [
+        {
+          "poi_id": "14706441236976138924",
+          "title": "万达影城(福州寰映影城融侨店)",
+          "address": "福建省福州市仓山区燎原路136号融侨水都花园五区B栋二,三层寰映影城",
+          "category": "娱乐休闲:电影院",
+          "latitude": 26.049298,
+          "longitude": 119.280825
+        },
+        {
+          "poi_id": "10734586624898541387",
+          "title": "寰映影城(福州融侨店)",
+          "address": "福建省福州市仓山区金山街道燎原路136号融侨外滩壹号F2",
+          "category": "娱乐休闲:电影院",
+          "latitude": 26.049315,
+          "longitude": 119.280775
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "影城主体与仓山区燎原路136号融侨水都花园五区B栋地址一致，帽子戏法为店内专场仅差店级精度"
     }
   ]
 }

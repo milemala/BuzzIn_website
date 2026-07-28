@@ -1,41 +1,91 @@
 {
   "city": "沈阳",
   "source": "douban",
-  "exported_at": "2026-07-13T01:32:36.528Z",
+  "exported_at": "2026-07-26T11:54:01.670Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 1,
+  "last_import_new_uids": 3,
   "doubtful_only": false,
-  "total_events": 1,
-  "group_count": 1,
-  "cache_hit_groups": 1,
+  "total_events": 3,
+  "group_count": 3,
+  "cache_hit_groups": 3,
   "groups": [
     {
-      "group_id": "389ed6011b03",
-      "location": "沈阳 沈河区 盛京大剧院 沈水路518号",
-      "sample_title": "《四熹丸子（徐化文）2026[秋风]巡回演唱会 》",
+      "group_id": "05bbd767f5c2",
+      "location": "沈阳 和平区 中华剧场 太原街街道南京南街3号(联营公司南侧)",
+      "sample_title": "沈阳站《爱·永恒》理查德·克莱德曼钢琴音乐会",
       "event_uids": [
-        "douban:37849434"
+        "douban:37707095"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "14733440405124475096",
-        "poi_title": "盛京大剧院",
+        "poi_id": "10800878540961739366",
+        "poi_title": "中华剧场",
         "poi_address": "",
-        "latitude": 41.75427,
-        "longitude": 123.445216,
+        "latitude": 41.788504,
+        "longitude": 123.405054,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：沈阳 沈河区 盛京大剧院 沈水路518号 → 盛京大剧院（来源 event:douban:37783124）",
+        "reason": "地址映射库命中：沈阳 和平区 中华剧场 太原街街道南京南街3号(联营公司南侧) → 中华剧场（来源 event:douban:37845867）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "389ed6011b034b7ccc2acc6d7290995485561e20"
+        "cache_key": "05bbd767f5c2f3016640182f9ad9f716df6e1617"
+      }
+    },
+    {
+      "group_id": "49fe1f16129a",
+      "location": "沈阳 大东区 大风天喜剧 脱口秀·新喜剧-中街吾悦剧场 津桥路7号吾悦广场5F-5005",
+      "sample_title": "大风天喜剧|即兴喜剧互动秀 ｜中街吾悦剧场",
+      "event_uids": [
+        "douban:37714493"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "9572667374434738028",
+        "poi_title": "大风天喜剧(中街店位)",
+        "poi_address": "",
+        "latitude": 41.803672,
+        "longitude": 123.467477,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：沈阳 大东区 大风天喜剧 脱口秀·新喜剧-中街吾悦剧场 津桥路7号吾悦广场5F-5005 → 大风天喜剧(中街店位)（来源 event:douban:37714504）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "49fe1f16129a45d58f5841611b2ca4c6990568c8"
+      }
+    },
+    {
+      "group_id": "ec2964c81c4b",
+      "location": "沈阳 铁西区 原料库VAST FACTORY 卫工北街44号红梅文创园1号楼",
+      "sample_title": "【都市醉汉】Vansdaddy个人巡演-沈阳站",
+      "event_uids": [
+        "douban:37862400"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "1738348374037781189",
+        "poi_title": "原料库Live HOUSE(红梅文创园)",
+        "poi_address": "",
+        "latitude": 41.810598,
+        "longitude": 123.351482,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：沈阳 铁西区 原料库VAST FACTORY 卫工北街44号红梅文创园1号楼 → 原料库Live HOUSE(红梅文创园)（来源 event:douban:37828424）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "ec2964c81c4b14e0ee2eff21cdec421702a49cb9"
       }
     }
   ]

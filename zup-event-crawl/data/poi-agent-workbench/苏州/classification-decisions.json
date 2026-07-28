@@ -1,38 +1,27 @@
 {
   "city": "苏州",
   "source": "douban",
-  "decided_at": "2026-07-13T09:30:00.000Z",
+  "decided_at": "2026-07-26T12:10:00.000Z",
   "agent": "cursor-composer",
+  "note": "仅本轮 getLastImportNewUids 3 条",
   "decisions": [
     {
-      "event_uid": "douban:37673357",
+      "event_uid": "douban:37801362",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "刘嘉卓&宗克·梅恩声音/喜剧现场专场，舞台演出"
+    },
+    {
+      "event_uid": "douban:37864202",
       "suggested": true,
       "category": "音乐现场",
-      "reason": "手碟/低音提琴等乐器沉浸式室内音乐会"
+      "reason": "施坦威艺术家钢琴独奏音乐会"
     },
     {
-      "event_uid": "douban:37771897",
+      "event_uid": "douban:37846521",
       "suggested": true,
-      "category": "戏剧表演",
-      "reason": "温情互动人偶话剧演出"
-    },
-    {
-      "event_uid": "douban:37856460",
-      "suggested": true,
-      "category": "音乐现场",
-      "reason": "枯木逢春乐队巡演苏州站"
-    },
-    {
-      "event_uid": "douban:37673869",
-      "suggested": true,
-      "category": "戏剧表演",
-      "reason": "老舍经典话剧《骆驼祥子》巡演"
-    },
-    {
-      "event_uid": "douban:37582749",
-      "suggested": true,
-      "category": "戏剧表演",
-      "reason": "法国经典舞台喜剧演出"
+      "category": "遛娃亲子",
+      "reason": "小橙堡童话剧《白雪公主》，明确少儿亲子向"
     }
   ]
 }

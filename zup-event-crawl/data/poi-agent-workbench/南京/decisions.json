@@ -1,102 +1,46 @@
 {
   "city": "南京",
-  "decided_at": "2026-07-13T14:43:13.358Z",
+  "decided_at": "2026-07-26T11:55:09.784Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "9953b1e5d0f6",
-      "event_uids": [
-        "douban:37899541"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "方所书店",
-        "方所"
-      ],
-      "poi_id": "1867994213661814224",
-      "poi_title": "方所(JLC金陵中環店)",
-      "poi_address": "江苏省南京市秦淮区王府大街29号JLC金陵中环西区L5-15&16",
-      "latitude": 32.039928,
-      "longitude": 118.781245,
-      "candidates": [
-        {
-          "poi_id": "1867994213661814224",
-          "title": "方所(JLC金陵中環店)",
-          "address": "江苏省南京市秦淮区王府大街29号JLC金陵中环西区L5-15&16"
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址（秦淮区王府大街29号金陵中环广场西区L5层15、16号）与POI完全一致"
-    },
-    {
       "group_id": "cdfd2e958cf1",
       "event_uids": [
-        "douban:37807045"
+        "douban:37848193",
+        "douban:37848216"
       ],
       "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
       "poi_id": "6981577208442308340",
       "poi_title": "江苏大剧院",
       "poi_address": "",
       "latitude": 32.012298,
       "longitude": 118.713942,
-      "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：南京 建邺区 江苏大剧院 梦都大街181号 → 江苏大剧院"
+      "reason": "地址映射库命中：南京 建邺区 江苏大剧院 梦都大街181号 → 江苏大剧院（来源 event:douban:37807045）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ]
     },
     {
-      "group_id": "8028fa755dbf",
+      "group_id": "02f2431ec96b",
       "event_uids": [
-        "douban:37862364"
+        "douban:37803537"
       ],
       "action": "match",
-      "search_keywords_tried": [
-        "稻香演艺中心"
-      ],
-      "poi_id": "704805059711045083",
-      "poi_title": "稻香演艺中心(西城路店)",
-      "poi_address": "江苏省南京市建邺区西城路277号",
-      "latitude": 31.979273,
-      "longitude": 118.737344,
-      "candidates": [
-        {
-          "poi_id": "704805059711045083",
-          "title": "稻香演艺中心(西城路店)",
-          "address": "江苏省南京市建邺区西城路277号"
-        }
-      ],
+      "poi_id": "13151879533910103766",
+      "poi_title": "1701 Open Space",
+      "poi_address": "江苏省南京市雨花台区安德门大街57号1栋112号",
+      "latitude": 31.970598,
+      "longitude": 118.764318,
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址（建邺区西城路277号）与POI完全一致"
-    },
-    {
-      "group_id": "d4a71f6b17a1",
-      "event_uids": [
-        "douban:37901134"
-      ],
-      "action": "match",
+      "reason": "搜「1701 Open Space」命中同名 POI，地址安德门大街57号1栋，与豆瓣雨花台区楚翘城一致",
       "search_keywords_tried": [
-        "幸福蓝海环宇城"
-      ],
-      "poi_id": "1742648908505199704",
-      "poi_title": "幸福蓝海国际影城(IMAX激光环宇城店)",
-      "poi_address": "江苏省南京市鼓楼区清凉门大街1号中海环宇城F4",
-      "latitude": 32.044447,
-      "longitude": 118.753355,
-      "candidates": [
-        {
-          "poi_id": "1742648908505199704",
-          "title": "幸福蓝海国际影城(IMAX激光环宇城店)",
-          "address": "江苏省南京市鼓楼区清凉门大街1号中海环宇城F4"
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "影院与中海环宇城四楼地址一致"
+        "1701 Open Space",
+        "楚翘城",
+        "安德门大街57号"
+      ]
     }
   ]
 }

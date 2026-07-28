@@ -1,17 +1,133 @@
 {
   "city": "北京",
-  "decided_at": "2026-07-13T14:43:13.358Z",
+  "decided_at": "2026-07-26T12:20:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "f7eb42db869a",
-      "event_uids": [
-        "douban:37842904"
-      ],
+      "group_id": "acbc0491e5c1",
+      "event_uids": ["douban:37906675"],
       "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
+      "search_keywords_tried": ["万达影城 CBD万达广场"],
+      "poi_id": "2254541393071174760",
+      "poi_title": "万达影城(CBD万达广场IMAX店)",
+      "poi_address": "北京市朝阳区建国路93号新世界百货(彩旋店)B2",
+      "latitude": 39.909148,
+      "longitude": 116.470606,
+      "candidates": [
+        {
+          "poi_id": "2254541393071174760",
+          "title": "万达影城(CBD万达广场IMAX店)",
+          "address": "北京市朝阳区建国路93号新世界百货(彩旋店)B2",
+          "category": "娱乐休闲:电影院",
+          "latitude": 39.909148,
+          "longitude": 116.470606
+        },
+        {
+          "poi_id": "3656505199783218469",
+          "title": "万达影城(四惠店)",
+          "address": "北京市朝阳区八里庄街道八里庄东里1号莱锦文化创意产业园CF01东门",
+          "category": "娱乐休闲:电影院",
+          "latitude": 39.914219,
+          "longitude": 116.49921
+        },
+        {
+          "poi_id": "16963359189310397094",
+          "title": "万达影城(合生汇店)",
+          "address": "北京市朝阳区大望路合生汇五楼",
+          "category": "娱乐休闲:电影院",
+          "latitude": 39.894028,
+          "longitude": 116.479167
+        }
       ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "朝阳区建国路93号万达影城CBD店店名一致，仅楼层表述差（豆瓣B座3层/POI写B2）"
+    },
+    {
+      "group_id": "004435dfd1c0",
+      "event_uids": ["douban:37905316"],
+      "action": "match",
+      "search_keywords_tried": ["花舍咖啡 广渠门", "花舍咖啡 白桥大街", "白桥大街28号"],
+      "poi_id": "7054925246709965393",
+      "poi_title": "花舍·岭南云贵川bistro(天坛崇文店)",
+      "poi_address": "北京市东城区白桥大街28号鸿润酒店1楼(近广渠门桥)",
+      "latitude": 39.894829,
+      "longitude": 116.439735,
+      "candidates": [
+        {
+          "poi_id": "7054925246709965393",
+          "title": "花舍·岭南云贵川bistro(天坛崇文店)",
+          "address": "北京市东城区白桥大街28号鸿润酒店1楼(近广渠门桥)",
+          "category": "美食:中餐厅:其它中餐厅",
+          "latitude": 39.894829,
+          "longitude": 116.439735
+        },
+        {
+          "poi_id": "1326669043281046326",
+          "title": "如家精选酒店(北京广渠门内地铁站鸿润店)",
+          "address": "北京市东城区东花市街道白桥大街28号(距地铁7号线广渠门内站B口500米)",
+          "category": "酒店宾馆:经济型酒店",
+          "latitude": 39.894751,
+          "longitude": 116.439751
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": false,
+      "reason": "弃用映射库仅到「白桥大街」；东城区白桥大街28号花舍门店与POI门牌一致（广渠门店）"
+    },
+    {
+      "group_id": "9503c7be6789",
+      "event_uids": ["douban:37906487"],
+      "action": "match",
+      "search_keywords_tried": ["寰映影城 朝阳合生汇"],
+      "poi_id": "1973125351768779894",
+      "poi_title": "寰映影城(朝阳合生汇杜比影院店)",
+      "poi_address": "北京市朝阳区西大望路21号合生汇F5",
+      "latitude": 39.894232,
+      "longitude": 116.480109,
+      "candidates": [
+        {
+          "poi_id": "1973125351768779894",
+          "title": "寰映影城(朝阳合生汇杜比影院店)",
+          "address": "北京市朝阳区西大望路21号合生汇F5",
+          "category": "娱乐休闲:电影院",
+          "latitude": 39.894232,
+          "longitude": 116.480109
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "朝阳区合生汇寰映影城杜比店店名完全一致"
+    },
+    {
+      "group_id": "cf10996ebd87",
+      "event_uids": ["douban:37906472"],
+      "action": "match",
+      "search_keywords_tried": ["珠影耳东传奇影城 蓝色港湾"],
+      "poi_id": "1561983417680096293",
+      "poi_title": "珠影耳东传奇影城",
+      "poi_address": "北京市朝阳区朝阳公园路6号蓝色港湾商区SA-42",
+      "latitude": 39.948825,
+      "longitude": 116.476158,
+      "candidates": [
+        {
+          "poi_id": "1561983417680096293",
+          "title": "珠影耳东传奇影城",
+          "address": "北京市朝阳区朝阳公园路6号蓝色港湾商区SA-42",
+          "category": "娱乐休闲:电影院",
+          "latitude": 39.948825,
+          "longitude": 116.476158
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "朝阳区蓝色港湾珠影耳东传奇影城店名地址一致"
+    },
+    {
+      "group_id": "f7eb42db869a",
+      "event_uids": ["douban:37853393"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "7000785431726986367",
       "poi_title": "北展剧场",
       "poi_address": "",
@@ -20,196 +136,363 @@
       "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：北京展览馆剧场→北展剧场，历史已通过活动确认"
+      "reason": "映射库命中：北京展览馆剧场/西直门外大街135号 → 北展剧场"
     },
     {
-      "group_id": "5a636102d4bd",
-      "event_uids": [
-        "douban:37886347"
-      ],
+      "group_id": "d378e2410426",
+      "event_uids": ["douban:37870461"],
       "action": "match",
-      "search_keywords_tried": [
-        "Blue Note Beijing"
-      ],
-      "poi_id": "15817194606053799347",
-      "poi_title": "Blue Note Beijing",
-      "poi_address": "北京市东城区前门东大街23号B1",
-      "latitude": 39.901087,
-      "longitude": 116.401415,
-      "candidates": [
-        {
-          "poi_id": "15817194606053799347",
-          "title": "Blue Note Beijing",
-          "address": "北京市东城区前门东大街23号B1"
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "店名、区划(东城区)、门牌(前门东大街23号)与豆瓣完全一致"
-    },
-    {
-      "group_id": "42548cd8eba7",
-      "event_uids": [
-        "douban:37898021"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "幸会聚场"
-      ],
-      "poi_id": "12443761141134602762",
-      "poi_title": "幸会聚场",
-      "poi_address": "北京市西城区广安门外街道莲花池东路16号天宁1号文化科技创新园32号",
-      "latitude": 39.895344,
-      "longitude": 116.345246,
-      "candidates": [
-        {
-          "poi_id": "12443761141134602762",
-          "title": "幸会聚场",
-          "address": "北京市西城区广安门外街道莲花池东路16号天宁1号文化科技创新园32号"
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "店名唯一匹配，区划(西城区)一致，豆瓣未给门牌但店名确定"
-    },
-    {
-      "group_id": "4751a217ee93",
-      "event_uids": [
-        "douban:37703042"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "1538483370261171775",
-      "poi_title": "磁场剧场NT剧场",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "8245552135134442295",
+      "poi_title": "国家大剧院歌剧院",
       "poi_address": "",
-      "latitude": 39.934372,
-      "longitude": 116.40257,
+      "latitude": 39.904662,
+      "longitude": 116.389741,
       "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：磁场剧场NT剧场，历史已通过活动确认"
+      "reason": "映射库命中：国家大剧院-歌剧院西长安街2号 → 国家大剧院歌剧院"
     },
     {
-      "group_id": "ac707fe24587",
-      "event_uids": [
-        "douban:37900416"
-      ],
+      "group_id": "04d3d7c49f0b",
+      "event_uids": ["douban:37877422"],
       "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
+      "search_keywords_tried": ["国家大剧院 小剧场", "国家大剧院小剧场"],
+      "poi_id": "848248518523598913",
+      "poi_title": "国家大剧院-小剧场",
+      "poi_address": "北京市西城区西长安街2号(天安门西地铁站C西南口步行360米)",
+      "latitude": 39.904455,
+      "longitude": 116.389935,
+      "candidates": [
+        {
+          "poi_id": "848248518523598913",
+          "title": "国家大剧院-小剧场",
+          "address": "北京市西城区西长安街2号(天安门西地铁站C西南口步行360米)",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 39.904455,
+          "longitude": 116.389935
+        },
+        {
+          "poi_id": "690595536715203538",
+          "title": "国家大剧院",
+          "address": "北京市西城区西长安街2号(人民大会堂西)",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 39.904754,
+          "longitude": 116.389761
+        }
       ],
-      "poi_id": "10671848573001900872",
-      "poi_title": "可能有书",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "西城区西长安街2号国家大剧院小剧场名称地址一致"
+    },
+    {
+      "group_id": "eb895341af2e",
+      "event_uids": ["douban:37904650", "douban:37904637"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "16374944766863526832",
+      "poi_title": "远洋国际中心E座",
       "poi_address": "",
-      "latitude": 39.922623,
-      "longitude": 116.418264,
+      "latitude": 39.915974,
+      "longitude": 116.491505,
       "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：前炒面胡同49号可能有书（东四店），历史已通过活动确认"
+      "reason": "映射库命中：朝阳区远洋国际中心E座与POI同名"
     },
     {
-      "group_id": "1c67cbc2df78",
-      "event_uids": [
-        "douban:37814505"
-      ],
+      "group_id": "d3a7aac30b3c",
+      "event_uids": ["douban:37906695", "douban:37906708", "douban:37906712"],
       "action": "match",
-      "search_keywords_tried": [
-        "开心麻花A88剧场"
-      ],
-      "poi_id": "6968181914085547366",
-      "poi_title": "开心麻花A88剧场",
-      "poi_address": "北京市朝阳区酒仙桥北路9号恒通国际创新园C9A",
-      "latitude": 39.990122,
-      "longitude": 116.492866,
+      "search_keywords_tried": ["海晟名苑南区"],
+      "poi_id": "1737292721249196731",
+      "poi_title": "海晟·名苑南区",
+      "poi_address": "北京市东城区东直门街道东直门外大街乙36号",
+      "latitude": 39.938014,
+      "longitude": 116.442268,
       "candidates": [
         {
-          "poi_id": "6968181914085547366",
-          "title": "开心麻花A88剧场",
-          "address": "北京市朝阳区酒仙桥北路9号恒通国际创新园C9A"
+          "poi_id": "1737292721249196731",
+          "title": "海晟·名苑南区",
+          "address": "北京市东城区东直门街道东直门外大街乙36号",
+          "category": "房产小区:住宅区:住宅小区",
+          "latitude": 39.938014,
+          "longitude": 116.442268
+        },
+        {
+          "poi_id": "9454165645746226700",
+          "title": "海晟·名苑南区-南门",
+          "address": "北京市东城区东直门街道东直门外大街乙36号海晟·名苑南区",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 39.93675,
+          "longitude": 116.440996
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "豆瓣写海晟·名苑南区南门，POI为住宅小区主体，室内活动场地需人工确认具体楼栋"
+    },
+    {
+      "group_id": "d8d4a31b6cbb",
+      "event_uids": ["douban:37884171", "douban:37884240"],
+      "action": "match",
+      "search_keywords_tried": ["天桥艺术中心"],
+      "poi_id": "12810526974669383444",
+      "poi_title": "北京天桥艺术中心",
+      "poi_address": "北京市西城区天桥南大街9号楼",
+      "latitude": 39.881969,
+      "longitude": 116.397866,
+      "candidates": [
+        {
+          "poi_id": "12810526974669383444",
+          "title": "北京天桥艺术中心",
+          "address": "北京市西城区天桥南大街9号楼",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 39.881969,
+          "longitude": 116.397866
+        },
+        {
+          "poi_id": "10617079424942107801",
+          "title": "天桥艺术中心-大剧场",
+          "address": "北京市西城区天桥街道天桥南大街9号楼",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 39.881943,
+          "longitude": 116.397993
+        },
+        {
+          "poi_id": "17987642018513161306",
+          "title": "天桥艺术中心·第五空间",
+          "address": "北京市西城区天桥南大街9号北京天桥艺术中心商业三层",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 39.88265,
+          "longitude": 116.398158
         }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "店名、区划(朝阳区)、门牌(酒仙桥北路9号恒通国际创新园C9A)与豆瓣完全一致"
+      "reason": "改绑主馆「北京天桥艺术中心」替代映射库第五空间；西城区天桥南大街9号楼一致"
     },
     {
-      "group_id": "0df005465d7e",
-      "event_uids": [
-        "douban:37900424"
-      ],
+      "group_id": "b185dceef689",
+      "event_uids": ["douban:37887715"],
       "action": "match",
-      "search_keywords_tried": [
-        "小站公园STATIONPARK",
-        "可能有书 小站公园"
-      ],
-      "poi_id": "1939408088025723043",
-      "poi_title": "可能有书(回南北路店)",
-      "poi_address": "北京市昌平区回南北路北京小站公园STATION PARK",
-      "latitude": 40.089848,
-      "longitude": 116.350298,
+      "search_keywords_tried": ["国图艺术中心"],
+      "poi_id": "327727795883733572",
+      "poi_title": "国图艺术中心·音乐厅",
+      "poi_address": "北京市海淀区中关村南大街33号国家图书馆东中门",
+      "latitude": 39.94419,
+      "longitude": 116.324016,
       "candidates": [
         {
-          "poi_id": "1939408088025723043",
-          "title": "可能有书(回南北路店)",
-          "address": "北京市昌平区回南北路北京小站公园STATION PARK"
+          "poi_id": "327727795883733572",
+          "title": "国图艺术中心·音乐厅",
+          "address": "北京市海淀区中关村南大街33号国家图书馆东中门",
+          "category": "娱乐休闲:剧场音乐厅:音乐厅",
+          "latitude": 39.94419,
+          "longitude": 116.324016
+        },
+        {
+          "poi_id": "9571321068325203195",
+          "title": "国图艺术中心售票处",
+          "address": "北京市海淀区紫竹院街道中关村南大街33号国图艺术中心一层",
+          "category": "生活服务:票务代售:其它票务代售",
+          "latitude": 39.944253,
+          "longitude": 116.324218
         }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "腾讯有店级POI「可能有书(回南北路店)」，区划(昌平区)与商场(小站公园STATIONPARK)均一致"
+      "reason": "合唱音乐会改绑音乐厅POI，优于映射库售票处；中关村南大街33号一致"
     },
     {
-      "group_id": "66c38f426b93",
-      "event_uids": [
-        "douban:37900879"
-      ],
+      "group_id": "7307d3af10bd",
+      "event_uids": ["douban:37845073"],
       "action": "match",
-      "search_keywords_tried": [
-        "英皇电影城三里屯"
-      ],
-      "poi_id": "10916598351297727590",
-      "poi_title": "英皇电影城(北京三里屯太古里店)",
-      "poi_address": "北京市朝阳区三里屯街道19号院太古里商业南区地下停车场及商业区-2至-1层",
-      "latitude": 39.934324,
-      "longitude": 116.45426,
+      "search_keywords_tried": ["城溪剧场 金尚", "城溪剧场"],
+      "poi_id": "10575795108320907025",
+      "poi_title": "城溪剧场Cheng Xi Theatre",
+      "poi_address": "北京市西城区新街口外大街34号金尚城溪2F",
+      "latitude": 39.951786,
+      "longitude": 116.372326,
       "candidates": [
         {
-          "poi_id": "10916598351297727590",
-          "title": "英皇电影城(北京三里屯太古里店)",
-          "address": "北京市朝阳区三里屯街道19号院太古里商业南区地下停车场及商业区-2至-1层"
+          "poi_id": "10575795108320907025",
+          "title": "城溪剧场Cheng Xi Theatre",
+          "address": "北京市西城区新街口外大街34号金尚城溪2F",
+          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
+          "latitude": 39.951786,
+          "longitude": 116.372326
+        },
+        {
+          "poi_id": "11838013888764609802",
+          "title": "金尚·城溪 JinShang Cheng XI",
+          "address": "北京市西城区德胜街道新街口外大街34号(积水潭地铁站A西北口步行390米)",
+          "category": "房产小区:商务楼宇",
+          "latitude": 39.951423,
+          "longitude": 116.372144
         }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "影院店名与朝阳区三里屯地址一致"
+      "reason": "西城区新街口外大街34号金尚城溪二楼城溪剧场店名地址一致"
     },
     {
-      "group_id": "6f65d04f29b5",
-      "event_uids": [
-        "douban:37879752"
-      ],
+      "group_id": "1f5e5dbe184a",
+      "event_uids": ["douban:37885408"],
       "action": "match",
-      "search_keywords_tried": [
-        "山谷居民livehouse"
-      ],
-      "poi_id": "4746079592675195767",
-      "poi_title": "山谷居民(月亮河·七星公馆店)",
-      "poi_address": "北京市通州区新华街道芙蓉西路月亮河城堡公寓503号楼6号底商",
-      "latitude": 39.920153,
-      "longitude": 116.677977,
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "10363537552618171795",
+      "poi_title": "开心麻花剧场",
+      "poi_address": "",
+      "latitude": 39.922565,
+      "longitude": 116.371357,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "映射库命中：地质礼堂开心麻花剧场羊肉胡同30号 → 开心麻花剧场"
+    },
+    {
+      "group_id": "6a0a4a00a6b2",
+      "event_uids": ["douban:37883227"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "3191494379217130930",
+      "poi_title": "北京艺术中心歌剧院",
+      "poi_address": "",
+      "latitude": 39.886617,
+      "longitude": 116.718543,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "映射库命中：通州区北京艺术中心歌剧院绿心路 → 北京艺术中心歌剧院"
+    },
+    {
+      "group_id": "40d9b60d552f",
+      "event_uids": ["douban:37845736"],
+      "action": "match",
+      "search_keywords_tried": ["乐空间 YUE SPACE"],
+      "poi_id": "2032224717431575186",
+      "poi_title": "乐空间livehouse",
+      "poi_address": "北京市东城区板桥南巷7号人美文化园区北楼西侧",
+      "latitude": 39.939188,
+      "longitude": 116.417638,
       "candidates": [
         {
-          "poi_id": "4746079592675195767",
-          "title": "山谷居民(月亮河·七星公馆店)",
-          "address": "北京市通州区新华街道芙蓉西路月亮河城堡公寓503号楼6号底商"
+          "poi_id": "2032224717431575186",
+          "title": "乐空间livehouse",
+          "address": "北京市东城区板桥南巷7号人美文化园区北楼西侧",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 39.939188,
+          "longitude": 116.417638
         }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "店名与月亮河城堡公寓503号楼底商完全一致"
+      "reason": "东城区板桥南巷7号人美大厦乐空间livehouse与豆瓣场馆一致"
+    },
+    {
+      "group_id": "707e31043c06",
+      "event_uids": ["douban:37904152"],
+      "action": "match",
+      "search_keywords_tried": ["宋庄当代艺术文献馆"],
+      "poi_id": "14837140976197059879",
+      "poi_title": "宋庄当代艺术文献馆",
+      "poi_address": "北京市通州区宋庄艺术区美术馆路1号",
+      "latitude": 39.964957,
+      "longitude": 116.714087,
+      "candidates": [
+        {
+          "poi_id": "14837140976197059879",
+          "title": "宋庄当代艺术文献馆",
+          "address": "北京市通州区宋庄艺术区美术馆路1号",
+          "category": "文化场馆:展览馆",
+          "latitude": 39.964957,
+          "longitude": 116.714087
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "通州宋庄美术馆路文献馆名称地址一致"
+    },
+    {
+      "group_id": "42f78cabefaf",
+      "event_uids": ["douban:37903865"],
+      "action": "match",
+      "search_keywords_tried": ["中国美术馆"],
+      "poi_id": "4601391167425246823",
+      "poi_title": "中国美术馆",
+      "poi_address": "北京市东城区五四大街1号",
+      "latitude": 39.92535,
+      "longitude": 116.409,
+      "candidates": [
+        {
+          "poi_id": "4601391167425246823",
+          "title": "中国美术馆",
+          "address": "北京市东城区五四大街1号",
+          "category": "文化场馆:美术馆",
+          "latitude": 39.92535,
+          "longitude": 116.409
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "东城区中国美术馆主馆名称一致"
+    },
+    {
+      "group_id": "6acfd2649f1c",
+      "event_uids": ["douban:37774670"],
+      "action": "match",
+      "search_keywords_tried": ["雍和笑逗 B厅", "新空间喜剧剧场 雍和", "雍和笑逗演艺街", "笑逗剧场 B厅", "雍和大厦 喜剧剧场"],
+      "poi_id": "8029981166766017289",
+      "poi_title": "雍和笑逗演艺街A厅-魔法艺术剧场(雍和宫)",
+      "poi_address": "北京市东城区北新桥街道雍和大厦E座西南角1层c厅",
+      "latitude": 39.948241,
+      "longitude": 116.420308,
+      "candidates": [
+        {
+          "poi_id": "8029981166766017289",
+          "title": "雍和笑逗演艺街A厅-魔法艺术剧场(雍和宫)",
+          "address": "北京市东城区北新桥街道雍和大厦E座西南角1层c厅",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 39.948241,
+          "longitude": 116.420308
+        },
+        {
+          "poi_id": "14932265804867976494",
+          "title": "斗萌喜剧·脱口秀剧场",
+          "address": "北京市东城区北新桥街道雍和大厦F雍和大厦西楼",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 39.948271,
+          "longitude": 116.420041
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "豆瓣写B厅新空间喜剧剧场，腾讯仅有同街区A厅POI，厅号不一致建议人工核对"
+    },
+    {
+      "group_id": "0fb30efec630",
+      "event_uids": ["douban:37500951"],
+      "action": "match",
+      "search_keywords_tried": ["老舍茶馆 前门"],
+      "poi_id": "15158887403978282784",
+      "poi_title": "老舍茶馆(前门店)",
+      "poi_address": "北京市西城区大栅栏街道前门西大街正阳市场3号楼",
+      "latitude": 39.899698,
+      "longitude": 116.393317,
+      "candidates": [
+        {
+          "poi_id": "15158887403978282784",
+          "title": "老舍茶馆(前门店)",
+          "address": "北京市西城区大栅栏街道前门西大街正阳市场3号楼",
+          "category": "娱乐休闲:茶馆",
+          "latitude": 39.899698,
+          "longitude": 116.393317
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "西城区前门西大街正阳市场3号楼老舍茶馆前门店一致"
     }
   ]
 }

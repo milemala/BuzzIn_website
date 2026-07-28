@@ -1,61 +1,66 @@
 {
   "city": "青岛",
   "source": "douban",
-  "exported_at": "2026-07-10T11:49:14.920Z",
+  "exported_at": "2026-07-26T12:09:29.084Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 5,
+  "last_import_new_uids": 2,
   "doubtful_only": false,
-  "total_events": 5,
-  "group_count": 3,
-  "cache_hit_groups": 1,
+  "total_events": 2,
+  "group_count": 2,
+  "cache_hit_groups": 2,
   "groups": [
     {
-      "group_id": "d5b4ae46f503",
-      "location": "青岛 万达影城(青岛CBD万达广场店)",
-      "sample_title": "288期 《群星闪耀时》青岛超前免费观影",
+      "group_id": "cf0c595eeeba",
+      "location": "青岛 崂山区 青岛大剧院 金家岭街道云岭路5号(香港东路北侧)",
+      "sample_title": "奥斯卡·罗曼耶卓钢琴独奏音乐会-青岛站",
       "event_uids": [
-        "douban:37899747"
+        "douban:37834448"
       ],
-      "event_count": 1
-    },
-    {
-      "group_id": "df008ea8a036",
-      "location": "青岛 市南区 横店电影城(中山店)",
-      "sample_title": "282期《群星闪耀时》青岛超前免费观影",
-      "event_uids": [
-        "douban:37899110"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "bbd29ea160b4",
-      "location": "青岛 市南区 一支麦小剧场 香港中路69号麦凯乐青岛总店二层东南角",
-      "sample_title": "一支麦脱口秀 | 天一《荒地的新衣》脱口秀专场 | 爆笑解压脱口秀&约会推荐",
-      "event_uids": [
-        "douban:37823679",
-        "douban:37776895",
-        "douban:37267226"
-      ],
-      "event_count": 3,
+      "event_count": 1,
       "cached_poi": {
-        "poi_id": "16379937920368861042",
-        "poi_title": "一支麦小剧场(香港中路店)",
+        "poi_id": "7244854423040967076",
+        "poi_title": "青岛大剧院",
         "poi_address": "",
-        "latitude": 36.065839,
-        "longitude": 120.403136,
+        "latitude": 36.098814,
+        "longitude": 120.474704,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：青岛 市南区 一支麦小剧场 香港中路69号麦凯乐青岛总店二层东南角 → 一支麦小剧场(香港中路店)（来源 event:douban:37548449）",
+        "reason": "地址映射库命中：青岛 崂山区 青岛大剧院 金家岭街道云岭路5号(香港东路北侧) → 青岛大剧院（来源 event:douban:37862955）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "bbd29ea160b4d57f8e3cd92eff36033e02477389"
+        "cache_key": "cf0c595eeebaaa849d143d183d89ea098ca8c73d"
+      }
+    },
+    {
+      "group_id": "4705f4bc8083",
+      "location": "青岛 李沧区 青岛市李沧剧院 兴城路39号",
+      "sample_title": "曹云金《万象更新》听云轩相声专场@青岛站",
+      "event_uids": [
+        "douban:37852355"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "4136302895776987675",
+        "poi_title": "青岛市李沧剧院",
+        "poi_address": "",
+        "latitude": 36.192539,
+        "longitude": 120.38261,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：青岛 李沧区 青岛市李沧剧院 兴城路39号 → 青岛市李沧剧院（来源 event:douban:37853913）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "4705f4bc8083a348d822d71869d75788be447301"
       }
     }
   ]

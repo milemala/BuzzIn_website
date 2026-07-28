@@ -1,251 +1,249 @@
 {
   "city": "武汉",
   "source": "xiaohongshu",
-  "decided_at": "2026-07-10T12:30:00.000Z",
+  "decided_at": "2026-07-15T10:05:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "8f47f6d1f04b",
-      "location": "蔡甸张湾街官塘村乌梅山特1号",
-      "sample_title": "江滩夏日限定-横渡长江博物馆夜游",
-      "event_uids": ["xiaohongshu:6a4f4e110000000016027768:01_0"],
+      "group_id": "c1567c4462d1",
+      "event_uids": ["xiaohongshu:6a55a8b10000000016025810:01_0"],
       "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": ["横渡长江博物馆"],
-      "poi_id": "17555313539754370624",
-      "poi_title": "武汉横渡长江博物馆",
-      "poi_address": "湖北省武汉市江岸区步道25号",
-      "latitude": 30.590772,
-      "longitude": 114.30749,
-      "reason": "活动为横渡长江博物馆夜游，slide 地址疑似笔误，以博物馆主体匹配"
-    },
-    {
-      "group_id": "aa769bb56067",
-      "location": "江汉区青年路373号武汉博物馆",
-      "sample_title": "武汉博物馆江城非遗「夜市」",
-      "event_uids": ["xiaohongshu:6a4f4e110000000016027768:01_1"],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "12248476031736664809",
-      "poi_title": "武汉博物馆",
-      "poi_address": "湖北省武汉市江汉区青年路373号",
-      "latitude": 30.61148,
-      "longitude": 114.256479,
-      "reason": "映射库命中武汉博物馆，与活动地址一致"
-    },
-    {
-      "group_id": "91974fb1eff2",
-      "location": "武汉中山公园",
-      "sample_title": "中山公园夏季夜游开放",
-      "event_uids": ["xiaohongshu:6a4f4e110000000016027768:02_0"],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": ["中山公园"],
-      "poi_id": "13896667463287111259",
-      "poi_title": "中山公园",
-      "poi_address": "湖北省武汉市江汉区解放大道1265号",
-      "latitude": 30.584,
-      "longitude": 114.272,
-      "reason": "活动即中山公园夏季夜游，候选主体一致"
-    },
-    {
-      "group_id": "ea50e5865bf9",
-      "location": "武汉保利广场L2利郎店铺前",
-      "sample_title": "「邻里闲置接头局」(闲置物品市集)",
-      "event_uids": ["xiaohongshu:6a4f4e110000000016027768:02_1"],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": ["武汉保利广场"],
-      "poi_id": "18228881304055716607",
-      "poi_title": "武汉保利广场",
-      "poi_address": "湖北省武汉市武昌区中南路与洪山广场通道交叉口正西方向84米左右",
-      "latitude": 30.535,
-      "longitude": 114.333,
-      "reason": "市集在保利广场 L2，商场主体匹配"
-    },
-    {
-      "group_id": "32118a929033",
-      "location": "武汉K11购物艺术中心馆L3",
-      "sample_title": "中国奇谭造梦奇境艺术展",
-      "event_uids": ["xiaohongshu:6a4f4e110000000016027768:02_2"],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": ["武汉K11购物艺术中心"],
-      "poi_id": "7449037728839499585",
-      "poi_title": "武汉K11购物艺术中心",
-      "poi_address": "湖北省武汉市硚口区解放大道628号",
-      "latitude": 30.579,
-      "longitude": 114.265,
-      "reason": "展览在 K11 L3，商场主体与解放大道628号一致"
-    },
-    {
-      "group_id": "cbe24719906c",
-      "location": "凯德西城广场(古田二路)",
-      "sample_title": "硚口区星空音乐会",
-      "event_uids": ["xiaohongshu:6a4f4e110000000016027768:04_0"],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": ["凯德广场 古田"],
-      "poi_id": "2642569198571117771",
-      "poi_title": "凯德古田广场",
-      "poi_address": "湖北省武汉市硚口区解放大道18号",
-      "latitude": 30.582,
-      "longitude": 114.214,
-      "reason": "凯德西城广场即凯德广场古田店，古田二路片区"
-    },
-    {
-      "group_id": "68b3f8af2ab8",
-      "location": "东湖风景区东湖绿道九女墩",
-      "sample_title": "东湖音乐小站Live",
-      "event_uids": ["xiaohongshu:6a4f4e110000000016027768:04_1"],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": ["东湖绿道 九女墩", "东湖绿道 音乐小站"],
-      "poi_id": "6857005784627815567",
-      "poi_title": "东湖绿道-音乐小站",
-      "poi_address": "湖北省武汉市武昌区沿湖大道东湖生态旅游风景区内",
-      "latitude": 30.556,
-      "longitude": 114.375,
-      "reason": "活动为东湖音乐小站 Live，候选音乐小站与九女墩绿道位置一致"
-    },
-    {
-      "group_id": "a07ba76addac",
-      "location": "东湖吹笛景区(马鞍山森林公园)",
-      "sample_title": "马鞍山森林公园·紫薇花",
-      "event_uids": ["xiaohongshu:6a4f4e110000000016027768:05_0"],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": ["马鞍山森林公园"],
-      "poi_id": "9894328089855975016",
-      "poi_title": "东湖吹笛景区(马鞍山森林公园)",
-      "poi_address": "湖北省武汉市洪山区珞喻东路619号",
-      "latitude": 30.512,
-      "longitude": 114.412,
-      "reason": "活动地址与候选景区名称完全一致"
-    },
-    {
-      "group_id": "1b2c866d4b4a",
-      "location": "武昌区杨园街道临江大道725号",
-      "sample_title": "武昌铁机路江滩·向日葵",
-      "event_uids": ["xiaohongshu:6a4f4e110000000016027768:05_1"],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": ["铁机路江滩"],
-      "poi_id": "15163096940388179116",
-      "poi_title": "铁机路江滩灯塔",
-      "poi_address": "湖北省武汉市武昌区杨园街道临江大道725号",
-      "latitude": 30.612,
-      "longitude": 114.345,
-      "reason": "候选地址临江大道725号与 slide 完全一致"
-    },
-    {
-      "group_id": "a511b46c1971",
-      "location": "沙湖公园C区",
-      "sample_title": "沙湖公园·荷花",
-      "event_uids": ["xiaohongshu:6a4f4e110000000016027768:05_2"],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": ["沙湖公园"],
-      "poi_id": "6373430211402427894",
-      "poi_title": "沙湖公园",
-      "poi_address": "湖北省武汉市武昌区水果湖街道徐家棚街沙湖大道139号",
-      "latitude": 30.566,
-      "longitude": 114.337,
-      "reason": "活动为沙湖公园 C 区赏荷，公园主体匹配"
-    },
-    {
-      "group_id": "d2ca94d16ca9",
-      "location": "武汉美术馆（汉口馆）1/2/3号厅",
-      "sample_title": "李传真劳动者主题作品展",
-      "event_uids": ["xiaohongshu:6a4f4e110000000016027768:06_2"],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": ["武汉美术馆 汉口馆"],
-      "poi_id": "11635050247341795033",
-      "poi_title": "武汉美术馆(汉口馆)",
-      "poi_address": "湖北省武汉市江岸区保华街2号(中山大道南京路口三角岛)",
-      "latitude": 30.587,
-      "longitude": 114.298,
-      "reason": "展览在汉口馆展厅，候选美术馆主体一致"
-    },
-    {
-      "group_id": "83600e3bd344",
-      "location": "武汉体育中心体育馆",
-      "sample_title": "武汉·二次元度假哈啤节",
-      "event_uids": [
-        "xiaohongshu:6a4f4e110000000016027768:07_0",
-        "xiaohongshu:6a4f4e110000000016027768:07_2"
+      "search_keywords_tried": ["汉口江滩五福广场"],
+      "poi_id": "10172701618262237565",
+      "poi_title": "汉口江滩-五福广场",
+      "poi_address": "湖北省武汉市江岸区四唯街道蔡锷路和沿江大道交叉口对面汉口江滩内(西南角)",
+      "latitude": 30.598634,
+      "longitude": 114.311331,
+      "candidates": [
+        {
+          "poi_id": "10172701618262237565",
+          "title": "汉口江滩-五福广场",
+          "address": "湖北省武汉市江岸区四唯街道蔡锷路和沿江大道交叉口对面汉口江滩内(西南角)"
+        }
       ],
-      "action": "match",
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["武汉体育中心体育馆"],
-      "poi_id": "9844135082260522212",
-      "poi_title": "武汉体育中心体育馆",
-      "poi_address": "湖北省武汉市蔡甸区车城北路58号",
-      "latitude": 30.505,
-      "longitude": 114.168,
-      "reason": "哈啤节与陆虎巡演均在武汉体育中心体育馆"
+      "reason": "公益电影在汉口江滩五福广场，候选名称与地址一致"
     },
     {
-      "group_id": "e4d026146f10",
-      "location": "武汉人艺中南剧场·话剧剧场",
-      "sample_title": "话剧《金瓶外传》",
-      "event_uids": ["xiaohongshu:6a4f4e110000000016027768:07_1"],
+      "group_id": "f97e195a9a94",
+      "event_uids": ["xiaohongshu:6a55a8b10000000016025810:01_1"],
       "action": "match",
+      "search_keywords_tried": ["汉口江滩滨江广场"],
+      "poi_id": "9646456527614751218",
+      "poi_title": "汉口江滩三期-滨江广场",
+      "poi_address": "湖北省武汉市江岸区二七街道江滩大道1号汉口江滩内(北侧)",
+      "latitude": 30.617436,
+      "longitude": 114.322221,
+      "candidates": [
+        {
+          "poi_id": "9646456527614751218",
+          "title": "汉口江滩三期-滨江广场",
+          "address": "湖北省武汉市江岸区二七街道江滩大道1号汉口江滩内(北侧)"
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["武汉人艺中南剧场"],
-      "poi_id": "17888317827730397771",
-      "poi_title": "武汉人艺中南剧场售票处",
-      "poi_address": "湖北省武汉市江岸区球场街道京汉大道中南剧场(三阳路地铁站K1口步行280米)",
-      "latitude": 30.592,
-      "longitude": 114.301,
-      "reason": "话剧在武汉人艺中南剧场，售票处与剧场同址"
+      "reason": "公益电影在汉口江滩滨江广场，候选滨江广场与江滩内地址一致"
     },
     {
-      "group_id": "98de1fc65a95",
-      "location": "武汉潮流盒子X118一楼中庭",
-      "sample_title": "山林未远，夏荫同栖明日方舟快闪",
-      "event_uids": ["xiaohongshu:6a4f4e110000000016027768:08_1"],
+      "group_id": "2f2eef131a7a",
+      "event_uids": ["xiaohongshu:6a55a8b10000000016025810:01_2"],
       "action": "match",
+      "search_keywords_tried": ["汉口江滩一元广场"],
+      "poi_id": "2782980071343478979",
+      "poi_title": "一元广场",
+      "poi_address": "湖北省武汉市江岸区一元街道蔡锷路和沿江大道交叉口对面汉口江滩内",
+      "latitude": 30.592499,
+      "longitude": 114.307101,
+      "candidates": [
+        {
+          "poi_id": "2782980071343478979",
+          "title": "一元广场",
+          "address": "湖北省武汉市江岸区一元街道蔡锷路和沿江大道交叉口对面汉口江滩内"
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["潮流盒子X118"],
-      "poi_id": "17709610729132640287",
-      "poi_title": "X118",
-      "poi_address": "湖北省武汉市江岸区大智街道江汉路步行街118号",
-      "latitude": 30.579,
-      "longitude": 114.292,
-      "reason": "明日方舟快闪在潮流盒子 X118 一楼中庭"
+      "reason": "公益电影在汉口江滩一元广场，候选一元广场位于汉口江滩内"
     },
     {
-      "group_id": "167eac4ea982",
-      "location": "武汉天地新天地广场",
-      "sample_title": "Coach书写真我故事快闪",
-      "event_uids": ["xiaohongshu:6a4f4e110000000016027768:08_2"],
+      "group_id": "4838075d204d",
+      "event_uids": ["xiaohongshu:6a55a8b10000000016025810:01_3"],
       "action": "match",
+      "search_keywords_tried": ["武昌江滩长江观景第一台"],
+      "poi_id": "5496212532439341167",
+      "poi_title": "长江观景第一台",
+      "poi_address": "湖北省武汉市武昌区积玉桥街道临江大道76号蓝湾世家一楼长江观景",
+      "latitude": 30.56054,
+      "longitude": 114.30357,
+      "candidates": [
+        {
+          "poi_id": "5496212532439341167",
+          "title": "长江观景第一台",
+          "address": "湖北省武汉市武昌区积玉桥街道临江大道76号蓝湾世家一楼长江观景"
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": ["武汉天地"],
-      "poi_id": "6972081571126118651",
-      "poi_title": "武汉新天地",
-      "poi_address": "湖北省武汉市江岸区芦沟桥路68号(黄浦路地铁站A口步行240米)",
-      "latitude": 30.608,
-      "longitude": 114.309,
-      "reason": "Coach 快闪在武汉天地新天地广场，武汉新天地为同片区主体"
+      "reason": "公益电影在武昌江滩长江观景第一台，候选名称完全一致"
+    },
+    {
+      "group_id": "c0e4a00f3e0a",
+      "event_uids": ["xiaohongshu:6a55a8b10000000016025810:01_4"],
+      "action": "match",
+      "search_keywords_tried": ["武昌江滩国旗广场", "国旗广场 武昌江滩"],
+      "poi_id": "5275598266156849493",
+      "poi_title": "武昌江滩",
+      "poi_address": "湖北省武汉市武昌区徐家棚街道临江大道190号",
+      "latitude": 30.582791,
+      "longitude": 114.319062,
+      "candidates": [
+        {
+          "poi_id": "5275598266156849493",
+          "title": "武昌江滩",
+          "address": "湖北省武汉市武昌区徐家棚街道临江大道190号"
+        },
+        {
+          "poi_id": "2439612947772721320",
+          "title": "武昌江滩-海棠园",
+          "address": "湖北省武汉市武昌区临江大道499号附近"
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": false,
+      "reason": "国旗广场为武昌江滩内子广场（海棠园旁），腾讯无国旗广场店级POI，绑定武昌江滩主体"
+    },
+    {
+      "group_id": "acbfa65f96ba",
+      "event_uids": ["xiaohongshu:6a55a8b10000000016025810:01_5"],
+      "action": "match",
+      "search_keywords_tried": ["武昌江滩铁机路白塔广场", "铁机路白塔广场"],
+      "poi_id": "2848914434413392780",
+      "poi_title": "武昌江滩(铁机路)",
+      "poi_address": "湖北省武汉市武昌区鑫呈体育武昌足球公园东北(临江大道北)",
+      "latitude": 30.611616,
+      "longitude": 114.343032,
+      "candidates": [
+        {
+          "poi_id": "2848914434413392780",
+          "title": "武昌江滩(铁机路)",
+          "address": "湖北省武汉市武昌区鑫呈体育武昌足球公园东北(临江大道北)"
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": false,
+      "reason": "白塔广场在武昌江滩铁机路段，候选武昌江滩(铁机路)主体一致，仅广场点位未精确到腾讯店级POI"
+    },
+    {
+      "group_id": "f16121015500",
+      "event_uids": ["xiaohongshu:6a55a8b10000000016025810:01_6"],
+      "action": "match",
+      "search_keywords_tried": ["汉阳江滩鹦鹉洲桥文化广场"],
+      "poi_id": "1088616642503706795",
+      "poi_title": "鹦鹉洲桥文化广场",
+      "poi_address": "湖北省武汉市汉阳区鹦鹉街道晴川大道鹦鹉洲长江大桥桥下",
+      "latitude": 30.536305,
+      "longitude": 114.274454,
+      "candidates": [
+        {
+          "poi_id": "1088616642503706795",
+          "title": "鹦鹉洲桥文化广场",
+          "address": "湖北省武汉市汉阳区鹦鹉街道晴川大道鹦鹉洲长江大桥桥下"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "公益电影在汉阳江滩鹦鹉洲桥文化广场，候选名称与地址一致"
+    },
+    {
+      "group_id": "325a6895231e",
+      "event_uids": ["xiaohongshu:6a55a8b10000000016025810:02_0"],
+      "action": "match",
+      "search_keywords_tried": ["湖北省图书馆"],
+      "poi_id": "16964908788372870632",
+      "poi_title": "湖北省图书馆",
+      "poi_address": "湖北省武汉市武昌区公正路25号",
+      "latitude": 30.556163,
+      "longitude": 114.329743,
+      "candidates": [
+        {
+          "poi_id": "16964908788372870632",
+          "title": "湖北省图书馆",
+          "address": "湖北省武汉市武昌区公正路25号"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "影音放映在湖北省图书馆三楼东区，图书馆主体与公正路25号一致"
+    },
+    {
+      "group_id": "d314ccca31f3",
+      "event_uids": ["xiaohongshu:6a55a8b10000000016025810:02_1"],
+      "action": "match",
+      "search_keywords_tried": ["汉口江滩"],
+      "poi_id": "4982849204858053606",
+      "poi_title": "汉口江滩",
+      "poi_address": "湖北省武汉市江岸区江滩大道1号",
+      "latitude": 30.606531,
+      "longitude": 114.31618,
+      "candidates": [
+        {
+          "poi_id": "4982849204858053606",
+          "title": "汉口江滩",
+          "address": "湖北省武汉市江岸区江滩大道1号"
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "渡江嘉年华主舞台在江滩但未标明具体子广场，绑定汉口江滩主会场，建议人工核对"
+    },
+    {
+      "group_id": "71ee0e76b373",
+      "event_uids": ["xiaohongshu:6a55a8b10000000016025810:03_0"],
+      "action": "match",
+      "search_keywords_tried": ["江夏区图书馆"],
+      "poi_id": "3102846528509124602",
+      "poi_title": "武汉市江夏区图书馆",
+      "poi_address": "湖北省武汉市江夏区莘园街大花山户外运动中心C馆",
+      "latitude": 30.357793,
+      "longitude": 114.349747,
+      "candidates": [
+        {
+          "poi_id": "3102846528509124602",
+          "title": "武汉市江夏区图书馆",
+          "address": "湖北省武汉市江夏区莘园街大花山户外运动中心C馆"
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "暑期观影在江夏区图书馆多功能厅，图书馆主体匹配"
+    },
+    {
+      "group_id": "3baa192c7422",
+      "event_uids": ["xiaohongshu:6a55a8b10000000016025810:03_1"],
+      "action": "match",
+      "search_keywords_tried": ["江夏中央大公园天空之城", "江夏中央大公园"],
+      "poi_id": "1726652625001018800",
+      "poi_title": "江夏中央大公园",
+      "poi_address": "湖北省武汉市江夏区文化大道与金龙大街交叉口西北",
+      "latitude": 30.380841,
+      "longitude": 114.316306,
+      "candidates": [
+        {
+          "poi_id": "1726652625001018800",
+          "title": "江夏中央大公园",
+          "address": "湖北省武汉市江夏区文化大道与金龙大街交叉口西北"
+        },
+        {
+          "poi_id": "8506660295440242098",
+          "title": "Sky Castle天空之城Brunch bistro文旅融合店",
+          "address": "湖北省武汉市江夏区中央大公园内"
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": false,
+      "reason": "草坪音乐会在江夏中央大公园天空之城，腾讯无天空之城独立POI，绑定公园主体一致"
     }
   ]
 }

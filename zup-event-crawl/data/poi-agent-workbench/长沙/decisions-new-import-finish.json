@@ -1,0 +1,65 @@
+{
+  "city": "长沙",
+  "decisions": [
+    {
+      "event_uids": [
+        "douban:37843254"
+      ],
+      "action": "match",
+      "poi_id": "3962035867104086356",
+      "poi_title": "梅溪湖国际文化艺术中心-大剧院",
+      "poi_address": "湖南省长沙市岳麓区天顶街道梅溪湖路梅溪湖艺术博物馆",
+      "latitude": 28.196275,
+      "longitude": 112.906851,
+      "doubtful": false,
+      "reason": "场馆名与活动地址一致",
+      "search_keywords_tried": [
+        "梅溪湖国际文化艺术中心大剧院"
+      ]
+    },
+    {
+      "event_uids": [
+        "douban:37859861"
+      ],
+      "action": "match",
+      "poi_id": "13348260499578885956",
+      "poi_title": "长沙音乐厅",
+      "poi_address": "湖南省长沙市开福区湘江北路滨江文化园",
+      "latitude": 28.242921,
+      "longitude": 112.979271,
+      "doubtful": false,
+      "reason": "场馆名与地址湘江北路滨江文化园一致",
+      "search_keywords_tried": [
+        "长沙音乐厅"
+      ]
+    },
+    {
+      "event_uids": [
+        "douban:37898809"
+      ],
+      "action": "match",
+      "poi_id": "12971168094176983006",
+      "poi_title": "大泽湖近自然湿地公园",
+      "poi_address": "湖南省长沙市望城区环湖路",
+      "latitude": 28.317729,
+      "longitude": 112.904699,
+      "doubtful": false,
+      "reason": "公园名精确命中",
+      "search_keywords_tried": [
+        "大泽湖近自然湿地公园"
+      ]
+    },
+    {
+      "event_uids": [
+        "douban:37902145"
+      ],
+      "action": "reject",
+      "reason": "搜 IT's Coffee / 麓山南路282号 未找到该咖啡馆 POI，同址为其他餐饮，无法唯一确定",
+      "search_keywords_tried": [
+        "IT's Coffee",
+        "麓山南路282号",
+        "IT's Coffee 麓山南路"
+      ]
+    }
+  ]
+}

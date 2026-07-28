@@ -1,45 +1,127 @@
 {
   "city": "厦门",
-  "decided_at": "2026-07-13T14:43:13.358Z",
+  "decided_at": "2026-07-26T12:20:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
       "group_id": "443813f048be",
-      "event_uids": [
-        "douban:37841554"
-      ],
+      "event_uids": ["douban:37634768", "douban:37811900"],
       "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
+      "search_keywords_tried": ["闽南大戏院"],
       "poi_id": "9553621768810285816",
       "poi_title": "闽南大戏院·大剧场",
-      "poi_address": "",
+      "poi_address": "福建省厦门市思明区展鸿路81-89号厦门星河COCO ParkF1",
       "latitude": 24.474133,
       "longitude": 118.189124,
-      "candidates": [],
+      "candidates": [
+        {
+          "poi_id": "9553621768810285816",
+          "title": "闽南大戏院·大剧场",
+          "address": "福建省厦门市思明区展鸿路81-89号厦门星河COCO ParkF1",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 24.474133,
+          "longitude": 118.189124
+        },
+        {
+          "poi_id": "15707402611665084287",
+          "title": "闽南大戏院·多功能厅",
+          "address": "福建省厦门市思明区莲前街道会展北片区展鸿路87号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 24.474154,
+          "longitude": 118.189134
+        },
+        {
+          "poi_id": "5247922267701329196",
+          "title": "闽南大戏院艺术教育中心",
+          "address": "福建省厦门市思明区展鸿路87号闽南大戏院4楼",
+          "category": "教育学校:其它教育学校",
+          "latitude": 24.473857,
+          "longitude": 118.189201
+        },
+        {
+          "poi_id": "14567454998262132877",
+          "title": "闽南大戏院-售票厅(展鸿路)",
+          "address": "福建省厦门市思明区莲前街道展鸿路81-89号厦门星河COCOParkF1",
+          "category": "生活服务:票务代售:其它票务代售",
+          "latitude": 24.473972,
+          "longitude": 118.189419
+        },
+        {
+          "poi_id": "149988465176576207",
+          "title": "闽南大戏院-观众进出口1",
+          "address": "福建省厦门市思明区莲前街道展鸿路87号闽南大戏院",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 24.474504,
+          "longitude": 118.189865
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：厦门 思明区 闽南大戏院 会展北片区横三路 → 闽南大戏院·大剧场"
+      "reason": "闽南大戏院大剧场与思明区会展北片区场馆主体一致"
     },
     {
-      "group_id": "b9ff6bec5b9e",
-      "event_uids": [
-        "douban:37900945"
-      ],
+      "group_id": "1c91ee01d660",
+      "event_uids": ["douban:37897904"],
       "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
+      "search_keywords_tried": ["寰映影城 海上世界", "DVLN PaRK 退化公园"],
+      "poi_id": "10676922091391256055",
+      "poi_title": "厦门寰映影城(海上世界激光IMAX店)",
+      "poi_address": "福建省厦门市湖里区远航路77号海上世界4F",
+      "latitude": 24.492323,
+      "longitude": 118.076671,
+      "candidates": [
+        {
+          "poi_id": "10676922091391256055",
+          "title": "厦门寰映影城(海上世界激光IMAX店)",
+          "address": "福建省厦门市湖里区远航路77号海上世界4F",
+          "category": "娱乐休闲:电影院",
+          "latitude": 24.492323,
+          "longitude": 118.076671
+        },
+        {
+          "poi_id": "9496923326509444926",
+          "title": "退化公园",
+          "address": "福建省厦门市思明区开元街道斗西路156号祥和广场6楼",
+          "category": "旅游景点:公园",
+          "latitude": 24.463285,
+          "longitude": 118.086661
+        },
+        {
+          "poi_id": "12183318649524433671",
+          "title": "云逸宝游戏厅(寰映影城海上世界店)",
+          "address": "福建省厦门市湖里区湖里街道东港路31号海上世界城4F寰映影城店内休息区前台旁",
+          "category": "娱乐休闲:游戏棋牌:游戏厅",
+          "latitude": 24.484239,
+          "longitude": 118.075829
+        }
       ],
-      "poi_id": "9354332035420960328",
-      "poi_title": "散步去Champochic(中山路店)",
-      "poi_address": "",
-      "latitude": 24.455796,
-      "longitude": 118.084983,
-      "candidates": [],
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "详情写海上世界寰映IMAX；豆瓣地点栏写思明区退化公园，实际POI在湖里区，区划/地点栏存疑"
+    },
+    {
+      "group_id": "c774afbe6874",
+      "event_uids": ["douban:37759781"],
+      "action": "match",
+      "search_keywords_tried": ["开心麻花人民剧场 中山路"],
+      "poi_id": "12688274327539548091",
+      "poi_title": "开心麻花人民剧场(中山路步行街店)",
+      "poi_address": "福建省厦门市思明区中山路193-215号(思明路)来雅百货(思明店)F1",
+      "latitude": 24.454419,
+      "longitude": 118.081966,
+      "candidates": [
+        {
+          "poi_id": "12688274327539548091",
+          "title": "开心麻花人民剧场(中山路步行街店)",
+          "address": "福建省厦门市思明区中山路193-215号(思明路)来雅百货(思明店)F1",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 24.454419,
+          "longitude": 118.081966
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：散步去中山路店"
+      "reason": "开心麻花人民剧场中山路店与思明区中山路场馆一致，仅楼层差精度"
     }
   ]
 }

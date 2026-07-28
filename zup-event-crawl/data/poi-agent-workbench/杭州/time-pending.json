@@ -1,43 +1,1015 @@
 {
   "city": "杭州",
-  "source": "douban",
-  "exported_at": "2026-07-13T14:41:14.428Z",
+  "source": "xiaohongshu",
+  "exported_at": "2026-07-26T13:21:26.200Z",
   "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
   "events": [
     {
-      "event_uid": "douban:37803636",
+      "event_uid": "xiaohongshu:6a5488730000000007026238:01_0",
       "city": "杭州",
-      "source": "douban",
-      "title": "【杭州】不选座·向阿加莎致敬 · 外百老汇推理悬疑剧《谋杀派对》",
-      "time_text": "07月19日 周日 14:30-16:30",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "以现场为准\n主要演员\n无需预约\n儿童说明\n1.2米以下儿童谢绝入场，1.2米以上儿童需持票入场\n特殊提示",
+      "source": "xiaohongshu",
+      "title": "潮流WOO市集",
+      "time_text": "7月17日-7月19日 15:00-22:00",
+      "current_start_date": "2026-07-17 15:00:00",
+      "current_end_date": "2026-07-19 22:00:00",
+      "current_start_at": "2026-07-17 15:00:00",
+      "current_expired_at": "2026-07-19 22:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月17日-7月19日 15:00-22:00\n地址：杭州·莲荷里；地铁6号线奥体中心站C口\n介绍：无需购票即可入场。\n云集超百个精选摊位，从平价博主闲置到复古古着、潮流服饰、手作饰品、特色杂货一应俱全，新旧潮流碰撞氛围感浓厚，适配约会、好友结伴多种出行场景。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/01.webp\n裁切海报：6a5488730000",
       "suggestion": {
-        "start_at": "2026-07-19 14:30:00",
-        "expired_at": "2026-07-19 16:30:00",
+        "start_at": "2026-07-17 15:00:00",
+        "expired_at": "2026-07-19 22:00:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月19日 周日 14:30-16:30"
+        "reason": "按 time_text 解析"
       }
     },
     {
-      "event_uid": "douban:37703821",
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:01_0",
       "city": "杭州",
-      "source": "douban",
-      "title": "《LALALAND爱乐之城》浪漫经典流行名曲主题音乐会",
-      "time_text": "08月07日 周五 19:30-21:00",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "入场方式说明\n约90分钟（以现场为准）\n以现场为准\n最低演出曲目\n主要演员\n无需预约\n所爱隔山海，山海亦可平。悠扬而温暖的经典旋律，曾滋养和感动无数渴望美好真挚爱情的心灵。当音符在琴键上流转，国风的雅致与流行的鲜活交织，那些藏在旋律里的心动、思念与眷恋，都将跨越语言与时空，轻轻叩击每一位听众的心扉。让我们在熟悉的乐章里，重逢记忆中的温暖片段，重拾藏在旋律里的爱意与感动。\n《爱乐之城》：同名电影经典原声，旋律浪漫又带一丝温柔怅惘，弦乐的缠绵与钢琴的舒缓交织，还原电影中都市男女的深情与遗憾，氛围感拉满，仿佛重温银幕上的浪漫瞬间，适合在烛光中回味细腻情感。\n《告白气球》：周杰伦经典法式香颂风曲目，以轻盈旋律与明快和声，演绎告白时的羞涩与热烈，钢琴与弦乐的搭配，还原巴黎街头的清甜浪漫，适配告白与甜蜜约会的氛围，听着仿佛心跳随旋律轻轻加速。\n《情热大陆》：日本小提琴家叶加濑太郎的经典作品，融合古典与",
+      "source": "xiaohongshu",
+      "title": "偷偷吃酸大赛",
+      "time_text": "7月25日-7月26日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：7月25日-7月26日\n地址：杭州解百A座MF\n介绍：免费报名参与，地铁1号线龙翔桥站D口。\n全城寻找耐酸勇士，优胜可赢冰箱、烤箱等家电奖品。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/01.webp\n裁切海报：6a61b991000000000a03a1b0/posters/01_slot0.jpg",
       "suggestion": {
-        "start_at": "2026-08-07 19:30:00",
-        "expired_at": "2026-08-07 21:00:00",
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
         "confidence": "high",
-        "reason": "豆瓣详情：08月07日 周五 19:30-21:00"
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:01_1",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "富春山居夏夜市集",
+      "time_text": "7月17日-7月19日 16:00-21:00",
+      "current_start_date": "2026-07-17 16:00:00",
+      "current_end_date": "2026-07-19 21:00:00",
+      "current_start_at": "2026-07-17 16:00:00",
+      "current_expired_at": "2026-07-19 21:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月17日-7月19日 16:00-21:00\n地址：杭州市富阳区秦望水街；红色研学1号线2358路公交至金桥南路天河路口\n介绍：免费入场。\n市集涵盖意式冰淇淋、特调饮品、风味吃食、精致手作四大板块，满满夏日氛围感，傍晚漫步于此能够畅享闲适惬意的滨江夏夜时光。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/01.webp\n裁切海报：6a5488730000",
+      "suggestion": {
+        "start_at": "2026-07-17 16:00:00",
+        "expired_at": "2026-07-19 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:01_1",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "嗑瓜子大赛",
+      "time_text": "7月26日 14:00-17:00",
+      "current_start_date": "2026-07-26 14:00:00",
+      "current_end_date": "2026-07-26 17:00:00",
+      "current_start_at": "2026-07-26 14:00:00",
+      "current_expired_at": "2026-07-26 17:00:00",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：7月26日 14:00-17:00\n地址：杭州拱墅万达广场1楼中庭\n介绍：免费报名参与，地铁10号线香积寺路站D口。\n拱墅万达首届嗑瓜子大赛，优胜可赢一年瓜子等奖品。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/01.webp\n裁切海报：6a61b991000000000a03a1b0/posters/01_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-26 14:00:00",
+        "expired_at": "2026-07-26 17:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:01_2",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "Thai-pical·泰式生活节",
+      "time_text": "7月17日-7月19日 16:30-21:00",
+      "current_start_date": "2026-07-17 16:30:00",
+      "current_end_date": "2026-07-19 21:00:00",
+      "current_start_at": "2026-07-17 16:30:00",
+      "current_expired_at": "2026-07-19 21:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月17日-7月19日 16:30-21:00\n地址：远洋乐堤港 户外中心广场；地铁3号线大关站C2口\n介绍：免费入场。\n沉浸式复刻泰国多地风情市集。泼水狂欢、泰式按摩编发、地道泰餐、音乐演出轮番上线，还有粉丝应援与限定周边福利，不用远行就能解锁地道泰式夏夜体验。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/01.webp\n裁切海报：6a54887300",
+      "suggestion": {
+        "start_at": "2026-07-17 16:30:00",
+        "expired_at": "2026-07-19 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:01_2",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "草地摇子秋招大会",
+      "time_text": "7月25日 19:00-21:00",
+      "current_start_date": "2026-07-25 19:00:00",
+      "current_end_date": "2026-07-25 21:00:00",
+      "current_start_at": "2026-07-25 19:00:00",
+      "current_expired_at": "2026-07-25 21:00:00",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：7月25日 19:00-21:00\n地址：杭州亲橙556公园\n介绍：免费参与，地铁3号线古墩路站C口。\n户外草坪摇子舞会与battle，微醺版秋招氛围。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/01.webp\n裁切海报：6a61b991000000000a03a1b0/posters/01_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 19:00:00",
+        "expired_at": "2026-07-25 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:02_0",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "来桥上过个饮·夏日潮饮派对",
+      "time_text": "7月17日-7月19日 15:00-22:00",
+      "current_start_date": "2026-07-17 15:00:00",
+      "current_end_date": "2026-07-19 22:00:00",
+      "current_start_at": "2026-07-17 15:00:00",
+      "current_expired_at": "2026-07-19 22:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月17日-7月19日 15:00-22:00\n地址：杭州奥体中心3号桥；地铁6号线博览中心站D口\n介绍：免费入场。\n集结海内外特色冰饮、多款精酿以及各地风味小吃。现场除逛市集外，还能体验戏水、草坪电影，恰逢周边演唱会档期，观演前后打卡游玩，轻松收获满满夏日氛围感。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/02.webp\n裁切海报：6a5488730",
+      "suggestion": {
+        "start_at": "2026-07-17 15:00:00",
+        "expired_at": "2026-07-19 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:02_0",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "偷吃大赛2.0",
+      "time_text": "7月25日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-25 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-25 23:59:59",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：7月25日\n地址：杭州之江银泰百货\n介绍：免费报名参与。\n快吃挑战赛，优胜可赢小米家电等奖品。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/02.webp\n裁切海报：6a61b991000000000a03a1b0/posters/02_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-25 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:02_1",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "杭州·Chill吃冰市集",
+      "time_text": "7月17日-7月19日 18:00-22:00",
+      "current_start_date": "2026-07-17 18:00:00",
+      "current_end_date": "2026-07-19 22:00:00",
+      "current_start_at": "2026-07-17 18:00:00",
+      "current_expired_at": "2026-07-19 22:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月17日-7月19日 18:00-22:00\n地址：钱江世纪公园·钱塘江畔；地铁2号线钱江世纪城站B口\n介绍：免费入场。\n选址江畔大草坪氛围感十足，市集云集手作冰淇淋、各类冰饮、精酿饮品、烘焙小点与夏日文创，品类丰富适配多样喜好，傍晚到访就能沉浸式度过舒爽松驰的夏夜时光。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/02.webp\n裁切海报：6a548",
+      "suggestion": {
+        "start_at": "2026-07-17 18:00:00",
+        "expired_at": "2026-07-19 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:02_1",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "离谱故事友好交流赛",
+      "time_text": "7月25日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-25 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-25 23:59:59",
+      "detail_excerpt": "分类：主题沙龙\n费用：免费\n时间：7月25日\n地址：杭州BAC艺术社区\n介绍：免费参与。\n原创离谱故事分享与友好交流，适合影视爱好者。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/02.webp\n裁切海报：6a61b991000000000a03a1b0/posters/02_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-25 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:02_2",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "武林吨吨冰玩节",
+      "time_text": "7月17日-7月26日",
+      "current_start_date": "2026-07-17 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-17 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月17日-7月26日\n地址：杭州武林广场；地铁1号线武林广场站D口\n介绍：免费入场。\n现场设有泡泡派对、街头篮球赛、夜间音乐演出，还有各式冰爽小吃饮品，完成打卡还可领取限定周边，丰富玩法适配遛娃、约会，轻松畅享满满夏日凉意。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/02.webp\n裁切海报：6a5488730000000007026238/post",
+      "suggestion": {
+        "start_at": "2026-07-17 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:02_2",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "扇风赶猪争霸赛",
+      "time_text": "7月25日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-25 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-25 23:59:59",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：7月25日\n地址：杭州下沙银泰百货\n介绍：免费报名参与。\n扇玩具猪竞速，优胜可赢0.5g金条、盒马卡等奖品。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/02.webp\n裁切海报：6a61b991000000000a03a1b0/posters/02_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-25 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:03_0",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "滨江宝藏儿童市集",
+      "time_text": "7月18日-7月19日 14:00-17:00",
+      "current_start_date": "2026-07-18 14:00:00",
+      "current_end_date": "2026-07-19 17:00:00",
+      "current_start_at": "2026-07-18 14:00:00",
+      "current_expired_at": "2026-07-19 17:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月18日-7月19日 14:00-17:00\n地址：杭州滨江宝龙城；地铁6号线诚业路站\n介绍：免费入场。\n孩子能够自主打理闲置玩偶、文具、益智物件，除常规以物易物外，还有书换蔬菜、公益主题特色环节，氛围感童趣十足，很适合亲子出行，让小朋友收获别样成长体验。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/03.webp\n裁切海报：6a54887300000",
+      "suggestion": {
+        "start_at": "2026-07-18 14:00:00",
+        "expired_at": "2026-07-19 17:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:03_0",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "杭州麻将争霸赛",
+      "time_text": "7月26日",
+      "current_start_date": "2026-07-26 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-26 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：7月26日\n地址：中南乐游城1楼舞台区\n介绍：免费报名参与，地铁5/6号线长河站D口。\n麻将对战赢现金、玩偶、行李箱等奖品。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/03.webp\n裁切海报：6a61b991000000000a03a1b0/posters/03_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-26 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:03_1",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "后陡门的夏·盛夏微醺派对",
+      "time_text": "7月17日-7月19日 15:00-20:30",
+      "current_start_date": "2026-07-17 15:00:00",
+      "current_end_date": "2026-07-19 20:30:00",
+      "current_start_at": "2026-07-17 15:00:00",
+      "current_expired_at": "2026-07-19 20:30:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月17日-7月19日 15:00-20:30\n地址：种地星球·勤天小镇；349路公交至徐角斗站 步行1.7km\n介绍：免费入场。\n市集品类覆盖酒水、夜宵小食、消暑甜品与特色文创。现场放送免费啤酒，还设置吃瓜休闲区、大屏观赛环节，氛围感满满，适合夜晚结伴前往，惬意度过松弛的夏日晚间时光。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/03.webp\n裁切海",
+      "suggestion": {
+        "start_at": "2026-07-17 15:00:00",
+        "expired_at": "2026-07-19 20:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:03_1",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "摸鱼大会",
+      "time_text": "7月26日 14:00",
+      "current_start_date": "2026-07-26 14:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-26 14:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：遛娃亲子\n费用：免费\n时间：7月26日 14:00\n地址：杭州五福天虹购物中心B座L1南广场\n介绍：免费报名参与，地铁4号线景芳路站D2口。\n池中徒手摸鱼，摸到的鱼可带走。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/03.webp\n裁切海报：6a61b991000000000a03a1b0/posters/03_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-26 14:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:03_2",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "好市多蘑·童趣公益市集",
+      "time_text": "7月18日-7月19日 9:30-17:00",
+      "current_start_date": "2026-07-18 09:30:00",
+      "current_end_date": "2026-07-19 17:00:00",
+      "current_start_at": "2026-07-18 09:30:00",
+      "current_expired_at": "2026-07-19 17:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月18日-7月19日 9:30-17:00\n地址：杭州西溪菜市；地铁19号线西溪湿地北站C口 步行1.3km\n介绍：免费入场。\n市集设有帐篷摊位、科普沙龙、套圈、寻宝拍卖、手作缝纫等多样玩法，打卡集章能够兑换礼品，消费收益助力湿地公益，亲子出游趣味性十足。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/03.webp\n裁切海报：6a54887300000",
+      "suggestion": {
+        "start_at": "2026-07-18 09:30:00",
+        "expired_at": "2026-07-19 17:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:03_2",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "千禧年音乐会",
+      "time_text": "7月25日 19:30",
+      "current_start_date": "2026-07-25 19:30:00",
+      "current_end_date": "2026-07-25 23:59:59",
+      "current_start_at": "2026-07-25 19:30:00",
+      "current_expired_at": "2026-07-25 23:59:59",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月25日 19:30\n地址：新天地活力park小舞台\n介绍：免费观演，地铁3/4号线新天地街A1口直达。\n非主流千禧年主题音乐会，复刻MP3年代氛围。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/03.webp\n裁切海报：6a61b991000000000a03a1b0/posters/03_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 19:30:00",
+        "expired_at": "2026-07-25 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:04_0",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "星聚青春市集",
+      "time_text": "7月17日 12:00-14:30",
+      "current_start_date": "2026-07-17 12:00:00",
+      "current_end_date": "2026-07-17 14:30:00",
+      "current_start_at": "2026-07-17 12:00:00",
+      "current_expired_at": "2026-07-17 14:30:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月17日 12:00-14:30\n地址：城投资产·未来数智港 一楼活动大厅；地铁1号线火车东站D口\n介绍：免费入场。\n汇集精致手工、潮流配饰、绿植好物、宠物向好物诸多板块。摊位风格富有创意，适合闲暇探店挑选好物，日常午休时段就能够前往闲逛，轻松度过一段悠闲惬意的时光。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/04.webp\n裁切海报：6a54887",
+      "suggestion": {
+        "start_at": "2026-07-17 12:00:00",
+        "expired_at": "2026-07-17 14:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:04_0",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "邓紫棋歌友会",
+      "time_text": "7月25日 19:00-21:00",
+      "current_start_date": "2026-07-25 19:00:00",
+      "current_end_date": "2026-07-25 21:00:00",
+      "current_start_at": "2026-07-25 19:00:00",
+      "current_expired_at": "2026-07-25 21:00:00",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月25日 19:00-21:00\n地址：杭州吉祥里祥符桥广场\n介绍：免费参与粉丝合唱。\n把心动留给光年之外，歌迷周末打卡。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/04.webp\n裁切海报：6a61b991000000000a03a1b0/posters/04_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 19:00:00",
+        "expired_at": "2026-07-25 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:04_1",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "嘎叽Ga集",
+      "time_text": "7月1日-7月31日 16:00-22:00",
+      "current_start_date": "2026-07-01 16:00:00",
+      "current_end_date": "2026-07-31 22:00:00",
+      "current_start_at": "2026-07-01 16:00:00",
+      "current_expired_at": "2026-07-31 22:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月1日-7月31日 16:00-22:00\n地址：杭州城市阳台主阳台；地铁4号线市民中心站K口\n介绍：免费入场。\n市集品类丰富，网罗特色小吃、消暑茶饮、创意手作文创、潮流配饰、居家好物，还设有宠物友好专区，滨江氛围感出众，日常傍晚或者周末都适宜闲逛淘货。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/04.webp\n裁切海报：6a548873000000",
+      "suggestion": {
+        "start_at": "2026-07-01 16:00:00",
+        "expired_at": "2026-07-31 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:04_1",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "五月天歌友会",
+      "time_text": "7月25日 14:00-18:30",
+      "current_start_date": "2026-07-25 14:00:00",
+      "current_end_date": "2026-07-25 18:30:00",
+      "current_start_at": "2026-07-25 14:00:00",
+      "current_expired_at": "2026-07-25 18:30:00",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月25日 14:00-18:30\n地址：杭州西湖银泰百货\n介绍：免费参与粉丝合唱。\n杭州五迷集合，经典曲目合唱互动。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/04.webp\n裁切海报：6a61b991000000000a03a1b0/posters/04_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 14:00:00",
+        "expired_at": "2026-07-25 18:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:04_2",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "「酸得嘞」夏日市集",
+      "time_text": "7月17日-7月19日 11:00-21:00",
+      "current_start_date": "2026-07-17 11:00:00",
+      "current_end_date": "2026-07-19 21:00:00",
+      "current_start_at": "2026-07-17 11:00:00",
+      "current_expired_at": "2026-07-19 21:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月17日-7月19日 11:00-21:00\n地址：杭州解百A座广场；地铁1号线龙翔桥站D口\n介绍：免费入场。\n户外广场汇集各式特色酸味美食、酸啤特调，室内同步开设三十天文创展区，陈列酸性美学手作、香氛绿植。市集周末配套趣味挑战赛，室内外分区逛玩舒适又出片。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/04.webp\n裁切海报：6a5488730000",
+      "suggestion": {
+        "start_at": "2026-07-17 11:00:00",
+        "expired_at": "2026-07-19 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:04_2",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "五迷观影练团",
+      "time_text": "7月25日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-25 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-25 23:59:59",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月25日\n地址：城西银泰城1L中庭\n介绍：免费参与。\n五迷观影与练团活动，杭向无限主题打卡。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/04.webp\n裁切海报：6a61b991000000000a03a1b0/posters/04_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-25 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:05_0",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "去夏天·童趣生活市集",
+      "time_text": "7月17日-7月19日 16:00-22:00",
+      "current_start_date": "2026-07-17 16:00:00",
+      "current_end_date": "2026-07-19 22:00:00",
+      "current_start_at": "2026-07-17 16:00:00",
+      "current_expired_at": "2026-07-19 22:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月17日-7月19日 16:00-22:00\n地址：山泽里·松池 ANTIQUE MARKET；地铁5号线聚才路站A口\n介绍：免费入场。\n现场既有丰富文创、儿童品牌、夏日吃喝可供挑选，又同步开办音乐会，双休日开设孩童跳蚤市集，小朋友能够自主摆摊互换绘本玩具，遛娃游玩兼具趣味感与仪式感。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/05.webp\n裁切海",
+      "suggestion": {
+        "start_at": "2026-07-17 16:00:00",
+        "expired_at": "2026-07-19 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:05_0",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "日常器主题市集",
+      "time_text": "7月24日-7月26日",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月24日-7月26日\n地址：杭州天目里\n介绍：免费入场。\n淘器主题市集，陶瓷与日常器皿集中亮相。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/05.webp\n裁切海报：6a61b991000000000a03a1b0/posters/05_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:05_1",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "夏日有闲市",
+      "time_text": "7月17日-7月19日 11:00-20:00",
+      "current_start_date": "2026-07-17 11:00:00",
+      "current_end_date": "2026-07-19 20:00:00",
+      "current_start_at": "2026-07-17 11:00:00",
+      "current_expired_at": "2026-07-19 20:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月17日-7月19日 11:00-20:00\n地址：天空藤集·1F大平台；地铁5号线五常站A口\n介绍：免费入场。\n活动排布水枪派对、趣味挑战赛、游园会等多样玩法。市集汇聚手作文创、复古好物、消暑冰食与特色轻食，地处场地客流核心区域，日常闲逛参与互动，惬意解锁慵懒夏日时光。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/05.webp\n裁切海报：6a548",
+      "suggestion": {
+        "start_at": "2026-07-17 11:00:00",
+        "expired_at": "2026-07-19 20:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:05_1",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "不饱岛面包咖啡节",
+      "time_text": "7月24日-7月26日",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月24日-7月26日\n地址：杭州中骏广场\n介绍：免费入场。\n面包与咖啡新鲜见面会，适合周末闲逛打卡。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/05.webp\n裁切海报：6a61b991000000000a03a1b0/posters/05_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:05_2",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "湖畔市集",
+      "time_text": "6月27日-8月31日 工作日14:30-22:00 周末及节假日 13:30-22:00",
+      "current_start_date": "2026-06-27 14:30:00",
+      "current_end_date": "2026-08-31 22:00:00",
+      "current_start_at": "2026-06-27 14:30:00",
+      "current_expired_at": "2026-08-31 22:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：6月27日-8月31日 工作日14:30-22:00 周末及节假日 13:30-22:00\n地址：杭州解百A座广场；地铁1号线龙翔桥站D口\n介绍：免费入场。\n优质避暑去处，场内摆满纹样精致的漆扇、款式多样的国风发簪、清甜消暑的特色茶饮，伴着裹挟荷香的湖边晚风闲逛，氛围感雅致浪漫，轻松消解盛夏的闷热感。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/05.w",
+      "suggestion": {
+        "start_at": "2026-06-27 14:30:00",
+        "expired_at": "2026-08-31 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:05_2",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "酸得嘞！好酸的市集",
+      "time_text": "7月24日-7月26日",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月24日-7月26日\n地址：杭州解百A座广场\n介绍：免费入场。\n酸系主题市集，果味与文创摊位集中亮相。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/05.webp\n裁切海报：6a61b991000000000a03a1b0/posters/05_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:06_0",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "杭州首届嗦粉挑战赛",
+      "time_text": "7月18日 15:00",
+      "current_start_date": "2026-07-18 15:00:00",
+      "current_end_date": "2026-07-18 23:59:59",
+      "current_start_at": "2026-07-18 15:00:00",
+      "current_expired_at": "2026-07-18 23:59:59",
+      "detail_excerpt": "分类：趣味活动\n费用：免费\n时间：7月18日 15:00\n地址：天空藤集·1F大平台；地铁5号线五常站A口\n介绍：免费入场。\n活动辣度中等偏上，比拼食客进食速度与耐辣能力。想要参赛可趁早抢占名额，也能够到场旁观观战，活动氛围感热闹有趣，喜爱重口粉食的人群很适合前去体验玩乐。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/06.webp\n裁切海报：6a548873000000000702",
+      "suggestion": {
+        "start_at": "2026-07-18 15:00:00",
+        "expired_at": "2026-07-18 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:06_0",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "Thai-pical·泰式生活节",
+      "time_text": "7月24日-7月26日",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月24日-7月26日\n地址：远洋乐堤港\n介绍：免费入场。\n泰式生活节，美食、文创与泰风体验集中亮相。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/06.webp\n裁切海报：6a61b991000000000a03a1b0/posters/06_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:06_1",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "MBTI青年交友局",
+      "time_text": "7月19日 17:00",
+      "current_start_date": "2026-07-19 17:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-07-19 17:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：趣味活动\n费用：免费\n时间：7月19日 17:00\n地址：天空藤集·1F大平台；地铁5号线五常站A口\n介绍：免费入场。\n整场活动社交节奏宽松舒缓，贴心照顾I人的社交习惯，E人能够尽情放开互动，借助MBTI找寻同频好友，在轻松自在的环境完成线下交友。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/06.webp\n裁切海报：6a5488730000000007026238/poste",
+      "suggestion": {
+        "start_at": "2026-07-19 17:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:06_1",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "蔦屋书店文具手帐季",
+      "time_text": "7月24日-7月26日",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月24日-7月26日\n地址：杭州天目里蔦屋书店\n介绍：免费入场。\n文具手帐季，笔记本、笔具与纸品集中展售。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/06.webp\n裁切海报：6a61b991000000000a03a1b0/posters/06_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:06_2",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "孙燕姿生日专题音乐会",
+      "time_text": "7月18日 周六 19:00",
+      "current_start_date": "2026-07-18 19:00:00",
+      "current_end_date": "2026-07-18 23:59:59",
+      "current_start_at": "2026-07-18 19:00:00",
+      "current_expired_at": "2026-07-18 23:59:59",
+      "detail_excerpt": "分类：趣味活动\n费用：免费\n时间：7月18日 周六 19:00\n地址：杭州新天地购物中心1F中庭；地铁3/4号线新天地街A1口直达\n介绍：免费入场。\n粉丝可以齐聚现场合唱经典老歌，借着歌声送出生日祝福。到场能够领取限量定制伴手礼，现场另有专属生日环节，地铁出行抵达便捷，适合怀旧歌迷线下相聚。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/06.webp\n裁切海报：6a548873000",
+      "suggestion": {
+        "start_at": "2026-07-18 19:00:00",
+        "expired_at": "2026-07-18 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:06_2",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "精酿啤酒节",
+      "time_text": "7月24日-7月26日",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月24日-7月26日\n地址：杭州武林银泰百货\n介绍：免费入场。\n精酿啤酒节，多品牌试饮与夏日派对氛围。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/06.webp\n裁切海报：6a61b991000000000a03a1b0/posters/06_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:07_0",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "剥玉米比赛",
+      "time_text": "7月19日 13:30",
+      "current_start_date": "2026-07-19 13:30:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-07-19 13:30:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：趣味活动\n费用：免费\n时间：7月19日 13:30\n地址：杭州拱墅万达广场；地铁10号线至祥园路站D口\n介绍：免费入场。\n比拼徒手剥离玉米粒的手速，设置梯度满满的奖项，自助餐、火锅储值卡、电影票、奶茶券轮番放送，周末结伴到场参赛或者围观，能够收获满满的游玩乐趣。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/07.webp\n裁切海报：6a548873000000000702623",
+      "suggestion": {
+        "start_at": "2026-07-19 13:30:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:07_0",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "湖边的夜宵·烟火集",
+      "time_text": "7月24日-7月28日 16:00-22:00",
+      "current_start_date": "2026-07-24 16:00:00",
+      "current_end_date": "2026-07-28 22:00:00",
+      "current_start_at": "2026-07-24 16:00:00",
+      "current_expired_at": "2026-07-28 22:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月24日-7月28日 16:00-22:00\n地址：杭州上城区水墩北路1号\n介绍：免费入场，地铁6号线勾庄路站B口。\n湖边夜宵与烟火集，美食摊位与夜间氛围。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/07.webp\n裁切海报：6a61b991000000000a03a1b0/posters/07_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 16:00:00",
+        "expired_at": "2026-07-28 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:07_1",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "偷瓜大赛",
+      "time_text": "7月18日-7月19日 12:30-19:30",
+      "current_start_date": "2026-07-18 12:30:00",
+      "current_end_date": "2026-07-19 19:30:00",
+      "current_start_at": "2026-07-18 12:30:00",
+      "current_expired_at": "2026-07-19 19:30:00",
+      "detail_excerpt": "分类：趣味活动\n费用：免费\n时间：7月18日-7月19日 12:30-19:30\n地址：杭州之江银泰百货 1F客服台；地铁6号线之江文化中心站 步行1.7km\n介绍：免费入场。\n创意偷瓜闯关赛，改良经典木头人玩法，需要把控节奏搬运西瓜完成晋级。赛事分初赛、复赛、决赛三轮赛程，两日大奖分别为扫地机器人、空气净化器。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/07.webp\n裁切海报：",
+      "suggestion": {
+        "start_at": "2026-07-18 12:30:00",
+        "expired_at": "2026-07-19 19:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:07_1",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "慢造生活市集",
+      "time_text": "7月25日-7月26日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日-7月26日\n地址：杭州余杭万达优衣库连廊\n介绍：免费入场。\n原创手作好物市集，慢生活主题摊位。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/07.webp\n裁切海报：6a61b991000000000a03a1b0/posters/07_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:07_2",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "游鱼游戏",
+      "time_text": "7月19日 13:00",
+      "current_start_date": "2026-07-19 13:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-07-19 13:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：趣味活动\n费用：免费\n时间：7月19日 13:00\n地址：中南乐游城 1楼舞台区；地铁5号线至长河站D口\n介绍：免费入场。\n木头人、抠糖饼、抢凳子、水枪对战四关依次解锁。赛事设置千元现金奖励，长河地铁直达，仅成年人可参与，闲暇约好友到场比拼，沉浸式重温儿时趣味小游戏。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/07.webp\n裁切海报：6a548873000000000702",
+      "suggestion": {
+        "start_at": "2026-07-19 13:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:07_2",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "地铁公益市集",
+      "time_text": "每周末 10:00-17:00",
+      "current_start_date": "2026-07-26 10:00:00",
+      "current_end_date": "2026-07-26 17:00:00",
+      "current_start_at": "2026-07-26 10:00:00",
+      "current_expired_at": "2026-07-26 17:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：每周末 10:00-17:00\n地址：地铁3/10号线黄龙体育中心站\n介绍：免费逛集。\n杭州地铁公益市集，残障手工艺人作品展售。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/07.webp\n裁切海报：6a61b991000000000a03a1b0/posters/07_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-06-08 10:00:00",
+        "expired_at": "2026-06-14 17:00:00",
+        "confidence": "medium",
+        "reason": "按周末/工作日时段，本周重复活动取即日起至本周日"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:08_0",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "KPL十周年·城市巡礼快闪",
+      "time_text": "7月18日-8月12日",
+      "current_start_date": "2026-07-18 00:00:00",
+      "current_end_date": "2026-08-12 23:59:59",
+      "current_start_at": "2026-07-18 00:00:00",
+      "current_expired_at": "2026-08-12 23:59:59",
+      "detail_excerpt": "分类：快闪展览\n费用：免费\n时间：7月18日-8月12日\n地址：杭州大悦城购物中心-L1主中庭；地铁10号线北大桥站\n介绍：开展前三天需线上分时段预约入场。\n现场上新杭州限定好运莲莲系列毛绒周边，多款梦叽盲盒、挂件同步发售，消费可领取限定香片与徽章，电竞爱好者可线下打卡集好物。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/08.webp\n裁切海报：6a5488730000000007",
+      "suggestion": {
+        "start_at": "2026-07-18 00:00:00",
+        "expired_at": "2026-08-12 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:08_0",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "留夏·清凉集",
+      "time_text": "7月25日-7月26日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日-7月26日\n地址：杭州留下1129历史文化街区\n介绍：免费入场，地铁3号线留下站A1口步行约700m。\n清凉主题市集，冷饮、夏日美食与生活好物。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/08.webp\n裁切海报：6a61b991000000000a03a1b0/posters/08_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5488730000000007026238:08_1",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "曼卡龙 x 魔道祖师动画联名快闪",
+      "time_text": "7月18日-7月19日 10:00-22:00",
+      "current_start_date": "2026-07-18 10:00:00",
+      "current_end_date": "2026-07-19 22:00:00",
+      "current_start_at": "2026-07-18 10:00:00",
+      "current_expired_at": "2026-07-19 22:00:00",
+      "detail_excerpt": "分类：快闪展览\n费用：免费\n时间：7月18日-7月19日 10:00-22:00\n地址：杭州湖滨in77；地铁1号线龙翔桥站C口\n介绍：免费入场。\n场内设置多类打卡互动，集章、暗号NPC、关注即可分别兑换贴纸、明信片与团扇，消费还能领取限定挂饰，现场有coser还原动画名场面，原著粉可一站式打卡。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周可做的24件小事7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a5488730000000007026238?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLSqVpohOklZPZzP2ih7hfio%3D&xsec_source=pc_user\n原 slide：6a5488730000000007026238/images/08.webp\n裁切海报：6a548873",
+      "suggestion": {
+        "start_at": "2026-07-18 10:00:00",
+        "expired_at": "2026-07-19 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:08_1",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "潮汐回流海洋循环市集",
+      "time_text": "7月25日 17:00-20:30",
+      "current_start_date": "2026-07-25 17:00:00",
+      "current_end_date": "2026-07-25 20:30:00",
+      "current_start_at": "2026-07-25 17:00:00",
+      "current_expired_at": "2026-07-25 20:30:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日 17:00-20:30\n地址：杭州中心八楼露台\n介绍：免费入场，地铁1号线武林广场站。\n古着、环保手作与海洋主题DIY。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/08.webp\n裁切海报：6a61b991000000000a03a1b0/posters/08_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 17:00:00",
+        "expired_at": "2026-07-25 20:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:08_2",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "萌宠生活节",
+      "time_text": "7月24日-7月26日",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月24日-7月26日\n地址：拱墅吾悦1楼中庭\n介绍：免费入场，地铁3号线同协路站C口。\n萌宠用品、社交互动与DIY宠物项链工坊。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/08.webp\n裁切海报：6a61b991000000000a03a1b0/posters/08_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:09_0",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "宋式美学市集",
+      "time_text": "7月25日-7月26日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日-7月26日\n地址：杭州\n介绍：免费入场。\n首个「真」宋式美学市集，传统美学与手作摊位。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/09.webp\n裁切海报：6a61b991000000000a03a1b0/posters/09_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:09_1",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "天目里SUMMER PROOF市集",
+      "time_text": "7月26日-7月28日等",
+      "current_start_date": "2026-07-26 00:00:00",
+      "current_end_date": "2026-07-28 23:59:59",
+      "current_start_at": "2026-07-26 00:00:00",
+      "current_expired_at": "2026-07-28 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月26日-7月28日等\n地址：杭州天目里\n介绍：免费入场。\nSUMMER PROOF夏日市集，文创与互动体验。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/09.webp\n裁切海报：6a61b991000000000a03a1b0/posters/09_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-26 00:00:00",
+        "expired_at": "2026-07-28 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:09_2",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "良渚阅读生活季·图书市集",
+      "time_text": "7月25日-7月26日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日-7月26日\n地址：良渚文化艺术中心\n介绍：免费入场。\n图书市集与阅读生活季，展览与书谈同步。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/09.webp\n裁切海报：6a61b991000000000a03a1b0/posters/09_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:10_0",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "洛天依杭州快闪",
+      "time_text": "7月18日-8月23日",
+      "current_start_date": "2026-07-18 00:00:00",
+      "current_end_date": "2026-08-23 23:59:59",
+      "current_start_at": "2026-07-18 00:00:00",
+      "current_expired_at": "2026-08-23 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月18日-8月23日\n地址：杭州大悦城L1西中庭\n介绍：免费打卡，地铁10号线北大桥站。\n拍照点、人偶巡游与周边售卖。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/10.webp\n裁切海报：6a61b991000000000a03a1b0/posters/10_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-18 00:00:00",
+        "expired_at": "2026-08-23 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:10_1",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "KPL十周年城市巡礼快闪",
+      "time_text": "7月18日-8月12日",
+      "current_start_date": "2026-07-18 00:00:00",
+      "current_end_date": "2026-08-12 23:59:59",
+      "current_start_at": "2026-07-18 00:00:00",
+      "current_expired_at": "2026-08-12 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月18日-8月12日\n地址：杭州大悦城主中庭\n介绍：免费打卡，地铁10号线北大桥站。\n主题拍照点、电竞周边与预约互动。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/10.webp\n裁切海报：6a61b991000000000a03a1b0/posters/10_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-18 00:00:00",
+        "expired_at": "2026-08-12 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:10_2",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "奇洛李维斯回信漫画限定快闪",
+      "time_text": "7月15日-7月31日",
+      "current_start_date": "2026-07-15 00:00:00",
+      "current_end_date": "2026-07-31 23:59:59",
+      "current_start_at": "2026-07-15 00:00:00",
+      "current_expired_at": "2026-07-31 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月15日-7月31日\n地址：宫联CC·次元站B1\n介绍：免费打卡，地铁1号线龙翔桥站。\n限定手办、拍照区与漫画沉浸氛围。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/10.webp\n裁切海报：6a61b991000000000a03a1b0/posters/10_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-15 00:00:00",
+        "expired_at": "2026-07-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:11_0",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "ENHYPEN杭州快闪",
+      "time_text": "7月11日-7月26日",
+      "current_start_date": "2026-07-11 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-11 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月11日-7月26日\n地址：滨江银泰城D区1F中庭\n介绍：免费打卡，地铁1号线滨和路站B口。\n官方周边与预约制快闪体验。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/11.webp\n裁切海报：6a61b991000000000a03a1b0/posters/11_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-11 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:11_1",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "格洛米的猜想世界快闪",
+      "time_text": "7月20日-7月26日 10:00-21:00",
+      "current_start_date": "2026-07-20 10:00:00",
+      "current_end_date": "2026-07-26 21:00:00",
+      "current_start_at": "2026-07-20 10:00:00",
+      "current_expired_at": "2026-07-26 21:00:00",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月20日-7月26日 10:00-21:00\n地址：杭州来福士1F中庭\n介绍：免费打卡，地铁4号线市民中心站A1口。\n许嵩爱犬格洛米主题快闪，拍照与周边互动。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/11.webp\n裁切海报：6a61b991000000000a03a1b0/posters/11_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-20 10:00:00",
+        "expired_at": "2026-07-26 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b991000000000a03a1b0:11_2",
+      "city": "杭州",
+      "source": "xiaohongshu",
+      "title": "杭州植物园限定快闪",
+      "time_text": "7月18日-8月31日",
+      "current_start_date": "2026-07-18 00:00:00",
+      "current_end_date": "2026-08-31 23:59:59",
+      "current_start_at": "2026-07-18 00:00:00",
+      "current_expired_at": "2026-08-31 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月18日-8月31日\n地址：杭州大悦城1F中庭丝芙兰前\n介绍：免费打卡，地铁10号线北大桥站。\n自然主题文创与DIY体验。\n\n来源账号：杭州周末去哪\n合集标题：全部免费！杭州本周末33个有趣活动汇总✨️\n来源笔记：https://www.xiaohongshu.com/explore/6a61b991000000000a03a1b0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFWkn5pghQDlpE74D21EN3zA%3D&xsec_source=pc_user\n原 slide：6a61b991000000000a03a1b0/images/11.webp\n裁切海报：6a61b991000000000a03a1b0/posters/11_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-18 00:00:00",
+        "expired_at": "2026-08-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
       }
     }
   ]

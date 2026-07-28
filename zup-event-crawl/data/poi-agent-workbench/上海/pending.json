@@ -1,49 +1,247 @@
 {
   "city": "上海",
   "source": "douban",
-  "exported_at": "2026-07-13T14:41:12.279Z",
+  "exported_at": "2026-07-26T11:54:11.311Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 2,
+  "last_import_new_uids": 16,
   "doubtful_only": false,
-  "total_events": 2,
-  "group_count": 2,
-  "cache_hit_groups": 1,
+  "total_events": 16,
+  "group_count": 15,
+  "cache_hit_groups": 6,
   "groups": [
     {
-      "group_id": "a45e0491e227",
-      "location": "上海 静安区 大田路129弄嘉发大厦A栋5D",
-      "sample_title": "即兴表演工作坊：直面失败",
+      "group_id": "b3a85288cbbc",
+      "location": "上海 静安区 美琪大戏院 石门二路街道江宁路66号(近奉贤路)",
+      "sample_title": "《命运和弦》俄罗斯音乐剧明星音乐会",
       "event_uids": [
-        "douban:37900688"
+        "douban:37724702"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "2065067dffa1",
+      "location": "上海 浦东新区 龙阳路地铁站",
+      "sample_title": "船游阳澄湖，漫步莲花岛，探索阳澄湖大闸蟹发源地+品蟹（上海1日线）",
+      "event_uids": [
+        "douban:37439603"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "14252119467906121381",
-        "poi_title": "嘉发大厦-A栋",
+        "poi_id": "10804313910827168281",
+        "poi_title": "龙阳路[地铁站]",
         "poi_address": "",
-        "latitude": 31.23286,
-        "longitude": 121.464008,
+        "latitude": 31.203616,
+        "longitude": 121.557743,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：上海 静安区 大田路129弄嘉发大厦A栋5D → 嘉发大厦-A栋（来源 event:douban:37900524）",
+        "reason": "地址映射库命中：上海 浦东新区 龙阳路地铁站 → 龙阳路[地铁站]（来源 event:douban:37898016）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "a45e0491e22749a56626986517640222049d9554"
+        "cache_key": "2065067dffa15b3a05ba24ba8089d6e315550a73"
       }
     },
     {
-      "group_id": "6770df3a29eb",
-      "location": "上海 浦东新区 上海图书馆东馆上海市合欢路300号 7楼阅读推广区",
-      "sample_title": "离开潮汕的我们，如何面对自己的故乡——《出潮入海》新书分享会",
+      "group_id": "34d7a50689c1",
+      "location": "上海 黄浦区 凯迪拉克-上海音乐厅 延安东路523号(近西藏南路)",
+      "sample_title": "国风音乐现场《海上生民乐》",
       "event_uids": [
-        "douban:37900856"
+        "douban:37866720"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "10076962457668514442",
+        "poi_title": "凯迪拉克·上海音乐厅-东南门",
+        "poi_address": "",
+        "latitude": 31.22621,
+        "longitude": 121.478451,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：上海 黄浦区 凯迪拉克-上海音乐厅 延安东路523号(近西藏南路) → 凯迪拉克·上海音乐厅-东南门（来源 event:douban:37863708）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "34d7a50689c1852b20005f109ee5009a7ab514c2"
+      }
+    },
+    {
+      "group_id": "c8e3da4b11e1",
+      "location": "上海 黄浦区 上海文化广场 复兴中路597号",
+      "sample_title": "音乐剧《粉丝来信》",
+      "event_uids": [
+        "douban:37804799"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2868361964880583690",
+        "poi_title": "上海文化广场",
+        "poi_address": "",
+        "latitude": 31.212301,
+        "longitude": 121.462493,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：上海 黄浦区 上海文化广场 复兴中路597号 → 上海文化广场（来源 event:douban:37732364）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "c8e3da4b11e1db1128e587836a0384783323a160"
+      }
+    },
+    {
+      "group_id": "5d2ee8b69bf4",
+      "location": "上海 奉贤区 九棵树（上海）未来艺术中心 树桓路99号",
+      "sample_title": "丁一滕导演 张维伊、金靖主演 舞台剧《看不见的客人》（免费接驳车）",
+      "event_uids": [
+        "douban:37867789"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "a906db4fa937",
+      "location": "上海 虹口区 沉浸式即兴互动喜剧剧场—草台嘻班 四川北路939号滨港商业中心L2层1228单元",
+      "sample_title": "[解压必看] 全民向无厘头爆笑喜剧《连载不要停》（无需带脑）",
+      "event_uids": [
+        "douban:37873355"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "6d01add84db3",
+      "location": "上海 浦东新区 上海东方艺术中心 丁香路425号(近世纪大道)",
+      "sample_title": "Stars Gala音乐剧明星音乐会",
+      "event_uids": [
+        "douban:37873938",
+        "douban:37751077"
+      ],
+      "event_count": 2,
+      "cached_poi": {
+        "poi_id": "52919750025520475",
+        "poi_title": "上海东方艺术中心",
+        "poi_address": "",
+        "latitude": 31.222824,
+        "longitude": 121.541307,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：上海 浦东新区 上海东方艺术中心 丁香路425号(近世纪大道) → 上海东方艺术中心（来源 event:douban:37831697）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "6d01add84db3bb890acc7203d89763227db397ec"
+      }
+    },
+    {
+      "group_id": "6a69ee846eaf",
+      "location": "上海 普陀区 瓦肆 VAS ear 万航渡后路19号3楼",
+      "sample_title": "Friko 2026上海专场 - Something worth waiting for",
+      "event_uids": [
+        "douban:37845316"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2882454542212894308",
+        "poi_title": "瓦肆VAS ear",
+        "poi_address": "",
+        "latitude": 31.229676,
+        "longitude": 121.426552,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：上海 普陀区 瓦肆 VAS ear 万航渡后路19号3楼 → 瓦肆VAS ear（来源 event:douban:37860609）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "6a69ee846eaf06ce6efa8919754dc3b3aee60d5c"
+      }
+    },
+    {
+      "group_id": "00e66a3a85e0",
+      "location": "上海 黄浦区 加场戏剧 外滩街道天津路66号百空间108室",
+      "sample_title": "《清洗》海外爆款畅销｜心理悬疑｜反转反转再反转｜猫鼠游戏｜灵魂共振｜抽丝剥茧｜沉浸式｜",
+      "event_uids": [
+        "douban:37847932"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "aa798ea18425",
+      "location": "上海 虹口区 北外滩友邦大剧院 东大名路889号",
+      "sample_title": "暮光之城·原片现场音乐会-上海站",
+      "event_uids": [
+        "douban:37862067"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "9895111819536696934",
+        "poi_title": "北外滩友邦大剧院",
+        "poi_address": "",
+        "latitude": 31.251265,
+        "longitude": 121.505028,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：上海 虹口区 北外滩友邦大剧院 东大名路889号 → 北外滩友邦大剧院（来源 event:douban:37781114）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "aa798ea1842534f2da1026dedb6852986736e73d"
+      }
+    },
+    {
+      "group_id": "08851922e9fd",
+      "location": "上海 闵行区 联明路555号文创园",
+      "sample_title": "茶遇知己 香海安心",
+      "event_uids": [
+        "douban:37905494"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "9bf4d0cf8ae2",
+      "location": "上海 虹口区 喜梦盒暴雨将至剧场 北外滩街道公平路209号友邦金融中心L3层",
+      "sample_title": "零距离！互动破案！《暴雨将至2》环境式悬疑剧",
+      "event_uids": [
+        "douban:37887987"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "3874fdec990b",
+      "location": "上海 杨浦区 开心麻花 I 空间 翔殷路1099号合生汇综合广场B1城市集市",
+      "sample_title": "【7月限定】开心麻花2026新喜剧秀《爆打人生四格》",
+      "event_uids": [
+        "douban:37893579"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "84205d29c94d",
+      "location": "上海 松江区 山吉堂X华影雅集 演出厅 广富林路3088弄朱雀门集贤坊3号",
+      "sample_title": "陆星毅箫笛专场音乐会《箫行无疆》",
+      "event_uids": [
+        "douban:37835979"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "f3767d0e2179",
+      "location": "上海 黄浦区 重庆南路227号交大医学院",
+      "sample_title": "趣玩心理第20期OH 卡执行师系统培训班（上海线下）",
+      "event_uids": [
+        "douban:37887955"
       ],
       "event_count": 1
     }

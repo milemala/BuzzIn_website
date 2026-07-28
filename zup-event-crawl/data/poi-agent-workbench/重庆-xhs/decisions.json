@@ -1,408 +1,318 @@
 {
   "city": "重庆",
   "source": "xiaohongshu",
-  "decided_at": "2026-07-14T01:03:09.365Z",
-  "updated_at": "2026-07-14T01:03:09.365Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-07-26T13:25:32.917Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "e2be7bdf04c2",
+      "group_id": "b79d5fc68d63",
       "event_uids": [
-        "xiaohongshu:6a44ee080000000011018b8f:03_0"
+        "xiaohongshu:6a61f333000000001c0111e0:01_1"
       ],
       "action": "match",
+      "search_keywords_tried": [
+        "星光海底世界",
+        "星光68广场"
+      ],
+      "poi_id": "4401917688917176739",
+      "poi_title": "Starry Ocean星光海底世界(重庆星光68广场店)",
+      "poi_address": "重庆市两江新区星光68广场",
+      "latitude": 29.578082,
+      "longitude": 106.531886,
+      "candidates": [
+        {
+          "poi_id": "4401917688917176739",
+          "title": "Starry Ocean星光海底世界(重庆星光68广场店)",
+          "address": "重庆市两江新区星光68广场",
+          "latitude": 29.578082,
+          "longitude": 106.531886,
+          "category": ""
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": [
-        "重庆中国三峡博物馆"
-      ],
-      "poi_id": "8213064061767453738",
-      "poi_title": "重庆中国三峡博物馆",
-      "poi_address": "重庆市渝中区人民路236号",
-      "latitude": 29.56208,
-      "longitude": 106.55034,
-      "reason": "活动在一楼临时展厅A，与重庆中国三峡博物馆主体一致"
+      "reason": "星光海底世界在星光68广场，店名一致"
     },
     {
-      "group_id": "6ddab0b3da64",
+      "group_id": "5f06ad83336f",
       "event_uids": [
-        "xiaohongshu:6a44ee080000000011018b8f:04_0"
+        "xiaohongshu:6a61f333000000001c0111e0:02_0"
       ],
       "action": "match",
+      "search_keywords_tried": [
+        "观音桥大融城"
+      ],
+      "poi_id": "6449524052655980394",
+      "poi_title": "大融城",
+      "poi_address": "重庆市两江新区观音桥步行街8号",
+      "latitude": 29.575574,
+      "longitude": 106.53309,
+      "candidates": [
+        {
+          "poi_id": "6449524052655980394",
+          "title": "大融城",
+          "address": "重庆市两江新区观音桥步行街8号",
+          "latitude": 29.575574,
+          "longitude": 106.53309,
+          "category": ""
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": [
-        "重庆美术馆"
-      ],
-      "poi_id": "436790455692286748",
-      "poi_title": "重庆美术馆",
-      "poi_address": "重庆市渝中区临江路重庆国泰艺术中心5层",
-      "latitude": 29.56,
-      "longitude": 106.57672,
-      "reason": "活动在重庆美术馆7号展览厅，与重庆美术馆主体一致"
+      "reason": "观音桥大融城主体一致，仅楼层未精确"
     },
     {
-      "group_id": "407e1af53e50",
+      "group_id": "476d31d0215b",
       "event_uids": [
-        "xiaohongshu:6a44ee080000000011018b8f:04_1"
+        "xiaohongshu:6a61f333000000001c0111e0:02_1"
       ],
       "action": "match",
+      "search_keywords_tried": [
+        "重庆印象城"
+      ],
+      "poi_id": "2084262791714245466",
+      "poi_title": "印象城",
+      "poi_address": "重庆市渝中区化龙桥街道,,印象城6楼",
+      "latitude": 29.55046,
+      "longitude": 106.517504,
+      "candidates": [
+        {
+          "poi_id": "2084262791714245466",
+          "title": "印象城",
+          "address": "重庆市渝中区化龙桥街道,,印象城6楼",
+          "latitude": 29.55046,
+          "longitude": 106.517504,
+          "category": ""
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "436790455692286748",
-      "poi_title": "重庆美术馆",
-      "poi_address": "",
-      "latitude": 29.56,
-      "longitude": 106.57672,
-      "reason": "地址映射库命中：重庆美术馆1号厅 → 重庆美术馆（来源 event:xiaohongshu:6a3a6d2d000000001700ae57:12_0）"
+      "reason": "渝中印象城主体一致，DUIDUILand为店内节点"
     },
     {
-      "group_id": "7b4c0931c746",
+      "group_id": "aa69b77e06a4",
       "event_uids": [
-        "xiaohongshu:6a44ee080000000011018b8f:04_2"
+        "xiaohongshu:6a61f333000000001c0111e0:03_0"
       ],
       "action": "match",
+      "search_keywords_tried": [
+        "龙湖爱加两江星悦荟"
+      ],
+      "poi_id": "14420715087846076767",
+      "poi_title": "龙湖爱加两江星悦荟",
+      "poi_address": "重庆市两江新区金渝大道91号(金童路地铁站1号口步行180米)",
+      "latitude": 29.643966,
+      "longitude": 106.564841,
+      "candidates": [
+        {
+          "poi_id": "14420715087846076767",
+          "title": "龙湖爱加两江星悦荟",
+          "address": "重庆市两江新区金渝大道91号(金童路地铁站1号口步行180米)",
+          "latitude": 29.643966,
+          "longitude": 106.564841,
+          "category": ""
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": [
-        "王琦美术博物馆"
-      ],
-      "poi_id": "7847359499882622641",
-      "poi_title": "王琦美术博物馆",
-      "poi_address": "重庆市渝中区上清寺街道中山四路75号文化产业园",
-      "latitude": 29.563548,
-      "longitude": 106.54743,
-      "reason": "活动在王琦美术博物馆1—2号展厅，与场馆主体一致"
+      "reason": "龙湖爱加两江星悦荟店名地址一致"
     },
     {
-      "group_id": "83a810632d2b",
+      "group_id": "338f38f6dcc5",
       "event_uids": [
-        "xiaohongshu:6a44ee080000000011018b8f:04_3"
+        "xiaohongshu:6a61f333000000001c0111e0:04_1"
       ],
       "action": "match",
+      "search_keywords_tried": [
+        "一奥天地"
+      ],
+      "poi_id": "3084339780973573635",
+      "poi_title": "一奥天地",
+      "poi_address": "重庆市两江新区金渝大道87号",
+      "latitude": 29.64488,
+      "longitude": 106.567447,
+      "candidates": [
+        {
+          "poi_id": "3084339780973573635",
+          "title": "一奥天地",
+          "address": "重庆市两江新区金渝大道87号",
+          "latitude": 29.64488,
+          "longitude": 106.567447,
+          "category": ""
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": [
-        "王琦美术博物馆"
-      ],
-      "poi_id": "7847359499882622641",
-      "poi_title": "王琦美术博物馆",
-      "poi_address": "重庆市渝中区上清寺街道中山四路75号文化产业园",
-      "latitude": 29.563548,
-      "longitude": 106.54743,
-      "reason": "活动在王琦美术博物馆3—4号展厅，与场馆主体一致"
+      "reason": "一奥天地主体一致，仅B1室内未精确"
     },
     {
-      "group_id": "94aa08a4489d",
+      "group_id": "24d207f3dc18",
       "event_uids": [
-        "xiaohongshu:6a44ee080000000011018b8f:05_0"
+        "xiaohongshu:6a61f333000000001c0111e0:07_0"
       ],
       "action": "match",
+      "search_keywords_tried": [
+        "四川美术学院美术馆"
+      ],
+      "poi_id": "16590099763355508289",
+      "poi_title": "四川美术学院美术馆(罗中立美术馆)",
+      "poi_address": "重庆市沙坪坝区大学城南路56号",
+      "latitude": 29.601442,
+      "longitude": 106.300552,
+      "candidates": [
+        {
+          "poi_id": "16590099763355508289",
+          "title": "四川美术学院美术馆(罗中立美术馆)",
+          "address": "重庆市沙坪坝区大学城南路56号",
+          "latitude": 29.601442,
+          "longitude": 106.300552,
+          "category": ""
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
+      "reason": "川美罗中立美术馆主体一致"
+    },
+    {
+      "group_id": "8b890f39fd1b",
+      "event_uids": [
+        "xiaohongshu:6a61f333000000001c0111e0:08_0"
+      ],
+      "action": "match",
       "search_keywords_tried": [
-        "大愚美术馆 龙湖公园天街"
+        "大愚美术馆"
       ],
       "poi_id": "8354697605433276919",
       "poi_title": "大愚美术馆",
       "poi_address": "重庆市两江新区秋成大道158号龙湖重庆公园天街F3",
       "latitude": 29.721827,
       "longitude": 106.574205,
-      "reason": "活动在两江新区龙湖公园天街A馆3F大愚美术馆，与候选大愚美术馆一致"
-    },
-    {
-      "group_id": "e814394b7769",
-      "event_uids": [
-        "xiaohongshu:6a44ee080000000011018b8f:05_1"
-      ],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": [
-        "旁观者设计博物馆"
-      ],
-      "poi_id": "8365650644418469619",
-      "poi_title": "旁观者设计博物馆",
-      "poi_address": "重庆市两江新区人和街道中瑞(重庆两江)产业园",
-      "latitude": 29.648122,
-      "longitude": 106.501355,
-      "reason": "候选旁观者设计博物馆与活动场馆完全一致（非高校分馆）"
-    },
-    {
-      "group_id": "3f6e5ff61ce6",
-      "event_uids": [
-        "xiaohongshu:6a44ee080000000011018b8f:05_2"
-      ],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": [
-        "金山意库"
-      ],
-      "poi_id": "7665944789590333031",
-      "poi_title": "金山意库",
-      "poi_address": "重庆市两江新区金山街道汇丰路1号",
-      "latitude": 29.629188,
-      "longitude": 106.574656,
-      "reason": "活动在金山意库1号楼2楼，与金山意库文创园区主体一致"
-    },
-    {
-      "group_id": "29c7c3782c5e",
-      "event_uids": [
-        "xiaohongshu:6a44ee080000000011018b8f:06_0"
-      ],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": [
-        "巴渝民俗博物馆"
-      ],
-      "poi_id": "8446007048203144690",
-      "poi_title": "重庆巴渝民俗博物馆",
-      "poi_address": "重庆市两江新区双龙大道97号(碧津地铁站1号口步行450米)",
-      "latitude": 29.711126,
-      "longitude": 106.629638,
-      "reason": "历史文化陈列馆临展厅属重庆巴渝民俗博物馆馆内展区"
-    },
-    {
-      "group_id": "900270c5e36e",
-      "event_uids": [
-        "xiaohongshu:6a44ee080000000011018b8f:06_2"
-      ],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": [
-        "重庆开埠遗址公园"
-      ],
-      "poi_id": "7326629792094426080",
-      "poi_title": "重庆开埠遗址公园",
-      "poi_address": "重庆市南岸区马鞍山56号",
-      "latitude": 29.550838,
-      "longitude": 106.592892,
-      "reason": "候选重庆开埠遗址公园与活动地址完全一致"
-    },
-    {
-      "group_id": "e016a38566bc",
-      "event_uids": [
-        "xiaohongshu:6a44ee080000000011018b8f:06_3"
-      ],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": [
-        "重庆长江当代美术馆"
-      ],
-      "poi_id": "3736554537401627584",
-      "poi_title": "重庆长江当代美术馆",
-      "poi_address": "重庆市南岸区南滨路钟楼广场",
-      "latitude": 29.573117,
-      "longitude": 106.592724,
-      "reason": "候选重庆长江当代美术馆与活动场馆完全一致"
-    },
-    {
-      "group_id": "2f311a8a1d1f",
-      "event_uids": [
-        "xiaohongshu:6a44ee080000000011018b8f:07_0"
-      ],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": [
-        "磁器口后街"
-      ],
-      "poi_id": "18047819188149832834",
-      "poi_title": "磁器口后街",
-      "poi_address": "重庆市沙坪坝区磁器口街道磁兴街1号磁器口古镇(磁器口地铁站1号口步行650米)",
-      "latitude": 29.579776,
-      "longitude": 106.449325,
-      "reason": "候选磁器口后街与沙坪坝磁器口后街活动区域一致"
-    },
-    {
-      "group_id": "94f43fe525c8",
-      "event_uids": [
-        "xiaohongshu:6a44ee080000000011018b8f:07_1"
-      ],
-      "action": "match",
-      "confidence": "medium",
-      "doubtful": false,
-      "search_keywords_tried": [
-        "慢捣公元咖啡",
-        "鑫源路8号 慢捣"
-      ],
-      "poi_id": "13487957217907075966",
-      "poi_title": "慢捣咖啡(重庆高新区店)",
-      "poi_address": "重庆市九龙坡区含谷镇罗家院鑫源工业园",
-      "latitude": 29.5256,
-      "longitude": 106.367273,
-      "reason": "活动地址鑫源路8号慢捣公元咖啡，候选慢捣咖啡位于同一片区鑫源工业园"
-    },
-    {
-      "group_id": "a3b29d05b221",
-      "event_uids": [
-        "xiaohongshu:6a44ee080000000011018b8f:07_2"
-      ],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": [
-        "重庆时代美术馆 华熙LIVE鱼洞"
-      ],
-      "poi_id": "14238943439828880648",
-      "poi_title": "重庆时代美术馆",
-      "poi_address": "重庆市巴南区箭河路鲁能南渝星城西侧约180米",
-      "latitude": 29.379147,
-      "longitude": 106.509064,
-      "reason": "候选重庆时代美术馆位于巴南区华熙LIVE·鱼洞片区，与活动场馆一致"
-    },
-    {
-      "group_id": "d6399b7cf54d",
-      "event_uids": [
-        "xiaohongshu:6a44ee080000000011018b8f:07_3"
-      ],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": [
-        "重庆IFS"
-      ],
-      "poi_id": "9454767808926422010",
-      "poi_title": "重庆IFS国金中心商场",
-      "poi_address": "重庆市两江新区庆云路1号",
-      "latitude": 29.575944,
-      "longitude": 106.573568,
-      "reason": "猫和老鼠艺术展在重庆IFS举办，与国金中心商场主体一致"
-    },
-    {
-      "group_id": "ad2e8ecc58d3",
-      "event_uids": [
-        "xiaohongshu:6a3bc5fb000000001003ef30:02_0"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "鲁祖庙"
+      "candidates": [
+        {
+          "poi_id": "8354697605433276919",
+          "title": "大愚美术馆",
+          "address": "重庆市两江新区秋成大道158号龙湖重庆公园天街F3",
+          "latitude": 29.721827,
+          "longitude": 106.574205,
+          "category": ""
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "鲁祖庙传统风貌区渝中区大同路66号，首届国际碰杯节",
-      "poi_id": "5708150465746064337",
-      "poi_title": "鲁祖庙传统风貌区",
-      "poi_address": "重庆市渝中区大同路66号",
-      "latitude": 29.556578,
-      "longitude": 106.572711
+      "reason": "大愚美术馆店名地址一致"
     },
     {
-      "group_id": "715e1e125e2a",
+      "group_id": "12a05cc7458f",
       "event_uids": [
-        "xiaohongshu:6a3bc5fb000000001003ef30:03_0"
+        "xiaohongshu:6a61f333000000001c0111e0:09_1"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "重庆九街"
+        "重庆印象城"
+      ],
+      "poi_id": "2084262791714245466",
+      "poi_title": "印象城",
+      "poi_address": "重庆市渝中区化龙桥街道,,印象城6楼",
+      "latitude": 29.55046,
+      "longitude": 106.517504,
+      "candidates": [
+        {
+          "poi_id": "2084262791714245466",
+          "title": "印象城",
+          "address": "重庆市渝中区化龙桥街道,,印象城6楼",
+          "latitude": 29.55046,
+          "longitude": 106.517504,
+          "category": ""
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "九街广场两江新区观音桥九街，原创手作市集",
-      "poi_id": "2452454035969369621",
-      "poi_title": "九街广场",
-      "poi_address": "重庆市两江新区九街高屋附近",
-      "latitude": 29.579556,
-      "longitude": 106.544331
+      "reason": "渝中印象城主体一致，打堆堆为店内节点"
     },
     {
-      "group_id": "58172f20a55d",
+      "group_id": "6843f96ef0e0",
       "event_uids": [
-        "xiaohongshu:6a3bc5fb000000001003ef30:04_0"
+        "xiaohongshu:6a61f333000000001c0111e0:10_0"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "长嘉汇购物公园"
+        "重庆万象城"
+      ],
+      "poi_id": "15515921108295875941",
+      "poi_title": "重庆万象城北区",
+      "poi_address": "重庆市九龙坡区谢家湾街道谢家湾正路55号(谢家湾地铁站3号口旁)",
+      "latitude": 29.519354,
+      "longitude": 106.519384,
+      "candidates": [
+        {
+          "poi_id": "15515921108295875941",
+          "title": "重庆万象城北区",
+          "address": "重庆市九龙坡区谢家湾街道谢家湾正路55号(谢家湾地铁站3号口旁)",
+          "latitude": 29.519354,
+          "longitude": 106.519384,
+          "category": ""
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "长嘉汇购物公园南岸区泰昌路69号，南滨路4F5F临江平台市集",
-      "poi_id": "2692144859199588973",
-      "poi_title": "长嘉汇购物公园",
-      "poi_address": "重庆市南岸区泰昌路69号",
-      "latitude": 29.578123,
-      "longitude": 106.586247
+      "reason": "重庆万象城北区主体一致"
     },
     {
-      "group_id": "212695a3a3e1",
+      "group_id": "a661fdccf354",
       "event_uids": [
-        "xiaohongshu:6a3bc5fb000000001003ef30:07_0"
+        "xiaohongshu:6a61f333000000001c0111e0:11_0"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "萌谷子",
-        "方圆LIVE"
+        "公园天街"
+      ],
+      "poi_id": "18284295204746672895",
+      "poi_title": "龙湖重庆公园天街A馆",
+      "poi_address": "重庆市两江新区秋成大道158号龙湖重庆公园天街1F层",
+      "latitude": 29.721977,
+      "longitude": 106.573718,
+      "candidates": [
+        {
+          "poi_id": "18284295204746672895",
+          "title": "龙湖重庆公园天街A馆",
+          "address": "重庆市两江新区秋成大道158号龙湖重庆公园天街1F层",
+          "latitude": 29.721977,
+          "longitude": 106.573718,
+          "category": ""
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "萌谷子POI位于方圆LIVE LG层，与重庆方圆live萌谷子MOEGOODS一致",
-      "poi_id": "11615929953541528343",
-      "poi_title": "萌谷子(深圳店)",
-      "poi_address": "重庆市两江新区观音桥街道方圆LIVELG层27号商铺满满谷子旁",
-      "latitude": 29.573667,
-      "longitude": 106.530617
+      "reason": "龙湖公园天街A馆主体一致"
     },
     {
-      "group_id": "59ea03bcf1af",
+      "group_id": "25ba2d274204",
       "event_uids": [
-        "xiaohongshu:6a3bc5fb000000001003ef30:09_0"
+        "xiaohongshu:6a61f333000000001c0111e0:12_1"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "慢捣公元",
-        "鑫源路8号"
+        "渝中印象城",
+        "重庆印象城"
       ],
-      "confidence": "medium",
-      "doubtful": true,
-      "reason": "慢捣咖啡位于鑫源工业园含谷镇鑫源路8号，与慢捣公元咖啡地址一致但POI类目有误",
-      "poi_id": "13487957217907075966",
-      "poi_title": "慢捣咖啡(重庆高新区店)",
-      "poi_address": "重庆市九龙坡区含谷镇罗家院鑫源工业园",
-      "latitude": 29.5256,
-      "longitude": 106.367273
-    },
-    {
-      "group_id": "1a69f9c3514d",
-      "event_uids": [
-        "xiaohongshu:6a3bc5fb000000001003ef30:10_0"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "光环花园城"
+      "poi_id": "2084262791714245466",
+      "poi_title": "印象城",
+      "poi_address": "重庆市渝中区化龙桥街道,,印象城6楼",
+      "latitude": 29.55046,
+      "longitude": 106.517504,
+      "candidates": [
+        {
+          "poi_id": "2084262791714245466",
+          "title": "印象城",
+          "address": "重庆市渝中区化龙桥街道,,印象城6楼",
+          "latitude": 29.55046,
+          "longitude": 106.517504,
+          "category": ""
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "中央公园光环花园城两江新区同茂大道236号",
-      "poi_id": "7420769942037403303",
-      "poi_title": "中央公园光环花园城",
-      "poi_address": "重庆市两江新区同茂大道236号",
-      "latitude": 29.722634,
-      "longitude": 106.59068
-    },
-    {
-      "group_id": "627c3e4fe231",
-      "event_uids": [
-        "xiaohongshu:6a3bc5fb000000001003ef30:11_0"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "光环花园城"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "光环花园城C馆喷泉广场属中央公园光环花园城主体",
-      "poi_id": "7420769942037403303",
-      "poi_title": "中央公园光环花园城",
-      "poi_address": "重庆市两江新区同茂大道236号",
-      "latitude": 29.722634,
-      "longitude": 106.59068
+      "reason": "渝中印象城主体一致，DUIDUILand为店内节点"
     }
   ]
 }

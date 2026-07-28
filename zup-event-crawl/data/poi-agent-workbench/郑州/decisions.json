@@ -1,37 +1,75 @@
 {
   "city": "郑州",
-  "decided_at": "2026-07-13T01:40:00.000Z",
-  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "91a478f848e2",
-      "event_uids": ["douban:37812123"],
+      "group_id": "6c2026a16ec6",
+      "event_uids": [
+        "douban:37865898",
+        "douban:37855576"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "2212880197566482970",
-      "poi_title": "小皇后大剧院(河南文化大厦店)",
-      "poi_address": "",
-      "latitude": 34.714243,
-      "longitude": 113.688471,
-      "candidates": [],
-      "confidence": "high",
+      "poi_id": "1755158220296960639",
+      "poi_title": "7LIVEHOUSE",
+      "poi_address": "河南省郑州市金水区文化路2号",
+      "latitude": 34.765107,
+      "longitude": 113.668046,
       "doubtful": false,
-      "reason": "地址映射库命中：郑州 管城回族区 小皇后大剧院 紫辰路9号 → 小皇后大剧院(河南文化大厦店)"
+      "reason": "映射库+搜索命中金水区文化路2号 7LIVEHOUSE，与活动地址一致",
+      "search_keywords_tried": [
+        "7LIVEHOUSE",
+        "poi-address-cache"
+      ]
     },
     {
-      "group_id": "f95fcaca1868",
-      "event_uids": ["douban:37816779"],
+      "group_id": "4b7b6ac9fe34",
+      "event_uids": [
+        "douban:37860884"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "9808637794160405571",
-      "poi_title": "7LIVEHOUSE+",
-      "poi_address": "",
-      "latitude": 34.752036,
-      "longitude": 113.769736,
-      "candidates": [],
-      "confidence": "high",
+      "poi_id": "10949715273587582845",
+      "poi_title": "郑州大剧院",
+      "poi_address": "河南省郑州市中原区丹水大道与雪松路交叉口西南角",
+      "latitude": 34.742346,
+      "longitude": 113.550694,
       "doubtful": false,
-      "reason": "地址映射库命中：郑州 管城回族区 7LIVEHOUSE+ 海汇港2号楼5楼 → 7LIVEHOUSE+"
+      "reason": "场馆名与丹水大道地址一致",
+      "search_keywords_tried": [
+        "郑州大剧院"
+      ]
+    },
+    {
+      "group_id": "817c3508d695",
+      "event_uids": [
+        "douban:37825612"
+      ],
+      "action": "match",
+      "poi_id": "14695670024399702637",
+      "poi_title": "是个喜剧(油化厂创意园店)",
+      "poi_address": "河南省郑州市金水区沙口路黄河路东北角郑州记忆油化厂有熊街2号",
+      "latitude": 34.772323,
+      "longitude": 113.640176,
+      "doubtful": false,
+      "reason": "店名与有熊街2号地址一致",
+      "search_keywords_tried": [
+        "是个喜剧 油化厂"
+      ]
+    },
+    {
+      "group_id": "43085daeb1e1",
+      "event_uids": [
+        "douban:37903199"
+      ],
+      "action": "match",
+      "poi_id": "11789753411770764825",
+      "poi_title": "华凯大厦",
+      "poi_address": "河南省郑州市金水区经八路街道经七路21号",
+      "latitude": 34.779705,
+      "longitude": 113.671834,
+      "doubtful": true,
+      "reason": "活动仅写华凯大厦无楼层/室号，命中金水区华凯大厦主体，精度不足故存疑",
+      "search_keywords_tried": [
+        "华凯大厦"
+      ]
     }
   ]
 }

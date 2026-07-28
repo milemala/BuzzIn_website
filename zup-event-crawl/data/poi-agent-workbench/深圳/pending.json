@@ -1,78 +1,35 @@
 {
   "city": "深圳",
   "source": "douban",
-  "exported_at": "2026-07-13T14:41:13.291Z",
+  "exported_at": "2026-07-26T12:08:20.784Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 5,
+  "last_import_new_uids": 14,
   "doubtful_only": false,
-  "total_events": 5,
-  "group_count": 5,
-  "cache_hit_groups": 1,
+  "total_events": 2,
+  "group_count": 2,
+  "cache_hit_groups": 0,
   "groups": [
     {
-      "group_id": "5ea2990d0b67",
-      "location": "深圳 福田区 寰映影城(深圳福田中航城君尚店) 广东省深圳市福田区华强北街道中航社区中航1路中航城君尚购物中心D区四楼",
-      "sample_title": "温暖治愈，夏日必看！章若楠、金靖领衔主演《想你了》深圳免费观影",
+      "group_id": "40e646f7c250",
+      "location": "深圳 龙岗区 龙岗布吉地铁站E2",
+      "sample_title": "龙岗布吉德州扑克酒馆派对",
       "event_uids": [
-        "douban:37901175"
+        "douban:37905559"
       ],
       "event_count": 1
     },
     {
-      "group_id": "be7873efaa12",
-      "location": "深圳 南山区 观筑艺术空间",
-      "sample_title": "7.17探戈舞会：零基础教学，一进一退，皆是温柔试探",
+      "group_id": "e62d8a562fda",
+      "location": "深圳 龙岗区 布吉地铁站",
+      "sample_title": "德州比赛聚会派对龙岗",
       "event_uids": [
-        "douban:37900952"
+        "douban:37905660"
       ],
       "event_count": 1
-    },
-    {
-      "group_id": "ae7073a95e9e",
-      "location": "深圳 福田区 安徽大厦13楼",
-      "sample_title": "7.18财富心理学沙龙：找到限制你赚钱与守钱的隐形天花板",
-      "event_uids": [
-        "douban:37900720"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "f451f871809b",
-      "location": "深圳 福田区 荣超经贸中心4801室天空冥想馆楼上",
-      "sample_title": "7.19正念沙龙职场关系：别让情绪偷走你的能量，做内核稳定的自己",
-      "event_uids": [
-        "douban:37900733"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "6f83ad8999f0",
-      "location": "深圳 南山区 科兴科技园a1栋",
-      "sample_title": "7.18南山区桌游：惊爆伦敦女巫镇狼阿瓦隆白蔷薇险恶疑航忍者杀等~",
-      "event_uids": [
-        "douban:37900748"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "3575825143035739176",
-        "poi_title": "科兴科学园-A栋",
-        "poi_address": "",
-        "latitude": 22.716412,
-        "longitude": 114.026782,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：深圳 南山区 科兴科技园a1栋 → 科兴科学园-A栋（来源 event:douban:37889173）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "6f83ad8999f07008853a1605eb321c57a2bd574f"
-      }
     }
   ]
 }

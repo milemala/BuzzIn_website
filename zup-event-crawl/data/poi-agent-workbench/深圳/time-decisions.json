@@ -1,44 +1,1005 @@
 {
   "city": "深圳",
-  "source": "douban",
-  "generated_at": "2026-07-13T14:41:13.023Z",
+  "source": "xiaohongshu",
+  "generated_at": "2026-07-26T13:21:25.410Z",
   "note": "可由 Agent 覆写低置信条目后 apply-event-time-decisions.js 入库",
   "decisions": [
     {
-      "event_uid": "douban:37900720",
-      "start_at": "2026-07-18 14:00:00",
-      "expired_at": "2026-10-10 18:00:00",
-      "reason": "豆瓣详情：2026年07月18日 ~ 2026年10月10日 每周六 14:00 - 18:00",
+      "event_uid": "xiaohongshu:69d874fc000000002200d292:14_0",
+      "start_at": "2026-06-19 15:30:00",
+      "expired_at": "2026-06-21 20:30:00",
+      "reason": "按 time_text 解析",
       "confidence": "high"
     },
     {
-      "event_uid": "douban:37900733",
-      "start_at": "2026-07-19 18:30:00",
-      "expired_at": "2026-10-11 21:00:00",
-      "reason": "豆瓣详情：2026年07月19日 ~ 2026年10月11日 每周日 18:30 - 21:00",
+      "event_uid": "xiaohongshu:6a3f4bc6000000001602434d:01_0",
+      "start_at": "2026-06-13 00:00:00",
+      "expired_at": "2026-07-31 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
       "confidence": "high"
     },
     {
-      "event_uid": "douban:37900748",
-      "start_at": "2026-07-18 18:00:00",
-      "expired_at": "2026-10-10 22:00:00",
-      "reason": "豆瓣详情：2026年07月18日 ~ 2026年10月10日 每周六 18:00 - 22:00",
+      "event_uid": "xiaohongshu:6a3f4bc6000000001602434d:02_0",
+      "start_at": "2026-07-24 10:30:00",
+      "expired_at": "2026-07-26 18:30:00",
+      "reason": "按 time_text 解析",
       "confidence": "high"
     },
     {
-      "event_uid": "douban:37900952",
-      "start_at": "2026-07-17 20:30:00",
-      "expired_at": "2026-10-09 22:30:00",
-      "reason": "豆瓣详情：2026年07月17日 ~ 2026年10月09日 每周五 20:30 - 22:30",
+      "event_uid": "xiaohongshu:6a3f4bc6000000001602434d:03_0",
+      "start_at": "2026-07-24 11:00:00",
+      "expired_at": "2026-07-26 20:00:00",
+      "reason": "按 time_text 解析",
       "confidence": "high"
     },
     {
-      "event_uid": "douban:37901175",
-      "start_at": "2026-07-18 14:00:00",
-      "expired_at": "2026-07-18 15:48:00",
-      "reason": "豆瓣详情：07月18日 周六 14:00-15:48",
+      "event_uid": "xiaohongshu:6a3f4bc6000000001602434d:05_0",
+      "start_at": "2026-07-12 00:00:00",
+      "expired_at": "2026-08-08 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a3f4bc6000000001602434d:06_0",
+      "start_at": "2026-07-02 00:00:00",
+      "expired_at": "2026-07-07 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a3f4bc6000000001602434d:07_0",
+      "start_at": "2026-06-28 00:00:00",
+      "expired_at": "2026-08-21 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a3f4bc6000000001602434d:08_0",
+      "start_at": "2026-07-03 16:00:00",
+      "expired_at": "2026-07-05 22:30:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a3f4bc6000000001602434d:09_0",
+      "start_at": "2026-07-03 15:00:00",
+      "expired_at": "2026-07-05 21:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a3f4bc6000000001602434d:10_0",
+      "start_at": "2026-07-11 10:00:00",
+      "expired_at": "2026-07-12 23:59:59",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a3f4bc6000000001602434d:11_0",
+      "start_at": "2026-06-18 00:00:00",
+      "expired_at": "2026-08-30 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a3f4bc6000000001602434d:12_0",
+      "start_at": "2026-07-02 00:00:00",
+      "expired_at": "2026-07-31 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a3f4bc6000000001602434d:13_0",
+      "start_at": "2026-07-01 00:00:00",
+      "expired_at": "2026-08-31 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a3f4bc6000000001602434d:14_0",
+      "start_at": "2026-07-10 11:00:00",
+      "expired_at": "2026-07-12 20:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:01_0",
+      "start_at": "2026-07-02 00:00:00",
+      "expired_at": "2026-07-05 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:01_1",
+      "start_at": "2026-07-04 00:00:00",
+      "expired_at": "2026-07-05 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:01_2",
+      "start_at": "2026-07-03 16:00:00",
+      "expired_at": "2026-07-07 22:30:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:01_3",
+      "start_at": "2026-07-02 00:00:00",
+      "expired_at": "2026-07-04 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:02_2",
+      "start_at": "2026-07-04 00:00:00",
+      "expired_at": "2026-07-04 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "medium"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:02_3",
+      "start_at": "2026-07-02 00:00:00",
+      "expired_at": "2026-07-04 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:04_0",
+      "start_at": "2026-07-04 19:30:00",
+      "expired_at": "2026-07-04 23:59:59",
+      "reason": "仅开始时刻，结束延至当天 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:04_3",
+      "start_at": "2026-07-03 20:00:00",
+      "expired_at": "2026-07-03 23:59:59",
+      "reason": "仅开始时刻，结束延至当天 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:05_0",
+      "start_at": "2026-07-03 14:30:00",
+      "expired_at": "2026-07-04 23:59:59",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:05_1",
+      "start_at": "2026-07-01 19:30:00",
+      "expired_at": "2026-07-01 23:59:59",
+      "reason": "仅开始时刻，结束延至当天 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:05_2",
+      "start_at": "2026-07-04 15:00:00",
+      "expired_at": "2026-07-04 23:59:59",
+      "reason": "仅开始时刻，结束延至当天 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:05_3",
+      "start_at": "2026-07-04 19:30:00",
+      "expired_at": "2026-07-04 23:59:59",
+      "reason": "仅开始时刻，结束延至当天 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a47a8590000000022008722:01_0",
+      "start_at": "2026-07-03 14:00:00",
+      "expired_at": "2026-07-05 21:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a47a8590000000022008722:03_0",
+      "start_at": "2026-07-03 00:00:00",
+      "expired_at": "2026-08-02 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a47a8590000000022008722:04_0",
+      "start_at": "2026-07-04 10:00:00",
+      "expired_at": "2026-07-05 21:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a47a8590000000022008722:06_0",
+      "start_at": "2026-07-04 14:00:00",
+      "expired_at": "2026-07-05 20:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a47a8590000000022008722:07_0",
+      "start_at": "2026-07-04 00:00:00",
+      "expired_at": "2026-07-04 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "medium"
+    },
+    {
+      "event_uid": "xiaohongshu:6a47a8590000000022008722:08_0",
+      "start_at": "2026-07-04 16:00:00",
+      "expired_at": "2026-07-05 21:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a47a8590000000022008722:09_0",
+      "start_at": "2026-07-03 11:00:00",
+      "expired_at": "2026-07-12 22:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a47a8590000000022008722:10_0",
+      "start_at": "2026-07-02 00:00:00",
+      "expired_at": "2026-07-05 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a47a8590000000022008722:11_0",
+      "start_at": "2026-07-03 00:00:00",
+      "expired_at": "2026-08-02 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a47a8590000000022008722:12_0",
+      "start_at": "2026-07-03 00:00:00",
+      "expired_at": "2026-07-05 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a47a8590000000022008722:13_0",
+      "start_at": "2026-07-02 00:00:00",
+      "expired_at": "2026-09-19 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a47a8590000000022008722:14_0",
+      "start_at": "2026-07-03 15:00:00",
+      "expired_at": "2026-07-05 21:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a47a8590000000022008722:16_0",
+      "start_at": "2026-07-05 10:30:00",
+      "expired_at": "2026-07-05 12:30:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a47a8590000000022008722:17_0",
+      "start_at": "2026-07-05 00:00:00",
+      "expired_at": "2026-07-05 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "medium"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4b0fe20000000022015242:01_0",
+      "start_at": "2026-07-10 12:00:00",
+      "expired_at": "2026-07-12 21:30:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4b0fe20000000022015242:01_1",
+      "start_at": "2026-07-11 11:00:00",
+      "expired_at": "2026-07-11 23:59:59",
+      "reason": "仅开始时刻，结束延至当天 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4b0fe20000000022015242:01_3",
+      "start_at": "2026-07-11 16:00:00",
+      "expired_at": "2026-07-12 21:30:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4b0fe20000000022015242:02_0",
+      "start_at": "2026-07-11 16:00:00",
+      "expired_at": "2026-07-11 18:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4b0fe20000000022015242:04_3",
+      "start_at": "2026-07-09 20:00:00",
+      "expired_at": "2026-07-09 23:59:59",
+      "reason": "仅开始时刻，结束延至当天 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:01_0",
+      "start_at": "2026-07-12 17:00:00",
+      "expired_at": "2026-07-12 18:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:02_0",
+      "start_at": "2026-07-11 17:00:00",
+      "expired_at": "2026-07-11 18:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:03_0",
+      "start_at": "2026-07-11 10:00:00",
+      "expired_at": "2026-07-12 21:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:03_1",
+      "start_at": "2026-07-10 15:00:00",
+      "expired_at": "2026-07-19 22:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:03_2",
+      "start_at": "2026-07-11 11:00:00",
+      "expired_at": "2026-07-11 23:59:59",
+      "reason": "仅开始时刻，结束延至当天 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:04_0",
+      "start_at": "2026-07-11 14:00:00",
+      "expired_at": "2026-07-12 20:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:04_1",
+      "start_at": "2026-07-11 14:00:00",
+      "expired_at": "2026-07-12 20:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:04_2",
+      "start_at": "2026-07-10 17:00:00",
+      "expired_at": "2026-07-12 21:30:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:06_0",
+      "start_at": "2026-07-11 00:00:00",
+      "expired_at": "2026-07-11 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "medium"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:06_1",
+      "start_at": "2026-07-11 00:00:00",
+      "expired_at": "2026-07-11 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "medium"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:06_2",
+      "start_at": "2026-07-10 12:00:00",
+      "expired_at": "2026-07-12 21:30:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:07_1",
+      "start_at": "2026-07-11 00:00:00",
+      "expired_at": "2026-07-20 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:07_2",
+      "start_at": "2026-07-11 16:00:00",
+      "expired_at": "2026-07-12 21:30:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:08_0",
+      "start_at": "2026-07-11 00:00:00",
+      "expired_at": "2026-07-12 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:09_0",
+      "start_at": "2026-07-09 19:00:00",
+      "expired_at": "2026-07-15 21:30:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:09_2",
+      "start_at": "2026-07-10 00:00:00",
+      "expired_at": "2026-07-11 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:10_1",
+      "start_at": "2026-07-10 11:00:00",
+      "expired_at": "2026-07-12 20:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:10_2",
+      "start_at": "2026-07-10 00:00:00",
+      "expired_at": "2026-07-19 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:11_0",
+      "start_at": "2026-07-09 00:00:00",
+      "expired_at": "2026-07-19 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:11_1",
+      "start_at": "2026-07-11 00:00:00",
+      "expired_at": "2026-07-11 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "medium"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:11_2",
+      "start_at": "2026-07-11 00:00:00",
+      "expired_at": "2026-07-12 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:11_3",
+      "start_at": "2026-07-11 16:00:00",
+      "expired_at": "2026-07-11 18:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:12_0",
+      "start_at": "2026-07-11 14:00:00",
+      "expired_at": "2026-07-11 23:59:59",
+      "reason": "仅开始时刻，结束延至当天 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:12_1",
+      "start_at": "2026-07-11 14:00:00",
+      "expired_at": "2026-07-12 16:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:13_2",
+      "start_at": "2026-06-28 09:00:00",
+      "expired_at": "2026-09-12 17:30:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:14_0",
+      "start_at": "2026-07-11 15:00:00",
+      "expired_at": "2026-07-11 23:59:59",
+      "reason": "仅开始时刻，结束延至当天 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:14_1",
+      "start_at": "2026-07-12 15:00:00",
+      "expired_at": "2026-07-12 23:59:59",
+      "reason": "仅开始时刻，结束延至当天 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:14_2",
+      "start_at": "2026-07-10 16:00:00",
+      "expired_at": "2026-07-10 23:59:59",
+      "reason": "仅开始时刻，结束延至当天 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:14_3",
+      "start_at": "2026-07-10 14:30:00",
+      "expired_at": "2026-07-10 16:30:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:14_4",
+      "start_at": "2026-07-10 15:00:00",
+      "expired_at": "2026-07-10 17:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:15_0",
+      "start_at": "2026-07-10 15:00:00",
+      "expired_at": "2026-07-10 17:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:15_1",
+      "start_at": "2026-07-10 14:30:00",
+      "expired_at": "2026-07-10 16:30:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:15_2",
+      "start_at": "2026-07-10 18:30:00",
+      "expired_at": "2026-07-10 20:30:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:15_3",
+      "start_at": "2026-07-10 19:00:00",
+      "expired_at": "2026-07-10 20:30:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:15_4",
+      "start_at": "2026-07-11 10:00:00",
+      "expired_at": "2026-07-11 12:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:15_5",
+      "start_at": "2026-07-11 14:30:00",
+      "expired_at": "2026-07-11 16:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:15_6",
+      "start_at": "2026-07-11 14:30:00",
+      "expired_at": "2026-07-11 16:30:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:16_0",
+      "start_at": "2026-07-11 15:00:00",
+      "expired_at": "2026-07-12 17:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:16_1",
+      "start_at": "2026-07-11 18:30:00",
+      "expired_at": "2026-07-11 20:30:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:16_2",
+      "start_at": "2026-07-11 15:00:00",
+      "expired_at": "2026-07-11 16:30:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:16_3",
+      "start_at": "2026-07-11 15:00:00",
+      "expired_at": "2026-07-11 17:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:16_4",
+      "start_at": "2026-07-12 14:30:00",
+      "expired_at": "2026-07-12 16:30:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f493f0000000007010a1e:16_5",
+      "start_at": "2026-07-11 14:00:00",
+      "expired_at": "2026-07-11 17:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a545cb200000000070257d3:01_0",
+      "start_at": "2026-07-18 11:00:00",
+      "expired_at": "2026-07-19 21:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a545cb200000000070257d3:01_1",
+      "start_at": "2026-07-19 20:00:00",
+      "expired_at": "2026-07-19 23:59:59",
+      "reason": "仅开始时刻，结束延至当天 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a545cb200000000070257d3:01_2",
+      "start_at": "2026-07-17 16:00:00",
+      "expired_at": "2026-07-19 00:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a545cb200000000070257d3:01_3",
+      "start_at": "2026-07-12 00:00:00",
+      "expired_at": "2026-07-19 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a545cb200000000070257d3:02_0",
+      "start_at": "2026-07-19 00:00:00",
+      "expired_at": "2026-07-19 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "medium"
+    },
+    {
+      "event_uid": "xiaohongshu:6a545cb200000000070257d3:02_1",
+      "start_at": "2026-07-18 10:00:00",
+      "expired_at": "2026-08-30 16:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a545cb200000000070257d3:02_2",
+      "start_at": "2026-07-18 00:00:00",
+      "expired_at": "2026-07-18 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "medium"
+    },
+    {
+      "event_uid": "xiaohongshu:6a545cb200000000070257d3:02_3",
+      "start_at": "2026-07-17 00:00:00",
+      "expired_at": "2026-08-31 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a545cb200000000070257d3:03_2",
+      "start_at": "2026-07-16 09:00:00",
+      "expired_at": "2026-07-18 17:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a545cb200000000070257d3:03_3",
+      "start_at": "2026-07-17 00:00:00",
+      "expired_at": "2026-07-19 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a545cb200000000070257d3:07_0",
+      "start_at": "2026-07-18 15:00:00",
+      "expired_at": "2026-07-19 23:59:59",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a5d85ac000000000f012ea6:03_2",
+      "start_at": "2026-07-22 00:00:00",
+      "expired_at": "2026-08-10 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:01_0",
+      "start_at": "2026-07-23 14:00:00",
+      "expired_at": "2026-07-26 21:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:01_1",
+      "start_at": "2026-07-25 14:00:00",
+      "expired_at": "2026-07-25 23:59:59",
+      "reason": "仅开始时刻，结束延至当天 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:01_2",
+      "start_at": "2026-07-25 00:00:00",
+      "expired_at": "2026-07-26 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:02_0",
+      "start_at": "2026-07-25 00:00:00",
+      "expired_at": "2026-07-25 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "medium"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:03_0",
+      "start_at": "2026-07-26 00:00:00",
+      "expired_at": "2026-07-26 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "medium"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:03_1",
+      "start_at": "2026-07-25 11:00:00",
+      "expired_at": "2026-07-26 21:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:03_2",
+      "start_at": "2026-07-25 10:00:00",
+      "expired_at": "2026-08-11 22:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:04_0",
+      "start_at": "2026-07-20 00:00:00",
+      "expired_at": "2026-08-31 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:04_1",
+      "start_at": "2026-07-25 00:00:00",
+      "expired_at": "2026-07-26 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:04_2",
+      "start_at": "2026-07-25 14:00:00",
+      "expired_at": "2026-07-25 17:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:05_0",
+      "start_at": "2026-07-24 18:00:00",
+      "expired_at": "2026-07-24 19:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:05_1",
+      "start_at": "2026-07-25 10:00:00",
+      "expired_at": "2026-07-26 22:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:05_2",
+      "start_at": "2026-07-25 15:00:00",
+      "expired_at": "2026-07-25 18:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:06_0",
+      "start_at": "2026-07-26 18:00:00",
+      "expired_at": "2026-07-26 21:30:00",
+      "reason": "按周末/工作日时段，本周重复活动取即日起至本周日",
+      "confidence": "medium"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:07_0",
+      "start_at": "2026-08-31 00:00:00",
+      "expired_at": "2026-08-31 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "medium"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:08_0",
+      "start_at": "2026-07-25 14:00:00",
+      "expired_at": "2026-07-25 23:59:59",
+      "reason": "仅开始时刻，结束延至当天 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:08_1",
+      "start_at": "2026-07-25 15:00:00",
+      "expired_at": "2026-07-26 19:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:08_2",
+      "start_at": "2026-07-25 15:00:00",
+      "expired_at": "2026-07-25 17:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:09_0",
+      "start_at": "2026-07-25 14:30:00",
+      "expired_at": "2026-07-26 17:30:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:09_1",
+      "start_at": "2026-07-25 15:00:00",
+      "expired_at": "2026-07-25 17:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:09_2",
+      "start_at": "2026-07-25 15:00:00",
+      "expired_at": "2026-07-25 15:45:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:10_0",
+      "start_at": "2026-07-24 17:00:00",
+      "expired_at": "2026-08-02 20:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:10_1",
+      "start_at": "2026-07-25 10:00:00",
+      "expired_at": "2026-07-26 12:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:11_0",
+      "start_at": "2026-07-24 00:00:00",
+      "expired_at": "2026-07-26 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:11_1",
+      "start_at": "2026-07-25 16:30:00",
+      "expired_at": "2026-07-25 18:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:11_2",
+      "start_at": "2026-07-25 00:00:00",
+      "expired_at": "2026-08-23 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:12_0",
+      "start_at": "2026-07-25 16:00:00",
+      "expired_at": "2026-07-25 18:00:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:13_2",
+      "start_at": "2026-01-04 00:00:00",
+      "expired_at": "2026-07-21 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:14_0",
+      "start_at": "2026-07-24 10:30:00",
+      "expired_at": "2026-07-26 18:30:00",
+      "reason": "按 time_text 解析",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:14_1",
+      "start_at": "2026-07-24 00:00:00",
+      "expired_at": "2026-07-26 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:14_2",
+      "start_at": "2026-07-25 00:00:00",
+      "expired_at": "2026-07-26 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:15_0",
+      "start_at": "2026-07-24 00:00:00",
+      "expired_at": "2026-07-26 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:15_1",
+      "start_at": "2026-07-24 00:00:00",
+      "expired_at": "2026-07-26 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:16_0",
+      "start_at": "2026-07-24 00:00:00",
+      "expired_at": "2026-07-25 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "xiaohongshu:6a61d082000000000100ca45:17_0",
+      "start_at": "2026-07-25 00:00:00",
+      "expired_at": "2026-07-26 23:59:59",
+      "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59",
       "confidence": "high"
     }
   ],
-  "failed": []
+  "failed": [
+    {
+      "event_uid": "xiaohongshu:6a2f6232000000000f01d285:00_2",
+      "title": "华为坤灵·2026年大沙河国际龙舟邀请赛",
+      "reason": "未能解析日期"
+    },
+    {
+      "event_uid": "xiaohongshu:6a2f6232000000000f01d285:00_3",
+      "title": "2026年深汕特别合作区美丽乡村龙舟超级邀请赛",
+      "reason": "未能解析日期"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:03_0",
+      "title": "百年初心如炬，万里浩气长存——庆祝中国共产党成立105周年暨纪念中国工农红军长征胜利90周年主题文献推荐展",
+      "reason": "未能解析日期"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:03_1",
+      "title": "道登天门——萧娴书法艺术展",
+      "reason": "未能解析日期"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:04_1",
+      "title": "深圳·郎朗·乐境音乐会",
+      "reason": "未能解析日期"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:04_2",
+      "title": "2026张新成巡回演唱会「新程NewJourney」-深圳站",
+      "reason": "未能解析日期"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:06_0",
+      "title": "2026年李宁·广东省城市篮球超级联赛",
+      "reason": "未能解析日期"
+    },
+    {
+      "event_uid": "xiaohongshu:6a41dc7b0000000016024263:07_0",
+      "title": "2026年冠旭电子cleer·广东省城市足球超级联赛",
+      "reason": "未能解析日期"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4b0fe20000000022015242:04_2",
+      "title": "汪峰「相信未来」巡回演唱会-深圳站",
+      "reason": "未能解析日期"
+    },
+    {
+      "event_uid": "xiaohongshu:6a4b0fe20000000022015242:05_0",
+      "title": "2026年李宁·广东省城市篮球超级联赛",
+      "reason": "未能解析日期"
+    }
+  ]
 }

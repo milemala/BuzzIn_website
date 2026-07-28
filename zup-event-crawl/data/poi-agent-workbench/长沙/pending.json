@@ -1,76 +1,35 @@
 {
   "city": "长沙",
   "source": "douban",
-  "exported_at": "2026-07-13T01:32:36.385Z",
+  "exported_at": "2026-07-26T12:09:29.224Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 3,
+  "last_import_new_uids": 2,
   "doubtful_only": false,
-  "total_events": 3,
-  "group_count": 3,
-  "cache_hit_groups": 2,
+  "total_events": 2,
+  "group_count": 2,
+  "cache_hit_groups": 0,
   "groups": [
     {
-      "group_id": "a6f40c865d21",
-      "location": "长沙 开福区 长沙音乐厅 湘江北路滨江文化园",
-      "sample_title": "厦门爱歌室内合唱团专场音乐会『万物有声』巡演长沙站",
+      "group_id": "4e9f9cf8747e",
+      "location": "长沙 天心区 中国湖南省长沙市天心区坡子街216号悦方ID MALLL502号",
+      "sample_title": "免费观影《蜘蛛侠：崭新之日》）长沙首映日免费观影",
       "event_uids": [
-        "douban:37820466"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "13348260499578885956",
-        "poi_title": "长沙音乐厅",
-        "poi_address": "",
-        "latitude": 28.242921,
-        "longitude": 112.979271,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：长沙 开福区 长沙音乐厅 湘江北路滨江文化园 → 长沙音乐厅（来源 event:douban:37821288）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "a6f40c865d21a0691e2fe83935c5fe74bf84750d"
-      }
-    },
-    {
-      "group_id": "a33392755057",
-      "location": "长沙 天心区 城南路街道芙蓉中路188号贺龙体育场",
-      "sample_title": "王力宏 最好的地方II 世界巡回演唱会 2026 长沙站",
-      "event_uids": [
-        "douban:37885287"
+        "douban:37906089"
       ],
       "event_count": 1
     },
     {
-      "group_id": "bbeec5fe7de6",
-      "location": "长沙 岳麓区 梅溪湖国际文化艺术中心大剧院 梅溪湖路与节庆路交叉口西南200米",
-      "sample_title": "乃万「Selves们2.0」巡演",
+      "group_id": "6f4bc99293b6",
+      "location": "长沙 天心区 嘻嘻分子脱口秀剧场荟聚店 洋湖街道洋湖路253号荟聚中心LB1层(地铁3号线洋湖湿地站3号口)",
+      "sample_title": "嘻嘻分子脱口秀-万达专场《幽默的风味》",
       "event_uids": [
-        "douban:37832262"
+        "douban:35857318"
       ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "778045471434447270",
-        "poi_title": "梅溪湖国际文化艺术中心大剧院-入口",
-        "poi_address": "",
-        "latitude": 28.195469,
-        "longitude": 112.907104,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：长沙 岳麓区 梅溪湖国际文化艺术中心大剧院 梅溪湖路与节庆路交叉口西南200米 → 梅溪湖国际文化艺术中心大剧院-入口（来源 event:douban:37865756）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "bbeec5fe7de6837f1453d4bb2a3a8271e00955c0"
-      }
+      "event_count": 1
     }
   ]
 }

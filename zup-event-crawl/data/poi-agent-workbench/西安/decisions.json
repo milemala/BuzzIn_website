@@ -1,43 +1,25 @@
 {
   "city": "西安",
-  "decided_at": "2026-07-13T01:40:00.000Z",
+  "decided_at": "2026-07-26T11:54:06.768Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "1736f8b5a7c1",
-      "event_uids": ["douban:37829127"],
-      "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "2272725803867152528",
-      "poi_title": "西安人民剧院",
-      "poi_address": "",
-      "latitude": 34.262959,
-      "longitude": 108.947886,
-      "candidates": [],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：西安 新城区 西安人民剧院 北大街41号(近西华门) → 西安人民剧院"
-    },
-    {
-      "group_id": "727b7cc3960c",
-      "event_uids": ["douban:37798719"],
-      "action": "match",
-      "search_keywords_tried": ["西演SPACE-易俗大剧院"],
-      "poi_id": "10380370024523924958",
-      "poi_title": "西演SPACE·易俗大剧院",
-      "poi_address": "陕西省西安市新城区案板街26号(近西一路)",
-      "latitude": 34.261464,
-      "longitude": 108.949597,
-      "candidates": [
-        {
-          "poi_id": "10380370024523924958",
-          "title": "西演SPACE·易俗大剧院",
-          "address": "陕西省西安市新城区案板街26号(近西一路)"
-        }
+      "group_id": "9514e32143bb",
+      "event_uids": [
+        "douban:37855558"
       ],
+      "action": "match",
+      "poi_id": "10834092220146621823",
+      "poi_title": "西安音乐厅",
+      "poi_address": "",
+      "latitude": 34.210006,
+      "longitude": 108.964957,
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址（新城区案板街26号近西一路）与POI完全一致"
+      "reason": "地址映射库命中：西安 雁塔区 西安音乐厅 雁南一路与雁塔南路十字向南200米路东 → 西安音乐厅（来源 event:douban:37772999）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ]
     }
   ]
 }

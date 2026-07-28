@@ -1,43 +1,25 @@
 {
   "city": "西安",
   "source": "douban",
-  "exported_at": "2026-07-13T01:27:33.439Z",
+  "exported_at": "2026-07-26T11:52:58.242Z",
   "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
   "events": [
     {
-      "event_uid": "douban:37829127",
+      "event_uid": "douban:37855558",
       "city": "西安",
       "source": "douban",
-      "title": "《山那边·见一面》镐天原创音乐作品演唱会",
-      "time_text": "07月18日 周六 19:58-22:28",
+      "title": "马克-安德烈·哈默林钢琴独奏音乐会 Marc-André Hamelin Piano Recital",
+      "time_text": "07月31日 周五 19:45-20:45",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
-      "detail_excerpt": "约150分钟，实际演出时长以现场为准\n最低演出曲目\n以现场为准\n主要演员\n无需预约\n儿童说明\n1.2米以下儿童谢绝入场，1.2米以上儿童需持票入场\n特殊提示\n《山那边·见一面》镐天原创音乐作品演唱会",
+      "detail_excerpt": "入场方式说明\n1.2米以下儿童谢绝入场，1.2米以上儿童需持票入场\n本场音乐会时长约105分钟，包含15分钟中场休息\n主要演员\n以现场为准\n无需预约\n3. 演出开始后迟到观众需等待工作人员通知后入场。\nAdmission by ticket only. Children under 120cm will not be allowed to enter.\nThe purchased tickets will not be returned.",
       "suggestion": {
-        "start_at": "2026-07-18 19:58:00",
-        "expired_at": "2026-07-18 22:28:00",
+        "start_at": "2026-07-31 19:45:00",
+        "expired_at": "2026-07-31 20:45:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月18日 周六 19:58-22:28"
-      }
-    },
-    {
-      "event_uid": "douban:37798719",
-      "city": "西安",
-      "source": "douban",
-      "title": "米小圈智趣成长儿童剧《米小圈之李白白不白》",
-      "time_text": "07月18日 周六 15:30-21:00",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "入场方式说明\n约60分钟（以现场为准）\n以现场为准\n主要演员\n无需预约",
-      "suggestion": {
-        "start_at": "2026-07-18 15:30:00",
-        "expired_at": "2026-07-18 21:00:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月18日 周六 15:30-21:00"
+        "reason": "豆瓣详情：07月31日 周五 19:45-20:45"
       }
     }
   ]

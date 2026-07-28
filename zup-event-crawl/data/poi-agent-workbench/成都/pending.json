@@ -1,60 +1,52 @@
 {
   "city": "成都",
   "source": "douban",
-  "exported_at": "2026-07-13T14:41:15.261Z",
+  "exported_at": "2026-07-26T12:09:12.522Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 3,
+  "last_import_new_uids": 5,
   "doubtful_only": false,
-  "total_events": 3,
+  "total_events": 5,
   "group_count": 3,
   "cache_hit_groups": 2,
   "groups": [
     {
-      "group_id": "326dc8c7c651",
-      "location": "成都 武侯区 中影紫荆国际影城4K激光IMAX-环球中心旗舰店（武侯区天府大道北段1700号环球购物中心(东区)A馆4楼）",
-      "sample_title": "温暖治愈，夏日必看！章若楠、金靖领衔主演《想你了》成都免费观影",
+      "group_id": "b77df371c7f2",
+      "location": "成都 锦江区 万达·锦华城(二环路东五段)",
+      "sample_title": "【成都桌游社交】2026年八月第1周社交计划",
       "event_uids": [
-        "douban:37901145"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "ae5469a44b0e",
-      "location": "成都 武侯区 发伢剧场 天府大道北段8号苏宁广场B2-6层（商场内6楼605）",
-      "sample_title": "格林童话音乐儿童剧《小红帽》与大灰狼斗智斗勇",
-      "event_uids": [
-        "douban:37689412"
+        "douban:37906658"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "12873058663482291414",
-        "poi_title": "发伢剧场(苏宁店)",
+        "poi_id": "2305365833422175537",
+        "poi_title": "趣本屋",
         "poi_address": "",
-        "latitude": 30.601068,
-        "longitude": 104.06599,
+        "latitude": 30.620228,
+        "longitude": 104.096836,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：成都 武侯区 发伢剧场 天府大道北段8号苏宁广场B2-6层（商场内6楼605） → 发伢剧场(苏宁店)（来源 event:douban:37478357）",
+        "reason": "地址映射库命中：成都 锦江区 万达·锦华城(二环路东五段) → 趣本屋（来源 event:douban:37900409）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "ae5469a44b0e720c35e2dde3b841e4f35263acd2"
+        "cache_key": "b77df371c7f260c311ef3e86f6c3ef6789ad5f39"
       }
     },
     {
       "group_id": "8d49ab5cdabb",
       "location": "成都 武侯区 成都城市音乐厅 一环路南一段45号",
-      "sample_title": "英国名著女性觉醒经典话剧《简·爱》",
+      "sample_title": "四熹丸子（徐化文）2026[秋风]巡回演唱会-成都站",
       "event_uids": [
-        "douban:37817562"
+        "douban:37861916",
+        "douban:37862235"
       ],
-      "event_count": 1,
+      "event_count": 2,
       "cached_poi": {
         "poi_id": "17793737809543540578",
         "poi_title": "成都城市音乐厅",
@@ -64,13 +56,23 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：成都 武侯区 成都城市音乐厅 一环路南一段45号 → 成都城市音乐厅（来源 event:douban:37835431）",
+        "reason": "地址映射库命中：成都 武侯区 成都城市音乐厅 一环路南一段45号 → 成都城市音乐厅（来源 event:douban:37817562）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
         "cache_key": "8d49ab5cdabb5e2e8c373eff42a6dac1be2fc462"
       }
+    },
+    {
+      "group_id": "93ebb91a18c5",
+      "location": "成都 都江堰 The Theatre剧院(金融城店)",
+      "sample_title": "喜剧幽默感的培训",
+      "event_uids": [
+        "douban:37895083",
+        "douban:37895078"
+      ],
+      "event_count": 2
     }
   ]
 }

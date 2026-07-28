@@ -1,50 +1,41 @@
 {
   "city": "哈尔滨",
   "source": "douban",
-  "exported_at": "2026-07-10T11:28:53.930Z",
+  "exported_at": "2026-07-26T11:54:01.456Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 2,
+  "last_import_new_uids": 1,
   "doubtful_only": false,
-  "total_events": 2,
-  "group_count": 2,
+  "total_events": 1,
+  "group_count": 1,
   "cache_hit_groups": 1,
   "groups": [
     {
-      "group_id": "65985cfd3b54",
-      "location": "哈尔滨 道里区 博纳国际影城(哈尔滨银泰城IMAX店)",
-      "sample_title": "这团火永不熄灭《功夫女足》特别观影场｜奇妙观影团·哈尔滨站",
+      "group_id": "8f9d932bf1cc",
+      "location": "哈尔滨 南岗区 环球剧场 红旗大街301号国际会议中心院内",
+      "sample_title": "哈尔滨站《爱·永恒》理查德·克莱德曼钢琴音乐会",
       "event_uids": [
-        "douban:37898438"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "c9905f7c5de0",
-      "location": "哈尔滨 松北区 哈尔滨大剧院 大剧院街1号",
-      "sample_title": "职场推理音乐剧《六个说谎的大学生》",
-      "event_uids": [
-        "douban:37851421"
+        "douban:37707296"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "6732340391101466727",
-        "poi_title": "哈尔滨大剧院",
+        "poi_id": "15442688759833216709",
+        "poi_title": "环球剧场",
         "poi_address": "",
-        "latitude": 45.809524,
-        "longitude": 126.585764,
+        "latitude": 45.753209,
+        "longitude": 126.698389,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：哈尔滨 松北区 哈尔滨大剧院 大剧院街1号 → 哈尔滨大剧院（来源 event:douban:37795475）",
+        "reason": "地址映射库命中：哈尔滨 南岗区 环球剧场 红旗大街301号国际会议中心院内 → 环球剧场（来源 event:douban:37737545）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "c9905f7c5de01641b9f1b510c72d17fd6c8d4212"
+        "cache_key": "8f9d932bf1cc3983019e5826591fdaf0a8e42cfa"
       }
     }
   ]

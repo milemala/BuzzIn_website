@@ -1,26 +1,92 @@
 {
   "city": "天津",
   "source": "douban",
-  "exported_at": "2026-07-13T14:41:15.728Z",
+  "exported_at": "2026-07-26T12:09:29.299Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 1,
+  "last_import_new_uids": 3,
   "doubtful_only": false,
-  "total_events": 1,
-  "group_count": 1,
-  "cache_hit_groups": 0,
+  "total_events": 3,
+  "group_count": 3,
+  "cache_hit_groups": 3,
   "groups": [
     {
-      "group_id": "0c48a70e164b",
-      "location": "天津 南开区 金逸影城(大悦城IMAX店) 天津市南开区南门外大街2-6号天津南开大悦城北区f4层4f-13、4f-15",
-      "sample_title": "温暖治愈，夏日必看！章若楠、金靖领衔主演《想你了》天津免费观影",
+      "group_id": "880be375bab0",
+      "location": "天津 河东区 二十年音乐现场 津塘路146号泰达津一产业公园4号楼西侧",
+      "sample_title": "刘嘉卓&宗克.梅恩2026《不一样的声音》天津站",
       "event_uids": [
-        "douban:37901159"
+        "douban:37795239"
       ],
-      "event_count": 1
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "1153133185343987457",
+        "poi_title": "二十年音乐现场",
+        "poi_address": "",
+        "latitude": 39.093947,
+        "longitude": 117.277011,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：天津 河东区 二十年音乐现场 津塘路146号泰达津一产业公园4号楼西侧 → 二十年音乐现场（来源 event:douban:37836726）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "880be375bab036c3ce3ee20554e5740e69b41f77"
+      }
+    },
+    {
+      "group_id": "b6db014cc25f",
+      "location": "天津 和平区 开心麻花民园剧场 五大道街重庆道83号民园广场开心麻花剧场",
+      "sample_title": "开心麻花爆笑奇谈大戏《开心聊斋·三生PLUS》",
+      "event_uids": [
+        "douban:37777561"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "9794766318450806396",
+        "poi_title": "开心麻花民园剧场",
+        "poi_address": "",
+        "latitude": 39.11201,
+        "longitude": 117.204383,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：天津 和平区 开心麻花民园剧场 五大道街重庆道83号民园广场开心麻花剧场 → 开心麻花民园剧场（来源 event:douban:37792447）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "b6db014cc25f51d5d9faa4a57c53336c86494bad"
+      }
+    },
+    {
+      "group_id": "a900e7aeedc9",
+      "location": "天津 河西区 天津大剧院 平江道58号增1号",
+      "sample_title": "奥斯卡•罗曼耶卓钢琴独奏音乐会-天津站",
+      "event_uids": [
+        "douban:37833000"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "5192144685254939370",
+        "poi_title": "天津大剧院",
+        "poi_address": "",
+        "latitude": 39.087342,
+        "longitude": 117.216161,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：天津 河西区 天津大剧院 平江道58号增1号 → 天津大剧院（来源 event:douban:37722111）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "a900e7aeedc9f641376d05c9ced0b92791c8d298"
+      }
     }
   ]
 }

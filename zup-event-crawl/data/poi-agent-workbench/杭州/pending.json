@@ -1,33 +1,153 @@
 {
   "city": "杭州",
   "source": "douban",
-  "exported_at": "2026-07-13T14:41:14.760Z",
+  "exported_at": "2026-07-26T12:08:46.098Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 2,
+  "last_import_new_uids": 10,
   "doubtful_only": false,
-  "total_events": 2,
-  "group_count": 2,
-  "cache_hit_groups": 1,
+  "total_events": 10,
+  "group_count": 10,
+  "cache_hit_groups": 4,
   "groups": [
     {
-      "group_id": "271a89a2453a",
-      "location": "杭州 上城区 浙江胜利剧院 延安路279号",
-      "sample_title": "【杭州】不选座·向阿加莎致敬 · 外百老汇推理悬疑剧《谋杀派对》",
+      "group_id": "6b9df76789b7",
+      "location": "杭州 余杭区 良渚文化艺术中心·展厅3",
+      "sample_title": "姜俊×周小淳：看见美术馆，也看见艺术史|《美术馆的内与外》新书分享",
       "event_uids": [
-        "douban:37803636"
+        "douban:37905968"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "b49c19b20eb6",
+      "location": "杭州 钱塘区 金沙湖大剧院半场·演艺新空间 金沙大道与幸福南路交叉路口往东南约150米（金沙湖公园）",
+      "sample_title": "钱塘 · 听见世界 | 柴赛银奖乔治•哈利奥诺“东方幻想”钢琴独奏会",
+      "event_uids": [
+        "douban:37847212"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "0e8a73345a7c",
+      "location": "杭州 萧山区 萧山剧院 市心中路918号(人民广场东面)",
+      "sample_title": "中国四大名著系列亲子剧《西游记之大战金角银角大王》",
+      "event_uids": [
+        "douban:37866473"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "c99558417193",
+      "location": "杭州 拱墅区 杭州剧院 体育场路武林广场29号",
+      "sample_title": "奥斯卡·罗曼耶卓钢琴独奏音乐会-杭州站",
+      "event_uids": [
+        "douban:37834509"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "15658566135752878727",
+        "poi_title": "杭州剧院",
+        "poi_address": "",
+        "latitude": 30.271073,
+        "longitude": 120.161509,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：杭州 拱墅区 杭州剧院 体育场路武林广场29号 → 杭州剧院（来源 event:douban:37764697）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "c99558417193064a5fa7af95c3cc9375bd077bc0"
+      }
+    },
+    {
+      "group_id": "f4a8f722b2a2",
+      "location": "杭州 上城区 纯真年代书吧",
+      "sample_title": "《中国船长》新书分享会",
+      "event_uids": [
+        "douban:37905352"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "05689f4a6dd3",
+      "location": "杭州 拱墅区 3号线香积寺地铁站附近--Waterloo",
+      "sample_title": "电影圆桌 | 新片尝鲜·山田洋次新作《东京出租车》",
+      "event_uids": [
+        "douban:37904990"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2199031223519",
+        "poi_title": "香积寺[地铁站]",
+        "poi_address": "",
+        "latitude": 30.300204,
+        "longitude": 120.148587,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：杭州 拱墅区 3号线香积寺地铁站附近--Waterloo → 香积寺[地铁站]（来源 event:douban:37898456）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "05689f4a6dd3b2ce222be4e1d8254afbeee3c53f"
+      }
+    },
+    {
+      "group_id": "152d38340abd",
+      "location": "杭州 拱墅区 杭州·C立方剧场 西湖文化广场8号1层夹层6室",
+      "sample_title": "《梁祝》唯美经典名曲小提琴音乐会",
+      "event_uids": [
+        "douban:37602296"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2208813241394293147",
+        "poi_title": "杭州·C立方剧场",
+        "poi_address": "",
+        "latitude": 30.277143,
+        "longitude": 120.163865,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：杭州 拱墅区 杭州·C立方剧场 西湖文化广场8号1层夹层6室 → 杭州·C立方剧场（来源 event:douban:37462707）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "152d38340abd15eb3c40ee594c6166366a376674"
+      }
+    },
+    {
+      "group_id": "2cd02dda2ed4",
+      "location": "杭州 西湖区 浙江省人民大会堂演出厅 省府路9号",
+      "sample_title": "[早鸟9折]暮光之城·原片现场音乐会",
+      "event_uids": [
+        "douban:37816178"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "b705ebfa073d",
+      "location": "杭州 西湖区 橙镜空间·M511光影汇3号剧场 古荡街道西溪路511号M511光影汇2号楼2楼",
+      "sample_title": "【暑期特惠七折】超人气古风惊悚喜剧《大人，有诡！》｜现场换装｜实景古风沉浸式",
+      "event_uids": [
+        "douban:37862845"
       ],
       "event_count": 1
     },
     {
       "group_id": "94f739efcce3",
       "location": "杭州 拱墅区 浙江省文化馆小剧场 武林路77号",
-      "sample_title": "《LALALAND爱乐之城》浪漫经典流行名曲主题音乐会",
+      "sample_title": "《肖邦夜曲》古典浪漫钢琴音乐会",
       "event_uids": [
-        "douban:37703821"
+        "douban:37856799"
       ],
       "event_count": 1,
       "cached_poi": {
@@ -39,7 +159,7 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：杭州 拱墅区 浙江省文化馆小剧场 武林路77号 → 浙江省文化馆小剧场（来源 event:douban:37784128）",
+        "reason": "地址映射库命中：杭州 拱墅区 浙江省文化馆小剧场 武林路77号 → 浙江省文化馆小剧场（来源 event:douban:37703821）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],

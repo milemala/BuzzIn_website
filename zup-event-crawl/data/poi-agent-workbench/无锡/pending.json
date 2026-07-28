@@ -1,24 +1,49 @@
 {
   "city": "无锡",
   "source": "douban",
-  "exported_at": "2026-07-13T01:32:36.812Z",
+  "exported_at": "2026-07-26T12:09:29.508Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 1,
+  "last_import_new_uids": 3,
   "doubtful_only": false,
-  "total_events": 1,
-  "group_count": 1,
-  "cache_hit_groups": 1,
+  "total_events": 3,
+  "group_count": 3,
+  "cache_hit_groups": 3,
   "groups": [
+    {
+      "group_id": "b44229cae89b",
+      "location": "无锡 梁溪区 大發喜剧脱口秀 南下塘169-1号",
+      "sample_title": "全国脱口秀大赛亚军主持、殿军专场-八渡个人专场-周六 19:30-南长街&大发喜剧-明星专场",
+      "event_uids": [
+        "douban:37491560"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "9010067057749167094",
+        "poi_title": "大发喜剧脱口秀",
+        "poi_address": "",
+        "latitude": 31.558235,
+        "longitude": 120.315851,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：无锡 梁溪区 大發喜剧脱口秀 南下塘169-1号 → 大发喜剧脱口秀（来源 event:douban:37534041）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "b44229cae89bf37935304bbb41f06dc96e0c6bb9"
+      }
+    },
     {
       "group_id": "c5997e04a41a",
       "location": "无锡 新吴区 无锡交响音乐厅 净慧西道与清晏路交叉口",
-      "sample_title": "荷兰浪漫吉他二重奏",
+      "sample_title": "古典吉他与长笛二重奏",
       "event_uids": [
-        "douban:37770356"
+        "douban:37770341"
       ],
       "event_count": 1,
       "cached_poi": {
@@ -30,12 +55,37 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：无锡 新吴区 无锡交响音乐厅 净慧西道与清晏路交叉口 → 无锡交响音乐厅（来源 event:douban:37827379）",
+        "reason": "地址映射库命中：无锡 新吴区 无锡交响音乐厅 净慧西道与清晏路交叉口 → 无锡交响音乐厅（来源 event:douban:37770356）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
         "cache_key": "c5997e04a41a0228fb9e6b4b8cb4711d31276e0e"
+      }
+    },
+    {
+      "group_id": "f3d25447ea3a",
+      "location": "无锡 滨湖区 无锡大剧院 大剧院（蠡湖大道金石路口）",
+      "sample_title": "WetMen·俄罗斯型男水舞剧《雨中》",
+      "event_uids": [
+        "douban:37823827"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "18373871647542107691",
+        "poi_title": "无锡大剧院·歌剧厅",
+        "poi_address": "",
+        "latitude": 31.514424,
+        "longitude": 120.278924,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：无锡 滨湖区 无锡大剧院 大剧院（蠡湖大道金石路口） → 无锡大剧院·歌剧厅（来源 event:douban:37830187）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "f3d25447ea3a29ee686005afbb3aa95bfb9172a7"
       }
     }
   ]

@@ -1,44 +1,25 @@
 {
   "city": "哈尔滨",
-  "source": "douban",
-  "decided_at": "2026-07-10T11:35:00.000Z",
+  "decided_at": "2026-07-26T11:54:06.768Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "65985cfd3b54",
-      "event_uids": ["douban:37898438"],
-      "action": "match",
-      "search_keywords_tried": ["博纳国际影城 银泰城", "博纳国际影城 哈尔滨银泰城IMAX"],
-      "poi_id": "10473361174094592207",
-      "poi_title": "博纳国际影城(哈尔滨银泰城IMAX店)",
-      "poi_address": "黑龙江省哈尔滨市道里区群力2399号银泰城购物中心5层",
-      "latitude": 45.736581,
-      "longitude": 126.539775,
-      "candidates": [
-        {
-          "poi_id": "10473361174094592207",
-          "title": "博纳国际影城(哈尔滨银泰城IMAX店)",
-          "address": "黑龙江省哈尔滨市道里区群力2399号银泰城购物中心5层"
-        }
+      "group_id": "8f9d932bf1cc",
+      "event_uids": [
+        "douban:37707296"
       ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "店名博纳国际影城哈尔滨银泰城IMAX店与道里区银泰城购物中心一致，与活动地址完全对应"
-    },
-    {
-      "group_id": "c9905f7c5de0",
-      "event_uids": ["douban:37851421"],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "6732340391101466727",
-      "poi_title": "哈尔滨大剧院",
+      "poi_id": "15442688759833216709",
+      "poi_title": "环球剧场",
       "poi_address": "",
-      "latitude": 45.809524,
-      "longitude": 126.585764,
-      "candidates": [],
+      "latitude": 45.753209,
+      "longitude": 126.698389,
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：哈尔滨 松北区 哈尔滨大剧院 大剧院街1号 → 哈尔滨大剧院"
+      "reason": "地址映射库命中：哈尔滨 南岗区 环球剧场 红旗大街301号国际会议中心院内 → 环球剧场（来源 event:douban:37737545）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ]
     }
   ]
 }

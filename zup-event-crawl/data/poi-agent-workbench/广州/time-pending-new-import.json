@@ -1,0 +1,30 @@
+{
+  "city": "广州",
+  "source": "douban",
+  "scope": "new-import-only",
+  "count": 2,
+  "events": [
+    {
+      "event_uid": "douban:37903919",
+      "title": "我图周日阿瓦隆",
+      "time_text": "07月26日 周日 14:00-23:00",
+      "suggestion": {
+        "start_at": "2026-07-26 14:00:00",
+        "expired_at": "2026-07-26 23:00:00",
+        "confidence": "high",
+        "reason": "豆瓣详情：07月26日 周日 14:00-23:00"
+      }
+    },
+    {
+      "event_uid": "douban:37903941",
+      "title": "【周二电影院】《像我这样的爱情》",
+      "time_text": "07月21日 周二 19:30-22:00",
+      "suggestion": {
+        "start_at": "2026-07-21 19:30:00",
+        "expired_at": "2026-07-21 22:00:00",
+        "confidence": "high",
+        "reason": "豆瓣详情：07月21日 周二 19:30-22:00"
+      }
+    }
+  ]
+}

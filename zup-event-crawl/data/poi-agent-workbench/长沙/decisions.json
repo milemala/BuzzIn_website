@@ -1,58 +1,80 @@
 {
   "city": "长沙",
-  "decided_at": "2026-07-13T01:40:00.000Z",
+  "decided_at": "2026-07-26T12:20:00.000Z",
   "agent": "cursor-composer",
+  "note": "仅本轮 getLastImportNewUids 2 条；keyword 搜索后手写",
   "decisions": [
     {
-      "group_id": "a6f40c865d21",
-      "event_uids": ["douban:37820466"],
+      "group_id": "4e9f9cf8747e",
+      "event_uids": ["douban:37906089"],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "13348260499578885956",
-      "poi_title": "长沙音乐厅",
-      "poi_address": "",
-      "latitude": 28.242921,
-      "longitude": 112.979271,
-      "candidates": [],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：长沙 开福区 长沙音乐厅 湘江北路滨江文化园 → 长沙音乐厅"
-    },
-    {
-      "group_id": "a33392755057",
-      "event_uids": ["douban:37885287"],
-      "action": "match",
-      "search_keywords_tried": ["贺龙体育场"],
-      "poi_id": "7623808843368916509",
-      "poi_title": "贺龙体育场",
-      "poi_address": "湖南省长沙市天心区芙蓉中路二段188长沙贺龙体育中心",
-      "latitude": 28.177848,
-      "longitude": 112.982586,
+      "search_keywords_tried": ["潇湘青春影城 悦方", "悦方ID MALL 坡子街"],
+      "poi_id": "5214089646133084107",
+      "poi_title": "潇湘青春影城(长沙悦方巨幕店)",
+      "poi_address": "湖南省长沙市天心区坡子街216号悦方IDmall商场5层",
+      "latitude": 28.189363,
+      "longitude": 112.975083,
       "candidates": [
         {
-          "poi_id": "7623808843368916509",
-          "title": "贺龙体育场",
-          "address": "湖南省长沙市天心区芙蓉中路二段188长沙贺龙体育中心"
+          "poi_id": "5214089646133084107",
+          "title": "潇湘青春影城(长沙悦方巨幕店)",
+          "address": "湖南省长沙市天心区坡子街216号悦方IDmall商场5层",
+          "category": "娱乐休闲:电影院",
+          "latitude": 28.189363,
+          "longitude": 112.975083
+        },
+        {
+          "poi_id": "8678745345570203813",
+          "title": "悦方IDmall",
+          "address": "湖南省长沙市天心区坡子街216号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 28.189647,
+          "longitude": 112.974944
         }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址（天心区芙蓉中路188号）与POI完全一致"
+      "reason": "影城名与天心区坡子街216号悦方门牌一致，选影院店级POI"
     },
     {
-      "group_id": "bbeec5fe7de6",
-      "event_uids": ["douban:37832262"],
+      "group_id": "6f4bc99293b6",
+      "event_uids": ["douban:35857318"],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "778045471434447270",
-      "poi_title": "梅溪湖国际文化艺术中心大剧院-入口",
-      "poi_address": "",
-      "latitude": 28.195469,
-      "longitude": 112.907104,
-      "candidates": [],
+      "search_keywords_tried": ["嘻嘻分子脱口秀 荟聚", "嘻嘻分子脱口秀", "嘻嘻分子剧场", "荟聚中心 洋湖路253"],
+      "poi_id": "7026419939420325209",
+      "poi_title": "嘻嘻分子荟聚店",
+      "poi_address": "湖南省长沙市岳麓区洋湖路253号荟聚中心LB1层(地铁洋湖湿地站3号口)",
+      "latitude": 28.116127,
+      "longitude": 112.9387,
+      "candidates": [
+        {
+          "poi_id": "7026419939420325209",
+          "title": "嘻嘻分子荟聚店",
+          "address": "湖南省长沙市岳麓区洋湖路253号荟聚中心LB1层(地铁洋湖湿地站3号口)",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 28.116127,
+          "longitude": 112.9387
+        },
+        {
+          "poi_id": "10111218268651376539",
+          "title": "嘻嘻分子脱口秀剧场(保利mall店)",
+          "address": "湖南省长沙市雨花区黎托街道劳动东路268号,吉联MALLB馆北区2楼2014号(4号电梯旁)",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 28.156455,
+          "longitude": 113.046573
+        },
+        {
+          "poi_id": "8210960593861463246",
+          "title": "长沙荟聚",
+          "address": "湖南省长沙市岳麓区洋湖路253号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 28.117729,
+          "longitude": 112.93775
+        }
+      ],
       "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：长沙 岳麓区 梅溪湖国际文化艺术中心大剧院 → 梅溪湖国际文化艺术中心大剧院-入口"
+      "doubtful": true,
+      "reason": "店名与洋湖路253号荟聚中心LB1一致；豆瓣写天心区，POI在岳麓区，区划存疑建议人工核对"
     }
   ]
 }

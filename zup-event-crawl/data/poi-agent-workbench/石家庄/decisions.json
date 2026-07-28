@@ -1,37 +1,85 @@
 {
   "city": "石家庄",
-  "decided_at": "2026-07-13T01:40:00.000Z",
+  "decided_at": "2026-07-26T12:20:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "1936a226f46b",
-      "event_uids": ["douban:37815802"],
+      "group_id": "b1720c406f21",
+      "event_uids": [
+        "douban:37658474",
+        "douban:37602337",
+        "douban:37498168",
+        "douban:37498211",
+        "douban:37439172"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "532037913248001448",
-      "poi_title": "星光艺术空间&红糖LIVEHOUSE",
-      "poi_address": "",
-      "latitude": 38.044978,
-      "longitude": 114.487492,
-      "candidates": [],
+      "search_keywords_tried": ["河北省话剧院儿童剧场"],
+      "poi_id": "1898510723239737524",
+      "poi_title": "河北省话剧院儿童剧场",
+      "poi_address": "河北省石家庄市裕华区裕华路街道富强大街20号",
+      "latitude": 38.031418,
+      "longitude": 114.522236,
+      "candidates": [
+        {
+          "poi_id": "1898510723239737524",
+          "title": "河北省话剧院儿童剧场",
+          "address": "河北省石家庄市裕华区裕华路街道富强大街20号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 38.031418,
+          "longitude": 114.522236
+        },
+        {
+          "poi_id": "7957277161513541319",
+          "title": "河北省话剧院儿童剧场地面停车场",
+          "address": "河北省石家庄市裕华区富强大街20号河北省话剧院儿童剧场",
+          "category": "汽车:停车场",
+          "latitude": 38.031435,
+          "longitude": 114.522694
+        },
+        {
+          "poi_id": "13809198897608632016",
+          "title": "重庆风味酒家(富强大街店)",
+          "address": "河北省石家庄市裕华区裕华路街道富强大街20号省话剧院南邻",
+          "category": "美食:中餐厅:川菜",
+          "latitude": 38.031233,
+          "longitude": 114.522713
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：石家庄 新华区 红糖LIVEHOUSE 湾里庙步行街水幕广场M08 → 星光艺术空间&红糖LIVEHOUSE"
+      "reason": "场馆名与裕华区富强大街20号门牌完全一致"
     },
     {
-      "group_id": "79463ddd745b",
-      "event_uids": ["douban:37781049"],
+      "group_id": "c8f1ab93fc0e",
+      "event_uids": ["douban:36885745"],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "223872818676009218",
-      "poi_title": "河北艺术中心",
-      "poi_address": "",
-      "latitude": 38.036248,
-      "longitude": 114.481621,
-      "candidates": [],
+      "search_keywords_tried": ["河北省艺术中心 造艺空间"],
+      "poi_id": "11316102721831789765",
+      "poi_title": "河北省艺术中心造艺空间",
+      "poi_address": "河北省石家庄市桥西区中山街道裕华西路13号河北省艺术中心西侧",
+      "latitude": 38.036456,
+      "longitude": 114.480854,
+      "candidates": [
+        {
+          "poi_id": "11316102721831789765",
+          "title": "河北省艺术中心造艺空间",
+          "address": "河北省石家庄市桥西区中山街道裕华西路13号河北省艺术中心西侧",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 38.036456,
+          "longitude": 114.480854
+        },
+        {
+          "poi_id": "10591369939282715080",
+          "title": "零叁幺幺咖啡(艺术中心店)",
+          "address": "河北省石家庄市桥西区中山西路裕华西路13号河北艺术中心造艺空间2F、3F",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 38.036484,
+          "longitude": 114.48086
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：石家庄 桥西区 河北省艺术中心 裕华西路13号 → 河北艺术中心"
+      "reason": "造艺空间与桥西区裕华西路13号艺术中心西侧地址一致"
     }
   ]
 }

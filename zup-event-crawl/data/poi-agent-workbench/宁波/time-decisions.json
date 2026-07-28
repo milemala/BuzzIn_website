@@ -1,21 +1,42 @@
 {
   "city": "宁波",
   "source": "douban",
-  "generated_at": "2026-07-10T11:46:54.826Z",
+  "generated_at": "2026-07-26T11:52:58.169Z",
   "note": "可由 Agent 覆写低置信条目后 apply-event-time-decisions.js 入库",
   "decisions": [
     {
-      "event_uid": "douban:37778643",
-      "start_at": "2026-07-17 19:30:00",
-      "expired_at": "2026-07-17 20:45:00",
-      "reason": "豆瓣详情：07月17日 周五 19:30-20:45",
+      "event_uid": "douban:37790328",
+      "start_at": "2026-08-01 19:30:00",
+      "expired_at": "2026-08-02 16:30:00",
+      "reason": "豆瓣详情：08月01日 周六 19:30 ~ 08月02日 周日 16:30",
       "confidence": "high"
     },
     {
-      "event_uid": "douban:37856544",
-      "start_at": "2026-07-15 19:30:00",
-      "expired_at": "2026-07-15 22:00:00",
-      "reason": "豆瓣详情：07月15日 周三 19:30-22:00",
+      "event_uid": "douban:37865356",
+      "start_at": "2026-08-02 19:30:00",
+      "expired_at": "2026-08-02 20:55:00",
+      "reason": "豆瓣详情：08月02日 周日 19:30-20:55",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "douban:37906748",
+      "start_at": "2026-07-12 15:00:00",
+      "expired_at": "2026-08-30 16:30:00",
+      "reason": "豆瓣 itemprop startDate/endDate",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "douban:37906787",
+      "start_at": "2026-07-14 14:30:00",
+      "expired_at": "2026-08-25 16:30:00",
+      "reason": "豆瓣详情：2026年07月14日 ~ 2026年08月25日 每周二 14:30 - 16:30",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "douban:37906804",
+      "start_at": "2026-08-02 15:00:00",
+      "expired_at": "2026-08-30 16:30:00",
+      "reason": "豆瓣详情：2026年08月02日 ~ 2026年08月30日 每周日 15:00 - 16:30",
       "confidence": "high"
     }
   ],

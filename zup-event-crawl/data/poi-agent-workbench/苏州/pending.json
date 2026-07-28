@@ -1,27 +1,51 @@
 {
   "city": "苏州",
   "source": "douban",
-  "exported_at": "2026-07-13T01:31:56.728Z",
+  "exported_at": "2026-07-26T12:09:29.157Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 5,
+  "last_import_new_uids": 3,
   "doubtful_only": false,
-  "total_events": 5,
-  "group_count": 4,
+  "total_events": 3,
+  "group_count": 3,
   "cache_hit_groups": 3,
   "groups": [
     {
+      "group_id": "bc287c268da0",
+      "location": "苏州 虎丘区 山丘livehouse-红唐店 滨河路999号喜年生活广场西侧一楼",
+      "sample_title": "刘嘉卓&宗克.梅恩2026《不一样的声音》苏州站",
+      "event_uids": [
+        "douban:37801362"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "6797155481651446902",
+        "poi_title": "山丘LIVEHOUSE(红唐店)",
+        "poi_address": "",
+        "latitude": 31.291997,
+        "longitude": 120.563408,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：苏州 虎丘区 山丘livehouse-红唐店 滨河路999号喜年生活广场西侧一楼 → 山丘LIVEHOUSE(红唐店)（来源 event:douban:37843220）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "bc287c268da00103796a838b1b4e905a02c79fcb"
+      }
+    },
+    {
       "group_id": "23718b028bd0",
       "location": "苏州 吴江区 苏州湾大剧院 东太湖大道12000号",
-      "sample_title": "耳畔SPA——手中的世界沉浸式室内音乐会",
+      "sample_title": "黑夜的诗篇 施坦威艺术家黄日向独奏音乐会",
       "event_uids": [
-        "douban:37673357",
-        "douban:37673869"
+        "douban:37864202"
       ],
-      "event_count": 2,
+      "event_count": 1,
       "cached_poi": {
         "poi_id": "11514486545186817455",
         "poi_title": "苏州湾大剧院",
@@ -31,7 +55,7 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：苏州 吴江区 苏州湾大剧院 东太湖大道12000号 → 苏州湾大剧院（来源 event:douban:37673856）",
+        "reason": "地址映射库命中：苏州 吴江区 苏州湾大剧院 东太湖大道12000号 → 苏州湾大剧院（来源 event:douban:37841354）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
@@ -40,62 +64,28 @@
       }
     },
     {
-      "group_id": "ef06b234c083",
-      "location": "苏州 姑苏区 苏州开明大戏院 观前街北局11号",
-      "sample_title": "温情互动人偶剧《奶奶的诗》",
+      "group_id": "ed2492b471ee",
+      "location": "苏州 吴中区 苏州尹山湖大剧院 清禾路886号",
+      "sample_title": "【小橙堡】奇思妙想童话剧《白雪公主》-苏州站",
       "event_uids": [
-        "douban:37771897"
+        "douban:37846521"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "4690291939764768068",
-        "poi_title": "苏州开明大戏院(观前街店)",
+        "poi_id": "2087305433933763737",
+        "poi_title": "尹山湖大剧院聚橙院线",
         "poi_address": "",
-        "latitude": 31.309343,
-        "longitude": 120.625342,
+        "latitude": 31.246081,
+        "longitude": 120.704721,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：苏州 姑苏区 苏州开明大戏院 观前街北局11号 → 苏州开明大戏院(观前街店)（来源 event:douban:37857135）",
+        "reason": "地址映射库命中：苏州 吴中区 苏州尹山湖大剧院 清禾路886号 → 尹山湖大剧院聚橙院线（来源 event:douban:37845592）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "ef06b234c08369d546a238d50786db1e45709259"
-      }
-    },
-    {
-      "group_id": "bb3ac37c672a",
-      "location": "苏州 虎丘区 苏州市· 山丘展演空间 新庆东路32号鑫邻里2栋3层",
-      "sample_title": "【苏州】枯木逢春【时间褶皱的旅人】2026巡演-苏州站",
-      "event_uids": [
-        "douban:37856460"
-      ],
-      "event_count": 1
-    },
-    {
-      "group_id": "22328429da75",
-      "location": "苏州 虎丘区 众戏剧文化艺术空间 长江路狮山文化广场B1众戏剧文化艺术空间",
-      "sample_title": "狮山·法国经典舞台喜剧《一个绝望的人》丨轻松欢笑丨沉浸悬疑丨放肆喜剧",
-      "event_uids": [
-        "douban:37582749"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "116162868958338799",
-        "poi_title": "众戏剧文化艺术空间",
-        "poi_address": "",
-        "latitude": 31.293474,
-        "longitude": 120.548244,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：苏州 虎丘区 众戏剧文化艺术空间 长江路狮山文化广场B1众戏剧文化艺术空间 → 众戏剧文化艺术空间（来源 event:douban:37725675）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "22328429da754d653376fc30b6c4195610c673f8"
+        "cache_key": "ed2492b471ee6eac5f8bdd2d33568c0bc731662b"
       }
     }
   ]

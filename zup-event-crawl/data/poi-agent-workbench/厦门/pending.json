@@ -1,41 +1,76 @@
 {
   "city": "厦门",
   "source": "douban",
-  "exported_at": "2026-07-13T14:41:16.189Z",
+  "exported_at": "2026-07-26T12:09:12.660Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 1,
+  "last_import_new_uids": 4,
   "doubtful_only": false,
-  "total_events": 1,
-  "group_count": 1,
-  "cache_hit_groups": 1,
+  "total_events": 4,
+  "group_count": 3,
+  "cache_hit_groups": 2,
   "groups": [
     {
-      "group_id": "b9ff6bec5b9e",
-      "location": "厦门 思明区 散步去Champochic(中山路店)",
-      "sample_title": "《我那些奇奇怪怪的朋友们》｜艺术家代田柚月Yuzuki Shirota个展",
+      "group_id": "443813f048be",
+      "location": "厦门 思明区 闽南大戏院 会展北片区横三路(国际会议中心酒店北侧)",
+      "sample_title": "悬疑惊悚喜剧《“杀死”马克吐温》厦门站",
       "event_uids": [
-        "douban:37900945"
+        "douban:37634768",
+        "douban:37811900"
       ],
-      "event_count": 1,
+      "event_count": 2,
       "cached_poi": {
-        "poi_id": "9354332035420960328",
-        "poi_title": "散步去Champochic(中山路店)",
+        "poi_id": "9553621768810285816",
+        "poi_title": "闽南大戏院·大剧场",
         "poi_address": "",
-        "latitude": 24.455796,
-        "longitude": 118.084983,
+        "latitude": 24.474133,
+        "longitude": 118.189124,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：厦门 思明区 散步去Champochic(中山路店) → 散步去Champochic(中山路店)（来源 event:douban:37895096）",
+        "reason": "地址映射库命中：厦门 思明区 闽南大戏院 会展北片区横三路(国际会议中心酒店北侧) → 闽南大戏院·大剧场（来源 event:douban:37841554）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "b9ff6bec5b9eebb1e2c6400f03418d29ed875051"
+        "cache_key": "443813f048be51bc4cead48c18d559365501f631"
+      }
+    },
+    {
+      "group_id": "1c91ee01d660",
+      "location": "厦门 思明区 DVLN PaRK退化公园",
+      "sample_title": "《蜘蛛侠:崭新之日》IMAX活动场",
+      "event_uids": [
+        "douban:37897904"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "c774afbe6874",
+      "location": "厦门 思明区 厦门开心麻花人民剧场 中山路217号3层-6层",
+      "sample_title": "《人声奇妙之旅·理想人声阿卡贝拉音乐会》",
+      "event_uids": [
+        "douban:37759781"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "12688274327539548091",
+        "poi_title": "开心麻花人民剧场(中山路步行街店)",
+        "poi_address": "",
+        "latitude": 24.45425,
+        "longitude": 118.082069,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：厦门 思明区 厦门开心麻花人民剧场 中山路217号3层-6层 → 开心麻花人民剧场(中山路步行街店)（来源 event:douban:37842936）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "c774afbe68744c551fafc2101502de962cefbbec"
       }
     }
   ]

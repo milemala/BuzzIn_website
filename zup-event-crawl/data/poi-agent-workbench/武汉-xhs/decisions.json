@@ -1,189 +1,765 @@
 {
   "city": "武汉",
   "source": "xiaohongshu",
-  "decided_at": "2026-07-14T01:10:00.000Z",
+  "decided_at": "2026-07-26T13:26:35.684Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "e0c594dba9c4",
-      "event_uids": ["xiaohongshu:6a54a0a7000000001503c9c2:01_0"],
+      "group_id": "9535639163be",
+      "event_uids": [
+        "xiaohongshu:6a61bc7b0000000005039fc0:01_0"
+      ],
       "action": "match",
-      "poi_id": "4982849204858053606",
-      "poi_title": "汉口江滩",
-      "poi_address": "湖北省武汉市江岸区江滩大道1号",
-      "doubtful": true,
-      "reason": "渡江节横跨汉口江滩与汉阳门花园两址，绑定主赛场汉口江滩，建议人工核对"
+      "search_keywords_tried": [
+        "永旺梦乐城武汉经开",
+        "武汉永旺梦乐城广场"
+      ],
+      "poi_id": "16517808465041256525",
+      "poi_title": "永旺梦乐城武汉经开",
+      "poi_address": "湖北省武汉市汉阳区江城大道408号",
+      "latitude": 30.50408,
+      "longitude": 114.205661,
+      "candidates": [
+        {
+          "poi_id": "16517808465041256525",
+          "title": "永旺梦乐城武汉经开",
+          "address": "湖北省武汉市汉阳区江城大道408号",
+          "category": "购物:综合商场",
+          "latitude": 30.50408,
+          "longitude": 114.205661
+        },
+        {
+          "poi_id": "17201672229078554922",
+          "title": "永旺梦乐城经开店-8号门",
+          "address": "湖北省武汉市汉阳区江城大道388号永旺梦乐城(经开店)1F",
+          "category": "室内及附属设施:通行设施类:正门",
+          "latitude": 30.504745,
+          "longitude": 114.206803
+        },
+        {
+          "poi_id": "5555537731523663320",
+          "title": "城广场",
+          "address": "湖北省武汉市江夏区江夏经济开发区大桥现代产业园文化大道199号永旺梦乐城1F",
+          "category": "购物:服饰鞋包",
+          "latitude": 30.396678,
+          "longitude": 114.318618
+        },
+        {
+          "poi_id": "23492628081261880",
+          "title": "KKV(武汉经开永旺梦乐城主力店)",
+          "address": "湖北省武汉市汉阳区永旺梦乐城A馆北广场2楼",
+          "category": "购物:化妆品",
+          "latitude": 30.506331,
+          "longitude": 114.206867
+        },
+        {
+          "poi_id": "12816181013385704826",
+          "title": "周黑鸭(武汉东西湖区永旺购物广场店)",
+          "address": "湖北省武汉市东西湖区将军路街道金银潭大道特1号永旺购物广场一层108铺",
+          "category": "美食:小吃快餐",
+          "latitude": 30.650593,
+          "longitude": 114.239064
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "汉阳经开永旺梦乐城广场与活动场地主体一致"
     },
     {
-      "group_id": "e3c132bd9a61",
-      "event_uids": ["xiaohongshu:6a54a0a7000000001503c9c2:01_1"],
+      "group_id": "462912e106b8",
+      "event_uids": [
+        "xiaohongshu:6a61bc7b0000000005039fc0:01_2"
+      ],
       "action": "match",
+      "search_keywords_tried": [
+        "武汉星悦广场",
+        "武汉伟星星悦广场"
+      ],
+      "poi_id": "7119512457977316374",
+      "poi_title": "武汉伟星星悦广场",
+      "poi_address": "湖北省武汉市江夏区高新六路与流芳路交汇处",
+      "latitude": 30.43839,
+      "longitude": 114.449862,
+      "candidates": [
+        {
+          "poi_id": "7119512457977316374",
+          "title": "武汉伟星星悦广场",
+          "address": "湖北省武汉市江夏区高新六路与流芳路交汇处",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.43839,
+          "longitude": 114.449862
+        },
+        {
+          "poi_id": "18301997820903496943",
+          "title": "光谷星悦广场",
+          "address": "湖北省武汉市江夏区佛祖岭街道牌楼舒路武汉东湖新技术开发区",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.437915,
+          "longitude": 114.449372
+        },
+        {
+          "poi_id": "4926794983866587911",
+          "title": "心悦棋牌(星悦广场店)",
+          "address": "湖北省武汉市江夏区佛祖岭街道高新六路星悦广场2F-01",
+          "category": "娱乐休闲:游戏棋牌:棋牌室",
+          "latitude": 30.437855,
+          "longitude": 114.448728
+        },
+        {
+          "poi_id": "11902089872924816601",
+          "title": "肯德基(光谷星悦广场店)",
+          "address": "湖北省武汉市江夏区东湖新技术开发区高新六路与流芳路交汇处伟星光谷星悦广场GF23号商铺(商场3号门旁)",
+          "category": "美食:小吃快餐",
+          "latitude": 30.43767,
+          "longitude": 114.451074
+        },
+        {
+          "poi_id": "4348756180749573374",
+          "title": "爱回收(星悦广场)",
+          "address": "湖北省武汉市江夏区流芳路84号高新六路武汉伟星星悦广场GF(B0)层爱回收门店(茶百道对面)",
+          "category": "生活服务:废品收购站",
+          "latitude": 30.438453,
+          "longitude": 114.448568
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "江夏光谷伟星星悦广场与活动地址一致，仅差门外广场"
+    },
+    {
+      "group_id": "f3a45c1822da",
+      "event_uids": [
+        "xiaohongshu:6a61bc7b0000000005039fc0:02_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "武汉新天地",
+        "武汉新天地喷泉广场"
+      ],
+      "poi_id": "6972081571126118651",
+      "poi_title": "武汉新天地",
+      "poi_address": "湖北省武汉市江岸区芦沟桥路68号(黄浦路地铁站A口步行240米)",
+      "latitude": 30.607436,
+      "longitude": 114.311349,
+      "candidates": [
+        {
+          "poi_id": "6972081571126118651",
+          "title": "武汉新天地",
+          "address": "湖北省武汉市江岸区芦沟桥路68号(黄浦路地铁站A口步行240米)",
+          "category": "购物:综合商场",
+          "latitude": 30.607436,
+          "longitude": 114.311349
+        },
+        {
+          "poi_id": "14533296597150761703",
+          "title": "魔宗·烧肉(武汉新天地店)",
+          "address": "湖北省武汉市江岸区永清街道天地A4地块三期9号楼9-2-4AC、9-1-12B(喷泉广场)",
+          "category": "美食:日韩菜:其它日韩菜",
+          "latitude": 30.607131,
+          "longitude": 114.31195
+        },
+        {
+          "poi_id": "5491698909603433345",
+          "title": "日和山茶(天地旗舰店)",
+          "address": "湖北省武汉市江岸区武汉天地商业街9号楼1层(近喷泉广场)",
+          "category": "美食:冷饮店",
+          "latitude": 30.607397,
+          "longitude": 114.311606
+        },
+        {
+          "poi_id": "16517808465041256525",
+          "title": "永旺梦乐城武汉经开",
+          "address": "湖北省武汉市汉阳区江城大道408号",
+          "category": "购物:综合商场",
+          "latitude": 30.50408,
+          "longitude": 114.205661
+        },
+        {
+          "poi_id": "6396161274315264036",
+          "title": "大悦城",
+          "address": "湖北省武汉市洪山区九峰街道高新大道718号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.488105,
+          "longitude": 114.498622
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "江岸区武汉新天地主体一致，喷泉广场为商场内公共空间"
+    },
+    {
+      "group_id": "9a72eb583ae4",
+      "event_uids": [
+        "xiaohongshu:6a61bc7b0000000005039fc0:03_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "武汉经开万达广场"
+      ],
+      "poi_id": "14851895066088666416",
+      "poi_title": "武汉经开万达广场",
+      "poi_address": "湖北省武汉市蔡甸区东风大道111号",
+      "latitude": 30.506782,
+      "longitude": 114.173791,
+      "candidates": [
+        {
+          "poi_id": "14851895066088666416",
+          "title": "武汉经开万达广场",
+          "address": "湖北省武汉市蔡甸区东风大道111号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.506782,
+          "longitude": 114.173791
+        },
+        {
+          "poi_id": "4905748000085699650",
+          "title": "东西湖万达广场-1号门",
+          "address": "湖北省武汉市东西湖区金山大道1239号武汉金银湖万达广场",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 30.637516,
+          "longitude": 114.17892
+        },
+        {
+          "poi_id": "7185542408261121182",
+          "title": "武汉经开万达广场1号门",
+          "address": "湖北省武汉市蔡甸区东风大道111号万达广场(经开店)F1",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 30.506323,
+          "longitude": 114.172731
+        },
+        {
+          "poi_id": "7974217896811162253",
+          "title": "大秦视界(武汉经开万达广场店)",
+          "address": "湖北省武汉市蔡甸区武汉经开万达广场A区第S1幢1-2层A22号",
+          "category": "购物:眼镜店",
+          "latitude": 30.505698,
+          "longitude": 114.173486
+        },
+        {
+          "poi_id": "7064215542579025122",
+          "title": "汉阳万达广场-A馆1号门",
+          "address": "湖北省武汉市汉阳区龙阳街道四新大道608号武汉汉阳万达广场停车场F1",
+          "category": "室内及附属设施:通行设施类:停车场出入口",
+          "latitude": 30.530539,
+          "longitude": 114.200352
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "蔡甸经开万达广场主体一致，仅差1号门中庭"
+    },
+    {
+      "group_id": "1a455d64afe9",
+      "event_uids": [
+        "xiaohongshu:6a61bc7b0000000005039fc0:03_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "王家湾京东MALL",
+        "京东MALL武汉王家湾"
+      ],
+      "poi_id": "3385507765798753133",
+      "poi_title": "京东MALL(武汉王家湾店)",
+      "poi_address": "湖北省武汉市汉阳区龙阳街道龙阳大道36号地铁王家湾站C出口",
+      "latitude": 30.560934,
+      "longitude": 114.208654,
+      "candidates": [
+        {
+          "poi_id": "3385507765798753133",
+          "title": "京东MALL(武汉王家湾店)",
+          "address": "湖北省武汉市汉阳区龙阳街道龙阳大道36号地铁王家湾站C出口",
+          "category": "购物:超市",
+          "latitude": 30.560934,
+          "longitude": 114.208654
+        },
+        {
+          "poi_id": "3671644812124808420",
+          "title": "联想体验店王家湾京东mall",
+          "address": "湖北省武汉市汉阳区龙阳大道36号",
+          "category": "购物:数码家电",
+          "latitude": 30.560911,
+          "longitude": 114.209038
+        },
+        {
+          "poi_id": "2378174417131156796",
+          "title": "Honeywell霍尼韦尔(京东Mall武汉王家湾店)",
+          "address": "湖北省武汉市汉阳区京东Mall王家湾店",
+          "category": "购物:家具家居建材:厨房用品",
+          "latitude": 30.561628,
+          "longitude": 114.208995
+        },
+        {
+          "poi_id": "11476324449023075101",
+          "title": "友望(京东mall王家湾)",
+          "address": "湖北省武汉市汉阳区龙阳街道京东mall王家湾一楼友望专柜",
+          "category": "购物:数码家电",
+          "latitude": 30.560729,
+          "longitude": 114.208199
+        },
+        {
+          "poi_id": "12932915162205931063",
+          "title": "音频体验(王家湾京东mall店)",
+          "address": "湖北省武汉市汉阳区龙阳一路",
+          "category": "购物:数码家电",
+          "latitude": 30.561427,
+          "longitude": 114.208375
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "汉阳王家湾京东MALL主体一致，仅差中庭"
+    },
+    {
+      "group_id": "fefd4794a56a",
+      "event_uids": [
+        "xiaohongshu:6a61bc7b0000000005039fc0:04_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "咸安坊",
+        "萧红广场"
+      ],
       "poi_id": "3070285156696283826",
       "poi_title": "咸安坊",
       "poi_address": "湖北省武汉市江岸区一元街道鄱阳街21号",
-      "reason": "电竞嘉年华在武汉咸安坊举办"
-    },
-    {
-      "group_id": "fb6b0feb45dd",
-      "event_uids": ["xiaohongshu:6a54a0a7000000001503c9c2:01_2"],
-      "action": "match",
-      "poi_id": "11964367218370730679",
-      "poi_title": "武汉摩尔城",
-      "poi_address": "湖北省武汉市汉阳区王家湾龙阳大道特6号",
-      "reason": "装杯大赛在摩尔城1号门会员小铺"
-    },
-    {
-      "group_id": "3cf0c6377c43",
-      "event_uids": ["xiaohongshu:6a54a0a7000000001503c9c2:02_0"],
-      "action": "match",
-      "poi_id": "11964367218370730679",
-      "poi_title": "武汉摩尔城",
-      "poi_address": "湖北省武汉市汉阳区王家湾龙阳大道特6号",
-      "reason": "造梦手帐节在摩尔城1F中庭"
-    },
-    {
-      "group_id": "0fdfa33e30e7",
-      "event_uids": ["xiaohongshu:6a54a0a7000000001503c9c2:02_1"],
-      "action": "match",
-      "poi_id": "1396582943438241249",
-      "poi_title": "民众乐园",
-      "poi_address": "湖北省武汉市江汉区中山大道704号",
-      "reason": "主题娃展在武汉民众乐园举办"
-    },
-    {
-      "group_id": "3af42f39d665",
-      "event_uids": ["xiaohongshu:6a54a0a7000000001503c9c2:02_2"],
-      "action": "match",
-      "poi_id": "4982849204858053606",
-      "poi_title": "汉口江滩",
-      "poi_address": "湖北省武汉市江岸区江滩大道1号",
+      "latitude": 30.582748,
+      "longitude": 114.295928,
+      "candidates": [
+        {
+          "poi_id": "3070285156696283826",
+          "title": "咸安坊",
+          "address": "湖北省武汉市江岸区一元街道鄱阳街21号",
+          "category": "地名地址",
+          "latitude": 30.582748,
+          "longitude": 114.295928
+        },
+        {
+          "poi_id": "2753414703164431529",
+          "title": "萧红故居",
+          "address": "湖北省武汉市江岸区一元街道胜利街24号(咸安坊12号)",
+          "category": "旅游景点:纪念馆",
+          "latitude": 30.582617,
+          "longitude": 114.295533
+        },
+        {
+          "poi_id": "16517808465041256525",
+          "title": "永旺梦乐城武汉经开",
+          "address": "湖北省武汉市汉阳区江城大道408号",
+          "category": "购物:综合商场",
+          "latitude": 30.50408,
+          "longitude": 114.205661
+        },
+        {
+          "poi_id": "6972081571126118651",
+          "title": "武汉新天地",
+          "address": "湖北省武汉市江岸区芦沟桥路68号(黄浦路地铁站A口步行240米)",
+          "category": "购物:综合商场",
+          "latitude": 30.607436,
+          "longitude": 114.311349
+        },
+        {
+          "poi_id": "6396161274315264036",
+          "title": "大悦城",
+          "address": "湖北省武汉市洪山区九峰街道高新大道718号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.488105,
+          "longitude": 114.498622
+        }
+      ],
+      "confidence": "medium",
       "doubtful": true,
-      "reason": "嘉年华主会场在汉口江滩、分会场在汉阳门花园，绑定主会场，建议人工核对"
+      "reason": "活动写咸安坊·萧红广场，POI绑咸安坊街区，萧红广场无独立店级POI建议核对"
     },
     {
-      "group_id": "da76966f5356",
-      "event_uids": ["xiaohongshu:6a54a0a7000000001503c9c2:03_0"],
-      "action": "match",
-      "poi_id": "11171745458916852466",
-      "poi_title": "武汉国际会展中心",
-      "poi_address": "湖北省武汉市江汉区解放大道696号(艳阳天酒家幸福殿堂店附近)",
-      "reason": "世宠博览会在武汉国际会展中心"
+      "group_id": "750139f3b9ae",
+      "event_uids": [
+        "xiaohongshu:6a61bc7b0000000005039fc0:04_2"
+      ],
+      "action": "reject",
+      "search_keywords_tried": [
+        "武汉大悦城"
+      ],
+      "confidence": "low",
+      "doubtful": false,
+      "reason": "与上周已入库「武汉首届亲子偷吃小赛」同名且同大悦城POI，守卫拦截；本轮不重复绑点"
     },
     {
-      "group_id": "ef552b74e123",
-      "event_uids": ["xiaohongshu:6a54a0a7000000001503c9c2:03_1"],
+      "group_id": "11ce2b7faaa5",
+      "event_uids": [
+        "xiaohongshu:6a61bc7b0000000005039fc0:05_2"
+      ],
       "action": "match",
-      "poi_id": "8721484217015670612",
-      "poi_title": "武汉新天地南馆",
-      "poi_address": "湖北省武汉市江岸区中山大道1515号",
-      "reason": "奇幻森林首展在新天地南馆L2中庭"
+      "search_keywords_tried": [
+        "武汉大学万林艺术博物馆"
+      ],
+      "poi_id": "14660915219720428556",
+      "poi_title": "武汉大学万林艺术博物馆",
+      "poi_address": "湖北省武汉市武昌区珞珈山路16号武汉大学",
+      "latitude": 30.536722,
+      "longitude": 114.362876,
+      "candidates": [
+        {
+          "poi_id": "14660915219720428556",
+          "title": "武汉大学万林艺术博物馆",
+          "address": "湖北省武汉市武昌区珞珈山路16号武汉大学",
+          "category": "文化场馆:博物馆",
+          "latitude": 30.536722,
+          "longitude": 114.362876
+        },
+        {
+          "poi_id": "4371681741673853581",
+          "title": "武汉大学万林艺术博物馆(西南门)",
+          "address": "湖北省武汉市武昌区珞珈山街道武汉大学万林艺术博物馆",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 30.536255,
+          "longitude": 114.363112
+        },
+        {
+          "poi_id": "9925813607944143260",
+          "title": "武汉大学万林艺术博物馆(西北门)",
+          "address": "湖北省武汉市武昌区珞珈山街道武汉大学万林艺术博物馆",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 30.536866,
+          "longitude": 114.362957
+        },
+        {
+          "poi_id": "16517808465041256525",
+          "title": "永旺梦乐城武汉经开",
+          "address": "湖北省武汉市汉阳区江城大道408号",
+          "category": "购物:综合商场",
+          "latitude": 30.50408,
+          "longitude": 114.205661
+        },
+        {
+          "poi_id": "6972081571126118651",
+          "title": "武汉新天地",
+          "address": "湖北省武汉市江岸区芦沟桥路68号(黄浦路地铁站A口步行240米)",
+          "category": "购物:综合商场",
+          "latitude": 30.607436,
+          "longitude": 114.311349
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "武昌区万林艺术博物馆店名地址一致"
     },
     {
-      "group_id": "d98924dd632b",
-      "event_uids": ["xiaohongshu:6a54a0a7000000001503c9c2:03_2"],
+      "group_id": "6c115310022f",
+      "event_uids": [
+        "xiaohongshu:6a61bc7b0000000005039fc0:06_0"
+      ],
       "action": "match",
-      "poi_id": "11562006246215953220",
-      "poi_title": "楚河汉街",
-      "poi_address": "湖北省武汉市武昌区东湖路和松竹路交叉口西北侧",
-      "reason": "傣住夏天主题活动在楚河汉街全街区"
+      "search_keywords_tried": [
+        "梁湖绿丰黄桃园",
+        "群益路前胡湾"
+      ],
+      "poi_id": "3258709182310663706",
+      "poi_title": "梁湖绿丰黄桃园",
+      "poi_address": "湖北省武汉市江夏区群益路前胡湾",
+      "latitude": 30.297776,
+      "longitude": 114.426878,
+      "candidates": [
+        {
+          "poi_id": "3258709182310663706",
+          "title": "梁湖绿丰黄桃园",
+          "address": "湖北省武汉市江夏区群益路前胡湾",
+          "category": "旅游景点",
+          "latitude": 30.297776,
+          "longitude": 114.426878
+        },
+        {
+          "poi_id": "5801121931963021728",
+          "title": "群益路",
+          "address": "湖北省武汉市江夏区",
+          "category": "地名地址:道路名",
+          "latitude": 30.295859,
+          "longitude": 114.425857
+        },
+        {
+          "poi_id": "16479503839439500668",
+          "title": "新胡湾",
+          "address": "湖北省武汉市江夏区龙泉街道",
+          "category": "地名地址:行政地名",
+          "latitude": 30.37945,
+          "longitude": 114.566237
+        },
+        {
+          "poi_id": "15346104391411550535",
+          "title": "胡鸭子湾",
+          "address": "湖北省武汉市江夏区流芳街道",
+          "category": "地名地址:行政地名",
+          "latitude": 30.408667,
+          "longitude": 114.499883
+        },
+        {
+          "poi_id": "18355949606551336787",
+          "title": "下胡湾",
+          "address": "湖北省武汉市江夏区滨湖街道",
+          "category": "地名地址:行政地名",
+          "latitude": 30.298537,
+          "longitude": 114.482814
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "江夏群益路前胡湾梁湖绿丰黄桃园与采摘地址一致"
     },
     {
-      "group_id": "3ba5c2dc828a",
-      "event_uids": ["xiaohongshu:6a54a0a7000000001503c9c2:04_0"],
+      "group_id": "5aa0a5131f03",
+      "event_uids": [
+        "xiaohongshu:6a61bc7b0000000005039fc0:06_1"
+      ],
       "action": "match",
-      "poi_id": "12248476031736664809",
-      "poi_title": "武汉博物馆",
-      "poi_address": "湖北省武汉市江汉区青年路373号",
-      "reason": "消夏讲座在武汉博物馆举办"
+      "search_keywords_tried": [
+        "梁湖漫乡",
+        "梁湖漫乡旅游景区"
+      ],
+      "poi_id": "14786136228625264824",
+      "poi_title": "梁湖漫乡旅游景区",
+      "poi_address": "湖北省武汉市江夏区梁子湖大道群益村三组谢家大舞台",
+      "latitude": 30.287037,
+      "longitude": 114.432964,
+      "candidates": [
+        {
+          "poi_id": "14786136228625264824",
+          "title": "梁湖漫乡旅游景区",
+          "address": "湖北省武汉市江夏区梁子湖大道群益村三组谢家大舞台",
+          "category": "旅游景点",
+          "latitude": 30.287037,
+          "longitude": 114.432964
+        },
+        {
+          "poi_id": "12865555985676591162",
+          "title": "梁湖农庄(梁湖漫乡店)",
+          "address": "湖北省武汉市江夏区五里界街道梁子湖大道梁湖漫乡旅游景区内(北侧)",
+          "category": "美食:农家菜",
+          "latitude": 30.323995,
+          "longitude": 114.423635
+        },
+        {
+          "poi_id": "9197304615051848402",
+          "title": "梁湖都市农庄东游客中心停车场",
+          "address": "湖北省武汉市江夏区梁子湖大道梁湖漫乡旅游景区内(北侧)",
+          "category": "汽车:停车场",
+          "latitude": 30.292148,
+          "longitude": 114.433178
+        },
+        {
+          "poi_id": "17225102806651720181",
+          "title": "梁湖都市农庄-东1门",
+          "address": "湖北省武汉市江夏区五里界街道梁子湖大道梁湖漫乡旅游景区内",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 30.291552,
+          "longitude": 114.435004
+        },
+        {
+          "poi_id": "16517808465041256525",
+          "title": "永旺梦乐城武汉经开",
+          "address": "湖北省武汉市汉阳区江城大道408号",
+          "category": "购物:综合商场",
+          "latitude": 30.50408,
+          "longitude": 114.205661
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "江夏梁湖漫乡旅游景区与活动「景区内」主体一致，果园为景区内点位"
     },
     {
-      "group_id": "846aca6d1605",
-      "event_uids": ["xiaohongshu:6a54a0a7000000001503c9c2:04_1"],
+      "group_id": "5e9e9a446cd5",
+      "event_uids": [
+        "xiaohongshu:6a61bc7b0000000005039fc0:06_2"
+      ],
       "action": "match",
-      "poi_id": "17920360575909335160",
-      "poi_title": "永旺梦乐城(武汉江夏店)",
-      "poi_address": "湖北省武汉市江夏区文化大道199号",
-      "reason": "非遗体验在永旺梦乐城江夏1F动广场"
+      "search_keywords_tried": [
+        "尹祥禾生态采摘园",
+        "锦绣东路夹山里街"
+      ],
+      "poi_id": "5584080571071877637",
+      "poi_title": "尹祥禾生态采摘园(锦绣东路)",
+      "poi_address": "湖北省武汉市江夏区春申里路与程家坊路交叉口正西方向22米左右",
+      "latitude": 30.331717,
+      "longitude": 114.383242,
+      "candidates": [
+        {
+          "poi_id": "5584080571071877637",
+          "title": "尹祥禾生态采摘园(锦绣东路)",
+          "address": "湖北省武汉市江夏区春申里路与程家坊路交叉口正西方向22米左右",
+          "category": "旅游景点",
+          "latitude": 30.331717,
+          "longitude": 114.383242
+        },
+        {
+          "poi_id": "13773791032190660471",
+          "title": "夹山里街与锦绣东路交叉口",
+          "address": "湖北省武汉市江夏区",
+          "category": "基础设施:道路附属:路口",
+          "latitude": 30.329492,
+          "longitude": 114.386295
+        },
+        {
+          "poi_id": "16517808465041256525",
+          "title": "永旺梦乐城武汉经开",
+          "address": "湖北省武汉市汉阳区江城大道408号",
+          "category": "购物:综合商场",
+          "latitude": 30.50408,
+          "longitude": 114.205661
+        },
+        {
+          "poi_id": "6972081571126118651",
+          "title": "武汉新天地",
+          "address": "湖北省武汉市江岸区芦沟桥路68号(黄浦路地铁站A口步行240米)",
+          "category": "购物:综合商场",
+          "latitude": 30.607436,
+          "longitude": 114.311349
+        },
+        {
+          "poi_id": "6396161274315264036",
+          "title": "大悦城",
+          "address": "湖北省武汉市洪山区九峰街道高新大道718号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.488105,
+          "longitude": 114.498622
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "江夏尹祥禾生态采摘园与锦绣东路交叉口附近地址一致"
     },
     {
-      "group_id": "6eaba7a2fbf2",
-      "event_uids": ["xiaohongshu:6a54a0a7000000001503c9c2:05_0"],
+      "group_id": "892dfcc12247",
+      "event_uids": [
+        "xiaohongshu:6a61bc7b0000000005039fc0:07_2"
+      ],
       "action": "match",
-      "poi_id": "12248476031736664809",
-      "poi_title": "武汉博物馆",
-      "poi_address": "湖北省武汉市江汉区青年路373号",
-      "reason": "普洱茶马文化展在武汉博物馆一楼书画厅"
+      "search_keywords_tried": [
+        "武汉销品茂金逸影城",
+        "金逸影城销品茂"
+      ],
+      "poi_id": "7759103115218005603",
+      "poi_title": "金逸影城(销品茂IMAX店)",
+      "poi_address": "湖北省武汉市武昌区徐东大街18号销品茂5F-5020",
+      "latitude": 30.587646,
+      "longitude": 114.342228,
+      "candidates": [
+        {
+          "poi_id": "7759103115218005603",
+          "title": "金逸影城(销品茂IMAX店)",
+          "address": "湖北省武汉市武昌区徐东大街18号销品茂5F-5020",
+          "category": "娱乐休闲:电影院",
+          "latitude": 30.587646,
+          "longitude": 114.342228
+        },
+        {
+          "poi_id": "1357351555757695346",
+          "title": "武汉金逸国际电影城(武胜路店)",
+          "address": "湖北省武汉市硚口区中山大道238号凯德广场F7",
+          "category": "娱乐休闲:电影院",
+          "latitude": 30.568596,
+          "longitude": 114.267511
+        },
+        {
+          "poi_id": "1399510888157911150",
+          "title": "武汉金逸影城蔡甸IMAX店",
+          "address": "湖北省武汉市蔡甸区新福路13号新福茂中央广场F4",
+          "category": "娱乐休闲:电影院",
+          "latitude": 30.580888,
+          "longitude": 114.032627
+        },
+        {
+          "poi_id": "3309411769467108160",
+          "title": "武汉金逸影城汉江云赫店",
+          "address": "湖北省武汉市汉阳区知音大道新世界河之洲商业街S5号楼2-3楼",
+          "category": "娱乐休闲:电影院",
+          "latitude": 30.568884,
+          "longitude": 114.230661
+        },
+        {
+          "poi_id": "12067992687058527360",
+          "title": "武汉万科嘉园金逸星汇影城",
+          "address": "湖北省武汉市洪山区东湖新技术开发区光谷一路12号万科嘉园印象里三层",
+          "category": "娱乐休闲:电影院",
+          "latitude": 30.499444,
+          "longitude": 114.445765
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "武昌销品茂金逸影城店名地址一致"
     },
     {
-      "group_id": "44f94b768243",
-      "event_uids": ["xiaohongshu:6a54a0a7000000001503c9c2:06_0"],
-      "action": "match",
-      "poi_id": "12283495965927984065",
-      "poi_title": "鹅社书店艺术馆(青岛路馆)",
-      "poi_address": "湖北省武汉市江岸区青岛路10号多牛世界B座1楼",
-      "reason": "鹿嘉倩作品展在鹅社书店艺术馆青岛路馆"
+      "group_id": "10f9f02c9936",
+      "event_uids": [
+        "xiaohongshu:6a61bc7b0000000005039fc0:08_1"
+      ],
+      "action": "reject",
+      "search_keywords_tried": [
+        "WS梦乐园武商梦时代",
+        "武商梦时代"
+      ],
+      "confidence": "low",
+      "doubtful": false,
+      "reason": "与上周已入库「第五人格心跳游园会快闪」同名且同WS梦乐园POI，守卫拦截；本轮不重复绑点"
     },
     {
-      "group_id": "ecbe8af86fae",
-      "event_uids": ["xiaohongshu:6a54a0a7000000001503c9c2:06_1"],
+      "group_id": "f01be7e14cf7",
+      "event_uids": [
+        "xiaohongshu:6a61bc7b0000000005039fc0:08_2"
+      ],
       "action": "match",
-      "poi_id": "8612052251023362361",
-      "poi_title": "合美术馆",
-      "poi_address": "湖北省武汉市洪山区野芷湖西路16号(马湖地铁站B口步行120米)",
-      "reason": "竹开生面展在合美术馆5、6、7号展厅"
-    },
-    {
-      "group_id": "a79e9f453027",
-      "event_uids": ["xiaohongshu:6a54a0a7000000001503c9c2:06_2"],
-      "action": "match",
-      "poi_id": "17438135838621634346",
-      "poi_title": "佑品空间",
-      "poi_address": "",
-      "reason": "地址映射库命中：创意天地03创意工坊101 → 佑品空间"
-    },
-    {
-      "group_id": "94d8b072423b",
-      "event_uids": ["xiaohongshu:6a54a0a7000000001503c9c2:07_0"],
-      "action": "match",
-      "poi_id": "4692537674916077905",
-      "poi_title": "武汉国际博览中心",
-      "poi_address": "湖北省武汉市汉阳区鹦鹉大道619号(国博中心北地铁站出入口步行150米)",
-      "reason": "梦乡动漫展在武汉国际博览中心"
-    },
-    {
-      "group_id": "0a22d79cab82",
-      "event_uids": ["xiaohongshu:6a54a0a7000000001503c9c2:07_1"],
-      "action": "match",
-      "poi_id": "2481094296973449105",
-      "poi_title": "MAOLivehouse武汉",
-      "poi_address": "湖北省武汉市江岸区铭新街88号老通城•通城印巷7号楼L3、4",
-      "reason": "莲之空ONLY展在MAO Livehouse武汉店"
-    },
-    {
-      "group_id": "d98bd1b0466f",
-      "event_uids": ["xiaohongshu:6a54a0a7000000001503c9c2:07_2"],
-      "action": "match",
-      "poi_id": "2054636966946479774",
-      "poi_title": "武汉琴台大剧院",
-      "poi_address": "湖北省武汉市汉阳区晴川街道知音大道7号",
-      "reason": "音乐剧《玛蒂尔达》在琴台大剧院"
-    },
-    {
-      "group_id": "c3e189b49fc7",
-      "event_uids": ["xiaohongshu:6a54a0a7000000001503c9c2:08_0"],
-      "action": "match",
-      "poi_id": "14806153071985639861",
-      "poi_title": "武汉银泰创意城",
-      "poi_address": "湖北省武汉市洪山区珞南街道珞瑜路33号珞珈创意体验城1楼",
-      "reason": "奔跑吧部落快闪在银泰创意城1F中庭"
-    },
-    {
-      "group_id": "32b810dfa763",
-      "event_uids": ["xiaohongshu:6a54a0a7000000001503c9c2:08_2"],
-      "action": "match",
-      "poi_id": "8673192247450836742",
-      "poi_title": "武汉滨江天街",
-      "poi_address": "湖北省武汉市武昌区和平大道659号",
-      "reason": "星之卡比快闪在滨江天街L1次中庭"
+      "search_keywords_tried": [
+        "恒隆广场",
+        "武汉恒隆广场"
+      ],
+      "poi_id": "12002464602372966897",
+      "poi_title": "武汉恒隆广场",
+      "poi_address": "湖北省武汉市硚口区京汉大道668号",
+      "latitude": 30.577863,
+      "longitude": 114.273756,
+      "candidates": [
+        {
+          "poi_id": "12002464602372966897",
+          "title": "武汉恒隆广场",
+          "address": "湖北省武汉市硚口区京汉大道668号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 30.577863,
+          "longitude": 114.273756
+        },
+        {
+          "poi_id": "4441970704082871702",
+          "title": "7天酒店(武汉国际广场中山公园地铁站店)",
+          "address": "湖北省武汉市江汉区民意四路96号(友谊路地铁站A口步行360米)",
+          "category": "酒店宾馆:经济型酒店",
+          "latitude": 30.578971,
+          "longitude": 114.275956
+        },
+        {
+          "poi_id": "1930904444833325285",
+          "title": "CARTIER(武汉恒隆广场)",
+          "address": "湖北省武汉市硚口区京汉大道668号恒隆广场商场L109铺位",
+          "category": "购物:珠宝饰品",
+          "latitude": 30.577979,
+          "longitude": 114.273406
+        },
+        {
+          "poi_id": "3240180163610655604",
+          "title": "IWC万国表(恒隆广场店)",
+          "address": "湖北省武汉市硚口区京汉大道668号恒隆广场商场L135铺位",
+          "category": "购物:钟表店",
+          "latitude": 30.57765,
+          "longitude": 114.274004
+        },
+        {
+          "poi_id": "10641090100135421130",
+          "title": "GUCCI(武汉国际广场店)",
+          "address": "湖北省武汉市江汉区解放大道690号武商MALL一层101号",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 30.580976,
+          "longitude": 114.270944
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "硚口区武汉恒隆广场主体一致"
     }
   ]
 }

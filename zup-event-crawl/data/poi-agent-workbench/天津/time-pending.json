@@ -1,25 +1,778 @@
 {
   "city": "天津",
-  "source": "douban",
-  "exported_at": "2026-07-13T14:41:15.407Z",
+  "source": "xiaohongshu",
+  "exported_at": "2026-07-26T13:21:25.621Z",
   "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
   "events": [
     {
-      "event_uid": "douban:37901159",
+      "event_uid": "xiaohongshu:6a54a354000000000f032100:01_0",
       "city": "天津",
-      "source": "douban",
-      "title": "温暖治愈，夏日必看！章若楠、金靖领衔主演《想你了》天津免费观影",
-      "time_text": "07月18日 周六 14:00-15:48",
+      "source": "xiaohongshu",
+      "title": "大脑出逃艺术小市",
+      "time_text": "7月18日-7月19日 13:00-21:00",
+      "current_start_date": "2026-07-18 13:00:00",
+      "current_end_date": "2026-07-19 21:00:00",
+      "current_start_at": "2026-07-18 13:00:00",
+      "current_expired_at": "2026-07-19 21:00:00",
+      "detail_excerpt": "分类：市集\n费用：—\n时间：7月18日-7月19日 13:00-21:00\n地址：天津智慧山北塔·那山LIFE 1-2F（地铁3号线华苑站B口，步行1.4km）\n介绍：市集内容十分丰富，除了海量特色文创摊位之外，还上线宠物友好活动、趣味比拼以及艺术展区，大家既能淘取创意好物，也能参与线下赛事，周末出行游玩的可选体验十分多元。\n\n来源账号：天津周末去哪\n合集标题：大多免费！天津本周可做的22件事 7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a54a354000000000f032100?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLQ47-zUhIMA15icTbs7Ls_M%3D&xsec_source=pc_user\n原 slide：6a54a354000000000f032100/images/01.webp",
+      "suggestion": {
+        "start_at": "2026-07-18 13:00:00",
+        "expired_at": "2026-07-19 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:01_0",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "天津布丁开仓日",
+      "time_text": "7月24日-7月26日 11:00-20:00",
+      "current_start_date": "2026-07-24 11:00:00",
+      "current_end_date": "2026-07-26 20:00:00",
+      "current_start_at": "2026-07-24 11:00:00",
+      "current_expired_at": "2026-07-26 20:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月24日-7月26日 11:00-20:00\n地址：天津K11购物艺术中心2F\n介绍：免费入场，个人闲置及店主清仓活动。\n手账、文创、小物等品类丰富，适合周末闲逛淘宝。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/01.webp\n裁切海报：6a61dbb0000000000f0075df/posters/01_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 11:00:00",
+        "expired_at": "2026-07-26 20:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a354000000000f032100:01_1",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "天津手帐集市",
+      "time_text": "7月18日-7月19日 10:00-20:00",
+      "current_start_date": "2026-07-18 10:00:00",
+      "current_end_date": "2026-07-19 20:00:00",
+      "current_start_at": "2026-07-18 10:00:00",
+      "current_expired_at": "2026-07-19 20:00:00",
+      "detail_excerpt": "分类：市集\n费用：—\n时间：7月18日-7月19日 10:00-20:00\n地址：天津陆家嘴中心1层（地铁1号线西北角站）\n介绍：线上完成相关任务就能够分批领取布袋、铁盒、贴纸等周边，线下打卡可得场刊与票根。\n现场支持盖章、摊主签绘，也可入手特色早鸟福袋收获限定挂件。\n\n来源账号：天津周末去哪\n合集标题：大多免费！天津本周可做的22件事 7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a54a354000000000f032100?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLQ47-zUhIMA15icTbs7Ls_M%3D&xsec_source=pc_user\n原 slide：6a54a354000000000f032100/images/01.webp\n裁切海报：6a54a354000000000f03210",
+      "suggestion": {
+        "start_at": "2026-07-18 10:00:00",
+        "expired_at": "2026-07-19 20:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:01_1",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "好玩「亚」微醺市集",
+      "time_text": "7月16日-7月28日",
+      "current_start_date": "2026-07-16 00:00:00",
+      "current_end_date": "2026-07-28 23:59:59",
+      "current_start_at": "2026-07-16 00:00:00",
+      "current_expired_at": "2026-07-28 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月16日-7月28日\n地址：津一·Park\n介绍：免费入场，宠物友好。\n夏日啤酒音乐市集，涵盖精酿饮品、特色小吃、特色文创、潮玩小铺与休闲游乐。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/01.webp\n裁切海报：6a61dbb0000000000f0075df/posters/01_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-16 00:00:00",
+        "expired_at": "2026-07-28 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a354000000000f032100:01_2",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "GuangGuang夏日面包节",
+      "time_text": "7月17日-7月19日 10:00-22:00",
+      "current_start_date": "2026-07-17 10:00:00",
+      "current_end_date": "2026-07-19 22:00:00",
+      "current_start_at": "2026-07-17 10:00:00",
+      "current_expired_at": "2026-07-19 22:00:00",
+      "detail_excerpt": "分类：市集\n费用：—\n时间：7月17日-7月19日 10:00-22:00\n地址：天津东丽万达户外广场（地铁11号线至东丽文体中心A口）\n介绍：为期三天打造烘焙主题市集。现场布置适配拍照打卡，集结一众优质烘焙摊主，本地达人加持宣传带来客观客流，喜爱面包甜品的游客可以前去搜罗各式手作美味。\n\n来源账号：天津周末去哪\n合集标题：大多免费！天津本周可做的22件事 7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a54a354000000000f032100?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLQ47-zUhIMA15icTbs7Ls_M%3D&xsec_source=pc_user\n原 slide：6a54a354000000000f032100/images/01.webp\n裁切海报：6a54a35400000",
+      "suggestion": {
+        "start_at": "2026-07-17 10:00:00",
+        "expired_at": "2026-07-19 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:02_0",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "「有点艺市」艺术循环主题市集",
+      "time_text": "7月25日-7月26日 17:00-22:00",
+      "current_start_date": "2026-07-25 17:00:00",
+      "current_end_date": "2026-07-26 22:00:00",
+      "current_start_at": "2026-07-25 17:00:00",
+      "current_expired_at": "2026-07-26 22:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日-7月26日 17:00-22:00\n地址：天美艺术街区H栋前广场\n介绍：免费入场，地铁3号线金狮桥站A口。\n艺术循环大学生手工市集，现场有手作、文创与夜市氛围。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/02.webp\n裁切海报：6a61dbb0000000000f0075df/posters/02_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 17:00:00",
+        "expired_at": "2026-07-26 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:02_1",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "奇趣续梦集·主题市集",
+      "time_text": "7月25日-7月26日 10:00-21:00",
+      "current_start_date": "2026-07-25 10:00:00",
+      "current_end_date": "2026-07-26 21:00:00",
+      "current_start_at": "2026-07-25 10:00:00",
+      "current_expired_at": "2026-07-26 21:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日-7月26日 10:00-21:00\n地址：仁恒置地广场\n介绍：免费入场，地铁2号线东南角站E口。\n夏季童梦嘉年华主题，亲子与文创摊位集中亮相。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/02.webp\n裁切海报：6a61dbb0000000000f0075df/posters/02_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 10:00:00",
+        "expired_at": "2026-07-26 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a354000000000f032100:02_1",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "海河之夜消夏晚会",
+      "time_text": "7月15日-8月15日 19:00-21:00",
+      "current_start_date": "2026-07-15 19:00:00",
+      "current_end_date": "2026-08-15 21:00:00",
+      "current_start_at": "2026-07-15 19:00:00",
+      "current_expired_at": "2026-08-15 21:00:00",
+      "detail_excerpt": "分类：市集\n费用：—\n时间：7月15日-8月15日 19:00-21:00\n地址：迪空间·新能源汽车科普馆（地铁2号线东南角站C口）\n介绍：活动划分乐队展演、K-POP 随舞两大板块，搭配潮玩市集与多样互动环节，依托海河夜景氛围感出众，夏夜出游可听歌起舞、闲逛市集，体验丰富的夜间休闲内容。\n\n来源账号：天津周末去哪\n合集标题：大多免费！天津本周可做的22件事 7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a54a354000000000f032100?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLQ47-zUhIMA15icTbs7Ls_M%3D&xsec_source=pc_user\n原 slide：6a54a354000000000f032100/images/02.webp\n裁切海报：6a54a3540000",
+      "suggestion": {
+        "start_at": "2026-07-15 19:00:00",
+        "expired_at": "2026-08-15 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:03_0",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "天津33假日主题市集",
+      "time_text": "7月10日-9月14日",
+      "current_start_date": "2026-07-10 00:00:00",
+      "current_end_date": "2026-09-14 23:59:59",
+      "current_start_at": "2026-07-10 00:00:00",
+      "current_expired_at": "2026-09-14 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月10日-9月14日\n地址：天津杉杉奥特莱斯2号门外草坪\n介绍：免费入场，地铁3号线至南站D口。\n微醺假日、潮流市集与音乐快闪多体验段落，适合周末户外闲逛。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/03.webp\n裁切海报：6a61dbb0000000000f0075df/posters/03_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-10 00:00:00",
+        "expired_at": "2026-09-14 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a354000000000f032100:02_2",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "津一park公园节",
+      "time_text": "持续至7月底 每周五六日 16:00-22:00",
+      "current_start_date": "2026-07-14 16:00:00",
+      "current_end_date": "2026-07-19 22:00:00",
+      "current_start_at": "2026-07-14 16:00:00",
+      "current_expired_at": "2026-07-19 22:00:00",
+      "detail_excerpt": "分类：市集\n费用：—\n时间：持续至7月底 每周五六日 16:00-22:00\n地址：天津津一PARK（地铁9号线一号桥站A口）\n介绍：覆盖多元夜间玩法，烟火市集、喷泉夜景、博物馆夜游一站式打卡。固定时段有露天音乐与星空电影，咖啡观赛区可供休憩，随机更新舞蹈、篮球赛、百狗夜行等惊喜场次，每趟到访都有全新体验。\n\n来源账号：天津周末去哪\n合集标题：大多免费！天津本周可做的22件事 7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a54a354000000000f032100?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLQ47-zUhIMA15icTbs7Ls_M%3D&xsec_source=pc_user\n原 slide：6a54a354000000000f032100/images/02.webp\n裁切海报：6a5",
+      "suggestion": {
+        "start_at": "2026-06-08 16:00:00",
+        "expired_at": "2026-06-14 22:00:00",
+        "confidence": "medium",
+        "reason": "即日起每周重复，按本周日至每日结束时间估算"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:03_1",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "绿脚印可持续农夫市集",
+      "time_text": "7月25日 15:00-19:00",
+      "current_start_date": "2026-07-25 15:00:00",
+      "current_end_date": "2026-07-25 19:00:00",
+      "current_start_at": "2026-07-25 15:00:00",
+      "current_expired_at": "2026-07-25 19:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日 15:00-19:00\n地址：中冶和悦汇西区半天妖附近\n介绍：免费入场，地铁1号线至陈塘庄站C口。\n本地有机农货与可持续生活分享，可参与旧物循环等互动。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/03.webp\n裁切海报：6a61dbb0000000000f0075df/posters/03_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 15:00:00",
+        "expired_at": "2026-07-25 19:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a354000000000f032100:03_0",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "好玩「亚」微醺市集",
+      "time_text": "7月16日-7月28日 16:00-23:00",
+      "current_start_date": "2026-07-16 16:00:00",
+      "current_end_date": "2026-07-28 23:00:00",
+      "current_start_at": "2026-07-16 16:00:00",
+      "current_expired_at": "2026-07-28 23:00:00",
+      "detail_excerpt": "分类：市集\n费用：—\n时间：7月16日-7月28日 16:00-23:00\n地址：天津津一Park（地铁9号线一号桥站A口）\n介绍：市集有着丰富的现场音乐演出，分布着特色吃食、原创文创、潮玩、休闲游乐各类摊位，整体环境接纳宠物出行，晚风之下逛摊休闲，适配日常夜游放松、结伴打卡出游。\n\n来源账号：天津周末去哪\n合集标题：大多免费！天津本周可做的22件事 7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a54a354000000000f032100?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLQ47-zUhIMA15icTbs7Ls_M%3D&xsec_source=pc_user\n原 slide：6a54a354000000000f032100/images/03.webp\n裁切海报：6a54a35400000000",
+      "suggestion": {
+        "start_at": "2026-07-16 16:00:00",
+        "expired_at": "2026-07-28 23:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:04_0",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "渤海银行儿童公益市集",
+      "time_text": "7月25日 15:00-17:00",
+      "current_start_date": "2026-07-25 15:00:00",
+      "current_end_date": "2026-07-25 17:00:00",
+      "current_start_at": "2026-07-25 15:00:00",
+      "current_expired_at": "2026-07-25 17:00:00",
+      "detail_excerpt": "分类：遛娃亲子\n费用：免费\n时间：7月25日 15:00-17:00\n地址：京东MALL二楼\n介绍：免费参与，亲子跳蚤市集。\n让闲置好物焕新，用小小交易传递善意，小老板招募中。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/04.webp\n裁切海报：6a61dbb0000000000f0075df/posters/04_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 15:00:00",
+        "expired_at": "2026-07-25 17:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a354000000000f032100:03_1",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "棉3玩具市集",
+      "time_text": "7月18日 16:00-21:00",
+      "current_start_date": "2026-07-18 16:00:00",
+      "current_end_date": "2026-07-18 21:00:00",
+      "current_start_at": "2026-07-18 16:00:00",
+      "current_expired_at": "2026-07-18 21:00:00",
+      "detail_excerpt": "分类：市集\n费用：—\n时间：7月18日 16:00-21:00\n地址：棉3创意街区·棉花营地（观光3路公交车在棉3创意街区站下车）\n介绍：覆盖复古中古玩偶、潮流手办、拼装模型、IP 盲盒多元品类。场地自带工业文艺氛围，适合打卡拍照，爱好者能一站式淘收藏、交换藏品，周末约好友逛摊寻宝，轻松沉浸式逛玩。\n\n来源账号：天津周末去哪\n合集标题：大多免费！天津本周可做的22件事 7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a54a354000000000f032100?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLQ47-zUhIMA15icTbs7Ls_M%3D&xsec_source=pc_user\n原 slide：6a54a354000000000f032100/images/03.webp\n裁切海报：6a54a35",
+      "suggestion": {
+        "start_at": "2026-07-18 16:00:00",
+        "expired_at": "2026-07-18 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:04_1",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "棉3玩具市集",
+      "time_text": "7月25日 15:00-20:00",
+      "current_start_date": "2026-07-25 15:00:00",
+      "current_end_date": "2026-07-25 20:00:00",
+      "current_start_at": "2026-07-25 15:00:00",
+      "current_expired_at": "2026-07-25 20:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日 15:00-20:00\n地址：棉3创意街区\n介绍：免费入场，观光3路可达。\n中古玩具与潮流收藏品集中亮相，适合玩具爱好者淘货。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/04.webp\n裁切海报：6a61dbb0000000000f0075df/posters/04_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 15:00:00",
+        "expired_at": "2026-07-25 20:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a354000000000f032100:03_2",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "海河旧书市集",
+      "time_text": "7月19日 9:00-13:00",
+      "current_start_date": "2026-07-19 09:00:00",
+      "current_end_date": "2026-07-19 13:00:00",
+      "current_start_at": "2026-07-19 09:00:00",
+      "current_expired_at": "2026-07-19 13:00:00",
+      "detail_excerpt": "分类：市集\n费用：—\n时间：7月19日 9:00-13:00\n地址：棉3创意街区·滑板广场（观光3路公交车在棉3创意街区站）\n介绍：汇集古籍、地方文献、民国读物与小众藏书。支持旧书交换回收，同步配套书友分享讲座，老厂房工业风场地氛围独特，适合书虫线下淘绝版书籍、交流阅读收藏心得。\n\n来源账号：天津周末去哪\n合集标题：大多免费！天津本周可做的22件事 7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a54a354000000000f032100?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLQ47-zUhIMA15icTbs7Ls_M%3D&xsec_source=pc_user\n原 slide：6a54a354000000000f032100/images/03.webp\n裁切海报：6a54a354000000000",
+      "suggestion": {
+        "start_at": "2026-07-19 09:00:00",
+        "expired_at": "2026-07-19 13:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:05_0",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "百人拼豆大赛",
+      "time_text": "7月25日 14:00-19:30",
+      "current_start_date": "2026-07-25 14:00:00",
+      "current_end_date": "2026-07-25 19:30:00",
+      "current_start_at": "2026-07-25 14:00:00",
+      "current_expired_at": "2026-07-25 19:30:00",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：7月25日 14:00-19:30\n地址：天津梅江印象城5号门辰光厅\n介绍：现场提供材料，参赛即可参与，优胜另有奖励。\n百人拼豆对决，轻松打发周末午后时光。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/05.webp\n裁切海报：6a61dbb0000000000f0075df/posters/05_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 14:00:00",
+        "expired_at": "2026-07-25 19:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a354000000000f032100:04_0",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "花路音乐会特别专场",
+      "time_text": "7月14日-7月15日 19:00-21:00",
+      "current_start_date": "2026-07-14 19:00:00",
+      "current_end_date": "2026-07-15 21:00:00",
+      "current_start_at": "2026-07-14 19:00:00",
+      "current_expired_at": "2026-07-15 21:00:00",
+      "detail_excerpt": "分类：活动\n费用：—\n时间：7月14日-7月15日 19:00-21:00\n地址：智慧山山丘广场（地铁3号线在华苑站B口下车）\n介绍：南开中学电声乐队接连两日晚间登台演出。本场联动小海豚融合艺术团，演出兼具观赏性与暖心公益属性，出行前建议留意天气预告，防范恶劣天气带来的场次变动。\n\n来源账号：天津周末去哪\n合集标题：大多免费！天津本周可做的22件事 7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a54a354000000000f032100?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLQ47-zUhIMA15icTbs7Ls_M%3D&xsec_source=pc_user\n原 slide：6a54a354000000000f032100/images/04.webp\n裁切海报：6a54a354000000000",
+      "suggestion": {
+        "start_at": "2026-07-14 19:00:00",
+        "expired_at": "2026-07-15 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:05_1",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "抽象人类认证大会",
+      "time_text": "7月26日 17:30-18:30",
+      "current_start_date": "2026-07-26 17:30:00",
+      "current_end_date": "2026-07-26 18:30:00",
+      "current_start_at": "2026-07-26 17:30:00",
+      "current_expired_at": "2026-07-26 18:30:00",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：7月26日 17:30-18:30\n地址：津南吾悦广场2号厅\n介绍：免费参与，大学生限时访谈与互动。\n现场可DIY抽象风手作并领取「认证」。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/05.webp\n裁切海报：6a61dbb0000000000f0075df/posters/05_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-26 17:30:00",
+        "expired_at": "2026-07-26 18:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a354000000000f032100:04_1",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "大脑出逃首届抽象小赛",
+      "time_text": "7月18日-7月19日 14:00-18:00",
+      "current_start_date": "2026-07-18 14:00:00",
+      "current_end_date": "2026-07-19 18:00:00",
+      "current_start_at": "2026-07-18 14:00:00",
+      "current_expired_at": "2026-07-19 18:00:00",
+      "detail_excerpt": "分类：活动\n费用：—\n时间：7月18日-7月19日 14:00-18:00\n地址：智慧山北塔·那山life（地铁3号线华苑站B口，步行1.4km）\n介绍：分两日排布理毛线、剥花生、拼图、纸杯叠高赛事，每场容纳十五位选手同台竞技，优胜可得购物基金，所有参赛者都能够收获专属纪念奖牌。\n\n来源账号：天津周末去哪\n合集标题：大多免费！天津本周可做的22件事 7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a54a354000000000f032100?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLQ47-zUhIMA15icTbs7Ls_M%3D&xsec_source=pc_user\n原 slide：6a54a354000000000f032100/images/04.webp\n裁切海报：6a54a354000000000",
+      "suggestion": {
+        "start_at": "2026-07-18 14:00:00",
+        "expired_at": "2026-07-19 18:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:06_0",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "津南吾悦偷吃大赛",
+      "time_text": "7月26日 11:00-17:00",
+      "current_start_date": "2026-07-26 11:00:00",
+      "current_end_date": "2026-07-26 17:00:00",
+      "current_start_at": "2026-07-26 11:00:00",
+      "current_expired_at": "2026-07-26 17:00:00",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：7月26日 11:00-17:00\n地址：天津津南吾悦广场2号厅\n介绍：参赛即可拿伴手礼，优胜可赢蓝牙耳机、饮品卡、毛绒玩具等。\n多轮趣味吃货挑战，轻松互动。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/06.webp\n裁切海报：6a61dbb0000000000f0075df/posters/06_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-26 11:00:00",
+        "expired_at": "2026-07-26 17:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a354000000000f032100:04_2",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "宠物版世界杯友谊赛",
+      "time_text": "7月18日-7月19日 13:00-21:00",
+      "current_start_date": "2026-07-18 13:00:00",
+      "current_end_date": "2026-07-19 21:00:00",
+      "current_start_at": "2026-07-18 13:00:00",
+      "current_expired_at": "2026-07-19 21:00:00",
+      "detail_excerpt": "分类：活动\n费用：—\n时间：7月18日-7月19日 13:00-21:00\n地址：智慧山北塔·那山life（地铁3号线华苑站B口，步行1.4km）\n介绍：毛孩子能够体验足球射门挑战，到场可浏览宠物摄影展、拍摄专属肖像，还能品鉴主题宠物烘焙点心，养宠家庭周末可以带自家宠物一站式畅享多样互动。\n\n来源账号：天津周末去哪\n合集标题：大多免费！天津本周可做的22件事 7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a54a354000000000f032100?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLQ47-zUhIMA15icTbs7Ls_M%3D&xsec_source=pc_user\n原 slide：6a54a354000000000f032100/images/04.webp\n裁切海报：6a54a3540000",
+      "suggestion": {
+        "start_at": "2026-07-18 13:00:00",
+        "expired_at": "2026-07-19 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:06_1",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "滨海万达挑豆子大赛",
+      "time_text": "7月25日 16:00-19:00",
+      "current_start_date": "2026-07-25 16:00:00",
+      "current_end_date": "2026-07-25 19:00:00",
+      "current_start_at": "2026-07-25 16:00:00",
+      "current_expired_at": "2026-07-25 19:00:00",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：7月25日 16:00-19:00\n地址：天津滨海万达广场1F中庭\n介绍：免费参赛，用筷子挑豆子比手速。\n优胜可赢动物园门票与精选绿豆等奖励。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/06.webp\n裁切海报：6a61dbb0000000000f0075df/posters/06_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 16:00:00",
+        "expired_at": "2026-07-25 19:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a354000000000f032100:05_0",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "发光音乐节",
+      "time_text": "7月17日-7月19日 19:30-22:00",
+      "current_start_date": "2026-07-17 19:30:00",
+      "current_end_date": "2026-07-19 22:00:00",
+      "current_start_at": "2026-07-17 19:30:00",
+      "current_expired_at": "2026-07-19 22:00:00",
+      "detail_excerpt": "分类：活动\n费用：免费\n时间：7月17日-7月19日 19:30-22:00\n地址：天津东丽万达广场（地铁11号线至东丽文体中心A口）\n介绍：免费入场。\n现场邀请百大 DJ 甜椒夫妇坐镇，开设凤凰传奇专属曲目专场，热烈的舞台氛围适配夏夜出游，能够沉浸式体验氛围感满满的户外音乐狂欢。\n\n来源账号：天津周末去哪\n合集标题：大多免费！天津本周可做的22件事 7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a54a354000000000f032100?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLQ47-zUhIMA15icTbs7Ls_M%3D&xsec_source=pc_user\n原 slide：6a54a354000000000f032100/images/05.webp\n裁切海报：6a54a35400000000",
+      "suggestion": {
+        "start_at": "2026-07-17 19:30:00",
+        "expired_at": "2026-07-19 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:07_0",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "夏夜限定乐队live",
+      "time_text": "7月24日-7月26日 16:00-21:00",
+      "current_start_date": "2026-07-24 16:00:00",
+      "current_end_date": "2026-07-26 21:00:00",
+      "current_start_at": "2026-07-24 16:00:00",
+      "current_expired_at": "2026-07-26 21:00:00",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月24日-7月26日 16:00-21:00\n地址：天津一冷天音艺库\n介绍：免费观演，地铁9号线十一经路站B出口。\n青少年乐队现场演出，青春live氛围。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/07.webp\n裁切海报：6a61dbb0000000000f0075df/posters/07_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 16:00:00",
+        "expired_at": "2026-07-26 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a354000000000f032100:05_1",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "薛之谦粉丝应援活动",
+      "time_text": "7月11日-7月17日",
+      "current_start_date": "2026-07-11 00:00:00",
+      "current_end_date": "2026-07-17 23:59:59",
+      "current_start_at": "2026-07-11 00:00:00",
+      "current_expired_at": "2026-07-17 23:59:59",
+      "detail_excerpt": "分类：活动\n费用：免费\n时间：7月11日-7月17日\n地址：天津东丽万达广场（地铁11号线至东丽文体中心A口）\n介绍：到场无需抢购门票，活动每隔半点就会派送随机礼品。\n十一日起开放氛围感痛楼可供打卡，十七日晚间开启专属粉丝音乐会，粉丝可以沉浸式参与线下应援，收获满满的专属仪式感。\n\n来源账号：天津周末去哪\n合集标题：大多免费！天津本周可做的22件事 7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a54a354000000000f032100?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLQ47-zUhIMA15icTbs7Ls_M%3D&xsec_source=pc_user\n原 slide：6a54a354000000000f032100/images/05.webp\n裁切海报：6a54a354000000000",
+      "suggestion": {
+        "start_at": "2026-07-11 00:00:00",
+        "expired_at": "2026-07-17 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:07_1",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "天津第0届随机宅舞",
+      "time_text": "7月25日 11:00-17:00",
+      "current_start_date": "2026-07-25 11:00:00",
+      "current_end_date": "2026-07-25 17:00:00",
+      "current_start_at": "2026-07-25 11:00:00",
+      "current_expired_at": "2026-07-25 17:00:00",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：7月25日 11:00-17:00\n地址：元力场（吉利大厦）1楼舞台中庭\n介绍：免费参与，地铁3号线至营口道站B1口。\n随机宅舞场次，二次元爱好者可现场互动打卡。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/07.webp\n裁切海报：6a61dbb0000000000f0075df/posters/07_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 11:00:00",
+        "expired_at": "2026-07-25 17:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a354000000000f032100:05_2",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "零食偷吃大赛",
+      "time_text": "7月18日",
+      "current_start_date": "2026-07-18 00:00:00",
+      "current_end_date": "2026-07-18 23:59:59",
+      "current_start_at": "2026-07-18 00:00:00",
+      "current_expired_at": "2026-07-18 23:59:59",
+      "detail_excerpt": "分类：活动\n费用：免费\n时间：7月18日\n地址：天津宁河吾悦广场（458路公交至宁河吾悦广场站）\n介绍：参赛者按时签到即可参赛，优胜者能够拿下自助餐、日料套餐、奶茶等精美餐饮奖品。\n赛程分三轮初赛以及最终决赛，亲子参与适配度很高。\n\n来源账号：天津周末去哪\n合集标题：大多免费！天津本周可做的22件事 7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a54a354000000000f032100?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLQ47-zUhIMA15icTbs7Ls_M%3D&xsec_source=pc_user\n原 slide：6a54a354000000000f032100/images/05.webp\n裁切海报：6a54a354000000000f032100/posters/05_slot2.",
+      "suggestion": {
+        "start_at": "2026-07-18 00:00:00",
+        "expired_at": "2026-07-18 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a55cdf4000000000f014c2a:08_1",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "奇多市面包节",
+      "time_text": "9月初",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
-      "detail_excerpt": "Hi～这是我们的第1568期观影活动，本次活动现场可领取：豆瓣Top250影迷典藏系列徽章一枚\n温暖治愈，夏日必看！由麻赢心导演，章若楠、金靖领衔主演，任彬领衔主演，李孝谦主演，仁科、张绍刚、张奕聪特别出演，李嘉鑫、柯达、鸟鸟友情出演的暑期档电影《想你了》免费观影来了！破浪“约”你一起走进影院，第一时间见证这段关于“一辈子好朋友”的故事。\n《想你了》讲述了高凡（章若楠饰）与汪美丽（金靖饰）从小一路相伴，作为彼此主动选择的“家人”一同走南闯北二十余载，面对生活里的种种挑战与困难，她们依然坚定陪伴彼此，约定要做一辈子好朋友的故事。\n本片也是章若楠、金靖首次大银幕搭档默契合作，出演“彼此生命中最最重要的朋友”。电影中，高凡与汪美丽自幼相识之后，一起陪伴走过了各自人生中最重要的阶段。影片通过细水长流的友情日常，充分展现了一段无比真挚、令人羡慕的纯粹女性友谊，相信看完电影的你，会很想给久未联系的朋友",
+      "detail_excerpt": "分类：市集\n费用：需购票 票价未公布\n时间：9月初\n地址：未公布\n介绍：需购票入场，票价与具体地址待公布。\n室内烘焙主题市集，软欧吐司甜品与生活方式好物一站式打卡试吃。\n\n来源账号：天津周末去哪\n合集标题：大多免费！7-9月天津必逛17个市集活动📒\n来源笔记：https://www.xiaohongshu.com/explore/6a55cdf4000000000f014c2a?xsec_token=ABPa9HtonE93YzZKhCLIEOK1YWPk2VAnikx9zJ9rcQlNY%3D&xsec_source=pc_user\n原 slide：6a55cdf4000000000f014c2a/images/08.webp\n裁切海报：6a55cdf4000000000f014c2a/posters/08_slot1.jpg",
+      "suggestion": {
+        "error": "未能解析日期"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:08_0",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "偷吃麻花大赛",
+      "time_text": "7月24日 18:30、7月25日 14:00",
+      "current_start_date": "2026-07-24 14:00:00",
+      "current_end_date": "2026-07-25 23:59:59",
+      "current_start_at": "2026-07-24 14:00:00",
+      "current_expired_at": "2026-07-25 23:59:59",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：7月24日 18:30、7月25日 14:00\n地址：复悦里D区购物中心1楼中庭\n介绍：免费参赛，复古课堂主题趣味竞赛。\n优胜可赢购物卡、电影票等奖品。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/08.webp\n裁切海报：6a61dbb0000000000f0075df/posters/08_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 14:00:00",
+        "expired_at": "2026-07-25 23:59:59",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a354000000000f032100:06_0",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "王者电竞大赛",
+      "time_text": "7月17日-7月19日 19:30-22:00",
+      "current_start_date": "2026-07-17 19:30:00",
+      "current_end_date": "2026-07-19 22:00:00",
+      "current_start_at": "2026-07-17 19:30:00",
+      "current_expired_at": "2026-07-19 22:00:00",
+      "detail_excerpt": "分类：活动\n费用：—\n时间：7月17日-7月19日 19:30-22:00\n地址：天津东丽万达广场（地铁11号线至东丽文体中心A口）\n介绍：需要五人整队线下到场比拼。\n冠亚季军分获餐饮福利、购物礼金与奖牌，只要成功参赛，每位选手都可以领取一杯益禾堂奶茶。\n\n来源账号：天津周末去哪\n合集标题：大多免费！天津本周可做的22件事 7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a54a354000000000f032100?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLQ47-zUhIMA15icTbs7Ls_M%3D&xsec_source=pc_user\n原 slide：6a54a354000000000f032100/images/06.webp\n裁切海报：6a54a354000000000f032100/poste",
+      "suggestion": {
+        "start_at": "2026-07-17 19:30:00",
+        "expired_at": "2026-07-19 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:08_1",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "野声音乐会",
+      "time_text": "7月24日-7月26日 19:00-21:00",
+      "current_start_date": "2026-07-24 19:00:00",
+      "current_end_date": "2026-07-26 21:00:00",
+      "current_start_at": "2026-07-24 19:00:00",
+      "current_expired_at": "2026-07-26 21:00:00",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月24日-7月26日 19:00-21:00\n地址：津一·Park\n介绍：免费观演，地铁9号线一号桥站A口。\n户外草坪民谣与摇滚演出，晚风治愈氛围。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/08.webp\n裁切海报：6a61dbb0000000000f0075df/posters/08_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 19:00:00",
+        "expired_at": "2026-07-26 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a354000000000f032100:06_1",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "天津贵和 X 若来造物社手作体验",
+      "time_text": "7月18日-7月19日 14:00-17:30",
+      "current_start_date": "2026-07-18 14:00:00",
+      "current_end_date": "2026-07-19 17:30:00",
+      "current_start_at": "2026-07-18 14:00:00",
+      "current_expired_at": "2026-07-19 17:30:00",
+      "detail_excerpt": "分类：活动\n费用：—\n时间：7月18日-7月19日 14:00-17:30\n地址：天津贵和购物中心 B1层西中庭（地铁3号线至天塔站D口）\n介绍：报名需要留意迟到、孩童参与这几类细节限制，提前敲定出行计划。依照流程完成线下制作以及线上发帖即可带走手作与专属福利。\n现场有着风格多样的小屋、机械风拼装款式可以挑选。\n\n来源账号：天津周末去哪\n合集标题：大多免费！天津本周可做的22件事 7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a54a354000000000f032100?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLQ47-zUhIMA15icTbs7Ls_M%3D&xsec_source=pc_user\n原 slide：6a54a354000000000f032100/images/06.webp\n裁切海报：6",
       "suggestion": {
         "start_at": "2026-07-18 14:00:00",
-        "expired_at": "2026-07-18 15:48:00",
+        "expired_at": "2026-07-19 17:30:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月18日 周六 14:00-15:48"
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:09_0",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "滨海K11林俊杰歌友会",
+      "time_text": "7月25日 14:00-17:00",
+      "current_start_date": "2026-07-25 14:00:00",
+      "current_end_date": "2026-07-25 17:00:00",
+      "current_start_at": "2026-07-25 14:00:00",
+      "current_expired_at": "2026-07-25 17:00:00",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月25日 14:00-17:00\n地址：天津滨海K11\n介绍：粉丝活动，林俊杰本人不会到场；地铁9号线市民广场站A3口。\n经典歌曲合唱与互动，适合歌迷周末打卡。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/09.webp\n裁切海报：6a61dbb0000000000f0075df/posters/09_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 14:00:00",
+        "expired_at": "2026-07-25 17:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a354000000000f032100:07_0",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "恶之环快闪",
+      "time_text": "7月9日-8月9日",
+      "current_start_date": "2026-07-09 00:00:00",
+      "current_end_date": "2026-08-09 23:59:59",
+      "current_start_at": "2026-07-09 00:00:00",
+      "current_expired_at": "2026-08-09 23:59:59",
+      "detail_excerpt": "分类：快闪\n费用：—\n时间：7月9日-8月9日\n地址：天津和平吉利大厦2f（地铁3号线至营口道站B1口）\n介绍：多款独家限定周边同步发售，可打卡集章参与盲抽赢签绘券，消费享阶梯满赠礼品，二次元爱好者线下逛谷好去处。\n\n来源账号：天津周末去哪\n合集标题：大多免费！天津本周可做的22件事 7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a54a354000000000f032100?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLQ47-zUhIMA15icTbs7Ls_M%3D&xsec_source=pc_user\n原 slide：6a54a354000000000f032100/images/07.webp\n裁切海报：6a54a354000000000f032100/posters/07_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-09 00:00:00",
+        "expired_at": "2026-08-09 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:09_1",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "无音不欢大合唱",
+      "time_text": "7月25日 19:30",
+      "current_start_date": "2026-07-25 19:30:00",
+      "current_end_date": "2026-07-25 23:59:59",
+      "current_start_at": "2026-07-25 19:30:00",
+      "current_expired_at": "2026-07-25 23:59:59",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月25日 19:30\n地址：天津金茂汇\n介绍：免费参与，地铁9号线直沽站C口。\n海河畔集体合唱，有歌词屏与荧光棒，氛围治愈。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/09.webp\n裁切海报：6a61dbb0000000000f0075df/posters/09_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 19:30:00",
+        "expired_at": "2026-07-25 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a354000000000f032100:07_1",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "奔跑吧部落快闪店",
+      "time_text": "7月3日-8月2日",
+      "current_start_date": "2026-07-03 00:00:00",
+      "current_end_date": "2026-08-02 23:59:59",
+      "current_start_at": "2026-07-03 00:00:00",
+      "current_expired_at": "2026-08-02 23:59:59",
+      "detail_excerpt": "分类：快闪\n费用：—\n时间：7月3日-8月2日\n地址：天津大悦城北区1F自然天地（地铁2/7号线鼓楼站B口直达）\n介绍：汇集全系列正版周边，可 DIY 专属名牌、打卡主题场景、收集城市限定印章，还有自拍互动与消费满赠福利，综艺粉丝线下打卡好去处。\n\n来源账号：天津周末去哪\n合集标题：大多免费！天津本周可做的22件事 7.13-19\n来源笔记：https://www.xiaohongshu.com/explore/6a54a354000000000f032100?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLQ47-zUhIMA15icTbs7Ls_M%3D&xsec_source=pc_user\n原 slide：6a54a354000000000f032100/images/07.webp\n裁切海报：6a54a354000000000f032100/posters/0",
+      "suggestion": {
+        "start_at": "2026-07-03 00:00:00",
+        "expired_at": "2026-08-02 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:10_0",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "挽风音乐会·林俊杰专场",
+      "time_text": "7月25日晚",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-25 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-25 23:59:59",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月25日晚\n地址：天津陆家嘴中心\n介绍：粉丝自发合唱专场，无明星本人到场；地铁1号线西北角站。\n围绕林俊杰经典曲目的歌友聚会。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/10.webp\n裁切海报：6a61dbb0000000000f0075df/posters/10_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-25 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:10_1",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "花路音乐会",
+      "time_text": "7月25日 19:00-21:00",
+      "current_start_date": "2026-07-25 19:00:00",
+      "current_end_date": "2026-07-25 21:00:00",
+      "current_start_at": "2026-07-25 19:00:00",
+      "current_expired_at": "2026-07-25 21:00:00",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月25日 19:00-21:00\n地址：天津智慧山山丘广场\n介绍：免费观演，地铁3号线华苑站B口。\n户外自然场地音乐现场，多风格演出。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/10.webp\n裁切海报：6a61dbb0000000000f0075df/posters/10_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 19:00:00",
+        "expired_at": "2026-07-25 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:11_0",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "疯狂奇遇季快闪",
+      "time_text": "7月25日-8月30日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月25日-8月30日\n地址：天津大悦城北区1F月季广场\n介绍：免费打卡，地铁2号线鼓楼站B口。\n疯狂动物城主题快闪，可集章兑换小礼品、逛周边。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/11.webp\n裁切海报：6a61dbb0000000000f0075df/posters/11_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:11_1",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "盒马快闪",
+      "time_text": "7月24日 10:00起",
+      "current_start_date": "2026-07-24 10:00:00",
+      "current_end_date": "2026-07-24 23:59:59",
+      "current_start_at": "2026-07-24 10:00:00",
+      "current_expired_at": "2026-07-24 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月24日 10:00起\n地址：天津水游城\n介绍：免费打卡，地铁1号线西北角站B口。\n盒马限时快闪，可体验生鲜与零食周边互动。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/11.webp\n裁切海报：6a61dbb0000000000f0075df/posters/11_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 10:00:00",
+        "expired_at": "2026-07-24 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:12_0",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "玩具总动员5主题快闪",
+      "time_text": "6月27日-8月2日",
+      "current_start_date": "2026-06-27 00:00:00",
+      "current_end_date": "2026-08-02 23:59:59",
+      "current_start_at": "2026-06-27 00:00:00",
+      "current_expired_at": "2026-08-02 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：6月27日-8月2日\n地址：天津世纪都会1F侧庭\n介绍：免费打卡，地铁3号线营口道站C1口。\n经典角色互动与绿茵主题打卡，周边礼品可兑换。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/12.webp\n裁切海报：6a61dbb0000000000f0075df/posters/12_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-27 00:00:00",
+        "expired_at": "2026-08-02 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61dbb0000000000f0075df:12_1",
+      "city": "天津",
+      "source": "xiaohongshu",
+      "title": "恶之环快闪",
+      "time_text": "7月9日-8月9日",
+      "current_start_date": "2026-07-09 00:00:00",
+      "current_end_date": "2026-08-09 23:59:59",
+      "current_start_at": "2026-07-09 00:00:00",
+      "current_expired_at": "2026-08-09 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月9日-8月9日\n地址：天津吉利大厦1F\n介绍：免费打卡，地铁3号线至营口道站B1口。\n漫画IP联名快闪，可自拍打卡、购徽章与卡片周边。\n\n来源账号：天津周末去哪\n合集标题：全部免费！天津本周末可做的24件事🩵\n来源笔记：https://www.xiaohongshu.com/explore/6a61dbb0000000000f0075df?xsec_token=ABTJgSZXl99yqK2ajoUhVHFd6xQTPhJ-corcOXOFDWjMw%3D&xsec_source=pc_user\n原 slide：6a61dbb0000000000f0075df/images/12.webp\n裁切海报：6a61dbb0000000000f0075df/posters/12_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-09 00:00:00",
+        "expired_at": "2026-08-09 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
       }
     }
   ]

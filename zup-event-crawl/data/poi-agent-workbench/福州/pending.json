@@ -1,27 +1,51 @@
 {
   "city": "福州",
   "source": "douban",
-  "exported_at": "2026-07-10T11:53:33.888Z",
+  "exported_at": "2026-07-26T12:09:12.730Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 2,
+  "last_import_new_uids": 5,
   "doubtful_only": false,
-  "total_events": 2,
-  "group_count": 1,
-  "cache_hit_groups": 1,
+  "total_events": 5,
+  "group_count": 4,
+  "cache_hit_groups": 4,
   "groups": [
+    {
+      "group_id": "14280814abbf",
+      "location": "福州 鼓楼区 福建会堂 华林路11号西湖宾馆福建会堂",
+      "sample_title": "开心麻花王牌爆笑大戏《乌龙山伯爵》",
+      "event_uids": [
+        "douban:37866610"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "14133530576794798958",
+        "poi_title": "福建会堂",
+        "poi_address": "",
+        "latitude": 26.094631,
+        "longitude": 119.292455,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：福州 鼓楼区 福建会堂 华林路11号西湖宾馆福建会堂 → 福建会堂（来源 event:douban:37856440）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "14280814abbfb5dd8952e8ce5ac7d5d8930d964e"
+      }
+    },
     {
       "group_id": "a53fa3fed340",
       "location": "福州 台江区 福立社喜剧-福州脱口秀 工业路万象九宜城5楼425号",
-      "sample_title": "【福立社喜剧】马军单口喜剧专场《人生短短急个球 》 7月24日 @万象九宜城5楼店",
+      "sample_title": "【福立社喜剧】［小帕力推］李锐单口喜剧专场 《和尚 》8月15日@万象九宜城5楼",
       "event_uids": [
-        "douban:37658594",
-        "douban:37763396"
+        "douban:37588595"
       ],
-      "event_count": 2,
+      "event_count": 1,
       "cached_poi": {
         "poi_id": "2312146045768955736",
         "poi_title": "福立社喜剧-福州脱口秀",
@@ -31,12 +55,63 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：福州 台江区 福立社喜剧-福州脱口秀 工业路万象九宜城5楼425号 → 福立社喜剧-福州脱口秀（来源 event:douban:37714555）",
+        "reason": "地址映射库命中：福州 台江区 福立社喜剧-福州脱口秀 工业路万象九宜城5楼425号 → 福立社喜剧-福州脱口秀（来源 event:douban:37602508）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
         "cache_key": "a53fa3fed340bd30a6cec360c69087e507063829"
+      }
+    },
+    {
+      "group_id": "045b517da03d",
+      "location": "福州 鼓楼区 肆笑喜剧脱口秀-东街口大洋店 东街街道八一七北路133号国际商厦五楼",
+      "sample_title": "【肆笑喜剧】8月8日晨曦&郑雨潇双拼秀@东街口大洋",
+      "event_uids": [
+        "douban:37592621",
+        "douban:37584232"
+      ],
+      "event_count": 2,
+      "cached_poi": {
+        "poi_id": "3913059210110117538",
+        "poi_title": "肆笑喜剧-脱口秀剧场",
+        "poi_address": "",
+        "latitude": 26.084275,
+        "longitude": 119.300432,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：福州 鼓楼区 肆笑喜剧脱口秀-东街口大洋店 东街街道八一七北路133号国际商厦五楼 → 肆笑喜剧-脱口秀剧场（来源 event:douban:37722969）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "045b517da03d00c4ab547dd52f9704c84a8cac00"
+      }
+    },
+    {
+      "group_id": "226ffbe258c7",
+      "location": "福州 仓山区 帽子戏法-沉浸式魔术剧场-寰映影城福州融侨店 燎原路136号融侨水都花园五区B栋二、三层寰映影城",
+      "sample_title": "帽子戏法-亲子百变魔术秀《梦幻狂想曲》亲子魔幻剧场【融侨寰映影城专场】",
+      "event_uids": [
+        "douban:37778255"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "14706441236976138924",
+        "poi_title": "万达影城(福州寰映影城融侨店)",
+        "poi_address": "",
+        "latitude": 26.049272,
+        "longitude": 119.280802,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：福州 仓山区 帽子戏法-沉浸式魔术剧场-寰映影城福州融侨店 燎原路136号融侨水都花园五区B栋二、三层寰映影城 → 万达影城(福州寰映影城融侨店)（来源 event:douban:37688502）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "226ffbe258c72d0d19ecc8cb67200fb0204196b8"
       }
     }
   ]

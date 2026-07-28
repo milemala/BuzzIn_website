@@ -1,61 +1,1459 @@
 {
   "city": "长沙",
-  "source": "douban",
-  "exported_at": "2026-07-13T01:27:34.580Z",
+  "source": "xiaohongshu",
+  "exported_at": "2026-07-26T13:21:26.807Z",
   "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
   "events": [
     {
-      "event_uid": "douban:37820466",
+      "event_uid": "xiaohongshu:6a461ae9000000000702d491:01_0",
       "city": "长沙",
-      "source": "douban",
-      "title": "厦门爱歌室内合唱团专场音乐会『万物有声』巡演长沙站",
-      "time_text": "07月19日 周日 19:30-21:30",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "入场方式说明\n1米以下儿童谢绝入场\n以现场为准\n主要演员\n无需预约",
+      "source": "xiaohongshu",
+      "title": "这很「women」小赛——开放麦",
+      "time_text": "7.4 (19:00)",
+      "current_start_date": "2026-07-04 19:00:00",
+      "current_end_date": "2026-07-04 23:59:59",
+      "current_start_at": "2026-07-04 19:00:00",
+      "current_expired_at": "2026-07-04 23:59:59",
+      "detail_excerpt": "分类：线下活动\n费用：免费（自行报名）\n时间：7.4 (19:00)\n地址：233艺术社区\n介绍：HerSpace在这周举办「women」小赛啦！关于wǒmen，似乎总有着各种刻板印象和规/训，柔弱的、敏感的、…这是一场小赛，也是一场开放麦，快来讲述一件你觉得自己很「women」的小事！\n\n来源账号：周末研究所-长沙\n合集标题：本周末的活动清单，我得分身才能玩转星城！\n来源笔记：https://www.xiaohongshu.com/explore/6a461ae9000000000702d491?xsec_token=ABgt06Kr7EEQYi7-FzPTWLzK8_2O5ZWp6VEx4_AU0WgtA%3D&xsec_source=pc_user\n原 slide：6a461ae9000000000702d491/images/01.webp\n裁切海报：6a461ae90000000",
       "suggestion": {
-        "start_at": "2026-07-19 19:30:00",
-        "expired_at": "2026-07-19 21:30:00",
+        "start_at": "2026-07-04 19:00:00",
+        "expired_at": "2026-07-04 23:59:59",
         "confidence": "high",
-        "reason": "豆瓣详情：07月19日 周日 19:30-21:30"
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
       }
     },
     {
-      "event_uid": "douban:37885287",
+      "event_uid": "xiaohongshu:6a4f72990000000006022195:01_0",
       "city": "长沙",
-      "source": "douban",
-      "title": "王力宏 最好的地方II 世界巡回演唱会 2026 长沙站",
-      "time_text": "07月18日 周六 19:30-22:30 / 07月19日 周日 19:30-22:30",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "王力宏「最好的地方II」巡回演唱会全新启航\n“无论身在何方，我们在哪，就是「最好的地方」。”\n去年，王力宏以「最好的地方」巡回演唱会，强势回归到巅峰，完成了 57 场场场秒售罄的火爆场面。跨越19座城市，让全国歌迷见证了华语乐坛顶级现场的不灭热度。每一个满座的场馆，每一次散场后的久久合唱，都让这场 30 周年音乐旅程成为难以复刻的集体记忆。\n「最好的地方II」 | 2026全面升级\n2026年，「最好的地方」再度启航。本次巡演迎来最直观的升级——从体育馆升级至体育场。更多乐迷有机会亲临现场，从万人场馆到数万人体育场，「最好的地方」将容纳更多青春。\n更精妙的金曲 | 经典重编，惊喜升级\nMUSIC-MAN王力宏携手顶尖音乐团队，为作品注入新的生命力。那些陪伴一代人成长的经典，在本轮巡演中以全新编配重现，让熟悉的旋律在更广阔的场地，成为全场的共鸣。\n更炫的舞台 | 科技进化，沉浸升级\n顶级制作",
+      "source": "xiaohongshu",
+      "title": "爱与光的未来：小王子纪念艺术展",
+      "time_text": "7.10起",
+      "current_start_date": "2026-07-10 00:00:00",
+      "current_end_date": "2026-07-10 23:59:59",
+      "current_start_at": "2026-07-10 00:00:00",
+      "current_expired_at": "2026-07-10 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：自行购票\n时间：7.10起\n地址：梅溪湖艺术博物馆\n介绍：自行购票入场。\n纪念《小王子》法文版出版80周年，精选艺术家Steven Choi经典作品，沉浸式空间叙事设计，带你走进小王子、玫瑰与小狐狸的星球世界。\n\n来源账号：周末研究所-长沙\n合集标题：长沙你有那么多东西要偷吗？周末活动合集\n来源笔记：https://www.xiaohongshu.com/explore/6a4f72990000000006022195?xsec_token=ABCawNj4E-LPaKcNyeTQKtuav7kn91Px51Xsww-IuDhdA%3D&xsec_source=pc_user\n原 slide：6a4f72990000000006022195/images/01.webp\n裁切海报：6a4f72990000000006022195/posters/01_slot0.jp",
       "suggestion": {
-        "start_at": "2026-07-18 19:30:00",
-        "expired_at": "2026-07-19 22:30:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月18日 周六 19:30-22:30 / 07月19日 周日 19:30-22:30"
+        "start_at": "2026-07-10 00:00:00",
+        "expired_at": "2026-07-10 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
       }
     },
     {
-      "event_uid": "douban:37832262",
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:01_0",
       "city": "长沙",
-      "source": "douban",
-      "title": "乃万「Selves们2.0」巡演",
-      "time_text": "07月18日 周六 19:30-21:30",
+      "source": "xiaohongshu",
+      "title": "梅雨「诗」地，当空气开始变重——诗歌展",
+      "time_text": "2026.7.25-8.25",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-08-25 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-08-25 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.7.25-8.25\n地址：雨花区曙光中路华驿飞碟营地233美术馆\n介绍：免费入场。\n233美术馆与「Rest休息处」联合诗歌展，在长沙梅雨时节以诗歌回应空气变重时的表达。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/01.webp\n裁切海报：6a64f1d2000000000e03417d/posters/01_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-08-25 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a461ae9000000000702d491:02_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "「干杯世界杯」啤酒节市集",
+      "time_text": "6.28-7.20",
+      "current_start_date": "2026-06-28 00:00:00",
+      "current_end_date": "2026-07-20 23:59:59",
+      "current_start_at": "2026-06-28 00:00:00",
+      "current_expired_at": "2026-07-20 23:59:59",
+      "detail_excerpt": "分类：市集活动\n费用：免费\n时间：6.28-7.20\n地址：长沙喜盈门·范城北广场\n介绍：免费入场。\n喜盈门范城干杯世界杯环球啤酒节来咯，这里有餐饮小吃、足球应援周边、原创手作、网红零食等超多摊位，现场还有「我也是歌手」万人演唱会海选，直接听歌逛市集两不误！\n\n来源账号：周末研究所-长沙\n合集标题：本周末的活动清单，我得分身才能玩转星城！\n来源笔记：https://www.xiaohongshu.com/explore/6a461ae9000000000702d491?xsec_token=ABgt06Kr7EEQYi7-FzPTWLzK8_2O5ZWp6VEx4_AU0WgtA%3D&xsec_source=pc_user\n原 slide：6a461ae9000000000702d491/images/02.webp",
+      "suggestion": {
+        "start_at": "2026-06-28 00:00:00",
+        "expired_at": "2026-07-20 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f72990000000006022195:02_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "《功夫女足》剧组见面会",
+      "time_text": "7.12（17:00-17:20）",
+      "current_start_date": "2026-07-12 17:00:00",
+      "current_end_date": "2026-07-12 17:20:00",
+      "current_start_at": "2026-07-12 17:00:00",
+      "current_expired_at": "2026-07-12 17:20:00",
+      "detail_excerpt": "分类：戏剧表演\n费用：自行购票\n时间：7.12（17:00-17:20）\n地址：长沙方圆荟·北区3F【沃美影城】\n介绍：自行购票，周星驰来长沙路演，张小斐、张艺兴同台，值得冲一波。\n见面会空降长沙方圆荟沃美影城，导演周星驰携主创与大家近距离互动。\n\n来源账号：周末研究所-长沙\n合集标题：长沙你有那么多东西要偷吗？周末活动合集\n来源笔记：https://www.xiaohongshu.com/explore/6a4f72990000000006022195?xsec_token=ABCawNj4E-LPaKcNyeTQKtuav7kn91Px51Xsww-IuDhdA%3D&xsec_source=pc_user\n原 slide：6a4f72990000000006022195/images/02.webp\n裁切海报：6a4f72990000000006022195/posters/02_s",
+      "suggestion": {
+        "start_at": "2026-07-12 17:00:00",
+        "expired_at": "2026-07-12 17:20:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:02_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "柔软的世界：骆馅饼纤维艺术展",
+      "time_text": "2026.7.24-11.29（周一闭馆）",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-11-29 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-11-29 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：48元\n时间：2026.7.24-11.29（周一闭馆）\n地址：岳麓区梅溪湖艺术博物馆2F·3号展厅\n介绍：门票48元（双展票优惠价88元）。\n展出110+件纤维艺术作品，空间超1000㎡，与小王子展同期呈现。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/02.webp\n裁切海报：6a64f1d2000000000e03417d/posters/02_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-11-29 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a461ae9000000000702d491:03_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "长沙雅迪cosplay动漫嘉年华",
+      "time_text": "7.4-7.5",
+      "current_start_date": "2026-07-04 00:00:00",
+      "current_end_date": "2026-07-05 23:59:59",
+      "current_start_at": "2026-07-04 00:00:00",
+      "current_expired_at": "2026-07-05 23:59:59",
+      "detail_excerpt": "分类：动漫嘉年华\n费用：免费\n时间：7.4-7.5\n地址：车站南路雅迪摩登店/书院路雅迪摩登店\n介绍：免费入场。\n本次活动为雅迪第十届717全球骑行节长沙线下次元专场，面向长沙二次元爱好者打造免费跨界漫展，融合了潮电出行、Cosplay、动漫打卡、互动福利哦，快来玩~\n\n来源账号：周末研究所-长沙\n合集标题：本周末的活动清单，我得分身才能玩转星城！\n来源笔记：https://www.xiaohongshu.com/explore/6a461ae9000000000702d491?xsec_token=ABgt06Kr7EEQYi7-FzPTWLzK8_2O5ZWp6VEx4_AU0WgtA%3D&xsec_source=pc_user\n原 slide：6a461ae9000000000702d491/images/03.webp\n裁切海报：6a461ae9000000000702d491/",
+      "suggestion": {
+        "start_at": "2026-07-04 00:00:00",
+        "expired_at": "2026-07-05 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f72990000000006022195:03_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "「钞厉害」长沙首届数钱大赛",
+      "time_text": "7.11（14:00-16:00）",
+      "current_start_date": "2026-07-11 14:00:00",
+      "current_end_date": "2026-07-11 16:00:00",
+      "current_start_at": "2026-07-11 14:00:00",
+      "current_expired_at": "2026-07-11 16:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7.11（14:00-16:00）\n地址：长沙海信广场 1F 北门中庭\n介绍：免费参赛，需线上报名，现场签到领号，18岁以上方可参加。\n预赛戴手套数钱，决赛混合面额挑战手速，晋级可赢金砖抱枕，冠军获周大福5g投资金条。\n\n来源账号：周末研究所-长沙\n合集标题：长沙你有那么多东西要偷吗？周末活动合集\n来源笔记：https://www.xiaohongshu.com/explore/6a4f72990000000006022195?xsec_token=ABCawNj4E-LPaKcNyeTQKtuav7kn91Px51Xsww-IuDhdA%3D&xsec_source=pc_user\n原 slide：6a4f72990000000006022195/images/03.webp\n裁切海报：6a4f72990000000006022195/posters/03_",
+      "suggestion": {
+        "start_at": "2026-07-11 14:00:00",
+        "expired_at": "2026-07-11 16:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:03_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "风华正茂——中央美术学院院藏百幅素描精品展",
+      "time_text": "2026.7.19—9.20",
+      "current_start_date": "2026-07-19 00:00:00",
+      "current_end_date": "2026-09-20 23:59:59",
+      "current_start_at": "2026-07-19 00:00:00",
+      "current_expired_at": "2026-09-20 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：需预约\n时间：2026.7.19—9.20\n地址：美仑美术馆（雨花区东二环一段622号）\n介绍：需预约入场。\n覆盖中央美院王府井、二厂、花家地三时期院藏素描精品，时间跨度近八十年。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/03.webp\n裁切海报：6a64f1d2000000000e03417d/posters/03_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-19 00:00:00",
+        "expired_at": "2026-09-20 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a461ae9000000000702d491:04_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "【奶司的小人国】长沙娃展",
+      "time_text": "7.4",
+      "current_start_date": "2026-07-04 00:00:00",
+      "current_end_date": "2026-07-04 23:59:59",
+      "current_start_at": "2026-07-04 00:00:00",
+      "current_expired_at": "2026-07-04 23:59:59",
+      "detail_excerpt": "分类：娃展\n费用：自行购票\n时间：7.4\n地址：长沙市开福区凯美花园酒店3楼\n介绍：自行购票\n娃妈娃爸线下见面的快乐谁懂！娃衣、原创妆面、迷你配饰、整娃……童话世界沉浸式体验等你来！\n\n来源账号：周末研究所-长沙\n合集标题：本周末的活动清单，我得分身才能玩转星城！\n来源笔记：https://www.xiaohongshu.com/explore/6a461ae9000000000702d491?xsec_token=ABgt06Kr7EEQYi7-FzPTWLzK8_2O5ZWp6VEx4_AU0WgtA%3D&xsec_source=pc_user\n原 slide：6a461ae9000000000702d491/images/04.webp\n裁切海报：6a461ae9000000000702d491/posters/04_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-04 00:00:00",
+        "expired_at": "2026-07-04 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f72990000000006022195:04_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "君尚首届「偷瓜大赛」",
+      "time_text": "7.11-7.12（18:00-20:00）",
+      "current_start_date": "2026-07-11 18:00:00",
+      "current_end_date": "2026-07-12 20:00:00",
+      "current_start_at": "2026-07-11 18:00:00",
+      "current_expired_at": "2026-07-12 20:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7.11-7.12（18:00-20:00）\n地址：长沙君尚G层中厅\n介绍：免费参与，全城招募「偷瓜贼」，123木头人挑战超好玩。\n参与奖统一方便面一桶，获胜奖麒麟西瓜一个；打卡发小红书还可领西瓜挂件与互动流量奖。\n\n来源账号：周末研究所-长沙\n合集标题：长沙你有那么多东西要偷吗？周末活动合集\n来源笔记：https://www.xiaohongshu.com/explore/6a4f72990000000006022195?xsec_token=ABCawNj4E-LPaKcNyeTQKtuav7kn91Px51Xsww-IuDhdA%3D&xsec_source=pc_user\n原 slide：6a4f72990000000006022195/images/04.webp\n裁切海报：6a4f72990000000006022195/posters/04_sl",
+      "suggestion": {
+        "start_at": "2026-07-11 18:00:00",
+        "expired_at": "2026-07-12 20:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:04_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "中间态In-Between · 当代艺术群展",
+      "time_text": "2026.7.31-10.7",
+      "current_start_date": "2026-07-31 00:00:00",
+      "current_end_date": "2026-10-07 23:59:59",
+      "current_start_at": "2026-07-31 00:00:00",
+      "current_expired_at": "2026-10-07 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.7.31-10.7\n地址：岳麓区西湖公园INPark城市浮岛The Dock Gallery艺术廊\n介绍：免费入场。\n以长沙为现场，从户外回乡计划与城市公共空间出发，融合湖湘文化与在地记忆。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/04.webp\n裁切海报：6a64f1d2000000000e03417d/posters/04_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-31 00:00:00",
+        "expired_at": "2026-10-07 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a461ae9000000000702d491:05_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "《无限暖暖》x 万达广场主题活动",
+      "time_text": "6.27-7.5",
+      "current_start_date": "2026-06-27 00:00:00",
+      "current_end_date": "2026-07-05 23:59:59",
+      "current_start_at": "2026-06-27 00:00:00",
+      "current_expired_at": "2026-07-05 23:59:59",
+      "detail_excerpt": "分类：快闪活动\n费用：免费\n时间：6.27-7.5\n地址：长沙开福万达广场3号门银厅\n介绍：免费入场。\n无限暖暖 x 万达广场「在所有瞬息，去无数旅程」线下特别打卡活动已经开启！超美的主题大屏等着你，参与打卡活动还可以领取联动周边，这谁不冲！\n\n来源账号：周末研究所-长沙\n合集标题：本周末的活动清单，我得分身才能玩转星城！\n来源笔记：https://www.xiaohongshu.com/explore/6a461ae9000000000702d491?xsec_token=ABgt06Kr7EEQYi7-FzPTWLzK8_2O5ZWp6VEx4_AU0WgtA%3D&xsec_source=pc_user\n原 slide：6a461ae9000000000702d491/images/05.webp\n裁切海报：6a461ae9000000000702d491/posters/05_sl",
+      "suggestion": {
+        "start_at": "2026-06-27 00:00:00",
+        "expired_at": "2026-07-05 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f72990000000006022195:05_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "长沙才子汇偷吃大赛",
+      "time_text": "7.10-7.12（14:00-19:00）",
+      "current_start_date": "2026-07-10 14:00:00",
+      "current_end_date": "2026-07-12 19:00:00",
+      "current_start_at": "2026-07-10 14:00:00",
+      "current_expired_at": "2026-07-12 19:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7.10-7.12（14:00-19:00）\n地址：长沙才子汇购物中心\n介绍：免费参与，霸王丝爆辣偷吃大赛，重温课堂偷吃零食的刺激感。\n奖品含电影票、辣条礼包等，还可报名当「教导主任」抓偷吃选手。\n\n来源账号：周末研究所-长沙\n合集标题：长沙你有那么多东西要偷吗？周末活动合集\n来源笔记：https://www.xiaohongshu.com/explore/6a4f72990000000006022195?xsec_token=ABCawNj4E-LPaKcNyeTQKtuav7kn91Px51Xsww-IuDhdA%3D&xsec_source=pc_user\n原 slide：6a4f72990000000006022195/images/05.webp\n裁切海报：6a4f72990000000006022195/posters/05_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-10 14:00:00",
+        "expired_at": "2026-07-12 19:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:05_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "miao的迷你个展《青轻梦，回头望》",
+      "time_text": "2026.6.30-8.30",
+      "current_start_date": "2026-06-30 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-06-30 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.6.30-8.30\n地址：TX长沙年轻力中心三楼L305\n介绍：免费入场。\n狸子苗苗迷你个展，作品跨度七年，涵盖摄影、胶带盒、毡艺、粘土与插画，偏爱青绿治愈系。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/05.webp\n裁切海报：6a64f1d2000000000e03417d/posters/05_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-30 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a461ae9000000000702d491:06_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "暑期开业派对",
+      "time_text": "7.4",
+      "current_start_date": "2026-07-04 00:00:00",
+      "current_end_date": "2026-07-04 23:59:59",
+      "current_start_at": "2026-07-04 00:00:00",
+      "current_expired_at": "2026-07-04 23:59:59",
+      "detail_excerpt": "分类：派对活动\n费用：免费\n时间：7.4\n地址：芙蓉区黄兴中路TX长沙 | 年轻力\n介绍：免费入场。\nTX长沙 | 年轻力中心以「合拢·LINK TOY」为主题开启超长暑期开业季，7月4日专属潮流开业快闪派对重磅上线，全程免费参与，面向全长沙青年打造城市潮流社交现场，快来玩！\n\n来源账号：周末研究所-长沙\n合集标题：本周末的活动清单，我得分身才能玩转星城！\n来源笔记：https://www.xiaohongshu.com/explore/6a461ae9000000000702d491?xsec_token=ABgt06Kr7EEQYi7-FzPTWLzK8_2O5ZWp6VEx4_AU0WgtA%3D&xsec_source=pc_user\n原 slide：6a461ae9000000000702d491/images/06.webp\n裁切海报：6a461ae9000000000702d",
+      "suggestion": {
+        "start_at": "2026-07-04 00:00:00",
+        "expired_at": "2026-07-04 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f72990000000006022195:06_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "彩虹MALL课堂偷吃大赛",
+      "time_text": "7.10（11:00/14:30/16:00/19:30）",
+      "current_start_date": "2026-07-10 11:00:00",
+      "current_end_date": "2026-07-10 23:59:59",
+      "current_start_at": "2026-07-10 11:00:00",
+      "current_expired_at": "2026-07-10 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7.10（11:00/14:30/16:00/19:30）\n地址：润和彩虹Mall\n介绍：免费报名，彩虹Mall八周年庆特别活动。\n现场搭建教室场景，体验课堂偷吃辣条的紧张刺激，前三名可获霸王丝大礼包和惊喜礼品。\n\n来源账号：周末研究所-长沙\n合集标题：长沙你有那么多东西要偷吗？周末活动合集\n来源笔记：https://www.xiaohongshu.com/explore/6a4f72990000000006022195?xsec_token=ABCawNj4E-LPaKcNyeTQKtuav7kn91Px51Xsww-IuDhdA%3D&xsec_source=pc_user\n原 slide：6a4f72990000000006022195/images/06.webp\n裁切海报：6a4f72990000000006022195/posters/06_slo",
+      "suggestion": {
+        "start_at": "2026-07-10 11:00:00",
+        "expired_at": "2026-07-10 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:06_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "「万物有型」3D打印设计展",
+      "time_text": "2026.8.14-8.16",
+      "current_start_date": "2026-08-14 00:00:00",
+      "current_end_date": "2026-08-16 23:59:59",
+      "current_start_at": "2026-08-14 00:00:00",
+      "current_expired_at": "2026-08-16 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.8.14-8.16\n地址：隆平水稻博物馆临展厅\n介绍：免费入场。\n全国首届3D打印设计展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/06.webp\n裁切海报：6a64f1d2000000000e03417d/posters/06_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-08-14 00:00:00",
+        "expired_at": "2026-08-16 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a461ae9000000000702d491:07_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "喜夜小卖部",
+      "time_text": "7.2（16:00-23:00）、7.3-7.5（12:00-23:00）",
+      "current_start_date": "2026-07-02 16:00:00",
+      "current_end_date": "2026-07-05 23:00:00",
+      "current_start_at": "2026-07-02 16:00:00",
+      "current_expired_at": "2026-07-05 23:00:00",
+      "detail_excerpt": "分类：快闪活动\n费用：持当日门票入场\n时间：7.2（16:00-23:00）、7.3-7.5（12:00-23:00）\n地址：长沙梅溪湖国际文化艺术中心大剧院\n介绍：持当日门票入场\n喜夜小卖部开来长沙咯，喜人形象徽章、金属动态冰箱贴、小队贴纸、亚克力桌面摆台、喜人毛绒磁吸支架等超多周边，经典复刻，随处都是名场面！\n\n来源账号：周末研究所-长沙\n合集标题：本周末的活动清单，我得分身才能玩转星城！\n来源笔记：https://www.xiaohongshu.com/explore/6a461ae9000000000702d491?xsec_token=ABgt06Kr7EEQYi7-FzPTWLzK8_2O5ZWp6VEx4_AU0WgtA%3D&xsec_source=pc_user\n原 slide：6a461ae9000000000702d491/images/07.webp\n裁切海报：6a",
+      "suggestion": {
+        "start_at": "2026-07-02 16:00:00",
+        "expired_at": "2026-07-05 23:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f72990000000006022195:07_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "「豆」是高手岛民像素拼豆大赛",
+      "time_text": "7.11（16:00-18:00）",
+      "current_start_date": "2026-07-11 16:00:00",
+      "current_end_date": "2026-07-11 18:00:00",
+      "current_start_at": "2026-07-11 16:00:00",
+      "current_expired_at": "2026-07-11 18:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7.11（16:00-18:00）\n地址：长沙荟聚L1中庭\n介绍：免费参赛，评论区报名并获作者点赞即可，需自带图纸。\n荟聚五周年首届拼豆专业组大赛，冠军赢乐立克烫画机，亚季军获MARD拼豆套装。\n\n来源账号：周末研究所-长沙\n合集标题：长沙你有那么多东西要偷吗？周末活动合集\n来源笔记：https://www.xiaohongshu.com/explore/6a4f72990000000006022195?xsec_token=ABCawNj4E-LPaKcNyeTQKtuav7kn91Px51Xsww-IuDhdA%3D&xsec_source=pc_user\n原 slide：6a4f72990000000006022195/images/07.webp\n裁切海报：6a4f72990000000006022195/posters/07_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-11 16:00:00",
+        "expired_at": "2026-07-11 18:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:06_1",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "十四行诗【长沙站】特展",
+      "time_text": "2026.8.7-8.9",
+      "current_start_date": "2026-08-07 00:00:00",
+      "current_end_date": "2026-08-09 23:59:59",
+      "current_start_at": "2026-08-07 00:00:00",
+      "current_expired_at": "2026-08-09 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.8.7-8.9\n地址：龙湖长沙芙蓉天街1F中庭\n介绍：免费入场。\n十四行诗长沙站特展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/06.webp\n裁切海报：6a64f1d2000000000e03417d/posters/06_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-08-07 00:00:00",
+        "expired_at": "2026-08-09 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a461ae9000000000702d491:08_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "TX长沙无限流∞夏 | 循环市集",
+      "time_text": "6.30-7.30",
+      "current_start_date": "2026-06-30 00:00:00",
+      "current_end_date": "2026-07-30 23:59:59",
+      "current_start_at": "2026-06-30 00:00:00",
+      "current_expired_at": "2026-07-30 23:59:59",
+      "detail_excerpt": "分类：市集活动\n费用：免费\n时间：6.30-7.30\n地址：芙蓉区黄兴中路TX长沙年轻力中心\n介绍：免费入场。\nTX长沙无限流∞夏循环市集来咯，旧物、创作、身体、声音、奇怪收藏、毕业行李箱里掏出来的半座青春！快叫上好朋友一起来逛逛，让好物重新流动起来！\n\n来源账号：周末研究所-长沙\n合集标题：本周末的活动清单，我得分身才能玩转星城！\n来源笔记：https://www.xiaohongshu.com/explore/6a461ae9000000000702d491?xsec_token=ABgt06Kr7EEQYi7-FzPTWLzK8_2O5ZWp6VEx4_AU0WgtA%3D&xsec_source=pc_user\n原 slide：6a461ae9000000000702d491/images/08.webp\n裁切海报：6a461ae9000000000702d491/posters/",
+      "suggestion": {
+        "start_at": "2026-06-30 00:00:00",
+        "expired_at": "2026-07-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f72990000000006022195:08_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "「辣人运动会」",
+      "time_text": "7.10-7.19（16:00-21:00）",
+      "current_start_date": "2026-07-10 16:00:00",
+      "current_end_date": "2026-07-19 21:00:00",
+      "current_start_at": "2026-07-10 16:00:00",
+      "current_expired_at": "2026-07-19 21:00:00",
+      "detail_excerpt": "分类：体育运动\n费用：免费\n时间：7.10-7.19（16:00-21:00）\n地址：岳麓区长沙万象城\n介绍：免费参与，7.10开幕，五大辣人运动挑战+七大兴趣市集同步上线。\n6000+礼券掉落，还有国足名将邵林见面会、lululemon夏日派对等系列活动。\n\n来源账号：周末研究所-长沙\n合集标题：长沙你有那么多东西要偷吗？周末活动合集\n来源笔记：https://www.xiaohongshu.com/explore/6a4f72990000000006022195?xsec_token=ABCawNj4E-LPaKcNyeTQKtuav7kn91Px51Xsww-IuDhdA%3D&xsec_source=pc_user\n原 slide：6a4f72990000000006022195/images/08.webp\n裁切海报：6a4f72990000000006022195/poster",
+      "suggestion": {
+        "start_at": "2026-07-10 16:00:00",
+        "expired_at": "2026-07-19 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:06_2",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "何航飞作品《山海经》主题艺术展",
+      "time_text": "2026.7.1—8.30",
+      "current_start_date": "2026-07-01 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-07-01 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.7.1—8.30\n地址：潮宗街·如院丝绸博物馆\n介绍：免费入场。\n何航飞《山海经》主题艺术展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/06.webp\n裁切海报：6a64f1d2000000000e03417d/posters/06_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-01 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a461ae9000000000702d491:09_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "下大垅市集",
+      "time_text": "7.4-7.5",
+      "current_start_date": "2026-07-04 00:00:00",
+      "current_end_date": "2026-07-05 23:59:59",
+      "current_start_at": "2026-07-04 00:00:00",
+      "current_expired_at": "2026-07-05 23:59:59",
+      "detail_excerpt": "分类：市集活动\n费用：免费\n时间：7.4-7.5\n地址：开福区东风路文创园\n介绍：免费入场。\n下大垅市集来咯，这里有许多原创手作、生活美学和复古潮玩！这里不仅仅是摆摊，而是有吃、有逛、有记忆点的周末生活市集，这个周末快叫上好朋友一起来逛！\n\n来源账号：周末研究所-长沙\n合集标题：本周末的活动清单，我得分身才能玩转星城！\n来源笔记：https://www.xiaohongshu.com/explore/6a461ae9000000000702d491?xsec_token=ABgt06Kr7EEQYi7-FzPTWLzK8_2O5ZWp6VEx4_AU0WgtA%3D&xsec_source=pc_user\n原 slide：6a461ae9000000000702d491/images/09.webp\n裁切海报：6a461ae9000000000702d491/posters/09_slot",
+      "suggestion": {
+        "start_at": "2026-07-04 00:00:00",
+        "expired_at": "2026-07-05 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f72990000000006022195:09_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "「宇宙」凉友节-吃冰计划",
+      "time_text": "7.10-7.19",
+      "current_start_date": "2026-07-10 00:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-07-10 00:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7.10-7.19\n地址：万家丽购物中心\n介绍：免费领取集章卡，打卡指定品牌试吃试饮。\n完成3张活动照发小红书带话题，可至2F服务台兑换凉友礼包（限200份）；期间还有吃瓜大赛与夏日纳凉大会。\n\n来源账号：周末研究所-长沙\n合集标题：长沙你有那么多东西要偷吗？周末活动合集\n来源笔记：https://www.xiaohongshu.com/explore/6a4f72990000000006022195?xsec_token=ABCawNj4E-LPaKcNyeTQKtuav7kn91Px51Xsww-IuDhdA%3D&xsec_source=pc_user\n原 slide：6a4f72990000000006022195/images/09.webp\n裁切海报：6a4f72990000000006022195/posters/09_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-10 00:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:06_3",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "《什么表情，什么心情》长沙个展",
+      "time_text": "8.8-10.7 13:00-18:30",
+      "current_start_date": "2026-08-08 13:00:00",
+      "current_end_date": "2026-10-07 18:30:00",
+      "current_start_at": "2026-08-08 13:00:00",
+      "current_expired_at": "2026-10-07 18:30:00",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：8.8-10.7 13:00-18:30\n地址：天心区沙河街56号P stop\n介绍：免费入场。\n什么表情，什么心情长沙个展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/06.webp\n裁切海报：6a64f1d2000000000e03417d/posters/06_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-08-08 13:00:00",
+        "expired_at": "2026-10-07 18:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a461ae9000000000702d491:10_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "首届「杀」糕会",
+      "time_text": "7.5 (14:30-16:30)",
+      "current_start_date": "2026-07-05 14:30:00",
+      "current_end_date": "2026-07-05 16:30:00",
+      "current_start_at": "2026-07-05 14:30:00",
+      "current_expired_at": "2026-07-05 16:30:00",
+      "detail_excerpt": "分类：美食活动\n费用：免费（自行报名）\n时间：7.5 (14:30-16:30)\n地址：雨花区七甜三秋蛋糕店\n介绍：首届「杀」糕会来咯，爱吃、会拍、爱分享的甜品脑袋速来！现场参与活动并分享你的体验，可以吃小蛋糕哟，各位「糕手」快来入局一起快乐吃糕~\n\n来源账号：周末研究所-长沙\n合集标题：本周末的活动清单，我得分身才能玩转星城！\n来源笔记：https://www.xiaohongshu.com/explore/6a461ae9000000000702d491?xsec_token=ABgt06Kr7EEQYi7-FzPTWLzK8_2O5ZWp6VEx4_AU0WgtA%3D&xsec_source=pc_user\n原 slide：6a461ae9000000000702d491/images/10.webp\n裁切海报：6a461ae9000000000702d491/posters/10",
+      "suggestion": {
+        "start_at": "2026-07-05 14:30:00",
+        "expired_at": "2026-07-05 16:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f72990000000006022195:10_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "吧唧音乐零食节",
+      "time_text": "7.11-7.12（11:30-21:00）",
+      "current_start_date": "2026-07-11 11:30:00",
+      "current_end_date": "2026-07-12 21:00:00",
+      "current_start_at": "2026-07-11 11:30:00",
+      "current_expired_at": "2026-07-12 21:00:00",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7.11-7.12（11:30-21:00）\n地址：长沙百联奥莱 中央集庆广场\n介绍：免费入场，长沙零食×足球嘉年华，15家热门品牌齐聚。\n集章打卡赢零食盲盒，足球趣味闯关、哈雷机车秀、乐队live与零食大礼包抽奖轮番上阵。\n\n来源账号：周末研究所-长沙\n合集标题：长沙你有那么多东西要偷吗？周末活动合集\n来源笔记：https://www.xiaohongshu.com/explore/6a4f72990000000006022195?xsec_token=ABCawNj4E-LPaKcNyeTQKtuav7kn91Px51Xsww-IuDhdA%3D&xsec_source=pc_user\n原 slide：6a4f72990000000006022195/images/10.webp\n裁切海报：6a4f72990000000006022195/poster",
+      "suggestion": {
+        "start_at": "2026-07-11 11:30:00",
+        "expired_at": "2026-07-12 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:07_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "荷風竹影——杨建五·李蒲星双个展",
+      "time_text": "2026.7.10-8.10",
+      "current_start_date": "2026-07-10 00:00:00",
+      "current_end_date": "2026-08-10 23:59:59",
+      "current_start_at": "2026-07-10 00:00:00",
+      "current_expired_at": "2026-08-10 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.7.10-8.10\n地址：天一美术馆（书院路妙高峰巷67号）\n介绍：免费入场。\n杨建五、李蒲星双个展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/07.webp\n裁切海报：6a64f1d2000000000e03417d/posters/07_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-10 00:00:00",
+        "expired_at": "2026-08-10 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a461ae9000000000702d491:11_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "萌宠闯关派对",
+      "time_text": "7.5 (16:30-20:00)",
+      "current_start_date": "2026-07-05 16:30:00",
+      "current_end_date": "2026-07-05 20:00:00",
+      "current_start_at": "2026-07-05 16:30:00",
+      "current_expired_at": "2026-07-05 20:00:00",
+      "detail_excerpt": "分类：宠物活动\n费用：免费（自行报名）\n时间：7.5 (16:30-20:00)\n地址：岳麓区观沙岭招商花园城G层3号厅\n介绍：萌宠闯关派对这周日在观沙岭招商花园城举办！毛孩子们同台竞技，障碍竞速+定力赛双赛道同步开启，到场就有礼哦，闯关、夺冠更有多重宠物好礼可以获得，周末带着毛孩子快来玩呀~\n\n来源账号：周末研究所-长沙\n合集标题：本周末的活动清单，我得分身才能玩转星城！\n来源笔记：https://www.xiaohongshu.com/explore/6a461ae9000000000702d491?xsec_token=ABgt06Kr7EEQYi7-FzPTWLzK8_2O5ZWp6VEx4_AU0WgtA%3D&xsec_source=pc_user\n原 slide：6a461ae9000000000702d491/images/11.webp\n裁切海报：6a461ae90000",
+      "suggestion": {
+        "start_at": "2026-07-05 16:30:00",
+        "expired_at": "2026-07-05 20:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f72990000000006022195:11_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "Hello手帐集市",
+      "time_text": "7.10-7.12（10:00-20:00）",
+      "current_start_date": "2026-07-10 10:00:00",
+      "current_end_date": "2026-07-12 20:00:00",
+      "current_start_at": "2026-07-10 10:00:00",
+      "current_expired_at": "2026-07-12 20:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7.10-7.12（10:00-20:00）\n地址：长沙珠江星环购物中心\n介绍：免费入场，手帐er本周必冲，首期长沙站「汽水味的夏天」主题。\n原创元素与特邀嘉宾齐聚，现场还有焕礼攻略与参展品牌展位可逛。\n\n来源账号：周末研究所-长沙\n合集标题：长沙你有那么多东西要偷吗？周末活动合集\n来源笔记：https://www.xiaohongshu.com/explore/6a4f72990000000006022195?xsec_token=ABCawNj4E-LPaKcNyeTQKtuav7kn91Px51Xsww-IuDhdA%3D&xsec_source=pc_user\n原 slide：6a4f72990000000006022195/images/11.webp\n裁切海报：6a4f72990000000006022195/posters/11_slot0.jp",
+      "suggestion": {
+        "start_at": "2026-07-10 10:00:00",
+        "expired_at": "2026-07-12 20:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:07_1",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "湘见岩彩—首届长沙岩彩画展",
+      "time_text": "2026.7.5—8.30",
+      "current_start_date": "2026-07-05 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-07-05 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.7.5—8.30\n地址：岩光里岩彩艺术馆\n介绍：免费入场。\n首届长沙岩彩画展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/07.webp\n裁切海报：6a64f1d2000000000e03417d/posters/07_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-05 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a461ae9000000000702d491:12_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "野有上秋「你已经很好了」展览",
+      "time_text": "7.3-9.2",
+      "current_start_date": "2026-07-03 00:00:00",
+      "current_end_date": "2026-09-02 23:59:59",
+      "current_start_at": "2026-07-03 00:00:00",
+      "current_expired_at": "2026-09-02 23:59:59",
+      "detail_excerpt": "分类：展览活动\n费用：自行购票\n时间：7.3-9.2\n地址：芙蓉区TX长沙年轻力中心L2\n介绍：自行购票\n野有上秋「你已经很好了」展览本周登陆长沙啦，湖南首展！「眼泪向下，我向上」，走进这里也许会重新遇见那个一直认真生活的自己，展期还会有签售环节解锁专属to签喔~\n\n来源账号：周末研究所-长沙\n合集标题：本周末的活动清单，我得分身才能玩转星城！\n来源笔记：https://www.xiaohongshu.com/explore/6a461ae9000000000702d491?xsec_token=ABgt06Kr7EEQYi7-FzPTWLzK8_2O5ZWp6VEx4_AU0WgtA%3D&xsec_source=pc_user\n原 slide：6a461ae9000000000702d491/images/12.webp\n裁切海报：6a461ae9000000000702d491/po",
+      "suggestion": {
+        "start_at": "2026-07-03 00:00:00",
+        "expired_at": "2026-09-02 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:07_2",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "“离岸三千里，凝望江海”诗歌影像展",
+      "time_text": "26.6.18-9月中旬",
+      "current_start_date": "2025-26-06 00:00:00",
+      "current_end_date": "2025-26-06 23:59:59",
+      "current_start_at": "2027-02-06 00:00:00",
+      "current_expired_at": "2027-02-06 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：26.6.18-9月中旬\n地址：长沙YOUMarket油脂厂艺术商店\n介绍：免费入场。\n诗歌影像展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/07.webp\n裁切海报：6a64f1d2000000000e03417d/posters/07_slot2.jpg",
+      "suggestion": {
+        "start_at": "2025-26-06 00:00:00",
+        "expired_at": "2025-26-06 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a461ae9000000000702d491:13_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "萨瓦迪泰有生活节",
+      "time_text": "6.26-7.5 (16:00-22:00)",
+      "current_start_date": "2026-06-26 16:00:00",
+      "current_end_date": "2026-07-05 22:00:00",
+      "current_start_at": "2026-06-26 16:00:00",
+      "current_expired_at": "2026-07-05 22:00:00",
+      "detail_excerpt": "分类：市集活动\n费用：免费\n时间：6.26-7.5 (16:00-22:00)\n地址：雨花区滨河·运达里 内、外广场\n介绍：免费入场。\n来自东南亚的风吹到了滨河·运达里，一场充满泰式风情的盛夏之旅即将开启！特色美食、古着文创等超多摊位，风情大秀和互动体验轮番上阵，还有出片打卡点，快冲！\n\n来源账号：周末研究所-长沙\n合集标题：本周末的活动清单，我得分身才能玩转星城！\n来源笔记：https://www.xiaohongshu.com/explore/6a461ae9000000000702d491?xsec_token=ABgt06Kr7EEQYi7-FzPTWLzK8_2O5ZWp6VEx4_AU0WgtA%3D&xsec_source=pc_user\n原 slide：6a461ae9000000000702d491/images/13.webp\n裁切海报：6a461ae900000000",
+      "suggestion": {
+        "start_at": "2026-06-26 16:00:00",
+        "expired_at": "2026-07-05 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f72990000000006022195:13_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "哈利波特限时快闪",
+      "time_text": "7.10-8.9",
+      "current_start_date": "2026-07-10 00:00:00",
+      "current_end_date": "2026-08-09 23:59:59",
+      "current_start_at": "2026-07-10 00:00:00",
+      "current_expired_at": "2026-08-09 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7.10-8.9\n地址：TX长沙|年轻力中心BITSPACE回旋红梯\n介绍：免费逛展，哈利波特25周年快闪店来长沙了。\n20+款周年限定周边首发，经典魔法场景打卡点齐全；发小红书带话题还可领哈利波特×巧乐兹限定冰淇淋。\n\n来源账号：周末研究所-长沙\n合集标题：长沙你有那么多东西要偷吗？周末活动合集\n来源笔记：https://www.xiaohongshu.com/explore/6a4f72990000000006022195?xsec_token=ABCawNj4E-LPaKcNyeTQKtuav7kn91Px51Xsww-IuDhdA%3D&xsec_source=pc_user\n原 slide：6a4f72990000000006022195/images/13.webp\n裁切海报：6a4f72990000000006022195/posters/1",
+      "suggestion": {
+        "start_at": "2026-07-10 00:00:00",
+        "expired_at": "2026-08-09 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:07_3",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "东方奇谭·油罐数媒艺术展",
+      "time_text": "2026.5.01-10.31（周一闭馆）",
+      "current_start_date": "2026-05-01 00:00:00",
+      "current_end_date": "2026-10-31 23:59:59",
+      "current_start_at": "2026-05-01 00:00:00",
+      "current_expired_at": "2026-10-31 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：9.9元\n时间：2026.5.01-10.31（周一闭馆）\n地址：长沙油脂厂·1936\n介绍：门票9.9元。\n油罐数媒艺术展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/07.webp\n裁切海报：6a64f1d2000000000e03417d/posters/07_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-05-01 00:00:00",
+        "expired_at": "2026-10-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a461ae9000000000702d491:14_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "尤长靖见面会",
+      "time_text": "7.4 (10:00-17:00)",
+      "current_start_date": "2026-07-04 10:00:00",
+      "current_end_date": "2026-07-04 17:00:00",
+      "current_start_at": "2026-07-04 10:00:00",
+      "current_expired_at": "2026-07-04 17:00:00",
+      "detail_excerpt": "分类：见面会\n费用：免费（凭号码牌有序入场）\n时间：7.4 (10:00-17:00)\n地址：长沙金茂览秀城，LG层中庭\n介绍：免费（凭号码牌有序入场）\n西柚们快看过来，百雀羚×尤长靖见面会就在这个周六。长沙金茂览秀城变身尤长靖应援痛楼，4处打卡点氛围拉满，参与快闪互动更有惊喜抽奖，见面会当天还有机会和尤长靖互动哟，快冲！\n\n来源账号：周末研究所-长沙\n合集标题：本周末的活动清单，我得分身才能玩转星城！\n来源笔记：https://www.xiaohongshu.com/explore/6a461ae9000000000702d491?xsec_token=ABgt06Kr7EEQYi7-FzPTWLzK8_2O5ZWp6VEx4_AU0WgtA%3D&xsec_source=pc_user\n原 slide：6a461ae9000000000702d491/images/14.webp\n裁切",
+      "suggestion": {
+        "start_at": "2026-07-04 10:00:00",
+        "expired_at": "2026-07-04 17:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f72990000000006022195:14_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "《喂，你好吗？》图书分享会",
+      "time_text": "7.12（15:00-16:00）",
+      "current_start_date": "2026-07-12 15:00:00",
+      "current_end_date": "2026-07-12 16:00:00",
+      "current_start_at": "2026-07-12 15:00:00",
+      "current_expired_at": "2026-07-12 16:00:00",
+      "detail_excerpt": "分类：主题沙龙\n费用：自行报名\n时间：7.12（15:00-16:00）\n地址：西西弗书店·长沙金茂览秀城店\n介绍：自行报名，齐思钧携新书《喂，你好吗？》长沙站分享。\n现场购书可获齐小狐城市限定刺绣书签一枚，主题「有关系也没关系」。\n\n来源账号：周末研究所-长沙\n合集标题：长沙你有那么多东西要偷吗？周末活动合集\n来源笔记：https://www.xiaohongshu.com/explore/6a4f72990000000006022195?xsec_token=ABCawNj4E-LPaKcNyeTQKtuav7kn91Px51Xsww-IuDhdA%3D&xsec_source=pc_user\n原 slide：6a4f72990000000006022195/images/14.webp\n裁切海报：6a4f72990000000006022195/posters/14_slot0.jp",
+      "suggestion": {
+        "start_at": "2026-07-12 15:00:00",
+        "expired_at": "2026-07-12 16:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:08_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "《山·形》——刘云×罗旦双个展",
+      "time_text": "2026.7.6-10.7",
+      "current_start_date": "2026-07-06 00:00:00",
+      "current_end_date": "2026-10-07 23:59:59",
+      "current_start_at": "2026-07-06 00:00:00",
+      "current_expired_at": "2026-10-07 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：58元\n时间：2026.7.6-10.7\n地址：梅溪湖韦尔斯利酒店1楼Sheen Art Space曦·艺术空间\n介绍：门票58元。\n刘云与罗旦双个展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/08.webp\n裁切海报：6a64f1d2000000000e03417d/posters/08_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-06 00:00:00",
+        "expired_at": "2026-10-07 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a461ae9000000000702d491:15_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "元气星轨时刻vol.1.4",
+      "time_text": "7.4-7.5 (14:00)",
+      "current_start_date": "2026-07-04 14:00:00",
+      "current_end_date": "2026-07-05 23:59:59",
+      "current_start_at": "2026-07-04 14:00:00",
+      "current_expired_at": "2026-07-05 23:59:59",
+      "detail_excerpt": "分类：偶像演出\n费用：免费\n时间：7.4-7.5 (14:00)\n地址：元气次元剧场舞台\n介绍：免费入场。\n元气次元站系列招牌线下偶像演出「元气星轨时刻 vol.1.4」重磅集结定档！长沙本土多支人气地下偶像团体同台开演，双日连场无料免费观演，快来感受二次元唱跳盛宴呀！\n\n来源账号：周末研究所-长沙\n合集标题：本周末的活动清单，我得分身才能玩转星城！\n来源笔记：https://www.xiaohongshu.com/explore/6a461ae9000000000702d491?xsec_token=ABgt06Kr7EEQYi7-FzPTWLzK8_2O5ZWp6VEx4_AU0WgtA%3D&xsec_source=pc_user\n原 slide：6a461ae9000000000702d491/images/15.webp",
+      "suggestion": {
+        "start_at": "2026-07-04 14:00:00",
+        "expired_at": "2026-07-05 23:59:59",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f72990000000006022195:15_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "【手缝杯垫】长沙暑期女性沙龙",
+      "time_text": "7.12（15:00）",
+      "current_start_date": "2026-07-12 15:00:00",
+      "current_end_date": "2026-07-12 23:59:59",
+      "current_start_at": "2026-07-12 15:00:00",
+      "current_expired_at": "2026-07-12 23:59:59",
+      "detail_excerpt": "分类：主题沙龙\n费用：自行预约\n时间：7.12（15:00）\n地址：岳麓区麓山南路矿山研究院一村6栋\n介绍：自行预约，零基础也能参加，材料全包、老师手把手教学。\n逃离工作疲惫的午后女性沙龙，一起手缝可爱杯垫，放松解压。\n\n来源账号：周末研究所-长沙\n合集标题：长沙你有那么多东西要偷吗？周末活动合集\n来源笔记：https://www.xiaohongshu.com/explore/6a4f72990000000006022195?xsec_token=ABCawNj4E-LPaKcNyeTQKtuav7kn91Px51Xsww-IuDhdA%3D&xsec_source=pc_user\n原 slide：6a4f72990000000006022195/images/15.webp\n裁切海报：6a4f72990000000006022195/posters/15_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-12 15:00:00",
+        "expired_at": "2026-07-12 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:08_1",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "《迴立向湘江》——百年巨匠徐悲鸿艺术大展",
+      "time_text": "2026.7.31-11.1",
+      "current_start_date": "2026-07-31 00:00:00",
+      "current_end_date": "2026-11-01 23:59:59",
+      "current_start_at": "2026-07-31 00:00:00",
+      "current_expired_at": "2026-11-01 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.7.31-11.1\n地址：湖南美术馆1/5/6/特1展厅\n介绍：免费入场。\n徐悲鸿艺术大展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/08.webp\n裁切海报：6a64f1d2000000000e03417d/posters/08_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-31 00:00:00",
+        "expired_at": "2026-11-01 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f72990000000006022195:16_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "特摄Only",
+      "time_text": "7.4-7.12",
+      "current_start_date": "2026-07-04 00:00:00",
+      "current_end_date": "2026-07-12 23:59:59",
+      "current_start_at": "2026-07-04 00:00:00",
+      "current_expired_at": "2026-07-12 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7.4-7.12\n地址：永旺梦乐城长沙星沙\n介绍：免费入场，奥特曼+假面骑士特摄主题展。\nHEROES STATIONS特摄集结，现场还有促销卡等周边福利可领。\n\n来源账号：周末研究所-长沙\n合集标题：长沙你有那么多东西要偷吗？周末活动合集\n来源笔记：https://www.xiaohongshu.com/explore/6a4f72990000000006022195?xsec_token=ABCawNj4E-LPaKcNyeTQKtuav7kn91Px51Xsww-IuDhdA%3D&xsec_source=pc_user\n原 slide：6a4f72990000000006022195/images/16.webp\n裁切海报：6a4f72990000000006022195/posters/16_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-04 00:00:00",
+        "expired_at": "2026-07-12 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:08_2",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "《情系海疆》——李海涛李冬中国画海洋绘画作品展",
+      "time_text": "2026.8.1-9.13（周一闭馆）",
+      "current_start_date": "2026-08-01 00:00:00",
+      "current_end_date": "2026-09-13 23:59:59",
+      "current_start_at": "2026-08-01 00:00:00",
+      "current_expired_at": "2026-09-13 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.8.1-9.13（周一闭馆）\n地址：李自健美术馆（潇湘南路385号）\n介绍：免费入场。\n中国画海洋绘画作品展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/08.webp\n裁切海报：6a64f1d2000000000e03417d/posters/08_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-08-01 00:00:00",
+        "expired_at": "2026-09-13 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f72990000000006022195:16_1",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "长沙草坪疗愈音乐会",
+      "time_text": "7.10-7.11（19:30-21:00）",
+      "current_start_date": "2026-07-10 19:30:00",
+      "current_end_date": "2026-07-11 21:00:00",
+      "current_start_at": "2026-07-10 19:30:00",
+      "current_expired_at": "2026-07-11 21:00:00",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7.10-7.11（19:30-21:00）\n地址：薄荷音乐农场\n介绍：免费参与，需自行报名。\n草坪疗愈音乐会，泡泡派对、水球大战、泳池捞鸭等夏日玩法一站式体验。\n\n来源账号：周末研究所-长沙\n合集标题：长沙你有那么多东西要偷吗？周末活动合集\n来源笔记：https://www.xiaohongshu.com/explore/6a4f72990000000006022195?xsec_token=ABCawNj4E-LPaKcNyeTQKtuav7kn91Px51Xsww-IuDhdA%3D&xsec_source=pc_user\n原 slide：6a4f72990000000006022195/images/16.webp\n裁切海报：6a4f72990000000006022195/posters/16_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-10 19:30:00",
+        "expired_at": "2026-07-11 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:08_3",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "爱与光的未来——小王子沉浸式纪念艺术展",
+      "time_text": "2026.7.10-11.01（每周一闭馆）",
+      "current_start_date": "2026-07-10 00:00:00",
+      "current_end_date": "2026-11-01 23:59:59",
+      "current_start_at": "2026-07-10 00:00:00",
+      "current_expired_at": "2026-11-01 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：58元\n时间：2026.7.10-11.01（每周一闭馆）\n地址：岳麓区梅溪湖艺术博物馆\n介绍：门票58元（双展票优惠价88元）。\n小王子沉浸式纪念艺术展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/08.webp\n裁切海报：6a64f1d2000000000e03417d/posters/08_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-07-10 00:00:00",
+        "expired_at": "2026-11-01 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f72990000000006022195:16_2",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "夏日双趴！水枪大战+西瓜泼水节",
+      "time_text": "7.11（16:30）",
+      "current_start_date": "2026-07-11 16:30:00",
+      "current_end_date": "2026-07-11 23:59:59",
+      "current_start_at": "2026-07-11 16:30:00",
+      "current_expired_at": "2026-07-11 23:59:59",
+      "detail_excerpt": "分类：户外活动\n费用：免费\n时间：7.11（16:30）\n地址：长沙松雅湖吾悦广场\n介绍：免费参与，夏日双趴水枪大战+西瓜泼水节。\n现场免费领水枪，西瓜主题玩水区降温解暑，拖鞋炸场超欢乐。\n\n来源账号：周末研究所-长沙\n合集标题：长沙你有那么多东西要偷吗？周末活动合集\n来源笔记：https://www.xiaohongshu.com/explore/6a4f72990000000006022195?xsec_token=ABCawNj4E-LPaKcNyeTQKtuav7kn91Px51Xsww-IuDhdA%3D&xsec_source=pc_user\n原 slide：6a4f72990000000006022195/images/16.webp\n裁切海报：6a4f72990000000006022195/posters/16_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-11 16:30:00",
+        "expired_at": "2026-07-11 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:09_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "“药草生声”中草药生命力艺术展",
+      "time_text": "2026.7.23—2026.8.2",
+      "current_start_date": "2026-07-23 00:00:00",
+      "current_end_date": "2026-08-02 23:59:59",
+      "current_start_at": "2026-07-23 00:00:00",
+      "current_expired_at": "2026-08-02 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.7.23—2026.8.2\n地址：谢子龙影像艺术馆一楼艺文空间\n介绍：免费入场。\n中草药生命力艺术展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/09.webp\n裁切海报：6a64f1d2000000000e03417d/posters/09_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-23 00:00:00",
+        "expired_at": "2026-08-02 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f72990000000006022195:16_3",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "2026年岳麓山青年戏剧季",
+      "time_text": "7.12（19:36）",
+      "current_start_date": "2026-07-12 19:36:00",
+      "current_end_date": "2026-07-12 23:59:59",
+      "current_start_at": "2026-07-12 19:36:00",
+      "current_expired_at": "2026-07-12 23:59:59",
+      "detail_excerpt": "分类：戏剧表演\n费用：自行报名\n时间：7.12（19:36）\n地址：梅溪湖国际文化艺术中心大剧院\n介绍：自行报名，岳麓山青年戏剧季开幕。\n首演湘剧《夫人如见》，07.12-08.19持续上演，青年戏剧力量集结梅溪湖。\n\n来源账号：周末研究所-长沙\n合集标题：长沙你有那么多东西要偷吗？周末活动合集\n来源笔记：https://www.xiaohongshu.com/explore/6a4f72990000000006022195?xsec_token=ABCawNj4E-LPaKcNyeTQKtuav7kn91Px51Xsww-IuDhdA%3D&xsec_source=pc_user\n原 slide：6a4f72990000000006022195/images/16.webp\n裁切海报：6a4f72990000000006022195/posters/16_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-07-12 19:36:00",
+        "expired_at": "2026-07-12 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:09_1",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "《马·谢子龙摄影艺术展》",
+      "time_text": "2026.5.1-8.30",
+      "current_start_date": "2026-05-01 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-05-01 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：需购票\n时间：2026.5.1-8.30\n地址：谢子龙影像艺术馆\n介绍：需购票。\n谢子龙摄影艺术展「马」。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/09.webp\n裁切海报：6a64f1d2000000000e03417d/posters/09_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-05-01 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:09_2",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "亨利·路特威勒摄影展《缺席的在场》",
+      "time_text": "2026.5.16起",
+      "current_start_date": "2026-05-16 00:00:00",
+      "current_end_date": "2026-05-16 23:59:59",
+      "current_start_at": "2026-05-16 00:00:00",
+      "current_expired_at": "2026-05-16 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：需购票\n时间：2026.5.16起\n地址：谢子龙影像艺术馆三楼6展厅\n介绍：需购票。\n亨利·路特威勒摄影展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/09.webp\n裁切海报：6a64f1d2000000000e03417d/posters/09_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-05-16 00:00:00",
+        "expired_at": "2026-05-16 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:09_3",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "《山影显相》展览",
+      "time_text": "4.17-9.20",
+      "current_start_date": "2026-04-17 00:00:00",
+      "current_end_date": "2026-09-20 23:59:59",
+      "current_start_at": "2026-04-17 00:00:00",
+      "current_expired_at": "2026-09-20 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：需购票\n时间：4.17-9.20\n地址：谢子龙影像艺术馆3楼五展厅\n介绍：需购票。\n山影显相展览。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/09.webp\n裁切海报：6a64f1d2000000000e03417d/posters/09_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-04-17 00:00:00",
+        "expired_at": "2026-09-20 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:10_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "《毛茸茸的我》治愈系艺术展",
+      "time_text": "2026.6.30-10.31 11:00-22:00",
+      "current_start_date": "2026-06-30 11:00:00",
+      "current_end_date": "2026-10-31 22:00:00",
+      "current_start_at": "2026-06-30 11:00:00",
+      "current_expired_at": "2026-10-31 22:00:00",
+      "detail_excerpt": "分类：看展逛馆\n费用：45元\n时间：2026.6.30-10.31 11:00-22:00\n地址：TX年轻力中心L3\n介绍：门票45元（学生36元）。\n萌宠治愈系艺术展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/10.webp\n裁切海报：6a64f1d2000000000e03417d/posters/10_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-30 11:00:00",
+        "expired_at": "2026-10-31 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:10_1",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "《及乐开场》乐高®积木主题展·华中首展",
+      "time_text": "2026.6.30-8.31",
+      "current_start_date": "2026-06-30 00:00:00",
+      "current_end_date": "2026-08-31 23:59:59",
+      "current_start_at": "2026-06-30 00:00:00",
+      "current_expired_at": "2026-08-31 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.6.30-8.31\n地址：TX长沙年轻力中心南北广场、L2主中庭、L1中庭等多点位\n介绍：免费入场。\n乐高积木主题展华中首展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/10.webp\n裁切海报：6a64f1d2000000000e03417d/posters/10_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-06-30 00:00:00",
+        "expired_at": "2026-08-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:10_2",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "野有上秋个人艺术展·长沙站",
+      "time_text": "2026.7.3-9.20",
+      "current_start_date": "2026-07-03 00:00:00",
+      "current_end_date": "2026-09-20 23:59:59",
+      "current_start_at": "2026-07-03 00:00:00",
+      "current_expired_at": "2026-09-20 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：45元\n时间：2026.7.3-9.20\n地址：TX长沙年轻力中心L2\n介绍：门票45元。\n野有上秋个人艺术展长沙站。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/10.webp\n裁切海报：6a64f1d2000000000e03417d/posters/10_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-03 00:00:00",
+        "expired_at": "2026-09-20 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:10_3",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "不大百货·塔卡沙快乐不分大小——长沙全新主题展",
+      "time_text": "2026.6.30-9.30",
+      "current_start_date": "2026-06-30 00:00:00",
+      "current_end_date": "2026-09-30 23:59:59",
+      "current_start_at": "2026-06-30 00:00:00",
+      "current_expired_at": "2026-09-30 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.6.30-9.30\n地址：TX长沙年轻力中心L2\n介绍：免费入场。\n塔卡沙长沙全新主题展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/10.webp\n裁切海报：6a64f1d2000000000e03417d/posters/10_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-06-30 00:00:00",
+        "expired_at": "2026-09-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:11_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "橘噗噗夏日特展",
+      "time_text": "2026.07.18-08.15",
+      "current_start_date": "2026-07-18 00:00:00",
+      "current_end_date": "2026-08-15 23:59:59",
+      "current_start_at": "2026-07-18 00:00:00",
+      "current_expired_at": "2026-08-15 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.07.18-08.15\n地址：长沙星沙万象汇L1、L2、南北广场\n介绍：免费入场。\n橘噗噗夏日特展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/11.webp\n裁切海报：6a64f1d2000000000e03417d/posters/11_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-18 00:00:00",
+        "expired_at": "2026-08-15 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:11_1",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "长沙华夏家博会",
+      "time_text": "2026.7.31-08.02",
+      "current_start_date": "2026-07-31 00:00:00",
+      "current_end_date": "2026-08-02 23:59:59",
+      "current_start_at": "2026-07-31 00:00:00",
+      "current_expired_at": "2026-08-02 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.7.31-08.02\n地址：长沙红星国际会展中心\n介绍：免费入场。\n长沙华夏家博会。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/11.webp\n裁切海报：6a64f1d2000000000e03417d/posters/11_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-31 00:00:00",
+        "expired_at": "2026-08-02 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:11_2",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "以文会友——巫鸿学术文献展",
+      "time_text": "2026.6.20—9.20",
+      "current_start_date": "2026-06-20 00:00:00",
+      "current_end_date": "2026-09-20 23:59:59",
+      "current_start_at": "2026-06-20 00:00:00",
+      "current_expired_at": "2026-09-20 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.6.20—9.20\n地址：美仑美术馆\n介绍：免费入场。\n巫鸿学术文献展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/11.webp\n裁切海报：6a64f1d2000000000e03417d/posters/11_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-06-20 00:00:00",
+        "expired_at": "2026-09-20 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:11_3",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "百分百妇女巡展",
+      "time_text": "2026.7.4-8.2",
+      "current_start_date": "2026-07-04 00:00:00",
+      "current_end_date": "2026-08-02 23:59:59",
+      "current_start_at": "2026-07-04 00:00:00",
+      "current_expired_at": "2026-08-02 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.7.4-8.2\n地址：233艺术社区·233美术馆\n介绍：免费入场。\n百分百妇女巡展长沙站。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/11.webp\n裁切海报：6a64f1d2000000000e03417d/posters/11_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-07-04 00:00:00",
+        "expired_at": "2026-08-02 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:12_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "天才艺术家——毕加索",
+      "time_text": "2026.6.30—2027.1.3",
+      "current_start_date": "2026-01-03 00:00:00",
+      "current_end_date": "2026-06-30 23:59:59",
+      "current_start_at": "2026-01-03 00:00:00",
+      "current_expired_at": "2026-06-30 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.6.30—2027.1.3\n地址：湖南省博物馆一楼特展二厅\n介绍：免费入场。\n毕加索主题特展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/12.webp\n裁切海报：6a64f1d2000000000e03417d/posters/12_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-01-03 00:00:00",
+        "expired_at": "2026-06-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:12_1",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "第二届“星城童画青春绘梦”长沙市中小学生优秀艺术作品展",
+      "time_text": "2026.6.27—10.11",
+      "current_start_date": "2026-06-27 00:00:00",
+      "current_end_date": "2026-10-11 23:59:59",
+      "current_start_at": "2026-06-27 00:00:00",
+      "current_expired_at": "2026-10-11 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.6.27—10.11\n地址：长沙美术馆1楼、2楼\n介绍：免费入场。\n中小学生优秀艺术作品展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/12.webp\n裁切海报：6a64f1d2000000000e03417d/posters/12_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-06-27 00:00:00",
+        "expired_at": "2026-10-11 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:12_2",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "“磨刀不误砍柴工”莫立唐艺术展",
+      "time_text": "2026.6.18-8.30",
+      "current_start_date": "2026-06-18 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-06-18 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.6.18-8.30\n地址：长沙美术馆4楼\n介绍：免费入场。\n莫立唐艺术展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/12.webp\n裁切海报：6a64f1d2000000000e03417d/posters/12_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-06-18 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:12_3",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "潇湘翰墨——多年湘贤作品特展",
+      "time_text": "2026.5.1-8.30",
+      "current_start_date": "2026-05-01 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-05-01 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.5.1-8.30\n地址：长沙美术馆3楼\n介绍：免费入场。\n湘贤作品特展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/12.webp\n裁切海报：6a64f1d2000000000e03417d/posters/12_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-05-01 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:13_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "蒋正扬摄影展：拥抱无尽夏",
+      "time_text": "6.1-9.1",
+      "current_start_date": "2026-06-01 00:00:00",
+      "current_end_date": "2026-09-01 23:59:59",
+      "current_start_at": "2026-06-01 00:00:00",
+      "current_expired_at": "2026-09-01 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：6.1-9.1\n地址：开福万达广场3号门连廊\n介绍：免费入场。\n蒋正扬摄影展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/13.webp\n裁切海报：6a64f1d2000000000e03417d/posters/13_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-01 00:00:00",
+        "expired_at": "2026-09-01 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:13_1",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "共生与边界：荷而不同",
+      "time_text": "2026.5.5-8.5",
+      "current_start_date": "2026-05-05 00:00:00",
+      "current_end_date": "2026-08-05 23:59:59",
+      "current_start_at": "2026-05-05 00:00:00",
+      "current_expired_at": "2026-08-05 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费（需预约）\n时间：2026.5.5-8.5\n地址：长沙北辰荟-球体滚动\n介绍：免费需预约。\n荷而不同主题展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/13.webp\n裁切海报：6a64f1d2000000000e03417d/posters/13_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-05-05 00:00:00",
+        "expired_at": "2026-08-05 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:13_2",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "既往未来——小西天文物撷珍与悬塑艺术",
+      "time_text": "2026.6月—11月",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
-      "detail_excerpt": "入场方式说明\n以现场为准\n主要演员\n无需预约",
+      "detail_excerpt": "分类：看展逛馆\n费用：29元起\n时间：2026.6月—11月\n地址：长沙博物馆\n介绍：单文物展29元，含AR体验58元。\n小西天文物撷珍与悬塑艺术。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/13.webp\n裁切海报：6a64f1d2000000000e03417d/posters/13_slot2.jpg",
       "suggestion": {
-        "start_at": "2026-07-18 19:30:00",
-        "expired_at": "2026-07-18 21:30:00",
+        "error": "未能解析日期"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:13_3",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "“化石密码·亿年回响”——古生物化石科普展览",
+      "time_text": "2026.5.1-8.31",
+      "current_start_date": "2026-05-01 00:00:00",
+      "current_end_date": "2026-08-31 23:59:59",
+      "current_start_at": "2026-05-01 00:00:00",
+      "current_expired_at": "2026-08-31 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.5.1-8.31\n地址：长沙滨江文化园文化广场杜鹃花艺术中心\n介绍：免费入场。\n古生物化石科普展览。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/13.webp\n裁切海报：6a64f1d2000000000e03417d/posters/13_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-05-01 00:00:00",
+        "expired_at": "2026-08-31 23:59:59",
         "confidence": "high",
-        "reason": "豆瓣详情：07月18日 周六 19:30-21:30"
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:14_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "佛光金影——院藏历代金铜佛像艺术",
+      "time_text": "2026.5.19—9.20（延展）",
+      "current_start_date": "2026-05-19 00:00:00",
+      "current_end_date": "2026-09-20 23:59:59",
+      "current_start_at": "2026-05-19 00:00:00",
+      "current_expired_at": "2026-09-20 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.5.19—9.20（延展）\n地址：湖南博物院三楼·专题三厅\n介绍：免费入场。\n院藏历代金铜佛像艺术展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/14.webp\n裁切海报：6a64f1d2000000000e03417d/posters/14_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-05-19 00:00:00",
+        "expired_at": "2026-09-20 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:14_1",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "《百年光影——馆藏老照片》特展",
+      "time_text": "2026.6.30—2027.6.30",
+      "current_start_date": "2026-06-30 00:00:00",
+      "current_end_date": "2026-06-30 23:59:59",
+      "current_start_at": "2026-06-30 00:00:00",
+      "current_expired_at": "2026-06-30 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.6.30—2027.6.30\n地址：湖南省博物馆专题二厅\n介绍：免费入场。\n馆藏老照片特展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/14.webp\n裁切海报：6a64f1d2000000000e03417d/posters/14_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-06-30 00:00:00",
+        "expired_at": "2026-06-30 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:14_2",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "涉江行吟——姜坤水墨画作品展",
+      "time_text": "2026.6.14—8.9",
+      "current_start_date": "2026-06-14 00:00:00",
+      "current_end_date": "2026-08-09 23:59:59",
+      "current_start_at": "2026-06-14 00:00:00",
+      "current_expired_at": "2026-08-09 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.6.14—8.9\n地址：湖南省博物馆三楼特展三厅\n介绍：免费入场。\n姜坤水墨画作品展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/14.webp\n裁切海报：6a64f1d2000000000e03417d/posters/14_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-06-14 00:00:00",
+        "expired_at": "2026-08-09 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:14_3",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "敦煌——伟大的文化宝藏",
+      "time_text": "2026.6.18—11.15",
+      "current_start_date": "2026-06-18 00:00:00",
+      "current_end_date": "2026-11-15 23:59:59",
+      "current_start_at": "2026-06-18 00:00:00",
+      "current_expired_at": "2026-11-15 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：50元\n时间：2026.6.18—11.15\n地址：湖南省博物馆一楼特展一厅\n介绍：全价票50元，优惠票25元。\n敦煌文化宝藏展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/14.webp\n裁切海报：6a64f1d2000000000e03417d/posters/14_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-06-18 00:00:00",
+        "expired_at": "2026-11-15 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:15_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "湖湘百年美术之路（1899-1999）",
+      "time_text": "2026.1.09—12.31",
+      "current_start_date": "2026-01-09 00:00:00",
+      "current_end_date": "2026-12-31 23:59:59",
+      "current_start_at": "2026-01-09 00:00:00",
+      "current_expired_at": "2026-12-31 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.1.09—12.31\n地址：湖南美术馆7、8、9、特2展厅\n介绍：免费入场。\n湖湘百年美术之路陈列展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/15.webp\n裁切海报：6a64f1d2000000000e03417d/posters/15_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-01-09 00:00:00",
+        "expired_at": "2026-12-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:15_2",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "纳藏之间：约瑟夫·洛克在华民族志摄影",
+      "time_text": "长期展",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "分类：看展逛馆\n费用：需购票\n时间：长期展\n地址：谢子龙影像艺术馆三楼6展厅\n介绍：需购票。\n约瑟夫·洛克在华民族志摄影展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/15.webp\n裁切海报：6a64f1d2000000000e03417d/posters/15_slot2.jpg",
+      "suggestion": {
+        "error": "未能解析日期"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:15_3",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "当非遗开wu了——千年手艺的科技进化论",
+      "time_text": "2026.5.31-8.31",
+      "current_start_date": "2026-05-31 00:00:00",
+      "current_end_date": "2026-08-31 23:59:59",
+      "current_start_at": "2026-05-31 00:00:00",
+      "current_expired_at": "2026-08-31 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.5.31-8.31\n地址：长沙非物质文化遗产馆二楼临时展览区\n介绍：免费入场。\n非遗与科技主题展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/15.webp\n裁切海报：6a64f1d2000000000e03417d/posters/15_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-05-31 00:00:00",
+        "expired_at": "2026-08-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:16_0",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "美的历程：湖湘文化艺术展（二期）",
+      "time_text": "2026.4.28-2027.4.28",
+      "current_start_date": "2026-04-28 00:00:00",
+      "current_end_date": "2026-04-28 23:59:59",
+      "current_start_at": "2026-04-28 00:00:00",
+      "current_expired_at": "2026-04-28 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：28元\n时间：2026.4.28-2027.4.28\n地址：梅溪湖艺术博物馆3F·7号展厅\n介绍：门票28元。\n湖湘文化艺术展二期。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/16.webp\n裁切海报：6a64f1d2000000000e03417d/posters/16_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-04-28 00:00:00",
+        "expired_at": "2026-04-28 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:16_1",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "万古长歌·湖南史前文明图卷展",
+      "time_text": "2026.4.9—12月",
+      "current_start_date": "2026-04-09 00:00:00",
+      "current_end_date": "2026-04-12 23:59:59",
+      "current_start_at": "2026-04-09 00:00:00",
+      "current_expired_at": "2026-04-12 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.4.9—12月\n地址：梅溪湖艺术博物馆三层6展厅\n介绍：免费入场。\n湖南史前文明图卷展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/16.webp\n裁切海报：6a64f1d2000000000e03417d/posters/16_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-04-09 00:00:00",
+        "expired_at": "2026-04-12 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:16_2",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "“麓湘文存一叶来”基本陈列",
+      "time_text": "即日起-2027.01",
+      "current_start_date": "2026-07-26 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-26 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：即日起-2027.01\n地址：藏湘知纸质文化博物馆书香大厅\n介绍：免费入场。\n百年珍藏书籍精品基本陈列。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/16.webp\n裁切海报：6a64f1d2000000000e03417d/posters/16_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-06-08 00:00:00",
+        "expired_at": "2026-06-08 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:16_3",
+      "city": "长沙",
+      "source": "xiaohongshu",
+      "title": "2026湖南师范大学美术学院毕业季",
+      "time_text": "2026.5.6-8.31",
+      "current_start_date": "2026-05-06 00:00:00",
+      "current_end_date": "2026-08-31 23:59:59",
+      "current_start_at": "2026-05-06 00:00:00",
+      "current_expired_at": "2026-08-31 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费（需预约）\n时间：2026.5.6-8.31\n地址：湖南师范大学美术学院\n介绍：免费需预约。\n美术学院毕业季创作作品展。\n\n来源账号：周末研究所-长沙\n合集标题：长沙8月新展合集！看这一篇就足够！\n来源笔记：https://www.xiaohongshu.com/explore/6a64f1d2000000000e03417d?xsec_token=ABNzGPKrVJwTQ3dt7q1dG6rzHmCL7LaIHdFZGi1BPYADU%3D&xsec_source=pc_user\n原 slide：6a64f1d2000000000e03417d/images/16.webp\n裁切海报：6a64f1d2000000000e03417d/posters/16_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-05-06 00:00:00",
+        "expired_at": "2026-08-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
       }
     }
   ]

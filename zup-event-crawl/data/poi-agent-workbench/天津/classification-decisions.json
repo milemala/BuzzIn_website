@@ -1,14 +1,27 @@
 {
   "city": "天津",
   "source": "douban",
-  "decided_at": "2026-07-13T14:42:21.308Z",
+  "decided_at": "2026-07-26T12:10:00.000Z",
   "agent": "cursor-composer",
+  "note": "仅本轮 getLastImportNewUids 3 条",
   "decisions": [
     {
-      "event_uid": "douban:37901159",
-      "category": "其他",
+      "event_uid": "douban:37795239",
       "suggested": true,
-      "reason": "影院免费观影活动"
+      "category": "戏剧表演",
+      "reason": "刘嘉卓&宗克·梅恩声音/喜剧现场专场"
+    },
+    {
+      "event_uid": "douban:37777561",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "开心麻花爆笑话剧《开心聊斋》，舞台剧演出"
+    },
+    {
+      "event_uid": "douban:37833000",
+      "suggested": true,
+      "category": "音乐现场",
+      "reason": "钢琴独奏音乐会，天津大剧院演出"
     }
   ]
 }

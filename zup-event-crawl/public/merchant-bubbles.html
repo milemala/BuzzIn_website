@@ -22,6 +22,14 @@
     .save-state.ok{background:#e7f5ec;color:#197549}
     .save-state.warn{background:#fff3c4;color:#806200}
     .save-state.error{background:#fde8e4;color:#ad382c}
+    .batch-schedule{margin-top:12px;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:#f7faf8;font-size:13px;line-height:1.55;color:#314036}
+    .batch-schedule strong{color:var(--text)}
+    .batch-schedule.ok{border-color:#b7dfc6;background:#eef8f1}
+    .batch-schedule.warn{border-color:#e6d38a;background:#fff8db;color:#6a5200}
+    .batch-schedule.expired{border-color:#e8b4ae;background:#fdecea;color:#8a2f24}
+    .batch-schedule.expired strong{color:#ad382c}
+    .batch-schedule .batch-title{font-size:14px;font-weight:800;margin:0 0 4px}
+    .batch-schedule .batch-sub{margin:0;font-size:12px;opacity:.92}
     .wrap{max-width:980px;margin:0 auto;padding:18px 20px 44px;display:grid;gap:14px}
     .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
     .panel h2{margin:0 0 10px;font-size:15px;font-weight:800}
@@ -118,6 +126,7 @@
   <main class="wrap">
     <section class="panel">
       <h2>概览</h2>
+      <div class="batch-schedule warn" id="batchSchedule" hidden></div>
       <div class="stats" id="stats"></div>
       <div class="actions" style="margin-top:12px">
         <button class="btn" id="syncFromBuzzBtn" type="button">从当前环境补全商户</button>
@@ -224,9 +233,12 @@
   <script src="/buzz-env-ui.js"></script>
   <script>
     const saveStateEl = document.getElementById("saveState");
+    const batchScheduleEl = document.getElementById("batchSchedule");
     const statsEl = document.getElementById("stats");
     const cityGridEl = document.getElementById("cityGrid");
     const resultEl = document.getElementById("result");
+    let batchScheduleTimer = null;
+    let lastBatchSnapshot = null;
     const titleModeSeg = document.getElementById("titleModeSeg");
     const groupModeSeg = document.getElementById("groupModeSeg");
     const unifiedTitleField = document.getElementById("unifiedTitleField");
@@ -256,6 +268,103 @@
       const min = Math.floor(sec / 60);
       const rest = sec % 60;
       return rest ? `${min} 分 ${rest} 秒` : `${min} 分`;
+    }
+
+    function formatElapsedSince(ms) {
+      const totalMin = Math.max(0, Math.floor(ms / 60000));
+      if (totalMin < 60) return `${Math.max(1, totalMin)} 分钟`;
+      const hours = Math.floor(totalMin / 60);
+      const days = Math.floor(hours / 24);
+      const remHours = hours % 24;
+      const remMin = totalMin % 60;
+      if (days > 0) {
+        return remHours ? `${days} 天 ${remHours} 小时` : `${days} 天`;
+      }
+      return remMin ? `${hours} 小时 ${remMin} 分` : `${hours} 小时`;
+    }
+
+    function formatCountdown(ms) {
+      const abs = Math.abs(ms);
+      const totalSec = Math.floor(abs / 1000);
+      const days = Math.floor(totalSec / 86400);
+      const hours = Math.floor((totalSec % 86400) / 3600);
+      const mins = Math.floor((totalSec % 3600) / 60);
+      if (days > 0) return `${days} 天 ${hours} 小时`;
+      if (hours > 0) return `${hours} 小时 ${mins} 分`;
+      return `${Math.max(1, mins)} 分钟`;
+    }
+
+    function formatDateTime(iso) {
+      if (!iso) return "—";
+      const date = new Date(iso);
+      if (!Number.isFinite(date.getTime())) return String(iso);
+      const y = date.getFullYear();
+      const m = String(date.getMonth() + 1).padStart(2, "0");
+      const d = String(date.getDate()).padStart(2, "0");
+      const hh = String(date.getHours()).padStart(2, "0");
+      const mm = String(date.getMinutes()).padStart(2, "0");
+      return `${y}-${m}-${d} ${hh}:${mm}`;
+    }
+
+    function stopBatchScheduleTimer() {
+      if (batchScheduleTimer) {
+        clearInterval(batchScheduleTimer);
+        batchScheduleTimer = null;
+      }
+    }
+
+    function renderBatchSchedule(lastBatch) {
+      lastBatchSnapshot = lastBatch || null;
+      if (!batchScheduleEl) return;
+      if (!lastBatch?.last_batch_published_at) {
+        stopBatchScheduleTimer();
+        batchScheduleEl.hidden = false;
+        batchScheduleEl.className = "batch-schedule warn";
+        batchScheduleEl.innerHTML = `
+          <p class="batch-title">上一批气泡</p>
+          <p class="batch-sub">还没有「发布本批气泡」的记录。点一次发布后，这里会开始倒计时（默认 ${lastBatch?.expire_days || 3} 天后过期）。</p>
+        `;
+        return;
+      }
+
+      const publishedAt = Date.parse(lastBatch.last_batch_published_at);
+      const expireAt = Date.parse(lastBatch.expire_at);
+      const now = Date.now();
+      const sinceMs = Number.isFinite(publishedAt) ? Math.max(0, now - publishedAt) : (lastBatch.ms_since_publish || 0);
+      const untilMs = Number.isFinite(expireAt) ? (expireAt - now) : (lastBatch.ms_until_expire || 0);
+      const expired = untilMs <= 0;
+      const expireDays = lastBatch.expire_days || 3;
+
+      batchScheduleEl.hidden = false;
+      batchScheduleEl.className = `batch-schedule ${expired ? "expired" : untilMs < 12 * 60 * 60 * 1000 ? "warn" : "ok"}`;
+
+      if (expired) {
+        batchScheduleEl.innerHTML = `
+          <p class="batch-title">上一批已过期 · 该发下一批了</p>
+          <p class="batch-sub">
+            上次「发布本批气泡」：<strong>${escapeHtml(formatDateTime(lastBatch.last_batch_published_at))}</strong>
+            （已过 <strong>${escapeHtml(formatElapsedSince(sinceMs))}</strong>）
+            · 计划过期：${escapeHtml(formatDateTime(lastBatch.expire_at))}（发布后 ${expireDays} 天）
+            · 已过期 <strong>${escapeHtml(formatCountdown(untilMs))}</strong>
+          </p>
+        `;
+      } else {
+        batchScheduleEl.innerHTML = `
+          <p class="batch-title">上一批气泡还在有效期内</p>
+          <p class="batch-sub">
+            上次「发布本批气泡」：<strong>${escapeHtml(formatDateTime(lastBatch.last_batch_published_at))}</strong>
+            （已过 <strong>${escapeHtml(formatElapsedSince(sinceMs))}</strong>）
+            · 预计 <strong>${escapeHtml(formatDateTime(lastBatch.expire_at))}</strong> 过期
+            · 还剩 <strong>${escapeHtml(formatCountdown(untilMs))}</strong>
+          </p>
+        `;
+      }
+
+      if (!batchScheduleTimer) {
+        batchScheduleTimer = setInterval(() => {
+          if (lastBatchSnapshot) renderBatchSchedule(lastBatchSnapshot);
+        }, 60000);
+      }
     }
 
     function stopJobPoll() {
@@ -538,10 +647,11 @@
     }
 
     function renderState(data) {
+      renderBatchSchedule(data.last_batch);
       statsEl.innerHTML = `
         <div class="stat"><b>${data.imported_total || 0}</b><span>已入库商户</span></div>
         <div class="stat"><b>${data.with_group || 0}</b><span>已有群聊</span></div>
-        <div class="stat"><b>${data.with_bubble || 0}</b><span>已发布气泡</span></div>
+        <div class="stat"><b>${data.with_active_bubble || 0}</b><span>未过期气泡</span></div>
       `;
 
       const cities = data.cities || [];

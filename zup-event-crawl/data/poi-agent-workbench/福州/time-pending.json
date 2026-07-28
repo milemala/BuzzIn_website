@@ -1,43 +1,97 @@
 {
   "city": "福州",
   "source": "douban",
-  "exported_at": "2026-07-10T11:53:33.598Z",
+  "exported_at": "2026-07-26T12:08:10.558Z",
   "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
   "events": [
     {
-      "event_uid": "douban:37658594",
+      "event_uid": "douban:37866610",
       "city": "福州",
       "source": "douban",
-      "title": "【福立社喜剧】马军单口喜剧专场《人生短短急个球 》 7月24日 @万象九宜城5楼店",
-      "time_text": "07月24日 周五 19:30-21:00",
+      "title": "开心麻花王牌爆笑大戏《乌龙山伯爵》",
+      "time_text": "08月01日 周六 14:30-19:30",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
-      "detail_excerpt": "约90分钟，以现场为准\n最低演出曲目\n以现场为准\n主要演员\n无需预约\n儿童说明\n十二周岁及以下未成年人谢绝入场（ 十二周岁以上的未成年需监护人陪同观看）。\n特殊提示\n禁止零食/饮品/外卖等食物带入现场！\n演出谢绝 12周岁以下未成年人入场！",
+      "detail_excerpt": "入场方式说明\n约120钟，实际以现场为准。\n主要演员\n以现场为准\n无需预约",
       "suggestion": {
-        "start_at": "2026-07-24 19:30:00",
-        "expired_at": "2026-07-24 21:00:00",
+        "start_at": "2026-08-01 14:30:00",
+        "expired_at": "2026-08-01 19:30:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月24日 周五 19:30-21:00"
+        "reason": "豆瓣详情：08月01日 周六 14:30-19:30"
       }
     },
     {
-      "event_uid": "douban:37763396",
+      "event_uid": "douban:37588595",
       "city": "福州",
       "source": "douban",
-      "title": "【福立社喜剧】王炸MAX全国脱口秀大赛冠军-阿泰单口喜剧专场《别管我啦》7月25日 @万象九宜城5楼店",
-      "time_text": "07月25日 周六 19:30-21:00",
+      "title": "【福立社喜剧】［小帕力推］李锐单口喜剧专场 《和尚 》8月15日@万象九宜城5楼",
+      "time_text": "08月15日 周六 19:30-21:00",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
-      "detail_excerpt": "约90分钟，以现场为准\n主要演员\n以现场为准\n无需预约\n儿童说明\n十二周岁及以下未成年人谢绝入场（ 十二周岁以上的未成年需监护人陪同观看）。\n特殊提示\n禁止零食/饮品/外卖等食物带入现场！\n演出谢绝 12周岁以下未成年人入场！",
+      "detail_excerpt": "约90分钟，以现场为准\n主要演员\n以现场为准\n无需预约\n儿童说明\n十二周岁以下谢绝入场（ 十二周岁以上的未成年需监护人陪同观看）。\n特殊提示\n禁止零食/饮品/外卖等食物带入现场！",
       "suggestion": {
-        "start_at": "2026-07-25 19:30:00",
-        "expired_at": "2026-07-25 21:00:00",
+        "start_at": "2026-08-15 19:30:00",
+        "expired_at": "2026-08-15 21:00:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月25日 周六 19:30-21:00"
+        "reason": "豆瓣详情：08月15日 周六 19:30-21:00"
+      }
+    },
+    {
+      "event_uid": "douban:37592621",
+      "city": "福州",
+      "source": "douban",
+      "title": "【肆笑喜剧】8月8日晨曦&郑雨潇双拼秀@东街口大洋",
+      "time_text": "08月08日 周六 19:30-21:00",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "以现场为准\n最低演出曲目\n主要演员\n无需预约\n儿童说明\n十二岁以下禁止入场，十六岁以下请在家长陪同下入场。\n特殊提示",
+      "suggestion": {
+        "start_at": "2026-08-08 19:30:00",
+        "expired_at": "2026-08-08 21:00:00",
+        "confidence": "high",
+        "reason": "豆瓣详情：08月08日 周六 19:30-21:00"
+      }
+    },
+    {
+      "event_uid": "douban:37778255",
+      "city": "福州",
+      "source": "douban",
+      "title": "帽子戏法-亲子百变魔术秀《梦幻狂想曲》亲子魔幻剧场【融侨寰映影城专场】",
+      "time_text": "08月16日 周日 16:30-18:00",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "约80分钟，具体以现场为准\n主要演员\n以现场为准\n无需预约\n儿童说明\n特殊提示",
+      "suggestion": {
+        "start_at": "2026-08-16 16:30:00",
+        "expired_at": "2026-08-16 18:00:00",
+        "confidence": "high",
+        "reason": "豆瓣详情：08月16日 周日 16:30-18:00"
+      }
+    },
+    {
+      "event_uid": "douban:37584232",
+      "city": "福州",
+      "source": "douban",
+      "title": "【技能五子棋编剧】【肆笑喜剧】8月22日翟小明专场《明明》 @东街口大洋店",
+      "time_text": "08月22日 周六 19:30-21:00",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "以现场为准\n最低演出曲目\n主要演员\n无需预约\n儿童说明\n未满十二岁禁止入场，十六岁以下请在家长陪同下入场。\n特殊提示",
+      "suggestion": {
+        "start_at": "2026-08-22 19:30:00",
+        "expired_at": "2026-08-22 21:00:00",
+        "confidence": "high",
+        "reason": "豆瓣详情：08月22日 周六 19:30-21:00"
       }
     }
   ]

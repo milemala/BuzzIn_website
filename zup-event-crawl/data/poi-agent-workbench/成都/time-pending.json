@@ -1,61 +1,580 @@
 {
   "city": "成都",
-  "source": "douban",
-  "exported_at": "2026-07-13T14:41:14.920Z",
+  "source": "xiaohongshu",
+  "exported_at": "2026-07-26T13:21:25.911Z",
   "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
   "events": [
     {
-      "event_uid": "douban:37901145",
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:01_0",
       "city": "成都",
-      "source": "douban",
-      "title": "温暖治愈，夏日必看！章若楠、金靖领衔主演《想你了》成都免费观影",
-      "time_text": "07月18日 周六 14:00-15:47",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "Hi～这是我们的第1569期观影活动，本次活动现场可领取：豆瓣Top250影迷典藏系列徽章一枚\n温暖治愈，夏日必看！由麻赢心导演，章若楠、金靖领衔主演，任彬领衔主演，李孝谦主演，仁科、张绍刚、张奕聪特别出演，李嘉鑫、柯达、鸟鸟友情出演的暑期档电影《想你了》免费观影来了！破浪“约”你一起走进影院，第一时间见证这段关于“一辈子好朋友”的故事。200个名额，4K 120帧 CINITY巨幕厅，带给你绝佳视听体验～！\n《想你了》讲述了高凡（章若楠饰）与汪美丽（金靖饰）从小一路相伴，作为彼此主动选择的“家人”一同走南闯北二十余载，面对生活里的种种挑战与困难，她们依然坚定陪伴彼此，约定要做一辈子好朋友的故事。\n本片也是章若楠、金靖首次大银幕搭档默契合作，出演“彼此生命中最最重要的朋友”。电影中，高凡与汪美丽自幼相识之后，一起陪伴走过了各自人生中最重要的阶段。影片通过细水长流的友情日常，充分展现了一段无",
+      "source": "xiaohongshu",
+      "title": "ma苞谷大赛",
+      "time_text": "7月25日 15:00",
+      "current_start_date": "2026-07-25 15:00:00",
+      "current_end_date": "2026-07-25 23:59:59",
+      "current_start_at": "2026-07-25 15:00:00",
+      "current_expired_at": "2026-07-25 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日 15:00\n地址：成都双流万达广场1F（双流区）\n介绍：免费需报名。\n沉浸式感受田园趣味，城里也能体验农耕快乐，赢取电风扇、电水壶、制冰盒等奖品。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/01.webp\n裁切海报：6a6247830000000006012d09/posters/01_slot0.jpg",
       "suggestion": {
-        "start_at": "2026-07-18 14:00:00",
-        "expired_at": "2026-07-18 15:47:00",
+        "start_at": "2026-07-25 15:00:00",
+        "expired_at": "2026-07-25 23:59:59",
         "confidence": "high",
-        "reason": "豆瓣详情：07月18日 周六 14:00-15:47"
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
       }
     },
     {
-      "event_uid": "douban:37689412",
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:01_1",
       "city": "成都",
-      "source": "douban",
-      "title": "格林童话音乐儿童剧《小红帽》与大灰狼斗智斗勇",
-      "time_text": "08月08日 周六 14:00-15:00",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "入场方式说明\n约60分钟（以现场为准）\n以现场为准\n主要演员\n无需预约",
+      "source": "xiaohongshu",
+      "title": "趣玩伊藤·无厘头挑战赛",
+      "time_text": "7月26日 14:00-18:00",
+      "current_start_date": "2026-07-26 14:00:00",
+      "current_end_date": "2026-07-26 18:00:00",
+      "current_start_at": "2026-07-26 14:00:00",
+      "current_expired_at": "2026-07-26 18:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月26日 14:00-18:00\n地址：伊藤双楠店1F中厅（武侯区）\n介绍：免费需报名。\n含极速剥毛豆大赛、偷吃挑战赛、偷西瓜大作战等无厘头趣味项目，空调商场里边玩边赢礼物。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/01.webp\n裁切海报：6a6247830000000006012d09/posters/01_slot1.jpg",
       "suggestion": {
-        "start_at": "2026-08-08 14:00:00",
-        "expired_at": "2026-08-08 15:00:00",
+        "start_at": "2026-07-26 14:00:00",
+        "expired_at": "2026-07-26 18:00:00",
         "confidence": "high",
-        "reason": "豆瓣详情：08月08日 周六 14:00-15:00"
+        "reason": "按 time_text 解析"
       }
     },
     {
-      "event_uid": "douban:37817562",
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:01_2",
       "city": "成都",
-      "source": "douban",
-      "title": "英国名著女性觉醒经典话剧《简·爱》",
-      "time_text": "07月17日 周五 19:30-21:00",
+      "source": "xiaohongshu",
+      "title": "四川方言大赛",
+      "time_text": "7月25日-7月26日初赛",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：主题沙龙\n费用：免费\n时间：7月25日-7月26日初赛\n地址：滨江天街｜东安天街｜时代天街｜北城天街\n介绍：免费需报名。\n各路川话选手都来开腔，听力题、选择题、口语题现场比试，参赛赢取大奖。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/01.webp\n裁切海报：6a6247830000000006012d09/posters/01_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:02_0",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "民间偷吃小赛",
+      "time_text": "7月25日 14:00-18:00",
+      "current_start_date": "2026-07-25 14:00:00",
+      "current_end_date": "2026-07-25 18:00:00",
+      "current_start_at": "2026-07-25 14:00:00",
+      "current_expired_at": "2026-07-25 18:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日 14:00-18:00\n地址：天府招商花园城L1-A中庭（天府新区）\n介绍：免费需报名。\n来体验偷吃大赛，边吃边玩还能带走大奖。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/02.webp\n裁切海报：6a6247830000000006012d09/posters/02_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 14:00:00",
+        "expired_at": "2026-07-25 18:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:02_1",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "摩里中心首届偷吃大赛",
+      "time_text": "7月25日 14:00-17:00",
+      "current_start_date": "2026-07-25 14:00:00",
+      "current_end_date": "2026-07-25 17:00:00",
+      "current_start_at": "2026-07-25 14:00:00",
+      "current_expired_at": "2026-07-25 17:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日 14:00-17:00\n地址：摩里中心1F中庭（青羊区）\n介绍：免费需报名。\n偷吃大赛上演，参与即可获取小零食，还能赢取霸王餐。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/02.webp\n裁切海报：6a6247830000000006012d09/posters/02_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 14:00:00",
+        "expired_at": "2026-07-25 17:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:02_2",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "首届趣味偷瓜大赛",
+      "time_text": "7月25日-26日 14:00-18:00",
+      "current_start_date": "2026-07-25 14:00:00",
+      "current_end_date": "2026-07-26 18:00:00",
+      "current_start_at": "2026-07-25 14:00:00",
+      "current_expired_at": "2026-07-26 18:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日-26日 14:00-18:00\n地址：鹏瑞利青羊广场1F4号中庭（青羊区）\n介绍：免费需报名。\n中庭摆满大西瓜，一起来玩耍吧。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/02.webp\n裁切海报：6a6247830000000006012d09/posters/02_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 14:00:00",
+        "expired_at": "2026-07-26 18:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:03_0",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "拼趣无限——王府井亲子拼图挑战赛",
+      "time_text": "7月26日 14:00-18:00",
+      "current_start_date": "2026-07-26 14:00:00",
+      "current_end_date": "2026-07-26 18:00:00",
+      "current_start_at": "2026-07-26 14:00:00",
+      "current_expired_at": "2026-07-26 18:00:00",
+      "detail_excerpt": "分类：遛娃亲子\n费用：免费\n时间：7月26日 14:00-18:00\n地址：王府井科华店L1层中庭（武侯区）\n介绍：免费需报名。\n限1名5-15岁儿童+1名家长组队，比拼拼图速度赢超市购物卡。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/03.webp\n裁切海报：6a6247830000000006012d09/posters/03_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-26 14:00:00",
+        "expired_at": "2026-07-26 18:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:03_1",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "水上捞鸭子大赛（以鸭换鸭）",
+      "time_text": "7月25日-7月26日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：遛娃亲子\n费用：免费\n时间：7月25日-7月26日\n地址：大魔方招商花园城7楼（高新区）\n介绍：免费入场。\n以鸭换鸭夏日乐园，含捞鸭子大赛与铁鸭三项挑战，千只小黄鸭兑好礼，打卡还可领水枪与零食。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/03.webp\n裁切海报：6a6247830000000006012d09/posters/03_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:04_1",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "EGO行李箱卡市",
+      "time_text": "7月24日-26日 13:00-18:00",
+      "current_start_date": "2026-07-24 13:00:00",
+      "current_end_date": "2026-07-26 18:00:00",
+      "current_start_at": "2026-07-24 13:00:00",
+      "current_expired_at": "2026-07-26 18:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月24日-26日 13:00-18:00\n地址：GOGOEGO 5F「咔咔巷」（锦江区）\n介绍：免费入场。\n新旧专辑、特典/粉丝签绘小卡、棉花娃娃等周边，内娱韩娱全覆盖。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/04.webp\n裁切海报：6a6247830000000006012d09/posters/04_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 13:00:00",
+        "expired_at": "2026-07-26 18:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:05_1",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "「无边际」疗愈主题市集",
+      "time_text": "7月25日-7月26日 15:00-21:00",
+      "current_start_date": "2026-07-25 15:00:00",
+      "current_end_date": "2026-07-26 21:00:00",
+      "current_start_at": "2026-07-25 15:00:00",
+      "current_expired_at": "2026-07-26 21:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日-7月26日 15:00-21:00\n地址：院子文化创意园（武侯区）\n介绍：免费入场。\n身心疗愈、精油、轻瑜伽、嬉皮复古美学与互动体验餐饮，学习接纳情绪波动。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/05.webp\n裁切海报：6a6247830000000006012d09/posters/05_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 15:00:00",
+        "expired_at": "2026-07-26 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:06_1",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "泡泡街子，纳凉一夏",
+      "time_text": "7月24日-8月30日",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：户外活动\n费用：免费\n时间：7月24日-8月30日\n地址：街子古镇朝阳路华阳国志馆、泊江水街古戏台（崇州市）\n介绍：免费入场。\n亲子寻宝、趣味障碍、水战、水上市集、夜间游戏、泡泡秀、吉祥物比拼、啤酒挑战与熬夜大赛等。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/06.webp\n裁切海报：6a6247830000000006012d09/posters/06_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:07_0",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "成都锦江大融城-摸鱼赶海节",
+      "time_text": "7月11日-8月23日",
+      "current_start_date": "2026-07-11 00:00:00",
+      "current_end_date": "2026-08-23 23:59:59",
+      "current_start_at": "2026-07-11 00:00:00",
+      "current_expired_at": "2026-08-23 23:59:59",
+      "detail_excerpt": "分类：遛娃亲子\n费用：免费\n时间：7月11日-8月23日\n地址：成都锦江大融城（锦江区）\n介绍：免费入场。\n600㎡城市耍水乐园，本周末还有捞鸭子大赛。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/07.webp",
+      "suggestion": {
+        "start_at": "2026-07-11 00:00:00",
+        "expired_at": "2026-08-23 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:07_1",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "后花园爱琴海-泡泡节泳池",
+      "time_text": "7月21日-26日 17:00-21:00",
+      "current_start_date": "2026-07-21 17:00:00",
+      "current_end_date": "2026-07-26 21:00:00",
+      "current_start_at": "2026-07-21 17:00:00",
+      "current_expired_at": "2026-07-26 21:00:00",
+      "detail_excerpt": "分类：遛娃亲子\n费用：免费\n时间：7月21日-26日 17:00-21:00\n地址：后花园爱琴海（郫都区）\n介绍：免费入场。\n周六日19:00/20:00/21:00有小丑梦幻泡泡秀。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/07.webp",
+      "suggestion": {
+        "start_at": "2026-07-21 17:00:00",
+        "expired_at": "2026-07-26 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:07_2",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "港汇天地-小森林耍水季",
+      "time_text": "即日起-9月6日，周六日9:00-12:30 / 14:00-17:00 / 18:00-21:00",
+      "current_start_date": "2026-07-26 09:00:00",
+      "current_end_date": "2026-09-06 12:30:00",
+      "current_start_at": "2026-07-26 09:00:00",
+      "current_expired_at": "2026-09-06 12:30:00",
+      "detail_excerpt": "分类：遛娃亲子\n费用：免费\n时间：即日起-9月6日，周六日9:00-12:30 / 14:00-17:00 / 18:00-21:00\n地址：港汇天地（高新区）\n介绍：免费入场。\n玩水泳池+亲水栈道开启双重玩水乐趣。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/07.webp",
+      "suggestion": {
+        "start_at": "2026-06-08 09:00:00",
+        "expired_at": "2026-09-06 12:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:07_3",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "天府招商花园城-小森林耍水季",
+      "time_text": "每周六日14:00/16:00有泡泡派对",
+      "current_start_date": "2026-07-26 14:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-26 14:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：遛娃亲子\n费用：免费\n时间：每周六日14:00/16:00有泡泡派对\n地址：天府招商花园城（天府新区）\n介绍：免费入场。\n百平泳池、清凉休憩区，在连廊下不会晒。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/07.webp",
+      "suggestion": {
+        "start_at": "2026-06-08 14:00:00",
+        "expired_at": "2026-06-14 23:59:59",
+        "confidence": "medium",
+        "reason": "即日起每周重复，按本周日至每日结束时间估算"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:07_4",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "龙泉驿万达广场-夏日水上乐园",
+      "time_text": "7月18-19日 16:00-20:00",
+      "current_start_date": "2026-07-18 16:00:00",
+      "current_end_date": "2026-07-19 20:00:00",
+      "current_start_at": "2026-07-18 16:00:00",
+      "current_expired_at": "2026-07-19 20:00:00",
+      "detail_excerpt": "分类：遛娃亲子\n费用：免费\n时间：7月18-19日 16:00-20:00\n地址：龙泉驿万达广场（龙泉驿区）\n介绍：免费入场。\n夏天就是要玩水呀！同时10:00-21:00在二号门外还有摸鱼大作战。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/07.webp",
+      "suggestion": {
+        "start_at": "2026-07-18 16:00:00",
+        "expired_at": "2026-07-19 20:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:07_5",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "北星集-儿童露天玩水趴",
+      "time_text": "每日 11:00-21:00",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
-      "detail_excerpt": "约120分钟(无中场休息)，以现场为准\n主要演员\n以现场为准\n无需预约\n儿童说明\n特殊提示\n购买电子票的用户，需凭二维码在成都城市音乐厅入场口两边自助换票机兑换纸质票入场\n说明 | Notice\n4、本场演出全场严禁拍照摄影摄像，请将手机调至静音或飞行模式。\n开演后迟到观众需根据工作人员安排，等待曲间、幕间有序入场！\n演出时长约120分钟(无中场休息)，请以实际演出为准。\n【本场演出使用歌剧厅，楼厢1-2排前面有防坠物栏杆，因观众身高差异可能出现视线遮挡的情况；楼厢两侧边上座席，在部分演出中因角度问题或舞美搭建需要可能出现视线遮挡情况，如有介意，请谨慎下单选购】\n入场提示：请尽早取票，可在演出开演前50分钟使用票夹内取票码/二维码在城市音乐厅A1口自助取票机换取纸质票等候入场，请预留充足的取票、查验、安检、入场时间。",
+      "detail_excerpt": "分类：遛娃亲子\n费用：免费\n时间：每日 11:00-21:00\n地址：北星集（新都区）\n介绍：免费入场。\n7月25日15:00-18:30有滑板赛，19:30-20:30夜间还有晚间音乐会、接歌挑战送冰淇淋球。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/07.webp",
       "suggestion": {
-        "start_at": "2026-07-17 19:30:00",
-        "expired_at": "2026-07-17 21:00:00",
+        "error": "未能解析日期"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:08_0",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "夏日绘梦·天府逐光漫展",
+      "time_text": "7月25日-26日 10:00-22:00",
+      "current_start_date": "2026-07-25 10:00:00",
+      "current_end_date": "2026-07-26 22:00:00",
+      "current_start_at": "2026-07-25 10:00:00",
+      "current_expired_at": "2026-07-26 22:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日-26日 10:00-22:00\n地址：今站购物中心B1层（锦江区）\n介绍：免费入场。\n夏日潮流与次元文化融合，国漫主题、双馆联动、两日狂欢。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/08.webp",
+      "suggestion": {
+        "start_at": "2026-07-25 10:00:00",
+        "expired_at": "2026-07-26 22:00:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月17日 周五 19:30-21:00"
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:08_1",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "眉山文旅×苏东坡快闪活动",
+      "time_text": "7月25日-26日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日-26日\n地址：东郊记忆熊猫广场（成华区）\n介绍：免费入场。\n求签、国宝复刻展、景区门票抽奖、免费夏日饮品、宋式茶席，西门草坪还有巨型蜘蛛侠打卡点。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/08.webp\n裁切海报：6a6247830000000006012d09/posters/08_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:09_1",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "蝶逐清声·花间启乐洛天依成都站快闪",
+      "time_text": "7月24日-8月24日 10:00-22:00",
+      "current_start_date": "2026-07-24 10:00:00",
+      "current_end_date": "2026-08-24 22:00:00",
+      "current_start_at": "2026-07-24 10:00:00",
+      "current_expired_at": "2026-08-24 22:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月24日-8月24日 10:00-22:00\n地址：凯德广场金牛店L1层（金牛区）\n介绍：免费入场。\n「无限共鸣·纯蓝幻乐」系列周边、城市限定与集章活动。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/09.webp\n裁切海报：6a6247830000000006012d09/posters/09_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 10:00:00",
+        "expired_at": "2026-08-24 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:10_0",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "香港动漫电玩节-动漫潮玩大阵象西南首站快闪",
+      "time_text": "7月24日-8月23日",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-08-23 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-08-23 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月24日-8月23日\n地址：天府红1F中庭（锦江区）\n介绍：免费入场。\n新晋与人气IP汇聚，正版潮玩集合，专业赛事，全民免费畅玩。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/10.webp\n裁切海报：6a6247830000000006012d09/posters/10_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-08-23 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:11_1",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "石榴籽·同心圆——民间工艺主题创作精品展",
+      "time_text": "7月12日-8月23日",
+      "current_start_date": "2026-07-12 00:00:00",
+      "current_end_date": "2026-08-23 23:59:59",
+      "current_start_at": "2026-07-12 00:00:00",
+      "current_expired_at": "2026-08-23 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月12日-8月23日\n地址：四川美术馆3、4展厅（青羊区）\n介绍：免费入场。\n来自31个省区市及香港的140余件作品，涵盖雕刻、陶瓷、刺绣、印染、剪纸等58类民间工艺。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/11.webp\n裁切海报：6a6247830000000006012d09/posters/11_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-12 00:00:00",
+        "expired_at": "2026-08-23 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:12_0",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "叙事的展开：纸之艺术",
+      "time_text": "持续至7月31日 10:00-18:00",
+      "current_start_date": "2026-07-31 10:00:00",
+      "current_end_date": "2026-07-31 18:00:00",
+      "current_start_at": "2026-07-31 10:00:00",
+      "current_expired_at": "2026-07-31 18:00:00",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：持续至7月31日 10:00-18:00\n地址：红印艺术中心（青羊区）\n介绍：免费需预约。\n以「纸」为媒介，12位中荷艺术家多元作品，属「2026成都-欧洲文化季」当代艺术与材料语言单元。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/12.webp\n裁切海报：6a6247830000000006012d09/posters/12_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-31 10:00:00",
+        "expired_at": "2026-07-31 18:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:12_1",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "翰墨长征路 川流新时代——全国书法报工作站作品邀请展",
+      "time_text": "7月22日-8月3日",
+      "current_start_date": "2026-07-22 00:00:00",
+      "current_end_date": "2026-08-03 23:59:59",
+      "current_start_at": "2026-07-22 00:00:00",
+      "current_expired_at": "2026-08-03 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月22日-8月3日\n地址：四川福宝美术馆（成华区）\n介绍：免费入场。\n笔墨是对历史的深情凝视与对时代的礼赞，每一件作品都是历史的回响与时代的声音。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/12.webp\n裁切海报：6a6247830000000006012d09/posters/12_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-22 00:00:00",
+        "expired_at": "2026-08-03 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:13_0",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "金牛热音LIVE·全新国风武侠专场",
+      "time_text": "7月25日 19:00-20:30",
+      "current_start_date": "2026-07-25 19:00:00",
+      "current_end_date": "2026-07-25 20:30:00",
+      "current_start_at": "2026-07-25 19:00:00",
+      "current_expired_at": "2026-07-25 20:30:00",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月25日 19:00-20:30\n地址：天府艺术公园·湖畔舞台（金牛区）\n介绍：免费入场。\n日落湖畔大合唱，沉浸式国风武侠氛围。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/13.webp\n裁切海报：6a6247830000000006012d09/posters/13_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 19:00:00",
+        "expired_at": "2026-07-25 20:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:13_1",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "楠瓜派对·星光live演唱会",
+      "time_text": "7月24日-26日 19:30-21:30",
+      "current_start_date": "2026-07-24 19:30:00",
+      "current_end_date": "2026-07-26 21:30:00",
+      "current_start_at": "2026-07-24 19:30:00",
+      "current_expired_at": "2026-07-26 21:30:00",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月24日-26日 19:30-21:30\n地址：中演·成都大剧院露天剧场（成华区）\n介绍：免费入场。\n沉浸式线下大合唱，每周轮换实力唱将。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/13.webp\n裁切海报：6a6247830000000006012d09/posters/13_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 19:30:00",
+        "expired_at": "2026-07-26 21:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:14_0",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "东安湖沙滩音乐季",
+      "time_text": "7月25日 19:30",
+      "current_start_date": "2026-07-25 19:30:00",
+      "current_end_date": "2026-07-25 23:59:59",
+      "current_start_at": "2026-07-25 19:30:00",
+      "current_expired_at": "2026-07-25 23:59:59",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月25日 19:30\n地址：东安湖公园·银沙滩（龙泉驿区）\n介绍：免费入场。\n沉浸式户外演出现场，晚风、沙滩与星光，含全民合唱环节。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/14.webp\n裁切海报：6a6247830000000006012d09/posters/14_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 19:30:00",
+        "expired_at": "2026-07-25 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:14_1",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "锦江听涛·江畔音乐会（影视金曲限定专场）",
+      "time_text": "7月25日 19:00-21:00",
+      "current_start_date": "2026-07-25 19:00:00",
+      "current_end_date": "2026-07-25 21:00:00",
+      "current_start_at": "2026-07-25 19:00:00",
+      "current_expired_at": "2026-07-25 21:00:00",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月25日 19:00-21:00\n地址：合江亭下沉式广场（锦江区）\n介绍：免费入场。\n影视金曲OST，唤起青春与怀旧共鸣。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/14.webp\n裁切海报：6a6247830000000006012d09/posters/14_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 19:00:00",
+        "expired_at": "2026-07-25 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:15_0",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "侯明昊成都站应援",
+      "time_text": "7月25日-7月26日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：7月25日-7月26日\n地址：成都市金牛区招商花园城（金牛区）\n介绍：免费入场。\n城中魔法森林应援派对：3D巨幕、4D花墙、巨型签名墙、绿地、商场LED、吊旗与立牌打卡点。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/15.webp",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:15_1",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "王俊凯首张同名专辑WJK主题展",
+      "time_text": "7月18日-7月24日",
+      "current_start_date": "2026-07-18 00:00:00",
+      "current_end_date": "2026-07-24 23:59:59",
+      "current_start_at": "2026-07-18 00:00:00",
+      "current_expired_at": "2026-07-24 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月18日-7月24日\n地址：天府大悦城B馆（天府新区）\n介绍：免费入场。\n静态展览，把旋律变成可触摸的场景，沉浸式体验。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/15.webp",
+      "suggestion": {
+        "start_at": "2026-07-18 00:00:00",
+        "expired_at": "2026-07-24 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:15_2",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "迪丽热巴应援痛楼",
+      "time_text": "7月25日-7月31日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-31 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-31 23:59:59",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：7月25日-7月31日\n地址：成都世茂广场L1骆驼中庭（龙泉驿区）\n介绍：免费入场。\n打卡墙、地贴、相框、多款立牌、吊旗，还有免费周边。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/15.webp",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a6247830000000006012d09:15_3",
+      "city": "成都",
+      "source": "xiaohongshu",
+      "title": "张艺兴全新专辑《斗战胜佛》线下痛楼",
+      "time_text": "7月24日-8月2日",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-08-02 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-08-02 23:59:59",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：7月24日-8月2日\n地址：成都银泰in99-L1火炬中庭（高新区）\n介绍：免费入场。\n沉浸式专辑视觉还原，氛围打卡，双渠道可领专属小卡。\n\n来源账号：成都周末去哪\n合集标题：全部免费！成都这周末可做的30件事7.24-26\n来源笔记：https://www.xiaohongshu.com/explore/6a6247830000000006012d09?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiQvaDXePVlDguh5qr_btyRs%3D&xsec_source=pc_user\n原 slide：6a6247830000000006012d09/images/15.webp",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-08-02 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
       }
     }
   ]

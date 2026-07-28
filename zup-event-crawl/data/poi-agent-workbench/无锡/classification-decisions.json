@@ -1,14 +1,27 @@
 {
   "city": "无锡",
   "source": "douban",
-  "decided_at": "2026-07-13T01:30:00.000Z",
+  "decided_at": "2026-07-26T12:10:00.000Z",
   "agent": "cursor-composer",
+  "note": "仅本轮 getLastImportNewUids 3 条",
   "decisions": [
     {
-      "event_uid": "douban:37770356",
+      "event_uid": "douban:37491560",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "八渡脱口秀个人专场，喜剧舞台演出"
+    },
+    {
+      "event_uid": "douban:37770341",
       "suggested": true,
       "category": "音乐现场",
-      "reason": "荷兰吉他二重奏音乐会，无锡交响音乐厅购票演出"
+      "reason": "古典吉他与长笛二重奏音乐会"
+    },
+    {
+      "event_uid": "douban:37823827",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "俄罗斯型男水舞剧《雨中》，舞台舞剧演出"
     }
   ]
 }

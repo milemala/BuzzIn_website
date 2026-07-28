@@ -29,6 +29,7 @@ const {
 } = require("./merchant-bubble-content-type");
 
 const ROTATION_META_PREFIX = "merchant_bubble_rotation";
+const LAST_BATCH_META_PREFIX = "merchant_bubble_last_batch";
 /** 每个城市至少分 3 组；单组超过 MAX_BUCKET_SIZE 时自动增加组数 */
 const MIN_BUCKET_COUNT = 3;
 const MAX_BUCKET_SIZE = 40;
@@ -59,6 +60,65 @@ function setMetaValue(db, key, value) {
 
 function rotationMetaKey(buzzEnv) {
   return `${ROTATION_META_PREFIX}_${normalizeBuzzEnv(buzzEnv)}`;
+}
+
+function lastBatchMetaKey(buzzEnv) {
+  return `${LAST_BATCH_META_PREFIX}_${normalizeBuzzEnv(buzzEnv)}`;
+}
+
+function recordLastBatchPublishedAt(db, buzzEnv, at = new Date()) {
+  const iso = at instanceof Date ? at.toISOString() : String(at || "").trim();
+  if (!iso) return null;
+  setMetaValue(db, lastBatchMetaKey(buzzEnv), iso);
+  return iso;
+}
+
+function readStoredLastBatchPublishedAt(db, buzzEnv) {
+  const raw = String(getMetaValue(db, lastBatchMetaKey(buzzEnv), "") || "").trim();
+  if (!raw) return null;
+  const ts = Date.parse(raw);
+  return Number.isFinite(ts) ? new Date(ts).toISOString() : null;
+}
+
+/** 无显式记录时，用本环境最近一次商户气泡发布时间作回退 */
+function inferLastBatchPublishedAt(merchants) {
+  let latest = null;
+  for (const merchant of merchants || []) {
+    if (!String(merchant.bubble_now_id || "").trim()) continue;
+    const ts = parseBuzzDateTime(merchant.bubble_published_at);
+    if (ts == null) continue;
+    if (latest == null || ts > latest) latest = ts;
+  }
+  return latest == null ? null : new Date(latest).toISOString();
+}
+
+function buildLastBatchSchedule(db, merchants, buzzEnv) {
+  const stored = readStoredLastBatchPublishedAt(db, buzzEnv);
+  const inferred = stored ? null : inferLastBatchPublishedAt(merchants);
+  const lastBatchPublishedAt = stored || inferred;
+  if (!lastBatchPublishedAt) {
+    return {
+      last_batch_published_at: null,
+      expire_at: null,
+      expire_days: BUBBLE_EXPIRE_DAYS,
+      is_expired: false,
+      ms_since_publish: null,
+      ms_until_expire: null,
+      source: null,
+    };
+  }
+  const publishedTs = Date.parse(lastBatchPublishedAt);
+  const expireTs = publishedTs + BUBBLE_EXPIRE_DAYS * 24 * 60 * 60 * 1000;
+  const now = Date.now();
+  return {
+    last_batch_published_at: lastBatchPublishedAt,
+    expire_at: new Date(expireTs).toISOString(),
+    expire_days: BUBBLE_EXPIRE_DAYS,
+    is_expired: now >= expireTs,
+    ms_since_publish: Math.max(0, now - publishedTs),
+    ms_until_expire: expireTs - now,
+    source: stored ? "meta" : "inferred",
+  };
 }
 
 function resolveBuzzEnv(options = {}) {
@@ -756,6 +816,7 @@ async function getMerchantBubbleState(db, options = {}) {
     with_active_bubble: merchants.filter((item) => activeUids.has(item.merchant_uid)).length,
     default_publish_user_id: defaultPublishUserId(stateOptions),
     publish_user_pool: poolEnabled(buzzEnv) ? getPublishUserPoolStatus(db, buzzEnv) : { enabled: false },
+    last_batch: buildLastBatchSchedule(db, merchants, buzzEnv),
     cities,
   };
 }
@@ -1097,8 +1158,12 @@ async function batchPublishMerchantBubbles(db, options = {}) {
     }
   }
 
-  if (options.advance_rotation !== false && !options.merchant_uids?.length && !Number.isFinite(Number(options.slot))) {
+  const isFullBatch = !options.merchant_uids?.length && !Number.isFinite(Number(options.slot));
+  if (options.advance_rotation !== false && isFullBatch) {
     advanceRotationSlots(db, pick.plan.map((item) => item.city), buzzEnv);
+  }
+  if (isFullBatch && ok > 0) {
+    recordLastBatchPublishedAt(db, buzzEnv);
   }
 
   return {

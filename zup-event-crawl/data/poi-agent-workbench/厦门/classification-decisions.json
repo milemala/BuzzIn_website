@@ -1,14 +1,32 @@
 {
   "city": "厦门",
   "source": "douban",
-  "decided_at": "2026-07-13T14:42:21.308Z",
+  "decided_at": "2026-07-26T12:10:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "event_uid": "douban:37900945",
-      "category": "看展逛馆",
+      "event_uid": "douban:37634768",
       "suggested": true,
-      "reason": "艺术家玩偶造型个展"
+      "category": "戏剧表演",
+      "reason": "悬疑惊悚喜剧舞台剧，公众购票观演"
+    },
+    {
+      "event_uid": "douban:37897904",
+      "suggested": true,
+      "category": "主题沙龙",
+      "reason": "影院拼场观影社交局，线下结伴看电影"
+    },
+    {
+      "event_uid": "douban:37811900",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "民族舞剧《醒·狮》，公众购票观演"
+    },
+    {
+      "event_uid": "douban:37759781",
+      "suggested": true,
+      "category": "音乐现场",
+      "reason": "阿卡贝拉音乐会，公众购票观演"
     }
   ]
 }

@@ -1,0 +1,46 @@
+{
+  "city": "深圳",
+  "decided_at": "2026-07-26T11:55:16.851Z",
+  "agent": "cursor-composer",
+  "decisions": [
+    {
+      "group_id": "f451f871809b",
+      "event_uids": [
+        "douban:37906605"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "荣超经贸中心 福田",
+        "天空冥想馆 荣超"
+      ],
+      "poi_id": "18185713332639949230",
+      "poi_title": "MOCICI天空冥想(荣超经贸中心店)",
+      "poi_address": "广东省深圳市福田区莲花街道金田路4028号荣超经贸中心4801号",
+      "latitude": 22.544153,
+      "longitude": 114.063756,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "18185713332639949230",
+          "title": "MOCICI天空冥想(荣超经贸中心店)",
+          "address": "广东省深圳市福田区莲花街道金田路4028号荣超经贸中心4801号",
+          "category": "生活服务:其它生活服务",
+          "latitude": 22.544153,
+          "longitude": 114.063756
+        },
+        {
+          "index": 1,
+          "poi_id": "4107971988374362235",
+          "title": "荣超经贸中心",
+          "address": "广东省深圳市福田区金田路4028号",
+          "category": "房产小区:商务楼宇",
+          "latitude": 22.54404,
+          "longitude": 114.063637
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "荣超经贸中心4801室天空冥想馆与POI门牌一致"
+    }
+  ]
+}

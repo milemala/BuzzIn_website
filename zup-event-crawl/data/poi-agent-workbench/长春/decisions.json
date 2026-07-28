@@ -1,12 +1,12 @@
 {
   "city": "长春",
-  "source": "douban",
-  "decided_at": "2026-07-06T10:55:00.000Z",
+  "decided_at": "2026-07-26T12:20:00.000Z",
   "agent": "cursor-composer",
+  "note": "仅本轮 getLastImportNewUids 1 条；poi-search-cli --location 映射库命中",
   "decisions": [
     {
       "group_id": "fc1b0bdf1a62",
-      "event_uids": ["douban:37826653"],
+      "event_uids": ["douban:37707160"],
       "action": "match",
       "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "8056389127559213550",
@@ -14,9 +14,18 @@
       "poi_address": "",
       "latitude": 43.839353,
       "longitude": 125.400154,
+      "candidates": [
+        {
+          "poi_id": "8056389127559213550",
+          "title": "长春国际会议中心·主会场",
+          "address": "",
+          "latitude": 43.839353,
+          "longitude": 125.400154
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：南关区长春国际会议中心主会场会展大街100号"
+      "reason": "映射库命中长春国际会议中心主会场，与南关区地址一致"
     }
   ]
 }

@@ -1,44 +1,69 @@
 {
   "city": "上海",
-  "decided_at": "2026-07-13T14:43:13.358Z",
+  "decided_at": "2026-07-26T12:05:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "396eee411af9",
-      "event_uids": [
-        "douban:37420412"
-      ],
+      "group_id": "b3a85288cbbc",
+      "event_uids": ["douban:37724702"],
       "action": "match",
-      "search_keywords_tried": [
-        "静安别墅",
-        "Shanghai Time 静安别墅"
-      ],
-      "poi_id": "7198088040773825858",
-      "poi_title": "静安别墅",
-      "poi_address": "上海市静安区南京西路1025弄1-198号",
-      "latitude": 31.227535,
-      "longitude": 121.458353,
+      "search_keywords_tried": ["美琪大戏院"],
+      "poi_id": "17598270707528926828",
+      "poi_title": "上海美琪大戏院",
+      "poi_address": "上海市静安区江宁路66号",
+      "latitude": 31.229401,
+      "longitude": 121.455973,
       "candidates": [
         {
-          "poi_id": "7198088040773825858",
-          "title": "静安别墅",
-          "address": "上海市静安区南京西路1025弄1-198号"
+          "poi_id": "17598270707528926828",
+          "title": "上海美琪大戏院",
+          "address": "上海市静安区江宁路66号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.229401,
+          "longitude": 121.455973
+        },
+        {
+          "poi_id": "1719503871885283114",
+          "title": "美琪大戏院-售票处",
+          "address": "上海市静安区石门二路街道江宁路66号(奉贤路与江宁路交叉口北50米路东)",
+          "category": "生活服务:票务代售:其它票务代售",
+          "latitude": 31.229378,
+          "longitude": 121.455903
+        },
+        {
+          "poi_id": "9177905358976142079",
+          "title": "美琪大戏院-南门",
+          "address": "上海市静安区石门二路街道奉贤路258号美琪大戏院",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 31.229631,
+          "longitude": 121.456474
+        },
+        {
+          "poi_id": "605754358451914266",
+          "title": "美琪大戏院办公楼",
+          "address": "上海市静安区石门二路街道奉贤路258号",
+          "category": "房产小区:商务楼宇",
+          "latitude": 31.229437,
+          "longitude": 121.456027
+        },
+        {
+          "poi_id": "10051671955153850995",
+          "title": "美琪大戏院-正门",
+          "address": "上海市静安区石门二路街道奉贤路258号美琪大戏院",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 31.229411,
+          "longitude": 121.45594
         }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "商场/园区主体一致（南京西路1025弄静安别墅），腾讯无「Shanghai Time」店级POI，仅差店铺精度"
+      "reason": "静安区江宁路66号与上海美琪大戏院门牌、剧场类目一致"
     },
     {
       "group_id": "2065067dffa1",
-      "event_uids": [
-        "douban:37896044",
-        "douban:37889514"
-      ],
+      "event_uids": ["douban:37439603"],
       "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
+      "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "10804313910827168281",
       "poi_title": "龙阳路[地铁站]",
       "poi_address": "",
@@ -47,17 +72,123 @@
       "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：龙阳路地铁站（集合点），历史已通过活动确认"
+      "reason": "地址映射库命中：集合点龙阳路地铁站 → 龙阳路[地铁站]"
+    },
+    {
+      "group_id": "34d7a50689c1",
+      "event_uids": ["douban:37866720"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "10076962457668514442",
+      "poi_title": "凯迪拉克·上海音乐厅-东南门",
+      "poi_address": "",
+      "latitude": 31.22621,
+      "longitude": 121.478451,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：凯迪拉克-上海音乐厅主体一致（缓存为东南门）"
+    },
+    {
+      "group_id": "c8e3da4b11e1",
+      "event_uids": ["douban:37804799"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "2868361964880583690",
+      "poi_title": "上海文化广场",
+      "poi_address": "",
+      "latitude": 31.212301,
+      "longitude": 121.462493,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：黄浦区上海文化广场"
+    },
+    {
+      "group_id": "5d2ee8b69bf4",
+      "event_uids": ["douban:37867789"],
+      "action": "match",
+      "search_keywords_tried": ["九棵树未来艺术中心"],
+      "poi_id": "5639949396546879692",
+      "poi_title": "九棵树(上海)未来艺术中心",
+      "poi_address": "上海市奉贤区树桓路99号",
+      "latitude": 30.940724,
+      "longitude": 121.485413,
+      "candidates": [
+        {
+          "poi_id": "5639949396546879692",
+          "title": "九棵树(上海)未来艺术中心",
+          "address": "上海市奉贤区树桓路99号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 30.940724,
+          "longitude": 121.485413
+        },
+        {
+          "poi_id": "14375066694874474557",
+          "title": "九棵树未来艺术中心",
+          "address": "上海市奉贤区",
+          "category": "教育学校:其它教育学校",
+          "latitude": 30.910668,
+          "longitude": 121.459711
+        },
+        {
+          "poi_id": "14834492097886747373",
+          "title": "一尺花园(九棵树未来艺术中心店)",
+          "address": "上海市奉贤区树桓路199弄8号(九棵树未来艺术中心地面停车场)",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 30.940672,
+          "longitude": 121.48521
+        },
+        {
+          "poi_id": "1031138022800791356",
+          "title": "九棵树未来艺术中心-艺术教育",
+          "address": "上海市奉贤区树贤路九棵树未来艺术中心",
+          "category": "教育学校:培训",
+          "latitude": 30.940679,
+          "longitude": 121.485114
+        },
+        {
+          "poi_id": "10806948947684658322",
+          "title": "九棵树(上海)未来艺术中心地面停车场",
+          "address": "上海市奉贤区树桓路99号一区",
+          "category": "汽车:停车场",
+          "latitude": 30.939847,
+          "longitude": 121.48558
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "奉贤区树桓路99号与九棵树(上海)未来艺术中心剧场POI一致；未选仅写奉贤区的泛结果"
+    },
+    {
+      "group_id": "a906db4fa937",
+      "event_uids": ["douban:37873355"],
+      "action": "match",
+      "search_keywords_tried": ["草台嘻班"],
+      "poi_id": "8832705448589887569",
+      "poi_title": "草台嘻班",
+      "poi_address": "上海市虹口区滨港商业中心2楼L1228",
+      "latitude": 31.250004,
+      "longitude": 121.48303,
+      "candidates": [
+        {
+          "poi_id": "8832705448589887569",
+          "title": "草台嘻班",
+          "address": "上海市虹口区滨港商业中心2楼L1228",
+          "category": "教育学校:培训",
+          "latitude": 31.250004,
+          "longitude": 121.48303
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "店名草台嘻班与滨港商业中心L2-1228铺位一致，主体匹配"
     },
     {
       "group_id": "6d01add84db3",
-      "event_uids": [
-        "douban:37772626"
-      ],
+      "event_uids": ["douban:37873938", "douban:37751077"],
       "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
+      "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "52919750025520475",
       "poi_title": "上海东方艺术中心",
       "poi_address": "",
@@ -66,241 +197,269 @@
       "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：上海东方艺术中心，历史已通过活动确认"
+      "reason": "地址映射库命中：浦东上海东方艺术中心"
     },
     {
-      "group_id": "fd70db5d51b9",
-      "event_uids": [
-        "douban:37888397"
-      ],
+      "group_id": "6a69ee846eaf",
+      "event_uids": ["douban:37845316"],
       "action": "match",
-      "search_keywords_tried": [
-        "星在文化中心"
-      ],
-      "poi_id": "7431113328795110183",
-      "poi_title": "恺悦.星在文化中心-梦想剧场",
-      "poi_address": "上海市普陀区宜昌路179号星在文化中心1楼",
-      "latitude": 31.248947,
-      "longitude": 121.440019,
-      "candidates": [
-        {
-          "poi_id": "7431113328795110183",
-          "title": "恺悦.星在文化中心-梦想剧场",
-          "address": "上海市普陀区宜昌路179号星在文化中心1楼"
-        },
-        {
-          "poi_id": "2809750477294413560",
-          "title": "星在文化中心",
-          "address": "上海市普陀区宜昌路179号(浅水湾文化艺术中心)"
-        },
-        {
-          "poi_id": "3484386760022640711",
-          "title": "星在文化中心·未来剧场",
-          "address": "上海市普陀区宜昌路179号2楼"
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "腾讯有厅级POI「梦想剧场」（1楼），与豆瓣「星在文化中心 梦想剧场 宜昌路179号1F」精确对应"
-    },
-    {
-      "group_id": "8adf9ebf6ab2",
-      "event_uids": [
-        "douban:37900031"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "朵云书院 上海中心"
-      ],
-      "poi_id": "3099559083310773490",
-      "poi_title": "朵云书院·旗舰店",
-      "poi_address": "上海市浦东新区陆家嘴银城中路501号上海中心大厦52楼",
-      "latitude": 31.233654,
-      "longitude": 121.505341,
-      "candidates": [
-        {
-          "poi_id": "3099559083310773490",
-          "title": "朵云书院·旗舰店",
-          "address": "上海市浦东新区陆家嘴银城中路501号上海中心大厦52楼"
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "门牌(银城中路501号上海中心大厦52楼)与豆瓣完全一致"
-    },
-    {
-      "group_id": "d2082745a968",
-      "event_uids": [
-        "douban:37900022"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "福民会馆"
-      ],
-      "poi_id": "11412690939697110071",
-      "poi_title": "福民会馆",
-      "poi_address": "上海市静安区富民路197弄69号(近巨鹿路)",
-      "latitude": 31.219221,
-      "longitude": 121.451604,
-      "candidates": [
-        {
-          "poi_id": "11412690939697110071",
-          "title": "福民会馆",
-          "address": "上海市静安区富民路197弄69号(近巨鹿路)"
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "店名唯一匹配，区划(静安区)一致"
-    },
-    {
-      "group_id": "7ff6c8f2e2b7",
-      "event_uids": [
-        "douban:37805494"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "5527323411719490889",
-      "poi_title": "Theatre YOUNG剧场",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "2882454542212894308",
+      "poi_title": "瓦肆VAS ear",
       "poi_address": "",
-      "latitude": 31.278051,
-      "longitude": 121.528544,
+      "latitude": 31.229676,
+      "longitude": 121.426552,
       "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：YOUNG剧场 控江路1155号，历史已通过活动确认"
+      "reason": "地址映射库命中：普陀区瓦肆VAS ear"
     },
     {
-      "group_id": "1484f24366ce",
-      "event_uids": [
-        "douban:37900547"
-      ],
+      "group_id": "00e66a3a85e0",
+      "event_uids": ["douban:37847932"],
       "action": "match",
-      "search_keywords_tried": [
-        "MOViE MOViE影城 前滩太古里"
-      ],
-      "poi_id": "8499338989458981345",
-      "poi_title": "MOViE MOViE 影城(前滩太古里店)",
-      "poi_address": "上海市浦东新区东育路500弄1-9号前滩太古里L3",
-      "latitude": 31.152216,
-      "longitude": 121.482616,
+      "search_keywords_tried": ["加场戏剧"],
+      "poi_id": "16781844453346716120",
+      "poi_title": "加场戏剧(南京东路店)",
+      "poi_address": "上海市黄浦区天津路66号108",
+      "latitude": 31.238916,
+      "longitude": 121.48505,
       "candidates": [
         {
-          "poi_id": "8499338989458981345",
-          "title": "MOViE MOViE 影城(前滩太古里店)",
-          "address": "上海市浦东新区东育路500弄1-9号前滩太古里L3"
+          "poi_id": "16781844453346716120",
+          "title": "加场戏剧(南京东路店)",
+          "address": "上海市黄浦区天津路66号108",
+          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
+          "latitude": 31.238916,
+          "longitude": 121.48505
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "黄浦区天津路66号108与加场戏剧门牌一致"
+    },
+    {
+      "group_id": "aa798ea18425",
+      "event_uids": ["douban:37862067"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "9895111819536696934",
+      "poi_title": "北外滩友邦大剧院",
+      "poi_address": "",
+      "latitude": 31.251265,
+      "longitude": 121.505028,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：虹口北外滩友邦大剧院"
+    },
+    {
+      "group_id": "08851922e9fd",
+      "event_uids": ["douban:37905494"],
+      "action": "match",
+      "search_keywords_tried": ["联明路555号文创园"],
+      "poi_id": "4105257615610063886",
+      "poi_title": "启示望远文创园",
+      "poi_address": "上海市闵行区七宝镇联明路555号",
+      "latitude": 31.143743,
+      "longitude": 121.345218,
+      "candidates": [
+        {
+          "poi_id": "4105257615610063886",
+          "title": "启示望远文创园",
+          "address": "上海市闵行区七宝镇联明路555号",
+          "category": "房产小区:产业园区",
+          "latitude": 31.143743,
+          "longitude": 121.345218
+        },
+        {
+          "poi_id": "17215753888532345028",
+          "title": "联明路555号",
+          "address": "上海市闵行区七宝镇",
+          "category": "房产小区:住宅区:住宅小区",
+          "latitude": 31.143009,
+          "longitude": 121.345922
+        },
+        {
+          "poi_id": "2280238294121184232",
+          "title": "389麦可将两岸文创园",
+          "address": "上海市闵行区七宝镇联明路389号",
+          "category": "房产小区:产业园区",
+          "latitude": 31.143991,
+          "longitude": 121.34711
+        },
+        {
+          "poi_id": "13788070399021523465",
+          "title": "7089文化创意园",
+          "address": "上海市闵行区中春路7089号",
+          "category": "房产小区:产业园区",
+          "latitude": 31.139469,
+          "longitude": 121.345352
+        },
+        {
+          "poi_id": "15434639512754386305",
+          "title": "全家便利店(联明路店)",
+          "address": "上海市闵行区七宝镇联明路389号第16幢101室",
+          "category": "购物:便利店",
+          "latitude": 31.144911,
+          "longitude": 121.347161
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "闵行联明路555号对应启示望远文创园；未选389号麦可将文创园"
+    },
+    {
+      "group_id": "9bf4d0cf8ae2",
+      "event_uids": ["douban:37887987"],
+      "action": "match",
+      "search_keywords_tried": ["喜梦盒暴雨将至"],
+      "poi_id": "10273885935464310871",
+      "poi_title": "喜梦盒暴雨将至剧场(上海友邦店)",
+      "poi_address": "上海市虹口区公平路209号友邦金融中心L3层",
+      "latitude": 31.252154,
+      "longitude": 121.505602,
+      "candidates": [
+        {
+          "poi_id": "10273885935464310871",
+          "title": "喜梦盒暴雨将至剧场(上海友邦店)",
+          "address": "上海市虹口区公平路209号友邦金融中心L3层",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.252154,
+          "longitude": 121.505602
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "虹口公平路209号友邦金融中心L3与喜梦盒暴雨将至剧场一致"
+    },
+    {
+      "group_id": "3874fdec990b",
+      "event_uids": ["douban:37893579"],
+      "action": "match",
+      "search_keywords_tried": ["开心麻花I空间 合生汇"],
+      "poi_id": "14578161203300111039",
+      "poi_title": "开心麻花(CITY MART城市集市合生汇店)",
+      "poi_address": "上海市杨浦区翔殷路1099号B1-35号",
+      "latitude": 31.300295,
+      "longitude": 121.518811,
+      "candidates": [
+        {
+          "poi_id": "14578161203300111039",
+          "title": "开心麻花(CITY MART城市集市合生汇店)",
+          "address": "上海市杨浦区翔殷路1099号B1-35号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.300295,
+          "longitude": 121.518811
+        },
+        {
+          "poi_id": "7789323789779163436",
+          "title": "开心麻花",
+          "address": "上海市宝山区美安路",
+          "category": "美食:小吃快餐",
+          "latitude": 31.387087,
+          "longitude": 121.346912
+        },
+        {
+          "poi_id": "14090971548533788394",
+          "title": "肉肉大米(五角场合生汇店)",
+          "address": "上海市杨浦区五角场街道翔殷路1099号合生汇B1城市集市开心麻花D6-D7号",
+          "category": "美食:日韩菜:日本料理",
+          "latitude": 31.29944,
+          "longitude": 121.516764
+        },
+        {
+          "poi_id": "3236049775588080426",
+          "title": "北丐先生·野馄饨烧烤(合生汇店)",
+          "address": "上海市杨浦区五角场街道翔殷路上海五角场合生汇B1层开心麻花集市A2号",
+          "category": "美食:烧烤",
+          "latitude": 31.300326,
+          "longitude": 121.518793
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "杨浦翔殷路1099号合生汇B1开心麻花剧场与豆瓣地址一致；未选宝山餐饮同名"
+    },
+    {
+      "group_id": "84205d29c94d",
+      "event_uids": ["douban:37835979"],
+      "action": "match",
+      "search_keywords_tried": ["山吉堂 华影雅集"],
+      "poi_id": "16277083455105573466",
+      "poi_title": "山吉堂 X 华影雅集(广富林店)",
+      "poi_address": "上海市松江区广富林路3088弄朱雀门集贤坊3号",
+      "latitude": 31.05977,
+      "longitude": 121.195098,
+      "candidates": [
+        {
+          "poi_id": "16277083455105573466",
+          "title": "山吉堂 X 华影雅集(广富林店)",
+          "address": "上海市松江区广富林路3088弄朱雀门集贤坊3号",
+          "category": "生活服务:摄影冲印",
+          "latitude": 31.05977,
+          "longitude": 121.195098
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "松江广富林路3088弄朱雀门集贤坊3号与山吉堂X华影雅集门牌一致"
+    },
+    {
+      "group_id": "f3767d0e2179",
+      "event_uids": ["douban:37887955"],
+      "action": "match",
+      "search_keywords_tried": ["重庆南路227号 交大医学院"],
+      "poi_id": "15281919380122369786",
+      "poi_title": "上海交通大学医学院",
+      "poi_address": "上海市黄浦区重庆南路227号",
+      "latitude": 31.212467,
+      "longitude": 121.471416,
+      "candidates": [
+        {
+          "poi_id": "15281919380122369786",
+          "title": "上海交通大学医学院",
+          "address": "上海市黄浦区重庆南路227号",
+          "category": "教育学校:大学",
+          "latitude": 31.212467,
+          "longitude": 121.471416
+        },
+        {
+          "poi_id": "13921455714307895875",
+          "title": "上海交通大学医学院-懿德楼",
+          "address": "上海市黄浦区淮海中路街道重庆南路227号上海交通大学医学院东部",
+          "category": "教育学校:教育学校附属",
+          "latitude": 31.212486,
+          "longitude": 121.472351
+        },
+        {
+          "poi_id": "17751557301240057691",
+          "title": "上海交通大学医学院西区教学中心楼",
+          "address": "上海市黄浦区瑞金二路街道重庆南路227号",
+          "category": "教育学校:教育学校附属",
+          "latitude": 31.211693,
+          "longitude": 121.469824
+        },
+        {
+          "poi_id": "3713746292527518602",
+          "title": "上海交通大学医学院东区12号楼",
+          "address": "上海市黄浦区淮海中路街道重庆南路227号",
+          "category": "教育学校:教育学校附属",
+          "latitude": 31.213285,
+          "longitude": 121.473411
+        },
+        {
+          "poi_id": "13040301986988471430",
+          "title": "上海交通大学医学院东区护理学院",
+          "address": "上海市黄浦区淮海中路街道重庆南路227号上海交通大学医学院东区",
+          "category": "教育学校:教育学校附属",
+          "latitude": 31.212851,
+          "longitude": 121.471634
         }
       ],
       "confidence": "medium",
-      "doubtful": true,
-      "reason": "豆瓣写两处放映地（前滩太古里MOViE MOViE影城 + 北外滩来福士百丽宫影城），本轮仅绑定门牌完全一致的前滩太古里店一处，另一放映点未绑定"
-    },
-    {
-      "group_id": "42a52439daab",
-      "event_uids": [
-        "douban:37824023"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "上海艺海剧院"
-      ],
-      "poi_id": "15732825486696464787",
-      "poi_title": "Fancl艺术中心(艺海剧院)",
-      "poi_address": "上海市静安区艺海大厦",
-      "latitude": 31.235262,
-      "longitude": 121.452452,
-      "candidates": [
-        {
-          "poi_id": "15732825486696464787",
-          "title": "Fancl艺术中心(艺海剧院)",
-          "address": "上海市静安区艺海大厦"
-        },
-        {
-          "poi_id": "468166393152943453",
-          "title": "艺海剧院停车场",
-          "address": "上海市静安区江宁路466号艺海剧院"
-        }
-      ],
-      "confidence": "high",
       "doubtful": false,
-      "reason": "该POI括号标注即为「艺海剧院」，同址「艺海剧院停车场」确认门牌江宁路466号与豆瓣一致，现已更名Fancl艺术中心但场馆主体未变"
-    },
-    {
-      "group_id": "440ae65c7afe",
-      "event_uids": [
-        "douban:37881520",
-        "douban:37471175"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "星在文化中心"
-      ],
-      "poi_id": "3484386760022640711",
-      "poi_title": "星在文化中心·未来剧场",
-      "poi_address": "上海市普陀区宜昌路179号2楼",
-      "latitude": 31.248934,
-      "longitude": 121.440094,
-      "candidates": [
-        {
-          "poi_id": "3484386760022640711",
-          "title": "星在文化中心·未来剧场",
-          "address": "上海市普陀区宜昌路179号2楼"
-        },
-        {
-          "poi_id": "2809750477294413560",
-          "title": "星在文化中心",
-          "address": "上海市普陀区宜昌路179号(浅水湾文化艺术中心)"
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "腾讯有厅级POI「未来剧场」（2楼），与豆瓣「星在文化中心 未来剧场 宜昌路179号2F」精确对应"
-    },
-    {
-      "group_id": "a45e0491e227",
-      "event_uids": [
-        "douban:37900688"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "14252119467906121381",
-      "poi_title": "嘉发大厦-A栋",
-      "poi_address": "",
-      "latitude": 31.23286,
-      "longitude": 121.464008,
-      "candidates": [],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：大田路129弄嘉发大厦A栋5D"
-    },
-    {
-      "group_id": "6770df3a29eb",
-      "event_uids": [
-        "douban:37900856"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "上海图书馆东馆"
-      ],
-      "poi_id": "5528072624503891635",
-      "poi_title": "上海图书馆(东馆)",
-      "poi_address": "上海市浦东新区花木街道合欢路300号",
-      "latitude": 31.219975,
-      "longitude": 121.547154,
-      "candidates": [
-        {
-          "poi_id": "5528072624503891635",
-          "title": "上海图书馆(东馆)",
-          "address": "上海市浦东新区花木街道合欢路300号"
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "场馆名与合欢路300号东馆地址一致"
+      "reason": "豆瓣写交大医学院重庆南路227号，主体对齐校园POI；未写具体楼栋，仅差楼宇精度"
     }
   ]
 }

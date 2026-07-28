@@ -1,33 +1,334 @@
 {
   "city": "北京",
   "source": "douban",
-  "exported_at": "2026-07-13T14:41:11.765Z",
+  "exported_at": "2026-07-26T11:54:55.899Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 2,
+  "last_import_new_uids": 23,
   "doubtful_only": false,
-  "total_events": 2,
-  "group_count": 2,
-  "cache_hit_groups": 0,
+  "total_events": 23,
+  "group_count": 19,
+  "cache_hit_groups": 9,
   "groups": [
     {
-      "group_id": "66c38f426b93",
-      "location": "北京 朝阳区 英皇电影城(北京三里屯店)朝阳区三里屯路19号院12幢楼-2至-1层",
-      "sample_title": "温暖治愈，夏日必看！《想你了》约你看个电影+章若楠金靖等主创映后",
+      "group_id": "acbc0491e5c1",
+      "location": "北京 朝阳区 万达影城(CBD万达广场店)（朝阳区建国路93号万达广场B座3层）",
+      "sample_title": "提前开笑！暑期档爆笑喜剧《年会不能停2！》北京首映礼+全主创映后",
       "event_uids": [
-        "douban:37900879"
+        "douban:37906675"
       ],
       "event_count": 1
     },
     {
-      "group_id": "6f65d04f29b5",
-      "location": "北京 通州区 山谷居民livehouse 月亮河城堡公寓503号楼6号底商",
-      "sample_title": "尚东峰2026「去往浪漫的一天」新专辑巡演 北京场",
+      "group_id": "004435dfd1c0",
+      "location": "北京 东城区 北京市东城区白桥大街28号花舍咖啡（广渠门店）",
+      "sample_title": "心灵魔术聚会，让你亲自感受读心术的神奇派对！！！",
       "event_uids": [
-        "douban:37879752"
+        "douban:37905316"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "1529681618907757640",
+        "poi_title": "白桥大街",
+        "poi_address": "",
+        "latitude": 39.896626,
+        "longitude": 116.439238,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：北京 东城区 北京市东城区白桥大街28号花舍咖啡（广渠门店） → 白桥大街（来源 event:douban:37881354）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "004435dfd1c026dc2c9868181eea394422a054db"
+      }
+    },
+    {
+      "group_id": "9503c7be6789",
+      "location": "北京 朝阳区 寰映影城·朝阳合生汇杜比影院店",
+      "sample_title": "《大唐妖探》北京亲子观影·映后采访【贤Movie604期】",
+      "event_uids": [
+        "douban:37906487"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "cf10996ebd87",
+      "location": "北京 朝阳区 珠影耳东传奇影城(蓝色港湾店)",
+      "sample_title": "《大唐妖探》北京亲子观影·映后采访【贤Movie604期】",
+      "event_uids": [
+        "douban:37906472"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "f7eb42db869a",
+      "location": "北京 西城区 北京展览馆剧场 西直门外大街135号",
+      "sample_title": "[北京]潘美辰「回家2.0」2026演唱会·北京站",
+      "event_uids": [
+        "douban:37853393"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "7000785431726986367",
+        "poi_title": "北展剧场",
+        "poi_address": "",
+        "latitude": 39.941553,
+        "longitude": 116.344076,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：北京 西城区 北京展览馆剧场 西直门外大街135号 → 北展剧场（来源 event:douban:37842904）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "f7eb42db869ada45aa89f2b370e4b408b631233b"
+      }
+    },
+    {
+      "group_id": "d378e2410426",
+      "location": "北京 西城区 国家大剧院-歌剧院 西长安街2号",
+      "sample_title": "中央芭蕾舞团芭蕾舞剧《红色娘子军》",
+      "event_uids": [
+        "douban:37870461"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "8245552135134442295",
+        "poi_title": "国家大剧院歌剧院",
+        "poi_address": "",
+        "latitude": 39.904662,
+        "longitude": 116.389741,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：北京 西城区 国家大剧院-歌剧院 西长安街2号 → 国家大剧院歌剧院（来源 event:douban:37865966）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "d378e24104268927205db89ef5db2e995e8f1fd7"
+      }
+    },
+    {
+      "group_id": "04d3d7c49f0b",
+      "location": "北京 西城区 国家大剧院-小剧场 西长安街街道西长安街2号",
+      "sample_title": "“自然之诗”陈萨、孙一凡与国家大剧院管弦乐团室内乐团演绎瓦格纳与常乐音乐会",
+      "event_uids": [
+        "douban:37877422"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "eb895341af2e",
+      "location": "北京 朝阳区 远洋国际中心E座",
+      "sample_title": "岁月如歌，谁伴我闯荡",
+      "event_uids": [
+        "douban:37904650",
+        "douban:37904637"
+      ],
+      "event_count": 2,
+      "cached_poi": {
+        "poi_id": "16374944766863526832",
+        "poi_title": "远洋国际中心E座",
+        "poi_address": "",
+        "latitude": 39.915974,
+        "longitude": 116.491505,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：北京 朝阳区 远洋国际中心E座 → 远洋国际中心E座（来源 event:douban:37896529）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "eb895341af2e921306343a1496b990cfcfb1be2e"
+      }
+    },
+    {
+      "group_id": "d3a7aac30b3c",
+      "location": "北京 东城区 海晟·名苑南区(南门)",
+      "sample_title": "儿童脑力脑洞海龟汤｜锻炼专注力开发逻辑思维",
+      "event_uids": [
+        "douban:37906695",
+        "douban:37906708",
+        "douban:37906712"
+      ],
+      "event_count": 3
+    },
+    {
+      "group_id": "d8d4a31b6cbb",
+      "location": "北京 西城区 天桥艺术中心 天桥南大街9号楼",
+      "sample_title": "西班牙格拉纳达弗拉明戈舞团舞剧《歌剧魅影》",
+      "event_uids": [
+        "douban:37884171",
+        "douban:37884240"
+      ],
+      "event_count": 2,
+      "cached_poi": {
+        "poi_id": "17987642018513161306",
+        "poi_title": "天桥艺术中心·第五空间",
+        "poi_address": "",
+        "latitude": 39.88265,
+        "longitude": 116.398158,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：北京 西城区 天桥艺术中心 天桥南大街9号楼 → 天桥艺术中心·第五空间（来源 event:douban:37797722）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "d8d4a31b6cbbe1c69024d40e37a19780a7998d42"
+      }
+    },
+    {
+      "group_id": "b185dceef689",
+      "location": "北京 海淀区 国图艺术中心 中关村南大街33号",
+      "sample_title": "缤纷国图2026暑期演出季 我歌唱的理由有很多——天使之声经典童声合唱音乐会",
+      "event_uids": [
+        "douban:37887715"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "9571321068325203195",
+        "poi_title": "国图艺术中心售票处",
+        "poi_address": "",
+        "latitude": 39.944253,
+        "longitude": 116.324218,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：北京 海淀区 国图艺术中心 中关村南大街33号 → 国图艺术中心售票处（来源 event:douban:37862341）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "b185dceef689a4e0cfea044fd9a935da376fa4fd"
+      }
+    },
+    {
+      "group_id": "7307d3af10bd",
+      "location": "北京 西城区 西直门沉浸式城溪话剧剧场 德胜街道新街口外大街34号院金尚城溪二楼剧场城溪剧场(积水潭地铁站北380米)",
+      "sample_title": "脱口秀|周一至周日|综艺卡司|吐槽爆笑大会|开心互动|即兴之夜精品秀",
+      "event_uids": [
+        "douban:37845073"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "1f5e5dbe184a",
+      "location": "北京 西城区 地质礼堂开心麻花剧场 羊肉胡同30号地质礼堂内",
+      "sample_title": "开心麻花爆笑年度贺岁大戏《开心西游·女儿国》",
+      "event_uids": [
+        "douban:37885408"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "10363537552618171795",
+        "poi_title": "开心麻花剧场",
+        "poi_address": "",
+        "latitude": 39.922565,
+        "longitude": 116.371357,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：北京 西城区 地质礼堂开心麻花剧场 羊肉胡同30号地质礼堂内 → 开心麻花剧场（来源 event:douban:37639725）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "1f5e5dbe184af92954ffd4c4c14446648a884e06"
+      }
+    },
+    {
+      "group_id": "6a0a4a00a6b2",
+      "location": "北京 通州区 北京（通州区）北京艺术中心-歌剧院 绿心路1号院1号楼、2号楼",
+      "sample_title": "音乐舞台《感觉》——梦回迈克尔·杰克逊巨星时刻",
+      "event_uids": [
+        "douban:37883227"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "3191494379217130930",
+        "poi_title": "北京艺术中心歌剧院",
+        "poi_address": "",
+        "latitude": 39.886617,
+        "longitude": 116.718543,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：北京 通州区 北京（通州区）北京艺术中心-歌剧院 绿心路1号院1号楼、2号楼 → 北京艺术中心歌剧院（来源 event:douban:37847111）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "6a0a4a00a6b2cb544bf1ff6b066e71072d92d6de"
+      }
+    },
+    {
+      "group_id": "40d9b60d552f",
+      "location": "北京 东城区 乐空间 YUE SPACE 北新桥街道板桥南巷7号人美大厦左一层(糯言酒馆)",
+      "sample_title": "Friko 2026北京专场 - Something worth waiting for",
+      "event_uids": [
+        "douban:37845736"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "707e31043c06",
+      "location": "北京 通州区 北京市通州区宋庄镇宋庄艺术区美术馆路宋庄当代艺术文献馆",
+      "sample_title": "奇格：中韩国际交流展",
+      "event_uids": [
+        "douban:37904152"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "42f78cabefaf",
+      "location": "北京 东城区 中国美术馆",
+      "sample_title": "我们⁺——张望水墨与AI时代",
+      "event_uids": [
+        "douban:37903865"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "6acfd2649f1c",
+      "location": "北京 东城区 雍和笑逗演艺街-B厅-新空间喜剧剧场 安定门东大街28号雍和大厦西楼E座南侧面底商雍笑逗剧场B厅",
+      "sample_title": "小喜鹊剧场儿童剧《奥特曼光之国炼金术战士》",
+      "event_uids": [
+        "douban:37774670"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "8029981166766017289",
+        "poi_title": "雍和笑逗演艺街A厅-魔法艺术剧场(雍和宫)",
+        "poi_address": "",
+        "latitude": 39.948241,
+        "longitude": 116.420308,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：北京 东城区 雍和笑逗演艺街-B厅-新空间喜剧剧场 安定门东大街28号雍和大厦西楼E座南侧面底商雍笑逗剧场B厅 → 雍和笑逗演艺街A厅-魔法艺术剧场(雍和宫)（来源 event:douban:37598598）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "6acfd2649f1ca5e4d279c112331561e9c1f68dbc"
+      }
+    },
+    {
+      "group_id": "0fb30efec630",
+      "location": "北京 西城区 老舍茶馆前门店.京味演出 前门西大街正阳市场3号楼",
+      "sample_title": "老舍茶馆京味儿相声专场演出",
+      "event_uids": [
+        "douban:37500951"
       ],
       "event_count": 1
     }

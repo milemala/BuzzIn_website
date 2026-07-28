@@ -1,54 +1,102 @@
 {
   "city": "合肥",
   "source": "douban",
-  "exported_at": "2026-07-10T11:53:34.322Z",
+  "exported_at": "2026-07-18T01:36:25.356Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 6,
+  "last_import_new_uids": 5,
   "doubtful_only": false,
-  "total_events": 6,
-  "group_count": 3,
-  "cache_hit_groups": 3,
+  "total_events": 5,
+  "group_count": 4,
+  "cache_hit_groups": 4,
   "groups": [
     {
-      "group_id": "92bae3a428bd",
-      "location": "合肥 蜀山区 哈啦子喜剧-之心城剧场 临湖社区管理委员会街道长江西路189号之心城购物中心7层18-2C胖哥俩肉蟹煲旁边",
-      "sample_title": "【哈啦子喜剧】7月25日 胡萝北脱口秀专场《半公式》之心城商场7楼",
+      "group_id": "3aa370b85f07",
+      "location": "合肥 肥东县 肥东大剧院 瑶岗路与撮东路交叉路口往西南约150米，和睦湖公园东南侧约50米",
+      "sample_title": "舞剧《达人归来》",
       "event_uids": [
-        "douban:37714376",
-        "douban:37030051",
-        "douban:37631752"
+        "douban:37832991"
       ],
-      "event_count": 3,
+      "event_count": 1,
       "cached_poi": {
-        "poi_id": "8699188752722527019",
-        "poi_title": "哈啦子喜剧(之心城)",
+        "poi_id": "15193364080442917279",
+        "poi_title": "肥东大剧院",
         "poi_address": "",
-        "latitude": 31.854057,
-        "longitude": 117.257838,
+        "latitude": 31.84381,
+        "longitude": 117.486809,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：合肥 蜀山区 哈啦子喜剧-之心城剧场 临湖社区管理委员会街道长江西路189号之心城购物中心7层18-2C胖哥俩肉蟹煲旁边 → 哈啦子喜剧(之心城)（来源 event:douban:37239181）",
+        "reason": "地址映射库命中：合肥 肥东县 肥东大剧院 瑶岗路与撮东路交叉路口往西南约150米，和睦湖公园东南侧约50米 → 肥东大剧院（来源 event:douban:37833215）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "92bae3a428bdc47906bdcccc960c958d65d3a018"
+        "cache_key": "3aa370b85f078f69e4b8b1ae773535f9f3c59bad"
+      }
+    },
+    {
+      "group_id": "f09a37d04139",
+      "location": "合肥 包河区 安徽百戏城大剧院 义城街道上海路辅路与环湖北路交叉口西160米",
+      "sample_title": "新中式舞蹈秀《叹春风》",
+      "event_uids": [
+        "douban:37862376",
+        "douban:37837117"
+      ],
+      "event_count": 2,
+      "cached_poi": {
+        "poi_id": "6621209379540509382",
+        "poi_title": "安徽百戏城大剧院",
+        "poi_address": "",
+        "latitude": 31.71316,
+        "longitude": 117.33608,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：合肥 包河区 安徽百戏城大剧院 义城街道上海路辅路与环湖北路交叉口西160米 → 安徽百戏城大剧院（来源 event:douban:37837157）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "f09a37d041395ec348b9a44b38afe8a3e819b761"
+      }
+    },
+    {
+      "group_id": "fc69e3c3e86b",
+      "location": "合肥 瑶海区 回响之地·合肥馆 长江东大街567号瑶海天地星光坊P117回响之地",
+      "sample_title": "Zkaaai-2026巡演合肥站",
+      "event_uids": [
+        "douban:37865523"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "7088115097498560918",
+        "poi_title": "回响之地·合肥馆",
+        "poi_address": "",
+        "latitude": 31.864543,
+        "longitude": 117.336738,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：合肥 瑶海区 回响之地·合肥馆 长江东大街567号瑶海天地星光坊P117回响之地 → 回响之地·合肥馆（来源 event:douban:37854078）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "fc69e3c3e86bafe9476191056e0df7f44c81e9cb"
       }
     },
     {
       "group_id": "e9377918d00e",
       "location": "合肥 包河区 安徽大剧院 芜湖路301号",
-      "sample_title": "《谢谢你常记得我》海派小邓丽君一吕雅芬专场音乐会",
+      "sample_title": "少儿音乐舞台剧《唐诗迷境·寻诗历险记》",
       "event_uids": [
-        "douban:37862144",
-        "douban:37817830"
+        "douban:37817450"
       ],
-      "event_count": 2,
+      "event_count": 1,
       "cached_poi": {
         "poi_id": "1232056429360386943",
         "poi_title": "安徽大剧院",
@@ -58,37 +106,12 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：合肥 包河区 安徽大剧院 芜湖路301号 → 安徽大剧院（来源 event:douban:37802208）",
+        "reason": "地址映射库命中：合肥 包河区 安徽大剧院 芜湖路301号 → 安徽大剧院（来源 event:douban:37817830）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
         "cache_key": "e9377918d00e344e4ca5429fba35a20d721621ce"
-      }
-    },
-    {
-      "group_id": "4c05499e047c",
-      "location": "合肥 包河区 包河凤凰剧院 徽州大道1418号包河凤凰剧院",
-      "sample_title": "文化有礼 全民畅享 第十二季合肥市文化惠民演出活动 音乐剧《蝶变》",
-      "event_uids": [
-        "douban:37786998"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "12489696708234009723",
-        "poi_title": "包河凤凰剧院",
-        "poi_address": "",
-        "latitude": 31.809199,
-        "longitude": 117.285777,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：合肥 包河区 包河凤凰剧院 徽州大道1418号包河凤凰剧院 → 包河凤凰剧院（来源 event:douban:37797877）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "4c05499e047c9a9ece4001e5c9d3cb7cf0fa2e83"
       }
     }
   ]

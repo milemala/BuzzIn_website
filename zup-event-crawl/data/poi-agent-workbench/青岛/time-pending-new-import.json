@@ -1,0 +1,30 @@
+{
+  "city": "青岛",
+  "source": "douban",
+  "scope": "new-import-only",
+  "count": 2,
+  "events": [
+    {
+      "event_uid": "douban:37802886",
+      "title": "新·国风舞剧《翎衣》",
+      "time_text": "07月26日 周日 15:00 ~ 07月27日 周一 21:50",
+      "suggestion": {
+        "start_at": "2026-07-26 15:00:00",
+        "expired_at": "2026-07-27 21:50:00",
+        "confidence": "high",
+        "reason": "豆瓣详情：07月26日 周日 15:00 ~ 07月27日 周一 21:50"
+      }
+    },
+    {
+      "event_uid": "douban:37862301",
+      "title": "阿冗2026「寻找·你的答案」巡回演出青岛站",
+      "time_text": "07月25日 周六 20:00-21:30",
+      "suggestion": {
+        "start_at": "2026-07-25 20:00:00",
+        "expired_at": "2026-07-25 21:30:00",
+        "confidence": "high",
+        "reason": "豆瓣详情：07月25日 周六 20:00-21:30"
+      }
+    }
+  ]
+}

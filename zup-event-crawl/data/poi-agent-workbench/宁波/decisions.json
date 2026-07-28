@@ -1,44 +1,63 @@
 {
   "city": "宁波",
-  "source": "douban",
-  "decided_at": "2026-07-10T11:52:00.000Z",
+  "decided_at": "2026-07-26T11:55:09.784Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "a9dcf2e9f4bb",
-      "event_uids": ["douban:37778643"],
+      "group_id": "5ae2878e1f2c",
+      "event_uids": [
+        "douban:37906787",
+        "douban:37906804",
+        "douban:37906748"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "2364116715093614009",
+      "poi_title": "梁祝文化园",
+      "poi_address": "",
+      "latitude": 29.908114,
+      "longitude": 121.484667,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：宁波 海曙区 高桥镇梁祝文化园12弄2-10（松境心理咨询工作室，地图可直搜） → 梁祝文化园（来源 event:douban:37768455）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ]
+    },
+    {
+      "group_id": "a28db87369e8",
+      "event_uids": [
+        "douban:37790328"
+      ],
+      "action": "match",
+      "poi_id": "1921137803586066728",
+      "poi_title": "宁波文化广场大剧院",
+      "poi_address": "",
+      "latitude": 29.858222,
+      "longitude": 121.619756,
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：宁波 鄞州区 宁波文化广场大剧院 宁穿路1900号 → 宁波文化广场大剧院（来源 event:douban:37764669）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ]
+    },
+    {
+      "group_id": "a9dcf2e9f4bb",
+      "event_uids": [
+        "douban:37865356"
+      ],
+      "action": "match",
       "poi_id": "1853757960609319657",
       "poi_title": "余姚大剧院",
       "poi_address": "",
       "latitude": 30.042758,
       "longitude": 121.174411,
-      "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：宁波 余姚 余姚大剧院 北姚江路1号 → 余姚大剧院"
-    },
-    {
-      "group_id": "a2db636d36e9",
-      "event_uids": ["douban:37856544"],
-      "action": "match",
-      "search_keywords_tried": ["177Live音乐现场 甬江大道"],
-      "poi_id": "10342501663277004663",
-      "poi_title": "177live音乐现场",
-      "poi_address": "浙江省宁波市鄞州区东胜街道甬江大道177号iPN渔轮厂",
-      "latitude": 29.87983,
-      "longitude": 121.566351,
-      "candidates": [
-        {
-          "poi_id": "10342501663277004663",
-          "title": "177live音乐现场",
-          "address": "浙江省宁波市鄞州区东胜街道甬江大道177号iPN渔轮厂"
-        }
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "鄞州区甬江大道177号177Live音乐现场，与活动地址一致"
+      "reason": "地址映射库命中：宁波 余姚 余姚大剧院 北姚江路1号 → 余姚大剧院（来源 event:douban:37835411）",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ]
     }
   ]
 }

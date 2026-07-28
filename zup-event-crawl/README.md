@@ -247,7 +247,7 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 1. **从当前环境补全商户**（商户审核 / 商户气泡页）：拉取 Buzz 后台已有商户写入审核台；同 POI 但 merchant_id 不同时删除本地旧记录
 2. **批量创建商户群聊**：无群新建，有群则 IM 接口改名（群名 = 完整店名）
 3. 配置文案（统一 or 按店名）、群聊模式、发布者、`now_type`
-4. **发布本批气泡**：每城市随机三分组，每次只发 1/3，过期 **3 天**
+4. **发布本批气泡**：每城市随机三分组，每次只发 1/3，过期 **3 天**；页面顶部会显示「距上次发布本批」多久、何时过期；过期后红色提醒该发下一批
 
 CLI：`node scripts/sync-merchants-from-buzz.js --env=prod [--dry-run]`
 

@@ -1,24 +1,54 @@
 {
   "city": "无锡",
   "source": "douban",
-  "exported_at": "2026-07-13T01:28:00.001Z",
-  "note": "由 Cursor Agent 逐条判断 suggested（推荐/挡下）与 category。见 docs/event-classification-agent.md 【已过滤为本轮 new-import-only】",
+  "exported_at": "2026-07-26T12:08:11.489Z",
+  "note": "由 Cursor Agent 逐条判断 suggested（推荐/挡下）与 category。见 docs/event-classification-agent.md",
   "events": [
     {
-      "event_uid": "douban:37770356",
-      "title": "荷兰浪漫吉他二重奏",
+      "event_uid": "douban:37491560",
+      "title": "全国脱口秀大赛亚军主持、殿军专场-八渡个人专场-周六 19:30-南长街&大发喜剧-明星专场",
+      "location": "无锡 梁溪区 大發喜剧脱口秀 南下塘169-1号",
+      "fee": "128.00元",
+      "owner": "猫眼演出",
+      "time_text": "08月15日 周六 19:30-21:00",
+      "douban_event_type": "喜剧-脱口秀",
+      "slide_category": "",
+      "body_excerpt": "",
+      "detail_excerpt": "以现场为准 主要演员 无需预约 儿童说明 16周岁以下观众谢绝入场。 特殊提示 关于大发喜剧",
+      "current_category": "待分类",
+      "current_suggested": true,
+      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+    },
+    {
+      "event_uid": "douban:37770341",
+      "title": "古典吉他与长笛二重奏",
       "location": "无锡 新吴区 无锡交响音乐厅 净慧西道与清晏路交叉口",
       "fee": "80.0元起",
       "owner": "猫眼演出",
-      "time_text": "07月19日 周日 19:30-21:30",
+      "time_text": "07月30日 周四 19:30-21:30",
       "douban_event_type": "音乐-音乐会",
       "slide_category": "",
       "body_excerpt": "",
-      "detail_excerpt": "约90分钟，以现场为准 最低演出曲目 以现场为准 主要演员 无需预约 儿童说明 1米以下儿童谢绝入场。 特殊提示",
+      "detail_excerpt": "约90分钟，以现场为准 最低演出曲目 以现场为准 主要演员 无需预约 儿童说明 1米以下儿童谢绝入场 特殊提示",
+      "current_category": "待分类",
+      "current_suggested": true,
+      "current_reason": "待 Agent 判断是否符合线下交友娱乐"
+    },
+    {
+      "event_uid": "douban:37823827",
+      "title": "WetMen·俄罗斯型男水舞剧《雨中》",
+      "location": "无锡 滨湖区 无锡大剧院 大剧院（蠡湖大道金石路口）",
+      "fee": "180.0元起",
+      "owner": "猫眼演出",
+      "time_text": "08月02日 周日 19:30-21:30",
+      "douban_event_type": "戏剧-舞剧",
+      "slide_category": "",
+      "body_excerpt": "",
+      "detail_excerpt": "入场方式说明 1米以下儿童谢绝入场 约90分钟，无中场休息，以现场为准 主要演员 以现场为准 无需预约 1、演出票是进入剧场的唯一凭证，请妥善保管，遗失不补。",
       "current_category": "待分类",
       "current_suggested": true,
       "current_reason": "待 Agent 判断是否符合线下交友娱乐"
     }
   ],
-  "last_import_new_uids": 1
+  "last_import_only": true
 }

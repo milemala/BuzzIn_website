@@ -1,7 +1,7 @@
 {
   "city": "重庆",
   "source": "douban",
-  "exported_at": "2026-07-13T01:31:56.815Z",
+  "exported_at": "2026-07-26T11:54:46.970Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
@@ -10,59 +10,19 @@
   "last_import_new_uids": 3,
   "doubtful_only": false,
   "total_events": 3,
-  "group_count": 2,
-  "cache_hit_groups": 2,
+  "group_count": 1,
+  "cache_hit_groups": 0,
   "groups": [
     {
-      "group_id": "eb03845060f1",
-      "location": "重庆 两江新区 重庆大剧院 江北嘴北城文华街东路（朝天门对面）",
-      "sample_title": "英国NYMT音乐剧团原版授权全英文青少年音乐剧《Superhero超能学校》（中剧场）",
+      "group_id": "40970b83bb8f",
+      "location": "重庆 两江新区 重演Live-金源店 北滨一路368号金源时代购物中心G层北滨368酒吧街",
+      "sample_title": "《我们的爱》经典流行歌曲演唱会",
       "event_uids": [
-        "douban:37862568",
-        "douban:37850379"
+        "douban:37838335",
+        "douban:37838348",
+        "douban:37838350"
       ],
-      "event_count": 2,
-      "cached_poi": {
-        "poi_id": "6745060521296666657",
-        "poi_title": "重庆大剧院",
-        "poi_address": "",
-        "latitude": 29.570032,
-        "longitude": 106.581396,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：重庆 两江新区 重庆大剧院 江北嘴北城文华街东路（朝天门对面） → 重庆大剧院（来源 event:douban:37847278）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "eb03845060f10633e1e9b63902906bab47be5ab0"
-      }
-    },
-    {
-      "group_id": "4530d6882e9a",
-      "location": "重庆 渝中区 重庆劳动文化宫大剧院 两路口街道中山二路174号(第一片区)重庆市劳动人民文化宫大剧院",
-      "sample_title": "《文艺复兴·重回非主流时代》威仔&格子兮演唱会-重庆站",
-      "event_uids": [
-        "douban:37834435"
-      ],
-      "event_count": 1,
-      "cached_poi": {
-        "poi_id": "13278289810545590255",
-        "poi_title": "重庆劳动文化宫大剧院",
-        "poi_address": "",
-        "latitude": 29.556488,
-        "longitude": 106.55219,
-        "action": "match",
-        "confidence": "high",
-        "doubtful": false,
-        "reason": "地址映射库命中：重庆 渝中区 重庆劳动文化宫大剧院 两路口街道中山二路174号(第一片区)重庆市劳动人民文化宫大剧院 → 重庆劳动文化宫大剧院（来源 event:douban:37836649）",
-        "search_keywords_tried": [
-          "poi-address-cache"
-        ],
-        "from_cache": true,
-        "cache_key": "4530d6882e9a8ffb7ca81ffc68fbe461d5f49aca"
-      }
+      "event_count": 3
     }
   ]
 }

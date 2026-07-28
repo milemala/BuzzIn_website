@@ -1,25 +1,61 @@
 {
   "city": "无锡",
   "source": "douban",
-  "exported_at": "2026-07-13T01:27:36.000Z",
+  "exported_at": "2026-07-26T12:08:10.334Z",
   "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
   "events": [
     {
-      "event_uid": "douban:37770356",
+      "event_uid": "douban:37491560",
       "city": "无锡",
       "source": "douban",
-      "title": "荷兰浪漫吉他二重奏",
-      "time_text": "07月19日 周日 19:30-21:30",
+      "title": "全国脱口秀大赛亚军主持、殿军专场-八渡个人专场-周六 19:30-南长街&大发喜剧-明星专场",
+      "time_text": "08月15日 周六 19:30-21:00",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
-      "detail_excerpt": "约90分钟，以现场为准\n最低演出曲目\n以现场为准\n主要演员\n无需预约\n儿童说明\n1米以下儿童谢绝入场。\n特殊提示",
+      "detail_excerpt": "以现场为准\n主要演员\n无需预约\n儿童说明\n16周岁以下观众谢绝入场。\n特殊提示\n关于大发喜剧",
       "suggestion": {
-        "start_at": "2026-07-19 19:30:00",
-        "expired_at": "2026-07-19 21:30:00",
+        "start_at": "2026-08-15 19:30:00",
+        "expired_at": "2026-08-15 21:00:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月19日 周日 19:30-21:30"
+        "reason": "豆瓣详情：08月15日 周六 19:30-21:00"
+      }
+    },
+    {
+      "event_uid": "douban:37770341",
+      "city": "无锡",
+      "source": "douban",
+      "title": "古典吉他与长笛二重奏",
+      "time_text": "07月30日 周四 19:30-21:30",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "约90分钟，以现场为准\n最低演出曲目\n以现场为准\n主要演员\n无需预约\n儿童说明\n1米以下儿童谢绝入场\n特殊提示",
+      "suggestion": {
+        "start_at": "2026-07-30 19:30:00",
+        "expired_at": "2026-07-30 21:30:00",
+        "confidence": "high",
+        "reason": "豆瓣详情：07月30日 周四 19:30-21:30"
+      }
+    },
+    {
+      "event_uid": "douban:37823827",
+      "city": "无锡",
+      "source": "douban",
+      "title": "WetMen·俄罗斯型男水舞剧《雨中》",
+      "time_text": "08月02日 周日 19:30-21:30",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "入场方式说明\n1米以下儿童谢绝入场\n约90分钟，无中场休息，以现场为准\n主要演员\n以现场为准\n无需预约\n1、演出票是进入剧场的唯一凭证，请妥善保管，遗失不补。",
+      "suggestion": {
+        "start_at": "2026-08-02 19:30:00",
+        "expired_at": "2026-08-02 21:30:00",
+        "confidence": "high",
+        "reason": "豆瓣详情：08月02日 周日 19:30-21:30"
       }
     }
   ]

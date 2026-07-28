@@ -1,26 +1,38 @@
 {
   "city": "成都",
   "source": "douban",
-  "decided_at": "2026-07-13T14:42:21.308Z",
+  "decided_at": "2026-07-26T12:10:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "event_uid": "douban:37901145",
+      "event_uid": "douban:37906658",
+      "suggested": true,
+      "category": "主题沙龙",
+      "reason": "桌游社交聚会，面向脱宅交友，适合线下结伴"
+    },
+    {
+      "event_uid": "douban:37861916",
+      "suggested": true,
+      "category": "音乐现场",
+      "reason": "四熹丸子巡回演唱会，公众购票观演"
+    },
+    {
+      "event_uid": "douban:37862235",
+      "suggested": true,
+      "category": "音乐现场",
+      "reason": "钢琴独奏音乐会，公众购票观演"
+    },
+    {
+      "event_uid": "douban:37895083",
+      "suggested": false,
       "category": "其他",
-      "suggested": true,
-      "reason": "影院免费观影活动"
+      "reason": "脱口秀系统培训班收费课程，非观演结伴"
     },
     {
-      "event_uid": "douban:37689412",
-      "category": "遛娃亲子",
-      "suggested": true,
-      "reason": "格林童话音乐儿童剧"
-    },
-    {
-      "event_uid": "douban:37817562",
-      "category": "戏剧表演",
-      "suggested": true,
-      "reason": "经典话剧《简·爱》"
+      "event_uid": "douban:37895078",
+      "suggested": false,
+      "category": "其他",
+      "reason": "幽默/喜剧培训班收费课程，非观演结伴"
     }
   ]
 }

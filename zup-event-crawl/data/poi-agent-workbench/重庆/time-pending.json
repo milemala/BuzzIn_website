@@ -1,61 +1,889 @@
 {
   "city": "重庆",
-  "source": "douban",
-  "exported_at": "2026-07-13T01:27:33.665Z",
+  "source": "xiaohongshu",
+  "exported_at": "2026-07-26T13:21:26.486Z",
   "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
   "events": [
     {
-      "event_uid": "douban:37862568",
+      "event_uid": "xiaohongshu:6a3bc5fb000000001003ef30:01_0",
       "city": "重庆",
-      "source": "douban",
-      "title": "英国NYMT音乐剧团原版授权全英文青少年音乐剧《Superhero超能学校》（中剧场）",
-      "time_text": "07月19日 周日 19:30 ~ 07月20日 周一 21:30",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "入场方式说明\n以现场为准\n主要演员\n无需预约\n如遇特殊情况，另行通知，感谢您的配合！\n2、本场演出食品、饮料、水、鲜花、相机、宠物、摄像机谢绝带入场内。\n6、演出票仅限观看当天当场次演出，逾期失效，请提前取票、按时入场，部分演出迟到观众需在场外等候，待幕间听从工作人员安排进场。",
+      "source": "xiaohongshu",
+      "title": "重庆精酿啤酒节",
+      "time_text": "7.3-7.12",
+      "current_start_date": "2026-07-03 00:00:00",
+      "current_end_date": "2026-07-12 23:59:59",
+      "current_start_at": "2026-07-03 00:00:00",
+      "current_expired_at": "2026-07-12 23:59:59",
+      "detail_excerpt": "分类：市集活动\n费用：—\n时间：7.3-7.12\n地址：SKLP1F商场外广场\n介绍：300+款精酿、40+厂牌、电音舞台、美食摊位一次性齐聚。喜欢听歌、喝酒、美食的朋友有福了，不仅能喝遍全国各地甚至海外风味的精酿，还能边听电音边享受美食。这就是重庆夏夜该有的样子！\n\n来源账号：周末研究所-重庆\n合集标题：不去后悔！7月重庆狠想去打卡的11个活动\n来源笔记：https://www.xiaohongshu.com/explore/6a3bc5fb000000001003ef30?xsec_token=ABsz1H9Hi95ZiXaGjQFgl_WHvZOAG6LjhPMMghXR5dxTE%3D&xsec_source=pc_user\n原 slide：6a3bc5fb000000001003ef30/images/01.webp\n裁切海报：6a3bc5fb000000001003ef30/p",
       "suggestion": {
-        "start_at": "2026-07-19 19:30:00",
-        "expired_at": "2026-07-20 21:30:00",
+        "start_at": "2026-07-03 00:00:00",
+        "expired_at": "2026-07-12 23:59:59",
         "confidence": "high",
-        "reason": "豆瓣详情：07月19日 周日 19:30 ~ 07月20日 周一 21:30"
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
       }
     },
     {
-      "event_uid": "douban:37850379",
+      "event_uid": "xiaohongshu:6a44ee080000000011018b8f:01_0",
       "city": "重庆",
-      "source": "douban",
-      "title": "[早鸟票6折起]360°沉浸环绕式烛光音乐会·第25弹 拉德斯基进行曲×蓝色多瑙河——施特劳斯家族浪漫唯美烛光音乐会",
-      "time_text": "07月18日 周六 19:30-20:45",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "入场方式说明\n1米以下儿童谢绝入场，1米以上儿童需持票入场\n约75分钟（以现场为准）\n以现场为准\n最低演出曲目\n主要演员\n无需预约",
+      "source": "xiaohongshu",
+      "title": "YOYAK双IP联展",
+      "time_text": "2026.7.3起展",
+      "current_start_date": "2026-07-03 00:00:00",
+      "current_end_date": "2026-07-03 23:59:59",
+      "current_start_at": "2026-07-03 00:00:00",
+      "current_expired_at": "2026-07-03 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：2026.7.3起展\n地址：重庆市两江新区星光68广场A区LG\n介绍：免费观展。\n最近星光68又有新展可以逛了！1000m²的大空间，加上双IP联展《黑骑士》×《黑王蛇》全国首展，现场还有主题咖啡、菲林自拍馆和限定周边，喜欢沉浸式看展的应该会很喜欢这里！\n\n来源账号：周末研究所-重庆\n合集标题：重庆限定版7月看展指南来啦！免免免！！！\n来源笔记：https://www.xiaohongshu.com/explore/6a44ee080000000011018b8f?xsec_token=AB9oIys-czKNB5mtPEpXIReLQEdCz7Dzb8Kk3mxvlxcPk%3D&xsec_source=pc_user\n原 slide：6a44ee080000000011018b8f/images/01.webp\n裁切海报：6a44ee08000000001",
       "suggestion": {
-        "start_at": "2026-07-18 19:30:00",
-        "expired_at": "2026-07-18 20:45:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月18日 周六 19:30-20:45"
+        "start_at": "2026-07-03 00:00:00",
+        "expired_at": "2026-07-03 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
       }
     },
     {
-      "event_uid": "douban:37834435",
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:01_0",
       "city": "重庆",
-      "source": "douban",
-      "title": "《文艺复兴·重回非主流时代》威仔&格子兮演唱会-重庆站",
-      "time_text": "07月18日 周六 19:30-21:00",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "入场方式说明\n90分钟，以现场为准\n最低演出曲目\n以现场为准\n主要演员\n无需预约",
+      "source": "xiaohongshu",
+      "title": "无人机表演",
+      "time_text": "7月25日 20:30（注：本周六场次取消，以官方最新通知为准）",
+      "current_start_date": "2026-07-25 20:30:00",
+      "current_end_date": "2026-07-25 23:59:59",
+      "current_start_at": "2026-07-25 20:30:00",
+      "current_expired_at": "2026-07-25 23:59:59",
+      "detail_excerpt": "分类：户外活动\n费用：免费\n时间：7月25日 20:30（注：本周六场次取消，以官方最新通知为准）\n地址：南滨路 / 朝天门 / 江北嘴\n介绍：免费观赏。\n约5000架无人机夜空编队表演，图案变化丰富，可顺带看夜景。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/01.webp\n裁切海报：6a61f333000000001c0111e0/posters/01_slot0.jpg",
       "suggestion": {
-        "start_at": "2026-07-18 19:30:00",
-        "expired_at": "2026-07-18 21:00:00",
+        "start_at": "2026-07-25 20:30:00",
+        "expired_at": "2026-07-25 23:59:59",
         "confidence": "high",
-        "reason": "豆瓣详情：07月18日 周六 19:30-21:00"
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3bc5fb000000001003ef30:02_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "重庆首届国际碰杯节",
+      "time_text": "7.24-7.26，17:00起",
+      "current_start_date": "2026-07-24 17:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-24 17:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集活动\n费用：—\n时间：7.24-7.26，17:00起\n地址：重庆鲁祖庙传统风貌区\n介绍：40+酒吧品牌、亚洲风味特调、老街夜景、夏夜晚风，喜欢市集又爱小酌的朋友有福了，约上好友一起逛喝，松弛感拉满！\n\n来源账号：周末研究所-重庆\n合集标题：不去后悔！7月重庆狠想去打卡的11个活动\n来源笔记：https://www.xiaohongshu.com/explore/6a3bc5fb000000001003ef30?xsec_token=ABsz1H9Hi95ZiXaGjQFgl_WHvZOAG6LjhPMMghXR5dxTE%3D&xsec_source=pc_user\n原 slide：6a3bc5fb000000001003ef30/images/02.webp\n裁切海报：6a3bc5fb000000001003ef30/posters/02_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 17:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a44ee080000000011018b8f:02_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "边走边画100幅速写画作展",
+      "time_text": "6.27-7.12",
+      "current_start_date": "2026-06-27 00:00:00",
+      "current_end_date": "2026-07-12 23:59:59",
+      "current_start_at": "2026-06-27 00:00:00",
+      "current_expired_at": "2026-07-12 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：6.27-7.12\n地址：礼嘉北岸街区\n介绍：免费观展。\n一百多幅城市写生作品，每一幅都记录着不同人眼里的城市风景。一群热爱绘画的人聚在一起分享作品、交流技巧、聊创作灵感，治愈且快乐！\n\n来源账号：周末研究所-重庆\n合集标题：重庆限定版7月看展指南来啦！免免免！！！\n来源笔记：https://www.xiaohongshu.com/explore/6a44ee080000000011018b8f?xsec_token=AB9oIys-czKNB5mtPEpXIReLQEdCz7Dzb8Kk3mxvlxcPk%3D&xsec_source=pc_user\n原 slide：6a44ee080000000011018b8f/images/02.webp\n裁切海报：6a44ee080000000011018b8f/posters/02_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-27 00:00:00",
+        "expired_at": "2026-07-12 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:01_1",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "星光人鱼秀",
+      "time_text": "持续至8月30日，每周六日 15:00、19:00",
+      "current_start_date": "2026-08-30 15:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-08-30 15:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：持续至8月30日，每周六日 15:00、19:00\n地址：星光68广场B区·星光海底世界\n介绍：免费观看。\n室内圆柱水族箱定时人鱼表演，适合周末亲子打卡。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/01.webp\n裁切海报：6a61f333000000001c0111e0/posters/01_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-08-30 15:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3bc5fb000000001003ef30:03_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "重庆九街 · 原创手作市集",
+      "time_text": "7.13--7.19",
+      "current_start_date": "2026-07-13 00:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-07-13 00:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：市集活动\n费用：—\n时间：7.13--7.19\n地址：重庆九街\n介绍：这种原创手作市集还是很容易逛出惊喜的。很多小物品网上刷不到、商场里也买不到，大多都是摊主自己设计制作的，每个摊位都有自己的风格，越逛越有意思，特别适合周末和朋友出来放空一下！\n\n来源账号：周末研究所-重庆\n合集标题：不去后悔！7月重庆狠想去打卡的11个活动\n来源笔记：https://www.xiaohongshu.com/explore/6a3bc5fb000000001003ef30?xsec_token=ABsz1H9Hi95ZiXaGjQFgl_WHvZOAG6LjhPMMghXR5dxTE%3D&xsec_source=pc_user\n原 slide：6a3bc5fb000000001003ef30/images/03.webp\n裁切海报：6a3bc5fb000000001003ef30/posters/0",
+      "suggestion": {
+        "start_at": "2026-07-13 00:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a44ee080000000011018b8f:03_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "跨越山海——寻找东西方传说中的奇幻生物",
+      "time_text": "6月18日-10月18日",
+      "current_start_date": "2026-06-18 00:00:00",
+      "current_end_date": "2026-10-18 23:59:59",
+      "current_start_at": "2026-06-18 00:00:00",
+      "current_expired_at": "2026-10-18 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：6月18日-10月18日\n地址：重庆中国三峡博物馆1楼临时展厅A\n介绍：免费观展，参与活动需预约。\n东方与西方的奇幻生物第一次相遇，不同文明、不同时代的文物在同一个空间里展开对话，既有历史感，又充满想象力。即使平时不常逛博物馆，也会觉得很有意思。\n\n来源账号：周末研究所-重庆\n合集标题：重庆限定版7月看展指南来啦！免免免！！！\n来源笔记：https://www.xiaohongshu.com/explore/6a44ee080000000011018b8f?xsec_token=AB9oIys-czKNB5mtPEpXIReLQEdCz7Dzb8Kk3mxvlxcPk%3D&xsec_source=pc_user\n原 slide：6a44ee080000000011018b8f/images/03.webp\n裁切海报：6a44ee080000000011018",
+      "suggestion": {
+        "start_at": "2026-06-18 00:00:00",
+        "expired_at": "2026-10-18 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:02_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "氧乐巷子·抹茶小小集",
+      "time_text": "7月25日-7月26日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日-7月26日\n地址：观音桥大融城F4/F5\n介绍：免费逛集，消费自理。\n15+抹茶品牌集合，饮品甜点与gelato齐全。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/02.webp\n裁切海报：6a61f333000000001c0111e0/posters/02_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3bc5fb000000001003ef30:04_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "小红书遛遛生活重庆首站",
+      "time_text": "4.19-7.19（市集7.17-7.19）",
+      "current_start_date": "2026-04-19 00:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-04-19 00:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：市集活动\n费用：免费\n时间：4.19-7.19（市集7.17-7.19）\n地址：重庆南滨路（市集：长嘉汇购物公园4F、5F临江平台）\n介绍：免费入场。\n遛遛生活节落地重庆首站，已走过6座城市。南滨路沿线串联市集、夜游、音乐，长嘉汇7.17-7.19大集开市，沿江平台逛吃看江景，来感受重庆人的夏日遛水账！\n\n来源账号：周末研究所-重庆\n合集标题：不去后悔！7月重庆狠想去打卡的11个活动\n来源笔记：https://www.xiaohongshu.com/explore/6a3bc5fb000000001003ef30?xsec_token=ABsz1H9Hi95ZiXaGjQFgl_WHvZOAG6LjhPMMghXR5dxTE%3D&xsec_source=pc_user\n原 slide：6a3bc5fb000000001003ef30/images/04.webp\n裁切海报：6a3b",
+      "suggestion": {
+        "start_at": "2026-04-19 00:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a44ee080000000011018b8f:04_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "岚岚作品展",
+      "time_text": "2026年6月27日-7月27日",
+      "current_start_date": "2026-06-27 00:00:00",
+      "current_end_date": "2026-07-27 23:59:59",
+      "current_start_at": "2026-06-27 00:00:00",
+      "current_expired_at": "2026-07-27 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：2026年6月27日-7月27日\n地址：重庆美术馆7号展览厅\n介绍：免费观展，展期2026年6月27日-7月27日。\n艺术家岚岚个人作品展在重庆美术馆7号展览厅展出。\n\n来源账号：周末研究所-重庆\n合集标题：重庆限定版7月看展指南来啦！免免免！！！\n来源笔记：https://www.xiaohongshu.com/explore/6a44ee080000000011018b8f?xsec_token=AB9oIys-czKNB5mtPEpXIReLQEdCz7Dzb8Kk3mxvlxcPk%3D&xsec_source=pc_user\n原 slide：6a44ee080000000011018b8f/images/04.webp\n裁切海报：6a44ee080000000011018b8f/posters/04_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-27 00:00:00",
+        "expired_at": "2026-07-27 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:02_1",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "香气市集",
+      "time_text": "7月25日-7月26日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日-7月26日\n地址：重庆印象城1L·DUIDUILand\n介绍：免费逛集，消费自理。\n室内香氛专场，涵盖冷香、中式香与周边。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/02.webp\n裁切海报：6a61f333000000001c0111e0/posters/02_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3bc5fb000000001003ef30:05_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "东东MARKET-鬼市",
+      "time_text": "7.3-7.4 (17:00-22:00)",
+      "current_start_date": "2026-07-03 17:00:00",
+      "current_end_date": "2026-07-04 22:00:00",
+      "current_start_at": "2026-07-03 17:00:00",
+      "current_expired_at": "2026-07-04 22:00:00",
+      "detail_excerpt": "分类：市集活动\n费用：—\n时间：7.3-7.4 (17:00-22:00)\n地址：南坪东东摩\n介绍：拖鞋+冰啤酒+鬼市淘货+露天电影，这种松弛感配置，简直就是重庆人的生活状态。幕布上放着电影，幕布旁人们喝着酒聊着天，透着一种很舒服的人情味。\n\n来源账号：周末研究所-重庆\n合集标题：不去后悔！7月重庆狠想去打卡的11个活动\n来源笔记：https://www.xiaohongshu.com/explore/6a3bc5fb000000001003ef30?xsec_token=ABsz1H9Hi95ZiXaGjQFgl_WHvZOAG6LjhPMMghXR5dxTE%3D&xsec_source=pc_user\n原 slide：6a3bc5fb000000001003ef30/images/05.webp\n裁切海报：6a3bc5fb000000001003ef30/posters/05_slo",
+      "suggestion": {
+        "start_at": "2026-07-03 17:00:00",
+        "expired_at": "2026-07-04 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a44ee080000000011018b8f:04_1",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "多彩巴蜀——第五届巴蜀文旅走廊美术作品展",
+      "time_text": "2026年6月23日-8月2日",
+      "current_start_date": "2026-06-23 00:00:00",
+      "current_end_date": "2026-08-02 23:59:59",
+      "current_start_at": "2026-06-23 00:00:00",
+      "current_expired_at": "2026-08-02 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：2026年6月23日-8月2日\n地址：重庆美术馆1号厅\n介绍：免费观展，展期2026年6月23日-8月2日。\n第5届巴蜀文旅走廊美术作品展在重庆美术馆1号厅呈现多彩巴蜀艺术风貌。\n\n来源账号：周末研究所-重庆\n合集标题：重庆限定版7月看展指南来啦！免免免！！！\n来源笔记：https://www.xiaohongshu.com/explore/6a44ee080000000011018b8f?xsec_token=AB9oIys-czKNB5mtPEpXIReLQEdCz7Dzb8Kk3mxvlxcPk%3D&xsec_source=pc_user\n原 slide：6a44ee080000000011018b8f/images/04.webp\n裁切海报：6a44ee080000000011018b8f/posters/04_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-06-23 00:00:00",
+        "expired_at": "2026-08-02 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:03_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "龙湖爱加×好狗GO市集",
+      "time_text": "7月25日-7月26日 11:00-21:00（萌宠局15:00-16:00）",
+      "current_start_date": "2026-07-25 11:00:00",
+      "current_end_date": "2026-07-26 21:00:00",
+      "current_start_at": "2026-07-25 11:00:00",
+      "current_expired_at": "2026-07-26 21:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日-7月26日 11:00-21:00（萌宠局15:00-16:00）\n地址：重庆龙湖爱加两江星悦荟\n介绍：免费逛集，消费自理。\n萌宠友好市集，互动与宠物相关摊位丰富。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/03.webp\n裁切海报：6a61f333000000001c0111e0/posters/03_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 11:00:00",
+        "expired_at": "2026-07-26 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3bc5fb000000001003ef30:06_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "重庆新光里国风雅集",
+      "time_text": "6.25-7.12",
+      "current_start_date": "2026-06-25 00:00:00",
+      "current_end_date": "2026-07-12 23:59:59",
+      "current_start_at": "2026-06-25 00:00:00",
+      "current_expired_at": "2026-07-12 23:59:59",
+      "detail_excerpt": "分类：市集活动\n费用：—\n时间：6.25-7.12\n地址：重庆·新光里SKLP\n介绍：如果你喜欢东方美学，那这个市集真的很难不心动！在这里不仅能看到精巧的中式美学工艺，还能感受到创作者对传统文化的理解和表达，比起商品，它们更像一件件有故事的小作品。\n\n来源账号：周末研究所-重庆\n合集标题：不去后悔！7月重庆狠想去打卡的11个活动\n来源笔记：https://www.xiaohongshu.com/explore/6a3bc5fb000000001003ef30?xsec_token=ABsz1H9Hi95ZiXaGjQFgl_WHvZOAG6LjhPMMghXR5dxTE%3D&xsec_source=pc_user\n原 slide：6a3bc5fb000000001003ef30/images/06.webp\n裁切海报：6a3bc5fb000000001003ef30/posters/06",
+      "suggestion": {
+        "start_at": "2026-06-25 00:00:00",
+        "expired_at": "2026-07-12 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a44ee080000000011018b8f:04_2",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "藏画千张——王琦美术博物馆馆藏中国画作品展",
+      "time_text": "6月25日-7月27日",
+      "current_start_date": "2026-06-25 00:00:00",
+      "current_end_date": "2026-07-27 23:59:59",
+      "current_start_at": "2026-06-25 00:00:00",
+      "current_expired_at": "2026-07-27 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：6月25日-7月27日\n地址：王琦美术博物馆1—2号展厅\n介绍：免费观展，展期6月25日-7月27日。\n王琦美术博物馆馆藏中国画精品在1—2号展厅展出。\n\n来源账号：周末研究所-重庆\n合集标题：重庆限定版7月看展指南来啦！免免免！！！\n来源笔记：https://www.xiaohongshu.com/explore/6a44ee080000000011018b8f?xsec_token=AB9oIys-czKNB5mtPEpXIReLQEdCz7Dzb8Kk3mxvlxcPk%3D&xsec_source=pc_user\n原 slide：6a44ee080000000011018b8f/images/04.webp\n裁切海报：6a44ee080000000011018b8f/posters/04_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-06-25 00:00:00",
+        "expired_at": "2026-07-27 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:04_1",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "二手中古市集",
+      "time_text": "每周六 14:00-19:00",
+      "current_start_date": "2026-07-26 14:00:00",
+      "current_end_date": "2026-07-26 19:00:00",
+      "current_start_at": "2026-07-26 14:00:00",
+      "current_expired_at": "2026-07-26 19:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：每周六 14:00-19:00\n地址：渝北一奥天地B1层室内（B/C门进，manner咖啡楼梯下）\n介绍：免费逛集，消费自理。\n闲置与vintage中古为主，多数摊位支持协商交换。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/04.webp",
+      "suggestion": {
+        "start_at": "2026-06-08 14:00:00",
+        "expired_at": "2026-06-14 19:00:00",
+        "confidence": "medium",
+        "reason": "即日起每周重复，按本周日至每日结束时间估算"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3bc5fb000000001003ef30:07_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "《你的距离》二期线下快闪活动",
+      "time_text": "6.19-8.2",
+      "current_start_date": "2026-06-19 00:00:00",
+      "current_end_date": "2026-08-02 23:59:59",
+      "current_start_at": "2026-06-19 00:00:00",
+      "current_expired_at": "2026-08-02 23:59:59",
+      "detail_excerpt": "分类：快闪活动\n费用：—\n时间：6.19-8.2\n地址：重庆方圆live 萌谷子MOEGOODS\n介绍：《你的距离》二期线下活动来了，限定周边、满赠物料，喜欢这部作品的朋友千万别错过！最重要的是线下同好浓度超高，一个人去也不会尴尬，说不定还能认识很多同担。\n\n来源账号：周末研究所-重庆\n合集标题：不去后悔！7月重庆狠想去打卡的11个活动\n来源笔记：https://www.xiaohongshu.com/explore/6a3bc5fb000000001003ef30?xsec_token=ABsz1H9Hi95ZiXaGjQFgl_WHvZOAG6LjhPMMghXR5dxTE%3D&xsec_source=pc_user\n原 slide：6a3bc5fb000000001003ef30/images/07.webp\n裁切海报：6a3bc5fb000000001003ef30/poster",
+      "suggestion": {
+        "start_at": "2026-06-19 00:00:00",
+        "expired_at": "2026-08-02 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a44ee080000000011018b8f:04_3",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "木刻华章——抗战主题作品展",
+      "time_text": "6月25日-7月27日",
+      "current_start_date": "2026-06-25 00:00:00",
+      "current_end_date": "2026-07-27 23:59:59",
+      "current_start_at": "2026-06-25 00:00:00",
+      "current_expired_at": "2026-07-27 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：6月25日-7月27日\n地址：王琦美术博物馆3—4号展厅\n介绍：免费观展，展期6月25日-7月27日。\n抗战主题版画作品展在重庆王琦美术博物馆3—4号展厅展出。\n\n来源账号：周末研究所-重庆\n合集标题：重庆限定版7月看展指南来啦！免免免！！！\n来源笔记：https://www.xiaohongshu.com/explore/6a44ee080000000011018b8f?xsec_token=AB9oIys-czKNB5mtPEpXIReLQEdCz7Dzb8Kk3mxvlxcPk%3D&xsec_source=pc_user\n原 slide：6a44ee080000000011018b8f/images/04.webp\n裁切海报：6a44ee080000000011018b8f/posters/04_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-06-25 00:00:00",
+        "expired_at": "2026-07-27 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:05_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "中央公园盒马剥虾大赛",
+      "time_text": "7月25日 16:00-17:30",
+      "current_start_date": "2026-07-25 16:00:00",
+      "current_end_date": "2026-07-25 17:30:00",
+      "current_start_at": "2026-07-25 16:00:00",
+      "current_expired_at": "2026-07-25 17:30:00",
+      "detail_excerpt": "分类：其他\n费用：需积分兑换参赛资格\n时间：7月25日 16:00-17:30\n地址：重庆大悦城L1峡谷步道\n介绍：大悦城小程序积分兑换参赛资格。\n完赛送盒马精酿，剥到的小龙虾可带走。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/05.webp\n裁切海报：6a61f333000000001c0111e0/posters/05_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 16:00:00",
+        "expired_at": "2026-07-25 17:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3bc5fb000000001003ef30:08_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "梓渝24岁生日重庆痛楼应援",
+      "time_text": "7.2--7.6",
+      "current_start_date": "2026-07-02 00:00:00",
+      "current_end_date": "2026-07-06 23:59:59",
+      "current_start_at": "2026-07-02 00:00:00",
+      "current_expired_at": "2026-07-06 23:59:59",
+      "detail_excerpt": "分类：明星应援\n费用：免费\n时间：7.2--7.6\n地址：重庆江北机场航站楼电视大屏应援\n介绍：免费入场。\n追星最幸福的瞬间大概就是和一群人为喜欢的人庆祝生日！喜欢一个人的方式有很多种，而一起为他的生日留下纪念，无疑是最浪漫的一种。这次梓渝生贺打卡活动把重庆变成了一个限定的应援地图。\n\n来源账号：周末研究所-重庆\n合集标题：不去后悔！7月重庆狠想去打卡的11个活动\n来源笔记：https://www.xiaohongshu.com/explore/6a3bc5fb000000001003ef30?xsec_token=ABsz1H9Hi95ZiXaGjQFgl_WHvZOAG6LjhPMMghXR5dxTE%3D&xsec_source=pc_user\n原 slide：6a3bc5fb000000001003ef30/images/08.webp\n裁切海报：6a3bc5fb000000001",
+      "suggestion": {
+        "start_at": "2026-07-02 00:00:00",
+        "expired_at": "2026-07-06 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:05_1",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "久雀麻将娱乐赛",
+      "time_text": "7月25日 14:30",
+      "current_start_date": "2026-07-25 14:30:00",
+      "current_end_date": "2026-07-25 23:59:59",
+      "current_start_at": "2026-07-25 14:30:00",
+      "current_expired_at": "2026-07-25 23:59:59",
+      "detail_excerpt": "分类：其他\n费用：免费报名\n时间：7月25日 14:30\n地址：九龙坡印象汇1F中庭\n介绍：印象汇小程序免费报名。\n麻将娱乐赛，奖品含超市卡与棋牌室券。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/05.webp\n裁切海报：6a61f333000000001c0111e0/posters/05_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 14:30:00",
+        "expired_at": "2026-07-25 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3bc5fb000000001003ef30:09_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "旧金绮梦 · 中古珠宝私藏展",
+      "time_text": "6.19--7.19",
+      "current_start_date": "2026-06-19 00:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-06-19 00:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：展览活动\n费用：—\n时间：6.19--7.19\n地址：重庆高新区鑫源路8号 慢捣公元咖啡\n介绍：喜欢复古风的人在哪里？（超大声询问）相信这个展一定是你的心头好！整个展既有中古珠宝的岁月感又有原创中古风首饰的设计感，再加上机车元素带来的自由与不羁，各种特别的混搭很难不吸引人。\n\n来源账号：周末研究所-重庆\n合集标题：不去后悔！7月重庆狠想去打卡的11个活动\n来源笔记：https://www.xiaohongshu.com/explore/6a3bc5fb000000001003ef30?xsec_token=ABsz1H9Hi95ZiXaGjQFgl_WHvZOAG6LjhPMMghXR5dxTE%3D&xsec_source=pc_user\n原 slide：6a3bc5fb000000001003ef30/images/09.webp\n裁切海报：6a3bc5fb00000000100",
+      "suggestion": {
+        "start_at": "2026-06-19 00:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a44ee080000000011018b8f:05_1",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "醒书展",
+      "time_text": "2026年6月16日起，常设展",
+      "current_start_date": "2026-06-16 00:00:00",
+      "current_end_date": "2026-07-16 23:59:59",
+      "current_start_at": "2026-06-16 00:00:00",
+      "current_expired_at": "2026-07-16 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：2026年6月16日起，常设展\n地址：重庆旁观者设计博物馆\n介绍：免费观展，2026年6月16日起常设展。\n百人酷书展在重庆旁观者设计博物馆长期展出，汇集100本特色书籍。\n\n来源账号：周末研究所-重庆\n合集标题：重庆限定版7月看展指南来啦！免免免！！！\n来源笔记：https://www.xiaohongshu.com/explore/6a44ee080000000011018b8f?xsec_token=AB9oIys-czKNB5mtPEpXIReLQEdCz7Dzb8Kk3mxvlxcPk%3D&xsec_source=pc_user\n原 slide：6a44ee080000000011018b8f/images/05.webp\n裁切海报：6a44ee080000000011018b8f/posters/05_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-06-16 00:00:00",
+        "expired_at": "2026-07-16 23:59:59",
+        "confidence": "medium",
+        "reason": "仅有开始日（X日起），结束按展期30天估算至 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:06_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "分豆子大赛",
+      "time_text": "7月18日 15:00-16:00",
+      "current_start_date": "2026-07-18 15:00:00",
+      "current_end_date": "2026-07-18 16:00:00",
+      "current_start_at": "2026-07-18 15:00:00",
+      "current_expired_at": "2026-07-18 16:00:00",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：7月18日 15:00-16:00\n地址：T CITY桃源天地B1舞台\n介绍：微信小程序免费报名。\n红绿豆分类趣味挑战。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/06.webp\n裁切海报：6a61f333000000001c0111e0/posters/06_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-18 15:00:00",
+        "expired_at": "2026-07-18 16:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3bc5fb000000001003ef30:10_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "世界昆虫展",
+      "time_text": "6.26-7.31",
+      "current_start_date": "2026-06-26 00:00:00",
+      "current_end_date": "2026-07-31 23:59:59",
+      "current_start_at": "2026-06-26 00:00:00",
+      "current_expired_at": "2026-07-31 23:59:59",
+      "detail_excerpt": "分类：展览活动\n费用：—\n时间：6.26-7.31\n地址：中央公园·光环花园城\n介绍：开始以为是个普通的昆虫展，没想到内容比想象的要丰富。除了甲虫和蝴蝶标本，还有爬宠、水景造景、热植雨林等区域，感觉像把一个小型自然馆搬进了商场。\n\n来源账号：周末研究所-重庆\n合集标题：不去后悔！7月重庆狠想去打卡的11个活动\n来源笔记：https://www.xiaohongshu.com/explore/6a3bc5fb000000001003ef30?xsec_token=ABsz1H9Hi95ZiXaGjQFgl_WHvZOAG6LjhPMMghXR5dxTE%3D&xsec_source=pc_user\n原 slide：6a3bc5fb000000001003ef30/images/10.webp\n裁切海报：6a3bc5fb000000001003ef30/posters/10_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-26 00:00:00",
+        "expired_at": "2026-07-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a44ee080000000011018b8f:05_2",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "2026婚礼灵感体验展",
+      "time_text": "6.27-7.26",
+      "current_start_date": "2026-06-27 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-06-27 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：6.27-7.26\n地址：金山意库1号楼2楼\n介绍：免费观展，展期6.27-7.26。\n婚礼主题灵感体验展在金山意库1号楼2楼展出，呈现婚礼设计与布置创意。\n\n来源账号：周末研究所-重庆\n合集标题：重庆限定版7月看展指南来啦！免免免！！！\n来源笔记：https://www.xiaohongshu.com/explore/6a44ee080000000011018b8f?xsec_token=AB9oIys-czKNB5mtPEpXIReLQEdCz7Dzb8Kk3mxvlxcPk%3D&xsec_source=pc_user\n原 slide：6a44ee080000000011018b8f/images/05.webp\n裁切海报：6a44ee080000000011018b8f/posters/05_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-06-27 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:06_1",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "嗑瓜子大赛",
+      "time_text": "7月25日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-25 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-25 23:59:59",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：7月25日\n地址：西城天街L1一号舞台\n介绍：小红书报名参与。\n限时嗑瓜子挑战，优胜有购物卡与家电等奖品。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/06.webp\n裁切海报：6a61f333000000001c0111e0/posters/06_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-25 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3bc5fb000000001003ef30:11_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "游里音乐会",
+      "time_text": "6.5--8.29（每周五&六 19:00--20:00）",
+      "current_start_date": "2026-06-05 19:00:00",
+      "current_end_date": "2026-08-29 23:59:59",
+      "current_start_at": "2026-06-05 19:00:00",
+      "current_expired_at": "2026-08-29 23:59:59",
+      "detail_excerpt": "分类：音乐会\n费用：免费\n时间：6.5--8.29（每周五&六 19:00--20:00）\n地址：光环花园城C馆LG4层6号门喷泉广场\n介绍：免费入场。\n不用做攻略，也不用花钱买票，下班或者吃完饭散步过去就行。夏夜、晚风、音乐，再来杯冰饮，这种简单的小快乐真的很难拒绝。好的周末不一定要去很远的地方，有时候一场音乐Live就足够了。\n\n来源账号：周末研究所-重庆\n合集标题：不去后悔！7月重庆狠想去打卡的11个活动\n来源笔记：https://www.xiaohongshu.com/explore/6a3bc5fb000000001003ef30?xsec_token=ABsz1H9Hi95ZiXaGjQFgl_WHvZOAG6LjhPMMghXR5dxTE%3D&xsec_source=pc_user\n原 slide：6a3bc5fb000000001003ef30/images/11.web",
+      "suggestion": {
+        "start_at": "2026-06-05 19:00:00",
+        "expired_at": "2026-08-29 23:59:59",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a44ee080000000011018b8f:06_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "匠心守护——可移动文物保护修复技艺展",
+      "time_text": "5.1-7.30",
+      "current_start_date": "2026-05-01 00:00:00",
+      "current_end_date": "2026-07-30 23:59:59",
+      "current_start_at": "2026-05-01 00:00:00",
+      "current_expired_at": "2026-07-30 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：5.1-7.30\n地址：重庆巴渝民俗博物馆·历史文化陈列馆临展厅\n介绍：免费观展，展期5.1-7.30。\n可移动文物保护修复技艺专题展在重庆巴渝民俗博物馆历史文化陈列馆临展厅展出。\n\n来源账号：周末研究所-重庆\n合集标题：重庆限定版7月看展指南来啦！免免免！！！\n来源笔记：https://www.xiaohongshu.com/explore/6a44ee080000000011018b8f?xsec_token=AB9oIys-czKNB5mtPEpXIReLQEdCz7Dzb8Kk3mxvlxcPk%3D&xsec_source=pc_user\n原 slide：6a44ee080000000011018b8f/images/06.webp\n裁切海报：6a44ee080000000011018b8f/posters/06_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-05-01 00:00:00",
+        "expired_at": "2026-07-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a44ee080000000011018b8f:06_1",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "景仁怀德——捐赠文物中的山水韵致",
+      "time_text": "2026.2.27-2027.1.17",
+      "current_start_date": "2026-01-17 00:00:00",
+      "current_end_date": "2026-02-27 23:59:59",
+      "current_start_at": "2026-01-17 00:00:00",
+      "current_expired_at": "2026-02-27 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：2026.2.27-2027.1.17\n地址：重庆中国三峡博物馆4楼景仁怀德厅\n介绍：免费观展，展期2026.2.27-2027.1.17。\n捐赠文物中的山水意蕴在重庆中国三峡博物馆4楼景仁怀德厅长期展出。\n\n来源账号：周末研究所-重庆\n合集标题：重庆限定版7月看展指南来啦！免免免！！！\n来源笔记：https://www.xiaohongshu.com/explore/6a44ee080000000011018b8f?xsec_token=AB9oIys-czKNB5mtPEpXIReLQEdCz7Dzb8Kk3mxvlxcPk%3D&xsec_source=pc_user\n原 slide：6a44ee080000000011018b8f/images/06.webp\n裁切海报：6a44ee080000000011018b8f/posters/06_slot1",
+      "suggestion": {
+        "start_at": "2026-01-17 00:00:00",
+        "expired_at": "2026-02-27 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:07_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "绽放——第三届全国大学生美术作品展览（雕塑·水彩·粉画展区）",
+      "time_text": "7月16日-8月4日",
+      "current_start_date": "2026-07-16 00:00:00",
+      "current_end_date": "2026-08-04 23:59:59",
+      "current_start_at": "2026-07-16 00:00:00",
+      "current_expired_at": "2026-08-04 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月16日-8月4日\n地址：四川美术学院美术馆1-4号厅\n介绍：免费观展，需预约。\n全国大学生美术作品247件集中展出。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/07.webp\n裁切海报：6a61f333000000001c0111e0/posters/07_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-16 00:00:00",
+        "expired_at": "2026-08-04 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a44ee080000000011018b8f:06_2",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "中国·法国国际艺术展",
+      "time_text": "5.15-7.15",
+      "current_start_date": "2026-05-15 00:00:00",
+      "current_end_date": "2026-07-15 23:59:59",
+      "current_start_at": "2026-05-15 00:00:00",
+      "current_expired_at": "2026-07-15 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：5.15-7.15\n地址：重庆开埠遗址公园\n介绍：免费观展，展期5.15-7.15。\n中法文化之光国际艺术展在重庆开埠遗址公园展出，聚焦光影交绘主题。\n\n来源账号：周末研究所-重庆\n合集标题：重庆限定版7月看展指南来啦！免免免！！！\n来源笔记：https://www.xiaohongshu.com/explore/6a44ee080000000011018b8f?xsec_token=AB9oIys-czKNB5mtPEpXIReLQEdCz7Dzb8Kk3mxvlxcPk%3D&xsec_source=pc_user\n原 slide：6a44ee080000000011018b8f/images/06.webp\n裁切海报：6a44ee080000000011018b8f/posters/06_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-05-15 00:00:00",
+        "expired_at": "2026-07-15 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:08_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "穿过(__)去拥抱你",
+      "time_text": "7月5日-10月8日",
+      "current_start_date": "2026-07-05 00:00:00",
+      "current_end_date": "2026-10-08 23:59:59",
+      "current_start_at": "2026-07-05 00:00:00",
+      "current_expired_at": "2026-10-08 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月5日-10月8日\n地址：大愚美术馆\n介绍：免费观展，需「大愚YU」小程序预约。\n张弦纤维艺术展，围绕母性韧性与童年纯真。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/08.webp\n裁切海报：6a61f333000000001c0111e0/posters/08_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-05 00:00:00",
+        "expired_at": "2026-10-08 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a44ee080000000011018b8f:06_3",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "乐水乐山-郭晓静&颜韵双个展",
+      "time_text": "5月17日-7月16日",
+      "current_start_date": "2026-05-17 00:00:00",
+      "current_end_date": "2026-07-16 23:59:59",
+      "current_start_at": "2026-05-17 00:00:00",
+      "current_expired_at": "2026-07-16 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：5月17日-7月16日\n地址：重庆长江当代美术馆\n介绍：免费观展，展期5月17日-7月16日。\n郭晓静与颜韵双人艺术展在重庆长江当代美术馆展出，以乐水乐山为主题。\n\n来源账号：周末研究所-重庆\n合集标题：重庆限定版7月看展指南来啦！免免免！！！\n来源笔记：https://www.xiaohongshu.com/explore/6a44ee080000000011018b8f?xsec_token=AB9oIys-czKNB5mtPEpXIReLQEdCz7Dzb8Kk3mxvlxcPk%3D&xsec_source=pc_user\n原 slide：6a44ee080000000011018b8f/images/06.webp\n裁切海报：6a44ee080000000011018b8f/posters/06_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-05-17 00:00:00",
+        "expired_at": "2026-07-16 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:09_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "景仁怀德——捐赠文物中的山水韵致",
+      "time_text": "持续至2027年1月17日",
+      "current_start_date": "2026-01-17 00:00:00",
+      "current_end_date": "2026-01-17 23:59:59",
+      "current_start_at": "2026-01-17 00:00:00",
+      "current_expired_at": "2026-01-17 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：持续至2027年1月17日\n地址：重庆中国三峡博物馆\n介绍：免费观展。\n捐赠文物中的山水绘画轮展，含陈洪绶、罗聘、傅抱石等名家作品。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/09.webp\n裁切海报：6a61f333000000001c0111e0/posters/09_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-01-17 00:00:00",
+        "expired_at": "2026-01-17 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:09_1",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "没有星期五的无人岛",
+      "time_text": "展期至7月30日；陈松林音乐会7月25日19:30",
+      "current_start_date": "2026-07-25 19:30:00",
+      "current_end_date": "2026-07-30 23:59:59",
+      "current_start_at": "2026-07-25 19:30:00",
+      "current_expired_at": "2026-07-30 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：展期至7月30日；陈松林音乐会7月25日19:30\n地址：重庆印象城1F·DUIDUILAND打堆堆\n介绍：免费观展/听演。\n无人岛主题艺术展，周末另有现场音乐会。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/09.webp\n裁切海报：6a61f333000000001c0111e0/posters/09_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 19:30:00",
+        "expired_at": "2026-07-30 23:59:59",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a44ee080000000011018b8f:07_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "潮马艺术展",
+      "time_text": "2026.4.26-7.28",
+      "current_start_date": "2026-04-26 00:00:00",
+      "current_end_date": "2026-07-28 23:59:59",
+      "current_start_at": "2026-04-26 00:00:00",
+      "current_expired_at": "2026-07-28 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：2026.4.26-7.28\n地址：重庆沙坪坝磁器口后街\n介绍：免费观展，展期2026.4.26-7.28。\n重庆首个潮马艺术展在沙坪坝磁器口后街展出，包含潮玩雕塑装置、名家画展真迹和数字云展。\n\n来源账号：周末研究所-重庆\n合集标题：重庆限定版7月看展指南来啦！免免免！！！\n来源笔记：https://www.xiaohongshu.com/explore/6a44ee080000000011018b8f?xsec_token=AB9oIys-czKNB5mtPEpXIReLQEdCz7Dzb8Kk3mxvlxcPk%3D&xsec_source=pc_user\n原 slide：6a44ee080000000011018b8f/images/07.webp\n裁切海报：6a44ee080000000011018b8f/posters/07_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-04-26 00:00:00",
+        "expired_at": "2026-07-28 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a44ee080000000011018b8f:07_1",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "旧金绮梦中古展",
+      "time_text": "2026.6.19-7.19",
+      "current_start_date": "2026-06-19 00:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-06-19 00:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：2026.6.19-7.19\n地址：重庆九龙坡区高新区鑫源路8号慢捣公元咖啡\n介绍：免费观展，展期2026.6.19-7.19。\n中古珠宝私藏展在九龙坡慢捣公元咖啡展出，呈现复古珠宝与配饰珍藏。\n\n来源账号：周末研究所-重庆\n合集标题：重庆限定版7月看展指南来啦！免免免！！！\n来源笔记：https://www.xiaohongshu.com/explore/6a44ee080000000011018b8f?xsec_token=AB9oIys-czKNB5mtPEpXIReLQEdCz7Dzb8Kk3mxvlxcPk%3D&xsec_source=pc_user\n原 slide：6a44ee080000000011018b8f/images/07.webp\n裁切海报：6a44ee080000000011018b8f/posters/07_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-06-19 00:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:10_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "aespa重庆快闪",
+      "time_text": "7月24日-8月9日",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-08-09 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-08-09 23:59:59",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：7月24日-8月9日\n地址：重庆万象城北区L1层次中庭\n介绍：免费打卡。\naespa WEEK·MAKE IT LEMONADE 西南首家快闪。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/10.webp\n裁切海报：6a61f333000000001c0111e0/posters/10_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-08-09 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:10_1",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "WMLS主题音乐会",
+      "time_text": "7月25日 19:00-21:00",
+      "current_start_date": "2026-07-25 19:00:00",
+      "current_end_date": "2026-07-25 21:00:00",
+      "current_start_at": "2026-07-25 19:00:00",
+      "current_expired_at": "2026-07-25 21:00:00",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月25日 19:00-21:00\n地址：云领天街\n介绍：免费参与。\n盛夏主题音乐会，户外听现场。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/10.webp\n裁切海报：6a61f333000000001c0111e0/posters/10_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 19:00:00",
+        "expired_at": "2026-07-25 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a44ee080000000011018b8f:07_3",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "8D筑梦乐境·猫和老鼠艺术展",
+      "time_text": "4.28-7.19",
+      "current_start_date": "2026-04-28 00:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-04-28 00:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：4.28-7.19\n地址：重庆IFS\n介绍：免费观展，展期4.28-7.19。\n经典IP猫和老鼠跨界艺术展在重庆IFS展出，带来沉浸式卡通艺术体验。\n\n来源账号：周末研究所-重庆\n合集标题：重庆限定版7月看展指南来啦！免免免！！！\n来源笔记：https://www.xiaohongshu.com/explore/6a44ee080000000011018b8f?xsec_token=AB9oIys-czKNB5mtPEpXIReLQEdCz7Dzb8Kk3mxvlxcPk%3D&xsec_source=pc_user\n原 slide：6a44ee080000000011018b8f/images/07.webp\n裁切海报：6a44ee080000000011018b8f/posters/07_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-04-28 00:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:11_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "秋成乐园音乐会",
+      "time_text": "7月25日、7月26日 19:30",
+      "current_start_date": "2026-07-25 19:30:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-25 19:30:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月25日、7月26日 19:30\n地址：公园天街A馆1号门\n介绍：无需购票。\n粉丝主题音乐会场次，原唱歌手本人不在场。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/11.webp\n裁切海报：6a61f333000000001c0111e0/posters/11_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 19:30:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:11_1",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "邓紫棋应援音乐会",
+      "time_text": "7月24日 17:30-21:30",
+      "current_start_date": "2026-07-24 17:30:00",
+      "current_end_date": "2026-07-24 21:30:00",
+      "current_start_at": "2026-07-24 17:30:00",
+      "current_expired_at": "2026-07-24 21:30:00",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月24日 17:30-21:30\n地址：沙坪坝区融汇广场购物中心1F中庭\n介绍：免费参与。\n经典歌曲大合唱应援场，歌手本人不在场。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/11.webp\n裁切海报：6a61f333000000001c0111e0/posters/11_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 17:30:00",
+        "expired_at": "2026-07-24 21:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:12_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "李子坝小黄楼室内音乐会",
+      "time_text": "7月25日 正式场19:00；暖场16:30/17:30/18:30",
+      "current_start_date": "2026-07-25 16:30:00",
+      "current_end_date": "2026-07-25 23:59:59",
+      "current_start_at": "2026-07-25 16:30:00",
+      "current_expired_at": "2026-07-25 23:59:59",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月25日 正式场19:00；暖场16:30/17:30/18:30\n地址：李子坝小黄楼2楼（地铁站旁）\n介绍：小红书报名，免费参与。\n音乐时代体验展结合室内音乐会。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/12.webp\n裁切海报：6a61f333000000001c0111e0/posters/12_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 16:30:00",
+        "expired_at": "2026-07-25 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:12_1",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "一起来听Fashion Show",
+      "time_text": "7月26日 15:30-17:00",
+      "current_start_date": "2026-07-26 15:30:00",
+      "current_end_date": "2026-07-26 17:00:00",
+      "current_start_at": "2026-07-26 15:30:00",
+      "current_expired_at": "2026-07-26 17:00:00",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月26日 15:30-17:00\n地址：重庆渝中印象城1F DUIDUILand\n介绍：免费参与。\n时尚向音乐秀，适合周末听现场。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/12.webp\n裁切海报：6a61f333000000001c0111e0/posters/12_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-26 15:30:00",
+        "expired_at": "2026-07-26 17:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:13_0",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "CHILL KPOP随舞【JYP主题场】",
+      "time_text": "7月25日 14:00-18:00",
+      "current_start_date": "2026-07-25 14:00:00",
+      "current_end_date": "2026-07-25 18:00:00",
+      "current_start_at": "2026-07-25 14:00:00",
+      "current_expired_at": "2026-07-25 18:00:00",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：7月25日 14:00-18:00\n地址：龙湖重庆时代天街E馆L1中庭\n介绍：免费参与。\n重庆K-pop粉丝随机宅舞局，现场曲库跟跳。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/13.webp\n裁切海报：6a61f333000000001c0111e0/posters/13_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 14:00:00",
+        "expired_at": "2026-07-25 18:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61f333000000001c0111e0:13_1",
+      "city": "重庆",
+      "source": "xiaohongshu",
+      "title": "野进夏天2.0·冰爽泡泡音乐节",
+      "time_text": "7月25日 19:00-21:45",
+      "current_start_date": "2026-07-25 19:00:00",
+      "current_end_date": "2026-07-25 21:45:00",
+      "current_start_at": "2026-07-25 19:00:00",
+      "current_expired_at": "2026-07-25 21:45:00",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月25日 19:00-21:45\n地址：首创奥莱南广场\n介绍：免费参与。\n户外泡泡音乐节现场；粉丝向活动，原唱歌手本人不在场。\n\n来源账号：重庆周末去哪\n合集标题：本周末，在重庆可以免费做的28件事！\n来源笔记：https://www.xiaohongshu.com/explore/6a61f333000000001c0111e0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFXBn8mJ5xF_1h5hNpOmsFQE%3D&xsec_source=pc_user\n原 slide：6a61f333000000001c0111e0/images/13.webp\n裁切海报：6a61f333000000001c0111e0/posters/13_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 19:00:00",
+        "expired_at": "2026-07-25 21:45:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
       }
     }
   ]

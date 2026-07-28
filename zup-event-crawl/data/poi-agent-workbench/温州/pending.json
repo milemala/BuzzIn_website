@@ -1,7 +1,7 @@
 {
   "city": "温州",
   "source": "douban",
-  "exported_at": "2026-07-13T14:41:16.661Z",
+  "exported_at": "2026-07-26T12:09:29.436Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
@@ -11,25 +11,57 @@
   "doubtful_only": false,
   "total_events": 2,
   "group_count": 2,
-  "cache_hit_groups": 0,
+  "cache_hit_groups": 2,
   "groups": [
     {
-      "group_id": "f8400159338e",
-      "location": "温州 洞头区 温州伴·度假酒店",
-      "sample_title": "归乡与抵达——《欢迎再来》作者见面&读书分享会",
+      "group_id": "bb994f40519b",
+      "location": "温州 龙湾区 温州高新文化广场 龙祥路1111号",
+      "sample_title": "米小圈智趣成长系列儿童舞台剧《米小圈之李白白不白》",
       "event_uids": [
-        "douban:37900886"
+        "douban:37836578"
       ],
-      "event_count": 1
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "2080727425376033704",
+        "poi_title": "温州高新文化广场大剧院",
+        "poi_address": "",
+        "latitude": 27.93656,
+        "longitude": 120.813822,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：温州 龙湾区 温州高新文化广场 龙祥路1111号 → 温州高新文化广场大剧院（来源 event:douban:37827902）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "bb994f40519b8b6f9f9ac5805c749954c25582a0"
+      }
     },
     {
-      "group_id": "c1e58a31fb9c",
-      "location": "温州 鹿城区 学院中路小坝坊15栋 桃青民宿（温州学院路店）",
-      "sample_title": "他乡与故乡——《欢迎再来》作者见面&文学共读",
+      "group_id": "37a6d4ffccc0",
+      "location": "温州 鹿城区 温州大剧院 府东路466号",
+      "sample_title": "2026市民音乐会 《费加罗的婚礼》经典歌剧音乐会",
       "event_uids": [
-        "douban:37900897"
+        "douban:37842790"
       ],
-      "event_count": 1
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "10469979600925213444",
+        "poi_title": "温州大剧院",
+        "poi_address": "",
+        "latitude": 27.990555,
+        "longitude": 120.70253,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：温州 鹿城区 温州大剧院 府东路466号 → 温州大剧院（来源 event:douban:37809615）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "37a6d4ffccc0a48ea3fb5f8cf4c8d5ef72defeaa"
+      }
     }
   ]
 }

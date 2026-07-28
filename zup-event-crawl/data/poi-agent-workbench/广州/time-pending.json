@@ -1,79 +1,1555 @@
 {
   "city": "广州",
-  "source": "douban",
-  "exported_at": "2026-07-13T14:41:12.435Z",
+  "source": "xiaohongshu",
+  "exported_at": "2026-07-26T13:21:25.034Z",
   "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
   "events": [
     {
-      "event_uid": "douban:37901114",
+      "event_uid": "xiaohongshu:6a433b78000000001702b12c:01_0",
       "city": "广州",
-      "source": "douban",
-      "title": "温暖治愈，夏日必看！章若楠、金靖领衔主演《想你了》广州免费观影",
-      "time_text": "07月17日 周五 19:30-21:17",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "Hi～这是我们的第1564期观影活动，本次活动现场可领取：豆瓣Top250影迷典藏系列徽章一枚\n温暖治愈，夏日必看！由麻赢心导演，章若楠、金靖领衔主演，任彬领衔主演，李孝谦主演，仁科、张绍刚、张奕聪特别出演，李嘉鑫、柯达、鸟鸟友情出演的暑期档电影《想你了》免费观影来了！破浪“约”你一起走进影院，第一时间见证这段关于“一辈子好朋友”的故事。\n《想你了》讲述了高凡（章若楠饰）与汪美丽（金靖饰）从小一路相伴，作为彼此主动选择的“家人”一同走南闯北二十余载，面对生活里的种种挑战与困难，她们依然坚定陪伴彼此，约定要做一辈子好朋友的故事。\n本片也是章若楠、金靖首次大银幕搭档默契合作，出演“彼此生命中最最重要的朋友”。电影中，高凡与汪美丽自幼相识之后，一起陪伴走过了各自人生中最重要的阶段。影片通过细水长流的友情日常，充分展现了一段无比真挚、令人羡慕的纯粹女性友谊，相信看完电影的你，会很想给久未联系的朋友",
+      "source": "xiaohongshu",
+      "title": "抹抹茶市",
+      "time_text": "07.10-07.12",
+      "current_start_date": "2026-07-10 00:00:00",
+      "current_end_date": "2026-07-12 23:59:59",
+      "current_start_at": "2026-07-10 00:00:00",
+      "current_expired_at": "2026-07-12 23:59:59",
+      "detail_excerpt": "分类：市集活动\n费用：免费\n时间：07.10-07.12\n地址：广州天环广场·L3天台花园东区\n介绍：免费入场。\n40家全国抹茶品牌！抹茶甜品、特调饮品、茶具文创等，这个夏日，来天环晒晒你的那抹绿～参加互动，还有机会得限定打卡礼，寻宝换茶活动，超多周边免费送，抹茶爱好者mark!\n\n来源账号：周末研究所-广州\n合集标题：来啦来啦！广州7月活动汇总！暑假就去打卡\n来源笔记：https://www.xiaohongshu.com/explore/6a433b78000000001702b12c?xsec_token=ABbpFbNxXwa0HgmXMkrOIiVY1cOxtSDrf9ndpUIobnTeE%3D&xsec_source=pc_user\n原 slide：6a433b78000000001702b12c/images/01.webp\n裁切海报：6a433b7800000000170",
       "suggestion": {
-        "start_at": "2026-07-17 19:30:00",
-        "expired_at": "2026-07-17 21:17:00",
+        "start_at": "2026-07-10 00:00:00",
+        "expired_at": "2026-07-12 23:59:59",
         "confidence": "high",
-        "reason": "豆瓣详情：07月17日 周五 19:30-21:17"
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
       }
     },
     {
-      "event_uid": "douban:37900481",
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:01_0",
       "city": "广州",
-      "source": "douban",
-      "title": "广州读书会——深度思想碰撞，寻找同频共鸣",
-      "time_text": "07月15日 周三 15:00-17:00 / 07月18日 周六 15:00-17:00",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "1.7月15日（周三）根据报名人数决定下午场次还是晚上场次，晚上场次为19:00-21:00\n2.活动需要每位参加的朋友自带书籍\n3.参加活动费用为88元/位，包含场地费、茶歇费\n5.人数：一场活动仅限6人，额满即止，交费即预定名额\n4.报名活动请联系\n参加过一些读书会，人很多，也很吵，是很流于形式的。\n一大群陌生人凑在一起，自我介绍潦草结束，全程没有深度对话，结束之后依旧倍感孤独。\n在这里，我想做一场真正属于同频人的读书会。\n而是小而精、私密、安静、有温度的小众相聚。\n只召集愿意向他人分享自己见解、愿意倾听他人、愿意思考、愿意真诚交友的人。\n我理解的一个好的读书会，\n不在于参加的人读过很多的书，\n而是大家坐下来，松弛自在、各抒己见。\n你一言，我一语，交换彼此的感悟。\n在这里，你可以卸下所有拘谨，不必费心进行刻意社交。\n只要你有一颗愿意敞开心扉的心。\n将你喜欢的书籍分享给一群愿意倾听的朋友",
+      "source": "xiaohongshu",
+      "title": "海阔天空——李金明从艺68年回顾展",
+      "time_text": "2026年7月28日-10月11日",
+      "current_start_date": "2026-07-28 00:00:00",
+      "current_end_date": "2026-10-11 23:59:59",
+      "current_start_at": "2026-07-28 00:00:00",
+      "current_expired_at": "2026-10-11 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026年7月28日-10月11日\n地址：广东美术馆新馆16号厅\n介绍：免费入场。\n展出五十余幅油画，分海港、人物与风景等主题，融合中国水墨笔意与印象派色彩，描绘广东渔港与岭南滨海生活。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/01.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/01_slot0.jpg",
       "suggestion": {
-        "start_at": "2026-07-15 15:00:00",
-        "expired_at": "2026-07-18 17:00:00",
+        "start_at": "2026-07-28 00:00:00",
+        "expired_at": "2026-10-11 23:59:59",
         "confidence": "high",
-        "reason": "豆瓣详情：07月15日 周三 15:00-17:00 / 07月18日 周六 15:00-17:00"
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
       }
     },
     {
-      "event_uid": "douban:37900695",
+      "event_uid": "xiaohongshu:6a433b78000000001702b12c:02_0",
       "city": "广州",
-      "source": "douban",
-      "title": "我图周日阿瓦隆",
-      "time_text": "07月19日 周日 14:00-22:00",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "，回复“阿瓦隆“入群。群内接龙报名，人齐发车\n天河体育中心附近，一般每周六晚7点开，偶尔也有周六日下午养生局\n本周桌游 | 待定，看群\n时间｜Time\n14:00-23:30（星期六）\n14:00-23:30（星期日）\n活动流程 | Process\n在我图桌游群自行组队（须至少有一会员参与），人齐发车，先到先得！各位桌游大神冲鸭！\n费用｜Expense\n非会员25元/人\n活动相关小站\n我们的图书馆   主办方\n活动类型：其他 音乐 戏剧\n城市：广州",
+      "source": "xiaohongshu",
+      "title": "美好手帐集市",
+      "time_text": "7.17-7.19 (11:00-21:00)",
+      "current_start_date": "2026-07-17 11:00:00",
+      "current_end_date": "2026-07-19 21:00:00",
+      "current_start_at": "2026-07-17 11:00:00",
+      "current_expired_at": "2026-07-19 21:00:00",
+      "detail_excerpt": "分类：市集活动\n费用：免费\n时间：7.17-7.19 (11:00-21:00)\n地址：广州市天河区广州大道北980号信达金茂广场\n介绍：免费入场。\n集80家原创手帐摊主，盐系、复古、韩系风格等等，还有限定人生四格大头贴，插画师小猫小豆小狗世纪老师专属设计，手帐爱好者请捂紧钱包！\n\n来源账号：周末研究所-广州\n合集标题：来啦来啦！广州7月活动汇总！暑假就去打卡\n来源笔记：https://www.xiaohongshu.com/explore/6a433b78000000001702b12c?xsec_token=ABbpFbNxXwa0HgmXMkrOIiVY1cOxtSDrf9ndpUIobnTeE%3D&xsec_source=pc_user\n原 slide：6a433b78000000001702b12c/images/02.webp\n裁切海报：6a433b7800000000170",
       "suggestion": {
-        "start_at": "2026-07-19 14:00:00",
+        "start_at": "2026-07-17 11:00:00",
+        "expired_at": "2026-07-19 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:02_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "百分百妇女巡展",
+      "time_text": "7.31-8.31 10:00-22:00",
+      "current_start_date": "2026-07-31 10:00:00",
+      "current_end_date": "2026-08-31 22:00:00",
+      "current_start_at": "2026-07-31 10:00:00",
+      "current_expired_at": "2026-08-31 22:00:00",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7.31-8.31 10:00-22:00\n地址：广州市黄埔区鱼珠时光L2中轴展厅\n介绍：免费入场。\n女性主题公益展，一场平等的聚会与共创；不歌颂完美，只收集真实的「百分百时刻」。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/02.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/02_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-31 10:00:00",
+        "expired_at": "2026-08-31 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:03_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "拓麻歌子世界巡回广州站",
+      "time_text": "2026/6/26~7/26",
+      "current_start_date": "2026-07-26 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-26 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：2026/6/26~7/26\n地址：广州市天河区天河路232号万菱汇L1层小中庭\n介绍：免费入场。\n童年回忆杀来袭，夏日主题3D拍照区、两种试玩机可多人对战，还有盲盒墙和周边好物。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/03.webp\n裁切海报：6a3d00f700000000160242e5/posters/03_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-26 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a433b78000000001702b12c:03_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "打卡PICOCICI全球首店",
+      "time_text": "7月3日开业",
+      "current_start_date": "2026-07-03 00:00:00",
+      "current_end_date": "2026-07-03 23:59:59",
+      "current_start_at": "2026-07-03 00:00:00",
+      "current_expired_at": "2026-07-03 23:59:59",
+      "detail_excerpt": "分类：快闪活动\n费用：免费\n时间：7月3日开业\n地址：广州市荔湾区芙蓉坊2、4号\n介绍：免费入场。\n玩具总动员近期电影热映，粉丝们不要错过过来主题门店打卡！！超多全新周边上线，毛绒耳机包、趴趴萌趣豆、复古相机、可爱挂饰等。提前打卡门店围挡参加活动，还有开业到店礼。\n\n来源账号：周末研究所-广州\n合集标题：来啦来啦！广州7月活动汇总！暑假就去打卡\n来源笔记：https://www.xiaohongshu.com/explore/6a433b78000000001702b12c?xsec_token=ABbpFbNxXwa0HgmXMkrOIiVY1cOxtSDrf9ndpUIobnTeE%3D&xsec_source=pc_user\n原 slide：6a433b78000000001702b12c/images/03.webp\n裁切海报：6a433b78000000001702b12c/po",
+      "suggestion": {
+        "start_at": "2026-07-03 00:00:00",
+        "expired_at": "2026-07-03 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:03_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "不止于闺阁—宋金时期女性的多面人生",
+      "time_text": "2026年7月31日-2027年2月28日",
+      "current_start_date": "2026-02-28 00:00:00",
+      "current_end_date": "2026-07-31 23:59:59",
+      "current_start_at": "2026-02-28 00:00:00",
+      "current_expired_at": "2026-07-31 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026年7月31日-2027年2月28日\n地址：南越王博物院（王宫展区）陈列楼二楼临展厅\n介绍：免费入场。\n精选广州、洛阳、山西等地120余件/套文物，呈现宋金女性的多样面貌与真实处境。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/03.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/03_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-02-28 00:00:00",
+        "expired_at": "2026-07-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a433b78000000001702b12c:04_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "广州K11精酿啤酒市集",
+      "time_text": "7月10日—7月12日",
+      "current_start_date": "2026-07-10 00:00:00",
+      "current_end_date": "2026-07-12 23:59:59",
+      "current_start_at": "2026-07-10 00:00:00",
+      "current_expired_at": "2026-07-12 23:59:59",
+      "detail_excerpt": "分类：市集活动\n费用：免费\n时间：7月10日—7月12日\n地址：天河区广州K11西门户外广场\n介绍：免费入场。\n西门户外广场限时开启足球主题酒球街区！上百款精酿啤酒、三十多款烟火小吃，边看赛事边微醺。绿茵赛场氛围感拉满，约上朋友吹晚风、碰啤酒，好惬意！\n\n来源账号：周末研究所-广州\n合集标题：来啦来啦！广州7月活动汇总！暑假就去打卡\n来源笔记：https://www.xiaohongshu.com/explore/6a433b78000000001702b12c?xsec_token=ABbpFbNxXwa0HgmXMkrOIiVY1cOxtSDrf9ndpUIobnTeE%3D&xsec_source=pc_user\n原 slide：6a433b78000000001702b12c/images/04.webp\n裁切海报：6a433b78000000001702b12c/posters/",
+      "suggestion": {
+        "start_at": "2026-07-10 00:00:00",
+        "expired_at": "2026-07-12 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:04_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "温妮诺Ninuo「神逸」个展",
+      "time_text": "2026年7月18日—8月23日",
+      "current_start_date": "2026-07-18 00:00:00",
+      "current_end_date": "2026-08-23 23:59:59",
+      "current_start_at": "2026-07-18 00:00:00",
+      "current_expired_at": "2026-08-23 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026年7月18日—8月23日\n地址：广州沙太南路VLAB翌方181创意园B1层中庭觀空间\n介绍：免费入场。\n展出十余件新作，融合西方绘画技法与东方「神逸」美学，意象触及岭南丝竹与羊城晚霞。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/04.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/04_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-18 00:00:00",
+        "expired_at": "2026-08-23 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a433b78000000001702b12c:05_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "边度有手帐集",
+      "time_text": "2026.07.24-07.26",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集活动\n费用：尚未开票\n时间：2026.07.24-07.26\n地址：广州市天河区时尚天河·东区型动街区（体育中心地铁D3出口即达）\n介绍：首站落地时尚天河，汇集100+手帐品牌，160个摊位，还有日本手帐作者寄售。风格多元不撞款，超多小众品牌。打卡能换限定礼品，治愈插画主视觉超可爱～\n\n来源账号：周末研究所-广州\n合集标题：来啦来啦！广州7月活动汇总！暑假就去打卡\n来源笔记：https://www.xiaohongshu.com/explore/6a433b78000000001702b12c?xsec_token=ABbpFbNxXwa0HgmXMkrOIiVY1cOxtSDrf9ndpUIobnTeE%3D&xsec_source=pc_user\n原 slide：6a433b78000000001702b12c/images/05.webp\n裁切海报：6a433b780000",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:05_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "繁花之脉——广州插画艺术节",
+      "time_text": "2026年8月14日-8月16日",
+      "current_start_date": "2026-08-14 00:00:00",
+      "current_end_date": "2026-08-16 23:59:59",
+      "current_start_at": "2026-08-14 00:00:00",
+      "current_expired_at": "2026-08-16 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：59-79元\n时间：2026年8月14日-8月16日\n地址：保利世界贸易中心2号馆\n介绍：门票59-79元。\n汇集全球600多位艺术家，六大主题展区一票通逛，11000㎡展厅，并有分享会、签售与插画文创市集。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/05.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/05_slot0.j",
+      "suggestion": {
+        "start_at": "2026-08-14 00:00:00",
+        "expired_at": "2026-08-16 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:06_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "幻实之境 MR x AI 艺术展",
+      "time_text": "7月1日-7月31日",
+      "current_start_date": "2026-07-01 00:00:00",
+      "current_end_date": "2026-07-31 23:59:59",
+      "current_start_at": "2026-07-01 00:00:00",
+      "current_expired_at": "2026-07-31 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：7月1日-7月31日\n地址：香港科技大学（广州）学生活动中心C2-102\n介绍：免费入场。\n全球首个大型跨地域MR×AI艺术展，佩戴MR头显可体验《门》《世界树》《GFP荧光兔》等近50件23国艺术家作品。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/06.webp\n裁切海报：6a3d00f700000000160242e5/posters/06_sl",
+      "suggestion": {
+        "start_at": "2026-07-01 00:00:00",
+        "expired_at": "2026-07-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a433b78000000001702b12c:06_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "天河城30周年 × 三丽鸥日晒海岛派对华南首展",
+      "time_text": "7.4-8.31",
+      "current_start_date": "2026-07-04 00:00:00",
+      "current_end_date": "2026-08-31 23:59:59",
+      "current_start_at": "2026-07-04 00:00:00",
+      "current_expired_at": "2026-08-31 23:59:59",
+      "detail_excerpt": "分类：展览活动\n费用：免费\n时间：7.4-8.31\n地址：广州天河城、番禺天河城\n介绍：免费入场。\n全员海岛晒黑造型超特别，广州天河城700㎡热带沙滩造景，跑车、棕榈树超多打卡点；番禺店是水乡海岛风。两大商场各有限定商店，du家海岛周边，穿沙滩风穿搭拍照很出片，暑假打卡好去处！\n\n来源账号：周末研究所-广州\n合集标题：来啦来啦！广州7月活动汇总！暑假就去打卡\n来源笔记：https://www.xiaohongshu.com/explore/6a433b78000000001702b12c?xsec_token=ABbpFbNxXwa0HgmXMkrOIiVY1cOxtSDrf9ndpUIobnTeE%3D&xsec_source=pc_user\n原 slide：6a433b78000000001702b12c/images/06.webp\n裁切海报：6a433b78000000001702",
+      "suggestion": {
+        "start_at": "2026-07-04 00:00:00",
+        "expired_at": "2026-08-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:06_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "印象·梵高—沉浸式数字艺术展",
+      "time_text": "7月15日-10月25日",
+      "current_start_date": "2026-07-15 00:00:00",
+      "current_end_date": "2026-10-25 23:59:59",
+      "current_start_at": "2026-07-15 00:00:00",
+      "current_expired_at": "2026-10-25 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：98元\n时间：7月15日-10月25日\n地址：广东省博物馆三楼展厅一\n介绍：门票98元。\n展出149幅高清画作，400㎡五面光影展厅、6米层高配交响乐，还原阿尔勒卧室与向日葵幻境打卡点。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/06.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/06_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-15 00:00:00",
+        "expired_at": "2026-10-25 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:07_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "CROSSOVER 潮流艺术节",
+      "time_text": "2026.6.5~8.5，10:00-22:00",
+      "current_start_date": "2026-06-05 10:00:00",
+      "current_end_date": "2026-08-05 22:00:00",
+      "current_start_at": "2026-06-05 10:00:00",
+      "current_expired_at": "2026-08-05 22:00:00",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：2026.6.5~8.5，10:00-22:00\n地址：广州高德置地 冬广场\n介绍：免费入场。\n2026首届CROSSOVER潮流艺术节，特邀艺术家阵容全公开。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/07.webp\n裁切海报：6a3d00f700000000160242e5/posters/07_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-05 10:00:00",
+        "expired_at": "2026-08-05 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a433b78000000001702b12c:07_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "《小黄人与大怪兽》主题商业特展",
+      "time_text": "6月26日-8月31日",
+      "current_start_date": "2026-06-26 00:00:00",
+      "current_end_date": "2026-08-31 23:59:59",
+      "current_start_at": "2026-06-26 00:00:00",
+      "current_expired_at": "2026-08-31 23:59:59",
+      "detail_excerpt": "分类：展览活动\n费用：免费\n时间：6月26日-8月31日\n地址：北京路天河城\n介绍：免费入场。\n七大沉浸式场景，巨型小黄人、空中花园怪物天团等，周末记得来\"探班\"哦！7月4日还有新角色詹姆斯见面会、限定包场观影会，和小黄人近距离互动贴贴，周边快闪店同步上线，小黄人迷千万别错过！\n\n来源账号：周末研究所-广州\n合集标题：来啦来啦！广州7月活动汇总！暑假就去打卡\n来源笔记：https://www.xiaohongshu.com/explore/6a433b78000000001702b12c?xsec_token=ABbpFbNxXwa0HgmXMkrOIiVY1cOxtSDrf9ndpUIobnTeE%3D&xsec_source=pc_user\n原 slide：6a433b78000000001702b12c/images/07.webp\n裁切海报：6a433b78000000001702",
+      "suggestion": {
+        "start_at": "2026-06-26 00:00:00",
+        "expired_at": "2026-08-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:07_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "时间的显影——郁大铿摄影作品展",
+      "time_text": "8月1日-8月6日",
+      "current_start_date": "2026-08-01 00:00:00",
+      "current_end_date": "2026-08-08 23:59:59",
+      "current_start_at": "2026-08-01 00:00:00",
+      "current_expired_at": "2026-08-08 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：8月1日-8月6日\n地址：广州ICC环贸天地\n介绍：免费入场。\n郁大铿摄影作品展，以影像凝视时间的显影。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/07.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/07_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-08-01 00:00:00",
+        "expired_at": "2026-08-08 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a433b78000000001702b12c:08_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "JOJO的奇妙冒险主题快闪",
+      "time_text": "2026.07.03-07.26",
+      "current_start_date": "2026-07-03 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-03 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：快闪活动\n费用：免费\n时间：2026.07.03-07.26\n地址：广州正佳广场4F中庭\n介绍：免费入场。\nJOJO的奇妙冒险快闪终于来到广州正佳广场啦！！7月约起～有彩窗广场、黄金精神画廊，300多款du家不通贩周边。还有限定集章玩法，JOJO粉快来线下打卡！\n\n来源账号：周末研究所-广州\n合集标题：来啦来啦！广州7月活动汇总！暑假就去打卡\n来源笔记：https://www.xiaohongshu.com/explore/6a433b78000000001702b12c?xsec_token=ABbpFbNxXwa0HgmXMkrOIiVY1cOxtSDrf9ndpUIobnTeE%3D&xsec_source=pc_user\n原 slide：6a433b78000000001702b12c/images/08.webp\n裁切海报：6a433b78000000001702b12c/",
+      "suggestion": {
+        "start_at": "2026-07-03 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:07_1",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "《跃动青春》原画书店联展",
+      "time_text": "7月24日起",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-08-23 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-08-23 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月24日起\n地址：广州购书中心\n介绍：免费入场。\n《跃动青春》原画书店联展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/07.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/07_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-08-23 23:59:59",
+        "confidence": "medium",
+        "reason": "仅有开始日（X日起），结束按展期30天估算至 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a433b78000000001702b12c:09_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "数码宝贝广州期间限定店",
+      "time_text": "7月4日-8月3日",
+      "current_start_date": "2026-07-04 00:00:00",
+      "current_end_date": "2026-08-03 23:59:59",
+      "current_start_at": "2026-07-04 00:00:00",
+      "current_expired_at": "2026-08-03 23:59:59",
+      "detail_excerpt": "分类：快闪活动\n费用：免费\n时间：7月4日-8月3日\n地址：广州市天河区正佳广场4F中庭电梯出口侧（4A165a-01）\n介绍：免费入场。\n与数码宝贝奔赴绿茵之约！全新绿茵足球主题「竞技时刻」系列上线，太一、亚古兽全员换上运动造型。多款限定周边，五角徽章、亚克力角色卡、绿茵立牌盲盒等等，足球浓度超标预警！\n\n来源账号：周末研究所-广州\n合集标题：来啦来啦！广州7月活动汇总！暑假就去打卡\n来源笔记：https://www.xiaohongshu.com/explore/6a433b78000000001702b12c?xsec_token=ABbpFbNxXwa0HgmXMkrOIiVY1cOxtSDrf9ndpUIobnTeE%3D&xsec_source=pc_user\n原 slide：6a433b78000000001702b12c/images/09.webp\n裁切海报：6a433b",
+      "suggestion": {
+        "start_at": "2026-07-04 00:00:00",
+        "expired_at": "2026-08-03 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:07_2",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "《一人之下》十周年漫画原画展",
+      "time_text": "7月11日-8月25日",
+      "current_start_date": "2026-07-11 00:00:00",
+      "current_end_date": "2026-08-25 23:59:59",
+      "current_start_at": "2026-07-11 00:00:00",
+      "current_expired_at": "2026-08-25 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：78-88元\n时间：7月11日-8月25日\n地址：时尚天河\n介绍：门票78-88元。\n《一人之下》十周年漫画原画展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/07.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/07_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-11 00:00:00",
+        "expired_at": "2026-08-25 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:07_3",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "虫友—寻访甲虫世界",
+      "time_text": "7月17日开展",
+      "current_start_date": "2026-07-17 00:00:00",
+      "current_end_date": "2026-07-17 23:59:59",
+      "current_start_at": "2026-07-17 00:00:00",
+      "current_expired_at": "2026-07-17 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：7月17日开展\n地址：广东省博物馆 三楼专题展厅\n介绍：免费入场。\n甲虫主题自然科普展，7月17日开展。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/07.webp\n裁切海报：6a3d00f700000000160242e5/posters/07_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-07-17 00:00:00",
+        "expired_at": "2026-07-17 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a433b78000000001702b12c:10_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "萤火虫动漫游戏嘉年华 39th 广州站",
+      "time_text": "7月17日—20日",
+      "current_start_date": "2026-07-17 00:00:00",
+      "current_end_date": "2026-07-20 23:59:59",
+      "current_start_at": "2026-07-17 00:00:00",
+      "current_expired_at": "2026-07-20 23:59:59",
+      "detail_excerpt": "分类：动漫嘉年华\n费用：85r起\n时间：7月17日—20日\n地址：保利世贸博览馆1—6号馆\n介绍：双特展同步上线：UPW电玩展+模玩特展，电竞赛、卡牌赛、海量模型全都有！超多IP、同人谷子，还有痛车打卡、嘉宾签售，萤火虫游乐园、限定快闪店，各种惊喜等你线下一个个解锁。\n\n来源账号：周末研究所-广州\n合集标题：来啦来啦！广州7月活动汇总！暑假就去打卡\n来源笔记：https://www.xiaohongshu.com/explore/6a433b78000000001702b12c?xsec_token=ABbpFbNxXwa0HgmXMkrOIiVY1cOxtSDrf9ndpUIobnTeE%3D&xsec_source=pc_user\n原 slide：6a433b78000000001702b12c/images/10.webp\n裁切海报：6a433b78000000001702b12c/",
+      "suggestion": {
+        "start_at": "2026-07-17 00:00:00",
+        "expired_at": "2026-07-20 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:07_3",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "文艺复兴的交响：格拉斯哥博物馆藏大师作品展",
+      "time_text": "7月1日-10月18日",
+      "current_start_date": "2026-07-01 00:00:00",
+      "current_end_date": "2026-10-18 23:59:59",
+      "current_start_at": "2026-07-01 00:00:00",
+      "current_expired_at": "2026-10-18 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：34-68元\n时间：7月1日-10月18日\n地址：广东省博物馆\n介绍：门票34-68元。\n格拉斯哥博物馆藏大师作品展，近70件真迹。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/07.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/07_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-07-01 00:00:00",
+        "expired_at": "2026-10-18 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:08_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "翻开书来·艺术书籍展",
+      "time_text": "6月19日-7月19日，10:00-22:00",
+      "current_start_date": "2026-06-19 10:00:00",
+      "current_end_date": "2026-07-19 22:00:00",
+      "current_start_at": "2026-06-19 10:00:00",
+      "current_expired_at": "2026-07-19 22:00:00",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：6月19日-7月19日，10:00-22:00\n地址：高德置地冬广场5楼高德书店艺术空间\n介绍：免费入场。\nOpen The Book艺术书展，2026年艺术书籍主题展。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/08.webp\n裁切海报：6a3d00f700000000160242e5/posters/08_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-19 10:00:00",
         "expired_at": "2026-07-19 22:00:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月19日 周日 14:00-22:00"
+        "reason": "按 time_text 解析"
       }
     },
     {
-      "event_uid": "douban:37900707",
+      "event_uid": "xiaohongshu:6a433b78000000001702b12c:11_0",
       "city": "广州",
-      "source": "douban",
-      "title": "【周五电影院】《鬼玩人》",
-      "time_text": "07月17日 周五 19:30-22:00",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "观影设备：1080p投影仪+CR5X音箱+100寸投影幕+舒适沙发 不建议空降，可于豆瓣报名。 添加客服微信（gejunjk），回复“鬼玩人 ”入群。进群可获得第一手放映安排\n周五电影院\n欢迎观影\n《鬼玩人6》\n(片长：110分钟)\n爱丽丝在丈夫骤然离世后深陷悲痛，受邀前往公婆的乡间庄园暂住，试图和丈夫的家人互相慰藉，一同走出丧亲的阴霾。可入住没多久，诡异状况便接连爆发，庄园里怪事频发，身边的亲人举止日渐反常。很快，恶灵诅咒席卷整座宅邸，身边的人一个接一个被侵蚀异化，变成面目焦黑、嗜血狂暴的死徒。她逐渐发现，当年婚礼上许下的婚姻誓言并未随丈夫的死亡消散，反而成了缠绕整个家族的恶灵契约。被困在庄园里的她，必须在亲人彻底沦陷前，在遍地死徒的绝境里拼杀求生。\n时间｜Time\n2026.07.17（星期五 ）\n活动流程 | Process\n19:30         到达我图\n19:30-21:2",
+      "source": "xiaohongshu",
+      "title": "未来社 × CiGA Game Jam 2026",
+      "time_text": "7月3日13:00-7月5日17:30",
+      "current_start_date": "2026-07-03 13:00:00",
+      "current_end_date": "2026-07-05 23:59:59",
+      "current_start_at": "2026-07-03 13:00:00",
+      "current_expired_at": "2026-07-05 23:59:59",
+      "detail_excerpt": "分类：线下活动\n费用：开发者票100r，观众票50r\n时间：7月3日13:00-7月5日17:30\n地址：广州市天河区天河路533号（未来社·533）\n介绍：CiGA Game Jam线下创作活动，天河未来社举办48小时游戏创作挑战，新手、资深开发者都能参与，现场组队，程序、美术、策划同场交流。48小时从零做出游戏原型，活动后期开放观众体验票，喜欢独立游戏的朋友别错过！\n\n来源账号：周末研究所-广州\n合集标题：来啦来啦！广州7月活动汇总！暑假就去打卡\n来源笔记：https://www.xiaohongshu.com/explore/6a433b78000000001702b12c?xsec_token=ABbpFbNxXwa0HgmXMkrOIiVY1cOxtSDrf9ndpUIobnTeE%3D&xsec_source=pc_user\n原 slide：6a433b780000000017",
       "suggestion": {
-        "start_at": "2026-07-17 19:30:00",
-        "expired_at": "2026-07-17 22:00:00",
+        "start_at": "2026-07-03 13:00:00",
+        "expired_at": "2026-07-05 23:59:59",
         "confidence": "high",
-        "reason": "豆瓣详情：07月17日 周五 19:30-22:00"
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:08_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "CROSSOVER潮流艺术节",
+      "time_text": "2026.6.5~8.5 10:00-22:00",
+      "current_start_date": "2026-06-05 10:00:00",
+      "current_end_date": "2026-08-05 22:00:00",
+      "current_start_at": "2026-06-05 10:00:00",
+      "current_expired_at": "2026-08-05 22:00:00",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.6.5~8.5 10:00-22:00\n地址：广州高德置地冬广场\n介绍：免费入场。\n首届TREND ART FESTIVAL潮流艺术节。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/08.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/08_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-05 10:00:00",
+        "expired_at": "2026-08-05 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a433b78000000001702b12c:13_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "CMA华语榜中榜广州盛典",
+      "time_text": "2026年7月12日 19:30",
+      "current_start_date": "2026-07-12 19:30:00",
+      "current_end_date": "2026-07-12 23:59:59",
+      "current_start_at": "2026-07-12 19:30:00",
+      "current_expired_at": "2026-07-12 23:59:59",
+      "detail_excerpt": "分类：演唱会\n费用：尚未开票\n时间：2026年7月12日 19:30\n地址：广州大学城体育中心体育场\n介绍：CMA榜中榜广州盛典7.12开唱！！神.仙歌手阵容：情歌教父张信哲、甜心天后王心凌、实力高音黄霄雲、浪姐曾沛慈同台开唱。经典金曲现场连唱，曾沛慈广州首秀不容错过！\n\n来源账号：周末研究所-广州\n合集标题：来啦来啦！广州7月活动汇总！暑假就去打卡\n来源笔记：https://www.xiaohongshu.com/explore/6a433b78000000001702b12c?xsec_token=ABbpFbNxXwa0HgmXMkrOIiVY1cOxtSDrf9ndpUIobnTeE%3D&xsec_source=pc_user\n原 slide：6a433b78000000001702b12c/images/13.webp\n裁切海报：6a433b78000000001702b12c",
+      "suggestion": {
+        "start_at": "2026-07-12 19:30:00",
+        "expired_at": "2026-07-12 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:08_1",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "「你已经很好了」野有上秋个展广州站",
+      "time_text": "06.18-08.30",
+      "current_start_date": "2026-06-18 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-06-18 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：59元\n时间：06.18-08.30\n地址：天河区珠江东路6号广州K11购物艺术中心\n介绍：门票59元。\n野有上秋个展广州站。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/08.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/08_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-06-18 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:08_2",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "刨的小宇宙·梁建创作作品展",
+      "time_text": "05.16-07.26",
+      "current_start_date": "2026-05-16 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-05-16 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：9.9r\n时间：05.16-07.26\n地址：天河区员村尚榕美术\n介绍：门票9.9r。\nLiving in My Bubble，梁建创作作品展。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/08.webp\n裁切海报：6a3d00f700000000160242e5/posters/08_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-05-16 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a433b78000000001702b12c:14_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "珠江啤酒节音乐现场",
+      "time_text": "7月19日18:30",
+      "current_start_date": "2026-07-19 18:30:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-07-19 18:30:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：音乐节\n费用：399r起\n时间：7月19日18:30\n地址：天河体育中心\n介绍：歌手阵容：毛不易、汪苏泷、陈立农、王栎鑫、许靖韵，民谣、流行金曲轮番开唱。听歌碰杯氛围感拉满，一起赴这场夏夜音乐狂欢派对！\n\n来源账号：周末研究所-广州\n合集标题：来啦来啦！广州7月活动汇总！暑假就去打卡\n来源笔记：https://www.xiaohongshu.com/explore/6a433b78000000001702b12c?xsec_token=ABbpFbNxXwa0HgmXMkrOIiVY1cOxtSDrf9ndpUIobnTeE%3D&xsec_source=pc_user\n原 slide：6a433b78000000001702b12c/images/14.webp\n裁切海报：6a433b78000000001702b12c/posters/14_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-19 18:30:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:08_2",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "《万物·回路》",
+      "time_text": "2026.06.26-2026.08.31",
+      "current_start_date": "2026-06-26 00:00:00",
+      "current_end_date": "2026-08-31 23:59:59",
+      "current_start_at": "2026-06-26 00:00:00",
+      "current_expired_at": "2026-08-31 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.06.26-2026.08.31\n地址：时尚天河商业广场·西区\n介绍：免费入场。\n《万物·回路》艺术装置/展览。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/08.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/08_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-06-26 00:00:00",
+        "expired_at": "2026-08-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:08_3",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "The Garden of Libido",
+      "time_text": "5.26-7.5（12:00-18:00）",
+      "current_start_date": "2026-05-26 12:00:00",
+      "current_end_date": "2026-07-05 18:00:00",
+      "current_start_at": "2026-05-26 12:00:00",
+      "current_expired_at": "2026-07-05 18:00:00",
+      "detail_excerpt": "分类：展览\n费用：20r\n时间：5.26-7.5（12:00-18:00）\n地址：缺席画廊\n介绍：门票20r。\nThe Garden of Libido主题展。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/08.webp\n裁切海报：6a3d00f700000000160242e5/posters/08_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-05-26 12:00:00",
+        "expired_at": "2026-07-05 18:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:08_3",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "虫友—寻访甲虫世界",
+      "time_text": "7月17日—8月30日",
+      "current_start_date": "2026-07-17 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-07-17 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月17日—8月30日\n地址：广东省博物馆三楼专题展厅\n介绍：免费入场。\n甲虫主题科普艺术展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/08.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/08_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-07-17 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:09_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "比利时护照上的漫画人物 MARSUPILAMI 华南首展",
+      "time_text": "4.26-7.31",
+      "current_start_date": "2026-04-26 00:00:00",
+      "current_end_date": "2026-07-31 23:59:59",
+      "current_start_at": "2026-04-26 00:00:00",
+      "current_expired_at": "2026-07-31 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：4.26-7.31\n地址：广粤天地TCP\n介绍：免费入场。\nMARSUPILAMI华南首展，新朋友闪亮登场。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/09.webp\n裁切海报：6a3d00f700000000160242e5/posters/09_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-04-26 00:00:00",
+        "expired_at": "2026-07-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:09_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "三丽鸥“日晒海岛派对”华南首展",
+      "time_text": "2026年7月4日-8月31日",
+      "current_start_date": "2026-07-04 00:00:00",
+      "current_end_date": "2026-08-31 23:59:59",
+      "current_start_at": "2026-07-04 00:00:00",
+      "current_expired_at": "2026-08-31 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026年7月4日-8月31日\n地址：广州天河城\n介绍：免费入场。\n三丽鸥角色夏日海岛派对主题展，华南首展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/09.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/09_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-04 00:00:00",
+        "expired_at": "2026-08-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:09_1",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "Fido嚟广州，Dido够地道",
+      "time_text": "4.16-8.31",
+      "current_start_date": "2026-04-16 00:00:00",
+      "current_end_date": "2026-08-31 23:59:59",
+      "current_start_at": "2026-04-16 00:00:00",
+      "current_expired_at": "2026-08-31 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：4.16-8.31\n地址：广州K11\n介绍：免费入场。\nFido Dido主题打卡展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/09.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/09_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-04-16 00:00:00",
+        "expired_at": "2026-08-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:09_2",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "声画共生 · 黄贯中的摇滚美学宇宙",
+      "time_text": "2026.4.11-7.11",
+      "current_start_date": "2026-04-11 00:00:00",
+      "current_end_date": "2026-07-11 23:59:59",
+      "current_start_at": "2026-04-11 00:00:00",
+      "current_expired_at": "2026-07-11 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：39r起\n时间：2026.4.11-7.11\n地址：与亨美术馆\n介绍：门票39r起。\n黄贯中摇滚美学宇宙展。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/09.webp\n裁切海报：6a3d00f700000000160242e5/posters/09_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-04-11 00:00:00",
+        "expired_at": "2026-07-11 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:09_2",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "《理想大人失踪事件》",
+      "time_text": "2026.7.13-10.11 13:00-19:00",
+      "current_start_date": "2026-07-13 13:00:00",
+      "current_end_date": "2026-10-11 19:00:00",
+      "current_start_at": "2026-07-13 13:00:00",
+      "current_expired_at": "2026-10-11 19:00:00",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.7.13-10.11 13:00-19:00\n地址：指月亮 Art&Book\n介绍：免费入场。\n理想大人失踪事件主题展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/09.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/09_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-13 13:00:00",
+        "expired_at": "2026-10-11 19:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:09_3",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "「心路生花」—范祯个展",
+      "time_text": "7月9日-8月9日",
+      "current_start_date": "2026-07-09 00:00:00",
+      "current_end_date": "2026-08-09 23:59:59",
+      "current_start_at": "2026-07-09 00:00:00",
+      "current_expired_at": "2026-08-09 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：22元\n时间：7月9日-8月9日\n地址：溯·榭映美术馆（东山湖公园中岛1号）\n介绍：门票22元。\n范祯个展「心路生花」。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/09.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/09_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-07-09 00:00:00",
+        "expired_at": "2026-08-09 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:10_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "\"斑斓之境\" 釉彩马赛克艺术作品展",
+      "time_text": "6月18日—7月18日（逢周一闭馆）",
+      "current_start_date": "2026-06-18 00:00:00",
+      "current_end_date": "2026-07-18 23:59:59",
+      "current_start_at": "2026-06-18 00:00:00",
+      "current_expired_at": "2026-07-18 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：6月18日—7月18日（逢周一闭馆）\n地址：广州人民艺术中心一楼2号馆\n介绍：免费入场。\n釉彩马赛克艺术作品展。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/10.webp\n裁切海报：6a3d00f700000000160242e5/posters/10_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-18 00:00:00",
+        "expired_at": "2026-07-18 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:10_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "《万物·回路》艺术展",
+      "time_text": "2026.06.26-2026.08.31",
+      "current_start_date": "2026-06-26 00:00:00",
+      "current_end_date": "2026-08-31 23:59:59",
+      "current_start_at": "2026-06-26 00:00:00",
+      "current_expired_at": "2026-08-31 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.06.26-2026.08.31\n地址：时尚天河西区\n介绍：免费入场。\n万物·回路艺术展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/10.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/10_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-26 00:00:00",
+        "expired_at": "2026-08-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:10_1",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "广州艺术邂逅——宋洋美术与索菲亚全球艺术中心",
+      "time_text": "6.24-7.19",
+      "current_start_date": "2026-06-24 00:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-06-24 00:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：6.24-7.19\n地址：越秀区星寰国际商业中心8楼 宋洋美术 Lab\n介绍：免费入场。\n宋洋美术与索菲亚全球艺术中心联合展。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/10.webp\n裁切海报：6a3d00f700000000160242e5/posters/10_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-06-24 00:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:10_1",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "上上间Room on Room",
+      "time_text": "07/03-08/30",
+      "current_start_date": "2026-07-03 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-07-03 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：07/03-08/30\n地址：越秀区中山五路昌兴街7号弄空间Long Space 2-3F\n介绍：免费入场。\n上上间Room on Room展览。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/10.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/10_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-03 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:10_2",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "小世界·Inner Worlds",
+      "time_text": "05.23-07.05",
+      "current_start_date": "2026-05-23 00:00:00",
+      "current_end_date": "2026-07-05 23:59:59",
+      "current_start_at": "2026-05-23 00:00:00",
+      "current_expired_at": "2026-07-05 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：05.23-07.05\n地址：逵园艺术馆\n介绍：免费入场。\nInner Worlds主题青年艺术展。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/10.webp\n裁切海报：6a3d00f700000000160242e5/posters/10_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-05-23 00:00:00",
+        "expired_at": "2026-07-05 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:10_2",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "【千重生】冯自己个人艺术展",
+      "time_text": "7月25日~8月25日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-08-25 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-08-25 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月25日~8月25日\n地址：無毛用非便利店（农讲所站）\n介绍：免费入场。\n冯自己个人艺术展「千重生」。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/10.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/10_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-08-25 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:10_3",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "“花漾穆夏”·新艺术美学漫步",
+      "time_text": "05.01–11.01（周一闭馆）",
+      "current_start_date": "2026-05-01 00:00:00",
+      "current_end_date": "2026-11-01 23:59:59",
+      "current_start_at": "2026-05-01 00:00:00",
+      "current_expired_at": "2026-11-01 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：05.01–11.01（周一闭馆）\n地址：广州人民艺术中心\n介绍：免费入场。\n穆夏新艺术风格美学漫步展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/10.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/10_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-05-01 00:00:00",
+        "expired_at": "2026-11-01 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:11_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "無界域 & 諸相非相",
+      "time_text": "03.21-07.20",
+      "current_start_date": "2026-03-21 00:00:00",
+      "current_end_date": "2026-07-20 23:59:59",
+      "current_start_at": "2026-03-21 00:00:00",
+      "current_expired_at": "2026-07-20 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：03.21-07.20\n地址：鷸+Artspace\n介绍：免费入场。\nINFINI CONTEMPORARY双主题群展。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/11.webp\n裁切海报：6a3d00f700000000160242e5/posters/11_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-03-21 00:00:00",
+        "expired_at": "2026-07-20 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:11_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "其命惟新——广东美术百年陈列展",
+      "time_text": "6月9日—8月19日",
+      "current_start_date": "2026-06-09 00:00:00",
+      "current_end_date": "2026-08-19 23:59:59",
+      "current_start_at": "2026-06-09 00:00:00",
+      "current_expired_at": "2026-08-19 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：6月9日—8月19日\n地址：广东美术馆本馆一楼1-4号厅\n介绍：免费入场。\n广东美术百年陈列展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/11.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/11_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-09 00:00:00",
+        "expired_at": "2026-08-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:11_1",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "知齐者，徐君也——徐悲鸿藏齐白石艺术研究展",
+      "time_text": "04.24-09.06",
+      "current_start_date": "2026-04-24 00:00:00",
+      "current_end_date": "2026-09-06 23:59:59",
+      "current_start_at": "2026-04-24 00:00:00",
+      "current_expired_at": "2026-09-06 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：68元\n时间：04.24-09.06\n地址：广东美术馆新馆一楼1-3号厅\n介绍：门票68元。\n徐悲鸿藏齐白石艺术研究展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/11.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/11_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-04-24 00:00:00",
+        "expired_at": "2026-09-06 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:12_1",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "失能记录·周末友会实验影像展",
+      "time_text": "7月19日—9月19日",
+      "current_start_date": "2026-07-19 00:00:00",
+      "current_end_date": "2026-09-19 23:59:59",
+      "current_start_at": "2026-07-19 00:00:00",
+      "current_expired_at": "2026-09-19 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：20元\n时间：7月19日—9月19日\n地址：扉美术馆\n介绍：门票20元。\n周末友会实验影像展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/12.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/12_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-19 00:00:00",
+        "expired_at": "2026-09-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:12_2",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "李燎：一个事情",
+      "time_text": "2026.7.25-2026.9.25",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-09-25 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-09-25 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.7.25-2026.9.25\n地址：海珠区柏涛雅苑信裕62号岛外DAOWAI SPACE\n介绍：免费入场。\n李燎个展「一个事情」。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/12.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/12_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-09-25 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:12_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "风景与想象之间——意大利当代艺术在中国",
+      "time_text": "2026.05.29-08.05",
+      "current_start_date": "2026-05-29 00:00:00",
+      "current_end_date": "2026-08-05 23:59:59",
+      "current_start_at": "2026-05-29 00:00:00",
+      "current_expired_at": "2026-08-05 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：2026.05.29-08.05\n地址：广东美术馆新馆二楼5、6号厅\n介绍：免费入场。\n意大利当代艺术在中国主题展。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/12.webp\n裁切海报：6a3d00f700000000160242e5/posters/12_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-05-29 00:00:00",
+        "expired_at": "2026-08-05 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:12_3",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "青州微笑——中国古青州佛造像艺术展",
+      "time_text": "2026.06.20-2026.12.19",
+      "current_start_date": "2026-06-20 00:00:00",
+      "current_end_date": "2026-12-19 23:59:59",
+      "current_start_at": "2026-06-20 00:00:00",
+      "current_expired_at": "2026-12-19 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：19.9-78元\n时间：2026.06.20-2026.12.19\n地址：广州艺术博物院（广州美术馆）1号馆\n介绍：门票19.9-78元。\n中国古青州佛造像艺术展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/12.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/12_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-06-20 00:00:00",
+        "expired_at": "2026-12-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:13_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "出谷新声寂处来——吴子复艺术回顾展",
+      "time_text": "第一期04.25-06.28；第二期06.30-08.30",
+      "current_start_date": "2026-04-25 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-04-25 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：第一期04.25-06.28；第二期06.30-08.30\n地址：广州艺术博物院\n介绍：免费入场。\n吴子复艺术回顾展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/13.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/13_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-04-25 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:12_2",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "四季倒影：光之镜中的自然——赫利顿·希夏个展",
+      "time_text": "2026.05.28-08.05",
+      "current_start_date": "2026-05-28 00:00:00",
+      "current_end_date": "2026-08-05 23:59:59",
+      "current_start_at": "2026-05-28 00:00:00",
+      "current_expired_at": "2026-08-05 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：2026.05.28-08.05\n地址：广东美术馆新馆2楼4号厅\n介绍：免费入场。\n赫利顿·希夏个展。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/12.webp\n裁切海报：6a3d00f700000000160242e5/posters/12_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-05-28 00:00:00",
+        "expired_at": "2026-08-05 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:13_1",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "双城匠心—广州·景德镇民间工艺交流展",
+      "time_text": "2026年6月10日至8月16日",
+      "current_start_date": "2026-06-10 00:00:00",
+      "current_end_date": "2026-08-16 23:59:59",
+      "current_start_at": "2026-06-10 00:00:00",
+      "current_expired_at": "2026-08-16 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026年6月10日至8月16日\n地址：广州市文化馆中心阁一楼特展厅\n介绍：免费入场。\n广州与景德镇民间工艺交流展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/13.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/13_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-06-10 00:00:00",
+        "expired_at": "2026-08-16 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:12_3",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "\"韩家英的设计辞典II\"",
+      "time_text": "04.17-07.26",
+      "current_start_date": "2026-04-17 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-04-17 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：04.17-07.26\n地址：荔湾区白鹅潭南路19号广东美术馆新馆二楼7、8号厅\n介绍：免费入场。\n韩家英设计辞典第二辑。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/12.webp\n裁切海报：6a3d00f700000000160242e5/posters/12_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-04-17 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:13_2",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "「一念敦煌」石窟艺术大展",
+      "time_text": "2026.05.01-2026.10.31",
+      "current_start_date": "2026-05-01 00:00:00",
+      "current_end_date": "2026-10-31 23:59:59",
+      "current_start_at": "2026-05-01 00:00:00",
+      "current_expired_at": "2026-10-31 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：98元\n时间：2026.05.01-2026.10.31\n地址：广州艺术博物院\n介绍：门票98元。\n敦煌石窟艺术大展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/13.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/13_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-05-01 00:00:00",
+        "expired_at": "2026-10-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:13_3",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "「2026版」中国国家地理·探索极致发现科学艺术影像展",
+      "time_text": "2026.5.1-10.7",
+      "current_start_date": "2026-05-01 00:00:00",
+      "current_end_date": "2026-10-07 23:59:59",
+      "current_start_at": "2026-05-01 00:00:00",
+      "current_expired_at": "2026-10-07 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：58元起\n时间：2026.5.1-10.7\n地址：汉溪K11 L140-L143\n介绍：门票58元起。\n中国国家地理科学艺术影像展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/13.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/13_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-05-01 00:00:00",
+        "expired_at": "2026-10-07 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:13_1",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "「这里有风」当代青年艺术家主题展",
+      "time_text": "2026.6.16-7.31，09:00-18:00",
+      "current_start_date": "2026-06-16 09:00:00",
+      "current_end_date": "2026-07-31 18:00:00",
+      "current_start_at": "2026-06-16 09:00:00",
+      "current_expired_at": "2026-07-31 18:00:00",
+      "detail_excerpt": "分类：展览\n费用：15r\n时间：2026.6.16-7.31，09:00-18:00\n地址：广铝国际中心·琶洲双塔路78号负1F壹·美术\n介绍：门票15r。\n当代青年艺术家主题展。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/13.webp\n裁切海报：6a3d00f700000000160242e5/posters/13_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-06-16 09:00:00",
+        "expired_at": "2026-07-31 18:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:14_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "布山水——林雨蓓个展",
+      "time_text": "2026.07.25-10.31",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-10-31 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-10-31 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：88元\n时间：2026.07.25-10.31\n地址：番禺区甘棠大道11号另一个美术馆2号馆\n介绍：门票88元。\n林雨蓓个展「布山水」。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/14.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/14_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-10-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:14_1",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "绽放——第三届全国大学生美术作品展览",
+      "time_text": "07.14-08.02",
+      "current_start_date": "2026-07-14 00:00:00",
+      "current_end_date": "2026-08-02 23:59:59",
+      "current_start_at": "2026-07-14 00:00:00",
+      "current_expired_at": "2026-08-02 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：07.14-08.02\n地址：广州美术学院美术馆（大学城馆）1-10号展厅\n介绍：免费入场。\n第三届全国大学生美术作品展览。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/14.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/14_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-14 00:00:00",
+        "expired_at": "2026-08-02 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:14_2",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "余广州 平且康——魏晋南北朝时期的广州",
+      "time_text": "5月18日—10月25日",
+      "current_start_date": "2026-05-18 00:00:00",
+      "current_end_date": "2026-10-25 23:59:59",
+      "current_start_at": "2026-05-18 00:00:00",
+      "current_expired_at": "2026-10-25 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：5月18日—10月25日\n地址：南汉二陵博物馆特展厅\n介绍：免费入场。\n魏晋南北朝时期广州主题展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/14.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/14_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-05-18 00:00:00",
+        "expired_at": "2026-10-25 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:14_3",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "时间、身体、能量的国际艺术对话",
+      "time_text": "3.21-6.28",
+      "current_start_date": "2026-03-21 00:00:00",
+      "current_end_date": "2026-06-28 23:59:59",
+      "current_start_at": "2026-03-21 00:00:00",
+      "current_expired_at": "2026-06-28 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：88元\n时间：3.21-6.28\n地址：另一个美术馆1号馆1层\n介绍：门票88元。\n时间、身体与能量国际艺术对话展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/14.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/14_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-03-21 00:00:00",
+        "expired_at": "2026-06-28 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:14_1",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "梦里寻她·中国传统绘画中的女性时空叠影",
+      "time_text": "05.01-07.31",
+      "current_start_date": "2026-05-01 00:00:00",
+      "current_end_date": "2026-07-31 23:59:59",
+      "current_start_at": "2026-05-01 00:00:00",
+      "current_expired_at": "2026-07-31 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：05.01-07.31\n地址：海珠区广州艺术博物院（广州美术馆）\n介绍：免费入场。\n中国传统绘画中的女性时空叠影主题展。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/14.webp\n裁切海报：6a3d00f700000000160242e5/posters/14_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-05-01 00:00:00",
+        "expired_at": "2026-07-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:15_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "卷入感ARF·探秘山海经大型沉浸艺术展",
+      "time_text": "2026.6.16-10.18",
+      "current_start_date": "2026-06-16 00:00:00",
+      "current_end_date": "2026-10-18 23:59:59",
+      "current_start_at": "2026-06-16 00:00:00",
+      "current_expired_at": "2026-10-18 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：29元\n时间：2026.6.16-10.18\n地址：白云区百顺北路15号云里下沉广场\n介绍：门票29元。\n山海经主题大型沉浸艺术展，广州首展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/15.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/15_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-16 00:00:00",
+        "expired_at": "2026-10-18 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:14_2",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "往来艺廊 · 柏林立方 Berlin3Cube",
+      "time_text": "04.25-07.25",
+      "current_start_date": "2026-04-25 00:00:00",
+      "current_end_date": "2026-07-25 23:59:59",
+      "current_start_at": "2026-04-25 00:00:00",
+      "current_expired_at": "2026-07-25 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：04.25-07.25\n地址：吉盛伟邦琶洲店往来艺廊\n介绍：免费入场。\n柏林立方Berlin3Cube主题展。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/14.webp\n裁切海报：6a3d00f700000000160242e5/posters/14_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-04-25 00:00:00",
+        "expired_at": "2026-07-25 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:15_1",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "她的视界——岭南当代女画家邀请展",
+      "time_text": "7月23日至9月15日",
+      "current_start_date": "2026-07-23 00:00:00",
+      "current_end_date": "2026-09-15 23:59:59",
+      "current_start_at": "2026-07-23 00:00:00",
+      "current_expired_at": "2026-09-15 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月23日至9月15日\n地址：广州白云国际机场T2航站楼美术馆\n介绍：免费入场。\n岭南当代女画家邀请展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/15.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/15_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-23 00:00:00",
+        "expired_at": "2026-09-15 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:14_3",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "「2026版」中国国家地理 · 探索极致发现科学艺术影像展",
+      "time_text": "2026.05.01-10.07",
+      "current_start_date": "2026-05-01 00:00:00",
+      "current_end_date": "2026-10-07 23:59:59",
+      "current_start_at": "2026-05-01 00:00:00",
+      "current_expired_at": "2026-10-07 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：58r起\n时间：2026.05.01-10.07\n地址：汉溪 K11 L140-L143\n介绍：门票58r起。\n中国国家地理探索极致发现科学艺术影像展2026版。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/14.webp\n裁切海报：6a3d00f700000000160242e5/posters/14_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-05-01 00:00:00",
+        "expired_at": "2026-10-07 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:15_2",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "老夫子2026经典特展",
+      "time_text": "07.10-09.13",
+      "current_start_date": "2026-07-10 00:00:00",
+      "current_end_date": "2026-09-13 23:59:59",
+      "current_start_at": "2026-07-10 00:00:00",
+      "current_expired_at": "2026-09-13 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：07.10-09.13\n地址：黄埔区广州黄埔大悦汇\n介绍：免费入场。\n老夫子2026经典特展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/15.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/15_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-10 00:00:00",
+        "expired_at": "2026-09-13 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:15_3",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "生生之力——中非文化艺术展",
+      "time_text": "04.30-11.01",
+      "current_start_date": "2026-04-30 00:00:00",
+      "current_end_date": "2026-11-01 23:59:59",
+      "current_start_at": "2026-04-30 00:00:00",
+      "current_expired_at": "2026-11-01 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：38元\n时间：04.30-11.01\n地址：黄埔区广州海事博物馆3楼展厅\n介绍：门票38元。\n中非文化艺术展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/15.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/15_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-04-30 00:00:00",
+        "expired_at": "2026-11-01 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:16_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "镜头·时代·人",
+      "time_text": "8月8日—11月12日",
+      "current_start_date": "2026-08-08 00:00:00",
+      "current_end_date": "2026-11-12 23:59:59",
+      "current_start_at": "2026-08-08 00:00:00",
+      "current_expired_at": "2026-11-12 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：120元\n时间：8月8日—11月12日\n地址：广州花都塱头古村·春阳台展厅\n介绍：门票120元。\n刘香成摄影展「镜头·时代·人」。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/16.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/16_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-08-08 00:00:00",
+        "expired_at": "2026-11-12 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:15_2",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "生命起源——朱文玉个展",
+      "time_text": "5月19日—7月19日",
+      "current_start_date": "2026-05-19 00:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-05-19 00:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：88r起\n时间：5月19日—7月19日\n地址：另一个美术馆1号馆3F\n介绍：门票88r起。\n朱文玉生命起源个展。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/15.webp\n裁切海报：6a3d00f700000000160242e5/posters/15_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-05-19 00:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:16_1",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "缺席与在场：沙迦艺术基金会收藏展",
+      "time_text": "3月22日至8月30日",
+      "current_start_date": "2026-03-22 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-03-22 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：戏台免费，展厅50元\n时间：3月22日至8月30日\n地址：阿那亚艺术中心广州馆展厅1-3、戏台\n介绍：戏台免费，入展厅50元。\n沙迦艺术基金会收藏展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/16.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/16_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-03-22 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:15_3",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "杨淞：离心力",
+      "time_text": "2026.05.23-2026.07.10",
+      "current_start_date": "2026-05-23 00:00:00",
+      "current_end_date": "2026-07-10 23:59:59",
+      "current_start_at": "2026-05-23 00:00:00",
+      "current_expired_at": "2026-07-10 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：2026.05.23-2026.07.10\n地址：番禺区迎宾路348号岁集院子二楼\n介绍：免费入场。\n杨淞离心力个展。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/15.webp\n裁切海报：6a3d00f700000000160242e5/posters/15_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-05-23 00:00:00",
+        "expired_at": "2026-07-10 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:16_2",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "黑格·艾瓦兹安中国首场个展",
+      "time_text": "3月22日至8月30日",
+      "current_start_date": "2026-03-22 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-03-22 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：50元\n时间：3月22日至8月30日\n地址：阿那亚艺术中心广州馆展厅4\n介绍：门票50元。\n黑格·艾瓦兹安中国首场个展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/16.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/16_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-03-22 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:16_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "\"岭南望\" 第一季 潮汐的刻度: 1757 1842 1957",
+      "time_text": "2026.3.28-2026.7.12（逢周一闭馆）",
+      "current_start_date": "2026-03-28 00:00:00",
+      "current_end_date": "2026-07-12 23:59:59",
+      "current_start_at": "2026-03-28 00:00:00",
+      "current_expired_at": "2026-07-12 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：80r起\n时间：2026.3.28-2026.7.12（逢周一闭馆）\n地址：春阳台 展厅一、二、三、四\n介绍：门票80r起。\n岭南望第一季，潮汐的刻度主题展。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/16.webp\n裁切海报：6a3d00f700000000160242e5/posters/16_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-03-28 00:00:00",
+        "expired_at": "2026-07-12 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:16_3",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "「看见·无限」传统非遗×当代艺术大湾区女性共创艺术展",
+      "time_text": "6.19-10.8",
+      "current_start_date": "2026-06-19 00:00:00",
+      "current_end_date": "2026-10-08 23:59:59",
+      "current_start_at": "2026-06-19 00:00:00",
+      "current_expired_at": "2026-10-08 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：49.9元起\n时间：6.19-10.8\n地址：观几里艺术空间\n介绍：门票单人49.9元起。\n传统非遗与当代艺术女性共创展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/16.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/16_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-06-19 00:00:00",
+        "expired_at": "2026-10-08 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:17_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "无界：广东美术馆青年艺术家学术提名展",
+      "time_text": "06.09—09.09",
+      "current_start_date": "2026-06-09 00:00:00",
+      "current_end_date": "2026-09-09 23:59:59",
+      "current_start_at": "2026-06-09 00:00:00",
+      "current_expired_at": "2026-09-09 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：06.09—09.09\n地址：广东美术馆本馆（二沙岛）二楼7号展厅\n介绍：免费入场。\n广东美术馆青年艺术家学术提名展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/17.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/17_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-09 00:00:00",
+        "expired_at": "2026-09-09 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:17_1",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "海丝门户——文物里的清代广州",
+      "time_text": "04.25—08.23",
+      "current_start_date": "2026-04-25 00:00:00",
+      "current_end_date": "2026-08-23 23:59:59",
+      "current_start_at": "2026-04-25 00:00:00",
+      "current_expired_at": "2026-08-23 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：10元\n时间：04.25—08.23\n地址：广州博物馆镇海楼展区专题展厅\n介绍：门票10元。\n清代广州海丝门户文物展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/17.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/17_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-04-25 00:00:00",
+        "expired_at": "2026-08-23 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:17_2",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "《米菲，全世界的好朋友》全国巡展",
+      "time_text": "4.11—8.31",
+      "current_start_date": "2026-04-11 00:00:00",
+      "current_end_date": "2026-08-31 23:59:59",
+      "current_start_at": "2026-04-11 00:00:00",
+      "current_expired_at": "2026-08-31 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：48元起\n时间：4.11—8.31\n地址：北京路天河城B区B1层\n介绍：门票48元起。\n米菲全国城市巡展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/17.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/17_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-04-11 00:00:00",
+        "expired_at": "2026-08-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:17_0",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "刘璇：下潜，一场潜入潜意识的旅程",
+      "time_text": "3月28日-7月26日",
+      "current_start_date": "2026-03-28 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-03-28 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：30r\n时间：3月28日-7月26日\n地址：广东时代美术馆西厅\n介绍：门票30r。\n刘璇下潜个展。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/17.webp\n裁切海报：6a3d00f700000000160242e5/posters/17_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-03-28 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a634c9b000000000f00a3d6:17_3",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "尼罗河的赠礼·古埃及文物与数字艺术体验展",
+      "time_text": "02.06—10.11",
+      "current_start_date": "2026-02-06 00:00:00",
+      "current_end_date": "2026-10-11 23:59:59",
+      "current_start_at": "2026-02-06 00:00:00",
+      "current_expired_at": "2026-10-11 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：59-99元\n时间：02.06—10.11\n地址：南越王博物院（王墓展区）\n介绍：门票59-99元。\n古埃及文物与数字艺术体验展。\n\n来源账号：周末研究所-广州\n合集标题：广州8月新展合集🔸50场精彩展览！别错过\n来源笔记：https://www.xiaohongshu.com/explore/6a634c9b000000000f00a3d6?xsec_token=AB1zdd3N7FqIBk2BYDt3WcBs4H5ArDqe6ytk284VTRZjI%3D&xsec_source=pc_user\n原 slide：6a634c9b000000000f00a3d6/images/17.webp\n裁切海报：6a634c9b000000000f00a3d6/posters/17_slot3.jpg",
+      "suggestion": {
+        "start_at": "2026-02-06 00:00:00",
+        "expired_at": "2026-10-11 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:17_1",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "身如磐石，以肉身抵抗智能",
+      "time_text": "3月28日-7月26日",
+      "current_start_date": "2026-03-28 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-03-28 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：30r\n时间：3月28日-7月26日\n地址：广东时代美术馆主展厅及东厅\n介绍：门票30r。\nStill as a Stone，以肉身抵抗智能主题展。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/17.webp\n裁切海报：6a3d00f700000000160242e5/posters/17_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-03-28 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3d00f700000000160242e5:17_2",
+      "city": "广州",
+      "source": "xiaohongshu",
+      "title": "重释",
+      "time_text": "2026/06/19-07/12",
+      "current_start_date": "2026-07-12 00:00:00",
+      "current_end_date": "2026-07-12 23:59:59",
+      "current_start_at": "2026-07-12 00:00:00",
+      "current_expired_at": "2026-07-12 23:59:59",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：2026/06/19-07/12\n地址：广州市黄埔区保利鱼珠港南区G7-2一楼，M.Y画廊\n介绍：免费入场。\nDaniel Kocev Pazamat重释个展。\n\n来源账号：周末研究所-广州\n合集标题：广州7月新展指南🧩精选50场！暑期大展也来了\n来源笔记：https://www.xiaohongshu.com/explore/6a3d00f700000000160242e5?xsec_token=ABSyvgp3ume3l2vdgL95WyCjT1EdqhDV0xGfXYj_Sa0CY%3D&xsec_source=pc_user\n原 slide：6a3d00f700000000160242e5/images/17.webp\n裁切海报：6a3d00f700000000160242e5/posters/17_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-12 00:00:00",
+        "expired_at": "2026-07-12 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
       }
     }
   ]

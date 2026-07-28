@@ -3,940 +3,3703 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Zup! 匹配邀约</title>
+    <title>Zup! AI 智能撮合 Demo</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         :root {
-            --primary: #FFD93D;
-            --primary-dim: rgba(255, 217, 61, 0.12);
-            --primary-glow: rgba(255, 217, 61, 0.25);
-            --bg: #0a0a0f;
-            --card: #16161f;
-            --surface: #1c1c28;
-            --text: #ffffff;
-            --text-sec: rgba(255,255,255,0.6);
-            --text-hint: rgba(255,255,255,0.35);
-            --border: rgba(255,255,255,0.08);
-            --danger: #ff6b6b;
-            --success: #51cf66;
-            --rose: #f783ac;
-            --radius: 16px;
-            --radius-sm: 10px;
-            --safe-bottom: env(safe-area-inset-bottom, 0px);
+            --gold: #f6c453;
+            --gold-soft: rgba(246, 196, 83, .16);
+            --mint: #6ee7d8;
+            --mint-soft: rgba(110, 231, 216, .14);
+            --ai: #a78bfa;
+            --ai-soft: rgba(167, 139, 250, .18);
+            --bg: #12151f;
+            --ink: #f7f4ee;
+            --muted: rgba(247, 244, 238, .68);
+            --hint: rgba(247, 244, 238, .42);
+            --line: rgba(255, 255, 255, .1);
+            --line-strong: rgba(255, 255, 255, .12);
+            --surface: rgba(255, 255, 255, .05);
+            --surface-2: rgba(255, 255, 255, .1);
+            --chip-bg: rgba(255, 255, 255, .04);
+            --danger: #ff7a85;
+            --success: #6ee7b7;
+            --radius: 28px;
+            --radius-card: 18px;
+            --safe: env(safe-area-inset-bottom, 0px);
+            /* Design type scale — only 3 sizes */
+            --fs-title: 20px;
+            --lh-title: 28px;
+            --fs-body: 15px;
+            --lh-body: 22px;
+            --fs-ui: 13px;
+            --lh-ui: 18px;
+            --gap-section: 14px;
+            --gap-chip: 8px;
+            --chip-h: 30px;
         }
-
+        html, body { height: 100%; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-            line-height: 1.5;
-            overflow-x: hidden;
+            min-height: 100%;
+            color: var(--ink);
+            /* Rasterized from the previous CSS aurora stack — same look, design-exportable */
+            background-color: #0f121a;
+            background-image: image-set(
+                url("images/ai-match-aurora-bg.png") 1x,
+                url("images/ai-match-aurora-bg@2x.png") 2x
+            );
+            background-position: center top;
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: "SF Pro Display", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            line-height: 1.45;
             -webkit-font-smoothing: antialiased;
+            overflow: hidden;
+        }
+        button, input, textarea, select { font: inherit; color: inherit; }
+        .app {
+            width: min(100%, 440px);
+            height: 100%;
+            max-height: 100dvh;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .link {
+            border: 0;
+            background: none;
+            color: var(--hint);
+            font-size: var(--fs-body);
+            font-weight: 500;
+            line-height: var(--lh-body);
+            cursor: pointer;
+            padding: 0;
+        }
+        .link:hover { color: var(--gold); }
+        .chips { display: flex; flex-wrap: wrap; gap: var(--gap-chip); }
+        .chip {
+            height: var(--chip-h);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--line-strong);
+            background: var(--chip-bg);
+            color: var(--muted);
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            cursor: pointer;
+            transition: .2s;
+        }
+        .chip.selected {
+            color: #1a1608;
+            background: linear-gradient(135deg, #f6e27a, #f0c14b);
+            border-color: transparent;
+            font-weight: 600;
+        }
+        .dist {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--line);
+        }
+        .dist label { font-size: var(--fs-ui); line-height: var(--lh-ui); color: var(--hint); white-space: nowrap; }
+        .dist strong { font-size: var(--fs-ui); line-height: var(--lh-ui); font-weight: 500; color: var(--mint); min-width: 36px; text-align: right; }
+        .dist input[type="range"] {
+            flex: 1;
+            accent-color: var(--mint);
+            height: 3px;
         }
 
-        /* ============ Hero Section ============ */
+        /* —— Full-page match stage —— */
         .hero {
             position: relative;
-            padding: 48px 20px 24px;
-            overflow: hidden;
-        }
-        .hero-bg {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(160deg, #2d1f3d 0%, #1a1025 40%, var(--bg) 100%);
-            z-index: 0;
-        }
-        .hero-bg::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -30%;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 217, 61, 0.08) 0%, transparent 70%);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .match-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 14px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, rgba(255, 217, 61, 0.15), rgba(247, 131, 172, 0.15));
-            border: 1px solid rgba(255, 217, 61, 0.2);
-            font-size: 13px;
-            color: var(--primary);
-            font-weight: 500;
-            margin-bottom: 20px;
-        }
-        .match-badge .sparkle { font-size: 14px; }
-
-        /* ============ Profile Card ============ */
-        .profile-card {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: var(--radius);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            overflow: hidden;
-        }
-
-        .photos-gallery {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 3 / 4;
-            overflow: hidden;
-            background: var(--card);
-        }
-        .photos-gallery img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            position: absolute;
-            top: 0; left: 0;
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-        .photos-gallery img.active { opacity: 1; }
-
-        .photo-indicators {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            right: 12px;
-            display: flex;
-            gap: 4px;
-            z-index: 2;
-        }
-        .photo-indicators .dot {
             flex: 1;
-            height: 3px;
-            border-radius: 2px;
-            background: rgba(255,255,255,0.3);
-            transition: background 0.3s;
-        }
-        .photo-indicators .dot.active { background: rgba(255,255,255,0.9); }
-
-        .photo-tap-zones {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
+            min-height: 0;
             display: flex;
-            z-index: 3;
+            flex-direction: column;
+            overflow: hidden;
         }
-        .photo-tap-zones .zone { flex: 1; }
+        /* Middle aurora wash is baked into images/ai-match-aurora-bg*.png */
+        .session-footer {
+            flex: 0 0 auto;
+            z-index: 6;
+            padding: 10px 20px calc(12px + var(--safe));
+            border-top: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(24, 27, 38, .94), rgba(18, 21, 31, .98));
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .session-footer[hidden] { display: none !important; }
+        .stop-session {
+            width: 100%;
+            border: 1px solid var(--line);
+            background: var(--chip-bg);
+            color: var(--muted);
+            border-radius: 999px;
+            padding: 12px 16px;
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            cursor: pointer;
+            transition: .2s;
+        }
+        .stop-session:hover {
+            color: var(--ink);
+            border-color: rgba(255,122,133,.45);
+            background: rgba(255,122,133,.1);
+        }
 
-        .profile-info {
-            padding: 20px;
+        /* 我的局（已成局，结束撮合后保留） */
+        .my-groups {
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 0 2px;
         }
-        .profile-header {
+        .my-groups[hidden] { display: none !important; }
+        .my-groups-head {
             display: flex;
             align-items: baseline;
+            justify-content: space-between;
+            gap: 8px;
+        }
+        .my-groups-hint {
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--hint);
+        }
+        .my-groups-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .my-group-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             gap: 10px;
+            width: 100%;
+            text-align: left;
+            padding: 12px;
+            border-radius: 16px;
+            border: 1px solid rgba(110,231,216,.35);
+            background: rgba(110,231,216,.08);
+            color: inherit;
+            cursor: pointer;
+        }
+        .my-group-card:active { transform: scale(.99); }
+        .my-group-card strong {
+            display: block;
+            font-size: var(--fs-body);
+            font-weight: 500;
+            line-height: var(--lh-body);
+            margin-bottom: 2px;
+        }
+        .my-group-card p {
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--muted);
+        }
+        .my-group-card .cta {
+            flex: 0 0 auto;
+            color: var(--mint);
+            font-size: var(--fs-ui);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .stop-confirm-copy {
+            font-size: var(--fs-body);
+            line-height: var(--lh-body);
+            color: var(--muted);
+            margin: 0 0 12px;
+        }
+        .stop-confirm-copy em {
+            color: var(--mint);
+            font-style: normal;
+            font-weight: 500;
+        }
+        .stop-confirm-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin: 0 0 16px;
+            padding: 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(110,231,216,.28);
+            background: rgba(110,231,216,.06);
+        }
+        .stop-confirm-list span {
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--ink);
+        }
+        .stop-confirm-danger {
+            width: 100%;
+            margin-top: 10px;
+            border: 0;
+            background: none;
+            color: var(--hint);
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .stop-confirm-danger:hover { color: #ff7a85; }
+
+        /* Multi-activity task switcher */
+        .task-rail {
+            position: relative;
+            z-index: 2;
+            flex: 0 0 auto;
+            display: flex;
+            gap: 8px;
+            padding: max(10px, env(safe-area-inset-top)) 20px 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .task-rail[hidden] { display: none !important; }
+        .task-rail::-webkit-scrollbar { display: none; }
+        .task-pill {
+            flex: 0 0 auto;
+            border: 1px solid var(--line-strong);
+            background: var(--chip-bg);
+            color: var(--muted);
+            border-radius: 999px;
+            height: var(--chip-h);
+            padding: 0 12px;
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: .2s;
+            white-space: nowrap;
+        }
+        .task-pill.active {
+            color: var(--ink);
+            border-color: rgba(167,139,250,.45);
+            background: rgba(167,139,250,.16);
+        }
+        .task-pill .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--hint);
+        }
+        .task-pill.searching .dot {
+            background: var(--ai);
+            box-shadow: 0 0 8px rgba(167,139,250,.6);
+            animation: blink 1.4s ease-in-out infinite;
+        }
+        .task-pill.matched .dot,
+        .task-pill.waiting .dot { background: var(--gold); }
+        .task-pill.ready .dot { background: var(--mint); }
+        .task-pill .pill-status {
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--hint);
+        }
+        .task-pill.active .pill-status { color: var(--muted); }
+
+        .stage {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .stage:has(#state-waiting.active) {
+            overflow: hidden;
+        }
+        .state {
+            display: none;
+            min-height: 100%;
+            padding: 8px 20px 16px;
+            flex-direction: column;
+        }
+        #state-idle {
+            padding-top: max(8px, env(safe-area-inset-top));
+            padding-bottom: 8px;
+        }
+        #state-matched {
+            padding-bottom: 8px;
+        }
+        #state-waiting {
+            height: 100%;
+            min-height: 0;
+            max-height: 100%;
+            overflow: hidden;
+            padding-bottom: 0;
+        }
+        .state.active { display: flex; animation: rise .35s cubic-bezier(.22,1,.36,1); }
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: none; }
+        }
+
+        /* Idle — spark + inline prefs on one screen */
+        .idle {
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: flex-start;
+            gap: 10px;
+            padding: 4px 0 8px;
+            overflow: hidden;
+        }
+        .idle-match {
+            flex: 1 1 auto;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8px 8px 4px;
+        }
+        .match-trigger {
+            border: 0;
+            background: none;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 8px;
+            color: inherit;
+        }
+        .match-trigger:focus-visible { outline: none; }
+        .match-trigger:focus-visible .spark-wrap {
+            box-shadow: 0 0 0 3px rgba(167,139,250,.35);
+        }
+        .match-trigger:active .spark { transform: scale(.94); }
+        .spark-wrap {
+            width: 160px;
+            height: 160px;
+            position: relative;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+        }
+        .spark-wrap::before,
+        .spark-wrap::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .spark-wrap::before {
+            inset: 8px;
+            background: radial-gradient(circle, rgba(255,255,255,.22) 0%, rgba(167,139,250,.18) 35%, transparent 68%);
+            animation: sparkGlow 2.8s ease-in-out infinite;
+        }
+        .spark-wrap::after {
+            inset: -6px;
+            border: 1px solid rgba(255,255,255,.12);
+            animation: sparkRing 2.8s ease-in-out infinite;
+        }
+        .spark {
+            width: 44px;
+            height: 44px;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 0 18px rgba(199, 180, 255, .55)) drop-shadow(0 0 28px rgba(110, 231, 216, .28));
+            transition: transform .2s;
+            animation: sparkSpin 12s linear infinite;
+        }
+        .spark svg { width: 100%; height: 100%; display: block; }
+        .spark path {
+            fill: url(#sparkGrad);
+        }
+        .trigger-hint {
+            margin-top: 14px;
+            font-size: var(--fs-ui);
+            font-weight: 500;
+            line-height: var(--lh-ui);
+            color: rgba(230, 220, 255, .88);
+            letter-spacing: 1px;
+        }
+        @keyframes sparkGlow {
+            0%, 100% { opacity: .65; transform: scale(.96); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+        @keyframes sparkRing {
+            0%, 100% { opacity: .35; transform: scale(.94); }
+            50% { opacity: .8; transform: scale(1.04); }
+        }
+        @keyframes sparkSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .idle-match h3 {
+            font-size: var(--fs-title);
+            font-weight: 500;
+            line-height: var(--lh-title);
+            letter-spacing: -.02em;
             margin-bottom: 6px;
         }
-        .profile-name {
-            font-size: 22px;
-            font-weight: 700;
-        }
-        .profile-age {
-            font-size: 16px;
-            color: var(--text-sec);
-            font-weight: 500;
-        }
-
-        .profile-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 14px;
-        }
-        .profile-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            background: rgba(255,255,255,0.06);
-            color: var(--text-sec);
-        }
-
-        .profile-desc {
-            font-size: 14px;
-            color: var(--text-sec);
-            line-height: 1.7;
-            padding: 12px 14px;
-            background: rgba(255,255,255,0.03);
-            border-radius: var(--radius-sm);
-            border-left: 3px solid rgba(255, 217, 61, 0.3);
-        }
-
-        /* ============ AI Insight Section ============ */
-        .section {
-            padding: 0 20px;
-            margin-top: 28px;
-        }
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-        .section-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            flex-shrink: 0;
-        }
-        .section-header h2 {
-            font-size: 17px;
-            font-weight: 600;
-        }
-
-        .insight-card {
-            background: var(--card);
-            border-radius: var(--radius);
-            padding: 20px;
-            border: 1px solid var(--border);
-        }
-
-        .compat-bars {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 18px;
-        }
-        .compat-item {
-            flex: 1;
+        .idle-match p {
+            max-width: 260px;
+            font-size: var(--fs-body);
+            color: var(--muted);
+            line-height: var(--lh-body);
             text-align: center;
         }
-        .compat-ring {
-            width: 56px;
-            height: 56px;
-            margin: 0 auto 8px;
-            position: relative;
-        }
-        .compat-ring svg {
-            width: 56px;
-            height: 56px;
-            transform: rotate(-90deg);
-        }
-        .compat-ring .bg-circle {
-            fill: none;
-            stroke: rgba(255,255,255,0.06);
-            stroke-width: 4;
-        }
-        .compat-ring .fg-circle {
-            fill: none;
-            stroke-width: 4;
-            stroke-linecap: round;
-            transition: stroke-dashoffset 1s ease-out;
-        }
-        .compat-ring .score-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        .compat-label {
-            font-size: 11px;
-            color: var(--text-hint);
-        }
 
-        .insight-divider {
-            height: 1px;
-            background: var(--border);
-            margin: 16px 0;
-        }
-        .insight-text {
-            font-size: 14px;
-            color: var(--text-sec);
-            line-height: 1.8;
-        }
-        .insight-text::before {
-            content: '"';
-            font-size: 28px;
-            color: var(--primary);
-            font-weight: 700;
-            line-height: 1;
-            display: block;
-            margin-bottom: 4px;
-            opacity: 0.6;
-        }
-
-        /* ============ Date Options Section ============ */
-        .date-options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .date-card {
-            background: var(--card);
-            border-radius: var(--radius);
-            padding: 18px;
-            border: 1.5px solid var(--border);
-            cursor: pointer;
-            transition: all 0.25s;
-            position: relative;
-            -webkit-user-select: none;
-            user-select: none;
-        }
-        .date-card:active { transform: scale(0.98); }
-        .date-card.selected {
-            border-color: var(--primary);
-            background: linear-gradient(135deg, rgba(255, 217, 61, 0.06), rgba(255, 217, 61, 0.02));
-        }
-
-        .date-card-check {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            border: 2px solid var(--text-hint);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.25s;
-            flex-shrink: 0;
-        }
-        .date-card-check svg {
-            width: 14px;
-            height: 14px;
-            stroke: var(--bg);
-            fill: none;
-            stroke-width: 3;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            opacity: 0;
-            transform: scale(0);
-            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .date-card.selected .date-card-check {
-            border-color: var(--primary);
-            background: var(--primary);
-        }
-        .date-card.selected .date-card-check svg {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .date-type-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            font-size: 18px;
-            margin-bottom: 12px;
-        }
-        .date-type-icon.cafe { background: rgba(139, 94, 60, 0.2); }
-        .date-type-icon.art { background: rgba(168, 85, 247, 0.15); }
-        .date-type-icon.outdoor { background: rgba(52, 211, 153, 0.15); }
-        .date-type-icon.food { background: rgba(251, 146, 60, 0.15); }
-        .date-type-icon.fun { background: rgba(96, 165, 250, 0.15); }
-        .date-type-icon.drink { background: rgba(244, 114, 182, 0.15); }
-
-        .date-card-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 4px;
-            padding-right: 36px;
-        }
-        .date-card-address {
-            font-size: 12px;
-            color: var(--text-hint);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .date-card-address svg {
-            width: 12px;
-            height: 12px;
-            stroke: var(--text-hint);
-            fill: none;
-            flex-shrink: 0;
-        }
-        .date-card-time {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 13px;
-            color: var(--primary);
-            font-weight: 500;
-            margin-bottom: 10px;
-            padding: 4px 10px;
-            background: var(--primary-dim);
-            border-radius: 6px;
-        }
-        .date-card-time svg {
-            width: 13px;
-            height: 13px;
-            stroke: var(--primary);
-            fill: none;
-        }
-        .date-card-reason {
-            font-size: 13px;
-            color: var(--text-sec);
-            line-height: 1.6;
-            padding-top: 10px;
-            border-top: 1px solid var(--border);
-        }
-        .date-card-reason .ai-tag {
-            font-size: 11px;
-            color: var(--primary);
-            font-weight: 500;
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            gap: 3px;
-        }
-
-        /* ============ Actions ============ */
-        .actions-section {
-            padding: 28px 20px calc(20px + var(--safe-bottom));
-        }
-        .btn-confirm {
-            width: 100%;
-            height: 52px;
-            border-radius: 26px;
-            border: none;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            font-family: inherit;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            background: var(--primary);
-            color: var(--bg);
-            box-shadow: 0 4px 20px var(--primary-glow);
-        }
-        .btn-confirm:active { transform: scale(0.97); filter: brightness(0.9); }
-        .btn-confirm:disabled {
-            opacity: 0.35;
-            pointer-events: none;
-            box-shadow: none;
-        }
-
-        .secondary-actions {
-            display: flex;
-            gap: 12px;
-            margin-top: 12px;
-        }
-        .btn-alt {
+        /* Searching */
+        .search {
             flex: 1;
-            height: 46px;
-            border-radius: 23px;
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--text-sec);
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            font-family: inherit;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-        .btn-alt:active { background: rgba(255,255,255,0.04); }
-        .btn-alt.reject { color: var(--danger); border-color: rgba(255, 107, 107, 0.2); }
-        .btn-alt.reject:active { background: rgba(255, 107, 107, 0.06); }
-
-        /* ============ Loading Overlay ============ */
-        .loading-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(10, 10, 15, 0.85);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 16px;
-            z-index: 100;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
+            text-align: center;
+            padding-bottom: 8px;
         }
-        .loading-overlay.show { opacity: 1; pointer-events: auto; }
-        .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid var(--border);
-            border-top-color: var(--primary);
+        .match-trigger.searching { margin-bottom: 8px; }
+        .match-trigger.searching .spark { animation: sparkPulse 1.6s ease-in-out infinite; }
+        @keyframes sparkPulse {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 16px rgba(199,180,255,.5)); }
+            50% { transform: scale(1.08); filter: drop-shadow(0 0 28px rgba(110,231,216,.55)); }
+        }
+        .radar-wrap {
+            width: 160px;
+            height: 160px;
+            margin: 0;
+            position: relative;
+            display: grid;
+            place-items: center;
+        }
+        .radar-ring {
+            position: absolute;
+            inset: 0;
             border-radius: 50%;
-            animation: spin 0.8s linear infinite;
+            border: 1px solid rgba(167, 139, 250, .22);
+            animation: pulseRing 3s ease-out infinite;
+        }
+        .radar-ring.r2 { inset: 28px; animation-delay: .6s; }
+        .radar-ring.r3 { inset: 56px; animation-delay: 1.2s; }
+        @keyframes pulseRing {
+            0% { opacity: .8; transform: scale(.92); }
+            100% { opacity: 0; transform: scale(1.08); }
+        }
+        .radar-core {
+            position: relative;
+            z-index: 2;
+            width: 56px;
+            height: 56px;
+            filter: drop-shadow(0 0 16px rgba(199,180,255,.55));
+        }
+        .radar-core svg { width: 100%; height: 100%; display: block; }
+        .radar-beam {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, transparent 0deg, rgba(167,139,250,.28) 28deg, rgba(110,231,216,.18) 40deg, transparent 55deg);
+            animation: spin 3.2s linear infinite;
+            mask: radial-gradient(circle, transparent 28%, #000 29%);
+            -webkit-mask: radial-gradient(circle, transparent 28%, #000 29%);
         }
         @keyframes spin { to { transform: rotate(360deg); } }
-        .loading-text {
-            font-size: 14px;
-            color: var(--text-sec);
-        }
-
-        /* ============ Bottom Sheet ============ */
-        .sheet-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 100;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-        }
-        .sheet-overlay.show { opacity: 1; pointer-events: auto; }
-        .sheet {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--surface);
-            border-radius: 20px 20px 0 0;
-            padding: 24px 20px calc(24px + var(--safe-bottom));
-            z-index: 101;
-            transform: translateY(100%);
-            transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
-        }
-        .sheet-overlay.show .sheet { transform: translateY(0); }
-        .sheet-handle {
-            width: 36px;
-            height: 4px;
-            border-radius: 2px;
-            background: rgba(255,255,255,0.15);
-            margin: 0 auto 20px;
-        }
-        .sheet h3 {
-            font-size: 18px;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 8px;
-        }
-        .sheet p {
-            font-size: 14px;
-            color: var(--text-sec);
-            text-align: center;
-            margin-bottom: 24px;
-            line-height: 1.6;
-        }
-        .sheet-btn {
-            width: 100%;
-            height: 48px;
-            border-radius: 24px;
-            border: none;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: inherit;
-            margin-bottom: 10px;
-            transition: all 0.2s;
-        }
-        .sheet-btn:active { transform: scale(0.98); }
-        .sheet-btn.danger {
-            background: var(--danger);
-            color: #fff;
-        }
-        .sheet-btn.cancel {
-            background: rgba(255,255,255,0.06);
-            color: var(--text-sec);
-        }
-
-        /* ============ Result States ============ */
-        .result-state {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 60px 24px;
-        }
-        .result-state.show { display: flex; }
-        .result-icon {
-            width: 72px;
-            height: 72px;
+        .radar-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
+            background: var(--mint);
+            box-shadow: 0 0 10px var(--mint);
+            animation: blink 2.4s ease-in-out infinite;
+        }
+        .radar-dot.d1 { left: 28%; top: 32%; }
+        .radar-dot.d2 { right: 24%; top: 42%; animation-delay: .8s; }
+        .radar-dot.d3 { left: 42%; bottom: 22%; animation-delay: 1.5s; }
+        @keyframes blink {
+            0%, 100% { opacity: .25; transform: scale(.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .timer {
+            font-size: var(--fs-title);
+            font-weight: 500;
+            line-height: var(--lh-title);
+            font-variant-numeric: tabular-nums;
+            letter-spacing: .06em;
+            margin-bottom: 4px;
+        }
+        .search h3 {
+            font-size: var(--fs-title);
+            font-weight: 500;
+            line-height: var(--lh-title);
+            margin-bottom: 6px;
+        }
+        .search > p {
+            font-size: var(--fs-body);
+            line-height: var(--lh-body);
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+        .task-cards {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 14px;
+            text-align: left;
+        }
+        .task-card {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            margin-bottom: 20px;
-            animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            justify-content: space-between;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(0,0,0,.2);
+            cursor: pointer;
+            transition: .2s;
         }
-        @keyframes popIn {
-            from { transform: scale(0); }
-            to { transform: scale(1); }
+        .task-card.active {
+            border-color: rgba(167,139,250,.4);
+            background: rgba(167,139,250,.1);
         }
-        .result-state h2 {
-            font-size: 20px;
-            font-weight: 700;
+        .task-card-main { min-width: 0; }
+        .task-card-title {
+            font-size: var(--fs-body);
+            font-weight: 500;
+            line-height: var(--lh-body);
+            margin-bottom: 2px;
+        }
+        .task-card-sub {
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--hint);
+        }
+        .task-card-badge {
+            flex: 0 0 auto;
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            color: var(--muted);
+        }
+        .task-card-badge.searching { color: var(--ai); border-color: rgba(167,139,250,.35); }
+        .task-card-badge.matched { color: var(--gold); border-color: rgba(246,196,83,.35); }
+        .task-card-badge.waiting,
+        .task-card-badge.ready { color: var(--mint); border-color: rgba(110,231,216,.35); }
+        .steps {
+            width: 100%;
+            text-align: left;
+            padding: 14px 14px;
+            border-radius: 16px;
+            background: rgba(0,0,0,.22);
+            border: 1px solid var(--line);
+            margin-bottom: 16px;
+        }
+        .step-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--hint);
+            padding: 5px 0;
+        }
+        .step-line.on { color: var(--mint); }
+        .step-line .mark {
+            width: 16px;
+            text-align: center;
+            font-size: var(--fs-ui);
+            opacity: .7;
+        }
+        .ghost-btn {
+            border: 0;
+            background: none;
+            color: var(--hint);
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            cursor: pointer;
+            padding: 8px 12px;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        /* Matched — elegant result */
+        .match {
+            display: flex;
+            flex-direction: column;
+        }
+        .match-kicker {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .match-kicker .tag {
+            font-size: var(--fs-ui);
+            font-weight: 500;
+            line-height: var(--lh-ui);
+            letter-spacing: .06em;
+            color: var(--mint);
+        }
+        .match-kicker .km {
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--hint);
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+        }
+        .match h3 {
+            font-size: var(--fs-title);
+            font-weight: 500;
+            letter-spacing: -.02em;
+            line-height: var(--lh-title);
+            margin-bottom: 12px;
+        }
+        .insight {
+            font-size: var(--fs-body);
+            color: var(--muted);
+            line-height: var(--lh-body);
+            padding: 14px 0 18px;
+            border-bottom: 1px solid var(--line);
+            margin-bottom: 16px;
+        }
+        .insight em {
+            font-style: normal;
+            color: var(--gold);
+        }
+        .compat-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+        .compat-pill {
+            flex: 1;
+            text-align: center;
+            padding: 10px 6px;
+            border-radius: 14px;
+            background: rgba(0,0,0,.2);
+            border: 1px solid var(--line);
+        }
+        .compat-pill b {
+            display: block;
+            font-size: var(--fs-body);
+            font-weight: 600;
+            line-height: var(--lh-body);
+            color: var(--gold);
+            margin-bottom: 2px;
+        }
+        .compat-pill span {
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--hint);
+        }
+        .people {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
             margin-bottom: 8px;
         }
-        .result-state p {
-            font-size: 14px;
-            color: var(--text-sec);
-            line-height: 1.7;
-            max-width: 280px;
+        .person {
+            display: grid;
+            grid-template-columns: 52px 1fr auto;
+            gap: 12px;
+            align-items: center;
+            padding: 12px;
+            border-radius: 18px;
+            background: rgba(255,255,255,.03);
+            border: 1px solid var(--line);
+            transition: .2s;
         }
-
-        /* ============ Toast ============ */
-        .toast {
-            position: fixed;
-            top: 60px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-20px);
-            background: var(--card);
-            border: 1px solid var(--border);
-            color: var(--text);
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 500;
-            opacity: 0;
-            transition: all 0.3s;
-            z-index: 200;
-            white-space: nowrap;
+        .person:hover { background: rgba(255,255,255,.05); }
+        .face {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            font-size: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .face::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, rgba(255,255,255,.12), transparent 50%);
             pointer-events: none;
         }
-        .toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
+        .person-body { min-width: 0; }
+        .person-name {
+            font-size: var(--fs-body);
+            font-weight: 500;
+            line-height: var(--lh-body);
+            margin-bottom: 3px;
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+        .person-name small {
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--hint);
+            font-weight: 400;
+        }
+        .person-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .person-tags i {
+            font-style: normal;
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--muted);
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: var(--chip-bg);
+            border: 1px solid var(--line-strong);
+        }
+        .person-side {
+            text-align: right;
+            font-size: var(--fs-ui);
+            color: var(--hint);
+            line-height: var(--lh-ui);
+        }
+        .person-side .score {
+            display: block;
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--mint);
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+        .actions {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            padding-top: 12px;
+            margin-top: 4px;
+            border-top: 1px solid var(--line);
+        }
+        .actions.two {
+            grid-template-columns: 1fr 1.15fr;
+        }
+        .actions .btn { min-height: 48px; font-size: var(--fs-body); padding: 0 12px; }
+        .btn {
+            min-height: 48px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: transparent;
+            padding: 0 18px;
+            font-size: var(--fs-body);
+            font-weight: 500;
+            line-height: var(--lh-body);
+            cursor: pointer;
+            transition: .18s;
+        }
+        .btn:active { transform: scale(.97); }
+        .btn.primary {
+            background: var(--gold);
+            border-color: transparent;
+            color: #1a1608;
+            box-shadow: 0 8px 28px rgba(244, 211, 94, .18);
+        }
+        .btn.ghost { color: var(--muted); }
+        .btn.full { width: 100%; grid-column: 1 / -1; }
+        .btn.mint {
+            background: var(--mint);
+            border-color: transparent;
+            color: #042f2e;
+        }
+        .btn:disabled { opacity: .4; pointer-events: none; }
+
+        /* Waiting — sticky top info, scrollable middle, sticky bottom actions */
+        .wait {
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            text-align: center;
+        }
+        .wait-top {
+            flex: 0 0 auto;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--line);
+            background: transparent;
+        }
+        .wait-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 12px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 24px;
+            background: var(--gold-soft);
+            border: 1px solid rgba(244,211,94,.2);
+        }
+        .wait-top h3 { font-size: var(--fs-title); font-weight: 500; line-height: var(--lh-title); margin-bottom: 6px; }
+        .wait-top > p { font-size: var(--fs-body); line-height: var(--lh-body); color: var(--muted); margin-bottom: 14px; }
+        .progress {
+            display: flex;
+            gap: 5px;
+        }
+        .progress i {
+            flex: 1;
+            height: 3px;
+            border-radius: 99px;
+            background: rgba(255,255,255,.08);
+            transition: .4s;
+        }
+        .progress i.on { background: var(--mint); }
+        .wait-scroll {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            text-align: left;
+            padding: 14px 0;
+        }
+        .wait-people {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .wait-note {
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--hint);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .ready-banner {
+            padding: 12px;
+            border-radius: 14px;
+            background: var(--mint-soft);
+            border: 1px solid rgba(94,234,212,.2);
+            color: var(--mint);
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            text-align: center;
+        }
+        .wait-bottom {
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-top: 12px;
+            border-top: 1px solid var(--line);
+            background: transparent;
+        }
+        .wait-bottom .btn { width: 100%; min-height: 46px; }
+
+        /* Chat */
+        .chat { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+        .chat-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--line);
+            margin-bottom: 12px;
+        }
+        .back {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid var(--line);
+            background: transparent;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+        }
+        .chat-head h3 { font-size: var(--fs-title); font-weight: 500; line-height: var(--lh-title); }
+        .chat-head p { font-size: var(--fs-body); line-height: var(--lh-body); color: var(--success); margin-top: 2px; }
+        .chat-list {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 4px 0 12px;
+            min-height: 220px;
+            max-height: 320px;
+        }
+        .sys {
+            align-self: center;
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--hint);
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: var(--chip-bg);
+        }
+        .msg { display: flex; gap: 8px; align-items: flex-end; }
+        .msg.me { flex-direction: row-reverse; }
+        .msg .av {
+            width: 28px;
+            height: 28px;
+            border-radius: 9px;
+            display: grid;
+            place-items: center;
+            font-size: var(--fs-ui);
+            background: var(--surface-2);
+            flex: 0 0 auto;
+        }
+        .msg .bubble {
+            max-width: 72%;
+            padding: 9px 12px;
+            border-radius: 14px 14px 14px 4px;
+            background: var(--surface-2);
+            font-size: var(--fs-body);
+            line-height: var(--lh-body);
+        }
+        .msg.me .bubble {
+            background: var(--gold);
+            color: #1a1608;
+            border-radius: 14px 14px 4px 14px;
+        }
+        .chat-form {
+            display: flex;
+            gap: 8px;
+            padding-top: 12px;
+            border-top: 1px solid var(--line);
+        }
+        .chat-form input {
+            flex: 1;
+            min-width: 0;
+            height: 42px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,.04);
+            padding: 0 14px;
+            outline: none;
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+        }
+        .chat-form button {
+            width: 42px;
+            height: 42px;
+            border: 0;
+            border-radius: 50%;
+            background: var(--gold);
+            color: #1a1608;
+            cursor: pointer;
+            font-size: var(--fs-body);
+        }
+        .venue-card {
+            align-self: stretch;
+            border: 1px solid rgba(167,139,250,.35);
+            background: linear-gradient(145deg, rgba(167,139,250,.14), rgba(110,231,216,.08));
+            border-radius: 16px;
+            padding: 12px 14px;
+            text-align: left;
+            cursor: pointer;
+            color: inherit;
+            font: inherit;
+        }
+        .venue-card.locked {
+            border-color: rgba(110,231,216,.35);
+            background: linear-gradient(145deg, rgba(110,231,216,.12), rgba(167,139,250,.08));
+        }
+        .venue-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            gap: 8px;
+        }
+        .venue-card-kicker {
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--ai);
+            font-weight: 500;
+        }
+        .venue-card.locked .venue-card-kicker { color: var(--mint); }
+        .venue-card-cta {
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--mint);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .venue-card strong {
+            display: block;
+            font-size: var(--fs-body);
+            line-height: var(--lh-body);
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+        .venue-card p {
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--muted);
         }
 
-        /* ============ Responsive ============ */
-        @media (min-width: 500px) {
-            .hero, .section, .actions-section { max-width: 460px; margin-left: auto; margin-right: auto; }
+        /* 选地点：全屏页（非底部抽屉） */
+        #venueOverlay.venue-overlay {
+            align-items: stretch;
+            justify-content: center;
+            background: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            padding: 0;
+        }
+        #venueOverlay.venue-overlay .venue-sheet {
+            width: min(100%, 440px);
+            height: 100%;
+            max-height: none;
+            border-radius: 0;
+            border: 0;
+            background-color: #0f121a;
+            background-image: image-set(
+                url("images/ai-match-aurora-bg.png") 1x,
+                url("images/ai-match-aurora-bg@2x.png") 2x
+            );
+            background-position: center top;
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding: 16px 20px calc(16px + var(--safe));
+            animation: venuePageIn .28s cubic-bezier(.22,1,.36,1);
+            overflow: hidden;
+        }
+        @keyframes venuePageIn {
+            from { opacity: 0; transform: translateX(18px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .venue-sheet {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .venue-sheet-head {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            flex: 0 0 auto;
+            margin-bottom: 12px;
+            padding-top: 4px;
+        }
+        .venue-sheet-head .back { flex: 0 0 auto; margin-top: 2px; }
+        .venue-sheet-head h2 { margin-bottom: 2px; }
+        .venue-sheet-head p {
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--muted);
+        }
+        .venue-search {
+            display: flex;
+            gap: 8px;
+            flex: 0 0 auto;
+            margin-bottom: 12px;
+        }
+        .venue-search input {
+            flex: 1;
+            min-width: 0;
+            height: 42px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,.04);
+            padding: 0 14px;
+            outline: none;
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--ink);
+        }
+        .venue-search input:focus { border-color: rgba(167,139,250,.45); }
+        .venue-search .btn {
+            min-height: 42px;
+            padding: 0 14px;
+            flex: 0 0 auto;
+        }
+        .venue-label {
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--hint);
+            margin-bottom: 8px;
+            flex: 0 0 auto;
+        }
+        .venue-list {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-bottom: 12px;
+            -webkit-overflow-scrolling: touch;
+        }
+        .venue-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 12px;
+            border-radius: 16px;
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,.03);
+            text-align: left;
+        }
+        .venue-item.leading {
+            border-color: rgba(167,139,250,.4);
+            background: rgba(167,139,250,.08);
+        }
+        .venue-item.voted {
+            border-color: rgba(110,231,216,.4);
+            background: rgba(110,231,216,.08);
+        }
+        .venue-item.winner {
+            border-color: rgba(110,231,216,.55);
+            background: rgba(110,231,216,.12);
+            box-shadow: 0 0 0 1px rgba(110,231,216,.2);
+        }
+        .venue-item-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .venue-item-copy { min-width: 0; flex: 1; }
+        .venue-item-copy strong {
+            display: block;
+            font-size: var(--fs-body);
+            line-height: var(--lh-body);
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+        .venue-item-copy p {
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--muted);
+        }
+        .venue-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+        }
+        .venue-tag {
+            height: 22px;
+            padding: 0 8px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,.04);
+            color: var(--hint);
+            font-size: var(--fs-ui);
+            line-height: 20px;
+        }
+        .venue-tag.ai {
+            color: var(--ai);
+            border-color: rgba(167,139,250,.35);
+            background: rgba(167,139,250,.12);
+        }
+        .venue-votes {
+            flex: 0 0 auto;
+            min-width: 44px;
+            text-align: right;
+        }
+        .venue-votes b {
+            display: block;
+            font-size: var(--fs-title);
+            line-height: var(--lh-title);
+            font-weight: 500;
+            color: var(--ink);
+        }
+        .venue-votes span {
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--hint);
+        }
+        .venue-item-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .venue-item-actions .btn {
+            flex: 1;
+            min-height: 40px;
+        }
+        .venue-foot {
+            flex: 0 0 auto;
+            padding-top: 12px;
+            border-top: 1px solid var(--line);
+        }
+        .venue-foot-status {
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--muted);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .venue-foot-status.ok { color: var(--mint); }
+        .venue-body {
+            flex: 1 1 auto;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .venue-browse {
+            flex: 1 1 auto;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .venue-sheet.search-mode .venue-browse { display: none; }
+        .venue-search-panel {
+            display: none;
+            flex: 1 1 auto;
+            min-height: 0;
+            flex-direction: column;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: rgba(255,255,255,.03);
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+        .venue-sheet.search-mode .venue-search-panel {
+            display: flex;
+        }
+        .venue-search-toolbar {
+            flex: 0 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--line);
+            background: rgba(18,21,31,.72);
+        }
+        .venue-search-toolbar span {
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--muted);
+            min-width: 0;
+        }
+        .venue-search-toolbar .link {
+            flex: 0 0 auto;
+            color: var(--mint);
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+        }
+        .venue-search-results {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            display: flex;
+            flex-direction: column;
+        }
+        .venue-search-hit {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(255,255,255,.06);
+            background: transparent;
+            text-align: left;
+        }
+        .venue-search-hit:last-child { border-bottom: 0; }
+        .venue-search-hit strong {
+            display: block;
+            font-size: var(--fs-body);
+            line-height: var(--lh-body);
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .venue-search-hit p {
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .venue-search-hit .btn {
+            min-height: 32px;
+            padding: 0 12px;
+            flex: 0 0 auto;
+        }
+        .venue-search-hit .venue-hit-copy {
+            min-width: 0;
+            flex: 1;
+        }
+
+        /* Inline prefs under match trigger (idle only) — height by content */
+        .prefs-panel {
+            flex: 0 0 auto;
+            margin: 0;
+            padding: 16px;
+            border-radius: var(--radius-card);
+            background: var(--surface);
+            border: 1px solid var(--line);
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap-section);
+        }
+        .prefs-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0;
+        }
+        .prefs-head h2 {
+            font-size: var(--fs-body);
+            font-weight: 500;
+            line-height: var(--lh-body);
+            color: var(--ink);
+        }
+        .prefs-section {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap-chip);
+        }
+        .prefs-panel .field-label { margin: 0; }
+        .prefs-panel .dist { margin: 0; }
+        .prefer-block {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap-chip);
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+        .prefer-block > .field-label { margin: 0; }
+        .prefer-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--gap-chip);
+            margin: 0;
+        }
+        /* Sheets */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: none;
+            align-items: flex-end;
+            justify-content: center;
+            background: rgba(0,0,0,.72);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .overlay.show { display: flex; }
+        .sheet {
+            width: min(100%, 440px);
+            max-height: 92vh;
+            overflow-y: auto;
+            border-radius: 28px 28px 0 0;
+            background: #12151f;
+            border: 1px solid var(--line);
+            border-bottom: 0;
+            padding: 10px 20px calc(22px + var(--safe));
+            animation: sheetUp .35s cubic-bezier(.22,1,.36,1);
+        }
+        @keyframes sheetUp { from { transform: translateY(40px); opacity: 0; } }
+        .handle {
+            width: 36px;
+            height: 4px;
+            border-radius: 99px;
+            background: rgba(255,255,255,.14);
+            margin: 4px auto 18px;
+        }
+        .sheet h2 {
+            font-size: var(--fs-title);
+            font-weight: 500;
+            line-height: var(--lh-title);
+            letter-spacing: -.02em;
+            margin-bottom: 6px;
+        }
+        .sheet-sub {
+            font-size: var(--fs-body);
+            color: var(--muted);
+            margin-bottom: 20px;
+            line-height: var(--lh-body);
+        }
+        .field { margin-bottom: 14px; }
+        .field label, .field-label {
+            display: block;
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--hint);
+            margin-bottom: 0;
+            letter-spacing: .02em;
+        }
+        .field input, .field textarea, .field select {
+            width: 100%;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: rgba(255,255,255,.04);
+            padding: 12px 13px;
+            outline: none;
+            transition: border-color .2s;
+        }
+        .field input:focus, .field textarea:focus, .field select:focus {
+            border-color: rgba(244,211,94,.35);
+        }
+        .field textarea { resize: none; min-height: 72px; }
+        .option-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .option {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: transparent;
+            color: var(--muted);
+            text-align: left;
+            padding: 12px;
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            cursor: pointer;
+            transition: .18s;
+        }
+        .option.selected {
+            border-color: rgba(244,211,94,.4);
+            color: var(--gold);
+            background: var(--gold-soft);
+        }
+        .sheet-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 22px;
+            position: sticky;
+            bottom: 0;
+            padding-top: 8px;
+            background: linear-gradient(transparent, #12141a 30%);
+        }
+        .sheet-actions .btn { flex: 1; }
+
+        /* AI profile chat */
+        .ai-sheet { max-height: 92vh; display: flex; flex-direction: column; }
+        .ai-head {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            position: relative;
+            padding-right: 36px;
+        }
+        .ai-head-copy { min-width: 0; flex: 1; }
+        .profile-close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            background: rgba(255,255,255,.04);
+            color: var(--muted);
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+        }
+        .profile-close:hover { color: var(--ink); background: rgba(255,255,255,.08); }
+        .ai-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 14px;
+            flex: 0 0 auto;
+            display: grid;
+            place-items: center;
+            font-size: var(--fs-ui);
+            font-weight: 600;
+            color: #1a1608;
+            background: linear-gradient(145deg, var(--gold), #d4a84b);
+            box-shadow: 0 8px 24px rgba(244,211,94,.18);
+        }
+        .ai-head h2 { font-size: var(--fs-title); font-weight: 500; line-height: var(--lh-title); letter-spacing: -.02em; margin-bottom: 4px; }
+        .ai-head p { font-size: var(--fs-body); color: var(--muted); line-height: var(--lh-body); }
+        .ai-pane { display: none; flex: 1; min-height: 0; flex-direction: column; }
+        .ai-pane.active { display: flex; }
+        .chat-scroll {
+            flex: 1;
+            overflow-y: auto;
+            min-height: 280px;
+            max-height: 46vh;
+            padding: 4px 2px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .bubble-row { display: flex; gap: 8px; align-items: flex-end; max-width: 92%; }
+        .bubble-row.me { align-self: flex-end; flex-direction: row-reverse; }
+        .bubble-row .mini {
+            width: 24px; height: 24px; border-radius: 8px; flex: 0 0 auto;
+            display: grid; place-items: center; font-size: 11px; font-weight: 600;
+            background: rgba(255,255,255,.06); color: var(--hint);
+        }
+        .bubble-row.me .mini { background: var(--gold-soft); color: var(--gold); }
+        .bubble-row .bubble {
+            padding: 11px 13px;
+            border-radius: 16px 16px 16px 6px;
+            background: rgba(255,255,255,.05);
+            border: 1px solid var(--line);
+            font-size: var(--fs-body);
+            line-height: var(--lh-body);
+            color: var(--ink);
+        }
+        .bubble-row.me .bubble {
+            border-radius: 16px 16px 6px 16px;
+            background: rgba(244,211,94,.12);
+            border-color: rgba(244,211,94,.22);
+            color: #f8efc8;
+        }
+        .typing {
+            display: inline-flex; gap: 4px; align-items: center; padding: 4px 2px;
+        }
+        .typing i {
+            width: 5px; height: 5px; border-radius: 50%;
+            background: var(--hint);
+            animation: blink .9s infinite ease-in-out;
+        }
+        .typing i:nth-child(2) { animation-delay: .15s; }
+        .typing i:nth-child(3) { animation-delay: .3s; }
+        @keyframes blink {
+            0%, 80%, 100% { opacity: .25; transform: translateY(0); }
+            40% { opacity: 1; transform: translateY(-2px); }
+        }
+        .chat-composer {
+            border-top: 1px solid var(--line);
+            padding-top: 12px;
+            margin-top: 4px;
+        }
+        .suggests { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 10px; }
+        .suggest {
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,.03);
+            color: var(--muted);
+            border-radius: 999px;
+            padding: 0 12px;
+            height: var(--chip-h);
+            display: inline-flex;
+            align-items: center;
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            cursor: pointer;
+        }
+        .suggest:hover, .suggest.selected {
+            border-color: rgba(244,211,94,.4);
+            color: var(--gold);
+            background: var(--gold-soft);
+        }
+        .composer-row { display: flex; gap: 8px; }
+        .composer-row input, .composer-row textarea {
+            flex: 1;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: rgba(255,255,255,.04);
+            padding: 11px 12px;
+            outline: none;
+            resize: none;
+            min-height: 42px;
+        }
+        .composer-row input:focus, .composer-row textarea:focus {
+            border-color: rgba(244,211,94,.35);
+        }
+        .composer-row button {
+            width: 42px; height: 42px; border: 0; border-radius: 14px;
+            background: var(--gold); color: #1a1608; font-weight: 700; cursor: pointer;
+        }
+        .composer-row button:disabled { opacity: .35; cursor: not-allowed; }
+        .multi-done {
+            width: 100%; margin-top: 4px; border: 0; border-radius: 14px;
+            background: var(--gold); color: #1a1608; font-weight: 600;
+            padding: 12px; cursor: pointer; font-size: var(--fs-ui); line-height: var(--lh-ui);
+        }
+        .multi-done:disabled { opacity: .35; cursor: not-allowed; }
+
+        .summary-card {
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            background: rgba(255,255,255,.03);
+            padding: 4px 4px 8px;
+            margin-bottom: 8px;
+        }
+        .summary-lead {
+            padding: 14px 14px 10px;
+            font-size: var(--fs-body);
+            color: var(--muted);
+            line-height: var(--lh-body);
+        }
+        .summary-lead em { color: var(--gold); font-style: normal; }
+        .summary-item {
+            display: grid;
+            grid-template-columns: 72px 1fr auto;
+            gap: 8px;
+            align-items: start;
+            padding: 12px 12px;
+            border-top: 1px solid var(--line);
+        }
+        .summary-item label { font-size: var(--fs-ui); line-height: var(--lh-ui); color: var(--hint); padding-top: 8px; }
+        .summary-item .val {
+            font-size: var(--fs-ui); color: var(--ink); line-height: var(--lh-ui); padding-top: 6px;
+            word-break: break-word;
+        }
+        .summary-item .edit-btn {
+            border: 0; background: none; color: var(--gold);
+            font-size: var(--fs-ui); line-height: var(--lh-ui); cursor: pointer; padding: 6px 4px;
+        }
+        .summary-item.editing {
+            grid-template-columns: 72px 1fr;
+        }
+        .summary-item.editing .val,
+        .summary-item.editing .edit-btn { display: none; }
+        .summary-item .edit-box { display: none; grid-column: 2 / -1; }
+        .summary-item.editing .edit-box { display: block; }
+        .summary-item .edit-box input,
+        .summary-item .edit-box textarea,
+        .summary-item .edit-box select {
+            width: 100%;
+            border: 1px solid rgba(244,211,94,.3);
+            border-radius: 12px;
+            background: rgba(255,255,255,.04);
+            padding: 9px 11px;
+            outline: none;
+        }
+        .summary-item .edit-box textarea { min-height: 64px; resize: none; }
+        .summary-item .edit-actions { display: flex; gap: 8px; margin-top: 8px; }
+        .summary-item .edit-actions button {
+            border: 0; border-radius: 999px; padding: 6px 12px;
+            font-size: var(--fs-ui); line-height: var(--lh-ui); cursor: pointer;
+        }
+        .summary-item .edit-actions .save { background: var(--gold); color: #1a1608; font-weight: 600; }
+        .summary-item .edit-actions .cancel { background: rgba(255,255,255,.06); color: var(--muted); }
+        .chip-edit { display: flex; flex-wrap: wrap; gap: var(--gap-chip); }
+        .chip-edit .suggest { padding: 0 12px; height: var(--chip-h); font-size: var(--fs-ui); line-height: var(--lh-ui); }
+        .intro-text {
+            padding: 14px 14px 6px;
+            font-size: var(--fs-body);
+            line-height: var(--lh-body);
+            color: var(--ink);
+        }
+        .intro-note {
+            padding: 0 14px 12px;
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--hint);
+        }
+        .reason-list { display: flex; flex-direction: column; gap: 8px; }
+        .reason-item {
+            display: flex;
+            gap: 11px;
+            align-items: flex-start;
+            padding: 13px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            cursor: pointer;
+        }
+        .reason-item input { margin-top: 3px; accent-color: var(--gold); }
+        .reason-item strong { display: block; font-size: var(--fs-body); font-weight: 500; line-height: var(--lh-body); }
+        .reason-item span { display: block; color: var(--muted); font-size: var(--fs-ui); margin-top: 3px; line-height: var(--lh-ui); }
+        .block-members { display: none; margin: 6px 0 0 28px; flex-wrap: wrap; gap: 7px; }
+        .block-members.show { display: flex; }
+        .block-members label {
+            padding: 0 12px;
+            height: var(--chip-h);
+            display: inline-flex;
+            align-items: center;
+            border-radius: 999px;
+            background: rgba(255,255,255,.04);
+            border: 1px solid var(--line);
+            color: var(--muted);
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+        }
+        .block-members input { accent-color: var(--danger); }
+
+        .toast {
+            position: fixed;
+            z-index: 200;
+            left: 50%;
+            top: 18px;
+            transform: translate(-50%, -12px);
+            opacity: 0;
+            pointer-events: none;
+            transition: .25s;
+            background: #1c1f28;
+            border: 1px solid var(--line);
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            white-space: nowrap;
+            box-shadow: 0 10px 30px rgba(0,0,0,.35);
+        }
+        .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+        @media (min-width: 600px) {
+            body { overflow: auto; }
+            .app {
+                height: min(100dvh, 900px);
+                margin-top: 24px;
+                margin-bottom: 24px;
+                border-radius: 28px;
+                border: 1px solid var(--line);
+                overflow: hidden;
+                box-shadow: 0 24px 80px rgba(0,0,0,.35);
+            }
+            .overlay { align-items: center; padding: 24px; }
+            .sheet { border-radius: 28px; max-height: 86vh; border-bottom: 1px solid var(--line); }
+            #venueOverlay.venue-overlay {
+                align-items: stretch;
+                padding: 0;
+            }
+            #venueOverlay.venue-overlay .venue-sheet {
+                height: min(100dvh, 900px);
+                margin: 24px auto;
+                border-radius: 28px;
+                border: 1px solid var(--line);
+                box-shadow: 0 24px 80px rgba(0,0,0,.35);
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+            }
         }
     </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+        <linearGradient id="sparkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="35%" stop-color="#d8c8ff"/>
+            <stop offset="70%" stop-color="#7ef0e0"/>
+            <stop offset="100%" stop-color="#f6d56a"/>
+        </linearGradient>
+    </defs>
+</svg>
 
-<div id="mainContent">
+<main class="app">
+    <section class="hero" aria-live="polite">
+        <div class="task-rail" id="taskRail" hidden aria-label="匹配任务"></div>
 
-    <!-- ======== Hero ======== -->
-    <div class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-content">
-            <div class="match-badge"><span class="sparkle">✨</span> AI 为你推荐</div>
-            <div class="profile-card">
-                <div class="photos-gallery" id="photosGallery"></div>
-                <div class="profile-info">
-                    <div class="profile-header">
-                        <span class="profile-name" id="profileName"></span>
-                        <span class="profile-age" id="profileAge"></span>
+        <div class="stage">
+            <div class="state active" id="state-idle">
+                <div class="idle">
+                    <div class="idle-match">
+                        <button class="match-trigger" id="matchTrigger" type="button" aria-label="开始匹配">
+                            <span class="spark-wrap">
+                                <span class="spark">
+                                    <svg viewBox="0 0 64 64" aria-hidden="true">
+                                        <path d="M32 2C33.8 20.2 43.8 30.2 62 32C43.8 33.8 33.8 43.8 32 62C30.2 43.8 20.2 33.8 2 32C20.2 30.2 30.2 20.2 32 2Z"/>
+                                    </svg>
+                                </span>
+                            </span>
+                            <span class="trigger-hint">轻触开始</span>
+                        </button>
+                        <h3>找一群同频的人</h3>
+                        <p>选好活动后，轻触星芒开始匹配</p>
                     </div>
-                    <div class="profile-tags" id="profileTags"></div>
-                    <div class="profile-desc" id="profileDesc"></div>
+
+                    <section class="my-groups" id="myGroups" hidden aria-label="我的局">
+                        <div class="my-groups-head">
+                            <span class="field-label">我的局</span>
+                            <span class="my-groups-hint">已成局会保留</span>
+                        </div>
+                        <div class="my-groups-list" id="myGroupsList"></div>
+                    </section>
+
+                    <aside class="prefs-panel" id="prefsPanel" aria-label="撮合配置">
+                        <div class="prefs-head">
+                            <h2>撮合配置</h2>
+                            <button class="link" id="editProfileBtn" type="button">编辑我的信息</button>
+                        </div>
+                        <div class="prefs-section">
+                            <span class="field-label">此刻想组局 · 最多 3 种</span>
+                            <div class="chips" id="activityChips"></div>
+                        </div>
+                        <div class="dist">
+                            <label>匹配距离</label>
+                            <input id="distanceRange" type="range" min="1" max="10" step="1" value="5">
+                            <strong id="distanceValue">5 km</strong>
+                        </div>
+                        <div class="prefer-block">
+                            <span class="field-label">期望对象</span>
+                            <div class="prefer-row chips" id="desiredGenderChips"></div>
+                            <div class="prefer-row chips" id="desiredRelChips"></div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+
+            <div class="state" id="state-searching">
+                <div class="search">
+                    <button class="match-trigger searching" id="searchTrigger" type="button" aria-label="停止寻找">
+                        <span class="radar-wrap" aria-hidden="true">
+                            <span class="radar-ring"></span>
+                            <span class="radar-ring r2"></span>
+                            <span class="radar-ring r3"></span>
+                            <span class="radar-beam"></span>
+                            <span class="radar-core">
+                                <svg viewBox="0 0 64 64">
+                                    <path fill="url(#sparkGrad)" d="M32 2C33.8 20.2 43.8 30.2 62 32C43.8 33.8 33.8 43.8 32 62C30.2 43.8 20.2 33.8 2 32C20.2 30.2 30.2 20.2 32 2Z"/>
+                                </svg>
+                            </span>
+                            <i class="radar-dot d1"></i>
+                            <i class="radar-dot d2"></i>
+                            <i class="radar-dot d3"></i>
+                        </span>
+                    </button>
+                    <div class="timer" id="searchTimer">00:00</div>
+                    <h3 id="searchTitle">正在寻找同频伙伴</h3>
+                    <p id="searchCopy">优先扫描 5km 内同类型用户组…</p>
+                    <div class="task-cards" id="taskCards"></div>
+                    <div class="steps">
+                        <div class="step-line on"><span class="mark">●</span>优先寻找 5km 内同类型用户组</div>
+                        <div class="step-line" id="strategyPeople"><span class="mark">○</span>若没有合适的组，再寻找 6km 内同需求用户</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="state" id="state-matched">
+                <div class="match">
+                    <div class="match-kicker">
+                        <span class="tag" id="matchTypeTag">小酌</span>
+                        <span class="km" id="matchDistance">2.4 km</span>
+                    </div>
+                    <h3 id="matchTitle">附近 3 人也想小酌</h3>
+                    <div class="insight" id="groupSummary">你们都想在今晚找一家轻松的小酒馆，<em>兴趣和时间高度重合</em>。</div>
+                    <div class="compat-row" id="compatRow"></div>
+                    <div class="people" id="matchedMembers"></div>
+                    <div class="actions two">
+                        <button class="btn ghost" id="rematchMatchBtn" type="button">重新匹配</button>
+                        <button class="btn primary" id="acceptBtn" type="button">愿意一起</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="state" id="state-waiting">
+                <div class="wait">
+                    <div class="wait-top">
+                        <div class="wait-icon" id="waitIcon">⏳</div>
+                        <h3 id="waitingTitle">等待其他人确认</h3>
+                        <p id="waitingCopy">你已同意参加，超过 2 人同意即可成局</p>
+                        <div class="progress" id="confirmProgress"></div>
+                    </div>
+                    <div class="wait-scroll">
+                        <div class="wait-people" id="waitingMembers"></div>
+                        <p class="wait-note" id="waitNote">其他成员正在考虑中…</p>
+                        <div id="readyBanner"></div>
+                    </div>
+                    <div class="wait-bottom">
+                        <div id="readyActions"></div>
+                        <button class="btn ghost" id="rematchWaitBtn" type="button">重新匹配</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="state" id="state-chat">
+                <div class="chat">
+                    <div class="chat-head">
+                        <button class="back" id="chatBackBtn" type="button" aria-label="返回">‹</button>
+                        <div>
+                            <h3 id="chatTitle">今晚小酌组</h3>
+                            <p id="chatSub">已成局 · 待选地点</p>
+                        </div>
+                    </div>
+                    <div class="chat-list" id="chatList"></div>
+                    <form class="chat-form" id="chatForm">
+                        <input id="chatMessage" autocomplete="off" placeholder="和大家打个招呼…">
+                        <button type="submit" aria-label="发送">↑</button>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- ======== AI Insight ======== -->
-    <div class="section">
-        <div class="section-header">
-            <div class="section-icon" style="background:var(--primary-dim);">✨</div>
-            <h2>匹配洞察</h2>
+    <footer class="session-footer" id="sessionFooter" hidden>
+        <button class="stop-session" id="stopSessionBtn" type="button">结束撮合</button>
+    </footer>
+</main>
+
+<!-- AI profile interview -->
+<div class="overlay" id="profileOverlay">
+    <div class="sheet ai-sheet" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
+        <div class="handle"></div>
+        <div class="ai-head">
+            <div class="ai-avatar">AI</div>
+            <div class="ai-head-copy">
+                <h2 id="profileTitle">先认识你一下</h2>
+                <p id="profileSubtitle">随便聊几句就好，以后找搭子、凑局会更准。</p>
+            </div>
+            <button class="profile-close" id="closeProfileBtn" type="button" aria-label="关闭">×</button>
         </div>
-        <div class="insight-card">
-            <div class="compat-bars" id="compatBars"></div>
-            <div class="insight-divider"></div>
-            <div class="insight-text" id="insightText"></div>
+
+        <div class="ai-pane active" id="profileChatPane">
+            <div class="chat-scroll" id="profileChat"></div>
+            <div class="chat-composer" id="profileComposer"></div>
+        </div>
+
+        <div class="ai-pane" id="profileSummaryPane">
+            <div class="summary-card">
+                <div class="intro-text" id="profileIntroText"></div>
+                <p class="intro-note">以上由 AI 根据对话整理。职业可改；其它偏好已记住，不在这里单独展示。</p>
+                <div id="profileSummaryList"></div>
+            </div>
+            <div class="sheet-actions">
+                <button class="btn ghost" id="rechatProfileBtn" type="button">重新聊聊</button>
+                <button class="btn primary" id="confirmProfileBtn" type="button">确认这份介绍</button>
+            </div>
         </div>
     </div>
+</div>
 
-    <!-- ======== Date Options ======== -->
-    <div class="section" style="margin-bottom:8px;">
-        <div class="section-header">
-            <div class="section-icon" style="background:rgba(52,211,153,0.12);">📅</div>
-            <h2>AI 推荐约会方案</h2>
+<div class="overlay" id="stopOverlay">
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="stopTitle">
+        <div class="handle"></div>
+        <h2 id="stopTitle">结束寻找？</h2>
+        <p class="stop-confirm-copy" id="stopConfirmCopy">将停止还没成的匹配。已成局会保留，可在「我的局」继续。</p>
+        <div class="stop-confirm-list" id="stopConfirmList"></div>
+        <div class="sheet-actions">
+            <button class="btn ghost" id="cancelStopBtn" type="button">返回</button>
+            <button class="btn mint" id="confirmStopKeepBtn" type="button">结束寻找，保留已成局</button>
         </div>
-        <div class="date-options" id="dateOptions"></div>
+        <button class="stop-confirm-danger" id="confirmStopAllBtn" type="button">连已成局也退出</button>
     </div>
+</div>
 
-    <!-- ======== Actions ======== -->
-    <div class="actions-section">
-        <button class="btn-confirm" id="btnConfirm" disabled onclick="confirmSelection()">确认选择</button>
-        <div class="secondary-actions">
-            <button class="btn-alt" onclick="requestNewPlans()">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 4v6h6"/><path d="M23 20v-6h-6"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/></svg>
-                换一批方案
-            </button>
-            <button class="btn-alt reject" onclick="showRejectSheet()">不太合适</button>
+<div class="overlay" id="rejectOverlay">
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="rejectTitle">
+        <div class="handle"></div>
+        <h2 id="rejectTitle">为什么重新匹配？</h2>
+        <p class="sheet-sub">可以不选。反馈会帮助 AI 避免重复推荐。</p>
+        <div class="reason-list">
+            <label class="reason-item">
+                <input type="radio" name="rejectReason" value="member">
+                <span><strong>不希望再遇到某位成员</strong><span>下次不会匹配到该用户或包含 TA 的组</span></span>
+            </label>
+            <div class="block-members" id="blockMembers"></div>
+            <label class="reason-item">
+                <input type="radio" name="rejectReason" value="type">
+                <span><strong>暂时不想参加这种活动</strong><span>自动关闭本次活动类型</span></span>
+            </label>
+            <label class="reason-item">
+                <input type="radio" name="rejectReason" value="other">
+                <span><strong>其他原因</strong><span>距离、时间或当前状态不合适</span></span>
+            </label>
+        </div>
+        <div class="sheet-actions">
+            <button class="btn ghost" id="cancelRejectBtn" type="button">返回</button>
+            <button class="btn primary" id="confirmRejectBtn" type="button">确认并重新匹配</button>
         </div>
     </div>
-
 </div>
 
-<!-- ======== Result: Waiting ======== -->
-<div class="result-state" id="stateWaiting">
-    <div class="result-icon" style="background:var(--primary-dim);">⏳</div>
-    <h2>已提交，等待对方确认</h2>
-    <p>你选择的约会方案已发送给对方，如果 TA 也选择了相同的方案，约会就成立啦！</p>
-</div>
-
-<!-- ======== Result: Rejected ======== -->
-<div class="result-state" id="stateRejected">
-    <div class="result-icon" style="background:rgba(255,107,107,0.12);">👋</div>
-    <h2>已跳过此次匹配</h2>
-    <p>没关系，我们会继续为你寻找更合适的人选</p>
-</div>
-
-<!-- ======== Loading Overlay ======== -->
-<div class="loading-overlay" id="loadingOverlay">
-    <div class="loading-spinner"></div>
-    <div class="loading-text">AI 正在为你生成新方案...</div>
-</div>
-
-<!-- ======== Reject Sheet ======== -->
-<div class="sheet-overlay" id="rejectSheet" onclick="hideRejectSheet(event)">
-    <div class="sheet" onclick="event.stopPropagation()">
-        <div class="sheet-handle"></div>
-        <h3>确认跳过？</h3>
-        <p>跳过后这位用户将不再向你推荐，你可以等待下一次 AI 匹配</p>
-        <button class="sheet-btn danger" onclick="confirmReject()">确认跳过</button>
-        <button class="sheet-btn cancel" onclick="hideRejectSheet()">再看看</button>
+<div class="overlay venue-overlay" id="venueOverlay">
+    <div class="sheet venue-sheet" role="dialog" aria-modal="true" aria-labelledby="venueTitle">
+        <div class="venue-sheet-head">
+            <button class="back" id="closeVenueBtn" type="button" aria-label="返回群聊">‹</button>
+            <div>
+                <h2 id="venueTitle">选聚会地点</h2>
+                <p id="venueRule">大家投票参考 · 你选定后也可随时改</p>
+            </div>
+        </div>
+        <div class="venue-search">
+            <input id="venueSearchInput" type="search" autocomplete="off" placeholder="搜索地点，加入候选…">
+            <button class="btn ghost" id="venueSearchBtn" type="button">搜索</button>
+        </div>
+        <div class="venue-body">
+            <div class="venue-browse" id="venueBrowse">
+                <div class="venue-label" id="venueListLabel">附近推荐 · 可投票</div>
+                <div class="venue-list" id="venueList"></div>
+            </div>
+            <div class="venue-search-panel" id="venueSearchPanel">
+                <div class="venue-search-toolbar">
+                    <span id="venueSearchCount">搜索结果</span>
+                    <button class="link" id="clearVenueSearchBtn" type="button">返回候选</button>
+                </div>
+                <div class="venue-search-results" id="venueSearchResults"></div>
+            </div>
+        </div>
+        <div class="venue-foot">
+            <div class="venue-foot-status" id="venueFootStatus">投票进行中</div>
+            <button class="btn mint full" id="venuePrimaryBtn" type="button" hidden>回到群聊</button>
+        </div>
     </div>
 </div>
 
-<!-- ======== Toast ======== -->
 <div class="toast" id="toast"></div>
 
 <script>
-/* ============ Mock Data ============ */
-var MATCH_DATA = {
-    partner: {
-        nickname: '温柔的猫',
-        age: 25,
-        gender: '女',
-        city: '杭州',
-        district: '西湖区',
-        occupation: '设计师',
-        education: '本科',
-        height: 165,
-        photos: [],
-        selfDesc: '朝九晚五设计师，周末爱逛美术馆和小众咖啡馆，养了一只橘猫，慢热但真诚'
-    },
-    insight: {
-        dimensions: [
-            { label: '兴趣爱好', score: 95, color: '#FFD93D' },
-            { label: '生活方式', score: 88, color: '#51cf66' },
-            { label: '性格匹配', score: 92, color: '#f783ac' }
-        ],
-        reason: '你们都是文艺型生活方式的爱好者，对小众咖啡馆和艺术展有共同热爱。她的慢热内敛和你的温和主动形成很好的互补，线下见面的节奏会很舒服。你们对「各自有空间也有陪伴」的恋爱节奏有一致的期待。'
-    },
-    datePlans: [
-        [
-            { id: 'a1', type: 'cafe', icon: '☕', location: 'Manner Coffee · 文三路店', address: '西湖区文三路 168 号 1 层', time: '本周六 15:00', reason: '你们都爱喝咖啡，这家店安静有氛围，很适合初次见面慢慢聊' },
-            { id: 'a2', type: 'art', icon: '🎨', location: '浙江美术馆', address: '西湖区南山路 138 号', time: '本周日 14:00', reason: '你们对艺术和逛展都有兴趣，边看展边聊天话题自然不会冷场' },
-            { id: 'a3', type: 'outdoor', icon: '🚶', location: '太子湾公园 City Walk', address: '西湖区南山路 5-1 号', time: '下周六 16:00', reason: '她喜欢户外散步和 City Walk，傍晚沿西湖南线漫步节奏很舒服' }
-        ],
-        [
-            { id: 'b1', type: 'food', icon: '🍽️', location: '外婆家 · 湖滨银泰店', address: '上城区东坡路 2 号', time: '本周六 18:00', reason: '轻松的晚餐环境，适合边吃边聊，不会太正式也不会太随意' },
-            { id: 'b2', type: 'fun', icon: '🎮', location: '谜途桌游馆', address: '西湖区文三路 90 号', time: '本周日 15:00', reason: '你们都对桌游感兴趣，一起玩游戏可以快速破冰，气氛轻松' },
-            { id: 'b3', type: 'drink', icon: '🍷', location: '跳海酒馆', address: '上城区中山中路 77 号', time: '下周五 19:30', reason: '她标注了偶尔饮酒，清吧氛围放松，适合周末晚上的轻松社交' }
-        ]
-    ]
-};
-
-var currentPlanSet = 0;
-var selectedDateIds = {};
-var currentPhotoIdx = 0;
-
-/* ============ Init ============ */
-(function init() {
-    renderProfile();
-    renderInsight();
-    renderDatePlans(0);
-})();
-
-/* ============ Render Profile ============ */
-function renderProfile() {
-    var p = MATCH_DATA.partner;
-    document.getElementById('profileName').textContent = p.nickname;
-    document.getElementById('profileAge').textContent = p.age + '岁';
-
-    var tags = [
-        { icon: '📍', text: p.city + ' · ' + p.district },
-        { icon: '💼', text: p.occupation },
-        { icon: '🎓', text: p.education },
-        { icon: '📏', text: p.height + 'cm' }
+    var ACTIVITIES = [
+        { id: 'drink', label: '小酌' },
+        { id: 'food', label: '约饭' },
+        { id: 'coffee', label: '咖啡' },
+        { id: 'outdoor', label: '户外' },
+        { id: 'boardgame', label: '桌游' },
+        { id: 'art', label: '看展' }
     ];
-    var tagsHtml = '';
-    for (var i = 0; i < tags.length; i++) {
-        tagsHtml += '<span class="profile-tag">' + tags[i].icon + ' ' + tags[i].text + '</span>';
-    }
-    document.getElementById('profileTags').innerHTML = tagsHtml;
-    document.getElementById('profileDesc').textContent = '「' + p.selfDesc + '」';
 
-    renderPhotos(p);
-}
-
-function renderPhotos(p) {
-    var gallery = document.getElementById('photosGallery');
-    var photos = p.photos && p.photos.length > 0 ? p.photos : [];
-
-    if (photos.length === 0) {
-        var colors = ['linear-gradient(135deg,#667eea,#764ba2)','linear-gradient(135deg,#f093fb,#f5576c)','linear-gradient(135deg,#4facfe,#00f2fe)'];
-        photos = [colors[0]];
-    }
-
-    var imgHtml = '';
-    var dotsHtml = '';
-    for (var i = 0; i < photos.length; i++) {
-        var isGradient = photos[i].indexOf('gradient') > -1;
-        if (isGradient) {
-            imgHtml += '<div style="width:100%;height:100%;position:absolute;top:0;left:0;background:' + photos[i] + ';display:flex;align-items:center;justify-content:center;opacity:' + (i === 0 ? 1 : 0) + ';transition:opacity 0.4s;" class="photo-item' + (i === 0 ? ' active' : '') + '">' +
-                '<span style="font-size:64px;opacity:0.6;">🙂</span></div>';
-        } else {
-            imgHtml += '<img src="' + photos[i] + '" class="' + (i === 0 ? 'active' : '') + '" alt="">';
+    var GROUPS = [
+        {
+            id: 'g1', type: 'drink', distance: 2.4,
+            title: '附近 3 人也想小酌',
+            summary: '大家都想今晚找一家轻松的小酒馆，<em>兴趣、时段与社交节奏高度重合</em>。',
+            compat: [
+                { label: '兴趣', score: '92%' },
+                { label: '时间', score: '88%' },
+                { label: '距离', score: '2.4km' }
+            ],
+            members: [
+                { id: 'u1', name: '栗子', age: 25, emoji: '🎨', color: 'linear-gradient(145deg,#6d5b9a,#3d2f5c)', job: '插画师', tags: ['精酿', '现场音乐', '慢热'], score: 94, km: '1.8km' },
+                { id: 'u2', name: '小宇', age: 27, emoji: '💻', color: 'linear-gradient(145deg,#2a6f7f,#163a45)', job: '程序员', tags: ['接梗', '桌游', '夜猫'], score: 89, km: '2.1km' },
+                { id: 'u3', name: '奈奈', age: 24, emoji: '✨', color: 'linear-gradient(145deg,#9b5a72,#5a3042)', job: '品牌策划', tags: ['探店', '好聊', '摄影'], score: 91, km: '2.4km' }
+            ]
+        },
+        {
+            id: 'g2', type: 'food', distance: 3.1,
+            title: '附近 4 人在找饭搭子',
+            summary: '大家都偏好轻松小局聚餐，<em>今晚 19:00 后都有空</em>，口味也不冲突。',
+            compat: [
+                { label: '兴趣', score: '90%' },
+                { label: '时间', score: '95%' },
+                { label: '距离', score: '3.1km' }
+            ],
+            members: [
+                { id: 'u4', name: '张张', age: 28, emoji: '📷', color: 'linear-gradient(145deg,#8a6d3b,#4a3a1c)', job: '摄影师', tags: ['无辣不欢', '探店'], score: 87, km: '2.6km' },
+                { id: 'u5', name: 'Zoey', age: 26, emoji: '💼', color: 'linear-gradient(145deg,#4a5f8a,#26334f)', job: '咨询顾问', tags: ['美食', '健谈'], score: 93, km: '2.9km' },
+                { id: 'u6', name: '林木', age: 29, emoji: '🌿', color: 'linear-gradient(145deg,#3d6e5a,#1f3d31)', job: '建筑师', tags: ['安静聊', '设计'], score: 86, km: '3.0km' },
+                { id: 'u7', name: '阿年', age: 25, emoji: '🚀', color: 'linear-gradient(145deg,#6e4c78,#3a2742)', job: '自由职业', tags: ['新搬来', '随性'], score: 84, km: '3.1km' }
+            ]
+        },
+        {
+            id: 'g3', type: 'outdoor', distance: 4.7,
+            title: '附近 3 人想周末徒步',
+            summary: '运动强度偏好相近，<em>都希望路线轻松、边走边聊</em>。',
+            compat: [
+                { label: '兴趣', score: '88%' },
+                { label: '节奏', score: '91%' },
+                { label: '距离', score: '4.7km' }
+            ],
+            members: [
+                { id: 'u8', name: '泡泡', age: 24, emoji: '🫧', color: 'linear-gradient(145deg,#3a6e78,#1e3a42)', job: '运营', tags: ['徒步新手', '拍照'], score: 85, km: '3.8km' },
+                { id: 'u9', name: '森森', age: 30, emoji: '🌲', color: 'linear-gradient(145deg,#5a6e3a,#2f3a1c)', job: '咖啡师', tags: ['户外', '慢节奏'], score: 90, km: '4.2km' },
+                { id: 'u10', name: 'Mia', age: 27, emoji: '🎞', color: 'linear-gradient(145deg,#875340,#4a2c20)', job: '设计师', tags: ['摄影', 'CityWalk'], score: 88, km: '4.7km' }
+            ]
         }
-        dotsHtml += '<div class="dot' + (i === 0 ? ' active' : '') + '"></div>';
+    ];
+
+    /* 按活动类型的附近推荐；搜索用另一池子 mock */
+    var VENUE_RECOS = {
+        drink: [
+            { id: 'v-drink-1', name: '三里屯精酿工坊', km: 1.2, meta: '人均 ¥80 · 可拼桌', tags: ['精酿', '露台'], reason: '距离近，适合小酌开场' },
+            { id: 'v-drink-2', name: '南锣慢调酒馆', km: 2.1, meta: '人均 ¥95 · 安静', tags: ['慢节奏', '好聊'], reason: '更适合慢慢聊、不嘈杂' },
+            { id: 'v-drink-3', name: '工体西路小酒吧', km: 2.8, meta: '人均 ¥70 · 现场音乐', tags: ['音乐', '热闹'], reason: '氛围更活泼，适合破冰' }
+        ],
+        food: [
+            { id: 'v-food-1', name: '合生汇火锅局', km: 1.6, meta: '人均 ¥110 · 可订座', tags: ['火锅', '热闹'], reason: '拼桌友好，适合约饭' },
+            { id: 'v-food-2', name: '望京轻食食堂', km: 2.3, meta: '人均 ¥65 · 健康', tags: ['轻食', '快'], reason: '到店快，选择多' },
+            { id: 'v-food-3', name: '草场地私房菜', km: 3.4, meta: '人均 ¥120 · 包间', tags: ['安静', '包间'], reason: '想聊得久可以选这里' }
+        ],
+        coffee: [
+            { id: 'v-coffee-1', name: '五道口手冲店', km: 1.1, meta: '人均 ¥40 · 插座多', tags: ['手冲', '安静'], reason: '适合白天轻量见面' },
+            { id: 'v-coffee-2', name: '798 花园咖啡', km: 2.6, meta: '人均 ¥48 · 户外位', tags: ['户外', '拍照'], reason: '环境轻松，好破冰' },
+            { id: 'v-coffee-3', name: '中关村社区咖啡', km: 1.9, meta: '人均 ¥35 · 近地铁', tags: ['便利', '便宜'], reason: '交通最省心' }
+        ],
+        outdoor: [
+            { id: 'v-out-1', name: '朝阳公园南门集合', km: 2.0, meta: '免费 · 好找', tags: ['公园', '散步'], reason: '开阔好集合，适合边走边聊' },
+            { id: 'v-out-2', name: '奥林匹克森林公园', km: 4.1, meta: '免费 · 路线多', tags: ['徒步', '拍照'], reason: '轻松路线多，适合周末' },
+            { id: 'v-out-3', name: '亮马河步道起点', km: 2.7, meta: '免费 · CityWalk', tags: ['河边', '夜景'], reason: '傍晚氛围好' }
+        ],
+        boardgame: [
+            { id: 'v-bg-1', name: '五道口桌游空间', km: 1.4, meta: '人均 ¥50 · 包场友好', tags: ['桌游', '空调'], reason: '座位稳，适合开局长局' },
+            { id: 'v-bg-2', name: '望京剧本杀馆', km: 2.9, meta: '人均 ¥128 · 预约', tags: ['剧本', '沉浸'], reason: '如果想换剧本可去' },
+            { id: 'v-bg-3', name: '社区活动室 B1', km: 1.8, meta: '人均 ¥30 · 安静', tags: ['便宜', '安静'], reason: '预算友好的备选' }
+        ],
+        art: [
+            { id: 'v-art-1', name: 'UCCA 尤伦斯', km: 3.2, meta: '门票另计 · 798', tags: ['展览', '拍照'], reason: '看展后方便再去喝一杯' },
+            { id: 'v-art-2', name: '中间美术馆', km: 4.5, meta: '门票另计 · 人少', tags: ['安静', '深度'], reason: '更安静，适合慢慢逛' },
+            { id: 'v-art-3', name: '今日美术馆', km: 3.8, meta: '门票另计 · 近地铁', tags: ['便利', '展览'], reason: '交通方便，收尾轻松' }
+        ]
+    };
+
+    var VENUE_SEARCH_POOL = [
+        { id: 's1', name: '合生汇 B1 集合点', km: 1.5, meta: '商场 · 好找', tags: ['便利'] },
+        { id: 's2', name: '太古里南区喷泉', km: 2.2, meta: '户外 · 标志物', tags: ['好找'] },
+        { id: 's3', name: '国贸商城中庭', km: 3.6, meta: '商场 · 室内', tags: ['避雨'] },
+        { id: 's4', name: '工人体育场北门', km: 2.5, meta: '地标 · 夜场多', tags: ['地标'] },
+        { id: 's5', name: '亮马桥地铁口 A', km: 2.0, meta: '地铁 · 集合快', tags: ['地铁'] },
+        { id: 's6', name: '朝阳大悦城东门', km: 2.8, meta: '商场 · 餐饮多', tags: ['餐饮'] },
+        { id: 's7', name: '三里屯太古里北区', km: 1.8, meta: '商圈 · 餐饮多', tags: ['商圈'] },
+        { id: 's8', name: '世贸天阶中庭', km: 2.1, meta: '商场 · 室内', tags: ['室内'] },
+        { id: 's9', name: '蓝色港湾喷泉广场', km: 3.3, meta: '户外 · 好找', tags: ['户外'] },
+        { id: 's10', name: '望京 SOHO T1 大厅', km: 4.0, meta: '地标 · 近地铁', tags: ['地铁'] },
+        { id: 's11', name: '将台西路咖啡街口', km: 3.1, meta: '街区 · 安静', tags: ['安静'] },
+        { id: 's12', name: '798 红砖广场', km: 3.5, meta: '艺术区 · 拍照', tags: ['拍照'] },
+        { id: 's13', name: '芳草地中庭', km: 2.9, meta: '商场 · 展览', tags: ['展览'] },
+        { id: 's14', name: '东直门交通枢纽 B2', km: 2.4, meta: '枢纽 · 好集合', tags: ['便利'] },
+        { id: 's15', name: '团结湖公园东门', km: 1.9, meta: '公园 · 散步', tags: ['公园'] },
+        { id: 's16', name: '朝阳公园南门', km: 2.0, meta: '公园 · 开阔', tags: ['公园'] },
+        { id: 's17', name: '富力广场 1F 中庭', km: 2.7, meta: '商场 · 餐饮', tags: ['餐饮'] },
+        { id: 's18', name: '姚家园路美食广场', km: 3.8, meta: '美食 · 选择多', tags: ['美食'] },
+        { id: 's19', name: '酒仙桥路口集合点', km: 3.4, meta: '路口 · 好找', tags: ['好找'] },
+        { id: 's20', name: '四惠东地铁口 C', km: 5.2, meta: '地铁 · 偏远', tags: ['地铁'] },
+        { id: 's21', name: '常营龙湖天街北门', km: 6.1, meta: '商场 · 偏远', tags: ['商场'] },
+        { id: 's22', name: '大望路地铁换乘口', km: 3.0, meta: '地铁 · 热闹', tags: ['地铁'] },
+        { id: 's23', name: '慈云寺桥下咖啡角', km: 2.6, meta: '街边 · 轻便', tags: ['咖啡'] },
+        { id: 's24', name: '红领巾公园西门', km: 2.3, meta: '公园 · 夜跑', tags: ['户外'] }
+    ];
+
+    var INTEREST_OPTIONS = ['咖啡探店', '城市漫游', '精酿小酌', '看展电影', '户外运动', '美食探店', '桌游剧本', '音乐现场'];
+    var REL_OPTIONS = ['单身', '恋爱中', '已婚', '不想说'];
+    var DESIRED_GENDER = [
+        { id: 'any', label: '男女都行' },
+        { id: 'female', label: '女' },
+        { id: 'male', label: '男' }
+    ];
+    var DESIRED_REL = ['单身', '恋爱中', '已婚', '不限'];
+
+    /** 本地建档代理（智谱）；需先启动 demo/profile-proxy */
+    var PROFILE_API_BASE = (location.port === '8787')
+        ? ''
+        : 'http://localhost:8787';
+
+    var emptyProfile = function() {
+        return {
+            occupation_category: '',
+            occupation: '',
+            interests: [],
+            social_style: null,
+            group_preference: null,
+            preferred_people: null,
+            intro: ''
+        };
+    };
+
+    var appState = {
+        stage: 'idle',
+        profileComplete: false,
+        switchOn: false,
+        pendingAfterSetup: false,
+        selectedActivities: ['drink', 'food'],
+        desiredGender: 'any',
+        desiredRel: '单身',
+        distance: 5,
+        blockedUsers: [],
+        groupIndex: 0,
+        tasks: [],
+        myGroups: [],
+        activeTaskId: null,
+        profile: emptyProfile(),
+        profileSessionId: '',
+        chatBusy: false,
+        profileNextQuestion: 'q1'
+    };
+
+    var TASK_STATUS_LABEL = {
+        searching: '寻找中',
+        matched: '已找到',
+        waiting: '等待中',
+        ready: '已成局'
+    };
+
+    var $ = function(id) { return document.getElementById(id); };
+
+    function init() {
+        renderActivityChips();
+        renderDesiredChips();
+        bindEvents();
+        setStage('idle');
     }
 
-    var tapZones = photos.length > 1 ? '<div class="photo-tap-zones"><div class="zone" onclick="switchPhoto(-1)"></div><div class="zone" onclick="switchPhoto(1)"></div></div>' : '';
-
-    gallery.innerHTML = (photos.length > 1 ? '<div class="photo-indicators">' + dotsHtml + '</div>' : '') + imgHtml + tapZones;
-}
-
-function switchPhoto(dir) {
-    var items = document.querySelectorAll('#photosGallery .photo-item, #photosGallery img');
-    if (items.length <= 1) return;
-    items[currentPhotoIdx].classList.remove('active');
-    if (items[currentPhotoIdx].style) items[currentPhotoIdx].style.opacity = '0';
-    currentPhotoIdx = (currentPhotoIdx + dir + items.length) % items.length;
-    items[currentPhotoIdx].classList.add('active');
-    if (items[currentPhotoIdx].style) items[currentPhotoIdx].style.opacity = '1';
-
-    var dots = document.querySelectorAll('.photo-indicators .dot');
-    dots.forEach(function(d) { d.classList.remove('active'); });
-    if (dots[currentPhotoIdx]) dots[currentPhotoIdx].classList.add('active');
-}
-
-/* ============ Render Insight ============ */
-function renderInsight() {
-    var dims = MATCH_DATA.insight.dimensions;
-    var html = '';
-    var circumference = 2 * Math.PI * 23;
-    for (var i = 0; i < dims.length; i++) {
-        var offset = circumference - (dims[i].score / 100) * circumference;
-        html += '<div class="compat-item">' +
-            '<div class="compat-ring">' +
-            '<svg viewBox="0 0 56 56"><circle class="bg-circle" cx="28" cy="28" r="23"/>' +
-            '<circle class="fg-circle" cx="28" cy="28" r="23" stroke="' + dims[i].color + '" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + offset + '"/></svg>' +
-            '<span class="score-text" style="color:' + dims[i].color + '">' + dims[i].score + '</span>' +
-            '</div>' +
-            '<div class="compat-label">' + dims[i].label + '</div></div>';
+    function bindEvents() {
+        $('matchTrigger').addEventListener('click', tryStartMatching);
+        $('searchTrigger').addEventListener('click', function() { stopMatching(true); });
+        $('distanceRange').addEventListener('input', function(e) {
+            appState.distance = Number(e.target.value);
+            $('distanceValue').textContent = appState.distance + ' km';
+        });
+        $('editProfileBtn').addEventListener('click', function() {
+            appState.pendingAfterSetup = false;
+            openProfile(appState.profileComplete ? 'summary' : 'chat');
+        });
+        $('stopSessionBtn').addEventListener('click', function() { stopMatching(true); });
+        $('cancelStopBtn').addEventListener('click', closeStopConfirm);
+        $('confirmStopKeepBtn').addEventListener('click', function() {
+            closeStopConfirm();
+            finalizeStopMatching({ keepFormed: true });
+        });
+        $('confirmStopAllBtn').addEventListener('click', function() {
+            closeStopConfirm();
+            finalizeStopMatching({ keepFormed: false });
+        });
+        $('stopOverlay').addEventListener('click', function(e) {
+            if (e.target === $('stopOverlay')) closeStopConfirm();
+        });
+        $('acceptBtn').addEventListener('click', acceptMatch);
+        $('rematchMatchBtn').addEventListener('click', rematchFromResult);
+        $('rematchWaitBtn').addEventListener('click', rematchFromResult);
+        $('cancelRejectBtn').addEventListener('click', closeReject);
+        $('confirmRejectBtn').addEventListener('click', confirmReject);
+        $('confirmProfileBtn').addEventListener('click', confirmProfile);
+        $('rechatProfileBtn').addEventListener('click', function() { startProfileChat(true); });
+        $('chatBackBtn').addEventListener('click', function() {
+            var task = getActiveTask();
+            if (task && isMyGroupOnly(task)) {
+                appState.activeTaskId = null;
+                setStage('idle');
+                renderMyGroups();
+                updateStopSessionBtn();
+                return;
+            }
+            if (task && (task.status === 'waiting' || task.status === 'ready')) syncViewToActiveTask();
+        });
+        $('chatForm').addEventListener('submit', sendMessage);
+        document.querySelectorAll('input[name="rejectReason"]').forEach(function(input) {
+            input.addEventListener('change', function() {
+                $('blockMembers').classList.toggle('show', input.value === 'member' && input.checked);
+            });
+        });
+        $('closeProfileBtn').addEventListener('click', dismissProfile);
+        $('profileOverlay').addEventListener('click', function(e) {
+            if (e.target === $('profileOverlay')) dismissProfile();
+        });
+        $('rejectOverlay').addEventListener('click', function(e) {
+            if (e.target === $('rejectOverlay')) closeReject();
+        });
+        $('closeVenueBtn').addEventListener('click', closeVenuePicker);
+        $('venueSearchBtn').addEventListener('click', runVenueSearch);
+        $('venueSearchInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                runVenueSearch();
+            }
+        });
+        $('clearVenueSearchBtn').addEventListener('click', exitVenueSearchMode);
+        $('venuePrimaryBtn').addEventListener('click', closeVenuePicker);
+        $('chatList').addEventListener('click', function(e) {
+            var card = e.target.closest('.venue-card');
+            if (card) openVenuePicker();
+        });
     }
-    document.getElementById('compatBars').innerHTML = html;
-    document.getElementById('insightText').innerHTML += MATCH_DATA.insight.reason;
-}
 
-/* ============ Render Date Plans ============ */
-function renderDatePlans(setIdx) {
-    var plans = MATCH_DATA.datePlans[setIdx] || [];
-    var container = document.getElementById('dateOptions');
-    var html = '';
-    selectedDateIds = {};
+    function getTask(id) {
+        return appState.tasks.find(function(t) { return t.id === id; })
+            || appState.myGroups.find(function(t) { return t.id === id; })
+            || null;
+    }
 
-    for (var i = 0; i < plans.length; i++) {
-        var d = plans[i];
-        html += '<div class="date-card" data-id="' + d.id + '" onclick="toggleDateCard(this)">' +
-            '<div class="date-card-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>' +
-            '<div class="date-type-icon ' + d.type + '">' + d.icon + '</div>' +
-            '<div class="date-card-time"><svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>' + d.time + '</div>' +
-            '<div class="date-card-title">' + d.location + '</div>' +
-            '<div class="date-card-address"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>' + d.address + '</div>' +
-            '<div class="date-card-reason"><div class="ai-tag">🤖 AI 推荐理由</div>' + d.reason + '</div>' +
+    function getActiveTask() {
+        return getTask(appState.activeTaskId) || appState.tasks[0] || null;
+    }
+
+    function isFormedTask(task) {
+        return !!(task && task.status === 'ready');
+    }
+
+    function isMyGroupOnly(task) {
+        if (!task) return false;
+        var inTasks = appState.tasks.some(function(t) { return t.id === task.id; });
+        var inMine = appState.myGroups.some(function(t) { return t.id === task.id; });
+        return inMine && !inTasks;
+    }
+
+    function formedTasksInSession() {
+        return appState.tasks.filter(isFormedTask);
+    }
+
+    function statusLabel(status) {
+        return TASK_STATUS_LABEL[status] || status;
+    }
+
+    function renderActivityChips() {
+        $('activityChips').innerHTML = ACTIVITIES.map(function(a) {
+            var selected = appState.selectedActivities.indexOf(a.id) >= 0;
+            return '<button class="chip' + (selected ? ' selected' : '') + '" type="button" data-activity="' + a.id + '">' + a.label + '</button>';
+        }).join('');
+        $('activityChips').querySelectorAll('.chip').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var id = btn.dataset.activity;
+                var idx = appState.selectedActivities.indexOf(id);
+                if (idx >= 0) {
+                    if (appState.selectedActivities.length === 1) {
+                        showToast('至少保留一种活动');
+                        return;
+                    }
+                    appState.selectedActivities.splice(idx, 1);
+                } else {
+                    if (appState.selectedActivities.length >= 3) {
+                        showToast('最多选择 3 种活动');
+                        return;
+                    }
+                    appState.selectedActivities.push(id);
+                }
+                renderActivityChips();
+            });
+        });
+    }
+
+    function selectedActivityLabels() {
+        return appState.selectedActivities.map(function(id) {
+            return activityById(id).label;
+        }).join('、');
+    }
+
+    function renderDesiredChips() {
+        $('desiredGenderChips').innerHTML = DESIRED_GENDER.map(function(g) {
+            return '<button class="chip' + (appState.desiredGender === g.id ? ' selected' : '') + '" type="button" data-gender="' + g.id + '">' + g.label + '</button>';
+        }).join('');
+        $('desiredGenderChips').querySelectorAll('.chip').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                appState.desiredGender = btn.dataset.gender;
+                renderDesiredChips();
+            });
+        });
+        $('desiredRelChips').innerHTML = DESIRED_REL.map(function(r) {
+            return '<button class="chip' + (appState.desiredRel === r ? ' selected' : '') + '" type="button" data-rel="' + r + '">' + r + '</button>';
+        }).join('');
+        $('desiredRelChips').querySelectorAll('.chip').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                appState.desiredRel = btn.dataset.rel;
+                renderDesiredChips();
+            });
+        });
+    }
+
+    function tryStartMatching() {
+        if (!appState.selectedActivities.length) {
+            showToast('请先选择想组局的活动');
+            return;
+        }
+        // 个人介绍可选：未填写也可直接开始匹配；需要时点「编辑我的信息」
+        appState.switchOn = true;
+        startSearching();
+    }
+
+    function returnToIdle(toastMsg) {
+        clearAllTaskTimers();
+        appState.switchOn = false;
+        appState.tasks = [];
+        appState.activeTaskId = null;
+        setStage('idle');
+        renderMyGroups();
+        updateTaskRail();
+        updateStopSessionBtn();
+        if (toastMsg) showToast(toastMsg);
+    }
+
+    function rematchFromResult() {
+        var task = getActiveTask();
+        if (!task || !task.group) {
+            returnToIdle('已返回待匹配，轻触星芒再开始');
+            return;
+        }
+        openReject();
+    }
+
+    function updateRematchLabels() {
+        var task = getActiveTask();
+        var label = task ? activityById(task.activityId).label : '本类型';
+        var text = '重新匹配「' + label + '」';
+        if ($('rematchMatchBtn')) $('rematchMatchBtn').textContent = text;
+        if ($('rematchWaitBtn')) $('rematchWaitBtn').textContent = text;
+    }
+
+    function updateTaskRail() {
+        var rail = $('taskRail');
+        if (!appState.tasks.length || appState.stage === 'idle') {
+            rail.hidden = true;
+            rail.innerHTML = '';
+            return;
+        }
+        rail.hidden = false;
+        rail.innerHTML = appState.tasks.map(function(task) {
+            var active = task.id === appState.activeTaskId ? ' active' : '';
+            return '<button class="task-pill ' + task.status + active + '" type="button" data-task="' + task.id + '">' +
+                '<i class="dot" aria-hidden="true"></i>' +
+                '<span>' + activityById(task.activityId).label + '</span>' +
+                '<span class="pill-status">' + statusLabel(task.status) + '</span>' +
+                '</button>';
+        }).join('');
+        rail.querySelectorAll('.task-pill').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                selectTask(btn.dataset.task);
+            });
+        });
+    }
+
+    function selectTask(taskId) {
+        if (!getTask(taskId)) return;
+        appState.activeTaskId = taskId;
+        syncViewToActiveTask();
+    }
+
+    function renderTaskCards() {
+        var box = $('taskCards');
+        if (!box) return;
+        if (appState.tasks.length < 2) {
+            box.innerHTML = '';
+            box.style.display = 'none';
+            return;
+        }
+        box.style.display = 'flex';
+        box.innerHTML = appState.tasks.map(function(task) {
+            var active = task.id === appState.activeTaskId ? ' active' : '';
+            var sub = task.status === 'searching'
+                ? '已寻找 ' + formatTime(task.searchSeconds)
+                : (task.group ? task.group.title : statusLabel(task.status));
+            return '<button class="task-card' + active + '" type="button" data-task="' + task.id + '">' +
+                '<div class="task-card-main">' +
+                    '<div class="task-card-title">' + activityById(task.activityId).label + '</div>' +
+                    '<div class="task-card-sub">' + sub + '</div>' +
+                '</div>' +
+                '<span class="task-card-badge ' + task.status + '">' + statusLabel(task.status) + '</span>' +
+                '</button>';
+        }).join('');
+        box.querySelectorAll('.task-card').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                selectTask(btn.dataset.task);
+            });
+        });
+    }
+
+    function openProfile(mode) {
+        $('profileOverlay').classList.add('show');
+        if (mode === 'summary' && appState.profile.intro) {
+            showProfileSummary();
+        } else {
+            startProfileChat(false);
+        }
+    }
+    function closeProfile() {
+        $('profileOverlay').classList.remove('show');
+    }
+
+    function dismissProfile() {
+        closeProfile();
+        appState.pendingAfterSetup = false;
+    }
+
+    function showProfilePane(id) {
+        $('profileChatPane').classList.toggle('active', id === 'chat');
+        $('profileSummaryPane').classList.toggle('active', id === 'summary');
+        $('profileTitle').textContent = id === 'summary' ? '这是你的个人介绍' : '先认识你一下';
+        $('profileSubtitle').textContent = id === 'summary'
+            ? '我整理成一段介绍。职业可单独改，其它偏好已记住。'
+            : '随便聊几句就好，以后找搭子、凑局会更准。';
+    }
+
+    function newProfileSessionId() {
+        return 'p_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+    }
+
+    function interestTags(profile) {
+        return (profile.interests || []).map(function(i) {
+            return typeof i === 'string' ? i : (i && i.tag);
+        }).filter(Boolean);
+    }
+
+    function socialStyleLabel(s) {
+        if (!s) return '未填';
+        var parts = [];
+        if (s.warmup_speed <= 0.4) parts.push('偏慢热');
+        else if (s.warmup_speed >= 0.7) parts.push('熟得快');
+        if (s.initiative >= 0.65) parts.push('能带气氛');
+        else if (s.initiative <= 0.35) parts.push('不太主动');
+        if (s.talkativeness >= 0.65) parts.push('话多');
+        else if (s.talkativeness <= 0.35) parts.push('偏安静');
+        return parts.length ? parts.join(' · ') : '看情况';
+    }
+
+    function groupPrefLabel(g) {
+        if (!g) return '未填';
+        var sizeMap = { small: '小局', medium: '中等局', large: '人大一点', any: '人数随意' };
+        var styleMap = { conversation: '偏聊天', activity: '偏有事干', mixed: '聊天/活动都行' };
+        var energy = typeof g.energy_level === 'number'
+            ? (g.energy_level >= 0.65 ? '偏热闹' : (g.energy_level <= 0.4 ? '偏安静' : '能量适中'))
+            : '';
+        return [sizeMap[g.preferred_size] || g.preferred_size, styleMap[g.interaction_style] || g.interaction_style, energy]
+            .filter(Boolean).join(' · ');
+    }
+
+    function preferredPeopleLabel(p) {
+        if (!p) return '未填';
+        var bits = (p.traits || []).slice();
+        if (p.age_similarity === 'preferred' || p.age_similarity === 'required') bits.push('年龄差不多');
+        if (p.shared_interests === 'important') bits.push('共同爱好重要');
+        else if (p.shared_interests === 'nice_to_have') bits.push('有共同爱好更好');
+        return bits.length ? bits.join('、') : '没特别要求';
+    }
+
+    function startProfileChat(force) {
+        showProfilePane('chat');
+        appState.chatBusy = false;
+        if (force || !appState.profileComplete) {
+            appState.profile = emptyProfile();
+        }
+        appState.profileSessionId = newProfileSessionId();
+        appState.profileNextQuestion = 'q1';
+        $('profileChat').innerHTML = '';
+        $('profileComposer').innerHTML = '';
+        callProfileAgent({ reset: true, userMessage: null });
+    }
+
+    function appendTyping() {
+        var row = document.createElement('div');
+        row.className = 'bubble-row';
+        row.innerHTML = '<div class="mini">AI</div><div class="bubble"><span class="typing"><i></i><i></i><i></i></span></div>';
+        $('profileChat').appendChild(row);
+        scrollChat();
+        return row;
+    }
+
+    function appendBubble(who, text) {
+        var row = document.createElement('div');
+        row.className = 'bubble-row' + (who === 'me' ? ' me' : '');
+        row.innerHTML = '<div class="mini">' + (who === 'me' ? '我' : 'AI') + '</div><div class="bubble"></div>';
+        row.querySelector('.bubble').textContent = text;
+        $('profileChat').appendChild(row);
+        scrollChat();
+    }
+
+    function scrollChat() {
+        var el = $('profileChat');
+        el.scrollTop = el.scrollHeight;
+    }
+
+    function applyProfileDraft(draft) {
+        if (!draft || typeof draft !== 'object') return;
+        var p = appState.profile;
+        if (draft.occupation_category != null) p.occupation_category = draft.occupation_category || '';
+        if (draft.occupation != null) p.occupation = draft.occupation || '';
+        if (Array.isArray(draft.interests)) p.interests = draft.interests;
+        if (draft.social_style) p.social_style = draft.social_style;
+        if (draft.group_preference) p.group_preference = draft.group_preference;
+        if (draft.preferred_people) p.preferred_people = draft.preferred_people;
+        if (draft.intro) p.intro = draft.intro;
+    }
+
+    function callProfileAgent(opts) {
+        if (appState.chatBusy) return;
+        appState.chatBusy = true;
+        $('profileComposer').innerHTML = '';
+        var typingRow = appendTyping();
+
+        var payload = {
+            sessionId: appState.profileSessionId,
+            reset: !!opts.reset,
+            userMessage: opts.userMessage == null ? null : opts.userMessage
+        };
+
+        fetch(PROFILE_API_BASE + '/api/profile-chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }).then(function(res) {
+            return res.json().then(function(data) {
+                return { okHttp: res.ok, data: data };
+            });
+        }).then(function(result) {
+            if (typingRow && typingRow.parentNode) typingRow.remove();
+            appState.chatBusy = false;
+            var data = result.data || {};
+            if (!result.okHttp || data.ok === false) {
+                appendBubble('ai', '刚才没连上建档服务。请先在本机启动代理：cd demo/profile-proxy && npm start');
+                renderComposerError(data.error || '请求失败');
+                return;
+            }
+            applyProfileDraft(data.profile_draft);
+            appState.profileNextQuestion = data.next_question || appState.profileNextQuestion;
+            if (data.assistant_message) appendBubble('ai', data.assistant_message);
+
+            if (data.action === 'hard_block') {
+                renderComposerError('这条先跳过，换个话题继续也可以。');
+                return;
+            }
+            if (data.action === 'handoff_summary' || data.next_question === 'done') {
+                applyProfileDraft(data.profile_draft);
+                if (data.intro) appState.profile.intro = data.intro;
+                if (!appState.profile.intro || /未填|没有填写|信息不足|还不了解|暂无|都没填/.test(appState.profile.intro)) {
+                    appState.profile.intro = buildIntroFromFields();
+                }
+                setTimeout(showProfileSummary, 420);
+                return;
+            }
+            renderChatComposer(data.quick_replies || []);
+        }).catch(function(err) {
+            if (typingRow && typingRow.parentNode) typingRow.remove();
+            appState.chatBusy = false;
+            appendBubble('ai', '连不上本地代理（' + (err && err.message ? err.message : '网络错误') + '）。请运行：cd demo/profile-proxy && npm start');
+            renderComposerError('代理未启动或端口不对');
+        });
+    }
+
+    function renderComposerError(hint) {
+        var box = $('profileComposer');
+        box.innerHTML =
+            '<p style="margin:0 0 8px;font-size:13px;opacity:.75">' + escapeHtml(hint || '') + '</p>' +
+            '<div class="composer-row">' +
+                '<button class="btn ghost" id="profileRetryBtn" type="button" style="flex:1">重试开场</button>' +
             '</div>';
+        $('profileRetryBtn').addEventListener('click', function() {
+            startProfileChat(true);
+        });
     }
-    container.innerHTML = html;
-    updateConfirmBtn();
-}
 
-function toggleDateCard(card) {
-    var id = card.getAttribute('data-id');
-    if (card.classList.contains('selected')) {
-        card.classList.remove('selected');
-        delete selectedDateIds[id];
-    } else {
-        card.classList.add('selected');
-        selectedDateIds[id] = true;
+    function renderChatComposer(quickReplies) {
+        var box = $('profileComposer');
+        var chips = (quickReplies || []).map(function(opt) {
+            return '<button class="suggest" type="button" data-v="' + escapeHtml(opt) + '">' + escapeHtml(opt) + '</button>';
+        }).join('');
+        box.innerHTML =
+            (chips ? '<div class="suggests" id="suggestBox">' + chips + '</div>' : '') +
+            '<div class="composer-row">' +
+                '<input id="chatInput" placeholder="随便说，想到什么写什么">' +
+                '<button id="chatSendBtn" type="button">↑</button>' +
+            '</div>';
+        if ($('suggestBox')) {
+            $('suggestBox').querySelectorAll('.suggest').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    submitProfileAnswer(btn.dataset.v);
+                });
+            });
+        }
+        function send() {
+            var val = $('chatInput').value.trim();
+            if (!val) return;
+            submitProfileAnswer(val);
+        }
+        $('chatSendBtn').addEventListener('click', send);
+        $('chatInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                send();
+            }
+        });
+        $('chatInput').focus();
     }
-    updateConfirmBtn();
-}
 
-function updateConfirmBtn() {
-    var count = Object.keys(selectedDateIds).length;
-    var btn = document.getElementById('btnConfirm');
-    btn.disabled = count === 0;
-    btn.textContent = count > 0 ? '确认选择（' + count + '个方案）' : '确认选择';
-}
+    function submitProfileAnswer(value) {
+        if (appState.chatBusy) return;
+        var text = String(value || '').trim();
+        if (!text) return;
+        appendBubble('me', text);
+        callProfileAgent({ reset: false, userMessage: text });
+    }
 
-/* ============ Actions ============ */
-function confirmSelection() {
-    var ids = Object.keys(selectedDateIds);
-    if (ids.length === 0) return;
-    console.log('已选择的约会方案:', ids);
-    document.getElementById('mainContent').style.display = 'none';
-    document.getElementById('stateWaiting').classList.add('show');
-    showToast('已提交！');
-}
+    function buildIntroFromFields() {
+        var p = appState.profile;
+        var role = [p.occupation_category, p.occupation].filter(Boolean).join('·')
+            || p.occupation
+            || p.occupation_category
+            || '在这座城市生活';
+        var tags = interestTags(p).slice(0, 4);
+        var bits = [role];
+        if (tags.length) bits.push('平时喜欢' + tags.join('、'));
+        if (p.social_style) {
+            if (p.social_style.warmup_speed <= 0.4) bits.push('偏慢热');
+            else if (p.social_style.initiative >= 0.65) bits.push('爱带气氛');
+        }
+        if (p.group_preference) {
+            var sizeMap = { small: '更爱小局聊天', medium: '喜欢小圈子热闹一点', large: '不介意人多热闹' };
+            if (sizeMap[p.group_preference.preferred_size]) bits.push(sizeMap[p.group_preference.preferred_size]);
+        }
+        bits.push('想认识同频的人一起出门');
+        return bits.join('，') + '。';
+    }
 
-function requestNewPlans() {
-    var overlay = document.getElementById('loadingOverlay');
-    overlay.classList.add('show');
-    setTimeout(function() {
-        currentPlanSet = (currentPlanSet + 1) % MATCH_DATA.datePlans.length;
-        renderDatePlans(currentPlanSet);
-        overlay.classList.remove('show');
-        var section = document.getElementById('dateOptions');
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        showToast('已生成新方案');
-    }, 1500);
-}
+    function buildIntro() {
+        var p = appState.profile;
+        if (p.intro && !/未填|没有填写|信息不足|还不了解|暂无|都没填/.test(p.intro)) return p.intro;
+        return buildIntroFromFields();
+    }
 
-function showRejectSheet() {
-    document.getElementById('rejectSheet').classList.add('show');
-}
-function hideRejectSheet(e) {
-    if (e && e.target !== document.getElementById('rejectSheet')) return;
-    document.getElementById('rejectSheet').classList.remove('show');
-}
-function confirmReject() {
-    document.getElementById('rejectSheet').classList.remove('show');
-    document.getElementById('mainContent').style.display = 'none';
-    document.getElementById('stateRejected').classList.add('show');
-}
+    function showProfileSummary() {
+        showProfilePane('summary');
+        if (!appState.profile.intro || /未填|没有填写|信息不足|还不了解|暂无|都没填/.test(appState.profile.intro)) {
+            appState.profile.intro = buildIntroFromFields();
+        }
+        $('profileIntroText').textContent = appState.profile.intro;
 
-function showToast(msg) {
-    var t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(function() { t.classList.remove('show'); }, 2200);
-}
+        // 总结页只展示可改的职业；兴趣/社交/局偏好等长期档案不单独列出
+        var rows = [
+            { key: 'occupation', label: '职业/状态', type: 'text' }
+        ];
+        $('profileSummaryList').innerHTML = rows.map(function(r) {
+            return '<div class="summary-item" data-key="' + r.key + '">' +
+                '<label>' + r.label + '</label>' +
+                '<div class="val"></div>' +
+                '<button class="edit-btn" type="button">修改</button>' +
+                '<div class="edit-box"></div>' +
+            '</div>';
+        }).join('');
+
+        Array.from($('profileSummaryList').children).forEach(function(item, i) {
+            var r = rows[i];
+            var val = [appState.profile.occupation_category, appState.profile.occupation].filter(Boolean).join(' · ') || '未填';
+            item.querySelector('.val').textContent = val;
+            item.querySelector('.edit-btn').addEventListener('click', function() {
+                beginEditSummaryItem(item, r);
+            });
+        });
+    }
+
+    function beginEditSummaryItem(item, meta) {
+        Array.from($('profileSummaryList').querySelectorAll('.summary-item')).forEach(function(el) {
+            el.classList.remove('editing');
+            el.querySelector('.edit-box').innerHTML = '';
+        });
+        item.classList.add('editing');
+        var box = item.querySelector('.edit-box');
+        var current = appState.profile.occupation || '';
+        box.innerHTML = '<input id="editField" value="' + String(current || '').replace(/"/g, '&quot;') + '">';
+        var actions = document.createElement('div');
+        actions.className = 'edit-actions';
+        actions.innerHTML = '<button class="save" type="button">保存</button><button class="cancel" type="button">取消</button>';
+        box.appendChild(actions);
+        actions.querySelector('.cancel').addEventListener('click', function() {
+            item.classList.remove('editing');
+            box.innerHTML = '';
+        });
+        actions.querySelector('.save').addEventListener('click', function() {
+            var next = $('editField').value.trim();
+            if (!next) {
+                showToast('内容不能为空');
+                return;
+            }
+            appState.profile.occupation = next;
+            appState.profile.intro = buildIntroFromFields();
+            showProfileSummary();
+        });
+    }
+
+    function confirmProfile() {
+        var p = appState.profile;
+        var hasSignal = !!(p.occupation || p.occupation_category || interestTags(p).length || p.social_style || p.group_preference);
+        if (!hasSignal) {
+            showToast('好像还没聊到有效信息，再聊聊或重新聊聊');
+            return;
+        }
+        p.intro = buildIntro();
+        appState.profileComplete = true;
+        var shouldStartMatch = appState.pendingAfterSetup;
+        appState.pendingAfterSetup = false;
+
+        // 把确认结果写回本地对话存档
+        fetch(PROFILE_API_BASE + '/api/profile-chat-confirm', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                sessionId: appState.profileSessionId,
+                intro: p.intro,
+                profileDraft: p
+            })
+        }).catch(function() { /* 存档失败不挡确认 */ });
+
+        closeProfile();
+        if (shouldStartMatch) {
+            showToast('资料已保存，开始匹配');
+            appState.switchOn = true;
+            startSearching();
+        } else {
+            showToast('个人介绍已保存');
+        }
+    }
+
+    function setStage(stage) {
+        appState.stage = stage;
+        document.querySelectorAll('.state').forEach(function(el) { el.classList.remove('active'); });
+        var target = $('state-' + stage);
+        if (target) target.classList.add('active');
+        updateRematchLabels();
+        updateTaskRail();
+        updateStopSessionBtn();
+        renderMyGroups();
+    }
+
+    function updateStopSessionBtn() {
+        var btn = $('stopSessionBtn');
+        var footer = $('sessionFooter');
+        if (!btn || !footer) return;
+        var inMatching = appState.tasks.length > 0 && appState.stage !== 'idle';
+        var viewingMyGroup = appState.stage === 'chat' && isMyGroupOnly(getActiveTask());
+        footer.hidden = !(inMatching && !viewingMyGroup);
+        if (footer.hidden) return;
+        var formed = formedTasksInSession();
+        var anySearching = appState.tasks.some(function(t) { return t.status === 'searching'; });
+        if (formed.length) {
+            btn.textContent = '结束寻找（保留已成局）';
+        } else {
+            btn.textContent = anySearching ? '结束撮合' : '结束全部';
+        }
+    }
+
+    function renderMyGroups() {
+        var box = $('myGroups');
+        var list = $('myGroupsList');
+        if (!box || !list) return;
+        if (!appState.myGroups.length || appState.stage !== 'idle') {
+            box.hidden = true;
+            list.innerHTML = '';
+            return;
+        }
+        box.hidden = false;
+        list.innerHTML = appState.myGroups.map(function(task) {
+            var label = activityById(task.activityId).label;
+            var venue = task.venue;
+            var won = venue && venue.status === 'locked' && venue.lockedPlaceId
+                ? placeById(task, venue.lockedPlaceId)
+                : null;
+            var sub = won
+                ? ('地点：' + won.name)
+                : (task.openedChat ? '群聊进行中 · 待选地点' : '组局已成立 · 可进群聊');
+            return '<button class="my-group-card" type="button" data-group="' + task.id + '">' +
+                '<div>' +
+                    '<strong>今晚' + label + '组</strong>' +
+                    '<p>' + escapeHtml(sub) + '</p>' +
+                '</div>' +
+                '<span class="cta">继续 ›</span>' +
+                '</button>';
+        }).join('');
+        list.querySelectorAll('.my-group-card').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                openMyGroup(btn.dataset.group);
+            });
+        });
+    }
+
+    function openMyGroup(id) {
+        var task = appState.myGroups.find(function(t) { return t.id === id; });
+        if (!task) return;
+        appState.activeTaskId = task.id;
+        appState.switchOn = false;
+        ensureVenueState(task);
+        task.openedChat = true;
+        $('chatTitle').textContent = '今晚' + activityById(task.activityId).label + '组';
+        renderChat();
+        setStage('chat');
+        updateTaskRail();
+        updateStopSessionBtn();
+        renderMyGroups();
+    }
+
+    function openStopConfirm(formed) {
+        var names = formed.map(function(t) {
+            return '「' + activityById(t.activityId).label + '」';
+        });
+        $('stopConfirmCopy').innerHTML = '将停止还没成的匹配。<em>已成局会保留</em>，可在「我的局」继续聊、选地点。';
+        $('stopConfirmList').innerHTML = formed.map(function(t) {
+            return '<span>· 今晚' + activityById(t.activityId).label + '组 · 已成局</span>';
+        }).join('');
+        $('confirmStopKeepBtn').textContent = formed.length > 1
+            ? ('结束寻找，保留 ' + formed.length + ' 个已成局')
+            : ('结束寻找，保留' + names[0]);
+        $('stopOverlay').classList.add('show');
+    }
+
+    function closeStopConfirm() {
+        $('stopOverlay').classList.remove('show');
+    }
+
+    function createTask(activityId, index) {
+        // Demo：约饭刻意一直停在「匹配中」，方便查看寻找态页面
+        var holdSearching = activityId === 'food';
+        return {
+            id: 'task-' + activityId + '-' + index + '-' + Date.now(),
+            activityId: activityId,
+            status: 'searching',
+            searchSeconds: 0,
+            holdSearching: holdSearching,
+            matchAfterSeconds: holdSearching ? Infinity : (4 + index * 2),
+            group: null,
+            confirmedCount: 0,
+            searchTimer: null,
+            autoMatchTimer: null,
+            confirmationTimers: [],
+            widened: false
+        };
+    }
+
+    function armTaskSearch(task) {
+        var taskId = task.id;
+        clearTaskTimers(task);
+        task.searchTimer = setInterval(function() {
+            tickTaskSearch(taskId);
+        }, 1000);
+        if (!task.holdSearching && isFinite(task.matchAfterSeconds)) {
+            task.autoMatchTimer = setTimeout(function() {
+                resolveTaskMatch(taskId);
+            }, task.matchAfterSeconds * 1000);
+        }
+    }
+
+    function restartTaskAsSearching(task) {
+        clearTaskTimers(task);
+        task.status = 'searching';
+        task.searchSeconds = 0;
+        task.widened = false;
+        task.group = null;
+        task.confirmedCount = 0;
+        task.holdSearching = task.activityId === 'food';
+        task.matchAfterSeconds = task.holdSearching ? Infinity : 4;
+        appState.switchOn = true;
+        appState.activeTaskId = task.id;
+        armTaskSearch(task);
+        syncViewToActiveTask();
+    }
+
+    function startSearching() {
+        clearAllTaskTimers();
+        appState.tasks = [];
+        appState.activeTaskId = null;
+        if (!appState.selectedActivities.length) {
+            appState.switchOn = false;
+            setStage('idle');
+            showToast('请先选择想组局的活动类型');
+            return;
+        }
+        appState.switchOn = true;
+        var nextTasks = [];
+        appState.selectedActivities.forEach(function(activityId, index) {
+            var task = createTask(activityId, index);
+            armTaskSearch(task);
+            nextTasks.push(task);
+        });
+        appState.tasks = nextTasks;
+        appState.activeTaskId = nextTasks[0].id;
+        syncViewToActiveTask();
+    }
+
+    function tickTaskSearch(taskId) {
+        var task = getTask(taskId);
+        if (!task || task.status !== 'searching') return;
+        task.searchSeconds += 1;
+        if (task.searchSeconds === 3) task.widened = true;
+        if (!task.holdSearching && isFinite(task.matchAfterSeconds) && task.searchSeconds >= task.matchAfterSeconds) {
+            resolveTaskMatch(taskId);
+            return;
+        }
+        if (task.id === appState.activeTaskId && appState.stage === 'searching') {
+            renderSearchingForTask(task);
+        }
+        updateTaskRail();
+        renderTaskCards();
+    }
+
+    function resolveTaskMatch(taskId) {
+        var task = getTask(taskId);
+        if (!task || task.status !== 'searching') return;
+        clearInterval(task.searchTimer);
+        clearTimeout(task.autoMatchTimer);
+        task.searchTimer = null;
+        task.autoMatchTimer = null;
+        try {
+            task.group = chooseGroupForActivity(task.activityId);
+        } catch (err) {
+            task.group = buildFallbackGroup(task.activityId);
+        }
+        if (!task.group || !task.group.members || !task.group.members.length) {
+            task.group = buildFallbackGroup(task.activityId);
+        }
+        task.status = 'matched';
+        var active = getActiveTask();
+        if (!active || active.status === 'searching' || active.id === task.id) {
+            appState.activeTaskId = task.id;
+        }
+        syncViewToActiveTask();
+        showToast('「' + activityById(task.activityId).label + '」找到一组伙伴');
+        if (navigator.vibrate) navigator.vibrate([40, 50, 40]);
+    }
+
+    function syncViewToActiveTask() {
+        var task = getActiveTask();
+        if (!task) {
+            returnToIdle();
+            return;
+        }
+        if (isMyGroupOnly(task)) {
+            openMyGroup(task.id);
+            return;
+        }
+        if (task.status === 'searching') {
+            renderSearchingForTask(task);
+            setStage('searching');
+        } else if (task.status === 'matched') {
+            renderMatchedForTask(task);
+            setStage('matched');
+        } else if (task.status === 'waiting' || task.status === 'ready') {
+            renderWaitingForTask(task);
+            setStage('waiting');
+        } else if (appState.stage === 'chat') {
+            updateTaskRail();
+            updateRematchLabels();
+            updateStopSessionBtn();
+        }
+    }
+
+    function renderSearchingForTask(task) {
+        var label = activityById(task.activityId).label;
+        $('searchTimer').textContent = formatTime(task.searchSeconds);
+        $('searchTitle').textContent = appState.tasks.length > 1
+            ? ('正在寻找「' + label + '」伙伴')
+            : '正在寻找同频伙伴';
+        if (task.holdSearching) {
+            $('strategyPeople').classList.add('on');
+            $('strategyPeople').innerHTML = '<span class="mark">●</span>持续扫描中，可从容查看匹配中状态';
+            $('searchCopy').textContent = '「' + label + '」任务会保持匹配中（Demo），方便你查看本页状态';
+        } else if (task.widened) {
+            $('strategyPeople').classList.add('on');
+            $('strategyPeople').innerHTML = '<span class="mark">●</span>正在寻找 6km 内同需求用户';
+            $('searchCopy').textContent = '「' + label + '」暂未找到合适组，正在扩大到同需求用户…';
+        } else {
+            $('strategyPeople').classList.remove('on');
+            $('strategyPeople').innerHTML = '<span class="mark">○</span>若没有合适的组，再寻找 6km 内同需求用户';
+            $('searchCopy').textContent = '优先扫描 ' + appState.distance + 'km 内「' + label + '」同类型用户组…';
+        }
+        renderTaskCards();
+    }
+
+    function renderMatchedForTask(task) {
+        var group = task.group || buildFallbackGroup(task.activityId);
+        task.group = group;
+        var label = activityById(task.activityId).label;
+        $('matchTypeTag').textContent = label;
+        $('matchTitle').textContent = group.title;
+        $('matchDistance').textContent = group.distance + ' km';
+        $('groupSummary').innerHTML = group.summary;
+        $('compatRow').innerHTML = (group.compat || []).map(function(c) {
+            return '<div class="compat-pill"><b>' + c.score + '</b><span>' + c.label + '</span></div>';
+        }).join('');
+        $('matchedMembers').innerHTML = (group.members || []).map(function(m) {
+            return personCard(m);
+        }).join('');
+        updateRematchLabels();
+    }
+
+    function stopMatching(byUser) {
+        if (!appState.tasks.length) {
+            returnToIdle(byUser ? '已结束撮合' : '');
+            return;
+        }
+        var formed = formedTasksInSession();
+        if (byUser && formed.length) {
+            openStopConfirm(formed);
+            return;
+        }
+        finalizeStopMatching({ keepFormed: !!formed.length });
+    }
+
+    function finalizeStopMatching(opts) {
+        var keepFormed = !!(opts && opts.keepFormed);
+        var formed = formedTasksInSession();
+        closeVenuePicker();
+        closeStopConfirm();
+        clearAllTaskTimers();
+        if (keepFormed) {
+            formed.forEach(function(task) {
+                clearTaskTimers(task);
+                if (!appState.myGroups.some(function(g) { return g.id === task.id; })) {
+                    appState.myGroups.push(task);
+                }
+            });
+        }
+        appState.switchOn = false;
+        appState.tasks = [];
+        appState.activeTaskId = null;
+        setStage('idle');
+        if (keepFormed && formed.length) {
+            showToast(formed.length > 1
+                ? ('已结束寻找，' + formed.length + ' 个已成局已保留')
+                : ('已结束寻找，「' + activityById(formed[0].activityId).label + '」已保留到我的局'));
+        } else {
+            showToast('已结束全部撮合');
+        }
+    }
+
+    function clearTaskTimers(task) {
+        if (!task) return;
+        clearInterval(task.searchTimer);
+        clearTimeout(task.autoMatchTimer);
+        (task.confirmationTimers || []).forEach(clearTimeout);
+        task.searchTimer = null;
+        task.autoMatchTimer = null;
+        task.confirmationTimers = [];
+        clearVenueTimers(task);
+    }
+
+    function clearAllTaskTimers() {
+        appState.tasks.forEach(clearTaskTimers);
+    }
+
+    function formatTime(seconds) {
+        return String(Math.floor(seconds / 60)).padStart(2, '0') + ':' + String(seconds % 60).padStart(2, '0');
+    }
+
+    function buildFallbackGroup(activityId) {
+        var label = activityById(activityId).label;
+        var base = GROUPS.find(function(g) { return g.type === activityId; }) || GROUPS[0];
+        appState.groupIndex += 1;
+        return {
+            id: 'gen-' + activityId + '-' + appState.groupIndex,
+            type: activityId,
+            distance: Math.min(appState.distance, base.distance || 2.5),
+            title: base.type === activityId ? base.title : ('附近也有人想' + label),
+            summary: base.type === activityId
+                ? base.summary
+                : ('根据你选的「' + label + '」，<em>找到兴趣接近的一组伙伴</em>。'),
+            compat: (base.compat || []).slice(),
+            members: (base.members || []).map(function(m, i) {
+                return Object.assign({}, m, {
+                    id: m.id + '-' + activityId + '-' + appState.groupIndex + '-' + i
+                });
+            })
+        };
+    }
+
+    function chooseGroupForActivity(activityId) {
+        var allowed = GROUPS.filter(function(group) {
+            if (group.type !== activityId) return false;
+            // 距离仅作展示参考，demo 不因距离卡死某类型
+            return group.members.every(function(m) {
+                return appState.blockedUsers.indexOf(m.id) < 0;
+            });
+        });
+        if (!allowed.length) {
+            return buildFallbackGroup(activityId);
+        }
+        var group = allowed[appState.groupIndex % allowed.length];
+        appState.groupIndex += 1;
+        // 返回拷贝，避免多任务共用同一引用
+        return {
+            id: group.id + '-run-' + appState.groupIndex,
+            type: group.type,
+            distance: group.distance,
+            title: group.title,
+            summary: group.summary,
+            compat: group.compat.slice(),
+            members: group.members.map(function(m) { return Object.assign({}, m); })
+        };
+    }
+
+    function personCard(m, status) {
+        return '<div class="person">' +
+            '<div class="face" style="background:' + m.color + '">' + m.emoji + '</div>' +
+            '<div class="person-body">' +
+                '<div class="person-name">' + m.name + '<small>' + m.age + ' · ' + m.job + '</small></div>' +
+                '<div class="person-tags">' + m.tags.map(function(t) { return '<i>' + t + '</i>'; }).join('') + '</div>' +
+            '</div>' +
+            '<div class="person-side">' +
+                (status
+                    ? '<span class="score" style="color:' + (status === '已同意' ? 'var(--mint)' : 'var(--hint)') + '">' + status + '</span>'
+                    : '<span class="score">' + m.score + '</span>' + m.km) +
+            '</div></div>';
+    }
+
+    function acceptMatch() {
+        var task = getActiveTask();
+        if (!task || !task.group) return;
+        task.confirmedCount = 1;
+        task.status = 'waiting';
+        task.confirmationTimers.forEach(clearTimeout);
+        task.confirmationTimers = [];
+        renderWaitingForTask(task);
+        setStage('waiting');
+        task.confirmationTimers.push(setTimeout(function() {
+            if (!getTask(task.id) || task.status !== 'waiting') return;
+            task.confirmedCount = 2;
+            if (appState.activeTaskId === task.id) renderWaitingForTask(task);
+            updateTaskRail();
+            showToast(task.group.members[0].name + ' 也愿意参加「' + activityById(task.activityId).label + '」');
+        }, 1700));
+        task.confirmationTimers.push(setTimeout(function() {
+            if (!getTask(task.id)) return;
+            task.confirmedCount = 3;
+            task.status = 'ready';
+            if (appState.activeTaskId === task.id) {
+                renderWaitingForTask(task);
+                setStage('waiting');
+            } else {
+                updateTaskRail();
+            }
+            showToast('「' + activityById(task.activityId).label + '」已有 3 人同意，组局成立');
+            if (navigator.vibrate) navigator.vibrate([50, 60, 80]);
+        }, 3500));
+    }
+
+    function renderWaitingForTask(task) {
+        var group = task.group;
+        if (!group) return;
+        var total = group.members.length + 1;
+        var count = task.confirmedCount;
+        $('confirmProgress').innerHTML = Array.from({ length: total }).map(function(_, i) {
+            return '<i class="' + (i < count ? 'on' : '') + '"></i>';
+        }).join('');
+
+        var roleLabel = appState.profile.occupation || appState.profile.occupation_category || '我';
+        var me = {
+            name: '我', age: 26, emoji: '🙂',
+            color: 'linear-gradient(145deg,#6b6230,#3a3518)',
+            job: roleLabel,
+            tags: interestTags(appState.profile).slice(0, 2).concat(['已提交意向']).slice(0, 3),
+            score: 100, km: '0km'
+        };
+        $('waitingMembers').innerHTML =
+            personCard(me, '已同意') +
+            group.members.map(function(m, i) {
+                return personCard(m, i < count - 1 ? '已同意' : '待确认');
+            }).join('');
+
+        var ready = task.status === 'ready' || count >= 3;
+        if (ready) task.status = 'ready';
+        var label = activityById(task.activityId).label;
+        $('waitIcon').textContent = ready ? '✓' : '⏳';
+        $('waitingTitle').textContent = ready ? ('「' + label + '」组局成立') : ('等待「' + label + '」确认');
+        $('waitingCopy').textContent = ready
+            ? '已有 ' + count + ' 人愿意参加，可以进入群聊'
+            : '你已同意参加，超过 2 人同意即可成局';
+        $('waitNote').style.display = ready ? 'none' : 'block';
+        $('readyBanner').innerHTML = ready
+            ? '<div class="ready-banner">已达到成局人数，群聊已创建</div>'
+            : '';
+        $('readyActions').innerHTML = ready
+            ? '<button class="btn mint full" id="enterChatBtn" type="button">进入群聊</button>'
+            : '';
+        if (ready) $('enterChatBtn').addEventListener('click', enterChat);
+        updateTaskRail();
+        updateRematchLabels();
+        updateStopSessionBtn();
+    }
+
+    function enterChat() {
+        var task = getActiveTask();
+        if (!task || !task.group) return;
+        ensureVenueState(task);
+        task.openedChat = true;
+        var activity = activityById(task.activityId);
+        $('chatTitle').textContent = '今晚' + activity.label + '组';
+        renderChat();
+        setStage('chat');
+        if (!isMyGroupOnly(task)) schedulePeerVenueVotes(task);
+    }
+
+    function memberCount(task) {
+        return ((task.group && task.group.members) ? task.group.members.length : 0) + 1;
+    }
+
+    function ensureVenueState(task) {
+        if (task.venue) return task.venue;
+        var reco = (VENUE_RECOS[task.activityId] || VENUE_RECOS.drink).map(function(v) {
+            return Object.assign({ source: 'ai' }, v);
+        });
+        task.venue = {
+            status: 'voting',
+            places: reco,
+            votes: {},
+            myVote: null,
+            lockedPlaceId: null,
+            timers: []
+        };
+        reco.forEach(function(p) { task.venue.votes[p.id] = []; });
+        return task.venue;
+    }
+
+    function placeById(task, id) {
+        return (task.venue.places || []).find(function(p) { return p.id === id; }) || null;
+    }
+
+    function voteCount(task, placeId) {
+        return (task.venue.votes[placeId] || []).length;
+    }
+
+    function leadingPlace(task) {
+        var best = null;
+        var bestCount = -1;
+        (task.venue.places || []).forEach(function(p) {
+            var c = voteCount(task, p.id);
+            if (c > bestCount) {
+                best = p;
+                bestCount = c;
+            }
+        });
+        return best && bestCount > 0 ? best : null;
+    }
+
+    function venueCardHtml(task) {
+        var v = task.venue;
+        if (!v) return '';
+        if (v.status === 'locked' && v.lockedPlaceId) {
+            var won = placeById(task, v.lockedPlaceId);
+            return '<button class="venue-card locked" type="button">' +
+                '<div class="venue-card-top"><span class="venue-card-kicker">地点已定</span><span class="venue-card-cta">可更改 ›</span></div>' +
+                '<strong>' + escapeHtml(won ? won.name : '已选定') + '</strong>' +
+                '<p>' + (won ? (won.km + 'km · ') : '') + '群主已选定，点开可改选</p>' +
+                '</button>';
+        }
+        var lead = leadingPlace(task);
+        var tip = lead
+            ? ('当前领先：' + lead.name + ' · ' + voteCount(task, lead.id) + ' 票 · 等你最终选定')
+            : ('AI 已推荐 ' + v.places.length + ' 个附近地点，大家投票，你来拍板');
+        return '<button class="venue-card" type="button">' +
+            '<div class="venue-card-top"><span class="venue-card-kicker">选聚会地点</span><span class="venue-card-cta">去投票 ›</span></div>' +
+            '<strong>还没定地点</strong>' +
+            '<p>' + escapeHtml(tip) + '</p>' +
+            '</button>';
+    }
+
+    function escapeHtml(str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    function renderChat() {
+        var task = getActiveTask();
+        if (!task || !task.group) return;
+        ensureVenueState(task);
+        var m0 = task.group.members[0];
+        var m1 = task.group.members[1] || task.group.members[0];
+        var locked = task.venue.status === 'locked' && task.venue.lockedPlaceId;
+        var won = locked ? placeById(task, task.venue.lockedPlaceId) : null;
+        $('chatSub').textContent = won
+            ? ('地点：' + won.name)
+            : '已成局 · 待选地点';
+        $('chatList').innerHTML =
+            '<div class="sys">已有 ' + memberCount(task) + ' 人同意参加，群聊已自动创建</div>' +
+            venueCardHtml(task) +
+            '<div class="msg"><div class="av">' + m0.emoji + '</div><div class="bubble">嗨！大家今晚几点方便？</div></div>' +
+            '<div class="msg"><div class="av">' + m1.emoji + '</div><div class="bubble">我 7 点以后都可以，附近有推荐的地方吗？</div></div>' +
+            (won
+                ? '<div class="sys">地点已定：' + escapeHtml(won.name) + ' · 群主可随时改选</div>'
+                : '<div class="sys">点上方卡片选地点 · 投票仅供参考，最终由群主选定</div>');
+        $('chatList').scrollTop = 0;
+    }
+
+    function openVenuePicker() {
+        var task = getActiveTask();
+        if (!task || !task.group) return;
+        ensureVenueState(task);
+        $('venueSearchInput').value = '';
+        exitVenueSearchMode();
+        renderVenuePicker();
+        $('venueOverlay').classList.add('show');
+    }
+
+    function enterVenueSearchMode() {
+        var sheet = document.querySelector('.venue-sheet');
+        if (sheet) sheet.classList.add('search-mode');
+    }
+
+    function exitVenueSearchMode() {
+        var sheet = document.querySelector('.venue-sheet');
+        if (sheet) sheet.classList.remove('search-mode');
+        $('venueSearchResults').innerHTML = '';
+        $('venueSearchCount').textContent = '搜索结果';
+    }
+
+    function closeVenuePicker() {
+        $('venueOverlay').classList.remove('show');
+        if (appState.stage === 'chat') renderChat();
+    }
+
+    function renderVenuePicker() {
+        var task = getActiveTask();
+        if (!task || !task.venue) return;
+        var v = task.venue;
+        var total = memberCount(task);
+        var locked = v.status === 'locked';
+        var lead = leadingPlace(task);
+        $('venueListLabel').textContent = locked ? '已选定 · 仍可改选其他地点' : '候选地点 · 大家投票，你来拍板';
+        $('venueList').innerHTML = v.places.map(function(p) {
+            var count = voteCount(task, p.id);
+            var isMine = v.myVote === p.id;
+            var isWinner = locked && v.lockedPlaceId === p.id;
+            var isLead = !locked && lead && lead.id === p.id && count > 0;
+            var cls = 'venue-item' + (isWinner ? ' winner' : (isMine ? ' voted' : (isLead ? ' leading' : '')));
+            var tags = (p.tags || []).map(function(t) {
+                return '<span class="venue-tag">' + escapeHtml(t) + '</span>';
+            }).join('') + (p.source === 'ai' ? '<span class="venue-tag ai">AI 推荐</span>' : '<span class="venue-tag">搜索加入</span>');
+            var voteBtn = isMine
+                ? '<button class="btn mint vote-btn" type="button" data-vote="' + p.id + '">已投 · 可改</button>'
+                : '<button class="btn ghost vote-btn" type="button" data-vote="' + p.id + '">投它</button>';
+            var decideBtn = isWinner
+                ? '<button class="btn mint" type="button" disabled>当前选定</button>'
+                : '<button class="btn primary decide-btn" type="button" data-decide="' + p.id + '">' +
+                    (locked ? '改选这里' : '就定这里') + '</button>';
+            return '<div class="' + cls + '" data-place="' + p.id + '">' +
+                '<div class="venue-item-main">' +
+                    '<div class="venue-item-copy">' +
+                        '<strong>' + escapeHtml(p.name) + '</strong>' +
+                        '<p>' + escapeHtml(p.km + 'km · ' + p.meta) + (p.reason ? ' · ' + escapeHtml(p.reason) : '') + '</p>' +
+                        '<div class="venue-tags">' + tags + '</div>' +
+                    '</div>' +
+                    '<div class="venue-votes"><b>' + count + '</b><span>票</span></div>' +
+                '</div>' +
+                '<div class="venue-item-actions">' + voteBtn + decideBtn + '</div>' +
+            '</div>';
+        }).join('');
+        $('venueList').querySelectorAll('.vote-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                castMyVote(btn.getAttribute('data-vote'));
+            });
+        });
+        $('venueList').querySelectorAll('.decide-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                confirmVenueAsHost(btn.getAttribute('data-decide'));
+            });
+        });
+
+        var foot = $('venueFootStatus');
+        var primary = $('venuePrimaryBtn');
+        if (locked) {
+            var won = placeById(task, v.lockedPlaceId);
+            foot.textContent = '当前「' + (won ? won.name : '') + '」· 点「改选这里」可更换';
+            foot.classList.add('ok');
+            primary.hidden = false;
+            primary.textContent = '回到群聊';
+        } else {
+            foot.classList.remove('ok');
+            primary.hidden = true;
+            if (lead) {
+                foot.textContent = '「' + lead.name + '」暂领先（' + voteCount(task, lead.id) + '/' + total + '）· 点「就定这里」由你拍板';
+            } else {
+                foot.textContent = '共 ' + total + ' 人可投票 · 票数仅供参考，最终由你选定';
+            }
+        }
+    }
+
+    function castMyVote(placeId) {
+        var task = getActiveTask();
+        if (!task || !task.venue) return;
+        var v = task.venue;
+        if (!placeById(task, placeId)) return;
+        Object.keys(v.votes).forEach(function(pid) {
+            v.votes[pid] = (v.votes[pid] || []).filter(function(uid) { return uid !== 'me'; });
+        });
+        if (!v.votes[placeId]) v.votes[placeId] = [];
+        v.votes[placeId].push('me');
+        v.myVote = placeId;
+        renderVenuePicker();
+        if (appState.stage === 'chat') renderChat();
+        var p = placeById(task, placeId);
+        showToast('已投票给「' + (p ? p.name : '') + '」');
+    }
+
+    function castPeerVote(task, memberId, placeId) {
+        if (!task || !task.venue) return;
+        var v = task.venue;
+        if (!placeById(task, placeId)) return;
+        Object.keys(v.votes).forEach(function(pid) {
+            v.votes[pid] = (v.votes[pid] || []).filter(function(uid) { return uid !== memberId; });
+        });
+        if (!v.votes[placeId]) v.votes[placeId] = [];
+        v.votes[placeId].push(memberId);
+        if ($('venueOverlay').classList.contains('show')) renderVenuePicker();
+        if (appState.stage === 'chat' && appState.activeTaskId === task.id) renderChat();
+    }
+
+    function confirmVenueAsHost(placeId) {
+        var task = getActiveTask();
+        if (!task || !task.venue) return;
+        var place = placeById(task, placeId);
+        if (!place) return;
+        var changing = task.venue.status === 'locked' && task.venue.lockedPlaceId !== placeId;
+        task.venue.status = 'locked';
+        task.venue.lockedPlaceId = placeId;
+        clearVenueTimers(task);
+        renderVenuePicker();
+        if (appState.stage === 'chat') renderChat();
+        showToast(changing ? ('已改选为「' + place.name + '」') : ('你已选定「' + place.name + '」'));
+    }
+
+    function clearVenueTimers(task) {
+        if (!task.venue || !task.venue.timers) return;
+        task.venue.timers.forEach(clearTimeout);
+        task.venue.timers = [];
+    }
+
+    function schedulePeerVenueVotes(task) {
+        ensureVenueState(task);
+        clearVenueTimers(task);
+        if (task.venue.status === 'locked') return;
+        var members = (task.group && task.group.members) || [];
+        var places = task.venue.places;
+        if (!members.length || !places.length) return;
+        // 同伴陆续投票（仅投票，不锁定）；多数倾向第一家 AI 推荐，供你参考后拍板
+        members.forEach(function(m, i) {
+            var delay = 2200 + i * 1800;
+            var preferFirst = i === 0 || i === 2;
+            var placeId = preferFirst ? places[0].id : (places[1] ? places[1].id : places[0].id);
+            task.venue.timers.push(setTimeout(function() {
+                if (!getTask(task.id) || task.venue.status === 'locked') return;
+                castPeerVote(task, m.id, placeId);
+                var place = placeById(task, placeId);
+                if (appState.activeTaskId === task.id && place) {
+                    showToast(m.name + ' 投了「' + place.name + '」');
+                }
+            }, delay));
+        });
+    }
+
+    function runVenueSearch() {
+        var task = getActiveTask();
+        if (!task || !task.venue) {
+            showToast('请先进入群聊');
+            return;
+        }
+        var q = ($('venueSearchInput').value || '').trim();
+        if (!q) {
+            showToast('输入地点关键词再搜');
+            return;
+        }
+        var hits = VENUE_SEARCH_POOL.filter(function(p) {
+            return (p.name + p.meta + (p.tags || []).join('')).indexOf(q) >= 0;
+        });
+        // Demo：结果少时扩成一批，方便验证长列表滚动
+        if (hits.length < 8) {
+            hits = VENUE_SEARCH_POOL.map(function(p, i) {
+                return Object.assign({}, p, {
+                    id: 's-q-' + Date.now() + '-' + i,
+                    name: i === 0 ? q : (q + ' · ' + p.name),
+                    km: Number((1.2 + i * 0.18).toFixed(1)),
+                    meta: p.meta + ' · 约 ' + (1.2 + i * 0.18).toFixed(1) + 'km'
+                });
+            });
+        }
+        hits.sort(function(a, b) { return (a.km || 99) - (b.km || 99); });
+        enterVenueSearchMode();
+        $('venueSearchCount').textContent = '找到 ' + hits.length + ' 个结果 · 上滑查看';
+        var box = $('venueSearchResults');
+        box.innerHTML = hits.map(function(p) {
+            var already = !!placeById(task, p.id) || task.venue.places.some(function(x) { return x.name === p.name; });
+            return '<div class="venue-search-hit">' +
+                '<div class="venue-hit-copy"><strong>' + escapeHtml(p.name) + '</strong><p>' +
+                escapeHtml((p.km != null ? p.km + 'km · ' : '') + p.meta) + '</p></div>' +
+                (already
+                    ? '<button class="btn ghost" type="button" disabled>已加入</button>'
+                    : '<button class="btn mint add-place-btn" type="button">加入</button>') +
+                '</div>';
+        }).join('');
+        box.querySelectorAll('.add-place-btn').forEach(function(btn, idx) {
+            btn.addEventListener('click', function() {
+                addSearchedPlace(hits[idx]);
+            });
+        });
+        box.scrollTop = 0;
+    }
+
+    function addSearchedPlace(place) {
+        var task = getActiveTask();
+        if (!task || !task.venue) return;
+        if (task.venue.places.some(function(p) { return p.id === place.id || p.name === place.name; })) {
+            showToast('已在候选列表里');
+            return;
+        }
+        var item = Object.assign({ source: 'search', reason: '由搜索加入' }, place);
+        task.venue.places.push(item);
+        task.venue.votes[item.id] = [];
+        $('venueSearchInput').value = '';
+        exitVenueSearchMode();
+        renderVenuePicker();
+        showToast('已加入「' + item.name + '」，可以投票了');
+    }
+
+    function sendMessage(e) {
+        e.preventDefault();
+        var input = $('chatMessage');
+        var text = input.value.trim();
+        if (!text) return;
+        var row = document.createElement('div');
+        row.className = 'msg me';
+        row.innerHTML = '<div class="av">🙂</div><div class="bubble"></div>';
+        row.querySelector('.bubble').textContent = text;
+        $('chatList').appendChild(row);
+        input.value = '';
+        $('chatList').scrollTop = $('chatList').scrollHeight;
+    }
+
+    function openReject() {
+        var task = getActiveTask();
+        var group = task && task.group;
+        if (!group) return;
+        $('rejectTitle').textContent = '为什么重新匹配「' + activityById(task.activityId).label + '」？';
+        $('blockMembers').innerHTML = group.members.map(function(m) {
+            return '<label><input type="checkbox" value="' + m.id + '"> ' + m.name + '</label>';
+        }).join('');
+        document.querySelectorAll('input[name="rejectReason"]').forEach(function(input) { input.checked = false; });
+        $('blockMembers').classList.remove('show');
+        $('rejectOverlay').classList.add('show');
+    }
+    function closeReject() { $('rejectOverlay').classList.remove('show'); }
+
+    function removeTask(taskId) {
+        var task = getTask(taskId);
+        if (!task) return;
+        clearTaskTimers(task);
+        appState.tasks = appState.tasks.filter(function(t) { return t.id !== taskId; });
+        if (appState.activeTaskId === taskId) {
+            appState.activeTaskId = appState.tasks[0] ? appState.tasks[0].id : null;
+        }
+    }
+
+    function confirmReject() {
+        var task = getActiveTask();
+        if (!task) {
+            closeReject();
+            returnToIdle('已返回待匹配，轻触星芒再开始');
+            return;
+        }
+        var chosen = document.querySelector('input[name="rejectReason"]:checked');
+        var label = activityById(task.activityId).label;
+        if (chosen && chosen.value === 'member') {
+            var ids = Array.from($('blockMembers').querySelectorAll('input:checked')).map(function(input) { return input.value; });
+            if (ids.length) {
+                appState.blockedUsers = appState.blockedUsers.concat(ids.filter(function(id) {
+                    return appState.blockedUsers.indexOf(id) < 0;
+                }));
+            }
+        } else if (chosen && chosen.value === 'type') {
+            // 关闭该活动类型：结束任务，不再重新匹配
+            appState.selectedActivities = appState.selectedActivities.filter(function(id) { return id !== task.activityId; });
+            renderActivityChips();
+            closeReject();
+            removeTask(task.id);
+            if (!appState.tasks.length) {
+                appState.switchOn = false;
+                setStage('idle');
+                showToast('已关闭「' + label + '」，可改配置后轻触星芒再匹配');
+            } else {
+                syncViewToActiveTask();
+                showToast('已关闭「' + label + '」，其他任务继续');
+            }
+            return;
+        }
+        // 重新匹配：记录原因后，当前类型立刻再次进入寻找
+        closeReject();
+        restartTaskAsSearching(task);
+        showToast(chosen
+            ? '已记录反馈，正在重新匹配「' + label + '」'
+            : '正在重新匹配「' + label + '」');
+    }
+
+    function activityById(id) {
+        return ACTIVITIES.find(function(a) { return a.id === id; }) || { label: '活动' };
+    }
+
+    function showToast(message) {
+        $('toast').textContent = message;
+        $('toast').classList.add('show');
+        clearTimeout(showToast.timer);
+        showToast.timer = setTimeout(function() { $('toast').classList.remove('show'); }, 2200);
+    }
+
+    init();
 </script>
 </body>
 </html>

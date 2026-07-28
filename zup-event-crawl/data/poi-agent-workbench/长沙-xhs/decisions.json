@@ -1,107 +1,2489 @@
 {
   "city": "长沙",
   "source": "xiaohongshu",
-  "decided_at": "2026-07-14T01:03:09.365Z",
-  "updated_at": "2026-07-14T01:03:09.365Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-07-26T13:26:15.926Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "42935c4418ac",
+      "group_id": "a57afd3523b8",
       "event_uids": [
-        "xiaohongshu:6a4f72990000000006022195:08_0"
-      ],
-      "action": "match",
-      "poi_id": "4826726998958486427",
-      "poi_title": "长沙万象城",
-      "poi_address": "湖南省长沙市岳麓区桐梓坡路11号(六沟垅地铁站6号口步行220米)",
-      "reason": "活动地址岳麓区长沙万象城与主体一致"
-    },
-    {
-      "group_id": "f93d4c6c63bd",
-      "event_uids": [
-        "xiaohongshu:6a4f72990000000006022195:09_0"
-      ],
-      "action": "match",
-      "poi_id": "17968455478221227721",
-      "poi_title": "万家丽国际购物广场",
-      "poi_address": "湖南省长沙市芙蓉区万家丽中路99号",
-      "reason": "万家丽购物中心即万家丽国际购物广场"
-    },
-    {
-      "group_id": "5aa04c387ec3",
-      "event_uids": [
-        "xiaohongshu:6a4f72990000000006022195:12_0"
-      ],
-      "action": "match",
-      "poi_id": "5517266085405581735",
-      "poi_title": "TX长沙年轻力中心",
-      "poi_address": "湖南省长沙市芙蓉区黄兴中路188号",
-      "reason": "L1层活动位于TX长沙年轻力中心场内"
-    },
-    {
-      "group_id": "b675d12dbfec",
-      "event_uids": [
-        "xiaohongshu:6a4f72990000000006022195:13_0"
-      ],
-      "action": "match",
-      "poi_id": "5517266085405581735",
-      "poi_title": "TX长沙年轻力中心",
-      "poi_address": "湖南省长沙市芙蓉区黄兴中路188号",
-      "reason": "BITSPACE回旋红梯位于TX长沙年轻力中心场内"
-    },
-    {
-      "group_id": "93a1eeeadd11",
-      "event_uids": [
-        "xiaohongshu:6a461ae9000000000702d491:02_0"
+        "xiaohongshu:6a64f1d2000000000e03417d:01_0"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "喜盈门范城"
+        "233艺术社区",
+        "华驿飞碟营地233美术馆"
+      ],
+      "poi_id": "10067753097165171663",
+      "poi_title": "233艺术社区",
+      "poi_address": "湖南省长沙市雨花区曙光中路华驿飞碟营地2号栋主楼",
+      "latitude": 28.175283,
+      "longitude": 112.999067,
+      "candidates": [
+        {
+          "poi_id": "10067753097165171663",
+          "title": "233艺术社区",
+          "address": "湖南省长沙市雨花区曙光中路华驿飞碟营地2号栋主楼",
+          "category": "房产小区:住宅区:社区中心",
+          "latitude": 28.175283,
+          "longitude": 112.999067
+        },
+        {
+          "poi_id": "16683322329064462925",
+          "title": "华驿·飞碟营地",
+          "address": "湖南省长沙市雨花区左家塘街道曙光中路232号",
+          "category": "娱乐休闲:户外活动:其它户外活动",
+          "latitude": 28.175555,
+          "longitude": 112.999857
+        },
+        {
+          "poi_id": "2155295103214390390",
+          "title": "曙光茶厂及湖南米粉博览馆(东塘店)",
+          "address": "湖南省长沙市雨花区左家塘街道曙光中路华驿飞碟营地1号栋",
+          "category": "美食:小吃快餐",
+          "latitude": 28.175571,
+          "longitude": 112.999473
+        },
+        {
+          "poi_id": "10369832346100603258",
+          "title": "携壶於客Hook Shisha Lounge",
+          "address": "湖南省长沙市雨花区左家塘街道曙光中路华驿飞碟营地三号栋",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 28.175352,
+          "longitude": 112.99942
+        },
+        {
+          "poi_id": "3047281785635716201",
+          "title": "茶守艺(曙光茶厂店)",
+          "address": "湖南省长沙市雨花区左家塘街道曙光中路华驿飞碟营地1号栋",
+          "category": "美食:冷饮店",
+          "latitude": 28.175604,
+          "longitude": 112.999399
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "喜盈门·范城雨花区圭塘街道，北广场啤酒节市集",
-      "poi_id": "3435718022985653119",
-      "poi_title": "喜盈门·范城",
-      "poi_address": "湖南省长沙市雨花区圭塘街道圭塘河绿道盒马鲜生(喜盈门店)",
-      "latitude": 28.133784,
-      "longitude": 113.034469
+      "reason": "雨花区华驿飞碟营地233艺术社区与活动地址一致"
     },
     {
-      "group_id": "7b7261a8a6e3",
+      "group_id": "2ed5492cceda",
       "event_uids": [
-        "xiaohongshu:6a461ae9000000000702d491:08_0"
+        "xiaohongshu:6a64f1d2000000000e03417d:02_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "梅溪湖艺术博物馆"
+      ],
+      "poi_id": "1150203293692913917",
+      "poi_title": "梅溪湖艺术博物馆",
+      "poi_address": "湖南省长沙市岳麓区梅溪湖国际文化艺术中心",
+      "latitude": 28.196517,
+      "longitude": 112.906348,
+      "candidates": [
+        {
+          "poi_id": "1150203293692913917",
+          "title": "梅溪湖艺术博物馆",
+          "address": "湖南省长沙市岳麓区梅溪湖国际文化艺术中心",
+          "category": "文化场馆:博物馆",
+          "latitude": 28.196517,
+          "longitude": 112.906348
+        },
+        {
+          "poi_id": "3962035867104086356",
+          "title": "梅溪湖国际文化艺术中心-大剧院",
+          "address": "湖南省长沙市岳麓区天顶街道环湖路梅溪湖艺术博物馆",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 28.196154,
+          "longitude": 112.906838
+        },
+        {
+          "poi_id": "3667600450086434892",
+          "title": "长沙梅溪湖国际文化艺术中心艺术馆-3号门",
+          "address": "湖南省长沙市岳麓区天顶街道梅溪湖路梅溪湖艺术博物馆",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 28.196511,
+          "longitude": 112.905933
+        },
+        {
+          "poi_id": "18042003536922236306",
+          "title": "7:29Coffee lab",
+          "address": "湖南省长沙市岳麓区天顶街道环湖路1200号梅溪湖国际文化艺术中心大剧场一楼101(剧院正大门右边靠博物馆出口)",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 28.196249,
+          "longitude": 112.9075
+        },
+        {
+          "poi_id": "7996319062910462023",
+          "title": "湘江壹号城市展厅",
+          "address": "湖南省长沙市开福区秀峰街道创远西路与湘江北路交汇处湖南省谭国斌当代艺术博物馆附近",
+          "category": "房产小区:房产小区附属",
+          "latitude": 28.292655,
+          "longitude": 112.958479
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "岳麓区梅溪湖艺术博物馆主体一致，仅差楼层展厅"
+    },
+    {
+      "group_id": "60c1fec8ebd6",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:03_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "美仑美术馆",
+        "东二环一段622号"
+      ],
+      "poi_id": "10061485927401424121",
+      "poi_title": "长沙美仑美术馆",
+      "poi_address": "湖南省长沙市雨花区高桥街道火焰社区富通大市场加5-7号",
+      "latitude": 28.17513,
+      "longitude": 113.017527,
+      "candidates": [
+        {
+          "poi_id": "10061485927401424121",
+          "title": "长沙美仑美术馆",
+          "address": "湖南省长沙市雨花区高桥街道火焰社区富通大市场加5-7号",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.17513,
+          "longitude": 113.017527
+        },
+        {
+          "poi_id": "17712498324131566030",
+          "title": "再辉不锈钢制品厂",
+          "address": "湖南省长沙市雨花区美仑美术馆西侧70米",
+          "category": "购物:家具家居建材:建材",
+          "latitude": 28.175571,
+          "longitude": 113.01647
+        },
+        {
+          "poi_id": "18118108553022853227",
+          "title": "寻美酒店地下停车场",
+          "address": "湖南省长沙市雨花区高桥街道东二环辅路长沙美仑美术馆",
+          "category": "汽车:停车场",
+          "latitude": 28.174947,
+          "longitude": 113.01744
+        },
+        {
+          "poi_id": "11894318914619011867",
+          "title": "湖南美术出版社",
+          "address": "湖南省长沙市雨花区东二环一段622号",
+          "category": "机构团体:传媒机构",
+          "latitude": 28.17498,
+          "longitude": 113.01713
+        },
+        {
+          "poi_id": "13055944986559397152",
+          "title": "丰巢快递柜(湖南美术出版社大门入口处丰巢柜)",
+          "address": "湖南省长沙市雨花区东二环一段622号",
+          "category": "生活服务:邮局速递:速递",
+          "latitude": 28.175133,
+          "longitude": 113.017093
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "雨花区长沙美仑美术馆与东二环一段地址一致"
+    },
+    {
+      "group_id": "d420d11055d1",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:04_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "INPark城市浮岛",
+        "The Dock Gallery"
+      ],
+      "poi_id": "9653052114743118605",
+      "poi_title": "INPark城市浮岛",
+      "poi_address": "湖南省长沙市岳麓区西湖街道枫林一路720号咸嘉湖景区5号地下车库及配套商业",
+      "latitude": 28.203083,
+      "longitude": 112.940865,
+      "candidates": [
+        {
+          "poi_id": "9653052114743118605",
+          "title": "INPark城市浮岛",
+          "address": "湖南省长沙市岳麓区西湖街道枫林一路720号咸嘉湖景区5号地下车库及配套商业",
+          "category": "购物:综合商场",
+          "latitude": 28.203083,
+          "longitude": 112.940865
+        },
+        {
+          "poi_id": "13029817881269784490",
+          "title": "The more不止精酿酒馆",
+          "address": "湖南省长沙市雨花区井湾子街道德思勤城市广场A8栋1049(德思勤夜宵街二楼,蜜雪冰城楼上)",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 28.112557,
+          "longitude": 113.009003
+        },
+        {
+          "poi_id": "8728328285503456347",
+          "title": "THE COLORIST调色师(长沙雨花德思勤城市广场店)",
+          "address": "湖南省长沙市雨花区井湾子街道湘府中路18号德思勤城市广场四季汇负一层B1-15/16",
+          "category": "购物:化妆品",
+          "latitude": 28.111492,
+          "longitude": 113.013143
+        },
+        {
+          "poi_id": "15913487559303356075",
+          "title": "THE NORTH FACE(德思勤城市广场一期店)",
+          "address": "湖南省长沙市雨花区湘府中路18号德思勤四季汇F1",
+          "category": "购物:服饰鞋包",
+          "latitude": 28.111767,
+          "longitude": 113.012874
+        },
+        {
+          "poi_id": "6118713624617704491",
+          "title": "The Green Party(方略国际金融中心店)",
+          "address": "湖南省长沙市长沙县星沙街道螺丝塘社区开元路与东四路交汇处东北角方略城市广场项目二期裙楼商业B1层B1-17+18铺",
+          "category": "购物:礼品",
+          "latitude": 28.246077,
+          "longitude": 113.103729
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "岳麓区西湖公园INPark城市浮岛与活动地址主体一致，画廊为商场内空间"
+    },
+    {
+      "group_id": "81094c825f39",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:05_0"
       ],
       "action": "match",
       "search_keywords_tried": [
         "TX长沙年轻力中心"
       ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "TX长沙年轻力中心芙蓉区黄兴中路188号",
       "poi_id": "5517266085405581735",
       "poi_title": "TX长沙年轻力中心",
       "poi_address": "湖南省长沙市芙蓉区黄兴中路188号",
       "latitude": 28.199191,
-      "longitude": 112.976695
+      "longitude": 112.976695,
+      "candidates": [
+        {
+          "poi_id": "5517266085405581735",
+          "title": "TX长沙年轻力中心",
+          "address": "湖南省长沙市芙蓉区黄兴中路188号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 28.199191,
+          "longitude": 112.976695
+        },
+        {
+          "poi_id": "2387696802407107780",
+          "title": "OUTCiRCS(TX长沙年轻力中心店)",
+          "address": "湖南省长沙市芙蓉区黄兴中路TX长沙年轻力中心",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 28.199319,
+          "longitude": 112.976646
+        },
+        {
+          "poi_id": "5900096678279481549",
+          "title": "喜茶(长沙TX年轻力中心店)",
+          "address": "湖南省长沙市芙蓉区定王台街道黄兴中路198号乐和城L1003b号铺",
+          "category": "美食:冷饮店",
+          "latitude": 28.198975,
+          "longitude": 112.97645
+        },
+        {
+          "poi_id": "11155727455679797008",
+          "title": "IMXS(TX长沙年轻力中心店)",
+          "address": "湖南省长沙市芙蓉区黄兴中路188号乐和城一层",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 28.198332,
+          "longitude": 112.976688
+        },
+        {
+          "poi_id": "15612340039098884460",
+          "title": "OLLIEWICH(长沙TX年轻力中心店)",
+          "address": "湖南省长沙市芙蓉区黄兴中路188号长沙TX年轻力中心L217",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 28.199697,
+          "longitude": 112.976661
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "芙蓉区TX长沙年轻力中心主体一致，仅差楼层铺位"
     },
     {
-      "group_id": "d8656783fee8",
+      "group_id": "ff27025762cc",
       "event_uids": [
-        "xiaohongshu:6a461ae9000000000702d491:12_0"
+        "xiaohongshu:6a64f1d2000000000e03417d:06_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "隆平水稻博物馆"
+      ],
+      "poi_id": "15039281063625151302",
+      "poi_title": "隆平水稻博物馆",
+      "poi_address": "湖南省长沙市芙蓉区东岸建材市场正对面",
+      "latitude": 28.189955,
+      "longitude": 113.059916,
+      "candidates": [
+        {
+          "poi_id": "15039281063625151302",
+          "title": "隆平水稻博物馆",
+          "address": "湖南省长沙市芙蓉区东岸建材市场正对面",
+          "category": "文化场馆:博物馆",
+          "latitude": 28.189955,
+          "longitude": 113.059916
+        },
+        {
+          "poi_id": "8595832004522786526",
+          "title": "隆平水稻博物馆-《宫西达也的绘本世界》艺术大展",
+          "address": "湖南省长沙市芙蓉区东岸街道人民东路668号隆平水稻博物馆一层临展厅",
+          "category": "娱乐休闲:其它娱乐休闲",
+          "latitude": 28.189212,
+          "longitude": 113.058458
+        },
+        {
+          "poi_id": "9653052114743118605",
+          "title": "INPark城市浮岛",
+          "address": "湖南省长沙市岳麓区西湖街道枫林一路720号咸嘉湖景区5号地下车库及配套商业",
+          "category": "购物:综合商场",
+          "latitude": 28.203083,
+          "longitude": 112.940865
+        },
+        {
+          "poi_id": "2028960024254528500",
+          "title": "龙湖长沙芙蓉天街",
+          "address": "湖南省长沙市芙蓉区人民东路中交中央公园D5区内",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 28.190538,
+          "longitude": 113.073689
+        },
+        {
+          "poi_id": "9466067251331859729",
+          "title": "星沙万象汇",
+          "address": "湖南省长沙市长沙县开元中路星沙大道178号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 28.249055,
+          "longitude": 113.086794
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "芙蓉区隆平水稻博物馆与临展厅主体一致"
+    },
+    {
+      "group_id": "ee3c824a723d",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:06_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "龙湖芙蓉天街",
+        "龙湖长沙芙蓉天街"
+      ],
+      "poi_id": "2028960024254528500",
+      "poi_title": "龙湖长沙芙蓉天街",
+      "poi_address": "湖南省长沙市芙蓉区人民东路中交中央公园D5区内",
+      "latitude": 28.190538,
+      "longitude": 113.073689,
+      "candidates": [
+        {
+          "poi_id": "2028960024254528500",
+          "title": "龙湖长沙芙蓉天街",
+          "address": "湖南省长沙市芙蓉区人民东路中交中央公园D5区内",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 28.190538,
+          "longitude": 113.073689
+        },
+        {
+          "poi_id": "8788316783539687500",
+          "title": "理想汽车长沙龙湖芙蓉天街零售展厅",
+          "address": "湖南省长沙市芙蓉区人民东路龙湖芙蓉天街一楼中庭",
+          "category": "汽车:汽车销售",
+          "latitude": 28.190463,
+          "longitude": 113.073107
+        },
+        {
+          "poi_id": "9653052114743118605",
+          "title": "INPark城市浮岛",
+          "address": "湖南省长沙市岳麓区西湖街道枫林一路720号咸嘉湖景区5号地下车库及配套商业",
+          "category": "购物:综合商场",
+          "latitude": 28.203083,
+          "longitude": 112.940865
+        },
+        {
+          "poi_id": "15039281063625151302",
+          "title": "隆平水稻博物馆",
+          "address": "湖南省长沙市芙蓉区东岸建材市场正对面",
+          "category": "文化场馆:博物馆",
+          "latitude": 28.189955,
+          "longitude": 113.059916
+        },
+        {
+          "poi_id": "9466067251331859729",
+          "title": "星沙万象汇",
+          "address": "湖南省长沙市长沙县开元中路星沙大道178号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 28.249055,
+          "longitude": 113.086794
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "芙蓉区龙湖芙蓉天街主体一致，仅差楼层中庭"
+    },
+    {
+      "group_id": "68c9a3df789b",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:06_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "如院丝绸博物馆"
+      ],
+      "poi_id": "15008801117649378297",
+      "poi_title": "如院丝绸博物馆",
+      "poi_address": "湖南省长沙市开福区潮宗街123号红色门头",
+      "latitude": 28.202824,
+      "longitude": 112.973564,
+      "candidates": [
+        {
+          "poi_id": "15008801117649378297",
+          "title": "如院丝绸博物馆",
+          "address": "湖南省长沙市开福区潮宗街123号红色门头",
+          "category": "文化场馆:博物馆",
+          "latitude": 28.202824,
+          "longitude": 112.973564
+        },
+        {
+          "poi_id": "9653052114743118605",
+          "title": "INPark城市浮岛",
+          "address": "湖南省长沙市岳麓区西湖街道枫林一路720号咸嘉湖景区5号地下车库及配套商业",
+          "category": "购物:综合商场",
+          "latitude": 28.203083,
+          "longitude": 112.940865
+        },
+        {
+          "poi_id": "15039281063625151302",
+          "title": "隆平水稻博物馆",
+          "address": "湖南省长沙市芙蓉区东岸建材市场正对面",
+          "category": "文化场馆:博物馆",
+          "latitude": 28.189955,
+          "longitude": 113.059916
+        },
+        {
+          "poi_id": "2028960024254528500",
+          "title": "龙湖长沙芙蓉天街",
+          "address": "湖南省长沙市芙蓉区人民东路中交中央公园D5区内",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 28.190538,
+          "longitude": 113.073689
+        },
+        {
+          "poi_id": "9466067251331859729",
+          "title": "星沙万象汇",
+          "address": "湖南省长沙市长沙县开元中路星沙大道178号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 28.249055,
+          "longitude": 113.086794
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "开福区潮宗街如院丝绸博物馆店名地址一致"
+    },
+    {
+      "group_id": "1f0a3edd1621",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:06_3"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "P stop",
+        "沙河街56号"
+      ],
+      "poi_id": "8003864493395941585",
+      "poi_title": "P stop",
+      "poi_address": "湖南省长沙市天心区沙河街56号(灵官渡地铁站2口步行270米)",
+      "latitude": 28.179655,
+      "longitude": 112.974184,
+      "candidates": [
+        {
+          "poi_id": "8003864493395941585",
+          "title": "P stop",
+          "address": "湖南省长沙市天心区沙河街56号(灵官渡地铁站2口步行270米)",
+          "category": "购物:其它购物",
+          "latitude": 28.179655,
+          "longitude": 112.974184
+        },
+        {
+          "poi_id": "16425705307425158731",
+          "title": "南二街与沙河大道交叉口",
+          "address": "湖南省长沙市宁乡市",
+          "category": "基础设施:道路附属:路口",
+          "latitude": 28.243055,
+          "longitude": 112.562391
+        },
+        {
+          "poi_id": "16269488623613595642",
+          "title": "南三街与沙河大道交叉口",
+          "address": "湖南省长沙市宁乡市",
+          "category": "基础设施:道路附属:路口",
+          "latitude": 28.242274,
+          "longitude": 112.564022
+        },
+        {
+          "poi_id": "2547632153918071930",
+          "title": "沙河大道与西街交叉口",
+          "address": "湖南省长沙市宁乡市",
+          "category": "基础设施:道路附属:路口",
+          "latitude": 28.243707,
+          "longitude": 112.560175
+        },
+        {
+          "poi_id": "15884889480800182806",
+          "title": "沙河大道与滨江路交叉口",
+          "address": "湖南省长沙市宁乡市",
+          "category": "基础设施:道路附属:路口",
+          "latitude": 28.243866,
+          "longitude": 112.56
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "天心区沙河街56号P stop店名门牌一致"
+    },
+    {
+      "group_id": "3f9633025b30",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:07_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "天一美术馆",
+        "妙高峰巷67号"
+      ],
+      "poi_id": "17602476527439980308",
+      "poi_title": "天一美术馆",
+      "poi_address": "湖南省长沙市天心区书院路妙高峰巷67号(灵官渡地铁站2号口步行420米)",
+      "latitude": 28.177009,
+      "longitude": 112.97331,
+      "candidates": [
+        {
+          "poi_id": "17602476527439980308",
+          "title": "天一美术馆",
+          "address": "湖南省长沙市天心区书院路妙高峰巷67号(灵官渡地铁站2号口步行420米)",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.177009,
+          "longitude": 112.97331
+        },
+        {
+          "poi_id": "17687006666668415979",
+          "title": "妙高峰-48号楼",
+          "address": "湖南省长沙市天心区书院路妙高峰巷67号(灵官渡地铁站2号口步行420米)妙高峰",
+          "category": "房产小区:房产小区附属",
+          "latitude": 28.176988,
+          "longitude": 112.973191
+        },
+        {
+          "poi_id": "2869061262782142525",
+          "title": "吉祥巷67号",
+          "address": "湖南省长沙市开福区吉祥巷与如意街交叉口东南方向54米左右",
+          "category": "房产小区:住宅区:其它住宅区",
+          "latitude": 28.198959,
+          "longitude": 112.974588
+        },
+        {
+          "poi_id": "18201672551577679710",
+          "title": "桃树湾67号楼",
+          "address": "湖南省长沙市浏阳市S326桃树湾",
+          "category": "房产小区:房产小区附属",
+          "latitude": 27.922508,
+          "longitude": 113.6806
+        },
+        {
+          "poi_id": "18062774580421482260",
+          "title": "朝阳67号(朝阳路店)",
+          "address": "湖南省长沙市芙蓉区朝阳路55号都市E站商务楼F1层渡口(朝阳店)",
+          "category": "美食:烧烤",
+          "latitude": 28.186878,
+          "longitude": 113.006913
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "天心区天一美术馆门牌一致"
+    },
+    {
+      "group_id": "1467c6bbc0ba",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:07_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "岩光里岩彩艺术馆"
+      ],
+      "poi_id": "17294621351108303442",
+      "poi_title": "岩光里岩彩艺术馆",
+      "poi_address": "湖南省长沙市天心区文源街道金汇路申奥美域",
+      "latitude": 28.133474,
+      "longitude": 112.982295,
+      "candidates": [
+        {
+          "poi_id": "17294621351108303442",
+          "title": "岩光里岩彩艺术馆",
+          "address": "湖南省长沙市天心区文源街道金汇路申奥美域",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.133474,
+          "longitude": 112.982295
+        },
+        {
+          "poi_id": "9653052114743118605",
+          "title": "INPark城市浮岛",
+          "address": "湖南省长沙市岳麓区西湖街道枫林一路720号咸嘉湖景区5号地下车库及配套商业",
+          "category": "购物:综合商场",
+          "latitude": 28.203083,
+          "longitude": 112.940865
+        },
+        {
+          "poi_id": "15039281063625151302",
+          "title": "隆平水稻博物馆",
+          "address": "湖南省长沙市芙蓉区东岸建材市场正对面",
+          "category": "文化场馆:博物馆",
+          "latitude": 28.189955,
+          "longitude": 113.059916
+        },
+        {
+          "poi_id": "2028960024254528500",
+          "title": "龙湖长沙芙蓉天街",
+          "address": "湖南省长沙市芙蓉区人民东路中交中央公园D5区内",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 28.190538,
+          "longitude": 113.073689
+        },
+        {
+          "poi_id": "9466067251331859729",
+          "title": "星沙万象汇",
+          "address": "湖南省长沙市长沙县开元中路星沙大道178号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 28.249055,
+          "longitude": 113.086794
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "岩光里岩彩艺术馆店名一致"
+    },
+    {
+      "group_id": "5d475f4d7ed0",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:07_3"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "长沙城发油脂厂·1936",
+        "1936"
+      ],
+      "poi_id": "15093184975408541235",
+      "poi_title": "长沙城发油脂厂·1936",
+      "poi_address": "湖南省长沙市天心区坡子街街道劳动西路创远景园北侧约100米",
+      "latitude": 28.178834,
+      "longitude": 112.969208,
+      "candidates": [
+        {
+          "poi_id": "15093184975408541235",
+          "title": "长沙城发油脂厂·1936",
+          "address": "湖南省长沙市天心区坡子街街道劳动西路创远景园北侧约100米",
+          "category": "旅游景点:公园",
+          "latitude": 28.178834,
+          "longitude": 112.969208
+        },
+        {
+          "poi_id": "1057876820147613213",
+          "title": "新佳宜(潇湘奥林匹克1936店)",
+          "address": "湖南省长沙市岳麓区岳麓大道西660号潇湘奥林匹克花园9栋119号",
+          "category": "购物:便利店",
+          "latitude": 28.230491,
+          "longitude": 112.869473
+        },
+        {
+          "poi_id": "681875454344150225",
+          "title": "芙蓉兴盛(1936店)",
+          "address": "湖南省长沙市宁乡市玉潭街道一环北路金砺小学门口",
+          "category": "购物:便利店",
+          "latitude": 28.25851,
+          "longitude": 112.54235
+        },
+        {
+          "poi_id": "5101683029620811543",
+          "title": "MICUPKTV(黄花镇店)",
+          "address": "湖南省长沙市长沙县远大三路1936-1938号",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 28.226088,
+          "longitude": 113.180737
+        },
+        {
+          "poi_id": "12581048184332147908",
+          "title": "纯布偶猫咖",
+          "address": "湖南省长沙市长沙县远大三路1936-1938号万泰柏海酒店(长沙机场店)",
+          "category": "生活服务:宠物服务:其它宠物服务",
+          "latitude": 28.226088,
+          "longitude": 113.180737
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "天心区长沙城发油脂厂·1936与活动场地一致"
+    },
+    {
+      "group_id": "0eb6b59e1a48",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:08_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "Sheen Art Space曦·艺术空间",
+        "梅溪湖韦尔斯利酒店"
+      ],
+      "poi_id": "1587996373802958617",
+      "poi_title": "Sheen Art Space曦·艺术空间",
+      "poi_address": "湖南省长沙市岳麓区环湖路梅溪湖韦尔斯利酒店一楼",
+      "latitude": 28.179885,
+      "longitude": 112.886273,
+      "candidates": [
+        {
+          "poi_id": "1587996373802958617",
+          "title": "Sheen Art Space曦·艺术空间",
+          "address": "湖南省长沙市岳麓区环湖路梅溪湖韦尔斯利酒店一楼",
+          "category": "文化场馆:展览馆",
+          "latitude": 28.179885,
+          "longitude": 112.886273
+        },
+        {
+          "poi_id": "8966526109966410334",
+          "title": "长沙梅溪湖韦尔斯利酒店",
+          "address": "湖南省长沙市岳麓区泛舟路1号",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 28.179833,
+          "longitude": 112.886369
+        },
+        {
+          "poi_id": "17706534264399267174",
+          "title": "梅溪湖韦尔斯利·溪著大堂吧",
+          "address": "湖南省长沙市岳麓区梅溪湖街道泛舟路1号梅溪湖·韦尔斯利酒店一楼",
+          "category": "酒店宾馆:酒店宾馆附属",
+          "latitude": 28.179862,
+          "longitude": 112.886272
+        },
+        {
+          "poi_id": "3030469117746593554",
+          "title": "梅溪湖韦尔斯利游泳健身中心",
+          "address": "湖南省长沙市岳麓区梅溪湖街道梅溪湖路276号韦尔斯利酒店1栋2层201室",
+          "category": "运动健身:游泳馆",
+          "latitude": 28.179724,
+          "longitude": 112.886524
+        },
+        {
+          "poi_id": "1473956224380772781",
+          "title": "梅溪湖·韦尔斯利酒店停车场-出入口",
+          "address": "湖南省长沙市岳麓区泛舟路与近湖八路交叉口西北方向49米左右",
+          "category": "室内及附属设施:通行设施类:停车场出入口",
+          "latitude": 28.179823,
+          "longitude": 112.88656
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "岳麓区曦·艺术空间在韦尔斯利酒店一楼，店名地址一致"
+    },
+    {
+      "group_id": "86d87ecc646f",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:08_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "湖南美术馆"
+      ],
+      "poi_id": "15179251835595606418",
+      "poi_title": "湖南美术馆",
+      "poi_address": "湖南省长沙市岳麓区靳江路潇湘路口公交站",
+      "latitude": 28.152643,
+      "longitude": 112.949789,
+      "candidates": [
+        {
+          "poi_id": "15179251835595606418",
+          "title": "湖南美术馆",
+          "address": "湖南省长沙市岳麓区靳江路潇湘路口公交站",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.152643,
+          "longitude": 112.949789
+        },
+        {
+          "poi_id": "14980566119693590132",
+          "title": "向日葵美术馆",
+          "address": "湖南省长沙市岳麓区咸嘉湖路高信向日葵南区10栋10-7室",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.208648,
+          "longitude": 112.925606
+        },
+        {
+          "poi_id": "5129777614381073322",
+          "title": "华梵美术馆",
+          "address": "湖南省长沙市雨花区井湾子街道湘府中路9号长沙融程国际广场1幢21层2109室",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.108898,
+          "longitude": 113.012167
+        },
+        {
+          "poi_id": "13638032038628681006",
+          "title": "洋湖美术馆",
+          "address": "湖南省长沙市岳麓区潭州大道洋湖水街D5栋",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.12999,
+          "longitude": 112.935951
+        },
+        {
+          "poi_id": "12398425280910776869",
+          "title": "雅涵美术馆",
+          "address": "湖南省长沙市雨花区砂子塘街道韶山中路526号云鼎公馆A栋201室",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.156396,
+          "longitude": 112.99361
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "湖南美术馆主体一致，仅差展厅"
+    },
+    {
+      "group_id": "b1ac764308a8",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:08_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "李自健美术馆",
+        "潇湘南路385号"
+      ],
+      "poi_id": "948224815188653939",
+      "poi_title": "李自健美术馆",
+      "poi_address": "湖南省长沙市岳麓区潇湘南路一段385号",
+      "latitude": 28.11928,
+      "longitude": 112.949006,
+      "candidates": [
+        {
+          "poi_id": "948224815188653939",
+          "title": "李自健美术馆",
+          "address": "湖南省长沙市岳麓区潇湘南路一段385号",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.11928,
+          "longitude": 112.949006
+        },
+        {
+          "poi_id": "9292446266085557249",
+          "title": "李自健美术馆-西北门",
+          "address": "湖南省长沙市岳麓区潇湘南路一段385号李自健美术馆",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 28.12,
+          "longitude": 112.94799
+        },
+        {
+          "poi_id": "7466024572162004112",
+          "title": "李自健美术馆天鹅湖艺餐厅",
+          "address": "湖南省长沙市岳麓区潇湘南路385号李自健美术馆一楼(洋湖湿地公园)",
+          "category": "美食:中餐厅:湘菜",
+          "latitude": 28.11901,
+          "longitude": 112.948724
+        },
+        {
+          "poi_id": "4944929567453474603",
+          "title": "李自健美术馆地下停车场",
+          "address": "湖南省长沙市岳麓区洋湖路与潇湘南大道东线交叉口西北方向363米左右",
+          "category": "汽车:停车场",
+          "latitude": 28.119013,
+          "longitude": 112.947295
+        },
+        {
+          "poi_id": "15442647406548808389",
+          "title": "李自健美术馆-静心岛",
+          "address": "湖南省长沙市岳麓区洋湖街道潇湘南路一段385号李自健美术馆",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.118821,
+          "longitude": 112.948529
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "岳麓区李自健美术馆门牌一致"
+    },
+    {
+      "group_id": "a2c54ffa831b",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:08_3"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "梅溪湖艺术博物馆"
+      ],
+      "poi_id": "1150203293692913917",
+      "poi_title": "梅溪湖艺术博物馆",
+      "poi_address": "湖南省长沙市岳麓区梅溪湖国际文化艺术中心",
+      "latitude": 28.196517,
+      "longitude": 112.906348,
+      "candidates": [
+        {
+          "poi_id": "1150203293692913917",
+          "title": "梅溪湖艺术博物馆",
+          "address": "湖南省长沙市岳麓区梅溪湖国际文化艺术中心",
+          "category": "文化场馆:博物馆",
+          "latitude": 28.196517,
+          "longitude": 112.906348
+        },
+        {
+          "poi_id": "3962035867104086356",
+          "title": "梅溪湖国际文化艺术中心-大剧院",
+          "address": "湖南省长沙市岳麓区天顶街道环湖路梅溪湖艺术博物馆",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 28.196154,
+          "longitude": 112.906838
+        },
+        {
+          "poi_id": "3667600450086434892",
+          "title": "长沙梅溪湖国际文化艺术中心艺术馆-3号门",
+          "address": "湖南省长沙市岳麓区天顶街道梅溪湖路梅溪湖艺术博物馆",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 28.196511,
+          "longitude": 112.905933
+        },
+        {
+          "poi_id": "18042003536922236306",
+          "title": "7:29Coffee lab",
+          "address": "湖南省长沙市岳麓区天顶街道环湖路1200号梅溪湖国际文化艺术中心大剧场一楼101(剧院正大门右边靠博物馆出口)",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 28.196249,
+          "longitude": 112.9075
+        },
+        {
+          "poi_id": "9653052114743118605",
+          "title": "INPark城市浮岛",
+          "address": "湖南省长沙市岳麓区西湖街道枫林一路720号咸嘉湖景区5号地下车库及配套商业",
+          "category": "购物:综合商场",
+          "latitude": 28.203083,
+          "longitude": 112.940865
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "岳麓区梅溪湖艺术博物馆主体一致"
+    },
+    {
+      "group_id": "aeb83210c028",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:09_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "谢子龙影像艺术馆"
+      ],
+      "poi_id": "15782546899868175397",
+      "poi_title": "谢子龙影像艺术馆",
+      "poi_address": "湖南省长沙市岳麓区潇湘南路一段387号",
+      "latitude": 28.117854,
+      "longitude": 112.947213,
+      "candidates": [
+        {
+          "poi_id": "15782546899868175397",
+          "title": "谢子龙影像艺术馆",
+          "address": "湖南省长沙市岳麓区潇湘南路一段387号",
+          "category": "文化场馆:展览馆",
+          "latitude": 28.117854,
+          "longitude": 112.947213
+        },
+        {
+          "poi_id": "14066715665771105188",
+          "title": "谢子龙影像艺术馆-BIGGER艺术书展",
+          "address": "湖南省长沙市岳麓区洋湖街道潇湘南路387号",
+          "category": "文化场馆:展览馆",
+          "latitude": 28.117876,
+          "longitude": 112.947144
+        },
+        {
+          "poi_id": "1479042372994510275",
+          "title": "谢子龙影像艺术馆-5展厅",
+          "address": "湖南省长沙市岳麓区洋湖街道谢子龙影像艺术馆F3",
+          "category": "文化场馆:展览馆",
+          "latitude": 28.117774,
+          "longitude": 112.947324
+        },
+        {
+          "poi_id": "15385342435383854195",
+          "title": "古德墨柠(谢子龙艺术馆店)",
+          "address": "湖南省长沙市岳麓区洋湖街道潇湘南路一段387号谢子龙影像艺术馆1层",
+          "category": "美食:冷饮店",
+          "latitude": 28.117819,
+          "longitude": 112.947155
+        },
+        {
+          "poi_id": "9529021986246865885",
+          "title": "Seesaw Coffee(谢子龙影像艺术馆店)",
+          "address": "湖南省长沙市岳麓区洋湖街道潇湘南路一段387号谢子龙影像艺术馆一层",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 28.117906,
+          "longitude": 112.947247
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "岳麓区谢子龙影像艺术馆主体一致，仅差楼层"
+    },
+    {
+      "group_id": "1bc359c4211c",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:09_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "谢子龙影像艺术馆"
+      ],
+      "poi_id": "15782546899868175397",
+      "poi_title": "谢子龙影像艺术馆",
+      "poi_address": "湖南省长沙市岳麓区潇湘南路一段387号",
+      "latitude": 28.117854,
+      "longitude": 112.947213,
+      "candidates": [
+        {
+          "poi_id": "15782546899868175397",
+          "title": "谢子龙影像艺术馆",
+          "address": "湖南省长沙市岳麓区潇湘南路一段387号",
+          "category": "文化场馆:展览馆",
+          "latitude": 28.117854,
+          "longitude": 112.947213
+        },
+        {
+          "poi_id": "9529021986246865885",
+          "title": "Seesaw Coffee(谢子龙影像艺术馆店)",
+          "address": "湖南省长沙市岳麓区洋湖街道潇湘南路一段387号谢子龙影像艺术馆一层",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 28.117906,
+          "longitude": 112.947247
+        },
+        {
+          "poi_id": "10169046896860764653",
+          "title": "谢子龙影像艺术馆-西北门",
+          "address": "湖南省长沙市岳麓区洋湖路与潇湘南路交叉口东北方向115米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 28.118233,
+          "longitude": 112.946253
+        },
+        {
+          "poi_id": "8253033212864039451",
+          "title": "谢子龙影像艺术馆户外草坪",
+          "address": "湖南省长沙市岳麓区洋湖街道潇湘南路一段387号",
+          "category": "娱乐休闲:其它娱乐休闲",
+          "latitude": 28.11784,
+          "longitude": 112.9473
+        },
+        {
+          "poi_id": "1479042372994510275",
+          "title": "谢子龙影像艺术馆-5展厅",
+          "address": "湖南省长沙市岳麓区洋湖街道谢子龙影像艺术馆F3",
+          "category": "文化场馆:展览馆",
+          "latitude": 28.117774,
+          "longitude": 112.947324
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "岳麓区谢子龙影像艺术馆主体一致"
+    },
+    {
+      "group_id": "7db239fd0b4b",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:09_3"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "谢子龙影像艺术馆",
+        "谢子龙影像艺术馆-5展厅"
+      ],
+      "poi_id": "15782546899868175397",
+      "poi_title": "谢子龙影像艺术馆",
+      "poi_address": "湖南省长沙市岳麓区潇湘南路一段387号",
+      "latitude": 28.117854,
+      "longitude": 112.947213,
+      "candidates": [
+        {
+          "poi_id": "15782546899868175397",
+          "title": "谢子龙影像艺术馆",
+          "address": "湖南省长沙市岳麓区潇湘南路一段387号",
+          "category": "文化场馆:展览馆",
+          "latitude": 28.117854,
+          "longitude": 112.947213
+        },
+        {
+          "poi_id": "1479042372994510275",
+          "title": "谢子龙影像艺术馆-5展厅",
+          "address": "湖南省长沙市岳麓区洋湖街道谢子龙影像艺术馆F3",
+          "category": "文化场馆:展览馆",
+          "latitude": 28.117774,
+          "longitude": 112.947324
+        },
+        {
+          "poi_id": "4568650290628635350",
+          "title": "谢子龙影像艺术馆-9展厅",
+          "address": "湖南省长沙市岳麓区洋湖街道谢子龙影像艺术馆F1",
+          "category": "文化场馆:展览馆",
+          "latitude": 28.117789,
+          "longitude": 112.947369
+        },
+        {
+          "poi_id": "9529021986246865885",
+          "title": "Seesaw Coffee(谢子龙影像艺术馆店)",
+          "address": "湖南省长沙市岳麓区洋湖街道潇湘南路一段387号谢子龙影像艺术馆一层",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 28.117906,
+          "longitude": 112.947247
+        },
+        {
+          "poi_id": "10169046896860764653",
+          "title": "谢子龙影像艺术馆-西北门",
+          "address": "湖南省长沙市岳麓区洋湖路与潇湘南路交叉口东北方向115米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 28.118233,
+          "longitude": 112.946253
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "岳麓区谢子龙影像艺术馆主体一致，仅差楼层展厅"
+    },
+    {
+      "group_id": "baf05879e4d9",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:10_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "TX长沙年轻力中心",
+        "TX年轻力中心L3"
+      ],
+      "poi_id": "5517266085405581735",
+      "poi_title": "TX长沙年轻力中心",
+      "poi_address": "湖南省长沙市芙蓉区黄兴中路188号",
+      "latitude": 28.199191,
+      "longitude": 112.976695,
+      "candidates": [
+        {
+          "poi_id": "5517266085405581735",
+          "title": "TX长沙年轻力中心",
+          "address": "湖南省长沙市芙蓉区黄兴中路188号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 28.199191,
+          "longitude": 112.976695
+        },
+        {
+          "poi_id": "3003172769295043050",
+          "title": "毛茸茸的我萌宠治愈系艺术展",
+          "address": "湖南省长沙市芙蓉区TX长沙年轻力中心L3",
+          "category": "文化场馆:展览馆",
+          "latitude": 28.198867,
+          "longitude": 112.977207
+        },
+        {
+          "poi_id": "13592930330324918016",
+          "title": "四季年轻力中心",
+          "address": "湖南省长沙市开福区通泰街街道潮宗街文化历史街区新编5659号",
+          "category": "生活服务:招聘求职",
+          "latitude": 28.201736,
+          "longitude": 112.974347
+        },
+        {
+          "poi_id": "11155727455679797008",
+          "title": "IMXS(TX长沙年轻力中心店)",
+          "address": "湖南省长沙市芙蓉区黄兴中路188号乐和城一层",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 28.198332,
+          "longitude": 112.976688
+        },
+        {
+          "poi_id": "5900096678279481549",
+          "title": "喜茶(长沙TX年轻力中心店)",
+          "address": "湖南省长沙市芙蓉区定王台街道黄兴中路198号乐和城L1003b号铺",
+          "category": "美食:冷饮店",
+          "latitude": 28.198975,
+          "longitude": 112.97645
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "芙蓉区TX长沙年轻力中心主体一致，仅差楼层"
+    },
+    {
+      "group_id": "ee45daeed10d",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:10_1"
       ],
       "action": "match",
       "search_keywords_tried": [
         "TX长沙年轻力中心"
       ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "TX长沙年轻力中心L2展览，与商场主体一致",
       "poi_id": "5517266085405581735",
       "poi_title": "TX长沙年轻力中心",
       "poi_address": "湖南省长沙市芙蓉区黄兴中路188号",
       "latitude": 28.199191,
-      "longitude": 112.976695
+      "longitude": 112.976695,
+      "candidates": [
+        {
+          "poi_id": "5517266085405581735",
+          "title": "TX长沙年轻力中心",
+          "address": "湖南省长沙市芙蓉区黄兴中路188号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 28.199191,
+          "longitude": 112.976695
+        },
+        {
+          "poi_id": "16959319946800230044",
+          "title": "TX长沙年轻力中心-出入口",
+          "address": "湖南省长沙市芙蓉区黄兴中路188号TX长沙年轻力中心",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 28.199266,
+          "longitude": 112.976452
+        },
+        {
+          "poi_id": "2387696802407107780",
+          "title": "OUTCiRCS(TX长沙年轻力中心店)",
+          "address": "湖南省长沙市芙蓉区黄兴中路TX长沙年轻力中心",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 28.199319,
+          "longitude": 112.976646
+        },
+        {
+          "poi_id": "11155727455679797008",
+          "title": "IMXS(TX长沙年轻力中心店)",
+          "address": "湖南省长沙市芙蓉区黄兴中路188号乐和城一层",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 28.198332,
+          "longitude": 112.976688
+        },
+        {
+          "poi_id": "1169449181905277535",
+          "title": "BURNIN(TX长沙年轻力中心店)",
+          "address": "湖南省长沙市芙蓉区黄兴中路188号TX长沙年轻力中心",
+          "category": "购物:服饰鞋包",
+          "latitude": 28.198997,
+          "longitude": 112.976778
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "芙蓉区TX长沙年轻力中心主体一致，多点位在同一商场"
+    },
+    {
+      "group_id": "eb4fd3dbe6b3",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:10_2",
+        "xiaohongshu:6a64f1d2000000000e03417d:10_3"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "TX长沙年轻力中心"
+      ],
+      "poi_id": "5517266085405581735",
+      "poi_title": "TX长沙年轻力中心",
+      "poi_address": "湖南省长沙市芙蓉区黄兴中路188号",
+      "latitude": 28.199191,
+      "longitude": 112.976695,
+      "candidates": [
+        {
+          "poi_id": "5517266085405581735",
+          "title": "TX长沙年轻力中心",
+          "address": "湖南省长沙市芙蓉区黄兴中路188号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 28.199191,
+          "longitude": 112.976695
+        },
+        {
+          "poi_id": "1874604979902349956",
+          "title": "GOODBRAND长沙店",
+          "address": "湖南省长沙市芙蓉区黄兴中路188号TX长沙年轻力中心L2不大百货内12号好牌",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 28.198876,
+          "longitude": 112.976614
+        },
+        {
+          "poi_id": "5900096678279481549",
+          "title": "喜茶(长沙TX年轻力中心店)",
+          "address": "湖南省长沙市芙蓉区定王台街道黄兴中路198号乐和城L1003b号铺",
+          "category": "美食:冷饮店",
+          "latitude": 28.198975,
+          "longitude": 112.97645
+        },
+        {
+          "poi_id": "11155727455679797008",
+          "title": "IMXS(TX长沙年轻力中心店)",
+          "address": "湖南省长沙市芙蓉区黄兴中路188号乐和城一层",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 28.198332,
+          "longitude": 112.976688
+        },
+        {
+          "poi_id": "2264189618884281094",
+          "title": "星巴克臻选TX长沙年轻力中心店",
+          "address": "湖南省长沙市芙蓉区黄兴中路188号TX长沙年轻力中心L1",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 28.198948,
+          "longitude": 112.97688
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "芙蓉区TX长沙年轻力中心主体一致，仅差楼层"
+    },
+    {
+      "group_id": "e7ce89b07a65",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:11_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "星沙万象汇",
+        "长沙星沙万象汇"
+      ],
+      "poi_id": "9466067251331859729",
+      "poi_title": "星沙万象汇",
+      "poi_address": "湖南省长沙市长沙县开元中路星沙大道178号",
+      "latitude": 28.249055,
+      "longitude": 113.086794,
+      "candidates": [
+        {
+          "poi_id": "9466067251331859729",
+          "title": "星沙万象汇",
+          "address": "湖南省长沙市长沙县开元中路星沙大道178号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 28.249055,
+          "longitude": 113.086794
+        },
+        {
+          "poi_id": "17525882272496760855",
+          "title": "Bibabo(长沙星沙万象汇店)",
+          "address": "湖南省长沙市长沙县星沙街道星沙大道178号长沙星沙万象汇L1层",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 28.249521,
+          "longitude": 113.087309
+        },
+        {
+          "poi_id": "2911950620068353057",
+          "title": "SKG(长沙万象汇店)",
+          "address": "湖南省长沙市长沙县星沙大道万象汇L1层",
+          "category": "购物:数码家电",
+          "latitude": 28.248782,
+          "longitude": 113.086706
+        },
+        {
+          "poi_id": "1740096632119851829",
+          "title": "I ME 爱蜜美甲美睫半永久(万象汇店)",
+          "address": "湖南省长沙市长沙县星沙大道178号长沙星沙万象汇L1层",
+          "category": "生活服务:美容美发:美甲",
+          "latitude": 28.249167,
+          "longitude": 113.087372
+        },
+        {
+          "poi_id": "6037788957578736128",
+          "title": "MinMin定制美甲美睫(万象汇店)",
+          "address": "湖南省长沙市长沙县星沙大道178号长沙星沙万象汇L1层",
+          "category": "生活服务:美容美发:美甲",
+          "latitude": 28.248769,
+          "longitude": 113.087318
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "长沙县星沙万象汇主体一致，仅差楼层广场"
+    },
+    {
+      "group_id": "0c6fbee1fa2a",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:11_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "长沙红星国际会展中心"
+      ],
+      "poi_id": "15892905383662124593",
+      "poi_title": "长沙红星国际会展中心",
+      "poi_address": "湖南省长沙市雨花区中意一路492号",
+      "latitude": 28.10731,
+      "longitude": 113.01368,
+      "candidates": [
+        {
+          "poi_id": "15892905383662124593",
+          "title": "长沙红星国际会展中心",
+          "address": "湖南省长沙市雨花区中意一路492号",
+          "category": "文化场馆:会展中心",
+          "latitude": 28.10731,
+          "longitude": 113.01368
+        },
+        {
+          "poi_id": "9068999573423497247",
+          "title": "长沙红星国际会展中心-出口",
+          "address": "湖南省长沙市雨花区农博街与韶山南路交叉口正西方向130米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 28.107938,
+          "longitude": 113.013718
+        },
+        {
+          "poi_id": "1987220856193543150",
+          "title": "长沙红星国际会展中心-入口",
+          "address": "湖南省长沙市雨花区农博街与韶山南路交叉口正西方向141米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 28.107829,
+          "longitude": 113.013637
+        },
+        {
+          "poi_id": "2199035602897",
+          "title": "红星国际会展中心[公交站]",
+          "address": "红星专线",
+          "category": "基础设施:交通设施:公交车站",
+          "latitude": 28.106228,
+          "longitude": 113.0132
+        },
+        {
+          "poi_id": "6877893552514918437",
+          "title": "长沙红星国际会展中心-西门",
+          "address": "湖南省长沙市雨花区中意一路492号长沙红星国际会展中心",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 28.107572,
+          "longitude": 113.012602
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "雨花区长沙红星国际会展中心店名地址一致"
+    },
+    {
+      "group_id": "0c958ef42433",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:11_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "美仑美术馆"
+      ],
+      "poi_id": "10061485927401424121",
+      "poi_title": "长沙美仑美术馆",
+      "poi_address": "湖南省长沙市雨花区高桥街道火焰社区富通大市场加5-7号",
+      "latitude": 28.17513,
+      "longitude": 113.017527,
+      "candidates": [
+        {
+          "poi_id": "10061485927401424121",
+          "title": "长沙美仑美术馆",
+          "address": "湖南省长沙市雨花区高桥街道火焰社区富通大市场加5-7号",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.17513,
+          "longitude": 113.017527
+        },
+        {
+          "poi_id": "17712498324131566030",
+          "title": "再辉不锈钢制品厂",
+          "address": "湖南省长沙市雨花区美仑美术馆西侧70米",
+          "category": "购物:家具家居建材:建材",
+          "latitude": 28.175571,
+          "longitude": 113.01647
+        },
+        {
+          "poi_id": "18118108553022853227",
+          "title": "寻美酒店地下停车场",
+          "address": "湖南省长沙市雨花区高桥街道东二环辅路长沙美仑美术馆",
+          "category": "汽车:停车场",
+          "latitude": 28.174947,
+          "longitude": 113.01744
+        },
+        {
+          "poi_id": "9653052114743118605",
+          "title": "INPark城市浮岛",
+          "address": "湖南省长沙市岳麓区西湖街道枫林一路720号咸嘉湖景区5号地下车库及配套商业",
+          "category": "购物:综合商场",
+          "latitude": 28.203083,
+          "longitude": 112.940865
+        },
+        {
+          "poi_id": "15039281063625151302",
+          "title": "隆平水稻博物馆",
+          "address": "湖南省长沙市芙蓉区东岸建材市场正对面",
+          "category": "文化场馆:博物馆",
+          "latitude": 28.189955,
+          "longitude": 113.059916
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "雨花区长沙美仑美术馆主体一致"
+    },
+    {
+      "group_id": "b15f2a38b931",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:11_3"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "233艺术社区",
+        "233美术馆"
+      ],
+      "poi_id": "10067753097165171663",
+      "poi_title": "233艺术社区",
+      "poi_address": "湖南省长沙市雨花区曙光中路华驿飞碟营地2号栋主楼",
+      "latitude": 28.175283,
+      "longitude": 112.999067,
+      "candidates": [
+        {
+          "poi_id": "10067753097165171663",
+          "title": "233艺术社区",
+          "address": "湖南省长沙市雨花区曙光中路华驿飞碟营地2号栋主楼",
+          "category": "房产小区:住宅区:社区中心",
+          "latitude": 28.175283,
+          "longitude": 112.999067
+        },
+        {
+          "poi_id": "6489761356490064524",
+          "title": "镶·时光手工珠宝空间",
+          "address": "湖南省长沙市雨花区金叶巷233美术馆二楼",
+          "category": "购物:珠宝饰品:珠宝",
+          "latitude": 28.175332,
+          "longitude": 112.998919
+        },
+        {
+          "poi_id": "2005355202700879266",
+          "title": "伍号影社艺术馆",
+          "address": "湖南省长沙市岳麓区排山路与青山路交叉口正南方向172米左右",
+          "category": "生活服务:摄影冲印",
+          "latitude": 28.235341,
+          "longitude": 112.90515
+        },
+        {
+          "poi_id": "13811798284809509526",
+          "title": "未见甜品自研社(后湖国际艺术园店)",
+          "address": "湖南省长沙市岳麓区桔子洲街道阜埠河地铁站3号口步行190米",
+          "category": "美食:面包甜点",
+          "latitude": 28.162771,
+          "longitude": 112.948169
+        },
+        {
+          "poi_id": "2071943710228971097",
+          "title": "朴画社美学艺术",
+          "address": "湖南省长沙市岳麓区岳麓大道57号长沙银盆岭万达广场F4",
+          "category": "教育学校:培训",
+          "latitude": 28.223461,
+          "longitude": 112.954631
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "雨花区233艺术社区/233美术馆与活动地址一致"
+    },
+    {
+      "group_id": "5c0c3f462041",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:12_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "长沙美术馆"
+      ],
+      "poi_id": "2107499734859669507",
+      "poi_title": "长沙美术馆",
+      "poi_address": "湖南省长沙市开福区创远路1号湘江壹号小区",
+      "latitude": 28.292836,
+      "longitude": 112.958566,
+      "candidates": [
+        {
+          "poi_id": "2107499734859669507",
+          "title": "长沙美术馆",
+          "address": "湖南省长沙市开福区创远路1号湘江壹号小区",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.292836,
+          "longitude": 112.958566
+        },
+        {
+          "poi_id": "10856059579078528973",
+          "title": "长沙T画廊",
+          "address": "湖南省长沙市开福区通泰街街道营盘西路6号潮宗御苑C栋2901号、2902号",
+          "category": "旅游景点:其它旅游景点",
+          "latitude": 28.204845,
+          "longitude": 112.971854
+        },
+        {
+          "poi_id": "10061485927401424121",
+          "title": "长沙美仑美术馆",
+          "address": "湖南省长沙市雨花区高桥街道火焰社区富通大市场加5-7号",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.17513,
+          "longitude": 113.017527
+        },
+        {
+          "poi_id": "13237520151097874759",
+          "title": "长沙涂乐少儿美术馆",
+          "address": "湖南省长沙市长沙县南塘路花样年华1栋门面3楼",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.257011,
+          "longitude": 113.063257
+        },
+        {
+          "poi_id": "10995189274878239875",
+          "title": "长沙市刘桂成美术馆",
+          "address": "湖南省长沙市宁乡市金洲大道",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.253706,
+          "longitude": 112.684353
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "开福区长沙美术馆主体一致，仅差楼层"
+    },
+    {
+      "group_id": "cfdbb837973e",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:12_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "长沙美术馆"
+      ],
+      "poi_id": "2107499734859669507",
+      "poi_title": "长沙美术馆",
+      "poi_address": "湖南省长沙市开福区创远路1号湘江壹号小区",
+      "latitude": 28.292836,
+      "longitude": 112.958566,
+      "candidates": [
+        {
+          "poi_id": "2107499734859669507",
+          "title": "长沙美术馆",
+          "address": "湖南省长沙市开福区创远路1号湘江壹号小区",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.292836,
+          "longitude": 112.958566
+        },
+        {
+          "poi_id": "10856059579078528973",
+          "title": "长沙T画廊",
+          "address": "湖南省长沙市开福区通泰街街道营盘西路6号潮宗御苑C栋2901号、2902号",
+          "category": "旅游景点:其它旅游景点",
+          "latitude": 28.204845,
+          "longitude": 112.971854
+        },
+        {
+          "poi_id": "10061485927401424121",
+          "title": "长沙美仑美术馆",
+          "address": "湖南省长沙市雨花区高桥街道火焰社区富通大市场加5-7号",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.17513,
+          "longitude": 113.017527
+        },
+        {
+          "poi_id": "10995189274878239875",
+          "title": "长沙市刘桂成美术馆",
+          "address": "湖南省长沙市宁乡市金洲大道",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.253706,
+          "longitude": 112.684353
+        },
+        {
+          "poi_id": "13237520151097874759",
+          "title": "长沙涂乐少儿美术馆",
+          "address": "湖南省长沙市长沙县南塘路花样年华1栋门面3楼",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.257011,
+          "longitude": 113.063257
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "开福区长沙美术馆主体一致，仅差楼层"
+    },
+    {
+      "group_id": "18ae4023cbd8",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:12_3"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "长沙美术馆"
+      ],
+      "poi_id": "2107499734859669507",
+      "poi_title": "长沙美术馆",
+      "poi_address": "湖南省长沙市开福区创远路1号湘江壹号小区",
+      "latitude": 28.292836,
+      "longitude": 112.958566,
+      "candidates": [
+        {
+          "poi_id": "2107499734859669507",
+          "title": "长沙美术馆",
+          "address": "湖南省长沙市开福区创远路1号湘江壹号小区",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.292836,
+          "longitude": 112.958566
+        },
+        {
+          "poi_id": "1539081601837219422",
+          "title": "品缦酒店(长沙岳麓洋湖湿地公园地铁站店)",
+          "address": "湖南省长沙市岳麓区潇湘南大道一段509号旷远画境美苑小区S3栋",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 28.11699,
+          "longitude": 112.944506
+        },
+        {
+          "poi_id": "6216676103548441143",
+          "title": "长沙杨松画廊有限公司(星沙三区店)",
+          "address": "湖南省长沙市长沙县星沙街道三区52栋327号",
+          "category": "公司企业:公司企业",
+          "latitude": 28.237426,
+          "longitude": 113.081133
+        },
+        {
+          "poi_id": "8996841592485423278",
+          "title": "杨贵美术馆",
+          "address": "湖南省长沙市岳麓区后湖国际艺术区(后湖路南)",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.161484,
+          "longitude": 112.942842
+        },
+        {
+          "poi_id": "592849844237966967",
+          "title": "芒果美术馆",
+          "address": "湖南省长沙市开福区湖南广电七彩盒子银色玻璃大楼-顶层天光展厅",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.233411,
+          "longitude": 113.05418
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "开福区长沙美术馆主体一致，仅差楼层"
+    },
+    {
+      "group_id": "511a84ce950d",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:13_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "开福万达广场",
+        "长沙开福万达广场"
+      ],
+      "poi_id": "6026825493057077138",
+      "poi_title": "长沙开福万达广场",
+      "poi_address": "湖南省长沙市开福区中山路589号",
+      "latitude": 28.198795,
+      "longitude": 112.970974,
+      "candidates": [
+        {
+          "poi_id": "6026825493057077138",
+          "title": "长沙开福万达广场",
+          "address": "湖南省长沙市开福区中山路589号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 28.198795,
+          "longitude": 112.970974
+        },
+        {
+          "poi_id": "13116099430916514879",
+          "title": "万达广场开福店-3号门",
+          "address": "湖南省长沙市开福区中山路589号万达广场(开福店)F1",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 28.198168,
+          "longitude": 112.970101
+        },
+        {
+          "poi_id": "1989053044888523522",
+          "title": "长沙五一广场橘子洲景区锦江都城酒店",
+          "address": "湖南省长沙市开福区中山路589号开福万达广场B区室外街北区及商务酒店201-1101号",
+          "category": "酒店宾馆:星级酒店",
+          "latitude": 28.198907,
+          "longitude": 112.971885
+        },
+        {
+          "poi_id": "4508427331471198365",
+          "title": "长沙国际会展中心-3号门",
+          "address": "湖南省长沙市长沙县黄兴镇国展路118号长沙国际会展中心",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 28.147018,
+          "longitude": 113.081986
+        },
+        {
+          "poi_id": "9356104763346260158",
+          "title": "长沙滨江文化园-3号门",
+          "address": "湖南省长沙市开福区新河街道湘江北路长沙滨江文化园",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 28.240409,
+          "longitude": 112.981092
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "开福区开福万达广场主体一致，仅差门厅连廊"
+    },
+    {
+      "group_id": "9e7935c309f2",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:13_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "长沙北辰荟"
+      ],
+      "poi_id": "5187728111033838655",
+      "poi_title": "长沙北辰荟",
+      "poi_address": "湖南省长沙市开福区湘江北路1500号",
+      "latitude": 28.238208,
+      "longitude": 112.978475,
+      "candidates": [
+        {
+          "poi_id": "5187728111033838655",
+          "title": "长沙北辰荟",
+          "address": "湖南省长沙市开福区湘江北路1500号",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 28.238208,
+          "longitude": 112.978475
+        },
+        {
+          "poi_id": "6761137607536437886",
+          "title": "长沙北辰国荟酒店",
+          "address": "湖南省长沙市开福区新河街道湘江北路三段1500号A3区",
+          "category": "酒店宾馆:酒店宾馆",
+          "latitude": 28.238684,
+          "longitude": 112.982739
+        },
+        {
+          "poi_id": "8308043028871756579",
+          "title": "穿行(长沙北辰荟店)",
+          "address": "湖南省长沙市开福区湘江北路1500号长沙北辰三角洲大悦城LG-LG-D1-1-G07",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 28.237028,
+          "longitude": 112.97876
+        },
+        {
+          "poi_id": "2206340400314227825",
+          "title": "星巴克(长沙北辰荟店)",
+          "address": "湖南省长沙市开福区新河街道湘江北路1500号长沙北辰三角洲大悦城LG-LG-20-2",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 28.23794,
+          "longitude": 112.978955
+        },
+        {
+          "poi_id": "2677593890125625710",
+          "title": "麦当劳(长沙北辰荟店)",
+          "address": "湖南省长沙市开福区新河街道湘江北路1500号长沙北辰三角洲北辰荟1F-46-1号",
+          "category": "美食:小吃快餐",
+          "latitude": 28.23828,
+          "longitude": 112.977863
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "开福区长沙北辰荟主体一致，球体滚动为商场内空间"
+    },
+    {
+      "group_id": "19eeef7ff26b",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:13_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "长沙博物馆",
+        "长沙市博物馆"
+      ],
+      "poi_id": "10752773580924077724",
+      "poi_title": "长沙市博物馆",
+      "poi_address": "湖南省长沙市开福区湘江北路",
+      "latitude": 28.241954,
+      "longitude": 112.980727,
+      "candidates": [
+        {
+          "poi_id": "10752773580924077724",
+          "title": "长沙市博物馆",
+          "address": "湖南省长沙市开福区湘江北路",
+          "category": "文化场馆:博物馆",
+          "latitude": 28.241954,
+          "longitude": 112.980727
+        },
+        {
+          "poi_id": "9558767898770705989",
+          "title": "湖南省博物馆",
+          "address": "湖南省长沙市开福区东风路50号",
+          "category": "文化场馆:博物馆",
+          "latitude": 28.211939,
+          "longitude": 112.993651
+        },
+        {
+          "poi_id": "3323553121320254921",
+          "title": "长沙简牍博物馆",
+          "address": "湖南省长沙市天心区白沙路92号(近天心公园)",
+          "category": "文化场馆:博物馆",
+          "latitude": 28.184909,
+          "longitude": 112.983162
+        },
+        {
+          "poi_id": "3928536700748656517",
+          "title": "长沙铜官窑博物馆",
+          "address": "湖南省长沙市望城区湘江大道景观道",
+          "category": "文化场馆:博物馆",
+          "latitude": 28.417081,
+          "longitude": 112.827741
+        },
+        {
+          "poi_id": "15039281063625151302",
+          "title": "隆平水稻博物馆",
+          "address": "湖南省长沙市芙蓉区东岸建材市场正对面",
+          "category": "文化场馆:博物馆",
+          "latitude": 28.189955,
+          "longitude": 113.059916
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "开福区长沙市博物馆主体一致"
+    },
+    {
+      "group_id": "7b689a23dc1f",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:13_3"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "杜鹃花艺术中心",
+        "长沙滨江文化园"
+      ],
+      "poi_id": "12707820979336624830",
+      "poi_title": "杜鹃花艺术中心",
+      "poi_address": "湖南省长沙市开福区长沙滨江文化园景观塔内",
+      "latitude": 28.24149,
+      "longitude": 112.978985,
+      "candidates": [
+        {
+          "poi_id": "12707820979336624830",
+          "title": "杜鹃花艺术中心",
+          "address": "湖南省长沙市开福区长沙滨江文化园景观塔内",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.24149,
+          "longitude": 112.978985
+        },
+        {
+          "poi_id": "12336948456366508975",
+          "title": "文化广场",
+          "address": "湖南省长沙市开福区新河街道湘江北路北辰时代广场北侧110米长沙滨江文化园",
+          "category": "旅游景点:城市广场",
+          "latitude": 28.241304,
+          "longitude": 112.979787
+        },
+        {
+          "poi_id": "14203653703769451132",
+          "title": "杜鹃花剧场",
+          "address": "湖南省长沙市开福区新河街道滨江文化园景观塔西侧草坪广场",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 28.241541,
+          "longitude": 112.979011
+        },
+        {
+          "poi_id": "11896473278223982374",
+          "title": "长沙滨江文化园-东南门",
+          "address": "湖南省长沙市开福区湘江北路北辰时代广场北侧110米长沙滨江文化园",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 28.239719,
+          "longitude": 112.980712
+        },
+        {
+          "poi_id": "12520431791124442213",
+          "title": "滨江文化园-5号门",
+          "address": "湖南省长沙市开福区湘江北路北辰时代广场北侧110米长沙滨江文化园",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 28.240148,
+          "longitude": 112.978028
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "开福区滨江文化园杜鹃花艺术中心与活动地址一致"
+    },
+    {
+      "group_id": "16109ae60454",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:14_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "湖南博物院",
+        "湖南省博物馆"
+      ],
+      "poi_id": "9558767898770705989",
+      "poi_title": "湖南省博物馆",
+      "poi_address": "湖南省长沙市开福区东风路50号",
+      "latitude": 28.211939,
+      "longitude": 112.993651,
+      "candidates": [
+        {
+          "poi_id": "9558767898770705989",
+          "title": "湖南省博物馆",
+          "address": "湖南省长沙市开福区东风路50号",
+          "category": "文化场馆:博物馆",
+          "latitude": 28.211939,
+          "longitude": 112.993651
+        },
+        {
+          "poi_id": "3602648162715872731",
+          "title": "湖南博物院(南院)",
+          "address": "湖南省长沙市芙蓉区文艺路街道五一大道399号",
+          "category": "文化场馆:博物馆",
+          "latitude": 28.194544,
+          "longitude": 112.988344
+        },
+        {
+          "poi_id": "11829491945403085490",
+          "title": "湖南省博物馆[公交站]",
+          "address": "146路,901路,112路,3路,358路,136路,150路,131路,203路,222路,112路(19:30后)",
+          "category": "基础设施:交通设施:公交车站",
+          "latitude": 28.210326,
+          "longitude": 112.991669
+        },
+        {
+          "poi_id": "4503029791271341015",
+          "title": "湖南博物院地下停车场",
+          "address": "湖南省长沙市开福区东风路50号靠近湖南省烈士公园",
+          "category": "汽车:停车场",
+          "latitude": 28.21136,
+          "longitude": 112.992346
+        },
+        {
+          "poi_id": "10752773580924077724",
+          "title": "长沙市博物馆",
+          "address": "湖南省长沙市开福区湘江北路",
+          "category": "文化场馆:博物馆",
+          "latitude": 28.241954,
+          "longitude": 112.980727
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "湖南博物院即湖南省博物馆主体一致，仅差楼层展厅"
+    },
+    {
+      "group_id": "2ea842c76a2d",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:14_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "湖南省博物馆"
+      ],
+      "poi_id": "9558767898770705989",
+      "poi_title": "湖南省博物馆",
+      "poi_address": "湖南省长沙市开福区东风路50号",
+      "latitude": 28.211939,
+      "longitude": 112.993651,
+      "candidates": [
+        {
+          "poi_id": "9558767898770705989",
+          "title": "湖南省博物馆",
+          "address": "湖南省长沙市开福区东风路50号",
+          "category": "文化场馆:博物馆",
+          "latitude": 28.211939,
+          "longitude": 112.993651
+        },
+        {
+          "poi_id": "7749680862810276018",
+          "title": "三馆一厅",
+          "address": "湖南省长沙市开福区湘江北路北辰三角洲长沙市滨江文化园内",
+          "category": "文化场馆:展览馆",
+          "latitude": 28.24038,
+          "longitude": 112.97852
+        },
+        {
+          "poi_id": "11498115605532850839",
+          "title": "湖南省展览馆",
+          "address": "湖南省长沙市开福区营盘东路19号",
+          "category": "文化场馆:展览馆",
+          "latitude": 28.204735,
+          "longitude": 112.989589
+        },
+        {
+          "poi_id": "3332808939969332620",
+          "title": "长沙马王堆汉墓出土文物",
+          "address": "湖南省长沙市开福区东风路50号湖南省博物馆3楼",
+          "category": "购物:古玩字画",
+          "latitude": 28.211836,
+          "longitude": 112.993102
+        },
+        {
+          "poi_id": "11829491945403085490",
+          "title": "湖南省博物馆[公交站]",
+          "address": "146路,901路,112路,3路,358路,136路,150路,131路,203路,222路,112路(19:30后)",
+          "category": "基础设施:交通设施:公交车站",
+          "latitude": 28.210326,
+          "longitude": 112.991669
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "开福区湖南省博物馆主体一致，仅差楼层展厅"
+    },
+    {
+      "group_id": "ebf8dd4fd997",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:14_3"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "湖南省博物馆",
+        "湖南省博物馆-特展一厅"
+      ],
+      "poi_id": "9558767898770705989",
+      "poi_title": "湖南省博物馆",
+      "poi_address": "湖南省长沙市开福区东风路50号",
+      "latitude": 28.211939,
+      "longitude": 112.993651,
+      "candidates": [
+        {
+          "poi_id": "9558767898770705989",
+          "title": "湖南省博物馆",
+          "address": "湖南省长沙市开福区东风路50号",
+          "category": "文化场馆:博物馆",
+          "latitude": 28.211939,
+          "longitude": 112.993651
+        },
+        {
+          "poi_id": "8894016732509762283",
+          "title": "湖南省博物馆-特展一厅",
+          "address": "湖南省长沙市开福区东风路50号湖南省博物馆1楼",
+          "category": "文化场馆:其它文化场馆",
+          "latitude": 28.211931,
+          "longitude": 112.99334
+        },
+        {
+          "poi_id": "11978919150870980515",
+          "title": "湖南博物馆-马王堆展厅",
+          "address": "湖南省长沙市开福区东风路50号湖南省博物馆1楼",
+          "category": "文化场馆:展览馆",
+          "latitude": 28.211939,
+          "longitude": 112.994059
+        },
+        {
+          "poi_id": "11498115605532850839",
+          "title": "湖南省展览馆",
+          "address": "湖南省长沙市开福区营盘东路19号",
+          "category": "文化场馆:展览馆",
+          "latitude": 28.204735,
+          "longitude": 112.989589
+        },
+        {
+          "poi_id": "7749680862810276018",
+          "title": "三馆一厅",
+          "address": "湖南省长沙市开福区湘江北路北辰三角洲长沙市滨江文化园内",
+          "category": "文化场馆:展览馆",
+          "latitude": 28.24038,
+          "longitude": 112.97852
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "开福区湖南省博物馆主体一致，仅差楼层展厅"
+    },
+    {
+      "group_id": "b15a75501f99",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:15_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "湖南美术馆"
+      ],
+      "poi_id": "15179251835595606418",
+      "poi_title": "湖南美术馆",
+      "poi_address": "湖南省长沙市岳麓区靳江路潇湘路口公交站",
+      "latitude": 28.152643,
+      "longitude": 112.949789,
+      "candidates": [
+        {
+          "poi_id": "15179251835595606418",
+          "title": "湖南美术馆",
+          "address": "湖南省长沙市岳麓区靳江路潇湘路口公交站",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.152643,
+          "longitude": 112.949789
+        },
+        {
+          "poi_id": "592849844237966967",
+          "title": "湖南广电芒果美术馆",
+          "address": "湖南省长沙市开福区湖南广电七彩盒子银色玻璃大楼-顶层天光展厅",
+          "category": "文化场馆:美术馆",
+          "latitude": 28.233411,
+          "longitude": 113.05418
+        },
+        {
+          "poi_id": "11829805451988282290",
+          "title": "湖南美术馆[公交站]",
+          "address": "239路,大科城2号线,311路,205路",
+          "category": "基础设施:交通设施:公交车站",
+          "latitude": 28.151947,
+          "longitude": 112.950399
+        },
+        {
+          "poi_id": "5878865295337423107",
+          "title": "中府系统门窗超级共享展厅",
+          "address": "湖南省长沙市开福区秀峰街道兴联路669号高岭国际商贸城1期1号交易中心A馆1173号商铺",
+          "category": "购物:家具家居建材:建材",
+          "latitude": 28.299842,
+          "longitude": 112.984243
+        },
+        {
+          "poi_id": "8234678230268083535",
+          "title": "办公展厅",
+          "address": "湖南省长沙市雨花区友谊路与韶山南路交叉口正东方向115米左右",
+          "category": "购物:文化用品",
+          "latitude": 28.125797,
+          "longitude": 113.006202
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "湖南美术馆主体一致，仅差展厅"
+    },
+    {
+      "group_id": "caa27be30f0a",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:15_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "谢子龙影像艺术馆"
+      ],
+      "poi_id": "15782546899868175397",
+      "poi_title": "谢子龙影像艺术馆",
+      "poi_address": "湖南省长沙市岳麓区潇湘南路一段387号",
+      "latitude": 28.117854,
+      "longitude": 112.947213,
+      "candidates": [
+        {
+          "poi_id": "15782546899868175397",
+          "title": "谢子龙影像艺术馆",
+          "address": "湖南省长沙市岳麓区潇湘南路一段387号",
+          "category": "文化场馆:展览馆",
+          "latitude": 28.117854,
+          "longitude": 112.947213
+        },
+        {
+          "poi_id": "1479042372994510275",
+          "title": "谢子龙影像艺术馆-5展厅",
+          "address": "湖南省长沙市岳麓区洋湖街道谢子龙影像艺术馆F3",
+          "category": "文化场馆:展览馆",
+          "latitude": 28.117774,
+          "longitude": 112.947324
+        },
+        {
+          "poi_id": "4568650290628635350",
+          "title": "谢子龙影像艺术馆-9展厅",
+          "address": "湖南省长沙市岳麓区洋湖街道谢子龙影像艺术馆F1",
+          "category": "文化场馆:展览馆",
+          "latitude": 28.117789,
+          "longitude": 112.947369
+        },
+        {
+          "poi_id": "10169046896860764653",
+          "title": "谢子龙影像艺术馆-西北门",
+          "address": "湖南省长沙市岳麓区洋湖路与潇湘南路交叉口东北方向115米左右",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 28.118233,
+          "longitude": 112.946253
+        },
+        {
+          "poi_id": "6723117042843712711",
+          "title": "谢子龙影像艺术馆-南门",
+          "address": "湖南省长沙市岳麓区洋湖路与潇湘南大道东线交叉口正西方向245米左右",
+          "category": "室内及附属设施:通行设施类:外部门",
+          "latitude": 28.117386,
+          "longitude": 112.947484
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "岳麓区谢子龙影像艺术馆主体一致，仅差楼层展厅"
+    },
+    {
+      "group_id": "10fa955cffb6",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:15_3"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "长沙非物质文化遗产馆",
+        "长沙市非物质文化遗产展示馆"
+      ],
+      "poi_id": "2283195399951899457",
+      "poi_title": "长沙市非物质文化遗产展示馆",
+      "poi_address": "湖南省长沙市岳麓区桔子洲头2号橘子洲景区内",
+      "latitude": 28.171592,
+      "longitude": 112.960401,
+      "candidates": [
+        {
+          "poi_id": "2283195399951899457",
+          "title": "长沙市非物质文化遗产展示馆",
+          "address": "湖南省长沙市岳麓区桔子洲头2号橘子洲景区内",
+          "category": "文化场馆:展览馆",
+          "latitude": 28.171592,
+          "longitude": 112.960401
+        },
+        {
+          "poi_id": "1033695791504852906",
+          "title": "禧相连非物质文化遗产馆(家具制作技艺分馆)",
+          "address": "湖南省长沙市雨花区侯照路186号长沙木文化产业园",
+          "category": "文化场馆:其它文化场馆",
+          "latitude": 28.120623,
+          "longitude": 113.078083
+        },
+        {
+          "poi_id": "2792512766693305138",
+          "title": "雨花非物质文化遗产馆",
+          "address": "湖南省长沙市雨花区杉木冲东路198号",
+          "category": "文化场馆:其它文化场馆",
+          "latitude": 28.106742,
+          "longitude": 113.010792
+        },
+        {
+          "poi_id": "11788873938041945245",
+          "title": "长沙市非物质文化遗产保护协会",
+          "address": "湖南省长沙市岳麓区橘洲路长沙非物质文化遗产展示馆",
+          "category": "机构团体:政府机关",
+          "latitude": 28.171591,
+          "longitude": 112.960398
+        },
+        {
+          "poi_id": "8219497796449625573",
+          "title": "长沙非物质文化遗产馆状元坡分馆(海彣分馆)",
+          "address": "湖南省长沙市天心区木莲西路138号状元坡社区党服务中心1-3楼",
+          "category": "文化场馆:其它文化场馆",
+          "latitude": 28.128268,
+          "longitude": 112.999885
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "岳麓区橘子洲长沙市非物质文化遗产展示馆主体一致，仅差楼层"
+    },
+    {
+      "group_id": "13c36e2f9ceb",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:16_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "藏湘知纸质文化博物馆",
+        "长沙市藏湘知纸质文化博物馆"
+      ],
+      "poi_id": "9179790960755566196",
+      "poi_title": "长沙市藏湘知纸质文化博物馆",
+      "poi_address": "湖南省长沙市岳麓区银盆岭街道潇湘北路三段1100世贸铂翠湾世贸希尔顿酒店20层2013-2015房",
+      "latitude": 28.226906,
+      "longitude": 112.95855,
+      "candidates": [
+        {
+          "poi_id": "9179790960755566196",
+          "title": "长沙市藏湘知纸质文化博物馆",
+          "address": "湖南省长沙市岳麓区银盆岭街道潇湘北路三段1100世贸铂翠湾世贸希尔顿酒店20层2013-2015房",
+          "category": "文化场馆:博物馆",
+          "latitude": 28.226906,
+          "longitude": 112.95855
+        },
+        {
+          "poi_id": "1099838734814737587",
+          "title": "悦之美会员养生美肌(书香雅郡店)",
+          "address": "湖南省长沙市浏阳市双拥东路27号",
+          "category": "生活服务:美容美发:美容SPA",
+          "latitude": 28.162808,
+          "longitude": 113.634095
+        },
+        {
+          "poi_id": "8475537124943592225",
+          "title": "书香缘",
+          "address": "湖南省长沙市雨花区砂小巷25栋",
+          "category": "购物:图书音像",
+          "latitude": 28.161281,
+          "longitude": 112.995692
+        },
+        {
+          "poi_id": "13562546458405458703",
+          "title": "书香源",
+          "address": "湖南省长沙市芙蓉区恒业巷24荷晏住宅小区",
+          "category": "教育学校:其它教育学校",
+          "latitude": 28.190619,
+          "longitude": 113.020562
+        },
+        {
+          "poi_id": "10195465052949671285",
+          "title": "一块甜也蛋糕(书香雅郡店)",
+          "address": "湖南省长沙市浏阳市集里街道龚家桥社区双拥东路33号",
+          "category": "美食:面包甜点",
+          "latitude": 28.162886,
+          "longitude": 113.633806
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "岳麓区藏湘知纸质文化博物馆主体一致，仅差厅室"
+    },
+    {
+      "group_id": "7ed91c484f68",
+      "event_uids": [
+        "xiaohongshu:6a64f1d2000000000e03417d:16_3"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "湖南师范大学美术学院"
+      ],
+      "poi_id": "10373462133623123091",
+      "poi_title": "湖南师范大学美术学院",
+      "poi_address": "湖南省长沙市岳麓区麓山南路682号",
+      "latitude": 28.165739,
+      "longitude": 112.93762,
+      "candidates": [
+        {
+          "poi_id": "10373462133623123091",
+          "title": "湖南师范大学美术学院",
+          "address": "湖南省长沙市岳麓区麓山南路682号",
+          "category": "教育学校:教育学校附属",
+          "latitude": 28.165739,
+          "longitude": 112.93762
+        },
+        {
+          "poi_id": "3546982734797927299",
+          "title": "湖南师范大学(南院校区)美术楼",
+          "address": "湖南省长沙市岳麓区麓山南路638号湖南师范大学美术学院内",
+          "category": "教育学校:教育学校附属",
+          "latitude": 28.166099,
+          "longitude": 112.937835
+        },
+        {
+          "poi_id": "11510558576164684417",
+          "title": "湖南师范大学美术学院设计楼",
+          "address": "湖南省长沙市岳麓区麓山南路湖南师范大学美术学院",
+          "category": "教育学校:教育学校附属",
+          "latitude": 28.16675,
+          "longitude": 112.937717
+        },
+        {
+          "poi_id": "17209928768131525325",
+          "title": "湖南师范大学美术学院-西门",
+          "address": "湖南省长沙市岳麓区麓山南路682号湖南师范大学美术学院",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 28.167448,
+          "longitude": 112.937386
+        },
+        {
+          "poi_id": "11258127034273699226",
+          "title": "湖南省艺术学校第38栋",
+          "address": "湖南省长沙市岳麓区麓山南路153号",
+          "category": "房产小区:房产小区附属",
+          "latitude": 28.168418,
+          "longitude": 112.936539
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "岳麓区湖南师范大学美术学院主体一致"
     }
   ]
 }

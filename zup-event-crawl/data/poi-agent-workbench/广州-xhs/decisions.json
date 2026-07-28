@@ -1,113 +1,866 @@
 {
   "city": "广州",
   "source": "xiaohongshu",
-  "decided_at": "2026-07-14T01:10:00.000Z",
-  "agent": "cursor-composer",
+  "decided_at": "2026-07-26T13:27:48.000Z",
+  "agent": "cursor-agent",
   "decisions": [
     {
-      "group_id": "9795d3911028",
-      "event_uids": ["xiaohongshu:6a433b78000000001702b12c:02_0"],
       "action": "match",
-      "search_keywords_tried": ["信达金茂广场"],
-      "poi_id": "4292013897239584304",
-      "poi_title": "信达金茂广场A座",
-      "poi_address": "广东省广州市天河区兴华街道广州大道北980号信达金茂广场",
-      "latitude": 23.170162,
-      "longitude": 113.318946,
+      "search_keywords_tried": [
+        "广东美术馆新馆"
+      ],
+      "poi_id": "2922632961011281738",
+      "poi_title": "广东美术馆新馆",
+      "poi_address": "广东省广州市荔湾区白鹅潭大湾区艺术中心",
       "confidence": "high",
       "doubtful": false,
-      "reason": "天河区广州大道北980号信达金茂广场，与A座门牌一致"
+      "reason": "广东美术馆新馆（白鹅潭）一致",
+      "group_id": "96fec8a7bae8",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:01_0"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
     },
     {
-      "group_id": "af612df88910",
-      "event_uids": ["xiaohongshu:6a433b78000000001702b12c:05_0"],
       "action": "match",
-      "search_keywords_tried": ["时尚天河"],
-      "poi_id": "17181157933967338288",
-      "poi_title": "时尚天河商业广场",
-      "poi_address": "广东省广州市天河区天河路299号",
-      "latitude": 23.13503,
-      "longitude": 113.32522,
+      "search_keywords_tried": [
+        "鱼珠时光"
+      ],
+      "poi_id": "2322816572056678034",
+      "poi_title": "鱼珠时光",
+      "poi_address": "广东省广州市黄埔区黄埔大道东840号",
       "confidence": "high",
       "doubtful": false,
-      "reason": "天河区时尚天河东区型动街区，绑定时尚天河商业广场主体"
+      "reason": "鱼珠时光商场主体一致，仅L2展厅",
+      "group_id": "8c3cc37d9e25",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:02_0"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
     },
     {
-      "group_id": "a9b3ad81683b",
-      "event_uids": ["xiaohongshu:6a433b78000000001702b12c:06_0"],
-      "action": "reject",
-      "search_keywords_tried": ["广州天河城", "番禺天河城", "天河城 天河路208"],
-      "reason": "活动同时写广州天河城与番禺天河城两家商场，无法唯一确定应绑哪家POI"
-    },
-    {
-      "group_id": "4c7d69e7d0e9",
-      "event_uids": ["xiaohongshu:6a433b78000000001702b12c:07_0"],
       "action": "match",
-      "search_keywords_tried": ["北京路天河城"],
-      "poi_id": "727982314543807144",
-      "poi_title": "北京路天河城",
-      "poi_address": "广东省广州市越秀区北京路168号",
-      "latitude": 23.119114,
-      "longitude": 113.27019,
+      "search_keywords_tried": [
+        "南越王博物院王宫"
+      ],
+      "poi_id": "1610233418401295402",
+      "poi_title": "南越王博物院(王宫展区)",
+      "poi_address": "广东省广州市越秀区中山五路广州南越王宫博物馆",
       "confidence": "high",
       "doubtful": false,
-      "reason": "北京路天河城与POI名称地址一致"
+      "reason": "南越王博物院王宫展区一致",
+      "group_id": "b4e732a69474",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:03_0"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
     },
     {
-      "group_id": "32b734865e7d",
-      "event_uids": ["xiaohongshu:6a433b78000000001702b12c:08_0"],
       "action": "match",
-      "search_keywords_tried": ["正佳广场"],
-      "poi_id": "17952384081769500856",
-      "poi_title": "正佳广场",
-      "poi_address": "广东省广州市天河区天河路228号",
-      "latitude": 23.132126,
-      "longitude": 113.326987,
+      "search_keywords_tried": [
+        "VLAB觀空间",
+        "翌方181创意园"
+      ],
+      "poi_id": "833120525006362793",
+      "poi_title": "觀空间JustartSpace",
+      "poi_address": "广东省广州市白云区沙太南路181号VLAB翌方181创意园负一层",
       "confidence": "high",
       "doubtful": false,
-      "reason": "正佳广场4F中庭，绑定正佳广场主体"
+      "reason": "翌方181觀空间与活动地址一致",
+      "group_id": "2d2485f7280b",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:04_0"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
     },
     {
-      "group_id": "c3d13a2f1a7c",
-      "event_uids": ["xiaohongshu:6a433b78000000001702b12c:09_0"],
       "action": "match",
-      "search_keywords_tried": ["正佳广场"],
-      "poi_id": "17952384081769500856",
-      "poi_title": "正佳广场",
-      "poi_address": "广东省广州市天河区天河路228号",
-      "latitude": 23.132126,
-      "longitude": 113.326987,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "正佳广场4F中庭电梯出口侧，绑定正佳广场主体"
-    },
-    {
-      "group_id": "60023e4b456f",
-      "event_uids": ["xiaohongshu:6a433b78000000001702b12c:10_0"],
-      "action": "match",
-      "search_keywords_tried": ["保利世贸博览馆"],
+      "search_keywords_tried": [
+        "保利世贸博览馆"
+      ],
       "poi_id": "11583431460719727697",
       "poi_title": "保利世贸博览馆",
       "poi_address": "广东省广州市海珠区新港东路1000号",
-      "latitude": 23.097304,
-      "longitude": 113.365585,
       "confidence": "high",
       "doubtful": false,
-      "reason": "保利世贸博览馆1-6号馆，与展馆POI一致"
+      "reason": "保利世贸博览馆对应2号馆主体",
+      "group_id": "326b7af3eb01",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:05_0"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
     },
     {
-      "group_id": "2b97b5908bfe",
-      "event_uids": ["xiaohongshu:6a433b78000000001702b12c:14_0"],
       "action": "match",
-      "search_keywords_tried": ["天河体育中心"],
-      "poi_id": "7078719610186650580",
-      "poi_title": "广州天河体育中心",
-      "poi_address": "广东省广州市天河区天河路299号",
-      "latitude": 23.137461,
-      "longitude": 113.32507,
+      "search_keywords_tried": [
+        "广东省博物馆"
+      ],
+      "poi_id": "7153675213392528199",
+      "poi_title": "广东省博物馆",
+      "poi_address": "广东省广州市天河区珠江东路2号",
       "confidence": "high",
       "doubtful": false,
-      "reason": "天河体育中心与POI名称地址一致"
+      "reason": "省博主体一致，仅三楼展厅",
+      "group_id": "3a564098931f",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:06_0"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "ICC环贸天地"
+      ],
+      "poi_id": "390646713614773944",
+      "poi_title": "ICC环贸天地",
+      "poi_address": "广东省广州市天河区天河北路237号",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "ICC环贸天地商场一致",
+      "group_id": "ec8c8dd2fab9",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:07_0"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "广州购书中心"
+      ],
+      "poi_id": "18341963156770735768",
+      "poi_title": "广州购书中心",
+      "poi_address": "广东省广州市天河区天河路123号",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "天河路广州购书中心一致",
+      "group_id": "200bed9931e4",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:07_1"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "时尚天河商业广场"
+      ],
+      "poi_id": "17181157933967338288",
+      "poi_title": "时尚天河商业广场",
+      "poi_address": "广东省广州市天河区天河路299号",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "时尚天河商业广场主体一致",
+      "group_id": "22c5de795cb3",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:07_2"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "广东省博物馆"
+      ],
+      "poi_id": "7153675213392528199",
+      "poi_title": "广东省博物馆",
+      "poi_address": "广东省广州市天河区珠江东路2号",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "广东省博物馆主体一致",
+      "group_id": "8d4e732b3c56",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:07_3"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "高德置地冬广场"
+      ],
+      "poi_id": "13673767752936484036",
+      "poi_title": "高德置地广场·冬广场",
+      "poi_address": "广东省广州市天河区珠江新城珠江东路16号",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "高德置地冬广场一致",
+      "group_id": "8c96d9b12451",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:08_0"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "group_id": "95c2bbafec7f",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:08_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "7841443980837936417",
+      "poi_title": "广州K11购物艺术中心",
+      "poi_address": "",
+      "latitude": 23.118213,
+      "longitude": 113.326371,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：天河区珠江东路6号广州K11购物艺术中心 → 广州K11购物艺术中心（来源 event:xiaohongshu:6a3d00f700000000160242e5:07_1）"
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "时尚天河商业广场"
+      ],
+      "poi_id": "17181157933967338288",
+      "poi_title": "时尚天河商业广场",
+      "poi_address": "广东省广州市天河区天河路299号",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "时尚天河西区属同一商场主体",
+      "group_id": "ffd44f697a08",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:08_2"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "广东省博物馆"
+      ],
+      "poi_id": "7153675213392528199",
+      "poi_title": "广东省博物馆",
+      "poi_address": "广东省广州市天河区珠江东路2号",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "省博三楼专题展厅主体一致",
+      "group_id": "2df03a6e90a6",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:08_3"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "天河城"
+      ],
+      "poi_id": "9329423919560262315",
+      "poi_title": "天河城",
+      "poi_address": "广东省广州市天河区天河路208号",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "天河城商场主体一致",
+      "group_id": "3507a85c8543",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:09_0"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "广州K11"
+      ],
+      "poi_id": "7841443980837936417",
+      "poi_title": "广州K11购物艺术中心",
+      "poi_address": "天河区珠江东路6号",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "广州K11购物艺术中心主体一致",
+      "group_id": "631e474d5d41",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:09_1"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "指月亮"
+      ],
+      "poi_id": "11848856425750507113",
+      "poi_title": "指月亮Art&Book",
+      "poi_address": "广东省广州市越秀区东华东路632号101房",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "指月亮Art&Book店名一致",
+      "group_id": "f0ef2edaf3bb",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:09_2"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "榭映美术馆"
+      ],
+      "poi_id": "2201142581748293706",
+      "poi_title": "溯·榭映美术馆",
+      "poi_address": "广东省广州市越秀区东山湖公园中岛1号",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "东山湖中岛榭映美术馆一致",
+      "group_id": "5b5d63348dab",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:09_3"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "时尚天河商业广场"
+      ],
+      "poi_id": "17181157933967338288",
+      "poi_title": "时尚天河商业广场",
+      "poi_address": "广东省广州市天河区天河路299号",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "时尚天河西区商场主体一致",
+      "group_id": "137b63349b14",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:10_0"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "昌兴街7号"
+      ],
+      "poi_id": "5472314400881067571",
+      "poi_title": "弄空间LongSpace",
+      "poi_address": "广东省广州市越秀区昌兴街7号2-3F",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "昌兴街7号弄空间门牌楼层一致",
+      "group_id": "4150785fc93f",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:10_1"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "無毛用非便利店"
+      ],
+      "poi_id": "2363941195850184794",
+      "poi_title": "無毛用非便利店",
+      "poi_address": "广东省广州市越秀区北京街道骏文雅苑1楼商铺101-3号",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "無毛用非便利店店名一致",
+      "group_id": "5724b9d22d42",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:10_2"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "广州人民艺术中心"
+      ],
+      "poi_id": "5342226041591489780",
+      "poi_title": "广州人民艺术中心",
+      "poi_address": "广东省广州市越秀区麓湖路13号",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "广州人民艺术中心名址一致",
+      "group_id": "d69700c2b1db",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:10_3"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "广东美术馆二沙岛"
+      ],
+      "poi_id": "2778861310134953404",
+      "poi_title": "广东美术馆",
+      "poi_address": "广东省广州市越秀区二沙岛烟雨路38号",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "广东美术馆本馆二沙岛一致",
+      "group_id": "fb7d769202ab",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:11_0"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "广东美术馆新馆"
+      ],
+      "poi_id": "2922632961011281738",
+      "poi_title": "广东美术馆新馆",
+      "poi_address": "广东省广州市荔湾区白鹅潭大湾区艺术中心",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "广东美术馆新馆一楼厅一致",
+      "group_id": "c317f4396a17",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:11_1"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "扉美术馆"
+      ],
+      "poi_id": "8107801739388230385",
+      "poi_title": "扉美术馆",
+      "poi_address": "广东省广州市海珠区新滘中路50号上冲南约32号-5号101号",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "扉美术馆新滘中路馆址一致",
+      "group_id": "4a8bc0c17268",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:12_1"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "岛外SPACE"
+      ],
+      "poi_id": "2787311681368664394",
+      "poi_title": "岛外DAOWAI SPACE",
+      "poi_address": "广东省广州市海珠区昌岗柏涛雅苑(信裕路62号)",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "岛外DAOWAI SPACE门牌一致",
+      "group_id": "9f1a26cc665e",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:12_2"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "group_id": "467eef1eca42",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:12_3"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "15788207633856372198",
+      "poi_title": "广州艺术博物院(广州美术馆)",
+      "poi_address": "",
+      "latitude": 23.100692,
+      "longitude": 113.326183,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：广州艺术博物院（广州美术馆）1号馆 → 广州艺术博物院(广州美术馆)（来源 event:xiaohongshu:6a3d00f700000000160242e5:01_0）"
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "广州艺术博物院"
+      ],
+      "poi_id": "15788207633856372198",
+      "poi_title": "广州艺术博物院(广州美术馆)",
+      "poi_address": "广东省广州市海珠区艺洲路与赤岗北路交汇处西南角广州TIT创意园内",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "广州艺术博物院主体一致",
+      "group_id": "d337db3fe47d",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:13_0",
+        "xiaohongshu:6a634c9b000000000f00a3d6:13_2"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "广州市文化馆"
+      ],
+      "poi_id": "7905422272280965706",
+      "poi_title": "新广州文化馆",
+      "poi_address": "广东省广州市海珠区新滘中路288号",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "广州市文化馆主体一致",
+      "group_id": "cc565542ab32",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:13_1"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "汉溪K11"
+      ],
+      "poi_id": "18153073841873699638",
+      "poi_title": "广州汉溪K11购物艺术中心",
+      "poi_address": "广东省广州市番禺区钟村街道汉溪大道东178号",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "汉溪K11主体一致，仅铺位号",
+      "group_id": "11046dd607d1",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:13_3"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "另一个美术馆"
+      ],
+      "poi_id": "11734059980725653818",
+      "poi_title": "另一个美术馆",
+      "poi_address": "广东省广州市番禺区东环街甘棠村甘棠大道11号",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "另一个美术馆甘棠大道11号一致",
+      "group_id": "986bcd2f0b52",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:14_0"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "广州美术学院美术馆大学城"
+      ],
+      "poi_id": "8969793764509785681",
+      "poi_title": "广州美术学院大学城美术馆(大学城外环西路)",
+      "poi_address": "广东省广州市番禺区广州大学城外环西路168号",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "广美大学城美术馆一致",
+      "group_id": "46fd4ef2662e",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:14_1"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "南汉二陵博物馆"
+      ],
+      "poi_id": "12788854596575309357",
+      "poi_title": "南汉二陵博物馆",
+      "poi_address": "广东省广州市番禺区大学城华师一路8号",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "南汉二陵博物馆主体一致",
+      "group_id": "221c76581ef6",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:14_2"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "云里下沉广场"
+      ],
+      "poi_id": "15074630787838159540",
+      "poi_title": "云里下沉式广场",
+      "poi_address": "广东省广州市白云区百顺南路15号",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "云里下沉广场主体一致",
+      "group_id": "99bd8869f697",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:15_0"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "白云机场T2美术馆"
+      ],
+      "poi_id": "7057927530728302623",
+      "poi_title": "白云机场岭南美术馆",
+      "poi_address": "广东省广州市花都区",
+      "confidence": "medium",
+      "doubtful": false,
+      "reason": "白云机场T2美术馆对应岭南美术馆",
+      "group_id": "0a8fafd68c41",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:15_1"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "黄埔大悦汇"
+      ],
+      "poi_id": "1755481504518948690",
+      "poi_title": "广州黄埔大悦汇",
+      "poi_address": "广东省广州市黄埔区科学大道",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "黄埔大悦汇商场一致",
+      "group_id": "61bb514e5d44",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:15_2"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "广州海事博物馆"
+      ],
+      "poi_id": "6153575579206793333",
+      "poi_title": "广州海事博物馆",
+      "poi_address": "广东省广州市黄埔区穗东街道庙头社区南部",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "广州海事博物馆主体一致",
+      "group_id": "9fa9b10cfc9f",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:15_3"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "塱头古村春阳台",
+        "塱头古村"
+      ],
+      "poi_id": "3654042688680972674",
+      "poi_title": "春阳台餐厅·ART COFFEE",
+      "poi_address": "广东省广州市花都区炭步镇塱头古村青云路18号春阳台餐厅",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "塱头古村春阳台展厅对应春阳台空间",
+      "group_id": "662d2635a8f4",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:16_0"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "阿那亚艺术中心广州"
+      ],
+      "poi_id": "2099225911225453934",
+      "poi_title": "阿那亚艺术中心广州馆",
+      "poi_address": "广东省广州市花都区青林路九龙湖度假区",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "阿那亚艺术中心广州馆一致",
+      "group_id": "69e6d25b5bdf",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:16_1"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "阿那亚艺术中心广州"
+      ],
+      "poi_id": "2099225911225453934",
+      "poi_title": "阿那亚艺术中心广州馆",
+      "poi_address": "广东省广州市花都区青林路九龙湖度假区",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "阿那亚艺术中心广州馆展厅4主体一致",
+      "group_id": "b773e4d2db18",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:16_2"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "观几里艺术空间"
+      ],
+      "poi_id": "7319342001071869870",
+      "poi_title": "看见·无限大湾区女性共创艺术展",
+      "poi_address": "广东省广州市白云区云城南二路无限极广场B座208观几里艺术空间",
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "搜到观几里活动POI（展名作店名），建议人工核对",
+      "group_id": "352527295cb1",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:16_3"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "group_id": "5d26b0215bca",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:17_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "2778861310134953404",
+      "poi_title": "广东美术馆",
+      "poi_address": "",
+      "latitude": 23.107977,
+      "longitude": 113.307164,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：广东美术馆本馆（二沙岛）二楼7号展厅 → 广东美术馆（来源 event:xiaohongshu:6a3d00f700000000160242e5:05_0）"
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "广州博物馆镇海楼"
+      ],
+      "poi_id": "6459100334135463002",
+      "poi_title": "广州博物馆镇海楼馆区-镇海楼",
+      "poi_address": "广东省广州市越秀区洪桥街道解放北路988号越秀公园镇海楼",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "广州博物馆镇海楼展区一致",
+      "group_id": "c9105c105765",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:17_1"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "group_id": "f0abd048c41c",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:17_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "11241184785661234526",
+      "poi_title": "北京路天河城B区",
+      "poi_address": "",
+      "latitude": 23.117768,
+      "longitude": 113.269094,
+      "candidates": [],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：北京路天河城B区B1层 → 北京路天河城B区（来源 event:xiaohongshu:6a3d00f700000000160242e5:11_2）"
+    },
+    {
+      "action": "match",
+      "search_keywords_tried": [
+        "南越王博物院王墓"
+      ],
+      "poi_id": "17636405784292068363",
+      "poi_title": "南越王博物院王墓展区",
+      "poi_address": "广东省广州市越秀区解放北路西汉南越王博物馆",
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "南越王博物院王墓展区一致",
+      "group_id": "c8d2367e3968",
+      "event_uids": [
+        "xiaohongshu:6a634c9b000000000f00a3d6:17_3"
+      ],
+      "candidates": [],
+      "latitude": null,
+      "longitude": null
     }
   ]
 }

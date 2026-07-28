@@ -1,14 +1,26 @@
 {
   "city": "南京",
   "source": "douban",
-  "decided_at": "2026-07-13T14:42:21.308Z",
+  "decided_at": "2026-07-26T11:54:23.419Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "event_uid": "douban:37901134",
-      "category": "其他",
+      "event_uid": "douban:37848193",
       "suggested": true,
-      "reason": "影院免费观影活动"
+      "category": "音乐现场",
+      "reason": "莫扎特长笛专场音乐会，公众购票观演"
+    },
+    {
+      "event_uid": "douban:37803537",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "刘嘉卓&宗克.梅恩《不一样的声音》舞台演出，公众购票"
+    },
+    {
+      "event_uid": "douban:37848216",
+      "suggested": true,
+      "category": "戏剧表演",
+      "reason": "上海歌舞团舞剧《永不消逝的电波》，公众购票观演"
     }
   ]
 }

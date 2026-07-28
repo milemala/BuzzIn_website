@@ -1,26 +1,21 @@
 {
   "city": "长沙",
   "source": "douban",
-  "decided_at": "2026-07-13T01:30:00.000Z",
+  "decided_at": "2026-07-26T12:10:00.000Z",
   "agent": "cursor-composer",
+  "note": "仅本轮 getLastImportNewUids 2 条",
   "decisions": [
     {
-      "event_uid": "douban:37820466",
+      "event_uid": "douban:37906089",
       "suggested": true,
-      "category": "音乐现场",
-      "reason": "室内合唱团专场音乐会，长沙音乐厅购票演出"
+      "category": "主题沙龙",
+      "reason": "免费主题观影局，映后需完成点评作业，属线下观影交流"
     },
     {
-      "event_uid": "douban:37885287",
+      "event_uid": "douban:35857318",
       "suggested": true,
-      "category": "音乐现场",
-      "reason": "王力宏世界巡回演唱会，贺龙体育场购票演出"
-    },
-    {
-      "event_uid": "douban:37832262",
-      "suggested": true,
-      "category": "音乐现场",
-      "reason": "歌手个人巡演，梅溪湖大剧院购票演出，实为音乐演出（豆瓣误标戏剧类）"
+      "category": "戏剧表演",
+      "reason": "嘻嘻分子脱口秀专场，喜剧舞台演出"
     }
   ]
 }

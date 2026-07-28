@@ -1,23 +1,296 @@
 {
   "city": "长沙",
   "source": "xiaohongshu",
-  "decided_at": "2026-07-14T01:05:00.000Z",
+  "decided_at": "2026-07-26T13:25:00.000Z",
   "agent": "cursor-composer",
   "decisions": [
-    { "event_uid": "xiaohongshu:6a461ae9000000000702d491:01_0", "suggested": true, "category": "主题沙龙", "reason": "女性主题开放麦分享局，线下轻社交交流" },
-    { "event_uid": "xiaohongshu:6a461ae9000000000702d491:02_0", "suggested": true, "category": "市集", "reason": "世界杯主题啤酒节市集，餐饮手作免费逛" },
-    { "event_uid": "xiaohongshu:6a461ae9000000000702d491:03_0", "suggested": true, "category": "市集", "reason": "免费动漫嘉年华，Cosplay打卡互动公众可逛" },
-    { "event_uid": "xiaohongshu:6a461ae9000000000702d491:04_0", "suggested": true, "category": "市集", "reason": "BJD娃展线下集市，娃衣妆面配饰同人逛展" },
-    { "event_uid": "xiaohongshu:6a461ae9000000000702d491:05_0", "suggested": true, "category": "市集", "reason": "无限暖暖游戏IP线下打卡快闪，联动周边领取" },
-    { "event_uid": "xiaohongshu:6a461ae9000000000702d491:06_0", "suggested": true, "category": "市集", "reason": "TX年轻力中心开业潮流派对快闪，公众免费" },
-    { "event_uid": "xiaohongshu:6a461ae9000000000702d491:07_0", "suggested": true, "category": "市集", "reason": "喜人综艺IP周边快闪小卖部，观演观众可逛购" },
-    { "event_uid": "xiaohongshu:6a461ae9000000000702d491:08_0", "suggested": true, "category": "市集", "reason": "循环主题旧物创作市集，公众免费可逛" },
-    { "event_uid": "xiaohongshu:6a461ae9000000000702d491:09_0", "suggested": true, "category": "市集", "reason": "原创手作复古潮玩周末生活市集" },
-    { "event_uid": "xiaohongshu:6a461ae9000000000702d491:10_0", "suggested": true, "category": "主题沙龙", "reason": "甜品品鉴分享社交局，线下吃糕互动体验" },
-    { "event_uid": "xiaohongshu:6a461ae9000000000702d491:11_0", "suggested": true, "category": "市集", "reason": "萌宠闯关派对，宠物竞技互动公众可参与" },
-    { "event_uid": "xiaohongshu:6a461ae9000000000702d491:12_0", "suggested": true, "category": "看展逛馆", "reason": "野有上秋治愈系艺术展览，湖南首展公众可逛" },
-    { "event_uid": "xiaohongshu:6a461ae9000000000702d491:13_0", "suggested": true, "category": "市集", "reason": "泰式风情盛夏生活节市集，美食文创免费逛" },
-    { "event_uid": "xiaohongshu:6a461ae9000000000702d491:14_0", "suggested": false, "category": "其他", "reason": "明星品牌见面会，偏追星非结伴娱乐体验" },
-    { "event_uid": "xiaohongshu:6a461ae9000000000702d491:15_0", "suggested": true, "category": "音乐现场", "reason": "地下偶像团体免费Live演出，公众可观看" }
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:01_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "233美术馆诗歌展，公众免费观展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:02_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "梅溪湖艺术博物馆纤维艺术展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:03_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "美仑美术馆中央美院素描精品展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:04_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "The Dock Gallery当代艺术群展，免费入场"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:05_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "TX长沙迷你个展，免费观展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:06_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "隆平水稻博物馆3D打印设计展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:06_1",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "芙蓉天街十四行诗特展，免费入场"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:06_2",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "如院丝绸博物馆山海经主题艺术展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:06_3",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "P stop长沙个展，免费观展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:07_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "天一美术馆双个展，免费入场"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:07_1",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "岩彩艺术馆岩彩画展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:07_2",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "油脂厂诗歌影像展，免费入场"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:07_3",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "油脂厂油罐数媒艺术展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:08_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "曦·艺术空间双个展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:08_1",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "湖南美术馆徐悲鸿艺术大展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:08_2",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "李自健美术馆中国画作品展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:08_3",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "梅溪湖艺术博物馆小王子沉浸式展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:09_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "谢子龙影像艺术馆中草药生命力艺术展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:09_1",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "谢子龙摄影艺术展「马」"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:09_2",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "谢子龙影像艺术馆摄影展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:09_3",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "谢子龙影像艺术馆山影显相展览"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:10_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "TX年轻力中心治愈系艺术展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:10_1",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "TX长沙乐高积木主题展，免费逛"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:10_2",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "TX长沙个人艺术展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:10_3",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "TX长沙塔卡沙主题展，免费入场"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:11_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "星沙万象汇橘噗噗夏日特展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:11_1",
+      "suggested": true,
+      "category": "市集",
+      "reason": "华夏家博会，公众可免费逛的家居博览"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:11_2",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "美仑美术馆巫鸿学术文献展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:11_3",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "233美术馆百分百妇女巡展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:12_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "湖南省博物馆毕加索主题特展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:12_1",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "长沙美术馆中小学生艺术作品展，公众可观展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:12_2",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "长沙美术馆莫立唐艺术展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:12_3",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "长沙美术馆湘贤作品特展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:13_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "开福万达摄影展，免费入场"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:13_1",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "北辰荟主题展，免费需预约"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:13_2",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "长沙博物馆小西天文物与悬塑艺术展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:13_3",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "杜鹃花艺术中心古生物化石科普展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:14_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "湖南博物院金铜佛像艺术展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:14_1",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "湖南省博物馆馆藏老照片特展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:14_2",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "湖南省博物馆水墨画作品展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:14_3",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "湖南省博物馆敦煌文化宝藏展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:15_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "湖南美术馆湖湘百年美术之路陈列展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:15_2",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "谢子龙影像艺术馆民族志摄影展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:15_3",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "长沙非遗馆非遗与科技主题展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:16_0",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "梅溪湖艺术博物馆湖湘文化艺术展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:16_1",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "梅溪湖艺术博物馆史前文明图卷展"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:16_2",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "藏湘知纸质文化博物馆基本陈列"
+    },
+    {
+      "event_uid": "xiaohongshu:6a64f1d2000000000e03417d:16_3",
+      "suggested": true,
+      "category": "看展逛馆",
+      "reason": "湖南师大美术学院毕业季作品展"
+    }
   ]
 }

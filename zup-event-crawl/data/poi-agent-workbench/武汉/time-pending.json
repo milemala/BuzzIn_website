@@ -1,25 +1,1600 @@
 {
   "city": "武汉",
-  "source": "douban",
-  "exported_at": "2026-07-13T14:41:13.914Z",
+  "source": "xiaohongshu",
+  "exported_at": "2026-07-26T13:21:27.111Z",
   "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
   "events": [
     {
-      "event_uid": "douban:37901128",
+      "event_uid": "xiaohongshu:6a42415900000000170289a7:01_0",
       "city": "武汉",
-      "source": "douban",
-      "title": "温暖治愈，夏日必看！章若楠、金靖领衔主演《想你了》武汉免费观影",
-      "time_text": "07月17日 周五 19:30-21:17",
+      "source": "xiaohongshu",
+      "title": "《光·遇》七周年线下嘉年华",
+      "time_text": "7月4日至7月12日",
+      "current_start_date": "2026-07-04 00:00:00",
+      "current_end_date": "2026-07-12 23:59:59",
+      "current_start_at": "2026-07-04 00:00:00",
+      "current_expired_at": "2026-07-12 23:59:59",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月4日至7月12日\n地址：武汉·武商梦时代\n介绍：部分活动需预约。\n游园集章、Cosplay巡游、美陈打卡、《光·遇》致梵高麦田展、颁奖礼等精彩环节轮番上演。\n\n来源账号：武汉周末去哪\n合集标题：武汉周末（6.30-7.5）活动汇总！好多免费\n来源笔记：https://www.xiaohongshu.com/explore/6a42415900000000170289a7?xsec_token=ABNGGh5WG9tI5JqU084lWmx9kAThVfiaucxvvLc5POZ9U%3D&xsec_source=pc_user\n原 slide：6a42415900000000170289a7/images/01.webp",
+      "suggestion": {
+        "start_at": "2026-07-04 00:00:00",
+        "expired_at": "2026-07-12 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a0a7000000001503c9c2:01_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "2026武汉7.16渡江节",
+      "time_text": "7月16日",
+      "current_start_date": "2026-07-16 00:00:00",
+      "current_end_date": "2026-07-16 23:59:59",
+      "current_start_at": "2026-07-16 00:00:00",
+      "current_expired_at": "2026-07-16 23:59:59",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月16日\n地址：汉口江滩、汉阳门花园\n介绍：免费。\n武汉一年一度的夏日标志性节庆，运动员横渡长江竞技，市民可免费围观。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（713-719）活动汇总！好多免费~\n来源笔记：https://www.xiaohongshu.com/explore/6a54a0a7000000001503c9c2?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLW9hGW8OI7CtxvYzpE8R9gI%3D&xsec_source=pc_user\n原 slide：6a54a0a7000000001503c9c2/images/01.webp",
+      "suggestion": {
+        "start_at": "2026-07-16 00:00:00",
+        "expired_at": "2026-07-16 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61bc7b0000000005039fc0:01_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "武汉首开江南荷市",
+      "time_text": "7.25-8.3（7.25七点开唱）",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-08-03 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-08-03 23:59:59",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7.25-8.3（7.25七点开唱）\n地址：武汉永旺梦乐城广场\n介绍：免费。\n沉浸式江南荷塘造景，30+荷风主题摊位，飞花令、投壶……《怎叹》原唱郑鱼现场开唱！\n\n来源账号：武汉周末去哪\n合集标题：🌈武汉周末（7.24-7.26）活动汇总！\n来源笔记：https://www.xiaohongshu.com/explore/6a61bc7b0000000005039fc0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFQjnkT2_NwpuQ-L_I56gDZU%3D&xsec_source=pc_user\n原 slide：6a61bc7b0000000005039fc0/images/01.webp",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-08-03 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a42415900000000170289a7:01_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "食评街小学第二届偷吃小赛",
+      "time_text": "7.4-7.5 每天14:30起",
+      "current_start_date": "2026-07-04 14:30:00",
+      "current_end_date": "2026-07-05 23:59:59",
+      "current_start_at": "2026-07-04 14:30:00",
+      "current_expired_at": "2026-07-05 23:59:59",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7.4-7.5 每天14:30起\n地址：武昌万象城L3樱花唱诗\n介绍：免费报名。\n我重生了！重生在了偷吃小赛S2赛季！这一次我要吃回属于我的一切！\n\n来源账号：武汉周末去哪\n合集标题：武汉周末（6.30-7.5）活动汇总！好多免费\n来源笔记：https://www.xiaohongshu.com/explore/6a42415900000000170289a7?xsec_token=ABNGGh5WG9tI5JqU084lWmx9kAThVfiaucxvvLc5POZ9U%3D&xsec_source=pc_user\n原 slide：6a42415900000000170289a7/images/01.webp",
+      "suggestion": {
+        "start_at": "2026-07-04 14:30:00",
+        "expired_at": "2026-07-05 23:59:59",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f4e110000000016027768:01_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "武汉博物馆江城非遗「夜市」",
+      "time_text": "7月10日, 19:00 - 21:00",
+      "current_start_date": "2026-07-10 19:00:00",
+      "current_end_date": "2026-07-10 21:00:00",
+      "current_start_at": "2026-07-10 19:00:00",
+      "current_expired_at": "2026-07-10 21:00:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月10日, 19:00 - 21:00\n地址：江汉区青年路373号武汉博物馆\n介绍：免费。\n汉绣、植物染、楚香等非遗体验，还有老武汉夏日风味，让博物馆也有烟火气。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周末活动汇总！好多免费🆓\n来源笔记：https://www.xiaohongshu.com/explore/6a4f4e110000000016027768?xsec_token=ABCawNj4E-LPaKcNyeTQKtuXMcUCoJcLVgLAB25vw_ST4%3D&xsec_source=pc_user\n原 slide：6a4f4e110000000016027768/images/01.webp",
+      "suggestion": {
+        "start_at": "2026-07-10 19:00:00",
+        "expired_at": "2026-07-10 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a0a7000000001503c9c2:01_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "EWC26中国超级电竞嘉年华",
+      "time_text": "7月18日至19日每日14:00",
+      "current_start_date": "2026-07-18 14:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-07-18 14:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月18日至19日每日14:00\n地址：武汉咸安坊\n介绍：免费。\n巡回本周来到武汉，嘉宾有LWX、宝蓝、神超、Crisp等，LOL线下观赛与互动合影。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（713-719）活动汇总！好多免费~\n来源笔记：https://www.xiaohongshu.com/explore/6a54a0a7000000001503c9c2?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLW9hGW8OI7CtxvYzpE8R9gI%3D&xsec_source=pc_user\n原 slide：6a54a0a7000000001503c9c2/images/01.webp",
+      "suggestion": {
+        "start_at": "2026-07-18 14:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61bc7b0000000005039fc0:01_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "真茶屋首届偷喝大赛",
+      "time_text": "7月25日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-25 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-25 23:59:59",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月25日\n地址：武汉市滨江天街L4浴霞之境\n介绍：免费，限16岁以上参与。\n参赛就有周黑鸭、真茶屋周边送，决赛还有大礼包，免费喝奶茶~\n\n来源账号：武汉周末去哪\n合集标题：🌈武汉周末（7.24-7.26）活动汇总！\n来源笔记：https://www.xiaohongshu.com/explore/6a61bc7b0000000005039fc0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFQjnkT2_NwpuQ-L_I56gDZU%3D&xsec_source=pc_user\n原 slide：6a61bc7b0000000005039fc0/images/01.webp",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-25 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a2fb49500000000150255ed:01_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "湖北2026首届中式碳水节",
+      "time_text": "6月19日-21日 18:00至21:00",
+      "current_start_date": "2026-06-19 18:00:00",
+      "current_end_date": "2026-06-21 21:00:00",
+      "current_start_at": "2026-06-19 18:00:00",
+      "current_expired_at": "2026-06-21 21:00:00",
+      "detail_excerpt": "分类：市集活动\n费用：免费\n时间：6月19日-21日 18:00至21:00\n地址：武汉杉杉奥莱2号门\n介绍：免费入场。\n汇聚全国40多种中式碳水美食，500平米市集每日18:00-21:00现场乐队演出。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周6.16-6.21活动汇总✨端午特别篇\n来源笔记：https://www.xiaohongshu.com/explore/6a2fb49500000000150255ed?xsec_token=ABqiajf8_DYf_4LPsuBA64JSglYWKVEFTLfpNW_xmYtA0%3D&xsec_source=pc_user\n原 slide：6a2fb49500000000150255ed/images/01.webp",
+      "suggestion": {
+        "start_at": "2026-06-19 18:00:00",
+        "expired_at": "2026-06-21 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a42415900000000170289a7:01_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "东湖听涛泳场限时免费开放",
+      "time_text": "即日起到8月底16:00-20:00",
+      "current_start_date": "2026-07-21 16:00:00",
+      "current_end_date": "2026-07-21 20:00:00",
+      "current_start_at": "2026-07-21 16:00:00",
+      "current_expired_at": "2026-07-21 20:00:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：即日起到8月底16:00-20:00\n地址：黄鹏路88号听涛景区内\n介绍：无需线上预约，游客可直接到场进入。\n游泳区域免费对外开放，水深1.6米-1.8米。\n\n来源账号：武汉周末去哪\n合集标题：武汉周末（6.30-7.5）活动汇总！好多免费\n来源笔记：https://www.xiaohongshu.com/explore/6a42415900000000170289a7?xsec_token=ABNGGh5WG9tI5JqU084lWmx9kAThVfiaucxvvLc5POZ9U%3D&xsec_source=pc_user\n原 slide：6a42415900000000170289a7/images/01.webp",
+      "suggestion": {
+        "start_at": "2026-06-08 16:00:00",
+        "expired_at": "2026-06-08 20:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4b70e60000000015024f33:01_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "银泰偷瓜大赛",
+      "time_text": "7月11-12日 12:00-19:30",
+      "current_start_date": "2026-07-11 12:00:00",
+      "current_end_date": "2026-07-12 19:30:00",
+      "current_start_at": "2026-07-11 12:00:00",
+      "current_expired_at": "2026-07-12 19:30:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月11-12日 12:00-19:30\n地址：银泰百货武汉创意城1F中庭\n介绍：免费\n选手躲开追捕，偷偷搬运西瓜，把西瓜运回起点，每轮用时最短者晋级！冠军送1g足金金条。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（7.7-7.12）活动汇总！好多免费！\n来源笔记：https://www.xiaohongshu.com/explore/6a4b70e60000000015024f33?xsec_token=ABK5qyQ7-YuaNCh_xrYD2wYAbtcNekStqfTq2-R_eYsvw%3D&xsec_source=pc_user\n原 slide：6a4b70e60000000015024f33/images/01.webp",
+      "suggestion": {
+        "start_at": "2026-07-11 12:00:00",
+        "expired_at": "2026-07-12 19:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f4e110000000016027768:01_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "泰cool啦！市集",
+      "time_text": "7月10日-12日, 13:30 - 20:00",
+      "current_start_date": "2026-07-10 13:30:00",
+      "current_end_date": "2026-07-12 20:00:00",
+      "current_start_at": "2026-07-10 13:30:00",
+      "current_expired_at": "2026-07-12 20:00:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月10日-12日, 13:30 - 20:00\n地址：永旺梦乐城武汉江夏 1F动广场\n介绍：免费。\n泰式市集，现摇泰奶、清爽菠萝冰，斑斓椰香卷、泰式舂鸡脚、芒果糯米饭……\n\n来源账号：武汉周末去哪\n合集标题：武汉本周末活动汇总！好多免费🆓\n来源笔记：https://www.xiaohongshu.com/explore/6a4f4e110000000016027768?xsec_token=ABCawNj4E-LPaKcNyeTQKtuXMcUCoJcLVgLAB25vw_ST4%3D&xsec_source=pc_user\n原 slide：6a4f4e110000000016027768/images/01.webp",
+      "suggestion": {
+        "start_at": "2026-07-10 13:30:00",
+        "expired_at": "2026-07-12 20:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a0a7000000001503c9c2:01_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "武汉首届装杯大赛",
+      "time_text": "7.18-7.19 11:00-16:00",
+      "current_start_date": "2026-07-18 11:00:00",
+      "current_end_date": "2026-07-19 16:00:00",
+      "current_start_at": "2026-07-18 11:00:00",
+      "current_expired_at": "2026-07-19 16:00:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7.18-7.19 11:00-16:00\n地址：武汉摩尔城1号门会员小铺\n介绍：免费，需报名。\n霸王茶姬、茉莉奶白等17家热门奶茶品牌免费试喝，打卡8家以上品牌集章可获礼品。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（713-719）活动汇总！好多免费~\n来源笔记：https://www.xiaohongshu.com/explore/6a54a0a7000000001503c9c2?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLW9hGW8OI7CtxvYzpE8R9gI%3D&xsec_source=pc_user\n原 slide：6a54a0a7000000001503c9c2/images/01.webp",
+      "suggestion": {
+        "start_at": "2026-07-18 11:00:00",
+        "expired_at": "2026-07-19 16:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61bc7b0000000005039fc0:01_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "星悦造浪泼水音乐节",
+      "time_text": "7.25-7.26 17:00-21:00",
+      "current_start_date": "2026-07-25 17:00:00",
+      "current_end_date": "2026-07-26 21:00:00",
+      "current_start_at": "2026-07-25 17:00:00",
+      "current_expired_at": "2026-07-26 21:00:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7.25-7.26 17:00-21:00\n地址：武汉星悦广场1号门外广场\n介绍：免费。\n不间断live曲目轮番上演，解锁清凉泼水狂欢，水花肆意飞溅，玩水+听歌~\n\n来源账号：武汉周末去哪\n合集标题：🌈武汉周末（7.24-7.26）活动汇总！\n来源笔记：https://www.xiaohongshu.com/explore/6a61bc7b0000000005039fc0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFQjnkT2_NwpuQ-L_I56gDZU%3D&xsec_source=pc_user\n原 slide：6a61bc7b0000000005039fc0/images/01.webp",
+      "suggestion": {
+        "start_at": "2026-07-25 17:00:00",
+        "expired_at": "2026-07-26 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a42415900000000170289a7:02_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "武汉倪妮线下见面会",
+      "time_text": "7月5日",
+      "current_start_date": "2026-07-05 00:00:00",
+      "current_end_date": "2026-07-05 23:59:59",
+      "current_start_at": "2026-07-05 00:00:00",
+      "current_expired_at": "2026-07-05 23:59:59",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月5日\n地址：武汉欧亚达家居(徐东店)\n介绍：参加活动领取见面会票。\n还有机会领取倪妮「亲笔签名照」若干。\n\n来源账号：武汉周末去哪\n合集标题：武汉周末（6.30-7.5）活动汇总！好多免费\n来源笔记：https://www.xiaohongshu.com/explore/6a42415900000000170289a7?xsec_token=ABNGGh5WG9tI5JqU084lWmx9kAThVfiaucxvvLc5POZ9U%3D&xsec_source=pc_user\n原 slide：6a42415900000000170289a7/images/02.webp",
+      "suggestion": {
+        "start_at": "2026-07-05 00:00:00",
+        "expired_at": "2026-07-05 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4b70e60000000015024f33:02_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "泰cool啦！市集",
+      "time_text": "7月10日-12日 13:30-20:00",
+      "current_start_date": "2026-07-10 13:30:00",
+      "current_end_date": "2026-07-12 20:00:00",
+      "current_start_at": "2026-07-10 13:30:00",
+      "current_expired_at": "2026-07-12 20:00:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月10日-12日 13:30-20:00\n地址：永旺梦乐城武汉江夏 1F动广场\n介绍：免费\n泰式市集，现摇泰奶、清爽菠萝冰，斑斓椰香卷、泰式舂鸡脚、芒果糯米饭……\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（7.7-7.12）活动汇总！好多免费！\n来源笔记：https://www.xiaohongshu.com/explore/6a4b70e60000000015024f33?xsec_token=ABK5qyQ7-YuaNCh_xrYD2wYAbtcNekStqfTq2-R_eYsvw%3D&xsec_source=pc_user\n原 slide：6a4b70e60000000015024f33/images/02.webp",
+      "suggestion": {
+        "start_at": "2026-07-10 13:30:00",
+        "expired_at": "2026-07-12 20:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f4e110000000016027768:02_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "中山公园夏季夜游开放",
+      "time_text": "7月10日起 17:30-21:00",
+      "current_start_date": "2026-07-10 17:30:00",
+      "current_end_date": "2026-07-10 21:00:00",
+      "current_start_at": "2026-07-10 17:30:00",
+      "current_expired_at": "2026-07-10 21:00:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月10日起 17:30-21:00\n地址：武汉中山公园\n介绍：免费。\n卡通灯会亮灯！20项游乐项目晚间持续开放，还有音乐喷泉也将开放，找到儿时的回忆。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周末活动汇总！好多免费🆓\n来源笔记：https://www.xiaohongshu.com/explore/6a4f4e110000000016027768?xsec_token=ABCawNj4E-LPaKcNyeTQKtuXMcUCoJcLVgLAB25vw_ST4%3D&xsec_source=pc_user\n原 slide：6a4f4e110000000016027768/images/02.webp",
+      "suggestion": {
+        "start_at": "2026-07-10 17:30:00",
+        "expired_at": "2026-07-10 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a0a7000000001503c9c2:02_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "造梦手帐节4.0武汉站",
+      "time_text": "7月18日-7月19日 10:00-20:00",
+      "current_start_date": "2026-07-18 10:00:00",
+      "current_end_date": "2026-07-19 20:00:00",
+      "current_start_at": "2026-07-18 10:00:00",
+      "current_expired_at": "2026-07-19 20:00:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月18日-7月19日 10:00-20:00\n地址：武汉摩尔城1F中庭\n介绍：免费入场。\n完全免费！50+原创宝藏摊位一次逛够，完成任务可领纪念礼品。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（713-719）活动汇总！好多免费~\n来源笔记：https://www.xiaohongshu.com/explore/6a54a0a7000000001503c9c2?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLW9hGW8OI7CtxvYzpE8R9gI%3D&xsec_source=pc_user\n原 slide：6a54a0a7000000001503c9c2/images/02.webp",
+      "suggestion": {
+        "start_at": "2026-07-18 10:00:00",
+        "expired_at": "2026-07-19 20:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61bc7b0000000005039fc0:02_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "武汉博物馆「岸边西厢」展演",
+      "time_text": "7月24日 19:00—21:00",
+      "current_start_date": "2026-07-24 19:00:00",
+      "current_end_date": "2026-07-24 21:00:00",
+      "current_start_at": "2026-07-24 19:00:00",
+      "current_expired_at": "2026-07-24 21:00:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月24日 19:00—21:00\n地址：武汉博物馆\n介绍：免费。\n本次楚剧演出打破传统舞台边界，演员将游走于观众之间，续写元杂剧《西厢记》新篇章。\n\n来源账号：武汉周末去哪\n合集标题：🌈武汉周末（7.24-7.26）活动汇总！\n来源笔记：https://www.xiaohongshu.com/explore/6a61bc7b0000000005039fc0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFQjnkT2_NwpuQ-L_I56gDZU%3D&xsec_source=pc_user\n原 slide：6a61bc7b0000000005039fc0/images/02.webp",
+      "suggestion": {
+        "start_at": "2026-07-24 19:00:00",
+        "expired_at": "2026-07-24 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a42415900000000170289a7:02_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "鄂州银河左岸音乐节",
+      "time_text": "7月4日-7月5日",
+      "current_start_date": "2026-07-04 00:00:00",
+      "current_end_date": "2026-07-07 23:59:59",
+      "current_start_at": "2026-07-04 00:00:00",
+      "current_expired_at": "2026-07-07 23:59:59",
+      "detail_excerpt": "分类：最新活动\n费用：购票入场\n时间：7月4日-7月5日\n地址：鄂州灵玲野生动物王国对面\n介绍：武汉有免费往返接驳车，40分钟直达。\n颜人中、花粥、Capper、GALI、姜云升等艺人齐聚。\n\n来源账号：武汉周末去哪\n合集标题：武汉周末（6.30-7.5）活动汇总！好多免费\n来源笔记：https://www.xiaohongshu.com/explore/6a42415900000000170289a7?xsec_token=ABNGGh5WG9tI5JqU084lWmx9kAThVfiaucxvvLc5POZ9U%3D&xsec_source=pc_user\n原 slide：6a42415900000000170289a7/images/02.webp",
+      "suggestion": {
+        "start_at": "2026-07-04 00:00:00",
+        "expired_at": "2026-07-07 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4b70e60000000015024f33:02_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "NEED! FLEA 2026 武汉站",
+      "time_text": "7.9-7.12",
+      "current_start_date": "2026-07-09 00:00:00",
+      "current_end_date": "2026-07-12 23:59:59",
+      "current_start_at": "2026-07-09 00:00:00",
+      "current_expired_at": "2026-07-12 23:59:59",
+      "detail_excerpt": "分类：最新活动\n费用：39r\n时间：7.9-7.12\n地址：武汉民众乐园\n介绍：39r，入场需购票\nvintage店主、小众设计师品牌、亚文化、中古风市集，还有二手好物。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（7.7-7.12）活动汇总！好多免费！\n来源笔记：https://www.xiaohongshu.com/explore/6a4b70e60000000015024f33?xsec_token=ABK5qyQ7-YuaNCh_xrYD2wYAbtcNekStqfTq2-R_eYsvw%3D&xsec_source=pc_user\n原 slide：6a4b70e60000000015024f33/images/02.webp",
+      "suggestion": {
+        "start_at": "2026-07-09 00:00:00",
+        "expired_at": "2026-07-12 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f4e110000000016027768:02_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "「邻里闲置接头局」(闲置物品市集)",
+      "time_text": "7.11-7.12 (周六日) 15:00-18:00",
+      "current_start_date": "2026-07-11 15:00:00",
+      "current_end_date": "2026-07-12 18:00:00",
+      "current_start_at": "2026-07-11 15:00:00",
+      "current_expired_at": "2026-07-12 18:00:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7.11-7.12 (周六日) 15:00-18:00\n地址：武汉保利广场L2利郎店铺前\n介绍：免费，需报名。\n闲置玩具、书籍绘本、创意手工，甚至家居好物……旧物循新，好物出售，不限品类。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周末活动汇总！好多免费🆓\n来源笔记：https://www.xiaohongshu.com/explore/6a4f4e110000000016027768?xsec_token=ABCawNj4E-LPaKcNyeTQKtuXMcUCoJcLVgLAB25vw_ST4%3D&xsec_source=pc_user\n原 slide：6a4f4e110000000016027768/images/02.webp",
+      "suggestion": {
+        "start_at": "2026-07-11 15:00:00",
+        "expired_at": "2026-07-12 18:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a0a7000000001503c9c2:02_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "第四届主题娃展「伯爵古堡」·武汉站",
+      "time_text": "2026年7月18日 10:30-17:00",
+      "current_start_date": "2026-07-18 10:30:00",
+      "current_end_date": "2026-07-18 17:00:00",
+      "current_start_at": "2026-07-18 10:30:00",
+      "current_expired_at": "2026-07-18 17:00:00",
+      "detail_excerpt": "分类：最新活动\n费用：49元起\n时间：2026年7月18日 10:30-17:00\n地址：武汉民众乐园\n介绍：Blythe、BJD、MJD、OB11、胶皮娃等，娃衣娃物、手作小物。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（713-719）活动汇总！好多免费~\n来源笔记：https://www.xiaohongshu.com/explore/6a54a0a7000000001503c9c2?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLW9hGW8OI7CtxvYzpE8R9gI%3D&xsec_source=pc_user\n原 slide：6a54a0a7000000001503c9c2/images/02.webp",
+      "suggestion": {
+        "start_at": "2026-07-18 10:30:00",
+        "expired_at": "2026-07-18 17:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61bc7b0000000005039fc0:02_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "微醺漫夏音乐会",
+      "time_text": "7月25日 19:00-21:30",
+      "current_start_date": "2026-07-25 19:00:00",
+      "current_end_date": "2026-07-25 21:30:00",
+      "current_start_at": "2026-07-25 19:00:00",
+      "current_expired_at": "2026-07-25 21:30:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月25日 19:00-21:30\n地址：武汉万象城1号门下沉广场\n介绍：免费。\n乐队live连唱20+首金曲，从《OAOA》到《倔强》，从《温柔》到《你不是真正的快乐》……\n\n来源账号：武汉周末去哪\n合集标题：🌈武汉周末（7.24-7.26）活动汇总！\n来源笔记：https://www.xiaohongshu.com/explore/6a61bc7b0000000005039fc0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFQjnkT2_NwpuQ-L_I56gDZU%3D&xsec_source=pc_user\n原 slide：6a61bc7b0000000005039fc0/images/02.webp",
+      "suggestion": {
+        "start_at": "2026-07-25 19:00:00",
+        "expired_at": "2026-07-25 21:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a42415900000000170289a7:02_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "X118首届全国Cosplay挑战赛",
+      "time_text": "7.1-7.8开始报名",
+      "current_start_date": "2026-07-01 00:00:00",
+      "current_end_date": "2026-07-08 23:59:59",
+      "current_start_at": "2026-07-01 00:00:00",
+      "current_expired_at": "2026-07-08 23:59:59",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7.1-7.8开始报名\n地址：潮流盒子·武汉x118\n介绍：7月1日至8日开放报名。\n武汉、福州、上海、广州四城联动，无论是大佬还是萌新，皆可上场！前三名送现金奖励。\n\n来源账号：武汉周末去哪\n合集标题：武汉周末（6.30-7.5）活动汇总！好多免费\n来源笔记：https://www.xiaohongshu.com/explore/6a42415900000000170289a7?xsec_token=ABNGGh5WG9tI5JqU084lWmx9kAThVfiaucxvvLc5POZ9U%3D&xsec_source=pc_user\n原 slide：6a42415900000000170289a7/images/02.webp",
+      "suggestion": {
+        "start_at": "2026-07-01 00:00:00",
+        "expired_at": "2026-07-08 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a0a7000000001503c9c2:02_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "2026武汉渡江嘉年华",
+      "time_text": "7月15日-7月17日 17:00-21:30",
+      "current_start_date": "2026-07-15 17:00:00",
+      "current_end_date": "2026-07-17 21:30:00",
+      "current_start_at": "2026-07-15 17:00:00",
+      "current_expired_at": "2026-07-17 21:30:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月15日-7月17日 17:00-21:30\n地址：汉口江滩（主会场）、汉阳门花园（分会场）\n介绍：免费。\n观渡江健儿、音乐演出、全国美食、文创市集、领消费券，武汉人夏日盛会。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（713-719）活动汇总！好多免费~\n来源笔记：https://www.xiaohongshu.com/explore/6a54a0a7000000001503c9c2?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLW9hGW8OI7CtxvYzpE8R9gI%3D&xsec_source=pc_user\n原 slide：6a54a0a7000000001503c9c2/images/02.webp",
+      "suggestion": {
+        "start_at": "2026-07-15 17:00:00",
+        "expired_at": "2026-07-17 21:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61bc7b0000000005039fc0:02_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "武汉新天地10000份冰杯免费送",
+      "time_text": "7月24日-7月26日",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月24日-7月26日\n地址：武汉新天地喷泉广场\n介绍：免费。\n打卡免费送冰杯+2份杯套，凭杯套可在茉莉奶白、霸王茶姬等35+奶茶门店换饮品。\n\n来源账号：武汉周末去哪\n合集标题：🌈武汉周末（7.24-7.26）活动汇总！\n来源笔记：https://www.xiaohongshu.com/explore/6a61bc7b0000000005039fc0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFQjnkT2_NwpuQ-L_I56gDZU%3D&xsec_source=pc_user\n原 slide：6a61bc7b0000000005039fc0/images/02.webp",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a42415900000000170289a7:03_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "无限暖暖×万达广场线下活动",
+      "time_text": "6月27日-7月5日 10:00-22:00",
+      "current_start_date": "2026-06-27 10:00:00",
+      "current_end_date": "2026-07-05 22:00:00",
+      "current_start_at": "2026-06-27 10:00:00",
+      "current_expired_at": "2026-07-05 22:00:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：6月27日-7月5日 10:00-22:00\n地址：武汉汉街万达&菱角湖万达广场\n介绍：汉街万达1F打卡并出示游戏界面即可领取联动周边一份（款式随机）。\n有大屏、主题广场等沉浸式打卡场景。\n\n来源账号：武汉周末去哪\n合集标题：武汉周末（6.30-7.5）活动汇总！好多免费\n来源笔记：https://www.xiaohongshu.com/explore/6a42415900000000170289a7?xsec_token=ABNGGh5WG9tI5JqU084lWmx9kAThVfiaucxvvLc5POZ9U%3D&xsec_source=pc_user\n原 slide：6a42415900000000170289a7/images/03.webp",
+      "suggestion": {
+        "start_at": "2026-06-27 10:00:00",
+        "expired_at": "2026-07-05 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4b70e60000000015024f33:03_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "武汉摩尔城偷吃大赛",
+      "time_text": "7.11(六) 14:00/15:00/16:00/17:00",
+      "current_start_date": "2026-07-11 14:00:00",
+      "current_end_date": "2026-07-11 23:59:59",
+      "current_start_at": "2026-07-11 14:00:00",
+      "current_expired_at": "2026-07-11 23:59:59",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7.11(六) 14:00/15:00/16:00/17:00\n地址：武汉摩尔城1F中庭\n介绍：免费\n偷吃大赛+1，南棠馆招牌美味现场管饱~白嫖霸王餐/储值卡等奖励。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（7.7-7.12）活动汇总！好多免费！\n来源笔记：https://www.xiaohongshu.com/explore/6a4b70e60000000015024f33?xsec_token=ABK5qyQ7-YuaNCh_xrYD2wYAbtcNekStqfTq2-R_eYsvw%3D&xsec_source=pc_user\n原 slide：6a4b70e60000000015024f33/images/03.webp",
+      "suggestion": {
+        "start_at": "2026-07-11 14:00:00",
+        "expired_at": "2026-07-11 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f4e110000000016027768:04_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "硚口区星空音乐会",
+      "time_text": "2026年7月10日(星期五) 19:00-20:30",
+      "current_start_date": "2026-07-10 19:00:00",
+      "current_end_date": "2026-07-10 20:30:00",
+      "current_start_at": "2026-07-10 19:00:00",
+      "current_expired_at": "2026-07-10 20:30:00",
+      "detail_excerpt": "分类：免费听歌\n费用：免费\n时间：2026年7月10日(星期五) 19:00-20:30\n地址：凯德西城广场(古田二路)\n介绍：免费。\n第49届「武汉之夏」系列文化活动之一，空白法则乐队将带来18首经典歌曲。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周末活动汇总！好多免费🆓\n来源笔记：https://www.xiaohongshu.com/explore/6a4f4e110000000016027768?xsec_token=ABCawNj4E-LPaKcNyeTQKtuXMcUCoJcLVgLAB25vw_ST4%3D&xsec_source=pc_user\n原 slide：6a4f4e110000000016027768/images/04.webp",
+      "suggestion": {
+        "start_at": "2026-07-10 19:00:00",
+        "expired_at": "2026-07-10 20:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a0a7000000001503c9c2:03_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "2026鸿威·世宠博览会暨武汉宠物展",
+      "time_text": "7月17日—7月19日",
+      "current_start_date": "2026-07-17 00:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-07-17 00:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：最新活动\n费用：29元起\n时间：7月17日—7月19日\n地址：武汉国际会展中心\n介绍：宠物行业特色产品展示、专业宠物赛事与萌宠花艺秀，展商免费送票。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（713-719）活动汇总！好多免费~\n来源笔记：https://www.xiaohongshu.com/explore/6a54a0a7000000001503c9c2?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLW9hGW8OI7CtxvYzpE8R9gI%3D&xsec_source=pc_user\n原 slide：6a54a0a7000000001503c9c2/images/03.webp",
+      "suggestion": {
+        "start_at": "2026-07-17 00:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61bc7b0000000005039fc0:03_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "辣条偷吃大赛（经开×飞旺）",
+      "time_text": "7月26日 13:50",
+      "current_start_date": "2026-07-26 13:50:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-26 13:50:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月26日 13:50\n地址：武汉经开万达广场1号门大中庭\n介绍：免费。\n不参赛也可打卡现场送辣条！参赛冠军可以领取365包飞旺辣条！\n\n来源账号：武汉周末去哪\n合集标题：🌈武汉周末（7.24-7.26）活动汇总！\n来源笔记：https://www.xiaohongshu.com/explore/6a61bc7b0000000005039fc0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFQjnkT2_NwpuQ-L_I56gDZU%3D&xsec_source=pc_user\n原 slide：6a61bc7b0000000005039fc0/images/03.webp",
+      "suggestion": {
+        "start_at": "2026-07-26 13:50:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4b70e60000000015024f33:03_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "MOSS野苔音乐季——岛屿心情专场日",
+      "time_text": "7月10日-12日",
+      "current_start_date": "2026-07-10 00:00:00",
+      "current_end_date": "2026-07-12 23:59:59",
+      "current_start_at": "2026-07-10 00:00:00",
+      "current_expired_at": "2026-07-12 23:59:59",
+      "detail_excerpt": "分类：最新活动\n费用：27r\n时间：7月10日-12日\n地址：武汉青山江滩·沙丁音乐秀场\n介绍：27r\n摇滚音乐节，现场还有MORE BEER市集18家品牌精酿、美食，从江边一字排开。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（7.7-7.12）活动汇总！好多免费！\n来源笔记：https://www.xiaohongshu.com/explore/6a4b70e60000000015024f33?xsec_token=ABK5qyQ7-YuaNCh_xrYD2wYAbtcNekStqfTq2-R_eYsvw%3D&xsec_source=pc_user\n原 slide：6a4b70e60000000015024f33/images/03.webp",
+      "suggestion": {
+        "start_at": "2026-07-10 00:00:00",
+        "expired_at": "2026-07-12 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f4e110000000016027768:04_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "东湖音乐小站Live",
+      "time_text": "17:00-22:00",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
-      "detail_excerpt": "Hi～这是我们的第1565期观影活动，本次活动现场可领取：豆瓣Top250影迷典藏系列徽章一枚\n温暖治愈，夏日必看！由麻赢心导演，章若楠、金靖领衔主演，任彬领衔主演，李孝谦主演，仁科、张绍刚、张奕聪特别出演，李嘉鑫、柯达、鸟鸟友情出演的暑期档电影《想你了》免费观影来了！破浪“约”你一起走进影院，第一时间见证这段关于“一辈子好朋友”的故事。\n《想你了》讲述了高凡（章若楠饰）与汪美丽（金靖饰）从小一路相伴，作为彼此主动选择的“家人”一同走南闯北二十余载，面对生活里的种种挑战与困难，她们依然坚定陪伴彼此，约定要做一辈子好朋友的故事。\n本片也是章若楠、金靖首次大银幕搭档默契合作，出演“彼此生命中最最重要的朋友”。电影中，高凡与汪美丽自幼相识之后，一起陪伴走过了各自人生中最重要的阶段。影片通过细水长流的友情日常，充分展现了一段无比真挚、令人羡慕的纯粹女性友谊，相信看完电影的你，会很想给久未联系的朋友",
+      "detail_excerpt": "分类：免费听歌\n费用：免费\n时间：17:00-22:00\n地址：东湖风景区东湖绿道九女墩\n介绍：免费。\n晚风、蝉鸣、自行车……歌手弹唱，氛围感拉满。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周末活动汇总！好多免费🆓\n来源笔记：https://www.xiaohongshu.com/explore/6a4f4e110000000016027768?xsec_token=ABCawNj4E-LPaKcNyeTQKtuXMcUCoJcLVgLAB25vw_ST4%3D&xsec_source=pc_user\n原 slide：6a4f4e110000000016027768/images/04.webp",
       "suggestion": {
-        "start_at": "2026-07-17 19:30:00",
-        "expired_at": "2026-07-17 21:17:00",
+        "error": "未能解析日期"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a0a7000000001503c9c2:03_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "AYORTOYS奇幻森林武汉首展",
+      "time_text": "7.17-8.23（10:00-22:00）",
+      "current_start_date": "2026-07-17 10:00:00",
+      "current_end_date": "2026-08-23 22:00:00",
+      "current_start_at": "2026-07-17 10:00:00",
+      "current_expired_at": "2026-08-23 22:00:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7.17-8.23（10:00-22:00）\n地址：武汉新天地南馆L2中庭\n介绍：免费入场。\n漫天星光、柔光秘境等主题，各式可爱闪亮IP角色，梦幻森林搬进市中心。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（713-719）活动汇总！好多免费~\n来源笔记：https://www.xiaohongshu.com/explore/6a54a0a7000000001503c9c2?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLW9hGW8OI7CtxvYzpE8R9gI%3D&xsec_source=pc_user\n原 slide：6a54a0a7000000001503c9c2/images/03.webp",
+      "suggestion": {
+        "start_at": "2026-07-17 10:00:00",
+        "expired_at": "2026-08-23 22:00:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月17日 周五 19:30-21:17"
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61bc7b0000000005039fc0:03_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "《功夫女足》应援观影派对",
+      "time_text": "7月26日 10:00-18:00",
+      "current_start_date": "2026-07-26 10:00:00",
+      "current_end_date": "2026-07-26 18:00:00",
+      "current_start_at": "2026-07-26 10:00:00",
+      "current_expired_at": "2026-07-26 18:00:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月26日 10:00-18:00\n地址：王家湾京东MALL中庭\n介绍：免费。\n湖北星迷会×王家湾京东MALL联合举办，16:10-18:00集体观影《功夫女足》。\n\n来源账号：武汉周末去哪\n合集标题：🌈武汉周末（7.24-7.26）活动汇总！\n来源笔记：https://www.xiaohongshu.com/explore/6a61bc7b0000000005039fc0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFQjnkT2_NwpuQ-L_I56gDZU%3D&xsec_source=pc_user\n原 slide：6a61bc7b0000000005039fc0/images/03.webp",
+      "suggestion": {
+        "start_at": "2026-07-26 10:00:00",
+        "expired_at": "2026-07-26 18:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a335a2e000000001c025afd:04_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "2026CMS武汉车展",
+      "time_text": "6月17日-21日",
+      "current_start_date": "2026-06-17 00:00:00",
+      "current_end_date": "2026-06-21 23:59:59",
+      "current_start_at": "2026-06-17 00:00:00",
+      "current_expired_at": "2026-06-21 23:59:59",
+      "detail_excerpt": "分类：其他\n费用：免费预约\n时间：6月17日-21日\n地址：武汉国际博览中心（汉阳国博）\n介绍：免费预约。\n新车发布、摄影棚、恐龙乐园、科技馆与景区体验。\n\n来源账号：武汉周末去哪\n合集标题：武汉周末 6.16-6.21 活动汇总✨室内活动篇\n来源笔记：https://www.xiaohongshu.com/explore/6a335a2e000000001c025afd?xsec_token=ABJmZblqbHqarOe09sBKbMpwmp_LWZj1DLtAecqHYxwng%3D&xsec_source=pc_user\n原 slide：6a335a2e000000001c025afd/images/04.webp",
+      "suggestion": {
+        "start_at": "2026-06-17 00:00:00",
+        "expired_at": "2026-06-21 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a42415900000000170289a7:03_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "伊索女性文学图书馆·武汉站",
+      "time_text": "6月29日至7月1日",
+      "current_start_date": "2026-06-29 00:00:00",
+      "current_end_date": "2026-07-01 23:59:59",
+      "current_start_at": "2026-06-29 00:00:00",
+      "current_expired_at": "2026-07-01 23:59:59",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：6月29日至7月1日\n地址：Aesop伊索武汉SKP店\n介绍：活动需预约，每人限领一本，送完即止。\n可免费到店领取一本喜爱的书籍。\n\n来源账号：武汉周末去哪\n合集标题：武汉周末（6.30-7.5）活动汇总！好多免费\n来源笔记：https://www.xiaohongshu.com/explore/6a42415900000000170289a7?xsec_token=ABNGGh5WG9tI5JqU084lWmx9kAThVfiaucxvvLc5POZ9U%3D&xsec_source=pc_user\n原 slide：6a42415900000000170289a7/images/03.webp",
+      "suggestion": {
+        "start_at": "2026-06-29 00:00:00",
+        "expired_at": "2026-07-01 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f4e110000000016027768:05_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "马鞍山森林公园·紫薇花",
+      "time_text": "持续开放",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "分类：出游赏花\n费用：免费\n时间：持续开放\n地址：东湖吹笛景区(马鞍山森林公园)\n介绍：地铁2号线佳园路站骑行12分钟到大门口。\n在贯穿太渔桥花海的绿道两旁，粉紫烟霞绵延百米。紫薇花开得饱满、热烈，花朵交相辉映。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周末活动汇总！好多免费🆓\n来源笔记：https://www.xiaohongshu.com/explore/6a4f4e110000000016027768?xsec_token=ABCawNj4E-LPaKcNyeTQKtuXMcUCoJcLVgLAB25vw_ST4%3D&xsec_source=pc_user\n原 slide：6a4f4e110000000016027768/images/05.webp",
+      "suggestion": {
+        "error": "未能解析日期"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a0a7000000001503c9c2:03_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "楚河汉街「傣住夏天」主题活动",
+      "time_text": "7月18日-7月19日 16:00-20:00",
+      "current_start_date": "2026-07-18 16:00:00",
+      "current_end_date": "2026-07-19 20:00:00",
+      "current_start_at": "2026-07-18 16:00:00",
+      "current_expired_at": "2026-07-19 20:00:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月18日-7月19日 16:00-20:00\n地址：楚河汉街全街区\n介绍：免费入场。\n苗、傣、侗多民族歌舞巡游，孔雀舞、芦笙演奏，大型泼水大战全民参与。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（713-719）活动汇总！好多免费~\n来源笔记：https://www.xiaohongshu.com/explore/6a54a0a7000000001503c9c2?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLW9hGW8OI7CtxvYzpE8R9gI%3D&xsec_source=pc_user\n原 slide：6a54a0a7000000001503c9c2/images/03.webp",
+      "suggestion": {
+        "start_at": "2026-07-18 16:00:00",
+        "expired_at": "2026-07-19 20:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61bc7b0000000005039fc0:03_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "新荣天街儿童跳蚤市集",
+      "time_text": "7.25（周六）14:30-17:30",
+      "current_start_date": "2026-07-25 14:30:00",
+      "current_end_date": "2026-07-25 17:30:00",
+      "current_start_at": "2026-07-25 14:30:00",
+      "current_expired_at": "2026-07-25 17:30:00",
+      "detail_excerpt": "分类：最新活动\n费用：6.6元\n时间：7.25（周六）14:30-17:30\n地址：新荣天街L1-3号中庭及连廊区域、上方L2层环廊\n介绍：报名费6.6元，限3-12岁报名，需家长陪同。\n500+摊位，两层区域随便挑，可以摆出绘本玩具等儿童用品。\n\n来源账号：武汉周末去哪\n合集标题：🌈武汉周末（7.24-7.26）活动汇总！\n来源笔记：https://www.xiaohongshu.com/explore/6a61bc7b0000000005039fc0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFQjnkT2_NwpuQ-L_I56gDZU%3D&xsec_source=pc_user\n原 slide：6a61bc7b0000000005039fc0/images/03.webp",
+      "suggestion": {
+        "start_at": "2026-07-25 14:30:00",
+        "expired_at": "2026-07-25 17:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a42415900000000170289a7:04_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "新华之光·光影铸魂红色公益观影活动",
+      "time_text": "7月1日（周三）10:00——17:00",
+      "current_start_date": "2026-07-01 10:00:00",
+      "current_end_date": "2026-07-01 23:59:59",
+      "current_start_at": "2026-07-01 10:00:00",
+      "current_expired_at": "2026-07-01 23:59:59",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月1日（周三）10:00——17:00\n地址：街道口新华书店（城市书房）三楼放映室\n介绍：免费入场。\n《建党伟业》、《红星照耀中国》、《1921》轮番放映，共同回望那段滚烫的红色记忆。\n\n来源账号：武汉周末去哪\n合集标题：武汉周末（6.30-7.5）活动汇总！好多免费\n来源笔记：https://www.xiaohongshu.com/explore/6a42415900000000170289a7?xsec_token=ABNGGh5WG9tI5JqU084lWmx9kAThVfiaucxvvLc5POZ9U%3D&xsec_source=pc_user\n原 slide：6a42415900000000170289a7/images/04.webp",
+      "suggestion": {
+        "start_at": "2026-07-01 10:00:00",
+        "expired_at": "2026-07-01 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4b70e60000000015024f33:04_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "戏不戏·英国舞台季特展",
+      "time_text": "7月7日14:30-16:00（14:00签到）",
+      "current_start_date": "2026-07-07 14:30:00",
+      "current_end_date": "2026-07-07 16:00:00",
+      "current_start_at": "2026-07-07 14:30:00",
+      "current_expired_at": "2026-07-07 16:00:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月7日14:30-16:00（14:00签到）\n地址：武汉新天地南馆二楼前中庭\n介绍：免费\n总领事介绍英国舞台季，《玛蒂尔达》音乐剧介绍导赏，抽奖赠票，合影...可围观。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（7.7-7.12）活动汇总！好多免费！\n来源笔记：https://www.xiaohongshu.com/explore/6a4b70e60000000015024f33?xsec_token=ABK5qyQ7-YuaNCh_xrYD2wYAbtcNekStqfTq2-R_eYsvw%3D&xsec_source=pc_user\n原 slide：6a4b70e60000000015024f33/images/04.webp",
+      "suggestion": {
+        "start_at": "2026-07-07 14:30:00",
+        "expired_at": "2026-07-07 16:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f4e110000000016027768:05_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "武昌铁机路江滩·向日葵",
+      "time_text": "持续开放",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "分类：出游赏花\n费用：免费\n时间：持续开放\n地址：武昌区杨园街道临江大道725号\n介绍：地铁5号线杨园铁四院C口出站，步行20分钟。\n金黄色花海沿着江边盛放，在雨后的7点左右还能拍到武汉的超级晚霞，向日葵与晚霞同框。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周末活动汇总！好多免费🆓\n来源笔记：https://www.xiaohongshu.com/explore/6a4f4e110000000016027768?xsec_token=ABCawNj4E-LPaKcNyeTQKtuXMcUCoJcLVgLAB25vw_ST4%3D&xsec_source=pc_user\n原 slide：6a4f4e110000000016027768/images/05.webp",
+      "suggestion": {
+        "error": "未能解析日期"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a0a7000000001503c9c2:04_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "武汉博物馆「古人消夏指南」讲座",
+      "time_text": "7月17日19:00-21:00",
+      "current_start_date": "2026-07-17 19:00:00",
+      "current_end_date": "2026-07-17 21:00:00",
+      "current_start_at": "2026-07-17 19:00:00",
+      "current_expired_at": "2026-07-17 21:00:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月17日19:00-21:00\n地址：武汉博物馆\n介绍：免费入场。\n邀请一众大咖举行多元文化讲座与戏曲展演，从传统文化、荆楚曲艺里挖掘市井的城市文脉。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（713-719）活动汇总！好多免费~\n来源笔记：https://www.xiaohongshu.com/explore/6a54a0a7000000001503c9c2?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLW9hGW8OI7CtxvYzpE8R9gI%3D&xsec_source=pc_user\n原 slide：6a54a0a7000000001503c9c2/images/04.webp",
+      "suggestion": {
+        "start_at": "2026-07-17 19:00:00",
+        "expired_at": "2026-07-17 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61bc7b0000000005039fc0:04_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "《群星闪耀时》卓尔书店包场观影",
+      "time_text": "2026年7月24日（周五）19:30",
+      "current_start_date": "2026-07-24 19:30:00",
+      "current_end_date": "2026-07-24 23:59:59",
+      "current_start_at": "2026-07-24 19:30:00",
+      "current_expired_at": "2026-07-24 23:59:59",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：2026年7月24日（周五）19:30\n地址：万象影城（武汉万象城杜比影院店8号厅）\n介绍：全程免费，报名即可在影院领票入场。\n报名入口在卓尔书店公众号。\n\n来源账号：武汉周末去哪\n合集标题：🌈武汉周末（7.24-7.26）活动汇总！\n来源笔记：https://www.xiaohongshu.com/explore/6a61bc7b0000000005039fc0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFQjnkT2_NwpuQ-L_I56gDZU%3D&xsec_source=pc_user\n原 slide：6a61bc7b0000000005039fc0/images/04.webp",
+      "suggestion": {
+        "start_at": "2026-07-24 19:30:00",
+        "expired_at": "2026-07-24 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a335a2e000000001c025afd:05_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "2026武汉击剑公开赛",
+      "time_text": "6月19日-21日",
+      "current_start_date": "2026-06-19 00:00:00",
+      "current_end_date": "2026-06-21 23:59:59",
+      "current_start_at": "2026-06-19 00:00:00",
+      "current_expired_at": "2026-06-21 23:59:59",
+      "detail_excerpt": "分类：户外运动\n费用：免费\n时间：6月19日-21日\n地址：武汉客厅文化博览中心A、B厅\n介绍：免费入场。\n免费观赛，全国3000余名击剑高手端午齐聚。\n\n来源账号：武汉周末去哪\n合集标题：武汉周末 6.16-6.21 活动汇总✨室内活动篇\n来源笔记：https://www.xiaohongshu.com/explore/6a335a2e000000001c025afd?xsec_token=ABJmZblqbHqarOe09sBKbMpwmp_LWZj1DLtAecqHYxwng%3D&xsec_source=pc_user\n原 slide：6a335a2e000000001c025afd/images/05.webp",
+      "suggestion": {
+        "start_at": "2026-06-19 00:00:00",
+        "expired_at": "2026-06-21 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4b70e60000000015024f33:04_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "陶喆武汉生日音乐专场",
+      "time_text": "7月11日 18:00-20:30",
+      "current_start_date": "2026-07-11 18:00:00",
+      "current_end_date": "2026-07-11 20:30:00",
+      "current_start_at": "2026-07-11 18:00:00",
+      "current_expired_at": "2026-07-11 20:30:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月11日 18:00-20:30\n地址：武汉万象城1号门下沉广场\n介绍：免费\n18:00-19:00物料发放，19:00-20:30音乐活动。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（7.7-7.12）活动汇总！好多免费！\n来源笔记：https://www.xiaohongshu.com/explore/6a4b70e60000000015024f33?xsec_token=ABK5qyQ7-YuaNCh_xrYD2wYAbtcNekStqfTq2-R_eYsvw%3D&xsec_source=pc_user\n原 slide：6a4b70e60000000015024f33/images/04.webp",
+      "suggestion": {
+        "start_at": "2026-07-11 18:00:00",
+        "expired_at": "2026-07-11 20:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f4e110000000016027768:05_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "沙湖公园·荷花",
+      "time_text": "持续开放",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "分类：出游赏花\n费用：免费\n时间：持续开放\n地址：沙湖公园C区\n介绍：地铁2号线螃蟹岬站B口出站，步行12分钟。\n武汉城区老牌赏荷点位。可近距离观赏荷花、荷叶，绿植树荫充足，夏季纳凉赏花都合适。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周末活动汇总！好多免费🆓\n来源笔记：https://www.xiaohongshu.com/explore/6a4f4e110000000016027768?xsec_token=ABCawNj4E-LPaKcNyeTQKtuXMcUCoJcLVgLAB25vw_ST4%3D&xsec_source=pc_user\n原 slide：6a4f4e110000000016027768/images/05.webp",
+      "suggestion": {
+        "error": "未能解析日期"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a0a7000000001503c9c2:04_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "江夏区文化馆非遗手工艺体验",
+      "time_text": "7月16日-7月17日14:30-17:00",
+      "current_start_date": "2026-07-16 14:30:00",
+      "current_end_date": "2026-07-17 17:00:00",
+      "current_start_at": "2026-07-16 14:30:00",
+      "current_expired_at": "2026-07-17 17:00:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费，需报名\n时间：7月16日-7月17日14:30-17:00\n地址：永旺梦乐城武汉江夏1F动广场\n介绍：20分钟文化讲演+70分钟传承人教学，完成专属手作成品，并发放江夏文化馆结课证书。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（713-719）活动汇总！好多免费~\n来源笔记：https://www.xiaohongshu.com/explore/6a54a0a7000000001503c9c2?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLW9hGW8OI7CtxvYzpE8R9gI%3D&xsec_source=pc_user\n原 slide：6a54a0a7000000001503c9c2/images/04.webp",
+      "suggestion": {
+        "start_at": "2026-07-16 14:30:00",
+        "expired_at": "2026-07-17 17:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61bc7b0000000005039fc0:04_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "万物有灵·萌宠玄门派对",
+      "time_text": "7.25-8.16 每周末 15:00-20:00",
+      "current_start_date": "2026-07-25 15:00:00",
+      "current_end_date": "2026-08-16 20:00:00",
+      "current_start_at": "2026-07-25 15:00:00",
+      "current_expired_at": "2026-08-16 20:00:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7.25-8.16 每周末 15:00-20:00\n地址：咸安坊·萧红广场\n介绍：免费。\n宠物泳池免费开放！小狗罗汉、小狗气模，和崽崽一起留住盛夏回忆。\n\n来源账号：武汉周末去哪\n合集标题：🌈武汉周末（7.24-7.26）活动汇总！\n来源笔记：https://www.xiaohongshu.com/explore/6a61bc7b0000000005039fc0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFQjnkT2_NwpuQ-L_I56gDZU%3D&xsec_source=pc_user\n原 slide：6a61bc7b0000000005039fc0/images/04.webp",
+      "suggestion": {
+        "start_at": "2026-07-25 15:00:00",
+        "expired_at": "2026-08-16 20:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a335a2e000000001c025afd:05_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "暖光手账市集",
+      "time_text": "6月19日-21日 11:00-20:00",
+      "current_start_date": "2026-06-19 11:00:00",
+      "current_end_date": "2026-06-21 20:00:00",
+      "current_start_at": "2026-06-19 11:00:00",
+      "current_expired_at": "2026-06-21 20:00:00",
+      "detail_excerpt": "分类：手作体验\n费用：免费\n时间：6月19日-21日 11:00-20:00\n地址：武汉江汉区菱角湖万达广场一楼中庭\n介绍：免费入场。\n免费领纸袋、明信片、场刊、盖章本、铁盒等手账物料。\n\n来源账号：武汉周末去哪\n合集标题：武汉周末 6.16-6.21 活动汇总✨室内活动篇\n来源笔记：https://www.xiaohongshu.com/explore/6a335a2e000000001c025afd?xsec_token=ABJmZblqbHqarOe09sBKbMpwmp_LWZj1DLtAecqHYxwng%3D&xsec_source=pc_user\n原 slide：6a335a2e000000001c025afd/images/05.webp",
+      "suggestion": {
+        "start_at": "2026-06-19 11:00:00",
+        "expired_at": "2026-06-21 20:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a42415900000000170289a7:04_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "武汉首届甩拖鞋大赛",
+      "time_text": "7月4日-7月5日每天 17:00-19:00",
+      "current_start_date": "2026-07-04 17:00:00",
+      "current_end_date": "2026-07-07 19:00:00",
+      "current_start_at": "2026-07-04 17:00:00",
+      "current_expired_at": "2026-07-07 19:00:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月4日-7月5日每天 17:00-19:00\n地址：东湖之眼广场\n介绍：免费参与。\n每日6场轮番开赛（共12场），每场冠军直接抱走新鲜大西瓜！\n\n来源账号：武汉周末去哪\n合集标题：武汉周末（6.30-7.5）活动汇总！好多免费\n来源笔记：https://www.xiaohongshu.com/explore/6a42415900000000170289a7?xsec_token=ABNGGh5WG9tI5JqU084lWmx9kAThVfiaucxvvLc5POZ9U%3D&xsec_source=pc_user\n原 slide：6a42415900000000170289a7/images/04.webp",
+      "suggestion": {
+        "start_at": "2026-07-04 17:00:00",
+        "expired_at": "2026-07-07 19:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4b70e60000000015024f33:04_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "「光影邂逅·缘定新洲」联谊活动",
+      "time_text": "7月12日14:30-17:30",
+      "current_start_date": "2026-07-12 14:30:00",
+      "current_end_date": "2026-07-12 17:30:00",
+      "current_start_at": "2026-07-12 14:30:00",
+      "current_expired_at": "2026-07-12 17:30:00",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7月12日14:30-17:30\n地址：新洲摩尔影城5F\n介绍：免费\n新洲区委举办青年交流活动，在新洲共青团报名免费看《小黄人与大怪兽》电影~\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（7.7-7.12）活动汇总！好多免费！\n来源笔记：https://www.xiaohongshu.com/explore/6a4b70e60000000015024f33?xsec_token=ABK5qyQ7-YuaNCh_xrYD2wYAbtcNekStqfTq2-R_eYsvw%3D&xsec_source=pc_user\n原 slide：6a4b70e60000000015024f33/images/04.webp",
+      "suggestion": {
+        "start_at": "2026-07-12 14:30:00",
+        "expired_at": "2026-07-12 17:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61bc7b0000000005039fc0:04_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "武汉首届亲子偷吃小赛",
+      "time_text": "7.25-7.26（14:00/15:00/16:00/18:00）",
+      "current_start_date": "2026-07-25 14:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-25 14:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：最新活动\n费用：免费\n时间：7.25-7.26（14:00/15:00/16:00/18:00）\n地址：武汉大悦城 L1 主中庭\n介绍：免费，也可和朋友或单人报名。\n小朋友与家长的首次同桌体验，免费美食爽炫过瘾。\n\n来源账号：武汉周末去哪\n合集标题：🌈武汉周末（7.24-7.26）活动汇总！\n来源笔记：https://www.xiaohongshu.com/explore/6a61bc7b0000000005039fc0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFQjnkT2_NwpuQ-L_I56gDZU%3D&xsec_source=pc_user\n原 slide：6a61bc7b0000000005039fc0/images/04.webp",
+      "suggestion": {
+        "start_at": "2026-07-25 14:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a335a2e000000001c025afd:06_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "武汉黎深专属痛楼",
+      "time_text": "6月16日-21日",
+      "current_start_date": "2026-06-16 00:00:00",
+      "current_end_date": "2026-06-21 23:59:59",
+      "current_start_at": "2026-06-16 00:00:00",
+      "current_expired_at": "2026-06-21 23:59:59",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：6月16日-21日\n地址：武汉K11\n介绍：免费入场。\n6月19日14:00-16:00无料、集章、官委coser、气球雨与大合照。\n\n来源账号：武汉周末去哪\n合集标题：武汉周末 6.16-6.21 活动汇总✨室内活动篇\n来源笔记：https://www.xiaohongshu.com/explore/6a335a2e000000001c025afd?xsec_token=ABJmZblqbHqarOe09sBKbMpwmp_LWZj1DLtAecqHYxwng%3D&xsec_source=pc_user\n原 slide：6a335a2e000000001c025afd/images/06.webp",
+      "suggestion": {
+        "start_at": "2026-06-16 00:00:00",
+        "expired_at": "2026-06-21 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a42415900000000170289a7:05_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "云冈石窟特展",
+      "time_text": "试开放，正式启幕预计七月中旬",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：试开放，正式启幕预计七月中旬\n地址：武汉大学万林艺术博物馆\n介绍：试开放期间可提前打卡。\n近距离感受北魏壁画与造像的雕刻美学，静待七月中旬正式开幕。\n\n来源账号：武汉周末去哪\n合集标题：武汉周末（6.30-7.5）活动汇总！好多免费\n来源笔记：https://www.xiaohongshu.com/explore/6a42415900000000170289a7?xsec_token=ABNGGh5WG9tI5JqU084lWmx9kAThVfiaucxvvLc5POZ9U%3D&xsec_source=pc_user\n原 slide：6a42415900000000170289a7/images/05.webp",
+      "suggestion": {
+        "error": "未能解析日期"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4b70e60000000015024f33:05_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "浮生一日凉——古代消夏文化展",
+      "time_text": "7月8日-10月",
+      "current_start_date": "2026-07-08 00:00:00",
+      "current_end_date": "2026-07-10 23:59:59",
+      "current_start_at": "2026-07-08 00:00:00",
+      "current_expired_at": "2026-07-10 23:59:59",
+      "detail_excerpt": "分类：看展\n费用：免费\n时间：7月8日-10月\n地址：武汉博物馆一楼珍藏厅\n介绍：免费\n展览围绕古人夏日消夏、纳凉、雅趣与闲居的生活场景，全方位还原千年前的夏日生活图景。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（7.7-7.12）活动汇总！好多免费！\n来源笔记：https://www.xiaohongshu.com/explore/6a4b70e60000000015024f33?xsec_token=ABK5qyQ7-YuaNCh_xrYD2wYAbtcNekStqfTq2-R_eYsvw%3D&xsec_source=pc_user\n原 slide：6a4b70e60000000015024f33/images/05.webp",
+      "suggestion": {
+        "start_at": "2026-07-08 00:00:00",
+        "expired_at": "2026-07-10 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f4e110000000016027768:07_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "武汉·二次元度假哈啤节",
+      "time_text": "2026-07-11 13:00 - 19:00",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "分类：漫展&演出\n费用：需购票\n时间：2026-07-11 13:00 - 19:00\n地址：武汉体育中心体育馆\n介绍：需购票\n主场地分为室内区加户外泳池区背靠后官湖，可以给大家带来一个不一样的度假体验。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周末活动汇总！好多免费🆓\n来源笔记：https://www.xiaohongshu.com/explore/6a4f4e110000000016027768?xsec_token=ABCawNj4E-LPaKcNyeTQKtuXMcUCoJcLVgLAB25vw_ST4%3D&xsec_source=pc_user\n原 slide：6a4f4e110000000016027768/images/07.webp",
+      "suggestion": {
+        "error": "未能解析日期"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a0a7000000001503c9c2:05_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "浮生一日凉——古代消夏文化展",
+      "time_text": "7月8日-10月（周二闭馆）",
+      "current_start_date": "2026-07-08 00:00:00",
+      "current_end_date": "2026-07-10 23:59:59",
+      "current_start_at": "2026-07-08 00:00:00",
+      "current_expired_at": "2026-07-10 23:59:59",
+      "detail_excerpt": "分类：文博艺展\n费用：免费\n时间：7月8日-10月（周二闭馆）\n地址：武汉博物馆一楼珍藏厅\n介绍：免费入场。\n围绕古人消夏纳凉、闲居场景，还原千年前的夏日生活图景。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（713-719）活动汇总！好多免费~\n来源笔记：https://www.xiaohongshu.com/explore/6a54a0a7000000001503c9c2?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLW9hGW8OI7CtxvYzpE8R9gI%3D&xsec_source=pc_user\n原 slide：6a54a0a7000000001503c9c2/images/05.webp",
+      "suggestion": {
+        "start_at": "2026-07-08 00:00:00",
+        "expired_at": "2026-07-10 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61bc7b0000000005039fc0:05_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "融·云冈石窟艺术巡展",
+      "time_text": "2026年7月23日-9月20日",
+      "current_start_date": "2026-07-23 00:00:00",
+      "current_end_date": "2026-09-20 23:59:59",
+      "current_start_at": "2026-07-23 00:00:00",
+      "current_expired_at": "2026-09-20 23:59:59",
+      "detail_excerpt": "分类：文博看展\n费用：免费\n时间：2026年7月23日-9月20日\n地址：武汉大学万林艺术博物馆\n介绍：免费。\n展出近200件石窟文物原件与3D复制件，搭配VR互动体验，“走”进云冈石窟考古现场。\n\n来源账号：武汉周末去哪\n合集标题：🌈武汉周末（7.24-7.26）活动汇总！\n来源笔记：https://www.xiaohongshu.com/explore/6a61bc7b0000000005039fc0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFQjnkT2_NwpuQ-L_I56gDZU%3D&xsec_source=pc_user\n原 slide：6a61bc7b0000000005039fc0/images/05.webp",
+      "suggestion": {
+        "start_at": "2026-07-23 00:00:00",
+        "expired_at": "2026-09-20 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a335a2e000000001c025afd:06_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "范丞丞生日七城痛楼",
+      "time_text": "6月16日-21日",
+      "current_start_date": "2026-06-16 00:00:00",
+      "current_end_date": "2026-06-21 23:59:59",
+      "current_start_at": "2026-06-16 00:00:00",
+      "current_expired_at": "2026-06-21 23:59:59",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：6月16日-21日\n地址：武汉凯德1818\n介绍：免费入场。\n痛楼礼包、刮刮乐、扭蛋寻宝与集体合影等粉丝活动。\n\n来源账号：武汉周末去哪\n合集标题：武汉周末 6.16-6.21 活动汇总✨室内活动篇\n来源笔记：https://www.xiaohongshu.com/explore/6a335a2e000000001c025afd?xsec_token=ABJmZblqbHqarOe09sBKbMpwmp_LWZj1DLtAecqHYxwng%3D&xsec_source=pc_user\n原 slide：6a335a2e000000001c025afd/images/06.webp",
+      "suggestion": {
+        "start_at": "2026-06-16 00:00:00",
+        "expired_at": "2026-06-21 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4b70e60000000015024f33:05_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "第28届房车之家房车露营博览会",
+      "time_text": "7月10日-7月12日",
+      "current_start_date": "2026-07-10 00:00:00",
+      "current_end_date": "2026-07-12 23:59:59",
+      "current_start_at": "2026-07-10 00:00:00",
+      "current_expired_at": "2026-07-12 23:59:59",
+      "detail_excerpt": "分类：看展\n费用：免费\n时间：7月10日-7月12日\n地址：武汉国际会展中心\n介绍：免费预约\n展览面积约20000平方米，汇聚100+国内外主流房车及配套知名品牌参展。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（7.7-7.12）活动汇总！好多免费！\n来源笔记：https://www.xiaohongshu.com/explore/6a4b70e60000000015024f33?xsec_token=ABK5qyQ7-YuaNCh_xrYD2wYAbtcNekStqfTq2-R_eYsvw%3D&xsec_source=pc_user\n原 slide：6a4b70e60000000015024f33/images/05.webp",
+      "suggestion": {
+        "start_at": "2026-07-10 00:00:00",
+        "expired_at": "2026-07-12 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f4e110000000016027768:07_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "话剧《金瓶外传》",
+      "time_text": "7月11日 19:30",
+      "current_start_date": "2026-07-11 19:30:00",
+      "current_end_date": "2026-07-11 23:59:59",
+      "current_start_at": "2026-07-11 19:30:00",
+      "current_expired_at": "2026-07-11 23:59:59",
+      "detail_excerpt": "分类：漫展&演出\n费用：需购票\n时间：7月11日 19:30\n地址：武汉人艺中南剧场·话剧剧场\n介绍：需购票\n荒诞喜剧，传递玩梗有度、娱乐有底线、创作守边界、拒绝流量盲从的正向价值观。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周末活动汇总！好多免费🆓\n来源笔记：https://www.xiaohongshu.com/explore/6a4f4e110000000016027768?xsec_token=ABCawNj4E-LPaKcNyeTQKtuXMcUCoJcLVgLAB25vw_ST4%3D&xsec_source=pc_user\n原 slide：6a4f4e110000000016027768/images/07.webp",
+      "suggestion": {
+        "start_at": "2026-07-11 19:30:00",
+        "expired_at": "2026-07-11 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a0a7000000001503c9c2:05_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "李传真劳动者主题作品展",
+      "time_text": "2026年7月9日-8月28日（周一闭馆）",
+      "current_start_date": "2026-07-09 00:00:00",
+      "current_end_date": "2026-08-28 23:59:59",
+      "current_start_at": "2026-07-09 00:00:00",
+      "current_expired_at": "2026-08-28 23:59:59",
+      "detail_excerpt": "分类：文博艺展\n费用：免费\n时间：2026年7月9日-8月28日（周一闭馆）\n地址：武汉美术馆（汉口馆）1/2/3号厅\n介绍：免费入场。\n作品以劳动者为主题，反映现实、致敬时代奋进者。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（713-719）活动汇总！好多免费~\n来源笔记：https://www.xiaohongshu.com/explore/6a54a0a7000000001503c9c2?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLW9hGW8OI7CtxvYzpE8R9gI%3D&xsec_source=pc_user\n原 slide：6a54a0a7000000001503c9c2/images/05.webp",
+      "suggestion": {
+        "start_at": "2026-07-09 00:00:00",
+        "expired_at": "2026-08-28 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a0a7000000001503c9c2:06_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "白房子——鹿嘉倩作品展",
+      "time_text": "2026年6月25日-7月23日",
+      "current_start_date": "2026-06-25 00:00:00",
+      "current_end_date": "2026-07-23 23:59:59",
+      "current_start_at": "2026-06-25 00:00:00",
+      "current_expired_at": "2026-07-23 23:59:59",
+      "detail_excerpt": "分类：艺术个展\n费用：免费\n时间：2026年6月25日-7月23日\n地址：鹅社书店艺术馆(青岛路馆)\n介绍：免费入场。\n生活的压迫连成一片密林，而那林中空地，无论能否抵达，至少要望一望光照进来的方向。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（713-719）活动汇总！好多免费~\n来源笔记：https://www.xiaohongshu.com/explore/6a54a0a7000000001503c9c2?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLW9hGW8OI7CtxvYzpE8R9gI%3D&xsec_source=pc_user\n原 slide：6a54a0a7000000001503c9c2/images/06.webp",
+      "suggestion": {
+        "start_at": "2026-06-25 00:00:00",
+        "expired_at": "2026-07-23 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61bc7b0000000005039fc0:06_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "梁湖绿丰黄桃园黄桃采摘",
+      "time_text": "采摘季进行中",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "分类：田园采摘\n费用：15元/斤\n时间：采摘季进行中\n地址：武汉市江夏区群益路前胡湾\n介绍：入园无需门票，可以现场试吃。\n百亩黄桃迎来了采摘季！还有蜜桃。\n\n来源账号：武汉周末去哪\n合集标题：🌈武汉周末（7.24-7.26）活动汇总！\n来源笔记：https://www.xiaohongshu.com/explore/6a61bc7b0000000005039fc0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFQjnkT2_NwpuQ-L_I56gDZU%3D&xsec_source=pc_user\n原 slide：6a61bc7b0000000005039fc0/images/06.webp",
+      "suggestion": {
+        "error": "未能解析日期"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a335a2e000000001c025afd:06_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "鞠婧祎武汉生日痛楼",
+      "time_text": "6月18日-21日",
+      "current_start_date": "2026-06-18 00:00:00",
+      "current_end_date": "2026-06-21 23:59:59",
+      "current_start_at": "2026-06-18 00:00:00",
+      "current_expired_at": "2026-06-21 23:59:59",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：6月18日-21日\n地址：武汉菱角湖万达广场\n介绍：免费入场。\n6月18-19日粉丝集中应援，可领取物料。\n\n来源账号：武汉周末去哪\n合集标题：武汉周末 6.16-6.21 活动汇总✨室内活动篇\n来源笔记：https://www.xiaohongshu.com/explore/6a335a2e000000001c025afd?xsec_token=ABJmZblqbHqarOe09sBKbMpwmp_LWZj1DLtAecqHYxwng%3D&xsec_source=pc_user\n原 slide：6a335a2e000000001c025afd/images/06.webp",
+      "suggestion": {
+        "start_at": "2026-06-18 00:00:00",
+        "expired_at": "2026-06-21 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f4e110000000016027768:07_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "2026陆虎「像你这样的朋友3.0」巡演",
+      "time_text": "7月11日 19:00",
+      "current_start_date": "2026-07-11 19:00:00",
+      "current_end_date": "2026-07-11 23:59:59",
+      "current_start_at": "2026-07-11 19:00:00",
+      "current_expired_at": "2026-07-11 23:59:59",
+      "detail_excerpt": "分类：漫展&演出\n费用：需购票\n时间：7月11日 19:00\n地址：武汉体育中心体育馆\n介绍：需购票\n陆虎，中国内地男歌手，成名曲《雪落下的声音》，本周六就要在武汉开唱啦~\n\n来源账号：武汉周末去哪\n合集标题：武汉本周末活动汇总！好多免费🆓\n来源笔记：https://www.xiaohongshu.com/explore/6a4f4e110000000016027768?xsec_token=ABCawNj4E-LPaKcNyeTQKtuXMcUCoJcLVgLAB25vw_ST4%3D&xsec_source=pc_user\n原 slide：6a4f4e110000000016027768/images/07.webp",
+      "suggestion": {
+        "start_at": "2026-07-11 19:00:00",
+        "expired_at": "2026-07-11 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61bc7b0000000005039fc0:06_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "梁湖漫乡清泉果园翠冠梨采摘",
+      "time_text": "采摘季进行中",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "分类：田园采摘\n费用：6-8元/斤\n时间：采摘季进行中\n地址：武汉梁湖漫乡景区内\n介绍：入园免费，先吃后摘。\n露天生态种植，不打农药的翠冠梨，适合亲子家庭。\n\n来源账号：武汉周末去哪\n合集标题：🌈武汉周末（7.24-7.26）活动汇总！\n来源笔记：https://www.xiaohongshu.com/explore/6a61bc7b0000000005039fc0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFQjnkT2_NwpuQ-L_I56gDZU%3D&xsec_source=pc_user\n原 slide：6a61bc7b0000000005039fc0/images/06.webp",
+      "suggestion": {
+        "error": "未能解析日期"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f4e110000000016027768:08_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "山林未远，夏荫同栖明日方舟快闪",
+      "time_text": "7月4日-7月17日",
+      "current_start_date": "2026-07-04 00:00:00",
+      "current_end_date": "2026-07-17 23:59:59",
+      "current_start_at": "2026-07-04 00:00:00",
+      "current_expired_at": "2026-07-17 23:59:59",
+      "detail_excerpt": "分类：快闪活动\n费用：需预约\n时间：7月4日-7月17日\n地址：武汉潮流盒子X118一楼中庭\n介绍：本次活动为全预约制。\n「夏荫同栖」主题系列商品登场，将于本次线下快闪现货先行贩售！\n\n来源账号：武汉周末去哪\n合集标题：武汉本周末活动汇总！好多免费🆓\n来源笔记：https://www.xiaohongshu.com/explore/6a4f4e110000000016027768?xsec_token=ABCawNj4E-LPaKcNyeTQKtuXMcUCoJcLVgLAB25vw_ST4%3D&xsec_source=pc_user\n原 slide：6a4f4e110000000016027768/images/08.webp",
+      "suggestion": {
+        "start_at": "2026-07-04 00:00:00",
+        "expired_at": "2026-07-17 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61bc7b0000000005039fc0:06_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "尹祥禾生态采摘园火龙果采摘",
+      "time_text": "采摘季进行中",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "分类：田园采摘\n费用：15元/斤\n时间：采摘季进行中\n地址：江夏锦绣东路与夹山里街交叉口西300米\n介绍：目前火龙果已成熟可摘。\n紫红色的果皮紧绷发亮，拿在手里沉甸甸的，现摘现吃。\n\n来源账号：武汉周末去哪\n合集标题：🌈武汉周末（7.24-7.26）活动汇总！\n来源笔记：https://www.xiaohongshu.com/explore/6a61bc7b0000000005039fc0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFQjnkT2_NwpuQ-L_I56gDZU%3D&xsec_source=pc_user\n原 slide：6a61bc7b0000000005039fc0/images/06.webp",
+      "suggestion": {
+        "error": "未能解析日期"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a38e99f000000001702cd58:06_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "「WU·生」毕业展",
+      "time_text": "2026年6月19日-20日 10:00-18:00",
+      "current_start_date": "2026-06-19 10:00:00",
+      "current_end_date": "2026-06-20 18:00:00",
+      "current_start_at": "2026-06-19 10:00:00",
+      "current_expired_at": "2026-06-20 18:00:00",
+      "detail_excerpt": "分类：展览\n费用：免费\n时间：2026年6月19日-20日 10:00-18:00\n地址：武汉影像艺术中心\n介绍：免费入场。\n6个高校、数百件作品，挑选40件进入线下展览，让作品代替青年说话。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周(6.23-6.28)活动汇总✨好多免费\n来源笔记：https://www.xiaohongshu.com/explore/6a38e99f000000001702cd58?xsec_token=ABVLWBh3eD7aUJtbyOxDkWZcq5bascnc7tAp3ft01oMmk%3D&xsec_source=pc_user\n原 slide：6a38e99f000000001702cd58/images/06.webp",
+      "suggestion": {
+        "start_at": "2026-06-19 10:00:00",
+        "expired_at": "2026-06-20 18:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4f4e110000000016027768:08_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "Coach书写真我故事快闪",
+      "time_text": "6月30日-7月12日",
+      "current_start_date": "2026-06-30 00:00:00",
+      "current_end_date": "2026-07-12 23:59:59",
+      "current_start_at": "2026-06-30 00:00:00",
+      "current_expired_at": "2026-07-12 23:59:59",
+      "detail_excerpt": "分类：快闪活动\n费用：免费\n时间：6月30日-7月12日\n地址：武汉天地新天地广场\n介绍：免费参与互动。\n用心去感受他人的故事，也勇敢表达自己的所思所想，参与互动，免费获得定制皮革书签。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周末活动汇总！好多免费🆓\n来源笔记：https://www.xiaohongshu.com/explore/6a4f4e110000000016027768?xsec_token=ABCawNj4E-LPaKcNyeTQKtuXMcUCoJcLVgLAB25vw_ST4%3D&xsec_source=pc_user\n原 slide：6a4f4e110000000016027768/images/08.webp",
+      "suggestion": {
+        "start_at": "2026-06-30 00:00:00",
+        "expired_at": "2026-07-12 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a0a7000000001503c9c2:07_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "武汉·第二十二届梦乡动漫展-玩个大的2.0",
+      "time_text": "2026.07.17-07.19（以现场为准）",
+      "current_start_date": "2026-07-17 00:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-07-17 00:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：漫展&演出\n费用：需购票\n时间：2026.07.17-07.19（以现场为准）\n地址：武汉国际博览中心\n介绍：需购票\n武汉7月大型漫展，B1-B3三馆全开，空调全开，20+特邀嘉宾老师。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（713-719）活动汇总！好多免费~\n来源笔记：https://www.xiaohongshu.com/explore/6a54a0a7000000001503c9c2?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLW9hGW8OI7CtxvYzpE8R9gI%3D&xsec_source=pc_user\n原 slide：6a54a0a7000000001503c9c2/images/07.webp",
+      "suggestion": {
+        "start_at": "2026-07-17 00:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61bc7b0000000005039fc0:07_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "武汉·折磨——田一名2026巡回演唱会",
+      "time_text": "2026.07.25（以现场为准）",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-25 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-25 23:59:59",
+      "detail_excerpt": "分类：漫展&演出\n费用：需购票\n时间：2026.07.25（以现场为准）\n地址：MAO Livehouse（武汉店）\n介绍：需购票。\n将演出《坏女孩》《木偶戏》《喝掉你的温油》等代表作，近距离感受个人魅力。\n\n来源账号：武汉周末去哪\n合集标题：🌈武汉周末（7.24-7.26）活动汇总！\n来源笔记：https://www.xiaohongshu.com/explore/6a61bc7b0000000005039fc0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFQjnkT2_NwpuQ-L_I56gDZU%3D&xsec_source=pc_user\n原 slide：6a61bc7b0000000005039fc0/images/07.webp",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-25 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a42415900000000170289a7:06_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "承古开新——中国画展",
+      "time_text": "2026.06.09 — 2026.07.09",
+      "current_start_date": "2026-06-09 00:00:00",
+      "current_end_date": "2026-07-09 23:59:59",
+      "current_start_at": "2026-06-09 00:00:00",
+      "current_expired_at": "2026-07-09 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：2026.06.09 — 2026.07.09\n地址：武汉美术馆（汉口馆）4/5/6展厅\n介绍：免费观展。\n立足中华优秀传统文化，展现不同代际艺术家接续探索、守正拓新的作品。\n\n来源账号：武汉周末去哪\n合集标题：武汉周末（6.30-7.5）活动汇总！好多免费\n来源笔记：https://www.xiaohongshu.com/explore/6a42415900000000170289a7?xsec_token=ABNGGh5WG9tI5JqU084lWmx9kAThVfiaucxvvLc5POZ9U%3D&xsec_source=pc_user\n原 slide：6a42415900000000170289a7/images/06.webp",
+      "suggestion": {
+        "start_at": "2026-06-09 00:00:00",
+        "expired_at": "2026-07-09 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a0a7000000001503c9c2:07_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "LoveLiveDreamStage5th莲之空ONLY展",
+      "time_text": "2026.07.18-07.19（以现场为准）",
+      "current_start_date": "2026-07-18 00:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-07-18 00:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：漫展&演出\n费用：需购票\n时间：2026.07.18-07.19（以现场为准）\n地址：MAO Livehouse（武汉店）\n介绍：需购票\nDay1莲之空女学院原创歌曲，特邀舞团连连看、六月莲、莲之空超级喜欢部等。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（713-719）活动汇总！好多免费~\n来源笔记：https://www.xiaohongshu.com/explore/6a54a0a7000000001503c9c2?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLW9hGW8OI7CtxvYzpE8R9gI%3D&xsec_source=pc_user\n原 slide：6a54a0a7000000001503c9c2/images/07.webp",
+      "suggestion": {
+        "start_at": "2026-07-18 00:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61bc7b0000000005039fc0:07_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "未定事件簿×QQ音乐线下观影活动",
+      "time_text": "2026年8月9日开启",
+      "current_start_date": "2026-08-09 00:00:00",
+      "current_end_date": "2026-08-09 23:59:59",
+      "current_start_at": "2026-08-09 00:00:00",
+      "current_expired_at": "2026-08-09 23:59:59",
+      "detail_excerpt": "分类：漫展&演出\n费用：需购票\n时间：2026年8月9日开启\n地址：武汉销品茂金逸影城\n介绍：需购票。\n未定事件簿观影套餐将于7月23日11:00正式开售。\n\n来源账号：武汉周末去哪\n合集标题：🌈武汉周末（7.24-7.26）活动汇总！\n来源笔记：https://www.xiaohongshu.com/explore/6a61bc7b0000000005039fc0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFQjnkT2_NwpuQ-L_I56gDZU%3D&xsec_source=pc_user\n原 slide：6a61bc7b0000000005039fc0/images/07.webp",
+      "suggestion": {
+        "start_at": "2026-08-09 00:00:00",
+        "expired_at": "2026-08-09 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a42415900000000170289a7:07_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "武汉·星烙·JOJO同人only4.0",
+      "time_text": "7.4",
+      "current_start_date": "2026-07-04 00:00:00",
+      "current_end_date": "2026-07-04 23:59:59",
+      "current_start_at": "2026-07-04 00:00:00",
+      "current_expired_at": "2026-07-04 23:59:59",
+      "detail_excerpt": "分类：漫展同人\n费用：—\n时间：7.4\n地址：知音号游船\n介绍：附赠吧唧、双纪念票、定制纸巾等。\n特邀嘉宾四维、榴莲鱼，游船上的only展！\n\n来源账号：武汉周末去哪\n合集标题：武汉周末（6.30-7.5）活动汇总！好多免费\n来源笔记：https://www.xiaohongshu.com/explore/6a42415900000000170289a7?xsec_token=ABNGGh5WG9tI5JqU084lWmx9kAThVfiaucxvvLc5POZ9U%3D&xsec_source=pc_user\n原 slide：6a42415900000000170289a7/images/07.webp",
+      "suggestion": {
+        "start_at": "2026-07-04 00:00:00",
+        "expired_at": "2026-07-04 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4b70e60000000015024f33:07_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "伦敦西区原版音乐剧《玛蒂尔达》",
+      "time_text": "7月10日19:30；7月11日-12日14:30、19:30",
+      "current_start_date": "2026-07-10 14:30:00",
+      "current_end_date": "2026-07-12 23:59:59",
+      "current_start_at": "2026-07-10 14:30:00",
+      "current_expired_at": "2026-07-12 23:59:59",
+      "detail_excerpt": "分类：漫展&演出\n费用：—\n时间：7月10日19:30；7月11日-12日14:30、19:30\n地址：武汉琴台大剧院\n介绍：经典音乐剧《玛蒂尔达》改编自罗尔德·达尔同名小说，正值15周年限定国际巡演。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（7.7-7.12）活动汇总！好多免费！\n来源笔记：https://www.xiaohongshu.com/explore/6a4b70e60000000015024f33?xsec_token=ABK5qyQ7-YuaNCh_xrYD2wYAbtcNekStqfTq2-R_eYsvw%3D&xsec_source=pc_user\n原 slide：6a4b70e60000000015024f33/images/07.webp",
+      "suggestion": {
+        "start_at": "2026-07-10 14:30:00",
+        "expired_at": "2026-07-12 23:59:59",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a0a7000000001503c9c2:07_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "伦敦西区原版音乐剧《玛蒂尔达》",
+      "time_text": "7月14日-17日 19:30开演",
+      "current_start_date": "2026-07-14 19:30:00",
+      "current_end_date": "2026-07-17 23:59:59",
+      "current_start_at": "2026-07-14 19:30:00",
+      "current_expired_at": "2026-07-17 23:59:59",
+      "detail_excerpt": "分类：漫展&演出\n费用：需购票\n时间：7月14日-17日 19:30开演\n地址：武汉琴台大剧院\n介绍：需购票\n改编自英国作家罗尔德·达尔经典小说，讲述五岁神童玛蒂尔达保护弱小、反抗不公的故事。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（713-719）活动汇总！好多免费~\n来源笔记：https://www.xiaohongshu.com/explore/6a54a0a7000000001503c9c2?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLW9hGW8OI7CtxvYzpE8R9gI%3D&xsec_source=pc_user\n原 slide：6a54a0a7000000001503c9c2/images/07.webp",
+      "suggestion": {
+        "start_at": "2026-07-14 19:30:00",
+        "expired_at": "2026-07-17 23:59:59",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61bc7b0000000005039fc0:08_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "第五人格2026心跳·游园会快闪",
+      "time_text": "7.17-8.23（10:00-22:00）",
+      "current_start_date": "2026-07-17 10:00:00",
+      "current_end_date": "2026-08-23 22:00:00",
+      "current_start_at": "2026-07-17 10:00:00",
+      "current_expired_at": "2026-08-23 22:00:00",
+      "detail_excerpt": "分类：快闪活动\n费用：免费\n时间：7.17-8.23（10:00-22:00）\n地址：武商梦时代L3层C区WS梦乐园\n介绍：免费。\n第五人格快闪来了！现场打卡送第五人格周边海报！大量新品上线！（商品单款限购5件）\n\n来源账号：武汉周末去哪\n合集标题：🌈武汉周末（7.24-7.26）活动汇总！\n来源笔记：https://www.xiaohongshu.com/explore/6a61bc7b0000000005039fc0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFQjnkT2_NwpuQ-L_I56gDZU%3D&xsec_source=pc_user\n原 slide：6a61bc7b0000000005039fc0/images/08.webp",
+      "suggestion": {
+        "start_at": "2026-07-17 10:00:00",
+        "expired_at": "2026-08-23 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a42415900000000170289a7:07_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "武汉·无期迷途同人only3.0",
+      "time_text": "7.4 9:30-17:30",
+      "current_start_date": "2026-07-04 09:30:00",
+      "current_end_date": "2026-07-04 17:30:00",
+      "current_start_at": "2026-07-04 09:30:00",
+      "current_expired_at": "2026-07-04 17:30:00",
+      "detail_excerpt": "分类：漫展同人\n费用：—\n时间：7.4 9:30-17:30\n地址：MJG复古艺廊(近江汉路)\n介绍：附赠手环场刊、明信片、透扇，账号满20级可参与。\n刹雨繁花主题only展。\n\n来源账号：武汉周末去哪\n合集标题：武汉周末（6.30-7.5）活动汇总！好多免费\n来源笔记：https://www.xiaohongshu.com/explore/6a42415900000000170289a7?xsec_token=ABNGGh5WG9tI5JqU084lWmx9kAThVfiaucxvvLc5POZ9U%3D&xsec_source=pc_user\n原 slide：6a42415900000000170289a7/images/07.webp",
+      "suggestion": {
+        "start_at": "2026-07-04 09:30:00",
+        "expired_at": "2026-07-04 17:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4b70e60000000015024f33:07_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "舞!舞!舞!钢琴四手联弹音乐会",
+      "time_text": "7月11日19:30",
+      "current_start_date": "2026-07-11 19:30:00",
+      "current_end_date": "2026-07-11 23:59:59",
+      "current_start_at": "2026-07-11 19:30:00",
+      "current_expired_at": "2026-07-11 23:59:59",
+      "detail_excerpt": "分类：漫展&演出\n费用：—\n时间：7月11日19:30\n地址：武汉琴台音乐厅\n介绍：刘震洋、郑杰两位钢琴演奏家将串联格里格、莫什科夫斯基、勃拉姆斯三大传世舞曲名作。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（7.7-7.12）活动汇总！好多免费！\n来源笔记：https://www.xiaohongshu.com/explore/6a4b70e60000000015024f33?xsec_token=ABK5qyQ7-YuaNCh_xrYD2wYAbtcNekStqfTq2-R_eYsvw%3D&xsec_source=pc_user\n原 slide：6a4b70e60000000015024f33/images/07.webp",
+      "suggestion": {
+        "start_at": "2026-07-11 19:30:00",
+        "expired_at": "2026-07-11 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a0a7000000001503c9c2:08_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "奔跑吧部落快闪店四城接力启幕",
+      "time_text": "7.18-9.4",
+      "current_start_date": "2026-07-18 00:00:00",
+      "current_end_date": "2026-09-04 23:59:59",
+      "current_start_at": "2026-07-18 00:00:00",
+      "current_expired_at": "2026-09-04 23:59:59",
+      "detail_excerpt": "分类：快闪活动\n费用：免费\n时间：7.18-9.4\n地址：武汉银泰创意城1F中庭\n介绍：免费入场。\n官方正版周边、趣味DIY姓名牌定制、城市限定印章打卡。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（713-719）活动汇总！好多免费~\n来源笔记：https://www.xiaohongshu.com/explore/6a54a0a7000000001503c9c2?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLW9hGW8OI7CtxvYzpE8R9gI%3D&xsec_source=pc_user\n原 slide：6a54a0a7000000001503c9c2/images/08.webp",
+      "suggestion": {
+        "start_at": "2026-07-18 00:00:00",
+        "expired_at": "2026-09-04 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61bc7b0000000005039fc0:08_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "三丽鸥家族「日晒海岛派对」",
+      "time_text": "7月4日-8月30日",
+      "current_start_date": "2026-07-04 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-07-04 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：快闪活动\n费用：免费\n时间：7月4日-8月30日\n地址：武汉恒隆广场\n介绍：免费。\n汇聚三丽鸥家族（Hello Kitty、美乐蒂、库洛米等）的“黑皮”海岛限定造型。\n\n来源账号：武汉周末去哪\n合集标题：🌈武汉周末（7.24-7.26）活动汇总！\n来源笔记：https://www.xiaohongshu.com/explore/6a61bc7b0000000005039fc0?xsec_token=ABTJgSZXl99yqK2ajoUhVHFQjnkT2_NwpuQ-L_I56gDZU%3D&xsec_source=pc_user\n原 slide：6a61bc7b0000000005039fc0/images/08.webp",
+      "suggestion": {
+        "start_at": "2026-07-04 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a42415900000000170289a7:07_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "武汉·约会大作战only同人",
+      "time_text": "7.5",
+      "current_start_date": "2026-07-05 00:00:00",
+      "current_end_date": "2026-07-05 23:59:59",
+      "current_start_at": "2026-07-05 00:00:00",
+      "current_expired_at": "2026-07-05 23:59:59",
+      "detail_excerpt": "分类：漫展同人\n费用：含园博园免费入场\n时间：7.5\n地址：武汉园博园时光艺术厅\n介绍：包含园博园免费入场、明信片、钥匙扣、吧唧、集章卡等。\n特邀嘉宾椰梨包、鱼片吃椰子鸡。\n\n来源账号：武汉周末去哪\n合集标题：武汉周末（6.30-7.5）活动汇总！好多免费\n来源笔记：https://www.xiaohongshu.com/explore/6a42415900000000170289a7?xsec_token=ABNGGh5WG9tI5JqU084lWmx9kAThVfiaucxvvLc5POZ9U%3D&xsec_source=pc_user\n原 slide：6a42415900000000170289a7/images/07.webp",
+      "suggestion": {
+        "start_at": "2026-07-05 00:00:00",
+        "expired_at": "2026-07-05 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a54a0a7000000001503c9c2:08_2",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "「粉星」萌动·CUTE SPACE快闪（星之卡比）",
+      "time_text": "7.10-8.23",
+      "current_start_date": "2026-07-10 00:00:00",
+      "current_end_date": "2026-08-23 23:59:59",
+      "current_start_at": "2026-07-10 00:00:00",
+      "current_expired_at": "2026-08-23 23:59:59",
+      "detail_excerpt": "分类：快闪活动\n费用：免费\n时间：7.10-8.23\n地址：武汉滨江天街L1次中庭\n介绍：免费入场。\n超大厨师玩偶、奶凶系列等人气单品，星之卡比武汉首展。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周（713-719）活动汇总！好多免费~\n来源笔记：https://www.xiaohongshu.com/explore/6a54a0a7000000001503c9c2?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLW9hGW8OI7CtxvYzpE8R9gI%3D&xsec_source=pc_user\n原 slide：6a54a0a7000000001503c9c2/images/08.webp",
+      "suggestion": {
+        "start_at": "2026-07-10 00:00:00",
+        "expired_at": "2026-08-23 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a38e99f000000001702cd58:08_0",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "M.by Marsper星辰宿语主题快闪",
+      "time_text": "2026年6月19日-6月30日",
+      "current_start_date": "2026-06-19 00:00:00",
+      "current_end_date": "2026-06-30 23:59:59",
+      "current_start_at": "2026-06-19 00:00:00",
+      "current_expired_at": "2026-06-30 23:59:59",
+      "detail_excerpt": "分类：快闪活动\n费用：免费\n时间：2026年6月19日-6月30日\n地址：武汉光谷K11 L1瀑布屏中庭+BEAUTY中庭\n介绍：免费入场。\n把漫天星光探进烟火日常，灿灿星辰，收纳整片宇宙的温柔。\n\n来源账号：武汉周末去哪\n合集标题：武汉本周(6.23-6.28)活动汇总✨好多免费\n来源笔记：https://www.xiaohongshu.com/explore/6a38e99f000000001702cd58?xsec_token=ABVLWBh3eD7aUJtbyOxDkWZcq5bascnc7tAp3ft01oMmk%3D&xsec_source=pc_user\n原 slide：6a38e99f000000001702cd58/images/08.webp",
+      "suggestion": {
+        "start_at": "2026-06-19 00:00:00",
+        "expired_at": "2026-06-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a42415900000000170289a7:08_1",
+      "city": "武汉",
+      "source": "xiaohongshu",
+      "title": "银泰百货 x 燕云十六声 限时联动",
+      "time_text": "6月26日到7月5日",
+      "current_start_date": "2026-06-26 00:00:00",
+      "current_end_date": "2026-07-05 23:59:59",
+      "current_start_at": "2026-06-26 00:00:00",
+      "current_expired_at": "2026-07-05 23:59:59",
+      "detail_excerpt": "分类：快闪活动\n费用：—\n时间：6月26日到7月5日\n地址：银泰创意城\n介绍：打卡可领周边。\n七座主题痛楼、二十面主题大屏共呈江南盛景，好多周边打卡免费送。\n\n来源账号：武汉周末去哪\n合集标题：武汉周末（6.30-7.5）活动汇总！好多免费\n来源笔记：https://www.xiaohongshu.com/explore/6a42415900000000170289a7?xsec_token=ABNGGh5WG9tI5JqU084lWmx9kAThVfiaucxvvLc5POZ9U%3D&xsec_source=pc_user\n原 slide：6a42415900000000170289a7/images/08.webp",
+      "suggestion": {
+        "start_at": "2026-06-26 00:00:00",
+        "expired_at": "2026-07-05 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
       }
     }
   ]

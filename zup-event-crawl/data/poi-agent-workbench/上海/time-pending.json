@@ -1,43 +1,1441 @@
 {
   "city": "上海",
-  "source": "douban",
-  "exported_at": "2026-07-13T14:41:11.929Z",
+  "source": "xiaohongshu",
+  "exported_at": "2026-07-26T13:21:24.726Z",
   "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
   "events": [
     {
-      "event_uid": "douban:37900688",
+      "event_uid": "xiaohongshu:6a4df139000000001101a20e:01_0",
       "city": "上海",
-      "source": "douban",
-      "title": "即兴表演工作坊：直面失败",
-      "time_text": "07月19日 周日 13:00-15:00",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "我们每周都有不同主题的英语社交活动，欢迎加入我们Club一起玩！\n由于场地限制，及考虑到每位参与者应享受的环境与互动，\n本活动不接受空降，如果有兴趣参与，请务必要提前预约报名。\n联系 请备注：豆瓣活动\n如果本次发布的活动已经举办完成，你可以联系我们了解近期即将举办的活动哦\nImprov Workshop: Facing Failure\n即兴表演工作坊：直面失败\nHosted by Andreas (Standup Comedian, TEDx Public Speaking Coach)\nWhat if becoming more confident didn't start with succeeding? But with becoming comfortable failing? Why do so many people avoid speaking up, trying some",
+      "source": "xiaohongshu",
+      "title": "拓麻歌子世界巡回快闪",
+      "time_text": "7.30-8.31",
+      "current_start_date": "2026-07-30 00:00:00",
+      "current_end_date": "2026-08-31 23:59:59",
+      "current_start_at": "2026-07-30 00:00:00",
+      "current_expired_at": "2026-08-31 23:59:59",
+      "detail_excerpt": "分类：快闪\n费用：—\n时间：7.30-8.31\n地址：中海环宇城MAX 一楼中庭\n介绍：拓麻歌子世界巡回快闪活动即将登陆上海啦🥳\n这次有新品资讯、惊喜赠品、精彩活动等等，期待住了！\n\n来源账号：上海漫游指南\n合集标题：上海🔥17大IP快闪活动汇总！收藏🐎住✅\n来源笔记：https://www.xiaohongshu.com/explore/6a4df139000000001101a20e?xsec_token=AB1oJLb7Kxa4b8svik7d3iDg6I_wWgMaSYPUdfzm4xJ60%3D&xsec_source=pc_user\n原 slide：6a4df139000000001101a20e/images/01.webp\n裁切海报：6a4df139000000001101a20e/posters/01_slot0.jpg",
       "suggestion": {
-        "start_at": "2026-07-19 13:00:00",
-        "expired_at": "2026-07-19 15:00:00",
+        "start_at": "2026-07-30 00:00:00",
+        "expired_at": "2026-08-31 23:59:59",
         "confidence": "high",
-        "reason": "豆瓣详情：07月19日 周日 13:00-15:00"
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
       }
     },
     {
-      "event_uid": "douban:37900856",
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:01_0",
       "city": "上海",
-      "source": "douban",
-      "title": "离开潮汕的我们，如何面对自己的故乡——《出潮入海》新书分享会",
-      "time_text": "07月19日 周日 13:30-15:30",
+      "source": "xiaohongshu",
+      "title": "PRISMA新嘉中心",
+      "time_text": "07.13-07.19",
+      "current_start_date": "2026-07-13 00:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-07-13 00:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：商业开业\n费用：—\n时间：07.13-07.19\n地址：浦东新区张杨北路1188号\n介绍：总建筑面积近43万平方米，集商业、住宅、办公于一体。\n星际大道高街、深海中庭8层贯通巨型贝壳天穹、4600平方米棱镜花园屋顶街区亮相；《恐龙的文艺复兴·史前沉浸式时空剧场》1:1科学复原史前巨兽，5楼还有恐龙潮玩快闪店。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/01.webp",
+      "suggestion": {
+        "start_at": "2026-07-13 00:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:01_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "闵博手帐集市",
+      "time_text": "7月25日 10:00-16:00",
+      "current_start_date": "2026-07-25 10:00:00",
+      "current_end_date": "2026-07-25 16:00:00",
+      "current_start_at": "2026-07-25 10:00:00",
+      "current_expired_at": "2026-07-25 16:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日 10:00-16:00\n地址：闵行区博物馆\n介绍：免费入场。\n手帐周边市集，文具文创集中亮相，适合周末打卡选购。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/01.webp",
+      "suggestion": {
+        "start_at": "2026-07-25 10:00:00",
+        "expired_at": "2026-07-25 16:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3e43f0000000001003d17e:02_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "鼠命bee达 但能力有限公司",
+      "time_text": "2026.7.3-2026.9.6",
+      "current_start_date": "2026-07-03 00:00:00",
+      "current_end_date": "2026-09-06 23:59:59",
+      "current_start_at": "2026-07-03 00:00:00",
+      "current_expired_at": "2026-09-06 23:59:59",
+      "detail_excerpt": "分类：快闪活动\n费用：—\n时间：2026.7.3-2026.9.6\n地址：虹桥新天地\n介绍：美叽与大鼠IP全国首展，蜜蜂主题快闪首发。\n大鼠人偶互动、美叽和大鼠蜜蜂版表情包、巨大气模与美陈打卡雕塑齐亮相。\n\n来源账号：上海漫游指南\n合集标题：上海🔥9大IP快闪活动汇总！收藏🐎住✅\n来源笔记：https://www.xiaohongshu.com/explore/6a3e43f0000000001003d17e?xsec_token=ABbwZO9I1QhL0U-4oh4FY9c1lX8W7h0OPbY4N3XNZOp10%3D&xsec_source=pc_user\n原 slide：6a3e43f0000000001003d17e/images/02.webp\n裁切海报：6a3e43f0000000001003d17e/posters/02_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-03 00:00:00",
+        "expired_at": "2026-09-06 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:01_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "张园东区首开区",
+      "time_text": "07.13-07.19",
+      "current_start_date": "2026-07-13 00:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-07-13 00:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：商业开业\n费用：—\n时间：07.13-07.19\n地址：静安区茂名北路258号\n介绍：7幢修缮完成的百年石库门建筑重磅开业。\n93米「时光长廊」、藤蔓花卉装饰与巨型可爱熊装置亮相，「机遇之门」艺术装置超好拍复古高级感大片。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/01.webp",
+      "suggestion": {
+        "start_at": "2026-07-13 00:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:01_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "“葡香夏欢 艺韵乡情”马陆镇夏季村晚暨文创市集",
+      "time_text": "7月26日",
+      "current_start_date": "2026-07-26 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-26 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月26日\n地址：嘉源海美术馆\n介绍：免费入场。\n马陆镇夏季村晚联动文创市集，葡香夏欢、艺韵乡情主题，户外文娱与手作摊位同场。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/01.webp",
+      "suggestion": {
+        "start_at": "2026-07-26 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:01_2",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "美影源动画园区",
+      "time_text": "07.13-07.19",
+      "current_start_date": "2026-07-13 00:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-07-13 00:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：商业开业\n费用：—\n时间：07.13-07.19\n地址：静安区万航渡路618号美影源园区\n介绍：入园即解锁动画场景，孙悟空、哪吒、葫芦爷爷等3D雕塑齐聚，老厂房墙面遍布IP涂鸦。\n上影元品、联合一切两大文创空间与三大「宝藏」展厅，仿佛步入动画世界。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/01.webp",
+      "suggestion": {
+        "start_at": "2026-07-13 00:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:01_2",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "宝山滨江草地啤酒音乐会",
+      "time_text": "7月25日-7月26日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：音乐现场\n费用：—\n时间：7月25日-7月26日\n地址：宝山区淞沪路318号（灯塔营地）\n介绍：滨江草地啤酒音乐会，傍晚江景配现场乐队，适合周末户外听歌消暑。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/01.webp\n裁切海报：6a62291b000000001303c9ac/posters/01_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3e43f0000000001003d17e:04_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "森贝儿家族上海站快闪",
+      "time_text": "2026.6.26-7.19",
+      "current_start_date": "2026-06-26 00:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-06-26 00:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：快闪活动\n费用：—\n时间：2026.6.26-7.19\n地址：CP静安L1主中庭（愚园路68号）\n介绍：专属限定款必冲，幸运大抽赏等福利上线。\n焕新升级拍摄角出片率满分，巧克力兔妹妹见面会同步登场。\n\n来源账号：上海漫游指南\n合集标题：上海🔥9大IP快闪活动汇总！收藏🐎住✅\n来源笔记：https://www.xiaohongshu.com/explore/6a3e43f0000000001003d17e?xsec_token=ABbwZO9I1QhL0U-4oh4FY9c1lX8W7h0OPbY4N3XNZOp10%3D&xsec_source=pc_user\n原 slide：6a3e43f0000000001003d17e/images/04.webp\n裁切海报：6a3e43f0000000001003d17e/posters/04_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-26 00:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:02_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "放鹤谷千灯会",
+      "time_text": "即日起-8月30日",
+      "current_start_date": "2026-07-14 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-07-14 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：市集活动\n费用：29.9元起\n时间：即日起-8月30日\n地址：吴泾镇放鹤路1710号（放鹤谷鲜花农场）\n介绍：引进国家级非遗四川自贡灯会，打造沉浸式光影盛宴。\n园区50亩花田全面升级为梦幻灯海，解锁「白天赏花、夜晚观灯」全新夏日游玩模式。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/02.webp",
+      "suggestion": {
+        "start_at": "2026-06-08 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:02_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "原神「仲夏派对」线下主题快闪",
+      "time_text": "7月24日-7月28日",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-07-28 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-07-28 23:59:59",
+      "detail_excerpt": "分类：其他\n费用：—\n时间：7月24日-7月28日\n地址：上海龙之梦购物中心\n介绍：原神仲夏派对线下主题快闪，周边商品、coser互动与游戏体验同场。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/02.webp",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-07-28 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4df139000000001101a20e:07_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "森贝儿家族 上海站快闪",
+      "time_text": "6.26-7.19",
+      "current_start_date": "2026-06-26 00:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-06-26 00:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：快闪\n费用：—\n时间：6.26-7.19\n地址：CP静安L1主中庭（愚园路68号）\n介绍：✨专属限定款必冲，幸运大抽赏🎁手气爆棚，惊喜不停歇\n📷焕新升级拍摄角，怎么拍都萌萌哒，出片率💯\n🐰巧克力兔妹妹见面会，和妹宝一起贴贴～\n\n来源账号：上海漫游指南\n合集标题：上海🔥17大IP快闪活动汇总！收藏🐎住✅\n来源笔记：https://www.xiaohongshu.com/explore/6a4df139000000001101a20e?xsec_token=AB1oJLb7Kxa4b8svik7d3iDg6I_wWgMaSYPUdfzm4xJ60%3D&xsec_source=pc_user\n原 slide：6a4df139000000001101a20e/images/07.webp\n裁切海报：6a4df139000000001101a20e/posters/07_slot",
+      "suggestion": {
+        "start_at": "2026-06-26 00:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:02_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "2026「夏之魅」上海城市草坪音乐会 第二轮",
+      "time_text": "7月17日20:00、7月18日(周六)20:00、7月19日20:00、7月20日(周一)20:00；预约时间7月13日20:00",
+      "current_start_date": "2026-07-13 20:00:00",
+      "current_end_date": "2026-07-20 23:59:59",
+      "current_start_at": "2026-07-13 20:00:00",
+      "current_expired_at": "2026-07-20 23:59:59",
+      "detail_excerpt": "分类：演出活动\n费用：免费预约\n时间：7月17日20:00、7月18日(周六)20:00、7月19日20:00、7月20日(周一)20:00；预约时间7月13日20:00\n地址：上海城市草坪音乐广场（延安东路523号）\n介绍：苏萌的吉他、吴蛮与她的丝路知音、布罗塞与SSO、尹飞·进击打击乐团等阵容轮番登场。\n城市草坪音乐会经典曲目与现场氛围兼具。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/image",
+      "suggestion": {
+        "start_at": "2026-07-13 20:00:00",
+        "expired_at": "2026-07-20 23:59:59",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:02_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "泗泾十锦细锣鼓推广系列音乐会第四场",
+      "time_text": "7月25日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-25 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-25 23:59:59",
+      "detail_excerpt": "分类：音乐现场\n费用：—\n时间：7月25日\n地址：泗泾古镇\n介绍：十锦细锣鼓推广系列音乐会第四场，现场还有皮影戏与嘉宾乐队助阵。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/02.webp",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-25 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3e43f0000000001003d17e:06_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "小刘鸭 辣么辣市集",
+      "time_text": "7.1-7.14",
+      "current_start_date": "2026-07-01 00:00:00",
+      "current_end_date": "2026-07-14 23:59:59",
+      "current_start_at": "2026-07-01 00:00:00",
+      "current_expired_at": "2026-07-14 23:59:59",
+      "detail_excerpt": "分类：快闪活动\n费用：—\n时间：7.1-7.14\n地址：静安大悦城北座1F中庭\n介绍：全新辣么辣市集主题场景，超30款主题周边全新首发。\n鸭友们快来一起热辣一夏。\n\n来源账号：上海漫游指南\n合集标题：上海🔥9大IP快闪活动汇总！收藏🐎住✅\n来源笔记：https://www.xiaohongshu.com/explore/6a3e43f0000000001003d17e?xsec_token=ABbwZO9I1QhL0U-4oh4FY9c1lX8W7h0OPbY4N3XNZOp10%3D&xsec_source=pc_user\n原 slide：6a3e43f0000000001003d17e/images/06.webp\n裁切海报：6a3e43f0000000001003d17e/posters/06_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-01 00:00:00",
+        "expired_at": "2026-07-14 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:02_2",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "第七届张江啤酒节",
+      "time_text": "7.17-8.2（每周五至周日开放）",
+      "current_start_date": "2026-07-17 00:00:00",
+      "current_end_date": "2026-08-02 23:59:59",
+      "current_start_at": "2026-07-17 00:00:00",
+      "current_expired_at": "2026-08-02 23:59:59",
+      "detail_excerpt": "分类：市集活动\n费用：—\n时间：7.17-8.2（每周五至周日开放）\n地址：汇智国际商业中心1F北广场\n介绍：乐队live、DJ氛围感、趣味魔术、开放麦轮番登场。\n30+烟火市集，夏日夜市氛围感全开。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/02.webp",
+      "suggestion": {
+        "start_at": "2026-07-17 00:00:00",
+        "expired_at": "2026-08-02 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:02_2",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "“沪上大饭斗”市集",
+      "time_text": "7月24日-7月26日",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：—\n时间：7月24日-7月26日\n地址：红寿坊\n介绍：沪上大饭斗美食市集，12家餐饮摊位集中亮相，主打本帮与创意小吃。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/02.webp\n裁切海报：6a62291b000000001303c9ac/posters/02_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3e43f0000000001003d17e:07_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "「STAY ROMANTIC」限定快闪",
+      "time_text": "6.26-7.12",
+      "current_start_date": "2026-06-26 00:00:00",
+      "current_end_date": "2026-07-12 23:59:59",
+      "current_start_at": "2026-06-26 00:00:00",
+      "current_expired_at": "2026-07-12 23:59:59",
+      "detail_excerpt": "分类：快闪活动\n费用：—\n时间：6.26-7.12\n地址：静安大悦城·南座3F中庭\n介绍：RDD TOYS全国首站，人偶见面会、限定周边与上海专属「上海卡」毛绒挂件同步发售。\n浪漫邮箱互动装置等你打卡。\n\n来源账号：上海漫游指南\n合集标题：上海🔥9大IP快闪活动汇总！收藏🐎住✅\n来源笔记：https://www.xiaohongshu.com/explore/6a3e43f0000000001003d17e?xsec_token=ABbwZO9I1QhL0U-4oh4FY9c1lX8W7h0OPbY4N3XNZOp10%3D&xsec_source=pc_user\n原 slide：6a3e43f0000000001003d17e/images/07.webp\n裁切海报：6a3e43f0000000001003d17e/posters/07_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-26 00:00:00",
+        "expired_at": "2026-07-12 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:03_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "第十九届上海庄行伏羊美食嘉年华",
+      "time_text": "7月10日至9月10日",
+      "current_start_date": "2026-07-10 00:00:00",
+      "current_end_date": "2026-09-10 23:59:59",
+      "current_start_at": "2026-07-10 00:00:00",
+      "current_expired_at": "2026-09-10 23:59:59",
+      "detail_excerpt": "分类：市集活动\n费用：—\n时间：7月10日至9月10日\n地址：奉贤区庄行镇南庄路4399号\n介绍：正宗伏羊全羊宴，庄行、内蒙古、宁夏羊肉齐聚。\n夜市啤酒、烧烤、海鲜专区同步开放，城市那达慕大会、内蒙古羊肉产业品牌推广、草原主题音乐会、夏日伏羊市集、电音嘉年华、庄行花岛夜光秀、农产品市集、「千舍·云」声光秀等活动轮番上演。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/03.webp",
+      "suggestion": {
+        "start_at": "2026-07-10 00:00:00",
+        "expired_at": "2026-09-10 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:03_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "上海百脑汇拼豆大赛",
+      "time_text": "7月25日 12:30-15:00",
+      "current_start_date": "2026-07-25 12:30:00",
+      "current_end_date": "2026-07-25 15:00:00",
+      "current_start_at": "2026-07-25 12:30:00",
+      "current_expired_at": "2026-07-25 15:00:00",
+      "detail_excerpt": "分类：其他\n费用：免费\n时间：7月25日 12:30-15:00\n地址：百脑汇4楼【活动区】\n介绍：免费入场。\n免费参与拼豆大赛，现场有帆布袋、集邮盖章（含原神系列）、夹球与PTCG卡牌互动。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/03.webp\n裁切海报：6a62291b000000001303c9ac/posters/03_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 12:30:00",
+        "expired_at": "2026-07-25 15:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4df139000000001101a20e:08_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "哈利·波特25周年限定快闪店",
+      "time_text": "7.18-8.09",
+      "current_start_date": "2026-07-18 00:00:00",
+      "current_end_date": "2026-08-09 23:59:59",
+      "current_start_at": "2026-07-18 00:00:00",
+      "current_expired_at": "2026-08-09 23:59:59",
+      "detail_excerpt": "分类：快闪\n费用：—\n时间：7.18-8.09\n地址：静安大悦城北座1楼中庭\n介绍：麻瓜们集合！猫头鹰信使空降上海！超多限量周边、独家新品首次发售！\n\n来源账号：上海漫游指南\n合集标题：上海🔥17大IP快闪活动汇总！收藏🐎住✅\n来源笔记：https://www.xiaohongshu.com/explore/6a4df139000000001101a20e?xsec_token=AB1oJLb7Kxa4b8svik7d3iDg6I_wWgMaSYPUdfzm4xJ60%3D&xsec_source=pc_user\n原 slide：6a4df139000000001101a20e/images/08.webp\n裁切海报：6a4df139000000001101a20e/posters/08_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-18 00:00:00",
+        "expired_at": "2026-08-09 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4df139000000001101a20e:11_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "Stitch史迪奇【怪好吃俱乐部】",
+      "time_text": "6.26-7.19",
+      "current_start_date": "2026-06-26 00:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-06-26 00:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：快闪\n费用：—\n时间：6.26-7.19\n地址：上海张园W4\n介绍：薄荷巧克力配色「甜」满张园！限定冰淇淋与角色造型马卡龙萌趣首发🍦\nDIY手作体验区，近200款主题商品集结潮玩、毛绒、服饰、宠物用品等多元好物\n\n来源账号：上海漫游指南\n合集标题：上海🔥17大IP快闪活动汇总！收藏🐎住✅\n来源笔记：https://www.xiaohongshu.com/explore/6a4df139000000001101a20e?xsec_token=AB1oJLb7Kxa4b8svik7d3iDg6I_wWgMaSYPUdfzm4xJ60%3D&xsec_source=pc_user\n原 slide：6a4df139000000001101a20e/images/11.webp\n裁切海报：6a4df139000000001101a20e/posters/11_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-26 00:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:03_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "2026 GATE M 电影节：NEST PARK主题电影周",
+      "time_text": "7月13日至7月20日",
+      "current_start_date": "2026-07-13 00:00:00",
+      "current_end_date": "2026-07-20 23:59:59",
+      "current_start_at": "2026-07-13 00:00:00",
+      "current_expired_at": "2026-07-20 23:59:59",
+      "detail_excerpt": "分类：展览活动\n费用：免费观影，无需预约\n时间：7月13日至7月20日\n地址：西岸巢（AI PLAZA）L1户外主园草坪·森林影院（全家旁）；西岸巢（AI PLAZA）B1户外下沉广场·星光影院（KUDDO COFFEE旁）\n介绍：双屏双场地同步放映，户外草坪与下沉广场各设一块银幕。\n森林影院与星光影院双线排片，免费观影无需预约。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/03.web",
+      "suggestion": {
+        "start_at": "2026-07-13 00:00:00",
+        "expired_at": "2026-07-20 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:03_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "上海世博文化公园星光草坪音乐会",
+      "time_text": "7月25日（周六）、7月26日（周日）18:30-22:00",
+      "current_start_date": "2026-07-25 18:30:00",
+      "current_end_date": "2026-07-26 22:00:00",
+      "current_start_at": "2026-07-25 18:30:00",
+      "current_expired_at": "2026-07-26 22:00:00",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月25日（周六）、7月26日（周日）18:30-22:00\n地址：上海世博文化公园·星光草坪\n介绍：免费入场。\n1.5万㎡草坪星光音乐会，夏夜清风与合唱氛围感拉满。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/03.webp",
+      "suggestion": {
+        "start_at": "2026-07-25 18:30:00",
+        "expired_at": "2026-07-26 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a3e43f0000000001003d17e:09_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "夏日摸鱼镇",
+      "time_text": "6.18-8.31",
+      "current_start_date": "2026-06-18 00:00:00",
+      "current_end_date": "2026-08-31 23:59:59",
+      "current_start_at": "2026-06-18 00:00:00",
+      "current_expired_at": "2026-08-31 23:59:59",
+      "detail_excerpt": "分类：快闪活动\n费用：—\n时间：6.18-8.31\n地址：静安嘉里中心 / 上海浦东嘉里城\n介绍：50+「摸鱼型」路人鱼上岸，还原比奇堡打工与摸鱼名场面，魔都最大摸鱼据点。\n快闪店200+款周边，毛绒公仔与上海限定款通通打包带走。\n\n来源账号：上海漫游指南\n合集标题：上海🔥9大IP快闪活动汇总！收藏🐎住✅\n来源笔记：https://www.xiaohongshu.com/explore/6a3e43f0000000001003d17e?xsec_token=ABbwZO9I1QhL0U-4oh4FY9c1lX8W7h0OPbY4N3XNZOp10%3D&xsec_source=pc_user\n原 slide：6a3e43f0000000001003d17e/images/09.webp\n裁切海报：6a3e43f0000000001003d17e/posters/09_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-18 00:00:00",
+        "expired_at": "2026-08-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:03_2",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "前滩公园巷啤酒嘉年华",
+      "time_text": "7月18日-19日 16:00-22:00",
+      "current_start_date": "2026-07-18 16:00:00",
+      "current_end_date": "2026-07-19 22:00:00",
+      "current_start_at": "2026-07-18 16:00:00",
+      "current_expired_at": "2026-07-19 22:00:00",
+      "detail_excerpt": "分类：市集活动\n费用：—\n时间：7月18日-19日 16:00-22:00\n地址：前滩公园巷 钱家滩路限时步行街\n介绍：清爽拉格、小麦啤到风味IPA等啤酒品类齐全。\n乐队演出16:30-17:15、17:30-18:00（AOKKA COFFEE前）；桑巴巡游18:00-18:20、19:00-19:20（耀龙路与前滩大道段）。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/03.webp",
+      "suggestion": {
+        "start_at": "2026-07-18 16:00:00",
+        "expired_at": "2026-07-19 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:03_2",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "BFC露台音乐季",
+      "time_text": "7月25日、7月26日 17:30-20:30（多时段）",
+      "current_start_date": "2026-07-25 17:30:00",
+      "current_end_date": "2026-07-26 20:30:00",
+      "current_start_at": "2026-07-25 17:30:00",
+      "current_expired_at": "2026-07-26 20:30:00",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月25日、7月26日 17:30-20:30（多时段）\n地址：BFC 5F 露台\n介绍：免费需预约（微信小程序「BFC club」）。\nRainbow Box乐队演绎经典旋律，可俯瞰外滩江景。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/03.webp",
+      "suggestion": {
+        "start_at": "2026-07-25 17:30:00",
+        "expired_at": "2026-07-26 20:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4df139000000001101a20e:10_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "「STAY ROMANTIC」限定快闪",
+      "time_text": "6.26-7.12",
+      "current_start_date": "2026-06-26 00:00:00",
+      "current_end_date": "2026-07-12 23:59:59",
+      "current_start_at": "2026-06-26 00:00:00",
+      "current_expired_at": "2026-07-12 23:59:59",
+      "detail_excerpt": "分类：快闪\n费用：—\n时间：6.26-7.12\n地址：静安大悦城·南座3F中庭\n介绍：RDD TOYS国内第1站，玩偶见面会、限定周边、浪漫信箱互动。\n上海限定《沪卡儿》毛绒挂件，连接对露思的想念。\n\n来源账号：上海漫游指南\n合集标题：上海🔥17大IP快闪活动汇总！收藏🐎住✅\n来源笔记：https://www.xiaohongshu.com/explore/6a4df139000000001101a20e?xsec_token=AB1oJLb7Kxa4b8svik7d3iDg6I_wWgMaSYPUdfzm4xJ60%3D&xsec_source=pc_user\n原 slide：6a4df139000000001101a20e/images/10.webp\n裁切海报：6a4df139000000001101a20e/posters/10_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-26 00:00:00",
+        "expired_at": "2026-07-12 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:04_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "2026大宁公园荷花主题游园会",
+      "time_text": "7月18日-8月2日",
+      "current_start_date": "2026-07-18 00:00:00",
+      "current_end_date": "2026-08-02 23:59:59",
+      "current_start_at": "2026-07-18 00:00:00",
+      "current_expired_at": "2026-08-02 23:59:59",
+      "detail_excerpt": "分类：主题活动\n费用：免费参与，无需预约\n时间：7月18日-8月2日\n地址：大宁公园（静安区广中西路288号）\n介绍：引进非遗打铁花表演、鱼灯巡游、水幕光影秀、水火盆等玩法。\n荷花市集同步开放，夏日荷塘碧波无边。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/04.webp",
+      "suggestion": {
+        "start_at": "2026-07-18 00:00:00",
+        "expired_at": "2026-08-02 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:04_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "2026元界夏日嘉年华",
+      "time_text": "7月8日至8月30日",
+      "current_start_date": "2026-07-08 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-07-08 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：主题活动\n费用：—\n时间：7月8日至8月30日\n地址：漕宝路261号鑫耀·光环LIVE（近桂林公园地铁站5号口）\n介绍：绝区零、明日方舟：终末地、一人之下等热门游戏动漫IP齐聚，动漫快闪、主题市集、音乐演出与户外休闲活动轮番登场。\n周五至周日下午/晚间弦乐四重奏与爵士四重奏演绎经典与游戏曲目；8大主题周末涵盖国漫、手游、策略、虚拟偶像、科幻、原创漫画等，40+摊位、cosplay展示与配音体验同步上线。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slid",
+      "suggestion": {
+        "start_at": "2026-07-08 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:04_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "大宁音乐广场嗨啤音乐狂欢主题活动",
+      "time_text": "即日起-2026年8月2日",
+      "current_start_date": "2026-07-26 00:00:00",
+      "current_end_date": "2026-08-02 23:59:59",
+      "current_start_at": "2026-07-26 00:00:00",
+      "current_expired_at": "2026-08-02 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：—\n时间：即日起-2026年8月2日\n地址：大宁音乐广场\n介绍：精酿啤酒、户外烧烤夜市与喷泉水景同场，夜逛音乐广场嗨啤狂欢。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/04.webp\n裁切海报：6a62291b000000001303c9ac/posters/04_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-06-08 00:00:00",
+        "expired_at": "2026-08-02 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:04_2",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "2026“天天有戏”演艺市集——一起zào点市",
+      "time_text": "7月24日-8月2日，工作日16:00-21:00，周末15:00-21:00",
+      "current_start_date": "2026-07-24 16:00:00",
+      "current_end_date": "2026-08-02 21:00:00",
+      "current_start_at": "2026-07-24 16:00:00",
+      "current_expired_at": "2026-08-02 21:00:00",
+      "detail_excerpt": "分类：市集\n费用：—\n时间：7月24日-8月2日，工作日16:00-21:00，周末15:00-21:00\n地址：黄浦区南京东路六合路（第一百货旁）\n介绍：演艺市集汇聚20+人气演员与戏剧品牌，现场演出、互动与跨界摊位同步进行。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/04.webp",
+      "suggestion": {
+        "start_at": "2026-07-24 16:00:00",
+        "expired_at": "2026-08-02 21:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4df139000000001101a20e:12_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "米奇「奇妙之旅」",
+      "time_text": "7.3-8.2",
+      "current_start_date": "2026-07-03 00:00:00",
+      "current_end_date": "2026-08-02 23:59:59",
+      "current_start_at": "2026-07-03 00:00:00",
+      "current_expired_at": "2026-08-02 23:59:59",
+      "detail_excerpt": "分类：快闪\n费用：—\n时间：7.3-8.2\n地址：Gate M西岸梦中心·船坞\n介绍：Miska Muska Mickey Mouse，念出这句奇妙咒语，梦中心直接变身米奇妙妙「坞」！📸门口可以拍大头贴和citywalk照，还有超多可爱周边和盲盒🎁撞进米奇的世界，开启这场奇妙之旅吧✈️\n\n来源账号：上海漫游指南\n合集标题：上海🔥17大IP快闪活动汇总！收藏🐎住✅\n来源笔记：https://www.xiaohongshu.com/explore/6a4df139000000001101a20e?xsec_token=AB1oJLb7Kxa4b8svik7d3iDg6I_wWgMaSYPUdfzm4xJ60%3D&xsec_source=pc_user\n原 slide：6a4df139000000001101a20e/images/12.webp\n裁切海报：6a4df139000000",
+      "suggestion": {
+        "start_at": "2026-07-03 00:00:00",
+        "expired_at": "2026-08-02 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:05_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "外滩甜品集",
+      "time_text": "7月18日13:00–24:00、7月19日13:00–22:00",
+      "current_start_date": "2026-07-18 13:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-07-18 13:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：市集活动\n费用：—\n时间：7月18日13:00–24:00、7月19日13:00–22:00\n地址：外滩BFC\n介绍：黄油小熊IP联名、宠物甜品专区同步亮相。\n黄油小熊冰淇淋车、叙夏联名甜品店等限定款甜品首发，现场NPC互动等活动同步进行。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/05.webp",
+      "suggestion": {
+        "start_at": "2026-07-18 13:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:05_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "「引潮造浪 夏YEAH派对」主题活动",
+      "time_text": "7月18日-19日/7月25日-26日 11:00-20:00（夏日沙滩派对/冰块叠叠乐/阳光咖啡市集）",
+      "current_start_date": "2026-07-18 11:00:00",
+      "current_end_date": "2026-07-26 20:00:00",
+      "current_start_at": "2026-07-18 11:00:00",
+      "current_expired_at": "2026-07-26 20:00:00",
+      "detail_excerpt": "分类：主题活动\n费用：—\n时间：7月18日-19日/7月25日-26日 11:00-20:00（夏日沙滩派对/冰块叠叠乐/阳光咖啡市集）\n地址：宝山日月光中心\n介绍：以夏日休闲、亲子互动与潮流文化为核心。\n海洋泡沫派对、冰块叠叠乐等沉浸式互动项目，阳光咖啡市集、亲子手作、儿童剧与live音乐同步登场。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/05.webp",
+      "suggestion": {
+        "start_at": "2026-07-18 11:00:00",
+        "expired_at": "2026-07-26 20:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:05_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "塔南小集·夏夜游园会一期",
+      "time_text": "即日起-8月2日，每周五至周日16:00-20:00",
+      "current_start_date": "2026-07-26 16:00:00",
+      "current_end_date": "2026-07-26 20:00:00",
+      "current_start_at": "2026-07-26 16:00:00",
+      "current_expired_at": "2026-07-26 20:00:00",
+      "detail_excerpt": "分类：市集\n费用：—\n时间：即日起-8月2日，每周五至周日16:00-20:00\n地址：嘉定区州桥老街闵清街\n介绍：宋式小集氛围，宋锦绒花等传统手作与刨冰烧烤等夏日小吃同场。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/05.webp",
+      "suggestion": {
+        "start_at": "2026-06-08 16:00:00",
+        "expired_at": "2026-06-14 20:00:00",
+        "confidence": "medium",
+        "reason": "即日起每周重复，结束取汇总周本周日（或 summaryEndDate）"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:05_2",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "五角场「漫游空间」",
+      "time_text": "横跨7月至8月",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
-      "detail_excerpt": "报名见活动详情。\n潮汕，这片“省尾国角”的土地，自古便是内陆叙事与海洋叙事的交会点。当新一代潮汕人不再像先辈那样“下南洋”，而是走向上海、北京、伦敦、美国，甚至科幻想象中的遥远星系——离开之后，我们如何面对自己的来处？\n7月19日（周日）13:30，本次活动特邀两位潮汕籍嘉宾——非虚构作家李梓新、著名科幻作家陈楸帆与澎湃新闻“文学花边”工作室主理人罗昕做客上海图书馆东馆，展开一场关于潮汕的对谈。\n李梓新十九岁离开潮州，四十岁后赴英求学，在《出潮入海》中用细腻的笔触追溯抽纱、食物、方言与记忆，探寻自身的“潮汕性”；陈楸帆则将英歌舞、宗祠文化融入科幻世界，在“英歌沸腾”系列中让少女梅影在遥远的“潮星”上借助传统之力完成成长与觉醒。\n两人一个以非虚构直面记忆，一个以科幻眺望未来，却共同回应着同一个命题：故乡如何被携带、被转化、被重新讲述？\n扫码报名\n嘉宾介绍\n陈楸帆，广东汕头人，九三学社成员，现",
+      "detail_excerpt": "分类：快闪活动\n费用：—\n时间：横跨7月至8月\n地址：五角场\n介绍：国漫《大圣崛起》上海限定快闪店重磅落地。\n电影级沉浸式展览空间「万妖镇」主题，Queen Studios与INART Action收藏雕像与可动人偶，「花果山」二代毛绒系列首发。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/05.webp",
       "suggestion": {
-        "start_at": "2026-07-19 13:30:00",
-        "expired_at": "2026-07-19 15:30:00",
+        "error": "未能解析日期"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:05_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "一起去村游2.0——柘林水上运动季",
+      "time_text": "7月25日（周六）09:00",
+      "current_start_date": "2026-07-25 09:00:00",
+      "current_end_date": "2026-07-25 23:59:59",
+      "current_start_at": "2026-07-25 09:00:00",
+      "current_expired_at": "2026-07-25 23:59:59",
+      "detail_excerpt": "分类：户外活动\n费用：—\n时间：7月25日（周六）09:00\n地址：奉贤区柘林镇莺龙村立莲清舍大草坪\n介绍：水上乐园、水枪大战、泡泡派对、桨板体验，还有本地非遗表演助兴。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/05.webp\n裁切海报：6a62291b000000001303c9ac/posters/05_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 09:00:00",
+        "expired_at": "2026-07-25 23:59:59",
         "confidence": "high",
-        "reason": "豆瓣详情：07月19日 周日 13:30-15:30"
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:06_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "仓城消夏夜肆",
+      "time_text": "7月25日-7月26日、8月8日-8月9日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-08-09 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-08-09 23:59:59",
+      "detail_excerpt": "分类：市集活动\n费用：—\n时间：7月25日-7月26日、8月8日-8月9日\n地址：仓城郎园Bridge\n介绍：大仓桥畔市集，酸梅汤、茯苓糕等传统小吃齐聚。\n杜氏雕花楼养生DIY区可制驱蚊香囊与茶粉，晚间民乐演出与古建筑夏日打卡路线同步开放。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/06.webp",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-08-09 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:05_2",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "外滩马路泼水节",
+      "time_text": "7月25日-7月26日、8月1日-8月2日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-08-08 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-08-08 23:59:59",
+      "detail_excerpt": "分类：户外活动\n费用：—\n时间：7月25日-7月26日、8月1日-8月2日\n地址：外滩枫径\n介绍：泰式风情泼水节，泳池、水枪、泡泡机与泰式夜市小吃同场清凉消夏。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/05.webp\n裁切海报：6a62291b000000001303c9ac/posters/05_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-08-08 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a4df139000000001101a20e:15_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "KIRIMICHAN 海滨渔市",
+      "time_text": "7.21开始（8.14主题快闪店全面开启）",
+      "current_start_date": "2026-07-21 00:00:00",
+      "current_end_date": "2026-08-14 23:59:59",
+      "current_start_at": "2026-07-21 00:00:00",
+      "current_expired_at": "2026-08-14 23:59:59",
+      "detail_excerpt": "分类：快闪\n费用：—\n时间：7.21开始（8.14主题快闪店全面开启）\n地址：上海美罗城\n介绍：高萌联动！KIRIMICHAN与HANGYODON两大三丽鸥IP携手，海滨渔市主题。\n7.21起户外氛围打卡点位开放，8.14主题快闪店全面开启，限定场景与首发周边。\n\n来源账号：上海漫游指南\n合集标题：上海🔥17大IP快闪活动汇总！收藏🐎住✅\n来源笔记：https://www.xiaohongshu.com/explore/6a4df139000000001101a20e?xsec_token=AB1oJLb7Kxa4b8svik7d3iDg6I_wWgMaSYPUdfzm4xJ60%3D&xsec_source=pc_user\n原 slide：6a4df139000000001101a20e/images/15.webp\n裁切海报：6a4df139000000001101a20e/pos",
+      "suggestion": {
+        "start_at": "2026-07-21 00:00:00",
+        "expired_at": "2026-08-14 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:06_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "2026浦江音乐啤酒嘉年华",
+      "time_text": "7月18日至7月26日",
+      "current_start_date": "2026-07-18 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-18 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集活动\n费用：—\n时间：7月18日至7月26日\n地址：浦江郊野公园（1号门）闵行区浦星公路2578弄8号\n介绍：7月18日开幕式率先登场。\n7月19-24日及26日乐队音乐嘉年华，10支专业乐队演绎流行、摇滚、民谣与DJ；舞蹈表演与花式调酒秀同步上演。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/06.webp",
+      "suggestion": {
+        "start_at": "2026-07-18 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:06_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "杨浦滨江双市集·红途赴山海",
+      "time_text": "7月25日-7月26日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：—\n时间：7月25日-7月26日\n地址：杨浦滨江\n介绍：杨浦滨江双市集之一，红途赴山海主题摊位与江景散步氛围并存。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/06.webp",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:06_2",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "长宁ArtPark大融城夏日理想生活节",
+      "time_text": "7月11日—8月30日（每周六周日晚17点至21点）",
+      "current_start_date": "2026-07-11 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-07-11 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：市集活动\n费用：—\n时间：7月11日—8月30日（每周六周日晚17点至21点）\n地址：淞虹路377号L1-LG1\n介绍：国内外知名精酿啤酒品牌齐聚，微醺海岸氛围拉满。\n海边畅饮、戏水玩乐、魔术秀、儿童剧、泡泡巡游与露天电影等活动同步上线。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/06.webp",
+      "suggestion": {
+        "start_at": "2026-07-11 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:06_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "杨浦滨江双市集·YOUNG光屿复兴主题市集",
+      "time_text": "7月25日-7月26日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：—\n时间：7月25日-7月26日\n地址：杨浦滨江\n介绍：YOUNG光屿复兴主题市集，工业码头与江景背景下的创意摊位集结。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/06.webp\n裁切海报：6a62291b000000001303c9ac/posters/06_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:07_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "第九届初芒计划（2026）——上海少儿优秀美术作品展",
+      "time_text": "即日起-8月6日",
+      "current_start_date": "2026-07-14 00:00:00",
+      "current_end_date": "2026-08-06 23:59:59",
+      "current_start_at": "2026-07-14 00:00:00",
+      "current_expired_at": "2026-08-06 23:59:59",
+      "detail_excerpt": "分类：展览活动\n费用：免费\n时间：即日起-8月6日\n地址：马利美术馆（长宁区延安西路3300号）\n介绍：发掘本土音乐人才，评选「闵行十佳歌手」，打造区域文化IP。\n少儿优秀美术作品展集中呈现青少年艺术创作成果。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/07.webp",
+      "suggestion": {
+        "start_at": "2026-06-08 00:00:00",
+        "expired_at": "2026-08-06 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:06_2",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "仓城郎园Bridge·仓城消夏夜肆",
+      "time_text": "7月25日-7月26日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：—\n时间：7月25日-7月26日\n地址：仓城郎园Bridge\n介绍：仓城消夏夜肆，夜市烧烤生蚝等夜宵与户外市集氛围同场。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/06.webp\n裁切海报：6a62291b000000001303c9ac/posters/06_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:07_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "2026元界夏日嘉年华",
+      "time_text": "7月8日-8月30日",
+      "current_start_date": "2026-07-08 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-07-08 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：其他\n费用：—\n时间：7月8日-8月30日\n地址：漕宝路261号鑫耀·光环LIVE\n介绍：汇聚绝区零、明日方舟：终末地、一人之下等热门IP，二次元快闪、主题市集与户外休闲同步。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/07.webp",
+      "suggestion": {
+        "start_at": "2026-07-08 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:09_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "扑通入夏 聚荟玩——夏日狂欢全时段 遛娃潮趣双在线",
+      "time_text": "即日起—8月31日",
+      "current_start_date": "2026-07-14 00:00:00",
+      "current_end_date": "2026-08-31 23:59:59",
+      "current_start_at": "2026-07-14 00:00:00",
+      "current_expired_at": "2026-08-31 23:59:59",
+      "detail_excerpt": "分类：主题活动\n费用：—\n时间：即日起—8月31日\n地址：上海荟聚\n介绍：电音水上狂欢、首届「摸鱼」世界杯与粉丝见面会同步登场，夏日周末最高6小时免费停车。\n酷暑电音泼水节7月5日-8月30日；首届摸鱼世界杯7月18-19日；WPMC.COS新秀赛海选7月17-26日。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/09.webp",
+      "suggestion": {
+        "start_at": "2026-06-08 00:00:00",
+        "expired_at": "2026-08-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:07_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "前湾MEGA 夏日湾友节",
+      "time_text": "7月17日-8月23日",
+      "current_start_date": "2026-07-17 00:00:00",
+      "current_end_date": "2026-08-23 23:59:59",
+      "current_start_at": "2026-07-17 00:00:00",
+      "current_expired_at": "2026-08-23 23:59:59",
+      "detail_excerpt": "分类：户外活动\n费用：—\n时间：7月17日-8月23日\n地址：上海虹桥前湾印象城MEGA\n介绍：水枪大战、花式足球、水上乐园等夏日活动轮番上阵，适合周末亲子与青年打卡。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/07.webp\n裁切海报：6a62291b000000001303c9ac/posters/07_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-17 00:00:00",
+        "expired_at": "2026-08-23 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:07_2",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "宋式夜市“长夏宋集”",
+      "time_text": "即日起-8月底",
+      "current_start_date": "2026-07-26 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-26 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：—\n时间：即日起-8月底\n地址：上海万象城\n介绍：600米宋式街巷复刻汴京夜市，木檐竹伞、花灯巡游、皮影与传统戏曲同场。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/07.webp\n裁切海报：6a62291b000000001303c9ac/posters/07_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-06-08 00:00:00",
+        "expired_at": "2026-06-08 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:10_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "CHINA 白",
+      "time_text": "7月16日-10月",
+      "current_start_date": "2026-07-16 00:00:00",
+      "current_end_date": "2026-07-16 23:59:59",
+      "current_start_at": "2026-07-16 00:00:00",
+      "current_expired_at": "2026-07-16 23:59:59",
+      "detail_excerpt": "分类：展览活动\n费用：—\n时间：7月16日-10月\n地址：上海世界技能博物馆\n介绍：汇集中国工艺美术大师、全国技术能手等数十位业界领军人物艺术瑰宝100余件。\n通过镂雕、浮雕、彩绘等传统装饰技艺及烧制艺术的当代创新表达，全面展示白瓷的艺术价值与技艺典范。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/10.webp",
+      "suggestion": {
+        "start_at": "2026-07-16 00:00:00",
+        "expired_at": "2026-07-16 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:08_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "龙华夏会·夏夜游园会",
+      "time_text": "7月17日-8月31日 18:00-22:00",
+      "current_start_date": "2026-07-17 18:00:00",
+      "current_end_date": "2026-08-31 22:00:00",
+      "current_start_at": "2026-07-17 18:00:00",
+      "current_expired_at": "2026-08-31 22:00:00",
+      "detail_excerpt": "分类：户外活动\n费用：免费\n时间：7月17日-8月31日 18:00-22:00\n地址：龙华会片区及滨江（龙华路2778号一带）\n介绍：免费参与。\n龙华庙会IP夜游，夜市小吃、非遗手作与临水装置同场。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/08.webp\n裁切海报：6a62291b000000001303c9ac/posters/08_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-17 18:00:00",
+        "expired_at": "2026-08-31 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:08_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "2026大宁公园荷花主题游园会",
+      "time_text": "7月18日-8月2日",
+      "current_start_date": "2026-07-18 00:00:00",
+      "current_end_date": "2026-08-02 23:59:59",
+      "current_start_at": "2026-07-18 00:00:00",
+      "current_expired_at": "2026-08-02 23:59:59",
+      "detail_excerpt": "分类：户外活动\n费用：免费\n时间：7月18日-8月2日\n地址：静安区大宁公园（广中西路288号）\n介绍：免费无需预约。\n铁花表演、鱼灯巡游、水幕灯光秀与大片荷塘夜景同场。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/08.webp\n裁切海报：6a62291b000000001303c9ac/posters/08_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-18 00:00:00",
+        "expired_at": "2026-08-02 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:08_2",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "放鹤谷千灯会",
+      "time_text": "即日起-8月30日",
+      "current_start_date": "2026-07-26 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-07-26 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：户外活动\n费用：—\n时间：即日起-8月30日\n地址：吴泾镇放鹤路1710号放鹤谷鲜花农场\n介绍：联动自贡灯会，50亩花田沉浸式灯光秀，可夜赏花灯与花海。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/08.webp\n裁切海报：6a62291b000000001303c9ac/posters/08_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-06-08 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:09_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "青溪老街夏日市集",
+      "time_text": "7月17日-7月26日（多时段）",
+      "current_start_date": "2026-07-17 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-17 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：—\n时间：7月17日-7月26日（多时段）\n地址：奉贤区青溪老街\n介绍：数十家美食摊位，灯笼老街夜色，传统装饰与夏日市集氛围并存。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/09.webp\n裁切海报：6a62291b000000001303c9ac/posters/09_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-17 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:09_2",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "前滩公园巷啤酒嘉年华",
+      "time_text": "7月15日-7月26日 16:00-22:00",
+      "current_start_date": "2026-07-15 16:00:00",
+      "current_end_date": "2026-07-26 22:00:00",
+      "current_start_at": "2026-07-15 16:00:00",
+      "current_expired_at": "2026-07-26 22:00:00",
+      "detail_excerpt": "分类：市集\n费用：—\n时间：7月15日-7月26日 16:00-22:00\n地址：前滩公园巷步行街\n介绍：40+啤酒品牌与20+上海餐厅、甜品冷饮集结，夜逛啤酒嘉年华。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/09.webp\n裁切海报：6a62291b000000001303c9ac/posters/09_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-15 16:00:00",
+        "expired_at": "2026-07-26 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:13_2",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "一瓷一色一世界——上海博物馆藏明清颜色釉瓷器特展",
+      "time_text": "7月18日-2027年2月14日",
+      "current_start_date": "2026-02-14 00:00:00",
+      "current_end_date": "2026-07-20 23:59:59",
+      "current_start_at": "2026-02-14 00:00:00",
+      "current_expired_at": "2026-07-20 23:59:59",
+      "detail_excerpt": "分类：展览活动\n费用：免费\n时间：7月18日-2027年2月14日\n地址：上海久事美术馆（黄浦区中山东一路1号3层）\n介绍：精选明清单色釉文物50件，按红（浴火朱砂云）、蓝（碧空天工）、黄（中正至美）、白（凝脂积雪）、青（千峰叠翠）五章呈现。\n全面展示单色釉瓷器的艺术价值与工艺典范。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/13.webp",
+      "suggestion": {
+        "start_at": "2026-02-14 00:00:00",
+        "expired_at": "2026-07-20 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:10_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "蟠龙天地韩国夜市",
+      "time_text": "7月17日开市，每日17:00-24:00",
+      "current_start_date": "2026-07-17 17:00:00",
+      "current_end_date": "2026-07-17 23:59:59",
+      "current_start_at": "2026-07-17 17:00:00",
+      "current_expired_at": "2026-07-17 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：—\n时间：7月17日开市，每日17:00-24:00\n地址：蟠龙天地\n介绍：韩国街边美食夜市，鱼饼汤、烤五花、炒年糕等韩式小吃集结。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/10.webp",
+      "suggestion": {
+        "start_at": "2026-07-17 17:00:00",
+        "expired_at": "2026-07-17 23:59:59",
+        "confidence": "high",
+        "reason": "仅开始时刻，结束延至当天 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:11_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "外滩中央广场“Happy仲夏夜2.0”",
+      "time_text": "即日起-8月30日",
+      "current_start_date": "2026-07-26 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-07-26 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：音乐现场\n费用：—\n时间：即日起-8月30日\n地址：外滩中央广场\n介绍：Jazz x 评弹跨界演出与创意摊位，仲夏夜外滩纳凉打卡。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/11.webp\n裁切海报：6a62291b000000001303c9ac/posters/11_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-08 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:16_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "陈镇威与朋友们——纽约明星芭蕾之夜",
+      "time_text": "7月17-18日",
+      "current_start_date": "2026-07-17 00:00:00",
+      "current_end_date": "2026-07-18 23:59:59",
+      "current_start_at": "2026-07-17 00:00:00",
+      "current_expired_at": "2026-07-18 23:59:59",
+      "detail_excerpt": "分类：演出活动\n费用：—\n时间：7月17-18日\n地址：上海大剧院\n介绍：纽约城市芭蕾舞团首位华人首席舞者陈镇威，率多位首席、独舞与群舞演员登台。\n在上海大剧院呈现两部代表性经典与当代作品，近距离感受国际顶尖芭蕾艺术魅力。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/16.webp",
+      "suggestion": {
+        "start_at": "2026-07-17 00:00:00",
+        "expired_at": "2026-07-18 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:11_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "滴水湖盛夏歌会",
+      "time_text": "7月25日 18:18-19:50",
+      "current_start_date": "2026-07-25 18:18:00",
+      "current_end_date": "2026-07-25 19:50:00",
+      "current_start_at": "2026-07-25 18:18:00",
+      "current_expired_at": "2026-07-25 19:50:00",
+      "detail_excerpt": "分类：音乐现场\n费用：—\n时间：7月25日 18:18-19:50\n地址：滴水湖下沉广场\n介绍：湖畔盛夏歌会，音乐与湖风同场，适合周末傍晚听歌散步。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/11.webp\n裁切海报：6a62291b000000001303c9ac/posters/11_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 18:18:00",
+        "expired_at": "2026-07-25 19:50:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:15_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "甘泉公园荷花展",
+      "time_text": "持续至7月25日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-25 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-25 23:59:59",
+      "detail_excerpt": "分类：赏花活动\n费用：—\n时间：持续至7月25日\n地址：甘泉公园（普陀区西乡路100号）\n介绍：以公园原有易湖荷塘为基础，划分六大特色景观区。\n荷花、睡莲、碗莲等优质植株超1000株，白天荷塘雅韵、夜间光影景致各具特色。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/15.webp",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-25 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:16_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "话剧《断金》",
+      "time_text": "7月16-19日",
+      "current_start_date": "2026-07-16 00:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-07-16 00:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：演出活动\n费用：—\n时间：7月16-19日\n地址：上海文化广场\n介绍：自2017年北京首演以来演出超百场，场场爆满口碑爆棚。\n张国立、王刚、张铁林再度演绎兄弟情义与国家兴衰传奇。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/16.webp",
+      "suggestion": {
+        "start_at": "2026-07-16 00:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:11_2",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "长宁ArtPark大融城夏日理想生活节",
+      "time_text": "7月11日-8月30日",
+      "current_start_date": "2026-07-11 00:00:00",
+      "current_end_date": "2026-08-30 23:59:59",
+      "current_start_at": "2026-07-11 00:00:00",
+      "current_expired_at": "2026-08-30 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：—\n时间：7月11日-8月30日\n地址：淞虹路377号大融城\n介绍：精酿啤酒、泡泡派对与户外电影，夏日理想生活节氛围拉满。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/11.webp",
+      "suggestion": {
+        "start_at": "2026-07-11 00:00:00",
+        "expired_at": "2026-08-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:15_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "2026古华公园赏荷季",
+      "time_text": "即日起",
+      "current_start_date": "2026-07-14 00:00:00",
+      "current_end_date": "2026-07-14 23:59:59",
+      "current_start_at": "2026-07-14 00:00:00",
+      "current_expired_at": "2026-07-14 23:59:59",
+      "detail_excerpt": "分类：赏花活动\n费用：—\n时间：即日起\n地址：古华公园\n介绍：以「鱼戏莲叶间」为主题叙事。\n沿「灵鱼」游动路径串联亭台、水榭、舞台等园中地标。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/15.webp",
+      "suggestion": {
+        "start_at": "2026-06-08 00:00:00",
+        "expired_at": "2026-06-08 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:12_2",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "一瓷一色一世界——上海博物馆藏明清颜色釉瓷器特展",
+      "time_text": "即日起-2027年2月14日",
+      "current_start_date": "2026-02-14 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-02-14 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：—\n时间：即日起-2027年2月14日\n地址：上海久事美术馆\n介绍：展出50件明清颜色釉瓷器，按色彩分五章呈现一瓷一色一世界。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/12.webp",
+      "suggestion": {
+        "start_at": "2026-02-14 00:00:00",
+        "expired_at": "2026-06-08 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:13_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "CHINA 白",
+      "time_text": "7月16日-10月",
+      "current_start_date": "2026-07-16 00:00:00",
+      "current_end_date": "2026-07-16 23:59:59",
+      "current_start_at": "2026-07-16 00:00:00",
+      "current_expired_at": "2026-07-16 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：—\n时间：7月16日-10月\n地址：上海世界技能博物馆\n介绍：汇集数十位大师百余件艺术珍品，呈现雕刻、彩绘等白瓷技艺。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/13.webp\n裁切海报：6a62291b000000001303c9ac/posters/13_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-16 00:00:00",
+        "expired_at": "2026-07-16 23:59:59",
+        "confidence": "medium",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:17_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "话剧《农庄馆客人》",
+      "time_text": "7月18-19日",
+      "current_start_date": "2026-07-18 00:00:00",
+      "current_end_date": "2026-07-19 23:59:59",
+      "current_start_at": "2026-07-18 00:00:00",
+      "current_expired_at": "2026-07-19 23:59:59",
+      "detail_excerpt": "分类：演出活动\n费用：—\n时间：7月18-19日\n地址：上海保利大剧院\n介绍：凯瑟琳·莫尔编剧，以二战历史事件为底色，黄磊、何炅主演。\n1945年夏，六位德国顶尖核物理学家被盟军软禁于英国农庄馆，密闭空间对话叩问技术背后的人类良知。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/17.webp",
+      "suggestion": {
+        "start_at": "2026-07-18 00:00:00",
+        "expired_at": "2026-07-19 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:14_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "从元代水闸到外白渡桥——苏州河历史文化展",
+      "time_text": "即日起-10月7日",
+      "current_start_date": "2026-07-26 00:00:00",
+      "current_end_date": "2026-10-07 23:59:59",
+      "current_start_at": "2026-07-26 00:00:00",
+      "current_expired_at": "2026-10-07 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：—\n时间：即日起-10月7日\n地址：上海市历史博物馆\n介绍：梳理苏州河从元代水闸到外白渡桥的历史变迁与城市记忆。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/14.webp",
+      "suggestion": {
+        "start_at": "2026-06-08 00:00:00",
+        "expired_at": "2026-10-07 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:16_2",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "话剧《我们成为的她》",
+      "time_text": "7月14-26日",
+      "current_start_date": "2026-07-14 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-14 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：演出活动\n费用：—\n时间：7月14-26日\n地址：上海话剧艺术中心\n介绍：改编自现象级小说《82年生的金智英》，梁咏琪领衔主演。\n以克制细腻的舞台叙事呈现女性世俗期待与真实自我的张力，温柔叩问女性身份，献给生活中迷失的每一位普通女性。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/16.webp",
+      "suggestion": {
+        "start_at": "2026-07-14 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:14_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "万里相会 海陆同邻——上海汉堡双城记",
+      "time_text": "即日起-10月18日",
+      "current_start_date": "2026-07-26 00:00:00",
+      "current_end_date": "2026-10-18 23:59:59",
+      "current_start_at": "2026-07-26 00:00:00",
+      "current_expired_at": "2026-10-18 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：—\n时间：即日起-10月18日\n地址：上海市历史博物馆\n介绍：上海与汉堡双城文化交流展，呈现两座港口城市的历史连结。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/14.webp\n裁切海报：6a62291b000000001303c9ac/posters/14_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-06-08 00:00:00",
+        "expired_at": "2026-10-18 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5491790000000011004f41:17_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "音乐剧《长安大国医》",
+      "time_text": "7月17-26日",
+      "current_start_date": "2026-07-17 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-17 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：演出活动\n费用：—\n时间：7月17-26日\n地址：北外滩友邦大剧院\n介绍：以民间音乐为基底，融合秦腔、古风流行、轻摇滚与城市方言说唱。\n安史之乱后长安背景下，崇宁公主患「神离」之症，民间郎中与医家子弟入宫问诊的故事徐徐展开。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周7.13-7.19活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a5491790000000011004f41?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLci3ljeHZAeh9VTWO_mv-5w%3D&xsec_source=pc_user\n原 slide：6a5491790000000011004f41/images/17.webp",
+      "suggestion": {
+        "start_at": "2026-07-17 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:14_2",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "且看宋词——戴敦邦沉浸式国风艺术展",
+      "time_text": "即日起-10月8日",
+      "current_start_date": "2026-07-26 00:00:00",
+      "current_end_date": "2026-10-08 23:59:59",
+      "current_start_at": "2026-07-26 00:00:00",
+      "current_expired_at": "2026-10-08 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：—\n时间：即日起-10月8日\n地址：香港路117号\n介绍：戴敦邦沉浸式国风艺术展，以宋词意境串联绘画与空间体验。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/14.webp",
+      "suggestion": {
+        "start_at": "2026-06-08 00:00:00",
+        "expired_at": "2026-10-08 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:16_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "千金之家——马王堆汉墓的生活美学及国宝艺术大展",
+      "time_text": "7月3日-10月7日",
+      "current_start_date": "2026-07-03 00:00:00",
+      "current_end_date": "2026-10-07 23:59:59",
+      "current_start_at": "2026-07-03 00:00:00",
+      "current_expired_at": "2026-10-07 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：—\n时间：7月3日-10月7日\n地址：上海美术馆（中华艺术宫）\n介绍：展出195组472件文物，含一级文物，系统呈现汉代贵族生活美学。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/16.webp",
+      "suggestion": {
+        "start_at": "2026-07-03 00:00:00",
+        "expired_at": "2026-10-07 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a424a1f000000001502758e:15_2",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "大宁公园「万株荷花」最佳观赏期",
+      "time_text": "持续中",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "分类：主题活动\n费用：—\n时间：持续中\n地址：大宁公园\n介绍：五环岛与东区荷塘万株荷花，粉白花色。\n\n来源账号：上海周末去哪\n合集标题：大多免费！上海本周6.29-7.5活动指南\n来源笔记：https://www.xiaohongshu.com/explore/6a424a1f000000001502758e?xsec_token=ABNGGh5WG9tI5JqU084lWmxwve4wkmJLMuNFZOHYCpzEg%3D&xsec_source=pc_user\n原 slide：6a424a1f000000001502758e/images/15.webp\n裁切海报：6a424a1f000000001502758e/posters/15_slot2.jpg",
+      "suggestion": {
+        "error": "未能解析日期"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:16_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "世界树之巅：美洲古代文明大展",
+      "time_text": "7月9日-2027年11月14日",
+      "current_start_date": "2026-07-09 00:00:00",
+      "current_end_date": "2026-11-14 23:59:59",
+      "current_start_at": "2026-07-09 00:00:00",
+      "current_expired_at": "2026-11-14 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：—\n时间：7月9日-2027年11月14日\n地址：上海博物馆人民广场馆\n介绍：携手墨西哥、秘鲁顶尖机构，近3000件展品呈现美洲古代文明。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/16.webp\n裁切海报：6a62291b000000001303c9ac/posters/16_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-09 00:00:00",
+        "expired_at": "2026-11-14 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:16_2",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "国采：故宫藏清代帝后服饰展",
+      "time_text": "7月7日-10月7日",
+      "current_start_date": "2026-07-07 00:00:00",
+      "current_end_date": "2026-10-07 23:59:59",
+      "current_start_at": "2026-07-07 00:00:00",
+      "current_expired_at": "2026-10-07 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：—\n时间：7月7日-10月7日\n地址：上海世博会博物馆\n介绍：展出故宫藏清代帝后服饰与珍罕珠宝，部分展品首次离京亮相。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/16.webp\n裁切海报：6a62291b000000001303c9ac/posters/16_slot2.jpg",
+      "suggestion": {
+        "start_at": "2026-07-07 00:00:00",
+        "expired_at": "2026-10-07 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:17_0",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "蜘蛛侠主题快闪登陆西岸",
+      "time_text": "即日起-8月16日",
+      "current_start_date": "2026-07-26 00:00:00",
+      "current_end_date": "2026-08-16 23:59:59",
+      "current_start_at": "2026-07-26 00:00:00",
+      "current_expired_at": "2026-08-16 23:59:59",
+      "detail_excerpt": "分类：其他\n费用：—\n时间：即日起-8月16日\n地址：西岸梦中心·简仓\n介绍：漫威蜘蛛侠主题装置、限定周边与互动体验同场。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/17.webp",
+      "suggestion": {
+        "start_at": "2026-06-08 00:00:00",
+        "expired_at": "2026-08-16 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a62291b000000001303c9ac:17_1",
+      "city": "上海",
+      "source": "xiaohongshu",
+      "title": "米奇“奇妙之旅”快闪",
+      "time_text": "即日起-8月2日",
+      "current_start_date": "2026-07-26 00:00:00",
+      "current_end_date": "2026-08-02 23:59:59",
+      "current_start_at": "2026-07-26 00:00:00",
+      "current_expired_at": "2026-08-02 23:59:59",
+      "detail_excerpt": "分类：其他\n费用：—\n时间：即日起-8月2日\n地址：西岸梦中心·船坞\n介绍：船坞变身米奇主题空间，经典角色装置与打卡点集结。\n\n来源账号：上海周末去哪\n合集标题：大部分免费！上海7.24-7.26周末活动汇总\n来源笔记：https://www.xiaohongshu.com/explore/6a62291b000000001303c9ac?xsec_token=ABEXzgwN_TFLcn2e7xV0oqiaRT8OQw2EyW397FBMJGtvQ%3D&xsec_source=pc_user\n原 slide：6a62291b000000001303c9ac/images/17.webp",
+      "suggestion": {
+        "start_at": "2026-06-08 00:00:00",
+        "expired_at": "2026-08-02 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
       }
     }
   ]

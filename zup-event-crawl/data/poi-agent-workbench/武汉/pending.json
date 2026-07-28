@@ -1,7 +1,7 @@
 {
   "city": "武汉",
   "source": "douban",
-  "exported_at": "2026-07-13T14:41:14.264Z",
+  "exported_at": "2026-07-26T11:54:01.524Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
@@ -14,28 +14,28 @@
   "cache_hit_groups": 1,
   "groups": [
     {
-      "group_id": "2b30d4154f20",
-      "location": "武汉 武昌区 武商梦时代摩尔影城- IMAX激光店（武昌区武珞路628号武商梦时代广场B馆六层B608、B707）",
-      "sample_title": "温暖治愈，夏日必看！章若楠、金靖领衔主演《想你了》武汉免费观影",
+      "group_id": "b46e104bcd4d",
+      "location": "武汉 武昌区 湖北剧院 武昌阅马场西厂口1号",
+      "sample_title": "经典话剧《雷雨》",
       "event_uids": [
-        "douban:37901128"
+        "douban:37819831"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "6207246753619447771",
-        "poi_title": "武商梦时代摩尔影城(IMAX激光店)",
+        "poi_id": "583600664672639388",
+        "poi_title": "湖北剧院",
         "poi_address": "",
-        "latitude": 30.528455,
-        "longitude": 114.340348,
+        "latitude": 30.540991,
+        "longitude": 114.304519,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：武汉 武昌区 武商梦时代摩尔影城- IMAX激光店（武昌区武珞路628号武商梦时代广场B馆六层B608、B707） → 武商梦时代摩尔影城(IMAX激光店)（来源 event:douban:37898669）",
+        "reason": "地址映射库命中：武汉 武昌区 湖北剧院 武昌阅马场西厂口1号 → 湖北剧院（来源 event:douban:37857050）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "2b30d4154f20c176ad933841aa705d936bed4285"
+        "cache_key": "b46e104bcd4db88535f1d703bf24615f41f39530"
       }
     }
   ]

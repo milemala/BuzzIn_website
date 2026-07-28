@@ -1,21 +1,21 @@
 {
   "city": "温州",
   "source": "douban",
-  "generated_at": "2026-07-13T14:41:16.426Z",
+  "generated_at": "2026-07-26T12:08:10.182Z",
   "note": "可由 Agent 覆写低置信条目后 apply-event-time-decisions.js 入库",
   "decisions": [
     {
-      "event_uid": "douban:37900886",
-      "start_at": "2026-07-18 15:00:00",
-      "expired_at": "2026-07-18 17:00:00",
-      "reason": "豆瓣详情：07月18日 周六 15:00-17:00",
+      "event_uid": "douban:37836578",
+      "start_at": "2026-08-01 15:00:00",
+      "expired_at": "2026-08-01 16:10:00",
+      "reason": "豆瓣详情：08月01日 周六 15:00-16:10",
       "confidence": "high"
     },
     {
-      "event_uid": "douban:37900897",
-      "start_at": "2026-07-19 15:00:00",
-      "expired_at": "2026-07-19 17:00:00",
-      "reason": "豆瓣详情：07月19日 周日 15:00-17:00",
+      "event_uid": "douban:37842790",
+      "start_at": "2026-08-01 19:30:00",
+      "expired_at": "2026-08-01 21:00:00",
+      "reason": "豆瓣详情：08月01日 周六 19:30-21:00",
       "confidence": "high"
     }
   ],

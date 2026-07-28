@@ -1,43 +1,97 @@
 {
   "city": "郑州",
   "source": "douban",
-  "exported_at": "2026-07-13T01:27:34.761Z",
+  "exported_at": "2026-07-18T01:41:24.763Z",
   "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
   "events": [
     {
-      "event_uid": "douban:37812123",
+      "event_uid": "douban:37865898",
       "city": "郑州",
       "source": "douban",
-      "title": "《笑傲江湖 · 一生所爱》武侠经典作品音乐会",
-      "time_text": "07月18日 周六 19:30-21:00",
+      "title": "杨胖雨「我」2026巡回演唱会郑州站",
+      "time_text": "07月24日 周五 20:00-21:30",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
-      "detail_excerpt": "入场方式说明\n约90分钟（以现场为准）\n以现场为准\n最低演出曲目\n主要演员\n无需预约",
+      "detail_excerpt": "以现场为准\n最低演出曲目\n主要演员\n无需预约\n儿童说明\n1.2米以下儿童谢绝入场，1.2米以上儿童需持票入场\n特殊提示",
       "suggestion": {
-        "start_at": "2026-07-18 19:30:00",
-        "expired_at": "2026-07-18 21:00:00",
+        "start_at": "2026-07-24 20:00:00",
+        "expired_at": "2026-07-24 21:30:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月18日 周六 19:30-21:00"
+        "reason": "豆瓣详情：07月24日 周五 20:00-21:30"
       }
     },
     {
-      "event_uid": "douban:37816779",
+      "event_uid": "douban:37903199",
       "city": "郑州",
       "source": "douban",
-      "title": "SinceTMRW始于明天 TOUR 2026 郑州站",
-      "time_text": "07月18日 周六 20:00-22:00",
+      "title": "你迷茫吗？困惑吗？从传统智慧里找当下生活的参考（易经）",
+      "time_text": "07月04日 周六 19:00-21:30 ...",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "现在很多朋友对国学感兴趣，却要么觉得易经、命理这些内容太深奥摸不着门槛，要么被网上各种神神叨叨的玄学内容带偏，以为都是算命改运的封建糟粕。我们这次做这个小沙龙，就是想回归文化本身，和大家聊聊老祖宗的智慧里真正有价值、能用到当下的内容，全程都是同好交流，没有单向灌输，也没有任何虚头巴脑的噱头~\n本次我们一起聊这些内容：\n🔹 第一部分：传统国学·古人的世界观模型\n我们常听的阴阳、五行、八卦、河洛、干支，本质上不是算卦的工具，而是古人观察天地运行、总结万物规律搭建的朴素哲学系统。我们会拆解这些符号背后的逻辑：比如阴阳就是最基础的辩证思维，五行是对事物属性、相互作用关系的归纳，帮你摸清整个国学体系的底层逻辑，看懂古人认知世界的独特视角，完全不涉及占卜相关内容。\n🔹 第二部分：传统命理·古人的人生观察总结\n我们从民俗研究、样本归纳的角度，和大家探讨三个被问得最多的问题：\n古人说的「命运」到底是什",
+      "suggestion": {
+        "start_at": "2026-07-04 19:00:00",
+        "expired_at": "2026-07-26 21:30:00",
+        "confidence": "high",
+        "reason": "豆瓣 itemprop startDate/endDate"
+      }
+    },
+    {
+      "event_uid": "douban:37860884",
+      "city": "郑州",
+      "source": "douban",
+      "title": "“佟丽娅领衔主演 舞蹈诗剧《在远方·在这里》",
+      "time_text": "07月25日 周六 19:30-21:00",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "入场方式说明\n约90分钟（以现场为准）\n以现场为准\n主要演员\n无需预约",
+      "suggestion": {
+        "start_at": "2026-07-25 19:30:00",
+        "expired_at": "2026-07-25 21:00:00",
+        "confidence": "high",
+        "reason": "豆瓣详情：07月25日 周六 19:30-21:00"
+      }
+    },
+    {
+      "event_uid": "douban:37825612",
+      "city": "郑州",
+      "source": "douban",
+      "title": "是个喜剧｜沈清脱口秀互动专场《清道夫》@郑州站｜【喜单卡司】【播客主播】",
+      "time_text": "08月14日 周五 19:30-21:00",
+      "current_start_date": "",
+      "current_end_date": "",
+      "current_start_at": "",
+      "current_expired_at": "",
+      "detail_excerpt": "约90分钟，以现场为准\n最低演出曲目\n以现场为准\n主要演员\n无需预约\n儿童说明\n16岁及以下谢绝观看\n特殊提示\n本场演出除瓶装矿泉水外，不可携带食品、饮品进入剧场\n3.16岁及以下谢绝观看\n4.演出过程中禁止录音/录像/直播及拍摄live图\n【剧场位置】\n是个喜剧：郑州记忆油化厂园区内 复古市集旁",
+      "suggestion": {
+        "start_at": "2026-08-14 19:30:00",
+        "expired_at": "2026-08-14 21:00:00",
+        "confidence": "high",
+        "reason": "豆瓣详情：08月14日 周五 19:30-21:00"
+      }
+    },
+    {
+      "event_uid": "douban:37855576",
+      "city": "郑州",
+      "source": "douban",
+      "title": "「END GAME」果蝇乐队2026毕业季巡演 郑州站",
+      "time_text": "07月23日 周四 20:00-22:30",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
       "detail_excerpt": "入场方式说明\n以现场为准\n主要演员\n无需预约",
       "suggestion": {
-        "start_at": "2026-07-18 20:00:00",
-        "expired_at": "2026-07-18 22:00:00",
+        "start_at": "2026-07-23 20:00:00",
+        "expired_at": "2026-07-23 22:30:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月18日 周六 20:00-22:00"
+        "reason": "豆瓣详情：07月23日 周四 20:00-22:30"
       }
     }
   ]

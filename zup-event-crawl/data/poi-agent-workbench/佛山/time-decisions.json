@@ -1,28 +1,49 @@
 {
   "city": "佛山",
   "source": "douban",
-  "generated_at": "2026-07-13T01:27:33.964Z",
+  "generated_at": "2026-07-26T11:52:58.603Z",
   "note": "可由 Agent 覆写低置信条目后 apply-event-time-decisions.js 入库",
   "decisions": [
     {
-      "event_uid": "douban:37759739",
-      "start_at": "2026-07-18 19:30:00",
-      "expired_at": "2026-07-19 16:30:00",
-      "reason": "豆瓣详情：07月18日 周六 19:30 ~ 07月19日 周日 16:30",
+      "event_uid": "douban:37792223",
+      "start_at": "2026-08-15 19:30:00",
+      "expired_at": "2026-08-15 21:00:00",
+      "reason": "豆瓣详情：08月15日 周六 19:30-21:00",
       "confidence": "high"
     },
     {
-      "event_uid": "douban:37880392",
-      "start_at": "2026-07-19 19:30:00",
-      "expired_at": "2026-07-19 21:30:00",
-      "reason": "豆瓣详情：07月19日 周日 19:30-21:30",
+      "event_uid": "douban:37868867",
+      "start_at": "2026-07-28 19:30:00",
+      "expired_at": "2026-07-28 21:30:00",
+      "reason": "豆瓣详情：07月28日 周二 19:30-21:30",
       "confidence": "high"
     },
     {
-      "event_uid": "douban:37893089",
-      "start_at": "2026-07-18 19:30:00",
-      "expired_at": "2026-07-18 21:00:00",
-      "reason": "豆瓣详情：07月18日 周六 19:30-21:00",
+      "event_uid": "douban:37876132",
+      "start_at": "2026-08-02 15:30:00",
+      "expired_at": "2026-08-02 16:50:00",
+      "reason": "豆瓣详情：08月02日 周日 15:30-16:50",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "douban:37883066",
+      "start_at": "2026-07-31 19:00:00",
+      "expired_at": "2026-08-01 21:00:00",
+      "reason": "豆瓣详情：07月31日 周五 19:00 ~ 08月01日 周六 21:00",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "douban:37883359",
+      "start_at": "2026-08-01 15:00:00",
+      "expired_at": "2026-08-01 20:45:00",
+      "reason": "豆瓣详情：08月01日 周六 15:00-20:45",
+      "confidence": "high"
+    },
+    {
+      "event_uid": "douban:37885450",
+      "start_at": "2026-08-01 19:30:00",
+      "expired_at": "2026-08-02 17:00:00",
+      "reason": "豆瓣详情：08月01日 周六 19:30 ~ 08月02日 周日 17:00",
       "confidence": "high"
     }
   ],

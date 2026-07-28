@@ -1,64 +1,25 @@
 {
   "city": "武汉",
-  "decided_at": "2026-07-13T14:43:13.358Z",
+  "decided_at": "2026-07-26T11:54:06.768Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "effc76dc8d23",
-      "event_uids": [
-        "douban:37817602"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
-      "poi_id": "7694744665222369143",
-      "poi_title": "武汉琴台音乐厅",
-      "poi_address": "",
-      "latitude": 30.560614,
-      "longitude": 114.262756,
-      "candidates": [],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：武汉 汉阳区 琴台音乐厅 知音大道7号 → 武汉琴台音乐厅"
-    },
-    {
       "group_id": "b46e104bcd4d",
       "event_uids": [
-        "douban:37857065"
+        "douban:37819831"
       ],
       "action": "match",
-      "search_keywords_tried": [
-        "poi-address-cache"
-      ],
       "poi_id": "583600664672639388",
       "poi_title": "湖北剧院",
       "poi_address": "",
       "latitude": 30.540991,
       "longitude": 114.304519,
-      "candidates": [],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：武汉 武昌区 湖北剧院 武昌阅马场西厂口1号 → 湖北剧院"
-    },
-    {
-      "group_id": "2b30d4154f20",
-      "event_uids": [
-        "douban:37901128"
-      ],
-      "action": "match",
+      "reason": "地址映射库命中：武汉 武昌区 湖北剧院 武昌阅马场西厂口1号 → 湖北剧院（来源 event:douban:37857050）",
       "search_keywords_tried": [
         "poi-address-cache"
-      ],
-      "poi_id": "6207246753619447771",
-      "poi_title": "武商梦时代摩尔影城(IMAX激光店)",
-      "poi_address": "",
-      "latitude": 30.528455,
-      "longitude": 114.340348,
-      "candidates": [],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中：武商梦时代摩尔影城IMAX店"
+      ]
     }
   ]
 }

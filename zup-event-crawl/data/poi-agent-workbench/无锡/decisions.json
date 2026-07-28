@@ -1,11 +1,35 @@
 {
   "city": "无锡",
-  "decided_at": "2026-07-13T01:40:00.000Z",
+  "decided_at": "2026-07-26T12:20:00.000Z",
   "agent": "cursor-composer",
+  "note": "仅本轮 getLastImportNewUids 3 条；poi-search-cli --location 映射库命中",
   "decisions": [
     {
+      "group_id": "b44229cae89b",
+      "event_uids": ["douban:37491560"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "9010067057749167094",
+      "poi_title": "大发喜剧脱口秀",
+      "poi_address": "",
+      "latitude": 31.558235,
+      "longitude": 120.315851,
+      "candidates": [
+        {
+          "poi_id": "9010067057749167094",
+          "title": "大发喜剧脱口秀",
+          "address": "",
+          "latitude": 31.558235,
+          "longitude": 120.315851
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "映射库命中大发喜剧脱口秀，与梁溪区南下塘地址一致"
+    },
+    {
       "group_id": "c5997e04a41a",
-      "event_uids": ["douban:37770356"],
+      "event_uids": ["douban:37770341"],
       "action": "match",
       "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "2761693111356093735",
@@ -13,10 +37,41 @@
       "poi_address": "",
       "latitude": 31.481164,
       "longitude": 120.3666,
-      "candidates": [],
+      "candidates": [
+        {
+          "poi_id": "2761693111356093735",
+          "title": "无锡交响音乐厅",
+          "address": "",
+          "latitude": 31.481164,
+          "longitude": 120.3666
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中：无锡 新吴区 无锡交响音乐厅 净慧西道与清晏路交叉口 → 无锡交响音乐厅"
+      "reason": "映射库命中无锡交响音乐厅，与新吴区地址一致"
+    },
+    {
+      "group_id": "f3d25447ea3a",
+      "event_uids": ["douban:37823827"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "18373871647542107691",
+      "poi_title": "无锡大剧院·歌剧厅",
+      "poi_address": "",
+      "latitude": 31.514424,
+      "longitude": 120.278924,
+      "candidates": [
+        {
+          "poi_id": "18373871647542107691",
+          "title": "无锡大剧院·歌剧厅",
+          "address": "",
+          "latitude": 31.514424,
+          "longitude": 120.278924
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "映射库命中无锡大剧院歌剧厅，与滨湖区主体一致"
     }
   ]
 }

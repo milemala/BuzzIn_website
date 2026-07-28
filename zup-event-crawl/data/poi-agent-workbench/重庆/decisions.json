@@ -1,37 +1,28 @@
 {
   "city": "重庆",
-  "decided_at": "2026-07-13T09:50:00.000Z",
+  "decided_at": "2026-07-26T11:55:09.784Z",
   "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "eb03845060f1",
-      "event_uids": ["douban:37862568", "douban:37850379"],
+      "group_id": "40970b83bb8f",
+      "event_uids": [
+        "douban:37838335",
+        "douban:37838348",
+        "douban:37838350"
+      ],
       "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "6745060521296666657",
-      "poi_title": "重庆大剧院",
-      "poi_address": "重庆 两江新区 重庆大剧院 江北嘴北城文华街东路（朝天门对面）",
-      "latitude": 29.570032,
-      "longitude": 106.581396,
-      "candidates": [],
+      "poi_id": "17891445662068799449",
+      "poi_title": "重演Live丨重演浸空间(金源店)",
+      "poi_address": "重庆市两江新区北滨一路368号金源时代购物中心1层1077号",
+      "latitude": 29.556589,
+      "longitude": 106.523887,
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中，与豆瓣地址完全一致"
-    },
-    {
-      "group_id": "4530d6882e9a",
-      "event_uids": ["douban:37834435"],
-      "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "13278289810545590255",
-      "poi_title": "重庆劳动文化宫大剧院",
-      "poi_address": "重庆 渝中区 重庆劳动文化宫大剧院 两路口街道中山二路174号(第一片区)重庆市劳动人民文化宫大剧院",
-      "latitude": 29.556488,
-      "longitude": 106.55219,
-      "candidates": [],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中，与豆瓣地址完全一致"
+      "reason": "搜「重演Live 金源」命中重演Live金源店，两江新区北滨一路368号金源时代购物中心，与豆瓣一致",
+      "search_keywords_tried": [
+        "重演Live 金源",
+        "北滨一路368号"
+      ]
     }
   ]
 }

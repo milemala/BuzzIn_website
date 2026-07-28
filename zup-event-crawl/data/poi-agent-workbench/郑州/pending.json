@@ -1,66 +1,101 @@
 {
   "city": "郑州",
   "source": "douban",
-  "exported_at": "2026-07-13T01:32:36.456Z",
+  "exported_at": "2026-07-18T01:45:56.477Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 2,
+  "last_import_new_uids": 5,
   "doubtful_only": false,
-  "total_events": 2,
-  "group_count": 2,
-  "cache_hit_groups": 2,
+  "total_events": 5,
+  "group_count": 4,
+  "cache_hit_groups": 3,
   "groups": [
     {
-      "group_id": "91a478f848e2",
-      "location": "郑州 管城回族区 小皇后大剧院 紫辰路9号",
-      "sample_title": "《笑傲江湖 · 一生所爱》武侠经典作品音乐会",
+      "group_id": "6c2026a16ec6",
+      "location": "郑州 金水区 7LIVEHOUSE 文化路和金水路交汇处东北角中原大舞台内2层",
+      "sample_title": "杨胖雨「我」2026巡回演唱会郑州站",
       "event_uids": [
-        "douban:37812123"
+        "douban:37865898",
+        "douban:37855576"
       ],
-      "event_count": 1,
+      "event_count": 2,
       "cached_poi": {
-        "poi_id": "2212880197566482970",
-        "poi_title": "小皇后大剧院(河南文化大厦店)",
+        "poi_id": "1755158220296960639",
+        "poi_title": "7LIVEHOUSE",
         "poi_address": "",
-        "latitude": 34.714243,
-        "longitude": 113.688471,
+        "latitude": 34.765107,
+        "longitude": 113.668046,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：郑州 管城回族区 小皇后大剧院 紫辰路9号 → 小皇后大剧院(河南文化大厦店)（来源 event:douban:37835014）",
+        "reason": "地址映射库命中：郑州 金水区 7LIVEHOUSE 文化路和金水路交汇处东北角中原大舞台内2层 → 7LIVEHOUSE（来源 event:douban:37836632）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "91a478f848e2b296cebbd705ece5f97336d19709"
+        "cache_key": "6c2026a16ec6b20044f1a68e73e1df3808a0ab25"
       }
     },
     {
-      "group_id": "f95fcaca1868",
-      "location": "郑州 管城回族区 7LIVEHOUSE+ 海汇港2号楼5楼7LIVEHOUSE+",
-      "sample_title": "SinceTMRW始于明天 TOUR 2026 郑州站",
+      "group_id": "43085daeb1e1",
+      "location": "郑州 金水区 华凯大厦",
+      "sample_title": "你迷茫吗？困惑吗？从传统智慧里找当下生活的参考（易经）",
       "event_uids": [
-        "douban:37816779"
+        "douban:37903199"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "4b7b6ac9fe34",
+      "location": "郑州 中原区 郑州大剧院 丹水大道与雪松路交叉口西南角",
+      "sample_title": "“佟丽娅领衔主演 舞蹈诗剧《在远方·在这里》",
+      "event_uids": [
+        "douban:37860884"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "9808637794160405571",
-        "poi_title": "7LIVEHOUSE+",
+        "poi_id": "10949715273587582845",
+        "poi_title": "郑州大剧院",
         "poi_address": "",
-        "latitude": 34.752036,
-        "longitude": 113.769736,
+        "latitude": 34.742346,
+        "longitude": 113.550694,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：郑州 管城回族区 7LIVEHOUSE+ 海汇港2号楼5楼7LIVEHOUSE+ → 7LIVEHOUSE+（来源 event:douban:37857573）",
+        "reason": "地址映射库命中：郑州 中原区 郑州大剧院 丹水大道与雪松路交叉口西南角 → 郑州大剧院（来源 event:douban:37846569）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "f95fcaca18681be708fe65ee1c75e7ef948e0ef1"
+        "cache_key": "4b7b6ac9fe34730408cf816c673b7adf53604c29"
+      }
+    },
+    {
+      "group_id": "817c3508d695",
+      "location": "郑州 金水区 是个喜剧-郑州记忆油化厂店 沙口路黄河路东北角郑州记忆油化厂有熊街2号",
+      "sample_title": "是个喜剧｜沈清脱口秀互动专场《清道夫》@郑州站｜【喜单卡司】【播客主播】",
+      "event_uids": [
+        "douban:37825612"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "14695670024399702637",
+        "poi_title": "是个喜剧(油化厂创意园店)",
+        "poi_address": "",
+        "latitude": 34.772323,
+        "longitude": 113.640176,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：郑州 金水区 是个喜剧-郑州记忆油化厂店 沙口路黄河路东北角郑州记忆油化厂有熊街2号 → 是个喜剧(油化厂创意园店)（来源 event:douban:36317686）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "817c3508d695b819522ba76abf877e28774c127c"
       }
     }
   ]

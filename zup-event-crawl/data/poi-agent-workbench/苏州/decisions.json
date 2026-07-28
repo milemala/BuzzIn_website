@@ -1,67 +1,77 @@
 {
   "city": "苏州",
-  "decided_at": "2026-07-13T09:50:00.000Z",
+  "decided_at": "2026-07-26T12:20:00.000Z",
   "agent": "cursor-composer",
+  "note": "仅本轮 getLastImportNewUids 3 条；poi-search-cli --location 映射库命中",
   "decisions": [
     {
+      "group_id": "bc287c268da0",
+      "event_uids": ["douban:37801362"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "6797155481651446902",
+      "poi_title": "山丘LIVEHOUSE(红唐店)",
+      "poi_address": "",
+      "latitude": 31.291997,
+      "longitude": 120.563408,
+      "candidates": [
+        {
+          "poi_id": "6797155481651446902",
+          "title": "山丘LIVEHOUSE(红唐店)",
+          "address": "",
+          "latitude": 31.291997,
+          "longitude": 120.563408
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "映射库命中山丘LIVEHOUSE红唐店，与虎丘区地址一致"
+    },
+    {
       "group_id": "23718b028bd0",
-      "event_uids": ["douban:37673357", "douban:37673869"],
+      "event_uids": ["douban:37864202"],
       "action": "match",
       "search_keywords_tried": ["poi-address-cache"],
       "poi_id": "11514486545186817455",
       "poi_title": "苏州湾大剧院",
-      "poi_address": "苏州 吴江区 苏州湾大剧院 东太湖大道12000号",
+      "poi_address": "",
       "latitude": 31.132232,
       "longitude": 120.585871,
-      "candidates": [],
+      "candidates": [
+        {
+          "poi_id": "11514486545186817455",
+          "title": "苏州湾大剧院",
+          "address": "",
+          "latitude": 31.132232,
+          "longitude": 120.585871
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中，与豆瓣地址完全一致"
+      "reason": "映射库命中苏州湾大剧院，与吴江区场馆一致"
     },
     {
-      "group_id": "ef06b234c083",
-      "event_uids": ["douban:37771897"],
+      "group_id": "ed2492b471ee",
+      "event_uids": ["douban:37846521"],
       "action": "match",
       "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "4690291939764768068",
-      "poi_title": "苏州开明大戏院(观前街店)",
-      "poi_address": "苏州 姑苏区 苏州开明大戏院 观前街北局11号",
-      "latitude": 31.309343,
-      "longitude": 120.625342,
-      "candidates": [],
+      "poi_id": "2087305433933763737",
+      "poi_title": "尹山湖大剧院聚橙院线",
+      "poi_address": "",
+      "latitude": 31.246081,
+      "longitude": 120.704721,
+      "candidates": [
+        {
+          "poi_id": "2087305433933763737",
+          "title": "尹山湖大剧院聚橙院线",
+          "address": "",
+          "latitude": 31.246081,
+          "longitude": 120.704721
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中，与豆瓣地址完全一致"
-    },
-    {
-      "group_id": "bb3ac37c672a",
-      "event_uids": ["douban:37856460"],
-      "action": "match",
-      "search_keywords_tried": ["山丘展演空间"],
-      "poi_id": "7525389421047667591",
-      "poi_title": "苏州市· 山丘展演空间",
-      "poi_address": "江苏省苏州市虎丘区苏州工业园区新庆东路32号",
-      "latitude": 31.274198,
-      "longitude": 120.786349,
-      "candidates": [],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "场馆名与豆瓣location字段「苏州市· 山丘展演空间」完全一致，路名门牌一致（仅缺栋号2栋3层）"
-    },
-    {
-      "group_id": "22328429da75",
-      "event_uids": ["douban:37582749"],
-      "action": "match",
-      "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "116162868958338799",
-      "poi_title": "众戏剧文化艺术空间",
-      "poi_address": "苏州 虎丘区 众戏剧文化艺术空间 长江路狮山文化广场B1众戏剧文化艺术空间",
-      "latitude": 31.293474,
-      "longitude": 120.548244,
-      "candidates": [],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "地址映射库命中，与豆瓣地址完全一致"
+      "reason": "映射库命中尹山湖大剧院，与吴中区地址一致"
     }
   ]
 }

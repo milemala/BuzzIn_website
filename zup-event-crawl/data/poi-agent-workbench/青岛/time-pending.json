@@ -1,97 +1,43 @@
 {
   "city": "青岛",
   "source": "douban",
-  "exported_at": "2026-07-10T11:49:14.619Z",
+  "exported_at": "2026-07-26T12:08:08.119Z",
   "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
   "events": [
     {
-      "event_uid": "douban:37899747",
+      "event_uid": "douban:37834448",
       "city": "青岛",
       "source": "douban",
-      "title": "288期 《群星闪耀时》青岛超前免费观影",
-      "time_text": "07月15日 周三 18:30-19:30",
+      "title": "奥斯卡·罗曼耶卓钢琴独奏音乐会-青岛站",
+      "time_text": "08月01日 周六 19:30-21:30",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
-      "detail_excerpt": "群星闪耀时》青岛超前免费观影\n活动日期：7月15日（周三）\n签到时间：18:30-19:30\n观影+映后：19:30-21:45（映后仅拍大合影）\n观影地点：万达影城(CBD万达广场Imax店)-青岛市市北区徐州路185号万达广场三层万达影城\n报名链接： https://p.baominggon gju.com/share?eid=6a 4cc11fb072b0b583a86e c1&referer=odVL4 1Pl8Iw-5lp-nmmK30eTa 7L4\n报名链接： https://p.baominggongju.com/share?eid=6a4cc11fb072b0b583a86ec1&referer=odVL41Pl8Iw-5lp-nmmK30eTa7L4",
+      "detail_excerpt": "入场方式说明\n以现场为准\n主要演员\n无需预约",
       "suggestion": {
-        "start_at": "2026-07-15 18:30:00",
-        "expired_at": "2026-07-15 19:30:00",
+        "start_at": "2026-08-01 19:30:00",
+        "expired_at": "2026-08-01 21:30:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月15日 周三 18:30-19:30"
+        "reason": "豆瓣详情：08月01日 周六 19:30-21:30"
       }
     },
     {
-      "event_uid": "douban:37899110",
+      "event_uid": "douban:37852355",
       "city": "青岛",
       "source": "douban",
-      "title": "282期《群星闪耀时》青岛超前免费观影",
-      "time_text": "07月11日 周六 14:00-18:30",
+      "title": "曹云金《万象更新》听云轩相声专场@青岛站",
+      "time_text": "07月31日 周五 19:30-21:30",
       "current_start_date": "",
       "current_end_date": "",
       "current_start_at": "",
       "current_expired_at": "",
-      "detail_excerpt": "《群星闪耀时》青岛超前免费观影\n观影日期：7月11日（周六）\n签到时间：13:30-14:30\n观影+映后：14:30-16:45（映后仅拍大合影）\n观影地点：青岛横店影视电影城-青岛市市南区中山路67号悦喜客来二层\n报名链接： https://p.baominggon gju.com/share?eid=6a 4cb71c439018da41357a 5a&referer=odVL4 1Pl8Iw-5lp-nmmK30eTa 7L4\n报名链接： https://p.baominggongju.com/share?eid=6a4cb71c439018da41357a5a&referer=odVL41Pl8Iw-5lp-nmmK30eTa7L4",
+      "detail_excerpt": "入场方式说明\n1.2米以下儿童谢绝入场，1.2米以上儿童需持票入场\n约120分钟（以现场为准）\n以现场为准\n主要演员\n无需预约",
       "suggestion": {
-        "start_at": "2026-07-11 14:00:00",
-        "expired_at": "2026-07-11 18:30:00",
+        "start_at": "2026-07-31 19:30:00",
+        "expired_at": "2026-07-31 21:30:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月11日 周六 14:00-18:30"
-      }
-    },
-    {
-      "event_uid": "douban:37823679",
-      "city": "青岛",
-      "source": "douban",
-      "title": "一支麦脱口秀 | 天一《荒地的新衣》脱口秀专场 | 爆笑解压脱口秀&约会推荐",
-      "time_text": "07月18日 周六 19:30-21:00",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "以现场为准\n最低演出曲目\n主要演员\n无需预约\n儿童说明\n16岁以下谢绝入内\n特殊提示\n学生票在读学生及应届毕业生可用 高考生可用",
-      "suggestion": {
-        "start_at": "2026-07-18 19:30:00",
-        "expired_at": "2026-07-18 21:00:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月18日 周六 19:30-21:00"
-      }
-    },
-    {
-      "event_uid": "douban:37776895",
-      "city": "青岛",
-      "source": "douban",
-      "title": "一支麦脱口秀 | 赵聪明《出关》脱口秀专场 | 爆笑解压脱口秀&约会推荐",
-      "time_text": "07月25日 周六 19:30-21:00",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "约90分钟，以现场为准\n最低演出曲目\n以现场为准\n主要演员\n无需预约\n儿童说明\n未满16周岁谢绝入场\n特殊提示\n学生票在读学生及应届毕业生可用 高考生可用",
-      "suggestion": {
-        "start_at": "2026-07-25 19:30:00",
-        "expired_at": "2026-07-25 21:00:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月25日 周六 19:30-21:00"
-      }
-    },
-    {
-      "event_uid": "douban:37267226",
-      "city": "青岛",
-      "source": "douban",
-      "title": "一支麦脱口秀 | 往事《率性而活》脱口秀专场 | 爆笑解压脱口秀&约会推荐",
-      "time_text": "07月11日 周六 19:30-21:00",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "约90分钟，以现场为准\n主要演员\n以现场为准\n无需预约\n儿童说明\n16岁以下观众谢绝入内\n特殊提示\n学生票在读学生及应届毕业生可用 高考生可用",
-      "suggestion": {
-        "start_at": "2026-07-11 19:30:00",
-        "expired_at": "2026-07-11 21:00:00",
-        "confidence": "high",
-        "reason": "豆瓣详情：07月11日 周六 19:30-21:00"
+        "reason": "豆瓣详情：07月31日 周五 19:30-21:30"
       }
     }
   ]

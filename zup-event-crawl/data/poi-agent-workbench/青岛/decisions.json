@@ -1,53 +1,54 @@
 {
   "city": "青岛",
-  "source": "douban",
-  "decided_at": "2026-07-10T12:05:00.000Z",
+  "decided_at": "2026-07-26T12:20:00.000Z",
   "agent": "cursor-composer",
+  "note": "仅本轮 getLastImportNewUids 2 条；poi-search-cli --location 映射库命中",
   "decisions": [
     {
-      "group_id": "d5b4ae46f503",
-      "event_uids": ["douban:37899747"],
-      "action": "match",
-      "search_keywords_tried": ["万达影城 CBD万达广场"],
-      "poi_id": "11303032333620011499",
-      "poi_title": "万达影城(CBD万达广场IMAX店)",
-      "poi_address": "山东省青岛市市北区徐州路与龙城路交叉口东南方向81米左右",
-      "latitude": 36.088856,
-      "longitude": 120.378339,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "青岛CBD万达广场万达影城与活动影院一致",
-      "candidates": []
-    },
-    {
-      "group_id": "df008ea8a036",
-      "event_uids": ["douban:37899110"],
-      "action": "match",
-      "search_keywords_tried": ["横店电影城 市南区 青岛"],
-      "poi_id": "3569222361434195357",
-      "poi_title": "横店电影城(中山路店)",
-      "poi_address": "山东省青岛市市南区中山路67号悦喜客来购物广场F4",
-      "latitude": 36.067392,
-      "longitude": 120.319888,
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "市南区横店电影城中山店即中山路店，区划与店名一致",
-      "candidates": []
-    },
-    {
-      "group_id": "bbd29ea160b4",
-      "event_uids": ["douban:37823679", "douban:37776895", "douban:37267226"],
+      "group_id": "cf0c595eeeba",
+      "event_uids": ["douban:37834448"],
       "action": "match",
       "search_keywords_tried": ["poi-address-cache"],
-      "poi_id": "16379937920368861042",
-      "poi_title": "一支麦小剧场(香港中路店)",
+      "poi_id": "7244854423040967076",
+      "poi_title": "青岛大剧院",
       "poi_address": "",
-      "latitude": 36.065839,
-      "longitude": 120.403136,
+      "latitude": 36.098814,
+      "longitude": 120.474704,
+      "candidates": [
+        {
+          "poi_id": "7244854423040967076",
+          "title": "青岛大剧院",
+          "address": "",
+          "latitude": 36.098814,
+          "longitude": 120.474704
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "地址映射库命中香港中路69号一支麦小剧场",
-      "candidates": []
+      "reason": "映射库命中青岛大剧院，与崂山区场馆名一致"
+    },
+    {
+      "group_id": "4705f4bc8083",
+      "event_uids": ["douban:37852355"],
+      "action": "match",
+      "search_keywords_tried": ["poi-address-cache"],
+      "poi_id": "4136302895776987675",
+      "poi_title": "青岛市李沧剧院",
+      "poi_address": "",
+      "latitude": 36.192539,
+      "longitude": 120.38261,
+      "candidates": [
+        {
+          "poi_id": "4136302895776987675",
+          "title": "青岛市李沧剧院",
+          "address": "",
+          "latitude": 36.192539,
+          "longitude": 120.38261
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "映射库命中李沧剧院，与李沧区地址一致"
     }
   ]
 }

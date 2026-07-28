@@ -1,43 +1,583 @@
 {
   "city": "北京",
-  "source": "douban",
-  "exported_at": "2026-07-13T14:41:11.272Z",
+  "source": "xiaohongshu",
+  "exported_at": "2026-07-26T13:21:24.403Z",
   "note": "由 Cursor Agent 根据 time_text / 豆瓣详情 HTML 填写 time-decisions.json。仅开始时刻时 expired_at 延至当天 23:59:59。见 docs/event-time-agent.md",
   "events": [
     {
-      "event_uid": "douban:37900879",
+      "event_uid": "xiaohongshu:6a5fb423000000000101c5e4:01_0",
       "city": "北京",
-      "source": "douban",
-      "title": "温暖治愈，夏日必看！《想你了》约你看个电影+章若楠金靖等主创映后",
-      "time_text": "07月15日 周三 14:10-15:58",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "Hi～这是我们的第1563期观影活动，本次活动现场可领取：豆瓣Top250影迷典藏系列徽章一枚\n温暖治愈，夏日必看！由麻赢心导演，章若楠、金靖领衔主演，任彬领衔主演，李孝谦主演，仁科、张绍刚、张奕聪特别出演，李嘉鑫、柯达、鸟鸟友情出演的暑期档电影《想你了》即将全国公映，破浪“约”你一起走进影院，提前见证这段关于“一辈子好朋友”的故事。198个名额，杜比视界厅，带给你极佳视听体验。\n映后主创：导演麻赢心，演员章若楠、金靖、任彬、李孝谦等（具体以实际到场为准）\n《想你了》讲述了高凡（章若楠饰）与汪美丽（金靖饰）从小一路相伴，作为彼此主动选择的“家人”一同走南闯北二十余载，面对生活里的种种挑战与困难，她们依然坚定陪伴彼此，约定要做一辈子好朋友的故事。\n本片也是章若楠、金靖首次大银幕搭档默契合作，出演“彼此生命中最最重要的朋友”。电影中，高凡与汪美丽自幼相识之后，一起陪伴走过了各自人生中最重要的阶",
+      "source": "xiaohongshu",
+      "title": "丰子恺《护生画集》艺术研究展",
+      "time_text": "7月20日-10月20日 09:00-16:30",
+      "current_start_date": "2026-07-20 09:00:00",
+      "current_end_date": "2026-10-20 16:30:00",
+      "current_start_at": "2026-07-20 09:00:00",
+      "current_expired_at": "2026-10-20 16:30:00",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月20日-10月20日 09:00-16:30\n地址：中国国家画院\n介绍：免费入场。\n2026年丰子恺诞辰128周年重磅学术专题展，展出《护生画集》相关原作约450件，并呈现弘一大师书法与数字互动空间。\n\n来源账号：北京漫游指南\n合集标题：北京7月展览漫游指南 vol.4\n来源笔记：https://www.xiaohongshu.com/explore/6a5fb423000000000101c5e4?xsec_token=ABPlU4Kl8pLVxaXCjyAUlkUPv9UrGmJXMPa5TXuT-PLWo%3D&xsec_source=pc_user\n原 slide：6a5fb423000000000101c5e4/images/01.webp\n裁切海报：6a5fb423000000000101c5e4/posters/01_slot0.jpg",
       "suggestion": {
-        "start_at": "2026-07-15 14:10:00",
-        "expired_at": "2026-07-15 15:58:00",
+        "start_at": "2026-07-20 09:00:00",
+        "expired_at": "2026-10-20 16:30:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月15日 周三 14:10-15:58"
+        "reason": "按 time_text 解析"
       }
     },
     {
-      "event_uid": "douban:37879752",
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:01_0",
       "city": "北京",
-      "source": "douban",
-      "title": "尚东峰2026「去往浪漫的一天」新专辑巡演 北京场",
-      "time_text": "07月18日 周六 19:30-21:30",
-      "current_start_date": "",
-      "current_end_date": "",
-      "current_start_at": "",
-      "current_expired_at": "",
-      "detail_excerpt": "入场方式说明\n以现场为准\n主要演员\n无需预约",
+      "source": "xiaohongshu",
+      "title": "Hello手帐集市",
+      "time_text": "7月24日-7月26日，10:00-20:30",
+      "current_start_date": "2026-07-24 10:00:00",
+      "current_end_date": "2026-07-26 20:30:00",
+      "current_start_at": "2026-07-24 10:00:00",
+      "current_expired_at": "2026-07-26 20:30:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月24日-7月26日，10:00-20:30\n地址：龙湖长楹天街5楼东西区连廊\n介绍：免费入场。\n100+摊位，含官方赠礼与原创手帐好物，笔记本、胶带、内页等手帐社群与插画师联名产品。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/01.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/01_slot0.jpg",
       "suggestion": {
-        "start_at": "2026-07-18 19:30:00",
-        "expired_at": "2026-07-18 21:30:59",
+        "start_at": "2026-07-24 10:00:00",
+        "expired_at": "2026-07-26 20:30:00",
         "confidence": "high",
-        "reason": "豆瓣详情：07月18日 周六 19:30-21:30"
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5fb423000000000101c5e4:02_0",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "《不赶时间 10点一刻》BRUNCH BROTHER北京首展",
+      "time_text": "7月17日-10月7日 10:00-22:00",
+      "current_start_date": "2026-07-17 10:00:00",
+      "current_end_date": "2026-10-07 22:00:00",
+      "current_start_at": "2026-07-17 10:00:00",
+      "current_expired_at": "2026-10-07 22:00:00",
+      "detail_excerpt": "分类：看展逛馆\n费用：46元起\n时间：7月17日-10月7日 10:00-22:00\n地址：北京时代美术馆\n介绍：46元起。\n韩国人气IP Brunch Brother北京首展，以「早餐村」主题营造城市松弛感，邀请观众放慢节奏、不赶时间。\n\n来源账号：北京漫游指南\n合集标题：北京7月展览漫游指南 vol.4\n来源笔记：https://www.xiaohongshu.com/explore/6a5fb423000000000101c5e4?xsec_token=ABPlU4Kl8pLVxaXCjyAUlkUPv9UrGmJXMPa5TXuT-PLWo%3D&xsec_source=pc_user\n原 slide：6a5fb423000000000101c5e4/images/02.webp\n裁切海报：6a5fb423000000000101c5e4/posters/02_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-17 10:00:00",
+        "expired_at": "2026-10-07 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:01_1",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "唱片交换市集",
+      "time_text": "7月25日（周六）13:00-18:00",
+      "current_start_date": "2026-07-25 13:00:00",
+      "current_end_date": "2026-07-25 18:00:00",
+      "current_start_at": "2026-07-25 13:00:00",
+      "current_expired_at": "2026-07-25 18:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日（周六）13:00-18:00\n地址：东城区 | 北锣鼓巷66号-黑月\n介绍：免费入场。\n黑胶唱片爱好者聚集，稀有收藏、首版黑胶与唱片派对，另有周边赠礼。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/01.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/01_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 13:00:00",
+        "expired_at": "2026-07-25 18:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5fb423000000000101c5e4:03_0",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "天炉座的祈祷者：科学、技术与灵性",
+      "time_text": "7月18日-12月13日 10:00-19:30",
+      "current_start_date": "2026-07-18 10:00:00",
+      "current_end_date": "2026-12-13 19:30:00",
+      "current_start_at": "2026-07-18 10:00:00",
+      "current_expired_at": "2026-12-13 19:30:00",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月18日-12月13日 10:00-19:30\n地址：现代汽车文化中心\n介绍：免费入场。\nHyundai Blue Prize+ 2025首个获奖展览，以「天炉座」为名探讨科学、技术与灵性，汇集多位国际与国内艺术家。\n\n来源账号：北京漫游指南\n合集标题：北京7月展览漫游指南 vol.4\n来源笔记：https://www.xiaohongshu.com/explore/6a5fb423000000000101c5e4?xsec_token=ABPlU4Kl8pLVxaXCjyAUlkUPv9UrGmJXMPa5TXuT-PLWo%3D&xsec_source=pc_user\n原 slide：6a5fb423000000000101c5e4/images/03.webp\n裁切海报：6a5fb423000000000101c5e4/posters/03_slo",
+      "suggestion": {
+        "start_at": "2026-07-18 10:00:00",
+        "expired_at": "2026-12-13 19:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:02_0",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "嘻番里手帐小会",
+      "time_text": "7月25日-7月26日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日-7月26日\n地址：嘻番里2F（原觅+bar），地铁六道口站B口步行\n介绍：免费入场。\n29个手帐品牌摊位（9原创+20二手），主打0元购与平价手帐交流。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/02.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/02_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5fb423000000000101c5e4:04_0",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "观香——海南沉香文化展",
+      "time_text": "7月14日-8月26日 09:00-17:00",
+      "current_start_date": "2026-07-14 09:00:00",
+      "current_end_date": "2026-08-26 17:00:00",
+      "current_start_at": "2026-07-14 09:00:00",
+      "current_expired_at": "2026-08-26 17:00:00",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月14日-8月26日 09:00-17:00\n地址：北京鲁迅博物馆\n介绍：免费入场。\n海南省博物馆与北京鲁迅博物馆联合主办，展出沉香相关文物与文化展品120余组，分「奇香天成」「香溢琼崖」「香韵九州」「香聚万家」四个单元。\n\n来源账号：北京漫游指南\n合集标题：北京7月展览漫游指南 vol.4\n来源笔记：https://www.xiaohongshu.com/explore/6a5fb423000000000101c5e4?xsec_token=ABPlU4Kl8pLVxaXCjyAUlkUPv9UrGmJXMPa5TXuT-PLWo%3D&xsec_source=pc_user\n原 slide：6a5fb423000000000101c5e4/images/04.webp\n裁切海报：6a5fb423000000000101c5e4/posters/04_",
+      "suggestion": {
+        "start_at": "2026-07-14 09:00:00",
+        "expired_at": "2026-08-26 17:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:03_0",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "冰激凌甜品节",
+      "time_text": "7月24日-7月26日",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月24日-7月26日\n地址：北京市丰台区马家堡，地铁六里桥站B口步行\n介绍：免费入场。\n60+摊位，哈根达斯、球球比、豆花坞、一米甜品屋等，含冰激凌甜品饮品美食文创，首次联动潮玩IP与打卡装置。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/03.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/03_slot0.j",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5fb423000000000101c5e4:05_0",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "流沙坠简—两汉西北戍卒的物质生活展",
+      "time_text": "7月11日-8月23日 09:00-17:00",
+      "current_start_date": "2026-07-11 09:00:00",
+      "current_end_date": "2026-08-23 17:00:00",
+      "current_start_at": "2026-07-11 09:00:00",
+      "current_expired_at": "2026-08-23 17:00:00",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月11日-8月23日 09:00-17:00\n地址：北京鲁迅博物馆\n介绍：免费入场。\n遴选甘肃简牍博物馆藏甲渠候官、肩水金关、悬泉置遗址出土精品简牍188件/组，分「所」「戍卒」「戍守」三单元呈现汉代西北屯戍吏卒的物质生活。\n\n来源账号：北京漫游指南\n合集标题：北京7月展览漫游指南 vol.4\n来源笔记：https://www.xiaohongshu.com/explore/6a5fb423000000000101c5e4?xsec_token=ABPlU4Kl8pLVxaXCjyAUlkUPv9UrGmJXMPa5TXuT-PLWo%3D&xsec_source=pc_user\n原 slide：6a5fb423000000000101c5e4/images/05.webp\n裁切海报：6a5fb423000000000101c5e4/posters/05",
+      "suggestion": {
+        "start_at": "2026-07-11 09:00:00",
+        "expired_at": "2026-08-23 17:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:04_0",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "悠唐首届吃冰节",
+      "time_text": "7月24日-7月26日",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月24日-7月26日\n地址：朝阳区·悠唐购物中心正门广场\n介绍：免费入场。\n60+摊位，冰激凌、奶茶咖啡、甜品小吃，另有音乐表演、互动游戏与户外电影。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/04.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/04_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a547c1e000000000f01dff5:04_1",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "摩天轮市集",
+      "time_text": "7月1日-7月31日，全天开放",
+      "current_start_date": "2026-07-01 00:00:00",
+      "current_end_date": "2026-07-31 23:59:59",
+      "current_start_at": "2026-07-01 00:00:00",
+      "current_expired_at": "2026-07-31 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月1日-7月31日，全天开放\n地址：北京市东城区龙潭中湖公园\n介绍：免费入场。\n解锁摩天轮同框浪漫镜头，超多文创小摊、特色小吃边走边吃，大草坪散步、夜光皮划艇、露天电影一站式安排！16点入园还能打卡绝美落日+蓝调夜景，北京夏日小众遛弯约会地！\n\n来源账号：北京周末去哪\n合集标题：大多免费！北京一周活动汇总（7.13-7.19）\n来源笔记：https://www.xiaohongshu.com/explore/6a547c1e000000000f01dff5?xsec_token=ABUcjjDfaSOpC6QWPUZ1WQLZAjkf0YWhVCAf9D0n4s-Ug%3D&xsec_source=pc_user\n原 slide：6a547c1e000000000f01dff5/images/04.webp\n裁切海报：6a547c1e000000000f01",
+      "suggestion": {
+        "start_at": "2026-07-01 00:00:00",
+        "expired_at": "2026-07-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5fb423000000000101c5e4:06_0",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "彩排间#9：JoJo529 × 阎洲",
+      "time_text": "7月17日-8月22日 10:00-17:30",
+      "current_start_date": "2026-07-17 10:00:00",
+      "current_end_date": "2026-08-22 17:30:00",
+      "current_start_at": "2026-07-17 10:00:00",
+      "current_expired_at": "2026-08-22 17:30:00",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月17日-8月22日 10:00-17:30\n地址：泰康美术馆\n介绍：免费入场。\n泰康美术馆「彩排间」系列第9期，呈现JoJo529与阎洲的个展项目，在现实与虚构的边界间展开对话。\n\n来源账号：北京漫游指南\n合集标题：北京7月展览漫游指南 vol.4\n来源笔记：https://www.xiaohongshu.com/explore/6a5fb423000000000101c5e4?xsec_token=ABPlU4Kl8pLVxaXCjyAUlkUPv9UrGmJXMPa5TXuT-PLWo%3D&xsec_source=pc_user\n原 slide：6a5fb423000000000101c5e4/images/06.webp\n裁切海报：6a5fb423000000000101c5e4/posters/06_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-17 10:00:00",
+        "expired_at": "2026-08-22 17:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:04_1",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "密云首届饱饱的汉堡节",
+      "time_text": "7月24日-7月26日",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月24日-7月26日\n地址：北京密云万象汇\n介绍：免费入场。\n50+汉堡品牌，含北京首发与人气店，另有薯条、热狗、塔可、啤酒与咖啡。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/04.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/04_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5fb423000000000101c5e4:07_0",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "Rou·慢悠悠儿",
+      "time_text": "7月1日-10月31日 全天",
+      "current_start_date": "2026-07-01 00:00:00",
+      "current_end_date": "2026-10-31 23:59:59",
+      "current_start_at": "2026-07-01 00:00:00",
+      "current_expired_at": "2026-10-31 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月1日-10月31日 全天\n地址：北京东隅酒店\n介绍：免费，全天对外开放。\n艺术家Roxy Li个展「LIVE SLOW, BE ROU」，以慢生活与身体接纳为主题，在东隅空间呈现夏日松弛视觉。\n\n来源账号：北京漫游指南\n合集标题：北京7月展览漫游指南 vol.4\n来源笔记：https://www.xiaohongshu.com/explore/6a5fb423000000000101c5e4?xsec_token=ABPlU4Kl8pLVxaXCjyAUlkUPv9UrGmJXMPa5TXuT-PLWo%3D&xsec_source=pc_user\n原 slide：6a5fb423000000000101c5e4/images/07.webp\n裁切海报：6a5fb423000000000101c5e4/posters/07_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-01 00:00:00",
+        "expired_at": "2026-10-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:05_0",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "首钢园夏日派对",
+      "time_text": "7月25日-7月26日，11:00-20:00",
+      "current_start_date": "2026-07-25 11:00:00",
+      "current_end_date": "2026-07-26 20:00:00",
+      "current_start_at": "2026-07-25 11:00:00",
+      "current_expired_at": "2026-07-26 20:00:00",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月25日-7月26日，11:00-20:00\n地址：首钢园 R+生活中心中心广场\n介绍：免费入场。\n限定音乐会、中医康养夜市15+摊、三途二手市集100+摊、戛纳短片放映与插画/乐高手工坊，20+品牌发券。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/05.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/05_s",
+      "suggestion": {
+        "start_at": "2026-07-25 11:00:00",
+        "expired_at": "2026-07-26 20:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5fb423000000000101c5e4:08_0",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "马焘个展「有风自远方来不必在乎」",
+      "time_text": "7月11日-8月15日 10:00-18:30",
+      "current_start_date": "2026-07-11 10:00:00",
+      "current_end_date": "2026-08-15 18:30:00",
+      "current_start_at": "2026-07-11 10:00:00",
+      "current_expired_at": "2026-08-15 18:30:00",
+      "detail_excerpt": "分类：看展逛馆\n费用：免费\n时间：7月11日-8月15日 10:00-18:30\n地址：索卡艺术(798艺术区)\n介绍：免费入场。\n马焘个展呈现15件新作，围绕神话、童话与都市生活，展出「愿望系列」与作品《一分钟》等。\n\n来源账号：北京漫游指南\n合集标题：北京7月展览漫游指南 vol.4\n来源笔记：https://www.xiaohongshu.com/explore/6a5fb423000000000101c5e4?xsec_token=ABPlU4Kl8pLVxaXCjyAUlkUPv9UrGmJXMPa5TXuT-PLWo%3D&xsec_source=pc_user\n原 slide：6a5fb423000000000101c5e4/images/08.webp\n裁切海报：6a5fb423000000000101c5e4/posters/08_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-11 10:00:00",
+        "expired_at": "2026-08-15 18:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:05_1",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "亮马音乐会",
+      "time_text": "7月26日（周日）19:00-22:00",
+      "current_start_date": "2026-07-26 19:00:00",
+      "current_end_date": "2026-07-26 22:00:00",
+      "current_start_at": "2026-07-26 19:00:00",
+      "current_expired_at": "2026-07-26 22:00:00",
+      "detail_excerpt": "分类：音乐现场\n费用：免费\n时间：7月26日（周日）19:00-22:00\n地址：朝阳区 | 亮马东院 中央草坪 霞湾RosyBay旁\n介绍：免费入场。\n亮马河畔户外草坪乐队现场，适合傍晚拍照；建议自备野餐垫或露营椅。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/05.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/05_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-26 19:00:00",
+        "expired_at": "2026-07-26 22:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:07_0",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "北京合景·摩方酒系列活动",
+      "time_text": "7月20日-8月29日，15:00-17:00",
+      "current_start_date": "2026-07-20 15:00:00",
+      "current_end_date": "2026-08-29 17:00:00",
+      "current_start_at": "2026-07-20 15:00:00",
+      "current_expired_at": "2026-08-29 17:00:00",
+      "detail_excerpt": "分类：主题沙龙\n费用：免费\n时间：7月20日-8月29日，15:00-17:00\n地址：东城区 | 合景·摩方（北京）购物中心 B1\n介绍：免费参与。\n含酒文化展览、研学讲座、桂花酒与红星二锅头酒瓶DIY、「万人碰杯」计划、酿酒工作坊与打卡礼。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/07.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/0",
+      "suggestion": {
+        "start_at": "2026-07-20 15:00:00",
+        "expired_at": "2026-08-29 17:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:07_1",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "摩天轮市集",
+      "time_text": "7月1日-7月31日，全天开放",
+      "current_start_date": "2026-07-01 00:00:00",
+      "current_end_date": "2026-07-31 23:59:59",
+      "current_start_at": "2026-07-01 00:00:00",
+      "current_expired_at": "2026-07-31 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：免费\n时间：7月1日-7月31日，全天开放\n地址：东城区 | 龙潭中湖公园\n介绍：免费入园。\n摩天轮浪漫打卡、文创摊位、特色小吃、草坪漫步、夜光皮艇与露天电影；建议16:00入园看日落与蓝调时刻。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/07.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/07_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-01 00:00:00",
+        "expired_at": "2026-07-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:08_0",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "国家植物园荷花文化节",
+      "time_text": "7月1日-8月24日，8:00-18:00",
+      "current_start_date": "2026-07-01 08:00:00",
+      "current_end_date": "2026-08-24 18:00:00",
+      "current_start_at": "2026-07-01 08:00:00",
+      "current_expired_at": "2026-08-24 18:00:00",
+      "detail_excerpt": "分类：户外活动\n费用：需购票入园\n时间：7月1日-8月24日，8:00-18:00\n地址：国家植物园南园\n介绍：需购国家植物园门票。\n第十三届荷花文化展，主展区含西门内古莲池等观荷点，可看千年古莲与莲属科普互动。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/08.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/08_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-01 08:00:00",
+        "expired_at": "2026-08-24 18:00:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:09_0",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "北海公园荷花节",
+      "time_text": "6月26日-7月26日，8:00-17:30（周一闭园）",
+      "current_start_date": "2026-06-26 08:00:00",
+      "current_end_date": "2026-07-26 17:30:00",
+      "current_start_at": "2026-06-26 08:00:00",
+      "current_expired_at": "2026-07-26 17:30:00",
+      "detail_excerpt": "分类：户外活动\n费用：需购票入园\n时间：6月26日-7月26日，8:00-17:30（周一闭园）\n地址：北京市西城区文津街1号\n介绍：需购北海公园门票。\n第三十届荷花展，含三大首创与微型荷景、金奖品种集中亮相。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/09.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/09_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-06-26 08:00:00",
+        "expired_at": "2026-07-26 17:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:10_1",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "莲花池公园荷花节",
+      "time_text": "6月26日至8月底，6:00-21:30",
+      "current_start_date": "2026-06-26 06:00:00",
+      "current_end_date": "2026-06-26 21:30:00",
+      "current_start_at": "2026-06-26 06:00:00",
+      "current_expired_at": "2026-06-26 21:30:00",
+      "detail_excerpt": "分类：户外活动\n费用：需购票入园\n时间：6月26日至8月底，6:00-21:30\n地址：北京丰台区西三环中路38号\n介绍：需购莲花池公园门票。\n2万㎡荷景、7000余盆盆栽，380余个品种，含800年古莲发芽开花。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/10.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/10_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-06-26 06:00:00",
+        "expired_at": "2026-06-26 21:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a5d9c170000000011012711:08_1",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "莲花池公园荷花节",
+      "time_text": "6月26日至8月底，6:00-21:30",
+      "current_start_date": "2026-06-26 06:00:00",
+      "current_end_date": "2026-06-26 21:30:00",
+      "current_start_at": "2026-06-26 06:00:00",
+      "current_expired_at": "2026-06-26 21:30:00",
+      "detail_excerpt": "分类：节庆\n费用：需购票入园\n时间：6月26日至8月底，6:00-21:30\n地址：北京丰台区西三环中路38号\n介绍：需购莲花池公园门票。\n2万㎡荷景、7000余盆盆栽荷，集中展示380余个荷花品种与60+睡莲；含自育品种「千眼观音」「曹衣出水」及800年古莲发芽开花。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京本周活动汇总（7.20-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a5d9c170000000011012711?xsec_token=AB6gnOCnQvvKNRP7L3q2AezyiVlFev85QVFlIRnTQbFbg%3D&xsec_source=pc_user\n原 slide：6a5d9c170000000011012711/images/08.webp\n裁切海报：6a5d9c170000000011012",
+      "suggestion": {
+        "start_at": "2026-06-26 06:00:00",
+        "expired_at": "2026-06-26 21:30:00",
+        "confidence": "high",
+        "reason": "按 time_text 解析"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:11_0",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "北京第29届IJOY动漫游戏狂欢节",
+      "time_text": "7月25日-7月26日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：需购票\n时间：7月25日-7月26日\n地址：朝阳区 | 北京国际会议中心，奥林匹克公园站E口/H口\n介绍：8大舞台、100+嘉宾。\n含Coser、随舞舞台与ACG亚文化聚集。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/11.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/11_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:11_1",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "犬夜叉30周年主题展",
+      "time_text": "7月25日-10月7日",
+      "current_start_date": "2026-07-25 00:00:00",
+      "current_end_date": "2026-10-07 23:59:59",
+      "current_start_at": "2026-07-25 00:00:00",
+      "current_expired_at": "2026-10-07 23:59:59",
+      "detail_excerpt": "分类：看展逛馆\n费用：需购票\n时间：7月25日-10月7日\n地址：朝阳区·朝阳大悦城10F\n介绍：1500㎡双层展馆。\n500+动画原画、30+经典场景还原，200+独家限定周边。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/11.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/11_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-25 00:00:00",
+        "expired_at": "2026-10-07 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:12_1",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "鬼灭之刃快闪",
+      "time_text": "6月26日-7月26日",
+      "current_start_date": "2026-06-26 00:00:00",
+      "current_end_date": "2026-07-26 23:59:59",
+      "current_start_at": "2026-06-26 00:00:00",
+      "current_expired_at": "2026-07-26 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：消费自付\n时间：6月26日-7月26日\n地址：北京animate门店\n介绍：animate×鬼灭之刃联合快闪。\n纪念卡、立牌、徽章、收纳袋等鬼灭周边。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/12.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/12_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-06-26 00:00:00",
+        "expired_at": "2026-07-26 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:13_0",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "奶酪大冒险·猫和老鼠",
+      "time_text": "7月15日-9月30日",
+      "current_start_date": "2026-07-15 00:00:00",
+      "current_end_date": "2026-09-30 23:59:59",
+      "current_start_at": "2026-07-15 00:00:00",
+      "current_expired_at": "2026-09-30 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：消费自付\n时间：7月15日-9月30日\n地址：北京中关村ART PARK大融城西区融乐集南侧（柯达店铺旁）\n介绍：10站沉浸式IP打卡地图。\n完成任务可领主题贴纸与磁力毛绒挂件盲袋。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/13.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/13_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-15 00:00:00",
+        "expired_at": "2026-09-30 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:13_1",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "重点探索之旅",
+      "time_text": "7月24日-7月28日",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-07-28 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-07-28 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：消费自付\n时间：7月24日-7月28日\n地址：北京龙湖大兴天街购物中心\n介绍：POINZ重点快闪北京首展。\n城市集章册、餐具、雨伞、留言板、钥匙扣、冰箱贴、明信片与限定卡等周边。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/13.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/13_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-07-28 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:15_0",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "「仲夏派对」原神快闪",
+      "time_text": "7月24日-8月9日",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-08-09 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-08-09 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：消费自付\n时间：7月24日-8月9日\n地址：北京朝阳大悦城 1F·中庭\n介绍：仲夏海滩派对主题打卡。\n毛绒、气囊支架等周边，现场或有神秘Coser出没。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/15.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/15_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-08-09 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:15_1",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "青蛙王子波仔喜事屋快闪店",
+      "time_text": "7月8日-8月2日",
+      "current_start_date": "2026-07-08 00:00:00",
+      "current_end_date": "2026-08-02 23:59:59",
+      "current_start_at": "2026-07-08 00:00:00",
+      "current_expired_at": "2026-08-02 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：消费自付\n时间：7月8日-8月2日\n地址：西城区·西单大悦城 B1 圆厅\n介绍：波仔毛绒挂件、文具与3D手机支架等周边首发与限定品。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/15.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/15_slot1.jpg",
+      "suggestion": {
+        "start_at": "2026-07-08 00:00:00",
+        "expired_at": "2026-08-02 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:16_0",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "气球暖暖星 × 千禾星摇北京快闪",
+      "time_text": "7月5日-7月29日 / 7月30日-10月31日",
+      "current_start_date": "2026-07-05 00:00:00",
+      "current_end_date": "2026-10-31 23:59:59",
+      "current_start_at": "2026-07-05 00:00:00",
+      "current_expired_at": "2026-10-31 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：消费自付\n时间：7月5日-7月29日 / 7月30日-10月31日\n地址：BOM嘻番里·2F\n介绍：纸飞机、全职高手、盗墓笔记等IP周边。\n谷美道具、棉花娃娃、徽章等，含新品首发与线下特典。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/16.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/16_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-05 00:00:00",
+        "expired_at": "2026-10-31 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
+      }
+    },
+    {
+      "event_uid": "xiaohongshu:6a61b4b5000000000f03dea9:17_0",
+      "city": "北京",
+      "source": "xiaohongshu",
+      "title": "YOYO甜心生日派对联萌",
+      "time_text": "7月24日-8月23日",
+      "current_start_date": "2026-07-24 00:00:00",
+      "current_end_date": "2026-08-23 23:59:59",
+      "current_start_at": "2026-07-24 00:00:00",
+      "current_expired_at": "2026-08-23 23:59:59",
+      "detail_excerpt": "分类：市集\n费用：消费自付\n时间：7月24日-8月23日\n地址：北京朝阳合生汇B2中庭\n介绍：MINISO联名生日派对主题。\n限定慕斯蛋糕、曲奇、冰淇淋等甜品周边，可预约体验。\n\n来源账号：北京周末去哪\n合集标题：大多免费！ 北京周末活动汇总（7.24-7.26）\n来源笔记：https://www.xiaohongshu.com/explore/6a61b4b5000000000f03dea9?xsec_token=ABTJgSZXl99yqK2ajoUhVHFa8x2CEESuek5deMNuD_kk4%3D&xsec_source=pc_user\n原 slide：6a61b4b5000000000f03dea9/images/17.webp\n裁切海报：6a61b4b5000000000f03dea9/posters/17_slot0.jpg",
+      "suggestion": {
+        "start_at": "2026-07-24 00:00:00",
+        "expired_at": "2026-08-23 23:59:59",
+        "confidence": "high",
+        "reason": "仅日期无时刻，开始 00:00:00、结束日 23:59:59"
       }
     }
   ]

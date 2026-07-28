@@ -1,216 +1,129 @@
 {
   "city": "杭州",
   "source": "xiaohongshu",
-  "decided_at": "2026-07-14T01:03:09.365Z",
-  "updated_at": "2026-07-14T01:03:09.365Z",
-  "agent": "cursor-agent",
+  "decided_at": "2026-07-26T13:25:32.917Z",
+  "agent": "cursor-composer",
   "decisions": [
     {
-      "group_id": "29b7334e1044",
-      "location": "杭州市拱墅区·杭州大厦B2 ZPARK",
-      "sample_title": "珍棒手帐集市",
+      "group_id": "6c14102fb045",
       "event_uids": [
-        "xiaohongshu:6a3df6b80000000022009822:01_0"
+        "xiaohongshu:6a61b991000000000a03a1b0:01_0"
       ],
       "action": "match",
+      "search_keywords_tried": [
+        "杭州解百A座"
+      ],
+      "poi_id": "15166738799669066631",
+      "poi_title": "杭州解百A座",
+      "poi_address": "浙江省杭州市上城区湖滨街道解放路249号",
+      "latitude": 30.249745,
+      "longitude": 120.16574,
+      "candidates": [
+        {
+          "poi_id": "15166738799669066631",
+          "title": "杭州解百A座",
+          "address": "浙江省杭州市上城区湖滨街道解放路249号",
+          "latitude": 30.249745,
+          "longitude": 120.16574,
+          "category": ""
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": [
-        "杭州大厦中央商城",
-        "ZPARK"
-      ],
-      "poi_id": "16066337541830337377",
-      "poi_title": "杭州大厦·中央商城",
-      "poi_address": "浙江省杭州市拱墅区武林广场11号",
-      "latitude": 30.271011,
-      "longitude": 120.163285,
-      "reason": "ZPARK街区在杭州大厦中央商城B2，对齐拱墅区武林广场11号商场主体",
-      "candidates": []
+      "reason": "杭州解百A座主体一致，仅MF层未精确"
     },
     {
-      "group_id": "5a66b4b1e3cb",
-      "location": "天空藤集·1F大平台",
-      "sample_title": "夏日有闲市",
+      "group_id": "feb405a8d8f8",
       "event_uids": [
-        "xiaohongshu:6a3df6b80000000022009822:01_1"
+        "xiaohongshu:6a61b991000000000a03a1b0:01_1"
       ],
       "action": "match",
+      "search_keywords_tried": [
+        "拱墅万达广场"
+      ],
+      "poi_id": "11707233631683697511",
+      "poi_title": "杭州拱墅万达广场",
+      "poi_address": "浙江省杭州市拱墅区杭行路666号",
+      "latitude": 30.33012,
+      "longitude": 120.11962,
+      "candidates": [
+        {
+          "poi_id": "11707233631683697511",
+          "title": "杭州拱墅万达广场",
+          "address": "浙江省杭州市拱墅区杭行路666号",
+          "latitude": 30.33012,
+          "longitude": 120.11962,
+          "category": ""
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": [
-        "天空藤集"
-      ],
-      "poi_id": "6279751568116943770",
-      "poi_title": "天空·藤集 TJ Centre",
-      "poi_address": "浙江省杭州市余杭区宇洲巷与邱桥路交叉口西南方向87米左右",
-      "latitude": 30.297119,
-      "longitude": 120.042851,
-      "reason": "候选天空·藤集与天空藤集名称一致，1F大平台未单独POI",
-      "candidates": []
+      "reason": "拱墅万达广场主体一致，仅中庭未精确"
     },
     {
-      "group_id": "5af48a488e09",
-      "location": "杭州临安花间里",
-      "sample_title": "花间里啤酒音乐节",
+      "group_id": "68619ed6cfe7",
       "event_uids": [
-        "xiaohongshu:6a3df6b80000000022009822:02_0"
+        "xiaohongshu:6a61b991000000000a03a1b0:03_0"
       ],
       "action": "match",
+      "search_keywords_tried": [
+        "中南乐游城"
+      ],
+      "poi_id": "4065691517926640928",
+      "poi_title": "中南乐游城",
+      "poi_address": "浙江省杭州市滨江区江南大道1090号",
+      "latitude": 30.194141,
+      "longitude": 120.190453,
+      "candidates": [
+        {
+          "poi_id": "4065691517926640928",
+          "title": "中南乐游城",
+          "address": "浙江省杭州市滨江区江南大道1090号",
+          "latitude": 30.194141,
+          "longitude": 120.190453,
+          "category": ""
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": [
-        "杭州临安花间里",
-        "花间里"
-      ],
-      "poi_id": "9102929807488731024",
-      "poi_title": "花间里",
-      "poi_address": "浙江省杭州市临安区长桥路369号",
-      "latitude": 30.239479,
-      "longitude": 119.72514,
-      "reason": "候选花间里与临安区长桥路369号地址一致",
-      "candidates": []
+      "reason": "中南乐游城滨江区主体一致"
     },
     {
-      "group_id": "f92d44b006d2",
-      "location": "西溪菜市1/2F",
-      "sample_title": "好市多蘑·童趣公益跳蚤市集",
+      "group_id": "cfdc46d41624",
       "event_uids": [
-        "xiaohongshu:6a3df6b80000000022009822:02_1"
+        "xiaohongshu:6a61b991000000000a03a1b0:03_1"
       ],
       "action": "match",
+      "search_keywords_tried": [
+        "五福天虹"
+      ],
+      "poi_id": "1545190106228157553",
+      "poi_title": "杭州五福天虹购物中心",
+      "poi_address": "浙江省杭州市上城区新塘路108号",
+      "latitude": 30.26467,
+      "longitude": 120.209751,
+      "candidates": [
+        {
+          "poi_id": "1545190106228157553",
+          "title": "杭州五福天虹购物中心",
+          "address": "浙江省杭州市上城区新塘路108号",
+          "latitude": 30.26467,
+          "longitude": 120.209751,
+          "category": ""
+        }
+      ],
       "confidence": "high",
       "doubtful": false,
-      "search_keywords_tried": [
-        "西溪菜市"
-      ],
-      "poi_id": "15237996295243321391",
-      "poi_title": "西溪菜市",
-      "poi_address": "浙江省杭州市西湖区蒋村街道晴川街497号",
-      "latitude": 30.283236,
-      "longitude": 120.058697,
-      "reason": "候选西溪菜市与西湖区晴川街497号一致，1/2F未精确",
-      "candidates": []
-    },
-    {
-      "group_id": "7dc4b86e413d",
-      "location": "浙江第一码头沿江步道",
-      "sample_title": "浙江第一码头市集",
-      "event_uids": [
-        "xiaohongshu:6a3df6b80000000022009822:03_0"
-      ],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": [
-        "浙江第一码头"
-      ],
-      "poi_id": "13254851291513115400",
-      "poi_title": "浙江第一码头",
-      "poi_address": "浙江省杭州市上城区南星街道之江路636号(南星桥地铁站D口步行490米)",
-      "latitude": 30.21283,
-      "longitude": 120.179075,
-      "reason": "市集沿浙江第一码头沿江步道举办，对齐之江路636号码头主体",
-      "candidates": []
-    },
-    {
-      "group_id": "7f3d4eff2b78",
-      "location": "杭州湖滨步行街·东坡路44号",
-      "sample_title": "杭州湖滨市集",
-      "event_uids": [
-        "xiaohongshu:6a3df6b80000000022009822:03_1"
-      ],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": [
-        "东坡路44号"
-      ],
-      "poi_id": "13598950083305613140",
-      "poi_title": "Hubin Lakeside湖滨市集",
-      "poi_address": "浙江省杭州市上城区湖滨街道东坡路44号(龙翔桥地铁站出入口步行80米)",
-      "latitude": 30.255642,
-      "longitude": 120.162791,
-      "reason": "候选湖滨市集POI即东坡路44号，与活动地址完全一致",
-      "candidates": []
-    },
-    {
-      "group_id": "5c891a9ad3e5",
-      "location": "杭州武林广场",
-      "sample_title": "吨吨冰玩节",
-      "event_uids": [
-        "xiaohongshu:6a3df6b80000000022009822:04_0"
-      ],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": [
-        "杭州武林广场",
-        "武林广场"
-      ],
-      "poi_id": "5393180224868865556",
-      "poi_title": "武林广场",
-      "poi_address": "浙江省杭州市拱墅区展览西路与体育场路交叉口东北角",
-      "latitude": 30.271001,
-      "longitude": 120.163281,
-      "reason": "候选武林广场与拱墅区展览西路地址一致",
-      "candidates": []
-    },
-    {
-      "group_id": "d1cb0b0e7495",
-      "location": "杭州奥体中心3号桥",
-      "sample_title": "夏日潮饮派对",
-      "event_uids": [
-        "xiaohongshu:6a3df6b80000000022009822:04_1"
-      ],
-      "action": "match",
-      "confidence": "medium",
-      "doubtful": false,
-      "search_keywords_tried": [
-        "杭州奥体中心",
-        "杭州奥体中心3号桥"
-      ],
-      "poi_id": "14852711973191624289",
-      "poi_title": "杭州奥体中心",
-      "poi_address": "浙江省杭州市滨江区飞虹路与闻涛路交叉口",
-      "latitude": 30.228485,
-      "longitude": 120.230096,
-      "reason": "3号桥在奥体中心范围内，腾讯无独立桥POI，对齐杭州奥体中心主体",
-      "candidates": []
-    },
-    {
-      "group_id": "222f2ad64616",
-      "location": "杭州·东山里",
-      "sample_title": "生态市集",
-      "event_uids": [
-        "xiaohongshu:6a3df6b80000000022009822:05_0"
-      ],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": [
-        "东山里",
-        "RENew东山里"
-      ],
-      "poi_id": "10196828768749354660",
-      "poi_title": "REnew东山里",
-      "poi_address": "浙江省杭州市西湖区灵隐街道外东山弄66号",
-      "latitude": 30.259486,
-      "longitude": 120.12737,
-      "reason": "生态市集在REnew东山里举办，灵隐外东山弄66号与杭州·东山里一致",
-      "candidates": []
+      "reason": "五福天虹购物中心主体一致，仅南广场未精确"
     },
     {
       "group_id": "1e121cc320a5",
-      "location": "杭州天目里",
-      "sample_title": "Summer proof 留夏市集",
       "event_uids": [
-        "xiaohongshu:6a3df6b80000000022009822:05_1"
+        "xiaohongshu:6a61b991000000000a03a1b0:05_0",
+        "xiaohongshu:6a61b991000000000a03a1b0:09_1"
       ],
       "action": "match",
-      "confidence": "high",
-      "doubtful": false,
       "search_keywords_tried": [
-        "杭州天目里",
         "天目里"
       ],
       "poi_id": "2551930007069627628",
@@ -218,19 +131,82 @@
       "poi_address": "浙江省杭州市西湖区天目山路与古墩路交叉口西北230米",
       "latitude": 30.266392,
       "longitude": 120.099411,
-      "reason": "候选天目里与西湖区天目山路地址一致",
-      "candidates": []
-    },
-    {
-      "group_id": "f4a08563c96b",
-      "location": "远洋乐堤港 户外中心广场",
-      "sample_title": "Thai-pical 泰式生活节",
-      "event_uids": [
-        "xiaohongshu:6a3df6b80000000022009822:06_0"
+      "candidates": [
+        {
+          "poi_id": "2551930007069627628",
+          "title": "天目里",
+          "address": "浙江省杭州市西湖区天目山路与古墩路交叉口西北230米",
+          "latitude": 30.266392,
+          "longitude": 120.099411,
+          "category": ""
+        }
       ],
-      "action": "match",
       "confidence": "high",
       "doubtful": false,
+      "reason": "天目里园区主体一致"
+    },
+    {
+      "group_id": "a74038666831",
+      "event_uids": [
+        "xiaohongshu:6a61b991000000000a03a1b0:05_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "中骏广场"
+      ],
+      "poi_id": "2298860192458210282",
+      "poi_title": "杭州中骏广场",
+      "poi_address": "浙江省杭州市临平区南苑街与雪海路交叉口",
+      "latitude": 30.399472,
+      "longitude": 120.301054,
+      "candidates": [
+        {
+          "poi_id": "2298860192458210282",
+          "title": "杭州中骏广场",
+          "address": "浙江省杭州市临平区南苑街与雪海路交叉口",
+          "latitude": 30.399472,
+          "longitude": 120.301054,
+          "category": ""
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "杭州中骏广场临平区主体一致"
+    },
+    {
+      "group_id": "68bb7db5f609",
+      "event_uids": [
+        "xiaohongshu:6a61b991000000000a03a1b0:05_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "poi-address-cache"
+      ],
+      "poi_id": "15166738799669066631",
+      "poi_title": "杭州解百A座",
+      "poi_address": "浙江省杭州市上城区湖滨街道解放路249号",
+      "latitude": 30.249745,
+      "longitude": 120.16574,
+      "candidates": [
+        {
+          "poi_id": "15166738799669066631",
+          "title": "杭州解百A座",
+          "address": "浙江省杭州市上城区湖滨街道解放路249号",
+          "latitude": 30.249745,
+          "longitude": 120.16574,
+          "category": ""
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地址映射库命中：杭州解百A座广场 → 杭州解百A座（来源 event:xiaohongshu:6a4f5abb000000000702d251:02_0）"
+    },
+    {
+      "group_id": "e35ac976bab7",
+      "event_uids": [
+        "xiaohongshu:6a61b991000000000a03a1b0:06_0"
+      ],
+      "action": "match",
       "search_keywords_tried": [
         "远洋乐堤港"
       ],
@@ -239,539 +215,429 @@
       "poi_address": "浙江省杭州市拱墅区丽水路58号",
       "latitude": 30.305061,
       "longitude": 120.142916,
-      "reason": "户外中心广场在远洋乐堤港内，对齐拱墅区丽水路58号商场主体",
-      "candidates": []
-    },
-    {
-      "group_id": "03342c21418f",
-      "location": "杭州天目里负一层地摊",
-      "sample_title": "天目里7月里集",
-      "event_uids": [
-        "xiaohongshu:6a3df6b80000000022009822:06_1"
-      ],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": [
-        "杭州天目里"
-      ],
-      "poi_id": "2551930007069627628",
-      "poi_title": "天目里",
-      "poi_address": "浙江省杭州市西湖区天目山路与古墩路交叉口西北230米",
-      "latitude": 30.266392,
-      "longitude": 120.099411,
-      "reason": "负一层地摊在天目里内，对齐天目里主体",
-      "candidates": []
-    },
-    {
-      "group_id": "e692f72c1502",
-      "location": "杭州市富阳区秦望水街",
-      "sample_title": "富春山居市集",
-      "event_uids": [
-        "xiaohongshu:6a3df6b80000000022009822:07_0"
-      ],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": [
-        "秦望水街"
-      ],
-      "poi_id": "4534259422748381509",
-      "poi_title": "秦望水街",
-      "poi_address": "浙江省杭州市富阳区西堤南路38弄",
-      "latitude": 30.038891,
-      "longitude": 119.942089,
-      "reason": "候选秦望水街与富阳区西堤南路38弄一致",
-      "candidates": []
-    },
-    {
-      "group_id": "bc8c3791ef80",
-      "location": "杭州城市阳台",
-      "sample_title": "嬉水嘉年华官方市集",
-      "event_uids": [
-        "xiaohongshu:6a3df6b80000000022009822:07_1"
-      ],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": [
-        "杭州城市阳台",
-        "城市阳台"
-      ],
-      "poi_id": "14820417986967906407",
-      "poi_title": "城市阳台",
-      "poi_address": "浙江省杭州市上城区之江路1078号",
-      "latitude": 30.241806,
-      "longitude": 120.217155,
-      "reason": "候选城市阳台与之江路1078号地址一致",
-      "candidates": []
-    },
-    {
-      "group_id": "ea4916ae864c",
-      "location": "LOFT49·杭实创意中心10号楼",
-      "sample_title": "旧爱新换二手手帐市集",
-      "event_uids": [
-        "xiaohongshu:6a3df6b80000000022009822:08_0"
-      ],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": [
-        "LOFT49",
-        "杭实创意中心"
-      ],
-      "poi_id": "15762326547533295606",
-      "poi_title": "LOFT49·杭实创意中心",
-      "poi_address": "浙江省杭州市拱墅区吉如路与通益路交叉口西南方向160米左右",
-      "latitude": 30.320433,
-      "longitude": 120.130259,
-      "reason": "10号楼在LOFT49杭实创意中心园区内，对齐园区主体拱墅区吉如路",
-      "candidates": []
-    },
-    {
-      "group_id": "ec36e56549bf",
-      "location": "杭州富阳银湖·艺众美术馆",
-      "sample_title": "艺众市集",
-      "event_uids": [
-        "xiaohongshu:6a3df6b80000000022009822:08_1"
-      ],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": [
-        "艺众美术馆"
-      ],
-      "poi_id": "14901607126424078399",
-      "poi_title": "艺众美术馆",
-      "poi_address": "浙江省杭州市富阳区富闲路588号",
-      "latitude": 30.162433,
-      "longitude": 119.979544,
-      "reason": "候选艺众美术馆与富阳区富闲路588号银湖地址一致",
-      "candidates": []
-    },
-    {
-      "group_id": "4ed8149981fb",
-      "location": "杭州西湖区BAC社区",
-      "sample_title": "FLIP JOURNAL ART FAIR 手帐艺术节",
-      "event_uids": [
-        "xiaohongshu:6a3df6b80000000022009822:09_0"
-      ],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": [
-        "BAC艺术社区",
-        "BAC"
-      ],
-      "poi_id": "9312054424037543544",
-      "poi_title": "BAC艺术社区",
-      "poi_address": "浙江省杭州市西湖区象山路131号",
-      "latitude": 30.150871,
-      "longitude": 120.075248,
-      "reason": "BAC社区即BAC艺术社区，西湖区象山路131号一致",
-      "candidates": []
-    },
-    {
-      "group_id": "4fb111a190ee",
-      "location": "杭州西湖六公园志愿军广场",
-      "sample_title": "湖畔有艺市·暑期市集",
-      "event_uids": [
-        "xiaohongshu:6a3df6b80000000022009822:09_1"
-      ],
-      "action": "match",
-      "confidence": "high",
-      "doubtful": false,
-      "search_keywords_tried": [
-        "六公园"
-      ],
-      "poi_id": "4561708071990451036",
-      "poi_title": "六公园",
-      "poi_address": "浙江省杭州市拱墅区湖滨路47号",
-      "latitude": 30.258666,
-      "longitude": 120.157758,
-      "reason": "志愿军广场在西湖六公园内，对齐六公园湖滨路47号主体",
-      "candidates": []
-    },
-    {
-      "group_id": "cc6b5c73f514",
-      "event_uids": [
-        "xiaohongshu:6a5488730000000007026238:01_0"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "莲荷里"
+      "candidates": [
+        {
+          "poi_id": "3036906093466235872",
+          "title": "远洋乐堤港",
+          "address": "浙江省杭州市拱墅区丽水路58号",
+          "latitude": 30.305061,
+          "longitude": 120.142916,
+          "category": ""
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "莲荷里购物中心，滨江区飞虹路3号大莲花LG层与活动地址一致",
-      "poi_id": "28509067060809690",
-      "poi_title": "莲荷里",
-      "poi_address": "浙江省杭州市滨江区飞虹路3号大莲花LG层",
-      "latitude": 30.226211,
-      "longitude": 120.231069
+      "reason": "远洋乐堤港拱墅区主体一致"
     },
     {
-      "group_id": "00e13aa7ee82",
+      "group_id": "da0675c0209f",
       "event_uids": [
-        "xiaohongshu:6a5488730000000007026238:01_1"
+        "xiaohongshu:6a61b991000000000a03a1b0:06_1"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "poi-address-cache"
+        "天目里蔦屋书店",
+        "茑屋书店天目里"
+      ],
+      "poi_id": "15200742628205067586",
+      "poi_title": "茑屋书店(天目里店)",
+      "poi_address": "浙江省杭州市西湖区天目山路398号天目里B1层",
+      "latitude": 30.265537,
+      "longitude": 120.099192,
+      "candidates": [
+        {
+          "poi_id": "15200742628205067586",
+          "title": "茑屋书店(天目里店)",
+          "address": "浙江省杭州市西湖区天目山路398号天目里B1层",
+          "latitude": 30.265537,
+          "longitude": 120.099192,
+          "category": ""
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "映射库命中秦望水街，富阳区富春山居夏夜市集地址一致",
-      "poi_id": "4534259422748381509",
-      "poi_title": "秦望水街",
-      "poi_address": "",
-      "latitude": 30.038891,
-      "longitude": 119.942089
+      "reason": "天目里茑屋书店店名地址一致"
     },
     {
-      "group_id": "7089ac801dec",
+      "group_id": "74563dda845b",
       "event_uids": [
-        "xiaohongshu:6a5488730000000007026238:01_2"
+        "xiaohongshu:6a61b991000000000a03a1b0:06_2"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "远洋乐堤港"
+        "武林银泰"
+      ],
+      "poi_id": "3283372521917746316",
+      "poi_title": "银泰百货(武林总店)",
+      "poi_address": "浙江省杭州市拱墅区延安路530号",
+      "latitude": 30.268944,
+      "longitude": 120.164057,
+      "candidates": [
+        {
+          "poi_id": "3283372521917746316",
+          "title": "银泰百货(武林总店)",
+          "address": "浙江省杭州市拱墅区延安路530号",
+          "latitude": 30.268944,
+          "longitude": 120.164057,
+          "category": ""
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "远洋乐堤港拱墅区丽水路58号，户外中心广场市集",
-      "poi_id": "3036906093466235872",
-      "poi_title": "远洋乐堤港",
-      "poi_address": "浙江省杭州市拱墅区丽水路58号",
-      "latitude": 30.305061,
-      "longitude": 120.142916
+      "reason": "银泰百货武林总店主体一致"
     },
     {
-      "group_id": "173ccc18dcba",
+      "group_id": "83507215946d",
       "event_uids": [
-        "xiaohongshu:6a5488730000000007026238:02_0"
+        "xiaohongshu:6a61b991000000000a03a1b0:07_0"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "poi-address-cache"
+        "水墩北路1号"
+      ],
+      "poi_id": "9732223122523923034",
+      "poi_title": "首章新所",
+      "poi_address": "浙江省杭州市上城区水墩北路1号",
+      "latitude": 30.311316,
+      "longitude": 120.20398,
+      "candidates": [
+        {
+          "poi_id": "9732223122523923034",
+          "title": "首章新所",
+          "address": "浙江省杭州市上城区水墩北路1号",
+          "latitude": 30.311316,
+          "longitude": 120.20398,
+          "category": ""
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "映射库命中杭州奥体中心，3号桥属奥体中心区域",
-      "poi_id": "14852711973191624289",
-      "poi_title": "杭州奥体中心",
-      "poi_address": "",
-      "latitude": 30.228485,
-      "longitude": 120.230096
+      "reason": "水墩北路1号对应首章新所产业园"
     },
     {
-      "group_id": "f998425b8ed9",
+      "group_id": "208d663c847c",
       "event_uids": [
-        "xiaohongshu:6a5488730000000007026238:02_1"
+        "xiaohongshu:6a61b991000000000a03a1b0:07_1"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "钱江世纪公园"
+        "余杭万达"
       ],
-      "confidence": "high",
+      "poi_id": "1271333291835752347",
+      "poi_title": "杭州余杭万达广场",
+      "poi_address": "浙江省杭州市余杭区文一西路1888号",
+      "latitude": 30.269844,
+      "longitude": 119.954996,
+      "candidates": [
+        {
+          "poi_id": "1271333291835752347",
+          "title": "杭州余杭万达广场",
+          "address": "浙江省杭州市余杭区文一西路1888号",
+          "latitude": 30.269844,
+          "longitude": 119.954996,
+          "category": ""
+        }
+      ],
+      "confidence": "medium",
       "doubtful": false,
-      "reason": "钱江世纪公园萧山区观澜路1号，钱塘江畔市集",
-      "poi_id": "3661299607473621782",
-      "poi_title": "钱江世纪公园",
-      "poi_address": "浙江省杭州市萧山区盈丰街道观澜路1号",
-      "latitude": 30.242546,
-      "longitude": 120.235319
+      "reason": "杭州余杭万达广场(文一西路)主体一致，仅连廊未精确"
     },
     {
-      "group_id": "b93f84d5ec14",
+      "group_id": "88156c09a01f",
       "event_uids": [
-        "xiaohongshu:6a5488730000000007026238:02_2"
+        "xiaohongshu:6a61b991000000000a03a1b0:07_2"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "武林广场"
+        "黄龙体育中心站"
+      ],
+      "poi_id": "2199032149286",
+      "poi_title": "黄龙体育中心[地铁站]",
+      "poi_address": "地铁3号线,地铁10号线",
+      "latitude": 30.26819,
+      "longitude": 120.129914,
+      "candidates": [
+        {
+          "poi_id": "2199032149286",
+          "title": "黄龙体育中心[地铁站]",
+          "address": "地铁3号线,地铁10号线",
+          "latitude": 30.26819,
+          "longitude": 120.129914,
+          "category": ""
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "武林广场拱墅区展览西路与体育场路交叉口，活动地址一致",
-      "poi_id": "5393180224868865556",
-      "poi_title": "武林广场",
-      "poi_address": "浙江省杭州市拱墅区展览西路与体育场路交叉口东北角",
-      "latitude": 30.271001,
-      "longitude": 120.163281
+      "reason": "活动在黄龙体育中心地铁站内，对齐地铁站POI"
     },
     {
-      "group_id": "2075a9429301",
+      "group_id": "d6fbbe8dd2f3",
       "event_uids": [
-        "xiaohongshu:6a5488730000000007026238:03_0"
+        "xiaohongshu:6a61b991000000000a03a1b0:08_0"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "滨江宝龙城"
+        "留下1129"
+      ],
+      "poi_id": "2047050152065195288",
+      "poi_title": "留下1129宋式美学生活街区",
+      "poi_address": "浙江省杭州市西湖区留下大街65号",
+      "latitude": 30.2416,
+      "longitude": 120.056831,
+      "candidates": [
+        {
+          "poi_id": "2047050152065195288",
+          "title": "留下1129宋式美学生活街区",
+          "address": "浙江省杭州市西湖区留下大街65号",
+          "latitude": 30.2416,
+          "longitude": 120.056831,
+          "category": ""
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "杭州滨江宝龙城滨盛路3867号，地铁诚业路站",
-      "poi_id": "5873780446099333715",
-      "poi_title": "杭州滨江宝龙城",
-      "poi_address": "浙江省杭州市滨江区滨盛路3867号(诚业路地铁站C口步行340米)",
-      "latitude": 30.187541,
-      "longitude": 120.167386
+      "reason": "留下1129历史文化街区主体一致"
     },
     {
-      "group_id": "54e32d6f39fc",
+      "group_id": "4a32d298bb20",
       "event_uids": [
-        "xiaohongshu:6a5488730000000007026238:03_1"
+        "xiaohongshu:6a61b991000000000a03a1b0:08_2"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "勤天小镇"
+        "拱墅吾悦"
+      ],
+      "poi_id": "605755014808968460",
+      "poi_title": "杭州拱墅吾悦广场",
+      "poi_address": "浙江省杭州市拱墅区华丰时代城(同协路地铁站C口步行250米)",
+      "latitude": 30.343383,
+      "longitude": 120.210205,
+      "candidates": [
+        {
+          "poi_id": "605755014808968460",
+          "title": "杭州拱墅吾悦广场",
+          "address": "浙江省杭州市拱墅区华丰时代城(同协路地铁站C口步行250米)",
+          "latitude": 30.343383,
+          "longitude": 120.210205,
+          "category": ""
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "种地星球·勤天小镇西湖区冯双线，后陡门盛夏派对地址",
-      "poi_id": "2113100385808697257",
-      "poi_title": "种地星球·勤天小镇",
-      "poi_address": "浙江省杭州市西湖区冯双线",
-      "latitude": 30.332152,
-      "longitude": 120.020152
+      "reason": "拱墅吾悦广场主体一致，仅中庭未精确"
     },
     {
-      "group_id": "c895dff182e8",
+      "group_id": "458819e14794",
       "event_uids": [
-        "xiaohongshu:6a5488730000000007026238:03_2"
+        "xiaohongshu:6a61b991000000000a03a1b0:09_0"
+      ],
+      "action": "reject",
+      "search_keywords_tried": [
+        "宋式美学市集",
+        "宋式 市集",
+        "杭州"
+      ],
+      "confidence": "low",
+      "doubtful": false,
+      "reason": "地点仅写杭州，地址过泛；搜市集名命中无关美容店/宋韵市集，无法对应唯一POI"
+    },
+    {
+      "group_id": "e2919e397485",
+      "event_uids": [
+        "xiaohongshu:6a61b991000000000a03a1b0:09_2"
       ],
       "action": "match",
       "search_keywords_tried": [
-        "西溪菜市"
+        "良渚文化艺术中心"
+      ],
+      "poi_id": "14788647064666657131",
+      "poi_title": "良渚文化艺术中心(大屋顶)",
+      "poi_address": "浙江省杭州市余杭区玉鸟路良渚文化村",
+      "latitude": 30.365104,
+      "longitude": 120.032301,
+      "candidates": [
+        {
+          "poi_id": "14788647064666657131",
+          "title": "良渚文化艺术中心(大屋顶)",
+          "address": "浙江省杭州市余杭区玉鸟路良渚文化村",
+          "latitude": 30.365104,
+          "longitude": 120.032301,
+          "category": ""
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "西溪菜市西湖区晴川街497号，与活动地址一致",
-      "poi_id": "15237996295243321391",
-      "poi_title": "西溪菜市",
-      "poi_address": "浙江省杭州市西湖区蒋村街道晴川街497号",
-      "latitude": 30.283236,
-      "longitude": 120.058697
+      "reason": "良渚文化艺术中心大屋顶主体一致"
     },
     {
-      "group_id": "5fbef0890150",
+      "group_id": "02523810d3dd",
       "event_uids": [
-        "xiaohongshu:6a5488730000000007026238:04_0"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "未来数智港"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "中国数谷·未来数智港(城投资产)上城区新风路260号东站西广场",
-      "poi_id": "5557795674276653468",
-      "poi_title": "中国数谷·未来数智港(城投资产)",
-      "poi_address": "浙江省杭州市上城区新风路260号东站西广场D座1-4层",
-      "latitude": 30.287404,
-      "longitude": 120.211867
-    },
-    {
-      "group_id": "a0e098324f23",
-      "event_uids": [
-        "xiaohongshu:6a5488730000000007026238:04_1"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "城市阳台"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "城市阳台上城区之江路1078号，主阳台市集",
-      "poi_id": "14820417986967906407",
-      "poi_title": "城市阳台",
-      "poi_address": "浙江省杭州市上城区之江路1078号",
-      "latitude": 30.241806,
-      "longitude": 120.217155
-    },
-    {
-      "group_id": "37e54c60234e",
-      "event_uids": [
-        "xiaohongshu:6a5488730000000007026238:04_2",
-        "xiaohongshu:6a5488730000000007026238:05_2"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "杭州解百"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "杭州解百A座解放路249号广场，两场市集同址",
-      "poi_id": "15166738799669066631",
-      "poi_title": "杭州解百A座",
-      "poi_address": "浙江省杭州市上城区湖滨街道解放路249号",
-      "latitude": 30.249745,
-      "longitude": 120.16574
-    },
-    {
-      "group_id": "b08def883db4",
-      "event_uids": [
-        "xiaohongshu:6a5488730000000007026238:05_0"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "山泽里"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "安放山泽里滨江区聚才路239号，松池市集区域",
-      "poi_id": "16003387762843762398",
-      "poi_title": "安放山泽里",
-      "poi_address": "浙江省杭州市滨江区长河街道聚才路239号(聚才路地铁站A口步行270米)",
-      "latitude": 30.180714,
-      "longitude": 120.198347
-    },
-    {
-      "group_id": "f8f658021937",
-      "event_uids": [
-        "xiaohongshu:6a5488730000000007026238:05_1",
-        "xiaohongshu:6a5488730000000007026238:06_0",
-        "xiaohongshu:6a5488730000000007026238:06_1"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "天空藤集"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "天空·藤集余杭区五常站，1F大平台三场同址",
-      "poi_id": "6279751568116943770",
-      "poi_title": "天空·藤集 TJ Centre",
-      "poi_address": "浙江省杭州市余杭区五常街道宇洲巷地铁万科天空之城",
-      "latitude": 30.297119,
-      "longitude": 120.042851
-    },
-    {
-      "group_id": "5eb4556add73",
-      "event_uids": [
-        "xiaohongshu:6a5488730000000007026238:06_2"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "杭州新天地购物中心"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "新天地购物中心拱墅区长浜路718号1F中庭",
-      "poi_id": "15863322810941591329",
-      "poi_title": "新天地购物中心(杭州店)",
-      "poi_address": "浙江省杭州市拱墅区长浜路718号",
-      "latitude": 30.322613,
-      "longitude": 120.180044
-    },
-    {
-      "group_id": "3d9ad08fceb0",
-      "event_uids": [
-        "xiaohongshu:6a5488730000000007026238:07_0"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "拱墅万达广场"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "杭州拱墅万达广场杭行路666号",
-      "poi_id": "11707233631683697511",
-      "poi_title": "杭州拱墅万达广场",
-      "poi_address": "浙江省杭州市拱墅区杭行路666号",
-      "latitude": 30.33012,
-      "longitude": 120.11962
-    },
-    {
-      "group_id": "fe509c78ac0d",
-      "event_uids": [
-        "xiaohongshu:6a5488730000000007026238:07_1"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "之江银泰"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "银泰百货(之江店)西湖区珊瑚沙路49号",
-      "poi_id": "2337488719868839340",
-      "poi_title": "银泰百货(之江店)",
-      "poi_address": "浙江省杭州市西湖区珊瑚沙路49号",
-      "latitude": 30.167275,
-      "longitude": 120.101975
-    },
-    {
-      "group_id": "b1c1c005c2b8",
-      "event_uids": [
-        "xiaohongshu:6a5488730000000007026238:07_2"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "中南乐游城"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "中南乐游城滨江区江南大道1090号1楼舞台区",
-      "poi_id": "4065691517926640928",
-      "poi_title": "中南乐游城",
-      "poi_address": "浙江省杭州市滨江区江南大道1090号",
-      "latitude": 30.194141,
-      "longitude": 120.190453
-    },
-    {
-      "group_id": "4b4fb36ed6c0",
-      "event_uids": [
-        "xiaohongshu:6a5488730000000007026238:08_0"
+        "xiaohongshu:6a61b991000000000a03a1b0:10_0"
       ],
       "action": "match",
       "search_keywords_tried": [
         "杭州大悦城"
       ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "中粮杭州大悦城拱墅区莫干山路与隐秀路交叉口L1主中庭",
       "poi_id": "4990078846745659600",
       "poi_title": "中粮杭州大悦城",
       "poi_address": "浙江省杭州市拱墅区莫干山路与隐秀路交叉口西南",
       "latitude": 30.301348,
-      "longitude": 120.129297
-    },
-    {
-      "group_id": "1602d5bc2e3e",
-      "event_uids": [
-        "xiaohongshu:6a5488730000000007026238:08_1"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "湖滨in77"
-      ],
-      "confidence": "high",
-      "doubtful": false,
-      "reason": "杭州湖滨in77上城区延安路258号",
-      "poi_id": "6271383312076356083",
-      "poi_title": "杭州湖滨in77",
-      "poi_address": "浙江省杭州市上城区延安路258号",
-      "latitude": 30.25333,
-      "longitude": 120.16347
-    },
-    {
-      "group_id": "d1a7c1de7496",
-      "event_uids": [
-        "xiaohongshu:6a5488730000000007026238:08_2"
-      ],
-      "action": "match",
-      "search_keywords_tried": [
-        "宝龙艺术中心"
+      "longitude": 120.129297,
+      "candidates": [
+        {
+          "poi_id": "4990078846745659600",
+          "title": "中粮杭州大悦城",
+          "address": "浙江省杭州市拱墅区莫干山路与隐秀路交叉口西南",
+          "latitude": 30.301348,
+          "longitude": 120.129297,
+          "category": ""
+        }
       ],
       "confidence": "high",
       "doubtful": false,
-      "reason": "杭州宝龙艺术中心滨江区滨盛路3867号宝龙城内F5",
-      "poi_id": "14082813868509535945",
-      "poi_title": "杭州宝龙艺术中心",
-      "poi_address": "浙江省杭州市滨江区滨盛路3867号宝龙城市广场(滨江店)F5-M-F5-010",
-      "latitude": 30.186639,
-      "longitude": 120.167092
+      "reason": "中粮杭州大悦城主体一致，仅西中庭未精确"
+    },
+    {
+      "group_id": "44cfa793ebd1",
+      "event_uids": [
+        "xiaohongshu:6a61b991000000000a03a1b0:10_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "杭州大悦城"
+      ],
+      "poi_id": "4990078846745659600",
+      "poi_title": "中粮杭州大悦城",
+      "poi_address": "浙江省杭州市拱墅区莫干山路与隐秀路交叉口西南",
+      "latitude": 30.301348,
+      "longitude": 120.129297,
+      "candidates": [
+        {
+          "poi_id": "4990078846745659600",
+          "title": "中粮杭州大悦城",
+          "address": "浙江省杭州市拱墅区莫干山路与隐秀路交叉口西南",
+          "latitude": 30.301348,
+          "longitude": 120.129297,
+          "category": ""
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "中粮杭州大悦城主体一致，仅主中庭未精确"
+    },
+    {
+      "group_id": "ea41419f0cd9",
+      "event_uids": [
+        "xiaohongshu:6a61b991000000000a03a1b0:10_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "宫联CC",
+        "工联CC"
+      ],
+      "poi_id": "5457100276134425244",
+      "poi_title": "工联CC",
+      "poi_address": "浙江省杭州市上城区延安路292号",
+      "latitude": 30.254738,
+      "longitude": 120.16466,
+      "candidates": [
+        {
+          "poi_id": "5457100276134425244",
+          "title": "工联CC",
+          "address": "浙江省杭州市上城区延安路292号",
+          "latitude": 30.254738,
+          "longitude": 120.16466,
+          "category": ""
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "原文宫联CC即工联CC，延安路店名一致"
+    },
+    {
+      "group_id": "d09d6d57328b",
+      "event_uids": [
+        "xiaohongshu:6a61b991000000000a03a1b0:11_0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "滨江银泰城",
+        "滨江银泰D区"
+      ],
+      "poi_id": "17563191260803287872",
+      "poi_title": "银泰百货D区",
+      "poi_address": "浙江省杭州市滨江区西兴街道阡陌路兴耀·星澳商务中心东侧约90米",
+      "latitude": 30.201188,
+      "longitude": 120.224233,
+      "candidates": [
+        {
+          "poi_id": "17563191260803287872",
+          "title": "银泰百货D区",
+          "address": "浙江省杭州市滨江区西兴街道阡陌路兴耀·星澳商务中心东侧约90米",
+          "latitude": 30.201188,
+          "longitude": 120.224233,
+          "category": ""
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "滨江银泰百货D区主体一致"
+    },
+    {
+      "group_id": "a02f920e415f",
+      "event_uids": [
+        "xiaohongshu:6a61b991000000000a03a1b0:11_1"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "杭州来福士"
+      ],
+      "poi_id": "17735546092651898987",
+      "poi_title": "来福士购物中心",
+      "poi_address": "浙江省杭州市上城区新业路228号",
+      "latitude": 30.248728,
+      "longitude": 120.213118,
+      "candidates": [
+        {
+          "poi_id": "17735546092651898987",
+          "title": "来福士购物中心",
+          "address": "浙江省杭州市上城区新业路228号",
+          "latitude": 30.248728,
+          "longitude": 120.213118,
+          "category": ""
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "来福士购物中心主体一致，仅中庭未精确"
+    },
+    {
+      "group_id": "f93d2b7a07f8",
+      "event_uids": [
+        "xiaohongshu:6a61b991000000000a03a1b0:11_2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "杭州大悦城"
+      ],
+      "poi_id": "4990078846745659600",
+      "poi_title": "中粮杭州大悦城",
+      "poi_address": "浙江省杭州市拱墅区莫干山路与隐秀路交叉口西南",
+      "latitude": 30.301348,
+      "longitude": 120.129297,
+      "candidates": [
+        {
+          "poi_id": "4990078846745659600",
+          "title": "中粮杭州大悦城",
+          "address": "浙江省杭州市拱墅区莫干山路与隐秀路交叉口西南",
+          "latitude": 30.301348,
+          "longitude": 120.129297,
+          "category": ""
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "中粮杭州大悦城主体一致，仅中庭未精确"
     }
   ]
 }

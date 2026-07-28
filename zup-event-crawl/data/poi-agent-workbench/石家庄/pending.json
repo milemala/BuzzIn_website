@@ -1,66 +1,70 @@
 {
   "city": "石家庄",
   "source": "douban",
-  "exported_at": "2026-07-13T01:32:36.675Z",
+  "exported_at": "2026-07-26T12:09:12.591Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 2,
+  "last_import_new_uids": 6,
   "doubtful_only": false,
-  "total_events": 2,
+  "total_events": 6,
   "group_count": 2,
   "cache_hit_groups": 2,
   "groups": [
     {
-      "group_id": "1936a226f46b",
-      "location": "石家庄 新华区 红糖LIVEHOUSE 湾里庙步行街水幕广场M08",
-      "sample_title": "SinceTMRW始于明天 TOUR 2026 石家庄站",
+      "group_id": "b1720c406f21",
+      "location": "石家庄 裕华区 河北省话剧院儿童剧场 富强大街20号",
+      "sample_title": "儿童剧《绿野仙踪》",
       "event_uids": [
-        "douban:37815802"
+        "douban:37658474",
+        "douban:37602337",
+        "douban:37498168",
+        "douban:37498211",
+        "douban:37439172"
       ],
-      "event_count": 1,
+      "event_count": 5,
       "cached_poi": {
-        "poi_id": "532037913248001448",
-        "poi_title": "星光艺术空间&红糖LIVEHOUSE",
+        "poi_id": "1898510723239737524",
+        "poi_title": "河北省话剧院儿童剧场",
         "poi_address": "",
-        "latitude": 38.044978,
-        "longitude": 114.487492,
+        "latitude": 38.031418,
+        "longitude": 114.522236,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：石家庄 新华区 红糖LIVEHOUSE 湾里庙步行街水幕广场M08 → 星光艺术空间&红糖LIVEHOUSE（来源 event:douban:37836593）",
+        "reason": "地址映射库命中：石家庄 裕华区 河北省话剧院儿童剧场 富强大街20号 → 河北省话剧院儿童剧场（来源 event:douban:37498229）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "1936a226f46bbfae99c44d42775c534e7393b4ef"
+        "cache_key": "b1720c406f21316e53d8673428edfa67010ddf96"
       }
     },
     {
-      "group_id": "79463ddd745b",
-      "location": "石家庄 桥西区 河北省艺术中心 裕华西路13号(东里地铁站B东南口步行370米)",
-      "sample_title": "乐季闭幕音乐会“卧虎藏龙”",
+      "group_id": "c8f1ab93fc0e",
+      "location": "石家庄 桥西区 河北省艺术中心-造艺空间 裕华西路13号河北省艺术中心西侧",
+      "sample_title": "合家欢亲子互动魔术秀《魔法觉醒》",
       "event_uids": [
-        "douban:37781049"
+        "douban:36885745"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "223872818676009218",
-        "poi_title": "河北艺术中心",
+        "poi_id": "11316102721831789765",
+        "poi_title": "河北省艺术中心-造艺空间",
         "poi_address": "",
-        "latitude": 38.036248,
-        "longitude": 114.481621,
+        "latitude": 38.036456,
+        "longitude": 114.480854,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：石家庄 桥西区 河北省艺术中心 裕华西路13号(东里地铁站B东南口步行370米) → 河北艺术中心（来源 event:douban:37853537）",
+        "reason": "地址映射库命中：石家庄 桥西区 河北省艺术中心-造艺空间 裕华西路13号河北省艺术中心西侧 → 河北省艺术中心-造艺空间（来源 event:douban:37448319）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "79463ddd745b0c5641d34bafed620f6d91a0d721"
+        "cache_key": "c8f1ab93fc0edcda16d652de8f3328a6031bfcf3"
       }
     }
   ]

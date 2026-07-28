@@ -1,49 +1,74 @@
 {
   "city": "佛山",
   "source": "douban",
-  "exported_at": "2026-07-13T01:32:36.308Z",
+  "exported_at": "2026-07-26T11:54:47.107Z",
   "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
   "refresh": true,
   "export_mode": "new_import_unmatched",
   "pending_only": true,
   "new_import_only": true,
-  "last_import_new_uids": 3,
+  "last_import_new_uids": 6,
   "doubtful_only": false,
-  "total_events": 3,
-  "group_count": 3,
-  "cache_hit_groups": 2,
+  "total_events": 6,
+  "group_count": 6,
+  "cache_hit_groups": 5,
   "groups": [
     {
-      "group_id": "9387b97d2387",
-      "location": "佛山 禅城区 琼花大剧院 祖庙路22号",
-      "sample_title": "女性反乌托邦音乐剧《奇美拉》",
+      "group_id": "4c97b6507bbb",
+      "location": "佛山 顺德区 佛山国际体育文化演艺中心 佛山新城裕和路95号",
+      "sample_title": "周柏豪「The Blooming Chapter 绽放之章」粉丝见面会巡演 - 佛山站",
       "event_uids": [
-        "douban:37759739"
+        "douban:37883066"
       ],
       "event_count": 1,
       "cached_poi": {
-        "poi_id": "2984913764483185002",
-        "poi_title": "琼花大剧院",
+        "poi_id": "17512055418411941906",
+        "poi_title": "国际体育文化演艺中心",
         "poi_address": "",
-        "latitude": 23.032055,
-        "longitude": 113.111508,
+        "latitude": 22.959266,
+        "longitude": 113.14161,
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：佛山 禅城区 琼花大剧院 祖庙路22号 → 琼花大剧院（来源 event:douban:37869336）",
+        "reason": "地址映射库命中：佛山 顺德区 佛山国际体育文化演艺中心 佛山新城裕和路95号 → 国际体育文化演艺中心（来源 event:douban:37863374）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
         "from_cache": true,
-        "cache_key": "9387b97d23874ac82fa9ac2802e37cc07c6b4616"
+        "cache_key": "4c97b6507bbb3d1682eb81dd8ec92c1da4d87f17"
+      }
+    },
+    {
+      "group_id": "cc528d7eed9d",
+      "location": "佛山 顺德区 顺德演艺中心大剧院 大良街道碧水路6号",
+      "sample_title": "民族舞剧《梦回·红楼梦》",
+      "event_uids": [
+        "douban:37876132"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "3406399627012643504",
+        "poi_title": "顺德演艺中心大剧院",
+        "poi_address": "",
+        "latitude": 22.801224,
+        "longitude": 113.296842,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：佛山 顺德区 顺德演艺中心大剧院 大良街道碧水路6号 → 顺德演艺中心大剧院（来源 event:douban:37866197）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "cc528d7eed9dc8698f73907597b755f0e9337343"
       }
     },
     {
       "group_id": "2edd250b4a94",
       "location": "佛山 顺德区 佛山大剧院 华康道1号",
-      "sample_title": "“鑫”乐之旅——2026钢琴家田佳鑫独奏音乐会",
+      "sample_title": "新时代的脉搏-国际管乐学院音乐节2026节日乐团音乐会",
       "event_uids": [
-        "douban:37880392"
+        "douban:37868867"
       ],
       "event_count": 1,
       "cached_poi": {
@@ -55,7 +80,7 @@
         "action": "match",
         "confidence": "high",
         "doubtful": false,
-        "reason": "地址映射库命中：佛山 顺德区 佛山大剧院 华康道1号 → 佛山大剧院（来源 event:douban:37807173）",
+        "reason": "地址映射库命中：佛山 顺德区 佛山大剧院 华康道1号 → 佛山大剧院（来源 event:douban:37880392）",
         "search_keywords_tried": [
           "poi-address-cache"
         ],
@@ -64,13 +89,63 @@
       }
     },
     {
-      "group_id": "874c5de3f7ee",
-      "location": "佛山 禅城区 金马剧院 同济路57号(近同济广场)",
-      "sample_title": "杨波单口喜剧专场《一波三折》-佛山站",
+      "group_id": "4f722ce096a7",
+      "location": "佛山 南海区 南海影剧院 桂城街道天佑六路11号",
+      "sample_title": "儿童剧《我是哪吒》",
       "event_uids": [
-        "douban:37893089"
+        "douban:37883359"
       ],
       "event_count": 1
+    },
+    {
+      "group_id": "3a35f64b07a9",
+      "location": "佛山 顺德区 佛山大剧院·小剧场 乐从镇华康道1号（坊塔东侧）",
+      "sample_title": "莎士比亚名作改编 香港绰舞场《暴风雨前夜》",
+      "event_uids": [
+        "douban:37885450"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "16458810857050558908",
+        "poi_title": "佛山大剧院",
+        "poi_address": "",
+        "latitude": 22.968953,
+        "longitude": 113.115754,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：佛山 顺德区 佛山大剧院·小剧场 乐从镇华康道1号（坊塔东侧） → 佛山大剧院（来源 event:douban:37877676）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "3a35f64b07a9cc4d34c396fed3be1ff921f39986"
+      }
+    },
+    {
+      "group_id": "dea9b824a539",
+      "location": "佛山 禅城区 野生喜剧-佛山禅城区喜云社潮舟茶文化店 东熙里与天地路交叉口东40米潮舟潮饮",
+      "sample_title": "0815祖庙&岭南天地站 | 加钱国语互动专场《忘忧冰室》 | 即兴互动 爆笑解压 | 喜云社×野生喜剧",
+      "event_uids": [
+        "douban:37792223"
+      ],
+      "event_count": 1,
+      "cached_poi": {
+        "poi_id": "15075112320179477351",
+        "poi_title": "潮舟喜云社剧场",
+        "poi_address": "",
+        "latitude": 23.028788,
+        "longitude": 113.115185,
+        "action": "match",
+        "confidence": "high",
+        "doubtful": false,
+        "reason": "地址映射库命中：佛山 禅城区 野生喜剧-佛山禅城区喜云社潮舟茶文化店 东熙里与天地路交叉口东40米潮舟潮饮 → 潮舟喜云社剧场（来源 event:douban:37354323）",
+        "search_keywords_tried": [
+          "poi-address-cache"
+        ],
+        "from_cache": true,
+        "cache_key": "dea9b824a539a1086a854696d5d3d180b9d3f449"
+      }
     }
   ]
 }
