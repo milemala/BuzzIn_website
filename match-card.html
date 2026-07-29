@@ -1932,10 +1932,10 @@
     <div class="sheet ai-sheet" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
         <div class="handle"></div>
         <div class="ai-head">
-            <div class="ai-avatar">AI</div>
+            <div class="ai-avatar">Zee</div>
             <div class="ai-head-copy">
                 <h2 id="profileTitle">先认识你一下</h2>
-                <p id="profileSubtitle">像朋友随便聊聊，以后帮你找更合适的搭子。</p>
+                <p id="profileSubtitle">我是 Zee，随便聊聊，以后帮你找更合适的搭子。</p>
             </div>
             <button class="profile-close" id="closeProfileBtn" type="button" aria-label="关闭">×</button>
         </div>
@@ -1948,12 +1948,13 @@
         <div class="ai-pane" id="profileSummaryPane">
             <div class="summary-card">
                 <div class="intro-text" id="profileIntroText"></div>
-                <p class="intro-note">以上由对话整理而成，可直接改介绍。下方是我读到的长期偏好，不全也没关系。</p>
+                <p class="intro-note" id="profileIntroNote">上面是我对你的理解，以及以后会怎么帮你找局。觉得不对可以直接改。</p>
                 <div id="profileSummaryList"></div>
             </div>
             <div class="sheet-actions">
                 <button class="btn ghost" id="rechatProfileBtn" type="button">重新聊聊</button>
-                <button class="btn primary" id="confirmProfileBtn" type="button">确认这份介绍</button>
+                <button class="btn primary" id="resumeProfileBtn" type="button" hidden>再聊补全</button>
+                <button class="btn primary" id="confirmProfileBtn" type="button">确认，就按这个帮我找</button>
             </div>
         </div>
     </div>
@@ -2176,23 +2177,27 @@
     var emptyProfile = function() {
         return {
             version: 'v2',
+            occupation: emptyField(),
             social_purpose: emptyField(),
             social_style: emptyField(),
             chat_topics: emptyField(),
             activity_style: emptyField(),
             schedule_preference: emptyField(),
-            boundaries: emptyField(),
+            stranger_story: emptyField(),
+            friend_description: emptyField(),
             intro: ''
         };
     };
 
     var PROFILE_FIELD_LABELS = {
+        occupation: '职业/在读',
         social_purpose: '希望遇见',
         social_style: '社交人格',
         chat_topics: '聊天偏好',
         activity_style: '活动风格',
         schedule_preference: '作息偏好',
-        boundaries: '底线'
+        stranger_story: '陌生人经历',
+        friend_description: '朋友眼中的你'
     };
 
     var appState = {
@@ -2261,6 +2266,7 @@
         $('confirmRejectBtn').addEventListener('click', confirmReject);
         $('confirmProfileBtn').addEventListener('click', confirmProfile);
         $('rechatProfileBtn').addEventListener('click', function() { startProfileChat(true); });
+        $('resumeProfileBtn').addEventListener('click', function() { startProfileChat(false); });
         $('chatBackBtn').addEventListener('click', function() {
             var task = getActiveTask();
             if (task && isMyGroupOnly(task)) {
@@ -2389,7 +2395,12 @@
             showToast('请先选择想组局的活动');
             return;
         }
-        // 个人介绍可选：未填写也可直接开始匹配；需要时点「编辑我的信息」
+        if (!isProfileMatchReady(appState.profile)) {
+            showToast('建档还不完整，完整后才能开始匹配');
+            appState.pendingAfterSetup = true;
+            openProfile(appState.profile.intro ? 'summary' : 'chat');
+            return;
+        }
         appState.switchOn = true;
         startSearching();
     }
@@ -2485,8 +2496,19 @@
         $('profileOverlay').classList.add('show');
         if (mode === 'summary' && appState.profile.intro) {
             showProfileSummary();
+            return;
+        }
+        if (mode === 'chat') {
+            // 有进度 → 续聊未齐；否则全新开场
+            startProfileChat(!hasProfileProgress(appState.profile));
+            return;
+        }
+        if (isProfileMatchReady(appState.profile) && appState.profile.intro) {
+            showProfileSummary();
+        } else if (hasProfileProgress(appState.profile) && appState.profile.intro) {
+            showProfileSummary();
         } else {
-            startProfileChat(false);
+            startProfileChat(!hasProfileProgress(appState.profile));
         }
     }
     function closeProfile() {
@@ -2501,10 +2523,10 @@
     function showProfilePane(id) {
         $('profileChatPane').classList.toggle('active', id === 'chat');
         $('profileSummaryPane').classList.toggle('active', id === 'summary');
-        $('profileTitle').textContent = id === 'summary' ? '这是你的个人介绍' : '先认识你一下';
+        $('profileTitle').textContent = id === 'summary' ? '以后我会这样帮你' : '先认识你一下';
         $('profileSubtitle').textContent = id === 'summary'
-            ? '我按刚才的聊天整理了一段，你可以改。'
-            : '像朋友随便聊聊，以后帮你找更合适的搭子。';
+            ? '不只是总结你是谁，还有我会怎么给你推局和搭子。'
+            : '我是 Zee，随便聊聊，以后帮你找更合适的搭子。';
     }
 
     function newProfileSessionId() {
@@ -2523,14 +2545,6 @@
                 if (dislikes.length) bits.push('少聊' + dislikes.join('、'));
                 return bits.join('；');
             }
-            var boundaryBits = [];
-            if (v.smoking_nearby === 'ok') boundaryBits.push('不介意旁人抽烟');
-            else if (v.smoking_nearby === 'no') boundaryBits.push('介意旁人抽烟');
-            else if (v.smoking_nearby === 'depends') boundaryBits.push('抽烟看情况');
-            if (v.drinking === 'yes') boundaryBits.push('可喝酒');
-            else if (v.drinking === 'no') boundaryBits.push('不喝酒');
-            else if (v.drinking === 'sometimes') boundaryBits.push('喝酒看情况');
-            if (boundaryBits.length) return boundaryBits.join(' · ');
             try { return JSON.stringify(v); } catch (e) { return String(v); }
         }
         return String(v);
@@ -2545,22 +2559,57 @@
         });
     }
 
-    function startProfileChat(force) {
+    var MATCH_REQUIRED_FIELDS = [
+        'occupation', 'social_purpose', 'social_style', 'chat_topics',
+        'activity_style', 'schedule_preference', 'friend_description'
+    ];
+
+    function isFieldAnswered(field) {
+        return !!(field && field.value != null && field.value !== '__skipped__' && Number(field.confidence || 0) >= 0.55);
+    }
+
+    function isProfileMatchReady(profile) {
+        return MATCH_REQUIRED_FIELDS.every(function(key) {
+            return isFieldAnswered(profile && profile[key]);
+        });
+    }
+
+    function hasProfileProgress(profile) {
+        if (!profile) return false;
+        if (profile.intro) return true;
+        return Object.keys(PROFILE_FIELD_LABELS).some(function(key) {
+            var f = profile[key];
+            return f && f.value != null && Number(f.confidence || 0) >= 0.45;
+        });
+    }
+
+    /** forceFresh=true：重新聊聊，清空重来；false：续聊，只问未齐 */
+    function startProfileChat(forceFresh) {
         showProfilePane('chat');
         appState.chatBusy = false;
-        if (force || !appState.profileComplete) {
-            appState.profile = emptyProfile();
-        }
-        appState.profileSessionId = newProfileSessionId();
         $('profileChat').innerHTML = '';
         $('profileComposer').innerHTML = '';
-        callProfileAgent({ reset: true, userMessage: null });
+        appState.profileSessionId = newProfileSessionId();
+
+        if (forceFresh) {
+            appState.profile = emptyProfile();
+            appState.profileComplete = false;
+            callProfileAgent({ reset: true, resumeMode: false, userMessage: null });
+            return;
+        }
+
+        callProfileAgent({
+            reset: true,
+            resumeMode: true,
+            seedDraft: JSON.parse(JSON.stringify(appState.profile)),
+            userMessage: null
+        });
     }
 
     function appendTyping() {
         var row = document.createElement('div');
         row.className = 'bubble-row';
-        row.innerHTML = '<div class="mini">AI</div><div class="bubble"><span class="typing"><i></i><i></i><i></i></span></div>';
+        row.innerHTML = '<div class="mini">Zee</div><div class="bubble"><span class="typing"><i></i><i></i><i></i></span></div>';
         $('profileChat').appendChild(row);
         scrollChat();
         return row;
@@ -2569,7 +2618,7 @@
     function appendBubble(who, text) {
         var row = document.createElement('div');
         row.className = 'bubble-row' + (who === 'me' ? ' me' : '');
-        row.innerHTML = '<div class="mini">' + (who === 'me' ? '我' : 'AI') + '</div><div class="bubble"></div>';
+        row.innerHTML = '<div class="mini">' + (who === 'me' ? '我' : 'Zee') + '</div><div class="bubble"></div>';
         row.querySelector('.bubble').textContent = text;
         $('profileChat').appendChild(row);
         scrollChat();
@@ -2605,8 +2654,10 @@
         var payload = {
             sessionId: appState.profileSessionId,
             reset: !!opts.reset,
+            resumeMode: !!opts.resumeMode,
             userMessage: opts.userMessage == null ? null : opts.userMessage
         };
+        if (opts.seedDraft) payload.seedDraft = opts.seedDraft;
 
         fetch(PROFILE_API_BASE + '/api/profile-chat', {
             method: 'POST',
@@ -2630,7 +2681,15 @@
             if (aiText) appendBubble('ai', aiText);
 
             if (data.action === 'hard_block') {
-                renderComposerError('这条先跳过，换个话题继续也可以。');
+                // 不掐死输入：仍可继续聊或重开
+                renderChatComposer(data.quick_replies || [], !!data.quick_replies_multi);
+                var errBox = $('profileComposer');
+                if (errBox) {
+                    var tip = document.createElement('p');
+                    tip.style.cssText = 'margin:0 0 8px;font-size:13px;opacity:.75';
+                    tip.textContent = '这条先跳过，换个说法继续也可以。';
+                    errBox.insertBefore(tip, errBox.firstChild);
+                }
                 return;
             }
             if (data.action === 'handoff_summary') {
@@ -2639,10 +2698,11 @@
                 if (!appState.profile.intro || /暂无|未填|不了解|信息不足/.test(appState.profile.intro)) {
                     appState.profile.intro = buildIntroFromFields();
                 }
+                appState.profileComplete = !!data.profile_complete && isProfileMatchReady(appState.profile);
                 setTimeout(showProfileSummary, 420);
                 return;
             }
-            renderChatComposer(data.quick_replies || []);
+            renderChatComposer(data.quick_replies || [], !!data.quick_replies_multi);
         }).catch(function(err) {
             if (typingRow && typingRow.parentNode) typingRow.remove();
             appState.chatBusy = false;
@@ -2663,26 +2723,86 @@
         });
     }
 
-    function renderChatComposer(quickReplies) {
+    function renderChatComposer(quickReplies, allowMulti) {
         var box = $('profileComposer');
-        var chips = (quickReplies || []).map(function(opt) {
+        var selected = [];
+        var multi = !!allowMulti;
+        var opts = quickReplies || [];
+        var chips = opts.map(function(opt) {
             return '<button class="suggest" type="button" data-v="' + escapeHtml(opt) + '">' + escapeHtml(opt) + '</button>';
         }).join('');
+        var placeholder = !chips
+            ? '随便说，想到什么写什么'
+            : (multi ? '可多选，选好后点发送；也可自己写' : '点一项后点发送，也可自己写');
         box.innerHTML =
             (chips ? '<div class="suggests" id="suggestBox">' + chips + '</div>' : '') +
             '<div class="composer-row">' +
-                '<input id="chatInput" placeholder="随便说，想到什么写什么">' +
+                '<input id="chatInput" placeholder="' + placeholder + '">' +
                 '<button id="chatSendBtn" type="button">↑</button>' +
             '</div>';
+
+        function isSkipOpt(v) {
+            return /跳过|想不起来/.test(String(v || ''));
+        }
+
+        function syncInputFromSelection() {
+            var input = $('chatInput');
+            if (!input) return;
+            var joined = selected.join('、');
+            var cur = input.value.trim();
+            if (!cur || cur === input.dataset.fromChips) {
+                input.value = joined;
+                input.dataset.fromChips = joined;
+            }
+        }
+
         if ($('suggestBox')) {
             $('suggestBox').querySelectorAll('.suggest').forEach(function(btn) {
                 btn.addEventListener('click', function() {
-                    submitProfileAnswer(btn.dataset.v);
+                    var v = btn.dataset.v;
+                    if (!multi) {
+                        // 单选：只高亮一项，点发送才提交
+                        selected = [v];
+                        $('suggestBox').querySelectorAll('.suggest').forEach(function(b) {
+                            b.classList.toggle('selected', b === btn);
+                        });
+                        syncInputFromSelection();
+                        $('chatInput').focus();
+                        return;
+                    }
+                    var idx = selected.indexOf(v);
+                    if (idx >= 0) {
+                        selected.splice(idx, 1);
+                        btn.classList.remove('selected');
+                    } else {
+                        if (isSkipOpt(v)) {
+                            selected = [v];
+                            $('suggestBox').querySelectorAll('.suggest').forEach(function(b) {
+                                b.classList.toggle('selected', b === btn);
+                            });
+                        } else {
+                            selected = selected.filter(function(x) { return !isSkipOpt(x); });
+                            $('suggestBox').querySelectorAll('.suggest').forEach(function(b) {
+                                if (isSkipOpt(b.dataset.v)) b.classList.remove('selected');
+                            });
+                            selected.push(v);
+                            btn.classList.add('selected');
+                        }
+                    }
+                    syncInputFromSelection();
+                    $('chatInput').focus();
                 });
             });
         }
+
+        function composeMessage() {
+            var typed = ($('chatInput').value || '').trim();
+            if (typed) return typed;
+            return selected.join('、');
+        }
+
         function send() {
-            var val = $('chatInput').value.trim();
+            var val = composeMessage();
             if (!val) return;
             submitProfileAnswer(val);
         }
@@ -2707,20 +2827,35 @@
     function buildIntroFromFields() {
         var p = appState.profile;
         var bits = [];
-        ['social_style', 'activity_style', 'social_purpose'].forEach(function(key) {
+
+        function valOf(key) {
             var f = p[key];
-            if (f && f.value != null && Number(f.confidence || 0) >= 0.45) {
-                var text = formatProfileValue(f.value);
-                if (text) bits.push(text);
-            }
-        });
+            if (!f || f.value == null || f.value === '__skipped__' || Number(f.confidence || 0) < 0.45) return '';
+            return formatProfileValue(f.value);
+        }
+
+        var occ = valOf('occupation');
+        if (occ) bits.push('目前大致是「' + occ + '」这个状态');
+        var purpose = valOf('social_purpose');
+        if (purpose) bits.push('更想往「' + purpose + '」这类方向认识人');
+        var style = valOf('social_style');
+        if (style) bits.push('社交节奏偏' + style);
+        var activity = valOf('activity_style');
+        if (activity) bits.push('线下氛围更吃' + activity);
         var topics = p.chat_topics;
         if (topics && topics.value && Number(topics.confidence || 0) >= 0.45) {
-            var topicText = formatProfileValue(topics.value);
-            if (topicText) bits.push(topicText);
+            var likes = (topics.value.likes || []).slice(0, 3);
+            if (likes.length) bits.push('兴趣上我大概了解了（比如' + likes.join('、') + '），会当作找合拍搭子的参考，而不是只按单一标签筛人');
         }
-        if (!bits.length) return '在这座城市找同频搭子，随性一点也没关系，边玩边认识。';
-        return bits.slice(0, 4).join('，') + '。想认识合得来的人一起出门。';
+        var schedule = valOf('schedule_preference');
+        if (schedule) bits.push('时间上更偏' + schedule);
+        var friend = valOf('friend_description');
+        if (friend) bits.push('朋友眼里你偏' + friend);
+
+        if (!bits.length) {
+            return '这轮还了解得不多，没关系。之后我会先按轻松好开口的方向帮你找搭子，你边玩我边补对你的感觉。';
+        }
+        return '听下来，你' + bits.slice(0, 4).join('，') + '。以后我会综合这些感觉帮你找更合适的局和人，不会拿一两个标签把你定死，让每次出门更对味。';
     }
 
     function buildIntro() {
@@ -2735,39 +2870,31 @@
             appState.profile.intro = buildIntroFromFields();
         }
         $('profileIntroText').textContent = appState.profile.intro;
-
-        var rows = Object.keys(PROFILE_FIELD_LABELS).map(function(key) {
-            var f = appState.profile[key];
-            if (!f || f.value == null || Number(f.confidence || 0) < 0.45) return null;
-            var text = formatProfileValue(f.value);
-            if (!text) return null;
-            return { key: key, label: PROFILE_FIELD_LABELS[key], text: text };
-        }).filter(Boolean);
-
-        if (!rows.length) {
-            $('profileSummaryList').innerHTML = '<p class="intro-note" style="margin:12px 0 0">还没读到很明确的偏好，也没关系，以后边玩边补。</p>';
-            return;
-        }
-
-        $('profileSummaryList').innerHTML = rows.map(function(r) {
-            return '<div class="summary-item">' +
-                '<label>' + escapeHtml(r.label) + '</label>' +
-                '<div class="val">' + escapeHtml(r.text) + '</div>' +
-            '</div>';
-        }).join('') +
-            '<div class="summary-item" data-key="intro">' +
-                '<label>个人介绍</label>' +
-                '<div class="val">' + escapeHtml(appState.profile.intro) + '</div>' +
-                '<button class="edit-btn" type="button" id="editIntroBtn">修改介绍</button>' +
+        // 只展示大模型总结，不单拎结构化标签
+        $('profileSummaryList').innerHTML =
+            '<div class="summary-item" data-key="intro" style="border:0;padding-top:4px">' +
+                '<button class="edit-btn" type="button" id="editIntroBtn">修改总结</button>' +
                 '<div class="edit-box" id="editIntroBox"></div>' +
             '</div>';
-
         var editBtn = $('editIntroBtn');
         if (editBtn) {
             editBtn.addEventListener('click', function() {
                 beginEditIntro();
             });
         }
+
+        var ready = isProfileMatchReady(appState.profile);
+        appState.profileComplete = ready;
+        var note = $('profileIntroNote');
+        var confirmBtn = $('confirmProfileBtn');
+        var resumeBtn = $('resumeProfileBtn');
+        if (note) {
+            note.textContent = ready
+                ? '上面是我对你的理解，以及以后会怎么帮你找局。觉得不对可以直接改。'
+                : '当前信息不完整。完整后才能开启匹配组局；可点「再聊补全」只问空着/跳过的题，或「重新聊聊」从头来。';
+        }
+        if (confirmBtn) confirmBtn.hidden = !ready;
+        if (resumeBtn) resumeBtn.hidden = ready;
     }
 
     function beginEditIntro() {
@@ -2798,6 +2925,10 @@
 
     function confirmProfile() {
         var p = appState.profile;
+        if (!isProfileMatchReady(p)) {
+            showToast('画像还不完整，先补全后再开启匹配');
+            return;
+        }
         if (!profileHasSignal(p)) {
             showToast('好像还没聊到多少，再聊几句或重新聊聊也行');
             return;

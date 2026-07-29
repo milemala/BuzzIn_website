@@ -9,7 +9,7 @@ const schema = require('./profile-schema');
 const ROOT = path.resolve(__dirname, '../..');
 const PORT = Number(process.env.PORT || 8788);
 const ZHIPU_URL = 'https://open.bigmodel.cn/api/paas/v4/chat/completions';
-const MODEL = process.env.ZHIPU_MODEL || 'glm-4-flash';
+const MODEL = process.env.ZHIPU_MODEL || 'glm-5.2';
 
 loadEnv(path.join(__dirname, '.env'));
 loadEnv(path.join(ROOT, '.env'));
@@ -160,19 +160,25 @@ async function callZhipu(messages, opts) {
     err.status = 500;
     throw err;
   }
+  // glm-5.x 默认会深度思考，思考也占 max_tokens，建档对话关掉以免回复被截断
+  const useThinkingOff = /^glm-5/i.test(MODEL);
+  const body = {
+    model: MODEL,
+    messages,
+    temperature: opts && opts.temperature != null ? opts.temperature : 0.65,
+    max_tokens: opts && opts.max_tokens != null ? opts.max_tokens : 2048,
+    response_format: { type: 'json_object' }
+  };
+  if (useThinkingOff) {
+    body.thinking = { type: 'disabled' };
+  }
   const res = await fetch(ZHIPU_URL, {
     method: 'POST',
     headers: {
       Authorization: 'Bearer ' + API_KEY,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      model: MODEL,
-      messages,
-      temperature: opts && opts.temperature != null ? opts.temperature : 0.65,
-      max_tokens: opts && opts.max_tokens != null ? opts.max_tokens : 900,
-      response_format: { type: 'json_object' }
-    })
+    body: JSON.stringify(body)
   });
   const raw = await res.text();
   let data;
@@ -189,59 +195,110 @@ async function callZhipu(messages, opts) {
     err.status = res.status;
     throw err;
   }
-  const content = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
-  return { content: content || '', usage: data.usage || null, model: data.model || MODEL };
+  const choice = data.choices && data.choices[0];
+  const content = choice && choice.message && choice.message.content;
+  const finish = choice && choice.finish_reason;
+  if (finish === 'length') {
+    console.warn('[profile-proxy] model output truncated (finish_reason=length)');
+  }
+  return { content: content || '', usage: data.usage || null, model: data.model || MODEL, finish_reason: finish || '' };
 }
 
-function getOrCreateSession(sessionId, reset) {
-  if (reset || !sessions.has(sessionId)) {
-    const now = new Date().toISOString();
-    sessions.set(sessionId, {
-      messages: [],
-      draft: schema.emptyDraft(),
-      transcript: [],
-      createdAt: now,
-      updatedAt: now,
-      status: 'in_progress',
-      userTurns: 0,
-      lowQualityStreak: 0,
-      pendingWrapUp: false,
-      endDecision: null
-    });
+function hydrateSessionFromRecord(record) {
+  const now = new Date().toISOString();
+  return {
+    messages: Array.isArray(record.messages) ? record.messages.slice() : [],
+    draft: record.draft && typeof record.draft === 'object' ? record.draft : schema.emptyDraft(),
+    transcript: Array.isArray(record.transcript) ? record.transcript.slice() : [],
+    createdAt: record.createdAt || now,
+    updatedAt: record.updatedAt || now,
+    status: record.status || 'in_progress',
+    userTurns: Number(record.userTurns) || 0,
+    lowQualityStreak: Number(record.lowQualityStreak) || 0,
+    pendingWrapUp: false,
+    endDecision: record.endDecision || null,
+    resumeMode: false,
+    resumeTargets: [],
+    resumeTouched: []
+  };
+}
+
+function freshSession() {
+  const now = new Date().toISOString();
+  return {
+    messages: [],
+    draft: schema.emptyDraft(),
+    transcript: [],
+    createdAt: now,
+    updatedAt: now,
+    status: 'in_progress',
+    userTurns: 0,
+    lowQualityStreak: 0,
+    pendingWrapUp: false,
+    endDecision: null,
+    resumeMode: false,
+    resumeTargets: [],
+    resumeTouched: []
+  };
+}
+
+function getOrCreateSession(sessionId, reset, seedDraft, resumeMode) {
+  if (reset) {
+    const session = freshSession();
+    if (seedDraft && typeof seedDraft === 'object') {
+      session.draft = schema.mergeProfile(schema.emptyDraft(), seedDraft);
+      if (typeof seedDraft.intro === 'string') session.draft.intro = seedDraft.intro;
+    }
+    session.resumeMode = !!resumeMode;
+    if (session.resumeMode) {
+      session.resumeTargets = schema.incompleteMatchFields(session.draft);
+      session.resumeTouched = [];
+    }
+    sessions.set(sessionId, session);
+    return session;
+  }
+  if (!sessions.has(sessionId)) {
+    const saved = loadSavedChat(sessionId);
+    if (saved && Array.isArray(saved.messages) && saved.messages.length) {
+      console.log('[profile-proxy] restored session from disk:', sessionId, 'msgs=' + saved.messages.length);
+      sessions.set(sessionId, hydrateSessionFromRecord(saved));
+    } else {
+      sessions.set(sessionId, freshSession());
+    }
   }
   return sessions.get(sessionId);
 }
 
 function buildSystem(session, phase) {
+  // 只注入进度事实，不写题面/选项/措辞；对话内容一律听 PROFILE_SYSTEM_PROMPT
   const cover = schema.coverageSummary(session.draft);
-  return [
+  const complete = schema.isProfileComplete(session.draft);
+  const incomplete = schema.incompleteMatchFields(session.draft);
+  const incompleteLabels = incomplete.map((k) => k + '(' + (schema.FIELD_LABELS[k] || k) + ')');
+  const lines = [
     PROFILE_SYSTEM_PROMPT,
     '',
-    '【本轮】phase=' + phase
+    '【本轮进度·事实】phase=' + phase
       + ' turns=' + (session.userTurns || 0) + '/' + schema.END_POLICY.maxUserTurns
       + ' low_streak=' + (session.lowQualityStreak || 0)
-      + ' high_fields=' + schema.countHighConfidence(session.draft).count,
-    '当前画像摘要：' + (cover.known.length ? cover.known.slice(0, 5).join('；') : '还很少'),
-    '提醒：聊天体验优先；禁止复述用户原话；profile_update 只写本轮新确认的字段。'
-  ].join('\n');
-}
-
-function lastUserText(session) {
-  const list = session.transcript || [];
-  for (let i = list.length - 1; i >= 0; i -= 1) {
-    if (list[i].role === 'user') return String(list[i].text || '').trim();
+      + ' high_fields=' + schema.countHighConfidence(session.draft).count
+      + ' profile_complete=' + (complete ? 'true' : 'false')
+      + (session.resumeMode ? ' resume_mode=true' : ''),
+    '已知字段：' + (cover.known.length ? cover.known.slice(0, 8).join('；') : '还很少'),
+    '尚未掌握字段：' + ((cover.unknown && cover.unknown.length) ? cover.unknown.join('、') : '无'),
+    '匹配未齐字段（空或已跳过）：' + (incompleteLabels.length ? incompleteLabels.join('、') : '无')
+  ];
+  if (session.resumeMode && phase === 'continue') {
+    lines.push('补全续聊：只问「匹配未齐字段」；已有真实回答的禁止再问。');
+    lines.push('低质/乱答（敷衍、脏话胡闹）：标 low_quality，不要写入真答、不要写成跳过，用更短问法+选项再问同一未齐题；连续低质才会由业务层收束。');
+    lines.push('用户明确说跳过：才写 __skipped__，再问下一未齐项；若已无未齐项则等业务层收束。');
   }
-  return '';
-}
-
-function isEchoReply(assistantText, userText) {
-  const a = String(assistantText || '').trim();
-  const u = String(userText || '').trim();
-  if (!a || !u) return false;
-  if (a === u) return true;
-  if (u.length >= 4 && (a === u + '？' || a === u + '?' || a === u + '。')) return true;
-  if (u.length >= 6 && a.length <= u.length + 6 && a.indexOf(u) === 0) return true;
-  return false;
+  if (phase === 'wrap_up') {
+    lines.push(complete
+      ? '收束：画像完整。assistant_reply 与 intro 都对用户说话；写理解与以后怎么帮找局。'
+      : '收束：画像不完整。assistant_reply 与 intro 必须像对朋友说话：告诉「你」还不完整、完整后才能匹配组局、可随时再来补；禁止写字段名、profile_complete、内部备注。');
+  }
+  return lines.join('\n');
 }
 
 function pickReply(parsed) {
@@ -250,10 +307,14 @@ function pickReply(parsed) {
   ).trim();
 }
 
+/**
+ * 编排只做：调模型 → 解析 JSON → 合并 profile_update → 交给业务层计数结束。
+ * 不在这里改写文案、不猜测用户选项、不拼下一题。
+ */
 async function runAgent(session, phase, opts) {
   const system = buildSystem(session, phase);
   const apiMessages = [{ role: 'system', content: system }].concat(session.messages);
-  let result = await callZhipu(apiMessages, { temperature: 0.65, max_tokens: 900 });
+  let result = await callZhipu(apiMessages, { temperature: 0.65, max_tokens: 2048 });
   let parsed;
   try {
     parsed = extractJson(result.content);
@@ -262,43 +323,30 @@ async function runAgent(session, phase, opts) {
       { role: 'assistant', content: result.content },
       {
         role: 'user',
-        content: '格式错误。请只输出一个 JSON，含 assistant_reply、quick_replies、profile_update、user_signal、safety。'
+        content: '格式错误或内容被截断。请重新完整输出一个 JSON，含 assistant_reply、quick_replies、quick_replies_multi、profile_update、user_signal、safety。assistant_reply 必须说完整，含问句。'
       }
-    ]), { temperature: 0.4, max_tokens: 900 });
+    ]), { temperature: 0.4, max_tokens: 2048 });
     result = retry;
     parsed = extractJson(retry.content);
   }
 
   let reply = pickReply(parsed);
-  const userText = (opts && opts.userText) || lastUserText(session);
 
-  if (!reply || isEchoReply(reply, userText)) {
-    try {
-      const fixed = await callZhipu(apiMessages.concat([
-        { role: 'assistant', content: result.content },
-        {
-          role: 'user',
-          content: '你刚才复述了我的话或回复无效。请重新输出 JSON：用自己的话短回应；continue 时给一个带例子的短问题；wrap_up 则只收束。禁止重复我的原话。'
-        }
-      ]), { temperature: 0.5, max_tokens: 700 });
-      parsed = extractJson(fixed.content);
-      result = fixed;
-      reply = pickReply(parsed);
-    } catch (_) { /* fallthrough */ }
-  }
-
-  if (!reply || isEchoReply(reply, userText)) {
+  if (!reply) {
     reply = phase === 'wrap_up'
-      ? '好，我大概有数了。以后按你的感觉帮你找更合适的朋友和局。'
-      : '明白。你更喜欢安静慢慢聊，还是热闹一点？比如咖啡 / 小酒吧。';
-    parsed.quick_replies = phase === 'wrap_up' ? [] : ['偏安静', '偏热闹', '都可以'];
+      ? '好，我大概有数了。帮你整理了一小段，你看看对不对。'
+      : '我在听～你也可以再说一点。';
   }
 
   const profileUpdate = parsed.profile_update || parsed.slot_updates || {};
   session.draft = schema.mergeProfile(session.draft, profileUpdate);
+
   if (phase === 'wrap_up') {
-    if (!session.draft.intro || /暂无|未填|不了解|信息不足/.test(session.draft.intro)) {
-      session.draft.intro = schema.fallbackIntro(session.draft);
+    const incomplete = !schema.isProfileComplete(session.draft);
+    // 不完整时总结页 intro 一律用对用户说话的保底文案，避免模型写出内部备注
+    if (incomplete || !session.draft.intro || /暂无|未填|不了解|信息不足/.test(session.draft.intro)
+      || schema.introLooksInternal(session.draft.intro)) {
+      session.draft.intro = schema.fallbackIntro(session.draft, { incomplete });
     }
   }
 
@@ -307,7 +355,8 @@ async function runAgent(session, phase, opts) {
 
   return {
     reply,
-    quick_replies: Array.isArray(parsed.quick_replies) ? parsed.quick_replies.slice(0, 4) : [],
+    quick_replies: Array.isArray(parsed.quick_replies) ? parsed.quick_replies.slice(0, 6) : [],
+    quick_replies_multi: parsed.quick_replies_multi === true || parsed.quick_replies_multi === 'true',
     profile_update: profileUpdate,
     user_signal: parsed.user_signal || 'normal',
     safety: parsed.safety || { level: 'ok', note: '' },
@@ -316,9 +365,28 @@ async function runAgent(session, phase, opts) {
   };
 }
 
+/** 补聊：只有本轮对目标字段写了有效更新（真答或再次跳过）才记 touched；低质不记 */
+function noteResumeTouches(session, profileUpdate, userSignal) {
+  if (!session.resumeMode) return;
+  const signal = String(userSignal || 'normal');
+  if (signal === 'low_quality' || signal === 'unsafe' || signal === 'off_topic' || signal === 'joke') {
+    return;
+  }
+  if (!session.resumeTouched) session.resumeTouched = [];
+  const targets = session.resumeTargets || [];
+  schema.PROFILE_FIELDS.forEach((key) => {
+    if (targets.indexOf(key) < 0) return;
+    if (!profileUpdate || profileUpdate[key] == null) return;
+    const incoming = schema.normalizeField(profileUpdate[key]);
+    if (incoming.value == null) return;
+    if (session.resumeTouched.indexOf(key) < 0) session.resumeTouched.push(key);
+  });
+}
+
 function applyUserSignal(session, signal) {
   const s = String(signal || 'normal');
-  if (s === 'low_quality') session.lowQualityStreak += 1;
+  // unsafe 也算低质回合：累计连续次数；正常/玩笑等其它信号清零
+  if (s === 'low_quality' || s === 'unsafe') session.lowQualityStreak += 1;
   else session.lowQualityStreak = 0;
   return {
     askedEnd: s === 'ask_end',
@@ -343,6 +411,8 @@ function prunePreviousAssistant(session) {
 }
 
 function finishPayload(sessionId, session, out, action, phase, decision, saved) {
+  const complete = schema.isProfileComplete(session.draft);
+  const incompleteFields = schema.incompleteMatchFields(session.draft);
   return {
     ok: true,
     sessionId,
@@ -351,11 +421,14 @@ function finishPayload(sessionId, session, out, action, phase, decision, saved) 
     assistant_reply: out.reply,
     assistant_message: out.reply,
     quick_replies: out.quick_replies,
+    quick_replies_multi: !!out.quick_replies_multi,
     profile_update: out.profile_update || {},
     action,
     phase,
     profile_draft: session.draft,
     intro: session.draft.intro || '',
+    profile_complete: complete,
+    incomplete_fields: incompleteFields,
     end_decision: decision,
     safety: out.safety,
     savedTo: saved ? path.relative(ROOT, saved.json) : null
@@ -365,17 +438,28 @@ function finishPayload(sessionId, session, out, action, phase, decision, saved) 
 async function handleProfileChat(body) {
   const sessionId = String(body.sessionId || 'default');
   const reset = !!body.reset;
+  const resumeMode = !!body.resumeMode;
+  const seedDraft = body.seedDraft && typeof body.seedDraft === 'object' ? body.seedDraft : null;
   const userMessage = body.userMessage == null ? null : String(body.userMessage);
-  const session = getOrCreateSession(sessionId, reset);
+  const session = getOrCreateSession(sessionId, reset, seedDraft, resumeMode);
 
-  // 开场
+  // 开场：只触发「开始聊」，怎么寒暄、问什么题全听 system-prompt，JS 不写题面
   if (!session.messages.length) {
-    session.messages.push({
-      role: 'user',
-      content: userMessage && userMessage.trim()
-        ? ('用户刚打开并说：' + userMessage.trim() + '\n请按开场规则回复，并更新 profile_update（若有）。')
-        : '用户刚打开聊天。请按开场规则：说明想了解他以便推荐合适朋友/局，立刻给带例子的短问题 + quick_replies。'
-    });
+    let openContent;
+    if (session.resumeMode) {
+      const incomplete = schema.incompleteMatchFields(session.draft);
+      const labels = incomplete.map((k) => schema.FIELD_LABELS[k] || k).join('、');
+      openContent = userMessage && userMessage.trim()
+        ? ('用户回来补全画像，并说：' + userMessage.trim()
+          + '\n未齐字段：' + (labels || '无') + '。请按补全续聊规则，只问未齐项。')
+        : ('用户回来补全画像。未齐字段：' + (labels || '无')
+          + '。请按补全续聊规则简短接一句，然后只问第一道未齐题；已有真答的不要再问。');
+    } else {
+      openContent = userMessage && userMessage.trim()
+        ? ('用户刚打开并说：' + userMessage.trim() + '\n请按系统提示词的开场规则回复。')
+        : '用户刚打开聊天。请按系统提示词的开场规则回复。';
+    }
+    session.messages.push({ role: 'user', content: openContent });
     if (userMessage && userMessage.trim()) {
       session.userTurns += 1;
       appendTranscript(session, 'user', userMessage.trim());
@@ -404,16 +488,23 @@ async function handleProfileChat(body) {
 
   let phase = session.pendingWrapUp ? 'wrap_up' : 'continue';
   if (phase === 'wrap_up') {
+    const complete = schema.isProfileComplete(session.draft);
     session.messages.push({
       role: 'user',
-      content: '【业务指令】可以结束了，请自然收束，并在 profile_update.intro 写短介绍。'
+      content: complete
+        ? '【业务指令】可以结束了。请按系统提示词 wrap_up（完整）规则收束，并写入 profile_update.intro。'
+        : '【业务指令】可以结束了。画像不完整。请按系统提示词 wrap_up（不完整）规则收束，明确说明不完整、完整后才能匹配组局、可再来补聊；写入 profile_update.intro。'
     });
   }
 
   let out = await runAgent(session, phase, { userText: text });
   const signalInfo = applyUserSignal(session, out.user_signal);
+  noteResumeTouches(session, out.profile_update, out.user_signal);
 
-  if ((out.safety && out.safety.level === 'unsafe') || signalInfo.unsafe) {
+  // 真正有害才拦截；已正常问下一题的「擦边」不当掐死对话
+  const trulyUnsafe = (out.safety && out.safety.level === 'unsafe') || signalInfo.unsafe;
+  const stillAsking = /[？?]/.test(String(out.reply || ''));
+  if (trulyUnsafe && !stillAsking) {
     session.updatedAt = new Date().toISOString();
     const saved = persistSession(sessionId, session);
     return finishPayload(sessionId, session, out, 'hard_block', phase, session.endDecision, saved);
@@ -423,15 +514,21 @@ async function handleProfileChat(body) {
     userTurns: session.userTurns,
     lowQualityStreak: session.lowQualityStreak,
     draft: session.draft,
-    userAskedToEnd: signalInfo.askedEnd
+    userAskedToEnd: signalInfo.askedEnd,
+    resumeMode: !!session.resumeMode,
+    resumeTargets: session.resumeTargets || [],
+    resumeTouched: session.resumeTouched || []
   });
   session.endDecision = decision;
 
   // 本轮还在聊，但业务判定该结束 → 再收束一次（仅结束时多一次）
   if (phase === 'continue' && decision.shouldEnd) {
+    const complete = schema.isProfileComplete(session.draft);
     session.messages.push({
       role: 'user',
-      content: '【业务指令】当前信息已足够，请自然结束，并在 profile_update.intro 写短介绍。不要再提新问题。'
+      content: complete
+        ? '【业务指令】当前可结束。请按 wrap_up（完整）收束：对用户说话，写入 profile_update.intro。不要再提新问题。'
+        : '【业务指令】当前可结束，但画像不完整。请按 wrap_up（不完整）收束：用对朋友说话的口吻说明还不完整、完整后才能匹配组局、可再来补；禁止字段名/内部术语；写入 profile_update.intro。不要再提新问题。'
     });
     const wrap = await runAgent(session, 'wrap_up', { userText: text });
     prunePreviousAssistant(session);
@@ -440,11 +537,11 @@ async function handleProfileChat(body) {
   }
 
   if (phase === 'wrap_up') {
-    if (!session.draft.intro || /暂无|未填|不了解|信息不足/.test(session.draft.intro)) {
-      session.draft.intro = schema.fallbackIntro(session.draft);
-    }
+    const incomplete = !schema.isProfileComplete(session.draft);
+    session.draft.intro = schema.fallbackIntro(session.draft, { incomplete });
     session.status = 'completed';
     session.pendingWrapUp = false;
+    session.resumeMode = false;
     session.updatedAt = new Date().toISOString();
     const saved = persistSession(sessionId, session);
     return finishPayload(sessionId, session, out, 'handoff_summary', 'wrap_up', decision, saved);
