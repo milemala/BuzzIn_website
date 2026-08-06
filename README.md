@@ -45,7 +45,12 @@ cp .env.example .env   # 填入 ZHIPU_API_KEY
 npm start
 ```
 
-浏览器打开 http://localhost:8788/match-card.html ，点「编辑我的信息」即可与大模型多轮建档（端口默认 8788，避免与活动审核台 8787 冲突）。详见 [`docs/ai-match-profile.md`](docs/ai-match-profile.md)。
+浏览器打开 http://localhost:8788/match-card.html ，点「编辑我的信息」即可建档。
+
+**只需开这一个服务。** `8787` 是活动审核台（`zup-event-crawl`），和 AI 建档无关，测撮合/建档时不必启动。详见 [`docs/ai-match-profile.md`](docs/ai-match-profile.md)。
+
+- 最新后端交接入口：[`docs/ai-match-profile-backend-handoff.md`](docs/ai-match-profile-backend-handoff.md)
+- 可直接发送给后端的压缩包：`AI建档-v3-后端交接包-20260730.zip`
 
 ## 页面说明
 
@@ -68,9 +73,10 @@ npm start
   - 多活动并行：选几种活动就开几个匹配任务；顶部任务条切换，各自独立寻找 / 结果 / 等待成局。
   - 重新匹配：先询问原因，结束后回到待匹配（若还有其他任务则继续其他任务）；需再次轻触星芒才会开新匹配。
   - 昵称/年龄/性别/定位等视为注册已有；组局类型与希望匹配性别为每次匹配前的临时配置，不进 AI 建档。
-  - 首次建档为**单 Agent**：每轮返回 `assistant_reply`（给用户）+ `profile_update`（后台画像）；聊天体验优先于凑字段；结束由业务层控制。
+  - 首次建档为 **v3 单 Agent**：Prompt 负责问法与回答判断，业务层用 `fieldQueue / currentField` 推进；画像使用 `empty / answered / skipped`，不依赖模型自报置信度。
   - 建档真实 LLM：本地代理 [`demo/profile-proxy`](demo/profile-proxy) + 智谱 API；说明见 [`docs/ai-match-profile.md`](docs/ai-match-profile.md)。
-  - 完整路径：AI 建档 → 选活动与期望 → 开撮合 →（多任务）寻找 → 匹配 → 等待确认 → 群聊。
+  - 完整路径：选活动与期望 → 开撮合 →（多任务）寻找 → 匹配 → 等待确认 → 群聊；Demo 匹配不强制先建档，建档可随时点「编辑我的信息」。
+  - Demo 特例终态：`咖啡` → 匹配超时；`户外` → 我超时未确认导致未能成局；`桌游` → 我已确认但人数不足未能成局；`约饭` 停在寻找中便于看匹配中页。均可重新寻找。
 
 - Match 入口三态动画 Demo（`match-entry-home.html`）
   - 假 App 地图首页壳，右下角放 Match 入口；页面并排展示 3 种入口状态动画，便于对比验收。
@@ -108,6 +114,22 @@ npm start
 - 产品对外口径以 `参考资料/` 中的 BP / 鲸准文案为准，首页保持用户可读的短句表达。
 
 ## 最近更新
+
+### 2026年8月 - 匹配状态图标改为 SVG
+- **变更**: 等待确认 / 成局 / 未找到 / 已超时 / 人数不足等状态标识，由系统 emoji 改为统一 SVG 图片，避免不同设备显示不一致。
+- **文件**: `images/match-status/`、`match-card.html`、`README.md`
+
+### 2026年8月 - 匹配 Demo 增加超时 / 未能成局
+- **变更**: 咖啡→匹配超时；户外→我超时未确认未能成局；桌游→我已确认但人数不足未能成局；终态不展示用户列表，可重新寻找。
+- **文件**: `match-card.html`、`README.md`
+
+### 2026年8月 - AI 建档思考动画改为星芒
+- **变更**: 建档对话等待回复时，三点跳动改为一小簇星芒：主星明显更大、两颗伴星紧凑错位；错峰交替呼吸，放大时互不抢位。
+- **文件**: `match-card.html`、`README.md`
+
+### 2026年7月 - AI 建档 v3 精简状态机
+- **变更**: 用字段队列统一首次建档与补聊；删除多套置信度、重复完整度判断和冗余补聊状态；模型总结仅异常时 fallback；增加 Node 业务测试与失败保进度重试。
+- **文件**: `demo/profile-proxy/`、`docs/ai-match-profile*.md`、`match-card.html`、`README.md`
 
 ### 2026年7月 - 精简建档 Demo 目录（后端参考）
 - **变更**: 删除废弃的 `prompts/conversation.js`、`prompts/extractor.js`；补充 `demo/profile-proxy/README.md` 作为后端对齐说明。

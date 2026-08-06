@@ -1,89 +1,107 @@
-# AI 建档（首次认识你）· 单 Agent
+# AI 建档（首次认识你）· v3
 
 本地 Demo：[`match-card.html`](../match-card.html) → [`demo/profile-proxy`](../demo/profile-proxy) → 智谱。
 
-可运行实现（后端参考）：[`demo/profile-proxy/`](../demo/profile-proxy/) —— 目录说明见其中 [`README.md`](../demo/profile-proxy/README.md)。  
-唯一 Prompt：[`system-prompt.js`](../demo/profile-proxy/system-prompt.js)。  
-**给后端 / AI 的交接文档**：[`ai-match-profile-backend-handoff.md`](./ai-match-profile-backend-handoff.md)。
+唯一 Prompt：[`system-prompt.js`](../demo/profile-proxy/system-prompt.js)
+后端交接：[`ai-match-profile-backend-handoff.md`](./ai-match-profile-backend-handoff.md)
+现有后端迁移：[`ai-match-profile-backend-migration.md`](./ai-match-profile-backend-migration.md)
 
----
+## 产品目标
 
-## 架构
+用户第一次使用 AI 组局前，与 Zee 聊几句，形成长期可复用的社交画像。对话结束后生成一段可修改的介绍；画像未完整时不能开始匹配，可“再聊补全”或“重新聊聊”。
 
-**一个 Agent、一个 Prompt、每轮一次模型调用。**
+这是用于验证产品逻辑和 Prompt 的 Demo，不承担生产服务能力。
 
-每轮返回：
+## 核心架构
 
-| 字段 | 给谁看 | 作用 |
-|------|--------|------|
-| `assistant_reply` | 用户 | Zee 的自然聊天回复 |
-| `profile_update` | 后台 | 增量更新长期画像（前端不展示原文） |
-| `quick_replies` | 用户 | **由模型本轮生成**的快捷按钮，前端只负责渲染，不写死题库 |
-| `quick_replies_multi` | 前端 | `true` 可多选（题 1/3/5/7），`false` 单选（题 2/4/6）；前端按此切换交互 |
-| `user_signal` | 业务层 | 敷衍 / 想结束等意图 |
+- 单 Agent、单 Prompt。
+- 正常轮次一次模型调用；结束时额外一次 `wrap_up`。
+- Prompt 决定怎么说、怎么判断回答质量。
+- 业务层维护 `fieldQueue / currentField`，决定能否推进和结束。
+- 前端只展示服务端结果，不重复计算完整度。
 
-核心原则（写在 Prompt 第一条）：
+## 画像字段
 
-> **聊天体验优先于画像采集，不要为了获取某个字段而刻意提问。**
+字段状态统一为：
 
-结束时机仍由业务层控制（7 题槽位都已答完 / 轮次上限 / 连续敷衍 / 用户要求结束），不交给模型自己宣布「建档完成」。
+```json
+{ "value": "...", "status": "empty|answered|skipped", "evidence": [] }
+```
 
----
+不使用未经校准的模型置信度。
 
-## 业务结束条件（满足任一）
+匹配需要真实回答：
 
-| 条件 | 默认 |
-|------|------|
-| 除「陌生人经历」外字段都已**处理完**（真答或跳过均可） | 可出总结 |
-| 用户发言 ≥ 30 轮 | 上限收束 |
-| 连续 `low_quality` / `unsafe` ≥ 3 | 提前收束 |
-| `user_signal=ask_end` | 立刻收束 |
+- 职业/在读
+- 希望遇见
+- 社交人格
+- 聊天偏好
+- 活动风格
+- 作息偏好
+- 朋友眼中的你
 
-**匹配完整度（另算，硬拦组局）**：除第 7 题外，核心字段必须是真实回答（`__skipped__` 不算完整）。不完整时总结会说明，且不能开始匹配；「再聊补全」只问未齐题，「重新聊聊」清空重来。
+`stranger_story` 可空，不挡匹配。
 
----
+## 每轮输出
 
-## 画像字段（8 项）
+```json
+{
+  "assistant_reply": "",
+  "quick_replies": [],
+  "quick_replies_multi": false,
+  "profile_update": {},
+  "answer_status": "not_applicable|clear|ambiguous|low_quality|skip",
+  "user_signal": "normal|joke|off_topic|ask_end|unsafe"
+}
+```
 
-| 字段 | 含义 | 示例 |
-|------|------|------|
-| `occupation` | 职业领域或在读（开放作答，无快捷选项） | 互联网产品、在读、自由职业做设计 |
-| `social_purpose` | 希望遇见谁 | 异性朋友、饭搭子、创业伙伴、闲聊放松、扩大社交圈 |
-| `social_style` | 社交人格 | 主动、慢热、一般 |
-| `chat_topics` | 聊天偏好 | `{ likes, dislikes }` |
-| `activity_style` | 活动风格 | 偏安静、偏热闹、分情况而定 |
-| `schedule_preference` | 作息偏好 | 工作日晚上、周末、很随机 |
-| `stranger_story` | 印象深刻的陌生人经历 | 短文摘要；可跳过 |
-| `friend_description` | 朋友怎么形容你 | 短文摘要 |
-| `intro` | 收束时总结 | 理解 + 以后怎么帮你 |
+多选题为第 2、4、6、8 题；单选/开放题为第 1、3、5、7 题。
 
-每个字段：`{ value, confidence, evidence[] }`。本轮无新信息就不要写进 `profile_update`。
+## 推进规则
 
-不主动问：性别年龄地址、学历收入细节、公司/学校全称、MBTI星座、本次组局类型、匹配性别。职业/在读仅按第 1 题收集。
+- `clear`：写入当前字段并推进。
+- `skip`：服务端记录跳过并推进。
+- `ambiguous`：不入库，确认当前题。
+- `low_quality`：不入库，缩短问法重问当前题。
+- `joke / off_topic`：拉回当前题，不累计低质。
+- `unsafe`：不入库并计入低质。
 
----
+结束条件：
 
-## 启动
+1. 当前字段队列已处理完；
+2. 用户发言达到 30 轮；
+3. 连续低质或 unsafe 达到 3 次；
+4. 用户主动要求结束。
+
+“对话结束”和“画像完整”是两回事。跳过可以让本轮继续推进，但只有匹配需要的 7 项都为 `answered` 时才允许匹配。
+
+## 补聊
+
+- “再聊补全”：带 v3 `seedDraft` 创建补聊队列，只问未真实回答的匹配字段。
+- “重新聊聊”：清空画像，从第 1 题开始。
+- 补聊时明确回答会直接覆盖此前的 `skipped`。
+
+## 收束
+
+`wrap_up` 负责生成：
+
+- 给用户的一两句收束回复；
+- 个性化 `intro`。
+
+服务端保留合格的模型 intro；只有为空、格式异常或出现内部术语时才使用本地 fallback，不再无条件覆盖模型总结。
+
+## 验收
 
 ```bash
 cd demo/profile-proxy
-cp .env.example .env
+npm test
 npm start
 ```
 
-http://localhost:8788/match-card.html  
+建议真实试聊：
 
-**建档 / 撮合 Demo 只跑这一个代理即可**（默认 8788）。  
-`8787` 是 `zup-event-crawl` 活动审核台，另一套业务，不要和建档混成一个进程。
-
----
-
-## 体验要点
-
-- 助手名：**Zee**  
-- 开场说清：想了解你，方便推荐更合适的朋友和局；立刻带短问题 + 例子 + 选项  
-- 快捷回复：每轮由模型随问题生成，前端动态展示；改问题不必改前端  
-- 每轮最多一个问题，尽量短  
-- 禁止复述用户原话  
-- 禁止「平时怎么玩 / 什么样的局里」等含糊说法  
-- **收尾 intro**：不能只复述画像；必须包含「我理解你什么」+「以后会侧重怎么帮你找局/搭子」，给正反馈  
+1. 正常答完，确认完整总结。
+2. “臭拉车的”先澄清，再回答“货车司机”。
+3. 连续三次低质回答后收束。
+4. 跳过必需题后不完整，再聊只补未齐项。
+5. 第 7 题跳过但其它题答完，仍可匹配。

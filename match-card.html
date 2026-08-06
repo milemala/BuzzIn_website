@@ -422,12 +422,36 @@
             fill: url(#sparkGrad);
         }
         .trigger-hint {
-            margin-top: 14px;
+            margin-top: 18px;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
             font-size: var(--fs-ui);
             font-weight: 500;
             line-height: var(--lh-ui);
-            color: rgba(230, 220, 255, .88);
-            letter-spacing: 1px;
+            color: rgba(230, 220, 255, .78);
+            letter-spacing: .04em;
+            pointer-events: none;
+        }
+        .trigger-hint-arrow {
+            width: 10px;
+            height: 10px;
+            border-left: 1.5px solid rgba(230, 220, 255, .55);
+            border-top: 1.5px solid rgba(230, 220, 255, .55);
+            transform: rotate(45deg);
+            animation: hintNudge 1.6s ease-in-out infinite;
+        }
+        @keyframes hintNudge {
+            0%, 100% { transform: rotate(45deg) translateY(2px); opacity: .45; }
+            50% { transform: rotate(45deg) translateY(0); opacity: .9; }
+        }
+        .match-trigger:not(.searching) .spark-wrap {
+            animation: sparkTapCue 2.4s ease-in-out infinite;
+        }
+        @keyframes sparkTapCue {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
         }
         @keyframes sparkGlow {
             0%, 100% { opacity: .65; transform: scale(.96); }
@@ -846,9 +870,20 @@
             border-radius: 50%;
             display: grid;
             place-items: center;
-            font-size: 24px;
             background: var(--gold-soft);
             border: 1px solid rgba(244,211,94,.2);
+            overflow: hidden;
+        }
+        .wait-icon.is-ready {
+            background: var(--mint-soft);
+            border-color: rgba(110,231,216,.25);
+        }
+        .wait-icon img,
+        .ended-icon img {
+            width: 24px;
+            height: 24px;
+            display: block;
+            object-fit: contain;
         }
         .wait-top h3 { font-size: var(--fs-title); font-weight: 500; line-height: var(--lh-title); margin-bottom: 6px; }
         .wait-top > p { font-size: var(--fs-body); line-height: var(--lh-body); color: var(--muted); margin-bottom: 14px; }
@@ -905,6 +940,70 @@
             background: transparent;
         }
         .wait-bottom .btn { width: 100%; min-height: 46px; }
+
+        /* Ended — timeout / unconfirmed expire */
+        .ended {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            text-align: center;
+            padding-top: 28px;
+        }
+        .ended-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 14px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: rgba(255,255,255,.04);
+            border: 1px solid var(--line);
+            overflow: hidden;
+        }
+        .ended-tag {
+            align-self: center;
+            font-size: var(--fs-ui);
+            font-weight: 500;
+            line-height: var(--lh-ui);
+            letter-spacing: .06em;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+        .ended h3 {
+            font-size: var(--fs-title);
+            font-weight: 500;
+            line-height: var(--lh-title);
+            margin-bottom: 8px;
+        }
+        .ended > p {
+            font-size: var(--fs-body);
+            line-height: var(--lh-body);
+            color: var(--muted);
+            margin-bottom: 20px;
+            max-width: 22em;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .ended-actions {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-top: 8px;
+        }
+        .ended-actions .btn { width: 100%; min-height: 46px; }
+        .task-pill.timeout .dot,
+        .task-pill.expired .dot,
+        .task-pill.understaffed .dot {
+            background: var(--hint);
+        }
+        .task-card-badge.timeout,
+        .task-card-badge.expired,
+        .task-card-badge.understaffed {
+            color: var(--hint);
+            border-color: var(--line);
+        }
 
         /* Chat */
         .chat { flex: 1; display: flex; flex-direction: column; min-height: 0; }
@@ -1557,18 +1656,57 @@
             color: #f8efc8;
         }
         .typing {
-            display: inline-flex; gap: 4px; align-items: center; padding: 4px 2px;
+            position: relative;
+            display: inline-block;
+            width: 20px;
+            height: 18px;
+            margin: 1px 1px;
+            vertical-align: middle;
         }
-        .typing i {
-            width: 5px; height: 5px; border-radius: 50%;
-            background: var(--hint);
-            animation: blink .9s infinite ease-in-out;
+        .typing-star {
+            position: absolute;
+            fill: rgba(247, 244, 238, .85);
+            transform-origin: center;
+            animation: starClusterBreathe 1.8s ease-in-out infinite;
         }
-        .typing i:nth-child(2) { animation-delay: .15s; }
-        .typing i:nth-child(3) { animation-delay: .3s; }
-        @keyframes blink {
-            0%, 80%, 100% { opacity: .25; transform: translateY(0); }
-            40% { opacity: 1; transform: translateY(-2px); }
+        /* 一簇：主星明显更大；静置略重叠，错峰呼吸时各自放大、互不抢位 */
+        .typing-star.s1 {
+            width: 15px;
+            height: 15px;
+            left: 2px;
+            top: 1px;
+            z-index: 2;
+            animation-delay: 0s;
+        }
+        .typing-star.s2 {
+            width: 5px;
+            height: 5px;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            animation-delay: .6s;
+        }
+        .typing-star.s3 {
+            width: 4px;
+            height: 4px;
+            left: 15px;
+            top: 12px;
+            z-index: 1;
+            animation-delay: 1.2s;
+        }
+        @keyframes starClusterBreathe {
+            0%, 100% {
+                opacity: .12;
+                transform: scale(.55);
+            }
+            35% {
+                opacity: .95;
+                transform: scale(1);
+            }
+            55%, 85% {
+                opacity: .12;
+                transform: scale(.55);
+            }
         }
         .chat-composer {
             border-top: 1px solid var(--line);
@@ -1792,7 +1930,7 @@
             <div class="state active" id="state-idle">
                 <div class="idle">
                     <div class="idle-match">
-                        <button class="match-trigger" id="matchTrigger" type="button" aria-label="开始匹配">
+                        <button class="match-trigger" id="matchTrigger" type="button" aria-label="轻触星芒开始匹配">
                             <span class="spark-wrap">
                                 <span class="spark">
                                     <svg viewBox="0 0 64 64" aria-hidden="true">
@@ -1800,10 +1938,13 @@
                                     </svg>
                                 </span>
                             </span>
-                            <span class="trigger-hint">轻触开始</span>
+                            <span class="trigger-hint">
+                                <i class="trigger-hint-arrow" aria-hidden="true"></i>
+                                轻触星芒
+                            </span>
                         </button>
                         <h3>找一群同频的人</h3>
-                        <p>选好活动后，轻触星芒开始匹配</p>
+                        <p>选好活动后，点上面的星芒开始匹配</p>
                     </div>
 
                     <section class="my-groups" id="myGroups" hidden aria-label="我的局">
@@ -1886,7 +2027,9 @@
             <div class="state" id="state-waiting">
                 <div class="wait">
                     <div class="wait-top">
-                        <div class="wait-icon" id="waitIcon">⏳</div>
+                        <div class="wait-icon" id="waitIcon" aria-hidden="true">
+                            <img src="images/match-status/hourglass.svg" alt="">
+                        </div>
                         <h3 id="waitingTitle">等待其他人确认</h3>
                         <p id="waitingCopy">你已同意参加，超过 2 人同意即可成局</p>
                         <div class="progress" id="confirmProgress"></div>
@@ -1899,6 +2042,20 @@
                     <div class="wait-bottom">
                         <div id="readyActions"></div>
                         <button class="btn ghost" id="rematchWaitBtn" type="button">重新匹配</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="state" id="state-ended">
+                <div class="ended">
+                    <div class="ended-icon" id="endedIcon" aria-hidden="true">
+                        <img src="images/match-status/clock.svg" alt="">
+                    </div>
+                    <span class="ended-tag" id="endedTag">咖啡</span>
+                    <h3 id="endedTitle">未找到组局</h3>
+                    <p id="endedCopy">附近暂时没有找到合适的伙伴，可以重新寻找组局。</p>
+                    <div class="ended-actions">
+                        <button class="btn primary" id="retrySearchBtn" type="button">重新寻找组局</button>
                     </div>
                 </div>
             </div>
@@ -2092,6 +2249,21 @@
                 { id: 'u9', name: '森森', age: 30, emoji: '🌲', color: 'linear-gradient(145deg,#5a6e3a,#2f3a1c)', job: '咖啡师', tags: ['户外', '慢节奏'], score: 90, km: '4.2km' },
                 { id: 'u10', name: 'Mia', age: 27, emoji: '🎞', color: 'linear-gradient(145deg,#875340,#4a2c20)', job: '设计师', tags: ['摄影', 'CityWalk'], score: 88, km: '4.7km' }
             ]
+        },
+        {
+            id: 'g4', type: 'boardgame', distance: 2.8,
+            title: '附近 3 人想开一局桌游',
+            summary: '都想今晚轻松开一局，<em>偏好合作类、节奏不要太卷</em>。',
+            compat: [
+                { label: '兴趣', score: '91%' },
+                { label: '时间', score: '86%' },
+                { label: '距离', score: '2.8km' }
+            ],
+            members: [
+                { id: 'u11', name: '阿卡', age: 26, emoji: '🎲', color: 'linear-gradient(145deg,#5a4a7a,#2f2545)', job: '产品经理', tags: ['德式', '合作'], score: 92, km: '1.9km' },
+                { id: 'u12', name: '小鹿', age: 24, emoji: '🦌', color: 'linear-gradient(145deg,#6e5a3a,#3a2f1c)', job: '设计师', tags: ['轻松', '新手友好'], score: 88, km: '2.4km' },
+                { id: 'u13', name: '老周', age: 29, emoji: '🃏', color: 'linear-gradient(145deg,#3a5a6e,#1c3040)', job: '工程师', tags: ['规则控', '夜猫'], score: 85, km: '2.8km' }
+            ]
         }
     ];
 
@@ -2166,17 +2338,17 @@
     var DESIRED_REL = ['单身', '恋爱中', '已婚', '不限'];
 
     /** 本地建档代理（智谱）；需先启动 demo/profile-proxy（默认 8788，避开审核台 8787） */
-    var PROFILE_API_BASE = (location.port === '8788' || location.port === '8787')
+    var PROFILE_API_BASE = location.port === '8788'
         ? ''
         : 'http://localhost:8788';
 
     var emptyField = function() {
-        return { value: null, confidence: 0, evidence: [] };
+        return { value: null, status: 'empty', evidence: [] };
     };
 
     var emptyProfile = function() {
         return {
-            version: 'v2',
+            version: 'v3',
             occupation: emptyField(),
             social_purpose: emptyField(),
             social_style: emptyField(),
@@ -2203,6 +2375,7 @@
     var appState = {
         stage: 'idle',
         profileComplete: false,
+        incompleteFields: [],
         switchOn: false,
         pendingAfterSetup: false,
         selectedActivities: ['drink', 'food'],
@@ -2216,15 +2389,38 @@
         activeTaskId: null,
         profile: emptyProfile(),
         profileSessionId: '',
-        chatBusy: false
+        chatBusy: false,
+        lastProfileRequest: null
     };
 
     var TASK_STATUS_LABEL = {
         searching: '寻找中',
         matched: '已找到',
         waiting: '等待中',
-        ready: '已成局'
+        ready: '已成局',
+        timeout: '未找到',
+        expired: '已超时',
+        understaffed: '未成局'
     };
+
+    /* Demo 脚本：按活动类型演示不同终态 */
+    var DEMO_MATCH_TIMEOUT_SEC = 3;          // 咖啡：寻找后超时
+    var DEMO_SELF_TIMEOUT_SEC = 5;           // 户外：匹配后我超时未确认
+    var DEMO_UNDERSTAFFED_SEC = 5;           // 桌游：我确认后人数不足
+
+    var STATUS_ICON = {
+        check: 'images/match-status/check.svg',
+        hourglass: 'images/match-status/hourglass.svg',
+        clock: 'images/match-status/clock.svg',
+        unformed: 'images/match-status/unformed.svg'
+    };
+
+    function setStatusIcon(el, kind) {
+        if (!el) return;
+        var src = STATUS_ICON[kind] || STATUS_ICON.unformed;
+        el.classList.toggle('is-ready', kind === 'check');
+        el.innerHTML = '<img src="' + src + '" alt="">';
+    }
 
     var $ = function(id) { return document.getElementById(id); };
 
@@ -2244,7 +2440,7 @@
         });
         $('editProfileBtn').addEventListener('click', function() {
             appState.pendingAfterSetup = false;
-            openProfile(appState.profileComplete ? 'summary' : 'chat');
+            openProfile(appState.profile.intro ? 'summary' : 'chat');
         });
         $('stopSessionBtn').addEventListener('click', function() { stopMatching(true); });
         $('cancelStopBtn').addEventListener('click', closeStopConfirm);
@@ -2262,6 +2458,7 @@
         $('acceptBtn').addEventListener('click', acceptMatch);
         $('rematchMatchBtn').addEventListener('click', rematchFromResult);
         $('rematchWaitBtn').addEventListener('click', rematchFromResult);
+        $('retrySearchBtn').addEventListener('click', retrySearchFromEnded);
         $('cancelRejectBtn').addEventListener('click', closeReject);
         $('confirmRejectBtn').addEventListener('click', confirmReject);
         $('confirmProfileBtn').addEventListener('click', confirmProfile);
@@ -2395,12 +2592,6 @@
             showToast('请先选择想组局的活动');
             return;
         }
-        if (!isProfileMatchReady(appState.profile)) {
-            showToast('建档还不完整，完整后才能开始匹配');
-            appState.pendingAfterSetup = true;
-            openProfile(appState.profile.intro ? 'summary' : 'chat');
-            return;
-        }
         appState.switchOn = true;
         startSearching();
     }
@@ -2503,9 +2694,7 @@
             startProfileChat(!hasProfileProgress(appState.profile));
             return;
         }
-        if (isProfileMatchReady(appState.profile) && appState.profile.intro) {
-            showProfileSummary();
-        } else if (hasProfileProgress(appState.profile) && appState.profile.intro) {
+        if (hasProfileProgress(appState.profile) && appState.profile.intro) {
             showProfileSummary();
         } else {
             startProfileChat(!hasProfileProgress(appState.profile));
@@ -2555,22 +2744,7 @@
         if (profile.intro && !/暂无|未填|不了解|信息不足/.test(profile.intro)) return true;
         return Object.keys(PROFILE_FIELD_LABELS).some(function(key) {
             var f = profile[key];
-            return f && f.value != null && Number(f.confidence || 0) >= 0.45;
-        });
-    }
-
-    var MATCH_REQUIRED_FIELDS = [
-        'occupation', 'social_purpose', 'social_style', 'chat_topics',
-        'activity_style', 'schedule_preference', 'friend_description'
-    ];
-
-    function isFieldAnswered(field) {
-        return !!(field && field.value != null && field.value !== '__skipped__' && Number(field.confidence || 0) >= 0.55);
-    }
-
-    function isProfileMatchReady(profile) {
-        return MATCH_REQUIRED_FIELDS.every(function(key) {
-            return isFieldAnswered(profile && profile[key]);
+            return f && f.status === 'answered' && f.value != null;
         });
     }
 
@@ -2579,7 +2753,7 @@
         if (profile.intro) return true;
         return Object.keys(PROFILE_FIELD_LABELS).some(function(key) {
             var f = profile[key];
-            return f && f.value != null && Number(f.confidence || 0) >= 0.45;
+            return f && f.status !== 'empty';
         });
     }
 
@@ -2594,6 +2768,7 @@
         if (forceFresh) {
             appState.profile = emptyProfile();
             appState.profileComplete = false;
+            appState.incompleteFields = [];
             callProfileAgent({ reset: true, resumeMode: false, userMessage: null });
             return;
         }
@@ -2609,7 +2784,13 @@
     function appendTyping() {
         var row = document.createElement('div');
         row.className = 'bubble-row';
-        row.innerHTML = '<div class="mini">Zee</div><div class="bubble"><span class="typing"><i></i><i></i><i></i></span></div>';
+        var starPath = 'M32 2C33.8 20.2 43.8 30.2 62 32C43.8 33.8 33.8 43.8 32 62C30.2 43.8 20.2 33.8 2 32C20.2 30.2 30.2 20.2 32 2Z';
+        function typingStar(layerClass) {
+            return '<svg class="typing-star ' + layerClass + '" viewBox="0 0 64 64" aria-hidden="true"><path d="' + starPath + '"/></svg>';
+        }
+        row.innerHTML = '<div class="mini">Zee</div><div class="bubble"><span class="typing" aria-label="思考中">'
+            + typingStar('s1') + typingStar('s2') + typingStar('s3')
+            + '</span></div>';
         $('profileChat').appendChild(row);
         scrollChat();
         return row;
@@ -2637,7 +2818,9 @@
             if (draft[key] && typeof draft[key] === 'object') {
                 p[key] = {
                     value: draft[key].value == null ? null : draft[key].value,
-                    confidence: Number(draft[key].confidence) || 0,
+                    status: ['empty', 'answered', 'skipped'].indexOf(draft[key].status) >= 0
+                        ? draft[key].status
+                        : 'empty',
                     evidence: Array.isArray(draft[key].evidence) ? draft[key].evidence : []
                 };
             }
@@ -2646,11 +2829,6 @@
     }
 
     function callProfileAgent(opts) {
-        if (appState.chatBusy) return;
-        appState.chatBusy = true;
-        $('profileComposer').innerHTML = '';
-        var typingRow = appendTyping();
-
         var payload = {
             sessionId: appState.profileSessionId,
             reset: !!opts.reset,
@@ -2658,16 +2836,29 @@
             userMessage: opts.userMessage == null ? null : opts.userMessage
         };
         if (opts.seedDraft) payload.seedDraft = opts.seedDraft;
+        appState.lastProfileRequest = JSON.parse(JSON.stringify(payload));
+        sendProfileRequest(payload);
+    }
+
+    function sendProfileRequest(payload) {
+        if (appState.chatBusy) return;
+        appState.chatBusy = true;
+        $('profileComposer').innerHTML = '';
+        var typingRow = appendTyping();
+        var controller = new AbortController();
+        var timeout = setTimeout(function() { controller.abort(); }, 50000);
 
         fetch(PROFILE_API_BASE + '/api/profile-chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
+            body: JSON.stringify(payload),
+            signal: controller.signal
         }).then(function(res) {
             return res.json().then(function(data) {
                 return { okHttp: res.ok, data: data };
             });
         }).then(function(result) {
+            clearTimeout(timeout);
             if (typingRow && typingRow.parentNode) typingRow.remove();
             appState.chatBusy = false;
             var data = result.data || {};
@@ -2677,6 +2868,8 @@
                 return;
             }
             applyProfileDraft(data.profile_draft);
+            appState.profileComplete = !!data.profile_complete;
+            appState.incompleteFields = Array.isArray(data.incomplete_fields) ? data.incomplete_fields : [];
             var aiText = data.assistant_reply || data.assistant_message;
             if (aiText) appendBubble('ai', aiText);
 
@@ -2698,16 +2891,17 @@
                 if (!appState.profile.intro || /暂无|未填|不了解|信息不足/.test(appState.profile.intro)) {
                     appState.profile.intro = buildIntroFromFields();
                 }
-                appState.profileComplete = !!data.profile_complete && isProfileMatchReady(appState.profile);
                 setTimeout(showProfileSummary, 420);
                 return;
             }
             renderChatComposer(data.quick_replies || [], !!data.quick_replies_multi);
         }).catch(function(err) {
+            clearTimeout(timeout);
             if (typingRow && typingRow.parentNode) typingRow.remove();
             appState.chatBusy = false;
-            appendBubble('ai', '连不上本地代理（' + (err && err.message ? err.message : '网络错误') + '）。请运行：cd demo/profile-proxy && npm start');
-            renderComposerError('代理未启动或端口不对');
+            var timedOut = err && err.name === 'AbortError';
+            appendBubble('ai', timedOut ? '这次响应有点慢，刚才那条没有记入，可以直接重试。' : '刚才没连上建档服务，这条没有记入。');
+            renderComposerError(timedOut ? '请求超时' : '代理未启动或端口不对');
         });
     }
 
@@ -2716,10 +2910,10 @@
         box.innerHTML =
             '<p style="margin:0 0 8px;font-size:13px;opacity:.75">' + escapeHtml(hint || '') + '</p>' +
             '<div class="composer-row">' +
-                '<button class="btn ghost" id="profileRetryBtn" type="button" style="flex:1">重试开场</button>' +
+                '<button class="btn ghost" id="profileRetryBtn" type="button" style="flex:1">重试刚才那条</button>' +
             '</div>';
         $('profileRetryBtn').addEventListener('click', function() {
-            startProfileChat(true);
+            if (appState.lastProfileRequest) sendProfileRequest(appState.lastProfileRequest);
         });
     }
 
@@ -2830,7 +3024,7 @@
 
         function valOf(key) {
             var f = p[key];
-            if (!f || f.value == null || f.value === '__skipped__' || Number(f.confidence || 0) < 0.45) return '';
+            if (!f || f.status !== 'answered' || f.value == null) return '';
             return formatProfileValue(f.value);
         }
 
@@ -2843,7 +3037,7 @@
         var activity = valOf('activity_style');
         if (activity) bits.push('线下氛围更吃' + activity);
         var topics = p.chat_topics;
-        if (topics && topics.value && Number(topics.confidence || 0) >= 0.45) {
+        if (topics && topics.status === 'answered' && topics.value) {
             var likes = (topics.value.likes || []).slice(0, 3);
             if (likes.length) bits.push('兴趣上我大概了解了（比如' + likes.join('、') + '），会当作找合拍搭子的参考，而不是只按单一标签筛人');
         }
@@ -2883,15 +3077,14 @@
             });
         }
 
-        var ready = isProfileMatchReady(appState.profile);
-        appState.profileComplete = ready;
+        var ready = appState.profileComplete;
         var note = $('profileIntroNote');
         var confirmBtn = $('confirmProfileBtn');
         var resumeBtn = $('resumeProfileBtn');
         if (note) {
             note.textContent = ready
                 ? '上面是我对你的理解，以及以后会怎么帮你找局。觉得不对可以直接改。'
-                : '当前信息不完整。完整后才能开启匹配组局；可点「再聊补全」只问空着/跳过的题，或「重新聊聊」从头来。';
+                : '还有些地方没聊清楚，这次先不急着开始匹配。可以现在接着补几句，也可以之后再回来。';
         }
         if (confirmBtn) confirmBtn.hidden = !ready;
         if (resumeBtn) resumeBtn.hidden = ready;
@@ -2925,7 +3118,7 @@
 
     function confirmProfile() {
         var p = appState.profile;
-        if (!isProfileMatchReady(p)) {
+        if (!appState.profileComplete) {
             showToast('画像还不完整，先补全后再开启匹配');
             return;
         }
@@ -2934,28 +3127,31 @@
             return;
         }
         p.intro = buildIntro();
-        appState.profileComplete = true;
         var shouldStartMatch = appState.pendingAfterSetup;
-        appState.pendingAfterSetup = false;
 
         fetch(PROFILE_API_BASE + '/api/profile-chat-confirm', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 sessionId: appState.profileSessionId,
-                intro: p.intro,
-                profileDraft: p
+                intro: p.intro
             })
-        }).catch(function() { /* 存档失败不挡确认 */ });
-
-        closeProfile();
-        if (shouldStartMatch) {
-            showToast('已记下你的感觉，开始匹配');
-            appState.switchOn = true;
-            startSearching();
-        } else {
-            showToast('个人介绍已保存');
-        }
+        }).then(function(res) {
+            return res.json().then(function(data) {
+                if (!res.ok || data.ok === false) throw new Error(data.error || '保存失败');
+                appState.pendingAfterSetup = false;
+                closeProfile();
+                if (shouldStartMatch) {
+                    showToast('已记下你的感觉，开始匹配');
+                    appState.switchOn = true;
+                    startSearching();
+                } else {
+                    showToast('个人介绍已保存');
+                }
+            });
+        }).catch(function(err) {
+            showToast(err && err.message ? err.message : '保存失败，请重试');
+        });
     }
 
     function setStage(stage) {
@@ -3053,20 +3249,39 @@
         $('stopOverlay').classList.remove('show');
     }
 
+    function demoFlagsForActivity(activityId) {
+        return {
+            holdSearching: activityId === 'food',
+            demoTimeout: activityId === 'coffee',
+            demoSelfTimeout: activityId === 'outdoor',
+            demoUnderstaffed: activityId === 'boardgame'
+        };
+    }
+
     function createTask(activityId, index) {
-        // Demo：约饭刻意一直停在「匹配中」，方便查看寻找态页面
-        var holdSearching = activityId === 'food';
+        // Demo：约饭停在「匹配中」；咖啡匹配超时；户外我未确认；桌游人数不足
+        var flags = demoFlagsForActivity(activityId);
+        var matchAfter = flags.holdSearching
+            ? Infinity
+            : (flags.demoTimeout ? DEMO_MATCH_TIMEOUT_SEC : (4 + index * 2));
         return {
             id: 'task-' + activityId + '-' + index + '-' + Date.now(),
             activityId: activityId,
             status: 'searching',
             searchSeconds: 0,
-            holdSearching: holdSearching,
-            matchAfterSeconds: holdSearching ? Infinity : (4 + index * 2),
+            holdSearching: flags.holdSearching,
+            demoTimeout: flags.demoTimeout,
+            demoSelfTimeout: flags.demoSelfTimeout,
+            demoUnderstaffed: flags.demoUnderstaffed,
+            matchAfterSeconds: matchAfter,
+            selfTimeoutAfterSeconds: flags.demoSelfTimeout ? DEMO_SELF_TIMEOUT_SEC : null,
+            understaffedAfterSeconds: flags.demoUnderstaffed ? DEMO_UNDERSTAFFED_SEC : null,
+            endReason: null,
             group: null,
             confirmedCount: 0,
             searchTimer: null,
             autoMatchTimer: null,
+            expireTimer: null,
             confirmationTimers: [],
             widened: false
         };
@@ -3080,20 +3295,30 @@
         }, 1000);
         if (!task.holdSearching && isFinite(task.matchAfterSeconds)) {
             task.autoMatchTimer = setTimeout(function() {
-                resolveTaskMatch(taskId);
+                if (task.demoTimeout) resolveTaskTimeout(taskId);
+                else resolveTaskMatch(taskId);
             }, task.matchAfterSeconds * 1000);
         }
     }
 
     function restartTaskAsSearching(task) {
         clearTaskTimers(task);
+        var flags = demoFlagsForActivity(task.activityId);
         task.status = 'searching';
         task.searchSeconds = 0;
         task.widened = false;
         task.group = null;
         task.confirmedCount = 0;
-        task.holdSearching = task.activityId === 'food';
-        task.matchAfterSeconds = task.holdSearching ? Infinity : 4;
+        task.holdSearching = flags.holdSearching;
+        task.demoTimeout = flags.demoTimeout;
+        task.demoSelfTimeout = flags.demoSelfTimeout;
+        task.demoUnderstaffed = flags.demoUnderstaffed;
+        task.matchAfterSeconds = flags.holdSearching
+            ? Infinity
+            : (flags.demoTimeout ? DEMO_MATCH_TIMEOUT_SEC : 4);
+        task.selfTimeoutAfterSeconds = flags.demoSelfTimeout ? DEMO_SELF_TIMEOUT_SEC : null;
+        task.understaffedAfterSeconds = flags.demoUnderstaffed ? DEMO_UNDERSTAFFED_SEC : null;
+        task.endReason = null;
         appState.switchOn = true;
         appState.activeTaskId = task.id;
         armTaskSearch(task);
@@ -3128,7 +3353,8 @@
         task.searchSeconds += 1;
         if (task.searchSeconds === 3) task.widened = true;
         if (!task.holdSearching && isFinite(task.matchAfterSeconds) && task.searchSeconds >= task.matchAfterSeconds) {
-            resolveTaskMatch(taskId);
+            if (task.demoTimeout) resolveTaskTimeout(taskId);
+            else resolveTaskMatch(taskId);
             return;
         }
         if (task.id === appState.activeTaskId && appState.stage === 'searching') {
@@ -3136,6 +3362,23 @@
         }
         updateTaskRail();
         renderTaskCards();
+    }
+
+    function resolveTaskTimeout(taskId) {
+        var task = getTask(taskId);
+        if (!task || task.status !== 'searching') return;
+        clearInterval(task.searchTimer);
+        clearTimeout(task.autoMatchTimer);
+        task.searchTimer = null;
+        task.autoMatchTimer = null;
+        task.group = null;
+        task.status = 'timeout';
+        var active = getActiveTask();
+        if (!active || active.status === 'searching' || active.id === task.id) {
+            appState.activeTaskId = task.id;
+        }
+        syncViewToActiveTask();
+        showToast('「' + activityById(task.activityId).label + '」未找到组局');
     }
 
     function resolveTaskMatch(taskId) {
@@ -3158,9 +3401,60 @@
         if (!active || active.status === 'searching' || active.id === task.id) {
             appState.activeTaskId = task.id;
         }
+        if (task.demoSelfTimeout) armSelfTimeoutExpire(task);
         syncViewToActiveTask();
         showToast('「' + activityById(task.activityId).label + '」找到一组伙伴');
         if (navigator.vibrate) navigator.vibrate([40, 50, 40]);
+    }
+
+    function armSelfTimeoutExpire(task) {
+        if (!task || !task.selfTimeoutAfterSeconds) return;
+        clearTimeout(task.expireTimer);
+        var taskId = task.id;
+        task.expireTimer = setTimeout(function() {
+            expireSelfTimeout(taskId);
+        }, task.selfTimeoutAfterSeconds * 1000);
+    }
+
+    function armUnderstaffedExpire(task) {
+        if (!task || !task.understaffedAfterSeconds) return;
+        clearTimeout(task.expireTimer);
+        var taskId = task.id;
+        task.expireTimer = setTimeout(function() {
+            expireUnderstaffed(taskId);
+        }, task.understaffedAfterSeconds * 1000);
+    }
+
+    function expireSelfTimeout(taskId) {
+        var task = getTask(taskId);
+        if (!task || task.status !== 'matched') return;
+        clearTimeout(task.expireTimer);
+        task.expireTimer = null;
+        task.endReason = 'self_timeout';
+        task.status = 'expired';
+        var active = getActiveTask();
+        if (!active || active.id === task.id || active.status === 'searching') {
+            appState.activeTaskId = task.id;
+        }
+        syncViewToActiveTask();
+        showToast('「' + activityById(task.activityId).label + '」组局已超时');
+    }
+
+    function expireUnderstaffed(taskId) {
+        var task = getTask(taskId);
+        if (!task || task.status !== 'waiting') return;
+        clearTimeout(task.expireTimer);
+        task.expireTimer = null;
+        (task.confirmationTimers || []).forEach(clearTimeout);
+        task.confirmationTimers = [];
+        task.endReason = 'understaffed';
+        task.status = 'understaffed';
+        var active = getActiveTask();
+        if (!active || active.id === task.id || active.status === 'searching') {
+            appState.activeTaskId = task.id;
+        }
+        syncViewToActiveTask();
+        showToast('「' + activityById(task.activityId).label + '」组局人数不足');
     }
 
     function syncViewToActiveTask() {
@@ -3182,11 +3476,43 @@
         } else if (task.status === 'waiting' || task.status === 'ready') {
             renderWaitingForTask(task);
             setStage('waiting');
+        } else if (task.status === 'timeout' || task.status === 'expired' || task.status === 'understaffed') {
+            renderEndedForTask(task);
+            setStage('ended');
         } else if (appState.stage === 'chat') {
             updateTaskRail();
             updateRematchLabels();
             updateStopSessionBtn();
         }
+    }
+
+    function renderEndedForTask(task) {
+        var label = activityById(task.activityId).label;
+        $('endedTag').textContent = label;
+        if (task.status === 'timeout') {
+            setStatusIcon($('endedIcon'), 'unformed');
+            $('endedTitle').textContent = '未找到组局';
+            $('endedCopy').textContent = '寻找了一段时间，附近暂时没有合适的「' + label + '」伙伴。可重新寻找组局。';
+        } else if (task.status === 'understaffed' || task.endReason === 'understaffed') {
+            setStatusIcon($('endedIcon'), 'unformed');
+            $('endedTitle').textContent = '组局人数不足';
+            $('endedCopy').textContent = '你已确认参加，但在时限内未凑齐人数，未能成局。可重新寻找组局。';
+        } else {
+            setStatusIcon($('endedIcon'), 'clock');
+            $('endedTitle').textContent = '组局已超时';
+            $('endedCopy').textContent = '组局已找到，但因长时间未能确认，组局已超时。可重新寻找组局';
+        }
+        $('retrySearchBtn').textContent = '重新寻找「' + label + '」组局';
+        updateTaskRail();
+        updateStopSessionBtn();
+    }
+
+    function retrySearchFromEnded() {
+        var task = getActiveTask();
+        if (!task || (task.status !== 'timeout' && task.status !== 'expired' && task.status !== 'understaffed')) return;
+        var label = activityById(task.activityId).label;
+        restartTaskAsSearching(task);
+        showToast('正在重新寻找「' + label + '」组局');
     }
 
     function renderSearchingForTask(task) {
@@ -3199,6 +3525,10 @@
             $('strategyPeople').classList.add('on');
             $('strategyPeople').innerHTML = '<span class="mark">●</span>持续扫描中，可从容查看匹配中状态';
             $('searchCopy').textContent = '「' + label + '」任务会保持匹配中（Demo），方便你查看本页状态';
+        } else if (task.demoTimeout) {
+            $('strategyPeople').classList.add('on');
+            $('strategyPeople').innerHTML = '<span class="mark">●</span>扩大范围后仍未找到合适伙伴';
+            $('searchCopy').textContent = '「' + label + '」正在全力寻找…若仍无人匹配将提示超时';
         } else if (task.widened) {
             $('strategyPeople').classList.add('on');
             $('strategyPeople').innerHTML = '<span class="mark">●</span>正在寻找 6km 内同需求用户';
@@ -3218,7 +3548,13 @@
         $('matchTypeTag').textContent = label;
         $('matchTitle').textContent = group.title;
         $('matchDistance').textContent = group.distance + ' km';
-        $('groupSummary').innerHTML = group.summary;
+        var summary = group.summary;
+        if (task.demoSelfTimeout) {
+            summary += '<br><span style="color:var(--hint);font-size:var(--fs-ui);line-height:var(--lh-ui)">Demo：请尽快确认，超时未确认将未能成局</span>';
+        } else if (task.demoUnderstaffed) {
+            summary += '<br><span style="color:var(--hint);font-size:var(--fs-ui);line-height:var(--lh-ui)">Demo：确认后若人数凑不齐，将提示未能成局</span>';
+        }
+        $('groupSummary').innerHTML = summary;
         $('compatRow').innerHTML = (group.compat || []).map(function(c) {
             return '<div class="compat-pill"><b>' + c.score + '</b><span>' + c.label + '</span></div>';
         }).join('');
@@ -3272,9 +3608,11 @@
         if (!task) return;
         clearInterval(task.searchTimer);
         clearTimeout(task.autoMatchTimer);
+        clearTimeout(task.expireTimer);
         (task.confirmationTimers || []).forEach(clearTimeout);
         task.searchTimer = null;
         task.autoMatchTimer = null;
+        task.expireTimer = null;
         task.confirmationTimers = [];
         clearVenueTimers(task);
     }
@@ -3350,12 +3688,20 @@
     function acceptMatch() {
         var task = getActiveTask();
         if (!task || !task.group) return;
+        clearTimeout(task.expireTimer);
+        task.expireTimer = null;
         task.confirmedCount = 1;
         task.status = 'waiting';
         task.confirmationTimers.forEach(clearTimeout);
         task.confirmationTimers = [];
         renderWaitingForTask(task);
         setStage('waiting');
+        // 桌游 Demo：我已确认，但人数凑不齐 → 人数不足未成局
+        if (task.demoUnderstaffed) {
+            armUnderstaffedExpire(task);
+            showToast('已确认，正在等待其他人凑齐…');
+            return;
+        }
         task.confirmationTimers.push(setTimeout(function() {
             if (!getTask(task.id) || task.status !== 'waiting') return;
             task.confirmedCount = 2;
@@ -3414,7 +3760,7 @@
         var ready = task.status === 'ready' || count >= 3;
         if (ready) task.status = 'ready';
         var label = activityById(task.activityId).label;
-        $('waitIcon').textContent = ready ? '✓' : '⏳';
+        setStatusIcon($('waitIcon'), ready ? 'check' : 'hourglass');
         $('waitingTitle').textContent = ready ? ('「' + label + '」组局成立') : ('等待「' + label + '」确认');
         $('waitingCopy').textContent = ready
             ? '已有 ' + count + ' 人愿意参加，可以进入群聊'

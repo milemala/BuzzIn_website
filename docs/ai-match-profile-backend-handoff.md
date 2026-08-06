@@ -1,267 +1,430 @@
-# AI 建档 · 后端交接文档（给人 / 给 AI）
+# AI 建档 v3 · 后端正式交接说明
 
-> 本文是 **App 后端实现「首次 AI 建档」** 的交接说明。  
-> 本地 Demo 已跑通；后端应对齐本文契约，并直接参考所列源码，**不要凭记忆改题库或结束规则**。
+版本：2026-07-30
+用途：后端按当前已验收的 Demo 逻辑实现正式服务。
+说明：本文是新的唯一交接入口，不需要参考此前的交接压缩包或旧版五字段方案。
 
-相关产品摘要：[`ai-match-profile.md`](./ai-match-profile.md)  
-可运行 Demo：[`demo/profile-proxy/`](../demo/profile-proxy/)
+## 1. 先看结论
 
----
+目标架构不是“本地题库 + 词典优先 + GLM 兜底解析”，而是：
 
-## 0. 先给后端哪几个文件
-
-### 必给（实现时以这些为准）
-
-| 文件 | 作用 |
-|------|------|
-| [`demo/profile-proxy/system-prompt.js`](../demo/profile-proxy/system-prompt.js) | **唯一 Prompt**：问法、选项、跳过、异常信号、收束文案规则 |
-| [`demo/profile-proxy/profile-schema.js`](../demo/profile-proxy/profile-schema.js) | **业务层**：字段、合并、对话收束条件、匹配完整度、保底 intro |
-| [`demo/profile-proxy/server.js`](../demo/profile-proxy/server.js) | **编排参考**：调模型 → 解析 JSON → 合并 → 是否 wrap_up → 响应形状 |
-| [`demo/profile-proxy/README.md`](../demo/profile-proxy/README.md) | Demo 目录说明与 API 速查 |
-| [`demo/profile-proxy/.env.example`](../demo/profile-proxy/.env.example) | 环境变量示例（模型名等） |
-| [`docs/ai-match-profile.md`](./ai-match-profile.md) | 产品侧摘要 |
-| **本文** `docs/ai-match-profile-backend-handoff.md` | 后端交接总览 |
-
-### 建议一并给（对齐前端体验）
-
-| 文件 | 作用 |
-|------|------|
-| [`match-card.html`](../match-card.html) | Demo 前端：快捷回复交互、总结页、硬拦匹配、再聊补全 / 重新聊聊 |
-
-### 不必给
-
-- `demo/profile-proxy/data/chats/**`（本地试聊存档）
-- `.env`（含密钥）
-- 活动抓取 / `8787` 审核台相关代码（另一套业务）
-
----
-
-## 1. 产品一句话
-
-用户第一次用 AI 组局前，与助手 **Zee** 聊几句，建立**长期可复用**的社交画像；聊完出一段可改的介绍。  
-**画像不完整时不能开启匹配组局**（硬拦）；可「再聊补全」或「重新聊聊」。
-
----
-
-## 2. 架构（必须遵守）
-
-```
-用户发言
-  → 业务层组 messages（system = Prompt + 进度事实；history）
-  → 调用大模型（每轮 1 次）
-  → 解析唯一 JSON
-  → merge profile_update
-  → evaluateEnd（业务层决定是否结束）
-  → 若该结束：再调一次 phase=wrap_up（仅结束时多一次）
-  → 返回前端：assistant_reply / quick_replies / profile_draft / profile_complete / action
+```text
+服务端保存记忆和状态
+→ 每轮把当前字段、下一字段、画像摘要和最近对话发给 GLM
+→ GLM 同时生成用户回复、快捷选项、回答分类和当前字段更新
+→ 服务端校验后决定写入、重问、推进或收束
 ```
 
-硬规则：
+职责边界：
 
-1. **单 Agent、单 Prompt、每轮一次主调用**（结束时允许额外一次 wrap_up）。
-2. **对话文案 / 问哪题 / 给什么选项：只听 Prompt**，JS/业务层不写题面、不猜测用户自然语言选项。
-3. **何时结束对话、是否匹配完整：只听业务层**（`profile-schema.js`），模型不得自行宣布「建档完成」。
-4. 改题库 / 改措辞：只改 `system-prompt.js`；改结束阈值 / 完整度：只改 `profile-schema.js`。
+- GLM：怎么说、如何理解当前回答、生成快捷选项、生成最终总结。
+- 业务层：当前问哪一项、允许写哪个字段、何时推进、何时结束、能否匹配。
+- 前端：展示服务端完整状态，不自行推断画像完整度。
 
----
+## 2. 后端现有能力如何处理
 
-## 3. 画像字段
+建议保留：
 
-每个字段形状：
+- 会话持久化；
+- 用户退出后恢复；
+- collecting / review_pending / completed 等状态；
+- 正在处理状态；
+- requestId 幂等；
+- 网络重连后重新拉取服务端状态；
+- 已确认档案与草稿分离。
 
-```json
-{ "value": "...", "confidence": 0.0, "evidence": ["短证据"] }
-```
+需要替换：
 
-| 字段 | 含义 | 备注 |
-|------|------|------|
-| `occupation` | 职业 / 领域 / 在读 | 开放作答，无快捷选项 |
-| `social_purpose` | 希望遇见谁 | 可多选 |
-| `social_style` | 社交风格 | 单选倾向 |
-| `chat_topics` | 聊天偏好 | 通常 `{ likes, dislikes }` |
-| `activity_style` | 线下氛围 | 偏安静 / 偏热闹 / 分情况 |
-| `schedule_preference` | 有空时间 | 可多选 |
-| `stranger_story` | 陌生人经历 | **可跳过 / 可空，不挡匹配完整** |
-| `friend_description` | 朋友怎么形容你 | |
-| `intro` | 收束总结 | wrap_up 时写入；给用户看 |
+- 旧五字段画像；
+- 本地词典优先识别；
+- 服务端固定题库生成用户话术；
+- “简单回答不调用 GLM”的分流；
+- 模型失败后静默跳过当前题；
+- 本地模板直接生成最终介绍。
 
-特殊值：
+详细迁移说明见 [`ai-match-profile-backend-migration.md`](./ai-match-profile-backend-migration.md)。
 
-- `__skipped__`：用户明确跳过该题。
-- 本轮无更新的字段：**不要**出现在 `profile_update` 里。
+## 3. 画像数据结构
 
-不主动收集：性别年龄地址、公司/学校全称、薪资、MBTI、本次组局类型、匹配性别（这些在 App 别处收集）。
+### 3.1 字段
 
----
+固定顺序：
 
-## 4. 两层状态（容易混，务必分开）
+1. `occupation`：职业领域或在读状态。
+2. `social_purpose`：希望遇见什么人，可多选或自定义。
+3. `social_style`：与陌生人相处时的社交节奏。
+4. `chat_topics`：喜欢聊的话题。
+5. `activity_style`：偏好的线下活动氛围。
+6. `schedule_preference`：通常有空的时间。
+7. `stranger_story`：认识陌生人的经历，可空。
+8. `friend_description`：朋友如何形容用户。
 
-### 层 A：对话能否收束 `evaluateEnd.shouldEnd`
+除 `stranger_story` 外，其余 7 项必须真实回答，才允许开始匹配。
 
-满足任一即可进入 `wrap_up`：
-
-| 条件 | 默认 |
-|------|------|
-| 核心字段都已**处理完**（真答 **或** `__skipped__`） | `enough_fields`（`stranger_story` 不挡） |
-| 用户发言轮次 ≥ 30 | `max_turns` |
-| 连续 `low_quality` 或 `unsafe` ≥ 3 | `low_quality_streak` |
-| `user_signal=ask_end` | `user_end` |
-
-### 层 B：能否匹配组局 `profile_complete`
-
-- **完整**：除 `stranger_story` 外，核心字段均为**真实回答**（不是空、不是 `__skipped__`，且 confidence 达标）。
-- **不完整**：有跳过或缺题，或提前收束导致缺真答。
-- Demo 前端：**不完整则硬拦匹配**；总结页隐藏「确认匹配」，展示「再聊补全」。
-
-### 补聊 `resumeMode`（重要）
-
-- 「再聊补全」：带上已有 `seedDraft`，`resumeMode=true`，**只问未齐字段**（空或曾跳过）。
-- 「重新聊聊」：清空画像，全新开场。
-- 补聊时**不能**因为「以前跳过过」就立刻 `enough_fields`；须本轮对补聊目标字段有有效写入（真答/再次跳过），或连续低质满 3 次，或匹配已完整。详见 `server.js` 的 `resumeTargets` / `resumeTouched` 与 `evaluateEnd(resumeMode)`。
-
-### 合并规则坑（必复现）
-
-- 真答必须能覆盖此前的 `__skipped__`（跳过常为 confidence 0.99，否则会被挡住）。见 `mergeProfile`。
-
----
-
-## 5. 模型每轮输出（唯一 JSON）
+### 3.2 字段状态
 
 ```json
 {
-  "assistant_reply": "给用户看的话",
-  "quick_replies": ["最多6个"],
-  "quick_replies_multi": false,
-  "profile_update": {},
-  "user_signal": "normal|low_quality|joke|refuse|off_topic|ask_end|unsafe",
-  "safety": { "level": "ok|joke|off_topic|refuse|unsafe", "note": "" }
+  "value": "产品经理",
+  "status": "answered",
+  "evidence": ["用户明确回答"]
 }
 ```
 
-| 字段 | 含义 |
-|------|------|
-| `assistant_reply` | 用户可见；continue 时通常带一个问句 |
-| `quick_replies` | 本轮按钮；第 1 题必须 `[]` |
-| `quick_replies_multi` | `true` 多选（题 2/4/6/8）；`false` 单选（题 1/3/5/7） |
-| `profile_update` | 增量字段；无更新勿写键 |
-| `user_signal` | 业务层计数用；**信任模型**，不要用正则重判用户意图 |
-| `safety` | `unsafe` 仅真正有害；玩笑/擦边用 `joke`，不要误杀对话 |
+`status` 只有：
 
-异常策略摘要（细节以 Prompt 为准）：
+- `empty`：尚未处理；
+- `answered`：有真实回答，可用于匹配；
+- `skipped`：本轮跳过，不算匹配完整。
 
-- 敷衍 / 乱答 → `low_quality`，换短问法再问**同一方向**，不要写成跳过冒充答完。
-- 明确跳过 → `__skipped__`，进下一题，勿死缠。
-- 想结束 → `ask_end`。
-- `unsafe`：仅违法 / 人身威胁 / 未成年人等；可与低质一样计入连续 streak。
+不要让模型填写 `confidence`。明确回答直接覆盖旧值，不比较模型自报分数。
 
----
+完整草稿示例：
 
-## 6. Demo HTTP 契约（后端可改路径，语义对齐）
+```json
+{
+  "version": "v3",
+  "occupation": {
+    "value": "产品经理",
+    "status": "answered",
+    "evidence": ["用户说自己做产品"]
+  },
+  "social_purpose": {
+    "value": "饭搭子、跑船搭子",
+    "status": "answered",
+    "evidence": ["用户希望找饭搭子和一起跑船的人"]
+  },
+  "intro": ""
+}
+```
 
-### `POST /api/profile-chat`
+## 4. 会话状态
 
-Request：
+正式服务至少保存：
+
+```json
+{
+  "status": "collecting",
+  "resumeMode": false,
+  "draft": {},
+  "fieldQueue": ["occupation", "social_purpose"],
+  "messages": [],
+  "userTurns": 0,
+  "lowQualityStreak": 0,
+  "processingRequestId": null,
+  "endDecision": null
+}
+```
+
+推荐状态：
+
+- `collecting`：正在采集。
+- `processing`：某条回答正在处理。
+- `review_pending`：本轮已收束，等待用户确认或补聊。
+- `completed`：用户已确认。
+
+`fieldQueue[0]` 是唯一 `currentField`，`fieldQueue[1]` 是 `nextField`。
+
+## 5. 首次建档与补聊
+
+### 首次建档
+
+`fieldQueue` 为全部 8 项，按固定顺序处理。
+
+开场也调用 GLM，由 Prompt 生成 Zee 的介绍、第一题和快捷选项。服务端不要写死开场文案。
+
+### 再聊补全
+
+根据当前草稿重新创建队列，只放入 7 个匹配字段中尚非 `answered` 的项。
+
+`stranger_story` 即使为空，也不进入补聊必需队列。
+
+### 重新聊聊
+
+创建全新草稿和全新队列，不复用旧回答。
+
+## 6. 每轮发送给 GLM 的内容
+
+### 6.1 System
+
+使用交接包中的 [`system-prompt.js`](../demo/profile-proxy/system-prompt.js) 作为唯一完整 Prompt。
+
+Prompt 后追加运行事实 JSON：
+
+```json
+{
+  "phase": "continue",
+  "is_opening": false,
+  "resume_mode": false,
+  "current_field": "social_purpose",
+  "next_field": "social_style",
+  "profile_complete": false,
+  "incomplete_fields": ["social_purpose", "social_style"],
+  "draft_summary": {
+    "occupation": "跑船/船员"
+  },
+  "turns": 2,
+  "low_quality_streak": 0
+}
+```
+
+### 6.2 历史
+
+发送最近若干轮真实用户和助手消息。Demo 使用最近 8 条，生产可在 8～20 条之间选择。
+
+不要在历史里混入内部业务指令。
+
+### 6.3 当前回答
+
+用户原文必须作为本轮 `user` message 发送。模型只能根据本次回答更新资料；历史只用于理解上下文。
+
+不要发送用户 ID、手机号、Token、定位、匹配结果等业务数据。用户主动在聊天中输入的敏感内容仍会出现在原文中，应按正式隐私策略处理。
+
+## 7. GLM 输出契约
+
+```json
+{
+  "assistant_reply": "给用户看的完整回复",
+  "quick_replies": ["选项"],
+  "quick_replies_multi": false,
+  "profile_update": {},
+  "answer_status": "not_applicable|clear|ambiguous|low_quality|skip",
+  "user_signal": "normal|joke|off_topic|ask_end|unsafe"
+}
+```
+
+### answer_status
+
+- `not_applicable`：开场、wrap_up、玩笑或跑题。
+- `clear`：当前题答案明确，必须写入当前字段。
+- `ambiguous`：可能有效但有多种解释，不写入、不推进。
+- `low_quality`：乱码、明显应付、纯胡闹，不写入、不推进。
+- `skip`：用户明确说跳过、不想答、不方便说。
+
+### user_signal
+
+- `normal`
+- `joke`
+- `off_topic`
+- `ask_end`
+- `unsafe`
+
+`滚 / 别问了 / 不聊了 / 结束吧` 都按 `ask_end` 立即收束，不要继续追问。
+
+### profile_update 门禁
+
+`clear` 时只能出现 `currentField`：
+
+```json
+{
+  "occupation": {
+    "value": "船员",
+    "evidence": ["用户说自己是跑船的"]
+  }
+}
+```
+
+模型写入其它字段时，服务端必须忽略。
+
+`skip` 由服务端直接写 `status=skipped`，不依赖模型返回特殊值。
+
+## 8. 状态转换
+
+```text
+clear + 当前字段更新有效
+→ 当前字段 answered
+→ fieldQueue.shift()
+→ lowQualityStreak 清零
+
+skip
+→ 当前字段 skipped
+→ fieldQueue.shift()
+→ lowQualityStreak 清零
+
+ambiguous
+→ 不写入
+→ 不推进
+→ 确认当前题
+
+low_quality
+→ 不写入
+→ 不推进
+→ lowQualityStreak + 1
+
+joke / off_topic
+→ 不写入
+→ 不推进
+→ lowQualityStreak 清零
+
+unsafe
+→ 不写入
+→ 不推进
+→ lowQualityStreak + 1
+
+ask_end
+→ 立即进入 wrap_up
+```
+
+服务端必须确保 AI 回复正在问的方向与 `currentField / nextField` 一致，禁止话术已经跳到下一题、后台仍停在上一题。
+
+## 9. 自定义回答
+
+快捷选项只是降低输入成本，不是答案白名单。
+
+例如 `social_purpose`：
+
+- “找人一起跑船” → `跑船搭子`，`clear`；
+- “找摄影搭子” → `摄影搭子`，`clear`；
+- “一起逛展” → `逛展搭子`，`clear`。
+
+禁止反复要求用户改选饭搭子、运动搭子等预设按钮。
+
+一句话即使包含多个方向，当前 v3 也只写 `currentField`。其它信息可留在聊天历史中，之后按队列继续询问。这样可以避免模型越权修改多个长期字段。
+
+## 10. 结束条件与完整度
+
+满足任一条件进入 `wrap_up`：
+
+- `fieldQueue` 为空；
+- `userTurns >= 30`；
+- `lowQualityStreak >= 3`；
+- `user_signal=ask_end`。
+
+结束不等于完整。
+
+`profile_complete=true` 的唯一条件：除 `stranger_story` 外，其余 7 项全部为 `answered`。
+
+不完整时：
+
+- 可以展示总结；
+- 不允许确认匹配；
+- 提供“再聊补全”；
+- 不能暗示“已经够了”或“现在可以找局”。
+
+## 11. wrap_up
+
+结束时额外调用一次 GLM：
+
+```json
+{
+  "phase": "wrap_up",
+  "profile_complete": true
+}
+```
+
+要求模型输出：
+
+- `assistant_reply`：聊天里的收束回复；
+- `profile_update.intro`：总结页介绍。
+
+完整画像：150～250 字，包含对用户的理解和以后如何推荐局/搭子。
+
+不完整画像：接住已了解的内容，明确还有信息未齐、这次不能开始匹配、之后可以回来补。
+
+只有 intro 为空、包含内部术语或明显占位内容时才 fallback。不得无条件覆盖合格的模型总结。
+
+## 12. 失败、超时与幂等
+
+- GLM 请求必须有超时。
+- 调用失败或 JSON 连续解析失败：回滚本轮状态，不推进当前题。
+- 前端展示失败并重试原 requestId。
+- 同一个 requestId 重试不得重复增加轮次、重复写入消息。
+- 不允许“模型失败但页面看似正常进入下一题”。
+
+## 13. 前端接口语义
+
+请求示例：
 
 ```json
 {
   "sessionId": "string",
+  "requestId": "string",
   "reset": false,
   "resumeMode": false,
   "seedDraft": null,
-  "userMessage": "用户话或 null（开场）"
+  "userMessage": "用户原文或 null"
 }
 ```
 
-Response（关键字段）：
+关键响应：
 
 ```json
 {
-  "ok": true,
-  "assistant_reply": "...",
+  "assistant_reply": "",
   "quick_replies": [],
   "quick_replies_multi": false,
-  "profile_draft": {},
-  "intro": "",
-  "profile_complete": false,
-  "incomplete_fields": ["occupation"],
+  "answer_status": "clear",
+  "user_signal": "normal",
   "action": "continue|handoff_summary|hard_block",
   "phase": "continue|wrap_up",
-  "end_decision": {},
-  "safety": {}
+  "profile_draft": {},
+  "profile_complete": false,
+  "incomplete_fields": [],
+  "current_field": "occupation",
+  "next_field": "social_purpose",
+  "status": "collecting"
 }
 ```
 
-| `action` | 前端行为 |
-|----------|----------|
-| `continue` | 展示回复 + 快捷按钮，继续聊 |
-| `handoff_summary` | 进入总结页；按 `profile_complete` 决定能否确认匹配 |
-| `hard_block` | 本条有害拦截提示，仍可继续输入 |
+前端只相信服务端：
 
-### `POST /api/profile-chat-confirm`
+- 不自行维护必填字段；
+- 不自行计算完整度；
+- 不根据聊天文案猜当前题；
+- 重新进入页面时重新获取服务端完整状态。
 
-用户确认介绍（Demo）；生产上应校验 `profile_complete` 后再允许进入匹配。
+## 14. 调试与日志
 
----
+每轮建议记录：
 
-## 7. 模型调用注意（参考 `server.js`）
-
-- 默认模型示例：`ZHIPU_MODEL=glm-5.2`（见 `.env.example`）。
-- `glm-5.x`：关闭 thinking，避免占满 `max_tokens` 导致 JSON 截断。
-- `response_format: json_object`；解析失败可重试一次。
-- 建议请求超时（Demo 曾因挂起导致前端 `chatBusy` 假死）。
-- System 每轮追加**进度事实**（已知 / 未齐 / `profile_complete` / `resume_mode`），不写题面。
-
----
-
-## 8. 前端体验契约（生产应对齐）
-
-1. 快捷回复：单选/多选由 `quick_replies_multi` 决定；选完点发送，不自动提交。
-2. 总结页：主要展示 `intro`（可编辑）；**不展示结构化标签列表**。
-3. 不完整：文案提示 + **硬拦匹配**；主按钮「再聊补全」，次按钮「重新聊聊」。
-4. 完整：可「确认，就按这个帮我找」进入匹配。
-5. 助手名：**Zee**。
-
----
-
-## 9. 后端实现检查清单（给 AI / 给人）
-
-- [ ] 接入唯一 Prompt（与 `system-prompt.js` 同步维护）
-- [ ] 实现字段 merge（含：**真答覆盖 `__skipped__`**）
-- [ ] 实现 `evaluateEnd` 与 `isProfileComplete` 两套逻辑
-- [ ] 实现 `resumeMode` + `seedDraft` + resumeTouched
-- [ ] wrap_up 不完整时 intro 对用户说话（可用保底文案覆盖内部备注）
-- [ ] 匹配入口硬校验 `profile_complete`
-- [ ] 不把 `profile_update` 原文展示给用户
-- [ ] 不在业务层用启发式改写下一题文案
-- [ ] 会话可持久化；服务重启可恢复进行中会话（Demo 已从磁盘恢复）
-
----
-
-## 10. 本地如何验收 Demo
-
-```bash
-cd demo/profile-proxy
-cp .env.example .env   # 填 ZHIPU_API_KEY
-npm start
+```json
+{
+  "requestId": "",
+  "currentFieldBefore": "",
+  "answerStatus": "",
+  "userSignal": "",
+  "profileUpdateAccepted": false,
+  "currentFieldAfter": "",
+  "lowQualityStreak": 0,
+  "endReasons": []
+}
 ```
 
-打开：http://localhost:8788/match-card.html  
+不要只保存聊天文本，否则发生错题、误推进时无法判断模型当时返回了什么分类。
 
-建议验收路径：
+## 15. 验收清单
 
-1. 正常答完全部核心题 → 完整总结 → 可确认匹配。  
-2. 中途跳过若干题 → 可收束但不完整 → 不能匹配 → 再聊补全只问未齐。  
-3. 补聊时低质乱答 → 应追问，不应立刻收束（满 3 次低质才可提前收束）。  
-4. 「重新聊聊」清空重来。
+必须全部通过：
 
-对话存档：`demo/profile-proxy/data/chats/`（仅本地 Demo）。
+1. 正常回答 8 题，字段顺序和快捷按钮正确。
+2. “臭拉车的”先确认，不入库、不推进。
+3. “货车司机”明确入库并推进。
+4. “找人一起跑船”作为自定义 social_purpose 被接受。
+5. “抢银行的 / 随便吧 / asdfgh”连续三次按低质收束。
+6. “滚 / 别问了”立即按用户结束收束。
+7. 模糊和低质时 AI 仍问 currentField，不能擅自跳题。
+8. 跳过必需字段后总结不完整，不能开始匹配。
+9. 第 7 题跳过，其余 7 项回答后仍完整。
+10. 补聊只问未真实回答的匹配字段。
+11. 真答可以覆盖此前 skipped。
+12. 完整总结保留模型 intro，不被模板覆盖。
+13. 不完整收束不能说“够了”或“现在可以找局”。
+14. 模型超时后不推进，重试不重复计数。
+15. 退出、重连、处理中恢复和 requestId 幂等正常。
 
----
+## 16. 交接包内容
 
-## 11. 源码优先级（冲突时）
+- `00-请先读我.md`
+- `docs/ai-match-profile-backend-handoff.md`
+- `docs/ai-match-profile-backend-migration.md`
+- `docs/ai-match-profile.md`
+- `demo/profile-proxy/system-prompt.js`
+- `demo/profile-proxy/profile-schema.js`
+- `demo/profile-proxy/server.js`
+- `demo/profile-proxy/profile-schema.test.js`
+- `demo/profile-proxy/README.md`
+- `demo/profile-proxy/package.json`
+- `demo/profile-proxy/.env.example`
+- `match-card.html`
 
-1. `system-prompt.js`（怎么说、问什么）  
-2. `profile-schema.js`（能不能结束、算不算完整）  
-3. `server.js`（怎么编排调用）  
-4. `match-card.html`（交互与硬拦展示）  
-5. 本文 / `ai-match-profile.md`（说明；若与源码冲突以源码为准并回写文档）
+实现时以本文、Prompt 和状态机源码为准。
