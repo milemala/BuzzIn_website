@@ -98,6 +98,7 @@ function listSavedChats() {
           updatedAt: record.updatedAt,
           status: record.status,
           intro: (record.draft && record.draft.intro) || '',
+          tagline: (record.draft && record.draft.tagline) || '',
           profileComplete: record.version === 'v3' ? schema.isProfileComplete(record.draft) : false,
           turns: (record.messages || record.transcript || []).length,
           architecture: record.architecture || 'legacy'
@@ -125,6 +126,8 @@ function freshSession(seedDraft, resumeMode) {
     messages: [],
     userTurns: 0,
     lowQualityStreak: 0,
+    ambiguousStreak: 0,
+    ambiguousField: '',
     endDecision: null
   };
 }
@@ -141,6 +144,8 @@ function hydrateSession(record) {
   session.messages = Array.isArray(record.messages) ? record.messages.slice() : [];
   session.userTurns = Number(record.userTurns) || 0;
   session.lowQualityStreak = Number(record.lowQualityStreak) || 0;
+  session.ambiguousStreak = Number(record.ambiguousStreak) || 0;
+  session.ambiguousField = String(record.ambiguousField || '');
   session.endDecision = record.endDecision || null;
   return session;
 }
@@ -291,11 +296,15 @@ async function runAgent(session, phase, options) {
   const eventMessage = opening
     ? [{ role: 'user', content: '【事件】用户打开建档对话，请开始。' }]
     : (phase === 'wrap_up'
-      ? [{ role: 'user', content: '【事件】业务层决定结束本轮，请按 wrap_up 输出总结。' }]
+      ? [{
+          role: 'user',
+          content: '【事件】业务层决定结束本轮，请按 wrap_up 输出。intro 要写成理解后的性格与组局策略分析，禁止把 draft_summary 当表单逐项复述；同时给出 tagline：必须是「短语A·短语B·短语C」三段式、总长≤15字，身份优先、气质积极改写、敏感诉求脱敏，用于组局列表昵称下方。'
+        }]
       : []);
   const apiMessages = [{ role: 'system', content: system }].concat(recentMessages, eventMessage);
 
-  let result = await callZhipu(apiMessages, { temperature: 0.55, max_tokens: 2048 });
+  const temperature = phase === 'wrap_up' ? 0.7 : 0.55;
+  let result = await callZhipu(apiMessages, { temperature, max_tokens: 2048 });
   let parsed;
   try {
     parsed = extractJson(result.content);
@@ -324,11 +333,22 @@ async function runAgent(session, phase, options) {
     quickRepliesMulti: parsed.quick_replies_multi === true,
     profileUpdate: rawUpdate,
     intro: phase === 'wrap_up' && typeof rawUpdate.intro === 'string' ? rawUpdate.intro.trim() : '',
+    tagline: phase === 'wrap_up' ? schema.normalizeTagline(rawUpdate.tagline) : '',
     answerStatus,
     userSignal,
     usage: result.usage,
     model: result.model
   };
+}
+
+function lastUserText(session) {
+  for (let i = session.messages.length - 1; i >= 0; i -= 1) {
+    const msg = session.messages[i];
+    if (msg && msg.role === 'user' && typeof msg.content === 'string' && !msg.content.startsWith('【事件】')) {
+      return msg.content.trim();
+    }
+  }
+  return '';
 }
 
 function applyTurnState(session, out) {
@@ -344,14 +364,56 @@ function applyTurnState(session, out) {
     answerStatus,
     out.profileUpdate
   );
-  const updateApplied = current
+  let updateApplied = current
     ? !beforeAnswered && schema.isAnswered(session.draft[current])
     : false;
 
-  if (answerStatus === 'clear' && !updateApplied) {
-    console.warn('[profile-proxy] rejected clear update:', current, JSON.stringify(out.profileUpdate));
-    answerStatus = 'ambiguous';
+  // 模型判了 clear 却漏写/写坏 profile_update：用用户原话兜底入库，避免无谓重问
+  if (answerStatus === 'clear' && current && !updateApplied) {
+    const userText = lastUserText(session);
+    if (userText && userText.length >= 2 && userText.length <= 120) {
+      session.draft = schema.applyCurrentAnswer(
+        session.draft,
+        current,
+        'clear',
+        { [current]: userText }
+      );
+      updateApplied = schema.isAnswered(session.draft[current]);
+      if (updateApplied) {
+        console.warn('[profile-proxy] salvaged clear update from user text:', current);
+      }
+    }
+    if (!updateApplied) {
+      console.warn('[profile-proxy] rejected clear update:', current, JSON.stringify(out.profileUpdate));
+      answerStatus = 'ambiguous';
+    }
   }
+
+  // 连续第二次仍 ambiguous，但用户已给出有信息量的回答：放宽为 clear，避免死循环重问
+  if (answerStatus === 'ambiguous' && current) {
+    session.ambiguousStreak = (session.ambiguousField === current ? session.ambiguousStreak : 0) + 1;
+    session.ambiguousField = current;
+    const userText = lastUserText(session);
+    if (session.ambiguousStreak >= 2 && userText && userText.length >= 2 && !/^[a-z]{4,}$/i.test(userText)) {
+      session.draft = schema.applyCurrentAnswer(
+        session.draft,
+        current,
+        'clear',
+        { [current]: userText.slice(0, 80) }
+      );
+      if (schema.isAnswered(session.draft[current])) {
+        answerStatus = 'clear';
+        updateApplied = true;
+        session.ambiguousStreak = 0;
+        session.ambiguousField = '';
+        console.warn('[profile-proxy] soft-accepted after repeated ambiguous:', current);
+      }
+    }
+  } else if (answerStatus === 'clear' || answerStatus === 'skip') {
+    session.ambiguousStreak = 0;
+    session.ambiguousField = '';
+  }
+
   session.fieldQueue = schema.advanceQueue(session.fieldQueue, answerStatus, updateApplied);
 
   if (answerStatus === 'low_quality' || out.userSignal === 'unsafe') {
@@ -374,17 +436,18 @@ function validIntro(text) {
     && !schema.introLooksInternal(text);
 }
 
-function applyWrapIntro(session, modelIntro, modelReply) {
+function applyWrapIntro(session, modelIntro, modelReply, modelTagline) {
   const incomplete = !schema.isProfileComplete(session.draft);
   if (validIntro(modelIntro)) {
     session.draft.intro = modelIntro;
-    return;
-  }
-  if (validIntro(modelReply) && String(modelReply).length >= 60) {
+  } else if (validIntro(modelReply) && String(modelReply).length >= 60) {
     session.draft.intro = String(modelReply).trim();
-    return;
+  } else {
+    session.draft.intro = schema.fallbackIntro(session.draft, { incomplete });
   }
-  session.draft.intro = schema.fallbackIntro(session.draft, { incomplete });
+
+  const tagline = schema.normalizeTagline(modelTagline);
+  session.draft.tagline = tagline || schema.fallbackTagline(session.draft);
 }
 
 function finishPayload(sessionId, session, out, action, phase, decision, savedFile, turnStatus, turnSignal) {
@@ -403,6 +466,7 @@ function finishPayload(sessionId, session, out, action, phase, decision, savedFi
     phase,
     profile_draft: session.draft,
     intro: session.draft.intro || '',
+    tagline: session.draft.tagline || '',
     profile_complete: schema.isProfileComplete(session.draft),
     incomplete_fields: schema.incompleteMatchFields(session.draft),
     current_field: schema.currentField(session.fieldQueue),
@@ -437,7 +501,7 @@ async function handleProfileChat(body) {
     if (!session.messages.length && userMessage == null) {
       if (!schema.currentField(session.fieldQueue)) {
         const wrap = await runAgent(session, 'wrap_up');
-        applyWrapIntro(session, wrap.intro, wrap.reply);
+        applyWrapIntro(session, wrap.intro, wrap.reply, wrap.tagline);
         session.messages.push({ role: 'assistant', content: wrap.reply });
         session.status = 'completed';
         session.updatedAt = new Date().toISOString();
@@ -472,7 +536,7 @@ async function handleProfileChat(body) {
 
     if (decision.shouldEnd) {
       const wrap = await runAgent(session, 'wrap_up');
-      applyWrapIntro(session, wrap.intro, wrap.reply);
+      applyWrapIntro(session, wrap.intro, wrap.reply, wrap.tagline);
       session.messages.push({ role: 'assistant', content: wrap.reply });
       session.status = 'completed';
       session.updatedAt = new Date().toISOString();
@@ -633,6 +697,11 @@ const server = http.createServer(async (req, res) => {
         return;
       }
       if (typeof body.intro === 'string' && body.intro.trim()) session.draft.intro = body.intro.trim();
+      if (typeof body.tagline === 'string') {
+        session.draft.tagline = schema.normalizeTagline(body.tagline) || schema.fallbackTagline(session.draft);
+      } else if (!session.draft.tagline) {
+        session.draft.tagline = schema.fallbackTagline(session.draft);
+      }
       session.status = 'confirmed';
       session.updatedAt = new Date().toISOString();
       sessions.set(sessionId, session);

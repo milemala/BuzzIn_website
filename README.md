@@ -12,7 +12,7 @@ BuzzInMap_website/
 ├─ demo/profile-proxy/        # AI 首次建档参考实现（单 Agent + 智谱，见目录内 README）
 ├─ docs/ai-match-profile.md   # AI 建档说明与提示词入口
 ├─ merchant.html              # 商户入驻说明页
-├─ guide.html                 # 用户手册
+├─ guide.html                 # 用户手册（与 zup-intro 同款 AI 组局介绍，含返回首页）
 ├─ city-living-room.html      # 城市客厅联盟
 ├─ user.html                  # 用户服务协议页
 ├─ user-delete.html           # 用户注销协议页
@@ -32,6 +32,15 @@ BuzzInMap_website/
 
 活动抓取说明见 [`zup-event-crawl/README.md`](zup-event-crawl/README.md) 或 [`events/CRAWL-SERVICE.md`](events/CRAWL-SERVICE.md)。
 
+### 改安卓下载包时注意
+
+安卓 APK 地址写在 `js/config.js` 的 `APK_DOWNLOAD_URL`。改完后必须同时：
+
+1. 把新 `config.js` 部署上线；
+2. 把各页面里的 `config.js?v=……` 版本号改成新日期（如 `?v=20260808`），并一并部署 `index.html`、`download.html`、`android-guide.html` 等引用页。
+
+只改 `config.js`、不改 `?v=`，浏览器会继续用缓存里的旧配置，下载到的仍是老包。APK 文件名若与线上一致，CDN 也可能缓存旧安装包，建议新版本用新文件名。
+
 ## 本地预览
 
 - 直接双击或通过本地服务器打开 `index.html` 即可。
@@ -50,17 +59,18 @@ npm start
 **只需开这一个服务。** `8787` 是活动审核台（`zup-event-crawl`），和 AI 建档无关，测撮合/建档时不必启动。详见 [`docs/ai-match-profile.md`](docs/ai-match-profile.md)。
 
 - 最新后端交接入口：[`docs/ai-match-profile-backend-handoff.md`](docs/ai-match-profile-backend-handoff.md)
-- 可直接发送给后端的压缩包：`AI建档-v3-后端交接包-20260730.zip`
+- 可直接发送给后端的压缩包：`AI建档-v3-后端交接包-20260807.zip`（含回答放宽与总结润色；详见包内 `01-本次改动说明.md`）
+- 旧包：`AI建档-v3-后端交接包-20260730.zip`（已过期，请勿再发）
 
 ## 页面说明
 
 - 首页（`index.html`）
-  - 定位：基于地图与 AI Agent 的即时线下社交撮合平台。
+  - 定位：AI 实时线下组局（与 `guide.html` / `zup-intro` 同口径）。
   - 结构顺序：
-    1. Hero（品牌 + 一句话定位 + 场景词条 + 下载）
-    2. 它解决什么（3 条短痛点 + 撮合收束）
-    3. App 演示（5 张完整 App 截图：地图 / NOW / 氛围 / 商户 / 伙伴）
-    4. AI Agent（内容供给 / 智能撮合 / 帮店获客）
+    1. Hero（Logo 动效 +「附近有人，AI 帮你约上」+ 场景词条 + 下载）
+    2. 实时组局四步（聊几句 → 选局 → AI 寻找 → 成局建群）
+    3. 四能力（AI 组局 / 地图 / 即时邀约 / 群聊）
+    4. App 演示（5 张新截图 CDN：`website/1.jpg` … `5.png`）
     5. 给商户（3 个价值 + 入驻 CTA）
     6. Footer（再次下载、联系、协议与备案）
   - 首页不展示融资、股权、团队履历等 BP 细节。
@@ -101,6 +111,17 @@ npm start
 - 用户注销协议（`user-delete.html`）
   - 注销注销含义、不可逆性、权益处理与数据删除说明。
 
+- 用户手册（`guide.html`）
+  - 内容与 `events/zup-intro.html` 同步：AI 实时线下组局介绍。
+  - 保留桌面端左上角「返回首页」；商户入驻：浏览器跳转 `merchant.html`，App 内弹 toast。
+  - 响应式：手机单列；平板双列能力/入驻；桌面加宽内容区，步骤与场景改为网格。
+
+- 产品介绍 H5（`events/zup-intro.html`）
+  - 定位：AI 实时线下组局介绍页（可分享）。
+  - 主标题：附近有人，AI 帮你约上。
+  - 结构：Hero（新 App 图标）→ AI 组局四步 → 四能力（AI / 地图 / 即时邀约 / 群聊）→ 场景横滑 → 地图预览 → 收束 CTA → 发起人/商户入驻。
+  - 图标资源：`https://buzzin.oss-cn-beijing.aliyuncs.com/h5_event/zup-app-icon.png`。
+
 ## 设计一致性
 
 - 导航结构、按钮风格、色板与动效全站统一；交互动效复用 `js/main.js`。
@@ -114,6 +135,30 @@ npm start
 - 产品对外口径以 `参考资料/` 中的 BP / 鲸准文案为准，首页保持用户可读的短句表达。
 
 ## 最近更新
+
+### 2026年8月 - 全站统一新 App 图标
+- **变更**: 各页 favicon / 导航 Logo / 下载页与活动 H5 中的旧应用图标，统一改为 CDN `https://buzzin.oss-cn-beijing.aliyuncs.com/h5_event/zup-app-icon.png`；本地 `images/favicon.png`、`nav-logo.png`、`hero-logo.png`、`app-icon.png` 同步覆盖为新图。
+- **文件**: `merchant.html`、`download.html`、`download-qr.html`、`android-guide.html`、`ios-appstore-guide*.html`、`city-living-room.html`、`activity-detail.html`、春节系列活动页等
+
+### 2026年8月 - 首页内容对齐 AI 组局
+- **变更**: 首页叙事按 `guide.html` 大改；App 演示换 5 张新截图；保留导航、下载、商户入驻与页脚。
+- **文件**: `index.html`、`README.md`
+
+### 2026年8月 - 首页 Hero Logo 动效与新图标
+- **变更**: 首页 favicon 换为新 App 图标 CDN；Hero 品牌区改为与 `guide.html` 同款 Z+定位针动效（CDN `zup-logo-mark.png`）。
+- **文件**: `index.html`、`README.md`
+
+### 2026年8月 - 用户手册同步 AI 组局介绍
+- **变更**: `guide.html` 内容替换为与 `events/zup-intro.html` 一致的 AI 组局叙事；保留返回首页；增加平板/桌面响应式布局。
+- **文件**: `guide.html`、`README.md`
+
+### 2026年8月 - 产品介绍页改版（AI 组局）
+- **变更**: `events/zup-intro.html` 从「地图发现热闹」改为以 AI 实时组局为主叙事；换用新 App 图标；精简地图/入驻为配套能力。
+- **文件**: `events/zup-intro.html`、`events/assets/zup-app-icon.png`、`README.md`
+
+### 2026年8月 - 建档放宽回答判定并润色总结
+- **变更**: 自由回答不再因未点预设选项被反复追问；兼容松散 profile_update；总结改为性格理解 + 组局策略，避免表单式复述。
+- **文件**: `demo/profile-proxy/`、`match-card.html`、`README.md`
 
 ### 2026年8月 - 匹配状态图标改为 SVG
 - **变更**: 等待确认 / 成局 / 未找到 / 已超时 / 人数不足等状态标识，由系统 emoji 改为统一 SVG 图片，避免不同设备显示不一致。

@@ -31,15 +31,17 @@ npm test
 → 模型返回回复、回答状态、当前字段更新、快捷按钮
 → 服务端校验当前字段并推进 fieldQueue
 → 命中结束条件时调用 wrap_up
-→ 保留模型 intro；异常时才使用 fallback
+→ 保留模型 intro / tagline；异常时才使用 fallback
 ```
 
 职责边界：
 
 - `system-prompt.js`：唯一对话规则、问法、选项和输出契约。
-- `profile-schema.js`：字段状态、字段队列、完整度与结束判断。
+- `profile-schema.js`：字段状态、字段队列、完整度与结束判断；`tagline` 规范化（≤15 字）。
 - `server.js`：模型调用、状态转换、会话恢复和 HTTP。
 - `match-card.html`：展示、快捷回复和总结交互；不重复计算完整度。
+
+建档结束还会生成 `tagline`：组局列表昵称下方的一行短介绍（≤15 字）。
 
 ## v3 画像
 

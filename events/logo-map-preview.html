@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Logo 动效预览 · 地图首页</title>
+<meta name="robots" content="noindex">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;background:#0a0c10}
+body{font-family:-apple-system,"SF Pro Display","PingFang SC",sans-serif}
+
+/* 全屏手机画面 */
+.phone{
+    position:relative;width:100%;height:100%;
+    max-width:470px;margin:0 auto;
+    background:#0a0c10 center top/cover no-repeat;
+    background-image:url("assets/logo-preview-bg.png");
+    overflow:hidden
+}
+/* 桌面上看起来像手机框 */
+@media (min-width:520px){
+    body{
+        display:flex;align-items:center;justify-content:center;
+        background:#12141a;
+        background-image:radial-gradient(ellipse at 50% 30%,rgba(254,217,61,.06),transparent 55%)
+    }
+    .phone{
+        width:min(390px,92vw);height:min(848px,92vh);
+        border-radius:36px;box-shadow:
+            0 0 0 10px #1a1d24,
+            0 0 0 12px #2a2e38,
+            0 30px 80px rgba(0,0,0,.55);
+        overflow:hidden
+    }
+}
+
+/* Logo：垂直中心对齐「伙伴在附近」与右侧头像那一行 */
+.phone{--logo-size:75px;--header-cy:7.55%}
+.logo-slot{
+    position:absolute;
+    top:calc(var(--header-cy) - var(--logo-size) / 2);
+    left:6px;
+    z-index:20;
+    pointer-events:none
+}
+.logo-stage{
+    position:relative;width:var(--logo-size);height:var(--logo-size);
+    perspective:400px;animation:logoEnter 1.1s cubic-bezier(.22,1.2,.36,1) both
+}
+@keyframes logoEnter{
+    0%{opacity:0;transform:scale(.55) translateY(16px) rotateX(18deg)}
+    100%{opacity:1;transform:scale(1) translateY(0) rotateX(0)}
+}
+.logo-glow{
+    position:absolute;inset:-16px;border-radius:50%;pointer-events:none;z-index:0;
+    background:
+        radial-gradient(circle at 45% 40%,rgba(254,217,61,.4),transparent 42%),
+        radial-gradient(circle at 60% 65%,rgba(46,232,194,.34),transparent 48%);
+    filter:blur(4px);animation:logoGlow 3.8s ease-in-out infinite
+}
+@keyframes logoGlow{
+    0%,100%{opacity:.7;transform:scale(.92)}
+    50%{opacity:1;transform:scale(1.08)}
+}
+.logo-ring,.logo-ring-2{
+    position:absolute;border-radius:50%;pointer-events:none;z-index:1;
+    animation:logoSpin 11s linear infinite
+}
+.logo-ring{
+    inset:4px;
+    background:conic-gradient(from 0deg,transparent 0 58%,rgba(254,217,61,.85),rgba(46,232,194,.95),transparent 82%);
+    -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 1.5px),#000 calc(100% - .5px));
+    mask:radial-gradient(farthest-side,transparent calc(100% - 1.5px),#000 calc(100% - .5px));
+    opacity:.9;filter:drop-shadow(0 0 6px rgba(46,232,194,.35))
+}
+.logo-ring-2{
+    inset:-6px;animation-duration:18s;animation-direction:reverse;opacity:.5;
+    background:conic-gradient(from 160deg,transparent 0 62%,rgba(46,232,194,.7),rgba(254,217,61,.55),transparent 86%);
+    -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 1px),#000 calc(100% - .3px));
+    mask:radial-gradient(farthest-side,transparent calc(100% - 1px),#000 calc(100% - .3px))
+}
+@keyframes logoSpin{to{transform:rotate(360deg)}}
+.logo-mark-wrap{
+    position:absolute;inset:8px;z-index:3;
+    display:grid;place-items:center;
+    animation:logoFloat 4.2s ease-in-out infinite;
+    filter:drop-shadow(0 6px 12px rgba(46,232,194,.4)) drop-shadow(0 0 10px rgba(254,217,61,.3))
+}
+@keyframes logoFloat{
+    0%,100%{transform:translateY(0) rotate(-2deg)}
+    50%{transform:translateY(-5px) rotate(2deg)}
+}
+.logo-mark{
+    width:100%;height:100%;object-fit:contain;display:block;
+    animation:logoPulse 3.6s ease-in-out infinite;
+    -webkit-user-drag:none;user-select:none
+}
+@keyframes logoPulse{
+    0%,100%{filter:brightness(1) saturate(1.05)}
+    50%{filter:brightness(1.12) saturate(1.2)}
+}
+.logo-shimmer{
+    position:absolute;inset:8px;z-index:4;pointer-events:none;overflow:hidden;
+    -webkit-mask:url("assets/zup-logo-mark.png") center/contain no-repeat;
+    mask:url("assets/zup-logo-mark.png") center/contain no-repeat
+}
+.logo-shimmer::after{
+    content:"";position:absolute;inset:-40%;
+    background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.35) 48%,transparent 62%);
+    animation:logoShimmer 3.8s ease-in-out infinite
+}
+@keyframes logoShimmer{
+    0%{transform:translateX(-30%) rotate(8deg);opacity:0}
+    25%{opacity:.85}
+    55%,100%{transform:translateX(35%) rotate(8deg);opacity:0}
+}
+.logo-star{
+    position:absolute;z-index:5;width:6px;height:6px;pointer-events:none;
+    background:radial-gradient(circle,rgba(68,240,208,1) 0 28%,transparent 32%),
+        linear-gradient(#44f0d0,#44f0d0) center/1.5px 100% no-repeat,
+        linear-gradient(#44f0d0,#44f0d0) center/100% 1.5px no-repeat;
+    filter:drop-shadow(0 0 4px rgba(46,232,194,.9));
+    animation:starTwinkle 2.4s ease-in-out infinite
+}
+.ls1{top:6px;left:8px;animation-delay:0s;transform:scale(1.1)}
+.ls2{top:14px;right:4px;width:5px;height:5px;animation-delay:.7s}
+.ls3{bottom:10px;left:4px;width:5px;height:5px;animation-delay:1.3s}
+.ls4{bottom:16px;right:10px;width:4px;height:4px;animation-delay:1.9s}
+@keyframes starTwinkle{
+    0%,100%{opacity:.25;transform:scale(.7) rotate(0deg)}
+    50%{opacity:1;transform:scale(1.25) rotate(20deg)}
+}
+
+/* 尺寸切换，方便对比 */
+.controls{
+    position:fixed;right:12px;bottom:calc(16px + env(safe-area-inset-bottom,0px));
+    z-index:30;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;
+    max-width:180px
+}
+.controls button{
+    border:1px solid rgba(255,255,255,.14);
+    background:rgba(14,13,11,.72);backdrop-filter:blur(10px);
+    color:#f0ebe2;font-size:11px;font-weight:600;
+    padding:7px 10px;border-radius:999px;cursor:pointer
+}
+.controls button.active{border-color:rgba(254,217,61,.55);color:#FED93D}
+.phone.size-70{--logo-size:70px}
+.phone.size-75{--logo-size:75px}
+.phone.size-80{--logo-size:80px}
+</style>
+</head>
+<body>
+<div class="phone size-75" id="phone">
+    <div class="logo-slot">
+        <div class="logo-stage" aria-label="Zup!">
+            <div class="logo-glow"></div>
+            <div class="logo-ring"></div>
+            <div class="logo-ring-2"></div>
+            <div class="logo-mark-wrap">
+                <img class="logo-mark" src="assets/zup-logo-mark.png" alt="Zup!" width="64" height="64" decoding="async">
+            </div>
+            <div class="logo-shimmer" aria-hidden="true"></div>
+            <span class="logo-star ls1" aria-hidden="true"></span>
+            <span class="logo-star ls2" aria-hidden="true"></span>
+            <span class="logo-star ls3" aria-hidden="true"></span>
+            <span class="logo-star ls4" aria-hidden="true"></span>
+        </div>
+    </div>
+</div>
+
+<div class="controls" aria-label="Logo 尺寸">
+    <button type="button" data-size="70">70</button>
+    <button type="button" data-size="75" class="active">75</button>
+    <button type="button" data-size="80">80</button>
+</div>
+
+<script>
+(function(){
+    var phone=document.getElementById('phone');
+    document.querySelectorAll('.controls button').forEach(function(btn){
+        btn.addEventListener('click',function(){
+            phone.classList.remove('size-70','size-75','size-80');
+            phone.classList.add('size-'+btn.getAttribute('data-size'));
+            document.querySelectorAll('.controls button').forEach(function(b){b.classList.remove('active')});
+            btn.classList.add('active');
+        });
+    });
+})();
+</script>
+</body>
+</html>

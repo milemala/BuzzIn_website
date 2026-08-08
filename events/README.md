@@ -12,6 +12,8 @@
 活动抓取与本地审核台见仓库内 [`../zup-event-crawl`](../zup-event-crawl)（[`CRAWL-SERVICE.md`](CRAWL-SERVICE.md)）。
 
 当前页面：
+- `zup-intro.html`（产品介绍 H5：**AI 实时线下组局**；主标题「附近有人，AI 帮你约上」；图标 CDN `https://buzzin.oss-cn-beijing.aliyuncs.com/h5_event/zup-app-icon.png`）
+- `logo-map-preview.html`（Logo 动效叠地图首页截图预览；与「伙伴在附近」头像行对齐，可切换 70/75/80）
 - `invite-detail.html`（图片邀约详情 **v3 Editorial Noir**：香槟金/奶油色编辑风、衬线正文、环形报名进度、上浮面板；**Cursor 维护**，备份 `invite-detail-v2.html`）
 - `invite-detail-v2.html`（与 `invite-detail.html` 同内容；被 Xcode 覆盖时 `cp invite-detail-v2.html invite-detail.html` 恢复）
 - `invite-detail-video.html`（**视频**邀约详情 v2：全屏沉浸 + 右侧互动轨 + 左下信息叠层；报名改为 **底部 Sheet**，非居中挡屏弹窗；备份见 `invite-detail-video-v2.html`）

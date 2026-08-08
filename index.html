@@ -3,27 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zup! - 基于地图与 AI Agent 的即时线下社交APP</title>
-    <meta name="description" content="Zup! 是一款基于地图与 AI Agent 的即时线下社交撮合平台，帮助你高效找到此刻附近感兴趣的线下活动与同行人群。">
-    <link rel="icon" type="image/png" href="images/favicon.png">
+    <title>Zup!｜AI 实时线下组局</title>
+    <meta name="description" content="附近有人，AI 帮你约上。Zup! 实时匹配附近同样想出门的人，自动组局、建群，把临时起意变成高质量线下见面。">
+    <link rel="icon" type="image/png" href="https://buzzin.oss-cn-beijing.aliyuncs.com/h5_event/zup-app-icon.png">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <link rel="stylesheet" href="css/style.css?v=20260713">
-    <link rel="stylesheet" href="css/animations.css?v=20260713">
+    <link rel="stylesheet" href="css/style.css?v=20260808">
+    <link rel="stylesheet" href="css/animations.css?v=20260808">
+    <style>
+        /* Hero Logo 动效（对齐 guide.html） */
+        .hero h1 .brand-name{
+            margin-bottom:4px;
+            padding-bottom:0;
+            line-height:1;
+            display:block
+        }
+        .hero .logo-stage{
+            position:relative;width:180px;height:180px;margin:0 0 6px -8px;
+            perspective:600px;animation:logoEnter 1.1s cubic-bezier(.22,1.2,.36,1) both
+        }
+        @keyframes logoEnter{
+            0%{opacity:0;transform:scale(.55) translateY(28px) rotateX(18deg)}
+            100%{opacity:1;transform:scale(1) translateY(0) rotateX(0)}
+        }
+        .hero .logo-glow{
+            position:absolute;inset:-28px;border-radius:50%;pointer-events:none;z-index:0;
+            background:
+                radial-gradient(circle at 45% 40%,rgba(254,217,61,.38),transparent 42%),
+                radial-gradient(circle at 60% 65%,rgba(46,232,194,.32),transparent 48%);
+            filter:blur(6px);animation:logoGlow 3.8s ease-in-out infinite
+        }
+        @keyframes logoGlow{
+            0%,100%{opacity:.7;transform:scale(.92)}
+            50%{opacity:1;transform:scale(1.08)}
+        }
+        .hero .logo-ring,.hero .logo-ring-2{
+            position:absolute;border-radius:50%;pointer-events:none;z-index:1;
+            animation:logoSpin 11s linear infinite
+        }
+        .hero .logo-ring{
+            inset:8px;
+            background:conic-gradient(from 0deg,transparent 0 58%,rgba(254,217,61,.85),rgba(46,232,194,.95),transparent 82%);
+            -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));
+            mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));
+            opacity:.9;filter:drop-shadow(0 0 8px rgba(46,232,194,.35))
+        }
+        .hero .logo-ring-2{
+            inset:-10px;animation-duration:18s;animation-direction:reverse;opacity:.5;
+            background:conic-gradient(from 160deg,transparent 0 62%,rgba(46,232,194,.7),rgba(254,217,61,.55),transparent 86%);
+            -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 1.5px),#000 calc(100% - .5px));
+            mask:radial-gradient(farthest-side,transparent calc(100% - 1.5px),#000 calc(100% - .5px))
+        }
+        @keyframes logoSpin{to{transform:rotate(360deg)}}
+        .hero .logo-mark-wrap{
+            position:absolute;inset:18px;z-index:3;
+            display:grid;place-items:center;
+            animation:logoFloat 4.2s ease-in-out infinite;
+            filter:drop-shadow(0 10px 22px rgba(46,232,194,.35)) drop-shadow(0 0 18px rgba(254,217,61,.28))
+        }
+        @keyframes logoFloat{
+            0%,100%{transform:translateY(0) rotate(-2deg)}
+            50%{transform:translateY(-10px) rotate(2deg)}
+        }
+        .hero .logo-mark{
+            width:100%;height:100%;object-fit:contain;display:block;
+            animation:logoPulse 3.6s ease-in-out infinite;
+            -webkit-user-drag:none;user-select:none
+        }
+        @keyframes logoPulse{
+            0%,100%{filter:brightness(1) saturate(1.05)}
+            50%{filter:brightness(1.12) saturate(1.2)}
+        }
+        .hero .logo-shimmer{
+            position:absolute;inset:18px;z-index:4;pointer-events:none;border-radius:20px;overflow:hidden;
+            -webkit-mask:url("https://buzzin.oss-cn-beijing.aliyuncs.com/h5_event/zup-logo-mark.png") center/contain no-repeat;
+            mask:url("https://buzzin.oss-cn-beijing.aliyuncs.com/h5_event/zup-logo-mark.png") center/contain no-repeat
+        }
+        .hero .logo-shimmer::after{
+            content:"";position:absolute;inset:-40%;
+            background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.35) 48%,transparent 62%);
+            animation:logoShimmer 3.8s ease-in-out infinite
+        }
+        @keyframes logoShimmer{
+            0%{transform:translateX(-30%) rotate(8deg);opacity:0}
+            25%{opacity:.85}
+            55%,100%{transform:translateX(35%) rotate(8deg);opacity:0}
+        }
+        .hero .logo-star{
+            position:absolute;z-index:5;width:10px;height:10px;pointer-events:none;
+            background:radial-gradient(circle,rgba(68,240,208,1) 0 28%,transparent 32%),
+                linear-gradient(#44f0d0,#44f0d0) center/2px 100% no-repeat,
+                linear-gradient(#44f0d0,#44f0d0) center/100% 2px no-repeat;
+            filter:drop-shadow(0 0 6px rgba(46,232,194,.9));
+            animation:starTwinkle 2.4s ease-in-out infinite
+        }
+        .hero .ls1{top:18px;left:22px;animation-delay:0s;transform:scale(1.1)}
+        .hero .ls2{top:36px;right:14px;width:7px;height:7px;animation-delay:.7s}
+        .hero .ls3{bottom:28px;left:16px;width:8px;height:8px;animation-delay:1.3s}
+        .hero .ls4{bottom:40px;right:28px;width:6px;height:6px;animation-delay:1.9s}
+        @keyframes starTwinkle{
+            0%,100%{opacity:.25;transform:scale(.7) rotate(0deg)}
+            50%{opacity:1;transform:scale(1.25) rotate(20deg)}
+        }
+        @media (max-width:768px){
+            .hero .logo-stage{width:148px;height:148px;margin:0 auto 10px}
+            .hero h1 .brand-name{align-self:center;text-align:center}
+        }
+
+        /* 首页叙事区（对齐 guide） */
+        .home-howto{padding:80px 0;background:var(--bg-secondary)}
+        .home-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:36px}
+        .home-step{background:var(--card-bg);border:1px solid var(--border-color);border-radius:16px;padding:24px 20px;transition:border-color .2s,transform .2s}
+        .home-step:hover{border-color:rgba(254,217,61,.35);transform:translateY(-3px)}
+        .home-step-num{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:10px;font-weight:800;font-size:14px;margin-bottom:14px;background:rgba(254,217,61,.12);color:var(--orange-bubble)}
+        .home-step:nth-child(2) .home-step-num{background:rgba(46,232,194,.12);color:var(--green-bubble)}
+        .home-step:nth-child(3) .home-step-num{background:rgba(255,107,138,.12);color:#ff6b8a}
+        .home-step:nth-child(4) .home-step-num{background:rgba(254,217,61,.1);color:#ffe566}
+        .home-step h3{font-size:1.15rem;margin-bottom:8px;color:var(--primary-color)}
+        .home-step p{color:var(--text-muted);font-size:.95rem;line-height:1.7;margin:0}
+        .home-closing{padding:40px 0 20px}
+        .home-closing-panel{max-width:720px;margin:0 auto;text-align:center;padding:36px 28px;border-radius:20px;background:linear-gradient(160deg,rgba(254,217,61,.08),rgba(46,232,194,.05));border:1px solid rgba(254,217,61,.15)}
+        .home-closing-panel h2{font-size:1.8rem;margin-bottom:10px;color:var(--primary-color)}
+        .home-closing-panel p{color:var(--text-muted);font-size:1.05rem;margin:0}
+        @media (max-width:900px){
+            .home-steps{grid-template-columns:1fr 1fr}
+        }
+        @media (max-width:640px){
+            .home-steps{grid-template-columns:1fr}
+            .home-howto{padding:56px 0}
+        }
+    </style>
 </head>
 <body>
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="container">
             <a href="#home" class="logo">
-                <img src="images/nav-logo.png" alt="Zup!" class="logo-img">
+                <img src="https://buzzin.oss-cn-beijing.aliyuncs.com/h5_event/zup-app-icon.png" alt="Zup!" class="logo-img">
             </a>
             <button class="menu-toggle" aria-label="菜单">
                 <svg class="icon" viewBox="0 0 448 512" fill="currentColor"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
             </button>
             <div class="nav-links">
-                <a href="#how-it-works" class="nav-link">产品</a>
+                <a href="index.html" class="nav-link active">首页</a>
                 <a href="merchant.html" class="nav-link">商户入驻</a>
                 <a href="guide.html" class="nav-link nav-link-secondary">用户手册</a>
                 <a href="city-living-room.html" class="nav-link nav-link-secondary">城市客厅联盟</a>
@@ -38,11 +161,22 @@
         <div class="container">
             <h1 class="fade-in">
                 <span class="brand-name">
-                    <img src="images/hero-logo.png" alt="Zup!" class="hero-logo">
+                    <div class="logo-stage" aria-label="Zup!">
+                        <div class="logo-glow"></div>
+                        <div class="logo-ring"></div>
+                        <div class="logo-ring-2"></div>
+                        <div class="logo-mark-wrap">
+                            <img class="logo-mark" src="https://buzzin.oss-cn-beijing.aliyuncs.com/h5_event/zup-logo-mark.png" alt="Zup!" width="144" height="144" decoding="async">
+                        </div>
+                        <div class="logo-shimmer" aria-hidden="true"></div>
+                        <span class="logo-star ls1" aria-hidden="true"></span>
+                        <span class="logo-star ls2" aria-hidden="true"></span>
+                        <span class="logo-star ls3" aria-hidden="true"></span>
+                        <span class="logo-star ls4" aria-hidden="true"></span>
+                    </div>
                 </span>
                 <span class="subtitle-text">基于地图与 AI Agent 的<br>「<span class="highlight-orange">即时线下社交APP</span>」</span>
             </h1>
-            <p class="subtitle fade-in">立刻找到此刻附近你感兴趣的线下活动与同行伙伴</p>
             <div class="hero-tags fade-in" aria-label="典型场景">
                 <span class="hero-tag">酒馆邀约</span>
                 <span class="hero-tag">球场攒局</span>
@@ -65,11 +199,41 @@
         </div>
     </header>
 
+    <!-- AI 怎么玩 -->
+    <section class="home-howto" id="howto">
+        <div class="container">
+            <h2 class="section-title">AI实时组局</h2>
+            <p class="section-intro">全新线下社交打开方式——不用自己发帖、等回复、拉群。选好此刻想干什么，剩下的交给 AI。</p>
+            <div class="home-steps">
+                <article class="home-step scroll-reveal">
+                    <div class="home-step-num">1</div>
+                    <h3>聊几句，认识你</h3>
+                    <p>AI 先了解你的兴趣与出门偏好，形成可复用的社交画像。</p>
+                </article>
+                <article class="home-step scroll-reveal">
+                    <div class="home-step-num">2</div>
+                    <h3>选此刻想组的局</h3>
+                    <p>咖啡、约饭、运动、桌游……可同时开多个，按实时意愿匹配。</p>
+                </article>
+                <article class="home-step scroll-reveal">
+                    <div class="home-step-num">3</div>
+                    <h3>AI 在附近寻找</h3>
+                    <p>按兴趣、位置、时间智能匹配附近同样想出门的人。</p>
+                </article>
+                <article class="home-step scroll-reveal">
+                    <div class="home-step-num">4</div>
+                    <h3>成局，自动建群</h3>
+                    <p>确认后生成邀约与专属群聊，线上聊短一点，线下见快一点。</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
     <!-- 它解决什么 -->
     <section class="pain-points" id="problems">
         <div class="container">
-            <h2 class="section-title">它解决什么</h2>
-            <p class="section-intro">都市青年并不缺社交意愿，缺的是此刻能落地的机会</p>
+            <h2 class="section-title">解决什么问题</h2>
+            <p class="section-intro">线下社交的即时性，也就是怎么快速走到线下</p>
             <div class="pain-grid">
                 <div class="pain-card scroll-reveal">
                     <div class="pain-number">01</div>
@@ -97,102 +261,57 @@
     <section class="how-it-works" id="how-it-works">
         <div class="container">
             <h2 class="section-title">App 演示</h2>
-            <p class="section-intro">打开地图看附近正在发生什么，点进气泡互动，再找认证店和同行伙伴</p>
+            <p class="section-intro">从地图发现热闹，到 AI 帮你约上——打开就能上手</p>
 
             <div class="demo-gallery">
                 <article class="demo-item scroll-reveal">
                     <div class="demo-phone">
-                        <img src="images/screenshots/首页地图.png" alt="Zup! 首页地图" loading="lazy">
+                        <img src="https://buzzin.oss-cn-beijing.aliyuncs.com/website/1.jpg" alt="首页地图" loading="lazy">
                     </div>
-                    <h3>首页地图</h3>
-                    <p>附近正在发生的活动、可约的人和认证商户，打开就能看见。</p>
+                    <h3>首页（地图）</h3>
+                    <p>加入附近实时线下邀约</p>
                 </article>
 
                 <article class="demo-item scroll-reveal">
                     <div class="demo-phone">
-                        <img src="images/screenshots/NOW气泡.png" alt="NOW 气泡详情" loading="lazy">
+                        <img src="https://buzzin.oss-cn-beijing.aliyuncs.com/website/2.png" alt="AI 组局助手" loading="lazy">
                     </div>
-                    <h3>NOW 气泡</h3>
-                    <p>看图文、报名签到、加入群聊，先确认再赴约。</p>
+                    <h3>AI 组局助手</h3>
+                    <p>帮你找到更合拍的搭子</p>
                 </article>
 
                 <article class="demo-item scroll-reveal">
                     <div class="demo-phone">
-                        <img src="images/screenshots/NOW气泡2.png" alt="NOW 现场氛围与商品" loading="lazy">
+                        <img src="https://buzzin.oss-cn-beijing.aliyuncs.com/website/3.png" alt="AI 组局成局页面" loading="lazy">
                     </div>
-                    <h3>现场氛围</h3>
-                    <p>照片、评论和商品信息一起看，减少踩雷。</p>
+                    <h3>AI 组局成局页</h3>
+                    <p>自动组局，拉群详聊</p>
                 </article>
 
                 <article class="demo-item scroll-reveal">
                     <div class="demo-phone">
-                        <img src="images/screenshots/商户页.png" alt="认证商户主页" loading="lazy">
+                        <img src="https://buzzin.oss-cn-beijing.aliyuncs.com/website/4.png" alt="附近的伙伴" loading="lazy">
                     </div>
-                    <h3>认证商户</h3>
-                    <p>店内商品、历史 NOW 和此刻热度一目了然。</p>
+                    <h3>附近的伙伴</h3>
+                    <p>附近的伙伴都在做什么</p>
                 </article>
 
                 <article class="demo-item scroll-reveal">
                     <div class="demo-phone">
-                        <img src="images/screenshots/同行伙伴.png" alt="附近同行伙伴" loading="lazy">
+                        <img src="https://buzzin.oss-cn-beijing.aliyuncs.com/website/5.png" alt="活动详情页" loading="lazy">
                     </div>
-                    <h3>同行伙伴</h3>
-                    <p>看到附近活跃的人和他们正在参与的局。</p>
+                    <h3>活动详情页</h3>
+                    <p>在线互动或者立即动身</p>
                 </article>
-            </div>
-
-            <div class="how-rules scroll-reveal">
-                <div class="how-rule">
-                    <span class="bubble-dot orange" aria-hidden="true"></span>
-                    <p><strong>橙色气泡</strong> = 可参与的邀约</p>
-                </div>
-                <div class="how-rule">
-                    <span class="bubble-dot green" aria-hidden="true"></span>
-                    <p><strong>绿色气泡</strong> = 当前空闲可约</p>
-                </div>
-                <div class="how-rule how-rule-wide">
-                    <p>地图上只显示进行中 / 即将开始的内容，保证信息时效。</p>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- AI Agent -->
-    <section class="ai-agent">
+    <section class="home-closing">
         <div class="container">
-            <h2 class="section-title">AI Agent</h2>
-            <p class="section-intro">不只是地图工具，更是帮你找局、找人、帮店获客的智能撮合</p>
-
-            <div class="ai-flow scroll-reveal" aria-label="AI 工作流程">
-                <div class="ai-flow-step">
-                    <span class="ai-flow-num">1</span>
-                    <p>聚合实时内容</p>
-                </div>
-                <span class="ai-flow-arrow" aria-hidden="true">→</span>
-                <div class="ai-flow-step">
-                    <span class="ai-flow-num">2</span>
-                    <p>推荐 / 自动组局</p>
-                </div>
-                <span class="ai-flow-arrow" aria-hidden="true">→</span>
-                <div class="ai-flow-step">
-                    <span class="ai-flow-num">3</span>
-                    <p>促成到店连接</p>
-                </div>
-            </div>
-
-            <div class="ai-grid">
-                <div class="ai-card scroll-reveal">
-                    <h3>内容供给</h3>
-                    <p>自动聚合城市实时线下活动，地图上始终有得逛，冷启动也不空。</p>
-                </div>
-                <div class="ai-card scroll-reveal">
-                    <h3>智能撮合</h3>
-                    <p>按兴趣、时间、位置帮你找更合适的局和人，降低开口与赴约门槛。</p>
-                </div>
-                <div class="ai-card scroll-reveal">
-                    <h3>帮店获客</h3>
-                    <p>把店内实时动态推给附近对的人，或自动帮店组局，提升到店动机。</p>
-                </div>
+            <div class="home-closing-panel scroll-reveal">
+                <h2>今天想出门？</h2>
+                <p>打开 Zup!，让 AI 帮你找到一起出门的人。</p>
             </div>
         </div>
     </section>
@@ -200,7 +319,7 @@
     <!-- 给商户 -->
     <section class="merchant-value" id="merchant">
         <div class="container">
-            <h2 class="section-title">给商户</h2>
+            <h2 class="section-title">商户入驻</h2>
             <p class="section-intro">为酒馆、演出、运动场馆等提供实时运营获客服务</p>
 
             <div class="merchant-grid merchant-grid-compact">
@@ -253,7 +372,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>下载 Zup!</h3>
-                    <p class="footer-vision">成为连接人与城市实时生活的入口</p>
+                    <p class="footer-vision">附近有人，AI 帮你约上</p>
                     <div class="download-group">
                         <div class="download-btn-wrapper">
                             <a href="#" class="app-store-btn"><svg class="icon" viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg> App Store</a>
@@ -293,7 +412,7 @@
         </div>
     </footer>
 
-    <script src="js/config.js?v=20260713"></script>
+    <script src="js/config.js?v=20260808"></script>
     <script src="js/main.js?v=20260713"></script>
 </body>
 </html>

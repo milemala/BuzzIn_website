@@ -314,6 +314,15 @@ body {
     width: 100%;
 }
 
+.nav-link.active {
+    color: var(--orange-bubble);
+    font-weight: 600;
+}
+
+.nav-link.active::after {
+    width: 100%;
+}
+
 .language-btn {
     background: none;
     border: 1px solid var(--border-color);
@@ -1019,7 +1028,6 @@ footer {
 }
 
 .nav-link-secondary {
-    opacity: 0.72;
     font-weight: 400;
 }
 
@@ -1814,6 +1822,10 @@ body.wechat-modal-open {
 
     .nav-link-secondary {
         display: none;
+    }
+
+    .nav-link.active {
+        display: inline-block;
     }
 
     .nav-links .download-btn {

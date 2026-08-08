@@ -1,962 +1,556 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>用户手册 - Zup!</title>
-    <meta name="description" content="Zup! 用户手册，快速了解如何使用 Zup! 发现和发布即时社交活动。">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    <link rel="stylesheet" href="css/style.css?v=20250107">
-    <link rel="stylesheet" href="css/animations.css?v=20250107">
-    <style>
-        /* 用户手册页面专用样式 - 移动端优先 */
-        :root {
-            --orange-bubble: #FED93D;
-            --green-bubble: #2EE8C2;
-            --accent-color: var(--orange-bubble);
-        }
-
-        .guide-hero {
-            min-height: 85vh;
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            padding: 30px 20px 60px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .guide-hero-content {
-            width: 100%;
-            max-width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        .guide-hero-text {
-            z-index: 2;
-            width: 100%;
-        }
-
-        .guide-hero h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            margin-top: 0;
-            color: var(--hero-title-color);
-            line-height: 1.3;
-        }
-
-        .guide-hero .subtitle {
-            font-size: 1.1rem;
-            color: var(--text-color);
-            opacity: 0.9;
-            line-height: 1.6;
-            margin-bottom: 0;
-            margin-top: 0;
-            padding: 0 10px;
-        }
-
-        .guide-video-container {
-            position: relative;
-            width: 100%;
-            max-width: 280px;
-            margin: 0 auto;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-            background: var(--card-bg);
-            padding: 8px;
-        }
-
-        .guide-video {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            display: block;
-            aspect-ratio: 1080 / 1440;
-            object-fit: cover;
-        }
-
-        /* 向下滚动指示动画 */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            animation: bounceDown 2s ease-in-out infinite;
-        }
-
-        .scroll-indicator span {
-            color: var(--text-color);
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
-        .scroll-indicator i {
-            font-size: 1.5rem;
-            color: var(--orange-bubble);
-            animation: arrowBounce 1.5s ease-in-out infinite;
-        }
-
-        @keyframes bounceDown {
-            0%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            50% {
-                transform: translateX(-50%) translateY(10px);
-            }
-        }
-
-        @keyframes arrowBounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(5px);
-            }
-        }
-
-        /* 快速入门 - 横滑卡片 */
-        .quick-start-section {
-            padding: 50px 0;
-            background: var(--bg-secondary);
-        }
-
-        .quick-start-intro {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 0 10px;
-        }
-
-        .quick-start-intro h2 {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-bottom: 12px;
-        }
-
-        .quick-start-intro p {
-            font-size: 1rem;
-            color: var(--text-muted);
-        }
-
-        .cards-slider {
-            position: relative;
-            width: 100%;
-            margin: 0 auto;
-            padding: 0 10px;
-        }
-
-        .cards-wrapper {
-            display: grid;
-            grid-template-columns: 1fr; /* 默认1列 */
-            gap: 16px;
-        }
-
-        .quick-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 20px 16px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .quick-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(254, 217, 61, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .quick-card:active {
-            transform: scale(0.98);
-        }
-
-        .quick-card-icon {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 25px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .animated-icon {
-            font-size: 3rem;
-            color: var(--orange-bubble);
-            animation: iconFloat 3s ease-in-out infinite;
-        }
-
-        .animated-icon.map {
-            animation-delay: 0s;
-        }
-
-        .animated-icon.bubble {
-            animation-delay: 0.5s;
-        }
-
-        .animated-icon.join {
-            animation-delay: 1s;
-        }
-
-        @keyframes iconFloat {
-            0%, 100% {
-                transform: translateY(0) scale(1);
-            }
-            50% {
-                transform: translateY(-12px) scale(1.1);
-            }
-        }
-
-        .quick-card h3 {
-            font-size: 1.3rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-
-        .quick-card p {
-            font-size: 0.95rem;
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        /* 控件默认隐藏，仅在特定区块启用 */
-        .slider-controls { display: none; }
-        .scenarios-section .slider-controls {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        .scenarios-section .slider-btn {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--border-color);
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            transition: all 0.2s ease;
-        }
-        .scenarios-section .slider-btn.active {
-            background: var(--orange-bubble);
-            width: 28px;
-            height: 10px;
-            border-radius: 6px;
-        }
-        /* 快速入门保持不显示缩略控件 */
-        .quick-start-section .slider-controls { display: none; }
-
-        /* 玩法与场景 */
-        .scenarios-section {
-            padding: 50px 0;
-            background: var(--bg-tertiary);
-        }
-
-        .scenarios-intro {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 0 10px;
-        }
-
-        .scenarios-intro h2 {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-bottom: 12px;
-        }
-
-        .scenarios-intro p {
-            font-size: 1rem;
-            color: var(--text-muted);
-            font-style: normal;
-        }
-
-        .scenarios-slider {
-            position: relative;
-            width: 100%;
-            margin: 0 auto;
-            padding: 0 10px;
-        }
-
-        .scenarios-wrapper {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            padding: 10px 10px 20px;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-
-        .scenarios-wrapper::-webkit-scrollbar { display: none; }
-
-        .scenario-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            position: relative;
-            scroll-snap-align: start;
-            flex: 0 0 calc(100% - 40px);
-            min-width: calc(100% - 40px);
-        }
-
-        .scenario-card:active {
-            transform: scale(0.98);
-        }
-
-        .scenario-media {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, rgba(254, 217, 61, 0.2), rgba(46, 232, 194, 0.2));
-            position: relative;
-            overflow: hidden;
-            perspective: 600px;
-        }
-
-        .scenario-media::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at center, rgba(254, 217, 61, 0.3), transparent);
-            animation: pulseGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% {
-                opacity: 0.3;
-            }
-            50% {
-                opacity: 0.6;
-            }
-        }
-
-        .scenario-emoji {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 3.5rem;
-            z-index: 2;
-            display: inline-block;
-            animation: spinY 3s linear infinite;
-            transform-style: preserve-3d;
-            backface-visibility: visible;
-            -webkit-backface-visibility: visible;
-            transform-origin: center center;
-            will-change: transform;
-        }
-
-        @keyframes spinY {
-            0% { transform: translate(-50%, -50%) rotateY(0deg); }
-            100% { transform: translate(-50%, -50%) rotateY(360deg); }
-        }
-
-        .scenario-content {
-            padding: 20px 0px;
-            text-align: center;
-        }
-
-        .scenario-title {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            margin-bottom: 12px;
-            text-align: center;
-        }
-
-        .scenario-desc {
-            font-size: 0.95rem;
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        /* 常见问题 */
-        .faq-section {
-            padding: 50px 0;
-            background: var(--bg-secondary);
-        }
-
-        .faq-intro {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 0 10px;
-        }
-
-        .faq-intro h2 {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-bottom: 12px;
-        }
-
-        .faq-intro p {
-            font-size: 1rem;
-            color: var(--text-muted);
-        }
-
-        .faq-list {
-            width: 100%;
-            margin: 0 auto;
-            padding: 0 10px;
-        }
-
-        .faq-item {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            margin-bottom: 15px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .faq-item:active {
-            transform: scale(0.98);
-        }
-
-        .faq-question {
-            padding: 18px 20px;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-            text-align: left;
-        }
-
-        .faq-question span {
-            text-align: left;
-            flex: 1;
-        }
-
-        .faq-question::after {
-            content: '+';
-            font-size: 1.5rem;
-            color: var(--green-bubble);
-            transition: transform 0.3s ease;
-            flex-shrink: 0;
-            margin-left: 15px;
-        }
-
-        /* Zup! 社区公约 */
-        .community-section {
-            padding: 50px 0;
-            background: var(--bg-tertiary);
-        }
-
-        .community-intro {
-            text-align: center;
-            margin-bottom: 32px;
-            padding: 0 10px;
-        }
-
-        .community-intro h2 {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-bottom: 8px;
-        }
-
-        .community-intro p {
-            font-size: 1rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        .community-content {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 0 10px;
-            text-align: left;
-        }
-
-        .community-lead {
-            font-size: 1rem;
-            color: var(--text-color);
-            line-height: 1.7;
-            margin-bottom: 24px;
-        }
-
-        .community-rules {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
-        .community-rule {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 12px;
-            padding: 16px 18px 18px;
-        }
-
-        .community-rule-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 8px;
-        }
-
-        .community-rule-emoji {
-            font-size: 1.4rem;
-        }
-
-        .community-rule-title {
-            font-weight: 600;
-            color: var(--primary-color);
-            font-size: 1.05rem;
-        }
-
-        .community-rule-text {
-            font-size: 0.95rem;
-            color: var(--text-color);
-            line-height: 1.7;
-            margin-left: 2.1rem;
-        }
-
-        .community-rule-text ul {
-            margin: 6px 0 0 1rem;
-            padding-left: 0;
-        }
-
-        .community-rule-text li {
-            list-style: disc;
-            margin-bottom: 4px;
-        }
-
-        .faq-item.active .faq-question::after {
-            transform: rotate(45deg);
-        }
-
-        .faq-answer {
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            color: var(--text-color);
-            line-height: 1.6;
-            font-size: 0.95rem;
-            text-align: left;
-        }
-
-        .faq-answer a {
-            color: var(--green-bubble);
-            text-decoration: underline;
-            transition: color 0.3s ease;
-        }
-
-        .faq-answer a:hover {
-            color: var(--orange-bubble);
-        }
-
-        .faq-item.active .faq-answer {
-            padding: 0 20px 18px;
-            max-height: 300px;
-        }
-
-        /* 桌面端适配（如果需要） */
-        @media (min-width: 700px) { /* 平板：2列，每列至少320px */
-            .cards-wrapper {
-                grid-template-columns: repeat(2, minmax(320px, 1fr));
-                gap: 18px;
-            }
-        }
-
-        /* 取消4列布局，最大不超过2列，避免超出容器宽度 */
-
-        @media (min-width: 769px) {
-            .guide-hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .guide-hero .subtitle {
-                font-size: 1.3rem;
-            }
-
-            .guide-video-container {
-                max-width: 350px;
-            }
-
-            /* 保留上面 600/1024 的规则，不再强制为3列 */
-
-            .scenarios-wrapper { gap: 24px; }
-            .scenario-card { flex: 0 0 360px; min-width: 360px; }
-        }
-
-        /* 文字主题色标记 */
-        .text-orange { color: var(--orange-bubble); }
-        .text-green { color: var(--green-bubble); }
-
-        /* 返回首页按钮 - 仅桌面端显示 */
-        .back-to-home {
-            display: none; /* 移动端默认隐藏 */
-            position: fixed;
-            top: 30px;
-            left: 30px;
-            z-index: 1000;
-            text-decoration: none;
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-            padding: 8px 16px;
-            border-radius: 8px;
-            background: transparent;
-            transition: all 0.3s ease;
-        }
-
-        .back-to-home:hover {
-            background: var(--card-bg);
-            border-color: var(--orange-bubble);
-        }
-
-        .back-to-home i {
-            margin-right: 6px;
-        }
-
-        /* 桌面端显示返回按钮 */
-        @media (min-width: 769px) {
-            .back-to-home {
-                display: inline-flex;
-                align-items: center;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>用户手册 - Zup!</title>
+<meta name="description" content="附近有人，AI 帮你约上。了解 Zup! AI 实时线下组局：匹配附近想出门的人，自动组局、建群。">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<link rel="icon" type="image/png" href="https://buzzin.oss-cn-beijing.aliyuncs.com/h5_event/zup-app-icon.png">
+<link rel="preconnect" href="https://cdn.nowmap.cn" crossorigin>
+<link rel="dns-prefetch" href="https://cdn.nowmap.cn">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+    --bg:#0e0d0b;--bg2:#161412;--bg3:#1e1b18;
+    --text:#f0ebe2;--sub:#b0a898;--dim:#706860;
+    --amber:#FED93D;--honey:#ffe566;
+    --green:#2EE8C2;
+    --pink:#ff6b8a;--blue:#5a9cf5;--coral:#ff7a5c;
+    --card:rgba(255,250,240,.04);--border:rgba(255,255,255,.06);
+    --safe-b:env(safe-area-inset-bottom,0px);
+    --content-max:430px;
+    --section-pad-x:20px
+}
+html{overflow-x:hidden}
+body{font-family:-apple-system,"SF Pro Display","PingFang SC","Noto Sans SC",sans-serif;color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;position:relative}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E")}
+
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(60px)}
+.orb-1{width:260px;height:260px;top:-80px;right:-60px;background:radial-gradient(circle,rgba(254,217,61,.15),transparent 70%);animation:orbFloat1 12s ease-in-out infinite alternate}
+.orb-2{width:200px;height:200px;bottom:20%;left:-50px;background:radial-gradient(circle,rgba(46,232,194,.1),transparent 70%);animation:orbFloat2 15s ease-in-out infinite alternate}
+.orb-3{width:180px;height:180px;top:40%;right:-40px;background:radial-gradient(circle,rgba(255,107,138,.08),transparent 70%);animation:orbFloat3 18s ease-in-out infinite alternate}
+@keyframes orbFloat1{0%{transform:translate(0,0)}100%{transform:translate(-30px,40px)}}
+@keyframes orbFloat2{0%{transform:translate(0,0)}100%{transform:translate(20px,-30px)}}
+@keyframes orbFloat3{0%{transform:translate(0,0)}100%{transform:translate(-20px,25px)}}
+
+/* 返回首页：桌面显示 */
+.back-to-home{
+    display:none;
+    position:fixed;top:28px;left:28px;z-index:1000;
+    align-items:center;gap:8px;
+    text-decoration:none;color:var(--text);
+    border:1px solid var(--border);
+    padding:10px 16px;border-radius:12px;
+    background:rgba(14,13,11,.72);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    font-size:14px;font-weight:600;
+    transition:border-color .2s,background .2s
+}
+.back-to-home svg{width:16px;height:16px;flex-shrink:0}
+.back-to-home:hover{border-color:rgba(254,217,61,.45);background:rgba(30,27,24,.9)}
+
+.content{position:relative;z-index:1;max-width:var(--content-max);margin:0 auto}
+section{padding:0 var(--section-pad-x)}
+.sec-tag{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;padding:4px 12px;border-radius:999px;margin-bottom:14px}
+.sec-title{font-size:24px;font-weight:800;line-height:1.35;margin-bottom:10px;letter-spacing:-.3px}
+.sec-desc{font-size:16px;color:var(--sub);line-height:1.8;max-width:52ch}
+.gradient-text{background:linear-gradient(135deg,var(--amber),var(--honey),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* Hero */
+.hero{position:relative;padding:0!important;background:#0e0d0b;min-height:min(88vh,700px);display:flex;flex-direction:column;justify-content:center}
+.hero-visual{width:100%;position:relative;padding:64px 28px 40px;display:flex;flex-direction:column;align-items:center}
+.hero-aurora{position:absolute;inset:0;z-index:0;filter:blur(50px);animation:auroraSpin 22s linear infinite;pointer-events:none}
+.hero-aurora::before,.hero-aurora::after{content:"";position:absolute;border-radius:45%}
+.hero-aurora::before{width:50%;height:45%;top:18%;left:8%;background:radial-gradient(ellipse,rgba(254,217,61,.5),rgba(254,217,61,.1) 55%,transparent 78%)}
+.hero-aurora::after{width:45%;height:40%;bottom:16%;right:10%;background:radial-gradient(ellipse,rgba(46,232,194,.35),rgba(46,232,194,.08) 55%,transparent 78%)}
+.hero-aurora2{position:absolute;inset:0;z-index:0;filter:blur(55px);animation:auroraSpin 30s linear infinite reverse;pointer-events:none}
+.hero-aurora2::before,.hero-aurora2::after{content:"";position:absolute;border-radius:45%}
+.hero-aurora2::before{width:48%;height:42%;top:22%;right:12%;background:radial-gradient(ellipse,rgba(46,232,194,.4),rgba(46,232,194,.08) 55%,transparent 78%)}
+.hero-aurora2::after{width:44%;height:38%;bottom:20%;left:14%;background:radial-gradient(ellipse,rgba(254,217,61,.22),rgba(254,217,61,.05) 55%,transparent 78%)}
+@keyframes auroraSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.hero-grid{position:absolute;inset:0;z-index:0;opacity:.04;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.3) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.3) 1px,transparent 1px);background-size:50px 50px;mask-image:radial-gradient(ellipse 80% 70% at 50% 45%,#000 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 45%,#000 20%,transparent 70%)}
+.hero-sparkle{position:absolute;width:3px;height:3px;border-radius:50%;z-index:1;pointer-events:none;animation:sparkle 3s ease-in-out infinite}
+.hs-1{top:14%;left:18%;background:var(--amber);animation-duration:2.8s}
+.hs-2{top:10%;right:20%;background:var(--green);animation-delay:.6s;animation-duration:3.5s}
+.hs-3{top:42%;left:12%;background:var(--pink);animation-delay:1.2s;animation-duration:3s}
+.hs-4{top:28%;right:14%;background:var(--blue);animation-delay:1.8s;animation-duration:3.2s}
+@keyframes sparkle{0%,100%{opacity:0;transform:scale(.5)}50%{opacity:1;transform:scale(1.2)}}
+.hero-text{position:relative;z-index:3;text-align:center;width:100%}
+
+/* Logo 动画（与 zup-intro 一致） */
+.logo-stage{
+    position:relative;width:168px;height:168px;margin:0 auto 26px;
+    perspective:600px;animation:logoEnter 1.1s cubic-bezier(.22,1.2,.36,1) both
+}
+@keyframes logoEnter{
+    0%{opacity:0;transform:scale(.55) translateY(28px) rotateX(18deg)}
+    100%{opacity:1;transform:scale(1) translateY(0) rotateX(0)}
+}
+.logo-glow{
+    position:absolute;inset:-28px;border-radius:50%;pointer-events:none;z-index:0;
+    background:
+        radial-gradient(circle at 45% 40%,rgba(254,217,61,.38),transparent 42%),
+        radial-gradient(circle at 60% 65%,rgba(46,232,194,.32),transparent 48%);
+    filter:blur(6px);animation:logoGlow 3.8s ease-in-out infinite
+}
+@keyframes logoGlow{
+    0%,100%{opacity:.7;transform:scale(.92)}
+    50%{opacity:1;transform:scale(1.08)}
+}
+.logo-ring,.logo-ring-2{
+    position:absolute;border-radius:50%;pointer-events:none;z-index:1;
+    animation:logoSpin 11s linear infinite
+}
+.logo-ring{
+    inset:8px;
+    background:conic-gradient(from 0deg,transparent 0 58%,rgba(254,217,61,.85),rgba(46,232,194,.95),transparent 82%);
+    -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));
+    mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));
+    opacity:.9;filter:drop-shadow(0 0 8px rgba(46,232,194,.35))
+}
+.logo-ring-2{
+    inset:-10px;animation-duration:18s;animation-direction:reverse;opacity:.5;
+    background:conic-gradient(from 160deg,transparent 0 62%,rgba(46,232,194,.7),rgba(254,217,61,.55),transparent 86%);
+    -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 1.5px),#000 calc(100% - .5px));
+    mask:radial-gradient(farthest-side,transparent calc(100% - 1.5px),#000 calc(100% - .5px))
+}
+@keyframes logoSpin{to{transform:rotate(360deg)}}
+.logo-mark-wrap{
+    position:absolute;inset:18px;z-index:3;
+    display:grid;place-items:center;
+    animation:logoFloat 4.2s ease-in-out infinite;
+    filter:drop-shadow(0 10px 22px rgba(46,232,194,.35)) drop-shadow(0 0 18px rgba(254,217,61,.28))
+}
+@keyframes logoFloat{
+    0%,100%{transform:translateY(0) rotate(-2deg)}
+    50%{transform:translateY(-10px) rotate(2deg)}
+}
+.logo-mark{
+    width:100%;height:100%;object-fit:contain;display:block;
+    animation:logoPulse 3.6s ease-in-out infinite;
+    -webkit-user-drag:none;user-select:none
+}
+@keyframes logoPulse{
+    0%,100%{filter:brightness(1) saturate(1.05)}
+    50%{filter:brightness(1.12) saturate(1.2)}
+}
+.logo-shimmer{
+    position:absolute;inset:18px;z-index:4;pointer-events:none;border-radius:20px;overflow:hidden;
+    -webkit-mask:url("https://buzzin.oss-cn-beijing.aliyuncs.com/h5_event/zup-logo-mark.png") center/contain no-repeat;
+    mask:url("https://buzzin.oss-cn-beijing.aliyuncs.com/h5_event/zup-logo-mark.png") center/contain no-repeat
+}
+.logo-shimmer::after{
+    content:"";position:absolute;inset:-40%;
+    background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.35) 48%,transparent 62%);
+    animation:logoShimmer 3.8s ease-in-out infinite
+}
+@keyframes logoShimmer{
+    0%{transform:translateX(-30%) rotate(8deg);opacity:0}
+    25%{opacity:.85}
+    55%,100%{transform:translateX(35%) rotate(8deg);opacity:0}
+}
+.logo-star{
+    position:absolute;z-index:5;width:10px;height:10px;pointer-events:none;
+    background:radial-gradient(circle,rgba(68,240,208,1) 0 28%,transparent 32%),
+        linear-gradient(#44f0d0,#44f0d0) center/2px 100% no-repeat,
+        linear-gradient(#44f0d0,#44f0d0) center/100% 2px no-repeat;
+    filter:drop-shadow(0 0 6px rgba(46,232,194,.9));
+    animation:starTwinkle 2.4s ease-in-out infinite
+}
+.ls1{top:18px;left:22px;animation-delay:0s;transform:scale(1.1)}
+.ls2{top:36px;right:14px;width:7px;height:7px;animation-delay:.7s}
+.ls3{bottom:28px;left:16px;width:8px;height:8px;animation-delay:1.3s}
+.ls4{bottom:40px;right:28px;width:6px;height:6px;animation-delay:1.9s}
+@keyframes starTwinkle{
+    0%,100%{opacity:.25;transform:scale(.7) rotate(0deg)}
+    50%{opacity:1;transform:scale(1.25) rotate(20deg)}
+}
+.hero-eyebrow{font-size:12px;color:var(--sub);letter-spacing:2px;font-weight:500;margin-bottom:14px}
+.hero-headline{font-size:30px;font-weight:800;line-height:1.3;margin-bottom:12px;letter-spacing:-.4px}
+.hero-headline em{font-style:normal;background:linear-gradient(135deg,var(--amber),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-lead{font-size:16px;color:var(--sub);line-height:1.75;max-width:360px;margin:0 auto 22px}
+.hero-scenes{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:420px;margin:0 auto}
+.hero-scene{font-size:12px;color:var(--dim)}
+.hero-scene::before{content:"·";margin-right:8px;color:rgba(254,217,61,.45)}
+.hero-scene:first-child::before{display:none}
+.hero-divider{width:40px;height:2px;background:linear-gradient(90deg,var(--amber),var(--green));margin:28px auto 0;opacity:.5;position:relative;z-index:3}
+.hero::after{content:"";position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(180deg,transparent,var(--bg));z-index:3;pointer-events:none}
+
+/* How to */
+.howto{padding:48px var(--section-pad-x) 0}
+.steps{margin-top:24px;display:flex;flex-direction:column;gap:0;position:relative}
+.steps::before{content:"";position:absolute;left:23px;top:18px;bottom:18px;width:2px;background:linear-gradient(180deg,var(--amber),var(--green),rgba(46,232,194,.15))}
+.step{display:flex;gap:16px;align-items:flex-start;padding:14px 0;position:relative}
+.step-num{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:15px;font-weight:800;flex-shrink:0;position:relative;z-index:1;background:var(--bg2);border:1px solid var(--border);box-shadow:0 0 0 6px var(--bg)}
+.sn-1{color:var(--amber)}.sn-2{color:var(--green)}.sn-3{color:var(--pink)}.sn-4{color:var(--honey)}
+.step-body h3{font-size:16px;font-weight:700;margin-bottom:4px}
+.step-body p{font-size:15px;color:var(--sub);line-height:1.7}
+
+/* Capabilities */
+.capabilities{padding:48px var(--section-pad-x) 0}
+.cap-list{margin-top:22px;display:grid;grid-template-columns:1fr;gap:14px}
+.cap{padding:20px 18px;border-radius:18px;background:var(--card);border:1px solid var(--border);position:relative;overflow:hidden}
+.cap::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:0 3px 3px 0}
+.cap-1::before{background:linear-gradient(180deg,var(--amber),var(--green))}
+.cap-2::before{background:var(--amber)}
+.cap-3::before{background:var(--green)}
+.cap-4::before{background:var(--pink)}
+.cap-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.cap-1 .cap-label,.cap-2 .cap-label{color:var(--amber)}
+.cap-3 .cap-label{color:var(--green)}
+.cap-4 .cap-label{color:var(--pink)}
+.cap h3{font-size:17px;font-weight:800;margin-bottom:6px}
+.cap p{font-size:15px;color:var(--sub);line-height:1.7}
+
+/* Categories */
+.categories{padding:48px var(--section-pad-x) 0}
+.cat-scroll{margin-top:20px;margin-left:calc(-1 * var(--section-pad-x));margin-right:calc(-1 * var(--section-pad-x));padding:0 var(--section-pad-x);overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;touch-action:pan-x;cursor:grab}
+.cat-scroll::-webkit-scrollbar{display:none}
+.cat-scroll.dragging{cursor:grabbing;user-select:none}
+.cat-list{display:flex;gap:12px;padding-bottom:4px}
+.cat{flex-shrink:0;width:150px;border-radius:16px;overflow:hidden;position:relative;border:1px solid var(--border);background:var(--bg2)}
+.cat-img{width:100%;aspect-ratio:3/4;display:flex;align-items:flex-end;justify-content:center;padding-bottom:14px;position:relative}
+.cat-img-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-color:var(--bg2)}
+.cat-mask{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(14,13,11,.85) 100%)}
+.cat-name{position:relative;z-index:1;font-size:15px;font-weight:700;text-align:center}
+.cat-emoji{display:block;font-size:28px;margin-bottom:4px}
+.cat-dot{position:absolute;top:10px;right:10px;width:8px;height:8px;border-radius:50%;z-index:1}
+.cd-1{background:var(--amber);box-shadow:0 0 8px rgba(254,217,61,.4)}
+.cd-2{background:var(--green);box-shadow:0 0 8px rgba(46,232,194,.4)}
+.cd-3{background:var(--pink);box-shadow:0 0 8px rgba(255,107,138,.4)}
+.cd-4{background:var(--blue);box-shadow:0 0 8px rgba(90,156,245,.4)}
+.cd-5{background:var(--coral);box-shadow:0 0 8px rgba(255,122,92,.4)}
+.cd-6{background:#b07aff;box-shadow:0 0 8px rgba(176,122,255,.4)}
+.cd-7{background:#66bb6a;box-shadow:0 0 8px rgba(102,187,106,.4)}
+.cd-8{background:#42a5f5;box-shadow:0 0 8px rgba(66,165,245,.4)}
+
+/* Map */
+.map-section{padding:48px var(--section-pad-x) 0}
+.map-preview{margin-top:20px;border-radius:16px;overflow:hidden;border:1px solid var(--border)}
+.map-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+
+/* Closing */
+.closing{padding:52px var(--section-pad-x) 0}
+.closing-panel{padding:28px 22px;border-radius:22px;background:linear-gradient(160deg,rgba(254,217,61,.08),rgba(46,232,194,.05) 55%,rgba(255,250,240,.02));border:1px solid rgba(254,217,61,.12);text-align:center;position:relative;overflow:hidden}
+.closing-panel::before{content:"";position:absolute;width:180px;height:180px;top:-60px;right:-40px;border-radius:50%;background:radial-gradient(circle,rgba(254,217,61,.12),transparent 70%);pointer-events:none;animation:closeGlow 6s ease-in-out infinite alternate}
+@keyframes closeGlow{0%{transform:translate(0,0)}100%{transform:translate(-20px,16px)}}
+.closing-q{font-size:22px;font-weight:800;line-height:1.35;margin-bottom:10px}
+.closing-a{font-size:16px;color:var(--sub);line-height:1.75;max-width:320px;margin:0 auto}
+
+/* Join */
+.join{padding:48px var(--section-pad-x) 0}
+.join-cards{margin-top:20px;display:grid;grid-template-columns:1fr;gap:12px}
+.join-card{padding:22px 18px;border-radius:18px;position:relative;overflow:hidden}
+.jc-host{background:linear-gradient(135deg,rgba(254,217,61,.06),rgba(254,217,61,.02));border:1px solid rgba(254,217,61,.1)}
+.jc-biz{background:linear-gradient(135deg,rgba(46,232,194,.06),rgba(46,232,194,.02));border:1px solid rgba(46,232,194,.1)}
+.jc-title{font-size:17px;font-weight:800;margin-bottom:6px}
+.jc-host .jc-title{color:var(--amber)}
+.jc-biz .jc-title{color:var(--green)}
+.jc-desc{font-size:14px;color:var(--sub);line-height:1.7;margin-bottom:14px}
+.jc-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:12px;font-size:13px;font-weight:700;text-decoration:none;border:none;cursor:pointer;font-family:inherit}
+.jc-host .jc-btn{background:var(--amber);color:#1a1408}
+.jc-biz .jc-btn{background:var(--green);color:#0a1a10}
+.jc-btn svg{width:14px;height:14px}
+
+/* Toast / Footer */
+.toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);max-width:300px;padding:16px 24px;border-radius:14px;background:rgba(30,27,24,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--border);color:var(--text);font-size:14px;line-height:1.7;text-align:center;z-index:999;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+.toast.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.toast em{font-style:normal;color:var(--amber);font-weight:600}
+
+.page-footer{padding:48px var(--section-pad-x) calc(56px + var(--safe-b));text-align:center}
+.footer-icon{width:64px;height:64px;border-radius:16px;margin:0 auto 14px;display:block;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.footer-text{font-size:16px;color:var(--sub);line-height:1.75;max-width:280px;margin:0 auto 16px}
+.footer-sub{font-size:12px;color:var(--dim)}
+
+.reveal{opacity:0;transition:opacity .45s ease}
+.reveal.visible{opacity:1}
+
+/* ═══════ 平板 ═══════ */
+@media (min-width:700px){
+    :root{--content-max:720px;--section-pad-x:28px}
+    .hero-headline{font-size:36px}
+    .logo-stage{width:188px;height:188px}
+    .sec-title{font-size:28px}
+    .cap-list{grid-template-columns:1fr 1fr}
+    .join-cards{grid-template-columns:1fr 1fr}
+    .cat{width:160px}
+    .closing-q{font-size:26px}
+    .map-preview{max-width:640px}
+}
+
+/* ═══════ 桌面 ═══════ */
+@media (min-width:769px){
+    .back-to-home{display:inline-flex}
+}
+@media (min-width:1024px){
+    :root{--content-max:960px;--section-pad-x:40px}
+    .hero{min-height:min(80vh,760px)}
+    .hero-headline{font-size:42px}
+    .hero-lead{font-size:18px;max-width:480px}
+    .logo-stage{width:208px;height:208px}
+    .sec-title{font-size:32px}
+    .howto .steps{display:grid;grid-template-columns:1fr 1fr;gap:18px 28px}
+    .howto .steps::before{display:none}
+    .step{padding:18px;border-radius:18px;background:var(--card);border:1px solid var(--border)}
+    .step-num{box-shadow:none}
+    .cat-scroll{overflow:visible;margin-left:0;margin-right:0;padding:0;cursor:default}
+    .cat-list{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .cat{width:auto}
+    .map-preview{max-width:720px;margin-left:auto;margin-right:auto}
+}
+</style>
 </head>
 <body>
-    <!-- 返回首页按钮 - 仅桌面端显示 -->
-    <a href="index.html" class="back-to-home">
-        <svg class="icon" viewBox="0 0 576 512" fill="currentColor"><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg>
-        返回首页
-    </a>
 
-    <!-- 第一屏：视频和标题 -->
-    <section class="guide-hero">
-        <div class="map-background"></div>
-        <div class="guide-hero-content">
-            <div class="guide-video-container">
-                <video class="guide-video" autoplay muted loop playsinline>
-                    <source src="images/brand-logo.mp4" type="video/mp4">
-                    您的浏览器不支持视频播放
-                </video>
+<a href="index.html" class="back-to-home" aria-label="返回首页">
+    <svg viewBox="0 0 576 512" fill="currentColor" aria-hidden="true"><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg>
+    返回首页
+</a>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<div class="content">
+
+<section class="hero">
+    <div class="hero-visual">
+        <div class="hero-aurora"></div>
+        <div class="hero-aurora2"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-sparkle hs-1"></div>
+        <div class="hero-sparkle hs-2"></div>
+        <div class="hero-sparkle hs-3"></div>
+        <div class="hero-sparkle hs-4"></div>
+        <div class="hero-text">
+            <div class="logo-stage" aria-label="Zup!">
+                <div class="logo-glow"></div>
+                <div class="logo-ring"></div>
+                <div class="logo-ring-2"></div>
+                <div class="logo-mark-wrap">
+                    <img class="logo-mark" src="https://buzzin.oss-cn-beijing.aliyuncs.com/h5_event/zup-logo-mark.png" alt="Zup!" width="132" height="134" decoding="async">
+                </div>
+                <div class="logo-shimmer" aria-hidden="true"></div>
+                <span class="logo-star ls1" aria-hidden="true"></span>
+                <span class="logo-star ls2" aria-hidden="true"></span>
+                <span class="logo-star ls3" aria-hidden="true"></span>
+                <span class="logo-star ls4" aria-hidden="true"></span>
             </div>
-            <div class="guide-hero-text">
-                <h1>欢迎来到 Zup!</h1>
-                <p class="subtitle">发现你身边的实时活动<br>大家都有空，立刻就动身! </p>
+            <div class="hero-eyebrow">AI REAL-TIME MATCHING</div>
+            <h1 class="hero-headline">附近有人<br><em>AI 帮你约上</em></h1>
+            <p class="hero-lead">实时匹配附近同样想出门的人，自动组局、建群——临时起意，也能很快成行。</p>
+            <div class="hero-scenes" aria-label="典型场景">
+                <span class="hero-scene">喝一杯</span>
+                <span class="hero-scene">约饭</span>
+                <span class="hero-scene">羽毛球</span>
+                <span class="hero-scene">骑行</span>
+                <span class="hero-scene">桌游</span>
+                <span class="hero-scene">City Walk</span>
+                <span class="hero-scene">Livehouse</span>
+                <span class="hero-scene">看展</span>
             </div>
-            <div class="scroll-indicator">
-                <svg class="icon" viewBox="0 0 512 512" fill="currentColor"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>
+            <div class="hero-divider"></div>
+        </div>
+    </div>
+</section>
+
+<section class="howto reveal">
+    <div class="sec-tag" style="color:var(--amber);background:rgba(254,217,61,.06);border:1px solid rgba(254,217,61,.08)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        HOW IT WORKS
+    </div>
+    <h2 class="sec-title">实时组局<br><span class="gradient-text">全新线下社交打开方式</span></h2>
+    <p class="sec-desc">不用自己发帖、等回复、拉群。选好此刻想干什么，剩下的交给 AI。</p>
+    <div class="steps">
+        <div class="step">
+            <div class="step-num sn-1">1</div>
+            <div class="step-body">
+                <h3>聊几句，认识你</h3>
+                <p>AI 先了解你的兴趣与出门偏好，形成可复用的社交画像。</p>
             </div>
         </div>
-    </section>
-
-    <!-- 快速入门 -->
-    <section class="quick-start-section">
-        <div class="container">
-            <div class="quick-start-intro">
-                <h2>快速入门</h2>
-                <p>Zup! 的玩法与规则</p>
-            </div>
-            
-            <div class="cards-slider">
-                <div class="cards-wrapper" id="quickCards">
-                    <div class="quick-card scroll-reveal">
-                        <div class="quick-card-icon">
-                            <svg class="icon animated-icon map" viewBox="0 0 576 512" fill="currentColor"><path d="M384 476.1L192 421.2V35.9L384 90.8V476.1zm32-1.2V88.4L543.1 37.5c15.8-6.3 32.9 5.3 32.9 22.3V394.6c0 9.8-6 18.6-15.1 22.3L416 474.8zM15.1 95.1L160 37.2V423.6L.9 481.5C-14.9 487.8-32 476.2-32 459.2V117.4c0-9.8 6-18.6 15.1-22.3zM384 312c0 48.6-43 88-96 88s-96-39.4-96-88c0-32.4 35.4-78.2 63.5-114.3c9.3-12 26.7-12 35.9 0C319.6 233.8 384 279.6 384 312zm-96 24a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/></svg>
-                        </div>
-                        <h3>打开地图，发现你身边的"NOW"</h3>
-                        <p>地图上每个气泡都是正在发生的"NOW"
-                        <br>点击进入，可以线下赴约前先互动一下</p>
-                    </div>
-                    
-                    <div class="quick-card scroll-reveal">
-                        <div class="quick-card-icon">
-                            <svg class="icon animated-icon bubble" viewBox="0 0 512 512" fill="currentColor"><path d="M480 32c0-12.9-7.8-24.6-19.8-29.6s-25.7-2.2-34.9 6.9L381.7 53c-48 48-113.1 75-181 75H192 160 64c-35.3 0-64 28.7-64 64v96c0 35.3 28.7 64 64 64l0 128c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32V352l8.7 0c67.9 0 133 27 181 75l43.6 43.6c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6V300.4c18.6-8.8 32-32.5 32-60.4s-13.4-51.6-32-60.4V32zm-64 76.7V240 403.3C357.2 317.8 280.5 288 200.7 288H192V192h8.7c79.8 0 156.5-29.8 215.3-83.3z"/></svg>
-                        </div>
-                        <h3>发布自己的"NOW"，邀请身边人</h3>
-                        <p>NOW的类型有“<span class="text-orange">邀约</span>”和“<span class="text-green">动态</span>”
-                            <br>橙色是“我邀请”，绿色是“我有空”</p>
-                    </div>
-                    
-                    <div class="quick-card scroll-reveal">
-                        <div class="quick-card-icon">
-                            <svg class="icon animated-icon join" viewBox="0 0 512 512" fill="currentColor"><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg>
-                        </div>
-                        <h3>每天凌晨4点地图清空</h3>
-                        <p>邀约气泡会在预约时间的次日4AM被清空
-                            <br>空闲冒泡会在3日后的4AM被清空
-                            <br>你所看见的都是正在发生的
-                        </p>
-
-                    </div>
-                    <div class="quick-card scroll-reveal">
-                        <div class="quick-card-icon">
-                            <svg class="icon animated-icon join" viewBox="0 0 640 512" fill="currentColor"><path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM625 177L497 305c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L591 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>
-                        </div>
-                        <h3>“认证商户”与“认证店员”</h3>
-                        <p>提交商户认证并通过后，可添加认证店员
-                            <br>商户页可查看这里发布过的所有NOW
-                            <br>认证店员发布的邀约质量更有保障
-                        </p>
-                    </div>
-
-                </div>
-                <div class="slider-controls" id="quickControls"></div>
+        <div class="step">
+            <div class="step-num sn-2">2</div>
+            <div class="step-body">
+                <h3>选此刻想组的局</h3>
+                <p>咖啡、约饭、运动、桌游……可同时开多个，按实时意愿匹配。</p>
             </div>
         </div>
-    </section>
-
-    <!-- 玩法与场景示例 -->
-    <section class="scenarios-section">
-        <div class="container">
-            <div class="quick-start-intro">
-                <h2>玩法与场景</h2>
-                <p>看看大家都在 Zup! 上做什么</p>
-            </div>
-            
-            <div class="scenarios-slider">
-                <div class="scenarios-wrapper" id="scenariosCards">
-                    <div class="scenario-card scroll-reveal">
-                        <div class="scenario-media">
-                            <div class="scenario-emoji">🍻</div>
-                        </div>
-                        <div class="scenario-content">
-                            <h3 class="scenario-title">下班喝一杯</h3>
-                            <p class="scenario-desc">Zup! 入驻了多家优质酒馆，每天都有不同主题活动。<br>线上实时感受现场氛围，线下体验再也不用赌运气。</p>
-                        </div>
-                    </div>
-
-                    <div class="scenario-card scroll-reveal">
-                        <div class="scenario-media">
-                            <div class="scenario-emoji">⚽️</div>
-                        </div>
-                        <div class="scenario-content">
-                            <h3 class="scenario-title">打球摇人</h3>
-                            <p class="scenario-desc">在软件园上班，想下班后组织球赛却人手不足？<br>发一个邀约，附近同园区的小伙伴下班来凑个场。</p>
-                        </div>
-                    </div>
-
-                    <div class="scenario-card scroll-reveal">
-                        <div class="scenario-media">
-                            <div class="scenario-emoji">🚴‍♀️</div>
-                        </div>
-                        <div class="scenario-content">
-                            <h3 class="scenario-title">夜跑夜骑</h3>
-                            <p class="scenario-desc">城市夜色微风正好，适合夜骑探寻大街小巷。<br>发个邀约，线上讨论路线，线下集合说走就走。</p>
-                        </div>
-                    </div>
-
-                    <div class="scenario-card scroll-reveal">
-                        <div class="scenario-media">
-                            <div class="scenario-emoji">💬</div>
-                        </div>
-                        <div class="scenario-content">
-                            <h3 class="scenario-title">无聊找人玩</h3>
-                            <p class="scenario-desc">打开 Zup! 看看周围的人此刻都在做什么。<br>或者发布一个动态NOW，告诉周围人们你刚好有空。</p>
-                        </div>
-                    </div>
-
-                    <div class="scenario-card scroll-reveal">
-                        <div class="scenario-media">
-                            <div class="scenario-emoji">☕️</div>
-                        </div>
-                        <div class="scenario-content">
-                            <h3 class="scenario-title">解决我烦恼</h3>
-                            <p class="scenario-desc">工作的压力、生活的困扰，想找人聊聊？<br>发个邀约请对方喝杯咖啡，也许刚好有人能给你建议。</p>
-                        </div>
-                    </div>
-
-                    <div class="scenario-card scroll-reveal">
-                        <div class="scenario-media">
-                            <div class="scenario-emoji">🏪</div>
-                        </div>
-                        <div class="scenario-content">
-                            <h3 class="scenario-title">商户活动运营工具</h3>
-                            <p class="scenario-desc">餐饮娱乐商户可发起限时优惠、即时活动与现场实况，<br>结合店内人流与货品情况，实时施展运营策略。</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="slider-controls" id="scenariosControls"></div>
+        <div class="step">
+            <div class="step-num sn-3">3</div>
+            <div class="step-body">
+                <h3>AI 在附近寻找</h3>
+                <p>按兴趣、位置、时间智能匹配附近同样想出门的人。</p>
             </div>
         </div>
-    </section>
-
-    <!-- Zup! 社区公约 -->
-    <section class="community-section">
-        <div class="container">
-            <div class="community-intro">
-                <h2>Zup! 社区公约</h2>
-                <p>🌃 Zup! 社区共识</p>
-            </div>
-            <div class="community-content">
-                <p class="community-leader community-lead">
-                    这里的每一个气泡，都是此刻城市的脉搏。<br>
-                    Zup! 是一张活的地图。<br>
-                    每一条 NOW、每一个回应、每一次线下相遇，都让这张地图更鲜活、更有温度。<br><br>
-                    为了让这种活力能长久延续，我们来做几个约定 👇
-                </p>
-
-                <div class="community-rules">
-                    <div class="community-rule">
-                        <div class="community-rule-header">
-                            <div class="community-rule-emoji">💬</div>
-                            <div class="community-rule-title">一、保持真实</div>
-                        </div>
-                        <div class="community-rule-text">
-                            <p>Zup! 是实时的，更是真实的。你发布的动态或者邀约，请保持真实、不虚假、不伪装、不忽悠。<br>
-                            真实的表达，才会有真诚的问候与互动。</p>
-                        </div>
-                    </div>
-
-                    <div class="community-rule">
-                        <div class="community-rule-header">
-                            <div class="community-rule-emoji">🚫</div>
-                            <div class="community-rule-title">二、避免无效信息</div>
-                        </div>
-                        <div class="community-rule-text">
-                            <p>这里是一个开放空间，请不要重复刷屏，也不欢迎低质广告和不友好发言。<br>
-                            如果你看到上述内容并觉得不适，请点一下举报，帮助一起维护舒适的开放空间。</p>
-                        </div>
-                    </div>
-
-                    <div class="community-rule">
-                        <div class="community-rule-header">
-                            <div class="community-rule-emoji">🧭</div>
-                            <div class="community-rule-title">三、线下欢聚礼仪</div>
-                        </div>
-                        <div class="community-rule-text">
-                            <p>线下相聚时，请彼此尊重、保持边界感：</p>
-                            <ul>
-                                <li>不强迫、不纠缠、不侵犯他人隐私</li>
-                                <li>优先选择安全的公共场所见面</li>
-                            </ul>
-                            <p>若遇到不适或骚扰，请及时使用举报功能，我们会第一时间跟进处理。</p>
-                        </div>
-                    </div>
-                </div>
+        <div class="step">
+            <div class="step-num sn-4">4</div>
+            <div class="step-body">
+                <h3>成局，自动建群</h3>
+                <p>确认后生成邀约与专属群聊，线上聊短一点，线下见快一点。</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- 常见问题 -->
-    <section class="faq-section">
-        <div class="container">
-            <div class="faq-intro">
-                <h2>常见问题</h2>
-                <p>遇到问题？看看这里有没有答案</p>
-            </div>
-            
-            <div class="faq-list">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>可以发布付费邀约吗？</span>
-                    </div>
-                    <div class="faq-answer">
-                        可以。发布邀约时可设置报名费，参与者通过 Zup! 完成支付报名。活动收入会记录在你的账户中，后续可在 Zup! 内申请提现。
-                    </div>
-                </div>
+<section class="capabilities reveal">
+    <div class="sec-tag" style="color:var(--green);background:rgba(46,232,194,.06);border:1px solid rgba(46,232,194,.08)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7L12 16.8 5.7 21l2.3-7-6-4.6h7.6z"/></svg>
+        WHAT YOU GET
+    </div>
+    <h2 class="sec-title">把线上聊天<br>变成<span class="gradient-text">高质量线下组局</span></h2>
+    <p class="sec-desc">打开 Zup!，总有人和你此刻一样，想出门。</p>
+    <div class="cap-list">
+        <article class="cap cap-1">
+            <div class="cap-label">01 · AI</div>
+            <h3>AI 实时组局</h3>
+            <p>按你的兴趣、位置、时间和实时意愿匹配附近用户，自动发起组局、生成邀约、创建群聊——组局更快，成局更容易。</p>
+        </article>
+        <article class="cap cap-2">
+            <div class="cap-label">02 · MAP</div>
+            <h3>实时活动地图</h3>
+            <p>附近正在发生的活动、即时邀约和热门聚会，一眼看清。过期自动隐藏，看到的都是此刻。</p>
+        </article>
+        <article class="cap cap-3">
+            <div class="cap-label">03 · NOW</div>
+            <h3>即时邀约</h3>
+            <p>随时发起邀约，也可以加入别人正在组织的局。无需提前规划，临时起意也能找到同行的人。</p>
+        </article>
+        <article class="cap cap-4">
+            <div class="cap-label">04 · CHAT</div>
+            <h3>群聊与线下连接</h3>
+            <p>每一场组局自动创建专属群聊，方便沟通、集合与互动，让见面这件事更快落地。</p>
+        </article>
+    </div>
+</section>
 
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>商户怎么入驻？</span>
-                    </div>
-                    <div class="faq-answer">
-                        官网有具体的入驻指引，<a href="https://nowmap.cn/merchant.html">点击此处跳转</a>
-                    </div>
-                </div>
-            </div>
+<section class="categories reveal">
+    <div class="sec-tag" style="color:var(--pink);background:rgba(255,107,138,.06);border:1px solid rgba(255,107,138,.08)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        SCENES
+    </div>
+    <h2 class="sec-title">今天想干点什么<br><span class="gradient-text">总有人和你一样</span></h2>
+    <p class="sec-desc">从微醺拼桌到 City Walk，从球场到看展——选一种，AI 帮你约上。</p>
+    <div class="cat-scroll">
+        <div class="cat-list">
+            <div class="cat"><div class="cat-img"><div class="cat-img-bg" style="background-image:url('https://cdn.nowmap.cn/h5_event/event/intro/bar.jpg?x-oss-process=image/quality,q_60')"></div><div class="cat-mask"></div><div class="cat-dot cd-1"></div><div class="cat-name"><span class="cat-emoji">🍻</span>喝一杯</div></div></div>
+            <div class="cat"><div class="cat-img"><div class="cat-img-bg" style="background-image:url('https://cdn.nowmap.cn/h5_event/event/intro/coffee.jpg?x-oss-process=image/quality,q_60')"></div><div class="cat-mask"></div><div class="cat-dot cd-2"></div><div class="cat-name"><span class="cat-emoji">☕</span>Coffee Chat</div></div></div>
+            <div class="cat"><div class="cat-img"><div class="cat-img-bg" style="background-image:url('https://cdn.nowmap.cn/h5_event/event/intro/badminton.jpg?x-oss-process=image/quality,q_60')"></div><div class="cat-mask"></div><div class="cat-dot cd-3"></div><div class="cat-name"><span class="cat-emoji">🏸</span>运动搭子</div></div></div>
+            <div class="cat"><div class="cat-img"><div class="cat-img-bg" style="background-image:url('https://cdn.nowmap.cn/h5_event/event/intro/picnic.jpg?x-oss-process=image/quality,q_60')"></div><div class="cat-mask"></div><div class="cat-dot cd-4"></div><div class="cat-name"><span class="cat-emoji">🚶</span>City Walk</div></div></div>
+            <div class="cat"><div class="cat-img"><div class="cat-img-bg" style="background-image:url('https://cdn.nowmap.cn/h5_event/event/intro/meet.jpg?x-oss-process=image/quality,q_60')"></div><div class="cat-mask"></div><div class="cat-dot cd-5"></div><div class="cat-name"><span class="cat-emoji">🎲</span>桌游</div></div></div>
+            <div class="cat"><div class="cat-img"><div class="cat-img-bg" style="background-image:url('https://cdn.nowmap.cn/h5_event/event/intro/live.jpg?x-oss-process=image/quality,q_60')"></div><div class="cat-mask"></div><div class="cat-dot cd-6"></div><div class="cat-name"><span class="cat-emoji">🎵</span>Livehouse</div></div></div>
+            <div class="cat"><div class="cat-img"><div class="cat-img-bg" style="background-image:url('https://cdn.nowmap.cn/h5_event/event/intro/camp.jpg?x-oss-process=image/quality,q_60')"></div><div class="cat-mask"></div><div class="cat-dot cd-7"></div><div class="cat-name"><span class="cat-emoji">🖼️</span>看展</div></div></div>
+            <div class="cat"><div class="cat-img"><div class="cat-img-bg" style="background-image:url('https://cdn.nowmap.cn/h5_event/event/intro/ride.jpg?x-oss-process=image/quality,q_60')"></div><div class="cat-mask"></div><div class="cat-dot cd-8"></div><div class="cat-name"><span class="cat-emoji">🚴</span>骑行</div></div></div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <script src="js/main.js?v=20250107"></script>
-    <script>
-        // 横滑卡片控制逻辑
-        function initSlider(wrapperId, controlsId) {
-            const wrapper = document.getElementById(wrapperId);
-            const controls = document.getElementById(controlsId);
-            if (!wrapper || !controls) return;
+<section class="map-section reveal">
+    <div class="sec-tag" style="color:var(--amber);background:rgba(254,217,61,.06);border:1px solid rgba(254,217,61,.08)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><path d="M8 2v16M16 6v16"/></svg>
+        LIVE MAP
+    </div>
+    <h2 class="sec-title">地图是舞台<br><span class="gradient-text">热闹一眼看清</span></h2>
+    <p class="sec-desc">活动、邀约、据点都在地图上。AI 帮你上场，地图帮你看见周围正在发生什么。</p>
+    <div class="map-preview">
+        <img class="map-img" src="https://cdn.nowmap.cn/h5_event/event/intro/map.jpg?x-oss-process=image/quality,q_60" alt="实时活动地图">
+    </div>
+</section>
 
-            const cards = wrapper.querySelectorAll('.quick-card, .scenario-card');
-            const cardCount = cards.length;
+<section class="closing reveal">
+    <div class="closing-panel">
+        <p class="closing-q">今天想出门？</p>
+        <p class="closing-a">打开 Zup!，让 AI 帮你找到一起出门的人。</p>
+    </div>
+</section>
 
-            // 创建控制按钮
-            for (let i = 0; i < cardCount; i++) {
-                const btn = document.createElement('button');
-                btn.className = 'slider-btn';
-                // 场景区使用圆点控制条，不设置文字
-                if (i === 0) btn.classList.add('active');
-                btn.addEventListener('click', () => {
-                    // 手动计算目标滚动距离，避免当最后几张卡片时被滚动上限截断
-                    const targetLeft = cards[i].offsetLeft;
-                    const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
-                    const nextLeft = Math.min(Math.max(targetLeft, 0), Math.max(maxScroll, 0));
-                    wrapper.scrollTo({ left: nextLeft, behavior: 'smooth' });
-                });
-                controls.appendChild(btn);
-            }
+<section class="join reveal">
+    <div class="sec-tag" style="color:var(--coral);background:rgba(255,122,92,.06);border:1px solid rgba(255,122,92,.08)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+        JOIN US
+    </div>
+    <h2 class="sec-title">和我们一起<br><span class="gradient-text">让城市热闹起来</span></h2>
+    <div class="join-cards">
+        <div class="join-card jc-host">
+            <div class="jc-title">活动发起人</div>
+            <p class="jc-desc">社群主理人、活动达人？在 Zup! 发局，让更多同频的人发现你。</p>
+            <button class="jc-btn" type="button" onclick="showToast('host')">申请发起人认证 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+        <div class="join-card jc-biz">
+            <div class="jc-title">商户入驻</div>
+            <p class="jc-desc">酒馆、咖啡厅、运动场馆、Livehouse……成为据点，获取精准线下客流。</p>
+            <a class="jc-btn" href="merchant.html" onclick="return handleBizJoin(event)">查看入驻说明 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+    </div>
+</section>
 
-            // 监听滚动更新按钮状态（选中最接近当前滚动位置的卡片）
-            let scrollTimeout;
-            wrapper.addEventListener('scroll', () => {
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(() => {
-                    const viewportCenter = wrapper.scrollLeft + wrapper.clientWidth / 2;
-                    let activeIndex = 0;
-                    let minDelta = Infinity;
-                    for (let j = 0; j < cards.length; j++) {
-                        const cardCenter = cards[j].offsetLeft + cards[j].offsetWidth / 2;
-                        const delta = Math.abs(cardCenter - viewportCenter);
-                        if (delta < minDelta) { minDelta = delta; activeIndex = j; }
-                    }
-                    controls.querySelectorAll('.slider-btn').forEach((btn, index) => {
-                        btn.classList.toggle('active', index === activeIndex);
-                    });
-                }, 100);
-            });
-        }
+<section class="page-footer reveal">
+    <img class="footer-icon" src="https://buzzin.oss-cn-beijing.aliyuncs.com/h5_event/zup-app-icon.png" alt="Zup!">
+    <p class="footer-text">好玩的人和事都在附近<br>AI 帮你约上</p>
+    <div class="footer-sub">Zup! · AI 实时线下组局</div>
+</section>
 
-        // 常见问题展开/收起
-        document.querySelectorAll('.faq-item').forEach(item => {
-            const question = item.querySelector('.faq-question');
-            question.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
-                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-                if (!isActive) {
-                    item.classList.add('active');
-                }
-            });
-        });
+</div>
 
-        // 初始化滑块
-        document.addEventListener('DOMContentLoaded', () => {
-            initSlider('quickCards', 'quickControls');
-            initSlider('scenariosCards', 'scenariosControls');
-        });
-    </script>
+<div class="toast" id="toast"></div>
+
+<script>
+var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})
+},{threshold:.01,rootMargin:'0px 0px 80px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
+
+var toastTimer;
+function showToast(type){
+    var el=document.getElementById('toast');
+    if(type==='host'){
+        el.innerHTML='在线认证尚未开通，可添加微信 <em>hunterwm</em> 人工认证';
+    }else{
+        el.innerHTML='请前往 App「我的」页面 → 设置 → 申请认证商户，自助认证';
+    }
+    clearTimeout(toastTimer);
+    el.classList.add('show');
+    toastTimer=setTimeout(function(){el.classList.remove('show')},3000);
+}
+
+function isInApp(){
+    var ua=navigator.userAgent||'';
+    var q=location.search||'';
+    if(/[?&](inapp|from_app|app)=1?\b/i.test(q))return true;
+    if(/ZupApp|NowMapApp|BuzzInApp|nowmap-app|Zup\//i.test(ua))return true;
+    if(/; wv\)|\bwv\b/i.test(ua))return true; // Android WebView
+    // iOS WKWebView：有 AppleWebKit 但没有 Safari 标识
+    if(/(iPhone|iPad|iPod)/i.test(ua)&&/AppleWebKit/i.test(ua)&&!/Safari\//i.test(ua))return true;
+    return false;
+}
+
+function handleBizJoin(e){
+    if(!isInApp())return true;
+    if(e&&e.preventDefault)e.preventDefault();
+    showToast('biz');
+    return false;
+}
+
+(function(){
+    var sc=document.querySelector('.cat-scroll');
+    if(!sc)return;
+    var mq=window.matchMedia('(min-width:1024px)');
+    var down=false,startX=0,scrollLeft=0;
+    function onDown(e){if(mq.matches)return;down=true;sc.classList.add('dragging');startX=e.pageX-sc.offsetLeft;scrollLeft=sc.scrollLeft}
+    function onUp(){down=false;sc.classList.remove('dragging')}
+    function onMove(e){
+        if(!down||mq.matches)return;
+        e.preventDefault();
+        sc.scrollLeft=scrollLeft-(e.pageX-sc.offsetLeft-startX);
+    }
+    sc.addEventListener('pointerdown',onDown);
+    sc.addEventListener('pointerleave',onUp);
+    sc.addEventListener('pointerup',onUp);
+    sc.addEventListener('pointermove',onMove);
+})();
+</script>
 </body>
 </html>
