@@ -16,6 +16,7 @@
 |------|----------|--------|
 | 豆瓣 | [`.cursor/rules/douban-crawl-and-agent-poi.mdc`](.cursor/rules/douban-crawl-and-agent-poi.mdc) | time → classification → body → POI |
 | 小红书 | [`.cursor/rules/xhs-crawl-and-review-import.mdc`](.cursor/rules/xhs-crawl-and-review-import.mdc) | xiaohongshu-review-workflow + classification / POI |
+| 摩天轮 | 本文 + README「抓取摩天轮」 | **默认演唱会和 Livehouse 都抓**、未来 30 天；workbench 用 `<城市>-mtl/` |
 
 **活动分类标准（现行）**：[`docs/classification-agent-prompt.md`](docs/classification-agent-prompt.md) + 校验 [`lib/event-classification.js`](lib/event-classification.js) `EVENT_CATEGORIES`。
 
@@ -44,6 +45,9 @@
 | 只复核存疑 POI | 「复核【城市】POI 存疑」 |
 | 豆瓣全套 | 「处理【城市】豆瓣活动」 / 「抓取【城市】豆瓣并做完分类 POI」 |
 | 只刷新介绍 | 「重写【城市】豆瓣活动介绍」 |
+| 摩天轮 | 「抓取摩天轮」 / 「抓摩天轮一个月内的活动」 | 演唱会和 Livehouse **都抓** |
+| 只要演唱会 | 「只抓摩天轮演唱会」 |
+| 只要 Livehouse | 「只抓摩天轮 Livehouse」 |
 
 Agent 收到后自行读 master-workflow + 对应 `.mdc` 规则，一条龙执行并汇报。
 

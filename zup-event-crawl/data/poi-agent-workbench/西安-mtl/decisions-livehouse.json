@@ -1,0 +1,188 @@
+{
+  "city": "西安",
+  "source": "motianlun",
+  "decided_at": "2026-09-24T09:49:53.558Z",
+  "agent": "cursor",
+  "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
+  "decisions": [
+    {
+      "group_id": "12ab0b4ae75a",
+      "event_uids": [
+        "motianlun:6aa2626156d2cc00019cd9f9",
+        "motianlun:6a2bdc5491da22000152e86d",
+        "motianlun:6a9e5a13a8abe5000183dec4"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "Mars艺术展演空间"
+      ],
+      "poi_id": "17726529968896498252",
+      "poi_title": "西安MARS艺术展演空间",
+      "poi_address": "陕西省西安市新城区幸福林带乐之谷E2段下沉广场(新城区图书馆对面)",
+      "latitude": 34.244662,
+      "longitude": 109.015465,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "17726529968896498252",
+          "title": "西安MARS艺术展演空间",
+          "address": "陕西省西安市新城区幸福林带乐之谷E2段下沉广场(新城区图书馆对面)",
+          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
+          "latitude": 34.244662,
+          "longitude": 109.015465
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "店名是 MARS，票上是乐之谷 E8，地图写成 E2"
+    },
+    {
+      "group_id": "9442e661c1fd",
+      "event_uids": [
+        "motianlun:6a8979d2b3e86b0001694463",
+        "motianlun:6a7302d70847f4000160da01",
+        "motianlun:6aa506b363f10400018ab70d"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "西演LIVE 光圈club（1935）"
+      ],
+      "poi_id": "1987217975586151951",
+      "poi_title": "西演SPACE·光圈CLUB",
+      "poi_address": "陕西省西安市新城区太华路街道太华南路251号大华1935剧场叁剧场",
+      "latitude": 34.285012,
+      "longitude": 108.975629,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "1987217975586151951",
+          "title": "西演SPACE·光圈CLUB",
+          "address": "陕西省西安市新城区太华路街道太华南路251号大华1935剧场叁剧场",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 34.285012,
+          "longitude": 108.975629
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「西演SPACE·光圈CLUB」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "26d450035732",
+      "event_uids": [
+        "motianlun:6a7eac0dd9fcf10001e97b94"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "西演SPACE·福星现场"
+      ],
+      "poi_id": "9895974090361940514",
+      "poi_title": "西演SPACE·福星现场",
+      "poi_address": "陕西省西安市新城区西一路282号易俗文化街区1号楼3F",
+      "latitude": 34.260834,
+      "longitude": 108.949155,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "9895974090361940514",
+          "title": "西演SPACE·福星现场",
+          "address": "陕西省西安市新城区西一路282号易俗文化街区1号楼3F",
+          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
+          "latitude": 34.260834,
+          "longitude": 108.949155
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「西演SPACE·福星现场」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "fcb83962ab79",
+      "event_uids": [
+        "motianlun:6a6dbc84a6a27f0001bb8ad0"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "西演SPACE·B2 LIVE"
+      ],
+      "poi_id": "2394289352098355797",
+      "poi_title": "西演SPACE·车库LIVE(创意谷展演中心店)",
+      "poi_address": "陕西省西安市雁塔区曲江街道雁翔路3369号",
+      "latitude": 34.213113,
+      "longitude": 109.011942,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "2394289352098355797",
+          "title": "西演SPACE·车库LIVE(创意谷展演中心店)",
+          "address": "陕西省西安市雁塔区曲江街道雁翔路3369号",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 34.213113,
+          "longitude": 109.011942
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "同一栋曲江创意谷，票上写 B2 LIVE，地图上是车库 LIVE"
+    },
+    {
+      "group_id": "b479adeb2dc4",
+      "event_uids": [
+        "motianlun:6a4f75bbf340520001345f11"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "西演SPACE·车库LIVE"
+      ],
+      "poi_id": "2394289352098355797",
+      "poi_title": "西演SPACE·车库LIVE(创意谷展演中心店)",
+      "poi_address": "陕西省西安市雁塔区曲江街道雁翔路3369号",
+      "latitude": 34.213113,
+      "longitude": 109.011942,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "2394289352098355797",
+          "title": "西演SPACE·车库LIVE(创意谷展演中心店)",
+          "address": "陕西省西安市雁塔区曲江街道雁翔路3369号",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 34.213113,
+          "longitude": 109.011942
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「西演SPACE·车库LIVE(创意谷展演中心店)」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "bfea57708433",
+      "event_uids": [
+        "motianlun:6aabb4ea21f6a800016872d7",
+        "motianlun:6a76b5c9b84ab200012a82a2"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "西演SPACE·塞斯拾陆"
+      ],
+      "poi_id": "17743495564176793131",
+      "poi_title": "西演SPACE·塞斯拾陆",
+      "poi_address": "陕西省西安市新城区太华路街道太华南路251号1935室小剧场集群壹剧场",
+      "latitude": 34.285138,
+      "longitude": 108.975094,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "17743495564176793131",
+          "title": "西演SPACE·塞斯拾陆",
+          "address": "陕西省西安市新城区太华路街道太华南路251号1935室小剧场集群壹剧场",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 34.285138,
+          "longitude": 108.975094
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「西演SPACE·塞斯拾陆」和摩天轮场馆、地址一致"
+    }
+  ]
+}

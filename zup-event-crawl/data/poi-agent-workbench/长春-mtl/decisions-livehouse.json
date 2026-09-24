@@ -1,0 +1,72 @@
+{
+  "city": "长春",
+  "source": "motianlun",
+  "decided_at": "2026-09-24T09:49:53.558Z",
+  "agent": "cursor",
+  "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
+  "decisions": [
+    {
+      "group_id": "ca3142ad5518",
+      "event_uids": [
+        "motianlun:6aab971f7f2e7600017cab9d",
+        "motianlun:6a521a918cbdc8000107cd16",
+        "motianlun:6a8eb1230e88170001cf5c26"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "GOIN LIVE"
+      ],
+      "poi_id": "1863592205924591862",
+      "poi_title": "GOIN LIVE",
+      "poi_address": "吉林省长春市朝阳区飞跃街道创立街205号我与长春青年文创社区C区",
+      "latitude": 43.809864,
+      "longitude": 125.258501,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "1863592205924591862",
+          "title": "GOIN LIVE",
+          "address": "吉林省长春市朝阳区飞跃街道创立街205号我与长春青年文创社区C区",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 43.809864,
+          "longitude": 125.258501
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「GOIN LIVE」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "b3c78db81b1d",
+      "event_uids": [
+        "motianlun:6a7eab50ca5b020001429220",
+        "motianlun:6a69dbfc087d4100010baaa0",
+        "motianlun:6a74003517620e0001833696",
+        "motianlun:6aa27ddef0b50b000131e47d"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "乐活LIVEHOUSE"
+      ],
+      "poi_id": "11756288505889510777",
+      "poi_title": "乐活 LIVE HOUSE(欧亚商都a座店)",
+      "poi_address": "吉林省长春市朝阳区红旗街道工农大路1128号欧亚商都A座10F",
+      "latitude": 43.870081,
+      "longitude": 125.300707,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "11756288505889510777",
+          "title": "乐活 LIVE HOUSE(欧亚商都a座店)",
+          "address": "吉林省长春市朝阳区红旗街道工农大路1128号欧亚商都A座10F",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 43.870081,
+          "longitude": 125.300707
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「乐活 LIVE HOUSE(欧亚商都a座店)」和摩天轮场馆、地址一致"
+    }
+  ]
+}

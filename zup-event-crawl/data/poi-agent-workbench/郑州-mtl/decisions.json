@@ -1,0 +1,74 @@
+{
+  "city": "郑州",
+  "source": "motianlun",
+  "decided_at": "2026-09-24T09:01:45.020Z",
+  "agent": "cursor",
+  "decisions": [
+    {
+      "group_id": "576e1a8362e3",
+      "event_uids": [
+        "motianlun:6a9f933e87b6690001570e8a",
+        "motianlun:69eb404420e06000016027fd"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "郑州奥林匹克体育中心-洋河·梦之蓝体育场 丹水大道与长椿路交汇处西南角"
+      ],
+      "poi_id": "7227804912683765039",
+      "poi_title": "郑州市奥林匹克体育中心体育场",
+      "poi_address": "河南省郑州市中原区博体路",
+      "latitude": 34.741066,
+      "longitude": 113.53578,
+      "candidates": [
+        {
+          "poi_id": "7227804912683765039",
+          "title": "郑州市奥林匹克体育中心体育场",
+          "address": "河南省郑州市中原区博体路",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 34.741066,
+          "longitude": 113.53578
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "场馆「郑州市奥林匹克体育中心体育场」与摩天轮地点一致"
+    },
+    {
+      "group_id": "420aa5c7c497",
+      "event_uids": [
+        "motianlun:69ddd4ab4164850001f44c26",
+        "motianlun:6a76cdddd93f5a000171e18a"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "郑州奥林匹克体育中心-洋河·梦之蓝体育馆"
+      ],
+      "poi_id": "7227804912683765039",
+      "poi_title": "郑州市奥林匹克体育中心体育场",
+      "poi_address": "河南省郑州市中原区博体路",
+      "latitude": 34.741066,
+      "longitude": 113.53578,
+      "candidates": [
+        {
+          "poi_id": "17135875771115094953",
+          "title": "郑州奥林匹克体育中心洋河·梦之蓝体育馆2号包厢",
+          "address": "河南省郑州市中原区博体路",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 34.741066,
+          "longitude": 113.53578
+        },
+        {
+          "poi_id": "7227804912683765039",
+          "title": "郑州市奥林匹克体育中心体育场",
+          "address": "河南省郑州市中原区博体路",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 34.741066,
+          "longitude": 113.53578
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "没有单独体育馆点，暂用同址体育场"
+    }
+  ]
+}

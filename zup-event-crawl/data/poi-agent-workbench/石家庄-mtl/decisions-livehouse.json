@@ -1,0 +1,85 @@
+{
+  "city": "石家庄",
+  "source": "motianlun",
+  "decided_at": "2026-09-24T09:49:53.558Z",
+  "agent": "cursor",
+  "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
+  "decisions": [
+    {
+      "group_id": "9bad9cbcbf96",
+      "event_uids": [
+        "motianlun:6a9f7160f7b18f0001924e30"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "红糖 Livehouse（石家庄）"
+      ],
+      "poi_id": "532037913248001448",
+      "poi_title": "星光艺术空间&红糖LIVEHOUSE",
+      "poi_address": "河北省石家庄市新华区湾里庙步行街水幕广场M08",
+      "latitude": 38.044978,
+      "longitude": 114.487492,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "532037913248001448",
+          "title": "星光艺术空间&红糖LIVEHOUSE",
+          "address": "河北省石家庄市新华区湾里庙步行街水幕广场M08",
+          "category": "娱乐休闲:其它娱乐休闲",
+          "latitude": 38.044978,
+          "longitude": 114.487492
+        },
+        {
+          "index": 1,
+          "poi_id": "6024050408768496802",
+          "title": "红糖LIVE HOUSE",
+          "address": "河北省石家庄市长安区跃进街道翟营北大街15号简筑花园小区综合楼负一层",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 38.04991,
+          "longitude": 114.55481
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「星光艺术空间&红糖LIVEHOUSE」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "7f6f3f7ba697",
+      "event_uids": [
+        "motianlun:6a8eb9d4662c240001586d36"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "仙丹livehouse"
+      ],
+      "poi_id": "7115529145044327362",
+      "poi_title": "仙丹",
+      "poi_address": "河北省石家庄市裕华区石家庄高新技术产业开发区石家庄市高新区交投栖栖谷二楼东北角",
+      "latitude": 38.003537,
+      "longitude": 114.542771,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "8903948108071574734",
+          "title": "仙丹LiveHouse(高新店)",
+          "address": "河北省石家庄市裕华区高新技术产业开发区交投栖栖谷二楼东北角",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 38.025884,
+          "longitude": 114.626407
+        },
+        {
+          "index": 1,
+          "poi_id": "7115529145044327362",
+          "title": "仙丹",
+          "address": "河北省石家庄市裕华区石家庄高新技术产业开发区石家庄市高新区交投栖栖谷二楼东北角",
+          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
+          "latitude": 38.003537,
+          "longitude": 114.542771
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "仙丹的坐标挨着中冶和悦汇，地图文字却写成栖栖谷"
+    }
+  ]
+}

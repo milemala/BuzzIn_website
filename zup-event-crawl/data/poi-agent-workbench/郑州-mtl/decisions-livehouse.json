@@ -1,0 +1,79 @@
+{
+  "city": "郑州",
+  "source": "motianlun",
+  "decided_at": "2026-09-24T09:49:53.558Z",
+  "agent": "cursor",
+  "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
+  "decisions": [
+    {
+      "group_id": "86dda02dcd4b",
+      "event_uids": [
+        "motianlun:6a0eba7c6bc71b000142aed1",
+        "motianlun:6a6dbdf67a973b0001bc0769",
+        "motianlun:6a8eb4f3c14b110001021238",
+        "motianlun:6a9bf62111c6380001eb09f7"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "7LIVEHOUSE（新通桥店）"
+      ],
+      "poi_id": "1755158220296960639",
+      "poi_title": "7LIVEHOUSE",
+      "poi_address": "河南省郑州市金水区经八路街道文化路和金水路交汇处东北角中原大舞台内2层",
+      "latitude": 34.765027,
+      "longitude": 113.668369,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "1755158220296960639",
+          "title": "7LIVEHOUSE",
+          "address": "河南省郑州市金水区经八路街道文化路和金水路交汇处东北角中原大舞台内2层",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 34.765027,
+          "longitude": 113.668369
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「7LIVEHOUSE」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "52397eee36e7",
+      "event_uids": [
+        "motianlun:6aa50376e0d2a2000196228c"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "7LIVEHOUSE+"
+      ],
+      "poi_id": "1755158220296960639",
+      "poi_title": "7LIVEHOUSE",
+      "poi_address": "河南省郑州市金水区经八路街道文化路和金水路交汇处东北角中原大舞台内2层",
+      "latitude": 34.765027,
+      "longitude": 113.668369,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "1755158220296960639",
+          "title": "7LIVEHOUSE",
+          "address": "河南省郑州市金水区经八路街道文化路和金水路交汇处东北角中原大舞台内2层",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 34.765027,
+          "longitude": 113.668369
+        },
+        {
+          "index": 1,
+          "poi_id": "9808637794160405571",
+          "title": "7LIVEHOUSE+",
+          "address": "河南省郑州市管城回族区商都路街道海汇港2号楼五层7live house",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 34.752036,
+          "longitude": 113.769736
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「7LIVEHOUSE」和摩天轮场馆、地址一致"
+    }
+  ]
+}

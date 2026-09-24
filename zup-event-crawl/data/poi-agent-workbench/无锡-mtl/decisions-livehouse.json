@@ -1,0 +1,37 @@
+{
+  "city": "无锡",
+  "source": "motianlun",
+  "decided_at": "2026-09-24T09:49:53.558Z",
+  "agent": "cursor",
+  "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
+  "decisions": [
+    {
+      "group_id": "e967bdd099ce",
+      "event_uids": [
+        "motianlun:6ab4d530f620c60001ca9bc6"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "MAO Livehouse无锡"
+      ],
+      "poi_id": "2711813648792058305",
+      "poi_title": "MAOLivehouse无锡",
+      "poi_address": "江苏省无锡市新吴区净慧西道52号太湖音悦城220,325",
+      "latitude": 31.480752,
+      "longitude": 120.365493,
+      "candidates": [
+        {
+          "poi_id": "2711813648792058305",
+          "title": "MAOLivehouse无锡",
+          "address": "江苏省无锡市新吴区净慧西道52号太湖音悦城220,325",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 31.480752,
+          "longitude": 120.365493
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「MAOLivehouse无锡」和摩天轮场馆一致"
+    }
+  ]
+}

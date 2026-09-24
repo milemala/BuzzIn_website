@@ -1,0 +1,49 @@
+{
+  "city": "温州",
+  "source": "motianlun",
+  "decided_at": "2026-09-24T09:49:53.558Z",
+  "agent": "cursor",
+  "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
+  "decisions": [
+    {
+      "group_id": "6352dfcd8f1a",
+      "event_uids": [
+        "motianlun:69d0c8e772a7270001a9ee28",
+        "motianlun:6a521a9ce198060001043562",
+        "motianlun:6a6dc4d10b62f80001d0cbb4"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "盲堂"
+      ],
+      "poi_id": "8968027432150271314",
+      "poi_title": "盲堂",
+      "poi_address": "浙江省温州市鹿城区学院中路263号小坝坊17号楼1F",
+      "latitude": 28.004654,
+      "longitude": 120.688404,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "8968027432150271314",
+          "title": "盲堂",
+          "address": "浙江省温州市鹿城区学院中路263号小坝坊17号楼1F",
+          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
+          "latitude": 28.004654,
+          "longitude": 120.688404
+        },
+        {
+          "index": 1,
+          "poi_id": "3977051050834123421",
+          "title": "盲堂小坝坊17幢",
+          "address": "浙江省温州市鹿城区蒲鞋市街道学院中路236号",
+          "category": "房产小区:房产小区附属",
+          "latitude": 28.004541,
+          "longitude": 120.688538
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「盲堂」和摩天轮场馆、地址一致"
+    }
+  ]
+}

@@ -16,6 +16,7 @@ const {
   resolveStartAt,
 } = require("./event-import-ready");
 const { enrichEventBody } = require("./event-participation");
+const { matchLowSocialEvent } = require("./event-low-social-filter");
 const { buildDateWindowFromEvents, resolveEventDates } = require("./event-dates");
 const {
   buildPoiKeyword,
@@ -43,6 +44,7 @@ const { getComposedImagePath } = require("./composed-image");
 const {
   applyBuzzEnvToEvent,
   ensureBuzzImportSchema,
+  listBuzzImportsMap,
   markEventImportResult: storeMarkEventImportResult,
   updateEventImportPrepForEnv,
   updateEventMerchantInfoForEnv,
@@ -956,6 +958,7 @@ function importPayload(db, payload, options = {}) {
       })
       : null;
     const batchContentKeys = new Set();
+    let skippedLowSocial = 0;
     const deleteEvent = db.prepare("DELETE FROM events WHERE event_uid = ?");
     const eventExistsStmt = db.prepare("SELECT 1 AS ok FROM events WHERE event_uid = ? LIMIT 1");
     const newImportUidsByCitySource = new Map();
@@ -974,6 +977,16 @@ function importPayload(db, payload, options = {}) {
         : events;
 
       for (const event of cityEvents) {
+        const lowSocial = matchLowSocialEvent({
+          title: event.title,
+          body: event.body,
+          rawDetailText: event.rawDetailText || event.detailText,
+        });
+        if (lowSocial) {
+          skippedLowSocial += 1;
+          continue;
+        }
+
         let titlePoiDecision = null;
         if (shouldDedupContent) {
           const dedupKey = eventContentDedupKey({ ...event, city: event.city || city });
@@ -1079,6 +1092,9 @@ function importPayload(db, payload, options = {}) {
       );
     }
 
+    if (skippedLowSocial > 0) {
+      setMetaValue(db, "last_import_skipped_low_social", String(skippedLowSocial));
+    }
     if (skippedDuplicate > 0) {
       setMetaValue(db, "last_import_skipped_duplicate", String(skippedDuplicate));
     }
@@ -1320,9 +1336,15 @@ function getEventsPayload(db, options = {}) {
     db.prepare("SELECT event_uid, status FROM review_decisions").all()
       .map((row) => [row.event_uid, row.status]),
   );
+  const buzzImportByUid = listBuzzImportsMap(db, "event", buzzEnv);
   const events = eventRows
     .map((row) => {
-      const base = applyBuzzEnvToEvent(db, rowToEvent(row), buzzEnv);
+      const base = applyBuzzEnvToEvent(
+        db,
+        rowToEvent(row),
+        buzzEnv,
+        buzzImportByUid.get(row.event_uid) || null,
+      );
       return enrichEventPoiFlags({
         ...base,
         review_status: reviewStatusByUid.get(row.event_uid) || "pending",

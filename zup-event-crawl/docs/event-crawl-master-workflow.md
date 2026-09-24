@@ -36,6 +36,7 @@ Workbench 目录：
 |------|------|
 | 豆瓣 | `data/poi-agent-workbench/<城市>/` |
 | 小红书 | `data/poi-agent-workbench/<城市>-xhs/` |
+| 摩天轮 | `data/poi-agent-workbench/<城市>-mtl/` |
 
 ---
 
@@ -88,7 +89,7 @@ Workbench 目录：
 
 | # | 步骤 | 执行者 | 命令 / 产物 |
 |---|------|--------|-------------|
-| 1 | 抓取入库 | JS | `scrape-douban-week-events.js` 或 `prepare-city-poi-for-agent.js --city=` |
+| 1 | 抓取入库 | JS | `scrape-douban-week-events.js` 或 `prepare-city-poi-for-agent.js --city=`。话剧、音乐剧、交响、旅游课等不结伴类型由 `lib/event-low-social-filter.js` 丢掉，不补位 |
 | 2 | 校正时间 | Agent + JS | `export-events-for-time.js` → Agent 写 `time-decisions.json` → `apply-event-time-decisions.js` |
 | 3 | 分类挡下 | Agent + JS | `export-events-for-classification.js --city=` → `classification-decisions.json` → apply |
 | 4 | 写介绍 | Agent + JS | `export-events-for-body.js` → `body-decisions.json` → apply |
@@ -133,6 +134,20 @@ Workbench 目录：
 | POI apply | `--city=` | `--city=` + `--source=xiaohongshu` |
 | 映射库 | 活动地址 → POI，导出时附 `cached_poi` | 同左（共用 `poi_address_cache`，仅活动） |
 | 前置独有 | — | vision-slots、海报裁切验收 |
+
+---
+
+## 摩天轮
+
+用户说「抓取摩天轮」且没点名只要某一类 → **演唱会和 Livehouse 都抓**。读 README「抓取摩天轮」。用户明确只要其中一类时，只抓那一类。
+
+| # | 步骤 | 执行者 |
+|---|------|--------|
+| 1 | 按城市抓演唱会和 Livehouse 列表 + 详情，只留演出日期落在未来 30 天内的场次 | JS `scrape-motianlun-concerts.js`（默认两类；`--category=concert` 或 `livehouse` 只抓一类） |
+| 2 | 入库 `source=motianlun`、`append-city` | JS |
+| 3 | 校正时间 / 分类 / POI | 与豆瓣相同，但 workbench 用 `<城市>-mtl/`，命令加 `--source=motianlun` |
+
+介绍在抓取时已写成「时间 + 场馆 + 可于摩天轮购票」，`body_source=motianlun_source`，不走 body Agent。音乐会等会被现有丢弃规则拦住。与豆瓣/小红书标题和地点完全相同的未过期活动跳过，不覆盖。
 
 ---
 

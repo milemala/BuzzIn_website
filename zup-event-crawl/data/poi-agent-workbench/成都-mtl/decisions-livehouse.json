@@ -1,0 +1,349 @@
+{
+  "city": "成都",
+  "source": "motianlun",
+  "decided_at": "2026-09-24T09:49:53.558Z",
+  "agent": "cursor",
+  "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
+  "decisions": [
+    {
+      "group_id": "08788e430a0c",
+      "event_uids": [
+        "motianlun:6aa0d02846cc3c00019016c8",
+        "motianlun:6a9be4e6a8abe50001838480"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "CH8绿树演艺中心"
+      ],
+      "poi_id": "5227873385736680859",
+      "poi_title": "CH8绿树演艺中心(天府国际动漫城店)",
+      "poi_address": "四川省成都市成华区昭青路333号",
+      "latitude": 30.704968,
+      "longitude": 104.107475,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "5227873385736680859",
+          "title": "CH8绿树演艺中心(天府国际动漫城店)",
+          "address": "四川省成都市成华区昭青路333号",
+          "category": "娱乐休闲:其它娱乐休闲",
+          "latitude": 30.704968,
+          "longitude": 104.107475
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「CH8绿树演艺中心(天府国际动漫城店)」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "d446c0ef73c4",
+      "event_uids": [
+        "motianlun:6aa212408105b00001fcd799",
+        "motianlun:6aa4b7f22a00f200015ac3e1",
+        "motianlun:6ab0b3155a20740001437edc"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "不歪LIVE(Pro厅）"
+      ],
+      "poi_id": "8724777103369936537",
+      "poi_title": "不歪艺术空间",
+      "poi_address": "四川省成都市武侯区高升桥东路8-16号A座3层",
+      "latitude": 30.635011,
+      "longitude": 104.041624,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "8724777103369936537",
+          "title": "不歪艺术空间",
+          "address": "四川省成都市武侯区高升桥东路8-16号A座3层",
+          "category": "文化场馆:展览馆",
+          "latitude": 30.635011,
+          "longitude": 104.041624
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「不歪艺术空间」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "e8ca98a0000b",
+      "event_uids": [
+        "motianlun:6a8bdf901739f800019ea95b",
+        "motianlun:6a4a2bdd81040f0001f91e65"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "BPM Live Space"
+      ],
+      "poi_id": "1328981611944465719",
+      "poi_title": "BPM Live Space",
+      "poi_address": "四川省成都市成华区跳蹬河街道建设南支路4号东郊记忆园区3号仓2层3-2-5",
+      "latitude": 30.667335,
+      "longitude": 104.121976,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "1328981611944465719",
+          "title": "BPM Live Space",
+          "address": "四川省成都市成华区跳蹬河街道建设南支路4号东郊记忆园区3号仓2层3-2-5",
+          "category": "娱乐休闲:剧场音乐厅:音乐厅",
+          "latitude": 30.667335,
+          "longitude": 104.121976
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「BPM Live Space」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "0bfcfd1db8cf",
+      "event_uids": [
+        "motianlun:6a4cc2f542ea59000141f2f4"
+      ],
+      "action": "reject",
+      "search_keywords_tried": [
+        "VIBE LIVE（成都）"
+      ],
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "2170923473587965999",
+          "title": "99 SUPER ROCK LIVE",
+          "address": "四川省成都市成华区双林路339号1栋1楼1号",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 30.662228,
+          "longitude": 104.093766
+        },
+        {
+          "index": 1,
+          "poi_id": "8147542084581776644",
+          "title": "OC live party 成都",
+          "address": "四川省成都市成华区玉双路9号4栋1层1号",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 30.656468,
+          "longitude": 104.093284
+        },
+        {
+          "index": 2,
+          "poi_id": "15346680785563777835",
+          "title": "Simply Live by Tinbox 成都",
+          "address": "四川省成都市锦江区春熙路街道人民南路二段1号1栋5层10号",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 30.651749,
+          "longitude": 104.066817
+        },
+        {
+          "index": 3,
+          "poi_id": "7799130938143800386",
+          "title": "BB Live R&B Bar x 失眠熊猫(成都兰桂坊店)",
+          "address": "四川省成都市锦江区锦官驿街道锦官驿街1号1栋1层2号",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 30.64353,
+          "longitude": 104.085208
+        },
+        {
+          "index": 4,
+          "poi_id": "2559685630050198208",
+          "title": "Live互动美语(成都总校)",
+          "address": "四川省成都市金牛区金泉街道黄金东二路399号1栋2层附230、240号",
+          "category": "教育学校:培训",
+          "latitude": 30.705391,
+          "longitude": 103.992423
+        },
+        {
+          "index": 5,
+          "poi_id": "3173777811666420280",
+          "title": "98 Live House 成都",
+          "address": "四川省成都市新都区新都街道同仁路107号1栋附304-305",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 30.820483,
+          "longitude": 104.191475
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上没有成都 VIBE LIVE 这一家"
+    },
+    {
+      "group_id": "25b9b4ff9e26",
+      "event_uids": [
+        "motianlun:6a474cc183e2eb00017d879f"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "ARCH SPACE"
+      ],
+      "poi_id": "3012463772897963741",
+      "poi_title": "ARCH SPACE",
+      "poi_address": "四川省成都市双流区天府新区万安街道麓山大道18号18栋附201号",
+      "latitude": 30.481444,
+      "longitude": 104.094929,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "3012463772897963741",
+          "title": "ARCH SPACE",
+          "address": "四川省成都市双流区天府新区万安街道麓山大道18号18栋附201号",
+          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
+          "latitude": 30.481444,
+          "longitude": 104.094929
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "店名是 ARCH SPACE，票上是双子巷，地图是麓山大道"
+    },
+    {
+      "group_id": "c2cce55e1f26",
+      "event_uids": [
+        "motianlun:6a587ba1b2b3e5000173af36"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "东区超级音乐现场"
+      ],
+      "poi_id": "6082662867335034778",
+      "poi_title": "东区超现场",
+      "poi_address": "四川省成都市成华区建设南支路4号东郊记忆园区1号楼1-1-1",
+      "latitude": 30.668885,
+      "longitude": 104.122029,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6082662867335034778",
+          "title": "东区超现场",
+          "address": "四川省成都市成华区建设南支路4号东郊记忆园区1号楼1-1-1",
+          "category": "娱乐休闲:其它娱乐休闲",
+          "latitude": 30.668885,
+          "longitude": 104.122029
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「东区超现场」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "901323869258",
+      "event_uids": [
+        "motianlun:6a58a61ffdcd5500011422ba",
+        "motianlun:6a794dc2bc90c70001bea1a1",
+        "motianlun:6a8977b0c9757200010f4c99"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "LITTLES LIVE(小酒馆万象城店）"
+      ],
+      "poi_id": "1360611472457813450",
+      "poi_title": "小酒馆(万象城店)",
+      "poi_address": "四川省成都市成华区双庆路8号1栋1层1号成都万象城第B1层B120号",
+      "latitude": 30.649265,
+      "longitude": 104.115142,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "1360611472457813450",
+          "title": "小酒馆(万象城店)",
+          "address": "四川省成都市成华区双庆路8号1栋1层1号成都万象城第B1层B120号",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 30.649265,
+          "longitude": 104.115142
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「小酒馆(万象城店)」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "6d01436193de",
+      "event_uids": [
+        "motianlun:6a6494b13c31a00001364f08",
+        "motianlun:6a7443aae1d17d00017b9035",
+        "motianlun:6a03021145613f000186732b"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "正火艺术中心 1号馆"
+      ],
+      "poi_id": "11353823452318514767",
+      "poi_title": "梵木创艺区·正火艺术中心1号馆",
+      "poi_address": "四川省成都市龙泉驿区大面街道东洪路666号梵木创艺区",
+      "latitude": 30.621821,
+      "longitude": 104.150436,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "11353823452318514767",
+          "title": "梵木创艺区·正火艺术中心1号馆",
+          "address": "四川省成都市龙泉驿区大面街道东洪路666号梵木创艺区",
+          "category": "教育学校:培训",
+          "latitude": 30.621821,
+          "longitude": 104.150436
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「梵木创艺区·正火艺术中心1号馆」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "a550af0f8c66",
+      "event_uids": [
+        "motianlun:6a6dbb7b0b62f80001cce739",
+        "motianlun:6a730cbb9169040001a65d09",
+        "motianlun:6aa504bfb62c4b0001e441af"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "NU SPACE 纽空间（成都）"
+      ],
+      "poi_id": "10637244459658339608",
+      "poi_title": "NUSPACE 纽空间(宽窄巷子中医学院一店)",
+      "poi_address": "四川省成都市青羊区奎星楼街9号B区店",
+      "latitude": 30.667422,
+      "longitude": 104.055521,
+      "candidates": [
+        {
+          "poi_id": "10637244459658339608",
+          "title": "NUSPACE 纽空间(宽窄巷子中医学院一店)",
+          "address": "四川省成都市青羊区奎星楼街9号B区店",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 30.667422,
+          "longitude": 104.055521,
+          "doubtful": true
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "奎星楼街 9 号对得上，地图把纽空间标成咖啡和公寓"
+    },
+    {
+      "group_id": "e181b9b5fbb8",
+      "event_uids": [
+        "motianlun:6a9bf531a8abe50001838d1d"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "正火艺术中心6号馆"
+      ],
+      "poi_id": "10302568290369789261",
+      "poi_title": "梵木创艺区·正火艺术中心-六号馆",
+      "poi_address": "四川省成都市龙泉驿区大面街道东洪路666号",
+      "latitude": 30.621727,
+      "longitude": 104.150462,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "10302568290369789261",
+          "title": "梵木创艺区·正火艺术中心-六号馆",
+          "address": "四川省成都市龙泉驿区大面街道东洪路666号",
+          "category": "娱乐休闲:其它娱乐休闲",
+          "latitude": 30.621727,
+          "longitude": 104.150462
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「梵木创艺区·正火艺术中心-六号馆」和摩天轮场馆、地址一致"
+    }
+  ]
+}

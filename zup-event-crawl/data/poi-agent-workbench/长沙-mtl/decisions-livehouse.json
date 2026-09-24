@@ -1,0 +1,183 @@
+{
+  "city": "长沙",
+  "source": "motianlun",
+  "decided_at": "2026-09-24T09:49:53.558Z",
+  "agent": "cursor",
+  "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
+  "decisions": [
+    {
+      "group_id": "b846f535b6bb",
+      "event_uids": [
+        "motianlun:6aaa654a2142520001270817",
+        "motianlun:6a5617450bdfde0001baa486",
+        "motianlun:6aa516fee0d2a20001963069",
+        "motianlun:6ab0b3e1897e22000107dbd6",
+        "motianlun:6aab701eee5bd400019f2e75"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "MAO Livehouse长沙（沙湾店）"
+      ],
+      "poi_id": "8307073103579978611",
+      "poi_title": "MAO Livehouse长沙(沙湾店)",
+      "poi_address": "湖南省长沙市雨花区黎托街道劳动东路268号吉联Mall内1层1009商铺(B馆4号门对面)",
+      "latitude": 28.156679,
+      "longitude": 113.047394,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "8307073103579978611",
+          "title": "MAO Livehouse长沙(沙湾店)",
+          "address": "湖南省长沙市雨花区黎托街道劳动东路268号吉联Mall内1层1009商铺(B馆4号门对面)",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 28.156679,
+          "longitude": 113.047394
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「MAO Livehouse长沙(沙湾店)」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "8bd9789aa24c",
+      "event_uids": [
+        "motianlun:6a75b167d93f5a0001718f7e"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "VOX LIVEHOUSE（长沙）"
+      ],
+      "poi_id": "3969604418623067287",
+      "poi_title": "Vox Livehouse(长沙店)",
+      "poi_address": "湖南省长沙市岳麓区天顶街道环湖路1200号梅溪湖国际文化艺术中心小剧场101号地下一层南侧",
+      "latitude": 28.195709,
+      "longitude": 112.905426,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "3969604418623067287",
+          "title": "Vox Livehouse(长沙店)",
+          "address": "湖南省长沙市岳麓区天顶街道环湖路1200号梅溪湖国际文化艺术中心小剧场101号地下一层南侧",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 28.195709,
+          "longitude": 112.905426
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「Vox Livehouse(长沙店)」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "cd0e1c069726",
+      "event_uids": [
+        "motianlun:6a804621ac73c60001286880",
+        "motianlun:6a968a92c04cf40001cf6de7",
+        "motianlun:6a897829d5ff710001c7d458"
+      ],
+      "action": "reject",
+      "search_keywords_tried": [
+        "Riff Bar"
+      ],
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6866156167995479128",
+          "title": "RIFF CLUB",
+          "address": "湖南省长沙市芙蓉区黄兴中路188号TX长沙年轻力中心南区负一层B131",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 28.19886,
+          "longitude": 112.976684
+        },
+        {
+          "index": 1,
+          "poi_id": "8699606776957284269",
+          "title": "RIFF LIVE",
+          "address": "湖南省长沙市岳麓区保利时光汇5F(达丰空间保利店旁)",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 28.225412,
+          "longitude": 112.960535
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "银杉路这家 Riff Bar 地图上没有，搜到的是别的区的 RIFF"
+    },
+    {
+      "group_id": "b4d0250ef1db",
+      "event_uids": [
+        "motianlun:6a8eb50e662c2400015869bb"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "红节奏Livehouse（长沙）"
+      ],
+      "poi_id": "10086422564088592870",
+      "poi_title": "红节奏live house",
+      "poi_address": "湖南省长沙市芙蓉区中山路249号3楼",
+      "latitude": 28.199891,
+      "longitude": 112.978193,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "10086422564088592870",
+          "title": "红节奏live house",
+          "address": "湖南省长沙市芙蓉区中山路249号3楼",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 28.199891,
+          "longitude": 112.978193
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「红节奏live house」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "40d818e1b8d3",
+      "event_uids": [
+        "motianlun:6a897757b54c350001ca9a00",
+        "motianlun:6aae17585a2074000142ea92"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "达丰空间"
+      ],
+      "poi_id": "17898557857363339348",
+      "poi_title": "达丰空间(锦秀店)",
+      "poi_address": "湖南省长沙市岳麓区观沙岭街道石岭塘社区银杉路382号锦绣拾光自编号21号栋一层",
+      "latitude": 28.239333,
+      "longitude": 112.949988,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "17898557857363339348",
+          "title": "达丰空间(锦秀店)",
+          "address": "湖南省长沙市岳麓区观沙岭街道石岭塘社区银杉路382号锦绣拾光自编号21号栋一层",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 28.239333,
+          "longitude": 112.949988
+        },
+        {
+          "index": 1,
+          "poi_id": "1988189536632641418",
+          "title": "达丰空间(保利时光汇店)",
+          "address": "湖南省长沙市岳麓区银盆岭街道银盆岭路228号长沙保利时光汇5楼",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 28.225434,
+          "longitude": 112.960614
+        },
+        {
+          "index": 2,
+          "poi_id": "8699606776957284269",
+          "title": "RIFF LIVE",
+          "address": "湖南省长沙市岳麓区保利时光汇5F(达丰空间保利店旁)",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 28.225412,
+          "longitude": 112.960535
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「达丰空间(锦秀店)」和摩天轮场馆、地址一致"
+    }
+  ]
+}

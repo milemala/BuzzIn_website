@@ -1,0 +1,240 @@
+{
+  "city": "南京",
+  "source": "motianlun",
+  "decided_at": "2026-09-24T09:49:53.558Z",
+  "agent": "cursor",
+  "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
+  "decisions": [
+    {
+      "group_id": "05c7e5289415",
+      "event_uids": [
+        "motianlun:6aa221eaea036100014ab644",
+        "motianlun:6a7a87e6fd9fd40001e56797"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "稻香演艺中心（西城路店）"
+      ],
+      "poi_id": "704805059711045083",
+      "poi_title": "稻香演艺中心(西城路店)",
+      "poi_address": "江苏省南京市建邺区西城路277号",
+      "latitude": 31.979439,
+      "longitude": 118.737194,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "704805059711045083",
+          "title": "稻香演艺中心(西城路店)",
+          "address": "江苏省南京市建邺区西城路277号",
+          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
+          "latitude": 31.979439,
+          "longitude": 118.737194
+        },
+        {
+          "index": 1,
+          "poi_id": "8287218453745794929",
+          "title": "胜奥羽毛球馆(河西稻香店)",
+          "address": "江苏省南京市建邺区沙洲街道西城路277号稻香演艺中心2号门",
+          "category": "运动健身:羽毛球馆",
+          "latitude": 31.979399,
+          "longitude": 118.737153
+        },
+        {
+          "index": 2,
+          "poi_id": "5470025087247098009",
+          "title": "胖大拿·街边大排档(河西夜未央店)",
+          "address": "江苏省南京市建邺区沙洲街道西城路277号B5铺位(稻香演艺中心旁)",
+          "category": "美食:中餐厅:川菜",
+          "latitude": 31.979921,
+          "longitude": 118.737732
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「稻香演艺中心(西城路店)」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "e5e4815dbfe4",
+      "event_uids": [
+        "motianlun:6a796500d93f5a0001726991",
+        "motianlun:6ab4a633a69867000149019f",
+        "motianlun:6a56126f44f3fc0001efc7ce",
+        "motianlun:6aae22089fe2410001a77076",
+        "motianlun:6a0052d7f8e11e00015d63ef"
+      ],
+      "action": "reject",
+      "search_keywords_tried": [
+        "1701 LIVEHOUSE MAX"
+      ],
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "2255763993014157142",
+          "title": "饮JOY LiveHouse",
+          "address": "江苏省南京市建邺区双闸街道江东中路300号澎湃力中心(原博览中心10号馆)1F-106区",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 31.988725,
+          "longitude": 118.71352
+        },
+        {
+          "index": 1,
+          "poi_id": "7866811473442849733",
+          "title": "八度空间(Infinite Art Space)",
+          "address": "江苏省南京市建邺区雨润大街99号4号楼1楼南侧",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 31.983071,
+          "longitude": 118.718237
+        },
+        {
+          "index": 2,
+          "poi_id": "12212281165670722587",
+          "title": "DC 音乐酒吧·livehouse",
+          "address": "江苏省南京市江宁区天元东路388号义乌小商品城34幢1层",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 31.938253,
+          "longitude": 118.877655
+        },
+        {
+          "index": 3,
+          "poi_id": "1682735640384617873",
+          "title": "IDM·南京",
+          "address": "江苏省南京市玄武区行辅路",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 32.096753,
+          "longitude": 118.888655
+        },
+        {
+          "index": 4,
+          "poi_id": "15064440330571394299",
+          "title": "坞里 LiveHouse&城市营地",
+          "address": "江苏省南京市建邺区兴隆街道乐山路168号-8",
+          "category": "娱乐休闲:户外活动:其它户外活动",
+          "latitude": 32.011651,
+          "longitude": 118.716116
+        },
+        {
+          "index": 5,
+          "poi_id": "2364668030649091652",
+          "title": "丰巢快递柜(猫头鹰livehouse负一楼丰巢存包柜)",
+          "address": "江苏省南京市玄武区阳光路3号",
+          "category": "生活服务:其它生活服务",
+          "latitude": 32.064494,
+          "longitude": 118.813024
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上没有南京 1701 LIVEHOUSE"
+    },
+    {
+      "group_id": "28a55503d154",
+      "event_uids": [
+        "motianlun:6a570a990e1ae50001296cd1",
+        "motianlun:6a73001f2ea583000160f47d",
+        "motianlun:6aa3d623c30dcc00012ba322"
+      ],
+      "action": "reject",
+      "search_keywords_tried": [
+        "1701 LIVEHOUSE（南京）"
+      ],
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "7866811473442849733",
+          "title": "八度空间(Infinite Art Space)",
+          "address": "江苏省南京市建邺区雨润大街99号4号楼1楼南侧",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 31.983071,
+          "longitude": 118.718237
+        },
+        {
+          "index": 1,
+          "poi_id": "12212281165670722587",
+          "title": "DC 音乐酒吧·livehouse",
+          "address": "江苏省南京市江宁区天元东路388号义乌小商品城34幢1层",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 31.938253,
+          "longitude": 118.877655
+        },
+        {
+          "index": 2,
+          "poi_id": "2255763993014157142",
+          "title": "饮JOY LiveHouse",
+          "address": "江苏省南京市建邺区双闸街道江东中路300号澎湃力中心(原博览中心10号馆)1F-106区",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 31.988725,
+          "longitude": 118.71352
+        },
+        {
+          "index": 3,
+          "poi_id": "14057652923041722888",
+          "title": "西客音乐·Live House",
+          "address": "江苏省南京市浦口区泰山街道柳洲南路3号华悦荟F1层",
+          "category": "美食:西餐:其它西餐",
+          "latitude": 32.118686,
+          "longitude": 118.720838
+        },
+        {
+          "index": 4,
+          "poi_id": "1682735640384617873",
+          "title": "IDM·南京",
+          "address": "江苏省南京市玄武区行辅路",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 32.096753,
+          "longitude": 118.888655
+        },
+        {
+          "index": 5,
+          "poi_id": "2364668030649091652",
+          "title": "丰巢快递柜(猫头鹰livehouse负一楼丰巢存包柜)",
+          "address": "江苏省南京市玄武区阳光路3号",
+          "category": "生活服务:其它生活服务",
+          "latitude": 32.064494,
+          "longitude": 118.813024
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上没有南京 1701 LIVEHOUSE"
+    },
+    {
+      "group_id": "771d5b16bd3f",
+      "event_uids": [
+        "motianlun:6a4877f5cf282500013ba420",
+        "motianlun:6a9d4a400cc9f300018ec4e9"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "奥体中心彩虹剧院"
+      ],
+      "poi_id": "12019115639970526911",
+      "poi_title": "彩虹剧院 x HOU LIVE",
+      "poi_address": "江苏省南京市建邺区南京奥林匹克体育中心T110南侧",
+      "latitude": 32.007922,
+      "longitude": 118.723559,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "12019115639970526911",
+          "title": "彩虹剧院 x HOU LIVE",
+          "address": "江苏省南京市建邺区南京奥林匹克体育中心T110南侧",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 32.007922,
+          "longitude": 118.723559
+        },
+        {
+          "index": 1,
+          "poi_id": "10825015125029933621",
+          "title": "奥体中心[地铁站]",
+          "address": "地铁10号线",
+          "category": "基础设施:交通设施:地铁站",
+          "latitude": 32.009005,
+          "longitude": 118.718259
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「彩虹剧院 x HOU LIVE」和摩天轮场馆、地址一致"
+    }
+  ]
+}

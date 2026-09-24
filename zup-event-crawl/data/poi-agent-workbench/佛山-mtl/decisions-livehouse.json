@@ -1,0 +1,80 @@
+{
+  "city": "佛山",
+  "source": "motianlun",
+  "decided_at": "2026-09-24T09:49:53.558Z",
+  "agent": "cursor",
+  "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
+  "decisions": [
+    {
+      "group_id": "efc263a739fe",
+      "event_uids": [
+        "motianlun:6a7a86fcbb81c60001f3b74d",
+        "motianlun:69bba823ca507e000169b59c",
+        "motianlun:6a4dde0a562515000168e0b6"
+      ],
+      "action": "reject",
+      "search_keywords_tried": [
+        "ALSO LIVE"
+      ],
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "1343443946911956649",
+          "title": "ALSO",
+          "address": "广东省佛山市顺德区怡兴路6号(美的地铁站A口步行440米)",
+          "category": "购物:综合商场:购物中心",
+          "latitude": 22.933682,
+          "longitude": 113.221785
+        },
+        {
+          "index": 1,
+          "poi_id": "2220100583130972066",
+          "title": "Merci Cindy ALSO店",
+          "address": "广东省佛山市顺德区怡和路美的08号空间一楼D栋货梯入口处",
+          "category": "购物:服饰鞋包:服装",
+          "latitude": 22.932415,
+          "longitude": 113.218672
+        },
+        {
+          "index": 2,
+          "poi_id": "2577790430988024080",
+          "title": "BGY LIVE",
+          "address": "广东省佛山市顺德区北滘镇碧桂园大道2号碧乐时光佛山顺德店F1层",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 22.922896,
+          "longitude": 113.268299
+        },
+        {
+          "index": 3,
+          "poi_id": "6948970277516812031",
+          "title": "隐世云川LIVE BAR",
+          "address": "广东省佛山市南海区大沥镇海北建设大道(以北金沙湾酒店2号楼)六楼F3区",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 23.141945,
+          "longitude": 113.20888
+        },
+        {
+          "index": 4,
+          "poi_id": "10160458849005575900",
+          "title": "DL HOPE(佛山ALSO店)",
+          "address": "广东省佛山市顺德区北滘镇ALSO商圈F座二楼203号DLHOPE沙龙",
+          "category": "生活服务:美容美发:美发",
+          "latitude": 22.933412,
+          "longitude": 113.221078
+        },
+        {
+          "index": 5,
+          "poi_id": "3332710624737110722",
+          "title": "Muffa Table(顺德ALSO店)",
+          "address": "广东省佛山市顺德区北滘镇君兰社区怡和路6号一层F-106-2号商铺",
+          "category": "娱乐休闲:咖啡厅",
+          "latitude": 22.93359,
+          "longitude": 113.220759
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上只有 ALSO 商场和店里的铺，没有 ALSO LIVE 这场馆"
+    }
+  ]
+}

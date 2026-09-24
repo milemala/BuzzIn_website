@@ -1,0 +1,106 @@
+{
+  "city": "宁波",
+  "source": "motianlun",
+  "decided_at": "2026-09-24T09:49:53.558Z",
+  "agent": "cursor",
+  "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
+  "decisions": [
+    {
+      "group_id": "bfa262cc3c8b",
+      "event_uids": [
+        "motianlun:6a4f5038343a810001a7de5e",
+        "motianlun:6a6dc4be3938c8000141e7c5"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "灯塔音乐现场（u-park店）"
+      ],
+      "poi_id": "9276873319436870303",
+      "poi_title": "宁波灯塔音乐现场(Upark广场店)",
+      "poi_address": "浙江省宁波市海曙区学院路788号U-PARK商业公园B4栋一楼",
+      "latitude": 29.885827,
+      "longitude": 121.485173,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "9276873319436870303",
+          "title": "宁波灯塔音乐现场(Upark广场店)",
+          "address": "浙江省宁波市海曙区学院路788号U-PARK商业公园B4栋一楼",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 29.885827,
+          "longitude": 121.485173
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「宁波灯塔音乐现场(Upark广场店)」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "41dbf25d3474",
+      "event_uids": [
+        "motianlun:6a473160efb9900001385c66"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "Beach No.11宁波店"
+      ],
+      "poi_id": "8377980974793904686",
+      "poi_title": "Beach No.11(11号沙滩)",
+      "poi_address": "浙江省宁波市鄞州区百丈街道杨柳街150号B1-E018室",
+      "latitude": 29.867749,
+      "longitude": 121.56384,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "8377980974793904686",
+          "title": "Beach No.11(11号沙滩)",
+          "address": "浙江省宁波市鄞州区百丈街道杨柳街150号B1-E018室",
+          "category": "娱乐休闲:其它娱乐休闲",
+          "latitude": 29.867749,
+          "longitude": 121.56384
+        },
+        {
+          "index": 1,
+          "poi_id": "9878950221174522820",
+          "title": "Beach No.11音乐培训(宁波店)",
+          "address": "浙江省宁波市鄞州区百丈街道杨柳街150号K11艺术中心负一层E017室",
+          "category": "教育学校:培训",
+          "latitude": 29.867918,
+          "longitude": 121.564217
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「Beach No.11(11号沙滩)」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "2257d87f8029",
+      "event_uids": [
+        "motianlun:6a4de0d7562515000169f17a"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "177Live音乐现场"
+      ],
+      "poi_id": "10342501663277004663",
+      "poi_title": "177live音乐现场",
+      "poi_address": "浙江省宁波市鄞州区东胜街道甬江大道177号iPN渔轮厂",
+      "latitude": 29.87983,
+      "longitude": 121.566351,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "10342501663277004663",
+          "title": "177live音乐现场",
+          "address": "浙江省宁波市鄞州区东胜街道甬江大道177号iPN渔轮厂",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 29.87983,
+          "longitude": 121.566351
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「177live音乐现场」和摩天轮场馆、地址一致"
+    }
+  ]
+}

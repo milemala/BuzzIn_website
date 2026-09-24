@@ -39,7 +39,7 @@ zup-event-crawl/
 │   ├── tencent-poi.js            # 腾讯 POI API（供 poi-search-cli；活动 match 由 Agent 判）
 │   ├── buzz-now-import.js        # Buzz 活动气泡客户端
 │   ├── buzz-merchant-import.js   # Buzz 商户入库
-│   ├── merchant-bubble.js        # 商户气泡三分组轮转发布
+│   ├── merchant-bubble.js        # 商户气泡勾选发布
 │   ├── tencent-im-group.js       # 腾讯 IM 建群 / 改名
 │   └── dianping-parse.js
 ├── public/
@@ -67,15 +67,19 @@ zup-event-crawl/
 ```bash
 cd zup-event-crawl
 npm start
-# 或: node scripts/server.js 8787
+# 或: node scripts/server.js 8790
 ```
+
+也可在仓库根目录执行 `npm start`：会同时启动本审核台（8790）与官网 AI 建档代理（8788）。只开审核台用根目录 `npm run start:review`。
 
 浏览器打开：
 
-- http://127.0.0.1:8787/ （活动审核）
-- http://127.0.0.1:8787/merchants.html （商户审核）
-- http://127.0.0.1:8787/merchant-bubbles.html （商户气泡批量发布）
-- http://127.0.0.1:8787/bubble-group-activity.html （气泡群聊参与统计）
+- http://127.0.0.1:8790/ （活动审核）
+- http://127.0.0.1:8790/merchants.html （商户审核）
+- http://127.0.0.1:8790/merchant-bubbles.html （商户气泡批量发布）
+- http://127.0.0.1:8790/bubble-group-activity.html （气泡群聊参与统计）
+
+默认端口是 **8790**（8787 常被本机 MasterGo 占用）。
 
 **改 `lib/` 或 `scripts/server.js` 后请重启 `npm start`**，否则 API 仍跑旧代码。
 
@@ -111,6 +115,8 @@ node scripts/scrape-douban-week-events.js 500 data/review.db --city=beijing --mo
 
 抓取入库时会自动合成 **4:3 横版封面**（模糊底图 + 原图 + 右侧文案），`image_original` 保留豆瓣原图。跳过时加 `--skip-compose`；补跑历史数据：`node scripts/compose-event-images.js --city=北京`。
 
+不适合结伴的类型在入库时直接丢掉，不进审核台，也不补列表名额：体验课、学习课、园游会、旅游/文旅、音乐剧、舞台剧、儿童剧、悬疑剧、话剧、交响、歌舞/舞剧、歌剧、相声、魔术、魔法演出，以及艺术展、作品展、博物馆文物展、大赛、系统课、景区或展馆的门票和套票。标题没写「艺术展」、正文是去看作品或文物的，也会丢掉。演唱会、音乐节、脱口秀、开放麦、Live、快闪、市集、漫展会留下。音乐会、喜剧节、单口喜剧、即兴喜剧、VR、XR、沉浸体验馆和沉浸剧、文化节、光影节、只有分会场名字的标题、逛公园会丢掉。啤酒、咖啡、清酒、动漫、音乐文化节会留下。规则在 `lib/event-low-social-filter.js`，豆瓣和小红书共用。
+
 ## 抓取小红书一周活动汇总
 
 **标准流程文档**：[`docs/xiaohongshu-review-workflow.md`](docs/xiaohongshu-review-workflow.md)（含检查清单，不依赖聊天记忆）  
@@ -130,6 +136,21 @@ node scripts/run-xhs-weekly-pipeline.js --skip-scrape --city=上海
 输出在 `data/scrape-cache/xhs/<城市>/<笔记ID>/`。第一次抓取就必须按交付质量切图：Agent 逐张读原图确认坐标系，逐场找独立矩形主视觉，四边贴海报本体，重点量准下行 `y` 和右栏 `x`；边界不清楚宁可走文字封面。`extract` 后必须直接抽查 `posters/*.jpg` 成品图，坏图回原图返修并重新 `extract`，抽查通过后才入库；有海报 → 4:3 封面，无海报 → 文字封面。用户反馈切坏时，先清旧 `posterBox`，不要在坏坐标上局部修补。
 
 **一站式**：对 Agent 说「抓取成都豆瓣活动」或「处理上海小红书一周活动」即可，用户不跑脚本。
+
+## 抓取摩天轮
+
+来源键 `motianlun`，审核台显示「摩天轮」。用户说抓摩天轮、没点名只要某一类时，**演唱会和 Livehouse 一起抓**。演出日期落在从今天起的 30 天内（含今天）。城市默认是审核台已有城市，再加上大连。用户明确说「只要演唱会」或「只要 Livehouse」时，只抓那一类。
+
+```bash
+node scripts/scrape-motianlun-concerts.js
+node scripts/scrape-motianlun-concerts.js --category=concert
+node scripts/scrape-motianlun-concerts.js --category=livehouse
+node scripts/scrape-motianlun-concerts.js --city=上海,大连 --days=30
+```
+
+入库 `source=motianlun`、`append-city`。同一城市的两类放进同一次写入。海报会合成 4:3 封面。标题里是音乐会、话剧等现有规则要丢掉的场次不会进审核台。和豆瓣/小红书**标题+地点完全相同**的未过期活动会跳过，避免盖掉已有记录。审核台后续文件放在 `data/poi-agent-workbench/<城市>-mtl/`。
+
+对我说「抓取摩天轮一个月内的活动」即可，两类都会抓。
 
 Agent 内部文档：
 
@@ -216,6 +237,7 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 | GET | `/api/image?src=...` | 图片代理与缓存 |
 | GET | `/api/export-import-nows` | 导出可入库气泡 JSON |
 | POST | `/api/events/:uid/import` | 单条活动写入 Buzz 后台 |
+| POST | `/api/events/:uid/now-status` | 将已推送活动设为屏蔽（`now_status=-1`）或启用（`now_status=1`） |
 | DELETE | `/api/events/:uid/buzz-now` | 从 Buzz 后台软删已入库气泡 |
 | POST | `/api/events/import-batch` | 批量入库（已通过且未入库） |
 | POST | `/api/events/sync-merchants` | 按 POI 补全关联商户信息 |
@@ -223,9 +245,14 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 | POST | `/api/merchants/:uid/import` | 单条商户写入 Buzz |
 | POST | `/api/merchants/import-batch` | 批量商户入库 |
 | POST | `/api/merchants/sync-from-buzz` | 从 Buzz 后台拉取商户补全审核台（同 POI 冲突删本地旧记录） |
-| GET | `/api/merchant-bubbles/state` | 商户气泡轮转状态 |
-| POST | `/api/merchant-bubbles/groups-batch` | 批量建群或同步群名 |
-| POST | `/api/merchant-bubbles/publish-batch` | 发布当前轮次 1/3 商户气泡 |
+| GET | `/api/merchant-bubbles/state` | 已入库商户 / 管理员 / 群聊 / 未过期气泡统计 + 已选名单 |
+| GET | `/api/merchant-bubbles/merchants` | 已入库商户列表（可筛酒馆；含是否已有管理员 / 未过期气泡） |
+| POST | `/api/merchant-bubbles/active-bubble` | 删除或设为过期某店当前未过期气泡 |
+| POST | `/api/merchant-bubbles/roster` | 保存已选商户名单（含启用/停用） |
+| POST | `/api/merchant-bubbles/title-pool` | 保存 10 组标题+正文文案池 |
+| POST | `/api/merchant-bubbles/admins-batch` | 为已选的店创建/沿用管理员并绑到该店 |
+| POST | `/api/merchant-bubbles/groups-batch` | 为勾选的店建群或同步群名 |
+| POST | `/api/merchant-bubbles/publish-batch` | 为已启用的店发布气泡 |
 | GET/POST | `/api/bubble-group-activity` | 未过期气泡群聊进群/发言统计（`date_from` / `date_to`，按天） |
 
 ### 活动审核台入库
@@ -235,6 +262,7 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 - **批量补全入库**只改发布者与 `now_type`，不自动搜 POI。
 - 入库时以卡片 `publish_user_id` 为 IM 群主；活动群名语义截断 ≤20 字。
 - 封面从 `data/image-cache/` 上传 Buzz，不用第三方 URL 直链。
+- **已推送活动屏蔽 / 启用**：活动审核页城市筛选下方有「已推送到 App」栏。可一键屏蔽或启用当前环境里全部未过期已推送活动，也可按城市单独操作。屏蔽后 App 地图上看不到（`now_status=-1`），审核台记录还在；启用后重新显示（`now_status=1`）。过期活动本来就不会出现在地图上，不在此栏里。
 
 ### 商户审核台入库
 
@@ -244,10 +272,14 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 
 前提：商户已在商户审核页 **入库 Buzz**，或通过 **从当前环境补全商户** 从正式后台拉回。
 
-1. **从当前环境补全商户**（商户审核 / 商户气泡页）：拉取 Buzz 后台已有商户写入审核台；同 POI 但 merchant_id 不同时删除本地旧记录
-2. **批量创建商户群聊**：无群新建，有群则 IM 接口改名（群名 = 完整店名）
-3. 配置文案（统一 or 按店名）、群聊模式、发布者、`now_type`
-4. **发布本批气泡**：每城市随机三分组，每次只发 1/3，过期 **3 天**；页面顶部会显示「距上次发布本批」多久、何时过期；过期后红色提醒该发下一批
+约酒代发（主路径）：
+
+1. **选店**：一个列表里勾选。顶部城市菜单显示各城有多少家、已选多少、启用多少；可只看已选。发布只发给已启用、且当前没有未过期气泡的店（是否过期以后台 `expired_at` 为准）。已有未过期气泡的店可在列表里删除或设为过期。管理员列显示后台已绑定的店长/管理员昵称
+2. **发布身份**：统一账号（所有店用同一个 user_id），或各店管理员（每家店用自己的账号）
+3. 若选「各店管理员」：先点「为已选的店创建管理员」。已有店长/管理员的店会沿用（不改资料）；没有的会按页面上填的昵称、头像、性别、年龄、签名新建，并绑成店长
+4. **标题和正文**：10 组文案（每组标题+正文+启用开关），发布时按顺序轮流用已启用且填了标题的组，用完再从头
+5. **配置**：`now_type`、`content_type`、开始时间、过期时间（均可空；过期不填则不传，由 Zup 后台按既有规则处理）
+6. **为已启用的店发布**（已有未过期气泡的店会跳过，不重复发。选「挂商户群聊」时，没群的店会自动建群；已有群会把群主交给这次的发布账号，并把原来的群主踢出群）。封面与上次相同时直接沿用后台已有图，不重新上传；群主已经是这次的发布账号则跳过移交。店与店之间默认只歇 0.2 秒。发布弹窗可随时点「停止」，处理完当前这家后结束
 
 CLI：`node scripts/sync-merchants-from-buzz.js --env=prod [--dry-run]`
 
@@ -259,8 +291,8 @@ CLI：`node scripts/sync-merchants-from-buzz.js --env=prod [--dry-run]`
 
 | 环境 | API | 默认发布者 user_id |
 |------|-----|-------------------|
-| 测试 | `https://test-go-api.nowmap.cn` | `579362104` |
-| 正式 | `https://zup.nowmap.cn` | `382380210` |
+| 测试 | `https://test-go-api.nowmap.cn` | `604590505` |
+| 正式 | `https://zup.nowmap.cn` | `604590505` |
 
 切到 **正式** 时顶栏变红，推送前会二次确认。商户类型按目标环境实时拉取（正式库 id 与测试不同，入库时按类型名称映射）。
 
@@ -272,12 +304,12 @@ CLI：`node scripts/sync-merchants-from-buzz.js --env=prod [--dry-run]`
 | `BUZZ_ADMIN_USER_TEST` / `BUZZ_ADMIN_USER` | 测试账号 |
 | `BUZZ_ADMIN_PASS_TEST` / `BUZZ_ADMIN_PASS` | 测试密码 |
 | `BUZZ_TOKEN_TEST` / `BUZZ_TOKEN` | 测试 token（有则跳过登录） |
-| `BUZZ_PUBLISH_USER_ID_TEST` | 测试发布者（默认 `579362104`） |
+| `BUZZ_PUBLISH_USER_ID_TEST` | 测试发布者（默认 `604590505`） |
 | `BUZZ_API_BASE_PROD` | 正式 API（默认 `https://zup.nowmap.cn`） |
 | `BUZZ_ADMIN_USER_PROD` | 正式账号 |
 | `BUZZ_ADMIN_PASS_PROD` | 正式密码 |
 | `BUZZ_TOKEN_PROD` | 正式 token |
-| `BUZZ_PUBLISH_USER_ID_PROD` | 正式发布者（默认 `382380210`） |
+| `BUZZ_PUBLISH_USER_ID_PROD` | 正式发布者（默认 `604590505`） |
 
 详见 [`docs/import/changeLogToProduct.md`](docs/import/changeLogToProduct.md)。
 

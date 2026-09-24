@@ -1,0 +1,45 @@
+{
+  "city": "沈阳",
+  "source": "motianlun",
+  "decided_at": "2026-09-24T09:01:45.020Z",
+  "agent": "cursor",
+  "decisions": [
+    {
+      "group_id": "4e1c02637d18",
+      "event_uids": [
+        "motianlun:6a61a9e55e72640001260cf1",
+        "motianlun:6aaa12f6ee5bd400019eeb15"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "三生制药体育馆（原辽宁体育馆）"
+      ],
+      "poi_id": "1995519956293065987",
+      "poi_title": "三生制药体育馆",
+      "poi_address": "辽宁省沈阳市浑南区五三街道浑南中路32号",
+      "latitude": 41.739941,
+      "longitude": 123.45861,
+      "candidates": [
+        {
+          "poi_id": "1995519956293065987",
+          "title": "三生制药体育馆",
+          "address": "辽宁省沈阳市浑南区五三街道浑南中路32号",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 41.739941,
+          "longitude": 123.45861
+        },
+        {
+          "poi_id": "4024948199629193805",
+          "title": "辽宁体育馆-东南门",
+          "address": "辽宁省沈阳市浑南区五三街道浑南中路32号三生制药体育馆",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 41.739391,
+          "longitude": 123.460291
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "场馆「三生制药体育馆」与摩天轮地点一致"
+    }
+  ]
+}

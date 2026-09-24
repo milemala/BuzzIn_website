@@ -1,0 +1,32 @@
+{
+  "city": "长春",
+  "source": "motianlun",
+  "decided_at": "2026-09-24T09:01:45.020Z",
+  "agent": "cursor",
+  "decisions": [
+    {
+      "group_id": "9a6e99e3bb8d",
+      "event_uids": [
+        "motianlun:6a8eaa7a662c240001586287"
+      ],
+      "action": "reject",
+      "search_keywords_tried": [
+        "长春奥体公园体育场 长春新区北湖科技开发区中科大学与大学城路交汇"
+      ],
+      "doubtful": false,
+      "reason": "地图结果不是这场演出的场馆"
+    },
+    {
+      "group_id": "23d44b8e8cbb",
+      "event_uids": [
+        "motianlun:6a8955c6d5ff710001c7be05"
+      ],
+      "action": "reject",
+      "search_keywords_tried": [
+        "长春经济技术开发区体育场"
+      ],
+      "doubtful": false,
+      "reason": "地图结果不是这场演出的场馆"
+    }
+  ]
+}

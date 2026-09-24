@@ -1,0 +1,96 @@
+{
+  "city": "温州",
+  "source": "motianlun",
+  "decided_at": "2026-09-24T09:01:45.020Z",
+  "agent": "cursor",
+  "decisions": [
+    {
+      "group_id": "8da1db3ee888",
+      "event_uids": [
+        "motianlun:6a3787d86db0740001f1d236"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "温州奥体中心主体育场"
+      ],
+      "poi_id": "13425454156057487073",
+      "poi_title": "温州奥体中心体育场",
+      "poi_address": "浙江省温州市龙湾区永定路1111号",
+      "latitude": 27.918275,
+      "longitude": 120.807085,
+      "candidates": [
+        {
+          "poi_id": "13425454156057487073",
+          "title": "温州奥体中心体育场",
+          "address": "浙江省温州市龙湾区永定路1111号",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 27.918275,
+          "longitude": 120.807085
+        },
+        {
+          "poi_id": "5596407009790176072",
+          "title": "温州奥体中心主体育场D02足球运动员-入口",
+          "address": "浙江省温州市龙湾区温州奥体匹克体育场",
+          "category": "室内及附属设施:通行设施类:门/出入口",
+          "latitude": 27.918569,
+          "longitude": 120.806051
+        },
+        {
+          "poi_id": "1271406254803028446",
+          "title": "温州奥体中心体育场-网球训练基地",
+          "address": "浙江省温州市龙湾区永定路1111号温州奥体中心主体育场-西面",
+          "category": "运动健身:网球场",
+          "latitude": 27.916791,
+          "longitude": 120.806191
+        },
+        {
+          "poi_id": "11374535385937857468",
+          "title": "温州奥体中心体育场6号地上停车场",
+          "address": "浙江省温州市龙湾区温州奥林匹克体育场",
+          "category": "汽车:停车场",
+          "latitude": 27.918745,
+          "longitude": 120.803817
+        },
+        {
+          "poi_id": "3336996928246676440",
+          "title": "超凡·少儿运动成长中心",
+          "address": "浙江省温州市龙湾区永定路1111号奥体中心主体育场E10-E12",
+          "category": "教育学校:培训",
+          "latitude": 27.919471,
+          "longitude": 120.806668
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "场馆「温州奥体中心体育场」与摩天轮地点一致"
+    },
+    {
+      "group_id": "7f740376b2dd",
+      "event_uids": [
+        "motianlun:6aaa63de7f2e7600017c7149"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "苍南县沿浦湾海岸公园 苍南县沿浦湾海岸公园"
+      ],
+      "poi_id": "7680900147729641805",
+      "poi_title": "沿浦湾海岸公园",
+      "poi_address": "浙江省温州市苍南县沿浦镇S232与X528交叉口西北方向1490米左右",
+      "latitude": 27.217545,
+      "longitude": 120.46225,
+      "candidates": [
+        {
+          "poi_id": "7680900147729641805",
+          "title": "沿浦湾海岸公园",
+          "address": "浙江省温州市苍南县沿浦镇S232与X528交叉口西北方向1490米左右",
+          "category": "旅游景点:公园",
+          "latitude": 27.217545,
+          "longitude": 120.46225
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "场馆「沿浦湾海岸公园」与摩天轮地点一致"
+    }
+  ]
+}

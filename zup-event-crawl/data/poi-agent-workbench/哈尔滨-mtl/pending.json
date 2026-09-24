@@ -1,0 +1,35 @@
+{
+  "city": "哈尔滨",
+  "source": "motianlun",
+  "exported_at": "2026-09-24T08:59:18.818Z",
+  "db": "data/review.db",
+  "refresh": true,
+  "export_mode": "new_import_unmatched",
+  "pending_only": true,
+  "new_import_only": true,
+  "last_import_new_uids": 2,
+  "doubtful_only": false,
+  "total_events": 2,
+  "group_count": 2,
+  "cache_hit_groups": 0,
+  "groups": [
+    {
+      "group_id": "070c82eac375",
+      "location": "哈尔滨国际会展中心体育场 黑龙江省哈尔滨市南岗区长江路217号会展中心体育场",
+      "sample_title": "先锋音浪哈尔滨超燃演唱会",
+      "event_uids": [
+        "motianlun:6a7ae338fd9fd40001e58934"
+      ],
+      "event_count": 1
+    },
+    {
+      "group_id": "888782799a7b",
+      "location": "哈尔滨国际会展体育中心-体育馆 黑龙江省哈尔滨市南岗区红旗大街301号",
+      "sample_title": "马思唯-乐透人生 The Lottery TOUR巡回演唱会-哈尔滨站",
+      "event_uids": [
+        "motianlun:6a87fec23c80020001fda00b"
+      ],
+      "event_count": 1
+    }
+  ]
+}

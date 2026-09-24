@@ -1,0 +1,53 @@
+{
+  "city": "宁波",
+  "source": "motianlun",
+  "decided_at": "2026-09-24T09:01:45.020Z",
+  "agent": "cursor",
+  "decisions": [
+    {
+      "group_id": "a87cff34ae98",
+      "event_uids": [
+        "motianlun:6a978f7f10afbb0001603c68",
+        "motianlun:6a769496d93f5a000171b492"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "宁波奥体中心体育馆 云飞路1280号"
+      ],
+      "poi_id": "14031001112439476020",
+      "poi_title": "宁波奥体中心",
+      "poi_address": "浙江省宁波市江北区前江街道云飞路1280号",
+      "latitude": 29.92867,
+      "longitude": 121.489992,
+      "candidates": [
+        {
+          "poi_id": "14031001112439476020",
+          "title": "宁波奥体中心",
+          "address": "浙江省宁波市江北区前江街道云飞路1280号",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 29.92867,
+          "longitude": 121.489992
+        },
+        {
+          "poi_id": "15419535567927897366",
+          "title": "中正体育(奥体中心)",
+          "address": "浙江省宁波市江北区云飞西路(综合馆四层)",
+          "category": "购物:体育户外",
+          "latitude": 29.930759,
+          "longitude": 121.486987
+        },
+        {
+          "poi_id": "2302787489833504059",
+          "title": "宁波奥林匹克体育中心-西区",
+          "address": "浙江省宁波市江北区云飞路1280号(奥体中心地铁站D口步行320米)",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 29.932182,
+          "longitude": 121.487436
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "地图是奥体中心整体，没有单独体育馆点"
+    }
+  ]
+}

@@ -69,7 +69,8 @@ function main() {
 
     const rows = db.prepare(sql).all(...params);
     const cityKey = options.allCities ? "多城市" : options.city;
-    const outDir = path.join(workbenchRoot, cityKey);
+    const folder = options.source === "motianlun" ? `${cityKey}-mtl` : cityKey;
+    const outDir = path.join(workbenchRoot, folder);
     fs.mkdirSync(outDir, { recursive: true });
 
     const events = rows.map((row) => {

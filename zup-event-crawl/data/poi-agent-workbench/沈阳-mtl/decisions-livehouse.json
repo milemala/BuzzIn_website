@@ -1,0 +1,100 @@
+{
+  "city": "沈阳",
+  "source": "motianlun",
+  "decided_at": "2026-09-24T09:49:53.558Z",
+  "agent": "cursor",
+  "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
+  "decisions": [
+    {
+      "group_id": "b5b3c8aaa9cb",
+      "event_uids": [
+        "motianlun:6a7eab0a346f460001538ab2",
+        "motianlun:6a521a6c36a14e0001ce39b0",
+        "motianlun:6a73fe8c17620e000183357f"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "原料库VastFactory（大悦城店）"
+      ],
+      "poi_id": "6553359225048812354",
+      "poi_title": "原料库(沈阳大悦城E馆店)",
+      "poi_address": "辽宁省沈阳市大东区万泉街道小东路8号大悦城E馆601",
+      "latitude": 41.801874,
+      "longitude": 123.468802,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6553359225048812354",
+          "title": "原料库(沈阳大悦城E馆店)",
+          "address": "辽宁省沈阳市大东区万泉街道小东路8号大悦城E馆601",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 41.801874,
+          "longitude": 123.468802
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「原料库(沈阳大悦城E馆店)」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "0cda65aa6d8c",
+      "event_uids": [
+        "motianlun:6a9bb53d3961460001092337"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "原料库live house（红梅店）"
+      ],
+      "poi_id": "1738348374037781189",
+      "poi_title": "原料库Live HOUSE(红梅文创园)",
+      "poi_address": "辽宁省沈阳市铁西区启工街道红梅文创园1号楼料库Live HOUSE负一楼运营办公室",
+      "latitude": 41.810598,
+      "longitude": 123.351482,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "1738348374037781189",
+          "title": "原料库Live HOUSE(红梅文创园)",
+          "address": "辽宁省沈阳市铁西区启工街道红梅文创园1号楼料库Live HOUSE负一楼运营办公室",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 41.810598,
+          "longitude": 123.351482
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「原料库Live HOUSE(红梅文创园)」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "80179163d7fd",
+      "event_uids": [
+        "motianlun:6a4a2c5bf1a105000152d36c",
+        "motianlun:6a69dc551726f0000147fa27",
+        "motianlun:6aa517172a00f200015b067f"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "美帝奇 x 1905Livehouse"
+      ],
+      "poi_id": "17257880341531416883",
+      "poi_title": "美帝奇(1905音乐现场)",
+      "poi_address": "辽宁省沈阳市铁西区兴华北街8号1905文化创意园",
+      "latitude": 41.812563,
+      "longitude": 123.382583,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "17257880341531416883",
+          "title": "美帝奇(1905音乐现场)",
+          "address": "辽宁省沈阳市铁西区兴华北街8号1905文化创意园",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 41.812563,
+          "longitude": 123.382583
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「美帝奇(1905音乐现场)」和摩天轮场馆、地址一致"
+    }
+  ]
+}

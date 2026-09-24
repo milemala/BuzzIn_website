@@ -11,6 +11,9 @@ function workbenchDir(city, source = "douban") {
   if (source === "xiaohongshu") {
     return path.join(workbenchRoot, `${city}-xhs`);
   }
+  if (source === "motianlun") {
+    return path.join(workbenchRoot, `${city}-mtl`);
+  }
   return path.join(workbenchRoot, city);
 }
 

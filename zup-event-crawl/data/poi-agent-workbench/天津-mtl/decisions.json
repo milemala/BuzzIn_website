@@ -1,0 +1,131 @@
+{
+  "city": "天津",
+  "source": "motianlun",
+  "decided_at": "2026-09-24T09:01:45.020Z",
+  "agent": "cursor",
+  "decisions": [
+    {
+      "group_id": "22a6a8d1ffcc",
+      "event_uids": [
+        "motianlun:6a224374e6a7de0001fdde05",
+        "motianlun:69c6615b20b2aa000192e18f",
+        "motianlun:6a58b424b86a59000147cb48"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "天津奥林匹克中心体育场"
+      ],
+      "poi_id": "16417975346339394045",
+      "poi_title": "天津奥林匹克中心体育场",
+      "poi_address": "天津市南开区体育中心街道卫津南路90号(体育中心地铁站A口步行240米)",
+      "latitude": 39.07458,
+      "longitude": 117.175831,
+      "candidates": [
+        {
+          "poi_id": "17596194164426009715",
+          "title": "天津奥林匹克中心体育场-训练场地",
+          "address": "天津市南开区奥体道天津奥林匹克中心",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 39.075432,
+          "longitude": 117.178795
+        },
+        {
+          "poi_id": "16417975346339394045",
+          "title": "天津奥林匹克中心体育场",
+          "address": "天津市南开区体育中心街道卫津南路90号(体育中心地铁站A口步行240米)",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 39.07458,
+          "longitude": 117.175831
+        },
+        {
+          "poi_id": "5565656811542971188",
+          "title": "天津奥林匹克中心体育馆",
+          "address": "天津市南开区体育中心街道宾水西道393号",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 39.077543,
+          "longitude": 117.178059
+        },
+        {
+          "poi_id": "17818136662080134674",
+          "title": "天津奥林匹克中心体育场地上停车场",
+          "address": "天津市南开区凌宾路1号天津奥林匹克中心",
+          "category": "汽车:停车场",
+          "latitude": 39.078872,
+          "longitude": 117.17846
+        },
+        {
+          "poi_id": "8634516164648625728",
+          "title": "天津奥林匹克中心体育场停车场-入口",
+          "address": "天津市南开区体育中心街道宾水西道393号天津体育馆",
+          "category": "室内及附属设施:通行设施类:停车场入口",
+          "latitude": 39.078933,
+          "longitude": 117.178244
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "场馆「天津奥林匹克中心体育场」与摩天轮地点一致"
+    },
+    {
+      "group_id": "daf66ba04f44",
+      "event_uids": [
+        "motianlun:6a3a115c1730860001f45fb1",
+        "motianlun:6a8908aa3c80020001fdee16"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "天津奥林匹克中心体育馆"
+      ],
+      "poi_id": "5565656811542971188",
+      "poi_title": "天津奥林匹克中心体育馆",
+      "poi_address": "天津市南开区体育中心街道宾水西道393号",
+      "latitude": 39.077543,
+      "longitude": 117.178059,
+      "candidates": [
+        {
+          "poi_id": "5565656811542971188",
+          "title": "天津奥林匹克中心体育馆",
+          "address": "天津市南开区体育中心街道宾水西道393号",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 39.077543,
+          "longitude": 117.178059
+        },
+        {
+          "poi_id": "16417975346339394045",
+          "title": "天津奥林匹克中心体育场",
+          "address": "天津市南开区体育中心街道卫津南路90号(体育中心地铁站A口步行240米)",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 39.07458,
+          "longitude": 117.175831
+        },
+        {
+          "poi_id": "17596194164426009715",
+          "title": "天津奥林匹克中心体育场-训练场地",
+          "address": "天津市南开区奥体道天津奥林匹克中心",
+          "category": "运动健身:综合体育场馆",
+          "latitude": 39.075432,
+          "longitude": 117.178795
+        },
+        {
+          "poi_id": "749775695026388907",
+          "title": "天津奥林匹克体育中心滑冰馆",
+          "address": "天津市南开区宾水西道3号天津奥林匹克中心",
+          "category": "运动健身:溜冰",
+          "latitude": 39.07046,
+          "longitude": 117.178319
+        },
+        {
+          "poi_id": "7171851602996126937",
+          "title": "天津奥林匹克中心-游泳跳水馆",
+          "address": "天津市南开区红旗南路90号",
+          "category": "运动健身:游泳馆",
+          "latitude": 39.071595,
+          "longitude": 117.177767
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "场馆「天津奥林匹克中心体育馆」与摩天轮地点一致"
+    }
+  ]
+}

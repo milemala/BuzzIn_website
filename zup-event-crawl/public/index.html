@@ -130,6 +130,26 @@
     .mini.pending.incomplete,.mini.pending.incomplete.active{background:#ece8e0;border-color:#d8d2c6;color:#8a8278}
     .batch-review-bar{display:none;align-items:center;gap:10px;flex-wrap:wrap;margin:-4px 0 14px;padding:10px 12px;background:#fffdf6;border:1px solid #e6ded0;border-radius:8px}
     .batch-review-bar.visible{display:flex}
+    .visibility-bar{display:none;flex-direction:column;gap:10px;margin:0 0 16px;padding:12px;background:#fffdf6;border:1px solid #e6ded0;border-radius:8px}
+    .visibility-bar.visible{display:flex}
+    .visibility-head{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline}
+    .visibility-head strong{font-size:13px;font-weight:800}
+    .visibility-hint{font-size:12px;color:var(--muted);line-height:1.45}
+    .visibility-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+    .visibility-cities{display:flex;flex-wrap:wrap;gap:8px}
+    .visibility-city{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:#fff}
+    .visibility-city b{font-size:13px}
+    .visibility-city span{font-size:11px;color:var(--muted)}
+    .visibility-city .mini{height:28px}
+    .mini.hide-now:not(.current),.btn.hide-now:not(.current){border-color:#d95040;color:#ad382c}
+    .mini.enable-now:not(.current),.btn.enable-now:not(.current){border-color:#2a9d68;color:#197549}
+    .mini.hide-now.current,.mini.enable-now.current,.btn.hide-now.current,.btn.enable-now.current{
+      border-color:#d8d2c6;color:#8a8278;background:#ece8e0
+    }
+    .mini.hide-now.current:hover,.mini.enable-now.current:hover,.btn.hide-now.current:hover,.btn.enable-now.current:hover{
+      border-color:#c8b89f;color:#65594b
+    }
+    .import-status.hidden-now{color:#806200}
     .batch-action-buttons{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
     .batch-expire-days{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#5c5348}
     .batch-expire-days input{width:56px;padding:6px 8px;border:1px solid #d8cfc0;border-radius:6px;font-size:13px}
@@ -283,6 +303,13 @@
         <button data-sort="time">活动时间</button>
       </div>
       <input class="search" id="searchInput" placeholder="搜索标题、地点、发起方">
+    </section>
+    <section class="visibility-bar" id="visibilityBar">
+      <div class="visibility-head">
+        <strong>已推送到 App</strong>
+        <span class="visibility-hint" id="visibilityHint">未过期活动可一键从地图上藏起来或重新显示，审核台记录还在</span>
+      </div>
+      <div class="visibility-actions" id="visibilityActions"></div>
     </section>
     <section class="date-filters">
       <div class="seg" id="dateFilter">
@@ -839,10 +866,12 @@
     function renderImportStatus(event) {
       const env = importEnvLabel();
       if (event.import_status === "imported" && event.buzz_now_id) {
+        const hidden = Number(event.now_status) === -1;
+        const statusWord = hidden ? "已推送 · 已屏蔽" : "已推送";
         const groupLine = event.buzz_group_id
           ? `<br>群聊 group_id <strong>${escapeHtml(event.buzz_group_id)}</strong>`
           : "";
-        return `<div class="import-status imported">已推送 · ${escapeHtml(env)} · now_id <strong>${escapeHtml(event.buzz_now_id)}</strong>${groupLine}</div>`;
+        return `<div class="import-status imported${hidden ? " hidden-now" : ""}">${statusWord} · ${escapeHtml(env)} · now_id <strong>${escapeHtml(event.buzz_now_id)}</strong>${groupLine}</div>`;
       }
       if (event.import_status === "failed") {
         return `<div class="import-status failed">推送失败：${escapeHtml(event.import_error || "未知错误")}</div>`;
@@ -1375,7 +1404,7 @@
     function currentFilterSummary() {
       const cityLabel = cityFilter === "all" ? "全部城市" : cityFilter;
       const statusLabel = FILTER_LABELS[statusFilter] || statusFilter;
-      const sourceNames = { douban: "豆瓣", huodongxing: "活动行", xiaohongshu: "小红书", wechat: "公众号" };
+      const sourceNames = { douban: "豆瓣", huodongxing: "活动行", xiaohongshu: "小红书", wechat: "公众号", motianlun: "摩天轮" };
       const sourceLabel = sourceFilter === "all" ? "全部来源" : (sourceNames[sourceFilter] || sourceFilter);
       const categoryLabel = categoryFilter === "all" ? "全部类型" : categoryFilter;
       const dateLabel = dateFilter === "all" ? "全部日期" : dateFilter;
@@ -1646,6 +1675,13 @@
       let globalTotal = 0;
       const statusCounts = Object.fromEntries(STATUS_FILTER_KEYS.map((key) => [key, 0]));
       const categoryCounts = new Map();
+      let categoryScopedTotal = 0;
+
+      const countCategory = (event) => {
+        categoryScopedTotal += 1;
+        const category = event.category;
+        if (category) categoryCounts.set(category, (categoryCounts.get(category) || 0) + 1);
+      };
 
       for (const row of eventIndex) {
         const { event, expired, city, source } = row;
@@ -1664,7 +1700,10 @@
         if (!cityMatch) continue;
 
         if (expired) {
-          if (sourceMatch) expiredScoped.push(event);
+          if (sourceMatch) {
+            expiredScoped.push(event);
+            if (statusFilter === "expired") countCategory(event);
+          }
           continue;
         }
 
@@ -1679,8 +1718,7 @@
           if (matchesStatusFilter(event, key)) statusCounts[key] += 1;
         }
 
-        const category = event.category;
-        if (category) categoryCounts.set(category, (categoryCounts.get(category) || 0) + 1);
+        if (statusFilter !== "expired" && matchesStatusFilter(event, statusFilter)) countCategory(event);
       }
 
       statusCounts.expired = expiredScoped.length;
@@ -1705,6 +1743,7 @@
         globalTotal,
         statusCounts,
         categoryCounts,
+        categoryScopedTotal,
         dateCounts,
         filterDates,
       };
@@ -2024,6 +2063,215 @@
       return isImportedEvent(event) && !isBuzzExpired(event);
     }
 
+    function isNowHidden(event) {
+      return Number(event.now_status) === -1;
+    }
+
+    function collectImportedNotExpiredByCity() {
+      const byCity = new Map();
+      const all = [];
+      for (const row of eventIndex) {
+        if (!isImportedNotExpired(row.event)) continue;
+        all.push(row.event);
+        if (!byCity.has(row.city)) byCity.set(row.city, []);
+        byCity.get(row.city).push(row.event);
+      }
+      return { all, byCity };
+    }
+
+    function renderVisibilityBar() {
+      const bar = document.getElementById("visibilityBar");
+      const actionsEl = document.getElementById("visibilityActions");
+      const hint = document.getElementById("visibilityHint");
+      if (!bar || !actionsEl || !hint) return;
+
+      const { all, byCity } = collectImportedNotExpiredByCity();
+      const show = all.length > 0;
+      bar.classList.toggle("visible", show);
+      if (!show) {
+        actionsEl.innerHTML = "";
+        return;
+      }
+
+      const env = importEnvLabel();
+      const busy = importBusy || reviewBusy;
+      hint.textContent = `当前环境：${env} · 未过期已推送 ${all.length} 条。屏蔽后 App 地图上看不到，启用后重新出现。`;
+
+      const cities = [...byCity.keys()].sort((a, b) => {
+        const diff = (byCity.get(b) || []).length - (byCity.get(a) || []).length;
+        if (diff !== 0) return diff;
+        return a.localeCompare(b, "zh-CN");
+      });
+      const allHidden = all.length > 0 && all.every(isNowHidden);
+      const allVisible = all.every((event) => !isNowHidden(event));
+      const cityBlocks = cities.map((city) => {
+        const events = byCity.get(city) || [];
+        const hiddenCount = events.filter(isNowHidden).length;
+        const cityHidden = events.length > 0 && hiddenCount === events.length;
+        const cityVisible = hiddenCount === 0;
+        const state = cityHidden
+          ? "已全部屏蔽"
+          : hiddenCount > 0
+            ? `已屏蔽 ${hiddenCount}`
+            : "地图可见";
+        return `
+          <div class="visibility-city">
+            <b>${escapeHtml(city)}</b>
+            <span>${events.length} 条 · ${escapeHtml(state)}</span>
+            <button class="mini hide-now${cityHidden ? " current" : ""}" type="button" data-now-city="${escapeHtml(city)}" data-now-status="-1" ${busy ? "disabled" : ""}>屏蔽</button>
+            <button class="mini enable-now${cityVisible ? " current" : ""}" type="button" data-now-city="${escapeHtml(city)}" data-now-status="1" ${busy ? "disabled" : ""}>启用</button>
+          </div>
+        `;
+      }).join("");
+
+      actionsEl.innerHTML = `
+        <div class="visibility-row">
+          <button class="btn hide-now${allHidden ? " current" : ""}" type="button" data-now-city="all" data-now-status="-1" ${busy ? "disabled" : ""}>全部屏蔽（${all.length}）</button>
+          <button class="btn enable-now${allVisible ? " current" : ""}" type="button" data-now-city="all" data-now-status="1" ${busy ? "disabled" : ""}>全部启用</button>
+        </div>
+        <div class="visibility-cities">${cityBlocks}</div>
+      `;
+    }
+
+    async function performNowStatus(uid, nowStatus, signal) {
+      if (isImportAborted()) return { ok: false, aborted: true };
+      const response = await fetch(BuzzEnvUi.withBuzzEnv(`/api/events/${encodeURIComponent(uid)}/now-status`), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(BuzzEnvUi.importBody({ now_status: nowStatus })),
+        signal,
+      });
+      const data = await response.json();
+      if (data.event) upsertEvent(data.event);
+      return data;
+    }
+
+    async function runBatchNowStatus(cityKey, nowStatus) {
+      if (importBusy || reviewBusy) return;
+      const status = Number(nowStatus);
+      if (status !== 1 && status !== -1) return;
+      const { all, byCity } = collectImportedNotExpiredByCity();
+      const eligible = cityKey === "all" ? all : (byCity.get(cityKey) || []);
+      if (!eligible.length) {
+        setSaveState("当前没有已推送且未过期的活动", "warn");
+        return;
+      }
+      const actionLabel = status === -1 ? "屏蔽" : "启用";
+      const scopeLabel = cityKey === "all" ? "全部城市" : cityKey;
+      const env = importEnvLabel();
+      if (!window.confirm(
+        `将把【${env}】环境里「${scopeLabel}」的 ${eligible.length} 条已推送且未过期活动设为「${actionLabel}」。\n\n屏蔽后 App 地图上看不到，启用后重新出现。审核台记录还在。\n\n确定继续？`,
+      )) return;
+      if (!(await BuzzEnvUi.confirmProdAction(`将${actionLabel} ${eligible.length} 条正式环境活动`))) return;
+
+      importBusy = true;
+      renderVisibilityBar();
+      const batchTotal = eligible.length;
+      const startedAt = Date.now();
+      openImportProgressModal({
+        title: status === -1 ? "正在屏蔽活动" : "正在启用活动",
+        scope: `${env} · ${scopeLabel} · 共 ${batchTotal} 条`,
+        batchTotal,
+      });
+
+      let ok = 0;
+      let skipped = 0;
+      let fail = 0;
+      let processed = 0;
+
+      startImportElapsedTicker(startedAt, (elapsed) => {
+        updateImportProgressModal({
+          batchTotal,
+          processed,
+          ok,
+          skipped,
+          fail,
+          elapsed,
+          phase: "running",
+        });
+      });
+
+      try {
+        for (const event of eligible) {
+          if (isImportAborted()) break;
+          const uid = event.eventUid || event.event_uid || event.id;
+          updateImportProgressModal({
+            batchTotal,
+            processed,
+            ok,
+            skipped,
+            fail,
+            elapsed: formatDuration(Date.now() - startedAt),
+            latestText: `<strong>正在${actionLabel} (${processed + 1}/${batchTotal})</strong>${escapeHtml(event.title || uid)}`,
+            phase: "running",
+          });
+          try {
+            const result = await performNowStatus(uid, status, importAbortController.signal);
+            if (result.aborted) break;
+            if (result.skipped) skipped += 1;
+            else if (result.ok) ok += 1;
+            else {
+              fail += 1;
+              recordImportFailure({
+                title: result.title || event.title || uid,
+                error: result.error || "设置失败",
+              });
+            }
+            processed += 1;
+          } catch (error) {
+            if (error.name === "AbortError" || isImportAborted()) break;
+            fail += 1;
+            processed += 1;
+            recordImportFailure({ title: event.title || uid, error: error.message || "请求异常" });
+          }
+          if (!isImportAborted()) {
+            await new Promise((resolve) => setTimeout(resolve, 150));
+          }
+        }
+
+        const elapsed = formatDuration(Date.now() - startedAt);
+        const aborted = isImportAborted();
+        const failSummary = summarizeImportFailures(importFailures);
+        finishImportProgressModal({
+          batchTotal,
+          processed,
+          ok,
+          skipped,
+          fail,
+          elapsed,
+          aborted,
+          failures: importFailures,
+          latestText: aborted
+            ? `<strong>已中止</strong>已完成 ${processed} 条 · 成功 ${ok} · 跳过 ${skipped} · 失败 ${fail}`
+            : `<strong>${actionLabel}完成</strong>成功 ${ok} · 跳过 ${skipped} · 失败 ${fail}`,
+        });
+        setSaveState(
+          aborted
+            ? `${actionLabel}已中止：已完成 ${processed} 条 · 成功 ${ok} · 跳过 ${skipped} · 失败 ${fail}${failSummary}`
+            : `${actionLabel}完成：成功 ${ok} · 跳过 ${skipped} · 失败 ${fail}${failSummary}`,
+          fail ? "warn" : "ok",
+        );
+        render();
+      } catch (error) {
+        finishImportProgressModal({
+          batchTotal,
+          processed,
+          ok,
+          skipped,
+          fail,
+          elapsed: formatDuration(Date.now() - startedAt),
+          error: error.message || `${actionLabel}失败`,
+          failures: importFailures,
+          latestText: `<strong>${actionLabel}失败</strong>${escapeHtml(error.message || "")}`,
+        });
+        setSaveState(error.message || `${actionLabel}失败`, "error");
+        render();
+      } finally {
+        importBusy = false;
+        renderVisibilityBar();
+      }
+    }
+
     function getCityKey(event) {
       return event.city || "未知城市";
     }
@@ -2143,6 +2391,7 @@
         huodongxing: "活动行",
         xiaohongshu: "小红书",
         wechat: "公众号",
+        motianlun: "摩天轮",
         unknown: "未知来源"
       };
       return event.sourceName || known[getSourceKey(event)] || getSourceKey(event);
@@ -2195,7 +2444,8 @@
         changed = true;
       }
       const scoped = getBaseScopedEvents();
-      if (categoryFilter !== "all" && !scoped.some((event) => event.category === categoryFilter)) {
+      const categoryCounts = filterMetrics?.categoryCounts || new Map();
+      if (categoryFilter !== "all" && !categoryCounts.has(categoryFilter)) {
         categoryFilter = "all";
         changed = true;
       }
@@ -2268,14 +2518,13 @@
     }
 
     function renderCategoryFilter() {
-      const scoped = getBaseScopedEvents();
       const categoryCounts = filterMetrics?.categoryCounts || new Map();
       const categories = [...categoryCounts.keys()].sort((a, b) => a.localeCompare(b, "zh-CN"));
       categoryFilterEl.innerHTML = renderSegButton({
         attr: "category",
         value: "all",
         label: "全部类型",
-        count: scoped.length,
+        count: filterMetrics?.categoryScopedTotal || 0,
         active: categoryFilter === "all",
       }) + categories.map((category) => renderSegButton({
         attr: "category",
@@ -2292,6 +2541,7 @@
         ["huodongxing", "活动行"],
         ["xiaohongshu", "小红书"],
         ["wechat", "公众号"],
+        ["motianlun", "摩天轮"],
       ];
       const globalSourceCounts = filterMetrics?.globalSourceCounts || new Map();
       const globalTotal = filterMetrics?.globalTotal || 0;
@@ -2564,6 +2814,7 @@
       renderCategoryFilter();
       renderDateFilter();
       renderBatchActionBar();
+      renderVisibilityBar();
       renderList();
     }
 
@@ -2784,6 +3035,11 @@
       const button = event.target.closest("button[data-batch-action]");
       if (!button || button.disabled) return;
       void handleBatchAction(button.dataset.batchAction);
+    });
+    document.getElementById("visibilityActions").addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-now-status]");
+      if (!button || button.disabled) return;
+      void runBatchNowStatus(button.dataset.nowCity || "all", button.dataset.nowStatus);
     });
 
     document.getElementById("exportBtn").addEventListener("click", async () => {

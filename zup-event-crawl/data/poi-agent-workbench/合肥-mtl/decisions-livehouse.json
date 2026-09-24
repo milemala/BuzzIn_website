@@ -1,0 +1,128 @@
+{
+  "city": "合肥",
+  "source": "motianlun",
+  "decided_at": "2026-09-24T09:49:53.558Z",
+  "agent": "cursor",
+  "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
+  "decisions": [
+    {
+      "group_id": "70b70bbd9771",
+      "event_uids": [
+        "motianlun:6a2bce6418b57c0001962cce",
+        "motianlun:6aa0d072b1c5a900013b9d6f",
+        "motianlun:6a92662f2807a10001a1fcb6"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "葫芦果CHIZHAO LIVEHOUSE"
+      ],
+      "poi_id": "3123148596059686731",
+      "poi_title": "葫芦果CHIZHAO LIVEHOUSE",
+      "poi_address": "安徽省合肥市蜀山区习友西路奥体中心北门",
+      "latitude": 31.797486,
+      "longitude": 117.231353,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "3123148596059686731",
+          "title": "葫芦果CHIZHAO LIVEHOUSE",
+          "address": "安徽省合肥市蜀山区习友西路奥体中心北门",
+          "category": "娱乐休闲:剧场音乐厅:其它剧场音乐厅",
+          "latitude": 31.797486,
+          "longitude": 117.231353
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「葫芦果CHIZHAO LIVEHOUSE」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "42c53db40ec8",
+      "event_uids": [
+        "motianlun:6a719b934c75c8000113d955"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "九莱福"
+      ],
+      "poi_id": "15219458784338868495",
+      "poi_title": "合肥九莱福",
+      "poi_address": "安徽省合肥市包河区常青街道金寨路310号合柴1972文创园区C-1号",
+      "latitude": 31.799236,
+      "longitude": 117.246396,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "15219458784338868495",
+          "title": "合肥九莱福",
+          "address": "安徽省合肥市包河区常青街道金寨路310号合柴1972文创园区C-1号",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 31.799236,
+          "longitude": 117.246396
+        }
+      ],
+      "confidence": "medium",
+      "doubtful": true,
+      "reason": "店名是合肥九莱福，票上是天堂寨路，地图是合柴金寨路"
+    },
+    {
+      "group_id": "c91faf6b6195",
+      "event_uids": [
+        "motianlun:6aa3d03eb62c4b0001e3d93d"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "回响之地 · 合肥馆"
+      ],
+      "poi_id": "7088115097498560918",
+      "poi_title": "回响之地·合肥馆",
+      "poi_address": "安徽省合肥市瑶海区长江东路567号瑶海天地星光坊P117",
+      "latitude": 31.864543,
+      "longitude": 117.336738,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "7088115097498560918",
+          "title": "回响之地·合肥馆",
+          "address": "安徽省合肥市瑶海区长江东路567号瑶海天地星光坊P117",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 31.864543,
+          "longitude": 117.336738
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「回响之地·合肥馆」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "8b9288b3a725",
+      "event_uids": [
+        "motianlun:6aa52d1c63f10400018ad173",
+        "motianlun:6ab4a64575030100017889a6"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "OTW Livehouse（合肥）"
+      ],
+      "poi_id": "13773469555606060359",
+      "poi_title": "OTW LIVEHOUSE",
+      "poi_address": "安徽省合肥市包河区罍街二期15号楼3楼301室",
+      "latitude": 31.819596,
+      "longitude": 117.294611,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "13773469555606060359",
+          "title": "OTW LIVEHOUSE",
+          "address": "安徽省合肥市包河区罍街二期15号楼3楼301室",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 31.819596,
+          "longitude": 117.294611
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「OTW LIVEHOUSE」和摩天轮场馆、地址一致"
+    }
+  ]
+}

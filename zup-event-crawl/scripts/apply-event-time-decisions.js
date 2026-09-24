@@ -21,6 +21,7 @@ const workbenchRoot = path.join(root, "data", "poi-agent-workbench");
 function parseArgs(argv) {
   const options = {
     city: "",
+    source: "",
     file: "",
     dbPath: defaultDb,
     dryRun: false,
@@ -28,12 +29,14 @@ function parseArgs(argv) {
   for (const arg of argv.slice(2)) {
     if (arg === "--dry-run") options.dryRun = true;
     else if (arg.startsWith("--city=")) options.city = arg.slice("--city=".length).trim();
+    else if (arg.startsWith("--source=")) options.source = arg.slice("--source=".length).trim();
     else if (arg.startsWith("--file=")) options.file = arg.slice("--file=".length).trim();
     else if (arg.startsWith("--db=")) options.dbPath = arg.slice("--db=".length);
     else if (!arg.startsWith("--") && arg.endsWith(".json")) options.file = arg;
   }
   if (!options.file && options.city) {
-    options.file = path.join(workbenchRoot, options.city, "time-decisions.json");
+    const folder = options.source === "motianlun" ? `${options.city}-mtl` : options.city;
+    options.file = path.join(workbenchRoot, folder, "time-decisions.json");
   }
   if (!options.file || !fs.existsSync(options.file)) {
     throw new Error(options.file ? `找不到文件: ${options.file}` : "请指定 --city=城市 或 --file=time-decisions.json");

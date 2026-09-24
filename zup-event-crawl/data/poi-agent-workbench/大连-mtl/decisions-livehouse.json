@@ -1,0 +1,86 @@
+{
+  "city": "大连",
+  "source": "motianlun",
+  "decided_at": "2026-09-24T09:49:53.558Z",
+  "agent": "cursor",
+  "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
+  "decisions": [
+    {
+      "group_id": "495faaf78761",
+      "event_uids": [
+        "motianlun:6a7eab2db8198800019ab410",
+        "motianlun:6a74003e8c03f50001232e7c"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "赫兹音乐空间黑礁石店"
+      ],
+      "poi_id": "3197044525021713527",
+      "poi_title": "赫兹空间(黑石礁店)",
+      "poi_address": "辽宁省大连市沙河口区黑石礁街道中山路673号辰熙天街2楼G207号",
+      "latitude": 38.876941,
+      "longitude": 121.557495,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "3197044525021713527",
+          "title": "赫兹空间(黑石礁店)",
+          "address": "辽宁省大连市沙河口区黑石礁街道中山路673号辰熙天街2楼G207号",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 38.876941,
+          "longitude": 121.557495
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「赫兹空间(黑石礁店)」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "2e29d5cc5003",
+      "event_uids": [
+        "motianlun:6a69dbed6d1f8a0001d20c46"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "赫兹空间（佳兆业店）"
+      ],
+      "poi_id": "2058111591079575291",
+      "poi_title": "赫兹音乐空间(佳兆业店)",
+      "poi_address": "辽宁省大连市中山区天津街271号佳兆业广场B1",
+      "latitude": 38.922701,
+      "longitude": 121.637874,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "2058111591079575291",
+          "title": "赫兹音乐空间(佳兆业店)",
+          "address": "辽宁省大连市中山区天津街271号佳兆业广场B1",
+          "category": "娱乐休闲:剧场音乐厅:剧场",
+          "latitude": 38.922701,
+          "longitude": 121.637874
+        },
+        {
+          "index": 1,
+          "poi_id": "6919884043261748562",
+          "title": "丰巢快递柜(赫兹空间佳兆业广场店2号丰巢存包柜)",
+          "address": "辽宁省大连市中山区天津街271号佳兆业广场B1层",
+          "category": "生活服务:其它生活服务",
+          "latitude": 38.922033,
+          "longitude": 121.637659
+        },
+        {
+          "index": 2,
+          "poi_id": "5755138081277132508",
+          "title": "丰巢智能柜(赫兹空间佳兆业广场店4号丰巢存包柜)",
+          "address": "辽宁省大连市中山区天津街271号佳兆业广场B1层",
+          "category": "生活服务:其它生活服务",
+          "latitude": 38.922238,
+          "longitude": 121.637507
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「赫兹音乐空间(佳兆业店)」和摩天轮场馆、地址一致"
+    }
+  ]
+}

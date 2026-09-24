@@ -1,0 +1,69 @@
+{
+  "city": "苏州",
+  "source": "motianlun",
+  "decided_at": "2026-09-24T09:49:53.558Z",
+  "agent": "cursor",
+  "db": "/Users/weiming/Documents/万盏街灯/开发物料/官网/BuzzInMap_website/zup-event-crawl/data/review.db",
+  "decisions": [
+    {
+      "group_id": "e3b96149ef1a",
+      "event_uids": [
+        "motianlun:6a9bb52b77faf70001e4b361",
+        "motianlun:6a4de168cb633a0001621406"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "山丘展演空间"
+      ],
+      "poi_id": "7525389421047667591",
+      "poi_title": "山丘展演空间",
+      "poi_address": "江苏省苏州市虎丘区新庆东路32号鑫邻里F3层",
+      "latitude": 31.274198,
+      "longitude": 120.786349,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "7525389421047667591",
+          "title": "山丘展演空间",
+          "address": "江苏省苏州市虎丘区新庆东路32号鑫邻里F3层",
+          "category": "文化场馆:展览馆",
+          "latitude": 31.274198,
+          "longitude": 120.786349
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「山丘展演空间」和摩天轮场馆、地址一致"
+    },
+    {
+      "group_id": "e9db10ec8853",
+      "event_uids": [
+        "motianlun:6a56109edca58f0001a18b4f",
+        "motianlun:6a521aae99ba960001f49c11"
+      ],
+      "action": "match",
+      "search_keywords_tried": [
+        "山丘livehouse红唐店"
+      ],
+      "poi_id": "6797155481651446902",
+      "poi_title": "山丘LIVEHOUSE(红唐店)",
+      "poi_address": "江苏省苏州市虎丘区滨河路999号红唐购物中心F1",
+      "latitude": 31.291997,
+      "longitude": 120.563408,
+      "candidates": [
+        {
+          "index": 0,
+          "poi_id": "6797155481651446902",
+          "title": "山丘LIVEHOUSE(红唐店)",
+          "address": "江苏省苏州市虎丘区滨河路999号红唐购物中心F1",
+          "category": "娱乐休闲:酒吧",
+          "latitude": 31.291997,
+          "longitude": 120.563408
+        }
+      ],
+      "confidence": "high",
+      "doubtful": false,
+      "reason": "地图上的「山丘LIVEHOUSE(红唐店)」和摩天轮场馆、地址一致"
+    }
+  ]
+}
