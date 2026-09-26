@@ -120,6 +120,10 @@ test("脱口秀和现场乐队留下", () => {
   assert.equal(matchLowSocialEvent({ title: "福田半醒特调音乐文化节" }), null);
   assert.equal(matchLowSocialEvent({ title: "猫耳FM周边BW2026成都分会场" }), null);
   assert.equal(matchLowSocialEvent({ title: "每周徒步大武汉~用脚感受我们生活的城市！" }), null);
+  assert.ok(matchLowSocialEvent({ title: "易经国学沙龙雅集" }).tags.includes("国学"));
+  assert.ok(matchLowSocialEvent({ title: "周二——庄子里的智慧" }).tags.includes("国学"));
+  assert.ok(matchLowSocialEvent({ title: "《论语》共读课堂" }).tags.includes("国学"));
+  assert.equal(matchLowSocialEvent({ title: "庄子摇滚乐队巡演 上海站" }), null);
 });
 
 test("正文写明话剧时丢掉，模板句不算", () => {

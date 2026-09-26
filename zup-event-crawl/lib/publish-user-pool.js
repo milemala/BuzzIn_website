@@ -6,24 +6,133 @@ const { normalizeBuzzEnv, getBuzzEnvConfig } = require("./buzz-env");
 
 const USERS_PATH = path.join(__dirname, "..", "data", "users.json");
 const META_PREFIX = "publish_user_pool";
+const DEFAULT_VEST_AVATAR = "https://cdn.nowmap.cn/bz/media/2026/06/22/71/cf/d7e4fc98-7a93-471f-812b-e7920e7a20a4.jpg";
+const VEST_PHONE_PREFIX = "1017777";
 
+let cachedRawUsers = null;
 let cachedUsers = null;
+
+function readUsersFileRaw() {
+  if (cachedRawUsers) return cachedRawUsers;
+  try {
+    const parsed = JSON.parse(fs.readFileSync(USERS_PATH, "utf8"));
+    cachedRawUsers = Array.isArray(parsed) ? parsed : [];
+  } catch {
+    cachedRawUsers = [];
+  }
+  return cachedRawUsers;
+}
+
+function normalizeVestUser(item = {}) {
+  const userId = String(item.user_id || "").trim();
+  return {
+    phone: String(item.phone || "").trim(),
+    avatar: String(item.avatar || "").trim(),
+    nick_name: String(item.nick_name || item.nickname || "").trim(),
+    gender: Number.isFinite(Number(item.gender)) ? Number(item.gender) : 0,
+    user_id: userId,
+    enabled: item.enabled !== false,
+    note: String(item.note || "").trim(),
+    created_env: String(item.created_env || "").trim(),
+  };
+}
+
+function vestUserToFile(item) {
+  const row = {
+    phone: item.phone || "",
+    avatar: item.avatar || DEFAULT_VEST_AVATAR,
+    nick_name: item.nick_name || "",
+    gender: Number(item.gender) || 0,
+    user_id: item.user_id,
+  };
+  if (item.enabled === false) row.enabled = false;
+  if (item.note) row.note = item.note;
+  if (item.created_env) row.created_env = item.created_env;
+  return row;
+}
+
+function writeUsersFile(users) {
+  const list = (users || [])
+    .map(normalizeVestUser)
+    .filter((item) => item.user_id);
+  fs.writeFileSync(USERS_PATH, `${JSON.stringify(list.map(vestUserToFile), null, 2)}\n`);
+  cachedRawUsers = list.map(vestUserToFile);
+  cachedUsers = null;
+  return listVestUsers();
+}
+
+function listVestUsers() {
+  return readUsersFileRaw().map(normalizeVestUser).filter((item) => item.user_id);
+}
+
+function suggestNextVestPhone() {
+  let max = 0;
+  for (const user of listVestUsers()) {
+    const match = String(user.phone || "").match(/^1017777(\d+)$/);
+    if (match) max = Math.max(max, Number(match[1]));
+  }
+  const next = Math.max(max + 1, 1);
+  return `${VEST_PHONE_PREFIX}${String(next).padStart(4, "0")}`;
+}
+
+function findVestUser(userId) {
+  const id = String(userId || "").trim();
+  if (!id) return null;
+  return listVestUsers().find((item) => item.user_id === id) || null;
+}
+
+function addVestUser(input = {}) {
+  const user = normalizeVestUser(input);
+  if (!user.user_id) throw new Error("缺少 user_id");
+  const users = listVestUsers();
+  if (users.some((item) => item.user_id === user.user_id)) {
+    throw new Error(`马甲号已在名单里：${user.user_id}`);
+  }
+  if (user.phone && users.some((item) => item.phone && item.phone === user.phone)) {
+    throw new Error(`手机号已在名单里：${user.phone}`);
+  }
+  if (!user.avatar) user.avatar = DEFAULT_VEST_AVATAR;
+  users.push(user);
+  writeUsersFile(users);
+  return user;
+}
+
+function updateVestUser(userId, patch = {}) {
+  const id = String(userId || "").trim();
+  const users = listVestUsers();
+  const index = users.findIndex((item) => item.user_id === id);
+  if (index < 0) throw new Error("名单里没有这个马甲号");
+  const merged = { ...users[index] };
+  for (const key of ["nick_name", "phone", "avatar", "gender", "enabled", "note", "created_env"]) {
+    if (patch[key] !== undefined) merged[key] = patch[key];
+  }
+  const next = normalizeVestUser({ ...merged, user_id: id });
+  if (next.phone && users.some((item, i) => i !== index && item.phone === next.phone)) {
+    throw new Error(`手机号已被其他马甲号占用：${next.phone}`);
+  }
+  users[index] = next;
+  writeUsersFile(users);
+  return next;
+}
+
+function removeVestUser(userId) {
+  const id = String(userId || "").trim();
+  const users = listVestUsers();
+  const found = users.find((item) => item.user_id === id);
+  if (!found) throw new Error("名单里没有这个马甲号");
+  writeUsersFile(users.filter((item) => item.user_id !== id));
+  return found;
+}
 
 function loadPoolUsers() {
   if (cachedUsers) return cachedUsers;
-  try {
-    const raw = fs.readFileSync(USERS_PATH, "utf8");
-    const parsed = JSON.parse(raw);
-    cachedUsers = (Array.isArray(parsed) ? parsed : [])
-      .map((item) => ({
-        user_id: String(item.user_id || "").trim(),
-        nick_name: String(item.nick_name || "").trim(),
-        phone: String(item.phone || "").trim(),
-      }))
-      .filter((item) => item.user_id);
-  } catch {
-    cachedUsers = [];
-  }
+  cachedUsers = listVestUsers()
+    .filter((item) => item.enabled)
+    .map((item) => ({
+      user_id: item.user_id,
+      nick_name: item.nick_name,
+      phone: item.phone,
+    }));
   return cachedUsers;
 }
 
@@ -175,27 +284,49 @@ function createPublishUserPoolContext(db, buzzEnv) {
 
 function getPublishUserPoolStatus(db, buzzEnv) {
   const env = normalizeBuzzEnv(buzzEnv);
+  const users = listVestUsers();
+  const roster = {
+    users,
+    total: users.length,
+    enabled_count: users.filter((item) => item.enabled).length,
+    next_phone: suggestNextVestPhone(),
+    default_avatar: DEFAULT_VEST_AVATAR,
+  };
   if (!poolEnabled(env)) {
     return {
       enabled: false,
       default_publish_user_id: getBuzzEnvConfig(env).defaultPublishUserId,
+      ...roster,
     };
   }
   const ctx = createPublishUserPoolContext(db, env);
+  const pool = ctx.getStatus();
   return {
     enabled: true,
     default_publish_user_id: ctx.currentUserId(),
-    ...ctx.getStatus(),
+    index: pool.index,
+    exhausted: pool.exhausted,
+    current_user_id: pool.current_user_id,
+    current_label: pool.current_label,
+    pool_total: pool.total,
+    ...roster,
   };
 }
 
 module.exports = {
+  DEFAULT_VEST_AVATAR,
+  addVestUser,
   createPublishUserPoolContext,
+  findVestUser,
   getDefaultPoolUserId,
   getPublishUserPoolStatus,
   getPoolUserAt,
   isImGroupLimitError,
+  listVestUsers,
   loadPoolUsers,
   poolEnabled,
+  removeVestUser,
   resolvePublishUserId,
+  suggestNextVestPhone,
+  updateVestUser,
 };

@@ -96,6 +96,55 @@ async function composeMerchantImageRow(db, row, options = {}) {
   return { status: "ok", row, composedUrl };
 }
 
+async function replaceMerchantCoverFromUrl(db, merchantUid, imageUrl, options = {}) {
+  ensureMerchantSchema(db);
+  const uid = String(merchantUid || "").trim();
+  const sourceUrl = normalizeMerchantImageUrl(String(imageUrl || "").trim());
+  if (!uid) throw new Error("缺少商户 ID");
+  if (!sourceUrl) throw new Error("请填写图片地址");
+
+  let parsed;
+  try {
+    parsed = new URL(sourceUrl);
+  } catch {
+    throw new Error("图片地址格式不正确");
+  }
+  if (!["http:", "https:"].includes(parsed.protocol)) {
+    throw new Error("图片地址只支持 http 或 https");
+  }
+
+  const merchant = db.prepare(`
+    SELECT merchant_uid, name, city
+    FROM merchants
+    WHERE merchant_uid = ?
+  `).get(uid);
+  if (!merchant) throw new Error(`商户不存在: ${uid}`);
+
+  const rootDir = options.rootDir || path.join(__dirname, "..");
+  const cacheDir = options.cacheDir || path.join(rootDir, "data", "image-cache");
+  const signal = options.signal || AbortSignal.timeout(30_000);
+  const buffer = await composeMerchantCoverFromUrl(sourceUrl, {
+    cacheDir,
+    signal,
+  });
+  const { composedUrl } = saveComposedImage(uid, buffer, rootDir);
+  const updatedAt = new Date().toISOString();
+  db.prepare(`
+    UPDATE merchants
+    SET image_original = ?,
+        image = ?,
+        updated_at = ?
+    WHERE merchant_uid = ?
+  `).run(sourceUrl, composedUrl, updatedAt, uid);
+
+  return {
+    ...merchant,
+    image: composedUrl,
+    image_original: sourceUrl,
+    updated_at: updatedAt,
+  };
+}
+
 async function runPool(rows, worker, limit) {
   const results = [];
   let index = 0;
@@ -169,5 +218,6 @@ module.exports = {
   batchComposeMerchantImages,
   composeMerchantImageRow,
   listMerchantsForImageCompose,
+  replaceMerchantCoverFromUrl,
   resolveSourceUrl,
 };

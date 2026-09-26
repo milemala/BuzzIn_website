@@ -22,18 +22,10 @@
     .save-state.ok{background:#e7f5ec;color:#197549}
     .save-state.warn{background:#fff3c4;color:#806200}
     .save-state.error{background:#fde8e4;color:#ad382c}
-    .batch-schedule{margin-top:12px;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:#f7faf8;font-size:13px;line-height:1.55;color:#314036}
-    .batch-schedule strong{color:var(--text)}
-    .batch-schedule.ok{border-color:#b7dfc6;background:#eef8f1}
-    .batch-schedule.warn{border-color:#e6d38a;background:#fff8db;color:#6a5200}
-    .batch-schedule.expired{border-color:#e8b4ae;background:#fdecea;color:#8a2f24}
-    .batch-schedule.expired strong{color:#ad382c}
-    .batch-schedule .batch-title{font-size:14px;font-weight:800;margin:0 0 4px}
-    .batch-schedule .batch-sub{margin:0;font-size:12px;opacity:.92}
     .wrap{max-width:980px;margin:0 auto;padding:18px 20px 44px;display:grid;gap:14px}
     .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
     .panel h2{margin:0 0 10px;font-size:15px;font-weight:800}
-    .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
     .stat{background:#f7faf8;border:1px solid var(--line);border-radius:8px;padding:12px}
     .stat b{display:block;font-size:22px}
     .stat span{display:block;margin-top:4px;color:var(--muted);font-size:12px}
@@ -101,9 +93,51 @@
     .job-log-entry.fail{color:#ad382c}
     .job-log-entry.ok{color:#197549}
     .job-log-entry.warn{color:#806200}
-    .job-modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+    .job-modal-actions{display:flex;justify-content:space-between;gap:8px;margin-top:14px}
     .job-modal-actions .btn{min-width:88px}
+    .job-modal-actions .btn.danger{border-color:#e8b4ae;color:#ad382c}
     .job-modal-actions .btn:disabled{opacity:.45;cursor:not-allowed}
+    .check{width:16px;height:16px}
+    .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+    .toolbar .field{margin-top:0;min-width:140px;flex:1}
+    .pill{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:999px;font-size:11px;font-weight:800;background:#e8efe9;color:#476054}
+    .pill.off{background:#fde8e4;color:#ad382c}
+    .pill.bar{background:#fff3c4;color:#806200}
+    .table-wrap{max-height:360px;overflow:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
+    table.list{width:100%;border-collapse:collapse;font-size:13px}
+    table.list th,table.list td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+    table.list th{position:sticky;top:0;background:#f7faf8;font-size:12px;color:var(--muted);z-index:1}
+    table.list tr:hover td{background:#f7faf8}
+    table.list .name{font-weight:800}
+    .row-actions{display:flex;flex-wrap:wrap;gap:4px}
+    .row-actions .mini{height:28px;padding:0 8px}
+    .muted{color:var(--muted);font-size:12px}
+    .split{display:grid;gap:10px}
+    @media (min-width:900px){.split-2{grid-template-columns:1fr 1fr}}
+    details.fold{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:4px 16px 16px}
+    details.fold>summary{cursor:pointer;font-size:15px;font-weight:800;padding:12px 0}
+    .form-grid{display:grid;gap:10px}
+    @media (min-width:720px){.form-grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    .inline-actions{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+    .mini{height:30px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:0 10px;cursor:pointer;font-size:12px;font-weight:700;color:var(--ink)}
+    .mini.danger{border-color:#e8b4ae;color:#ad382c}
+    .sel-count{font-size:13px;font-weight:800}
+    .city-chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+    .city-chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 10px;cursor:pointer;font-size:12px;font-weight:700;color:var(--ink)}
+    .city-chip.active{border-color:#111;background:#111;color:#fff}
+    .city-chip.warn{border-color:#e3c56b;background:#fff8e1;color:#806200}
+    .city-chip.warn.active{border-color:#806200;background:#806200;color:#fff}
+    .city-chip.off{opacity:.62}
+    .city-chip .n{font-weight:600;opacity:.8}
+    table.list tr.roster-off td{opacity:.55}
+    .enable-cell{white-space:nowrap}
+    .enable-cell label{display:inline-flex;gap:6px;align-items:center;font-size:12px;font-weight:700;cursor:pointer}
+    .copy-pool{display:grid;gap:10px;margin-top:2px}
+    .copy-card{border:1px solid var(--line);border-radius:8px;background:#fff;padding:12px}
+    .copy-card.off{opacity:.55}
+    .copy-card-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:8px}
+    .copy-card-head label{display:inline-flex;gap:6px;align-items:center;font-size:12px;font-weight:700;color:var(--ink);cursor:pointer}
+    .copy-card textarea{min-height:72px}
     @media (max-width:720px){.stats{grid-template-columns:1fr}}
   </style>
 </head>
@@ -117,8 +151,8 @@
         <a href="/bubble-group-activity.html">群聊统计</a>
       </nav>
       <div class="buzz-env-bar" id="buzzEnvBar"></div>
-      <h1>商户气泡批量发布</h1>
-      <div class="meta">基于已入库商户，按城市随机<strong>至少 3 组</strong>轮转发布（单组超过 <strong>40</strong> 家时自动加组）。发布新一轮时，该城市<strong>上一组</strong>气泡自动过期；新建气泡后台兜底过期 <strong>3 天</strong>。商户群聊名称 = 完整店名（含分店括号）。</div>
+      <h1>商户气泡 · 代发邀约</h1>
+      <div class="meta">替入驻酒馆发邀约。可以全店共用一个账号，也可以给每家店建一个管理员、用各自的账号发。气泡会挂在该店地图位置上，带群聊，不显示报名签到入口。</div>
       <div class="save-state warn" id="saveState">加载中...</div>
     </div>
   </header>
@@ -126,89 +160,188 @@
   <main class="wrap">
     <section class="panel">
       <h2>概览</h2>
-      <div class="batch-schedule warn" id="batchSchedule" hidden></div>
       <div class="stats" id="stats"></div>
       <div class="actions" style="margin-top:12px">
         <button class="btn" id="syncFromBuzzBtn" type="button">从当前环境补全商户</button>
         <button class="btn" id="publishTestBtn" type="button">发布1个测试气泡</button>
       </div>
       <p class="hint" style="margin-top:8px">将 Buzz 后台已有商户写入审核台并标记为已入库。若与本地商户 <strong>POI 相同但 merchant_id 不同</strong>，会删除审核台本地旧记录（不删后台商户）。</p>
-      <p class="hint" style="margin-top:6px">「发布1个测试气泡」会在<strong>北京</strong>已入库商户中随机选 1 家发布，标题用店名，并临时新建群聊（不影响分组轮转）。</p>
+      <p class="hint" style="margin-top:6px">「发布1个测试气泡」会在<strong>北京</strong>已入库商户中随机选 1 家发布，标题用店名，并临时新建群聊。</p>
+    </section>
+
+    <section class="panel">
+      <h2>选择商户</h2>
+      <p class="hint">勾选加入名单，不会立刻发布。发布只发给「已启用」且当前没有未过期气泡的店。已有未过期气泡的，可以在列表里删除或设为过期。</p>
+      <div class="city-chips" id="sourceChips"></div>
+      <div class="city-chips" id="rosterChips"></div>
+      <div class="city-chips" id="cityChips"></div>
+      <div class="city-chips" id="typeChips"></div>
+      <div class="toolbar">
+        <div class="field">
+          <label for="merchantQuery">搜索店名</label>
+          <input id="merchantQuery" type="search" placeholder="店名 / 城市 / 类型">
+        </div>
+        <label class="hint" style="display:flex;gap:6px;align-items:center;margin:18px 0 0">
+          <input class="check" id="barOnly" type="checkbox">
+          只要酒馆 / 酒吧
+        </label>
+        <label class="hint" style="display:flex;gap:6px;align-items:center;margin:18px 0 0">
+          <input class="check" id="selectedOnly" type="checkbox">
+          只看已选
+        </label>
+        <button class="btn" id="reloadMerchantsBtn" type="button">刷新列表</button>
+      </div>
+      <div class="toolbar">
+        <button class="btn" id="selectFilteredBtn" type="button">把当前筛选加入已选</button>
+        <button class="btn" id="enableRosterCityBtn" type="button">启用当前筛选</button>
+        <button class="btn" id="disableRosterCityBtn" type="button">停用当前筛选</button>
+        <button class="btn" id="clearRosterBtn" type="button">清空已选</button>
+        <span class="sel-count" id="selectedCount">已选 0 家 · 启用 0 家</span>
+      </div>
+      <div class="table-wrap">
+        <table class="list" id="merchantTable">
+          <thead>
+            <tr>
+              <th></th>
+              <th>店名</th>
+              <th>城市</th>
+              <th>类型</th>
+              <th>启用</th>
+              <th>管理员</th>
+              <th>群聊</th>
+              <th>气泡</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </section>
 
     <section class="panel">
       <h2>发布设置</h2>
-      <p class="hint">每次发布仅选中各城市当前轮次的那一组商户。发布完成后自动轮到下一组。</p>
+      <p class="hint">发给已启用的店。过期时间可不填，不填则按 Zup 后台既有规则。封面和上次一样时会直接用上次的图，不重新上传。</p>
 
-      <div class="field">
-        <label for="publishUserId">发布者 user_id</label>
-        <input id="publishUserId" type="text" value="" placeholder="留空则用当前马甲号">
-        <p class="hint" id="publishUserPoolHint" hidden style="margin-top:6px"></p>
+      <div class="option-block">
+        <div class="option-head">
+          <div class="option-title">发布身份</div>
+          <p class="option-desc">气泡会显示成这个账号发的。可以全店共用一个账号，也可以每家店用自己的管理员。</p>
+        </div>
+        <div class="seg" id="publisherModeSeg" role="tablist" aria-label="发布身份">
+          <button type="button" data-mode="unified" class="active">统一账号</button>
+          <button type="button" data-mode="per_merchant">各店管理员</button>
+        </div>
+        <div class="sub-fields" id="unifiedPublisherField">
+          <div class="field" style="margin-top:0">
+            <label for="publishUserId">发布者 user_id</label>
+            <input id="publishUserId" type="text" value="" placeholder="所有已启用的店都用这个账号发">
+          </div>
+          <p class="option-note">已启用的店都会用上面这一个账号发。留空则用当前环境的默认账号。</p>
+        </div>
+        <div class="sub-fields" id="perMerchantPublisherField" hidden>
+          <p class="option-note"><strong>各店管理员：</strong>每家店用自己的管理员账号发。店里已经有店长或管理员的，会直接沿用，不改他们的资料。没有的才会按下面资料新建用户，并绑成该店店长。公园和其他类型新建时，昵称固定为「神秘小刘」。</p>
+          <div class="option-head" style="margin-top:12px">
+            <div class="option-title">新建管理员资料</div>
+            <p class="option-desc">只对「还没有管理员」的店生效。已有店长的店不会用这些资料。</p>
+          </div>
+          <div class="field">
+            <label>昵称</label>
+            <div class="seg" id="adminNickModeSeg" role="tablist" aria-label="管理员昵称">
+              <button type="button" data-mode="shop_name" class="active">用店名</button>
+              <button type="button" data-mode="unified">统一昵称</button>
+            </div>
+          </div>
+          <div class="field" id="adminNicknameField" hidden>
+            <label for="adminNickname">统一昵称</label>
+            <input id="adminNickname" type="text" placeholder="所有新建的管理员都用这个昵称" maxlength="64">
+          </div>
+          <div class="field">
+            <label for="adminAvatar">头像图片地址</label>
+            <input id="adminAvatar" type="text" value="https://cdn.nowmap.cn/bz/media/2026/06/22/71/cf/d7e4fc98-7a93-471f-812b-e7920e7a20a4.jpg">
+          </div>
+          <div class="split split-2">
+            <div class="field">
+              <label for="adminGender">性别</label>
+              <select id="adminGender">
+                <option value="0">未知</option>
+                <option value="1">男</option>
+                <option value="2">女</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="adminAge">年龄（可空）</label>
+              <input id="adminAge" type="number" min="1" max="120" placeholder="不填则不写生日">
+            </div>
+          </div>
+          <div class="field">
+            <label for="adminSignature">签名 / 简介（可空）</label>
+            <textarea id="adminSignature" placeholder="不填则没有签名"></textarea>
+          </div>
+          <div class="actions" style="margin-top:10px">
+            <button class="btn primary" id="createAdminsSelectedBtn" type="button">为已选的店创建管理员</button>
+          </div>
+        </div>
       </div>
 
       <div class="option-block">
         <div class="option-head">
-          <div class="option-title">标题文案</div>
-          <p class="option-desc">选择所有气泡共用一套文案，或每家店按商户名单独生成。</p>
+          <div class="option-title">标题和正文</div>
+          <p class="option-desc">每种商户类型各自准备 10 组文案。发布时，这家店只用它自己类型的文案，按顺序轮流，用完再从头。某个类型还没写文案时，这次不会发这个类型。</p>
         </div>
-        <div class="seg" id="titleModeSeg" role="tablist" aria-label="标题文案模式">
-          <button type="button" data-mode="unified" class="active">统一文案</button>
-          <button type="button" data-mode="per_merchant">按店名生成</button>
-        </div>
-        <div class="sub-fields" id="unifiedTitleField">
-          <div class="field" style="margin-top:0">
-            <label for="unifiedTitle">统一标题</label>
-            <input id="unifiedTitle" type="text" placeholder="例如：本周好店推荐">
-          </div>
-        </div>
-        <div class="field" id="unifiedContentField">
-          <label for="unifiedContent" id="unifiedContentLabel">统一正文（可选）</label>
-          <textarea id="unifiedContent" placeholder="例如：发现身边宝藏小店，一起来坐坐。"></textarea>
-        </div>
-        <p class="option-note" id="perMerchantNote" hidden>
-          <strong>按店名生成：</strong>标题 = 商户名；正文使用下方「统一正文」，留空则用默认「附近的小伙伴们可以约起来了～ / 欢迎进群组局，来认识几个新朋友吧～」
-        </p>
+        <div class="city-chips" id="copyTypeChips"></div>
+        <p class="option-note" id="copyTypeNote"></p>
+        <div class="copy-pool" id="copyPool"></div>
       </div>
 
       <div class="option-block">
         <div class="option-head">
           <div class="option-title">群聊</div>
-          <p class="option-desc">气泡必须带群聊。建议先批量创建商户群聊，再选择挂已有群。</p>
+          <p class="option-desc">气泡必须带群聊。选「挂商户群聊」时，没群就自动建；已有群会把群主交给这次的发布账号。</p>
         </div>
         <div class="seg" id="groupModeSeg" role="tablist" aria-label="群聊模式">
           <button type="button" data-mode="use_merchant" class="active">挂商户群聊</button>
           <button type="button" data-mode="create_new">每次新建群聊</button>
         </div>
         <p class="option-note" id="groupModeNote">
-          <strong>挂商户群聊：</strong>使用已为该商户创建的 IM 群（群名 = 完整店名）。若尚未建群，请先点下方「批量创建商户群聊」。
+          <strong>挂商户群聊：</strong>用这家店自己的群（群名 = 完整店名）。还没有群的店，发布时会自动创建。已经有群的店，会把群主交给这次的发布账号。
         </p>
       </div>
 
       <div class="field">
-        <label for="nowType">now_type</label>
+        <label for="nowType">气泡类型 now_type</label>
         <select id="nowType">
           <option value="1">1 动态</option>
-          <option value="2">2 即刻邀约</option>
+          <option value="2" selected>2 即刻邀约</option>
           <option value="3">3 预约</option>
         </select>
       </div>
       <div class="field">
-        <label for="cityFilter">限定发布城市（留空 = 全部城市，不影响下方列表）</label>
-        <input id="cityFilter" type="text" placeholder="例如：北京">
+        <label for="contentType">内容类型 content_type</label>
+        <select id="contentType">
+          <option value="auto">按商户类型自动</option>
+          <option value="3">3 小酌</option>
+          <option value="1">1 约饭</option>
+          <option value="2">2 Coffee Chat</option>
+          <option value="0">0 其他</option>
+          <option value="4">4 体育运动</option>
+          <option value="5">5 主题沙龙</option>
+        </select>
+      </div>
+      <div class="split split-2">
+        <div class="field">
+          <label for="startAt">开始时间（可空 = 立即）</label>
+          <input id="startAt" type="datetime-local">
+        </div>
+        <div class="field">
+          <label for="expiredAt">过期时间（可空 = 按后台规则）</label>
+          <input id="expiredAt" type="datetime-local">
+        </div>
       </div>
 
       <div class="actions">
-        <button class="btn" id="rebuildBtn" type="button">重新随机分组</button>
-        <button class="btn" id="createGroupsBtn" type="button">批量创建商户群聊</button>
-        <button class="btn primary" id="publishBtn" type="button">发布本批气泡</button>
+        <button class="btn primary" id="publishSelectedBtn" type="button">为已启用的店发布</button>
       </div>
       <div class="result" id="result"></div>
-    </section>
-
-    <section class="panel">
-      <h2>各城市轮转分组</h2>
-      <p class="hint" style="margin-bottom:10px">点击分组可选中；每组可单独发布、删除或过期该组内<strong>未过期</strong>的已发气泡。单组发布后该城市自动轮到下一组。</p>
-      <div class="city-grid" id="cityGrid"></div>
     </section>
   </main>
 
@@ -225,6 +358,7 @@
       <div class="job-progress-current" id="jobProgressCurrent"><strong>准备开始…</strong>正在连接后台</div>
       <div class="job-log" id="jobLog" hidden></div>
       <div class="job-modal-actions">
+        <button class="btn danger" id="jobModalStop" type="button" hidden>停止</button>
         <button class="btn primary" id="jobModalClose" type="button" disabled>关闭</button>
       </div>
     </div>
@@ -233,25 +367,24 @@
   <script src="/buzz-env-ui.js"></script>
   <script>
     const saveStateEl = document.getElementById("saveState");
-    const batchScheduleEl = document.getElementById("batchSchedule");
     const statsEl = document.getElementById("stats");
-    const cityGridEl = document.getElementById("cityGrid");
     const resultEl = document.getElementById("result");
-    let batchScheduleTimer = null;
-    let lastBatchSnapshot = null;
-    const titleModeSeg = document.getElementById("titleModeSeg");
     const groupModeSeg = document.getElementById("groupModeSeg");
-    const unifiedTitleField = document.getElementById("unifiedTitleField");
-    const unifiedContentLabel = document.getElementById("unifiedContentLabel");
-    const unifiedContentInput = document.getElementById("unifiedContent");
-    const perMerchantNote = document.getElementById("perMerchantNote");
-    const DEFAULT_PER_MERCHANT_CONTENT = "附近的小伙伴们可以约起来了～\n欢迎进群组局，来认识几个新朋友吧～";
+    const publisherModeSeg = document.getElementById("publisherModeSeg");
+    const DEFAULT_COPY_POOL = Array.from({ length: 10 }, () => ({ title: "", content: "", enabled: true }));
     const groupModeNote = document.getElementById("groupModeNote");
     let busy = false;
-    let titleMode = "unified";
     let groupMode = "use_merchant";
+    let publisherMode = "unified";
+    let adminNickMode = "shop_name";
     let jobPollTimer = null;
-    const selectedBuckets = new Map();
+    let rosterItems = [];
+    let cityFilter = "";
+    let typeFilter = "";
+    let sourceFilter = "";
+    let rosterScope = "";
+    let merchantRows = [];
+    let merchantCities = [];
     const jobModalEl = document.getElementById("jobModal");
     const jobModalTitleEl = document.getElementById("jobModalTitle");
     const jobModalScopeEl = document.getElementById("jobModalScope");
@@ -261,6 +394,8 @@
     const jobProgressCurrentEl = document.getElementById("jobProgressCurrent");
     const jobLogEl = document.getElementById("jobLog");
     const jobModalCloseEl = document.getElementById("jobModalClose");
+    const jobModalStopEl = document.getElementById("jobModalStop");
+    let currentJobId = "";
 
     function formatDuration(ms) {
       const sec = Math.max(0, Math.floor(ms / 1000));
@@ -268,103 +403,6 @@
       const min = Math.floor(sec / 60);
       const rest = sec % 60;
       return rest ? `${min} 分 ${rest} 秒` : `${min} 分`;
-    }
-
-    function formatElapsedSince(ms) {
-      const totalMin = Math.max(0, Math.floor(ms / 60000));
-      if (totalMin < 60) return `${Math.max(1, totalMin)} 分钟`;
-      const hours = Math.floor(totalMin / 60);
-      const days = Math.floor(hours / 24);
-      const remHours = hours % 24;
-      const remMin = totalMin % 60;
-      if (days > 0) {
-        return remHours ? `${days} 天 ${remHours} 小时` : `${days} 天`;
-      }
-      return remMin ? `${hours} 小时 ${remMin} 分` : `${hours} 小时`;
-    }
-
-    function formatCountdown(ms) {
-      const abs = Math.abs(ms);
-      const totalSec = Math.floor(abs / 1000);
-      const days = Math.floor(totalSec / 86400);
-      const hours = Math.floor((totalSec % 86400) / 3600);
-      const mins = Math.floor((totalSec % 3600) / 60);
-      if (days > 0) return `${days} 天 ${hours} 小时`;
-      if (hours > 0) return `${hours} 小时 ${mins} 分`;
-      return `${Math.max(1, mins)} 分钟`;
-    }
-
-    function formatDateTime(iso) {
-      if (!iso) return "—";
-      const date = new Date(iso);
-      if (!Number.isFinite(date.getTime())) return String(iso);
-      const y = date.getFullYear();
-      const m = String(date.getMonth() + 1).padStart(2, "0");
-      const d = String(date.getDate()).padStart(2, "0");
-      const hh = String(date.getHours()).padStart(2, "0");
-      const mm = String(date.getMinutes()).padStart(2, "0");
-      return `${y}-${m}-${d} ${hh}:${mm}`;
-    }
-
-    function stopBatchScheduleTimer() {
-      if (batchScheduleTimer) {
-        clearInterval(batchScheduleTimer);
-        batchScheduleTimer = null;
-      }
-    }
-
-    function renderBatchSchedule(lastBatch) {
-      lastBatchSnapshot = lastBatch || null;
-      if (!batchScheduleEl) return;
-      if (!lastBatch?.last_batch_published_at) {
-        stopBatchScheduleTimer();
-        batchScheduleEl.hidden = false;
-        batchScheduleEl.className = "batch-schedule warn";
-        batchScheduleEl.innerHTML = `
-          <p class="batch-title">上一批气泡</p>
-          <p class="batch-sub">还没有「发布本批气泡」的记录。点一次发布后，这里会开始倒计时（默认 ${lastBatch?.expire_days || 3} 天后过期）。</p>
-        `;
-        return;
-      }
-
-      const publishedAt = Date.parse(lastBatch.last_batch_published_at);
-      const expireAt = Date.parse(lastBatch.expire_at);
-      const now = Date.now();
-      const sinceMs = Number.isFinite(publishedAt) ? Math.max(0, now - publishedAt) : (lastBatch.ms_since_publish || 0);
-      const untilMs = Number.isFinite(expireAt) ? (expireAt - now) : (lastBatch.ms_until_expire || 0);
-      const expired = untilMs <= 0;
-      const expireDays = lastBatch.expire_days || 3;
-
-      batchScheduleEl.hidden = false;
-      batchScheduleEl.className = `batch-schedule ${expired ? "expired" : untilMs < 12 * 60 * 60 * 1000 ? "warn" : "ok"}`;
-
-      if (expired) {
-        batchScheduleEl.innerHTML = `
-          <p class="batch-title">上一批已过期 · 该发下一批了</p>
-          <p class="batch-sub">
-            上次「发布本批气泡」：<strong>${escapeHtml(formatDateTime(lastBatch.last_batch_published_at))}</strong>
-            （已过 <strong>${escapeHtml(formatElapsedSince(sinceMs))}</strong>）
-            · 计划过期：${escapeHtml(formatDateTime(lastBatch.expire_at))}（发布后 ${expireDays} 天）
-            · 已过期 <strong>${escapeHtml(formatCountdown(untilMs))}</strong>
-          </p>
-        `;
-      } else {
-        batchScheduleEl.innerHTML = `
-          <p class="batch-title">上一批气泡还在有效期内</p>
-          <p class="batch-sub">
-            上次「发布本批气泡」：<strong>${escapeHtml(formatDateTime(lastBatch.last_batch_published_at))}</strong>
-            （已过 <strong>${escapeHtml(formatElapsedSince(sinceMs))}</strong>）
-            · 预计 <strong>${escapeHtml(formatDateTime(lastBatch.expire_at))}</strong> 过期
-            · 还剩 <strong>${escapeHtml(formatCountdown(untilMs))}</strong>
-          </p>
-        `;
-      }
-
-      if (!batchScheduleTimer) {
-        batchScheduleTimer = setInterval(() => {
-          if (lastBatchSnapshot) renderBatchSchedule(lastBatchSnapshot);
-        }, 60000);
-      }
     }
 
     function stopJobPoll() {
@@ -423,16 +461,25 @@
       }
 
       if (job.status === "running") {
-        jobProgressCurrentEl.innerHTML = job.current_name
-          ? `<strong>正在处理</strong>${escapeHtml(job.current_name)}`
-          : "<strong>准备中…</strong>正在排队处理";
+        jobProgressCurrentEl.innerHTML = job.cancel_requested
+          ? `<strong>正在停止…</strong>${job.current_name ? escapeHtml(`处理完「${job.current_name}」后结束`) : "处理完当前这家后结束"}`
+          : (job.current_name
+            ? `<strong>正在处理</strong>${escapeHtml(job.current_name)}`
+            : "<strong>准备中…</strong>正在排队处理");
+        jobModalStopEl.hidden = false;
+        jobModalStopEl.disabled = Boolean(job.cancel_requested);
+        jobModalStopEl.textContent = job.cancel_requested ? "正在停止" : "停止";
+        jobModalCloseEl.disabled = true;
       }
 
       renderJobLogs(job.logs);
 
-      if (job.status === "done") {
+      if (job.status === "done" || job.status === "canceled") {
         const fail = job.fail_count || 0;
-        jobModalTitleEl.textContent = fail ? `${title}完成（有失败）` : `${title}完成`;
+        const stopped = job.status === "canceled";
+        jobModalTitleEl.textContent = stopped
+          ? `${title}已停止`
+          : (fail ? `${title}完成（有失败）` : `${title}完成`);
         let summary = "";
         if (job.kind === "groups") {
           summary = `新建 ${job.created || 0} · 改名 ${job.renamed || 0} · 失败 ${fail}`;
@@ -443,13 +490,16 @@
             fail ? `失败 ${fail}` : "发布成功",
           ].filter(Boolean).join(" · ");
         } else {
-          summary = `成功 ${job.ok_count || 0} · 失败 ${fail}`;
+          const leftover = Math.max(0, (job.total || 0) - (job.processed || 0));
+          summary = `成功 ${job.ok_count || 0} · 失败 ${fail}${stopped && leftover ? ` · 未处理 ${leftover}` : ""}`;
         }
-        jobProgressCurrentEl.innerHTML = `<strong>全部结束</strong>${escapeHtml(summary)}`;
+        jobProgressCurrentEl.innerHTML = `<strong>${stopped ? "已停止" : "全部结束"}</strong>${escapeHtml(summary)}`;
+        jobModalStopEl.hidden = true;
         jobModalCloseEl.disabled = false;
       } else if (job.status === "error") {
         jobModalTitleEl.textContent = `${title}失败`;
         jobProgressCurrentEl.innerHTML = `<strong>出错了</strong>${escapeHtml(job.error || "未知错误")}`;
+        jobModalStopEl.hidden = true;
         jobModalCloseEl.disabled = false;
       }
     }
@@ -472,6 +522,9 @@
       jobProgressCurrentEl.innerHTML = "<strong>准备开始…</strong>正在连接后台";
       jobLogEl.hidden = true;
       jobLogEl.innerHTML = "";
+      jobModalStopEl.hidden = false;
+      jobModalStopEl.disabled = false;
+      jobModalStopEl.textContent = "停止";
       jobModalCloseEl.disabled = true;
       jobModalEl.hidden = false;
     }
@@ -479,7 +532,29 @@
     function closeJobModal() {
       if (jobModalCloseEl.disabled) return;
       stopJobPoll();
+      currentJobId = "";
       jobModalEl.hidden = true;
+    }
+
+    async function cancelCurrentJob() {
+      if (!currentJobId || jobModalStopEl.disabled) return;
+      jobModalStopEl.disabled = true;
+      jobModalStopEl.textContent = "正在停止";
+      try {
+        const url = BuzzEnvUi.withBuzzEnv(`/api/merchant-bubbles/jobs/${encodeURIComponent(currentJobId)}/cancel`);
+        const response = await fetch(url, { method: "POST" });
+        const data = await response.json();
+        if (!response.ok || !data.ok) throw new Error(data.error || "停止失败");
+        updateJobModal(data, {
+          title: jobModalTitleEl.textContent.replace(/中$|已停止$|失败$|完成.*$/, ""),
+          scope: jobModalScopeEl.textContent,
+          startedAt: Date.now(),
+        });
+      } catch (error) {
+        jobModalStopEl.disabled = false;
+        jobModalStopEl.textContent = "停止";
+        setSaveState(error.message || "停止失败", "error");
+      }
     }
 
     async function fetchJob(jobId) {
@@ -511,6 +586,7 @@
         }
 
         const jobId = startData.job_id;
+        currentJobId = jobId;
         if (startData.total) {
           openJobModal({
             title,
@@ -544,14 +620,20 @@
                 const planText = formatPublishPlan(job.meta?.plan);
                 if (planText) summary += `\n${planText}`;
               }
-              resultEl.textContent = `${title}完成：${summary}`;
-              setSaveState(`${title}完成`, job.fail_count ? "warn" : "ok");
+              resultEl.textContent = job.status === "canceled"
+                ? `${title}已停止：${summary}`
+                : `${title}完成：${summary}`;
+              setSaveState(
+                job.status === "canceled" ? `${title}已停止` : `${title}完成`,
+                (job.fail_count || job.status === "canceled") ? "warn" : "ok",
+              );
               busy = false;
             }
           } catch (error) {
             stopJobPoll();
             jobModalTitleEl.textContent = `${title}失败`;
             jobProgressCurrentEl.innerHTML = `<strong>出错了</strong>${escapeHtml(error.message)}`;
+            jobModalStopEl.hidden = true;
             jobModalCloseEl.disabled = false;
             setSaveState(error.message || `${title}失败`, "error");
             busy = false;
@@ -565,6 +647,7 @@
         stopJobPoll();
         jobModalTitleEl.textContent = `${title}失败`;
         jobProgressCurrentEl.innerHTML = `<strong>出错了</strong>${escapeHtml(error.message)}`;
+        jobModalStopEl.hidden = true;
         jobModalCloseEl.disabled = false;
         setSaveState(error.message || `${title}失败`, "error");
         busy = false;
@@ -573,35 +656,16 @@
     }
 
     jobModalCloseEl.addEventListener("click", closeJobModal);
+    jobModalStopEl.addEventListener("click", () => {
+      cancelCurrentJob();
+    });
     jobModalEl.querySelector(".job-modal-backdrop").addEventListener("click", () => {
       if (!jobModalCloseEl.disabled) closeJobModal();
     });
 
-    function setSelectedBucket(city, slot) {
-      selectedBuckets.set(city, slot);
-      cityGridEl.querySelectorAll(".bucket-row").forEach((row) => {
-        row.classList.toggle("selected", row.dataset.city === city && Number(row.dataset.slot) === slot);
-      });
-    }
-
     function setSaveState(text, tone = "warn") {
       saveStateEl.textContent = text;
       saveStateEl.className = `save-state ${tone}`;
-    }
-
-    function syncTitleModeUI() {
-      const unified = titleMode === "unified";
-      unifiedTitleField.hidden = !unified;
-      perMerchantNote.hidden = unified;
-      unifiedContentLabel.textContent = unified
-        ? "统一正文（可选）"
-        : "统一正文（每家店共用，留空用默认）";
-      unifiedContentInput.placeholder = unified
-        ? "例如：发现身边宝藏小店，一起来坐坐。"
-        : DEFAULT_PER_MERCHANT_CONTENT;
-      titleModeSeg.querySelectorAll("button").forEach((btn) => {
-        btn.classList.toggle("active", btn.dataset.mode === titleMode);
-      });
     }
 
     function syncGroupModeUI() {
@@ -609,16 +673,26 @@
         btn.classList.toggle("active", btn.dataset.mode === groupMode);
       });
       groupModeNote.innerHTML = groupMode === "use_merchant"
-        ? "<strong>挂商户群聊：</strong>使用已为该商户创建的 IM 群（群名 = 完整店名）。若尚未建群，请先点「批量创建商户群聊」。"
+        ? "<strong>挂商户群聊：</strong>用这家店自己的群（群名 = 完整店名）。还没有群的店，发布时会自动创建。已经有群的店，会把群主交给这次的发布账号。"
         : "<strong>每次新建群聊：</strong>发布时为每家店临时新建一个群聊，不会复用商户已有群。";
     }
 
-    titleModeSeg.addEventListener("click", (event) => {
-      const btn = event.target.closest("button[data-mode]");
-      if (!btn) return;
-      titleMode = btn.dataset.mode;
-      syncTitleModeUI();
-    });
+    function syncPublisherModeUI() {
+      const unified = publisherMode === "unified";
+      document.getElementById("unifiedPublisherField").hidden = !unified;
+      document.getElementById("perMerchantPublisherField").hidden = unified;
+      publisherModeSeg.querySelectorAll("button").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.mode === publisherMode);
+      });
+      syncAdminNickModeUI();
+    }
+
+    function syncAdminNickModeUI() {
+      document.getElementById("adminNicknameField").hidden = adminNickMode !== "unified";
+      document.querySelectorAll("#adminNickModeSeg button").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.mode === adminNickMode);
+      });
+    }
 
     groupModeSeg.addEventListener("click", (event) => {
       const btn = event.target.closest("button[data-mode]");
@@ -627,15 +701,296 @@
       syncGroupModeUI();
     });
 
-    function currentOptions() {
+    publisherModeSeg.addEventListener("click", (event) => {
+      const btn = event.target.closest("button[data-mode]");
+      if (!btn) return;
+      publisherMode = btn.dataset.mode;
+      syncPublisherModeUI();
+    });
+
+    document.getElementById("adminNickModeSeg").addEventListener("click", (event) => {
+      const btn = event.target.closest("button[data-mode]");
+      if (!btn) return;
+      adminNickMode = btn.dataset.mode;
+      syncAdminNickModeUI();
+    });
+
+    function rosterUidSet() {
+      return new Set(rosterItems.map((item) => item.merchant_uid));
+    }
+
+    function selectedMerchantList() {
+      return rosterItems.map((item) => item.merchant_uid);
+    }
+
+    function enabledMerchantList() {
+      return rosterItems.filter((item) => item.enabled).map((item) => item.merchant_uid);
+    }
+
+    function filteredRosterRows() {
+      const visible = new Set(filteredMerchantRows().map((item) => item.merchant_uid));
+      return rosterItems.filter((item) => visible.has(item.merchant_uid));
+    }
+
+    function addMerchantsToRoster(merchants, enabled = true) {
+      const byUid = new Map(rosterItems.map((item) => [item.merchant_uid, item]));
+      for (const merchant of merchants || []) {
+        const uid = String(merchant.merchant_uid || "").trim();
+        if (!uid) continue;
+        const existing = byUid.get(uid);
+        if (existing) {
+          existing.name = merchant.name || existing.name;
+          existing.city = merchant.city || existing.city || "未分类";
+        } else {
+          const row = {
+            merchant_uid: uid,
+            enabled,
+            name: merchant.name || "",
+            city: merchant.city || "未分类",
+          };
+          byUid.set(uid, row);
+          rosterItems.push(row);
+        }
+      }
+    }
+
+    function removeMerchantsFromRoster(uids) {
+      const drop = new Set(uids);
+      rosterItems = rosterItems.filter((item) => !drop.has(item.merchant_uid));
+    }
+
+    function setRosterEnabled(uids, enabled) {
+      const set = new Set(uids);
+      for (const item of rosterItems) {
+        if (set.has(item.merchant_uid)) item.enabled = enabled;
+      }
+    }
+
+    async function persistRoster() {
+      const response = await fetch("/api/merchant-bubbles/roster", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(BuzzEnvUi.importBody({
+          items: rosterItems.map((item) => ({
+            merchant_uid: item.merchant_uid,
+            enabled: item.enabled !== false,
+          })),
+        })),
+      });
+      const data = await response.json();
+      if (!response.ok || !data.ok) throw new Error(data.error || "保存已选名单失败");
+      rosterItems = data.items || rosterItems;
+    }
+
+    async function mutateRoster(fn) {
+      fn();
+      try {
+        await persistRoster();
+        renderMerchantTable();
+        renderCityChips();
+      } catch (error) {
+        setSaveState(error.message || "保存已选名单失败", "error");
+      }
+    }
+
+    function normalizeCopyItem(item, fallback = { title: "", content: "", enabled: true }) {
+      if (typeof item === "string") {
+        return { title: item.trim(), content: fallback.content || "", enabled: true };
+      }
+      if (item && typeof item === "object") {
+        return {
+          title: String(item.title || item.now_title || "").trim(),
+          content: String(item.content || item.now_content || "").trim(),
+          enabled: item.enabled !== false,
+        };
+      }
+      return {
+        title: fallback.title || "",
+        content: fallback.content || "",
+        enabled: fallback.enabled !== false,
+      };
+    }
+
+    function renderCopyPoolShell() {
+      document.getElementById("copyPool").innerHTML = DEFAULT_COPY_POOL.map((item, index) => `
+        <div class="copy-card" data-copy-card="${index}">
+          <div class="copy-card-head">
+            <span>第 ${index + 1} 组</span>
+            <label><input data-copy-enabled="${index}" type="checkbox" checked> 启用</label>
+          </div>
+          <div class="field" style="margin-top:0">
+            <label>标题</label>
+            <input data-copy-title="${index}" maxlength="128" placeholder="${escapeHtml(item.title)}">
+          </div>
+          <div class="field">
+            <label>正文</label>
+            <textarea data-copy-content="${index}" maxlength="2000" placeholder="${escapeHtml(item.content)}"></textarea>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    const COPY_TYPE_ORDER = ["酒馆", "啤酒吧", "酒吧", "啤酒馆", "公园", "其他", "咖啡厅", "餐厅", "茶馆", "书店"];
+    let titlePools = {};
+    let activeCopyType = "酒馆";
+    let copyEditorReady = false;
+
+    function emptyCopyPool() {
+      return DEFAULT_COPY_POOL.map(() => ({ title: "", content: "", enabled: true }));
+    }
+
+    function copyPlaceholders() {
+      return DEFAULT_COPY_POOL.map(() => ({
+        title: "写一句适合这类地方的标题",
+        content: "写邀请大家过来的正文",
+      }));
+    }
+
+    function orderedCopyTypes() {
+      const fromMerchants = merchantRows.map((item) => String(item.type_name || "").trim()).filter(Boolean);
+      const names = new Set(fromMerchants);
+      if (!names.size) Object.keys(titlePools).forEach((name) => names.add(name));
+      if (!names.size) names.add("酒馆");
+      const rest = [...names].filter((name) => !COPY_TYPE_ORDER.includes(name)).sort((a, b) => a.localeCompare(b, "zh"));
+      return [...COPY_TYPE_ORDER.filter((name) => names.has(name)), ...rest];
+    }
+
+    function commitCopyEditor() {
+      if (!copyEditorReady || !activeCopyType) return;
+      titlePools[activeCopyType] = readTitlePool();
+    }
+
+    function updateCopyTypeNote() {
+      const note = document.getElementById("copyTypeNote");
+      if (!note) return;
+      const count = filledTitleCount(titlePools[activeCopyType] || []);
+      const status = count
+        ? `已启用 ${count} 组。发布「${activeCopyType}」时只轮流用这些文案。`
+        : `还没有可用文案。发布「${activeCopyType}」之前，请至少写一组标题并保持启用。`;
+      note.innerHTML = `<strong>正在编辑「${escapeHtml(activeCopyType)}」</strong> ${escapeHtml(status)} 其他类型不会用到这里的句子。`;
+    }
+
+    function renderCopyTypeChips() {
+      commitCopyEditor();
+      const chips = document.getElementById("copyTypeChips");
+      if (!chips) return;
+      const types = orderedCopyTypes();
+      if (!types.includes(activeCopyType)) {
+        activeCopyType = types[0];
+        fillTitlePool(titlePools[activeCopyType] || emptyCopyPool(), copyPlaceholders(activeCopyType));
+      }
+      chips.innerHTML = types.map((typeName) => {
+        const count = filledTitleCount(titlePools[typeName] || []);
+        const active = typeName === activeCopyType ? " active" : "";
+        const warn = count ? "" : " warn";
+        return `<button class="city-chip${active}${warn}" type="button" data-copy-type="${escapeHtml(typeName)}">${escapeHtml(typeName)} <span class="n">${count}组</span></button>`;
+      }).join("");
+      updateCopyTypeNote();
+    }
+
+    function showCopyType(typeName) {
+      commitCopyEditor();
+      activeCopyType = typeName;
+      if (!titlePools[typeName]) titlePools[typeName] = emptyCopyPool();
+      fillTitlePool(titlePools[typeName], copyPlaceholders(typeName));
+      copyEditorReady = true;
+      renderCopyTypeChips();
+    }
+
+    function copyPlanForMerchants(uids) {
+      commitCopyEditor();
+      const rows = merchantRows.filter((item) => uids.includes(item.merchant_uid) && !item.has_active_bubble);
+      const counts = new Map();
+      for (const item of rows) {
+        const typeName = item.type_name || "未分类";
+        counts.set(typeName, (counts.get(typeName) || 0) + 1);
+      }
+      const missing = [...counts.keys()].filter((typeName) => !filledTitleCount(titlePools[typeName] || []));
+      const summary = [...counts.entries()]
+        .map(([typeName, count]) => `${typeName} ${count} 家用 ${filledTitleCount(titlePools[typeName] || [])} 组`)
+        .join("，");
+      return { missing, summary };
+    }
+
+    function readTitlePool() {
+      return DEFAULT_COPY_POOL.map((item, index) => ({
+        title: (document.querySelector(`[data-copy-title="${index}"]`)?.value || "").trim(),
+        content: (document.querySelector(`[data-copy-content="${index}"]`)?.value || "").trim(),
+        enabled: document.querySelector(`[data-copy-enabled="${index}"]`)?.checked !== false,
+      }));
+    }
+
+    function filledTitleCount(pool = readTitlePool()) {
+      return pool.filter((item) => {
+        const title = String(item?.title || (typeof item === "string" ? item : "")).trim();
+        return title && item?.enabled !== false;
+      }).length;
+    }
+
+    function syncCopyCardState(index, enabled) {
+      const card = document.querySelector(`[data-copy-card="${index}"]`);
+      const checkbox = document.querySelector(`[data-copy-enabled="${index}"]`);
+      if (checkbox) checkbox.checked = enabled !== false;
+      if (card) card.classList.toggle("off", enabled === false);
+    }
+
+    function fillTitlePool(titles, placeholders) {
+      const list = Array.isArray(titles) ? titles : emptyCopyPool();
+      const hints = placeholders || copyPlaceholders(activeCopyType);
+      DEFAULT_COPY_POOL.forEach((fallback, index) => {
+        const item = normalizeCopyItem(list[index], { title: "", content: "", enabled: true });
+        const hint = hints[index] || fallback;
+        const titleEl = document.querySelector(`[data-copy-title="${index}"]`);
+        const contentEl = document.querySelector(`[data-copy-content="${index}"]`);
+        if (titleEl) {
+          titleEl.value = item.title;
+          titleEl.placeholder = hint.title || "";
+        }
+        if (contentEl) {
+          contentEl.value = item.content;
+          contentEl.placeholder = hint.content || "";
+        }
+        syncCopyCardState(index, list[index] == null ? true : item.enabled);
+      });
+    }
+
+    async function persistTitlePool() {
+      commitCopyEditor();
+      const response = await fetch("/api/merchant-bubbles/title-pool", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(BuzzEnvUi.importBody({ title_pools: titlePools })),
+      });
+      const data = await response.json();
+      if (!response.ok || !data.ok) throw new Error(data.error || "保存文案失败");
+      if (data.title_pools && typeof data.title_pools === "object") {
+        const editing = readTitlePool();
+        titlePools = data.title_pools;
+        titlePools[activeCopyType] = editing;
+      }
+      renderCopyTypeChips();
+    }
+
+    function currentOptions(extra = {}) {
+      const adminAge = document.getElementById("adminAge").value.trim();
       return BuzzEnvUi.importBody({
-        publish_user_id: document.getElementById("publishUserId").value.trim() || BuzzEnvUi.defaultPublishUserId(),
-        title_mode: titleMode,
-        unified_title: document.getElementById("unifiedTitle").value.trim(),
-        unified_content: document.getElementById("unifiedContent").value.trim(),
+        publisher_mode: publisherMode,
+        publish_user_id: publisherMode === "unified"
+          ? (document.getElementById("publishUserId").value.trim() || BuzzEnvUi.defaultPublishUserId())
+          : "",
+        title_pools: (commitCopyEditor(), titlePools),
         group_mode: groupMode,
         now_type: Number(document.getElementById("nowType").value),
-        city: document.getElementById("cityFilter").value.trim(),
+        content_type: document.getElementById("contentType").value,
+        start_at: document.getElementById("startAt").value,
+        expired_at: document.getElementById("expiredAt").value,
+        admin_nick_mode: adminNickMode,
+        admin_nickname: document.getElementById("adminNickname").value.trim(),
+        admin_avatar: document.getElementById("adminAvatar").value.trim(),
+        admin_gender: Number(document.getElementById("adminGender").value),
+        admin_age: adminAge ? Number(adminAge) : "",
+        admin_description: document.getElementById("adminSignature").value.trim(),
+        ...extra,
       });
     }
 
@@ -647,57 +1002,30 @@
     }
 
     function renderState(data) {
-      renderBatchSchedule(data.last_batch);
       statsEl.innerHTML = `
         <div class="stat"><b>${data.imported_total || 0}</b><span>已入库商户</span></div>
+        <div class="stat"><b>${data.with_admin || 0}</b><span>已有管理员</span></div>
         <div class="stat"><b>${data.with_group || 0}</b><span>已有群聊</span></div>
         <div class="stat"><b>${data.with_active_bubble || 0}</b><span>未过期气泡</span></div>
       `;
-
-      const cities = data.cities || [];
-      if (!cities.length) {
-        cityGridEl.innerHTML = '<p class="hint">暂无已入库商户。请先在商户审核页完成入库。</p>';
-        return;
+      if (Array.isArray(data.roster)) rosterItems = data.roster;
+      if (data.title_pools && typeof data.title_pools === "object") {
+        titlePools = data.title_pools;
+        const types = orderedCopyTypes();
+        if (!types.includes(activeCopyType)) activeCopyType = types[0] || "酒馆";
+        if (!titlePools[activeCopyType]) titlePools[activeCopyType] = emptyCopyPool();
+        fillTitlePool(titlePools[activeCopyType], copyPlaceholders(activeCopyType));
+        renderCopyTypeChips();
       }
+    }
 
-      cityGridEl.innerHTML = cities.map((city) => {
-        const selectedSlot = selectedBuckets.has(city.city)
-          ? selectedBuckets.get(city.city)
-          : city.current_slot;
-        if (!selectedBuckets.has(city.city)) {
-          selectedBuckets.set(city.city, city.current_slot);
-        }
-        return `
-        <article class="city-card" data-city="${escapeHtml(city.city)}">
-          <h3>${escapeHtml(city.city)} · 共 ${city.total} 家 · 当前轮次第 ${city.current_slot + 1} 组</h3>
-          <div class="bucket-rows">
-            ${(city.buckets || []).map((bucket) => `
-              <div class="bucket-row ${bucket.is_current ? "current" : ""} ${selectedSlot === bucket.index ? "selected" : ""}"
-                   data-city="${escapeHtml(city.city)}" data-slot="${bucket.index}" data-count="${bucket.count}"
-                   data-with-bubble="${bucket.with_bubble || 0}"
-                   data-with-active-bubble="${bucket.with_active_bubble || 0}">
-                <div class="bucket-row-head">
-                  <div>
-                    <div class="bucket-label">第 ${bucket.index + 1} 组 · ${bucket.count} 家</div>
-                    <div class="bucket-meta">未过期气泡 ${bucket.with_active_bubble || 0} 家 · 本地记录 ${bucket.with_bubble || 0} 家</div>
-                  </div>
-                  ${bucket.is_current ? '<span class="bucket-badge">当前轮次</span>' : ""}
-                </div>
-                <div class="bucket-actions">
-                  <button class="mini primary" type="button" data-action="publish-bucket"
-                    ${bucket.count ? "" : "disabled"}>发布气泡</button>
-                  <button class="mini danger" type="button" data-action="delete-bucket-bubbles"
-                    ${bucket.with_active_bubble ? "" : "disabled"}>批量删除</button>
-                  <button class="mini" type="button" data-action="expire-bucket-bubbles"
-                    ${bucket.with_active_bubble ? "" : "disabled"}>批量过期</button>
-                </div>
-              </div>
-            `).join("")}
-          </div>
-          <p class="hint" style="margin-top:8px">已有群聊 ${city.with_group} · 未过期气泡 ${city.with_active_bubble || 0} 家 · 本地气泡记录 ${city.with_bubble}</p>
-        </article>
-      `;
-      }).join("");
+    function adminCell(item) {
+      const nick = String(item?.admin_nickname || "").trim();
+      const id = String(item?.admin_user_id || "").trim();
+      if (!nick && !id) return '<span class="pill off">无</span>';
+      const label = nick || id;
+      const title = nick && id && nick !== id ? `${nick} · ${id}` : (id || nick);
+      return `<span class="pill" title="${escapeHtml(title)}">${escapeHtml(label)}</span>`;
     }
 
     function escapeHtml(value) {
@@ -706,6 +1034,256 @@
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;");
+    }
+
+    function baseMerchantRows() {
+      const q = document.getElementById("merchantQuery").value.trim().toLowerCase();
+      const barOnly = document.getElementById("barOnly").checked;
+      return merchantRows.filter((item) => {
+        if (barOnly && !item.is_bar) return false;
+        if (!q) return true;
+        return `${item.name} ${item.city} ${item.type_name}`.toLowerCase().includes(q);
+      });
+    }
+
+    function searchedMerchantRows() {
+      return baseMerchantRows().filter((item) => !sourceFilter || item.source === sourceFilter);
+    }
+
+    function applyRosterScope(rows) {
+      if (rosterScope !== "selected" && rosterScope !== "enabled") return rows;
+      const allow = rosterScope === "enabled" ? new Set(enabledMerchantList()) : rosterUidSet();
+      return rows.filter((item) => allow.has(item.merchant_uid));
+    }
+
+    function rowsInCityScope() {
+      const rows = applyRosterScope(searchedMerchantRows());
+      if (!cityFilter) return rows;
+      return rows.filter((item) => item.city === cityFilter);
+    }
+
+    function filteredMerchantRows() {
+      const selectedOnly = document.getElementById("selectedOnly").checked;
+      const selected = rosterUidSet();
+      return rowsInCityScope().filter((item) => {
+        if (typeFilter && (item.type_name || "未分类") !== typeFilter) return false;
+        if (selectedOnly && !selected.has(item.merchant_uid)) return false;
+        return true;
+      });
+    }
+
+    function renderSelectedCount() {
+      const enabled = rosterItems.filter((item) => item.enabled).length;
+      const text = `已选 ${rosterItems.length} 家 · 启用 ${enabled} 家`;
+      document.getElementById("selectedCount").textContent = text;
+      const publishBtn = document.getElementById("publishSelectedBtn");
+      if (publishBtn) publishBtn.textContent = enabled ? `为已启用的 ${enabled} 家发布` : "为已启用的店发布";
+    }
+
+    function renderSourceChips() {
+      const rows = baseMerchantRows();
+      const hotspotCount = rows.filter((item) => item.source === "city_hotspot").length;
+      document.getElementById("sourceChips").innerHTML = `
+        <button type="button" class="city-chip ${sourceFilter ? "" : "active"}" data-source="">
+          全部来源 <span class="n">${rows.length}</span>
+        </button>
+        <button type="button" class="city-chip ${sourceFilter === "city_hotspot" ? "active" : ""}" data-source="city_hotspot">
+          热门地标 <span class="n">${hotspotCount}</span>
+        </button>
+      `;
+    }
+
+    function renderRosterChips() {
+      const rows = searchedMerchantRows();
+      const selected = rosterUidSet();
+      const enabled = new Set(enabledMerchantList());
+      const selectedCount = rows.filter((item) => selected.has(item.merchant_uid)).length;
+      const enabledCount = rows.filter((item) => enabled.has(item.merchant_uid)).length;
+      document.getElementById("rosterChips").innerHTML = `
+        <button type="button" class="city-chip ${rosterScope ? "" : "active"}" data-roster="">
+          全部 <span class="n">${rows.length}</span>
+        </button>
+        <button type="button" class="city-chip ${rosterScope === "selected" ? "active" : ""}" data-roster="selected">
+          已选 <span class="n">${selectedCount}</span>
+        </button>
+        <button type="button" class="city-chip ${rosterScope === "enabled" ? "active" : ""}" data-roster="enabled">
+          已启用 <span class="n">${enabledCount}</span>
+        </button>
+      `;
+    }
+
+    function cityCountLabel(total, selected, enabled) {
+      if (rosterScope === "enabled") return `启用 ${enabled}`;
+      if (rosterScope === "selected") return `已选 ${selected} · 启用 ${enabled}`;
+      return `${total} · 已选 ${selected} · 启用 ${enabled}`;
+    }
+
+    function renderTypeChips() {
+      const rows = rowsInCityScope();
+      const totals = new Map();
+      for (const item of rows) {
+        const typeName = item.type_name || "未分类";
+        totals.set(typeName, (totals.get(typeName) || 0) + 1);
+      }
+      if (typeFilter && !totals.has(typeFilter)) typeFilter = "";
+      const types = [...totals.keys()].sort((a, b) => a.localeCompare(b, "zh"));
+      document.getElementById("typeChips").innerHTML = `
+        <button type="button" class="city-chip ${typeFilter ? "" : "active"}" data-type="">
+          全部类型 <span class="n">${rows.length}</span>
+        </button>
+      ` + types.map((typeName) => `
+        <button type="button" class="city-chip ${typeFilter === typeName ? "active" : ""}" data-type="${escapeHtml(typeName)}">
+          ${escapeHtml(typeName)} <span class="n">${totals.get(typeName) || 0}</span>
+        </button>
+      `).join("");
+    }
+
+    function renderCityChips() {
+      const base = searchedMerchantRows();
+      const selectedSet = rosterUidSet();
+      const enabledSet = new Set(enabledMerchantList());
+      const scoped = applyRosterScope(base);
+      const totals = new Map();
+      const selectedByCity = new Map();
+      const enabledByCity = new Map();
+      for (const item of scoped) {
+        const city = item.city || "未分类";
+        totals.set(city, (totals.get(city) || 0) + 1);
+      }
+      for (const item of base) {
+        const city = item.city || "未分类";
+        if (selectedSet.has(item.merchant_uid)) selectedByCity.set(city, (selectedByCity.get(city) || 0) + 1);
+        if (enabledSet.has(item.merchant_uid)) enabledByCity.set(city, (enabledByCity.get(city) || 0) + 1);
+      }
+      const cities = [...totals.keys()].sort((a, b) => a.localeCompare(b, "zh"));
+      if (cityFilter && !totals.has(cityFilter)) cityFilter = "";
+      const selectedTotal = base.filter((item) => selectedSet.has(item.merchant_uid)).length;
+      const enabledTotal = base.filter((item) => enabledSet.has(item.merchant_uid)).length;
+      const chips = document.getElementById("cityChips");
+      chips.innerHTML = `
+        <button type="button" class="city-chip ${cityFilter ? "" : "active"}" data-city="">
+          全部 <span class="n">${cityCountLabel(scoped.length, selectedTotal, enabledTotal)}</span>
+        </button>
+      ` + cities.map((city) => {
+        const total = totals.get(city) || 0;
+        const selected = selectedByCity.get(city) || 0;
+        const enabled = enabledByCity.get(city) || 0;
+        return `
+          <button type="button" class="city-chip ${cityFilter === city ? "active" : ""} ${selected && !enabled ? "off" : ""}" data-city="${escapeHtml(city)}">
+            ${escapeHtml(city)} <span class="n">${cityCountLabel(total, selected, enabled)}</span>
+          </button>
+        `;
+      }).join("");
+      renderSelectedCount();
+      renderSourceChips();
+      renderRosterChips();
+      renderTypeChips();
+    }
+
+    function renderMerchantTable() {
+      const tbody = document.querySelector("#merchantTable tbody");
+      const rows = filteredMerchantRows();
+      const selected = rosterUidSet();
+      const rosterByUid = new Map(rosterItems.map((item) => [item.merchant_uid, item]));
+      if (!rows.length) {
+        tbody.innerHTML = `<tr><td colspan="9" class="muted">没有符合筛选的已入库商户。</td></tr>`;
+        renderCityChips();
+        return;
+      }
+      tbody.innerHTML = rows.map((item) => {
+        const roster = rosterByUid.get(item.merchant_uid);
+        const on = Boolean(roster?.enabled);
+        return `
+          <tr class="${roster && !on ? "roster-off" : ""}" data-uid="${escapeHtml(item.merchant_uid)}">
+            <td><input class="check merchant-check" type="checkbox" ${roster ? "checked" : ""}></td>
+            <td class="name">${escapeHtml(item.name || "—")}</td>
+            <td>${escapeHtml(item.city || "—")}</td>
+            <td>${item.is_bar ? `<span class="pill bar">${escapeHtml(item.type_name || "酒馆")}</span>` : escapeHtml(item.type_name || "—")}</td>
+            <td class="enable-cell">${roster
+              ? `<label><input class="check roster-enable" type="checkbox" ${on ? "checked" : ""}> ${on ? "启用" : "停用"}</label>`
+              : '<span class="muted">—</span>'}</td>
+            <td>${adminCell(item)}</td>
+            <td>${item.has_group ? "有" : "无"}</td>
+            <td>${item.has_active_bubble ? '<span class="pill bar">未过期</span>' : '<span class="muted">—</span>'}</td>
+            <td class="row-actions">${item.has_active_bubble
+              ? `<button type="button" class="mini" data-bubble-action="expire">设为过期</button>
+                 <button type="button" class="mini danger" data-bubble-action="delete">删除</button>`
+              : '<span class="muted">—</span>'}</td>
+          </tr>
+        `;
+      }).join("");
+      renderCityChips();
+    }
+
+    async function runActiveBubbleAction(uid, action) {
+      if (busy) return;
+      const merchant = merchantRows.find((item) => item.merchant_uid === uid);
+      const name = merchant?.name || "这家店";
+      const isDelete = action === "delete";
+      const label = isDelete ? "删除" : "设为过期";
+      const ask = isDelete
+        ? `删除「${name}」当前这条未过期气泡？删除后用户看不到。`
+        : `把「${name}」当前这条气泡设为过期？`;
+      if (!window.confirm(ask)) return;
+      if (!(await BuzzEnvUi.confirmProdAction(`${label}将写入正式环境`))) return;
+      busy = true;
+      setSaveState(`正在${label}「${name}」...`, "warn");
+      try {
+        const response = await fetch("/api/merchant-bubbles/active-bubble", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(BuzzEnvUi.importBody({ merchant_uid: uid, action })),
+        });
+        const data = await response.json();
+        if (!response.ok || !data.ok) throw new Error(data.error || `${label}失败`);
+        await loadState();
+        setSaveState(`已${label}「${name}」的气泡`, "ok");
+      } catch (error) {
+        setSaveState(error.message || `${label}失败`, "error");
+      } finally {
+        busy = false;
+      }
+    }
+
+    async function loadMerchants() {
+      const query = new URLSearchParams({
+        ...Object.fromEntries(new URLSearchParams(BuzzEnvUi.envQuery())),
+        city: "",
+        q: "",
+        bar_only: "0",
+      });
+      const response = await fetch(`/api/merchant-bubbles/merchants?${query}`, { cache: "no-store" });
+      const data = await response.json();
+      if (!response.ok || !data.ok) throw new Error(data.error || "加载商户失败");
+      merchantRows = data.merchants || [];
+      merchantCities = data.cities || [];
+      renderCopyTypeChips();
+      const byUid = new Map(merchantRows.map((item) => [item.merchant_uid, item]));
+      for (const item of rosterItems) {
+        const merchant = byUid.get(item.merchant_uid);
+        if (!merchant) continue;
+        item.name = merchant.name || item.name;
+        item.city = merchant.city || item.city || "未分类";
+      }
+      renderMerchantTable();
+    }
+
+    function requireSelectedMerchants() {
+      const uids = selectedMerchantList();
+      if (!uids.length) {
+        setSaveState("请先勾选要加入已选名单的店", "error");
+        return null;
+      }
+      return uids;
+    }
+
+    function requireEnabledMerchants() {
+      const uids = enabledMerchantList();
+      if (!uids.length) {
+        setSaveState(rosterItems.length ? "已选的店都停用了，请先启用要发的城市或店" : "请先勾选店，并启用要发的城市", "error");
+        return null;
+      }
+      return uids;
     }
 
     async function loadState() {
@@ -718,164 +1296,35 @@
         const field = document.getElementById("publishUserId");
         if (field && !field.dataset.userEdited) field.value = data.default_publish_user_id;
       }
-      const poolHint = document.getElementById("publishUserPoolHint");
-      const pool = data.publish_user_pool;
-      if (poolHint && pool?.enabled) {
-        poolHint.hidden = false;
-        poolHint.textContent = `正式环境马甲号池：当前 ${pool.current_label || pool.current_user_id}（第 ${pool.index + 1}/${pool.total} 个）。单号满 500 群时自动换下一个。`;
-      } else if (poolHint) {
-        poolHint.hidden = true;
+      try {
+        await loadMerchants();
+      } catch (error) {
+        setSaveState(error.message || "商户列表加载失败", "error");
       }
       setSaveState(`就绪 · ${BuzzEnvUi.envLabel()}`, "ok");
       return data;
     }
 
-    async function runBucketAction(label, url, city, slot, body = {}) {
-      if (busy) return;
-      if (!(await BuzzEnvUi.confirmProdAction(`${label}将写入正式环境`))) return;
-      busy = true;
-      setSaveState(`${label}中（${BuzzEnvUi.envLabel()}）...`, "warn");
-      resultEl.textContent = "";
-      try {
-        const response = await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(BuzzEnvUi.importBody({ ...body, city, slot })),
-        });
-        const data = await response.json();
-        if (!response.ok || data.error) throw new Error(data.error || `${label}失败`);
-        await loadState();
-        const successCount = typeof data.ok === "number" ? data.ok : 0;
-        const detail = (data.results || [])
-          .filter((item) => !item.ok || item.note)
-          .slice(0, 8)
-          .map((item) => `${item.name || item.merchant_uid}: ${item.error || item.note || "完成"}`)
-          .join("\n");
-        resultEl.textContent = [
-          `${label}完成：${city} 第 ${slot + 1} 组`,
-          `处理 ${data.total ?? 0} 家 · 成功 ${successCount} · 失败 ${data.fail ?? 0}${data.cleaned != null ? ` · 清理本地 ${data.cleaned}` : ""}${data.skipped != null ? ` · 跳过 ${data.skipped}` : ""}`,
-          data.next_slot != null ? `该城市已轮到第 ${data.next_slot + 1} 组` : "",
-          data.expired_at ? `过期时间设为 ${data.expired_at}` : "",
-          detail,
-        ].filter(Boolean).join("\n");
-        setSaveState(`${label}完成`, data.fail ? "warn" : "ok");
-      } catch (error) {
-        setSaveState(error.message || `${label}失败`, "error");
-      } finally {
-        busy = false;
-      }
-    }
-
-    cityGridEl.addEventListener("click", async (event) => {
-      const actionBtn = event.target.closest("button[data-action]");
-      const row = event.target.closest(".bucket-row");
-      if (!row) return;
-
-      const city = row.dataset.city;
-      const slot = Number(row.dataset.slot);
-      setSelectedBucket(city, slot);
-
-      if (!actionBtn || busy) return;
-      event.stopPropagation();
-
-      const action = actionBtn.dataset.action;
-      const count = Number(row.dataset.count || 0);
-      const withBubble = Number(row.dataset.withBubble || 0);
-      const withActiveBubble = Number(row.dataset.withActiveBubble || 0);
-      const opts = currentOptions();
-
-      if (action === "publish-bucket") {
-        if (!count) return;
-        if (opts.title_mode === "unified" && !opts.unified_title) {
-          setSaveState("请填写统一标题", "error");
-          return;
-        }
-        if (opts.group_mode === "use_merchant" && !window.confirm(
-          `${city} 第 ${slot + 1} 组共 ${count} 家。若部分商户尚无群聊，发布可能失败。继续？`,
-        )) return;
-        if (!window.confirm(
-          `为 ${city} 第 ${slot + 1} 组（${count} 家）发布气泡？\n该城市上一组未过期气泡会先自动设为过期；发布后轮到下一组。`,
-        )) return;
-        await runBatchJob({
-          title: "分组发布",
-          scope: `${city} · 第 ${slot + 1} 组 · ${count} 家 · ${BuzzEnvUi.envLabel()}`,
-          url: "/api/merchant-bubbles/publish-bucket",
-          body: { ...opts, city, slot },
-        });
-        return;
-      }
-
-      if (action === "delete-bucket-bubbles") {
-        if (!withActiveBubble) return;
-        if (!window.confirm(
-          `删除 ${city} 第 ${slot + 1} 组内所有未过期气泡？\n将软删 Buzz 后台气泡并清空本地记录。`,
-        )) return;
-        await runBucketAction("批量删除", "/api/merchant-bubbles/delete-bucket-bubbles", city, slot);
-        return;
-      }
-
-      if (action === "expire-bucket-bubbles") {
-        if (!withActiveBubble) return;
-        if (!window.confirm(
-          `将 ${city} 第 ${slot + 1} 组内所有未过期气泡的过期时间设为此刻？`,
-        )) return;
-        await runBucketAction("批量过期", "/api/merchant-bubbles/expire-bucket-bubbles", city, slot);
-      }
-    });
-
-    async function runAction(label, url, body) {
-      if (busy) return;
-      if (!(await BuzzEnvUi.confirmProdAction(`${label}将写入正式环境`))) return;
-      busy = true;
-      setSaveState(`${label}中（${BuzzEnvUi.envLabel()}）...`, "warn");
-      resultEl.textContent = "";
-      try {
-        const response = await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(BuzzEnvUi.importBody(body || {})),
-        });
-        const data = await response.json();
-        if (!response.ok || !data.ok) throw new Error(data.error || `${label}失败`);
-        await loadState();
-        const summary = data.plan?.length
-          ? data.plan.map((item) => `${item.city} 第${item.slot + 1}组 ${item.count}家`).join(" · ")
-          : "";
-        const extra = data.created != null
-          ? `（新建 ${data.created} · 改名 ${data.renamed || 0}）`
-          : "";
-        resultEl.textContent = [
-          `${label}完成：成功 ${data.ok} / 失败 ${data.fail}${extra}`,
-          summary,
-        ].filter(Boolean).join("\n");
-        setSaveState(`${label}完成`, data.fail ? "warn" : "ok");
-      } catch (error) {
-        setSaveState(error.message || `${label}失败`, "error");
-      } finally {
-        busy = false;
-      }
-    }
-
-    document.getElementById("rebuildBtn").addEventListener("click", () => {
-      if (!window.confirm("重新随机分组？各城市商户会重新洗牌：至少 3 组，单组超过 40 家时自动加组。")) return;
-      runAction("重新分组", "/api/merchant-bubbles/rebuild-buckets", { city: currentOptions().city });
-    });
-
     document.getElementById("publishTestBtn").addEventListener("click", async () => {
       if (busy) return;
       const envLabel = BuzzEnvUi.envLabel();
       if (!window.confirm(
-        `在北京随机选 1 家已入库商户，发布 1 个测试气泡到 ${envLabel}？\n\n标题 = 店名，会临时新建群聊，3 天后过期。`,
+        `在北京随机选 1 家已入库商户，发布 1 个测试气泡到 ${envLabel}？\n\n标题和正文用那家店所属类型的文案。会临时新建群聊。未填过期时间则按 Zup 后台既有规则。`,
       )) return;
       const opts = currentOptions();
+      const readyTypes = Object.entries(opts.title_pools || {}).filter(([, pool]) => filledTitleCount(pool));
+      if (!readyTypes.length) {
+        setSaveState("请至少为一个商户类型启用一组填好标题的文案", "error");
+        return;
+      }
       await runBatchJob({
         title: "发布测试气泡",
         scope: `北京 · 随机 1 家 · ${envLabel}`,
         url: "/api/merchant-bubbles/publish-test",
         body: {
+          publisher_mode: opts.publisher_mode,
           publish_user_id: opts.publish_user_id,
-          title_mode: opts.title_mode,
-          unified_content: opts.unified_content,
+          title_pools: opts.title_pools,
           group_mode: "create_new",
           now_type: opts.now_type,
           city: "北京",
@@ -914,43 +1363,196 @@
       }
     });
 
-    document.getElementById("createGroupsBtn").addEventListener("click", async () => {
-      const opts = currentOptions();
-      if (!window.confirm(`为${opts.city || "全部城市"}已入库商户处理 IM 群？\n无群聊的会新建；已有群聊的会同步群名为完整店名。`)) return;
-      await runBatchJob({
-        title: "批量建群",
-        scope: `${opts.city || "全部城市"} · ${BuzzEnvUi.envLabel()}`,
-        url: "/api/merchant-bubbles/groups-batch",
-        body: opts,
-      });
+    syncGroupModeUI();
+    syncPublisherModeUI();
+    renderCopyPoolShell();
+    showCopyType("酒馆");
+    let titlePoolTimer = null;
+    let titlePoolSaveChain = Promise.resolve();
+    function scheduleTitlePoolSave(delay) {
+      clearTimeout(titlePoolTimer);
+      titlePoolTimer = setTimeout(() => {
+        titlePoolSaveChain = titlePoolSaveChain
+          .then(() => persistTitlePool())
+          .catch((error) => setSaveState(error.message || "保存文案失败", "error"));
+      }, delay);
+    }
+    document.getElementById("copyPool").addEventListener("input", () => {
+      scheduleTitlePoolSave(500);
     });
-
-    document.getElementById("publishBtn").addEventListener("click", async () => {
-      const opts = currentOptions();
-      if (opts.title_mode === "unified" && !opts.unified_title) {
-        setSaveState("请填写统一标题", "error");
+    document.getElementById("copyPool").addEventListener("change", (event) => {
+      const checkbox = event.target.closest("[data-copy-enabled]");
+      if (checkbox) {
+        syncCopyCardState(Number(checkbox.dataset.copyEnabled), checkbox.checked);
+      }
+      scheduleTitlePoolSave(0);
+    });
+    document.getElementById("copyPool").addEventListener("blur", () => {
+      scheduleTitlePoolSave(0);
+    }, true);
+    document.getElementById("copyTypeChips").addEventListener("click", (event) => {
+      const btn = event.target.closest("button[data-copy-type]");
+      if (!btn) return;
+      const next = btn.dataset.copyType || "";
+      if (!next || next === activeCopyType) return;
+      showCopyType(next);
+      scheduleTitlePoolSave(0);
+    });
+    document.getElementById("publishUserId").addEventListener("input", (event) => {
+      event.target.dataset.userEdited = "1";
+    });
+    document.getElementById("merchantQuery").addEventListener("input", renderMerchantTable);
+    document.getElementById("barOnly").addEventListener("change", renderMerchantTable);
+    document.getElementById("selectedOnly").addEventListener("change", renderMerchantTable);
+    document.getElementById("reloadMerchantsBtn").addEventListener("click", () => {
+      loadMerchants().catch((error) => setSaveState(error.message || "刷新失败", "error"));
+    });
+    document.getElementById("selectFilteredBtn").addEventListener("click", () => {
+      const rows = filteredMerchantRows();
+      if (!rows.length) {
+        setSaveState("当前筛选没有可加入的店", "warn");
         return;
       }
-      if (opts.group_mode === "use_merchant") {
-        const withGroup = Number(statsEl.querySelectorAll(".stat")[1]?.querySelector("b")?.textContent || 0);
-        const total = Number(statsEl.querySelectorAll(".stat")[0]?.querySelector("b")?.textContent || 0);
-        if (withGroup < total) {
-          if (!window.confirm("部分商户还没有群聊。建议先点「批量创建商户群聊」。仍要继续发布吗？")) return;
+      mutateRoster(() => addMerchantsToRoster(rows, true));
+    });
+    document.getElementById("merchantTable").addEventListener("change", (event) => {
+      const row = event.target.closest("tr[data-uid]");
+      if (!row) return;
+      const uid = row.dataset.uid;
+      if (event.target.classList.contains("merchant-check")) {
+        const merchant = merchantRows.find((item) => item.merchant_uid === uid);
+        if (event.target.checked) {
+          mutateRoster(() => addMerchantsToRoster([merchant || { merchant_uid: uid }], true));
+        } else {
+          mutateRoster(() => removeMerchantsFromRoster([uid]));
         }
+        return;
       }
-      if (!window.confirm("发布本批气泡？将按各城市当前轮次的一组商户发布；各城市上一组未过期气泡会先自动设为过期。")) return;
+      if (event.target.classList.contains("roster-enable")) {
+        mutateRoster(() => setRosterEnabled([uid], event.target.checked));
+      }
+    });
+    document.getElementById("merchantTable").addEventListener("click", (event) => {
+      const btn = event.target.closest("[data-bubble-action]");
+      if (!btn) return;
+      const row = btn.closest("tr[data-uid]");
+      if (!row) return;
+      runActiveBubbleAction(row.dataset.uid, btn.dataset.bubbleAction);
+    });
+    document.getElementById("rosterChips").addEventListener("click", (event) => {
+      const btn = event.target.closest("button[data-roster]");
+      if (!btn) return;
+      rosterScope = btn.dataset.roster || "";
+      renderMerchantTable();
+    });
+    document.getElementById("sourceChips").addEventListener("click", (event) => {
+      const btn = event.target.closest("button[data-source]");
+      if (!btn) return;
+      sourceFilter = btn.dataset.source || "";
+      renderMerchantTable();
+    });
+    document.getElementById("typeChips").addEventListener("click", (event) => {
+      const btn = event.target.closest("button[data-type]");
+      if (!btn) return;
+      typeFilter = btn.dataset.type || "";
+      renderMerchantTable();
+    });
+    document.getElementById("cityChips").addEventListener("click", (event) => {
+      const btn = event.target.closest("button[data-city]");
+      if (!btn) return;
+      cityFilter = btn.dataset.city || "";
+      renderMerchantTable();
+    });
+    document.getElementById("enableRosterCityBtn").addEventListener("click", () => {
+      const rows = filteredRosterRows();
+      if (!rows.length) return;
+      mutateRoster(() => setRosterEnabled(rows.map((item) => item.merchant_uid), true));
+    });
+    document.getElementById("disableRosterCityBtn").addEventListener("click", () => {
+      const rows = filteredRosterRows();
+      if (!rows.length) return;
+      mutateRoster(() => setRosterEnabled(rows.map((item) => item.merchant_uid), false));
+    });
+    document.getElementById("clearRosterBtn").addEventListener("click", () => {
+      if (!rosterItems.length) return;
+      if (!window.confirm(`清空全部已选 ${rosterItems.length} 家？想暂时不发某城，用「停用」即可。`)) return;
+      mutateRoster(() => { rosterItems = []; });
+    });
+
+    function selectedMissingAdmins(uids) {
+      const set = new Set(uids);
+      return merchantRows.filter((item) => set.has(item.merchant_uid) && !item.admin_user_id);
+    }
+
+    document.getElementById("createAdminsSelectedBtn").addEventListener("click", async () => {
+      const uids = requireSelectedMerchants();
+      if (!uids) return;
+      const missing = selectedMissingAdmins(uids);
+      const reuse = uids.length - missing.length;
+      const opts = currentOptions();
+      if (adminNickMode === "unified" && !opts.admin_nickname) {
+        setSaveState("请填写统一昵称", "error");
+        return;
+      }
+      const genderLabel = { 0: "未知", 1: "男", 2: "女" }[Number(opts.admin_gender)] || "未知";
+      const placeCount = missing.filter((item) => item.type_name === "公园" || item.type_name === "其他").length;
+      const nickLabel = placeCount
+        ? `${adminNickMode === "unified" ? `统一昵称「${opts.admin_nickname}」` : "用各店店名"}；其中 ${placeCount} 家公园/其他固定用「神秘小刘」`
+        : (adminNickMode === "unified" ? `统一昵称「${opts.admin_nickname}」` : "用各店店名");
+      const ageLabel = opts.admin_age ? `${opts.admin_age} 岁` : "不填";
+      const signLabel = opts.admin_description ? opts.admin_description : "不填";
+      if (!missing.length) {
+        window.alert(`已选的 ${uids.length} 家都已经有管理员，这次不会再建。`);
+        return;
+      }
+      const reuseNote = reuse ? `\n另外 ${reuse} 家已有管理员，不进入进度，也不改资料。` : "";
+      if (!window.confirm(
+        `只给还没有管理员的 ${missing.length} 家新建并绑成店长。${reuseNote}\n\n昵称：${nickLabel}\n性别：${genderLabel}\n年龄：${ageLabel}\n签名：${signLabel}`,
+      )) return;
       await runBatchJob({
-        title: "批量发布",
-        scope: `${opts.city || "全部城市"} · 当前轮次 · ${BuzzEnvUi.envLabel()}`,
+        title: "创建店管理员",
+        scope: `${missing.length} 家新建 · ${BuzzEnvUi.envLabel()}`,
+        url: "/api/merchant-bubbles/admins-batch",
+        body: currentOptions({
+          merchant_uids: missing.map((item) => item.merchant_uid),
+          city: "",
+        }),
+      });
+    });
+    document.getElementById("publishSelectedBtn").addEventListener("click", async () => {
+      const uids = requireEnabledMerchants();
+      if (!uids) return;
+      const already = merchantRows.filter((item) => uids.includes(item.merchant_uid) && item.has_active_bubble);
+      const publishUids = uids.filter((uid) => !already.some((item) => item.merchant_uid === uid));
+      if (!publishUids.length) {
+        window.alert("已启用的店都有未过期气泡，不用重复发。要重发请先删除或设为过期。");
+        return;
+      }
+      const opts = currentOptions({ merchant_uids: publishUids, city: "" });
+      const toPublish = publishUids.length;
+      const copyPlan = copyPlanForMerchants(publishUids);
+      if (copyPlan.missing.length) {
+        setSaveState(`这次要发的店里，${copyPlan.missing.map((name) => `「${name}」`).join("、")}还没有文案。请先点对应类型，至少启用一组标题。`, "error");
+        return;
+      }
+      const paused = rosterItems.length - uids.length;
+      const pauseNote = paused ? `\n另有 ${paused} 家已选但停用，这次不发。` : "";
+      const skipNote = already.length ? `\n其中 ${already.length} 家已有未过期气泡，将跳过。` : "";
+      const titleNote = copyPlan.summary ? `\n文案按类型分开用：${copyPlan.summary}。` : "";
+      if (opts.publisher_mode === "per_merchant") {
+        const missing = selectedMissingAdmins(uids.filter((uid) => !already.some((item) => item.merchant_uid === uid)));
+        if (missing.length) {
+          setSaveState(`已启用的店里有 ${missing.length} 家还没有管理员，请先点「为已选的店创建管理员」`, "error");
+          return;
+        }
+        if (!window.confirm(`用各店自己的管理员，为已启用的 ${toPublish} 家店发布气泡？${pauseNote}${skipNote}${titleNote}`)) return;
+      } else if (!window.confirm(`用统一账号为已启用的 ${toPublish} 家店发布气泡？${pauseNote}${skipNote}${titleNote}`)) return;
+      await runBatchJob({
+        title: "按店发布",
+        scope: `${toPublish} 家将发布${already.length ? ` · ${already.length} 家跳过` : ""} · ${BuzzEnvUi.envLabel()}`,
         url: "/api/merchant-bubbles/publish-batch",
         body: opts,
       });
-    });
-
-    syncTitleModeUI();
-    syncGroupModeUI();
-    document.getElementById("publishUserId").addEventListener("input", (event) => {
-      event.target.dataset.userEdited = "1";
     });
     BuzzEnvUi.initBuzzEnvUi("#buzzEnvBar").then(() => {
       applyPublishUserDefault();
@@ -963,3 +1565,4 @@
   </script>
 </body>
 </html>
+

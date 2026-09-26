@@ -1,7 +1,5 @@
 "use strict";
 
-const { resolveMerchantTypeName } = require("./merchant-import-ready");
-
 /** 商户类型名 → Buzz now content_type（与 /api/v1/now/content/type/list 一致） */
 const MERCHANT_TYPE_TO_CONTENT_TYPE = Object.freeze({
   啤酒馆: 3,
@@ -34,9 +32,8 @@ function merchantTypeNameFromEnvList(typeId, envTypes) {
 }
 
 function resolveMerchantTypeNameForBubble(merchant, envTypes) {
-  const fromEnvId = merchantTypeNameFromEnvList(merchant?.merchant_type, envTypes);
-  if (fromEnvId) return fromEnvId;
-  return resolveMerchantTypeName(merchant);
+  // 只认当前环境里的商户类型编号。分类说明里的「咖啡」「酒吧」不能改写成另一种商户类型。
+  return merchantTypeNameFromEnvList(merchant?.merchant_type, envTypes);
 }
 
 function resolveMerchantBubbleContentType(merchant, envTypes) {

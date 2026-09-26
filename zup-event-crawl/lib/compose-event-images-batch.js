@@ -7,6 +7,7 @@ const {
   saveComposedImage,
 } = require("./composed-image");
 const { composeEventPosterFromUrl, composeEventPosterImage } = require("./event-image-compose");
+const { composeXhsTextCover } = require("./xhs-text-cover-compose");
 const { getScrapeLocalImagePath } = require("./scrape-local-image");
 const { readImageFile } = require("./image-fetch");
 const { isExpired } = require("./event-import-ready");
@@ -76,17 +77,33 @@ async function composeEventImageRecord(record, options = {}) {
     };
   }
 
-  const scrapeLocalPath = getScrapeLocalImagePath(sourceUrl, root);
-  const buffer = scrapeLocalPath
-    ? await composeEventPosterImage(readImageFile(scrapeLocalPath).buffer, {
-      title: record.title,
-    })
-    : await composeEventPosterFromUrl(sourceUrl, {
-      cacheDir,
-      rootDir: root,
-      title: record.title,
-    });
   const composedUrl = buildComposedImageUrl(eventUid);
+  let buffer;
+  let coverMode = "poster";
+  let fallbackReason = "";
+
+  if (options.textCoverOnly) {
+    ({ buffer } = await composeXhsTextCover(record.title));
+    coverMode = "text";
+  } else {
+    try {
+      const scrapeLocalPath = getScrapeLocalImagePath(sourceUrl, root);
+      buffer = scrapeLocalPath
+        ? await composeEventPosterImage(readImageFile(scrapeLocalPath).buffer, {
+          title: record.title,
+        })
+        : await composeEventPosterFromUrl(sourceUrl, {
+          cacheDir,
+          rootDir: root,
+          title: record.title,
+        });
+    } catch (posterError) {
+      ({ buffer } = await composeXhsTextCover(record.title));
+      coverMode = "text";
+      fallbackReason = posterError.message;
+    }
+  }
+
   saveComposedImage(eventUid, buffer, root);
 
   return {
@@ -95,6 +112,8 @@ async function composeEventImageRecord(record, options = {}) {
     eventUid,
     sourceUrl,
     composedUrl,
+    coverMode,
+    fallbackReason,
     image_original: sourceUrl,
     image: composedUrl,
   };
@@ -133,6 +152,7 @@ async function batchComposeEventImages(db, options = {}) {
         cacheDir,
         force: options.force,
         dryRun: options.dryRun,
+        textCoverOnly: options.textCoverOnly,
       });
       counters[result.status] = (counters[result.status] || 0) + 1;
       if (result.status === "ok") {
@@ -142,7 +162,12 @@ async function batchComposeEventImages(db, options = {}) {
           image: result.composedUrl,
           updated_at: now,
         });
-        if (log) console.log(`  4:3 OK ${row.title}（${row.city}）`);
+        if (log) {
+          const mode = result.coverMode === "text"
+            ? `文字封面${result.fallbackReason ? `（原海报失败：${result.fallbackReason}）` : ""}`
+            : "海报";
+          console.log(`  4:3 OK ${row.title}（${row.city} · ${mode}）`);
+        }
       }
     } catch (error) {
       counters.fail += 1;

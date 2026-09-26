@@ -1,9 +1,13 @@
 "use strict";
 
+const crypto = require("crypto");
+const fs = require("fs");
 const { BuzzAdminClient, buildBuzzPayload } = require("./buzz-now-import");
+const { getComposedImagePath, parseComposedEventUid } = require("./composed-image");
 const {
   createGroupForMerchant,
   destroyGroup,
+  ensureGroupOwner,
   merchantGroupDisplayName,
   modifyGroupBaseInfo,
 } = require("./tencent-im-group");
@@ -11,14 +15,15 @@ const {
   getMerchantByUid,
   listImportedMerchants,
   markMerchantBubbleResult,
+  patchMerchantCityIfEmpty,
   updateMerchantGroupId,
 } = require("./merchant-db");
 const { applyBuzzEnvToMerchant } = require("./buzz-import-store");
 const { getBuzzEnvConfig, normalizeBuzzEnv } = require("./buzz-env");
+const { resolveMerchantCity } = require("./buzz-merchant-sync");
 const {
   createPublishUserPoolContext,
   getDefaultPoolUserId,
-  getPublishUserPoolStatus,
   isImGroupLimitError,
   poolEnabled,
   resolvePublishUserId: resolvePoolPublishUserId,
@@ -27,22 +32,300 @@ const {
   resolveMerchantBubbleContentType,
   resolveMerchantTypeNameForBubble,
 } = require("./merchant-bubble-content-type");
+const {
+  attachMerchantAdmins,
+  resolveMerchantPublishUserId,
+  shouldUseVestPool,
+} = require("./merchant-admin-user");
 
 const ROTATION_META_PREFIX = "merchant_bubble_rotation";
-const LAST_BATCH_META_PREFIX = "merchant_bubble_last_batch";
+const ROSTER_META_PREFIX = "merchant_bubble_roster";
+const TITLE_POOL_META_KEY = "merchant_bubble_title_pool";
+const TITLE_POOL_CURSOR_KEY = "merchant_bubble_title_pool_cursor";
+const TITLE_POOLS_META_KEY = "merchant_bubble_title_pools";
+const TITLE_POOL_CURSORS_KEY = "merchant_bubble_title_pool_cursors";
+const TITLE_POOL_SIZE = 10;
+const DEFAULT_COPY_POOL = Array.from({ length: TITLE_POOL_SIZE }, () => ({
+  title: "",
+  content: "",
+  enabled: true,
+}));
+const DEFAULT_TITLE_POOL = DEFAULT_COPY_POOL.map((item) => item.title);
 /** 每个城市至少分 3 组；单组超过 MAX_BUCKET_SIZE 时自动增加组数 */
 const MIN_BUCKET_COUNT = 3;
 const MAX_BUCKET_SIZE = 40;
 const BUBBLE_EXPIRE_DAYS = 3;
+const BUBBLE_PUBLISH_DELAY_MS = 200;
+const BAR_TYPE_NAMES = new Set(["酒馆", "酒吧", "啤酒馆", "啤酒吧"]);
+const activeBubbleCache = new Map();
+const ACTIVE_BUBBLE_CACHE_MS = 60 * 1000;
+
+function fingerprintBubbleImage(src) {
+  const url = String(src || "").trim();
+  const uid = parseComposedEventUid(url);
+  if (uid) {
+    try {
+      return crypto.createHash("sha1").update(fs.readFileSync(getComposedImagePath(uid))).digest("hex");
+    } catch {
+      return `missing:${uid}`;
+    }
+  }
+  if (!url) return "";
+  return crypto.createHash("sha1").update(url).digest("hex");
+}
+
+function parseCachedBubbleMedia(raw) {
+  try {
+    const parsed = JSON.parse(String(raw || "").trim() || "null");
+    if (Array.isArray(parsed)) return parsed;
+    if (parsed && typeof parsed === "object") return [parsed];
+  } catch {
+    // ignore
+  }
+  return [];
+}
+
+function cachedBubbleMedias(merchant, srcs, hash) {
+  if (!hash || hash !== String(merchant?.bubble_media_hash || "").trim()) return null;
+  const cached = parseCachedBubbleMedia(merchant?.bubble_media_json);
+  if (cached.length !== srcs.length) return null;
+  const medias = [];
+  for (let i = 0; i < cached.length; i += 1) {
+    const item = cached[i] || {};
+    const mediaId = String(item.media_id || "").trim();
+    const mediaUrl = String(item.media_url || "").trim();
+    const width = Number(item.width) || 0;
+    const height = Number(item.height) || 0;
+    if (!mediaId || !mediaUrl || width <= 0 || height <= 0) return null;
+    if (item.src && String(item.src) !== srcs[i]) return null;
+    medias.push({
+      media_id: mediaId,
+      media_url: mediaUrl,
+      media_type: Number(item.media_type) || 1,
+      width,
+      height,
+    });
+  }
+  return medias;
+}
+
+function pickNowMedias(nowItem) {
+  const list = nowItem?.now_medias || nowItem?.medias || [];
+  const medias = [];
+  for (const item of list || []) {
+    const mediaId = String(item?.media_id || "").trim();
+    const mediaUrl = String(item?.media_url || "").trim();
+    const width = Number(item?.width) || 0;
+    const height = Number(item?.height) || 0;
+    if (!mediaId || !mediaUrl || width <= 0 || height <= 0) continue;
+    medias.push({
+      media_id: mediaId,
+      media_url: mediaUrl,
+      media_type: Number(item.media_type) || 1,
+      width,
+      height,
+    });
+  }
+  return medias;
+}
+
+function nowItemMerchantId(item) {
+  return String(
+    item?.merchant?.merchant_id
+    || item?.now_merchant_id
+    || item?.merchant_id
+    || "",
+  ).trim();
+}
+
+function reusedMediaResult(srcs, hash, medias) {
+  const stored = srcs.map((src, index) => ({
+    src,
+    media_id: medias[index].media_id,
+    media_url: medias[index].media_url,
+    media_type: medias[index].media_type || 1,
+    width: medias[index].width,
+    height: medias[index].height,
+  }));
+  return {
+    medias: medias.map((item) => ({
+      media_id: item.media_id,
+      media_url: item.media_url,
+      media_type: item.media_type || 1,
+      width: item.width,
+      height: item.height,
+    })),
+    hash,
+    reused: true,
+    mediaJson: JSON.stringify(stored),
+  };
+}
+
+async function listNowPages(client, extra, onItem, options = {}) {
+  const maxPages = Number(options.maxPages) > 0 ? Number(options.maxPages) : 60;
+  for (let page = 1; page <= maxPages; page += 1) {
+    const data = await client.postJSON("/nows/list", { page, size: 100, ...extra });
+    const list = data?.list || [];
+    if (!list.length) return;
+    for (const item of list) {
+      if (onItem(item) === true) return;
+    }
+    if (list.length < 100) return;
+  }
+}
+
+async function loadMerchantMediaFromRecentNows(client, merchantIds, options = {}) {
+  const needed = new Set(
+    (merchantIds || []).map((id) => String(id || "").trim()).filter(Boolean),
+  );
+  const found = new Map();
+  if (!needed.size) return found;
+
+  const take = (item) => {
+    const merchantId = nowItemMerchantId(item);
+    if (!needed.has(merchantId) || found.has(merchantId)) {
+      return found.size >= needed.size;
+    }
+    const medias = pickNowMedias(item);
+    if (medias.length) found.set(merchantId, medias);
+    return found.size >= needed.size;
+  };
+
+  const publishUserId = String(options.publish_user_id || "").trim();
+  if (publishUserId) {
+    await listNowPages(client, { user_identifier: publishUserId, expired: 1, type: 2 }, take);
+    if (found.size < needed.size) {
+      await listNowPages(client, { user_identifier: publishUserId, type: 2 }, take);
+    }
+  }
+  if (found.size < needed.size) {
+    await listNowPages(client, { type: 2, expired: 1 }, take, { maxPages: 80 });
+  }
+  return found;
+}
+
+async function attachRemoteNowMedias(client, merchants, options = {}) {
+  const missingMediaIds = (merchants || [])
+    .filter((item) => !String(item.bubble_media_hash || "").trim())
+    .map((item) => item.buzz_merchant_id)
+    .filter(Boolean);
+  if (!missingMediaIds.length) return;
+  if (typeof options.onStatus === "function") {
+    options.onStatus("正在找回上次用过的封面，找到就不重新上传");
+  }
+  options.remoteNowMedias = await loadMerchantMediaFromRecentNows(client, missingMediaIds, {
+    publish_user_id: String(options.publish_user_id || "").trim(),
+  });
+  if (typeof options.onStatus === "function") {
+    const n = options.remoteNowMedias.size || 0;
+    options.onStatus(n ? `已找回上次封面 ${n} 家，开始发布` : "没有找到可复用封面，将重新上传");
+  }
+}
+
+async function fetchNowMediasForMerchant(client, merchant) {
+  const merchantId = String(merchant?.buzz_merchant_id || "").trim();
+  const name = String(merchant?.name || "").trim();
+  if (!merchantId) return null;
+  const queries = [];
+  if (name) {
+    queries.push({ page: 1, size: 20, keyword: name, type: 2, expired: 1 });
+    queries.push({ page: 1, size: 20, keyword: name, type: 2 });
+  }
+  for (const body of queries) {
+    try {
+      const data = await client.postJSON("/nows/list", body);
+      for (const item of data?.list || []) {
+        if (nowItemMerchantId(item) !== merchantId) continue;
+        const medias = pickNowMedias(item);
+        if (medias.length) return medias;
+      }
+    } catch {
+      // 找不到上次气泡就改走上传
+    }
+  }
+  return null;
+}
+
+function remoteMediasForMerchant(merchant, remoteMedias) {
+  const merchantId = String(merchant?.buzz_merchant_id || "").trim();
+  if (!merchantId || !remoteMedias) return null;
+  if (typeof remoteMedias.get === "function") return remoteMedias.get(merchantId) || null;
+  return remoteMedias[merchantId] || null;
+}
+
+async function resolveBubbleMedias(client, images, merchant, options = {}) {
+  const srcs = (images || []).map((src) => String(src || "").trim()).filter(Boolean);
+  if (!srcs.length) {
+    return { medias: [], hash: "", reused: false, mediaJson: "" };
+  }
+  const hash = srcs.map(fingerprintBubbleImage).join(",");
+  if (!options.forceUpload) {
+    const cached = cachedBubbleMedias(merchant, srcs, hash);
+    if (cached) return reusedMediaResult(srcs, hash, cached);
+    const remote = remoteMediasForMerchant(merchant, options.remoteMedias);
+    if (remote?.length >= srcs.length) {
+      return reusedMediaResult(srcs, hash, remote.slice(0, srcs.length));
+    }
+    const fetched = await fetchNowMediasForMerchant(client, merchant);
+    if (fetched?.length >= srcs.length) {
+      return reusedMediaResult(srcs, hash, fetched.slice(0, srcs.length));
+    }
+  }
+  const medias = [];
+  for (const src of srcs) {
+    medias.push(await client.uploadMedia(src));
+  }
+  const stored = srcs.map((src, index) => ({
+    src,
+    media_id: medias[index].media_id,
+    media_url: medias[index].media_url,
+    media_type: medias[index].media_type || 1,
+    width: medias[index].width || 0,
+    height: medias[index].height || 0,
+  }));
+  return {
+    medias,
+    hash,
+    reused: false,
+    mediaJson: JSON.stringify(stored),
+  };
+}
+
+function canSkipGroupOwnerTransfer(merchant, groupId, publishUserId) {
+  const knownGroup = String(merchant?.buzz_group_id || "").trim();
+  const knownOwner = String(merchant?.bubble_group_owner_id || "").trim();
+  return Boolean(
+    groupId
+    && publishUserId
+    && knownGroup === groupId
+    && knownOwner === publishUserId
+  );
+}
+
+function publishDelayMs(options = {}) {
+  if (options.delayMs === 0) return 0;
+  const n = Number(options.delayMs);
+  if (Number.isFinite(n) && n > 0) return n;
+  return BUBBLE_PUBLISH_DELAY_MS;
+}
+
+async function pauseAfterBubblePublish(options, result, isLast) {
+  if (isLast || result?.skipped) return;
+  const ms = publishDelayMs(options);
+  if (ms > 0) await sleep(ms);
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function invalidateActiveBubbleCache(buzzEnv) {
+  if (buzzEnv) activeBubbleCache.delete(normalizeBuzzEnv(buzzEnv));
+  else activeBubbleCache.clear();
+}
 
 function pad2(n) {
   return String(n).padStart(2, "0");
-}
-
-function merchantBubbleExpiredAt() {
-  const date = new Date();
-  date.setDate(date.getDate() + BUBBLE_EXPIRE_DAYS);
-  return `${date.getFullYear()}-${pad2(date.getMonth() + 1)}-${pad2(date.getDate())} ${pad2(date.getHours())}:${pad2(date.getMinutes())}:${pad2(date.getSeconds())}`;
 }
 
 function getMetaValue(db, key, fallback = null) {
@@ -62,63 +345,326 @@ function rotationMetaKey(buzzEnv) {
   return `${ROTATION_META_PREFIX}_${normalizeBuzzEnv(buzzEnv)}`;
 }
 
-function lastBatchMetaKey(buzzEnv) {
-  return `${LAST_BATCH_META_PREFIX}_${normalizeBuzzEnv(buzzEnv)}`;
+function rosterMetaKey(buzzEnv) {
+  return `${ROSTER_META_PREFIX}_${normalizeBuzzEnv(buzzEnv)}`;
 }
 
-function recordLastBatchPublishedAt(db, buzzEnv, at = new Date()) {
-  const iso = at instanceof Date ? at.toISOString() : String(at || "").trim();
-  if (!iso) return null;
-  setMetaValue(db, lastBatchMetaKey(buzzEnv), iso);
-  return iso;
+function truncateTitle(value) {
+  return String(value || "").trim().slice(0, 128);
 }
 
-function readStoredLastBatchPublishedAt(db, buzzEnv) {
-  const raw = String(getMetaValue(db, lastBatchMetaKey(buzzEnv), "") || "").trim();
-  if (!raw) return null;
-  const ts = Date.parse(raw);
-  return Number.isFinite(ts) ? new Date(ts).toISOString() : null;
+function truncateContent(value) {
+  return String(value || "").trim().slice(0, 2000);
 }
 
-/** 无显式记录时，用本环境最近一次商户气泡发布时间作回退 */
-function inferLastBatchPublishedAt(merchants) {
-  let latest = null;
-  for (const merchant of merchants || []) {
-    if (!String(merchant.bubble_now_id || "").trim()) continue;
-    const ts = parseBuzzDateTime(merchant.bubble_published_at);
-    if (ts == null) continue;
-    if (latest == null || ts > latest) latest = ts;
-  }
-  return latest == null ? null : new Date(latest).toISOString();
+function emptyCopyItem() {
+  return { title: "", content: "", enabled: true };
 }
 
-function buildLastBatchSchedule(db, merchants, buzzEnv) {
-  const stored = readStoredLastBatchPublishedAt(db, buzzEnv);
-  const inferred = stored ? null : inferLastBatchPublishedAt(merchants);
-  const lastBatchPublishedAt = stored || inferred;
-  if (!lastBatchPublishedAt) {
+function copyItemEnabled(item) {
+  return item?.enabled !== false;
+}
+
+function normalizeCopyItem(item, fallback = emptyCopyItem()) {
+  if (typeof item === "string") {
     return {
-      last_batch_published_at: null,
-      expire_at: null,
-      expire_days: BUBBLE_EXPIRE_DAYS,
-      is_expired: false,
-      ms_since_publish: null,
-      ms_until_expire: null,
-      source: null,
+      title: truncateTitle(item) || fallback.title || "",
+      content: fallback.content || "",
+      enabled: true,
     };
   }
-  const publishedTs = Date.parse(lastBatchPublishedAt);
-  const expireTs = publishedTs + BUBBLE_EXPIRE_DAYS * 24 * 60 * 60 * 1000;
-  const now = Date.now();
+  if (item && typeof item === "object") {
+    return {
+      title: truncateTitle(item.title || item.now_title),
+      content: truncateContent(item.content || item.now_content),
+      enabled: copyItemEnabled(item),
+    };
+  }
   return {
-    last_batch_published_at: lastBatchPublishedAt,
-    expire_at: new Date(expireTs).toISOString(),
-    expire_days: BUBBLE_EXPIRE_DAYS,
-    is_expired: now >= expireTs,
-    ms_since_publish: Math.max(0, now - publishedTs),
-    ms_until_expire: expireTs - now,
-    source: stored ? "meta" : "inferred",
+    title: fallback.title || "",
+    content: fallback.content || "",
+    enabled: copyItemEnabled(fallback),
   };
+}
+
+function normalizeTitlePool(value) {
+  const list = Array.isArray(value) ? value : [];
+  const out = [];
+  for (let i = 0; i < TITLE_POOL_SIZE; i += 1) {
+    const fallback = DEFAULT_COPY_POOL[i] || emptyCopyItem();
+    const raw = list[i];
+    if (raw == null) {
+      out.push(emptyCopyItem());
+      continue;
+    }
+    out.push(normalizeCopyItem(raw, typeof raw === "string" ? fallback : emptyCopyItem()));
+  }
+  return out;
+}
+
+function usableCopyItems(pool) {
+  return normalizeTitlePool(pool).filter((item) => item.title && copyItemEnabled(item));
+}
+
+function getTitlePool(db) {
+  const raw = getMetaValue(db, TITLE_POOL_META_KEY, null);
+  if (raw == null) return normalizeTitlePool(DEFAULT_COPY_POOL);
+  try {
+    return normalizeTitlePool(JSON.parse(raw));
+  } catch {
+    return normalizeTitlePool(DEFAULT_COPY_POOL);
+  }
+}
+
+function saveTitlePool(db, titles) {
+  const pool = normalizeTitlePool(titles);
+  setMetaValue(db, TITLE_POOL_META_KEY, JSON.stringify(pool));
+  return pool;
+}
+
+function cloneCopyPool(pool) {
+  return normalizeTitlePool(pool).map((item) => ({ ...item }));
+}
+
+const LEGACY_BAR_COPY_TYPES = ["酒馆", "啤酒吧"];
+
+function legacyBarTitlePools(db) {
+  const pool = getTitlePool(db);
+  const pools = {};
+  for (const name of LEGACY_BAR_COPY_TYPES) pools[name] = cloneCopyPool(pool);
+  return pools;
+}
+
+function normalizeTitlePools(value) {
+  const src = value && typeof value === "object" && !Array.isArray(value) ? value : {};
+  const out = {};
+  for (const [name, pool] of Object.entries(src)) {
+    const typeName = String(name || "").trim();
+    if (!typeName) continue;
+    out[typeName] = normalizeTitlePool(pool);
+  }
+  return out;
+}
+
+function getTitlePools(db) {
+  const raw = getMetaValue(db, TITLE_POOLS_META_KEY, null);
+  if (raw == null) return legacyBarTitlePools(db);
+  try {
+    const pools = normalizeTitlePools(JSON.parse(raw));
+    if (!Object.keys(pools).length) return legacyBarTitlePools(db);
+    return pools;
+  } catch {
+    return legacyBarTitlePools(db);
+  }
+}
+
+function saveTitlePools(db, pools) {
+  const merged = {
+    ...getTitlePools(db),
+    ...normalizeTitlePools(pools),
+  };
+  setMetaValue(db, TITLE_POOLS_META_KEY, JSON.stringify(merged));
+  return merged;
+}
+
+function getTitlePoolCursor(db) {
+  const n = Number(getMetaValue(db, TITLE_POOL_CURSOR_KEY, "0"));
+  if (!Number.isFinite(n) || n < 0) return 0;
+  return n % TITLE_POOL_SIZE;
+}
+
+function setTitlePoolCursor(db, index) {
+  const n = Number(index);
+  const next = Number.isFinite(n) && n >= 0 ? n % TITLE_POOL_SIZE : 0;
+  setMetaValue(db, TITLE_POOL_CURSOR_KEY, String(next));
+  return next;
+}
+
+function getTitlePoolCursors(db) {
+  const raw = getMetaValue(db, TITLE_POOL_CURSORS_KEY, null);
+  if (raw == null) {
+    const legacy = getTitlePoolCursor(db);
+    const cursors = {};
+    for (const name of LEGACY_BAR_COPY_TYPES) cursors[name] = legacy;
+    return cursors;
+  }
+  try {
+    const parsed = JSON.parse(raw);
+    const out = {};
+    for (const [name, value] of Object.entries(parsed || {})) {
+      const typeName = String(name || "").trim();
+      const n = Number(value);
+      if (!typeName) continue;
+      out[typeName] = Number.isFinite(n) && n >= 0 ? n % TITLE_POOL_SIZE : 0;
+    }
+    return out;
+  } catch {
+    return {};
+  }
+}
+
+function setTitlePoolCursorForType(db, typeName, index) {
+  const name = String(typeName || "").trim();
+  if (!name) return getTitlePoolCursors(db);
+  const cursors = getTitlePoolCursors(db);
+  const n = Number(index);
+  cursors[name] = Number.isFinite(n) && n >= 0 ? n % TITLE_POOL_SIZE : 0;
+  setMetaValue(db, TITLE_POOL_CURSORS_KEY, JSON.stringify(cursors));
+  return cursors;
+}
+
+function nextUsableCopyIndex(pool, start) {
+  const items = normalizeTitlePool(pool);
+  const begin = ((Number(start) % TITLE_POOL_SIZE) + TITLE_POOL_SIZE) % TITLE_POOL_SIZE;
+  for (let step = 0; step < TITLE_POOL_SIZE; step += 1) {
+    const idx = (begin + step) % TITLE_POOL_SIZE;
+    const item = items[idx];
+    if (item?.title && copyItemEnabled(item)) return idx;
+  }
+  return -1;
+}
+
+function createTitlePicker(pool, options = {}) {
+  const items = normalizeTitlePool(pool);
+  if (nextUsableCopyIndex(items, 0) < 0) {
+    throw new Error("请至少启用一组填好标题的文案");
+  }
+  let cursor = Number(options.startCursor);
+  if (!Number.isFinite(cursor) || cursor < 0) cursor = 0;
+  cursor %= TITLE_POOL_SIZE;
+
+  return () => {
+    const idx = nextUsableCopyIndex(items, cursor);
+    if (idx < 0) throw new Error("请至少启用一组填好标题的文案");
+    cursor = (idx + 1) % TITLE_POOL_SIZE;
+    if (typeof options.onAdvance === "function") options.onAdvance(cursor);
+    return { ...items[idx] };
+  };
+}
+
+function attachTitlePicker(db, options = {}) {
+  if (typeof options.pickCopyForMerchant === "function") return options;
+  let pools;
+  if (options.title_pools && typeof options.title_pools === "object" && !Array.isArray(options.title_pools)) {
+    pools = saveTitlePools(db, options.title_pools);
+  } else if (Array.isArray(options.title_pool)) {
+    const patch = {};
+    for (const name of LEGACY_BAR_COPY_TYPES) patch[name] = options.title_pool;
+    pools = saveTitlePools(db, patch);
+  } else {
+    pools = getTitlePools(db);
+  }
+  options.title_pools = pools;
+  const cursors = getTitlePoolCursors(db);
+  const pickers = {};
+  for (const [typeName, pool] of Object.entries(pools)) {
+    if (nextUsableCopyIndex(pool, 0) < 0) continue;
+    pickers[typeName] = createTitlePicker(pool, {
+      startCursor: cursors[typeName] || 0,
+      onAdvance: (next) => setTitlePoolCursorForType(db, typeName, next),
+    });
+  }
+  options.pickCopyForMerchant = (merchant) => {
+    const typeName = resolveMerchantTypeNameForBubble(merchant, options.merchant_types);
+    if (!typeName) {
+      const shop = String(merchant?.name || "这家店").trim();
+      throw new Error(`「${shop}」的商户类型没有对上当前环境，已停止按分类说明猜测。请刷新商户列表后再发`);
+    }
+    const pick = pickers[typeName];
+    if (!pick) {
+      throw new Error(`「${typeName}」还没有可用文案。请先在发布设置里为这个类型至少启用一组标题`);
+    }
+    return pick();
+  };
+  return options;
+}
+
+function pickBubbleCopy(merchant, options = {}) {
+  const explicitTitle = truncateTitle(options.now_title);
+  const explicitContent = truncateContent(options.now_content || options.unified_content);
+  if (explicitTitle) {
+    return { title: explicitTitle, content: explicitContent };
+  }
+  if (typeof options.pickCopyForMerchant === "function") return options.pickCopyForMerchant(merchant);
+  if (typeof options.pickCopy === "function") return options.pickCopy();
+  const typeName = resolveMerchantTypeNameForBubble(merchant, options.merchant_types);
+  if (!typeName) {
+    const shop = String(merchant?.name || "这家店").trim();
+    throw new Error(`「${shop}」的商户类型没有对上当前环境，已停止按分类说明猜测。请刷新商户列表后再发`);
+  }
+  const pool = options.title_pools?.[typeName];
+  const usable = usableCopyItems(pool);
+  if (!usable.length) {
+    throw new Error(typeName
+      ? `「${typeName}」还没有可用文案。请先在发布设置里为这个类型至少启用一组标题`
+      : "请至少启用一组填好标题的文案");
+  }
+  const idx = nextUsableCopyIndex(pool, 0);
+  return { ...normalizeTitlePool(pool)[idx] };
+}
+
+function normalizeRosterItems(items) {
+  const seen = new Set();
+  const out = [];
+  for (const item of items || []) {
+    const uid = String(item?.merchant_uid || item || "").trim();
+    if (!uid || seen.has(uid)) continue;
+    seen.add(uid);
+    out.push({
+      merchant_uid: uid,
+      enabled: item?.enabled !== false,
+    });
+  }
+  return out;
+}
+
+function getMerchantBubbleRoster(db, options = {}) {
+  const buzzEnv = resolveBuzzEnv(options);
+  const raw = getMetaValue(db, rosterMetaKey(buzzEnv), "[]");
+  let parsed = [];
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    parsed = [];
+  }
+  const stored = normalizeRosterItems(parsed);
+  const merchants = listImportedMerchants(db, { buzz_env: buzzEnv });
+  const byUid = new Map((merchants || []).map((item) => [item.merchant_uid, item]));
+  const items = [];
+  for (const item of stored) {
+    const merchant = byUid.get(item.merchant_uid);
+    if (!merchant) continue;
+    const city = resolveMerchantCity(merchant) || "未分类";
+    if (city !== "未分类" && !String(merchant.city || "").trim()) {
+      patchMerchantCityIfEmpty(db, merchant.merchant_uid, city);
+      merchant.city = city;
+    }
+    items.push({
+      merchant_uid: item.merchant_uid,
+      enabled: item.enabled !== false,
+      name: merchant.name || "",
+      city,
+    });
+  }
+  if (items.length !== stored.length) {
+    setMetaValue(
+      db,
+      rosterMetaKey(buzzEnv),
+      JSON.stringify(items.map((item) => ({ merchant_uid: item.merchant_uid, enabled: item.enabled }))),
+    );
+  }
+  return { buzz_env: buzzEnv, items };
+}
+
+function saveMerchantBubbleRoster(db, items, options = {}) {
+  const buzzEnv = resolveBuzzEnv(options);
+  const normalized = normalizeRosterItems(items);
+  setMetaValue(
+    db,
+    rosterMetaKey(buzzEnv),
+    JSON.stringify(normalized.map((item) => ({ merchant_uid: item.merchant_uid, enabled: item.enabled }))),
+  );
+  return getMerchantBubbleRoster(db, { ...options, buzz_env: buzzEnv });
 }
 
 function resolveBuzzEnv(options = {}) {
@@ -127,13 +673,14 @@ function resolveBuzzEnv(options = {}) {
 
 function defaultPublishUserId(options = {}) {
   const buzzEnv = resolveBuzzEnv(options);
-  if (options.db && poolEnabled(buzzEnv)) {
+  if (shouldUseVestPool(options) && options.db && poolEnabled(buzzEnv)) {
     return getDefaultPoolUserId(options.db, buzzEnv);
   }
   return getBuzzEnvConfig(buzzEnv).defaultPublishUserId;
 }
 
 function ensurePoolContext(db, options = {}) {
+  if (!shouldUseVestPool(options)) return null;
   const buzzEnv = resolveBuzzEnv(options);
   if (!poolEnabled(buzzEnv)) return null;
   if (options.poolContext) return options.poolContext;
@@ -422,7 +969,9 @@ function parseBuzzDateTime(value) {
   return Number.isFinite(ts) ? ts : null;
 }
 
-function isNowExpired(expiredAt) {
+function isNowExpired(expiredAt, extra = {}) {
+  const expiredStatus = Number(extra?.expired_status);
+  if (expiredStatus === 1 || extra?.expired === true) return true;
   const ts = parseBuzzDateTime(expiredAt);
   if (ts == null) return false;
   return ts <= Date.now();
@@ -436,18 +985,65 @@ function formatBuzzDateTime(date) {
   return `${date.getFullYear()}-${pad2(date.getMonth() + 1)}-${pad2(date.getDate())} ${pad2(date.getHours())}:${pad2(date.getMinutes())}:${pad2(date.getSeconds())}`;
 }
 
+function toBuzzDateTime(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+  if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(raw)) return raw;
+  const match = raw.match(/^(\d{4}-\d{2}-\d{2})[T ](\d{2}:\d{2})(?::(\d{2}))?/);
+  if (match) return `${match[1]} ${match[2]}:${match[3] || "00"}`;
+  const ts = Date.parse(raw);
+  if (!Number.isFinite(ts)) throw new Error(`时间格式不对：${raw}`);
+  return formatBuzzDateTime(new Date(ts));
+}
+
+function resolveMerchantBubbleSchedule(options = {}) {
+  const startAt = options.start_at ? toBuzzDateTime(options.start_at) : "";
+  const expiredAt = String(options.expired_at || "").trim()
+    ? toBuzzDateTime(options.expired_at)
+    : "";
+  if (startAt && expiredAt) {
+    const startTs = parseBuzzDateTime(startAt);
+    const endTs = parseBuzzDateTime(expiredAt);
+    if (startTs != null && endTs != null && endTs <= startTs) {
+      throw new Error("过期时间必须晚于开始时间");
+    }
+  }
+  return { start_at: startAt, expired_at: expiredAt };
+}
+
+function applyPublishSchedule(options = {}) {
+  if (options._scheduleApplied) return options;
+  const schedule = resolveMerchantBubbleSchedule(options);
+  options.start_at = schedule.start_at;
+  options.expired_at = schedule.expired_at;
+  options._scheduleApplied = true;
+  return options;
+}
+
+function resolveBubbleContentType(merchant, options = {}) {
+  const raw = options.content_type;
+  if (raw !== "" && raw != null && raw !== "auto") {
+    const value = Number(raw);
+    if (!Number.isInteger(value) || value < 0) {
+      throw new Error("content_type 须为 0 或正整数，或填 auto");
+    }
+    return value;
+  }
+  return resolveMerchantBubbleContentType(merchant, options.merchant_types);
+}
+
 function localBubbleExpireTs(merchant) {
   const publishedAt = parseBuzzDateTime(merchant.bubble_published_at);
   if (publishedAt == null) return null;
   return publishedAt + BUBBLE_EXPIRE_DAYS * 24 * 60 * 60 * 1000;
 }
 
-/** @returns {boolean|null} true=本地未过期 false=本地已过期 null=无发布时间需远程核实 */
+/** @returns {boolean|null} false=本地已过期或没有；null=需向后台核实真实 expired_at */
 function isLocallyActiveBubble(merchant) {
   if (!String(merchant.bubble_now_id || "").trim()) return false;
   const expireTs = localBubbleExpireTs(merchant);
-  if (expireTs == null) return null;
-  return expireTs > Date.now();
+  if (expireTs != null && expireTs <= Date.now()) return false;
+  return null;
 }
 
 async function verifyActiveBubblesRemotely(db, client, merchants, buzzEnv, options = {}) {
@@ -462,9 +1058,9 @@ async function verifyActiveBubblesRemotely(db, client, merchants, buzzEnv, optio
       index += 1;
       try {
         const nowItem = await client.getNowById(current.bubble_now_id);
-        if (nowItem && !isNowExpired(nowItem.expired_at)) {
+        if (nowItem && !isNowExpired(nowItem.expired_at, nowItem)) {
           activeUids.add(current.merchant_uid);
-        } else if (!nowItem || isNowExpired(nowItem.expired_at)) {
+        } else if (!nowItem || isNowExpired(nowItem.expired_at, nowItem)) {
           clearMerchantBubbleLocal(db, current.merchant_uid, buzzEnv);
         }
       } catch {
@@ -480,10 +1076,17 @@ async function verifyActiveBubblesRemotely(db, client, merchants, buzzEnv, optio
 
 async function loadActiveBubbleMerchantUids(db, options = {}) {
   const buzzEnv = resolveBuzzEnv(options);
+  const cached = activeBubbleCache.get(buzzEnv);
+  if (!options.refresh && cached && Date.now() - cached.at < ACTIVE_BUBBLE_CACHE_MS) {
+    return new Set(cached.uids);
+  }
   const merchants = listImportedMerchants(db, importListOptions(options));
   const withBubble = merchants.filter((item) => String(item.bubble_now_id || "").trim());
   const activeUids = new Set();
-  if (!withBubble.length) return activeUids;
+  if (!withBubble.length) {
+    activeBubbleCache.set(buzzEnv, { at: Date.now(), uids: [] });
+    return activeUids;
+  }
 
   const needsRemote = [];
   for (const merchant of withBubble) {
@@ -504,6 +1107,7 @@ async function loadActiveBubbleMerchantUids(db, options = {}) {
     const verified = await verifyActiveBubblesRemotely(db, client, needsRemote, buzzEnv, options);
     for (const uid of verified) activeUids.add(uid);
   }
+  activeBubbleCache.set(buzzEnv, { at: Date.now(), uids: [...activeUids] });
   return activeUids;
 }
 
@@ -553,7 +1157,7 @@ async function listBubbleMerchantsInBucket(db, city, slotIndex, options = {}) {
       });
       continue;
     }
-    if (isNowExpired(nowItem.expired_at)) {
+    if (isNowExpired(nowItem.expired_at, nowItem)) {
       stale.push({
         merchant,
         now_id: nowId,
@@ -572,7 +1176,83 @@ async function listBubbleMerchantsInBucket(db, city, slotIndex, options = {}) {
   return { ...pick, targets, stale, client };
 }
 
+async function listMerchantsToPublish(db, options = {}) {
+  const merchants = listImportedMerchants(db, importListOptions(options));
+  if (!merchants.length) return merchants;
+  const activeUids = await loadActiveBubbleMerchantUids(db, options);
+  return merchants.filter((item) => !activeUids.has(item.merchant_uid));
+}
+
+async function merchantHasActiveBubble(merchant, options = {}) {
+  const local = isLocallyActiveBubble(merchant);
+  if (local === true) return true;
+  if (local === false) return false;
+  const nowId = String(merchant?.bubble_now_id || "").trim();
+  if (!nowId) return false;
+  try {
+    const client = options.client || new BuzzAdminClient({ ...options, buzz_env: resolveBuzzEnv(options) });
+    options.client = client;
+    const nowItem = await client.getNowById(nowId);
+    return Boolean(nowItem && !isNowExpired(nowItem.expired_at, nowItem));
+  } catch {
+    return true;
+  }
+}
+
+async function deleteActiveBubbleForMerchant(db, merchant, options = {}) {
+  const buzzEnv = resolveBuzzEnv(options);
+  const nowId = String(merchant.bubble_now_id || "").trim();
+  if (!nowId) {
+    return {
+      ok: true,
+      skipped: true,
+      merchant_uid: merchant.merchant_uid,
+      name: merchant.name,
+    };
+  }
+  const client = options.client || new BuzzAdminClient({ ...options, buzz_env: buzzEnv });
+  options.client = client;
+  try {
+    await client.deleteNow(nowId);
+  } catch (error) {
+    const msg = String(error.message || "");
+    if (!/not found|不存在|404|already/i.test(msg)) {
+      return {
+        ok: false,
+        merchant_uid: merchant.merchant_uid,
+        name: merchant.name,
+        now_id: nowId,
+        error: error.message,
+      };
+    }
+  }
+  clearMerchantBubbleLocal(db, merchant.merchant_uid, buzzEnv);
+  return {
+    ok: true,
+    deleted: true,
+    merchant_uid: merchant.merchant_uid,
+    name: merchant.name,
+    now_id: nowId,
+  };
+}
+
+async function mutateMerchantActiveBubble(db, merchantUid, action, options = {}) {
+  const merchant = merchantInEnv(db, merchantUid, options);
+  if (!merchant) {
+    return { ok: false, merchant_uid: merchantUid, error: "商户不存在" };
+  }
+  const kind = String(action || "").trim();
+  if (kind === "expire") {
+    return expireActiveBubbleForMerchant(db, merchant, options);
+  }
+  if (kind === "delete") {
+    return deleteActiveBubbleForMerchant(db, merchant, options);
+  }
+  throw new Error("请选择删除或设为过期");
+}
+
 function clearMerchantBubbleLocal(db, merchantUid, buzzEnv) {
+  invalidateActiveBubbleCache(buzzEnv);
   markMerchantBubbleResult(db, merchantUid, {
     bubble_now_id: "",
     bubble_published_at: null,
@@ -603,6 +1283,23 @@ async function expireActiveBubbleForMerchant(db, merchant, options = {}) {
   const client = options.client || new BuzzAdminClient({ ...options, buzz_env: buzzEnv });
   options.client = client;
   try {
+    let nowItem = null;
+    try {
+      nowItem = await client.getNowById(nowId);
+    } catch {
+      nowItem = null;
+    }
+    if (nowItem) {
+      const src = String(merchant.image || "").trim();
+      const medias = pickNowMedias(nowItem);
+      const hash = src ? fingerprintBubbleImage(src) : "";
+      if (hash && medias.length) {
+        markMerchantBubbleResult(db, merchant.merchant_uid, {
+          bubble_media_hash: hash,
+          bubble_media_json: JSON.stringify([{ src, ...medias[0] }]),
+        }, buzzEnv);
+      }
+    }
     await client.updateNow(nowId, { expired_at: nowDateTime() });
     clearMerchantBubbleLocal(db, merchant.merchant_uid, buzzEnv);
     return {
@@ -734,26 +1431,20 @@ function buildPerMerchantCopy(merchant, options = {}) {
 
 function buildBubbleRecord(merchant, options = {}) {
   const publishUserId = String(options.publish_user_id || defaultPublishUserId(options)).trim();
-  const titleMode = options.title_mode === "per_merchant" ? "per_merchant" : "unified";
-  const copy = titleMode === "per_merchant"
-    ? buildPerMerchantCopy(merchant, options)
-    : {
-      now_title: String(options.unified_title || "").trim(),
-      now_content: String(options.unified_content || "").trim(),
-    };
-
-  if (!copy.now_title) {
-    throw new Error("缺少气泡标题");
+  const copy = pickBubbleCopy(merchant, options);
+  if (!copy.title) {
+    throw new Error("请至少启用一组填好标题的文案");
   }
 
-  const contentType = resolveMerchantBubbleContentType(merchant, options.merchant_types);
+  applyPublishSchedule(options);
+  const contentType = resolveBubbleContentType(merchant, options);
   const merchantTypeName = resolveMerchantTypeNameForBubble(merchant, options.merchant_types);
 
   return {
     user_id: publishUserId,
     publish_user_id: publishUserId,
-    now_title: copy.now_title,
-    now_content: copy.now_content,
+    now_title: copy.title,
+    now_content: copy.content,
     now_type: Number(options.now_type) || 1,
     content_type: contentType,
     merchant_type_name: merchantTypeName,
@@ -763,7 +1454,8 @@ function buildBubbleRecord(merchant, options = {}) {
     location_address: merchant.poi_address || merchant.address || "",
     location_latitude: merchant.latitude,
     location_longitude: merchant.longitude,
-    expired_at: options.expired_at || merchantBubbleExpiredAt(),
+    start_at: options.start_at || "",
+    expired_at: options.expired_at || "",
     group_id: "",
     images: merchant.image ? [merchant.image] : [],
   };
@@ -771,53 +1463,75 @@ function buildBubbleRecord(merchant, options = {}) {
 
 async function getMerchantBubbleState(db, options = {}) {
   const buzzEnv = resolveBuzzEnv(options);
-  const stateOptions = { ...options, db };
   const viewOptions = fullStateOptions(options);
   const merchants = listImportedMerchants(db, importListOptions(viewOptions));
+  await attachMerchantAdmins(db, merchants, { ...options, buzz_env: buzzEnv });
   const activeUids = await loadActiveBubbleMerchantUids(db, viewOptions);
-  const byCity = groupMerchantsByCity(merchants);
-  const state = loadRotationState(db, buzzEnv);
-  const cities = [];
-
-  for (const [city, list] of byCity.entries()) {
-    const cityState = ensureCityRotation(
-      state,
-      city,
-      list.map((item) => item.merchant_uid),
-    );
-    const bucketCount = cityBucketCount(cityState);
-    const bucketIndex = cityState.slot % bucketCount;
-    cities.push({
-      city,
-      total: list.length,
-      bucket_count: bucketCount,
-      current_slot: bucketIndex,
-      next_slot: (bucketIndex + 1) % bucketCount,
-      buckets: cityState.buckets.map((uids, index) => ({
-        index,
-        count: uids.length,
-        is_current: index === bucketIndex,
-        with_bubble: list.filter((item) => uids.includes(item.merchant_uid) && item.bubble_now_id).length,
-        with_active_bubble: list.filter((item) => uids.includes(item.merchant_uid) && activeUids.has(item.merchant_uid)).length,
-      })),
-      with_group: list.filter((item) => item.buzz_group_id).length,
-      with_bubble: list.filter((item) => item.bubble_now_id).length,
-      with_active_bubble: list.filter((item) => activeUids.has(item.merchant_uid)).length,
-    });
-  }
-
-  saveRotationState(db, state, buzzEnv);
-
   return {
     buzz_env: buzzEnv,
     imported_total: merchants.length,
     with_group: merchants.filter((item) => item.buzz_group_id).length,
     with_bubble: merchants.filter((item) => item.bubble_now_id).length,
     with_active_bubble: merchants.filter((item) => activeUids.has(item.merchant_uid)).length,
-    default_publish_user_id: defaultPublishUserId(stateOptions),
-    publish_user_pool: poolEnabled(buzzEnv) ? getPublishUserPoolStatus(db, buzzEnv) : { enabled: false },
-    last_batch: buildLastBatchSchedule(db, merchants, buzzEnv),
+    with_admin: merchants.filter((item) => item.admin_user_id).length,
+    default_publish_user_id: getBuzzEnvConfig(buzzEnv).defaultPublishUserId,
+    roster: getMerchantBubbleRoster(db, { buzz_env: buzzEnv }).items,
+    title_pools: getTitlePools(db),
+    title_pool: getTitlePools(db)["酒馆"] || getTitlePool(db),
+  };
+}
+
+async function listMerchantBubbleCandidates(db, options = {}) {
+  const buzzEnv = resolveBuzzEnv(options);
+  const merchants = listImportedMerchants(db, importListOptions({ ...options, buzz_env: buzzEnv }));
+  let envTypes = [];
+  try {
+    envTypes = await ensureMerchantTypes({ ...options, buzz_env: buzzEnv });
+  } catch {
+    envTypes = [];
+  }
+  const query = String(options.q || options.keyword || "").trim().toLowerCase();
+  const barOnly = options.bar_only === true || options.bar_only === "1" || options.bar_only === "true";
+  await attachMerchantAdmins(db, merchants, { ...options, buzz_env: buzzEnv });
+  const activeUids = await loadActiveBubbleMerchantUids(db, { ...options, buzz_env: buzzEnv });
+  const rows = [];
+  for (const merchant of merchants) {
+    const typeName = resolveMerchantTypeNameForBubble(merchant, envTypes) || "未分类";
+    const isBar = BAR_TYPE_NAMES.has(typeName);
+    if (barOnly && !isBar) continue;
+    const city = resolveMerchantCity(merchant) || "未分类";
+    if (city !== "未分类" && !String(merchant.city || "").trim()) {
+      patchMerchantCityIfEmpty(db, merchant.merchant_uid, city);
+      merchant.city = city;
+    }
+    if (query) {
+      const hay = `${merchant.name || ""} ${city} ${typeName}`.toLowerCase();
+      if (!hay.includes(query)) continue;
+    }
+    rows.push({
+      merchant_uid: merchant.merchant_uid,
+      name: merchant.name,
+      source: merchant.source || "",
+      city,
+      type_name: typeName,
+      is_bar: isBar,
+      has_group: Boolean(merchant.buzz_group_id),
+      has_bubble: Boolean(merchant.bubble_now_id),
+      has_active_bubble: activeUids.has(merchant.merchant_uid),
+      admin_user_id: merchant.admin_user_id || "",
+      admin_nickname: merchant.admin_nickname || "",
+      bubble_published_at: merchant.bubble_published_at || "",
+    });
+  }
+  const cities = [...new Set(rows.map((item) => item.city))].sort((a, b) => a.localeCompare(b, "zh"));
+  return {
+    buzz_env: buzzEnv,
+    total: rows.length,
+    bar_count: rows.filter((item) => item.is_bar).length,
+    with_admin: rows.filter((item) => item.admin_user_id).length,
+    with_active_bubble: rows.filter((item) => item.has_active_bubble).length,
     cities,
+    merchants: rows,
   };
 }
 
@@ -837,11 +1551,18 @@ async function createMerchantGroup(db, merchantUid, options = {}) {
     };
   }
   const pool = ensurePoolContext(db, options);
-  const publishUserId = String(
-    options.publish_user_id
-    || (pool ? pool.currentUserId() : "")
-    || defaultPublishUserId({ ...options, db }),
-  ).trim();
+  let publishUserId = "";
+  try {
+    publishUserId = resolveMerchantPublishUserId(merchant, { ...options, db });
+  } catch (error) {
+    return {
+      ok: false,
+      merchant_uid: merchantUid,
+      name: merchant.name,
+      error: error.message,
+      merchant,
+    };
+  }
   const groupName = merchantGroupDisplayName(merchant);
   try {
     if (merchant.buzz_group_id) {
@@ -901,6 +1622,18 @@ async function batchCreateMerchantGroups(db, options = {}) {
   let renamed = 0;
 
   for (const merchant of targets) {
+    if (batchCanceled(options)) {
+      return {
+        total: targets.length,
+        ok,
+        fail,
+        created,
+        renamed,
+        canceled: true,
+        results,
+        state: await getMerchantBubbleState(db, fullStateOptions(options)),
+      };
+    }
     const result = await createMerchantGroup(db, merchant.merchant_uid, options);
     results.push(result);
     if (result.ok) {
@@ -1022,6 +1755,8 @@ async function ensureMerchantTypes(options = {}) {
 
 async function publishMerchantBubble(db, merchantUid, options = {}) {
   const buzzEnv = resolveBuzzEnv(options);
+  applyPublishSchedule(options);
+  attachTitlePicker(db, options);
   const merchant = merchantInEnv(db, merchantUid, options);
   if (!merchant) {
     return { ok: false, merchant_uid: merchantUid, buzz_env: buzzEnv, error: "商户不存在" };
@@ -1040,26 +1775,64 @@ async function publishMerchantBubble(db, merchantUid, options = {}) {
   const client = options.client || new BuzzAdminClient({ ...options, buzz_env: buzzEnv });
   const groupMode = options.group_mode === "create_new" ? "create_new" : "use_merchant";
   ensurePoolContext(db, options);
-  const publishUserId = poolEnabled(buzzEnv)
-    ? resolvePoolPublishUserId(db, buzzEnv, options.publish_user_id)
-    : String(options.publish_user_id || defaultPublishUserId({ ...options, db })).trim();
+  let publishUserId = "";
+  try {
+    publishUserId = shouldUseVestPool(options) && poolEnabled(buzzEnv)
+      ? resolvePoolPublishUserId(db, buzzEnv, options.publish_user_id)
+      : resolveMerchantPublishUserId(merchant, { ...options, db });
+  } catch (error) {
+    return {
+      ok: false,
+      merchant_uid: merchantUid,
+      buzz_env: buzzEnv,
+      name: merchant.name,
+      error: error.message,
+      merchant,
+    };
+  }
 
   try {
-    await ensureMerchantTypes({ ...options, buzz_env: buzzEnv, client });
-    if (!options.skip_expire_previous) {
-      const refreshed = merchantInEnv(db, merchantUid, options);
-      if (refreshed && String(refreshed.bubble_now_id || "").trim() && isLocallyActiveBubble(refreshed) !== false) {
-        await expireActiveBubbleForMerchant(db, refreshed, { ...options, client });
-      }
+    options.merchant_types = await ensureMerchantTypes({ ...options, buzz_env: buzzEnv, client });
+    const current = merchantInEnv(db, merchantUid, options) || merchant;
+    if (await merchantHasActiveBubble(current, { ...options, client })) {
+      return {
+        ok: true,
+        skipped: true,
+        merchant_uid: merchantUid,
+        buzz_env: buzzEnv,
+        name: merchant.name,
+        now_id: current.bubble_now_id || "",
+        note: "已有未过期气泡",
+        merchant: current,
+      };
     }
-    const merchantForPublish = merchantInEnv(db, merchantUid, options) || merchant;
+    const merchantForPublish = current;
     const record = buildBubbleRecord(merchantForPublish, { ...options, publish_user_id: publishUserId });
+    let groupCreated = false;
+    let groupOwnerTransferred = false;
+    let groupOwnerId = String(merchantForPublish.bubble_group_owner_id || "").trim();
 
     if (groupMode === "use_merchant") {
-      if (!merchantForPublish.buzz_group_id) {
-        throw new Error("商户尚无群聊，请先批量创建商户群聊");
+      let groupId = String(merchantForPublish.buzz_group_id || "").trim();
+      if (!groupId) {
+        const created = await createMerchantGroup(db, merchantUid, {
+          ...options,
+          publish_user_id: publishUserId,
+          client,
+        });
+        if (!created.ok) throw new Error(created.error || "自动创建商户群聊失败");
+        groupId = String(created.group_id || "").trim();
+        if (!groupId) throw new Error("自动创建商户群聊失败");
+        groupCreated = Boolean(created.created);
+        groupOwnerId = publishUserId;
+      } else if (canSkipGroupOwnerTransfer(merchantForPublish, groupId, publishUserId)) {
+        groupOwnerId = publishUserId;
+      } else {
+        const transferred = await ensureGroupOwner(groupId, publishUserId);
+        groupOwnerTransferred = Boolean(transferred?.transferred);
+        groupOwnerId = publishUserId;
       }
-      record.group_id = merchantForPublish.buzz_group_id;
+      record.group_id = groupId;
     } else {
       const groupId = await createGroupForMerchantWithPool(merchantForPublish, {
         ...options,
@@ -1072,27 +1845,39 @@ async function publishMerchantBubble(db, merchantUid, options = {}) {
       record.publish_user_id = finalPublishUserId;
     }
 
-    const medias = [];
-    for (const src of record.images || []) {
-      const media = await client.uploadMedia(src);
-      medias.push(media);
-    }
-
+    let mediaResult = await resolveBubbleMedias(client, record.images || [], merchantForPublish, {
+      remoteMedias: options.remoteNowMedias,
+    });
     const payload = buildBuzzPayload(record);
-    if (medias.length) payload.now_medias = medias;
+    if (mediaResult.medias.length) payload.now_medias = mediaResult.medias;
+    payload.enroll_hidden = 1;
 
-    const nowId = await client.createNow(payload);
+    let nowId = "";
+    try {
+      nowId = await client.createNow(payload);
+    } catch (error) {
+      if (!mediaResult.reused) throw error;
+      mediaResult = await resolveBubbleMedias(client, record.images || [], merchantForPublish, {
+        forceUpload: true,
+      });
+      if (mediaResult.medias.length) payload.now_medias = mediaResult.medias;
+      nowId = await client.createNow(payload);
+    }
     if (!nowId) throw new Error("创建成功但未返回 now_id");
 
     const bubblePatch = {
       bubble_now_id: nowId,
       bubble_published_at: new Date().toISOString(),
+      bubble_media_hash: mediaResult.hash,
+      bubble_media_json: mediaResult.mediaJson,
     };
-    // 临时新建群只挂在本条气泡上，不覆盖「批量创建商户群聊」写入的 buzz_group_id
+    // 临时新建群只挂在本条气泡上，不覆盖商户已绑定的 buzz_group_id
     if (groupMode === "use_merchant") {
       bubblePatch.buzz_group_id = record.group_id;
+      if (groupOwnerId) bubblePatch.bubble_group_owner_id = groupOwnerId;
     }
 
+    invalidateActiveBubbleCache(buzzEnv);
     const updated = markMerchantBubbleResult(db, merchantUid, bubblePatch, buzzEnv);
 
     return {
@@ -1102,6 +1887,9 @@ async function publishMerchantBubble(db, merchantUid, options = {}) {
       name: merchant.name,
       now_id: nowId,
       group_id: record.group_id,
+      group_created: groupCreated,
+      group_owner_transferred: groupOwnerTransferred,
+      media_reused: Boolean(mediaResult.reused),
       content_type: record.content_type,
       merchant_type_name: record.merchant_type_name,
       merchant: updated,
@@ -1119,51 +1907,43 @@ async function publishMerchantBubble(db, merchantUid, options = {}) {
 
 async function batchPublishMerchantBubbles(db, options = {}) {
   const buzzEnv = resolveBuzzEnv(options);
+  applyPublishSchedule(options);
   ensurePoolContext(db, options);
-  await ensureMerchantTypes({ ...options, buzz_env: buzzEnv });
+  options.buzz_env = buzzEnv;
+  options.merchant_types = await ensureMerchantTypes(options);
   const client = options.client || new BuzzAdminClient({ ...options, buzz_env: buzzEnv });
   options.client = client;
 
-  const pick = options.merchant_uids?.length
-    ? {
-      merchants: listImportedMerchants(db, importListOptions(options)),
-      plan: [],
-    }
-    : pickMerchantsForCurrentSlot(db, options);
-
-  const expiredPrevious = [];
-  if (!options.skip_expire_previous_batch && !options.merchant_uids?.length && !Number.isFinite(Number(options.slot))) {
-    const seenCities = new Set();
-    for (const item of pick.plan || []) {
-      if (!item.city || seenCities.has(item.city)) continue;
-      seenCities.add(item.city);
-      const report = await expirePreviousCityBucketBubbles(db, item.city, item.slot, options);
-      expiredPrevious.push(report);
-    }
+  if (!options.merchant_uids?.length) {
+    throw new Error("请先勾选要发布的店");
   }
+  const merchants = await listMerchantsToPublish(db, { ...options, buzz_env: buzzEnv });
+  await attachRemoteNowMedias(client, merchants, options);
 
-  const merchants = pick.merchants;
   const results = [];
   let ok = 0;
   let fail = 0;
 
-  for (const merchant of merchants) {
+  for (let i = 0; i < merchants.length; i += 1) {
+    const merchant = merchants[i];
+    if (batchCanceled(options)) {
+      return {
+        total: merchants.length,
+        ok,
+        fail,
+        canceled: true,
+        buzz_env: buzzEnv,
+        plan: [],
+        results,
+        state: await getMerchantBubbleState(db, fullStateOptions(options)),
+      };
+    }
     const result = await publishMerchantBubble(db, merchant.merchant_uid, options);
     results.push(result);
     if (result.ok) ok += 1;
     else fail += 1;
-    if (typeof options.onItem === "function") options.onItem(result, { plan: pick.plan });
-    if (options.delayMs !== 0) {
-      await sleep(options.delayMs ?? 1200);
-    }
-  }
-
-  const isFullBatch = !options.merchant_uids?.length && !Number.isFinite(Number(options.slot));
-  if (options.advance_rotation !== false && isFullBatch) {
-    advanceRotationSlots(db, pick.plan.map((item) => item.city), buzzEnv);
-  }
-  if (isFullBatch && ok > 0) {
-    recordLastBatchPublishedAt(db, buzzEnv);
+    if (typeof options.onItem === "function") options.onItem(result, { plan: [] });
+    await pauseAfterBubblePublish(options, result, i === merchants.length - 1);
   }
 
   return {
@@ -1171,21 +1951,22 @@ async function batchPublishMerchantBubbles(db, options = {}) {
     ok,
     fail,
     buzz_env: buzzEnv,
-    plan: pick.plan,
-    expired_previous: expiredPrevious,
+    plan: [],
     results,
     state: await getMerchantBubbleState(db, fullStateOptions(options)),
   };
 }
 
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+function batchCanceled(options = {}) {
+  return typeof options.shouldCancel === "function" && options.shouldCancel();
 }
 
 async function publishCityBucketBubbles(db, options = {}) {
   const buzzEnv = resolveBuzzEnv(options);
+  applyPublishSchedule(options);
   ensurePoolContext(db, options);
-  await ensureMerchantTypes({ ...options, buzz_env: buzzEnv });
+  options.buzz_env = buzzEnv;
+  options.merchant_types = await ensureMerchantTypes(options);
   const client = options.client || new BuzzAdminClient({ ...options, buzz_env: buzzEnv });
   options.client = client;
   const city = String(options.city || "").trim();
@@ -1198,19 +1979,19 @@ async function publishCityBucketBubbles(db, options = {}) {
     : await expirePreviousCityBucketBubbles(db, city, slot, options);
 
   const pick = getMerchantsInCityBucket(db, city, slot, options);
+  await attachRemoteNowMedias(client, pick.merchants, options);
   const results = [];
   let ok = 0;
   let fail = 0;
 
-  for (const merchant of pick.merchants) {
+  for (let i = 0; i < pick.merchants.length; i += 1) {
+    const merchant = pick.merchants[i];
     const result = await publishMerchantBubble(db, merchant.merchant_uid, options);
     results.push(result);
     if (result.ok) ok += 1;
     else fail += 1;
     if (typeof options.onItem === "function") options.onItem(result);
-    if (options.delayMs !== 0) {
-      await sleep(options.delayMs ?? 1200);
-    }
+    await pauseAfterBubblePublish(options, result, i === pick.merchants.length - 1);
   }
 
   if (pick.merchants.length) {
@@ -1386,7 +2167,7 @@ async function expireAllActiveMerchantBubbles(db, options = {}) {
         });
         continue;
       }
-      if (isNowExpired(nowItem.expired_at)) {
+      if (isNowExpired(nowItem.expired_at, nowItem)) {
         clearMerchantBubbleLocal(db, merchant.merchant_uid, buzzEnv);
         skipped += 1;
         results.push({
@@ -1447,7 +2228,6 @@ async function publishRandomTestMerchantBubble(db, options = {}) {
   const result = await publishMerchantBubble(db, merchant.merchant_uid, {
     ...options,
     city,
-    title_mode: options.title_mode || "per_merchant",
     group_mode: options.group_mode || "create_new",
     now_type: options.now_type || 1,
     skip_expire_previous: true,
@@ -1471,6 +2251,7 @@ module.exports = {
   BUCKET_COUNT: MIN_BUCKET_COUNT,
   MIN_BUCKET_COUNT,
   MAX_BUCKET_SIZE,
+  BAR_TYPE_NAMES,
   computeBucketCount,
   advanceCityRotationAfterBucket,
   advanceRotationSlots,
@@ -1483,16 +2264,28 @@ module.exports = {
   buildPerMerchantCopy,
   clearAllLocalBubbleRecords,
   DEFAULT_PER_MERCHANT_CONTENT,
+  DEFAULT_COPY_POOL,
+  DEFAULT_TITLE_POOL,
+  getTitlePool,
+  getTitlePools,
+  saveTitlePool,
+  saveTitlePools,
   createMerchantGroup,
   defaultPublishUserId,
   dissolveMerchantGroup,
   expireAllActiveMerchantBubbles,
   getMerchantBubbleState,
+  getMerchantBubbleRoster,
+  saveMerchantBubbleRoster,
   getMerchantsInCityBucket,
   isNowExpired,
+  listMerchantBubbleCandidates,
+  listMerchantsToPublish,
+  mutateMerchantActiveBubble,
   pickMerchantsForCurrentSlot,
   publishCityBucketBubbles,
   publishMerchantBubble,
   publishRandomTestMerchantBubble,
   rebuildRotationBuckets,
+  resolveMerchantBubbleSchedule,
 };

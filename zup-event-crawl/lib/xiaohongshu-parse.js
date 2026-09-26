@@ -2,10 +2,19 @@
 
 /** 从 Chrome 抓到的 XHS 页面 HTML 里解析 window.__INITIAL_STATE__ */
 function parseInitialState(html) {
-  const match = String(html || "").match(/window\.__INITIAL_STATE__\s*=\s*(\{[\s\S]*?\})\s*<\/script>/);
-  if (!match) return null;
+  const source = String(html || "");
+  const start = source.search(/window\.__INITIAL_STATE__\s*=\s*\{/);
+  if (start < 0) return null;
+  const assignAt = source.indexOf("=", start);
+  const close = source.indexOf("</script>", assignAt);
+  if (assignAt < 0 || close < 0) return null;
+  const raw = source.slice(assignAt + 1, close).trim();
+  const jsonish = raw
+    .replace(/\bundefined\b/g, "null")
+    .replace(/new Set\([^)]*\)/g, "[]")
+    .replace(/new Map\([^)]*\)/g, "[]");
   try {
-    return JSON.parse(match[1].replace(/undefined/g, "null"));
+    return JSON.parse(jsonish);
   } catch (error) {
     return null;
   }

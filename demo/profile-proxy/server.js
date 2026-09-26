@@ -734,6 +734,13 @@ process.on('SIGTERM', () => {
 });
 
 ensureDataDir();
+server.on('error', (error) => {
+  if (error.code === 'EADDRINUSE') {
+    console.error('[profile-proxy] 端口 ' + PORT + ' 已被占用。请先关掉旧进程，或换端口：PORT=8789 npm start');
+    process.exit(1);
+  }
+  throw error;
+});
 server.listen(PORT, () => {
   console.log('[profile-proxy] http://localhost:' + PORT + '/match-card.html');
   console.log('[profile-proxy] architecture=single_agent_v3');

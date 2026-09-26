@@ -414,7 +414,7 @@ node scripts/agent-poi-batch-search.js --file=data/poi-agent-workbench/成都/pe
 
 ## 审核台（入库后）
 
-地址：http://127.0.0.1:8787/ （`node scripts/server.js`）
+地址：http://127.0.0.1:8790/ （`node scripts/server.js`）
 
 ### 展示
 

@@ -14,6 +14,13 @@
 当前页面：
 - `zup-intro.html`（产品介绍 H5：**AI 实时线下组局**；主标题「附近有人，AI 帮你约上」；图标 CDN `https://buzzin.oss-cn-beijing.aliyuncs.com/h5_event/zup-app-icon.png`）
 - `logo-map-preview.html`（Logo 动效叠地图首页截图预览；与「伙伴在附近」头像行对齐，可切换 70/75/80）
+- `logo-y-spin.html`（App 登录页背景 · 1242×2688：Logo 绕 Y 轴惯性旋转 + 精简文案；无按钮，供 App 叠层使用）
+- `logo-3d-y-spin.html`（Three.js 亚克力叠层预览：Y 轴整圈惯性旋转，6s 无缝）
+- `assets/logo-3d-y-spin-loop.mp4`（1080² · 60fps · 6s 本地渲染成片；`node scripts/render-logo-3d-y-spin-video.mjs`）
+- `assets/zup-logo-y-spin-glow.png` / `../images/zup-logo-y-spin-glow.png`（`logo-y-spin` 光效透明底 PNG · 240×240；`node scripts/export-logo-y-spin-glow.mjs` 重导）
+- `app-welcome.html`（App 欢迎页背景 · 1242×2688：`guide.html` 同款 Logo 动效 + 极光/网格/光斑；网格间距 `11%×5.2%`，线宽随画布缩放；无按钮）
+- `assets/app-welcome-loop.mp4`（欢迎页竖版 10s / 60fps / 1242×2688 无缝循环；`node scripts/render-app-welcome-video.mjs` 重渲）
+- `assets/app-welcome-loop-16x9.mp4`（欢迎页核心区 16:9 · 1920×1080 · 10s / 60fps 无缝循环；`node scripts/render-app-welcome-video-16x9.mjs` 重渲）
 - `invite-detail.html`（图片邀约详情 **v3 Editorial Noir**：香槟金/奶油色编辑风、衬线正文、环形报名进度、上浮面板；**Cursor 维护**，备份 `invite-detail-v2.html`）
 - `invite-detail-v2.html`（与 `invite-detail.html` 同内容；被 Xcode 覆盖时 `cp invite-detail-v2.html invite-detail.html` 恢复）
 - `invite-detail-video.html`（**视频**邀约详情 v2：全屏沉浸 + 右侧互动轨 + 左下信息叠层；报名改为 **底部 Sheet**，非居中挡屏弹窗；备份见 `invite-detail-video-v2.html`）
@@ -22,6 +29,10 @@
 - `nearby-friends.html`（附近好友列表原型：紧凑用户卡片，包含头像、昵称、简介、动态数量、在线状态与距离）
 - `publish-quick.html`（快捷发布原型：单页先选“我组局/我有空”，再动态展示对应字段；我组局需地点+时间，我有空仅需地点）
 - `chat-list-recommend.html`（聊天列表推荐位原型：在聊天 Tab 下方、会话列表上方放置“当前城市大群”推荐卡，支持一键加入并置顶）
+- `tonight-drink.html`（约酒专题 · App 内嵌：**约个小酒**；用筛选截图教用户勾选「小酌」看酒局；无下载按钮）
+- `assets/tonight-drink-filter.png`（约个小酒页：地图漏斗 → 勾选「小酌」指引图）
+- `assets/tonight-drink-entry.png` / `tonight-drink-entry-2469.gif` / `tonight-drink-entry-6862.gif` / `tonight-drink-entry-4360.gif` / `tonight-drink-entry-4078.gif`（约个小酒入口：透明底静图 + 即梦循环抠图 GIF，480² / 25fps；按视频编号分开存方便对比。重导：`python3.11 scripts/export-tonight-drink-video-gif.py <视频>`，默认按编号另存，不覆盖旧文件）
+- `assets/tonight-drink-entry-4360-320.gif` / `tonight-drink-entry-4078-320.gif` / `tonight-drink-entry-4078-240.gif`（压缩稿：4360 为 320² / 25fps；4078-240 为 240² / 20fps，去掉片头 10 帧）
 - `beijing-spring-awakening.html`（北京春醒交友季 - 外部 H5 分享页，含下载/打开 App 引导）
 - `beijing-spring-awakening-inapp.html`（北京春醒交友季 - App 内嵌专题页，无下载/打开入口）
 - `beijing-spring-awakening-venue.html`（商户专属据点页 - 模板，供商户转发朋友圈，只展示单个商户）

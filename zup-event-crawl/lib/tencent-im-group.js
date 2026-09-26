@@ -162,6 +162,126 @@ async function modifyGroupBaseInfo(groupId, patch = {}) {
   await imPost("group_open_http_svc/modify_group_base_info", body);
 }
 
+async function addGroupMembers(groupId, userIds, options = {}) {
+  const id = String(groupId || "").trim();
+  if (!id) throw new Error("缺少 group_id");
+  const accounts = [...new Set((userIds || []).map((uid) => String(uid || "").trim()).filter(Boolean))];
+  if (!accounts.length) return [];
+  let payload;
+  try {
+    payload = await imPost("group_open_http_svc/add_group_member", {
+      GroupId: id,
+      Silence: options.silence === false ? 0 : 1,
+      MemberList: accounts.map((uid) => ({ Member_Account: uid })),
+    });
+  } catch (error) {
+    const msg = String(error?.message || "");
+    if (/10013|already|已在群|already in/i.test(msg)) return [];
+    throw error;
+  }
+  const results = payload.MemberList || [];
+  // 腾讯 IM：0 失败，1 成功，2 已是群成员，10013 已在群
+  const ignored = new Set([1, 2, 10013]);
+  const failed = results.filter((item) => {
+    const code = Number(item.Result);
+    return Number.isFinite(code) && !ignored.has(code);
+  });
+  if (failed.length) {
+    const first = failed[0];
+    throw new Error(`拉人进群失败 ${first.Member_Account || ""} code=${first.Result}`);
+  }
+  return results;
+}
+
+async function changeGroupOwner(groupId, newOwnerId) {
+  const id = String(groupId || "").trim();
+  const owner = String(newOwnerId || "").trim();
+  if (!id) throw new Error("缺少 group_id");
+  if (!owner) throw new Error("缺少新群主");
+  await imPost("group_open_http_svc/change_group_owner", {
+    GroupId: id,
+    NewOwner_Account: owner,
+  });
+}
+
+/** 把成员踢出群。人不在群里时忽略，不抛错。 */
+async function deleteGroupMembers(groupId, userIds, options = {}) {
+  const id = String(groupId || "").trim();
+  if (!id) throw new Error("缺少 group_id");
+  const accounts = [...new Set((userIds || []).map((uid) => String(uid || "").trim()).filter(Boolean))];
+  if (!accounts.length) return [];
+  try {
+    return await imPost("group_open_http_svc/delete_group_member", {
+      GroupId: id,
+      Silence: options.silence === false ? 0 : 1,
+      MemberToDel_Account: accounts,
+    });
+  } catch (error) {
+    const msg = String(error?.message || "");
+    if (/10004|not in|不在群|not a member/i.test(msg)) return [];
+    throw error;
+  }
+}
+
+function groupInfoOwner(info) {
+  if (!info || typeof info !== "object") return "";
+  if (Number(info.ErrorCode) && Number(info.ErrorCode) !== 0) return "";
+  return String(info.Owner_Account || "").trim();
+}
+
+async function getGroupOwner(groupId) {
+  const id = String(groupId || "").trim();
+  if (!id) return "";
+  const [info] = await getGroupInfoBatch([id]);
+  return groupInfoOwner(info);
+}
+
+async function ensureGroupOwner(groupId, userId, options = {}) {
+  const id = String(groupId || "").trim();
+  const owner = String(userId || "").trim();
+  if (!id) throw new Error("移交群主缺少群");
+  if (!owner) throw new Error("移交群主缺少发布者");
+  await importAccount(owner, options.ownerNick || "", options.ownerAvatar || "");
+  const current = await getGroupOwner(id);
+  if (current && current === owner) {
+    return { ok: true, transferred: false, already: true, group_id: id, owner };
+  }
+  try {
+    await addGroupMembers(id, [owner], { silence: true });
+  } catch {
+    // 管理员移交群主时常会自动拉人；拉人失败不阻断移交
+  }
+  try {
+    await changeGroupOwner(id, owner);
+  } catch (error) {
+    const again = await getGroupOwner(id);
+    if (again && again === owner) {
+      await kickPreviousOwner(id, current, owner);
+      return { ok: true, transferred: true, group_id: id, owner, previous_owner: current };
+    }
+    throw new Error(`移交群主失败：${error.message}`);
+  }
+  await kickPreviousOwner(id, current, owner);
+  return {
+    ok: true,
+    transferred: true,
+    group_id: id,
+    owner,
+    previous_owner: current,
+  };
+}
+
+async function kickPreviousOwner(groupId, previousOwner, newOwner) {
+  const oldOwner = String(previousOwner || "").trim();
+  const owner = String(newOwner || "").trim();
+  if (!oldOwner || oldOwner === owner) return;
+  try {
+    await deleteGroupMembers(groupId, [oldOwner], { silence: true });
+  } catch {
+    // 踢人失败不回滚已经完成的移交
+  }
+}
+
 async function destroyGroup(groupId, options = {}) {
   const id = String(groupId || "").trim();
   if (!id) throw new Error("缺少 group_id");
@@ -249,12 +369,17 @@ async function getGroupMessages(groupId, options = {}) {
 }
 
 module.exports = {
+  addGroupMembers,
+  changeGroupOwner,
+  deleteGroupMembers,
   createGroup,
   createGroupForMerchant,
   createGroupForNow,
   destroyGroup,
+  ensureGroupOwner,
   getGroupInfoBatch,
   getGroupMessages,
+  getGroupOwner,
   importAccount,
   merchantGroupDisplayName,
   modifyGroupBaseInfo,

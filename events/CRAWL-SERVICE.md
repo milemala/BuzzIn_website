@@ -11,6 +11,6 @@ cd zup-event-crawl
 npm start
 ```
 
-浏览器打开 http://127.0.0.1:8787/
+浏览器打开 http://127.0.0.1:8790/
 
 **完整交接文档（必读）：** [`../zup-event-crawl/docs/HANDOFF.md`](../zup-event-crawl/docs/HANDOFF.md)

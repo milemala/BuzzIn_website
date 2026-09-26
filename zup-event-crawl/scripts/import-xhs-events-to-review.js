@@ -54,7 +54,7 @@ async function main() {
   }
 
   console.log(`\n已入库 ${loadResult.allEvents.length} 条小红书活动（mode=append-city，未动 POI）`);
-  console.log("审核台：npm start → http://127.0.0.1:8787/ （来源筛选选「小红书」）");
+  console.log("审核台：npm start → http://127.0.0.1:8790/ （来源筛选选「小红书」）");
 }
 
 main().catch((error) => {

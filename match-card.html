@@ -1669,6 +1669,145 @@
         .ai-head p { font-size: var(--fs-body); color: var(--muted); line-height: var(--lh-body); }
         .ai-pane { display: none; flex: 1; min-height: 0; flex-direction: column; }
         .ai-pane.active { display: flex; }
+
+        /* 首次建档开场：贴底抽屉 + 现代静态设计（无星芒、无对话预览） */
+        .ai-sheet.onboard-mode {
+            width: 100%;
+            max-width: 440px;
+            padding: 10px 0 0;
+            border-bottom: 0;
+            border-radius: 28px 28px 0 0;
+            overflow: hidden;
+        }
+        .ai-sheet.onboard-mode .handle {
+            margin: 4px auto 14px;
+        }
+        .ai-sheet.onboard-mode .ai-head {
+            margin: 0 20px 14px;
+            padding-right: 36px;
+        }
+        .onboard {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 0 20px calc(12px + var(--safe));
+        }
+        .onboard-lead {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background: none;
+        }
+        .onboard-lead p {
+            font-size: var(--fs-body);
+            line-height: var(--lh-body);
+            color: var(--muted);
+        }
+        .onboard-lead p em {
+            font-style: normal;
+            color: var(--gold);
+        }
+        .onboard-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .onboard-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            height: 28px;
+            padding: 0 11px;
+            border-radius: 999px;
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--muted);
+            background: rgba(255,255,255,.03);
+            border: 1px solid var(--line);
+        }
+        .onboard-pill i {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 0 3px rgba(246, 196, 83, .12);
+            font-style: normal;
+        }
+        .onboard-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .onboard-tl-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            min-height: 52px;
+        }
+        .onboard-tl-rail {
+            width: 18px;
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .onboard-tl-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-top: 5px;
+            background: var(--gold);
+            box-shadow: 0 0 0 4px rgba(246, 196, 83, .12);
+        }
+        .onboard-tl-item:last-child .onboard-tl-dot {
+            background: var(--mint);
+            box-shadow: 0 0 0 4px rgba(110, 231, 216, .12);
+        }
+        .onboard-tl-line {
+            width: 1px;
+            flex: 1;
+            min-height: 28px;
+            margin-top: 4px;
+            background: linear-gradient(180deg, rgba(246, 196, 83, .35), rgba(110, 231, 216, .25));
+        }
+        .onboard-tl-item:last-child .onboard-tl-line { display: none; }
+        .onboard-tl-copy {
+            flex: 1;
+            min-width: 0;
+            padding-bottom: 14px;
+        }
+        .onboard-tl-copy strong {
+            display: block;
+            font-size: var(--fs-body);
+            line-height: var(--lh-body);
+            font-weight: 500;
+            color: var(--ink);
+        }
+        .onboard-tl-copy span {
+            display: block;
+            margin-top: 2px;
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            color: var(--hint);
+        }
+        .onboard-actions {
+            padding-top: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .onboard-actions .btn { width: 100%; }
+        .onboard-skip {
+            border: 0;
+            background: none;
+            color: var(--hint);
+            font-size: var(--fs-ui);
+            line-height: var(--lh-ui);
+            cursor: pointer;
+            padding: 4px;
+        }
+        .onboard-skip:hover { color: var(--muted); }
+
         .chat-scroll {
             flex: 1;
             overflow-y: auto;
@@ -2144,6 +2283,58 @@
             <button class="profile-close" id="closeProfileBtn" type="button" aria-label="关闭">×</button>
         </div>
 
+        <div class="ai-pane" id="profileOnboardPane">
+            <div class="onboard">
+                <div class="onboard-lead">
+                    <p>我会问你<em>几个小问题</em>。聊完之后，才能开始认真帮你找人和找局。</p>
+                </div>
+
+                <div class="onboard-pills" aria-label="说明">
+                    <span class="onboard-pill"><i></i>大约 2 分钟</span>
+                    <span class="onboard-pill"><i></i>可跳过</span>
+                    <span class="onboard-pill"><i></i>以后还能补</span>
+                </div>
+
+                <div class="onboard-timeline" aria-label="流程">
+                    <div class="onboard-tl-item">
+                        <div class="onboard-tl-rail">
+                            <div class="onboard-tl-dot"></div>
+                            <div class="onboard-tl-line"></div>
+                        </div>
+                        <div class="onboard-tl-copy">
+                            <strong>问几个问题</strong>
+                            <span>了解你的节奏和偏好</span>
+                        </div>
+                    </div>
+                    <div class="onboard-tl-item">
+                        <div class="onboard-tl-rail">
+                            <div class="onboard-tl-dot"></div>
+                            <div class="onboard-tl-line"></div>
+                        </div>
+                        <div class="onboard-tl-copy">
+                            <strong>生成我对你的理解</strong>
+                            <span>不准可以改</span>
+                        </div>
+                    </div>
+                    <div class="onboard-tl-item">
+                        <div class="onboard-tl-rail">
+                            <div class="onboard-tl-dot"></div>
+                            <div class="onboard-tl-line"></div>
+                        </div>
+                        <div class="onboard-tl-copy">
+                            <strong>开始认真组局</strong>
+                            <span>按你的画像来匹配</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="onboard-actions">
+                    <button class="btn primary" id="startProfileOnboardBtn" type="button">开始聊聊</button>
+                    <button class="onboard-skip" id="skipProfileOnboardBtn" type="button">稍后再说</button>
+                </div>
+            </div>
+        </div>
+
         <div class="ai-pane active" id="profileChatPane">
             <div class="chat-scroll" id="profileChat"></div>
             <div class="chat-composer" id="profileComposer"></div>
@@ -2392,7 +2583,7 @@
     ];
     var DESIRED_REL = ['单身', '恋爱中', '已婚', '不限'];
 
-    /** 本地建档代理（智谱）；需先启动 demo/profile-proxy（默认 8788，避开审核台 8787） */
+    /** 本地建档代理（智谱）；需先启动 demo/profile-proxy（默认 8788，避开审核台 8790） */
     var PROFILE_API_BASE = location.port === '8788'
         ? ''
         : 'http://localhost:8788';
@@ -2496,8 +2687,14 @@
         });
         $('editProfileBtn').addEventListener('click', function() {
             appState.pendingAfterSetup = false;
-            openProfile(appState.profile.intro ? 'summary' : 'chat');
+            if (appState.profile.intro) openProfile('summary');
+            else if (hasProfileProgress(appState.profile)) openProfile('chat');
+            else openProfile('onboard');
         });
+        $('startProfileOnboardBtn').addEventListener('click', function() {
+            startProfileChat(true);
+        });
+        $('skipProfileOnboardBtn').addEventListener('click', dismissProfile);
         $('stopSessionBtn').addEventListener('click', function() { stopMatching(true); });
         $('cancelStopBtn').addEventListener('click', closeStopConfirm);
         $('confirmStopKeepBtn').addEventListener('click', function() {
@@ -2745,15 +2942,22 @@
             showProfileSummary();
             return;
         }
+        if (mode === 'onboard') {
+            showProfileOnboard();
+            return;
+        }
         if (mode === 'chat') {
-            // 有进度 → 续聊未齐；否则全新开场
-            startProfileChat(!hasProfileProgress(appState.profile));
+            // 有进度 → 续聊未齐；否则先走开场说明，避免一上来就提问
+            if (hasProfileProgress(appState.profile)) startProfileChat(false);
+            else showProfileOnboard();
             return;
         }
         if (hasProfileProgress(appState.profile) && appState.profile.intro) {
             showProfileSummary();
+        } else if (hasProfileProgress(appState.profile)) {
+            startProfileChat(false);
         } else {
-            startProfileChat(!hasProfileProgress(appState.profile));
+            showProfileOnboard();
         }
     }
     function closeProfile() {
@@ -2766,12 +2970,28 @@
     }
 
     function showProfilePane(id) {
+        var sheet = document.querySelector('#profileOverlay .ai-sheet');
+        if (sheet) sheet.classList.toggle('onboard-mode', id === 'onboard');
+        $('profileOnboardPane').classList.toggle('active', id === 'onboard');
         $('profileChatPane').classList.toggle('active', id === 'chat');
         $('profileSummaryPane').classList.toggle('active', id === 'summary');
-        $('profileTitle').textContent = id === 'summary' ? '以后我会这样帮你' : '先认识你一下';
-        $('profileSubtitle').textContent = id === 'summary'
-            ? '不只是总结你是谁，还有我会怎么给你推局和搭子。'
-            : '我是 Zee，随便聊聊，以后帮你找更合适的搭子。';
+        if (id === 'summary') {
+            $('profileTitle').textContent = '以后我会这样帮你';
+            $('profileSubtitle').textContent = '不只是总结你是谁，还有我会怎么给你推局和搭子。';
+        } else if (id === 'onboard') {
+            $('profileTitle').textContent = '先聊几句，再帮你组局';
+            $('profileSubtitle').textContent = '大约 2 分钟，不想答的可以跳过。';
+        } else {
+            $('profileTitle').textContent = '先认识你一下';
+            $('profileSubtitle').textContent = '随便聊聊就好，不想答的可以说跳过。';
+        }
+    }
+
+    function showProfileOnboard() {
+        showProfilePane('onboard');
+        appState.chatBusy = false;
+        $('profileChat').innerHTML = '';
+        $('profileComposer').innerHTML = '';
     }
 
     function newProfileSessionId() {

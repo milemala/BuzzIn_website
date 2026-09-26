@@ -155,7 +155,7 @@ async function main() {
   const imported = importedCities.length;
   const waiting = summary.filter((item) => item.status === "awaiting_vision").length;
   if (imported) {
-    console.log(`\n已入库 ${imported} 城；审核台 http://127.0.0.1:8787/ 来源选「小红书」`);
+    console.log(`\n已入库 ${imported} 城；审核台 http://127.0.0.1:8790/ 来源选「小红书」`);
     printPostImportAgentSteps(importedCities);
   }
   if (waiting) {

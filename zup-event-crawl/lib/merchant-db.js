@@ -791,13 +791,23 @@ function markMerchantBubbleResult(db, merchantUid, result = {}, buzzEnv = "test"
       : String(current?.[key] || fallback).trim()
   );
   const { upsertBuzzImport, ENTITY_MERCHANT } = require("./buzz-import-store");
-  upsertBuzzImport(db, ENTITY_MERCHANT, merchantUid, buzzEnv, {
+  const patch = {
     bubble_now_id: pick("bubble_now_id"),
     buzz_group_id: pick("buzz_group_id", current.buzz_group_id),
     bubble_published_at: Object.prototype.hasOwnProperty.call(result, "bubble_published_at")
       ? result.bubble_published_at
       : (pick("bubble_now_id") ? now : current.bubble_published_at),
-  });
+  };
+  if (Object.prototype.hasOwnProperty.call(result, "bubble_media_hash")) {
+    patch.bubble_media_hash = result.bubble_media_hash;
+  }
+  if (Object.prototype.hasOwnProperty.call(result, "bubble_media_json")) {
+    patch.bubble_media_json = result.bubble_media_json;
+  }
+  if (Object.prototype.hasOwnProperty.call(result, "bubble_group_owner_id")) {
+    patch.bubble_group_owner_id = result.bubble_group_owner_id;
+  }
+  upsertBuzzImport(db, ENTITY_MERCHANT, merchantUid, buzzEnv, patch);
   return applyBuzzEnvToMerchant(db, getMerchantByUid(db, merchantUid), buzzEnv);
 }
 
@@ -1020,6 +1030,19 @@ function upsertBuzzSyncedMerchant(db, row, buzzEnv = "prod") {
   return applyBuzzEnvToMerchant(db, getMerchantByUid(db, merchantUid), buzzEnv);
 }
 
+function patchMerchantCityIfEmpty(db, merchantUid, city) {
+  const uid = String(merchantUid || "").trim();
+  const next = String(city || "").trim();
+  if (!uid || !next) return false;
+  const result = db.prepare(`
+    UPDATE merchants
+    SET city = ?
+    WHERE merchant_uid = ?
+      AND (city IS NULL OR trim(city) = '')
+  `).run(next, uid);
+  return result.changes > 0;
+}
+
 module.exports = {
   applyPoiSelection,
   approveMerchantReview,
@@ -1045,6 +1068,7 @@ module.exports = {
   setMerchantPoiMatchMode,
   markMerchantBubbleResult,
   markMerchantImportResult,
+  patchMerchantCityIfEmpty,
   updateMerchantGroupId,
   upsertBuzzSyncedMerchant,
   openDatabase,

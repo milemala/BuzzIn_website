@@ -4,11 +4,9 @@ const crypto = require("crypto");
 const {
   batchCreateMerchantGroups,
   batchPublishMerchantBubbles,
-  publishCityBucketBubbles,
   publishRandomTestMerchantBubble,
-  pickMerchantsForCurrentSlot,
-  getMerchantsInCityBucket,
 } = require("./merchant-bubble");
+const { batchEnsureMerchantAdmins, listMerchantsNeedingAdmin } = require("./merchant-admin-user");
 const { listImportedMerchants } = require("./merchant-db");
 const { normalizeBuzzEnv } = require("./buzz-env");
 
@@ -34,28 +32,11 @@ function countGroupTargets(db, options = {}) {
 }
 
 function getPublishPlan(db, options = {}) {
-  if (options.merchant_uids?.length) {
-    const merchants = listImportedMerchants(db, importListOptions(options));
-    return { merchants, plan: [], total: merchants.length };
+  if (!options.merchant_uids?.length) {
+    return { merchants: [], plan: [], total: 0 };
   }
-  if (options.city && options.slot != null && Number.isFinite(Number(options.slot))) {
-    const pick = getMerchantsInCityBucket(db, options.city, Number(options.slot), options);
-    return {
-      merchants: pick.merchants,
-      total: pick.merchants.length,
-      plan: [{
-        city: pick.city,
-        slot: pick.slot,
-        count: pick.merchants.length,
-      }],
-    };
-  }
-  const pick = pickMerchantsForCurrentSlot(db, options);
-  return {
-    merchants: pick.merchants,
-    plan: pick.plan || [],
-    total: pick.merchants.length,
-  };
+  const merchants = listImportedMerchants(db, importListOptions(options));
+  return { merchants, plan: [], total: merchants.length };
 }
 
 function countPublishTargets(db, options = {}) {
@@ -88,6 +69,7 @@ function createJob(kind, total, meta = {}) {
     renamed: 0,
     skipped: 0,
     cleaned: 0,
+    cancel_requested: false,
     current_name: "",
     logs: [],
     meta,
@@ -121,11 +103,19 @@ function onBatchItem(job, result, extra = {}) {
     if (result.cleaned) job.cleaned += 1;
     const note = result.note
       ? ` · ${result.note}`
-      : (result.now_id ? ` · now_id ${result.now_id}` : (result.group_id ? ` · 群 ${result.group_id}` : ""));
+      : (result.now_id ? ` · now_id ${result.now_id}` : (result.group_id ? ` · 群 ${result.group_id}` : (result.admin_user_id ? ` · ${result.admin_user_id}` : "")));
+    const autoGroup = result.group_created ? " · 已自动建群" : "";
+    const transferred = result.group_owner_transferred ? " · 已移交群主" : "";
+    const reused = result.media_reused ? " · 封面已复用" : "";
+    const successLabel = result.skipped
+      ? "已跳过"
+      : job.kind === "admins"
+        ? (result.created ? "已创建管理员" : result.reused ? "沿用已有管理员" : "成功")
+        : (result.created ? "新建群聊" : result.renamed ? "同步群名" : "成功");
     pushLog(job, {
       level: result.skipped || result.cleaned ? "warn" : "ok",
       name: job.current_name || result.merchant_uid,
-      message: (result.created ? "新建群聊" : result.renamed ? "同步群名" : "成功") + note,
+      message: successLabel + autoGroup + transferred + reused + note,
     });
   } else {
     job.fail_count += 1;
@@ -139,10 +129,17 @@ function onBatchItem(job, result, extra = {}) {
 }
 
 function completeJob(job, report) {
-  job.status = "done";
+  job.status = job.cancel_requested ? "canceled" : "done";
   job.finished_at = Date.now();
   job.summary = report;
   if (report?.state) job.meta.state = report.state;
+  if (job.status === "canceled") {
+    pushLog(job, {
+      level: "warn",
+      name: "—",
+      message: `已停止：成功 ${job.ok_count || 0} · 失败 ${job.fail_count || 0} · 未处理 ${Math.max(0, (job.total || 0) - (job.processed || 0))}`,
+    });
+  }
 }
 
 function failJob(job, error) {
@@ -150,6 +147,21 @@ function failJob(job, error) {
   job.finished_at = Date.now();
   job.error = error?.message || String(error);
   pushLog(job, { level: "fail", name: "—", message: job.error });
+}
+
+function requestCancelJob(jobId) {
+  const job = getJob(jobId);
+  if (!job) return null;
+  if (job.status !== "running") return job;
+  if (!job.cancel_requested) {
+    job.cancel_requested = true;
+    pushLog(job, { level: "warn", name: "—", message: "已请求停止，处理完当前这家后结束" });
+  }
+  return job;
+}
+
+function jobShouldCancel(job) {
+  return Boolean(job?.cancel_requested);
 }
 
 function getJob(jobId) {
@@ -171,6 +183,7 @@ function publicJobView(job) {
     renamed: job.renamed,
     skipped: job.skipped,
     cleaned: job.cleaned,
+    cancel_requested: Boolean(job.cancel_requested),
     current_name: job.current_name,
     logs: job.logs,
     meta: job.meta,
@@ -178,7 +191,7 @@ function publicJobView(job) {
     error: job.error,
     started_at: job.started_at,
     finished_at: job.finished_at,
-    done: job.status === "done" || job.status === "error",
+    done: job.status === "done" || job.status === "error" || job.status === "canceled",
   };
 }
 
@@ -207,6 +220,7 @@ function startGroupsBatchJob(db, options = {}) {
         ...options,
         onItem: (result) => onBatchItem(job, result),
         onPoolRotate: (rotation) => onPoolRotate(job, rotation),
+        shouldCancel: () => jobShouldCancel(job),
         stateOptions: options,
       });
       completeJob(job, report);
@@ -221,19 +235,43 @@ function startPublishBatchJob(db, options = {}) {
   const { total, plan } = getPublishPlan(db, options);
   const job = createJob("publish", total, {
     city: options.city || "",
-    slot: options.slot,
     plan,
     buzz_env: normalizeBuzzEnv(options.buzz_env),
   });
   setImmediate(async () => {
     try {
-      const runner = options.city && options.slot != null && Number.isFinite(Number(options.slot))
-        ? publishCityBucketBubbles
-        : batchPublishMerchantBubbles;
-      const report = await runner(db, {
+      const report = await batchPublishMerchantBubbles(db, {
         ...options,
         onItem: (result, extra) => onBatchItem(job, result, extra),
+        onStatus: (message) => {
+          job.current_name = message || "";
+          if (message) {
+            pushLog(job, { level: "ok", name: "—", message });
+          }
+        },
         onPoolRotate: (rotation) => onPoolRotate(job, rotation),
+        shouldCancel: () => jobShouldCancel(job),
+      });
+      completeJob(job, report);
+    } catch (error) {
+      failJob(job, error);
+    }
+  });
+  return job.id;
+}
+
+function startEnsureMerchantAdminsJob(db, options = {}) {
+  const merchants = listMerchantsNeedingAdmin(db, options);
+  const job = createJob("admins", merchants.length, {
+    city: options.city || "",
+    buzz_env: normalizeBuzzEnv(options.buzz_env),
+  });
+  setImmediate(async () => {
+    try {
+      const report = await batchEnsureMerchantAdmins(db, {
+        ...options,
+        onItem: (result) => onBatchItem(job, result),
+        shouldCancel: () => jobShouldCancel(job),
       });
       completeJob(job, report);
     } catch (error) {
@@ -269,6 +307,8 @@ module.exports = {
   getJob,
   getPublishPlan,
   publicJobView,
+  requestCancelJob,
+  startEnsureMerchantAdminsJob,
   startGroupsBatchJob,
   startPublishBatchJob,
   startPublishTestJob,

@@ -32,10 +32,23 @@ function parseExtraCity(extra) {
 function inferCityFromAddress(address) {
   const text = String(address || "").trim();
   if (!text) return "";
-  const direct = text.match(/^(北京|上海|天津|重庆)市/);
-  if (direct) return direct[1];
-  const match = text.match(/^(.{2,4}?)市/);
-  return match ? match[1] : "";
+  const municipality = text.match(/^(北京|上海|天津|重庆)/);
+  if (municipality) return municipality[1];
+  const match = text.match(/([\u4e00-\u9fa5]{2,12}?)市/);
+  if (!match) return "";
+  return match[1]
+    .replace(/^[\u4e00-\u9fa5]+(?:省|自治区|特别行政区)/, "")
+    .replace(/^[\u4e00-\u9fa5]+(?:自治州|地区|盟)/, "")
+    .trim();
+}
+
+function resolveMerchantCity(merchant = {}) {
+  const stored = String(merchant.city || "").trim();
+  if (stored && stored !== "未分类") return stored;
+  return inferCityFromAddress(merchant.address)
+    || inferCityFromAddress(merchant.poi_address)
+    || inferCityFromAddress(merchant.source_address)
+    || "";
 }
 
 function isUsableBuzzImageUrl(value) {
@@ -343,6 +356,7 @@ module.exports = {
   mapBuzzMerchantToLocalRow,
   merchantUidForBuzz,
   refreshBuzzMerchantImages,
+  resolveMerchantCity,
   resolveSyncAction,
   syncMerchantsFromBuzz,
 };

@@ -167,9 +167,9 @@ node scripts/compose-event-images.js --force   # 强制全部未过期重算
 
 | 页面 | URL | 用途 |
 |------|-----|------|
-| 活动审核 | http://127.0.0.1:8787/ | 豆瓣活动抓取结果、POI、活动气泡入库 |
-| 商户审核 | http://127.0.0.1:8787/merchants.html | 大众点评商户、POI、商户入库 |
-| 商户气泡 | http://127.0.0.1:8787/merchant-bubbles.html | 已入库商户批量建群 + 轮转发布气泡 |
+| 活动审核 | http://127.0.0.1:8790/ | 豆瓣活动抓取结果、POI、活动气泡入库 |
+| 商户审核 | http://127.0.0.1:8790/merchants.html | 大众点评商户、POI、商户入库 |
+| 商户气泡 | http://127.0.0.1:8790/merchant-bubbles.html | 已入库商户勾选建群 + 发布气泡 |
 
 ### Git 近期提交（截至 2026-06-08）
 
@@ -199,14 +199,14 @@ node scripts/compose-event-images.js --force   # 强制全部未过期重算
 
 基于**已入库**商户（`import_status=imported` 且有 `buzz_merchant_id`）：
 
-1. **三分组轮转**：每个城市把商户随机分成 3 份，每次发布只发当前轮次那 1/3，发完自动轮到下一组（状态存 `app_meta.merchant_bubble_rotation`）
-2. **发布者**：默认 `579362104`，页面可改
-3. **标题文案**：统一标题/正文，或按店名生成（标题=店名，正文固定：「欢迎进群组局邀约，看看谁有空一起。」）
-4. **过期时间**：发布后 **3 天**（`lib/merchant-bubble.js` 的 `BUBBLE_EXPIRE_DAYS`）
+1. **按店勾选加入已选**：已选名单按城市统计，可启用/停用；发布只发已启用的店；统一账号或各店管理员
+2. **发布者**：统一账号可填 `user_id`；各店管理员会绑到该店店长
+3. **标题文案**：统一标题/正文，或按店名生成（标题=店名）
+4. **过期时间**：可空。不填则不传 `expired_at`，由 Zup 后台按既有规则处理；填了才用指定时间
 5. **群聊**：
-   - **批量创建商户群聊**：无群 → 新建；已有群 → 调腾讯 IM `modify_group_base_info` **改名**（不重建）
+   - **挂商户群聊**：复用该店已有 IM 群；没有则发布时自动创建并记下
    - 群名 = **完整店名**（含括号分店名），最长 30 字（`MAX_MERCHANT_GROUP_NAME_LEN`）
-   - 发布气泡可选「挂商户群聊」或「每次新建群聊」
+   - 「每次新建群聊」只挂在本条气泡上，不覆盖店里已绑定的群
 
 核心文件：`lib/merchant-bubble.js`、`lib/tencent-im-group.js`（`createGroupForMerchant`、`modifyGroupBaseInfo`）
 
@@ -243,8 +243,11 @@ SDKAppID / Key 见 `lib/tencent-im-group.js` 或 `docs/import/README.md`（勿�
 
 当前用户特别重视两件事：
 
-- 抓到的内容不要直接丢弃。即使规则判断不适合，也要保留在审核台里，默认拒绝即可，方便人工二次判断。
-- 不要在抓取阶段擅自判断活动是否已结束、是否值得抓。用户让抓豆瓣列表多少条，就抓豆瓣页面上对应顺序的多少条；已结束、低质、票务化内容也先保留，由用户在审核台判断。
+- 国学、易经，以及《庄子》《论语》等传统经典讲读活动，也属于入库直接丢掉的「不结伴」内容。
+- 跨来源同场活动去重会忽略年份、标点和「巡回 / 巡演 / 全国巡演」等票务写法；2026-09-25 已修复“原来你也睡不着”豆瓣与摩天轮标题仅差「巡回」而重复推送的问题。
+- 抓到的内容不要直接丢弃。即使规则判断不适合，也要保留在审核台里，默认拒绝即可，方便人工二次判断。例外：下面列出的「不结伴」类型，入库时直接丢掉，不进审核台。
+- 不要在抓取阶段擅自判断活动是否已结束、是否值得抓。用户让抓豆瓣列表多少条，就抓豆瓣页面上对应顺序的多少条；已结束、票务化内容也先保留，由用户在审核台判断。不结伴类型除外，见下一条。
+- **入库直接丢掉**（`lib/event-low-social-filter.js`，豆瓣列表/详情和小红书入库共用）：体验课、学习课/夜校/训练营、园游会、旅游/旅行/文旅（含跨城一日游、跟团、景区门票）、音乐剧、舞台剧、儿童剧、悬疑剧、话剧、交响、歌舞/舞剧/芭蕾、歌剧、相声、魔术、魔法演出，以及艺术展、作品展、博物馆/美术馆文物展、标题带「大赛」的比赛、系统学习/系统课、景区或展馆的门票和套票。标题没写「艺术展」但正文是看作品、看文物的，同样丢掉。**留下**：演唱会、音乐节（跟团行程里顺便写了音乐节的，仍按旅游丢掉）、脱口秀、开放麦、Live/乐队、快闪、市集、嘉年华、漫展。音乐会丢掉。文化节、光影节丢掉；啤酒、咖啡、清酒、动漫、音乐文化节留下。标题只有「某某分会场」、看不出活动是什么的丢掉。逛公园丢掉。VR、XR、沉浸体验馆、沉浸剧、幻旅之门这类售票体验丢掉。标题写了「沉浸式」的演唱会和市集留下。景区里的演出不是卖门票的，不因为标题里有「景区」丢掉。标题是脱口秀时，即使带了艺术季也不丢。喜剧节、单口喜剧、即兴喜剧丢掉。即兴爵士不是即兴喜剧，留下。命中后不补后面的列表名额。
 - `body` 活动简介只写活动本身，不要写审核判断，不要写“是否适合 Zup”“默认拒绝”“人工判断”等系统话术。
 
 ## 工作区与运行方式
@@ -260,18 +263,18 @@ SDKAppID / Key 见 `lib/tencent-im-group.js` 或 `docs/import/README.md`（勿�
 ```bash
 cd BuzzInMap_website/zup-event-crawl
 npm start
-# 或: node scripts/server.js 8787
+# 或: node scripts/server.js 8790
 ```
 
 审核台地址（**活动与商户分两个一级页面，数据表也分开**）：
 
-- 活动：`http://127.0.0.1:8787/`
-- 商户：`http://127.0.0.1:8787/merchants.html`
-- 商户气泡：`http://127.0.0.1:8787/merchant-bubbles.html`
+- 活动：`http://127.0.0.1:8790/`
+- 商户：`http://127.0.0.1:8790/merchants.html`
+- 商户气泡：`http://127.0.0.1:8790/merchant-bubbles.html`
 
 旧路径 `/events/crawl-review.html` 仍指向活动页。
 
-如果 8787 服务失效，重新运行上面的命令即可。端口占用时可 `PORT=8788 npm start` 或 `lsof -ti :8787 | xargs kill`。
+如果 8790 服务失效，重新运行上面的命令即可。端口占用时可 `PORT=8791 npm start`。不要用 8787：本机 MasterGo 会占用该端口。
 
 ## 关键文件
 
@@ -469,7 +472,7 @@ node scripts/scrape-douban-week-events.js 30 data/review.db --city=chengdu --mod
 
 业务规则不变：
 
-- 用户说抓 N 条 = 列表 **第 1～N 条**；不因结束/低质跳过，不从后面补位。
+- 用户说抓 N 条 = 列表 **第 1～N 条**；不因结束跳过，不从后面补位。不结伴类型（话剧、音乐剧、交响、旅游课等，见 `lib/event-low-social-filter.js`）在列表和详情都会跳过，同样不补位。
 - 重复豆瓣 ID 入库 pass，除非用户明确「跳过重复后补够 N 条新增」。
 - 增城市 = **merge**，禁止整库覆盖成单城市（见「多城市事故」）。
 
@@ -640,7 +643,7 @@ node scripts/scrape-douban-week-events.js 30 data/review.db \
 cd zup-event-crawl
 npm run scrape-merchants -- --city=上海 --keyword=跳海
 npm start
-# 浏览器打开 http://127.0.0.1:8787/merchants.html
+# 浏览器打开 http://127.0.0.1:8790/merchants.html
 ```
 
 抓取过程中请保持 Chrome 已登录；脚本在后台专用窗口翻列表，不抢焦点。
@@ -670,10 +673,11 @@ npm start
 
 | 方法 | 路径 | 说明 |
 |------|------|------|
-| GET | `/api/merchant-bubbles/state` | 已入库数、各城市三分组与当前轮次 |
-| POST | `/api/merchant-bubbles/rebuild-buckets` | 重新随机三分组 |
-| POST | `/api/merchant-bubbles/groups-batch` | 无群新建 / 有群改名同步店名 |
-| POST | `/api/merchant-bubbles/publish-batch` | 发布当前轮次 1/3 商户气泡 |
+| GET | `/api/merchant-bubbles/state` | 已入库数、管理员/群聊/未过期气泡统计 |
+| GET | `/api/merchant-bubbles/merchants` | 已入库商户（`bar_only` / `city` / `q`，含 `admin_user_id`） |
+| POST | `/api/merchant-bubbles/admins-batch` | 为勾选商户创建或沿用管理员（绑店长） |
+| POST | `/api/merchant-bubbles/groups-batch` | 为勾选的店建群或同步群名 |
+| POST | `/api/merchant-bubbles/publish-batch` | 为勾选的店发布气泡 |
 
 商户审核台支持：POI Top1 自动 + 候选改选、商户类型、**可入库**筛选、**导出入库 JSON**、**页内入库/删后台**。POI 搜索词与 Zup 后台一致：**城市 + 店名**（不用点评商圈，避免商场名带偏）。腾讯 key：**个人号优先**，日配额用尽自动切**公司号**；可用 `BUZZ_TENCENT_MAP_KEY` 强制指定单一 key。
 
@@ -712,9 +716,11 @@ npm start
 
 **商户气泡页**（`public/merchant-bubbles.html`）已经具备：
 
-- 已入库商户统计；各城市三分组轮转预览。
-- **从当前环境补全商户**：拉取 Buzz 后台已有商户；同 POI 冲突时删除审核台本地旧记录后以正式为准。
-- 批量建群（新建或改名）、批量发布气泡（文案模式、群聊模式、now_type、限定城市）。
+- 发布身份：统一账号，或为每家店创建/沿用管理员后用各自账号发
+- 按店勾选加入已选名单，按城市查看/启用停用；发布只发已启用的店；配置文案、now_type、content_type、开始/过期时间
+- 已入库商户统计
+- **从当前环境补全商户**：拉取 Buzz 后台已有商户；同 POI 冲突时删除审核台本地旧记录后以正式为准
+- 为勾选的店发布气泡；选「挂商户群聊」时没群会自动建
 
 
 ## 注意事项

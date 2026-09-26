@@ -1,0 +1,17 @@
+[Unit]
+Description=Zup review desk
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=__APP_DIR__
+ExecStart=__NODE_BIN__ scripts/server.js
+Restart=always
+RestartSec=3
+Environment=TZ=Asia/Shanghai
+Environment=HOST=127.0.0.1
+Environment=PORT=8790
+
+[Install]
+WantedBy=multi-user.target

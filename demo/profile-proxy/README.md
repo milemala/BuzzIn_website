@@ -17,6 +17,8 @@ npm start
 
 打开：http://localhost:8788/match-card.html
 
+也可在仓库根目录 `npm start`：同时启动活动审核台（8790）与本服务（8788）。只开建档用根目录 `npm run start:profile`。
+
 运行纯业务测试：
 
 ```bash

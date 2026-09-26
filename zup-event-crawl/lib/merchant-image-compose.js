@@ -43,14 +43,18 @@ async function composeMerchantCoverImage(sourceBuffer, options = {}) {
     .toBuffer();
 }
 
-async function loadSourceBuffer(imageUrl, cacheDir) {
+async function loadSourceBuffer(imageUrl, cacheDir, options = {}) {
   const url = String(imageUrl || "").trim();
   if (isComposedImageUrl(url)) {
     const uid = parseComposedEventUid(url);
     const rootDir = path.join(cacheDir, "..");
     return readImageFile(getComposedImagePath(uid, rootDir)).buffer;
   }
-  const cachedPath = await ensureImageCached(normalizeMerchantImageUrl(url), cacheDir);
+  const cachedPath = await ensureImageCached(
+    normalizeMerchantImageUrl(url),
+    cacheDir,
+    { signal: options.signal },
+  );
   return readImageFile(cachedPath).buffer;
 }
 
@@ -58,7 +62,7 @@ async function composeMerchantCoverFromUrl(imageUrl, options = {}) {
   const cacheDir = options.cacheDir || path.join(__dirname, "..", "data", "image-cache");
   const url = String(imageUrl || "").trim();
   const sourceUrl = isComposedImageUrl(url) ? url : normalizeMerchantImageUrl(url);
-  const sourceBuffer = options.sourceBuffer || await loadSourceBuffer(sourceUrl, cacheDir);
+  const sourceBuffer = options.sourceBuffer || await loadSourceBuffer(sourceUrl, cacheDir, options);
   return composeMerchantCoverImage(sourceBuffer, options);
 }
 

@@ -4,8 +4,10 @@ const { getBuzzEnvConfig, normalizeBuzzEnv, resolvePublishUserId } = require("./
 
 const ENTITY_EVENT = "event";
 const ENTITY_MERCHANT = "merchant";
+const schemaReadyDbs = new WeakSet();
 
 function ensureBuzzImportSchema(db) {
+  if (schemaReadyDbs.has(db)) return;
   db.exec(`
     CREATE TABLE IF NOT EXISTS buzz_imports (
       entity_kind TEXT NOT NULL,
@@ -21,11 +23,41 @@ function ensureBuzzImportSchema(db) {
       publish_user_id TEXT NOT NULL DEFAULT '',
       now_merchant_id TEXT NOT NULL DEFAULT '',
       now_merchant_name TEXT NOT NULL DEFAULT '',
+      now_status INTEGER,
       updated_at TEXT,
       PRIMARY KEY (entity_kind, entity_uid, buzz_env)
     )
   `);
+  migrateBuzzImportColumns(db);
   migrateLegacyBuzzImports(db);
+  schemaReadyDbs.add(db);
+}
+
+function migrateBuzzImportColumns(db) {
+  const existing = new Set(
+    db.prepare("PRAGMA table_info(buzz_imports)").all().map((row) => row.name),
+  );
+  if (!existing.has("now_status")) {
+    db.exec("ALTER TABLE buzz_imports ADD COLUMN now_status INTEGER");
+  }
+  if (!existing.has("bubble_media_hash")) {
+    db.exec("ALTER TABLE buzz_imports ADD COLUMN bubble_media_hash TEXT NOT NULL DEFAULT ''");
+  }
+  if (!existing.has("bubble_media_json")) {
+    db.exec("ALTER TABLE buzz_imports ADD COLUMN bubble_media_json TEXT NOT NULL DEFAULT ''");
+  }
+  if (!existing.has("bubble_group_owner_id")) {
+    db.exec("ALTER TABLE buzz_imports ADD COLUMN bubble_group_owner_id TEXT NOT NULL DEFAULT ''");
+  }
+}
+
+function pickNowStatus(patch, current) {
+  const source = Object.prototype.hasOwnProperty.call(patch, "now_status")
+    ? patch.now_status
+    : current.now_status;
+  if (source == null || source === "") return null;
+  const n = Number(source);
+  return n === 1 || n === -1 ? n : null;
 }
 
 function migrateLegacyBuzzImports(db) {
@@ -143,6 +175,10 @@ function rowToImportRecord(row) {
     publish_user_id: row.publish_user_id || "",
     now_merchant_id: row.now_merchant_id || "",
     now_merchant_name: row.now_merchant_name || "",
+    now_status: row.now_status == null || row.now_status === "" ? null : Number(row.now_status),
+    bubble_media_hash: row.bubble_media_hash || "",
+    bubble_media_json: row.bubble_media_json || "",
+    bubble_group_owner_id: row.bubble_group_owner_id || "",
   };
 }
 
@@ -154,6 +190,20 @@ function getBuzzImport(db, entityKind, entityUid, buzzEnv) {
     WHERE entity_kind = ? AND entity_uid = ? AND buzz_env = ?
   `).get(entityKind, entityUid, env);
   return rowToImportRecord(row);
+}
+
+function listBuzzImportsMap(db, entityKind, buzzEnv) {
+  ensureBuzzImportSchema(db);
+  const env = normalizeBuzzEnv(buzzEnv);
+  const rows = db.prepare(`
+    SELECT * FROM buzz_imports
+    WHERE entity_kind = ? AND buzz_env = ?
+  `).all(entityKind, env);
+  const map = new Map();
+  for (const row of rows) {
+    map.set(row.entity_uid, rowToImportRecord(row));
+  }
+  return map;
 }
 
 function sqlBind(value) {
@@ -193,6 +243,12 @@ function upsertBuzzImport(db, entityKind, entityUid, buzzEnv, patch = {}) {
     publish_user_id: pick("publish_user_id", current.publish_user_id),
     now_merchant_id: pick("now_merchant_id", current.now_merchant_id),
     now_merchant_name: pick("now_merchant_name", current.now_merchant_name),
+    now_status: sqlBind(pickNowStatus(patch, current)),
+    bubble_media_hash: pick("bubble_media_hash", current.bubble_media_hash),
+    bubble_media_json: Object.prototype.hasOwnProperty.call(patch, "bubble_media_json")
+      ? String(patch.bubble_media_json ?? "")
+      : String(current.bubble_media_json || ""),
+    bubble_group_owner_id: pick("bubble_group_owner_id", current.bubble_group_owner_id),
     updated_at: now,
   };
 
@@ -201,12 +257,14 @@ function upsertBuzzImport(db, entityKind, entityUid, buzzEnv, patch = {}) {
       entity_kind, entity_uid, buzz_env,
       buzz_id, buzz_group_id, bubble_now_id, bubble_published_at,
       import_status, import_error, imported_at,
-      publish_user_id, now_merchant_id, now_merchant_name, updated_at
+      publish_user_id, now_merchant_id, now_merchant_name, now_status,
+      bubble_media_hash, bubble_media_json, bubble_group_owner_id, updated_at
     ) VALUES (
       @entity_kind, @entity_uid, @buzz_env,
       @buzz_id, @buzz_group_id, @bubble_now_id, @bubble_published_at,
       @import_status, @import_error, @imported_at,
-      @publish_user_id, @now_merchant_id, @now_merchant_name, @updated_at
+      @publish_user_id, @now_merchant_id, @now_merchant_name, @now_status,
+      @bubble_media_hash, @bubble_media_json, @bubble_group_owner_id, @updated_at
     )
     ON CONFLICT(entity_kind, entity_uid, buzz_env) DO UPDATE SET
       buzz_id = excluded.buzz_id,
@@ -219,6 +277,10 @@ function upsertBuzzImport(db, entityKind, entityUid, buzzEnv, patch = {}) {
       publish_user_id = excluded.publish_user_id,
       now_merchant_id = excluded.now_merchant_id,
       now_merchant_name = excluded.now_merchant_name,
+      now_status = excluded.now_status,
+      bubble_media_hash = excluded.bubble_media_hash,
+      bubble_media_json = excluded.bubble_media_json,
+      bubble_group_owner_id = excluded.bubble_group_owner_id,
       updated_at = excluded.updated_at
   `).run(next);
 
@@ -286,10 +348,12 @@ function clearBuzzImport(db, entityKind, entityUid, buzzEnv) {
   });
 }
 
-function applyBuzzEnvToEvent(db, event, buzzEnv) {
+function applyBuzzEnvToEvent(db, event, buzzEnv, preloadedImport) {
   if (!event) return event;
   const env = normalizeBuzzEnv(buzzEnv);
-  const imp = getBuzzImport(db, ENTITY_EVENT, event.event_uid || event.eventUid, env);
+  const imp = preloadedImport !== undefined
+    ? preloadedImport
+    : getBuzzImport(db, ENTITY_EVENT, event.event_uid || event.eventUid, env);
   const cfg = getBuzzEnvConfig(env);
   return {
     ...event,
@@ -307,6 +371,7 @@ function applyBuzzEnvToEvent(db, event, buzzEnv) {
     import_status: imp?.import_status || "",
     import_error: imp?.import_error || "",
     imported_at: imp?.imported_at || null,
+    now_status: imp?.now_status == null ? null : Number(imp.now_status),
   };
 }
 
@@ -326,6 +391,11 @@ function applyBuzzEnvToMerchant(db, merchant, buzzEnv) {
     import_status: imp?.import_status || "",
     import_error: imp?.import_error || "",
     imported_at: imp?.imported_at || null,
+    publish_user_id: imp?.publish_user_id || "",
+    admin_user_id: imp?.publish_user_id || "",
+    bubble_media_hash: imp?.bubble_media_hash || "",
+    bubble_media_json: imp?.bubble_media_json || "",
+    bubble_group_owner_id: imp?.bubble_group_owner_id || "",
   };
 }
 
@@ -347,6 +417,7 @@ function markEventImportResult(db, eventUid, result, buzzEnv = "test") {
   if (result.publish_user_id !== undefined) patch.publish_user_id = result.publish_user_id;
   if (result.now_merchant_id !== undefined) patch.now_merchant_id = result.now_merchant_id;
   if (result.now_merchant_name !== undefined) patch.now_merchant_name = result.now_merchant_name;
+  if (result.now_status !== undefined) patch.now_status = result.now_status;
   return upsertBuzzImport(db, ENTITY_EVENT, eventUid, env, patch);
 }
 
@@ -362,6 +433,7 @@ function markMerchantImportResult(db, merchantUid, result, buzzEnv = "test") {
   if (result.import_status !== undefined) patch.import_status = result.import_status;
   if (result.import_error !== undefined) patch.import_error = result.import_error;
   if (result.imported_at !== undefined) patch.imported_at = result.imported_at;
+  if (result.publish_user_id !== undefined) patch.publish_user_id = result.publish_user_id;
   return upsertBuzzImport(db, ENTITY_MERCHANT, merchantUid, env, patch);
 }
 
@@ -371,6 +443,7 @@ function clearEventBuzzNow(db, eventUid, buzzEnv = "test") {
     buzz_group_id: "",
     import_status: "",
     import_error: "",
+    now_status: null,
   }, buzzEnv);
 }
 
@@ -411,6 +484,7 @@ module.exports = {
   clearMerchantBuzzId,
   ensureBuzzImportSchema,
   getBuzzImport,
+  listBuzzImportsMap,
   isImportedInEnv,
   markEventImportResult,
   markMerchantImportResult,

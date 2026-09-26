@@ -162,6 +162,81 @@ class BuzzAdminClient {
     })).filter((item) => item.id && item.name);
   }
 
+  async listUsers(query = {}) {
+    const data = await this.postJSON("/users/list", {
+      page: Number(query.page) || 1,
+      size: Number(query.size) || 20,
+      keyword: String(query.keyword || "").trim(),
+      user_id: String(query.user_id || "").trim(),
+    });
+    return {
+      list: data?.list || [],
+      pagination: data?.pagination || {},
+    };
+  }
+
+  async findUserByKeyword(keyword) {
+    const key = String(keyword || "").trim();
+    if (!key) return null;
+    const { list } = await this.listUsers({ keyword: key, page: 1, size: 20 });
+    return list.find((item) => (
+      String(item.user_id) === key
+      || String(item.phone || "") === key
+      || String(item.nickname || "") === key
+    )) || list[0] || null;
+  }
+
+  async createUser(payload = {}) {
+    const data = await this.postJSON("/users", payload);
+    return data || {};
+  }
+
+  async updateUser(userId, payload = {}) {
+    const id = String(userId || "").trim();
+    if (!id) throw new Error("缺少 user_id");
+    return this.putJSON(`/users/${encodeURIComponent(id)}`, {
+      user_id: id,
+      ...payload,
+    });
+  }
+
+  async listAllMerchants(options = {}) {
+    const list = [];
+    let page = 1;
+    let total = Infinity;
+    const size = Number(options.size) > 0 ? Number(options.size) : 100;
+    const keyword = String(options.keyword || "").trim();
+    while ((page - 1) * size < total) {
+      const body = { page, size, keyword };
+      if (options.status != null && options.status !== "") body.status = options.status;
+      const data = await this.postJSON("/merchants/list", body);
+      total = Number(data?.pagination?.total) || 0;
+      const batch = data?.list || [];
+      if (!batch.length) break;
+      list.push(...batch);
+      page += 1;
+    }
+    return list;
+  }
+
+  async getMerchantById(merchantId) {
+    const id = String(merchantId || "").trim();
+    if (!id) return null;
+    const data = await this.postJSON("/merchants/list", {
+      page: 1,
+      size: 20,
+      keyword: id,
+    });
+    const list = data?.list || [];
+    return list.find((item) => String(item.merchant_id || "") === id) || null;
+  }
+
+  async updateMerchant(merchantId, payload = {}) {
+    const id = String(merchantId || "").trim();
+    if (!id) throw new Error("缺少 merchant_id");
+    return this.putJSON(`/merchants/${encodeURIComponent(id)}`, payload);
+  }
+
   async uploadMedia(src) {
     await this.ensureToken();
     const { buffer, filename, contentType } = await readSource(src);
@@ -256,7 +331,7 @@ function buildBuzzPayload(record) {
   if (record.start_at) payload.start_at = record.start_at;
   if (record.expired_at) {
     payload.expired_at = record.expired_at;
-  } else {
+  } else if (!record.now_merchant_id) {
     payload.expired_at = defaultExpiredAt();
   }
   if (record.group_id) payload.group_id = record.group_id;
@@ -450,6 +525,7 @@ async function importEventToBuzz(db, eventUid, options = {}) {
       publish_user_id: finalPublishUserId,
       now_merchant_id: event.now_merchant_id,
       now_merchant_name: event.now_merchant_name,
+      now_status: 1,
     }, buzzEnv);
     return {
       ok: true,
@@ -611,6 +687,90 @@ async function batchUpdateEventsExpiredAt(db, eventUids, options = {}) {
   };
 }
 
+function isBuzzNowExpired(event) {
+  const raw = String(event?.expired_at || "").trim();
+  if (!raw) return false;
+  const normalized = raw.includes("T") ? raw : raw.replace(" ", "T");
+  const ts = Date.parse(normalized);
+  return !Number.isNaN(ts) && ts < Date.now();
+}
+
+function normalizeNowStatus(value) {
+  const status = Number(value);
+  if (status !== 1 && status !== -1) {
+    throw new Error("now_status 只能是 1（启用）或 -1（屏蔽）");
+  }
+  return status;
+}
+
+async function updateEventNowStatus(db, eventUid, nowStatus, options = {}) {
+  const status = normalizeNowStatus(nowStatus);
+  const buzzEnv = resolveBuzzEnv(options);
+  const event = eventWithBuzzEnv(db, eventUid, buzzEnv);
+  if (!event) {
+    return { ok: false, event_uid: eventUid, buzz_env: buzzEnv, error: "活动不存在" };
+  }
+  const nowId = String(event.buzz_now_id || "").trim();
+  if (event.import_status !== "imported" || !nowId) {
+    return {
+      ok: false,
+      event_uid: eventUid,
+      buzz_env: buzzEnv,
+      title: event.title,
+      error: "活动尚未推送到该环境",
+      event,
+    };
+  }
+  if (isBuzzNowExpired(event)) {
+    return {
+      ok: false,
+      event_uid: eventUid,
+      buzz_env: buzzEnv,
+      title: event.title,
+      now_id: nowId,
+      error: "活动已过期，地图上本来就看不到",
+      event,
+    };
+  }
+  if (Number(event.now_status) === status) {
+    return {
+      ok: true,
+      skipped: true,
+      event_uid: eventUid,
+      buzz_env: buzzEnv,
+      title: event.title,
+      now_id: nowId,
+      now_status: status,
+      event,
+    };
+  }
+
+  const client = createClientForEnv(options);
+  try {
+    await client.updateNow(nowId, { now_status: status });
+    markEventImportResult(db, eventUid, { now_status: status }, buzzEnv);
+    return {
+      ok: true,
+      event_uid: eventUid,
+      buzz_env: buzzEnv,
+      title: event.title,
+      now_id: nowId,
+      now_status: status,
+      event: eventWithBuzzEnv(db, eventUid, buzzEnv),
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      event_uid: eventUid,
+      buzz_env: buzzEnv,
+      title: event.title,
+      now_id: nowId,
+      error: error.message,
+      event,
+    };
+  }
+}
+
 async function deleteEventFromBuzz(db, eventUid, options = {}) {
   const buzzEnv = resolveBuzzEnv(options);
   const event = eventWithBuzzEnv(db, eventUid, buzzEnv);
@@ -665,4 +825,5 @@ module.exports = {
   expiredAtDaysFromNow,
   importEventToBuzz,
   resolveBuzzEnv,
+  updateEventNowStatus,
 };

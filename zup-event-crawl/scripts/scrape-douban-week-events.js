@@ -22,6 +22,7 @@ const { batchEventAutoPoi } = require("../lib/event-poi-batch");
 const { buildDateWindowFromEvents, buildEventDates } = require("../lib/event-dates");
 const { buildPendingClassificationFields } = require("../lib/event-classification");
 const { eventUidFor, importPayload, openDatabase, syncEventPoiCoordinates } = require("../lib/review-db");
+const { matchLowSocialEvent } = require("../lib/event-low-social-filter");
 const {
   eventContentDedupKey,
   loadContentDedupKeys,
@@ -147,6 +148,13 @@ function parseDoubanEventType(detailHtml) {
 }
 
 function getExcludeReason(event, eventType = "") {
+  const lowSocial = matchLowSocialEvent({
+    title: event.title,
+    body: event.body,
+    rawDetailText: event.detailText || event.rawDetailText,
+  });
+  if (lowSocial) return lowSocial.reason;
+
   const type = String(eventType || event.doubanEventType || "").trim();
   const haystack = `${event.title} ${event.owner} ${event.location} ${event.detailText || event.rawDetailText || ""}`;
 

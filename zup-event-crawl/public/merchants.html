@@ -80,6 +80,10 @@
     .card{background:var(--panel);border:1px solid var(--line);border-radius:8px;display:grid;grid-template-columns:auto minmax(0,1fr);overflow:hidden}
     .cover-wrap{align-self:start;background:#e6eee8;border-right:1px solid var(--line);padding:8px}
     .cover{display:block;width:auto;max-width:220px;height:auto;object-fit:contain;object-position:top left;background:#e6eee8}
+    .cover-tools{display:grid;gap:6px;width:220px;margin-top:8px}
+    .cover-url{width:100%;height:32px;border:1px solid var(--line);border-radius:6px;padding:0 8px;background:#fff;font-size:12px}
+    .cover-replace,.cover-map{width:100%;height:34px}
+    .cover-note{font-size:11px;line-height:1.4;color:var(--muted)}
     .body{padding:13px 14px}
     .title{margin:0;font-size:17px;font-weight:800}
     .merchant-name-field{margin-bottom:4px}
@@ -176,6 +180,7 @@
       .filter-row{grid-template-columns:1fr}
       .filter-label{padding-top:0}
       .cover{max-width:min(160px,36vw)}
+      .cover-tools{width:min(220px,36vw)}
       .search{width:100%;min-width:0;flex-basis:100%}
     }
   </style>
@@ -345,6 +350,7 @@
     const SOURCE_FILTERS = [
       { key: "all", label: "全部" },
       { key: "dianping", label: "大众点评" },
+      { key: "city_hotspot", label: "热门地标" },
       { key: "buzz", label: "Zup 同步" },
     ];
 
@@ -413,6 +419,15 @@
 
     function hasNoPoi(item) {
       return !String(item.address_poi_id || "").trim();
+    }
+
+    function hasCoordinates(item) {
+      return item?.latitude !== null
+        && item?.latitude !== ""
+        && item?.longitude !== null
+        && item?.longitude !== ""
+        && Number.isFinite(Number(item.latitude))
+        && Number.isFinite(Number(item.longitude));
     }
 
     function isImportReady(item) {
@@ -1048,6 +1063,84 @@
       return payload.merchant;
     }
 
+    async function replaceMerchantImage(uid, card, button) {
+      const input = card.querySelector("[data-image-url]");
+      const imageUrl = String(input?.value || "").trim();
+      if (!imageUrl) {
+        setSaveState("请先填写图片地址", "error");
+        input?.focus();
+        return;
+      }
+
+      const merchant = state.merchants.find((item) => item.merchant_uid === uid);
+      if (merchant?.import_status === "imported" && merchant?.buzz_merchant_id) {
+        const confirmed = window.confirm(
+          "该商户已推送到当前后台环境。替换只会更新审核台封面，不会自动修改后台已有图片，是否继续？",
+        );
+        if (!confirmed) return;
+      }
+
+      const originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = "处理中…";
+      setSaveState("下载图片并生成16:9封面...", "warn");
+      try {
+        const response = await fetch(`/api/merchants/${encodeURIComponent(uid)}/image`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ image_url: imageUrl }),
+        });
+        const payload = await response.json();
+        if (!response.ok || !payload.ok) {
+          throw new Error(payload.error || "替换封面失败");
+        }
+        upsertMerchant(payload.merchant);
+        setSaveState("封面已处理并替换", "ok");
+        render();
+      } catch (error) {
+        setSaveState(error.message || "替换封面失败", "error");
+        button.disabled = false;
+        button.textContent = originalText;
+      }
+    }
+
+    async function replaceMerchantImageWithMap(uid, button) {
+      const merchant = state.merchants.find((item) => item.merchant_uid === uid);
+      if (!hasCoordinates(merchant)) {
+        setSaveState("该商户缺少坐标，请先匹配 POI", "error");
+        return;
+      }
+      if (merchant?.import_status === "imported" && merchant?.buzz_merchant_id) {
+        const confirmed = window.confirm(
+          "该商户已推送到当前后台环境。替换只会更新审核台封面，不会自动修改后台已有图片，是否继续？",
+        );
+        if (!confirmed) return;
+      }
+
+      const originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = "生成中…";
+      setSaveState("正在生成腾讯地图定位封面...", "warn");
+      try {
+        const response = await fetch(`/api/merchants/${encodeURIComponent(uid)}/map-image`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(BuzzEnvUi.importBody({})),
+        });
+        const payload = await response.json();
+        if (!response.ok || !payload.ok) {
+          throw new Error(payload.error || "地图封面生成失败");
+        }
+        upsertMerchant(payload.merchant);
+        setSaveState("已替换为腾讯地图定位封面", "ok");
+        render();
+      } catch (error) {
+        setSaveState(error.message || "地图封面生成失败", "error");
+        button.disabled = false;
+        button.textContent = originalText;
+      }
+    }
+
     function stripBranchSuffix(name) {
       return String(name || "").replace(/[（(][^）)]*[）)]\s*$/u, "").trim();
     }
@@ -1269,7 +1362,8 @@
       if (filter === "all") return true;
       const source = String(item.source || "dianping").trim();
       if (filter === "buzz") return source === "buzz";
-      if (filter === "dianping") return source !== "buzz";
+      if (filter === "city_hotspot") return source === "city_hotspot";
+      if (filter === "dianping") return source === "dianping";
       return true;
     }
 
@@ -1516,16 +1610,27 @@
         const detailUrl = merchantDetailUrl(item);
         const chips = [
           item.source === "buzz" ? `<span class="chip">Zup 同步</span>` : "",
+          item.source === "city_hotspot" ? `<span class="chip">热门地标</span>` : "",
           item.city ? `<span class="chip">${escapeHtml(item.city)}</span>` : "",
           item.category ? `<span class="chip">${escapeHtml(item.category)}</span>` : "",
           item.search_keyword ? `<span class="chip">关键词 ${escapeHtml(item.search_keyword)}</span>` : "",
-          ready ? `<span class="chip ready">可推送</span>` : `<span class="chip miss">待补全</span>`,
+          ready
+            ? `<span class="chip ready">可推送</span>`
+            : hasNoPoi(item)
+              ? `<span class="chip miss">缺 POI</span>`
+              : `<span class="chip miss">待补全</span>`,
           item.poi_doubtful ? `<span class="chip poi-doubt">POI 存疑</span>` : "",
         ].join("");
         return `
           <article class="card" data-uid="${item.merchant_uid}">
             <div class="cover-wrap">
               <img class="cover" src="${proxyImage(item.image)}" alt="${escapeHtml(item.name)}" loading="lazy">
+              <div class="cover-tools">
+                <input class="cover-url" type="url" data-image-url placeholder="粘贴新的图片地址" spellcheck="false">
+                <button class="mini cover-replace" type="button" data-image-replace>处理并替换封面</button>
+                <button class="mini cover-map" type="button" data-image-map ${hasCoordinates(item) ? "" : "disabled"}>换成腾讯地图封面</button>
+                <div class="cover-note">图片地址或地图定位图都会生成模糊背景＋完整前景的16:9封面</div>
+              </div>
             </div>
             <div class="body">
               <div class="import-field merchant-name-field">
@@ -1691,6 +1796,18 @@
       const card = event.target.closest("[data-uid]");
       if (!card) return;
       const uid = card.dataset.uid;
+
+      const imageReplaceBtn = event.target.closest("button[data-image-replace]");
+      if (imageReplaceBtn) {
+        replaceMerchantImage(uid, card, imageReplaceBtn);
+        return;
+      }
+
+      const imageMapBtn = event.target.closest("button[data-image-map]");
+      if (imageMapBtn) {
+        replaceMerchantImageWithMap(uid, imageMapBtn);
+        return;
+      }
 
       const reviewBtn = event.target.closest("button[data-action]");
       if (reviewBtn) {

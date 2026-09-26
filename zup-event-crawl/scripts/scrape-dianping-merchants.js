@@ -442,7 +442,7 @@ async function main() {
     }
   }
 
-  console.log(`打开审核台: npm start → http://127.0.0.1:8787/merchants.html`);
+  console.log(`打开审核台: npm start → http://127.0.0.1:8790/merchants.html`);
 }
 
 main().catch((error) => {

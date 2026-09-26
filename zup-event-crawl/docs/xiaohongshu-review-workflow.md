@@ -124,7 +124,7 @@ data/scrape-cache/xhs/<城市>/<笔记ID>/
 
 ### 审核台
 
-- 启动：`npm start` → http://127.0.0.1:8787/
+- 启动：`npm start` → http://127.0.0.1:8790/
 - **来源筛选**选「小红书」后，状态/类型/日期筛选项只统计该来源
 - 本地原图通过 `zup-event-crawl.local/scrape/...` 代理展示
 

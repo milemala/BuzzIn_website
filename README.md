@@ -37,16 +37,40 @@ BuzzInMap_website/
 安卓 APK 地址写在 `js/config.js` 的 `APK_DOWNLOAD_URL`。改完后必须同时：
 
 1. 把新 `config.js` 部署上线；
-2. 把各页面里的 `config.js?v=……` 版本号改成新日期（如 `?v=20260808`），并一并部署 `index.html`、`download.html`、`android-guide.html` 等引用页。
+2. 把各页面里的 `config.js?v=……` 版本号改成新日期（如 `?v=20260810`），并一并部署 `index.html`、`download.html`、`android-guide.html`、`merchant.html`、`city-living-room.html` 等引用页。
 
 只改 `config.js`、不改 `?v=`，浏览器会继续用缓存里的旧配置，下载到的仍是老包。APK 文件名若与线上一致，CDN 也可能缓存旧安装包，建议新版本用新文件名。
+
+当前线上包：`https://cdn.nowmap.cn/apk/app-release-1.0.0.094.apk`（`config.js?v=20260810`）。
 
 ## 本地预览
 
 - 直接双击或通过本地服务器打开 `index.html` 即可。
 - 导航含：产品、商户入驻、用户手册、城市客厅联盟、下载。AI Agent 作为首页内容板块展示，不单独放导航锚点。
 
+### 一键启动：审核台 + AI 建档
+
+仓库根目录执行一次即可同时打开两个本地服务（端口仍分开，互不抢）：
+
+```bash
+# 首次用 AI 建档前：cp demo/profile-proxy/.env.example demo/profile-proxy/.env 并填 ZHIPU_API_KEY
+npm start
+```
+
+| 服务 | 地址 |
+|------|------|
+| 活动审核台 | http://127.0.0.1:8790/ |
+| AI 撮合 / 建档 | http://localhost:8788/match-card.html |
+
+Ctrl+C 会一起关掉。只开其中一个时：`npm run start:review` 或 `npm run start:profile`。
+
+**不要打开 8787**：那是本机 MasterGo，不是审核台。审核台是 **8790**。重复执行 `npm start` 会先清掉旧进程再重开，不会再因为端口占用而挂掉。
+
+要让审核台在阿里云上一直开着（给以后每天自动发气泡用），按 [`zup-event-crawl/deploy/README.md`](zup-event-crawl/deploy/README.md) 做。云上只跑审核台，抓取仍在自己电脑上。
+
 ### AI 建档 Demo（智谱）
+
+也可单独进入子目录启动：
 
 ```bash
 cd demo/profile-proxy
@@ -54,9 +78,7 @@ cp .env.example .env   # 填入 ZHIPU_API_KEY
 npm start
 ```
 
-浏览器打开 http://localhost:8788/match-card.html ，点「编辑我的信息」即可建档。
-
-**只需开这一个服务。** `8787` 是活动审核台（`zup-event-crawl`），和 AI 建档无关，测撮合/建档时不必启动。详见 [`docs/ai-match-profile.md`](docs/ai-match-profile.md)。
+浏览器打开 http://localhost:8788/match-card.html ，点「编辑我的信息」即可建档。详见 [`docs/ai-match-profile.md`](docs/ai-match-profile.md)。
 
 - 最新后端交接入口：[`docs/ai-match-profile-backend-handoff.md`](docs/ai-match-profile-backend-handoff.md)
 - 可直接发送给后端的压缩包：`AI建档-v3-后端交接包-20260807.zip`（含回答放宽与总结润色；详见包内 `01-本次改动说明.md`）
@@ -84,6 +106,7 @@ npm start
   - 重新匹配：先询问原因，结束后回到待匹配（若还有其他任务则继续其他任务）；需再次轻触星芒才会开新匹配。
   - 昵称/年龄/性别/定位等视为注册已有；组局类型与希望匹配性别为每次匹配前的临时配置，不进 AI 建档。
   - 首次建档为 **v3 单 Agent**：Prompt 负责问法与回答判断，业务层用 `fieldQueue / currentField` 推进；画像使用 `empty / answered / skipped`，不依赖模型自报置信度。
+  - 首次进入建档会先看一页说明（是什么 / 为什么 / 三步流程 / 约 2～3 分钟），点「开始聊聊」后再提问；补聊与重新聊聊不再重复说明。
   - 建档真实 LLM：本地代理 [`demo/profile-proxy`](demo/profile-proxy) + 智谱 API；说明见 [`docs/ai-match-profile.md`](docs/ai-match-profile.md)。
   - 完整路径：选活动与期望 → 开撮合 →（多任务）寻找 → 匹配 → 等待确认 → 群聊；Demo 匹配不强制先建档，建档可随时点「编辑我的信息」。
   - Demo 特例终态：`咖啡` → 匹配超时；`户外` → 我超时未确认导致未能成局；`桌游` → 我已确认但人数不足未能成局；`约饭` 停在寻找中便于看匹配中页。均可重新寻找。
@@ -122,6 +145,13 @@ npm start
   - 结构：Hero（新 App 图标）→ AI 组局四步 → 四能力（AI / 地图 / 即时邀约 / 群聊）→ 场景横滑 → 地图预览 → 收束 CTA → 发起人/商户入驻。
   - 图标资源：`https://buzzin.oss-cn-beijing.aliyuncs.com/h5_event/zup-app-icon.png`。
 
+- 约酒专题 H5（`events/tonight-drink.html`）
+  - 定位：App 内嵌活动页（无下载/打开入口），宣传「约个小酒」。
+  - 主标题：约个小酒。
+  - 结构：Hero + 筛选「小酌」截图指引 → 报名/签到/群聊三件事 → 为什么是约酒 → FAQ → 返回地图。
+  - 不写酒馆联名；真实邀约以首页地图为准；教用户点漏斗只勾选「小酌」。
+  - 上线后把该页 URL 配进 App 首页活动入口即可。
+
 ## 设计一致性
 
 - 导航结构、按钮风格、色板与动效全站统一；交互动效复用 `js/main.js`。
@@ -135,6 +165,87 @@ npm start
 - 产品对外口径以 `参考资料/` 中的 BP / 鲸准文案为准，首页保持用户可读的短句表达。
 
 ## 最近更新
+
+### 2026年9月 - 启用和停用只作用于当前筛选
+- **变更**: 商户气泡页的「启用当前筛选」「停用当前筛选」只改当前筛选结果里已经选中的店，不会把名单里其他店一起改掉。
+
+### 2026年9月 - 已有未过期气泡的店不进入发布进度
+- **变更**: 批量发布商户气泡时，已经有未过期气泡的店会在开始前一次排除，不再在进度里逐家检查。
+- **文件**: `zup-event-crawl/lib/merchant-bubble.js`、`zup-event-crawl/public/merchant-bubbles.html`、`zup-event-crawl/scripts/server.js`
+
+### 2026年9月 - 商户气泡文案不再按分类词猜类型
+- **变更**: 发布商户气泡时，文案只按当前环境里的商户类型编号取用。分类说明里的「咖啡」「酒吧」「书店」不会把公园改判成咖啡厅或其他类型。发布时会把这份类型名单交给文案选择，避免公园被报成「类型没有对上」。
+- **文件**: `zup-event-crawl/lib/merchant-bubble-content-type.js`、`zup-event-crawl/lib/merchant-bubble.js`
+
+### 2026年9月 - 商户气泡不显示报名签到
+- **变更**: 从商户气泡页发布时，和活动审核台一样带上隐藏报名签到的标记。即刻邀约和预约也不再出现报名签到入口。已经发出去的气泡不会自动改掉。
+- **文件**: `zup-event-crawl/lib/merchant-bubble.js`、`zup-event-crawl/public/merchant-bubbles.html`
+
+### 2026年9月 - 审核台可打包到阿里云
+- **变更**: 增加打包和云上安装步骤，把审核台放到一台不关机的轻量服务器上。页面默认不暴露到公网，用加密通道在自己电脑打开。每天定时发气泡要等这台服务一直开着之后再做。
+- **文件**: `zup-event-crawl/deploy/README.md`、`zup-event-crawl/scripts/pack-cloud.sh`、`zup-event-crawl/deploy/install-on-cloud.sh`
+
+### 2026年9月 - 商户气泡可查看已选店的类型
+- **变更**: 商户气泡选店筛选改为来源、已选/已启用、城市、类型。点「已选」或「已启用」后，城市和类型只统计这批店。
+
+### 2026年9月 - 商户气泡按类型分开文案
+- **变更**: 商户气泡的标题和正文按商户类型各自维护，原来的酒馆默认文案已清空。发布时一家店只用它自己类型的文案。
+
+### 2026年9月 - 创建店管理员只处理还没有管理员的店
+- **变更**: 商户气泡页点「为已选的店创建管理员」时，已经有管理员的店不再逐家出现在进度里。进度只给还没有管理员的店新建账号。
+
+### 2026年9月 - 商户气泡可按热门地标筛选
+- **变更**: 商户气泡选店处增加来源筛选，可只看「热门地标」。类型和城市数量会跟随来源一起变化。
+- **文件**: `zup-event-crawl/public/merchant-bubbles.html`、`lib/merchant-bubble.js`
+
+### 2026年9月 - 商户气泡按类型选店和命名
+- **变更**: 商户气泡页可按商户类型筛选。选择「各店管理员」新建账号时，公园和其他类型的昵称固定为「神秘小刘」。这批热门地标已推送到正式环境，气泡页需切到「正式」才能看到。
+- **文件**: `zup-event-crawl/public/merchant-bubbles.html`、`lib/merchant-admin-user.js`
+
+### 2026年9月 - 商户审核台一键使用地图兜底封面
+- **变更**: 商户卡片新增「换成腾讯地图封面」。系统使用商户当前坐标生成带定位标记和商户名的地图图，再按“模糊背景 + 完整前景”规则输出 1280×720 封面；只替换审核台图片，不会静默修改已推送后台的商户。
+- **文件**: `zup-event-crawl/public/merchants.html`、`scripts/server.js`、`lib/merchant-map-cover.js`
+
+### 2026年9月 - 26 城热门地标导入商户审核台
+- **变更**: 将 `参考资料/各城市地点.xlsx` 中除北京外的地点逐条写入商户审核台，去重后共 376 个地点；364 个可靠地点使用腾讯 POI 名，另外 12 个缺少整体主体 POI 的地点也予以保留，并在审核台标记为「缺 POI」。来源统一标记为「热门地标」，未推送测试或正式后台。
+- **封面**: 274 个地点采用大众点评图片，90 个采用腾讯地图定位封面，12 个缺 POI 地点采用待确认封面。全部为 1280×720，可在审核台继续用图片 URL 替换。
+- **数据**: `zup-event-crawl/data/city-hotspots/`
+
+### 2026年9月 - 商户审核台支持图片 URL 替换封面
+- **变更**: 商户卡片可粘贴新的图片地址；点击替换后先沿用既有“模糊背景 + 原图完整居中”规则生成 1280×720 封面，再更新审核台图片，不直接使用未经处理的原图。
+- **文件**: `zup-event-crawl/public/merchants.html`、`scripts/server.js`、`lib/merchant-image-compose.js`、`lib/compose-merchant-images-batch.js`
+
+### 2026年9月 - 北京热门社交地点商户
+- **变更**: 根据 `参考资料/各城市地点.xlsx` 校对腾讯 POI，为北京 20 个热门社交地点配置大众点评封面并写入审核台；商户名称统一使用腾讯 POI 名，不使用表格中的 Zup 显示名，来源类型单独标记为「热门地标」。朝阳公园复用正式库已有商户，其余 19 个保留在审核台，待人工处理后再推正式后台。
+- **数据**: `zup-event-crawl/data/city-hotspots/北京.json`
+
+### 2026年8月 - 审核台商户气泡按店账号发布
+- **变更**: 商户气泡页不再列出马甲号。发布身份改为统一账号，或给每家店创建管理员后用各自账号发。城市轮转分组发布已去掉，只按勾选的店发。
+- **文件**: `zup-event-crawl/public/merchant-bubbles.html`、`lib/merchant-admin-user.js`、`lib/merchant-bubble.js`、`scripts/server.js`
+
+### 2026年8月 - 约个小酒专题页改版
+- **变更**: 约酒专题改名为「约个小酒」；用地图筛选截图教用户勾选「小酌」；Preview / 参加步骤换成开桌宣传。不写酒馆联名。
+- **文件**: `events/tonight-drink.html`、`events/assets/tonight-drink-filter.png`、`events/README.md`、`README.md`
+
+### 2026年8月 - 约酒专题 H5（App 内）
+- **变更**: 新增约酒专题页，用于 App 内宣传酒馆联名邀约：地图气泡、报名/签到人数、进群。
+- **文件**: `events/tonight-drink.html`、`events/README.md`、`README.md`
+
+### 2026年8月 - 审核台一键屏蔽 / 启用已推送活动
+- **变更**: 活动审核页可一键把当前环境里已推送且未过期的活动从 App 地图上藏起来或重新显示，也可按城市单独操作。
+- **文件**: `zup-event-crawl/public/index.html`、`zup-event-crawl/lib/buzz-now-import.js`、`zup-event-crawl/scripts/server.js`、`zup-event-crawl/README.md`
+
+### 2026年8月 - 根目录一键启动审核台与 AI 建档
+- **变更**: 仓库根 `npm start` 同时拉起活动审核台（8790）与 AI 建档代理（8788）；也可 `start:review` / `start:profile` 单独开。审核台避开 MasterGo 占用的 8787。
+- **文件**: `scripts/start-local-services.js`、`package.json`、`README.md`
+
+### 2026年8月 - AI 建档首次开场说明（克制版）
+- **变更**: 首次建档开场恢复完整底部抽屉高度；短文案 + Hero/胶囊/对话预览/时间线等静态设计元素（无星芒动效）。
+- **文件**: `match-card.html`、`docs/ai-match-profile.md`、`README.md`
+
+### 2026年8月 - AI 建档增加首次开场说明
+- **变更**: `match-card.html` 首次建档先展示说明页，再进入问答；`system-prompt.js` 开场改为短招呼后直接问第一题。
+- **文件**: `match-card.html`、`demo/profile-proxy/system-prompt.js`、`docs/ai-match-profile.md`、`README.md`
 
 ### 2026年8月 - 全站统一新 App 图标
 - **变更**: 各页 favicon / 导航 Logo / 下载页与活动 H5 中的旧应用图标，统一改为 CDN `https://buzzin.oss-cn-beijing.aliyuncs.com/h5_event/zup-app-icon.png`；本地 `images/favicon.png`、`nav-logo.png`、`hero-logo.png`、`app-icon.png` 同步覆盖为新图。

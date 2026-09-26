@@ -90,6 +90,9 @@
     .seg-btn-label{font-size:13px}
     .seg-btn-count{font-size:11px;font-weight:700;opacity:.72}
     .seg button.active .seg-btn-count{opacity:.88}
+    .seg-btn-push{font-size:10px;font-weight:800;color:#197549;line-height:1.1}
+    .seg button.active .seg-btn-push{color:#9dffc8}
+    .seg-btn-push.is-zero{opacity:.55;font-weight:600}
     .search{height:36px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:0 12px;min-width:260px}
     .grid{display:grid;grid-template-columns:1fr;gap:12px}
     .card{background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;display:grid;grid-template-columns:156px minmax(0,1fr)}
@@ -910,10 +913,16 @@
       return isPendingImportEvent(event);
     }
 
-    /** 距离开始筛选下的批量推送：不要求 1 周内开始 */
-    function canBatchImportEvent(event) {
+    /** 已通过、字段齐全、还没推送。周筛选上的「待推送」用这个，不要求一周内开始。 */
+    function isApprovedReadyUnimported(event) {
       if (getStatus(event) !== "approved") return false;
       if (!isImportReady(event) || isImportedEvent(event)) return false;
+      return true;
+    }
+
+    /** 距离开始筛选下的批量推送：不要求 1 周内开始 */
+    function canBatchImportEvent(event) {
+      if (!isApprovedReadyUnimported(event)) return false;
       if (START_DISTANCE_FILTERS.has(statusFilter)) return true;
       return isPendingImportEvent(event);
     }
@@ -1674,6 +1683,9 @@
       const globalSourceCounts = new Map();
       let globalTotal = 0;
       const statusCounts = Object.fromEntries(STATUS_FILTER_KEYS.map((key) => [key, 0]));
+      const startWeekPendingImport = Object.fromEntries(
+        [...START_DISTANCE_FILTERS].map((key) => [key, 0]),
+      );
       const categoryCounts = new Map();
       let categoryScopedTotal = 0;
 
@@ -1715,7 +1727,12 @@
         statusCounts.all += 1;
         for (const key of STATUS_FILTER_KEYS) {
           if (key === "expired" || key === "all") continue;
-          if (matchesStatusFilter(event, key)) statusCounts[key] += 1;
+          if (matchesStatusFilter(event, key)) {
+            statusCounts[key] += 1;
+            if (START_DISTANCE_FILTERS.has(key) && isApprovedReadyUnimported(event)) {
+              startWeekPendingImport[key] += 1;
+            }
+          }
         }
 
         if (statusFilter !== "expired" && matchesStatusFilter(event, statusFilter)) countCategory(event);
@@ -1742,6 +1759,7 @@
         globalSourceCounts,
         globalTotal,
         statusCounts,
+        startWeekPendingImport,
         categoryCounts,
         categoryScopedTotal,
         dateCounts,
@@ -2308,7 +2326,10 @@
       `;
     }
 
-    function renderSegButton({ attr, value, label, count, active, disabled }) {
+    function renderSegButton({ attr, value, label, count, pendingImport, active, disabled }) {
+      const pushLine = pendingImport == null
+        ? ""
+        : `<span class="seg-btn-push${pendingImport > 0 ? "" : " is-zero"}">待推送 ${pendingImport}</span>`;
       return `
         <button
           type="button"
@@ -2318,6 +2339,7 @@
         >
           <span class="seg-btn-label">${escapeHtml(label)}</span>
           <span class="seg-btn-count">${count}</span>
+          ${pushLine}
         </button>
       `;
     }
@@ -2476,6 +2498,7 @@
 
     function renderStatusFilter() {
       const statusCounts = filterMetrics?.statusCounts || {};
+      const startWeekPendingImport = filterMetrics?.startWeekPendingImport || {};
       const filters = [
         { key: "all", label: "全部" },
         { key: "classification-pending", label: "待分类" },
@@ -2502,6 +2525,7 @@
         value: key,
         label,
         count: statusCounts[key] || 0,
+        pendingImport: START_DISTANCE_FILTERS.has(key) ? (startWeekPendingImport[key] || 0) : null,
         active: statusFilter === key,
       })).join("");
     }
