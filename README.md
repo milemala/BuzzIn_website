@@ -170,6 +170,14 @@ npm start
 - **变更**: 活动审核台批量推送到测试环境时，没显示在当前这一页上的活动，会继续用这条活动自己保存的发布账号。之前会改用测试环境默认账号 `604590505`（18号99），这个号只在正式环境里，测试后台因此整批报内部错误。
 - **文件**: `zup-event-crawl/public/index.html`
 
+### 2026年9月 - 定时发布可以精确到秒
+- **变更**: 每天定时发布的时间可以填到秒。即刻邀约不填过期时间时，后台仍按发布日的次日凌晨 4:00 过期，因此可以把定时设成 04:00:05，上一批过期后几秒就发下一批。
+- **文件**: `zup-event-crawl/lib/merchant-bubble-daily.js`、`zup-event-crawl/public/merchant-bubbles.html`
+
+### 2026年9月 - 商户气泡可每天定时发布
+- **变更**: 商户气泡页保留单次发布，并增加每天固定时间的循环发布。到点后按当时保存的发布设置，给已启用且没有未过期气泡的店发一轮。定时记在审核台数据库里，页面关掉也会执行。
+- **文件**: `zup-event-crawl/lib/merchant-bubble-daily.js`、`zup-event-crawl/public/merchant-bubbles.html`、`zup-event-crawl/scripts/server.js`
+
 ### 2026年9月26日 - 记下阿里云部署现状
 - **变更**: 在部署说明最前面写下已经完成的事：服务器地址、登录钥匙放在哪、官网目录、审核台目录、还没放行的 8790 端口。以后更新网页或审核台按这份记录做。
 - **文件**: `zup-event-crawl/deploy/README.md`

@@ -90,6 +90,11 @@ const { replaceMerchantCoverWithMap } = require("../lib/merchant-map-cover");
 const { syncMerchantsFromBuzz } = require("../lib/buzz-merchant-sync");
 const { queryBubbleGroupActivity } = require("../lib/bubble-group-activity");
 const {
+  getDailySchedule,
+  saveDailySchedule,
+  startDailyScheduleLoop,
+} = require("../lib/merchant-bubble-daily");
+const {
   assertReviewBindAllowed,
   clearLoginFailures,
   clearSession,
@@ -1460,6 +1465,27 @@ async function handleApi(req, res, pathname) {
     return;
   }
 
+  if (req.method === "GET" && pathname === "/api/merchant-bubbles/daily-schedule") {
+    try {
+      const schedule = getDailySchedule(db, parseBuzzEnvFromRequest(req));
+      sendJson(res, 200, { ok: true, schedule });
+    } catch (error) {
+      sendJson(res, 400, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/merchant-bubbles/daily-schedule") {
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const schedule = saveDailySchedule(db, parseBuzzEnvFromRequest(req, body), body);
+      sendJson(res, 200, { ok: true, schedule });
+    } catch (error) {
+      sendJson(res, 400, { ok: false, error: error.message });
+    }
+    return;
+  }
+
   if (req.method === "POST" && pathname === "/api/merchant-bubbles/publish-batch") {
     try {
       const body = JSON.parse((await readBody(req)) || "{}");
@@ -1672,6 +1698,8 @@ server.on("error", (error) => {
   }
   throw error;
 });
+
+startDailyScheduleLoop(db, { startPublishBatchJob });
 
 server.listen(port, host, () => {
   const shownHost = host === "0.0.0.0" ? "127.0.0.1" : host;

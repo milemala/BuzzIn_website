@@ -342,6 +342,30 @@
       <div class="actions">
         <button class="btn primary" id="publishSelectedBtn" type="button">为已启用的店发布</button>
       </div>
+
+      <div class="option-block" style="margin-top:16px">
+        <div class="option-head">
+          <div class="option-title">每天定时发布</div>
+          <p class="option-desc">单次发布仍然用上面的按钮。打开定时后，每天到点按当前这些发布设置，给已启用、且没有未过期气泡的店再发一轮。不填过期时间时，即刻邀约会在发布那天的第二天凌晨 4:00 过期。时间可以填到秒，例如 04:00:05，上一批过期后几秒就能发下一批。页面关掉也会发。</p>
+        </div>
+        <div class="split split-2">
+          <div class="field">
+            <label for="dailyTime">每天几点几秒（北京时间）</label>
+            <input id="dailyTime" type="time" step="1" value="09:00:00">
+          </div>
+          <div class="field">
+            <label for="dailyEnabled">开关</label>
+            <select id="dailyEnabled">
+              <option value="0">关闭</option>
+              <option value="1">开启</option>
+            </select>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn" id="saveDailyBtn" type="button">保存定时</button>
+        </div>
+        <p class="option-note" id="dailyStatus">还没有定时。</p>
+      </div>
       <div class="result" id="result"></div>
     </section>
   </main>
@@ -1520,6 +1544,53 @@
         }),
       });
     });
+    function renderDailyStatus(schedule) {
+      const status = document.getElementById("dailyStatus");
+      if (!schedule) {
+        status.textContent = "还没有定时。";
+        return;
+      }
+      document.getElementById("dailyTime").value = schedule.time || "09:00";
+      document.getElementById("dailyEnabled").value = schedule.enabled ? "1" : "0";
+      const envLabel = schedule.buzz_env === "prod" ? "正式" : "测试";
+      const head = schedule.enabled
+        ? `已开启：每天 ${schedule.time}（北京时间）给「${envLabel}」里已启用的店发布。`
+        : `已关闭。上次保存的时间是 ${schedule.time}。`;
+      status.textContent = schedule.last_message ? `${head} ${schedule.last_message}` : head;
+    }
+
+    async function loadDailySchedule() {
+      const response = await fetch(BuzzEnvUi.withBuzzEnv("/api/merchant-bubbles/daily-schedule"), { cache: "no-store" });
+      const data = await response.json();
+      if (!response.ok || !data.ok) throw new Error(data.error || "读取定时失败");
+      renderDailyStatus(data.schedule);
+    }
+
+    document.getElementById("saveDailyBtn").addEventListener("click", async () => {
+      const enabled = document.getElementById("dailyEnabled").value === "1";
+      const time = document.getElementById("dailyTime").value;
+      if (enabled && !time) {
+        setSaveState("请选择每天几点发布", "error");
+        return;
+      }
+      const envLabel = BuzzEnvUi.envLabel();
+      if (enabled && !window.confirm(`从现在起，每天 ${time}（北京时间）用当前发布设置，给「${envLabel}」里已启用的店发气泡。已有未过期气泡的店会跳过。单次发布按钮仍然可用。`)) return;
+      try {
+        await persistTitlePool();
+        const response = await fetch("/api/merchant-bubbles/daily-schedule", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(currentOptions({ enabled, time })),
+        });
+        const data = await response.json();
+        if (!response.ok || !data.ok) throw new Error(data.error || "保存定时失败");
+        renderDailyStatus(data.schedule);
+        setSaveState(enabled ? "定时已开启" : "定时已关闭", "ok");
+      } catch (error) {
+        setSaveState(error.message || "保存定时失败", "error");
+      }
+    });
+
     document.getElementById("publishSelectedBtn").addEventListener("click", async () => {
       const uids = requireEnabledMerchants();
       if (!uids) return;
@@ -1559,8 +1630,12 @@
       applyPublishUserDefault();
       window.onBuzzEnvChanged = async () => {
         applyPublishUserDefault();
-        await loadState();
+        await Promise.all([
+          loadState(),
+          loadDailySchedule().catch((error) => setSaveState(error.message || "读取定时失败", "error")),
+        ]);
       };
+      loadDailySchedule().catch((error) => setSaveState(error.message || "读取定时失败", "error"));
       return loadState();
     }).catch((error) => setSaveState(error.message || "加载失败", "error"));
   </script>
