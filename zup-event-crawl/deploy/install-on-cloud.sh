@@ -23,6 +23,11 @@ if ! "$NODE_BIN" -e "require('node:sqlite')" >/dev/null 2>&1; then
   exit 1
 fi
 
+if [[ ! -s "$APP_DIR/data/review-password" ]] && [[ -z "${REVIEW_PASSWORD:-}" ]]; then
+  echo "缺少登录密码。请先在 data/review-password 里写一行密码，再执行安装。"
+  exit 1
+fi
+
 cd "$APP_DIR"
 npm install --omit=dev --registry=https://registry.npmmirror.com
 

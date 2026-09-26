@@ -66,7 +66,7 @@ Ctrl+C 会一起关掉。只开其中一个时：`npm run start:review` 或 `npm
 
 **不要打开 8787**：那是本机 MasterGo，不是审核台。审核台是 **8790**。重复执行 `npm start` 会先清掉旧进程再重开，不会再因为端口占用而挂掉。
 
-要让审核台在阿里云上一直开着（给以后每天自动发气泡用），按 [`zup-event-crawl/deploy/README.md`](zup-event-crawl/deploy/README.md) 做。云上只跑审核台，抓取仍在自己电脑上。
+要把现在的网页和审核台放到已有的阿里云上，按 [`zup-event-crawl/deploy/README.md`](zup-event-crawl/deploy/README.md) 做。网页用现有官网网址打开。审核台用 `http://公网IP:8790`，公网打开前要输入登录密码。抓取仍在自己电脑上。
 
 ### AI 建档 Demo（智谱）
 
@@ -166,6 +166,22 @@ npm start
 
 ## 最近更新
 
+### 2026年9月 - 批量推送不再误用正式环境账号
+- **变更**: 活动审核台批量推送到测试环境时，没显示在当前这一页上的活动，会继续用这条活动自己保存的发布账号。之前会改用测试环境默认账号 `604590505`（18号99），这个号只在正式环境里，测试后台因此整批报内部错误。
+- **文件**: `zup-event-crawl/public/index.html`
+
+### 2026年9月26日 - 记下阿里云部署现状
+- **变更**: 在部署说明最前面写下已经完成的事：服务器地址、登录钥匙放在哪、官网目录、审核台目录、还没放行的 8790 端口。以后更新网页或审核台按这份记录做。
+- **文件**: `zup-event-crawl/deploy/README.md`
+
+### 2026年9月 - 审核台上云不带已结束活动
+- **变更**: 打包审核台时去掉已经结束的活动及其封面。商户和还没结束的活动仍会带上。本机数据库不删这些历史。
+- **文件**: `zup-event-crawl/scripts/pack-cloud.sh`、`zup-event-crawl/scripts/export-unexpired-cloud-data.js`
+
+### 2026年9月 - 审核台公网访问需要登录密码
+- **变更**: 用公网 IP 打开审核台时，先输入密码。密码写在 `zup-event-crawl/data/review-password`，不进入代码仓库。本机 `127.0.0.1` 打开仍然直接进入。
+- **文件**: `zup-event-crawl/lib/review-auth.js`、`zup-event-crawl/scripts/server.js`、`zup-event-crawl/public/login` 由服务直接返回
+
 ### 2026年9月 - 启用和停用只作用于当前筛选
 - **变更**: 商户气泡页的「启用当前筛选」「停用当前筛选」只改当前筛选结果里已经选中的店，不会把名单里其他店一起改掉。
 
@@ -181,9 +197,9 @@ npm start
 - **变更**: 从商户气泡页发布时，和活动审核台一样带上隐藏报名签到的标记。即刻邀约和预约也不再出现报名签到入口。已经发出去的气泡不会自动改掉。
 - **文件**: `zup-event-crawl/lib/merchant-bubble.js`、`zup-event-crawl/public/merchant-bubbles.html`
 
-### 2026年9月 - 审核台可打包到阿里云
-- **变更**: 增加打包和云上安装步骤，把审核台放到一台不关机的轻量服务器上。页面默认不暴露到公网，用加密通道在自己电脑打开。每天定时发气泡要等这台服务一直开着之后再做。
-- **文件**: `zup-event-crawl/deploy/README.md`、`zup-event-crawl/scripts/pack-cloud.sh`、`zup-event-crawl/deploy/install-on-cloud.sh`
+### 2026年9月 - 网页和审核台可放到现有阿里云
+- **变更**: 部署步骤改为加在已经在跑的官网和后台旁边。网页上传后用现有网址打开；审核台仍不暴露到公网。先看清服务器上的网页目录和端口，再上传，避免覆盖正在跑的服务。
+- **文件**: `zup-event-crawl/deploy/README.md`
 
 ### 2026年9月 - 商户气泡可查看已选店的类型
 - **变更**: 商户气泡选店筛选改为来源、已选/已启用、城市、类型。点「已选」或「已启用」后，城市和类型只统计这批店。

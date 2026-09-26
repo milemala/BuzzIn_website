@@ -275,6 +275,7 @@
           <a href="/merchants.html">商户审核</a>
           <a href="/merchant-bubbles.html">商户气泡</a>
           <a href="/bubble-group-activity.html">群聊统计</a>
+          <a href="/logout">退出</a>
         </nav>
         <div class="buzz-env-bar" id="buzzEnvBar"></div>
         <h1>Zup 抓取活动审核台</h1>
@@ -1087,7 +1088,11 @@
     function publishUserIdFromCard(uid) {
       const card = listEl.querySelector(`article.card[data-uid="${uid}"]`);
       const field = card?.querySelector("[data-import-field='publish_user_id']");
-      return String(field?.value || "").trim() || defaultPublishUserId();
+      const fromCard = String(field?.value || "").trim();
+      if (fromCard) return fromCard;
+      // 批量推送会处理当前筛选的全部活动，但页面一次只画出一页。
+      // 没画出来的卡片读不到输入框，必须用这条活动自己已保存的发布账号。
+      return publishUserIdFromEvent(findEventByUid(uid));
     }
 
     function importEnvLabel() {

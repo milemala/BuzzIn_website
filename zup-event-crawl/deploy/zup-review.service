@@ -10,7 +10,7 @@ ExecStart=__NODE_BIN__ scripts/server.js
 Restart=always
 RestartSec=3
 Environment=TZ=Asia/Shanghai
-Environment=HOST=127.0.0.1
+Environment=HOST=0.0.0.0
 Environment=PORT=8790
 
 [Install]

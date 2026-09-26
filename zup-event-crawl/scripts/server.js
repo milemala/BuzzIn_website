@@ -90,6 +90,23 @@ const { replaceMerchantCoverWithMap } = require("../lib/merchant-map-cover");
 const { syncMerchantsFromBuzz } = require("../lib/buzz-merchant-sync");
 const { queryBubbleGroupActivity } = require("../lib/bubble-group-activity");
 const {
+  assertReviewBindAllowed,
+  clearLoginFailures,
+  clearSession,
+  clearSessionCookie,
+  clientNeedsPassword,
+  createSession,
+  loadReviewPassword,
+  loginLocked,
+  loginPageHtml,
+  passwordsMatch,
+  readSessionToken,
+  recordLoginFailure,
+  safeNextPath,
+  sessionCookie,
+  sessionIsValid,
+} = require("../lib/review-auth");
+const {
   buildPoiKeyword,
   pickBestPoiForMerchant,
   reorderPoiByBestMatch,
@@ -1547,13 +1564,100 @@ function serveStatic(req, res, pathname) {
 
 ensureDatabaseSeeded();
 
-const server = http.createServer((req, res) => {
-  const parsed = url.parse(req.url);
-  if (parsed.pathname.startsWith("/api/")) {
-    handleApi(req, res, parsed.pathname);
+const reviewPassword = loadReviewPassword(root);
+assertReviewBindAllowed(host, reviewPassword);
+
+function redirectToLogin(res, nextPath) {
+  const next = encodeURIComponent(safeNextPath(nextPath));
+  res.writeHead(302, {
+    Location: `/login.html?next=${next}`,
+    "Cache-Control": "no-store",
+  });
+  res.end();
+}
+
+async function handleReviewLogin(req, res) {
+  const remoteAddress = req.socket.remoteAddress || "";
+  const locked = loginLocked(remoteAddress);
+  if (locked.locked) {
+    sendJson(res, 429, { ok: false, error: "密码试错次数太多，请稍后再试" });
     return;
   }
-  serveStatic(req, res, parsed.pathname);
+  let body = {};
+  try {
+    body = JSON.parse((await readBody(req)) || "{}");
+  } catch (error) {
+    sendJson(res, 400, { ok: false, error: "请填写密码" });
+    return;
+  }
+  if (!reviewPassword || !passwordsMatch(reviewPassword, body.password)) {
+    const after = recordLoginFailure(remoteAddress);
+    sendJson(res, 401, {
+      ok: false,
+      error: after.locked ? "密码试错次数太多，请稍后再试" : "密码不对",
+    });
+    return;
+  }
+  clearLoginFailures(remoteAddress);
+  const token = createSession();
+  const next = safeNextPath(body.next);
+  res.writeHead(200, {
+    "Content-Type": "application/json; charset=utf-8",
+    "Cache-Control": "no-store",
+    "Set-Cookie": sessionCookie(token),
+  });
+  res.end(`${JSON.stringify({ ok: true, next })}\n`);
+}
+
+const server = http.createServer((req, res) => {
+  const parsed = url.parse(req.url, true);
+  const pathname = parsed.pathname || "/";
+  const remoteAddress = req.socket.remoteAddress || "";
+
+  if (req.method === "GET" && pathname === "/login.html") {
+    res.writeHead(200, {
+      "Content-Type": "text/html; charset=utf-8",
+      "Cache-Control": "no-store",
+    });
+    res.end(loginPageHtml({
+      next: parsed.query.next,
+      error: String(parsed.query.error || ""),
+    }));
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/review-login") {
+    handleReviewLogin(req, res);
+    return;
+  }
+
+  if (pathname === "/logout") {
+    clearSession(readSessionToken(req.headers.cookie));
+    res.writeHead(302, {
+      Location: "/login.html",
+      "Cache-Control": "no-store",
+      "Set-Cookie": clearSessionCookie(),
+    });
+    res.end();
+    return;
+  }
+
+  const authed = sessionIsValid(readSessionToken(req.headers.cookie));
+  if (clientNeedsPassword(remoteAddress, reviewPassword) && !authed) {
+    if (pathname.startsWith("/api/")) {
+      sendJson(res, 401, { ok: false, error: "请先登录" });
+      return;
+    }
+    const nextPath = `${pathname}${parsed.search || ""}`;
+    redirectToLogin(res, nextPath);
+    return;
+  }
+
+  if (pathname.startsWith("/api/")) {
+    handleApi(req, res, pathname);
+    return;
+  }
+  serveStatic(req, res, pathname);
 });
 
 server.on("error", (error) => {
@@ -1575,5 +1679,8 @@ server.listen(port, host, () => {
   console.log(`  活动审核: http://${shownHost}:${port}/`);
   console.log(`  商户审核: http://${shownHost}:${port}/merchants.html`);
   console.log(`  商户气泡: http://${shownHost}:${port}/merchant-bubbles.html`);
+  if (reviewPassword && host === "0.0.0.0") {
+    console.log(`  公网打开 http://服务器公网IP:${port}/ 时需要登录密码`);
+  }
   console.log(`Database: ${dbPath}`);
 });
